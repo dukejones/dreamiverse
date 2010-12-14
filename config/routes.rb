@@ -1,4 +1,9 @@
 Dreamcatcher::Application.routes.draw do
+  devise_for :users do
+    get "login", :to => "home#index"
+    get "signup", :to => "home#index"
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
