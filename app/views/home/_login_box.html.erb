@@ -1,24 +1,27 @@
 <!-- LOGIN MODULE -->
 <div id="loginBox" class="light gradient-A glow-40 float-right clear-right round-8">
-  <form id="formLogin" name="formLogin" method="post" action="/login">
-    <input type="hidden" name="loginMode" value="authenticate">
+  <%= form_for(@user, :url => session_path(@user)) do |f| %>
     <!-- USERNAME -->
     <div class="float-left">
       <p class="login-label color-50">email</p>
-      <input id="emailField" class="login-input light text_input-big round-8 font-19 padding-4" tabindex="1" name="emailUserName" type="text" value="<%= @email %>">
+      <%= f.text_field :email, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
       <label class="login-options light A-indent round-4 color-50">keep me logged in<input tabindex="4" class="pointer" type="checkbox" name="keepMeLoggedIn">
       </label>
-    </div><!-- END USERNAME -->
+    </div>
+    <!-- END USERNAME -->
     <!-- PASSWORD -->
     <div class="float-left" style="margin-left:10px;">
       <p class="login-label color-50">password</p>
-      <input class="login-input light text_input-big round-8 font-19 padding-4" name="passWord" tabindex="2" type="password">
+      <%= f.password_field :password, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "2" %>
       <span id="forgotPassLink" class="login-options light A-indent round-4 color-50 block pointer">I forgot my password</span>
-    </div><!-- END PASSWORD --> 
+    </div>
+    <!-- END PASSWORD --> 
     <!-- SUBMIT BUTTONS -->
     <div class="float-left align-center" style="margin:12px 0 0 8px;">
       <input id="loginButton" class="light A-shine O-outline round-8 button-post" tabindex="3" name="loginButton" type="submit" value="&rsaquo;"><br>
       <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button>
-    </div><!-- END SUBMIT BUTTONS -->
-  </form>
-</div><!-- END LOGIN MODULE -->
+    </div>
+    <!-- END SUBMIT BUTTONS -->
+  <% end %>
+</div>
+<!-- END LOGIN MODULE -->
