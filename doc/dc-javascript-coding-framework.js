@@ -9,21 +9,21 @@ $dc = {};
 // for each module in its own 'CLASS' for re-usability
 $dc.element = (function() {
   // Define the elements you will need to interact with
-  var EXPAND_BUTTON = $('#expand-button');
-  var EXPAND_ELEMENT = $('#expand-me');
+  var expandButton = $('#expand-button');
+  var expandElement = $('#expand-me');
 
   // Create the methods you will need to use as variables
   var contract = function() {
     // place all contract functionality here
-    EXPAND_ELEMENT.slideUp();
+    expandElement.slideUp();
   };
   
   var expand = function() {
     // Check to see if the element is expanded, and return false if so
-    if (EXPAND_ELEMENT.css('display') != 'none') { return false; }
+    if (expandElement.css('display') != 'none') { return false; }
 
     // Place all expand functionality here
-    EXPAND_ELEMENT.slideDown();
+    expandElement.slideDown();
   };
   
   // the return is an Object that you can choose which
