@@ -6,6 +6,10 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+
+FB_PERMS = "publish_stream, publish_checkins, user_location, user_photos, user_checkins, email"
+
+
 module Dreamcatcher
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

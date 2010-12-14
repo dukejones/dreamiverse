@@ -1,3 +1,7 @@
+FB_APP_ID = '124682597593261'
+FB_API_KEY = 'dee8b94c97c7a98066ccfacd5c5556eb'
+FB_SECRET = '346d46fd33affd1119dfed9ca29261ab'
+
 Dreamcatcher::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
