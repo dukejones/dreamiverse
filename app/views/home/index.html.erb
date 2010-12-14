@@ -4,36 +4,9 @@
   <div id="column-left">
     <!-- LOGO -->
     <div class="front-logo"><a href="/"><img src="/images/logos/frontpage-logo.png" alt="Dreamcatcher - Life is a dream." width="447" height="129" border="0"></a></div>
-    <!-- INFO MODULE -->
-    <div id="info" class="color-blue">
-      <div id="info-box" class="info-text" style="display:block;">
-        <table class="font-19">
-          <tr>
-            <td width="1"><img src="/images/icons/cover_icon-connected-100.png"></td>
-            <td valign="middle">Dreamcatcher uses the power of online social networks to connect our dreams.</td>
-          </tr>
-          <tr>
-            <td><img src="/images/icons/cover_icon-friends-100.png"></td>
-            <td valign="middle">Who was in my dream?<br>Whose dream am I in?<br> What is the world dreaming?</td>
-          </tr>
-          <tr>
-            <td><img src="/images/icons/cover_icon-earth-100.png"></td>
-            <td valign="middle">Start sharing and find out with the world's most advanced dream journal.</td>
-          </tr>
-        </table>
-      </div>
-      <div id="about-box" class="info-text hidden" style="">
-        <div id="about-box-banner" class="round-8"></div>
-        <p>Dreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, and keep them neatly organized and easy to share.
-        <p>Our aim is to build a forum to catalog and share a deeper part of ourselves and our creative journeys throughout life.</p>
-        <p>From a global perspective, Dreamcatcher is a social experiment that will help us better understand what is going on in our conscious and subconscious lives, charting global dream trends and see how they relate to the larger pattern and current events.</p>
-      </div>
-      <div id="infoNav" class="align-center">
-        <a id="whatisdc" class="info-button selected dark" href="#">What is Dreamcatcher?</a>
-        <a id="aboutdc" class="info-button dark" href="#">About</a>
-        <a id="contactdc" class="info-button dark hidden" href="#">Contact</a>
-      </div> 
-    </div><!-- END INFO MODULE -->
+
+    <%= render "info_box" %>
+
     <div id="bottomPadding"></div>
   </div>
   <!-- END LEFT COLUMN -->
@@ -41,31 +14,8 @@
   <!-- RIGHT COLUMN -->
   <div id="column-right">
 
-    <!-- LOGIN MODULE -->
-    <div id="loginBox" class="light gradient-A glow-40 float-right clear-right round-8">
-      <form id="formLogin" name="formLogin" method="post" action="/login">
-        <input type="hidden" name="loginMode" value="authenticate">
-        <!-- USERNAME -->
-        <div class="float-left">
-          <p class="login-label color-50">username / email</p>
-          <input id="emailField" class="login-input light text_input-big round-8 font-19 padding-4" tabindex="1" name="emailUserName" type="text" value="<%= @username %>">
-          <label class="login-options light A-indent round-4 color-50">keep me logged in<input tabindex="4" class="pointer" type="checkbox" name="keepMeLoggedIn">
-          </label>
-        </div><!-- END USERNAME -->
-        <!-- PASSWORD -->
-        <div class="float-left" style="margin-left:10px;">
-          <p class="login-label color-50">password</p>
-          <input class="login-input light text_input-big round-8 font-19 padding-4" name="passWord" tabindex="2" type="password">
-          <span id="forgotPassLink" class="login-options light A-indent round-4 color-50 block pointer">I forgot my password</span>
-        </div><!-- END PASSWORD --> 
-        <!-- SUBMIT BUTTONS -->
-        <div class="float-left align-center" style="margin:12px 0 0 8px;">
-          <input id="loginButton" class="light A-shine O-outline round-8 button-post" tabindex="3" name="loginButton" type="submit" value="&rsaquo;"><br>
-          <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button>
-        </div><!-- END SUBMIT BUTTONS -->
-      </form>
-    </div><!-- END LOGIN MODULE -->
-
+    <%= render "login_box" %>
+    
     <!-- MESSAGE BOX MODULE -->
     <div id="messageBox" class="float-right light round-8 glow-80" style="display:none;">
       <table width="480" border="0" cellspacing="8" class="light A-bevel round-8">
@@ -82,147 +32,14 @@
     <!-- ACTION BUTTON MODULE -->
     <div id="actionButtons" class="light glow-40 float-left gradient-C round-8">
 
-      <!-- SIGNUP PANEL -->
-      <div id="signupBack" class="categoryBack dark round-8 button-big-gray float-right">&lsaquo;</div>
-      <div id="signupButton" class="button-signup button-action round-8 dark text-glow-10 button-big-blue" style="position: relative;">Join Now
-        <div id="fbHover" class="dark glow-40 round-4 float-right" style="position: absolute; right: 15pt; top: 29px"><div class="dark transparent-33 round-4 padding-4"><fb:login-button show-faces="false" max-rows="1" perms="<%= FB_PERMS %>" show-faces="true" width="178px"></fb:login-button></div></div>
-      </div>
-      <div id="signup">
-        <form method="post" action="/signup/save">
-          <input type="hidden" name="subMode" value="save">
-          <input type="hidden" name="charSetCheck" value="䙮"> <!-- current failing if corrpted in view source -->
-          <!-- EMAIL -->
-          <div class="signup-label round-8 light O-outline B-bevel flat-right">email</div>
-          <input id="signupEmail" class="signup-input round-8 text_input-big flat-left" type="text" name="email">
-          <!-- PASSWORD -->
-          <div class="signup-label round-8 light O-outline B-bevel flat-right">password</div>
-          <input class="signup-input round-8 text_input-big flat-left" type="password" name="passWord1">
-          <!-- CONFIRM PASSWORD -->
-          <div class="signup-label round-8 light O-outline B-bevel flat-right">confirm password</div>
-          <input class="signup-input round-8 text_input-big flat-left" type="password" name="passWord2">
-          <p class="float-left clear-left" style="margin:10px 0 0 15px; font-size:25px">create your username</p>
-          <hr width="200" class="float-right hidden" style="margin:28px 8px 0 0;"> 
-          <div style="clear:both"></div>
-          <!-- USERNAME -->
-          <div class="signup-label round-8 light O-outline B-bevel flat-right">dreamcatcher.net/</div>
-          <input id="signupUsername" class="signup-input round-8 text_input-big flat-left" style="margin-bottom:15px" type="text" name="userName" value="username">
-          <!-- FB LOGIN -->
-          <div class="fb-infoPanel light B O-outline round-8">
-            <div id="fbSignIn"><div id="fbSignInLabel" class="font-11" style="margin:15px 0 5px; display:block;">Sign up using your Facebook account</div><fb:login-button max-rows="1" perms="<%= FB_PERMS %>" show-faces="true" width="178px"></fb:login-button></div>
-          </div>
-          <!-- SUBMIT -->
-          <input type="hidden" name="seedCode" value="theta">
-          <input type="submit" class="signup-next dark round-8 button-big-blue" value="next &rsaquo;">
-          <div class="clear-both font-11 align-center">
-            By signing up for an account, I agree to the <a href="/terms" class="terms-link dark B-button B-outline round-4">terms and services</a>
-          </div>
-        </form>
-      </div><!-- END SIGNUP PANEL -->
-
-       <!-- SHARE YOUR DREAMS PANEL -->
-     <div id="shareBack" class="categoryBack dark round-8 button-big-gray float-right">&lsaquo;</div>
-      <div id="shareButton" class="button-share button-action round-8 light text-glow-10 button-big-blue">Share your Dreams</div>
-      <div id="sharePanel">
-        <table border="0" cellspacing="5" cellpadding="0" width="100%">
-          <tr>
-            <td style="padding:0px" align="left" colspan="3"><span class="font-25 panel-text">Signup for Dreamcatcher and get :</span></td>
-          </tr>
-          <tr>
-            <td align="right" valign="middle"> <img src="/images/signup/icon-journal.png"></td>
-            <td width="100%">
-              <b>...a free online diary</b>
-              <ul>
-                <li>Customize your own dream journal</li>
-                <li>Track trends in your dreams and experiences</li>
-                <li>Increase your dream recall and lucid dreaming</li>
-              </ul>
-            </td>
-          </tr>
-          <!-- <tr>
-            <td align="right" valign="middle"> <img src="/images/signup/icon-feeds.png"></td>
-            <td class="padding-8 round-8 font-17 light B box-pad">
-              <b>up to the moment dream feeds</b><br>
-              <ul>
-                <li>See what all your friends are dreaming</li>
-                <li>Filter the dreams of people around you or in distant places</li>
-              </ul>
-            </td>
-          </tr> -->
-          <tr>
-            <td align="right" valign="middle"> <img src="/images/signup/icon-mask.png"></td>
-            <td>		
-              <b>...full anonymity controls</b><br>
-              <ul>
-                <li>Set who sees what dreams with precise privacy controls</li>
-                <li>Make all dreams and info anonymous or private</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td align="right" valign="middle"> <img src="/images/signup/icon-globe.png"></td>
-            <td>		
-              <b>...connected to a world-wide network of dreamers</b><br>
-              <ul>
-                <li>Find people who have similar interests and dreams</li>
-                <li>Tune into your friends' experiences</li>
-              </ul>
-            </td>
-          </tr>
-        </table>     
-      </div><!-- END SHARE YOUR DREAMS PANEL -->
+      <%= render "signup_panel" %>
+      <%= render "share_panel" %>
 
       <!-- EXPLORE THE DREAMSPHERE -->
       <a id="dreamSphereButton" class="block button-explore button-action round-8 light text-glow-10 button-big-blue" style="margin:0" href="/dreamstars">Explore the Dreamsphere</a>
 
-      <!-- FB SIGNIN PANEL -->
-      <div id="fbSignin">
-        <div class="button-signup button-action round-8 dark text-glow-10 button-big-blue float-left" style="width:360px">
-          <span class="block round-8 dark glow-20" style="background: url(/images/icons/facebook-64.png) no-repeat top left; width:64px; height:64px; margin:10px 15px -17px 0; float:left"></span>
-          login
-        </div>
-        <div id="fbSigninBack" class="categoryBack dark round-8 button-big-gray float-right">&lsaquo;</div>
-        <div class="clear-both"></div>
-        <form method="post" action="/login">
-          <input type="hidden" name="loginMode" value="authenticate">
-          <input type="hidden" name="fbAssociate" value="true">
-          <span class="block font-25 panel-text">already have a dreamcatcher account?</span>
-          <span class="block font-13 panel-text" style="margin-bottom:6px">log in with your dreamcatcher account to link with Facebook</span>
-            <!-- USERNAME -->
-        <div class="signup-label round-8 light O-outline B-bevel flat-right">username</div>
-        <input class="signup-input round-8 text_input-big flat-left" type="text" name="emailUserName" value="<%= @username %>">
-        <!-- PASSWORD -->
-        <div class="signup-label round-8 light O-outline B-bevel flat-right">password</div>
-        <input class="signup-input round-8 text_input-big flat-left" style="margin-bottom:10px" type="password" name="passWord">
-        <span id="fbJoin" class="block clear-both font-13 pointer align-center" style="margin: 5px auto 5px;">don't have a dreamcatcher account? <u>Create one now...</u></span>
-        <div class="fb-infoPanel light B O-outline round-8">
-          <div id="fbSignIn"><fb:login-button perms="<%= FB_PERMS %>" show-faces="true" width="178px"></fb:login-button></div>
-        </div>
-        <input class="signup-next dark round-8 button-big-blue" type="submit" value="next &rsaquo;">
-        <div class="clear-both font-11 align-center">review the <a href="/terms" class="terms-link dark B-button B-outline round-4">terms and services</a></div>
-      </form>
-    </div><!-- END FB SIGNIN PANEL -->
-
-      <!-- FORGOT PASS PANEL -->
-      <div id="forgotPass" style="display:none;">
-        <div class="button-share button-action round-8 light text-glow-10 button-big-blue float-left" style="width:360px">Lost password</div>
-        <div id="forgotPassBack" class="categoryBack dark round-8 button-big-gray float-right">&lsaquo;</div>
-        <div class="clear-both"></div>
-        <form method="post" action="/forgot-password/reset">
-          <input type="hidden" name="mode" value="reset">
-          <span class="block font-25 panel-text">forgot your dreamcatcher password?</span>
-          <span class="light block font-13 panel-text" style="margin-bottom:7px">
-            <b>A)</b> enter your <b>email</b> address, submit, then check your email<br>
-            <b>B)</b> if it doesn't show up, check your spam box<br>
-            <b>C)</b> if problems still persist, email <a href="mailto:help@dreamcatcher.net" class="terms-link dark B-button B-outline round-4">help@dreamcatcher.net</a>
-          </span>
-          <!-- EMAIL -->
-          <div class="signup-label round-8 light O-outline B-bevel flat-right">email</div>
-          <input class="signup-input round-8 text_input-big flat-left" style="margin-bottom:15px" type="text" name="email">
-          <br>
-          <input class="signup-next dark round-8 button-big-blue" type="submit" value="next &rsaquo;">
-        </form>
-      </div><!-- END FORGOT PASS PANEL -->
-
+      <%= render "fb_login" %>
+      <%= render "forgot_password" %>
     </div><!-- END ACTION BUTTON MODULE -->
   </div><!-- RIGHT COLUMN -->
 </div><!-- END WRAPPER -->

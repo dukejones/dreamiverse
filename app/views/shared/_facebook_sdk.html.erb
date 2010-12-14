@@ -1,5 +1,7 @@
 <% javascript_tag do -%>
-  FB.init({ appId: <%= FB_APP_ID %>, status: true, cookie: true, xfbml: true });
+  $(document).ready(function() {
+    FB.init({ appId: <%= FB_APP_ID %>, status: true, cookie: true, xfbml: true });
+  });
 <% end -%>
 
 <!-- Facebook Connect uses this do not remove -->

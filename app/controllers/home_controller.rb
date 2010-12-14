@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @username = "phong"
+    @email = "phong@dreamcatcher.net"
   end
 end
