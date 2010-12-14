@@ -1,0 +1,79 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {font-family:Calibri, Arial, Helvetica, sans-serif; margin:0; padding:0; background: url('/images/splashes/background-splash_theta_x1.jpg') scroll 15% 45% #000; height:100%}
+#wrapper {margin:0 auto; padding:0; width:933px; height:auto}
+.front-logo {margin:0; padding:0; width:447px; height:129px; float:left}
+#bottomPadding {height:400px; clear:left}
+
+.outline-button {border:2px solid white}
+a:hover.outline-button {border:2px solid black}
+.terms-link {margin:8px 0 -6px 0; padding:1px}
+.dark.button-big-green.color-50:hover {color:#ccc}
+.color-blue {color:#6699cc}
+.color-black {color:black}
+
+.gradient {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#333'); /* for IE */ background:-webkit-gradient(linear, left top, left bottom, from(#000), to(#333)); /* for webkit browsers */ background:-moz-linear-gradient(top,  #000,  #333); /* for firefox 3.6+ */}
+.light.gradient-A {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#e2e2e2'); /* for IE */ background:-webkit-gradient(linear, left top, left bottom, from(#fff), to(#e2e2e2)); /* for webkit browsers */ background:-moz-linear-gradient(top,  #fff,  #e2e2e2); /* for firefox 3.6+ */}
+.gradient-C {filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#999'); /* for IE */ background:-webkit-gradient(linear, left top, left bottom, from(#fff), to(#999)); /* for webkit browsers */ background:-moz-linear-gradient(top,  #fff,  #999); /* for firefox 3.6+ */}
+
+#column-left {width:447px; float:left}
+#column-right {width:480px; float:right}
+
+#messageBox {width:480px; float:right}
+#messageTitle {padding:0 18px}
+#messageTitle.error {color:#cc3300}
+#messageTitle.success {color:#00cc33}
+.message-content {padding:6px 0 6px 6px}
+.message-content ul {margin:0 -10px}
+
+#loginBox {margin:31px 0 27px; padding:0 10px; width:460px; height:87px; float:right}
+#loginButton {margin:4px 0; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:36px; font-weight:bold; width:78px; height:40px}
+.login-input {width:172px; height:30px; line-height:30px}
+.login-options {margin:4px 0; padding:0; width:180px; height:18px; font-size:11px; text-align:center; cursor:pointer; line-height:18px; display:block; border:none}
+.login-label {margin:0 0 0 20px; padding:0; font-size:13px}
+.light .color-50, .light a:visited.color-50, .dark .color-50, .dark a:visited.color-50 {color:#666}
+
+
+#info {float:left; clear:left; padding-top:20px; width:447px; height:430px; background:url(/basic/inc/images/gradients/frontpage-info.png) no-repeat top left; position:relative}
+.info-text {padding:30px 0 10px 40px; width:375px; height:335px; position:absolute; float:left; font-size:15px; line-height:18px}
+.info-text div.clear-both {margin-top:5px; height:90px; width:330px; padding:8px; border:1px solid #212d43; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;} /* for contact section */
+.info-text div a {display:block; text-align:center; width:84px; margin:7px 25px 3px 0; float:right}
+.info-text div a, .info-text div a:visited, .info-text div a:active {color:#6699cc; text-decoration:none}
+.info-text div a:hover {color:#fff}
+.info-text div span.block {margin:0 auto}
+.info-text table {margin-left:-65px}
+.info-text td img {margin-bottom:-10px}
+#infoNav { position:absolute; top:380px; left:70px}
+.info-button {margin:0 25px; font-weight:bold; font-size:13px; padding:1px 6px; text-decoration:none; border:1px solid transparent; color:#6699cc}
+.info-button:hover {border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; border:1px solid #3887bc}
+.info-button.selected {border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; color:#000; background-color:#3887bc}
+#about-box-banner {background: url(/basic/inc/images/art/dream-eyes-banner-medium.jpg) no-repeat 50% 50% transparent; width:370px; height:60px; margin-top:10px}
+
+#actionButtons {margin-top:27px; padding:10px 8px; width:464px; float:right}
+.button-signup {font-size:36px; font-weight:bold; background:url(/basic/inc/images/gradients/button_signup.jpg) no-repeat top left}
+.button-share {font-size:36px; font-weight:bold; background:url(/basic/inc/images/gradients/button_share.jpg) no-repeat top left}
+.button-explore {font-size:36px; font-weight:bold; background:url(/basic/inc/images/gradients/button_explore.jpg) no-repeat top left}
+.button-action {margin:0 0 10px 0; padding:0 0 0 26px; width:434px; height:85px; line-height:85px; text-decoration:none}
+.panel-text {margin:0 15px;}
+
+.categoryHeader {margin:0 0 10px 0; padding:0 0 0 36px; width:344px; height:85px; line-height:85px; float:left; font-weight:bold}
+.categorySignup {background:url(/basic/inc/images/gradients/button_signup.jpg) top right}
+.categoryShare {background:url(/basic/inc/images/gradients/button_share.jpg) top right}
+.categoryBack {margin:0 0 10px 10px; padding:0 7px; width:46px; height:85px; line-height:85px; background:url(/basic/inc/images/gradients/button_back.jpg) top right; float:right; font-weight:bold; font-size:48px; text-align:center}
+
+.signup-label {margin:4px 0; float:left; clear:left; text-align:right; width:178px; height:22px; font-size:21px; padding:8px}
+.signup-input {margin:4px 0; float:right; text-align:left; width:248px; height:28px}
+.signup-next {border:2px solid #999; margin:4px 0; float:right; font-weight:bold; text-align:center; padding:0; width:258px; height:85px; line-height:85px; font-size:48px; color:#ccc; background:url(/basic/inc/images/gradients/button_next.jpg) top right}
+.signup-next:hover {color:#fff}
+
+#signup form, #fbSignin form, #forgotPass form {margin:0px}
+
+#fbHover {font-size:11px; line-height:8px; /*margin:30px 30px 0 0*/}
+#fbSignIn .fb_iframe_widget {margin:-5px auto 0}
+.fb-infoPanel {margin:4px 0; clear:both; text-align:center; float:left; width:192px; height:85px}
+
+#sharePanel td {font-size:17px; padding:8px}
+#sharePanel ul {margin-top:0px}
+
+#forgotPass .signup-next {width: 100%}
