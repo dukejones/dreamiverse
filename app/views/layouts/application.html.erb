@@ -7,6 +7,21 @@
   <%= javascript_include_tag "http://connect.facebook.net/en_US/all.js" %>
   <%= csrf_meta_tag %>
   <%= yield :head %>
+
+  <style type="text/css" media="screen">
+    .notice, .alert {
+      position: absolute;
+      top: -16px;
+      width: 100%;
+      text-align: center;
+    }
+    .notice {
+      background: lightgreen;
+    }
+    .alert {
+      background: lightcoral;
+    }
+  </style>
 </head>
 
 <body>

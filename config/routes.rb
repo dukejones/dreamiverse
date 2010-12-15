@@ -1,9 +1,9 @@
 Dreamcatcher::Application.routes.draw do
-  devise_for :users
-#   do
-#    get "login", :to => "home#index"
-#    get "signup", :to => "home#index"
-#  end
+  devise_for :users, :controllers => { :sessions => 'user/sessions' } do #, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+    get '/login' => 'home#index'
+    post '/login' => 'user/sessions#create'
+    get '/logout' => 'user/sessions#destroy'
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
