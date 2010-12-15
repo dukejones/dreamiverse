@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+tom_phong:
+  follower: tom
+  following: phong
+
+phong_geoff:
+  follower: phong
+  following: geoff
+
+geoff_phong:
+  follower: geoff
+  following: phong

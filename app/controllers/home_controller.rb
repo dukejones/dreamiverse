@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  helper 'devise'
   def index
     if current_user
       #render :text => "logged in" and return
