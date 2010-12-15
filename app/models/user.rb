@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :authentications
   #has_many :follower_friends, :class_name => "Friend", :primary_key => :follower_id, :foreign_key => :following_id
   #has_many :following_friends, :class_name => "Friend", :primary_key => :following_id, :foreign_key => :follower_id
   #has_many :followers, :through => :friend

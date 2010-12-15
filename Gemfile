@@ -12,7 +12,8 @@ gem 'devise'
 gem 'omniauth'
 gem 'barista'
 gem 'barista_growl'
-gem "bhm-google-maps"
+gem 'bhm-google-maps'
+gem 'amistad'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -29,6 +29,7 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     addressable (2.2.2)
+    amistad (0.5.8)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
     barista (0.6.1)
@@ -155,6 +156,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  amistad
   barista
   barista_growl
   bhm-google-maps
