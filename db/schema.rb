@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215092456) do
+ActiveRecord::Schema.define(:version => 20101215235032) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -21,14 +21,14 @@ ActiveRecord::Schema.define(:version => 20101215092456) do
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
 
-  create_table "friends", :force => true do |t|
-    t.integer  "following_id"
-    t.integer  "follower_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "friendships", :force => true do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+    t.boolean "pending",   :default => true
+    t.boolean "blocked",   :default => false
   end
 
-  add_index "friends", ["following_id", "follower_id"], :name => "index_friends_on_following_id_and_follower_id", :unique => true
+  add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username"
