@@ -1,11 +1,11 @@
 <!-- LOGIN MODULE -->
 <div id="loginBox" class="light gradient-A glow-40 float-right clear-right round-8">
   <%#= form_for(@user, :as => :user, :url => session_path(:user)) do |f| %>
-  <%= form_for("user", :url => user_session_path) do |f| %>
+  <%= form_for(current_user, :url => user_session_path) do |f| %>
     <!-- USERNAME -->
     <div class="float-left">
       <p class="login-label color-50">email</p>
-      <%= f.text_field :email, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
+      <%= f.text_field :username, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
       <label class="login-options light A-indent round-4 color-50">keep me logged in<input tabindex="4" class="pointer" type="checkbox" name="remember_me">
       </label>
     </div>
