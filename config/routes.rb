@@ -3,8 +3,10 @@ Dreamcatcher::Application.routes.draw do
     resource :session
     resource :registration
   end
-  #match '/login' => 'user/sessions#create', :as => :login
-  #match '/logout' => 'user/sessions#destroy', :as => :logout
+  match '/login' => 'user/sessions#create', :as => :login
+  match '/logout' => 'user/sessions#destroy', :as => :logout
+  
+  match '/auth/:provider/callback', :to => 'user/sessions#create'
   
   
 #  devise_for :users, :controllers => { :sessions => 'user/sessions' } do #, :path_names => { :sign_in => 'login', :sign_out => 'logout'}

@@ -39,8 +39,9 @@ GEM
       barista
       growl
     bcrypt-ruby (2.1.2)
-    bhm-google-maps (0.3.0)
     builder (2.1.2)
+    coffee-haml-filter (0.4.0)
+      haml
     columnize (0.3.2)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
@@ -159,7 +160,7 @@ DEPENDENCIES
   amistad
   barista
   barista_growl
-  bhm-google-maps
+  coffee-haml-filter
   devise
   haml
   mysql2

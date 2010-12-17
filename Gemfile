@@ -12,7 +12,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'barista'
 gem 'barista_growl'
-gem 'bhm-google-maps'
+gem 'coffee-haml-filter'
 gem 'amistad'
 # Use unicorn as the web server
 # gem 'unicorn'

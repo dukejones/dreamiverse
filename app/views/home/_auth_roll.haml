@@ -1,0 +1,93 @@
+= content_for :head do
+
+  :coffee
+
+    class AuthPanel
+      constructor: ->
+        @closeRule = {left: '270px'}
+        @nudgeRule = {left: '240px'}
+        @openRule = {left: '0px'}
+        
+        @slider = $('#authRoll .slider')
+        
+        @slider.css(@closeRule)
+        
+        @slider.hover(
+          => this.expand()
+          => this.contract()
+        )
+      expand: ->
+        console.log 'expand'
+        @slider.stop(true).animate(@nudgeRule, 'fast').delay(400).animate(@openRule)
+          
+      contract: ->
+        console.log 'contract'
+        @slider.stop(true).animate(@closeRule)
+          
+
+    $(document).ready ->
+      authPanel = new AuthPanel
+
+
+
+
+  %style
+    :sass
+      #authRoll
+        position: absolute
+        top: 30px
+        right: 0
+        height: 100px
+        width: 340px
+        .holder, .slider
+          height: 100%
+          width: 100%
+        img
+          border-style: none
+          text-decoration: none
+        .holder
+          position: relative
+          overflow: hidden
+          .slider-cover
+            width: 38px
+            height: 100%
+            position: absolute
+            right: 0
+            background: url('/images/auth/authgradient.png') right no-repeat
+            z-index: 100
+          .slider
+            position: absolute
+            background-image: url('/images/auth/authpanel.png')
+            // animate this:
+            left: 0px
+            
+            $delta: 8px
+            $first: 15px
+            $second: $first + 64px + $delta
+            $third: $second + 64px + $delta
+            $fourth: $third + 64px + $delta
+            a
+              position: absolute
+              top: 16px
+            #facebook
+              left: $first
+            #google
+              left: $second
+            #twitter
+              left: $third
+            #openid
+              left: $fourth
+            
+              
+              
+      
+#authRoll.glow-40.float-right.clear-right
+  .holder
+    .slider-cover
+    .slider
+      = link_to image_tag('auth/facebook_64.png'), '/auth/facebook',  :id => 'facebook'
+      = link_to image_tag('auth/google_64.png'),   '/auth/google',    :id => 'google'
+      = link_to image_tag('auth/twitter_64.png'),  '/auth/twitter',   :id => 'twitter'
+      = link_to image_tag('auth/openid_64.png'),   '/auth/openid',    :id => 'openid'
+
+
