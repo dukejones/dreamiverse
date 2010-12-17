@@ -5,17 +5,20 @@ class User::SessionsController < ApplicationController
   end
 
   def create
-    omniauth = request.env["omniauth.auth"]
+    omniauth = request.env["omniauth.auth"] # pull omniauth from the depths of Rack
     auth = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
     if current_user
       # there's a user. 
       # if the auth is already known, do nothing...
       # if it's not known, create the auth & associate it with the current user.
+      flash.notice = "User already logged in. Associating the new authorization."
     else
       if auth
         user = auth.user
+        flash.notice = "User logged in: #{user.name}"
       else
         user = User.create_with_omniauth(omniauth)
+        flash.notice = "Created new user #{user.name}"
       end
       set_current_user user
     end
