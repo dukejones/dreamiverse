@@ -8,6 +8,9 @@ Dreamcatcher::Application.routes.draw do
   
   match '/auth/:provider/callback', :to => 'user/sessions#create'
   
+  resource :user
+  
+  resources :dreams
   
 #  devise_for :users, :controllers => { :sessions => 'user/sessions' } do #, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 #    get '/login' => 'home#index'

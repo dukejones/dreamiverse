@@ -1,6 +1,7 @@
 = content_for :head do
 
   :coffee
+    $dc = {} unless $dc?
 
     class AuthPanel
       constructor: ->
@@ -17,17 +18,14 @@
           => this.contract()
         )
       expand: ->
-        console.log 'expand'
-        @slider.stop(true).animate(@nudgeRule, 'fast').delay(400).animate(@openRule)
+        @slider.stop(true).animate(@nudgeRule, 'fast').delay(150).animate(@openRule)
           
       contract: ->
-        console.log 'contract'
         @slider.stop(true).animate(@closeRule)
           
 
     $(document).ready ->
-      authPanel = new AuthPanel
-
+      $dc.authPanel = new AuthPanel
 
 
 
@@ -44,28 +42,27 @@
           width: 100%
         img
           border-style: none
-          text-decoration: none
         .holder
           position: relative
           overflow: hidden
           .slider-cover
+            background: url('/images/auth/authgradient.png') right no-repeat
             width: 38px
             height: 100%
             position: absolute
             right: 0
-            background: url('/images/auth/authgradient.png') right no-repeat
             z-index: 100
           .slider
-            position: absolute
             background-image: url('/images/auth/authpanel.png')
+            position: absolute
             // animate this:
             left: 0px
             
-            $delta: 8px
+            $delta: 72px
             $first: 15px
-            $second: $first + 64px + $delta
-            $third: $second + 64px + $delta
-            $fourth: $third + 64px + $delta
+            $second: $first + $delta
+            $third: $second + $delta
+            $fourth: $third + $delta
             a
               position: absolute
               top: 16px
@@ -81,7 +78,7 @@
               
               
       
-#authRoll.glow-40.float-right.clear-right
+#authRoll
   .holder
     .slider-cover
     .slider

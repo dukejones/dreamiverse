@@ -1,7 +1,7 @@
 <!-- LOGIN MODULE -->
 <div id="loginBox" class="light gradient-A glow-40 float-right clear-right round-8">
   <%#= form_for(@user, :as => :user, :url => session_path(:user)) do |f| %>
-  <%= form_for(current_user, :url => user_session_path) do |f| %>
+  <%= form_for('user', :url => user_session_path) do |f| %>
     <!-- USERNAME -->
     <div class="float-left">
       <p class="login-label color-50">email</p>
