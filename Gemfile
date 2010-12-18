@@ -10,9 +10,10 @@ gem 'mysql2'
 gem 'haml'
 gem 'devise'
 gem 'omniauth'
+gem 'amistad'
+gem 'coffee-script'
 gem 'barista'
 gem 'coffee-haml-filter'
-gem 'amistad'
 # Use unicorn as the web server
 # gem 'unicorn'
 
