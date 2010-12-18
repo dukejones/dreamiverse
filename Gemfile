@@ -11,7 +11,6 @@ gem 'haml'
 gem 'devise'
 gem 'omniauth'
 gem 'barista'
-gem 'barista_growl'
 gem 'coffee-haml-filter'
 gem 'amistad'
 # Use unicorn as the web server
@@ -33,4 +32,5 @@ gem 'amistad'
 group :development, :test do
   gem 'webrat'
   gem 'ruby-debug19'
+  gem 'barista_growl'
 end
