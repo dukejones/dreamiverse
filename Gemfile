@@ -31,7 +31,9 @@ gem 'coffee-haml-filter'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development, :test do
+  gem 'capistrano'
   gem 'webrat'
   gem 'ruby-debug19'
   gem 'barista_growl'
+  gem 'assert2'
 end

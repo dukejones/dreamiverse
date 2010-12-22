@@ -32,6 +32,7 @@ GEM
     amistad (0.5.8)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
+    assert2 (0.5.5)
     barista (0.6.1)
       open4
       railties (~> 3.0)
@@ -40,8 +41,17 @@ GEM
       growl
     bcrypt-ruby (2.1.2)
     builder (2.1.2)
+    capistrano (2.5.19)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.0.0)
     coffee-haml-filter (0.4.0)
       haml
+    coffee-script (2.1.1)
+      coffee-script-source
+    coffee-script-source (0.9.5)
     columnize (0.3.2)
     devise (1.1.5)
       bcrypt-ruby (~> 2.1.2)
@@ -54,6 +64,7 @@ GEM
       rack (>= 1.1.0, < 2)
     growl (1.0.3)
     haml (3.0.24)
+    highline (1.6.1)
     i18n (0.5.0)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
@@ -67,6 +78,13 @@ GEM
     multipart-post (1.0.1)
     mysql2 (0.2.6)
     net-ldap (0.1.1)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.0.23)
+    net-ssh-gateway (1.0.1)
+      net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
     oa-basic (0.1.6)
       multi_json (~> 0.0.2)
@@ -158,9 +176,12 @@ PLATFORMS
 
 DEPENDENCIES
   amistad
+  assert2
   barista
   barista_growl
+  capistrano
   coffee-haml-filter
+  coffee-script
   devise
   haml
   mysql2

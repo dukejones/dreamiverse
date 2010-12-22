@@ -1,5 +1,4 @@
 = content_for :head do
-
   :coffee
     $dc = {} unless $dc?
 
@@ -23,10 +22,8 @@
       contract: ->
         @slider.stop(true).animate(@closeRule)
           
-
     $(document).ready ->
       $dc.authPanel = new AuthPanel
-
 
 
   %style
@@ -75,9 +72,6 @@
             #openid
               left: $fourth
             
-              
-              
-      
 #authRoll
   .holder
     .slider-cover
