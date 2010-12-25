@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   include Amistad::FriendModel
   has_many :authentications
+  has_many :dreams
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

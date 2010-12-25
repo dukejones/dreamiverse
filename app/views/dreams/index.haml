@@ -1,0 +1,6 @@
+%h3 Dreams
+%ul
+  - @dreams.each do |dream|
+    %li= link_to dream.title, dream_path(dream)
+
+= link_to 'Create new', new_dream_path

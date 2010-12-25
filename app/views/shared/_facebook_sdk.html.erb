@@ -1,6 +1,11 @@
 <%= javascript_tag do -%>
   $(document).ready(function() {
-    FB.init({ appId: <%= FB_APP_ID %>, status: true, cookie: true, xfbml: true });
+    try {
+      FB.init({ appId: <%= FB_APP_ID %>, status: true, cookie: true, xfbml: true });
+    }
+    catch(e) {
+      FB = {};
+    }
   });
 <% end -%>
 
