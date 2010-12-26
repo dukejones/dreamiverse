@@ -12,7 +12,7 @@ class DreamsController < ApplicationController
   end
 
   def create
-    current_user.dreams.create!(params[:dream])
-    redirect_to :action => :index
+    new_dream = current_user.dreams.create!(params[:dream])
+    redirect_to dream_path(new_dream)
   end
 end
