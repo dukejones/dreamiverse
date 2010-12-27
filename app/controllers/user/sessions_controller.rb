@@ -15,12 +15,12 @@ class User::SessionsController < ApplicationController
     else
       if auth
         user = auth.user
-        flash.notice = "User logged in: #{user.name}"
+        flash.notice = "User logged in: #{user.username}"
       else
         user = User.create_with_omniauth(omniauth)
         flash.notice = "Created new user #{user.name}"
       end
-      set_current_user user
+      current_user = user
     end
     
     redirect_to root_path
