@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20101224051903) do
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20101224051903) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
   end
 
 end
