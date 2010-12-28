@@ -349,16 +349,6 @@ TD.form_label B {}
 .pagination a.pageNumber:hover { color:#fff; font-weight:bold }
 .pageNumber.currentPage { display:block; padding: 10px 7px; font-weight:bold; font-size:21px; float:left; line-height:17px; cursor:default; border:2px solid #fff }
 
-.light.dream-thumb { background:url(../images/gradients/light-dream_thumb-BG-A.png) repeat-x top #fff; }
-.dark.dream-thumb { background:url(../images/gradients/dark-dream_thumb-BG-A.png) repeat-x top #000; }
-
-.dream-thumb { width:220px; height:320px; margin:12px 12px 0 0px; overflow:hidden; border:0; }
-.dream_thumb-image { width:220px; height:96px; -moz-border-radius-bottomright:0px; position:absolute; }
-.dream_thumb-watermark { position:absolute; width:220px; height:128px; font-size:45px; line-height:30px; text-align:center; overflow:hidden; }
-.dream_thumb-details { position:absolute; width:220px; z-index:100 }
-.dream_thumb-title { margin-top:96px }
-.dream_thumb-tags { padding:0 16px; }
-
 
 /* FORM S */
 .submit-big {background:#fff; color:#000; border-radius:12px; -moz-border-radius:12px; -webkit-border-radius:12px; font-size:42px; border:1px solid #fff;}

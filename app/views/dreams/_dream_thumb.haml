@@ -1,0 +1,22 @@
+.dream_thumb.light.float-left.round-16
+  / LINK
+  %a.link{:href => dream_path(dream)}
+  / THUMBNAIL
+  .image.round-16.flat-bottom
+  / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
+  .watermark.font-georgia.alpha-10= dream.title
+  / DETAILS (DATE + LOCATION)
+  .details
+    .date.dark.transparent-50.round-12.float-left dream date
+    .location.dark.transparent-50.round-12.float-right dream location
+    .comments.dark.transparent-50.round-12.float-left
+      = image_tag("icons/comments-16.png")
+      11
+    .sharing.dark.transparent-50.round-12.float-right
+      = image_tag("icons/mask-16.png")
+      private
+  / TITLE
+  .title
+    %a{:href => dream_path(dream)}= dream.title
+  / TAG CLOUD
+  .tags tagCloud
