@@ -20,7 +20,7 @@ class User::SessionsController < ApplicationController
         user = User.create_with_omniauth(omniauth)
         flash.notice = "Created new user #{user.name}"
       end
-      current_user = user
+      set_current_user user
     end
     
     redirect_to root_path

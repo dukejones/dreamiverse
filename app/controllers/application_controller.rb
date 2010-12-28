@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
-  def current_user=(user)
-    session[:user_id] = user.id
+  def set_current_user(user)
+    session[:user_id] = user ? user.id : nil
     @current_user = user
   end
-  # alias :current_user= :set_current_user
+  alias :current_user= :set_current_user
 
   def require_user
     unless current_user
