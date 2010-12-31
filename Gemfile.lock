@@ -32,7 +32,6 @@ GEM
     amistad (0.5.8)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
-    assert2 (0.5.5)
     barista (0.6.1)
       open4
       railties (~> 3.0)
@@ -176,7 +175,6 @@ PLATFORMS
 
 DEPENDENCIES
   amistad
-  assert2
   barista
   barista_growl
   capistrano

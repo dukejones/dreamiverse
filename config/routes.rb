@@ -6,7 +6,7 @@ Dreamcatcher::Application.routes.draw do
   match '/login' => 'user/sessions#create', :as => :login
   match '/logout' => 'user/sessions#destroy', :as => :logout
   
-  match '/auth/:provider/callback', :to => 'user/sessions#create'
+  match '/auth/:provider/callback', :to => 'user/authentications#create'
   
   resource :user
   

@@ -1,7 +1,7 @@
 
 require 'digest/sha1'
-def sha1(*args)
-  Digest::SHA1.hexdigest *args
+def sha1(string)
+  Digest::SHA1.hexdigest string if string.is_a? String
 end
 
 
