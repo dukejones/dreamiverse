@@ -12,6 +12,8 @@ Dreamcatcher::Application.routes.draw do
   
   resources :dreams
   
+  match '/:username', :to => 'dreams#index'
+
 #  devise_for :users, :controllers => { :sessions => 'user/sessions' } do #, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 #    get '/login' => 'home#index'
 #    post '/login' => 'user/sessions#create'

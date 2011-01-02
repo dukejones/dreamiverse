@@ -76,6 +76,8 @@
   %span +
   new entry
 
+- if @dreams.empty?
+  %h3 there are no dreams to display.
 / DREAM THUMBS
 - @dreams.each do |dream|
   = render :partial => 'dream_thumb', :locals => {:dream => dream}

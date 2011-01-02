@@ -7,6 +7,6 @@ class HomeController < ApplicationController
       redirect_to :dreams
     end
 
-    @user = current_user
+    @user = User.new(:username => "username")
   end
 end
