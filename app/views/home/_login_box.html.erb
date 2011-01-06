@@ -20,9 +20,18 @@
     <!-- SUBMIT BUTTONS -->
     <div class="float-left align-center" style="margin:12px 0 0 8px;">
       <input id="loginButton" class="light A-shine O-outline round-8 button-post" tabindex="3" name="loginButton" type="submit" value="&rsaquo;"><br>
-      <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button>
+      <!-- <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button> -->
+      <div class="font-11 float-right">log in with:</div>
     </div>
     <!-- END SUBMIT BUTTONS -->
+    <!-- EXTERNAL NETWORK LOGIN -->
+    <div class="clear-both">
+      <div class="authLinks round-4 light A-indent">facebook</div>
+      <div class="authLinks round-4 light A-indent">google</div>
+      <div class="authLinks round-4 light A-indent">twitter</div>
+      <div class="authLinks round-4 light A-indent">openID</div>
+    </div>
+    <!-- END EXTERNAL NETWORK LOGIN -->
   <% end %>
 </div>
 <!-- END LOGIN MODULE -->

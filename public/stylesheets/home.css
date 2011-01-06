@@ -27,13 +27,14 @@ a:hover.outline-button {border:2px solid black}
 .message-content {padding:6px 0 6px 6px}
 .message-content ul {margin:0 -10px}
 
-#loginBox {margin:31px 0 27px; padding:0 10px; width:460px; height:87px; float:right}
+#loginBox {margin:31px 0 27px; padding:0 10px; width:460px; float:right}
 #loginButton {margin:4px 0; font-family:Calibri,Arial,Helvetica,sans-serif; font-size:36px; font-weight:bold; width:78px; height:40px}
 .login-input {width:172px; height:30px; line-height:30px}
 .login-options {margin:4px 0; padding:0; width:180px; height:18px; font-size:11px; text-align:center; cursor:pointer; line-height:18px; display:block; border:none}
 .login-label {margin:0 0 0 20px; padding:0; font-size:13px}
 .light .color-50, .light a:visited.color-50, .dark .color-50, .dark a:visited.color-50 {color:#666}
-
+.authLinks {padding: 4px 8px; border: 1px solid #b7b7b7; width: 97px; float: left; font-size: 15px; text-align: center; margin-bottom: 4px;}
+.authLinks:hover {border: 1px solid #000; cursor: pointer;}
 
 #info {float:left; clear:left; padding-top:20px; width:447px; height:430px; background:url(/images/gradients/frontpage-info.png) no-repeat top left; position:relative}
 .info-text {padding:30px 0 10px 40px; width:375px; height:335px; position:absolute; float:left; font-size:15px; line-height:18px}
