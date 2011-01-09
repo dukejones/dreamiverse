@@ -4,7 +4,7 @@ set :stages, %w(theta production)
 set :default_stage, 'theta'
 require 'capistrano/ext/multistage'
 
-# set :application, "theta.dreamcatcher.net"
+set :application, "theta.dreamcatcher.net"
 
 set :scm, :git
 set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
