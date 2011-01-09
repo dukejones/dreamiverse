@@ -32,6 +32,7 @@ gem 'coffee-haml-filter'
 
 group :development, :test do
   gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'webrat'
   gem 'ruby-debug19'
   gem 'barista_growl'
