@@ -1,13 +1,19 @@
 require 'bundler/capistrano'
-#default_run_options[:pty] = true
 
+set :stages, %w(theta production)
+set :default_stage, 'theta'
+require 'capistrano/ext/multistage'
 
 set :application, "theta.dreamcatcher.net"
-set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
+
 set :scm, :git
+set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
+set :deploy_via, :remote_cache
+set :branch, 'master'
+set :scm_verbose, true
+
 set :user, "www-data"
 set :use_sudo, false
-set :deploy_via, :remote_cache
 
 #role :web, "dev.dreamcatcher.net"                          # Your HTTP server, Apache/etc
 #role :app, "dev.dreamcatcher.net"                          # This may be the same as your `Web` server

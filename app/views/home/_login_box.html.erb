@@ -5,7 +5,7 @@
     <!-- USERNAME -->
     <div class="float-left">
       <p class="login-label color-50">email</p>
-      <%= f.text_field :username, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
+      <%= f.text_field :email, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
       <label class="login-options light A-indent round-4 color-50">keep me logged in<input tabindex="4" class="pointer" type="checkbox" name="remember_me">
       </label>
     </div>
@@ -21,7 +21,6 @@
     <div class="float-left align-center" style="margin:12px 0 0 8px;">
       <input id="loginButton" class="light A-shine O-outline round-8 button-post" tabindex="3" name="loginButton" type="submit" value="&rsaquo;"><br>
       <!-- <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button> -->
-      <div class="font-11 float-right">log in with:</div>
     </div>
     <!-- END SUBMIT BUTTONS -->
     <!-- EXTERNAL NETWORK LOGIN -->

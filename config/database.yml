@@ -10,6 +10,12 @@ test:
   adapter: mysql2
   database: dreamcatcher_test
 
+theta:
+  adapter: mysql2
+  database: dreamcatcher_theta
+  username: dreamcatcher
+  password: luc1d369
+
 production:
   adapter: mysql2
   database: dreamcatcher_production

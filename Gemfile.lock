@@ -32,7 +32,6 @@ GEM
     amistad (0.5.8)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
-    assert2 (0.5.5)
     barista (0.6.1)
       open4
       railties (~> 3.0)
@@ -47,6 +46,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
+    capistrano-ext (1.2.1)
+      capistrano (>= 1.0.0)
     coffee-haml-filter (0.4.0)
       haml
     coffee-script (2.1.1)
@@ -176,10 +177,10 @@ PLATFORMS
 
 DEPENDENCIES
   amistad
-  assert2
   barista
   barista_growl
   capistrano
+  capistrano-ext
   coffee-haml-filter
   coffee-script
   devise

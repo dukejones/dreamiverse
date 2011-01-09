@@ -2,7 +2,14 @@ class DreamsController < ApplicationController
   before_filter :require_user
   
   def index
-    @dreams = Dream.all
+    if params[:username]
+      @user = User.find_by_username(params[:username])
+      redirect_to :root, :alert => "user #{params[:username]} does not exist." and return unless @user
+    else
+      @user = current_user
+    end
+
+    @dreams = @user.dreams
   end
 
   def show
