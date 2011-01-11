@@ -10,19 +10,12 @@ gem 'mysql2'
 gem 'haml'
 gem 'devise'
 gem 'omniauth'
-gem 'barista'
-gem 'barista_growl'
-gem 'bhm-google-maps'
 gem 'amistad'
+gem 'coffee-script'
+gem 'barista'
+gem 'coffee-haml-filter'
 # Use unicorn as the web server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -31,6 +24,8 @@ gem 'amistad'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development, :test do
+  gem 'capistrano'
+  gem 'capistrano-ext'
   gem 'webrat'
   gem 'ruby-debug19'
 end

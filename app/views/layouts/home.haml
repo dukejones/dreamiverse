@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    %title Dreamcatcher
+    = stylesheet_link_tag :all, 'shared'
+    = javascript_include_tag :defaults, 'home'
+    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    = csrf_meta_tag
+    = yield :head
+
+  %body
+    = render "shared/facebook_sdk"
+    %p.notice= notice
+    %p.alert= alert
+
+    = yield

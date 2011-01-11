@@ -10,16 +10,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101215235032) do
+ActiveRecord::Schema.define(:version => 20101227053627) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
+
+  create_table "dreams", :force => true do |t|
+    t.string   "body"
+    t.string   "title"
+    t.string   "tags"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "friendships", :force => true do |t|
     t.integer "user_id"
@@ -37,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20101215235032) do
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
+    t.string   "encrypted_password"
   end
 
 end

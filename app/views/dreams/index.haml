@@ -1,0 +1,111 @@
+- content_for :head do
+  %style
+    :sass
+      #newEntry
+        position: absolute
+        top: 40px
+        right: 40px
+        display: block
+        padding: 4px 8px
+        font-size: 17px
+        font-weight: bold
+        margin: 8px 12px 0 0
+        text-decoration: none
+        border: 2px solid transparent
+        span
+          color: #093
+      .dream_thumb.light
+        background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top #fff
+      .dream_thumb.dark
+        background: url("../images/gradients/dark-dream_thumb-BG-A.png") repeat-x top #000
+      .dream_thumb
+        width: 220px
+        height: 320px
+        margin: 12px 12px 0 0px
+        overflow: hidden
+        border: 0
+        .link
+          display: block
+          border: 0 none
+          position: absolute
+          z-index: 900
+          width: 220px
+          height: 320px
+        .image 
+          width: 220px
+          height: 96px
+          -moz-border-radius-bottomright: 0px
+          position: absolute
+          background: url("../images/art/astral-eyes-banner.jpg") center 
+        .watermark 
+          position: absolute
+          width: 220px
+          height: 128px
+          font-size: 45px
+          line-height: 30px
+          text-align: center
+          overflow: hidden
+        .details 
+          position: absolute
+          width: 220px
+          z-index: 100 
+        .date, .location, .comments, .sharing 
+          margin: 4px
+          font-size: 11px
+          padding: 4px 8px
+          text-align: center
+        .comments, .sharing 
+          margin-top: 262px
+        .comments img 
+          margin: 0 2px -5px 0 
+        .sharing img 
+          margin: -1px 0 -4px 2px 
+        .title 
+          margin-top: 96px
+          font-size: 17px
+          font-weight: bold
+          text-align: center
+          a 
+            padding: 12px
+        .tags
+          padding: 0 16px
+
+/ HEADER
+#report_box
+ theta v.1.0 (a)
+#meta_menu
+ #logo
+  %a{:href => "/"}
+   %img{:src => "http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png", :alt => "Dreamcatcher"}
+ #intro_menu.padding-8.round-12.flat-top
+  .sub_menu-item.float-left.margin-0.padding-0
+   %a{:href => "/intro"} intro
+  .sub_menu-item.float-left.margin-0.padding-0
+   %a{:href => "/faq"} faq
+  .sub_menu-item.float-left.margin-0.padding-0
+   %a{:href => "/feedback"} feedback
+ %a.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-left{:href => "/dreamstars", :style => "margin: 8px; text-decoration: none; height: 21px;"}
+  %img{:src => "http://www.dreamcatcher.net/basic/inc/images/icons/dreamstars-16.png", :style => "margin: 2px 5px 0pt 0pt; float: left; border: 0px;"}
+  dreamstars
+ #settings_menu.sub_menu.padding-8.round-12.flat-top
+  #userNode.sub_menu-item-on.float-left.margin-0.padding-0{:style => 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px transparent;'}
+   %a{:href => "/sporeganic", :style => "display: block; margin-left: 32px;"} sporeganic
+  #settingsButton.sub_menu-item
+   %a{:href => "JavaScript:toggleSettingsPanel();void(0);"}
+    %img{:src => "http://www.dreamcatcher.net/basic/inc/images/icons/settings-14.png", :style => "margin: 1px 1px -2px; border: 0px;"}
+    settings
+  .sub_menu-item.float-left.margin-0.padding-0
+   %a{:href => "/logout"} logout
+ %a.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-right{:href => "/admin", :style => "margin: 8px; text-decoration: none; height: 21px;"}
+  admin
+
+/ NEW ENTRY LINK
+%a#newEntry.dark.transparent-50.round-24.A-button.A-outline.glow-40{:href => new_dream_path}
+  %span +
+  new entry
+
+- if @dreams.empty?
+  %h3 there are no dreams to display.
+/ DREAM THUMBS
+- @dreams.each do |dream|
+  = render :partial => 'dream_thumb', :locals => {:dream => dream}

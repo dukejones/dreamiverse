@@ -1,11 +1,12 @@
 class HomeController < ApplicationController
-  helper 'devise'
+  layout 'home'
+  
   def index
     if current_user
-      #render :text => "logged in" and return
-      flash.now[:notice] = "user logged in."
+      flash.keep
+      redirect_to :dreams
     end
-    #@email = "phong@dreamcatcher.net"
-    @user = User.first
+
+    @user = User.new(:username => "username")
   end
 end
