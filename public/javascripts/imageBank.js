@@ -446,6 +446,7 @@ loadArtist = function(artist) {
 
 
 var currentItem;
+var keyCaptured = false;
 
 loadSlideshow = function(newImageIds, currentIndex) {
   if ( currentIndex === undefined ) {
@@ -455,12 +456,15 @@ loadSlideshow = function(newImageIds, currentIndex) {
    $(document).keyup(function (e) { 
 	  }).keydown(function (e) { 
   		//if(e.which == 17) isCtrl=true; 
-  		if(e.which == 37) { // && isCtrl == true
-			  showPreviousImage();
-			  return false; 
-  		} else if(e.which == 39){// && isCtrl == true
-  			showNextImage();
-  			return false;
+  		if(!keyCaptured){
+  		  keyCaptured = true;
+  	  	if(e.which == 37) { // && isCtrl == true
+  			  showPreviousImage();
+  			  return false; 
+    		} else if(e.which == 39){// && isCtrl == true
+    			showNextImage();
+    			return false;
+    		}
   		}
   	});
 
@@ -561,6 +565,9 @@ loadSlideshow = function(newImageIds, currentIndex) {
 		$("#IB_slideshow img").eq(currentItem).hide();
 	};
 	showCurrentImage = function() {
+	  // Turn off keyboard shortcut handler
+	  setTimeout(function() { keyCaptured = false;; }, 100);
+	  
 	  currentSlideshowImage = getCurrentImageId();
 	  
 	  getCurrentImageTags();
