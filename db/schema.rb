@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101227053627) do
+ActiveRecord::Schema.define(:version => 20110106205824) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -40,13 +40,33 @@ ActiveRecord::Schema.define(:version => 20101227053627) do
 
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
 
+  create_table "images", :force => true do |t|
+    t.string   "section"
+    t.string   "category"
+    t.string   "genre"
+    t.string   "title"
+    t.string   "artist"
+    t.string   "album"
+    t.string   "location"
+    t.integer  "year"
+    t.text     "notes"
+    t.datetime "uploaded_at"
+    t.string   "uploaded_by"
+    t.string   "geotag"
+    t.text     "tags"
+    t.boolean  "public"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "format"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "name"
+    t.string   "email"
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
     t.string   "encrypted_password"
   end
 
