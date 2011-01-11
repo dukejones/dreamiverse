@@ -1,4 +1,5 @@
 Dreamcatcher::Application.routes.draw do
+  # Authorization Routes
   namespace "user" do
     resource :session
     resource :registration
@@ -8,17 +9,21 @@ Dreamcatcher::Application.routes.draw do
   
   match '/auth/:provider/callback', :to => 'user/authentications#create'
   
+  # Resources
   resource :user
-  
   resources :dreams
   
+  resources :images do
+    get 'manage', :on => :collection
+  end
+  resources :artists # actually only index...
+  resources :albums # actually only index...
+
+  # Pretty URLs
+  # match '/#:tag', :to => 'tags#show'
   match '/:username', :to => 'dreams#index'
 
-#  devise_for :users, :controllers => { :sessions => 'user/sessions' } do #, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
-#    get '/login' => 'home#index'
-#    post '/login' => 'user/sessions#create'
-#    get '/logout' => 'user/sessions#destroy'
-#  end
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -66,10 +71,6 @@ Dreamcatcher::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  root :to => "home#index"
 
   # See how all your routes lay out with "rake routes"
 

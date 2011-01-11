@@ -17,13 +17,6 @@ gem 'coffee-haml-filter'
 # Use unicorn as the web server
 # gem 'unicorn'
 
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19'
-
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'nokogiri'
@@ -35,5 +28,4 @@ group :development, :test do
   gem 'capistrano-ext'
   gem 'webrat'
   gem 'ruby-debug19'
-  gem 'barista_growl'
 end
