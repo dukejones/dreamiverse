@@ -37,6 +37,9 @@
 h1#IB_category {
 	line-height:74px;
 	float:left;
+	font-size:21px;
+	font-weight:normal;
+	color:#fff; /* White */
 	margin:0;
 	padding:0 0 0 20px;}
 
