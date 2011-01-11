@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20101215235032) do
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "name"
+    t.string   "email"
     t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
