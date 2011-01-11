@@ -177,8 +177,12 @@ addImageToDropboxSearch = function(imageId) {
 	}
 }
 
+var artistHolder = '';
+
 loadArtist = function(artist) {
 	$(".uiMode").hide();
+	
+	artistHolder = artist;
 	
 	setArtist(artist);
 	$("#IB_browseArrow p").text(currentGenre);
@@ -438,12 +442,27 @@ loadArtist = function(artist) {
 	$("#IB_albumContainer").fadeIn();
 };
 
+
+
+
 var currentItem;
 
 loadSlideshow = function(newImageIds, currentIndex) {
   if ( currentIndex === undefined ) {
       currentIndex = 0;
    }
+   
+   $(document).keyup(function (e) { 
+	  }).keydown(function (e) { 
+  		//if(e.which == 17) isCtrl=true; 
+  		if(e.which == 37) { // && isCtrl == true
+			  showPreviousImage();
+			  return false; 
+  		} else if(e.which == 39){// && isCtrl == true
+  			showNextImage();
+  			return false;
+  		}
+  	});
 
   // Hide & clean up elements
 	$(".uiMode").hide();
@@ -453,7 +472,25 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	$("#IB_browseArrow p").text(currentArtist);	
 	$("#IB_browseArrow").unbind();
 	$("#IB_browseArrow").click(function() {
-		loadArtist(currentArtist);
+	  // Just hide & show the last section
+		// do not reload
+		$(".uiMode").hide();
+		
+		setArtist(artistHolder);
+	  $("#IB_browseArrow p").text(currentGenre);
+  	$("#IB_category").text(artistHolder);
+	
+  	$("#IB_browseArrow").unbind();
+  	$("#IB_browseArrow").click(function() {
+  		loadArtistList(currentGenre);
+  	});
+  	
+  	// Show manage/slideshow buttons
+    $('#IB_manageArtistImages').show();
+	  $('#IB_artistSlideshow').show();
+	
+		$('#IB_albumContainer').show();
+		//loadArtist(currentArtist);
 	});
 	
 	$('#IB_footerAddDropWrap').unbind();
@@ -475,13 +512,13 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	// NEW WAY - Store all images Obj's in slideshowJSONContainer
 	var imageIDString = imageIds.toString();
   
-  // Request images data Object
+  /*// Request images data Object
   $.getJSON("/images.json?ids=" + imageIDString,
 	  function(images) {
 	    // Set data object
 	    slideshowJSONContainer = images;
 	  });
-	
+	*/
 	
 	// OLD WAY - Loop thru imageIds array and load images
 	// into the IB_slideshow
@@ -929,7 +966,6 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
 		
 	}
 	
-	activate_controls(); // Re-applies the interactivity on the control classes
 	
 	$(tagInputBoxIdd).val(''); // Clear textbox
 	$(tagInputBoxIdd).focus(); // Focus text input
@@ -950,43 +986,7 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
             
  };
 
-function activate_controls(){
-	/*$('.tag_box').click(function(){
-		if(!$(this).hasClass('.ui-sortable-helper')){
-			$(this).animate({ backgroundColor: "#FF0000" }, 'fast', function(){
-				$(this).fadeOut('fast');
-			});	
-		}
-		
-	});
-	*/
-	// Keyboard shortcuts for navigating thru images
-	$(document).keyup(function (e) { 
-		isCtrl=false;
-	 }).keydown(function (e) { 
-		if(e.which == 17) isCtrl=true; 
-		
-		if(e.which == 37 && isCtrl == true) {
-			 // ctrl + left arrow
-			$('#prev a').animate({ color: "#FFFFFF" }, 'fast', function(){
-				$('#prev a').animate({ color: "#7C7C7C" }, 'slow', function(){
 
-				});
-			});
-			
-			return false; 
-		} else if(e.which == 39 && isCtrl == true){
-			// ctrl + right arrow
-			$('#next a').animate({ color: "#FFFFFF" }, 'fast', function(){
-				$('#next a').animate({ color: "#7C7C7C" }, 'slow', function(){
-
-				});
-			});
-			return false;
-		}
-	});
-}
-var isCtrl = false; 
 //*********** REMOVING TAGS ***********//	
 
 function activateRemoveTag (context) {

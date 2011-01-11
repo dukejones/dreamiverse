@@ -340,12 +340,14 @@ var imageMetaParams = { image: {} };
 
 function collectParams(){
   if($('#IB_category_checkbox').attr("checked")){
-    imageMetaParams.image.category =  $('#IB_current_category').text();
+    //imageMetaParams.image.category =  $('#IB_current_category').text();
   }
+  imageMetaParams.image.category =  $('#IB_current_category').text();
   
   if($('#IB_genre_checkbox').attr("checked")){
-    imageMetaParams.image.genre =  $('#IB_current_genre').text();
+    //imageMetaParams.image.genre =  $('#IB_current_genre').text();
   }
+  imageMetaParams.image.genre =  $('#IB_current_genre').text();
   
   if($('#IB_type_checkbox').attr("checked")){
     //imageMetaParams.image.section =  $('#IB_current_type span').text();
