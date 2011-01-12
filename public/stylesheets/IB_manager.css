@@ -28,6 +28,7 @@
 	padding:6px;
 	margin:0 auto;
 	cursor:pointer;
+	display: block !important;
 	background:#fff url(../images/icons/browseBars-36.png) no-repeat 7px 7px;}
 #IB_browseBack:hover {background:#fff url(../images/icons/browseBars-36-over.png) no-repeat 7px 7px;}
 
