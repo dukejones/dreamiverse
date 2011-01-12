@@ -3,13 +3,13 @@ class ImagesController < ApplicationController
   # GET /images.json
   def index
     if params[:artist] && params[:album]
-      @images = Image.where(artist: params[:artist], album: params[:album])
+      @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
     elsif params[:q] # search
-      @images = Image.search(params) # takes filters etc as well
+      @images = Image.sectioned(params[:section]).search(params) # takes filters etc as well
     elsif params[:ids]
       @images = Image.where(id: params[:ids].split(','))
     else
-      @images = Image.all
+      @images = Image.sectioned(params[:section]).all
     end
 
     respond_to do |format|
