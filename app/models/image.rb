@@ -3,6 +3,7 @@ class Image < ActiveRecord::Base
   # Callbacks 
   #
   before_validation :parse_incoming_parameters
+  # on_destroy: delete the files: original & resized.
 
   #
   # Validations
@@ -37,6 +38,8 @@ class Image < ActiveRecord::Base
   #
   # Class Methods
   #
+  attr_accessor :incoming_filename
+
   def self.albums
     select("distinct(album)").map(&:album)
   end
@@ -48,13 +51,7 @@ class Image < ActiveRecord::Base
   #
   # Instance Methods
   #
-  def incoming_filename=(fname)
-    @incoming_filename = fname
-  end
-  
   def write(binary_data)
-    parse_incoming_parameters
-    
     file = File.open(path, 'wb')
     file.write(binary_data)
   rescue => e
@@ -86,7 +83,7 @@ class Image < ActiveRecord::Base
   end
   
   def filename(size=nil)
-    fname = "#{id}-#{title.parameterize}"
+    fname = "#{id}"
     fname += "-#{size}" if size
     "#{fname}.#{format}"
   end
