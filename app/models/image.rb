@@ -52,10 +52,6 @@ class Image < ActiveRecord::Base
     @incoming_filename = fname
   end
   
-  # def binary_data=(data)
-  #   @binary_data = data
-  # end
-
   def write(binary_data)
     parse_incoming_parameters
     
@@ -67,6 +63,18 @@ class Image < ActiveRecord::Base
     file && file.close
   end
 
+  def resize(size)
+    return if resized? size
+    
+    i = magick
+    i.resize size
+    i.write path(size)
+  end
+  
+  def resized?(size)
+    File.exists? path(size)
+  end
+  
   def path(size=nil)
     Rails.public_path + url(size)
   end
@@ -94,9 +102,7 @@ protected
       # Should all formats be jpg?
       # @image.format = "jpg"
       
-      self.title = @incoming_filename.split('.')[0...-1].join('.') unless title
+      self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize unless title
     end
-    
-    # if @binary_data...
   end
 end
