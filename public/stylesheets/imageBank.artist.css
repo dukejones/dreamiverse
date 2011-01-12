@@ -113,7 +113,8 @@
 
 	
 #IB_artistSlideshow,
-#IB_manageArtistImages {
+#IB_manageArtistImages,
+#IB_slideshowTimer {
 	margin:12px 12px 0 0;
 	padding:6px;
 	width:36px;
@@ -123,12 +124,13 @@
 	border:1px solid #7D7D7D; /* 60% Black */;}
 #IB_artistSlideshow {background:url(../images/icons/playSlideshow-24.png) no-repeat center;}
 #IB_artistSlideshow:hover {
-	background:url(../images/icons/playSlideshow-24-over.png) no-repeat center;
-	border:1px solid #C2C2C2; /* 30% Black */;}
+	background:url(../images/icons/playSlideshow-24-over.png) no-repeat center;}
 #IB_manageArtistImages {background:url(../images/icons/edit-33.png) no-repeat center;}
 #IB_manageArtistImages:hover {
-	background:url(../images/icons/edit-33-over.png) no-repeat center;
-	border:1px solid #C2C2C2; /* 30% Black */;}
+	background:url(../images/icons/edit-33-over.png) no-repeat center;}
+#IB_artistSlideshow:hover,
+#IB_manageArtistImages:hover,
+#IB_slideshowTimer:hover {border:1px solid #C2C2C2; /* 30% Black */;}
 	
 	
 #IB_searchResultsSelectButtons {
