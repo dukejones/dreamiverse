@@ -653,17 +653,18 @@ qq.extend(qq.FileUploader.prototype, {
         qq.remove(this._find(item, 'file'));
         qq.remove(this._find(item, 'size'));
         
-        // todo :: scott remove me
-        // show thumb
+        // Get file path from results
+        var fileName = result.image.title.replace(/\s/g , "-");
+        var filePath = '/images/uploads/originals/' + result.image.id + '-' + fileName + '.' + result.image.format;
 		    
 		    // Check for image format from fileName
 		    var pieces = fileName.split('.');
-		    var format = pieces[pieces.length - 1];
-        
+		    
+        // Add an ID to FADE in image on load
         var tempIMG = id + '_fade';
         
         // Use format var to determine format of image uploaded
-		    var raw = '<img id="' + tempIMG + '" src="/images/uploads/'+ result.id + '.jpg" width="120" height="120" />';
+		    var raw = '<img id="' + tempIMG + '" src="'+ filePath + '" width="120" height="120" />';
 		    var el = qq.toElement(raw);
         item.appendChild(el);
         
@@ -671,7 +672,7 @@ qq.extend(qq.FileUploader.prototype, {
         $(elementjq).hide();
         $(elementjq).fadeIn('slow');
         
-        if (result.success){
+        if (result.image){
             qq.addClass(item, this._classes.success);    
         } else {
             qq.addClass(item, this._classes.fail);

@@ -86,9 +86,13 @@ loadArtistList = function(genre) {
 				item += "<div class=\"images\">";
 				for (j = 0; j < imageLength; j++)
 				{
+				  // Get file path from results
+          var fileName = artist.images[j].image.title.replace(/\s/g , "-");
+          var filePath = '/images/uploads/originals/' + artist.images[j].image.id + '-' + fileName + '.' + artist.images[j].image.format;
+		  
 				  var image = artist.images[j].image;
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
-				  item += '<img src="/images/uploads/' + artist.images[j].image.id + '.jpg"/>';
+				  item += '<img src="' + filePath + '"/>';
 					//item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
 				}
 				item += "</div>";
@@ -279,15 +283,17 @@ loadArtist = function(artist) {
 						item = '<ul class="clearfix images">';
 						for (j = 0; j < images.length; j++)
 						{
-							var image = images[j].image;
+						  var image = images[j].image;
+						  
+						  // Get file path from results
+              var fileName = image.title.replace(/\s/g , "-");
+              var filePath = '/images/uploads/originals/' + image.id + '-' + fileName + '.' + image.format;
+		  
 							var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
 							//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
-							//TODO: Currently only using one image for all - once upload works, fix.
-							//item += '<li><div class="addToDropboxButton">+</div><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="/images/uploads/'+image.id+'.jpg" alt="'+metaData+'" /></li>';
-							item += '<li><div class="addToDropboxButton">+</div><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="/images/uploads/'+image.id+'.jpg" alt="'+metaData+'" /></li>';
-  			
-							//item += '<li><img src="'+album.thumbnails[j].href+'" alt="'+album.thumbnails[j].href+'|a,b,c" /></li>';
-						}
+							
+							item += '<li><div class="addToDropboxButton">+</div><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="' + filePath + '" alt="'+metaData+'" /></li>';
+  			    }
 						item += "</ul>";
 						element.append(item);
 						
@@ -827,12 +833,15 @@ loadSearchResults = function() {
   			for (j = 0; j < images.length; j++)
   			{
   				var image = images[j].image;
+						  
+					// Get file path from results
+          var fileName = image.title.replace(/\s/g , "-");
+          var filePath = '/images/uploads/originals/' + image.id + '-' + fileName + '.' + image.format;
+  				
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
   				
   				//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
-  				//TODO: Currently only using one image for all - once upload works, fix.
-  				//item += '<li><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="/images/uploads/'+image.id+'.jpg" alt="'+metaData+'" /></li>';
-  				item += '<li><div class="addToDropboxButton">+</div><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="/images/uploads/'+image.id+'.jpg" alt="'+metaData+'" /></li>';
+  				item += '<li><div class="addToDropboxButton">+</div><img class="albumPreviewThumbsLarger" id="image_'+image.id+'" src="' + filePath + '" alt="'+metaData+'" /></li>';
   			}
   			
   			element.append(item);
