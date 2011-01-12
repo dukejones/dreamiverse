@@ -5,7 +5,7 @@
 	width:760px;
 	height:44px;}
 
-.tag, .info, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDropWrap, #IB_footerCancelWrap {cursor:pointer;}
+.tag, .info, .fullscreen, .shuffle, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDropWrap, #IB_footerCancelWrap {cursor:pointer;}
 
 .tag, .info, .fullscreen, .shuffle {
 	margin:10px 0 0 8px;
@@ -14,16 +14,16 @@
 	float:left;
 	background:url(../images/icons/tag-25.png) no-repeat center;}
 .tag:hover {background:url(../images/icons/tag-25-over.png) no-repeat center;}
-.tag:active {background:url(../images/icons/tag-25-selected.png) no-repeat center;}
+/*.tag:active {background:url(../images/icons/tag-25-selected.png) no-repeat center;}*/
 .info {background:url(../images/icons/info-25.png) no-repeat center;}
 .info:hover {background:url(../images/icons/info-25-over.png) no-repeat center;}
-.info:active {background:url(../images/icons/info-25-selected.png) no-repeat center;}
+/*.info:active {background:url(../images/icons/info-25-selected.png) no-repeat center;}*/
 .fullscreen {background:url(../images/icons/fullscreen-24.png) no-repeat center;}
 .fullscreen:hover {background:url(../images/icons/fullscreen-24-over.png) no-repeat center;}
-.fullscreen:active {background:url(../images/icons/fullscreen-24-selected.png) no-repeat center;}
+/*.fullscreen:active {background:url(../images/icons/fullscreen-24-selected.png) no-repeat center;}*/
 .shuffle {background:url(../images/icons/shuffle-26.png) no-repeat center;}
 .shuffle:hover {background:url(../images/icons/shuffle-26-over.png) no-repeat center;}
-.shuffle:active {background:url(../images/icons/shuffle-26-selected.png) no-repeat center;}
+/*.shuffle:active {background:url(../images/icons/shuffle-26-selected.png) no-repeat center;}*/
 
 #IB_prevWrap, #IB_nextWrap {
 	width:76px;

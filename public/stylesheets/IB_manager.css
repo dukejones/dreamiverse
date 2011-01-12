@@ -2,7 +2,7 @@
 	position:relative;
 	margin:20px;
 	width:760px;
-	height:890px;
+	height:auto;
 	background-color:#dbdbdb;
 	border:1px solid #b4b4b4;}
 #IB_top {
@@ -16,21 +16,21 @@
 	float:left;
 	margin:12px 8px 0 12px;
 	width:52px;
-	height:44px;
-	padding:2px 0;
+	height:46px;
+	padding:0;
 	text-align:center;}
 #IB_browseBackWrap:hover {
 	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a7a9ac));
 	background: -moz-linear-gradient(top, #fff, #a7a9ac);}
 #IB_browseBack {
-	width:36px;
-	height:32px;
-	padding:6px;
-	margin:0 auto;
+	width:48px;
+	height:42px;
+	padding:0;
+	margin:2px;
 	cursor:pointer;
 	display: block !important;
-	background:#fff url(../images/icons/browseBars-36.png) no-repeat 7px 7px;}
-#IB_browseBack:hover {background:#fff url(../images/icons/browseBars-36-over.png) no-repeat 7px 7px;}
+	background:#fff url(../images/icons/browseBars-36.png) no-repeat 6px 6px;}
+#IB_browseBack:hover {background:#fff url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
 
 #IB_editManager {
 	float:left;
@@ -266,7 +266,7 @@ h2.IB_managerHeader {
 	height:38px; 
 	text-align:center; 
 	float:right; 
-	margin:8px 8px 0 0;
+	margin:8px 8px 8px 0;
 	padding:2px 0;}
 #IB_managerSave, #IB_managerCancel {
 	width:92px;
@@ -287,7 +287,7 @@ h2.IB_managerHeader {
 	background: -moz-linear-gradient(top, #bcbec0, #fff);}
 
 
-
+.clear {clear:both;}
 
 .light.A-shine-36 {
 	box-shadow:inset 0px 36px 0px #fff;
