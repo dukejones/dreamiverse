@@ -38,11 +38,14 @@
 .uploading {
   text-align: center;
   font-size: 14px;
+  width: 128px;
+  height: 128px;
+  background: #000;
 }
 
-.qq-upload-file {  }
-.qq-upload-spinner {display:inline-block; background: url("/images/icons/loading.gif"); width:15px; height:15px; vertical-align:text-bottom;}
-.qq-upload-size,.qq-upload-cancel {font-size:11px;}
+.qq-upload-file { margin: 0px !important; }
+.qq-upload-spinner {padding: 20px; height: 20px; display:block; background: url("/images/icons/loader_dark_24.gif") no-repeat center center; }
+.qq-upload-size,.qq-upload-cancel {font-size:11px; margin: 5px !important;}
 
 .qq-upload-failed-text {display:none;}
 .qq-upload-fail .qq-upload-failed-text {

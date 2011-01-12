@@ -505,8 +505,8 @@ qq.FileUploader = function(o){
              '</div>',*/
 			 
 		fileTemplate: '<li class="uploading">'+
-			'<p class="qq-upload-file"></p>' +
-            '<p class="qq-upload-spinner"></p>' +
+			      '<p class="qq-upload-spinner"></p>' +
+			      '<p class="qq-upload-file"></p>' +
             '<p class="qq-upload-size"></p>' +
             '<a class="qq-upload-cancel" href="#">Cancel</a>' +
             '<p class="qq-upload-failed-text">Failed</p>' +
@@ -652,16 +652,24 @@ qq.extend(qq.FileUploader.prototype, {
         qq.remove(this._find(item, 'spinner'));
         qq.remove(this._find(item, 'file'));
         qq.remove(this._find(item, 'size'));
+        
+        // todo :: scott remove me
         // show thumb
 		    
 		    // Check for image format from fileName
 		    var pieces = fileName.split('.');
 		    var format = pieces[pieces.length - 1];
         
+        var tempIMG = id + '_fade';
+        
         // Use format var to determine format of image uploaded
-		    var raw = '<img src="/images/uploads/'+ result.id + '.jpg" width="120" height="120" />';
+		    var raw = '<img id="' + tempIMG + '" src="/images/uploads/'+ result.id + '.jpg" width="120" height="120" />';
 		    var el = qq.toElement(raw);
         item.appendChild(el);
+        
+        var elementjq = '#' + tempIMG;
+        $(elementjq).hide();
+        $(elementjq).fadeIn('slow');
         
         if (result.success){
             qq.addClass(item, this._classes.success);    
