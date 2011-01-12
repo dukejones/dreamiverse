@@ -53,25 +53,6 @@ class ImagesController < ApplicationController
   #   @image = Image.find(params[:id])
   # end
 
-  # TODO: this error handling is not the most elegant
-  # def handle_upload
-  #   file_contents = request.body.read
-  #   write_image(file_contents)
-  #   write_image(file_contents, "62x62")
-  #   write_image(file_contents, "100x100")
-  #   write_image(file_contents, "126x126")
-  #   nil # return nothing for success
-  # rescue Exception => e
-  #   e
-  # end
-  
-  # def write_image(file_contents, extra=nil)
-  #   extra = "-#{extra}" if extra
-  #   file = File.open("#{RAILS_ROOT}/public/images/uploads/#{@image.id}#{extra}.#{@image.format}", "wb")
-  #   file.write(file_contents)
-  #   file.close
-  # end
-
   # POST /images
   # POST /images.json
   def create
@@ -86,7 +67,8 @@ class ImagesController < ApplicationController
         format.json  { render :json => e.message, :status => :unprocessable_entity }
       else
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-        format.json  { render :json => @image.to_json, :status => :created }
+        # now it is passing the url to the original uploaded image. we should pass the url to the proper thumbnail size.
+        format.json  { render :json => {image_url: @image.url, image: @image}.to_json, :status => :created }
       end
     end
   end
