@@ -646,13 +646,13 @@ loadSlideshow = function(newImageIds, currentIndex) {
 }
 
 loadSearch = function() {
-	$("#IB_category,#IB_browseArrow,#IB_searchBox,.artist").hide();
+	$("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap").hide();
 	$("#IB_browseBack,#IB_searchBoxActive").show();
 	
 	$("#IB_browseBack").unbind();
 	$("#IB_browseBack").click(function() {
 		$("#IB_browseBack,#IB_searchBoxActive").hide();
-		$("#IB_searchBox").show();
+		$("#IB_searchBox,#IB_searchBoxWrap").show();
 		loadBrowse();
 	});
 	$("#IB_searchText").focus(function() {
