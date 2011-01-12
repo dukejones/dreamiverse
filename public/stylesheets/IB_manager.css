@@ -2,6 +2,7 @@
 	position:relative;
 	margin:20px;
 	width:760px;
+	height:auto;
 	background-color:#dbdbdb;
 	border:1px solid #b4b4b4;}
 #IB_top {
@@ -265,7 +266,7 @@ h2.IB_managerHeader {
 	height:38px; 
 	text-align:center; 
 	float:right; 
-	margin:8px 8px 0 0;
+	margin:8px 8px 8px 0;
 	padding:2px 0;}
 #IB_managerSave, #IB_managerCancel {
 	width:92px;
@@ -286,7 +287,7 @@ h2.IB_managerHeader {
 	background: -moz-linear-gradient(top, #bcbec0, #fff);}
 
 
-
+.clear {clear:both;}
 
 .light.A-shine-36 {
 	box-shadow:inset 0px 36px 0px #fff;
