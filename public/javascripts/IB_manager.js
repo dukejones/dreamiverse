@@ -352,6 +352,7 @@ function collectParams(){
   if($('#IB_type_checkbox').attr("checked")){
     //imageMetaParams.image.section =  $('#IB_current_type span').text();
   }
+  imageMetaParams.image.section =  $('#IB_current_type span').text();
   
   // Get the rest of the parameters
   

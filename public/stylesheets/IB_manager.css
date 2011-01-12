@@ -2,6 +2,7 @@
 	position:relative;
 	margin:20px;
 	width:760px;
+	height:890px;
 	background-color:#dbdbdb;
 	border:1px solid #b4b4b4;}
 #IB_top {
@@ -27,6 +28,7 @@
 	padding:6px;
 	margin:0 auto;
 	cursor:pointer;
+	display: block !important;
 	background:#fff url(../images/icons/browseBars-36.png) no-repeat 7px 7px;}
 #IB_browseBack:hover {background:#fff url(../images/icons/browseBars-36-over.png) no-repeat 7px 7px;}
 
@@ -166,31 +168,41 @@ h2.IB_managerHeader {
 	font-size:16px;
 	color:#58595b; /* 80% Black */}
 	
-/* IB Manager Organization list dropdown menus */
 .IB_managerOrganizationWrap {
 	float:left;
 	margin:4px 0 0 0;
 	padding:0;
-	width:150px;
+	width:160px;
+	height:23px;
 	cursor:pointer;
 	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dbdbdb));
 	background: -moz-linear-gradient(top, #fff, #dbdbdb);}
 #IB_current_type, #IB_current_category, #IB_current_genre {
 	position:absolute;
 	padding:0;
-	width:126px;
+	width:136px;
 	height:23px;
 	line-height:23px;
+	font-weight:bold;
+	color:#464646; /* 80% Black */
 	padding:0 12px;
 	text-transform:uppercase;
 	border:1px solid #b4b4b4;
-	background: url(../images/icons/arrowDark-16-open.png) no-repeat 120px 3px;}
+	background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px;}
+.IB_managerOrganizationWrap input {
+	margin-right:8px;
+	height:18px;
+	float:right;}
 .IB_managerOrganizationList {
 	position:relative;
-	width:150px;
+	cursor:pointer;
+	width:136px;
+	height:auto;
 	margin:0;
 	padding:0;
-	opacity:0;}
+	opacity:0;
+	left:12px;
+	top:-25px;}
 .IB_managerOrganizationList option {	
 	float:none;
 	margin:0;
