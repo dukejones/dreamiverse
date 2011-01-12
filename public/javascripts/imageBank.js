@@ -1,6 +1,8 @@
 var currentGenre = "";
 var currentArtist = "";
 
+var sectionFilter = '';
+
 var currentView = "browse"; // Changes to "search"
 
 var currentSlideshowImage = '';
@@ -640,8 +642,10 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	$('#IB_footer .info').unbind();
 	$('#IB_footer .info').click(function(){
 	  if ($("#IB_infoContainer").is(":visible")) {
+	    //$(this).css('background', 'url(../images/icons/info-25.png) no-repeat center')
 			$("#IB_infoContainer").slideUp();
 		} else {
+		  //$(this).css('background', 'url(../images/icons/info-25-selected.png) no-repeat center')
 			$("#IB_infoContainer").slideDown();
 		}
 	})
