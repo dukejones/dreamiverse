@@ -54,46 +54,39 @@ class ImagesController < ApplicationController
   # end
 
   # TODO: this error handling is not the most elegant
-  def handle_upload
-    file_contents = request.body.read
-    write_image(file_contents)
-    write_image(file_contents, "62x62")
-    write_image(file_contents, "100x100")
-    write_image(file_contents, "126x126")
-    nil # return nothing for success
-  rescue Exception => e
-    e
-  end
+  # def handle_upload
+  #   file_contents = request.body.read
+  #   write_image(file_contents)
+  #   write_image(file_contents, "62x62")
+  #   write_image(file_contents, "100x100")
+  #   write_image(file_contents, "126x126")
+  #   nil # return nothing for success
+  # rescue Exception => e
+  #   e
+  # end
   
-  def write_image(file_contents, extra=nil)
-    extra = "-#{extra}" if extra
-    file = File.open("#{RAILS_ROOT}/public/images/uploads/#{@image.id}#{extra}.#{@image.format}", "wb")
-    file.write(file_contents)
-    file.close
-  end
+  # def write_image(file_contents, extra=nil)
+  #   extra = "-#{extra}" if extra
+  #   file = File.open("#{RAILS_ROOT}/public/images/uploads/#{@image.id}#{extra}.#{@image.format}", "wb")
+  #   file.write(file_contents)
+  #   file.close
+  # end
 
   # POST /images
   # POST /images.json
   def create
-    # return handle_upload if params['qqfile']
-    
-    @image = Image.new(params[:image])
-
-    extension = params[:qqfile].split('.').last
-    @image.format = extension
-    # HACK HACK HACK!
-    @image.format = "jpg"
+    @image = Image.new(params[:image].merge(incoming_filename: params[:qqfile]))
 
     respond_to do |format|
       if !@image.save
         format.html { render :action => "new" }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      elsif (e = handle_upload).is_a?(Exception)
+      elsif (e = @image.write(request.body.read)).is_a?(Exception)
         format.html { render :action => "new" }
         format.json  { render :json => e.message, :status => :unprocessable_entity }
       else
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-        format.json  { render :json => "{success:true,id:#{@image.id}}", :status => :created }
+        format.json  { render :json => @image.to_json, :status => :created }
       end
     end
   end

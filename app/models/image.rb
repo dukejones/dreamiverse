@@ -1,5 +1,17 @@
 class Image < ActiveRecord::Base
+  #
+  # Callbacks 
+  #
+  before_validation :parse_incoming_parameters
 
+  #
+  # Validations
+  #
+  # validate format: jpg|png|etc
+
+  #
+  # Scopes
+  #
   scope :by, lambda { |artist| where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?
@@ -22,6 +34,9 @@ class Image < ActiveRecord::Base
     results
   }
 
+  #
+  # Class Methods
+  #
   def self.albums
     select("distinct(album)").map(&:album)
   end
@@ -29,5 +44,59 @@ class Image < ActiveRecord::Base
   def self.artists
     select("distinct(artist)").map(&:artist)
   end
+  
+  #
+  # Instance Methods
+  #
+  def incoming_filename=(fname)
+    @incoming_filename = fname
+  end
+  
+  # def binary_data=(data)
+  #   @binary_data = data
+  # end
 
+  def write(binary_data)
+    parse_incoming_parameters
+    
+    file = File.open(path, 'wb')
+    file.write(binary_data)
+  rescue => e
+    e
+  ensure
+    file && file.close
+  end
+
+  def path(size=nil)
+    Rails.public_path + url(size)
+  end
+
+  def url(size=nil)
+    path = "/images/uploads"
+    path += '/originals' unless size
+    "#{path}/#{filename(size)}"
+  end
+  
+  def filename(size=nil)
+    fname = "#{id}-#{title.parameterize}"
+    fname += "-#{size}" if size
+    "#{fname}.#{format}"
+  end
+  
+  def magick(size=nil)
+    MiniMagick::Image.open(path(size))
+  end
+
+protected
+  def parse_incoming_parameters
+    if @incoming_filename
+      self.format = @incoming_filename.split('.').last unless format
+      # Should all formats be jpg?
+      # @image.format = "jpg"
+      
+      self.title = @incoming_filename.split('.')[0...-1].join('.') unless title
+    end
+    
+    # if @binary_data...
+  end
 end
