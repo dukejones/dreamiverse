@@ -72,6 +72,11 @@ class Image < ActiveRecord::Base
     File.exists? path(size)
   end
   
+  def dream_image_crop
+    # resize width => 720. if too small, expand; if too big, shrink
+    # crop a height of 200px from the center of the image.
+  end
+  
   def path(size=nil)
     Rails.public_path + url(size)
   end
