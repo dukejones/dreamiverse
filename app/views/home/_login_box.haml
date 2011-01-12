@@ -7,18 +7,18 @@
       %p.login-label.color-50 email
       <%= f.text_field :username, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "1" %>
       %label.login-options.light.A-indent.round-4.color-50 keep me logged in
-        %input.pointer  tabindex="4" type="checkbox" name="remember_me">
+        %input.pointer{:tabindex => '4', :type => 'checkbox', :name => 'remember_me'}
 
     / PASSWORD
-    .float-left style="margin-left:10px;">
+    .float-left{:style => 'margin-left:10px;'}
       %p.login-label.color-50 password
       <%= f.password_field :password, :class => "login-input light text_input-big round-8 font-19 padding-4", :tabindex => "2" %>
       %span#forgotPassLink.login-options.light.A-indent.round-4.color-50.block.pointer I forgot my password
 
     / SUBMIT BUTTONS
-    .float-left.align-center style="margin:12px 0 0 8px;">
-      %input#loginButton.light.A-shine.O-outline.round-8.button-post tabindex="3" name="loginButton" type="submit" value="&rsaquo;">
+    .float-left.align-center{:style => 'margin:12px 0 0 8px;'}
+      %input#loginButton.light.A-shine.O-outline.round-8.button-post{:tabindex=> '3', :name=>'loginButton' :type => 'submit' :value => '&rsaquo;'}
       %br
-      <fb:login-button perms="<%= FB_PERMS %>"></fb:login-button>
+      %fb:login-button {:perms => '<%= FB_PERMS %>'}
 
   <% end %>
