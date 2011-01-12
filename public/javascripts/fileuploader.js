@@ -654,8 +654,7 @@ qq.extend(qq.FileUploader.prototype, {
         qq.remove(this._find(item, 'size'));
         
         // Get file path from results
-        var fileName = result.image.title.replace(/\s/g , "-");
-        var filePath = '/images/uploads/originals/' + result.image.id + '-' + fileName + '.' + result.image.format;
+        var filePath = result.image_url;
 		    
 		    // Check for image format from fileName
 		    var pieces = fileName.split('.');
