@@ -1,11 +1,11 @@
 var currentGenre = "";
 var currentArtist = "";
+var currentSlideshowImage = '';
+var currentView = "browse"; // Changes to "search"
 
 var sectionFilter = '';
 
-var currentView = "browse"; // Changes to "search"
-
-var currentSlideshowImage = '';
+var shuffleToggled = false;
 
 // Data Objects
 var imagesJSONContainer = {};
@@ -89,9 +89,8 @@ loadArtistList = function(genre) {
 				for (j = 0; j < imageLength; j++)
 				{
 				  // Get file path from results
-          var fileName = artist.images[j].image.title.replace(/\s/g , "-");
-          var filePath = '/images/uploads/originals/' + artist.images[j].image.id + '-' + fileName + '.' + artist.images[j].image.format;
-		  
+          var filePath = artist.image_url;
+  				
 				  var image = artist.images[j].image;
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
 				  item += '<img src="' + filePath + '"/>';
@@ -288,9 +287,8 @@ loadArtist = function(artist) {
 						  var image = images[j].image;
 						  
 						  // Get file path from results
-              var fileName = image.title.replace(/\s/g , "-");
-              var filePath = '/images/uploads/originals/' + image.id + '-' + fileName + '.' + image.format;
-		  
+              var filePath = images[j].image_url
+  				
 							var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
 							//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
 							
@@ -595,10 +593,17 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	};
 	showNextImage = function() {
 		hideCurrentImage();
-		if (currentItem == numberOfItems - 1) {
-			currentItem = 0;
+		if(!shuffleToggled){
+		  // Shuffle is off play normal order
+		  if (currentItem == numberOfItems - 1) {
+  			currentItem = 0;
+  		} else {
+  			currentItem++;
+  		}
 		} else {
-			currentItem++;
+		  // Shuffle is on play random order
+		  var randomnumber = Math.floor(Math.random()*(numberOfItems + 1))
+		  currentItem = randomnumber;
 		}
 		showCurrentImage();
 	};
@@ -624,17 +629,10 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	$("#IB_footer .tag").unbind();
 	$("#IB_footer .tag").click(function() {
 		if ($("#IB_tagContainer").is(":visible")) {
+		  $(this).css('background', 'url(../images/icons/tag-25.png) no-repeat center');
 			$("#IB_tagContainer").slideUp();
 		} else {
-		  // position & expand the tag container
-		  /*var imageHeight = $('#IB_slideshow').css('height').replace('px', '');
-		  var tagHeight = $('#IB_tagContainer').css('height').replace('px', '');
-		  
-		  var newTopPos = imageHeight - tagHeight;
-		  
-		  var newTopVal = newTopPos + 'px !important';
-		  $('#IB_tagContainer').css('top', '652px !important');
-		  */
+		  $(this).css('background', 'url(../images/icons/tag-25-selected.png) no-repeat center');
 			$("#IB_tagContainer").slideDown();
 		}
 	});
@@ -642,13 +640,24 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	$('#IB_footer .info').unbind();
 	$('#IB_footer .info').click(function(){
 	  if ($("#IB_infoContainer").is(":visible")) {
-	    //$(this).css('background', 'url(../images/icons/info-25.png) no-repeat center')
+	    $(this).css('background', 'url(../images/icons/info-25.png) no-repeat center')
 			$("#IB_infoContainer").slideUp();
 		} else {
-		  //$(this).css('background', 'url(../images/icons/info-25-selected.png) no-repeat center')
+		  $(this).css('background', 'url(../images/icons/info-25-selected.png) no-repeat center')
 			$("#IB_infoContainer").slideDown();
 		}
 	})
+	
+	$("#IB_footer .shuffle").unbind();
+	$("#IB_footer .shuffle").click(function() {
+		if (shuffleToggled) {
+		  $(this).css('background', 'url(../images/icons/shuffle-26-selected.png) no-repeat center');
+			shuffleToggled = false;
+		} else {
+		  $(this).css('background', 'url(../images/icons/shuffle-26.png) no-repeat center');
+			shuffleToggled = true;
+		}
+	});
 	
 	$('#IB_slideshow').slideDown();
 	$(".slideshow,#IB_footer").fadeIn();
@@ -657,11 +666,11 @@ loadSlideshow = function(newImageIds, currentIndex) {
 
 loadSearch = function() {
 	$("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap").hide();
-	$("#IB_browseBack,#IB_searchBoxActive").show();
+	$("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").show();
 	
 	$("#IB_browseBack").unbind();
 	$("#IB_browseBack").click(function() {
-		$("#IB_browseBack,#IB_searchBoxActive").hide();
+		$("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").hide();
 		$("#IB_searchBox,#IB_searchBoxWrap").show();
 		loadBrowse();
 	});
@@ -839,9 +848,7 @@ loadSearchResults = function() {
   				var image = images[j].image;
 						  
 					// Get file path from results
-          var fileName = image.title.replace(/\s/g , "-");
-          var filePath = '/images/uploads/originals/' + image.id + '-' + fileName + '.' + image.format;
-  				
+          var filePath = images[j].image_url
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
   				
   				//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
