@@ -693,7 +693,6 @@ checkImageResize = function(){
       height: newH
     }, 2000, function() {
       // Animation complete.
-      alert('done animating');
     });
 
   }
