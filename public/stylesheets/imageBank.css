@@ -44,6 +44,7 @@ h1#IB_category {
   padding:0 0 0 20px;}
 
 #IB_searchBoxWrap {
+
   float:right;
   margin:12px 12px 0 0;
   padding:0px;
@@ -52,12 +53,21 @@ h1#IB_category {
   cursor:pointer;
   background: -webkit-gradient(linear, left top, left bottom, from(#707070), to(#fff));
   background: -moz-linear-gradient(top, #707070, #fff); /* gradient-65-0 */}
+#IB_searchBoxWrap:hover {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#707070));
+  background: -moz-linear-gradient(top, #fff, #707070); /* gradient-0-65 */}
 #IB_searchBox {
   margin:2px auto;
   padding:6px;
   width:36px;
   height:36px;
-  background:#fff box-shadow: 2px 5px 15px #666666 inset; -moz-box-shadow: 2px 5px 15px #666666 inset; -webkit-box-shadow: 2px 5px 15px #666666 inset;}
+  background:#fff box-shadow: 2px 5px 15px #666666 inset; 
+  -moz-box-shadow: 2px 5px 15px #666666 inset; 
+  -webkit-box-shadow: 2px 5px 15px #666666 inset;}
+#IB_searchBox:hover {
+  background:#fff box-shadow: 2px 5px 5px #666666 inset; 
+  -moz-box-shadow: 2px 5px 5px #666666 inset; 
+  -webkit-box-shadow: 2px 5px 5px #666666 inset;}
   
 /* To create gradient border effect on #IB_searchBox - not sure how this works dynamically with expanding collapsing??
 #IB_searchBoxWrap {
