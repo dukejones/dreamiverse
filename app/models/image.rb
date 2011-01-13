@@ -136,6 +136,7 @@ protected
   
   def parse_incoming_parameters
     if @incoming_filename
+      self.original_filename = @incoming_filename
       self.format = @incoming_filename.split('.').last unless format
       # Should all formats be jpg?
       # @image.format = "jpg"
