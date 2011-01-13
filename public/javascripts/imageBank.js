@@ -88,10 +88,11 @@ loadArtistList = function(genre) {
 				item += "<div class=\"images\">";
 				for (j = 0; j < imageLength; j++)
 				{
-				  // Get file path from results
-          var filePath = artist.image_url;
-  				
 				  var image = artist.images[j].image;
+				  
+				  // Get file path from results
+          var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
+  				
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
 				  item += '<img src="' + filePath + '"/>';
 					//item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
@@ -287,7 +288,7 @@ loadArtist = function(artist) {
 						  var image = images[j].image;
 						  
 						  // Get file path from results
-              var filePath = images[j].image_url
+              var filePath = '/images/uploads/' + image.id + '-126x126.' + image.format;
   				
 							var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
 							//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
@@ -521,21 +522,17 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	
 	// NEW WAY - Store all images Obj's in slideshowJSONContainer
 	var imageIDString = imageIds.toString();
-  
-  /*// Request images data Object
-  $.getJSON("/images.json?ids=" + imageIDString,
-	  function(images) {
-	    // Set data object
-	    slideshowJSONContainer = images;
-	  });
-	*/
 	
 	// OLD WAY - Loop thru imageIds array and load images
 	// into the IB_slideshow
 	for (i = 0; i < imageIds.length; i++) {
 		var imageElement = $("#image_"+imageIds[i]);
+		
+		//var oldPath = imageElement.attr('src').split('.')
+		var filePath = 'images/uploads/originals/' + imageIds[i] + '.';
+		
 		//TODO - look for high-resolution instead of reusing thumbnail
-		$("#IB_slideshow").append('<img id="slideshow_'+imageIds[i]+'" src="'+imageElement.attr("src")+'" width="750px" height="766px" />');
+		$("#IB_slideshow").append('<img id="slideshow_'+imageIds[i]+'" src="'+filePath+'" width="750px" height="766px" />');
 	}
 	$("#IB_slideshow img").hide();
 	
@@ -848,7 +845,7 @@ loadSearchResults = function() {
   				var image = images[j].image;
 						  
 					// Get file path from results
-          var filePath = images[j].image_url
+          var filePath = '/images/uploads/' + image.id + '-126x126.' + image.format;
   				var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
   				
   				//TODO: Meta-data currently stored in alt attribute (could be moved to hidden input)
