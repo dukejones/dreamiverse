@@ -233,7 +233,7 @@ h2.IB_managerHeader {
   height:18px;
   line-height:18px;
   margin:4px 0 0 40px;}
-.IB_managerInfo {float:left;}
+.IB_managerInfo {float:left; margin-bottom: 4px;}
 .IB_managerInfoInputWrap, .IB_managerInfoInputWrapYear, .IB_managerInfoInputWrapNotes, .IB_managerSourceInputWrap, .IB_managerTagInputWrap {
   margin:0 0 0 30px;
   width:330px;
@@ -254,7 +254,7 @@ h2.IB_managerHeader {
 .IB_managerInfoInputNotes {width:520px;}
 
 /* IB Manager Source */
-.IB_managerSourceContent {height:65px;}
+.IB_managerSourceContent {height:134px;}
 .IB_managerSourceInputWrap {width:200px;}
 .IB_managerSourceInput {width:155px;}
 
