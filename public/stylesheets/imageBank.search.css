@@ -1,13 +1,13 @@
 /*#IB_searchOptionsButton,#IB_searchText {
-	display: none;
-	float: right;
+  display: none;
+  float: right;
 }
 #IB_searchOptions {
-	margin: 74px 0 0 3px;
-	position: absolute;
+  margin: 74px 0 0 3px;
+  position: absolute;
 }
 #IB_searchOptions li.selected {
-	border: solid 1px black;
+  border: solid 1px black;
 }
 
-.hidden {display:none;}	*/
+.hidden {display:none;}  */

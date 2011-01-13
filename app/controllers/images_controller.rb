@@ -67,8 +67,9 @@ class ImagesController < ApplicationController
         format.json  { render :json => e.message, :status => :unprocessable_entity }
       else
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-        # now it is passing the url to the original uploaded image. we should pass the url to the proper thumbnail size.
-        format.json  { render :json => {image_url: @image.url, image: @image}.to_json, :status => :created }
+        thumb_size = '120x120'
+        @image.resize(thumb_size)
+        format.json  { render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created }
       end
     end
   end
@@ -101,4 +102,10 @@ class ImagesController < ApplicationController
     end
   end
 
+  # this method is called when a url for a size image that has not yet been generated is requested.
+  # it expects a binary response.
+  # this may be a prime place for optimization.
+  def resize
+    raise "Realtime resizing not yet implemented."
+  end
 end

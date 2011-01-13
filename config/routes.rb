@@ -23,6 +23,9 @@ Dreamcatcher::Application.routes.draw do
   # match '/#:tag', :to => 'tags#show'
   match '/:username', :to => 'dreams#index'
 
+  # Image auto-resizing
+  match '/images/uploads/:id-:size.:format', to: 'images#resize'
+  
   root :to => "home#index"
 
   # The priority is based upon order of creation:

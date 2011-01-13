@@ -486,39 +486,39 @@ qq.FileUploader = function(o){
         listElement: null,
                 
         template: '<div id="IB_dropboxTab">'+
-			'<img src="/images/icons/dropbox-26.png" width="26" height="32" />'+
-			'<h2>Dropbox</h2>'+
-			'<h3>Select</h3> <a id="IB_selectAllImages" href="#">All</a> <a id="IB_selectNoneImages" href="#">None</a>'+
-			'<div id="IB_dropboxBrowse" class="dropboxBrowse round-16 light C-shine A-outline">Browse</div>'+
-			'<p>Drag files here to upload</p>'+
-		'</div>'+
-		'<div class="qq-upload-drop-area"></div>'+ 
-		'<div id="IB_dropboxImagesWrap" class="dropBoxArea dark C-soft">'+
-			'<ul id="IB_dropboxImages" class="dropBoxImages">'+	
-			'</ul>'+
-		'</div>',
+      '<img src="/images/icons/dropbox-26.png" width="26" height="32" />'+
+      '<h2>Dropbox</h2>'+
+      '<h3>Select</h3> <a id="IB_selectAllImages" href="#">All</a> <a id="IB_selectNoneImages" href="#">None</a>'+
+      '<div id="IB_dropboxBrowse" class="dropboxBrowse round-16 light C-shine A-outline">Browse</div>'+
+      '<p>Drag files here to upload</p>'+
+    '</div>'+
+    '<div class="qq-upload-drop-area"></div>'+ 
+    '<div id="IB_dropboxImagesWrap" class="dropBoxArea dark C-soft">'+
+      '<ul id="IB_dropboxImages" class="dropBoxImages">'+  
+      '</ul>'+
+    '</div>',
 
-		/*template: '<div class="qq-uploader">' + 
+    /*template: '<div class="qq-uploader">' + 
                 '<div class="qq-upload-drop-area"><span>DROP FILES HERE TO UPLOAD</span></div>' +
                 '<div class="qq-upload-button float-right light B-shine C-button round-8 padding-8 font-bold">BROWSE</div>' +
                 '<ul class="qq-upload-list"></ul>' + 
              '</div>',*/
-			 
-		fileTemplate: '<li class="uploading">'+
-			      '<p class="qq-upload-spinner"></p>' +
-			      '<p class="qq-upload-file"></p>' +
+       
+    fileTemplate: '<li class="uploading">'+
+            '<p class="qq-upload-spinner"></p>' +
+            '<p class="qq-upload-file"></p>' +
             '<p class="qq-upload-size"></p>' +
             '<a class="qq-upload-cancel" href="#">Cancel</a>' +
             '<p class="qq-upload-failed-text">Failed</p>' +
-            '</li>',		
-		/*<img src="images/art/IB_artistImages/artistImage120-1.jpg" width="120" height="120" /></li>'
-						<li class="selected"><img src="images/art/IB_artistImages/artistImage120-2.jpg" width="120" height="120" /></li>
-				<li class="selected"><img src="images/art/IB_artistImages/artistImage120-3.jpg" width="120" height="120" /></li>
-				<li><img src="images/art/IB_artistImages/artistImage120-4.jpg" width="120" height="120" /></li>
-				<li><img src="images/art/IB_artistImages/artistImage120-5.jpg" width="120" height="120" /></li>
-				<li><img src="images/art/IB_artistImages/artistImage120-1.jpg" width="120" height="120" /></li>
-				<li><img src="images/art/IB_artistImages/artistImage120-4.jpg" width="120" height="120" /></li>
-				<li><img src="images/art/IB_artistImages/artistImage120-5.jpg" width="120" height="120" /></li>*/
+            '</li>',    
+    /*<img src="images/art/IB_artistImages/artistImage120-1.jpg" width="120" height="120" /></li>'
+            <li class="selected"><img src="images/art/IB_artistImages/artistImage120-2.jpg" width="120" height="120" /></li>
+        <li class="selected"><img src="images/art/IB_artistImages/artistImage120-3.jpg" width="120" height="120" /></li>
+        <li><img src="images/art/IB_artistImages/artistImage120-4.jpg" width="120" height="120" /></li>
+        <li><img src="images/art/IB_artistImages/artistImage120-5.jpg" width="120" height="120" /></li>
+        <li><img src="images/art/IB_artistImages/artistImage120-1.jpg" width="120" height="120" /></li>
+        <li><img src="images/art/IB_artistImages/artistImage120-4.jpg" width="120" height="120" /></li>
+        <li><img src="images/art/IB_artistImages/artistImage120-5.jpg" width="120" height="120" /></li>*/
 
 
         // template for one item in file list
@@ -528,7 +528,7 @@ qq.FileUploader = function(o){
                 '<span class="qq-upload-size"></span>' +
                 '<a class="qq-upload-cancel" href="#">Cancel</a>' +
                 '<span class="qq-upload-failed-text">Failed</span>' +
-			*/
+      */
         
         classes: {
             // used to get elements from templates
@@ -537,7 +537,7 @@ qq.FileUploader = function(o){
             dropActive: 'qq-upload-drop-area-active',
             list: 'qq-upload-list',*/
             
-			button: 'dropboxBrowse',
+      button: 'dropboxBrowse',
             drop: 'qq-upload-drop-area',
             dropActive: 'qq-upload-drop-area-active',
             list: 'dropBoxImages',
@@ -655,16 +655,16 @@ qq.extend(qq.FileUploader.prototype, {
         
         // Get file path from results
         var filePath = result.image_url;
-		    
-		    // Check for image format from fileName
-		    var pieces = fileName.split('.');
-		    
+        
+        // Check for image format from fileName
+        var pieces = fileName.split('.');
+        
         // Add an ID to FADE in image on load
         var tempIMG = id + '_fade';
         
         // Use format var to determine format of image uploaded
-		    var raw = '<img id="' + tempIMG + '" src="'+ filePath + '" width="120" height="120" />';
-		    var el = qq.toElement(raw);
+        var raw = '<img id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
+        var el = qq.toElement(raw);
         item.appendChild(el);
         
         var elementjq = '#' + tempIMG;
