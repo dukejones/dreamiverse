@@ -1,25 +1,25 @@
 var uploader = null;
 function createUploader(){            
-	uploader = new qq.FileUploader({
-		element: document.getElementById('IB_dropboxContainer'),
-		action: '/images.json',
-		maxConnections: 1,
-		/*params: {"image":{"album":null,"artist":"Mark Lee","category":"Classical Art","created_at":"2010-12-29T00:15:39Z","genre":"Classical Art","geotag":null,"location":null,"notes":null,"public":null,"tags":null,"title":"This is a test title!","year": 2012}},*/
-		params: imageMetaParams,
-		debug: true,
-		onSubmit: function(id, fileName){
-		  collectParams(); // Grab the variables from the UI for the params
-		},
-		onComplete: function(id, fileName, responseJSON){
-		  if(responseJSON.success){
-		    // Image made it
-		    // Get image info from
-		    // responseJSON.id
-		  }
-		  
-		  resetImageSelectionEvents();
-		}
-	});           
+  uploader = new qq.FileUploader({
+    element: document.getElementById('IB_dropboxContainer'),
+    action: '/images.json',
+    maxConnections: 1,
+    /*params: {"image":{"album":null,"artist":"Mark Lee","category":"Classical Art","created_at":"2010-12-29T00:15:39Z","genre":"Classical Art","geotag":null,"location":null,"notes":null,"public":null,"tags":null,"title":"This is a test title!","year": 2012}},*/
+    params: imageMetaParams,
+    debug: true,
+    onSubmit: function(id, fileName){
+      collectParams(); // Grab the variables from the UI for the params
+    },
+    onComplete: function(id, fileName, responseJSON){
+      if(responseJSON.success){
+        // Image made it
+        // Get image info from
+        // responseJSON.id
+      }
+      
+      resetImageSelectionEvents();
+    }
+  });           
 }
 
 function setupDropdownEvents(){
@@ -47,54 +47,54 @@ $(document).ready(function() {
   checkForPassedImages();
   
   setupDropdownEvents();
-	
-	$('#IB_managerSave').click(function(){
-	  updateCurrentImagesMeta();
-	  
-	  /*// Disable button from being clicked again
-	  $(this).css('color', '#c0c0c0');
-	  $(this).parent().hover(function(){$(this).css('background', 'none');}, function(){$(this).css('background', 'none');});
-	  $(this).css('background', '#ccc');
+  
+  $('#IB_managerSave').click(function(){
+    updateCurrentImagesMeta();
+    
+    /*// Disable button from being clicked again
+    $(this).css('color', '#c0c0c0');
+    $(this).parent().hover(function(){$(this).css('background', 'none');}, function(){$(this).css('background', 'none');});
+    $(this).css('background', '#ccc');
     $(this).click(function(event){event.stopPropagation();});*/
 
-	}) 
-	
-	$('#IB_searchButtonWrap').click(function(){
-	  window.location ='/images?search=true';
-	});
-	
-	$('#IB_browseBack, #IB_managerCancel').click(function(){
-	  // Return user to browser
-	  window.location = '/images';
-	});
-	
-	// Set all input area's to check the checkbox if
-	// user types in input field
-	$('#IB_title_input').keyup(function() { $('#IB_title_checkbox').attr("checked", true) });
-	$('#IB_album_input').keyup(function() { $('#IB_album_checkbox').attr("checked", true) });
-	$('#IB_author_input').keyup(function() { $('#IB_author_checkbox').attr("checked", true) });
-	$('#IB_location_input').keyup(function() { $('#IB_location_checkbox').attr("checked", true) });
-	$('#IB_year_input').keyup(function() { $('#IB_year_checkbox').attr("checked", true) });
-	$('#IB_notes_input').keyup(function() { $('#IB_notes_checkbox').attr("checked", true) });
-	$('#IB_date_input').keyup(function() { $('#IB_date_checkbox').attr("checked", true) });
-	$('#IB_user_input').keyup(function() { $('#IB_user_checkbox').attr("checked", true) });
-	$('#IB_geotag_input').keyup(function() { $('#IB_geotag_checkbox').attr("checked", true) });
-	$('.IB_managerTagInput').keyup(function() { $('.IB_managerTagCheckbox').attr("checked", true) });
-	
-	$("#IB_selectAllImages").click(function() {
-		$("#IB_dropboxImages li").addClass("selected");
-		//ajax call to get all common property values for all selected images
-		displaySelectedImageMetaData();
-	});
-	
-	$("#IB_selectNoneImages").click(function() {
-		$("#IB_dropboxImages li").removeClass("selected");
-		//ajax call to get all common property values for all selected images
-		displaySelectedImageMetaData();
-	});
-	
-	// Auto-fill GEOLOCATION tag
-	autoFillGeo();
+  }) 
+  
+  $('#IB_searchButtonWrap').click(function(){
+    window.location ='/images?search=true';
+  });
+  
+  $('#IB_browseBack, #IB_managerCancel').click(function(){
+    // Return user to browser
+    window.location = '/images';
+  });
+  
+  // Set all input area's to check the checkbox if
+  // user types in input field
+  $('#IB_title_input').keyup(function() { $('#IB_title_checkbox').attr("checked", true) });
+  $('#IB_album_input').keyup(function() { $('#IB_album_checkbox').attr("checked", true) });
+  $('#IB_author_input').keyup(function() { $('#IB_author_checkbox').attr("checked", true) });
+  $('#IB_location_input').keyup(function() { $('#IB_location_checkbox').attr("checked", true) });
+  $('#IB_year_input').keyup(function() { $('#IB_year_checkbox').attr("checked", true) });
+  $('#IB_notes_input').keyup(function() { $('#IB_notes_checkbox').attr("checked", true) });
+  $('#IB_date_input').keyup(function() { $('#IB_date_checkbox').attr("checked", true) });
+  $('#IB_user_input').keyup(function() { $('#IB_user_checkbox').attr("checked", true) });
+  $('#IB_geotag_input').keyup(function() { $('#IB_geotag_checkbox').attr("checked", true) });
+  $('.IB_managerTagInput').keyup(function() { $('.IB_managerTagCheckbox').attr("checked", true) });
+  
+  $("#IB_selectAllImages").click(function() {
+    $("#IB_dropboxImages li").addClass("selected");
+    //ajax call to get all common property values for all selected images
+    displaySelectedImageMetaData();
+  });
+  
+  $("#IB_selectNoneImages").click(function() {
+    $("#IB_dropboxImages li").removeClass("selected");
+    //ajax call to get all common property values for all selected images
+    displaySelectedImageMetaData();
+  });
+  
+  // Auto-fill GEOLOCATION tag
+  autoFillGeo();
 });
 
 var autoFillGeo = function(){
@@ -133,23 +133,29 @@ var checkForPassedImages = function(){
 };
 
 var displayImages = function(images){
-  for(var u = 0; u < images.length; u++){
-    var newImage = '<li class="qq-upload-success"><span class="qq-upload-failed-text">Failed</span><img width="120" height="120" src="/images/uploads/' + images[u] + '.jpg"></li>';
-    $('#IB_dropboxImages').append(newImage);
-  }
+  // Request JSON
+  $.getJSON("/images.json?ids=" + images.toString(),
+    function(images) {
+      for(var u = 0; u < images.length; u++){
+        var newImage = '<li class="qq-upload-success"><img width="120" height="120" src="/images/uploads/' + images[u].image.id + '-126x126.' + images[u].image.format + '"></li>';
+        $('#IB_dropboxImages').append(newImage);
+      }
+    });
+  
+  
   
   // temp hack!
   // IF 1 image is loaded, grab its tags
   if(images.length == 1){
     // Get tags from image & set
     $.getJSON("/images/" + images[0] + ".json",
-	  function(data) {
-	    //alert("TAGS :: " + data.image.tags)
-	    var newTags = data.image.tags;
-	    $('.IB_managerTagInput').val(newTags);
-	    
-	  });
-	  
+    function(data) {
+      //alert("TAGS :: " + data.image.tags)
+      var newTags = data.image.tags;
+      $('.IB_managerTagInput').val(newTags);
+      
+    });
+    
   }
   
   resetImageSelectionEvents();
@@ -188,18 +194,18 @@ var resetImageSelectionEvents = function(){
   // Set events
   $("#IB_dropboxImages li").unbind();
   
-	$("#IB_dropboxImages li").click(function() {
-		if ($(this).hasClass("selected")) {
-			$(this).removeClass("selected");
-			updateSelectedList();
-		} else {
-			$(this).addClass("selected");
-			updateSelectedList();
-			//ajax call to get all common property values for all selected images
-			
-			displaySelectedImageMetaData();
-		}
-	});
+  $("#IB_dropboxImages li").click(function() {
+    if ($(this).hasClass("selected")) {
+      $(this).removeClass("selected");
+      updateSelectedList();
+    } else {
+      $(this).addClass("selected");
+      updateSelectedList();
+      //ajax call to get all common property values for all selected images
+      
+      displaySelectedImageMetaData();
+    }
+  });
 }
 
 
@@ -217,10 +223,10 @@ var displaySelectedImageMetaData = function(){
   var imageIDString = currentSelectedImages.toString();
   
   $.getJSON("/images.json?ids=" + imageIDString,
-	  function(images) {
-	    checkForSimilarMetaData(images);
-	    currentSelectedImages = [];
-	  });
+    function(images) {
+      checkForSimilarMetaData(images);
+      currentSelectedImages = [];
+    });
 }
 
 var checkForSimilarMetaData = function(images){
@@ -340,19 +346,16 @@ var imageMetaParams = { image: {} };
 
 function collectParams(){
   if($('#IB_category_checkbox').attr("checked")){
-    //imageMetaParams.image.category =  $('#IB_current_category').text();
+    imageMetaParams.image.category =  $('#IB_current_category').text();
   }
-  imageMetaParams.image.category =  $('#IB_current_category').text();
   
   if($('#IB_genre_checkbox').attr("checked")){
-    //imageMetaParams.image.genre =  $('#IB_current_genre').text();
+    imageMetaParams.image.genre =  $('#IB_current_genre').text();
   }
-  imageMetaParams.image.genre =  $('#IB_current_genre').text();
   
   if($('#IB_type_checkbox').attr("checked")){
-    //imageMetaParams.image.section =  $('#IB_current_type span').text();
+    imageMetaParams.image.section =  $('#IB_current_type span').text();
   }
-  imageMetaParams.image.section =  $('#IB_current_type span').text();
   
   // Get the rest of the parameters
   
