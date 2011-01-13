@@ -659,6 +659,12 @@ loadSlideshow = function(newImageIds, currentIndex) {
     }
   })
   
+  
+  $('#IB_footer .fullscreen').unbind();
+  $('#IB_footer .fullscreen').click(function(){
+    openFullscreen();
+  })
+  
   $("#IB_footer .shuffle").unbind();
   $("#IB_footer .shuffle").click(function() {
     if (shuffleToggled) {
@@ -670,9 +676,22 @@ loadSlideshow = function(newImageIds, currentIndex) {
     }
   });
   
-  $('#IB_slideshow').slideDown();
+  $('#IB_slideshow').slideDown();  
   $(".slideshow,#IB_footer").fadeIn();
   
+
+}
+
+openFullscreen = function(){
+  var currentImg = $("#IB_slideshow img").eq(currentItem);
+  
+  var tempCover = '<div id="full-screen"><img src="' + currentImg.attr('src') + '" /></div>';
+  $('body').append(tempCover);
+  $('#full-screen').addClass('full-screen');
+  
+  $('#full-screen').click(function(){
+    $(this).fadeOut();
+  })
 }
 
 checkImageResize = function(){
