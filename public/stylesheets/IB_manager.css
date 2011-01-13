@@ -5,7 +5,8 @@
   width:760px;
   height:auto;
   background-color:#dbdbdb;
-  border:1px solid #b4b4b4;}
+  border:1px solid #b4b4b4;
+  -moz-box-shadow: 0 5px 20px #000;}
 #IB_top {
   position:absolute;
   margin:0px 0 0 0;

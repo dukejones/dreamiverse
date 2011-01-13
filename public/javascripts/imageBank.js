@@ -3,7 +3,9 @@ var currentArtist = "";
 var currentSlideshowImage = '';
 var currentView = "browse"; // Changes to "search"
 
-var sectionFilter = '';
+// Whatever this var is set to, is the section that the images will come from
+// leave an empty var for all images from all sections.
+var sectionFilter = 'Library';
 
 var shuffleToggled = false;
 
@@ -94,7 +96,7 @@ loadArtistList = function(genre) {
         item += "<div class=\"images\">";
         for (j = 0; j < imageLength; j++)
         {
-          var image = artist.images[j].image;
+          var image = artist.images[j];
           
           // Get file path from results
           var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
@@ -117,7 +119,7 @@ loadArtistList = function(genre) {
     });  
   };
   
-  $.getJSON("/artists.json?genre="+genre,
+  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter,
     function(artists) {
       populateArtistList(artists);
     });
@@ -287,13 +289,13 @@ loadArtist = function(artist) {
       }
       
       var element = $(this);
-      $.getJSON("/images.json?artist="+artist+"&album="+album+"&genre=",
+      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter,
         function(images) {
           if (images.length > 0) {
             item = '<ul class="clearfix images">';
             for (j = 0; j < images.length; j++)
             {
-              var image = images[j].image;
+              var image = images[j];
               
               // Get file path from results
               var filePath = '/images/uploads/' + image.id + '-126x126.' + image.format;
@@ -431,7 +433,7 @@ loadArtist = function(artist) {
     });
   };
   
-  $.getJSON("/albums.json?artist="+artist,
+  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter,
     function(albums) {
       populateAlbums(albums);
     }
@@ -718,7 +720,7 @@ checkImageResize = function(){
 }
 
 loadSearch = function() {
-  $("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap").hide();
+  $("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap,#IB_slideshowTimer,#IB_slideshowCount").hide();
   $("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").show();
   
   $("#IB_browseBack").unbind();
@@ -887,7 +889,7 @@ loadSearchResults = function() {
   
   
   // SEARCH
-  $.getJSON("/images.json?"+queryString,
+  $.getJSON("/images.json?"+queryString+"&section="+sectionFilter,
     function(images) {
       if (images.length > 0) {
         var element = $('#IB_searchImageResults');
@@ -1136,9 +1138,9 @@ function getCurrentImageTags(){
       $('.current-tags').remove();
       $('#emptyMessage').empty();
       
-      if(typeof(artists.image.tags) != "object"){
+      if(typeof(artists.tags) != "object"){
         // Temp array
-        var tagArray = artists.image.tags.split(',');
+        var tagArray = artists.tags.split(',');
         for(var u = 0; u < tagArray.length; u++){
           addTagToList(tagArray[u]);
         }

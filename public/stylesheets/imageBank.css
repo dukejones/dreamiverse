@@ -2,7 +2,8 @@
   position:relative;
   margin:20px;
   width:760px;
-  background-color:#272727;}
+  background-color:#272727;
+  -moz-box-shadow: 0 5px 20px #000;}
 #IB_top {
   position:absolute;
   margin:0;

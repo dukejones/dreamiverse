@@ -137,9 +137,11 @@ var displayImages = function(images){
   $.getJSON("/images.json?ids=" + images.toString(),
     function(images) {
       for(var u = 0; u < images.length; u++){
-        var newImage = '<li class="qq-upload-success"><img width="120" height="120" src="/images/uploads/' + images[u].image.id + '-126x126.' + images[u].image.format + '"></li>';
+        var newImage = '<li class="qq-upload-success"><img width="120" height="120" src="/images/uploads/' + images[u].id + '-126x126.' + images[u].format + '"></li>';
         $('#IB_dropboxImages').append(newImage);
       }
+      
+      resetImageSelectionEvents();
     });
   
   
@@ -157,8 +159,6 @@ var displayImages = function(images){
     });
     
   }
-  
-  resetImageSelectionEvents();
 }
 
 var updateSelectedList = function(){
@@ -346,15 +346,15 @@ var imageMetaParams = { image: {} };
 
 function collectParams(){
   if($('#IB_category_checkbox').attr("checked")){
-    imageMetaParams.image.category =  $('#IB_current_category').text();
+    imageMetaParams.image.category =  $('#IB_categoryList').val();
   }
   
   if($('#IB_genre_checkbox').attr("checked")){
-    imageMetaParams.image.genre =  $('#IB_current_genre').text();
+    imageMetaParams.image.genre =  $('#IB_genreList').val();
   }
   
   if($('#IB_type_checkbox').attr("checked")){
-    imageMetaParams.image.section =  $('#IB_current_type span').text();
+    imageMetaParams.image.section =  $('#IB_typeList').val();
   }
   
   // Get the rest of the parameters

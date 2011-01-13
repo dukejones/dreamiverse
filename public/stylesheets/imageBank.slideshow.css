@@ -155,8 +155,7 @@
 #IB_infoContainer {
   position: relative;
   margin-top:0px;
-  padding:0 12px;
-  min-height:60px;
+  padding:0 12px 12px 12px;
   width:736px;
   border-top: solid 2px #464646; /* 80% Black */}
 #IB_tagTextWrap {
