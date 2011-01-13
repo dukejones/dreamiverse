@@ -64,6 +64,9 @@ h1#IB_category {
 #IB_browseBackWrap:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#363636), to(#898989));
   background: -moz-linear-gradient(top, #363636, #898989); /* gradient-65-35 */}
+#IB_browseBackWrap:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#C2C2C2), to(#EBEBEB));
+  background: -moz-linear-gradient(top, #C2C2C2, #EBEBEB); /* gradient-30-10 */}
 #IB_searchBox {
   margin:2px auto;
   padding:6px;
@@ -83,6 +86,7 @@ h1#IB_category {
   display: block !important;
   background:#363636 url(../images/icons/browseBars-36.png) no-repeat 6px 6px;}
 #IB_browseBack:hover {background:#464646 url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
+#IB_browseBack:active {background:#ACACAC url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
 
 
 .uiMode {
