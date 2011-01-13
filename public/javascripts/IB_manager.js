@@ -133,10 +133,16 @@ var checkForPassedImages = function(){
 };
 
 var displayImages = function(images){
-  for(var u = 0; u < images.length; u++){
-    var newImage = '<li class="qq-upload-success"><span class="qq-upload-failed-text">Failed</span><img width="120" height="120" src="/images/uploads/' + images[u] + '.jpg"></li>';
-    $('#IB_dropboxImages').append(newImage);
-  }
+  // Request JSON
+  $.getJSON("/images.json?ids=" + images.toString(),
+    function(images) {
+      for(var u = 0; u < images.length; u++){
+        var newImage = '<li class="qq-upload-success"><img width="120" height="120" src="/images/uploads/' + images[u].image.id + '-126x126.' + images[u].image.format + '"></li>';
+        $('#IB_dropboxImages').append(newImage);
+      }
+    });
+  
+  
   
   // temp hack!
   // IF 1 image is loaded, grab its tags
@@ -340,19 +346,16 @@ var imageMetaParams = { image: {} };
 
 function collectParams(){
   if($('#IB_category_checkbox').attr("checked")){
-    //imageMetaParams.image.category =  $('#IB_current_category').text();
+    imageMetaParams.image.category =  $('#IB_current_category').text();
   }
-  imageMetaParams.image.category =  $('#IB_current_category').text();
   
   if($('#IB_genre_checkbox').attr("checked")){
-    //imageMetaParams.image.genre =  $('#IB_current_genre').text();
+    imageMetaParams.image.genre =  $('#IB_current_genre').text();
   }
-  imageMetaParams.image.genre =  $('#IB_current_genre').text();
   
   if($('#IB_type_checkbox').attr("checked")){
-    //imageMetaParams.image.section =  $('#IB_current_type span').text();
+    imageMetaParams.image.section =  $('#IB_current_type span').text();
   }
-  imageMetaParams.image.section =  $('#IB_current_type span').text();
   
   // Get the rest of the parameters
   

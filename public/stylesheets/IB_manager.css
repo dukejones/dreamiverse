@@ -1,5 +1,6 @@
 #IB_browser_frame {
   position:relative;
+  clear: both;
   margin:20px;
   width:760px;
   height:auto;
