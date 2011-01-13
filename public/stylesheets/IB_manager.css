@@ -66,8 +66,8 @@ h1#IB_category {
   padding:6px;
   cursor:pointer;}
 #IB_searchButton:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#bcbec0), to(#fff));
-  background: -moz-linear-gradient(top, #bcbec0, #fff);}
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
+  background: -moz-linear-gradient(top, #fff, #E1E1E1);}
 
 /* IB dropbox Container */  
 #IB_dropboxContainer {
@@ -121,7 +121,7 @@ h1#IB_category {
   width:750px;
   height:175px;
   overflow-x:scroll;
-  overflow-y:hidden;}
+  overflow-y:scroll;}
 ul#IB_dropboxImages {
   margin:12px 0 0 8px;
   padding:0;  

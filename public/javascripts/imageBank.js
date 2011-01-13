@@ -592,7 +592,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
     $("#IB_slideshowCount").text((currentItem+1)+"/"+numberOfItems);
     updateImageMetaData();
     
-    setTimeout(function(){checkImageResize();}, 200);
+    setTimeout(function(){checkImageResize($("#IB_slideshow img").eq(currentItem));}, 200);
     
   };
   showPreviousImage = function() {
@@ -687,18 +687,26 @@ loadSlideshow = function(newImageIds, currentIndex) {
 openFullscreen = function(){
   var currentImg = $("#IB_slideshow img").eq(currentItem);
   
-  var tempCover = '<div id="full-screen"><img src="' + currentImg.attr('src') + '" /></div>';
+  var tempCover = '<div id="full-screen"><img id="full-screen-image" src="' + currentImg.attr('src') + '" /></div>';
   $('body').append(tempCover);
   $('#full-screen').addClass('full-screen');
+  $('#full-screen').hide();
+  $('#full-screen-image').css('margin-top', window.pageYOffset);
+  
+  checkImageResize($('#full-screen-image'));
+  
+  $('#full-screen').fadeIn('fast');
   
   $('#full-screen').click(function(){
-    $(this).fadeOut();
+    $(this).fadeOut('fast', function(){
+      $(this).remove();
+    });
   })
 }
 
-checkImageResize = function(){
+checkImageResize = function(currentImg){
   // Check size
-  var currentImg = $("#IB_slideshow img").eq(currentItem);
+  //var currentImg = $("#IB_slideshow img").eq(currentItem);
   
   if(currentImg.attr('width') > 702){
     
@@ -709,12 +717,8 @@ checkImageResize = function(){
     var percentChange = (difference / 702);
     var newH = oldH * percentChange;
     
-    $(currentImg).animate({
-      width: 702,
-      height: newH
-    }, 2000, function() {
-      // Animation complete.
-    });
+    $(currentImg).css('width', '702px');
+    $(currentImg).css('height', newH);
 
   }
 }
