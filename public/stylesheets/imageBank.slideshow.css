@@ -109,10 +109,12 @@
 #IB_slideshow {
 	position:relative;
 	margin:0px 0 0 3px;
-	padding:0;
-	width:750px;
+	padding:24px;
+	width:702px;
+	text-align: center;
 	background-color:black;
 	border:2px solid #2d2c2b;
+	overflow: hidden;
 }	
 	
 #IB_slideshowCount {
