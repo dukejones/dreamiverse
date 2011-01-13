@@ -25,7 +25,7 @@
     / SEED CODE
     %hr.clear-both
     .signup-label.round-8.light.O-outline.B-bevel.flat-right seed code
-    %input.signup-input.round-8.text_input-big.flat-left{name: 'seed_code', value: 'theta'}
+    = f.text_field :seed_code, :value => 'theta', :class => "signup-input round-8 text_input-big flat-left"
     / FB LOGIN
     .fb-infoPanel.light.B.O-outline.round-8
       #fbSignIn
