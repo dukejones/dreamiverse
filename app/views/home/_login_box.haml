@@ -23,7 +23,10 @@
     / AUTHENTICATION
     .clear-both
       .authLinks.round-4.light.A-indent
-        %fb:login-button{perms: '<%= FB_PERMS %>'}
-      .authLinks.round-4.light.A-indent google
-      .authLinks.round-4.light.A-indent twitter
-      .authLinks.round-4.light.A-indent openID
+        %a{href: '/auth/facebook'} facebook
+      .authLinks.round-4.light.A-indent
+        %a{href: '/auth/google'} google
+      .authLinks.round-4.light.A-indent
+        %a{href: '/auth/twitter'} twitter
+      .authLinks.round-4.light.A-indent 
+        %a{href: '/auth/openID'} openID

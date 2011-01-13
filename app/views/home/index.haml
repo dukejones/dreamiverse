@@ -1,0 +1,34 @@
+#wrapper
+
+  /LEFT COLUMN
+  #column-left
+    / LOGO
+    .front-logo
+      %a{href: '/'}
+        %img{src: '/images/logos/frontpage-logo.png', alt: 'Dreamcatcher - Life is a dream.', width: '447', height: '129', border: '0'}
+    = render "info_box"
+    #bottomPadding
+
+
+  / RIGHT COLUMN
+  #column-right
+    = render "login_box"
+
+    / MESSAGE BOX MODULE
+    #messageBox.float-right.light.round-8.glow-80{style: 'display:none;'}
+      %table.light.A-bevel.round-8{width:'480', border:'0', cellspacing:'8'}
+        %tr
+          %td.round-4{style: 'background:url(/images/art/vertical-panel-01.jpg) 50% bottom', width: '87', rowspan: '2'}
+          %td#messageTitle.light.B-soft.round-4.font-25.font-bold.error{align: 'left', height:'57', valign: 'middle'}
+        %tr
+          %td.message-content
+            %ul
+
+    / ACTION BUTTON MODULE
+    #actionButtons.light.glow-40.float-left.gradient-C.round-8
+      = render 'signup_panel'
+      = render 'share_panel'
+      / EXPLORE THE DREAMSPHERE
+      %a#dreamSphereButton.block.button-explore.button-action.round-8.light.text-glow-10.button-big-blue{style: 'margin:0', href: '/dreamstars'} Explore the Dreamsphere
+      = render 'fb_login'
+      = render 'forgot_password'
