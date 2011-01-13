@@ -54,6 +54,11 @@ loadBrowse = function() {
 	});
 };
 
+closeSearchExpand = function(){
+  $("#IB_searchBoxActive,#IB_searchBoxActiveWrap,#IB_browseBack,#IB_browseBackWrap").hide();
+	$("#IB_searchBox,#IB_searchBoxWrap").show();
+}
+
 loadArtistList = function(genre) {
 	$(".uiMode").hide();
 	
@@ -69,7 +74,8 @@ loadArtistList = function(genre) {
 		//Clear list
 		$("#artists").html("");
 		
-		
+		// Clean up search just in case
+		closeSearchExpand();
 		
 		//Incrementally add each item
 		for (i = 0; i < artists.length; i++) {
@@ -186,6 +192,7 @@ addImageToDropboxSearch = function(imageId) {
 var artistHolder = '';
 
 loadArtist = function(artist) {
+  closeSearchExpand();
 	$(".uiMode").hide();
 	
 	artistHolder = artist;
@@ -194,6 +201,7 @@ loadArtist = function(artist) {
 	$("#IB_browseArrow p").text(currentGenre);
 	$("#IB_category").text(artist);
 	
+	$('#IB_browseArrow').show();
 	$("#IB_browseArrow").unbind();
 	$("#IB_browseArrow").click(function() {
 		loadArtistList(currentGenre);
@@ -521,18 +529,19 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	imageIds = String(newImageIds).split(",");
 	
 	// NEW WAY - Store all images Obj's in slideshowJSONContainer
-	var imageIDString = imageIds.toString();
+	//var imageIDString = imageIds.toString();
 	
 	// OLD WAY - Loop thru imageIds array and load images
 	// into the IB_slideshow
 	for (i = 0; i < imageIds.length; i++) {
 		var imageElement = $("#image_"+imageIds[i]);
 		
-		//var oldPath = imageElement.attr('src').split('.')
-		var filePath = 'images/uploads/originals/' + imageIds[i] + '.';
+		// Get the new file path from the info we have. find format from old fileName
+		var oldPath = imageElement.attr('src').split('.');
+		var filePath = 'images/uploads/originals/' + imageIds[i] + '.' + oldPath[oldPath.length-1];
 		
-		//TODO - look for high-resolution instead of reusing thumbnail
-		$("#IB_slideshow").append('<img id="slideshow_'+imageIds[i]+'" src="'+filePath+'" width="750px" height="766px" />');
+		//TODO - look for high-resolution instead of reusing thumbnail (was 750px / 766px)
+		$("#IB_slideshow").append('<img id="slideshow_' + imageIds[i] +'" src="' + filePath + '" />');
 	}
 	$("#IB_slideshow img").hide();
 	
@@ -565,19 +574,24 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	var numberOfItems = imageIds.length;
 	
 	hideCurrentImage = function() {
-		$("#IB_slideshow img").eq(currentItem).hide();
+		$("#IB_slideshow img").eq(currentItem).fadeOut();
 	};
 	showCurrentImage = function() {
 	  // Turn off keyboard shortcut handler
-	  setTimeout(function() { keyCaptured = false;; }, 100);
+	  setTimeout(function() { keyCaptured = false; }, 100);
 	  
 	  currentSlideshowImage = getCurrentImageId();
 	  
 	  getCurrentImageTags();
 	  
-		$("#IB_slideshow img").eq(currentItem).fadeIn();
+	  var currentImg = $("#IB_slideshow img").eq(currentItem);
+	  
+		currentImg.fadeIn();
 		$("#IB_slideshowCount").text((currentItem+1)+"/"+numberOfItems);
 		updateImageMetaData();
+		
+		setTimeout(function(){checkImageResize();}, 200);
+		
 	};
 	showPreviousImage = function() {
 		hideCurrentImage();
@@ -661,14 +675,36 @@ loadSlideshow = function(newImageIds, currentIndex) {
 	
 }
 
+checkImageResize = function(){
+  // Check size
+  var currentImg = $("#IB_slideshow img").eq(currentItem);
+  
+  if(currentImg.attr('width') > 702){
+    
+    var oldW = currentImg.attr('width');
+    var oldH = currentImg.attr('height');
+    
+    var difference = oldW - 702;
+    var percentChange = (difference / 702);
+    var newH = oldH * percentChange;
+    
+    $(currentImg).animate({
+      width: 702,
+      height: newH
+    }, 2000, function() {
+      // Animation complete.
+    });
+
+  }
+}
+
 loadSearch = function() {
 	$("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap").hide();
 	$("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").show();
 	
 	$("#IB_browseBack").unbind();
 	$("#IB_browseBack").click(function() {
-		$("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").hide();
-		$("#IB_searchBox,#IB_searchBoxWrap").show();
+		closeSearchExpand();
 		loadBrowse();
 	});
 	$("#IB_searchText").focus(function() {

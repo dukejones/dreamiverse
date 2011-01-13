@@ -1,0 +1,29 @@
+/ FB LOGIN PANEL
+#fbSignin
+  .button-signup.button-action.round-8.dark.text-glow-10.button-big-blue.float-left{style:'width: 360px'}
+    %span.block.round-8.dark.glow-20{style: 'background: url(/images/icons/facebook-64.png) no-repeat top left; width:64px; height:64px; margin:10px 15px -17px 0; float:left'} login
+
+  #fbSigninBack.categoryBack.dark.round-8.button-big-gray.float-right &lsaquo;
+  .clear-both
+  %form{method: 'post', action:'/login'}
+    %input{type: 'hidden', name: 'loginMode', value: 'authenticate'}
+    %input{type: 'hidden', name: 'fbAssociate', value: 'true'}
+    %span.block.font-25.panel-text already have a dreamcatcher account?
+    %span.block.font-13.panel-text{style: 'margin-bottom: 6px'} log in with your dreamcatcher account to link with Facebook
+    / USERNAME
+    .signup-label.round-8.light.O-outline.B-bevel.flat-right username
+    %input.signup-input.round-8.text_input-big.flat-left{type: 'text', name: 'emailUserName', value: '<%= @email %>'}
+    / PASSWORD
+    .signup-label.round-8.light.O-outline.B-bevel.flat-right password
+    %input.signup-input.round-8.text_input-big.flat-left{style: 'margin-bottom: 10px', type: 'password', name: 'passWord'}
+    %span#fbJoin.block.clear-both.font-13.pointer.align-center{style: 'margin: 5px auto 5px;'}
+      don't have a dreamcatcher account? 
+      %u Create one now...
+    .fb-infoPanel.light.B.O-outline.round-8
+      #fbSignIn
+        %fb:login-button(show-faces=true){perms: FB_PERMS, width:'178px'}
+    %input.signup-next.dark.round-8.button-big-blue{type: 'submit', value: 'next &rsaquo;'}
+    .clear-both.font-11.align-center
+      review the
+      %a.terms-link.dark.B-button.B-outline.round-4{href: '/terms'}
+        terms and services
