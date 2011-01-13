@@ -2,7 +2,7 @@
 %html
   %head
     %title Dreamcatcher
-    = stylesheet_link_tag :all
+    = stylesheet_link_tag 'basic', 'clearfix', 'shared'
     = javascript_include_tag :defaults
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     = csrf_meta_tag
@@ -10,6 +10,7 @@
 
   %body
     = render "shared/facebook_sdk"
+    = render "layouts/meta_menu"
     %p.notice= notice
     %p.alert= alert
 
