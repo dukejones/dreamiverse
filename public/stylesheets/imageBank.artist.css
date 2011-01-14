@@ -50,11 +50,11 @@ h2.IB_imageDropTitle {
 #IB_imageDrop {overflow-x:scroll; overflow-y:hidden;}
 #IB_imageDrop, #IB_searchResultsSelect {
   position:absolute;
-  margin:12px 0 0 12px;
+  margin:0 0 0 12px;
   padding:0;
   list-style: none;
   width:675px;
-  height:126px;
+  height:136px;
   background:#272727 url(../images/icons/dropboxIconText.png) no-repeat 295px center;}
 #IB_imageDrop li {
   margin:12px 0px 0px 12px;
