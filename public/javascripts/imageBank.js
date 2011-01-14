@@ -3,6 +3,9 @@ var currentArtist = "";
 var currentSlideshowImage = '';
 var currentView = "browse"; // Changes to "search"
 
+// Maximum size of any image side in full-screen/slideshow mode
+var maxImageSide = 700;
+
 // Whatever this var is set to, is the section that the images will come from
 // leave an empty var for all images from all sections.
 var sectionFilter = 'Library';
@@ -720,22 +723,15 @@ checkImageResize = function(currentImg){
   // Check size todo :: needs work!
   //var currentImg = $("#IB_slideshow img").eq(currentItem);
   
-  if(currentImg.attr('width') > 702){
-    alert("resize image")
-    var oldW = currentImg.attr('width');
-    var oldH = currentImg.attr('height');
-    
-    var difference = oldW - 702;
-    var percentChange = (difference / 702);
-    var newW = oldW * percentChange;
-    var newH = oldH * percentChange;
-    
-    var cssW = newW + "px";
-    var cssH = newH + "px";
-    
-    currentImg.width(cssW);
-    currentImg.height(cssH);
-
+  if(currentImg.attr('width') > maxImageSide){
+    // Resize the image so its largest side is equal to maxImageSide
+    if(currentImg.width() > currentImg.height()) { 
+      currentImg.css('width',maxImageSide+'px');
+      currentImg.css('height','auto');
+    } else {
+      currentImg.css('height',maxImageSide+'px');
+      currentImg.css('width','auto');
+    }
   }
 }
 
