@@ -17,7 +17,7 @@
   position:relative;
   width:748px;
 }
-#albums li h2, h2.myCollection {
+#albums li h2, h2.IB_imageDropTitle {
   margin:0;
   padding:0 0 0 20px;
   width:712px;
@@ -29,7 +29,7 @@
   border:1px solid #5e5e5e;
   background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#464646));
   background: -moz-linear-gradient(top, #000, #464646); /* gradient-100-80 */}
-h2.myCollection {
+h2.IB_imageDropTitle {
   background:transparent;
   border:none;}
   
@@ -47,6 +47,7 @@ h2.myCollection {
 }
 
 /* Image Drop */
+#IB_imageDrop {overflow-x:scroll; overflow-y:hidden;}
 #IB_imageDrop, #IB_searchResultsSelect {
   position:absolute;
   margin:12px 0 0 12px;
