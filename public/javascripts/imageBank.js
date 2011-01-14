@@ -599,10 +599,26 @@ loadSlideshow = function(newImageIds, currentIndex) {
   };
   showPreviousImage = function() {
     hideCurrentImage();
-    if (currentItem == 0) {
-      currentItem = numberOfItems - 1;
+    
+    if(!shuffleToggled){
+      // Shuffle is off play normal order
+      if (currentItem == 0) {
+        currentItem = numberOfItems - 1;
+      } else {
+        currentItem--;
+      }
     } else {
-      currentItem--;
+      // Shuffle is on play random order
+      var randomnumber = Math.floor(Math.random()*(numberOfItems - 1))
+      
+      if(randomnumber == currentItem){
+        if(randomnumber == numberOfItems - 1){
+          randomnumber = 0;
+        } else if(randomnumber == 0){
+          randomnumber++;
+        }
+      }
+      currentItem = randomnumber;
     }
     showCurrentImage();
   };
@@ -617,7 +633,15 @@ loadSlideshow = function(newImageIds, currentIndex) {
       }
     } else {
       // Shuffle is on play random order
-      var randomnumber = Math.floor(Math.random()*(numberOfItems + 1))
+      var randomnumber = Math.floor(Math.random()*(numberOfItems - 1))
+      
+      if(randomnumber == currentItem){
+        if(randomnumber == numberOfItems - 1){
+          randomnumber = 0;
+        } else if(randomnumber == 0){
+          randomnumber++;
+        }
+      }
       currentItem = randomnumber;
     }
     showCurrentImage();
@@ -682,12 +706,12 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   $("#IB_footer .shuffle").unbind();
   $("#IB_footer .shuffle").click(function() {
-    if (shuffleToggled) {
+    if (!shuffleToggled) {
       $(this).css('background', 'url(../images/icons/shuffle-26-selected.png) no-repeat center');
-      shuffleToggled = false;
+      shuffleToggled = true;
     } else {
       $(this).css('background', 'url(../images/icons/shuffle-26.png) no-repeat center');
-      shuffleToggled = true;
+      shuffleToggled = false;
     }
   });
   
@@ -1214,6 +1238,9 @@ var checkForParams = function(){
 // INIT STUFF
 
 $(document).ready(function() {
+  // FOR DEV ONLY todo :: remove me
+  $('body').append('<p class="padding-12 round-8" style="opacity: .3; margin-left: 32px; display: inline-block; background-color: #fff;">Showing only sectionFilter :: ' + sectionFilter + '</p>');
+  
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
 
