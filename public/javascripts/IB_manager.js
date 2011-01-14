@@ -244,7 +244,7 @@ var checkForSimilarMetaData = function(images){
     var obj = images;
     
     // each param checks against all others
-    for(param in obj[0].image){
+    for(param in obj[0]){
      var valuesMatch = true;
      var valueIndex = '';
      
@@ -252,7 +252,7 @@ var checkForSimilarMetaData = function(images){
      for(var u = 1; u < images.length; u++){
       //alert("FOR :: " + param + " ::\n" + images[0].image[param] + ' / ' + images[u].image[param]);
       
-      if(images[0].image[param] != images[u].image[param]){
+      if(images[0][param] != images[u][param]){
         valuesMatch = false;
       } else {
         valueIndex = param;
@@ -266,7 +266,7 @@ var checkForSimilarMetaData = function(images){
       var obj = images[0];
  
       // Values all matched, display them on UI
-      similarMetaData.image[param] = images[0].image[param];
+      similarMetaData.image[param] = images[0][param];
       //alert('match + ' +  obj.image[param])
      }
      
@@ -285,21 +285,21 @@ var displayMetaData = function(metadata){
   $("input[type='checkbox']").attr('checked', false);
   
   // Set the top check boxes
-  $('#IB_current_type span').html(metadata.image.section);
-  $('#IB_current_category').html(metadata.image.category);
-  $('#IB_current_genre').html(metadata.image.genre);
+  $('#IB_current_type span').html(metadata.section);
+  $('#IB_current_category').html(metadata.category);
+  $('#IB_current_genre').html(metadata.genre);
   
   // Set Meta Fields
-  $('#IB_title_input').val(metadata.image.title);
-  $('#IB_album_input').val(metadata.image.album);
-  $('#IB_author_input').val(metadata.image.artist);
-  $('#IB_location_input').val(metadata.image.location);
-  $('#IB_year_input').val(metadata.image.year);
-  $('#IB_notes_input').val(metadata.image.notes);
-  $('#IB_date_input').val(metadata.image.created_at);
-  $('#IB_user_input').val(metadata.image.uploaded_by);
-  $('#IB_geotag_input').val(metadata.image.geotag);
-  $('.IB_managerTagInput').val(metadata.image.tags);
+  $('#IB_title_input').val(metadata.title);
+  $('#IB_album_input').val(metadata.album);
+  $('#IB_author_input').val(metadata.artist);
+  $('#IB_location_input').val(metadata.location);
+  $('#IB_year_input').val(metadata.year);
+  $('#IB_notes_input').val(metadata.notes);
+  $('#IB_date_input').val(metadata.created_at);
+  $('#IB_user_input').val(metadata.uploaded_by);
+  $('#IB_geotag_input').val(metadata.geotag);
+  $('.IB_managerTagInput').val(metadata.tags);
 }
 
 // Check to make sure there are images selected
