@@ -590,11 +590,16 @@ loadSlideshow = function(newImageIds, currentIndex) {
     
     var currentImg = $("#IB_slideshow img").eq(currentItem);
     
+    currentImg.unbind();
+    currentImg.click(function(){
+      showNextImage();
+    }).css('cursor', 'pointer');
+    
     currentImg.fadeIn();
     $("#IB_slideshowCount").text((currentItem+1)+"/"+numberOfItems);
     updateImageMetaData();
     
-    setTimeout(function(){checkImageResize($("#IB_slideshow img").eq(currentItem));}, 200);
+    setTimeout(function(){checkImageResize(currentImg);}, 200);
     
   };
   showPreviousImage = function() {
@@ -856,7 +861,7 @@ loadSearchOptions = function() {
   
   // make value change
   $('.searchdrop').change(function(){
-    $('#IB_current_genre').text($("#IB_genreList option:selected").val());
+    $(this).parent().find('span').text($("option:selected", this).val());
   })
   
   $("#IB_searchGenres li").click(function() {
