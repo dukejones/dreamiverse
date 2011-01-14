@@ -17,7 +17,7 @@
   position:relative;
   width:748px;
 }
-#albums li h2 {
+#albums li h2, h2.myCollection {
   margin:0;
   padding:0 0 0 20px;
   width:712px;
@@ -29,13 +29,13 @@
   border:1px solid #5e5e5e;
   background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#464646));
   background: -moz-linear-gradient(top, #000, #464646); /* gradient-100-80 */}
-#albums li h2:hover {
-  /*background:url(../images/icons/edit-33.png) no-repeat 680px center;*/}
-#albums li img
-{
+h2.myCollection {
+  background:transparent;
+  border:none;}
+  
+#albums li img {
   /*padding:4px 4px 0 0;*/
-  padding: 0;
-}
+  padding: 0;}
 
 #albums .images
 {
@@ -45,6 +45,8 @@
   width:748px;
   list-style: none;
 }
+
+/* Image Drop */
 #IB_imageDrop, #IB_searchResultsSelect {
   position:absolute;
   margin:12px 0 0 12px;
@@ -53,15 +55,14 @@
   width:675px;
   height:126px;
   background:#272727 url(../images/icons/dropboxIconText.png) no-repeat 295px center;}
-#IB_imageDrop li
-{
+#IB_imageDrop li {
   margin:12px 0px 0px 12px;
   padding:0;
   width:104px;
   height:104px;
   float:left;
-  position: relative;
-}
+  position: relative;}
+
 #albums .images li
 {
   margin:0px;
