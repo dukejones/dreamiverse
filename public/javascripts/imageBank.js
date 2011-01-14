@@ -488,7 +488,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
     });
 
   // Hide & clean up elements
-  $(".uiMode").hide();
+  $(".uiMode,#IB_footerSet").hide();
   $('#IB_slideshow').empty();
   
   // Setup buttons
@@ -578,7 +578,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
   var numberOfItems = imageIds.length;
   
   hideCurrentImage = function() {
-    $("#IB_slideshow img").eq(currentItem).fadeOut();
+    $("#IB_slideshow img").eq(currentItem).hide();
   };
   showCurrentImage = function() {
     // Turn off keyboard shortcut handler
@@ -625,7 +625,9 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   // Setup buttons
   $("#IB_prevWrap").unbind();
-  $("#IB_nextWrap").click(showPreviousImage);
+  $("#IB_prevWrap").click(function(){
+    showPreviousImage();
+  });
   
   $("#IB_nextWrap").unbind();
   $("#IB_nextWrap").click(function(){
@@ -634,6 +636,15 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   // Display the current image
   showCurrentImage();
+  
+  if(sectionFilter == "Bedsheets"){
+    $("#IB_footerSet").unbind();
+    $("#IB_footerSet").click(function() {
+      // Send code back to DC to set THIS as the bedsheet
+    });
+   $("#IB_footerSet").show(); 
+  }
+  
   
   $("#IB_footerAddDrop").unbind();
   $("#IB_footerAddDrop").click(function() {
