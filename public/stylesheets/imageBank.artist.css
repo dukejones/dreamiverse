@@ -119,6 +119,8 @@
   padding:6px;
   width:36px;
   height:36px;
+  line-height:36px;
+  text-align:center;
   float:right;
   cursor:pointer;
   border:1px solid #7D7D7D; /* 60% Black */;}
