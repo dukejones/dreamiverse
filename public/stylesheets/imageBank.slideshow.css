@@ -66,8 +66,8 @@
 #IB_footerAddDrop:hover, #IB_footerCancel:hover, #IB_footerSet:hover {
   color:#C2C2C2; /* 30% Black */
   border:1px solid #D7D7D7; /* 25% Black */
-  background: -webkit-gradient(linear, left top, left bottom, from(#262626), to(#464646));
-  background: -moz-linear-gradient(top, #262626, #464646); /* gradient-90-80 */}
+  background: -webkit-gradient(linear, left top, left bottom, from(#262626), to(#000));
+  background: -moz-linear-gradient(top, #262626, #000); /* gradient-90-100 */}
 #IB_footerAddDrop {width:170px;}
 #IB_footerCancel {width:96px;}
 #IB_footerSet {width:80px;}

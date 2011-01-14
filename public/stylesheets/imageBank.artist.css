@@ -123,6 +123,7 @@
   text-align:center;
   float:right;
   cursor:pointer;
+  color:#C2C2C2;
   border:1px solid #7D7D7D; /* 60% Black */;}
 #IB_artistSlideshow {background:url(../images/icons/playSlideshow-24.png) no-repeat center;}
 #IB_artistSlideshow:hover {
