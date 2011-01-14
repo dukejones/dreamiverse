@@ -72,7 +72,7 @@
 #IB_footerCancel {width:96px;}
 #IB_footerSet {width:80px;}
 #IB_footerAddDrop span, #IB_footerSet span {margin:0px 10px 0 6px; float:right;}
-#IB_footerAddDrop img, #IB_footerSet img {margin:5px 2px 0 12px; float:left;}
+#IB_footerAddDrop img, #IB_footerSet img {margin:5px 2px 0 8px; float:left;}
 
 .IB_add {
   margin:0;
