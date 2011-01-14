@@ -44,7 +44,7 @@ loadBrowse = function() {
   $("#IB_searchGenres li").removeClass("selected");
   $("#IB_search_artist").val("");
   
-  $("#IB_searchOptionsButton").show();
+  $("#IB_searchOptionsButton, .browseBars").show();
   $("#IB_searchOptionsTab").hide();
   
   $("#IB_browseBack,#IB_browseArrow").hide();
@@ -62,7 +62,7 @@ closeSearchExpand = function(){
 }
 
 loadArtistList = function(genre) {
-  $(".uiMode").hide();
+  $(".uiMode,.browseBars").hide();
   
   setGenre(genre);
   $("#IB_browseArrow p").text("Browse");
@@ -196,7 +196,6 @@ var artistHolder = '';
 loadArtist = function(artist) {
   closeSearchExpand();
   $(".uiMode").hide();
-  
   artistHolder = artist;
   
   setArtist(artist);
@@ -681,7 +680,20 @@ loadSlideshow = function(newImageIds, currentIndex) {
   $('#IB_slideshow').slideDown();  
   $(".slideshow,#IB_footer").fadeIn();
   
+  // Setup Timer functionality
+  $('#IB_slideshowTimer').click(timerToggle);
 
+}
+
+timerToggle = function(event){
+  // Toggle the timer value
+  if($('#IB_slideshowTimer').text() == "20"){
+    $('#IB_slideshowTimer').text("30");
+  } else if($('#IB_slideshowTimer').text() == "30"){
+    $('#IB_slideshowTimer').text("5");
+  } else if($('#IB_slideshowTimer').text() == "5"){
+    $('#IB_slideshowTimer').text("20");
+  }
 }
 
 openFullscreen = function(){
@@ -705,26 +717,30 @@ openFullscreen = function(){
 }
 
 checkImageResize = function(currentImg){
-  // Check size
+  // Check size todo :: needs work!
   //var currentImg = $("#IB_slideshow img").eq(currentItem);
   
   if(currentImg.attr('width') > 702){
-    
+    alert("resize image")
     var oldW = currentImg.attr('width');
     var oldH = currentImg.attr('height');
     
     var difference = oldW - 702;
     var percentChange = (difference / 702);
+    var newW = oldW * percentChange;
     var newH = oldH * percentChange;
     
-    $(currentImg).css('width', '702px');
-    $(currentImg).css('height', newH);
+    var cssW = newW + "px";
+    var cssH = newH + "px";
+    
+    currentImg.width(cssW);
+    currentImg.height(cssH);
 
   }
 }
 
 loadSearch = function() {
-  $("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap,#IB_slideshowTimer,#IB_slideshowCount").hide();
+  $("#IB_category,#IB_browseArrow,#IB_searchBox,.artist,#IB_searchBoxWrap,#IB_slideshowTimer,#IB_slideshowCount,.browseBars").hide();
   $("#IB_browseBack,#IB_browseBackWrap,#IB_searchBoxActive,#IB_searchBoxActiveWrap").show();
   
   $("#IB_browseBack").unbind();

@@ -15,6 +15,11 @@ function createUploader(){
         // Image made it
         // Get image info from
         // responseJSON.id
+        alert(responseJSON.length)
+        if(responseJSON.length == 1){
+          // Find image year from last 4 digits on file name.
+          
+        }
       }
       
       resetImageSelectionEvents();
