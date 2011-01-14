@@ -1,28 +1,41 @@
 / HEADER
 #report_box
- theta v.1.0 (a)
-#meta_menu
- #logo
+  theta v.1.0 (a)
+#logo
   %a{href: '/'}
-   %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher'}
- #intro_menu.padding-8.round-12.flat-top
-  .sub_menu-item.float-left.margin-0.padding-0
-   %a{href: '/intro'} intro
-  .sub_menu-item.float-left.margin-0.padding-0
-   %a{href: '/faq'} faq
-  .sub_menu-item.float-left.margin-0.padding-0
-   %a{href: '/feedback'} feedback
- %a.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-left{href: '/dreamstars', style: 'margin: 8px; text-decoration: none; height: 21px;'}
-  %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dreamstars-16.png', style: 'margin: 2px 5px 0pt 0pt; float: left; border: 0px;'}
-  dreamstars
- #settings_menu.sub_menu.padding-8.round-12.flat-top
-  #userNode.sub_menu-item-on.float-left.margin-0.padding-0{style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px transparent;'}
-   %a{href: '/sporeganic', style: 'display: block; margin-left: 32px;'} sporeganic
-  #settingsButton.sub_menu-item
-   %a{href: 'JavaScript:toggleSettingsPanel();void(0);'}
-    %img{src: "http://www.dreamcatcher.net/basic/inc/images/icons/settings-14.png", style: 'margin: 1px 1px -2px; border: 0px;'}
-    settings
-  .sub_menu-item.float-left.margin-0.padding-0
-   %a{href: '/logout'} logout
- %a.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-right{href: '/admin', style: 'margin: 8px; text-decoration: none; height: 21px;'}
-  admin
+    %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
+
+#meta_menu
+  / INTRO MENU
+  #intro_menu.light.O.padding-8.round-16.flat-top
+    .sub_menu-item
+      %a{href: '/intro'} intro
+    .sub_menu-item
+      %a{href: '/faq'} faq
+    .sub_menu-item
+      %a{href: '/feedback'} feedback
+
+  / DREAMSTARS LINK
+  %a#dreamStarLink.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-left{href: '/dreamstars'}
+    %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dreamstars-16.png'}
+    dreamstars
+
+  / SETTINGS MENU
+  #settings_menu.light.O.sub_menu.padding-8.round-16.flat-top
+    #userNode.sub_menu-item.selected{style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px transparent;'}
+      %a{href: '/sporeganic'} sporeganic
+    #settingsButton.sub_menu-item
+      %a{href: 'JavaScript:toggleSettingsPanel();void(0);'}
+        %img{src: "http://www.dreamcatcher.net/basic/inc/images/icons/settings-14.png"}
+          settings
+    .sub_menu-item
+      %a{href: '/logout'} logout
+
+  / NEW ENTRY LINK
+  %a#newEntry.dark.transparent-50.round-24.A-button.A-outline.glow-40.float-right{href: new_dream_path}
+    %span +
+    new entry
+
+  / ADMIN LINK
+  %a#adminLink.dark.transparent-50.round-24.A-button.A-outline.float-right{href: '/admin'}
+    %img{src: '/images/icons/key-16.png', border: '0'}
