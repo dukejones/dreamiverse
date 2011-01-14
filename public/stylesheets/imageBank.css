@@ -5,7 +5,7 @@
   background-color:#272727;
   -moz-box-shadow: 0 5px 20px #000;}
 #IB_top {
-  position:absolute;
+  position:relative;
   margin:0;
   padding:0;
   width:760px;
