@@ -1,19 +1,6 @@
 - content_for :head do
   %style
     :sass
-      #newEntry
-        position: absolute
-        top: 40px
-        right: 40px
-        display: block
-        padding: 4px 8px
-        font-size: 17px
-        font-weight: bold
-        margin: 8px 12px 0 0
-        text-decoration: none
-        border: 2px solid transparent
-        span
-          color: #093
       .dream_thumb.light
         background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top #fff
       .dream_thumb.dark
@@ -69,11 +56,6 @@
             padding: 12px
         .tags
           padding: 0 16px
-
-/ NEW ENTRY LINK
-%a#newEntry.dark.transparent-50.round-24.A-button.A-outline.glow-40{:href => new_dream_path}
-  %span +
-  new entry
 
 - if @dreams.empty?
   %h3 there are no dreams to display.
