@@ -21,8 +21,9 @@
   margin:0;
   padding:0 0 0 20px;
   width:712px;
-  height:60px;
-  line-height:60px;
+  height:33px;
+  font-size: 14px;
+  line-height:36px;
   color:#fff;
   cursor:pointer;
   border:1px solid #5e5e5e;
