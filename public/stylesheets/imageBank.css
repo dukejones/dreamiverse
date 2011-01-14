@@ -1,11 +1,11 @@
 #IB_browser_frame {
   position:relative;
-  margin:20px;
+  margin:90px 40px 20px;
   width:760px;
   background-color:#272727;
   -moz-box-shadow: 0 5px 20px #000;}
 #IB_top {
-  position:absolute;
+  position:relative;
   margin:0;
   padding:0;
   width:760px;
@@ -40,7 +40,7 @@ h1#IB_category {
   float:left;
   font-size:21px;
   font-weight:normal;
-  color:#fff; /* White */
+  color:#D7D7D7; /* 20% Black */
   margin:0;
   padding:0 0 0 20px;}
 
@@ -57,16 +57,15 @@ h1#IB_category {
 #IB_browseBackWrap {
   float:left;
   height:48px;
-  margin:12px 8px 0 12px;}
+  margin:12px 8px 0 12px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#707070), to(#111111));
+  background: -moz-linear-gradient(top, #707070, #111111); /* gradient-65-95 */}
 #IB_searchBoxWrap:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#707070), to(#B7B7B7));
   background: -moz-linear-gradient(top, #707070, #B7B7B7); /* gradient-65-35 */}
-#IB_browseBackWrap:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#363636), to(#898989));
-  background: -moz-linear-gradient(top, #363636, #898989); /* gradient-65-35 */}
 #IB_browseBackWrap:active {
-  background: -webkit-gradient(linear, left top, left bottom, from(#C2C2C2), to(#EBEBEB));
-  background: -moz-linear-gradient(top, #C2C2C2, #EBEBEB); /* gradient-30-10 */}
+  background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#707070));
+  background: -moz-linear-gradient(top, #111111, #707070); /* gradient-95-65 */}
 #IB_searchBox {
   margin:2px auto;
   padding:6px;
@@ -85,8 +84,7 @@ h1#IB_category {
   cursor:pointer;
   display: block !important;
   background:#363636 url(../images/icons/browseBars-36.png) no-repeat 6px 6px;}
-#IB_browseBack:hover {background:#464646 url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
-#IB_browseBack:active {background:#ACACAC url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
+#IB_browseBack:hover, #IB_browseBack:active {background:#464646 url(../images/icons/browseBars-36-over.png) no-repeat 6px 6px;}
 
 
 .uiMode {

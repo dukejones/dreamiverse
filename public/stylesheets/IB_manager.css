@@ -1,7 +1,7 @@
 #IB_browser_frame {
   position:relative;
   clear: both;
-  margin:20px;
+  margin:90px 40px 20px ;
   width:760px;
   height:auto;
   background-color:#dbdbdb;
@@ -21,9 +21,9 @@
   height:46px;
   padding:0;
   text-align:center;}
-#IB_browseBackWrap:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a7a9ac));
-  background: -moz-linear-gradient(top, #fff, #a7a9ac);}
+#IB_browseBackWrap:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#a7a9ac), to(#fff));
+  background: -moz-linear-gradient(top, #a7a9ac, #fff);}
 #IB_browseBack {
   width:48px;
   height:42px;
@@ -55,19 +55,20 @@ h1#IB_category {
   margin:12px 12px 0 0;
   padding:2px 0;
   text-align:center;}
-#IB_searchButtonWrap:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a7a9ac));
-  background: -moz-linear-gradient(top, #fff, #a7a9ac);}
+#IB_searchButtonWrap:active {
+  background: -webkit-gradient(linear, left top, left bottom, from(#a7a9ac), to(#fff));
+  background: -moz-linear-gradient(top, #a7a9ac, #fff);}
 #IB_searchButton {
   width:42px;  
   height:34px;
   text-align:center;
   margin:0 auto;
   padding:6px;
-  cursor:pointer;}
-#IB_searchButton:hover {
+  cursor:pointer;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
   background: -moz-linear-gradient(top, #fff, #E1E1E1);}
+#IB_searchButton:hover {
+  background:#fff;}
 
 /* IB dropbox Container */  
 #IB_dropboxContainer {
