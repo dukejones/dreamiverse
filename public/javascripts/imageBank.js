@@ -3,6 +3,9 @@ var currentArtist = "";
 var currentSlideshowImage = '';
 var currentView = "browse"; // Changes to "search"
 
+// Maximum size of any image side in full-screen/slideshow mode
+var maxImageSide = 700;
+
 // Whatever this var is set to, is the section that the images will come from
 // leave an empty var for all images from all sections.
 var sectionFilter = 'Library';
@@ -485,7 +488,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
     });
 
   // Hide & clean up elements
-  $(".uiMode").hide();
+  $(".uiMode,#IB_footerSet").hide();
   $('#IB_slideshow').empty();
   
   // Setup buttons
@@ -575,7 +578,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
   var numberOfItems = imageIds.length;
   
   hideCurrentImage = function() {
-    $("#IB_slideshow img").eq(currentItem).fadeOut();
+    $("#IB_slideshow img").eq(currentItem).hide();
   };
   showCurrentImage = function() {
     // Turn off keyboard shortcut handler
@@ -596,10 +599,26 @@ loadSlideshow = function(newImageIds, currentIndex) {
   };
   showPreviousImage = function() {
     hideCurrentImage();
-    if (currentItem == 0) {
-      currentItem = numberOfItems - 1;
+    
+    if(!shuffleToggled){
+      // Shuffle is off play normal order
+      if (currentItem == 0) {
+        currentItem = numberOfItems - 1;
+      } else {
+        currentItem--;
+      }
     } else {
-      currentItem--;
+      // Shuffle is on play random order
+      var randomnumber = Math.floor(Math.random()*(numberOfItems - 1))
+      
+      if(randomnumber == currentItem){
+        if(randomnumber == numberOfItems - 1){
+          randomnumber = 0;
+        } else if(randomnumber == 0){
+          randomnumber++;
+        }
+      }
+      currentItem = randomnumber;
     }
     showCurrentImage();
   };
@@ -614,7 +633,15 @@ loadSlideshow = function(newImageIds, currentIndex) {
       }
     } else {
       // Shuffle is on play random order
-      var randomnumber = Math.floor(Math.random()*(numberOfItems + 1))
+      var randomnumber = Math.floor(Math.random()*(numberOfItems - 1))
+      
+      if(randomnumber == currentItem){
+        if(randomnumber == numberOfItems - 1){
+          randomnumber = 0;
+        } else if(randomnumber == 0){
+          randomnumber++;
+        }
+      }
       currentItem = randomnumber;
     }
     showCurrentImage();
@@ -622,7 +649,9 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   // Setup buttons
   $("#IB_prevWrap").unbind();
-  $("#IB_nextWrap").click(showPreviousImage);
+  $("#IB_prevWrap").click(function(){
+    showPreviousImage();
+  });
   
   $("#IB_nextWrap").unbind();
   $("#IB_nextWrap").click(function(){
@@ -631,6 +660,15 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   // Display the current image
   showCurrentImage();
+  
+  if(sectionFilter == "Bedsheets"){
+    $("#IB_footerSet").unbind();
+    $("#IB_footerSet").click(function() {
+      // Send code back to DC to set THIS as the bedsheet
+    });
+   $("#IB_footerSet").show(); 
+  }
+  
   
   $("#IB_footerAddDrop").unbind();
   $("#IB_footerAddDrop").click(function() {
@@ -668,12 +706,12 @@ loadSlideshow = function(newImageIds, currentIndex) {
   
   $("#IB_footer .shuffle").unbind();
   $("#IB_footer .shuffle").click(function() {
-    if (shuffleToggled) {
+    if (!shuffleToggled) {
       $(this).css('background', 'url(../images/icons/shuffle-26-selected.png) no-repeat center');
-      shuffleToggled = false;
+      shuffleToggled = true;
     } else {
       $(this).css('background', 'url(../images/icons/shuffle-26.png) no-repeat center');
-      shuffleToggled = true;
+      shuffleToggled = false;
     }
   });
   
@@ -720,22 +758,15 @@ checkImageResize = function(currentImg){
   // Check size todo :: needs work!
   //var currentImg = $("#IB_slideshow img").eq(currentItem);
   
-  if(currentImg.attr('width') > 702){
-    alert("resize image")
-    var oldW = currentImg.attr('width');
-    var oldH = currentImg.attr('height');
-    
-    var difference = oldW - 702;
-    var percentChange = (difference / 702);
-    var newW = oldW * percentChange;
-    var newH = oldH * percentChange;
-    
-    var cssW = newW + "px";
-    var cssH = newH + "px";
-    
-    currentImg.width(cssW);
-    currentImg.height(cssH);
-
+  if(currentImg.attr('width') > maxImageSide){
+    // Resize the image so its largest side is equal to maxImageSide
+    if(currentImg.width() > currentImg.height()) { 
+      currentImg.css('width',maxImageSide+'px');
+      currentImg.css('height','auto');
+    } else {
+      currentImg.css('height',maxImageSide+'px');
+      currentImg.css('width','auto');
+    }
   }
 }
 
@@ -1207,6 +1238,9 @@ var checkForParams = function(){
 // INIT STUFF
 
 $(document).ready(function() {
+  // FOR DEV ONLY todo :: remove me
+  $('body').append('<p class="padding-12 round-8" style="opacity: .3; margin-left: 32px; display: inline-block; background-color: #fff;">Showing only sectionFilter :: ' + sectionFilter + '</p>');
+  
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
 

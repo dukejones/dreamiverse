@@ -8,8 +8,9 @@
     = csrf_meta_tag
     = yield :head
 
-  %body{style: 'background-color: #333'}
+  %body{style: 'background: url("http://dreamcatcher.net/basic/inc/bedsheets/collection/geo/beyond/synapses-hi.jpg") repeat fixed 0 0 #202020'}
     = render "shared/facebook_sdk"
+    #drop_shadow
     = render "layouts/meta_menu"
     %p.notice= notice
     %p.alert= alert
