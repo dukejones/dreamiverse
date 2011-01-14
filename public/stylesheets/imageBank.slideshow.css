@@ -5,7 +5,7 @@
   width:760px;
   height:30px;}
 
-.tag, .info, .fullscreen, .shuffle, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDrop, #IB_footerCancel {cursor:pointer;}
+.tag, .info, .fullscreen, .shuffle, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDrop, #IB_footerCancel, #IB_footerSet {cursor:pointer;}
 
 .tag, .info, .fullscreen, .shuffle {
   margin:10px 0 0 8px;
@@ -49,19 +49,8 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#262626));
   background: -moz-linear-gradient(top, #000, #262626); /* gradient-100-90 */}
 
-#IB_footerAddDropWrap, #IB_footerCancelWrap {
-  float:right;
-  margin:10px 8px 0 0;
-  height:34px;}
-#IB_footerAddDropWrap {
-  width:174px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#959595), to(#262626));
-  background: -moz-linear-gradient(top, #959595, #262626); /* gradient-50-90 */}
-#IB_footerCancelWrap {
-  width:100px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#626262), to(#262626));
-  background: -moz-linear-gradient(top, #626262, #262626); /* gradient-70-90 */}
-#IB_footerAddDrop, #IB_footerCancel {
+
+#IB_footerAddDrop, #IB_footerCancel, #IB_footerSet {
   float:right;
   margin:10px 8px 0 0;
   height:30px;
@@ -74,15 +63,16 @@
   border:1px solid #898989; /* 55% Black */
   background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#262626));
   background: -moz-linear-gradient(top, #000, #262626); /* gradient-100-90 */}
-#IB_footerAddDrop:hover, #IB_footerCancel:hover {
+#IB_footerAddDrop:hover, #IB_footerCancel:hover, #IB_footerSet:hover {
   color:#C2C2C2; /* 30% Black */
   border:1px solid #D7D7D7; /* 25% Black */
   background: -webkit-gradient(linear, left top, left bottom, from(#262626), to(#464646));
   background: -moz-linear-gradient(top, #262626, #464646); /* gradient-90-80 */}
 #IB_footerAddDrop {width:170px;}
 #IB_footerCancel {width:96px;}
-#IB_footerAddDrop span {margin:0px 10px 0 6px; float:right;}
-#IB_footerAddDrop img {margin:5px 2px 0 12px; float:left;}
+#IB_footerSet {width:80px;}
+#IB_footerAddDrop span, #IB_footerSet span {margin:0px 10px 0 6px; float:right;}
+#IB_footerAddDrop img, #IB_footerSet img {margin:5px 2px 0 12px; float:left;}
 
 .IB_add {
   margin:0;
