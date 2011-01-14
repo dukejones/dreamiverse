@@ -276,9 +276,9 @@ loadArtist = function(artist) {
     
     for (i = 0; i < albums.length; i++) {
       if(albums[i] == "null"){
-        $("#albums").append('<li><h2 class="gradient-10-up">All Images<img class="header-manage" src="../images/icons/edit-33.png" /></h2></li>');
+        $("#albums").append('<li><h2 class="gradient-10-up">All Images<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
       } else {
-        $("#albums").append('<li><h2 class="gradient-10-up">'+albums[i]+'<img class="header-manage" src="../images/icons/edit-33.png" /></h2></li>');
+        $("#albums").append('<li><h2 class="gradient-10-up">'+albums[i]+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
       }
     }
     
@@ -852,6 +852,11 @@ loadSearchOptions = function() {
   // Size Dropdown Settings
   $('#IB_searchSizeList > li > ul > li').click(function(){
     $('#IB_searchSizeList > li > span').html($(this).html());
+  })
+  
+  // make value change
+  $('.searchdrop').change(function(){
+    $('#IB_current_genre').text($("#IB_genreList option:selected").val());
   })
   
   $("#IB_searchGenres li").click(function() {
