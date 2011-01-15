@@ -3,13 +3,11 @@
     :sass
       #pageBrowser
         float: right
-        margin-right: 40px
         a
           display: block
           vertical-align: bottom
           width: 48px
           height: 48px
-          margin-left: 4px
           text-align: center
           float: right
           span
@@ -18,7 +16,11 @@
             padding: 4px 8px
             font-weight: bold
             color: #fff
-      #dreamContentWrapper
+      #pageNext
+        margin-left: 4px
+      #dreamWrapper
+        max-width: 870px
+        margin-right: 56px
       #dreamModule
         width: 680px
         margin: 0px
@@ -49,13 +51,15 @@
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
 #dreamField
-  #pageBrowser.light.glow-40.round-24.transparent-25.padding-6.margin-8
-    %a#pageNext.light.O-button.transparent-50.O-outline.round-16.round-4-left.padding-8.alpha-80{:href => dreams_path}
-      %span.light.static-glow-inner-40.round-24.font-H1 &rsaquo;
-    %a#pagePrev.light.O-button.transparent-50.O-outline.round-16.round-4-right.padding-8.alpha-80{:href => dreams_path}
-      %span.light.static-glow-inner-40.round-24.font-H1 &lsaquo;
 
-  #dreamContentWrapper
+  #dreamWrapper
+    / PAGER
+    #pageBrowser.light.glow-40.round-24.transparent-25.padding-6
+      %a#pageNext.light.O-button.transparent-50.O-outline.round-16.round-4-left.padding-8.alpha-80{:href => dreams_path}
+        %span.light.static-glow-inner-40.round-24.font-H1 &rsaquo;
+      %a#pagePrev.light.O-button.transparent-50.O-outline.round-16.round-4-right.padding-8.alpha-80{:href => dreams_path}
+        %span.light.static-glow-inner-40.round-24.font-H1 &lsaquo;
+    / DREAM CONTENT
     #dreamModule.light.round-24.glow-80.transparent-25
       #dreamHeader.light.round-24.flat-bottom
         .image.round-24.flat-bottom
@@ -64,5 +68,5 @@
         #dreamContent.light.font-17.round-8.font-arial= @dream.body
 
   / DEBUG
-  .light.transparent-50.round-16.padding-8
-    = debug Dream.find params[:id]
+/  .light.transparent-50.round-16.padding-8
+/    = debug Dream.find params[:id]
