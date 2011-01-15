@@ -662,6 +662,7 @@ a#contextImage {width:200px; height:266px}
 .logo-shadow { background:transparent; box-shadow: inset 0px 0px 40px #000; -moz-box-shadow: inset 0px 0px 40px #000; -webkit-box-shadow: inset 0px 0px 40px #000; }
 
 /***********DREAM FIELD***********/
+#dreamField {position:absolute; top:66px; left: 240px}
 /* PAGINATION */
 .dark.pageFirst, .dark.pageFirst:hover { border:2px solid transparent; margin-right:1px; height:37px; }
 .dark.pageLast, .dark.pageLast:hover { border:2px solid transparent; margin-left:1px; height:37px; }

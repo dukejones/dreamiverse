@@ -1,9 +1,17 @@
+/ CONTEXT BAR
+= render :partial => "shared/context_panel", :locals => {:user => current_user}
 
-= form_for @dream do |f|
-  = f.label :title
-  = f.text_field :title
-  %br
-  = f.text_area :body
-  %br
-  = f.submit
+#dreamField
+  / DEBUG
+  .light.transparent-50.round-16.padding-8
+    = debug current_user
+
+  / DREAM ENTRY
+  = form_for @dream do |f|
+    = f.label :title
+    = f.text_field :title
+    %br
+    = f.text_area :body
+    %br
+    = f.submit
 

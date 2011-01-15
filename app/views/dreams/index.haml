@@ -57,12 +57,19 @@
         .tags
           padding: 0 16px
 
-- if @dreams.empty?
-  %h3 there are no dreams to display.
 
 / CONTEXT BAR
-= render "shared/context_panel"
+= render :partial => "shared/context_panel", :locals => {:user => @user}
 
-/ DREAM THUMBS
-- @dreams.each do |dream|
-  = render :partial => 'dream_thumb', :locals => {:dream => dream}
+/ DREAM FIELD
+#dreamField
+  - if @dreams.empty?
+    %h3.light.transparent-50.round-16.padding-8 there are no public dreams to display.
+
+  / DREAM THUMBS
+  - @dreams.each do |dream|
+    = render :partial => 'dream_thumb', :locals => {:dream => dream}
+
+/ DEBUG
+/  .light.transparent-50.round-16.padding-8
+/    = debug current_user
