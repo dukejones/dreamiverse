@@ -1,28 +1,35 @@
-#contextPanel.dark.transparent-50.glow-40.round-16
-  %a#contextImage.round-12{href: '#', style: 'background:url(http://www.dreamcatcher.net/basic/inc/images/user/avatar/5/avatar_avatar_avatar_Geopha.jpg)'}
+/ CONTEXT PANEL
+#contextPanel.dark.transparent-50.glow-40.round-16.margin-8.padding-6
+
+  / IMAGE
+  %a#contextImage.block.round-12{href: '#', style: 'background:url(http://www.dreamcatcher.net/basic/inc/images/user/avatar/5/avatar_avatar_avatar_Geopha.jpg) top left'}
+
+  / LABEL
   #contextLabelWrapper.dark.B-bevel.round-12.flat-bottom
     %a#contextLabel.block.dark.O-button.O-shine.round-8.flat-bottom.pointer.padding-8{href: '#'}
       context-label-here
 
+  / FOLLOW THIS
   #followThis.dark.O.B-shine.round-8.button-post follow
+
+  / CONTEXT ITEMS
   .contextItem
     .contextItem-label.dark.B-shine.round-8.flat-right location
     .contextItem-image.dark.transparent-50.round-8.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/globe-32.png', width: '32', height: '32'}
     .contextItem-detail.dark.B-indent.round-8.flat-left.padding-8 A large country name
-
   .contextItem
     .contextItem-label.dark.B-shine.round-8.flat-right dreams
     .contextItem-image.dark.transparent-50.round-8.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
     .contextItem-detail.dark.B-indent.round-8.flat-left 86
-
   .contextItem
     .contextItem-label.dark.B-shine.round-8.flat-right followers
     .contextItem-image.dark.transparent-50.round-8.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
     .contextItem-detail.dark.B-indent.round-8.flat-left 376
 
+  / SOCIAL NETWORK LINKS
   #contextBottom.dark.B-indent.round-12.flat-top
     %a#sn-facebook.sn_link{href: '#', target: '_blank'} facebook
     %a#sn-twitter.sn_link{href: '#', target: '_blank'} twitter
