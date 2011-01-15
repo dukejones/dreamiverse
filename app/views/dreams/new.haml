@@ -2,9 +2,6 @@
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
 #dreamField
-  / DEBUG
-  .light.transparent-50.round-16.padding-8
-    = debug current_user
 
   / DREAM ENTRY
   = form_for @dream do |f|
