@@ -64,21 +64,18 @@ h2.IB_imageDropTitle {
   float:left;
   position: relative;}
 
-#albums .images li
-{
-  margin:0px;
+#albums .images li {
+  margin:15px 0 0 15px;
   padding:0;
   position:relative;
   width:126px;
   height:126px;
-  border:1px solid white;
+  border:1px solid #959595; /* 50% Black */
   float:left;
   cursor:pointer;
-  z-index:99;
-}
+  z-index:99;}
 #albums .images li:hover {
-  border:1px solid white;
-}
+  border:1px solid #EBEBEB; /* 10% Black */}
 
 #albums .checkbox {
   position:absolute;
@@ -90,6 +87,12 @@ h2.IB_imageDropTitle {
   z-index:100;}
 #albums .checkbox.selected {
   background:url(../images/icons/checkbox-42-checked.png) no-repeat top left;}
+  
+.albumPreviewThumbs { width: 62px; height: 62px; overflow: hidden;}
+.albumPreviewThumbsLarger { width: 126px; height: 126px; overflow: hidden;}
+.dropBoxThumb { margin: 0px; width: 100px; height: 100px; border:1px solid #C2C2C2; /* 30% Black */ }
+.dropBoxThumb:hover {border:1px solid #EBEBEB; /* 10% Black */}
+
 
 .IB_CancelWrap, .IB_CancelWrapList {
   float:right;
@@ -143,8 +146,5 @@ h2.IB_imageDropTitle {
   height: 140px !important;
 }  
 
-.albumPreviewThumbs { width: 62px; height: 62px; overflow: hidden;}
-.albumPreviewThumbsLarger { width: 126px; height: 126px; overflow: hidden;}
-.dropBoxThumb { margin: 0px; width: 100px; height: 100px; border: 2px solid #fff; }
 
 .header-manage { float: right; margin:6px 6px 0px 0px;}
