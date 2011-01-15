@@ -641,7 +641,7 @@ TD.form_label B {}
 /***********CONTEXT BAR***********/
 #contextPanel {position:absolute; top:76px; left:3px; width:200px}
 a#contextImage {width:200px; height:266px}
-#contextLabelWrapper {}
+#contextLabelWrapper {margin: 6px 0}
 #contextLabel {}
 #followThis {}
 .contextItem {}
