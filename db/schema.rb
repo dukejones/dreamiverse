@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110113192701) do
+ActiveRecord::Schema.define(:version => 20110115040411) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -64,6 +64,13 @@ ActiveRecord::Schema.define(:version => 20110113192701) do
     t.string   "original_filename"
   end
 
+  create_table "tags", :force => true do |t|
+    t.integer "entry_id"
+    t.string  "entry_type", :default => "Dream"
+    t.integer "noun_id"
+    t.string  "noun_type",  :default => "What"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "name"
@@ -73,6 +80,25 @@ ActiveRecord::Schema.define(:version => 20110113192701) do
     t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "seed_code"
+  end
+
+  create_table "whats", :force => true do |t|
+    t.string "name"
+  end
+
+  create_table "wheres", :force => true do |t|
+    t.string  "name"
+    t.string  "city"
+    t.string  "province"
+    t.string  "country"
+    t.decimal "latitude",  :precision => 6, :scale => 0
+    t.decimal "longitude", :precision => 6, :scale => 0
+  end
+
+  create_table "whos", :force => true do |t|
+    t.string  "name"
+    t.string  "source"
+    t.integer "user",   :limit => 8
   end
 
 end
