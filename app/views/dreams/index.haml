@@ -60,6 +60,9 @@
 - if @dreams.empty?
   %h3 there are no dreams to display.
 
+/ CONTEXT BAR
+= render "shared/context_bar"
+
 / DREAM THUMBS
 - @dreams.each do |dream|
   = render :partial => 'dream_thumb', :locals => {:dream => dream}
