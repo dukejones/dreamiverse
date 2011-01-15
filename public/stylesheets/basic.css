@@ -643,11 +643,11 @@ TD.form_label B {}
 a#contextImage {width:200px; height:266px}
 #contextLabelWrapper {margin: 6px 0}
 #contextLabel {}
-#followThis {}
-.contextItem {}
-.contextItem-label {}
-.contextItem-image {}
-.contextItem-detail {}
+#followThis { margin-bottom:6px}
+.contextItem {clear:both; margin-bottom:6px}
+.contextItem-label {width:50px; height:24px; float:left; padding:6px 8px}
+.contextItem-image {width:32px; height:32px; float:left; padding:2px 0; margin: 0 4px;}
+.contextItem-detail {width:72px; height:24px; float:left; padding:6px 8px; white-space:nowrap; overflow: hidden;}
 
 
 
