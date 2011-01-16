@@ -24,11 +24,12 @@
   height:33px;
   font-size: 16px;
   line-height:33px;
-  color:#D7D7D7;
+  color:#ACACAC;
   cursor:pointer;
   border:1px solid #5e5e5e;
   background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#464646));
   background: -moz-linear-gradient(top, #000, #464646); /* gradient-100-80 */}
+#albums li h2:hover {color:#E1E1E1; /* 15% Black */}
 h2.IB_imageDropTitle {
   background:transparent;
   border:none;}
