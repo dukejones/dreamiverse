@@ -6,9 +6,10 @@
   / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
   .watermark.font-georgia.alpha-10= dream.title
   / DETAILS (DATE + LOCATION)
-  .details
-    .date.dark.transparent-50.round-12.float-left dream date
+  .detailsTop
+    .date.dark.transparent-50.round-12.float-left= dream.created_at
     .location.dark.transparent-50.round-12.float-right dream location
+  .detailsBottom
     .comments.dark.transparent-50.round-12.float-left
       = image_tag("icons/comments-16.png")
       11
