@@ -774,3 +774,17 @@ SELECT.search-bar {border-style:solid; -moz-border-radius:8px}
 /***********PROFILE PAGE EDIT LOCATION***********/
 .light.editLocationBackground {border:6px solid #000;}
 .dark.editLocationBackground {border:6px solid #fff;}
+
+
+/*********** ENTRY BAR ***********/
+#entryBar {width:680px; height:48px; margin:0 0 15px; background:#fff;}
+.entryBar_entry, .entryBar_tag, .entryBar_quote, .entryBar_book {height:32px; line-height:32px; float:left; margin:8px 0 0 10px; padding:0; text-align:center; border:1px solid #ACACAC;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ACACAC));
+  background: -moz-linear-gradient(top, #fff, #ACACAC); /* gradient-0-40 */}
+.entryBar_entry {width:114px;
+  background:#fff;
+  -moz-box-shadow:0 8px 5px #CCCCCC inset;
+  -webkit-box-shadow:0 8px 5px #CCCCCC inset;} 
+.entryBar_tag {width:70px;}
+.entryBar_quote {width:96px;}
+.entryBar_book {width:88px; float:right; margin:8px 10px 0 10px;}
