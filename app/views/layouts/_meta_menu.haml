@@ -23,7 +23,7 @@
   / SETTINGS MENU
   #settings_menu.light.O.padding-8.round-16.flat-top
     %a#userNode.sub_menu-item.selected{href: '/sporeganic', style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
-      %span.round-16.flat-left= current_user.username
+      %span.round-16.flat-left username
     #settingsButton.sub_menu-item
       %a{href: 'JavaScript:toggleSettingsPanel();void(0);'}
         %img{src: "http://www.dreamcatcher.net/basic/inc/images/icons/settings-14.png"}
@@ -39,3 +39,5 @@
   / ADMIN LINK
   %a#adminLink.dark.transparent-50.round-24.A-button.A-outline.float-right{href: '/admin'}
     %img{src: '/images/icons/key-16.png', border: '0'}
+
+/= current_user.username
