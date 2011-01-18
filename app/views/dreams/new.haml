@@ -1,14 +1,18 @@
 / CONTEXT BAR
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
-#dreamField
+/ DREAM ENTRY
+#dreamField.round-16.light.glow-40
 
-  / DREAM ENTRY
-    = form_for @dream do |f|
-      = f.label :title
-      = f.text_field :title, :maxlength => '72'
-      %br
-      = f.text_area :body
-      %br
-      = f.submit
+  = form_for @dream do |f|
+    = f.text_field :title, :maxlength => '72'
+    %br
+    = f.text_area :body
+    
+  #dreamEntryOptionsBar.round-16.light.C-shine
+    #myBooks.round-16 My Lucid Dreams
+    #post.round-16 Post
+    #visibility.round-16 Everyone
+    #location.round-16 Local
+    #date.round-16 Date
 
