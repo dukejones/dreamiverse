@@ -505,6 +505,7 @@ qq.FileUploader = function(o){
              '</div>',*/
        
     fileTemplate: '<li class="uploading">'+
+            '<div class="progress-meter"></div>' +
             '<p class="qq-upload-spinner"></p>' +
             '<p class="qq-upload-file"></p>' +
             '<p class="qq-upload-size"></p>' +
@@ -624,8 +625,12 @@ qq.extend(qq.FileUploader.prototype, {
         });                
     },
     _onSubmit: function(id, fileName){
-        qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
-        this._addToList(id, fileName);
+        if($('#IB_current_type').text() != "Choose" && $('#IB_current_genre').text() != "Choose"){
+          qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
+          this._addToList(id, fileName);
+        } else {
+          alert('Please choose a TYPE & GENRE for this image.')
+        }
     },
     _onProgress: function(id, fileName, loaded, total){
         qq.FileUploaderBasic.prototype._onProgress.apply(this, arguments);

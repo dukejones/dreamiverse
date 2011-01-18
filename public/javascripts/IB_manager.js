@@ -30,18 +30,24 @@ function createUploader(){
 function setupDropdownEvents(){
   // setup the genre list selector tools
   $('#IB_genreList').change(function(){
-    $('#IB_current_genre').text($("#IB_genreList option:selected").val());
-    $('#IB_genre_checkbox').attr('checked', true);
+    if($("#IB_genreList option:selected").val() != "Choose"){
+      $('#IB_current_genre').text($("#IB_genreList option:selected").val());
+      $('#IB_genre_checkbox').attr('checked', true);
+    }
   })
   
   $('#IB_categoryList').change(function(){
-    $('#IB_current_category').text($("#IB_categoryList option:selected").val());
-    $('#IB_category_checkbox').attr('checked', true);
+    if($("#IB_categoryList option:selected").val() != "Choose"){
+      $('#IB_current_category').text($("#IB_categoryList option:selected").val());
+      $('#IB_category_checkbox').attr('checked', true);
+    }
   })
   
   $('#IB_typeList').change(function(){
-    $('#IB_current_type').text($("#IB_typeList option:selected").val());
-    $('#IB_type_checkbox').attr('checked', true);
+    if($("#IB_typeList option:selected").val() != "Choose"){
+      $('#IB_current_type').text($("#IB_typeList option:selected").val());
+      $('#IB_type_checkbox').attr('checked', true);
+    }
   })
   
 }
@@ -55,13 +61,6 @@ $(document).ready(function() {
   
   $('#IB_managerSave').click(function(){
     updateCurrentImagesMeta();
-    
-    /*// Disable button from being clicked again
-    $(this).css('color', '#c0c0c0');
-    $(this).parent().hover(function(){$(this).css('background', 'none');}, function(){$(this).css('background', 'none');});
-    $(this).css('background', '#ccc');
-    $(this).click(function(event){event.stopPropagation();});*/
-
   }) 
   
   $('#IB_searchButtonWrap').click(function(){
@@ -304,15 +303,19 @@ var displayMetaData = function(metadata){
 
 // Check to make sure there are images selected
 var imagesSelected = false;
+var totalImagesToUpdate = 0;
+var totalImagesUpdated = 0;
 
 var updateCurrentImagesMeta = function(){
   // Collect data from fields for JSON
   collectParams();
+  
   // Get currently selected images
   imagesSelected = false;
    
   $('#IB_dropboxImages li').each(function(){
     if($(this).hasClass('selected')){
+      totalImagesToUpdate++ // add another image to the count
       imagesSelected = true; // an image has been found!
       
       // Get current ID
@@ -324,7 +327,8 @@ var updateCurrentImagesMeta = function(){
           type: 'PUT',
           contentType: 'application/json',
           data: JSON.stringify(imageMetaParams),
-          dataType: 'json'
+          dataType: 'json',
+          complete: checkImagesUpdates
       });
     }
   });
@@ -335,6 +339,12 @@ var updateCurrentImagesMeta = function(){
   }
   
   
+}
+
+var checkImagesUpdates = function(XMLHttpRequest, textStatus){
+  if(totalImagesToUpdate == totalImagesUpdated){
+    alert('Images have been updated.')
+  }
 }
 
 

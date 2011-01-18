@@ -121,17 +121,17 @@ h1#IB_category {
   padding:0;  
   width:750px;
   height:175px;
-  overflow-x:scroll;
+  overflow-x:hidden;
   overflow-y:scroll;}
 ul#IB_dropboxImages {
   margin:12px 0 0 8px;
   padding:0;  
-  width:2000px;
+  width:725px;
   height:162px;
   list-style:none;}
 ul#IB_dropboxImages li {
   float:left;
-  margin:0 4px;
+  margin:0 4px 8px 4px;
   height:128px;
   cursor:pointer;
   overflow: hidden;
@@ -325,3 +325,11 @@ h2.IB_managerHeader {
 .gradient-1-down {
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#8c8c8c));
   background: -moz-linear-gradient(top, #fff, #8c8c8c);}
+  
+/* UPLOADING PROGRESS STYLES */
+.progress-meter {
+  background: none repeat scroll 0 0 #FFFFFF;
+  height: 128px;
+  position: relative;
+  width: 0px;
+}
