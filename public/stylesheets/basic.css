@@ -625,7 +625,7 @@ TD.form_label B {}
 #settings_menu { float:right; margin-right: 10px }
 #userNode { overflow: hidden; margin:0 0 -2px; height: 30px; border: 1px solid #999; cursor: pointer; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px;}
 #userNode:hover { border: 1px solid #ccc }
-#userNode span { color: #fff; display: block; margin-left: 32px; background-color: #000; padding: 2px 4px }
+#userNode span { color: #fff; display: block; margin-left: 32px; background-color: #000; padding: 2px 4px 8px }
 #settingsButton a img { margin: 1px 1px -2px; border: 0px }
 
 /* FLOATING BUTTONS */
@@ -662,7 +662,7 @@ a#contextImage {width:200px; height:266px}
 .logo-shadow { background:transparent; box-shadow: inset 0px 0px 40px #000; -moz-box-shadow: inset 0px 0px 40px #000; -webkit-box-shadow: inset 0px 0px 40px #000; }
 
 /***********DREAM FIELD***********/
-#dreamField {position:absolute; top:82px; left: 240px; width:678px; height:242px; padding:0 0 8px; background:#fff;}
+#dreamField {position:absolute; top:82px; left: 240px; width:678px; height:242px; padding:0 0 8px;}
 #dreamField #dream_title, #dreamField #dream_body {width:626px; margin:16px 0 0 28px; background:transparent; border:none;}
 #dreamField #dream_title {height:26px; line-height:26px;}
 #dreamField #dream_body {min-height:134px; height:134px;}
