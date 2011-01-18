@@ -1,15 +1,14 @@
 class CreateTags < ActiveRecord::Migration
   def self.up
-
     create_table :tags do |t|
       t.references :entry, :polymorphic => {:default => 'Dream'}
-      t.references :noun, :polymorphic => {:default => 'What'} # Who, What, Where
+      t.references :noun, :polymorphic => {:default => 'What'}
     end
 
     create_table :whos do |t|
       t.string :name
-      t.string :source # dreamcatcher, facebook, nil
       t.column :user, 'bigint' # facebook uid > int field max.
+      t.string :user_type # dreamcatcher, facebook, twitter
     end
 
     create_table :wheres do |t|
@@ -29,10 +28,3 @@ class CreateTags < ActiveRecord::Migration
     drop_table :whats
   end
 end
-
-# dream.tags.nouns => oakland, whales, duke
-# dream.tags.locations => oakland
-# dream.tags.things => whales
-# dream.tags.users => duke
-# Tag.get('whales').entries => dream24, quote123, image876
-# Tag.get('whales').dreams => dream24
