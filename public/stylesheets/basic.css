@@ -662,7 +662,22 @@ a#contextImage {width:200px; height:266px}
 .logo-shadow { background:transparent; box-shadow: inset 0px 0px 40px #000; -moz-box-shadow: inset 0px 0px 40px #000; -webkit-box-shadow: inset 0px 0px 40px #000; }
 
 /***********DREAM FIELD***********/
-#dreamField {position:absolute; top:82px; left: 240px}
+#dreamField {position:absolute; top:82px; left: 240px; width:678px; height:242px; padding:0 0 8px; background:#fff;}
+#dreamField #dream_title, #dreamField #dream_body {width:626px; margin:16px 0 0 28px; background:transparent; border:none;}
+#dreamField #dream_title {height:26px; line-height:26px;}
+#dreamField #dream_body {min-height:134px; height:134px;}
+#dreamEntryOptionsBar {width:664px; height:48px; margin:0 auto; bottom:8px; border:1px solid #D7D7D7;
+  background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#B7B7B7));
+  background: -moz-linear-gradient(top, #EBEBEB, #B7B7B7); /* gradient-10-35 */}
+#myBooks, #date, #location, #visibility, #post {height:34px; line-height:34px; margin:8px 0 0 8px; text-align:center;
+  background: -webkit-gradient(linear, left top, left bottom, from(#D7D7D7), to(#EBEBEB));
+  background: -moz-linear-gradient(top, #D7D7D7, #EBEBEB); /* gradient-25-10 */}
+#date, #location, #visibility, #post {float:right;}
+#myBooks {width:184px; float:left;}
+#date, #location {width:42px;}
+#visibility {width:104px;} 
+#post {width:64px; margin-right:8px;}
+
 /* PAGINATION */
 .dark.pageFirst, .dark.pageFirst:hover { border:2px solid transparent; margin-right:1px; height:37px; }
 .dark.pageLast, .dark.pageLast:hover { border:2px solid transparent; margin-left:1px; height:37px; }
