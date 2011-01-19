@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(:version => 20110118190333) do
     t.integer  "width"
     t.integer  "height"
     t.string   "original_filename"
+    t.string   "source_url"
   end
 
   create_table "tags", :force => true do |t|
@@ -96,8 +97,8 @@ ActiveRecord::Schema.define(:version => 20110118190333) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.string  "source"
-    t.integer "user",   :limit => 8
+    t.integer "user",      :limit => 8
+    t.string  "user_type"
   end
 
 end
