@@ -23,8 +23,17 @@
         #location Local
         #date Date
   
+  = render :partial => "image_panel"
+  
   #new_dream-tag.round-16.glow-40.light.transparent-50
     #tagHeader tag
+    #tagInputWrap
+      %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
+      #tagInutTextFrame
+        %input#tagInputText
+        #tagInputAdd.round-8 Add
+      %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+    #tagBrowse.round-8
         
   #new_dream-attach.round-16.glow-40.light.transparent-50
     %p attach:
