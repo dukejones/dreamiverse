@@ -41,6 +41,7 @@
   width: 128px;
   height: 128px;
   background: #000;
+  position: relative;
 }
 
 .qq-upload-file { margin: 0px !important; }

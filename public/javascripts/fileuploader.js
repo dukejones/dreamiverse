@@ -505,12 +505,12 @@ qq.FileUploader = function(o){
              '</div>',*/
        
     fileTemplate: '<li class="uploading">'+
-            '<div class="progress-meter"></div>' +
             '<p class="qq-upload-spinner"></p>' +
             '<p class="qq-upload-file"></p>' +
             '<p class="qq-upload-size"></p>' +
             '<a class="qq-upload-cancel" href="#">Cancel</a>' +
             '<p class="qq-upload-failed-text">Failed</p>' +
+            '<div class="progress-meter"></div>' +
             '</li>',    
     /*<img src="images/art/IB_artistImages/artistImage120-1.jpg" width="120" height="120" /></li>'
             <li class="selected"><img src="images/art/IB_artistImages/artistImage120-2.jpg" width="120" height="120" /></li>
@@ -538,11 +538,12 @@ qq.FileUploader = function(o){
             dropActive: 'qq-upload-drop-area-active',
             list: 'qq-upload-list',*/
             
-      button: 'dropboxBrowse',
+            button: 'dropboxBrowse',
             drop: 'qq-upload-drop-area',
             dropActive: 'qq-upload-drop-area-active',
             list: 'dropBoxImages',
             
+            progress: 'progress-meter',
             file: 'qq-upload-file',
             spinner: 'qq-upload-spinner',
             size: 'qq-upload-size',
@@ -640,12 +641,18 @@ qq.extend(qq.FileUploader.prototype, {
         size.style.display = 'inline';
         
         // setup progress bar
-        var size = this._find(item, 'size');
-        
+        var progressBar = this._find(item, 'progress');
+        //alert("progressBar :: " + progressBar)
         var text; 
         if (loaded != total){
-            text = Math.round(loaded / total * 100) + '% from ' + this._formatSize(total);
-        } else {                                   
+            var currentProgress = Math.round(loaded / total * 100);
+            text = currentProgress + '% from ' + this._formatSize(total);
+            progressBar.style.width = ((currentProgress/100) * 128) + 'px';
+        } else {               
+            progressBar.style.width = 128 + 'px';
+            progressBar.id = id;
+            var tempBar = "#" + progressBar.id;
+            $(tempBar).fadeOut();
             text = this._formatSize(total);
         }          
         
