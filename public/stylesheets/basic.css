@@ -720,7 +720,7 @@ a#contextImage {width:200px; height:266px}
 #new_dream-panel #dream_title {width:508px;}
 
 /*********** NEW DREAM TAG ***********/
-#new_dream-tag {}
+#new_dream-tag {width:678px; height:160px;}
 
 /*********** NEW DREAM ATTACH ***********/
 #new_dream-attach {width:678px; height:48px;}
