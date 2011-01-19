@@ -2,17 +2,17 @@
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
 / DREAM ENTRY
-#dreamField.round-16.light.glow-40
+#dreamField
 
-  = form_for @dream do |f|
-    = f.text_field :title, :maxlength => '72'
-    %br
-    = f.text_area :body
-    
-  #dreamEntryOptionsBar.round-16.light.C-shine
-    #myBooks.round-16 My Lucid Dreams
-    #post.round-16 Post
-    #visibility.round-16 Everyone
-    #location.round-16 Local
-    #date.round-16 Date
+  #new_dream-panel.light.O.round-16.glow-40
+    = form_for @dream do |f|
+      = f.text_field :title, :maxlength => '72', :class => 'font-21'
+      %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
+      = f.text_area :body
 
+      #dreamEntryOptionsBar.round-16.light.C-shine
+        #myBooks My Lucid Dreams
+        = f.submit :value => 'post', :class => 'button-big-green'
+        #visibility Everyone
+        #location Local
+        #date Date
