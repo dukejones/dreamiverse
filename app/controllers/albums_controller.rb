@@ -2,7 +2,11 @@ class AlbumsController < ApplicationController
 
   # GET /albums.json
   def index
-    @albums = Image.sectioned(params[:section]).by(params[:artist]).albums
+    if params[:artist]
+      @albums = Image.sectioned(params[:section]).by(params[:artist]).albums
+    elsif params[:starts_with]
+      @albums = Image.sectioned(params[:section]).where("album LIKE ?", "#{params[:starts_with]}%").albums
+    end
     
     respond_to do |format|
       # format.html # index.html.erb
