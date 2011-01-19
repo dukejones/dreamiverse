@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110115040411) do
+ActiveRecord::Schema.define(:version => 20110118190333) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -50,14 +50,13 @@ ActiveRecord::Schema.define(:version => 20110115040411) do
     t.string   "location"
     t.integer  "year"
     t.text     "notes"
-    t.datetime "uploaded_at"
-    t.string   "uploaded_by"
+    t.integer  "uploaded_by"
     t.string   "geotag"
     t.text     "tags"
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "format"
+    t.string   "format",            :limit => 10
     t.integer  "size"
     t.integer  "width"
     t.integer  "height"
@@ -97,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20110115040411) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.integer "user",      :limit => 8
-    t.string  "user_type"
+    t.string  "source"
+    t.integer "user",   :limit => 8
   end
 
 end

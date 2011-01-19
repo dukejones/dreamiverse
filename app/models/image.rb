@@ -3,6 +3,7 @@ class Image < ActiveRecord::Base
   # Callbacks 
   #
   before_validation :parse_incoming_parameters
+  
   # on_destroy: delete the files: original & resized.
 
   #
@@ -19,7 +20,6 @@ class Image < ActiveRecord::Base
   scope :sectioned, lambda { |section| where(section ? {section: section} : {}) }
 
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
-  # TIDY: can I do this more elegantly? (without the intermediate variable 'results')
   scope :search, lambda { |params|
     # search term
     results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
@@ -54,6 +54,7 @@ class Image < ActiveRecord::Base
   def write(binary_data)
     file = File.open(path, 'wb')
     file.write(binary_data)
+    set_metadata!
   rescue => e
     e
   ensure
@@ -62,10 +63,9 @@ class Image < ActiveRecord::Base
 
   def resize(size)
     return if resized? size
-    
-    i = magick
-    i.resize size
-    i.write path(size) # size is the descriptor.
+    img = magick_image
+    img.resize size
+    img.write path(size) # size is the descriptor.
   end
   
   def resized?(size)
@@ -90,7 +90,7 @@ class Image < ActiveRecord::Base
     "#{fname}.#{format}"
   end
   
-  def magick(descriptor=nil)
+  def magick_image(descriptor=nil)
     MiniMagick::Image.open(path(descriptor))
   end
 
@@ -112,22 +112,25 @@ class Image < ActiveRecord::Base
   
   def dream_header?
     profile = :dream_header
-    Image::Profiles[profile].all? do |transformation|
+    Image.profiles[profile].all? do |transformation|
       descriptor = [role.to_s, transformation.to_s].join('_').dasherize
       File.exists?(path(descriptor))
     end
   end
   
+  def dream_header_large_file
+    path('dream_header_large'.dasherize)
+  end
+
 protected
   def dream_header_large(vertical_offset=nil)
-    magick_img = self.magick
-    vertical_offset = (magick_img[:height] / 2) - 100 unless vertical_offset
-    
-    magick_img.combine_options do |i|
-      i.resize '720' # width => 720.
-      i.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [default].
-    end
-    magick_img.write(path('dream_header_large'.dasherize))
+    img = magick_image
+    # self.magick.combine_options do |i|
+    img.resize '720' # width => 720.
+    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+
+    img.write(dream_header_large_file)
   end
 
   def dream_header_small
@@ -138,10 +141,17 @@ protected
     if @incoming_filename
       self.original_filename = @incoming_filename
       self.format = @incoming_filename.split('.').last unless format
-      # Should all formats be jpg?
-      # @image.format = "jpg"
-      
       self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize unless title
     end
   end
+  
+  def set_metadata!
+    img = magick_image
+    update_attributes!({
+      width: img[:width],
+      height: img[:height],
+      size: img[:size]
+    })
+  end
+
 end
