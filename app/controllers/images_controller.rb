@@ -1,4 +1,6 @@
 class ImagesController < ApplicationController
+  before_filter :require_user
+
   # GET /images
   # GET /images.json
   def index
@@ -56,7 +58,10 @@ class ImagesController < ApplicationController
   # POST /images
   # POST /images.json
   def create
-    @image = Image.new(params[:image].merge(incoming_filename: params[:qqfile]))
+    @image = Image.new(params[:image].merge({
+      incoming_filename: params[:qqfile],
+      uploaded_by: current_user
+    }))
 
     respond_to do |format|
       if !@image.save
