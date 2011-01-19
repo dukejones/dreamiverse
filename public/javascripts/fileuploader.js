@@ -639,6 +639,9 @@ qq.extend(qq.FileUploader.prototype, {
         var size = this._find(item, 'size');
         size.style.display = 'inline';
         
+        // setup progress bar
+        var size = this._find(item, 'size');
+        
         var text; 
         if (loaded != total){
             text = Math.round(loaded / total * 100) + '% from ' + this._formatSize(total);

@@ -15,7 +15,6 @@ function createUploader(){
         // Image made it
         // Get image info from
         // responseJSON.id
-        alert(responseJSON.length)
         if(responseJSON.length == 1){
           // Find image year from last 4 digits on file name.
           
@@ -27,12 +26,26 @@ function createUploader(){
   });           
 }
 
+function checkForcedParams(){
+  // Make sure user has selected a TYPE/CATEGORY/GENRE
+  // before allowing uploads
+  var genreList = $("#IB_genreList option:selected").val();
+  var catList = $("#IB_categoryList option:selected").val();
+  var typeList = $("#IB_typeList option:selected").val();
+  
+  if((genreList != "None") && (catList != "None") && (typeList != "None")){
+    // Hide upload cover
+    $('#IB_dropboxCover').fadeOut();
+  }
+}
+
 function setupDropdownEvents(){
   // setup the genre list selector tools
   $('#IB_genreList').change(function(){
     if($("#IB_genreList option:selected").val() != "Choose"){
       $('#IB_current_genre').text($("#IB_genreList option:selected").val());
       $('#IB_genre_checkbox').attr('checked', true);
+      checkForcedParams();
     }
   })
   
@@ -40,6 +53,7 @@ function setupDropdownEvents(){
     if($("#IB_categoryList option:selected").val() != "Choose"){
       $('#IB_current_category').text($("#IB_categoryList option:selected").val());
       $('#IB_category_checkbox').attr('checked', true);
+      checkForcedParams();
     }
   })
   
@@ -47,6 +61,7 @@ function setupDropdownEvents(){
     if($("#IB_typeList option:selected").val() != "Choose"){
       $('#IB_current_type').text($("#IB_typeList option:selected").val());
       $('#IB_type_checkbox').attr('checked', true);
+      checkForcedParams();
     }
   })
   

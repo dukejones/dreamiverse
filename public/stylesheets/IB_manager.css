@@ -333,3 +333,16 @@ h2.IB_managerHeader {
   position: relative;
   width: 0px;
 }
+
+/* DROPBOX COVER */
+#IB_dropboxCover {
+  width:760px;
+  height:218px;
+  line-height:218px;
+  position:absolute;
+  top:75px;
+  color:#fff;
+  text-align:center;
+  background:#000;
+  z-index:1000;
+}
