@@ -682,13 +682,15 @@ a#contextImage {width:200px; height:266px}
 /*********** ENTRY BAR ***********/
 #entryBar {width:680px; height:48px; margin:0 0 15px; background:#fff;}
 #entryBar a {text-decoration:none; color:#000}
-.entryBar_entry, .entryBar_tag, .entryBar_quote, .entryBar_book {height:32px; line-height:32px; float:left; margin:8px 0 0 10px; padding:0; text-align:center; border:1px solid #ACACAC;
+.entryBar_entry, .entryBar_tag, .entryBar_quote, .entryBar_book {height:32px; line-height:32px; float:left; margin:8px 0 0 10px; padding:0; text-align:center; border:1px solid #ACACAC; cursor:pointer;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ACACAC));
-  background: -moz-linear-gradient(top, #fff, #ACACAC); /* gradient-0-40 */}
+  background: -moz-linear-gradient(top, #fff, #ACACAC); /* gradient-0-40 */
+  border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
 .entryBar_entry {width:114px;
   background:#fff;
   -moz-box-shadow:0 8px 5px #CCCCCC inset;
-  -webkit-box-shadow:0 8px 5px #CCCCCC inset;} 
+  -webkit-box-shadow:0 8px 5px #CCCCCC inset;
+  cursor:text} 
 .entryBar_tag {width:70px;}
 .entryBar_quote {width:96px;}
 .entryBar_book {width:88px; float:right; margin:8px 10px 0 10px;}
@@ -704,7 +706,8 @@ a#contextImage {width:200px; height:266px}
   background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#B7B7B7));
   background: -moz-linear-gradient(top, #EBEBEB, #B7B7B7); /* gradient-10-35 */}
 #myBooks, #date, #location, #visibility, #dream_submit {height:34px; line-height:34px; margin:8px 0 0 8px;
-  text-align:center; cursor:pointer; float:right; border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
+  text-align:center; cursor:pointer; float:right;
+  border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#D7D7D7), to(#EBEBEB));
   background: -moz-linear-gradient(top, #D7D7D7, #EBEBEB); /* gradient-25-10 */}
 #myBooks {width:184px; float:left;}
