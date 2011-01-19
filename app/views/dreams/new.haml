@@ -5,6 +5,12 @@
 #dreamField
 
   #new_dream-panel.light.O.round-16.glow-40
+    #entryTypeWrap
+      %span#entryType_current{value: 'Dream'}
+      %select#entryType_list
+        %option{value: 'Dream'} Dream
+        %option{value: 'Vision'} Vision
+        %option{value: 'Experience'} Experience
     = form_for @dream do |f|
       = f.text_field :title, :maxlength => '72', :class => 'font-21'
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
@@ -16,3 +22,11 @@
         #visibility Everyone
         #location Local
         #date Date
+        
+  #new_dream-attach.round-16.light.C-shine.glow-40
+    %p attach:
+    .attach-tag tag
+    .attach-images images
+    .attach-mood mood
+    .attach-links links
+    .attach-analysis analysis
