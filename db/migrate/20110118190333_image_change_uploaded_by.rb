@@ -4,6 +4,7 @@ class ImageChangeUploadedBy < ActiveRecord::Migration
       t.change :uploaded_by, :integer
       t.remove :uploaded_at
       t.change :format, :string, :limit => 10
+      t.string :source_url
     end
   end
 
@@ -12,6 +13,7 @@ class ImageChangeUploadedBy < ActiveRecord::Migration
       t.change :uploaded_by, :string
       t.column :uploaded_at, :datetime
       t.change :format, :string
+      t.remove :source_url
     end
   end
 end
