@@ -719,16 +719,19 @@ a#contextImage {width:200px; height:266px}
 #dream_submit {width:64px; margin-right:8px; border:0; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;}
 #new_dream-panel #dream_title {width:508px;}
 
+/*********** NEW DREAM TAG ***********/
+#new_dream-tag {}
+
 /*********** NEW DREAM ATTACH ***********/
 #new_dream-attach {width:678px; height:48px;}
 #new_dream-attach p {height:34px; line-height:34px; margin:8px 38px 0 38px; float:left;}
-.attach-tag, .attach-images, .attach-mood, .attach-links, .attach-analysis {height:34px; line-height:34px; margin:8px 0 0 8px;
+#attach-tag, #attach-images, #attach-mood, #attach-links, #attach-analysis {height:34px; line-height:34px; margin:8px 0 0 8px;
   text-align:center; cursor:pointer; float:left; border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px; background:#fff;}
-.attach-tag {width:72px;} 
-.attach-images {width:96px;} 
-.attach-mood {width:90px;}
-.attach-links {width:82px;} 
-.attach-analysis {width:100px;}
+#attach-tag {width:72px;} 
+#attach-images {width:96px;} 
+#attach-mood {width:90px;}
+#attach-links {width:82px;} 
+#attach-analysis {width:100px;}
 
 
 /*********** OLD MODIFY DREAM - after theta launch, probably can delete ***********/
