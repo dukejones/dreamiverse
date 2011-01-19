@@ -53,11 +53,31 @@ loadBrowse = function() {
   $("#IB_browseBack,#IB_browseArrow").hide();
   $("#IB_browse,#IB_category").show();
   $("#IB_category").text("Browse");
-  $("#IB_browse li").unbind();
+  /*$("#IB_browse li").unbind(); // moved to .nav-expand p
   $("#IB_browse li").click(function() {
+    loadArtistList($(this).find('span').text());
+  });*/
+  var config = {    
+     over: expandNav, // function = onMouseOver callback (REQUIRED)    
+     sensitivity: 20, 
+     interval: 30,
+     out: contractNav // function = onMouseOut callback (REQUIRED)    
+   };
+
+  $('#IB_browse li').hoverIntent(config);
+  $('#IB_browse li').find('.nav-expand p').unbind();
+  $('#IB_browse li').find('.nav-expand p').click(function(){
     loadArtistList($(this).text());
-  });
+  })
 };
+
+contractNav = function(){
+  $(this).find('.nav-expand').slideUp('slow');
+}
+
+expandNav = function(){
+  $(this).find('.nav-expand').slideDown('slow');
+}
 
 closeSearchExpand = function(){
   $("#IB_searchBoxActive,#IB_searchBoxActiveWrap,#IB_browseBack,#IB_browseBackWrap").hide();
@@ -1250,6 +1270,8 @@ var checkForParams = function(){
 $(document).ready(function() {
   // FOR DEV ONLY todo :: remove me
   $('body').append('<p class="padding-12 round-8" style="opacity: .3; margin-left: 32px; display: inline-block; background-color: #fff;">Showing only sectionFilter :: ' + sectionFilter + '</p>');
+  
+  
   
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });

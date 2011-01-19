@@ -143,6 +143,7 @@ var checkForPassedImages = function(){
   if(data[0] == ""){
     // EMPTY
   } else {
+    $('#IB_dropboxCover').hide();
     passedImages = data[data.length-1].split(',');
   
     // These are the image ID's we recieved

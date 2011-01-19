@@ -328,10 +328,12 @@ h2.IB_managerHeader {
   
 /* UPLOADING PROGRESS STYLES */
 .progress-meter {
-  background: none repeat scroll 0 0 #FFFFFF;
+  background: none repeat scroll 0 0 #333;
   height: 128px;
-  position: relative;
   width: 0px;
+  position: absolute;
+  width: 0px;
+  z-index: 0;
 }
 
 /* DROPBOX COVER */
@@ -346,3 +348,4 @@ h2.IB_managerHeader {
   background:#000;
   z-index:1000;
 }
+

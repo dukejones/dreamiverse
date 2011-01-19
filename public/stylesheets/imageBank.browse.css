@@ -4,16 +4,15 @@
 #IB_browse ul {
   list-style: none;
   margin:0 6px;
-  padding: 0;}
+  padding: 0;
+  position: relative;}
 #IB_browse li {
-  float: left;
-  width: 372px;
   height:124px;
   line-height:124px;
-  text-align:center;
   color:white;
   font-size:25px;
   cursor:pointer;
+  position: relative;
   background: -webkit-gradient(linear, left top, left bottom, from(#555555), to(#000));
   background: -moz-linear-gradient(top, #555555, #000); /* gradient-75-100 */
   box-shadow:inset 0px 60px 0px #444;
@@ -29,3 +28,18 @@
   box-shadow:none;
   -moz-box-shadow:none;
   -webkit-box-shadow:none;}
+#IB_browse li span {
+  position: absolute;
+  text-align:center;
+  width: 100%;}  
+.nav-expand {
+  position: absolute;
+  width: 75%;
+  margin-top: 35px;
+  height: 80px;}
+.nav-expand p {
+  float: left;
+  display: block;
+  height: 80px;
+  margin: 0px 8px;
+  font-size: 14px;}
