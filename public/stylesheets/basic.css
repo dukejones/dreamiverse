@@ -665,20 +665,6 @@ a#contextImage {width:200px; height:266px}
 #dreamField {position:absolute; top:82px; left: 240px;}
 
 
-/* PAGINATION */
-.dark.pageFirst,
-.dark.pageFirst:hover { border:2px solid transparent; margin-right:1px; height:37px; }
-.dark.pageLast, .dark.pageLast:hover { border:2px solid transparent; margin-left:1px; height:37px; }
-.pageFirst img { padding: 8px 4px; }
-.pageLast img { padding: 8px 4px; }
-.pagePrev { display:block; padding: 8px 4px; font-weight:bold; }
-.pageNext { display:block; padding: 8px 4px; font-weight:bold; }
-.pageNumber { display:block; padding: 11px 6px; float:left; }
-.pagination a.pageNumber { color:#999;}
-.pagination a.pageNumber:hover { color:#fff; font-weight:bold }
-.pageNumber.currentPage { display:block; padding: 10px 7px; font-weight:bold; font-size:21px; float:left; line-height:17px; cursor:default; border:2px solid #fff }
-
-
 /*********** ENTRY BAR ***********/
 #entryBar {width:680px; height:48px; margin:0 0 15px;}
 #entryBar a {text-decoration:none; color:#000}
