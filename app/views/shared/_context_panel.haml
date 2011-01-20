@@ -1,43 +1,43 @@
 / CONTEXT PANEL
-#contextPanel.dark.transparent-50.glow-40.round-16.padding-6
+#contextPanel.light.transparent-50.glow-40.round-16.padding-6
 
   / IMAGE
   %a#contextImage.block.round-12{href: '/', style: 'background:url(/images/avatars/default-avatar-full.jpg) top left'}
 
   / LABEL
-  #contextLabelWrapper.dark.B-bevel.round-12.flat-bottom.padding-4
-    %a#contextLabel.block.dark.O-button.O-shine.round-8.flat-bottom.pointer.padding-8.font-bold.align-center{href: '/'}
-      = user.username
+  %a#contextLabel.block.light.O-button.O-shine.round-12.pointer.padding-8.font-bold.align-center{href: '/'}
+    = user.username
 
   / FOLLOW THIS
-  %a#followThis.block.dark.O.B-shine.round-8.button-post.align-center.font-bold.padding-8{href: '#'} follow
+  %a#followThis.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
 
   / CONTEXT ITEMS
   .contextItem
-    .contextItem-label.dark.B-shine.round-8.flat-right you are
-    .contextItem-image.dark.transparent-50.round-8.flat-all
+    .contextItem-label.light.B-bevel.round-12.flat-right you are
+    .contextItem-image.light.transparent-50.round-12.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/globe-32.png', width: '32', height: '32'}
-    .contextItem-detail.dark.B-indent.round-8.flat-left friends
+    .contextItem-detail.light.B-indent.round-12.flat-left friends
     .clear-both
   .contextItem
-    .contextItem-label.dark.B-shine.round-8.flat-right dreams
-    .contextItem-image.dark.transparent-50.round-8.flat-all
+    .contextItem-label.light.B-bevel.round-12.flat-right dreams
+    .contextItem-image.light.transparent-50.round-12.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
-    .contextItem-detail.dark.B-indent.round-8.flat-left 86
+    .contextItem-detail.light.B-indent.round-12.flat-left 86
     .clear-both
   .contextItem
-    .contextItem-label.dark.B-shine.round-8.flat-right starlight
-    .contextItem-image.dark.transparent-50.round-8.flat-all
+    .contextItem-label.light.B-bevel.round-12.flat-right starlight
+    .contextItem-image.light.transparent-50.round-12.flat-all
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
-    .contextItem-detail.dark.B-indent.round-8.flat-left 376
+    .contextItem-detail.light.B-indent.round-12.flat-left 376
     .clear-both
   .divider
   .contextItem2
-    .contextItem-label
-    .contextItem-detail
+    .contextItem-label.light.B-bevel.round-12.flat-right followers
+    .contextItem-detail 1,250
+    .clear-both
 
   / SOCIAL NETWORK LINKS
-  #contextBottom.dark.B-indent.round-12.padding-8.flat-top.clear-both.align-center
+  #contextBottom.light.B-indent.round-12.padding-8.flat-top.clear-both.align-center
     %a#sn-facebook.sn_link{href: '#', target: '_blank'} facebook
     %a#sn-twitter.sn_link{href: '#', target: '_blank'} twitter
     .clear-both
