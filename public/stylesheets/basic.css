@@ -506,6 +506,8 @@ TD.form_label B {}
 .margin-top-4 { margin-top:4px }
 
 /* PADDING */
+.padding-0-8 { padding:0px 8px }
+.padding-1-8 { padding:1px 8px }
 .padding-1 { padding:1px }
 .padding-2 { padding:2px }
 .padding-2-4 { padding:2px 4px }
@@ -653,7 +655,7 @@ TD.form_label B {}
 .logo-shadow { background:transparent; box-shadow: inset 0px 0px 40px #000; -moz-box-shadow: inset 0px 0px 40px #000; -webkit-box-shadow: inset 0px 0px 40px #000; }
 
 /*********** DREAM FIELD ***********/
-#dreamField {position:absolute; top:82px; left: 240px;}
+#dreamField {position:absolute; top:82px; left: 240px; width: 680px;}
 
 
 /*********** ENTRY BAR ***********/
