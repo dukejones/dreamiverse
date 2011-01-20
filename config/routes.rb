@@ -11,6 +11,7 @@ Dreamcatcher::Application.routes.draw do
   
   # Resources
   resource :user
+  match '/dreamstars' => 'users#index', :as => :dreamstars
   resources :dreams
   
   resources :images do

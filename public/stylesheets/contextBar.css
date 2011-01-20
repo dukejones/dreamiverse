@@ -1,18 +1,104 @@
-/***********CONTEXT BAR***********/
-#contextPanel {position:absolute; top:82px; left:12px; width:200px}
-a#contextImage {width:200px; height:266px}
-#contextLabel {margin: 6px 0}
-#followThis { margin-bottom:6px}
+/*
+Syntax error: Invalid CSS after "0": expected expression (e.g. 1px, bold), was ";"
+        on line 44 of /Users/iotus/Sites/dreamcatcher/public/stylesheets/sass/contextBar.sass
 
-.contextItem, .contextItem2 {clear:both; margin-bottom:6px}
-.contextItem-label {width:66px; height:24px; float:left; padding:6px 8px; text-align: right}
-.contextItem-image {width:30px; height:32px; float:left; padding:3px 0; margin: 0}
-#contextPanel .contextItem-detail {width:70px; height:26px; float:left; padding:6px 8px; line-height:26px; font-weight: bold; white-space:nowrap; overflow: hidden; border: 0;
-  /* consolidate into general classes */
-  box-shadow: 0 8px 5px #999 inset;
-  -moz-box-shadow: 0 8px 5px #999 inset;
-  -webkit-box-shadow: 0 8px 5px #999 inset;}
+39:       padding: 6px 8px
+40:       line-height: 26px
+41:       font-weight: bold
+42:       white-space: nowrap
+43:       overflow: hidden
+44:       border: 0;
+45:       /* consolidate into general classes */
+46:       box-shadow: 0 8px 5px #999 inset;
+47:       -moz-box-shadow: 0 8px 5px #999 inset;
+48:       -webkit-box-shadow: 0 8px 5px #999 inset;}
+49: 
 
-#contextPanel .contextItem2 .contextItem-label {width: 90px; line-height:26px; text-align: right; font-weight: bold}
-#contextPanel .contextItem2 .contextItem-detail {width: 76px; font-weight: normal; line-height: 25px}
-#contextPanel .divider {height: 6px; margin-bottom: 6px}
+Backtrace:
+/Users/iotus/Sites/dreamcatcher/public/stylesheets/sass/contextBar.sass:44
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/scss/parser.rb:838:in `expected'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/script/lexer.rb:193:in `expected!'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/script/parser.rb:392:in `assert_done'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/script/parser.rb:50:in `parse'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/script/parser.rb:120:in `parse'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/script.rb:32:in `parse'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:672:in `parse_script'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:470:in `parse_property'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:459:in `parse_property_or_rule'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:440:in `parse_line'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:328:in `build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:337:in `block in build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:337:in `block in build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:337:in `block in build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:330:in `build_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:347:in `block in append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:346:in `append_children'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:216:in `_to_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:179:in `block in to_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/haml/util.rb:294:in `silence_haml_warnings'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/engine.rb:179:in `to_tree'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/files.rb:44:in `tree_for'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:223:in `update_stylesheet'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:88:in `block (2 levels) in update_stylesheets'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:81:in `block in update_stylesheets'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `each'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:79:in `update_stylesheets'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin.rb:50:in `check_for_updates'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/haml-3.0.25/lib/sass/plugin/rack.rb:40:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/warden-1.0.3/lib/warden/manager.rb:35:in `block in call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/warden-1.0.3/lib/warden/manager.rb:34:in `catch'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/warden-1.0.3/lib/warden/manager.rb:34:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/head.rb:14:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/methodoverride.rb:24:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/flash.rb:182:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/session/abstract_store.rb:149:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/cookies.rb:295:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:32:in `block in call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/query_cache.rb:28:in `cache'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:12:in `cache'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activerecord-3.0.3/lib/active_record/query_cache.rb:31:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activerecord-3.0.3/lib/active_record/connection_adapters/abstract/connection_pool.rb:353:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:46:in `block in call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activesupport-3.0.3/lib/active_support/callbacks.rb:415:in `_run_call_callbacks'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/callbacks.rb:44:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/sendfile.rb:107:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/remote_ip.rb:48:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/show_exceptions.rb:46:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/railties-3.0.3/lib/rails/rack/logger.rb:13:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/runtime.rb:17:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/activesupport-3.0.3/lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/lock.rb:11:in `block in call'
+<internal:prelude>:10:in `synchronize'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/lock.rb:11:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/actionpack-3.0.3/lib/action_dispatch/middleware/static.rb:30:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/railties-3.0.3/lib/rails/application.rb:168:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/railties-3.0.3/lib/rails/application.rb:77:in `method_missing'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/railties-3.0.3/lib/rails/rack/log_tailer.rb:14:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/content_length.rb:13:in `call'
+/Users/iotus/.rvm/gems/ruby-1.9.2-p0@dreamcatcher/gems/rack-1.2.1/lib/rack/handler/webrick.rb:52:in `service'
+/Users/iotus/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:111:in `service'
+/Users/iotus/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/httpserver.rb:70:in `run'
+/Users/iotus/.rvm/rubies/ruby-1.9.2-p0/lib/ruby/1.9.1/webrick/server.rb:183:in `block in start_thread'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Invalid CSS after \"0\": expected expression (e.g. 1px, bold), was \";\"\A         on line 44 of /Users/iotus/Sites/dreamcatcher/public/stylesheets/sass/contextBar.sass\A \A 39:       padding: 6px 8px\A 40:       line-height: 26px\A 41:       font-weight: bold\A 42:       white-space: nowrap\A 43:       overflow: hidden\A 44:       border: 0;\A 45:       /* consolidate into general classes */\A 46:       box-shadow: 0 8px 5px #999 inset;\A 47:       -moz-box-shadow: 0 8px 5px #999 inset;\A 48:       -webkit-box-shadow: 0 8px 5px #999 inset;}\A 49: "; }
