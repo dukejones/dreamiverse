@@ -1,10 +1,18 @@
 /***********CONTEXT BAR***********/
 #contextPanel {position:absolute; top:82px; left:12px; width:200px}
 a#contextImage {width:200px; height:266px}
-#contextLabelWrapper {margin: 6px 0}
-#contextLabel {}
+#contextLabel {margin: 6px 0}
 #followThis { margin-bottom:6px}
-.contextItem {clear:both; margin-bottom:6px}
-.contextItem-label {width:50px; height:24px; float:left; padding:6px 8px}
-.contextItem-image {width:32px; height:32px; float:left; padding:2px 0; margin: 0 4px;}
-.contextItem-detail {width:72px; height:24px; float:left; padding:6px 8px; white-space:nowrap; overflow: hidden;}
+
+.contextItem, .contextItem2 {clear:both; margin-bottom:6px}
+.contextItem-label {width:66px; height:24px; float:left; padding:6px 8px; text-align: right}
+.contextItem-image {width:30px; height:32px; float:left; padding:3px 0; margin: 0}
+#contextPanel .contextItem-detail {width:70px; height:26px; float:left; padding:6px 8px; line-height:26px; font-weight: bold; white-space:nowrap; overflow: hidden; border: 0;
+  /* consolidate into general classes */
+  box-shadow: 0 8px 5px #999 inset;
+  -moz-box-shadow: 0 8px 5px #999 inset;
+  -webkit-box-shadow: 0 8px 5px #999 inset;}
+
+#contextPanel .contextItem2 .contextItem-label {width: 90px; line-height:26px; text-align: right; font-weight: bold}
+#contextPanel .contextItem2 .contextItem-detail {width: 76px; font-weight: normal; line-height: 25px}
+#contextPanel .divider {height: 6px; margin-bottom: 6px}
