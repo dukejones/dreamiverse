@@ -57,7 +57,7 @@ loadBrowse = function() {
   $("#IB_browse li").click(function() {
     loadArtistList($(this).find('span').text());
   });*/
-  var config = {    
+  var config = {
      over: expandNav, // function = onMouseOver callback (REQUIRED)    
      sensitivity: 20, 
      interval: 30,
@@ -72,11 +72,11 @@ loadBrowse = function() {
 };
 
 contractNav = function(){
-  $(this).find('.nav-expand').slideUp('slow');
+  $(this).find('.nav-expand').fadeOut();
 }
 
 expandNav = function(){
-  $(this).find('.nav-expand').slideDown('slow');
+  $(this).find('.nav-expand').fadeIn();
 }
 
 closeSearchExpand = function(){

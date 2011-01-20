@@ -1,3 +1,7 @@
+- content_for :head do
+  = stylesheet_link_tag 'newDream'
+  = stylesheet_link_tag 'contextBar'
+  
 / CONTEXT BAR
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
@@ -23,10 +27,20 @@
         #location Local
         #date Date
   
-  #new_dream-tag.round-16.light.C-shine.glow-40.transparent-50
-    #tagHeader
+  = render :partial => "image_panel"
+  
+  #new_dream-tag.round-16.glow-40.light.transparent-50
+    #tagHeader tag
+    #tagInputWrap
+      %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
+      #tagInutTextFrame
+        %input#tagInputText
+        #tagInputAdd.round-8 Add
+      %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+    #tagBrowse.round-8
+      %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
         
-  #new_dream-attach.round-16.light.C-shine.glow-40
+  #new_dream-attach.round-16.glow-40.light.transparent-50
     %p attach:
     #attach-tag tag
     #attach-images images
