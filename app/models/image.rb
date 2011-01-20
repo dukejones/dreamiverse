@@ -139,6 +139,23 @@ protected
   
   def parse_incoming_parameters
     if @incoming_filename
+      # Parse the URL if it's in the filename.
+      if (url_matches = @incoming_filename.scan(/(^http:\/\/[^\s]+)(.*)/).first)
+        url, extra = url_matches
+        self.source_url = url
+        last_bit = url.split('/').last
+        @incoming_filename = last_bit + extra
+      end
+
+      # Remove any dates from the filename.
+      if (date_range = @incoming_filename.scan(/\d{4}-\d{4}/).first)
+        @incoming_filename.sub!(date_range, '')
+        self.year = date_range.split('-').last
+      elsif (date = @incoming_filename.scan(/\d{4}/).last)
+        @incoming_filename.sub!(date, '')
+        self.year = date
+      end
+      
       self.original_filename = @incoming_filename
       self.format = @incoming_filename.split('.').last unless format
       self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize unless title
