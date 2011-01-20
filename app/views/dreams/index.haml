@@ -1,21 +1,32 @@
 - content_for :head do
   = stylesheet_link_tag 'dreamThumbs'
-  = stylesheet_link_tag 'contextBar'
+  = stylesheet_link_tag 'contextPanel'
 
-/ CONTEXT BAR
+
+
+
+/ CONTEXT PANEL
 = render :partial => "shared/context_panel", :locals => {:user => @user}
+
+
+
 
 / DREAM FIELD
 #dreamField
-  =render :partial => 'entry_bar'
 
-  - if @dreams.empty?
-    .light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+  / NEW ENTRY BAR
+  =render :partial => 'entry_bar'
 
   / DREAM THUMBS
   - @dreams.each do |dream|
     = render :partial => 'dream_thumb', :locals => {:dream => dream}
 
-/ DEBUG
+  / NO DREAMS TO DISPLAY
+  - if @dreams.empty?
+    .light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+
+
+
+  / DEBUG
 /  .light.transparent-50.round-16.padding-8
 /    = debug current_user
