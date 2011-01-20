@@ -81,6 +81,7 @@
 
 /* IMAGES PANEL ON NEW DREAM */
 #new_dream-images {
+  border: 1px solid #333;
   display: none;
 }
 #imageDropArea {
