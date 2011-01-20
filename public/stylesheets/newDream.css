@@ -58,3 +58,48 @@
 #attach-mood {width:90px;}
 #attach-links {width:82px;} 
 #attach-analysis {width:100px;}
+
+/* IMAGES PANEL ON NEW DREAM */
+#new_dream-images {
+  display: none;
+}
+#imageDropArea {
+  -moz-box-shadow: 0 8px 5px #CCCCCC inset;
+  -webkit-box-shadow: 0 8px 5px #CCCCCC inset;
+  box-shadow: 0 8px 5px #CCCCCC inset;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #7f7f7f;
+  font-weight: bold;
+  font-size: 13px;
+  width: 380px;
+  height: 30px;
+  line-height: 30px;
+}
+#currentImages {
+  margin-top: 12px;
+}
+.dreamImageContainer {
+  height: 120px;
+  width: 386px;
+  overflow: hidden;
+  background: #fff;
+}
+.dreamImageCaption {
+  color: #333333;
+  font-size: 16px;
+  font-weight: bold;
+  height: 94px;
+  margin: 4px;
+  padding: 8px;
+  width: 184px;
+  border: 0px;
+  background: none;
+}
+.dreamImage {
+  float: left;
+  width: 175px;
+  height: 120px;
+  overflow: hidden;
+  -moz-border-radius: 8px 0px 0px 8px;
+}
