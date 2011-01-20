@@ -1,7 +1,7 @@
 /*********** NEW DREAM ***********/
-#new_dream-panel {width:678px; padding:0 0 8px;}
+#new_dream-panel {width:662px; padding:8px;}
 #new_dream-panel #dream_title,
-#new_dream-panel #dream_body {width:626px; margin:16px 0 0 28px; background:transparent; border:none;}
+#new_dream-panel #dream_body {width:626px; margin:16px 0 0 20px; background:transparent; border:none;}
 #new_dream-panel #dream_title {height:26px; line-height:26px;}
 #new_dream-panel #dream_body {min-height:134px; height:134px;}
 #dreamEntryOptionsBar {width:664px; height:48px; margin:0 auto; bottom:8px; border:1px solid #D7D7D7;
@@ -12,35 +12,35 @@
   border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff));
   background: -moz-linear-gradient(top, #E1E1E1, #fff); /* gradient-15-0 */}
-#entryTypeWrap {width:126px;  margin-right:8px;}
+#entryTypeWrap {width:126px;}
 #entryType_current {background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px;}
 #entryType_list {background:transparent; border:0;}
 #myBooks {width:184px; float:left;}
 #date, #location {width:42px;}
 #visibility {width:104px;} 
 #dream_submit {width:64px; margin-right:8px; border:0; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;}
-#new_dream-panel #dream_title {width:508px;}
+#new_dream-panel #dream_title {width:500px;}
 
 /* UNIVERSAL STYLES */
-.new_dream_Headers {width:76px; height:34px; line-height:34px; margin:8px 0 0 8px;
+.new_dream_Headers {width:76px; height:34px; line-height:34px;
   text-align:center; float:left;
   border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff));
   background: -moz-linear-gradient(top, #E1E1E1, #fff); /* gradient-15-0 */}
-.round8button-0-15 {width:62px; height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+.round8button-0-15 {height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
   background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
-#new_dream-tag, #new_dream-attach {border:1px solid #898989; /* 55% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
+#new_dream-tag, #new_dream-attach {width:662px; padding:8px; border:1px solid #898989; /* 55% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
 
 
 /* NEW DREAM TAG */
-#new_dream-tag {width:678px; height:160px;}
-#tagInputWrap {width:520px; height:40px; float:left; margin:8px 0 0 8px;}
+#new_dream-tag {height:144px;}
+#tagInputWrap {width:520px; height:40px; float:left; margin:0 0 0 8px;}
 #tagInputWrap img {float:left; margin:0;}
 #tagInutTextFrame {width:480px; height:40px; float:left; margin:0; background: url(../images/slices/inputContentLight-40.png) repeat-x;}
 #tagInputText {width:410px; height:32px; float:left; line-height:32px; margin:4px 0; font-size:18px; background:transparent; border:0;}
-#tagInputAdd {float:right; margin:4px 0;}
-#tagBrowse {width:34px; height:30px; float:right; margin:8px 8px 0; padding:5px 3px;
+#tagInputAdd {width:62px; float:right; margin:4px 0;}
+#tagBrowse {width:34px; height:30px; float:right; margin:0; padding:5px 3px;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2));
   background: -moz-linear-gradient(top, #fff, #C2C2C2); /* gradient-0-30*/}
 .tag-who, .tag-where, .tag-what {height:34px; line-height:34px; text-align:center; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; background:#fff;}
@@ -49,9 +49,9 @@
   background: -moz-linear-gradient(top, #fff, #C2C2C2); /* gradient-0-30*/}
 
 /* NEW DREAM ATTACH */
-#new_dream-attach {width:678px; height:48px;}
-#new_dream-attach p {height:34px; line-height:34px; margin:8px 38px 0 38px; float:left;}
-#attach-tag, #attach-images, #attach-mood, #attach-links, #attach-analysis {height:34px; line-height:34px; margin:8px 0 0 8px;
+#new_dream-attach {height:32px;}
+#new_dream-attach p {height:34px; line-height:34px; margin:0 30px; float:left;}
+#attach-tag, #attach-images, #attach-mood, #attach-links, #attach-analysis {height:34px; line-height:34px; margin:0 0 0 8px;
   text-align:center; cursor:pointer; float:left; border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px; background:#fff;}
 #attach-tag {width:72px;} 
 #attach-images {width:96px;} 
