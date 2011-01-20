@@ -27,9 +27,11 @@
   border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff));
   background: -moz-linear-gradient(top, #E1E1E1, #fff); /* gradient-15-0 */}
-.addButton_light {width:62px; height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+.round8button-0-15 {width:62px; height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
   background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
+#new_dream-tag, #new_dream-attach {border:1px solid #898989; /* 55% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
+
 
 /* NEW DREAM TAG */
 #new_dream-tag {width:678px; height:160px;}
