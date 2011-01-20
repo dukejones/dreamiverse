@@ -5,7 +5,7 @@
   %a#contextImage.block.round-12{href: '/', style: 'background:url(/images/avatars/default-avatar-full.jpg) top left'}
 
   / LABEL
-  %a#contextLabel.block.light.O-button.O-shine.round-12.pointer.padding-8.font-bold.align-center{href: '/'}
+  %a#contextLabel.block.light.O-button.O-shine.round-12.pointer.padding-4.font-bold.align-center.font-21{href: '/'}
     = user.username
 
   / FOLLOW THIS
@@ -14,30 +14,40 @@
   / CONTEXT ITEMS
   .contextItem
     .contextItem-label.light.B-bevel.round-12.flat-right you are
-    .contextItem-image.light.transparent-50.round-12.flat-all
+    .contextItem-image
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/globe-32.png', width: '32', height: '32'}
-    .contextItem-detail.light.B-indent.round-12.flat-left friends
+    .contextItem-detail.light.O.round-12.flat-left friends
     .clear-both
   .contextItem
-    .contextItem-label.light.B-bevel.round-12.flat-right dreams
-    .contextItem-image.light.transparent-50.round-12.flat-all
+    .contextItem-label.light.O.round-12.flat-right dreams
+    .contextItem-image
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
-    .contextItem-detail.light.B-indent.round-12.flat-left 86
+    .contextItem-detail.light.O.round-12.flat-left 86
     .clear-both
   .contextItem
     .contextItem-label.light.B-bevel.round-12.flat-right starlight
-    .contextItem-image.light.transparent-50.round-12.flat-all
+    .contextItem-image
       %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dream_cloud-32B.png', width: '32', height: '32'}
-    .contextItem-detail.light.B-indent.round-12.flat-left 376
+    .contextItem-detail.light.O.round-12.flat-left 376
     .clear-both
-  .divider
+
+  .divider.light.transparent-33.round-4
+
   .contextItem2
     .contextItem-label.light.B-bevel.round-12.flat-right followers
-    .contextItem-detail 1,250
+    .contextItem-detail.light.O.round-12.flat-left 1,250
+    .clear-both
+  .contextItem2
+    .contextItem-label.light.B-bevel.round-12.flat-right friends
+    .contextItem-detail.light.O.round-12.flat-left 250
+    .clear-both
+  .contextItem2
+    .contextItem-label.light.B-bevel.round-12.flat-right following
+    .contextItem-detail.light.O.round-12.flat-left 333
     .clear-both
 
   / SOCIAL NETWORK LINKS
-  #contextBottom.light.B-indent.round-12.padding-8.flat-top.clear-both.align-center
-    %a#sn-facebook.sn_link{href: '#', target: '_blank'} facebook
-    %a#sn-twitter.sn_link{href: '#', target: '_blank'} twitter
-    .clear-both
+/  #contextBottom.light.B-indent.round-12.padding-8.flat-top.clear-both.align-center
+/    %a#sn-facebook.sn_link{href: '#', target: '_blank'} facebook
+/    %a#sn-twitter.sn_link{href: '#', target: '_blank'} twitter
+/    .clear-both
