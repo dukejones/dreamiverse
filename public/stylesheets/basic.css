@@ -8,7 +8,7 @@ BODY{font-family:Calibri, Arial, Helvetica, sans-serif; margin:0; padding:0}
 a:active, a:focus {outline: none;} /* removes dotted line around links */
 .content-expander { cursor:pointer; }
 
-/* CONTENT BOXES */  
+/* CONTENT BOXES */
 .black { background:#000; color:#fff; }
 .white { background:#FFF; color:#000; }
 .transparent { background:transparent; }
@@ -833,3 +833,18 @@ SELECT.search-bar {border-style:solid; -moz-border-radius:8px}
 /***********PROFILE PAGE EDIT LOCATION***********/
 .light.editLocationBackground {border:6px solid #000;}
 .dark.editLocationBackground {border:6px solid #fff;}
+
+/******IMAGES PANEL ON NEW DREAM**********/
+#imageDropArea {
+  -moz-box-shadow: 0 8px 5px #CCCCCC inset;
+  -webkit-box-shadow: 0 8px 5px #CCCCCC inset;
+  box-shadow: 0 8px 5px #CCCCCC inset;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #7f7f7f;
+  font-weight: bold;
+  font-size: 13px;
+  width: 380px;
+  height: 30px;
+  line-height: 30px;
+}
