@@ -21,13 +21,15 @@
 #dream_submit {width:64px; margin-right:8px; border:0; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;}
 #new_dream-panel #dream_title {width:508px;}
 
-/* NEW DREAM TAG */
-#new_dream-tag {width:678px; height:160px;}
-#tagHeader {width:76px; height:34px; line-height:34px; margin:8px 0 0 8px;
+/* UNIVERSAL STYLES */
+.new_dream_Headers {width:76px; height:34px; line-height:34px; margin:8px 0 0 8px;
   text-align:center; float:left;
   border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff));
   background: -moz-linear-gradient(top, #E1E1E1, #fff); /* gradient-15-0 */}
+
+/* NEW DREAM TAG */
+#new_dream-tag {width:678px; height:160px;}
 #tagInputWrap {width:520px; height:40px; float:left; margin:8px 0 0 8px;}
 #tagInputWrap img {float:left; margin:0;}
 #tagInutTextFrame {width:480px; height:40px; float:left; margin:0; background: url(../images/slices/inputContentLight-40.png) repeat-x;}
