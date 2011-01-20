@@ -12,5 +12,58 @@
 
 
 
+/* ALPHA */
+=alpha($percent)
+  filter: alpha(opacity=$percent)
+  -moz-opacity: $percent / 100
+  -khtml-opacity: $percent / 100
+  -webkit-opacity: $percent / 100
+  opacity: $percent / 100
 
+.alpha-100
+  +alpha(100)
+.alpha-90
+  +alpha(90)
+.alpha-80
+  +alpha(80)
+.alpha-70
+  +alpha(70)
+.alpha-60
+  +alpha(60)
+.alpha-50
+  +alpha(50)
+.alpha-40
+  +alpha(40)
+.alpha-30
+  +alpha(30)
+.alpha-20
+  +alpha(20)
+.alpha-10
+  +alpha(10)
+
+/* ROUNDED CORNERS */
+=round($amt)
+  border-radius: $amt
+  -moz-border-radius: $amt
+  -webkit-border-radius: $amt
+
+
+.round-2
+  +round(2px)
+.round-4
+  +round(4px)
+.round-8
+  +round(8px)
+.round-12
+  +round(12px)
+.round-16
+  +round(16px)
+.round-24
+  +round(24px)
+.round-32
+  +round(32px)
+.round-48
+  +round(48px)
+.round-64
+  +round(64px)
 
