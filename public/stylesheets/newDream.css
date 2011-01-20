@@ -21,23 +21,32 @@
 #dream_submit {width:64px; margin-right:8px; border:0; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;}
 #new_dream-panel #dream_title {width:508px;}
 
-/* NEW DREAM TAG */
-#new_dream-tag {width:678px; height:160px;}
-#tagHeader {width:76px; height:34px; line-height:34px; margin:8px 0 0 8px;
+/* UNIVERSAL STYLES */
+.new_dream_Headers {width:76px; height:34px; line-height:34px; margin:8px 0 0 8px;
   text-align:center; float:left;
   border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;
   background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff));
   background: -moz-linear-gradient(top, #E1E1E1, #fff); /* gradient-15-0 */}
+.round8button-0-15 {width:62px; height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
+  background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
+#new_dream-tag, #new_dream-attach {border:1px solid #898989; /* 55% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
+
+
+/* NEW DREAM TAG */
+#new_dream-tag {width:678px; height:160px;}
 #tagInputWrap {width:520px; height:40px; float:left; margin:8px 0 0 8px;}
 #tagInputWrap img {float:left; margin:0;}
 #tagInutTextFrame {width:480px; height:40px; float:left; margin:0; background: url(../images/slices/inputContentLight-40.png) repeat-x;}
 #tagInputText {width:410px; height:32px; float:left; line-height:32px; margin:4px 0; font-size:18px; background:transparent; border:0;}
-#tagInputAdd {width:62px; height:30px; line-height:30px; float:right; margin:4px 0; text-align:center; border:1px solid #C2C2C2;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
-  background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
-#tagBrowse{width:40px; height:40px; float:right; margin:8px 8px 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
-  background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
+#tagInputAdd {float:right; margin:4px 0;}
+#tagBrowse {width:34px; height:30px; float:right; margin:8px 8px 0; padding:5px 3px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2));
+  background: -moz-linear-gradient(top, #fff, #C2C2C2); /* gradient-0-30*/}
+.tag-who, .tag-where, .tag-what {height:34px; line-height:34px; text-align:center; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; background:#fff;}
+.tag-who {
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2));
+  background: -moz-linear-gradient(top, #fff, #C2C2C2); /* gradient-0-30*/}
 
 /* NEW DREAM ATTACH */
 #new_dream-attach {width:678px; height:48px;}
@@ -49,3 +58,48 @@
 #attach-mood {width:90px;}
 #attach-links {width:82px;} 
 #attach-analysis {width:100px;}
+
+/* IMAGES PANEL ON NEW DREAM */
+#new_dream-images {
+  display: none;
+}
+#imageDropArea {
+  -moz-box-shadow: 0 8px 5px #CCCCCC inset;
+  -webkit-box-shadow: 0 8px 5px #CCCCCC inset;
+  box-shadow: 0 8px 5px #CCCCCC inset;
+  background: #fff;
+  border: 1px solid #fff;
+  color: #7f7f7f;
+  font-weight: bold;
+  font-size: 13px;
+  width: 380px;
+  height: 30px;
+  line-height: 30px;
+}
+#currentImages {
+  margin-top: 12px;
+}
+.dreamImageContainer {
+  height: 120px;
+  width: 386px;
+  overflow: hidden;
+  background: #fff;
+}
+.dreamImageCaption {
+  color: #333333;
+  font-size: 16px;
+  font-weight: bold;
+  height: 94px;
+  margin: 4px;
+  padding: 8px;
+  width: 184px;
+  border: 0px;
+  background: none;
+}
+.dreamImage {
+  float: left;
+  width: 175px;
+  height: 120px;
+  overflow: hidden;
+  -moz-border-radius: 8px 0px 0px 8px;
+}
