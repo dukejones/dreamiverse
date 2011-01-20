@@ -12,8 +12,9 @@ class User < ActiveRecord::Base
   #attr_accessible :email, :password, :password_confirmation, :remember_me
 
   attr_accessor :password, :password_confirmation
-  before_save :encrypt_password
+  before_validation :encrypt_password
   validate :validate_password_confirmation
+  validates_presence_of :username, :encrypted_password # :email
   
   def self.create_from_omniauth(omniauth)
     user = create!(
@@ -25,7 +26,9 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(auth_params)
-    self.where(:email => auth_params[:email], :encrypted_password => sha1(auth_params[:password])).first
+    self.where(:encrypted_password => sha1(auth_params[:password]))
+      .where(["username=? OR email=?", auth_params[:username], auth_params[:username]])
+      .first
   end
   
   def apply_omniauth(omniauth)
@@ -43,7 +46,7 @@ class User < ActiveRecord::Base
 
 protected
   def validate_password_confirmation
-    if password && (password != password_confirmation)
+    if !password || (password != password_confirmation)
       errors.add :password, "should match password confirmation"
     end
   end
