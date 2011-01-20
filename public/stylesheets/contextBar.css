@@ -14,5 +14,5 @@ a#contextImage {width:200px; height:266px}
   -webkit-box-shadow: 0 8px 5px #999 inset;}
 
 #contextPanel .contextItem2 .contextItem-label {width: 90px; line-height:26px; text-align: right; font-weight: bold}
-#contextPanel .contextItem2 .contextItem-detail {width: 76px}
+#contextPanel .contextItem2 .contextItem-detail {width: 76px; font-weight: normal; line-height: 25px}
 #contextPanel .divider {height: 6px; margin-bottom: 6px}
