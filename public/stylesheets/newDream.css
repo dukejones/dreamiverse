@@ -49,12 +49,13 @@
   background: -moz-linear-gradient(top, #fff, #C2C2C2); /* gradient-0-30*/}
 
 /* NEW DREAM LINK */
-#new_dream-link {}
-#linkInput {
+#new_dream-link {height:312px;}
+#linkInputWrap {
   box-shadow: 0 8px 5px #999 inset;
   -moz-box-shadow: 0 8px 5px #999 inset;
   -webkit-box-shadow: 0 8px 5px #999 inset;
   margin:0 8px;
+  float:left;
   background: #fff;
   border: 1px solid #fff; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
   color: #7f7f7f;
@@ -63,6 +64,8 @@
   width: 550px;
   height: 38px;
   line-height: 38px;}
+#linkInput {width:410px; height:32px; float:left; line-height:32px; margin:4px 0; font-size:18px; background:transparent; border:0;}
+#linkInputAdd {width:62px; float:right; margin:4px 0;}
 
 /* NEW DREAM ATTACH */
 #new_dream-attach {height:32px;}
