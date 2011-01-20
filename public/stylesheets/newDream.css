@@ -30,7 +30,7 @@
 .round8button-0-15 {height:30px; line-height:30px; text-align:center; border:1px solid #C2C2C2; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
   background: -moz-linear-gradient(top, #fff, #E1E1E1); /* gradient-0-15*/}
-#new_dream-tag, #new_dream-attach, #new_dream-link {width:662px; padding:8px; border:1px solid #464646; /* 80% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
+#new_dream-tag, #new_dream-attach, #new_dream-link, #new_dream-mood {width:662px; padding:8px; border:1px solid #464646; /* 80% Black */ border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
 
 
 /* NEW DREAM TAG */
@@ -67,6 +67,13 @@
 .linkTitle {float:left; width:122px; margin:0 0 0 10px;} 
 .linkUrl {text-align:center; float:left; margin:0 0 0 102px; width:214px;} 
 .linkIcon {float:right; width:32px; height:32px; border:1px solid #999;}
+
+/* NEW DREAM MOOD */
+#new_dream-mood {height:160px;}
+#new_dream-mood a:link, #new_dream-mood a:visited, #new_dream-mood li {float:left;}
+#new_dream-mood a:link, #new_dream-mood a:visited {padding:0 16px;}
+#new_dream-mood ul {list-style:none; margin:6px;}
+
 
 /* NEW DREAM ATTACH */
 #new_dream-attach {height:32px;}
