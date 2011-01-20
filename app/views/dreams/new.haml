@@ -1,6 +1,7 @@
 - content_for :head do
   = stylesheet_link_tag 'newDream'
-
+  = stylesheet_link_tag 'contextBar'
+  
 / CONTEXT BAR
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
 
