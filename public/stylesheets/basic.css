@@ -544,6 +544,9 @@ TD.form_label B {}
 .round-4-right { border-radius-topright:4px; -moz-border-radius-topright:4px; -webkit-border-radius-topright:4px; border-radius-bottomright:4px; -moz-border-radius-bottomright:4px; -webkit-border-radius-bottomright:4px; }
 .round-4-all { border-radius-topright:4px; -moz-border-radius-topright:4px; -webkit-border-radius-topright:4px; border-radius-bottomright:4px; -moz-border-radius-bottomright:4px; -webkit-border-radius-bottomright:4px; border-radius-topleft:4px; -moz-border-radius-topleft:4px; -webkit-border-radius-topleft:4px; border-radius-bottomleft:4px; -moz-border-radius-bottomleft:4px; -webkit-border-radius-bottomleft:4px;}
 
+.round-8-left { border-radius-topleft:8px; -moz-border-radius-topleft:8px; -webkit-border-radius-topleft:8px; border-radius-bottomleft:8px; -moz-border-radius-bottomleft:8px; -webkit-border-radius-bottomleft:8px; }
+.round-8-right { border-radius-topright:8px; -moz-border-radius-topright:8px; -webkit-border-radius-topright:8px; border-radius-bottomright:8px; -moz-border-radius-bottomright:8px; -webkit-border-radius-bottomright:8px; }
+
 .round-12-left { border-radius-topleft:12px; -moz-border-radius-topleft:12px; -webkit-border-radius-topleft:12px; border-radius-bottomleft:12px; -moz-border-radius-bottomleft:12px; -webkit-border-radius-bottomleft:12px; }
 .round-12-right { border-radius-topright:12px; -moz-border-radius-topright:12px; -webkit-border-radius-topright:12px; border-radius-bottomright:12px; -moz-border-radius-bottomright:12px; -webkit-border-radius-bottomright:12px; }
 
@@ -782,17 +785,4 @@ SELECT.search-bar {border-style:solid; -moz-border-radius:8px}
 .light.editLocationBackground {border:6px solid #000;}
 .dark.editLocationBackground {border:6px solid #fff;}
 
-/******IMAGES PANEL ON NEW DREAM**********/
-#imageDropArea {
-  -moz-box-shadow: 0 8px 5px #CCCCCC inset;
-  -webkit-box-shadow: 0 8px 5px #CCCCCC inset;
-  box-shadow: 0 8px 5px #CCCCCC inset;
-  background: #fff;
-  border: 1px solid #fff;
-  color: #7f7f7f;
-  font-weight: bold;
-  font-size: 13px;
-  width: 380px;
-  height: 30px;
-  line-height: 30px;
-}
+
