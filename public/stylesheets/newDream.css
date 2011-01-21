@@ -23,7 +23,11 @@
     width: 662px;
     padding: 8px; }
     #dreamField #newDream-panel #entryTypeWrap {
-      width: 126px; }
+      width: 126px;
+      border: 1px solid #e1e1e1; }
+      #dreamField #newDream-panel #entryTypeWrap img {
+        float: left;
+        margin: 4px 0 0 4px; }
       #dreamField #newDream-panel #entryTypeWrap #entryType_current {
         background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px; }
       #dreamField #newDream-panel #entryTypeWrap #entryType_list {
@@ -63,18 +67,36 @@
       background: -moz-linear-gradient(top, #e1e1e1, white); }
     #dreamField #newDream-panel .myBooks {
       width: 184px;
-      float: left; }
+      float: left;
+      font-weight: bold; }
+      #dreamField #newDream-panel .myBooks img {
+        margin: 9px 0 0 14px;
+        float: left; }
     #dreamField #newDream-panel .date, #dreamField #newDream-panel .location {
       width: 42px; }
+      #dreamField #newDream-panel .date img, #dreamField #newDream-panel .location img {
+        margin: 9px 0 0; }
+    #dreamField #newDream-panel .location img {
+      margin: 7px 0 0; }
     #dreamField #newDream-panel .visibility {
       width: 104px; }
+      #dreamField #newDream-panel .visibility img {
+        margin: 9px 10px 0 0;
+        float: right; }
     #dreamField #newDream-panel #dream_submit {
       width: 64px;
+      height: 34px;
+      line-height: 28px;
       margin-right: 8px;
-      border: 0;
+      color: white;
+      font-weight: bold;
+      font-size: 12px;
+      border: 1px solid #acacac;
       border-radius: 8px;
       -moz-border-radius: 8px;
-      -webkit-border-radius: 8px; }
+      -webkit-border-radius: 8px;
+      background: -webkit-gradient(linear, left top, left bottom, from(#b7b7b7), to(#363636));
+      background: -moz-linear-gradient(top, #b7b7b7, #363636); }
   #dreamField #new_dream-images {
     border: 1px solid #333333;
     display: none; }
@@ -228,6 +250,7 @@
       margin: 4px 14px 4px 0; }
   #dreamField #newDream-link .linkContainer {
     clear: both;
+    display: none;
     margin: 8px 0 0;
     padding: 3px 8px;
     width: 632px;
@@ -240,17 +263,30 @@
     #dreamField #newDream-link .linkContainer .title {
       float: left;
       width: 122px;
-      margin: 0 0 0 10px; }
+      margin: 0 0 0 10px;
+      cursor: pointer; }
     #dreamField #newDream-link .linkContainer .url {
-      text-align: center;
+      text-align: left;
       float: left;
       margin: 0 0 0 102px;
-      width: 214px; }
+      width: 330px;
+      cursor: pointer; }
     #dreamField #newDream-link .linkContainer .icon {
       float: right;
       width: 32px;
       height: 32px;
-      border: 1px solid #999999; }
+      line-height: 32px;
+      text-align: center;
+      padding-top: 4px; }
+    #dreamField #newDream-link .linkContainer .removeicon {
+      float: right;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      padding-top: 4px;
+      cursor: pointer;
+      color: red; }
   #dreamField #newDream-mood {
     height: 160px; }
     #dreamField #newDream-mood ul {
@@ -291,6 +327,7 @@
 
 /* UNIVERSAL STYLES */
 .round8button-0-15 {
+  cursor: pointer;
   height: 30px;
   line-height: 30px;
   text-align: center;

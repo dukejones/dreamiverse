@@ -21,6 +21,10 @@
     padding: 8px
     #entryTypeWrap
       width: 126px
+      border: 1px solid #E1E1E1
+      img
+        float: left
+        margin: 4px 0 0 4px
       #entryType_current
         background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
@@ -62,17 +66,36 @@
     .myBooks
       width: 184px
       float: left
+      font-weight: bold
+      img
+        margin: 9px 0 0 14px
+        float: left
     .date, .location
       width: 42px
+      img
+        margin: 9px 0 0
+    .location
+      img
+        margin: 7px 0 0
     .visibility
-      width: 104px 
+      width: 104px
+      img
+        margin: 9px 10px 0 0
+        float: right
     #dream_submit
       width: 64px
+      height: 34px
+      line-height: 28px
       margin-right: 8px
-      border: 0
+      color: #fff
+      font-weight: bold
+      font-size: 12px
+      border: 1px solid #ACACAC /* gradient-45 */
       border-radius: 8px
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
+      background: -webkit-gradient(linear, left top, left bottom, from(#B7B7B7), to(#363636))
+      background: -moz-linear-gradient(top, #B7B7B7, #363636) /* gradient-35-85 */
   
   /* NEW DREAM - IMAGES PANEL */
   #new_dream-images
@@ -233,6 +256,7 @@
         margin: 4px 14px 4px 0
     .linkContainer
       clear: both
+      display: none
       margin: 8px 0 0
       padding: 3px 8px
       width: 632px
@@ -246,17 +270,30 @@
         float: left
         width: 122px
         margin: 0 0 0 10px 
+        cursor: pointer
       .url
-        text-align: center
+        text-align: left
         float: left
         margin: 0 0 0 102px
-        width: 214px
+        width: 330px
+        cursor: pointer
       .icon
         float: right
         width: 32px
         height: 32px
-        border: 1px solid #999
-
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+      .removeicon
+        float: right
+        width: 32px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+        cursor: pointer
+        color: red
+       
   /* NEW DREAM MOOD */
   #newDream-mood
     height: 160px
@@ -300,6 +337,7 @@
 
 /* UNIVERSAL STYLES */
 .round8button-0-15
+  cursor: pointer
   height: 30px
   line-height: 30px
   text-align: center
