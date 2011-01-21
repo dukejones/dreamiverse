@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110118190333) do
+ActiveRecord::Schema.define(:version => 20110121043346) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110118190333) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
 
   create_table "dreams", :force => true do |t|
-    t.string   "body"
+    t.text     "body"
     t.string   "title"
     t.string   "tags"
     t.integer  "user_id"
