@@ -3,6 +3,7 @@ $(document).ready(function() {
 });
 
 function setupEvents(){
+  // Listen for images toggle
   $('#attach-images').unbind();
   $('#attach-images').toggle(function(){
     $('#new_dream-images').slideDown();
@@ -10,7 +11,23 @@ function setupEvents(){
     $('#new_dream-images').slideUp();
   })
   
+  // Listen for paste in LINK field
+  $("#linkInputWrap input").bind('paste', function() {
+    setTimeout('checkForPastedLink($("#linkValue").val())', 400)
+    
+  });
+
+  
   resetImageButtons();
+}
+
+function checkForPastedLink(newText){
+  var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+  if(regexp.test(newText)){
+    alert('is link')
+  } else {
+    alert('not link')
+  }
 }
 
 function resetImageButtons(){
