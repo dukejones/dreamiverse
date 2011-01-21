@@ -226,35 +226,19 @@ class Imagex
               #imageurl
               @imageurl =  @baseimageurl + @pathr  +tmpnewfilename
               
-              #debugging
-              ##puts(newid2) ; ##puts("newid2 - this is the resized image ID, in general used by SQL only") ; ##puts(tmpinsert)
             else
               #unsuccessful resize - arguments will have been set such as image_ID etc
               #will end up sending back info on the original file 
             end
-            
-            #update return code 
-            ##puts(tmpupdate); ##puts("---")
-            #puts ("successfulmove_resized")
           else
-          #puts ("move failed_resized") 
           end
-
-        ##puts("300");##puts(tmpnewfilename)
-        #puts (tmpsid)
-        ##puts(newid2);##puts("300")
-      else
-        ##puts("invalid id - sql insert for renamed file")
       end #end of adding to the database
     end #end of identity
-    
-    #puts (resize);#puts (tmpresize);#puts (tmpresizepath);##puts('-235')
   end
   
   def getimageurl(tmpimageid=0,tmpwidth=900,wm=0,blankimage=".jpg")
     if (tmpimageid.to_i > 0 )
       sql2 = ActiveRecord::Base.connection()
-      ###puts("--AA-");##puts(sql.active?);##puts("--AA-");
       getid = sql2.execute ("call getimage (#{tmpimageid},#{tmpwidth}) ;") 
       row = getid.fetch_hash
       
@@ -282,11 +266,6 @@ class Imagex
       if (sql2.active? == false)
         sql2.reconnect! 
       end
-      ##puts("--AA-");##puts(sql.active?);##puts("--AA-");
-      #getid = sql.execute ("select  image_name,type,height,width,size,original_path,original from images where id = 366")
-      ###puts('---')
-      ##puts (row["image_name"])
-      ##puts(getid);##puts("RC35")
     end
   end
 end
