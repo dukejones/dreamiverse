@@ -5,29 +5,43 @@
   /* NEW DREAM LINK */
   /* NEW DREAM MOOD */
   /* NEW DREAM ATTACH */ }
-  #dreamField #new_dream-panel {
+  #dreamField .headers {
+    padding: 0 10px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    float: left;
+    cursor: pointer;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(white));
+    background: -moz-linear-gradient(top, #e1e1e1, white); }
+    #dreamField .headers img {
+      float: left; }
+  #dreamField #newDream-panel {
     width: 662px;
     padding: 8px; }
-    #dreamField #new_dream-panel #entryTypeWrap {
+    #dreamField #newDream-panel #entryTypeWrap {
       width: 126px; }
-      #dreamField #new_dream-panel #entryTypeWrap #entryType_current {
+      #dreamField #newDream-panel #entryTypeWrap #entryType_current {
         background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px; }
-      #dreamField #new_dream-panel #entryTypeWrap #entryType_list {
+      #dreamField #newDream-panel #entryTypeWrap #entryType_list {
         background: transparent;
         border: 0; }
-    #dreamField #new_dream-panel #dream_title, #dreamField #new_dream-panel #dream_body {
+    #dreamField #newDream-panel #dream_title, #dreamField #newDream-panel #dream_body {
       margin: 16px 0 0 20px;
       background: transparent;
       border: none; }
-    #dreamField #new_dream-panel #dream_title {
+    #dreamField #newDream-panel #dream_title {
       width: 500px;
       height: 26px;
       line-height: 26px; }
-    #dreamField #new_dream-panel #dream_body {
+    #dreamField #newDream-panel #dream_body {
       width: 626px;
       min-height: 134px;
       height: 134px; }
-    #dreamField #new_dream-panel #dreamEntryOptionsBar {
+    #dreamField #newDream-panel #entryOptions {
       width: 664px;
       height: 48px;
       margin: 0 auto;
@@ -35,7 +49,7 @@
       border: 1px solid #d7d7d7;
       background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#b7b7b7));
       background: -moz-linear-gradient(top, #ebebeb, #b7b7b7); }
-    #dreamField #new_dream-panel #myBooks, #dreamField #new_dream-panel #date, #dreamField #new_dream-panel #location, #dreamField #new_dream-panel #visibility, #dreamField #new_dream-panel #dream_submit, #dreamField #new_dream-panel #entryTypeWrap {
+    #dreamField #newDream-panel .myBooks, #dreamField #newDream-panel .date, #dreamField #newDream-panel .location, #dreamField #newDream-panel .visibility, #dreamField #newDream-panel #dream_submit, #dreamField #newDream-panel #entryTypeWrap {
       height: 34px;
       line-height: 34px;
       margin: 8px 0 0 8px;
@@ -47,14 +61,14 @@
       -webkit-border-radius: 16px;
       background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(white));
       background: -moz-linear-gradient(top, #e1e1e1, white); }
-    #dreamField #new_dream-panel #myBooks {
+    #dreamField #newDream-panel .myBooks {
       width: 184px;
       float: left; }
-    #dreamField #new_dream-panel #date, #dreamField #new_dream-panel #location {
+    #dreamField #newDream-panel .date, #dreamField #newDream-panel .location {
       width: 42px; }
-    #dreamField #new_dream-panel #visibility {
+    #dreamField #newDream-panel .visibility {
       width: 104px; }
-    #dreamField #new_dream-panel #dream_submit {
+    #dreamField #newDream-panel #dream_submit {
       width: 64px;
       margin-right: 8px;
       border: 0;
@@ -65,22 +79,40 @@
     border: 1px solid #333333;
     display: none; }
     #dreamField #new_dream-images #addFromImageBank {
+      float: left;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 8px;
       cursor: pointer;
       margin-left: 8px; }
+      #dreamField #new_dream-images #addFromImageBank img {
+        margin: 6px 8px 6px 0;
+        float: left; }
     #dreamField #new_dream-images #imageDropArea {
-      box-shadow: 0 8px 5px #999999 inset;
-      -moz-box-shadow: 0 8px 5px #999999 inset;
-      -webkit-box-shadow: 0 8px 5px #999999 inset;
-      background: white;
-      border: 1px solid white;
+      float: right;
       color: #7f7f7f;
       font-weight: bold;
       font-size: 13px;
       width: 380px;
       height: 32px;
-      line-height: 32px; }
+      line-height: 32px;
+      border: 1px solid white;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px;
+      background: white;
+      box-shadow: 0 8px 5px #999999 inset;
+      -moz-box-shadow: 0 8px 5px #999999 inset;
+      -webkit-box-shadow: 0 8px 5px #999999 inset; }
+      #dreamField #new_dream-images #imageDropArea img {
+        float: left;
+        margin: 6px 8px; }
     #dreamField #new_dream-images #currentImages {
       margin-top: 12px; }
+      #dreamField #new_dream-images #currentImages .dreamImageContainer, #dreamField #new_dream-images #currentImages .dreamImage {
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px; }
       #dreamField #new_dream-images #currentImages .dreamImageContainer {
         float: left;
         margin: 0px 8px 8px 0px;
@@ -95,14 +127,19 @@
           overflow: hidden;
           cursor: pointer; }
           #dreamField #new_dream-images #currentImages .dreamImageContainer .dreamImage .imageRemoveButton {
+            margin: 8px;
+            padding: 8px;
+            width: 12px;
+            height: 12px;
             cursor: pointer;
             display: inline-block;
             color: #ff1e00 !important;
             font-size: 12px;
             font-weight: bold;
             text-align: center;
-            width: 12px;
-            height: 12px; }
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px; }
         #dreamField #new_dream-images #currentImages .dreamImageContainer .dreamImageCaption {
           color: #333333;
           font-size: 16px;
@@ -113,23 +150,23 @@
           width: 184px;
           border: 0px;
           background: none; }
-  #dreamField #new_dream-tag {
+  #dreamField #newDream-tag {
     height: 144px; }
-    #dreamField #new_dream-tag #tagInputWrap {
+    #dreamField #newDream-tag #tagInputWrap {
       width: 520px;
       height: 40px;
       float: left;
       margin: 0 0 0 8px; }
-      #dreamField #new_dream-tag #tagInputWrap img {
+      #dreamField #newDream-tag #tagInputWrap img {
         float: left;
         margin: 0; }
-      #dreamField #new_dream-tag #tagInputWrap #tagInutTextFrame {
+      #dreamField #newDream-tag #tagInputWrap #tagInput {
         width: 480px;
         height: 40px;
         float: left;
         margin: 0;
         background: url(../images/slices/inputContentLight-40.png) repeat-x; }
-        #dreamField #new_dream-tag #tagInputWrap #tagInutTextFrame #tagInputText {
+        #dreamField #newDream-tag #tagInputWrap #tagInput input {
           width: 410px;
           height: 32px;
           float: left;
@@ -138,11 +175,11 @@
           font-size: 18px;
           background: transparent;
           border: 0; }
-      #dreamField #new_dream-tag #tagInputWrap #tagInputAdd {
+      #dreamField #newDream-tag #tagInputWrap #tagAdd {
         width: 62px;
         float: right;
         margin: 4px 0; }
-    #dreamField #new_dream-tag #tagBrowse {
+    #dreamField #newDream-tag #tagBrowse {
       width: 36px;
       height: 32px;
       float: right;
@@ -151,7 +188,7 @@
       border: 1px solid #c2c2c2;
       background: -webkit-gradient(linear, left top, left bottom, from(white), to(#c2c2c2));
       background: -moz-linear-gradient(top, white, #c2c2c2); }
-    #dreamField #new_dream-tag .tag-who, #dreamField #new_dream-tag .tag-where, #dreamField #new_dream-tag .tag-what {
+    #dreamField #newDream-tag .tag-who, #dreamField #newDream-tag .tag-where, #dreamField #newDream-tag .tag-what {
       height: 34px;
       line-height: 34px;
       text-align: center;
@@ -159,10 +196,10 @@
       -moz-border-radius: 8px;
       -webkit-border-radius: 8px;
       background: white; }
-    #dreamField #new_dream-tag .tag-who {
+    #dreamField #newDream-tag .tag-who {
       background: -webkit-gradient(linear, left top, left bottom, from(white), to(#c2c2c2));
       background: -moz-linear-gradient(top, white, #c2c2c2); }
-  #dreamField #new_dream-link #linkInputWrap {
+  #dreamField #newDream-link #linkInputWrap {
     box-shadow: 0 8px 5px #999999 inset;
     -moz-box-shadow: 0 8px 5px #999999 inset;
     -webkit-box-shadow: 0 8px 5px #999999 inset;
@@ -176,7 +213,7 @@
     width: 550px;
     height: 38px;
     line-height: 38px; }
-    #dreamField #new_dream-link #linkInputWrap #linkInput {
+    #dreamField #newDream-link #linkInputWrap input {
       width: 460px;
       height: 32px;
       float: left;
@@ -185,11 +222,11 @@
       font-size: 18px;
       background: transparent;
       border: 0; }
-    #dreamField #new_dream-link #linkInputWrap #linkInputAdd {
+    #dreamField #newDream-link #linkInputWrap #linkAdd {
       width: 62px;
       float: right;
       margin: 4px 14px 4px 0; }
-  #dreamField #new_dream-link .linkContainer {
+  #dreamField #newDream-link .linkContainer {
     clear: both;
     margin: 8px 0 0;
     padding: 3px 8px;
@@ -200,37 +237,37 @@
     border-radius: 8px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px; }
-    #dreamField #new_dream-link .linkContainer .linkTitle {
+    #dreamField #newDream-link .linkContainer .title {
       float: left;
       width: 122px;
       margin: 0 0 0 10px; }
-    #dreamField #new_dream-link .linkContainer .linkUrl {
+    #dreamField #newDream-link .linkContainer .url {
       text-align: center;
       float: left;
       margin: 0 0 0 102px;
       width: 214px; }
-    #dreamField #new_dream-link .linkContainer .linkIcon {
+    #dreamField #newDream-link .linkContainer .icon {
       float: right;
       width: 32px;
       height: 32px;
       border: 1px solid #999999; }
-  #dreamField #new_dream-mood {
+  #dreamField #newDream-mood {
     height: 160px; }
-    #dreamField #new_dream-mood ul {
+    #dreamField #newDream-mood ul {
       list-style: none;
       margin: 6px; }
-    #dreamField #new_dream-mood li, #dreamField #new_dream-mood a:link, #dreamField #new_dream-mood a:visited {
+    #dreamField #newDream-mood li, #dreamField #newDream-mood a:link, #dreamField #newDream-mood a:visited {
       float: left; }
-    #dreamField #new_dream-mood a:link, #dreamField #new_dream-mood a:visited {
+    #dreamField #newDream-mood a:link, #dreamField #newDream-mood a:visited {
       padding: 0 16px; }
-  #dreamField #new_dream-attach {
+  #dreamField #newDream-attach {
     height: 32px; }
-    #dreamField #new_dream-attach p {
+    #dreamField #newDream-attach p {
       height: 34px;
       line-height: 34px;
       margin: 0 30px;
       float: left; }
-    #dreamField #new_dream-attach #attach-tag, #dreamField #new_dream-attach #attach-images, #dreamField #new_dream-attach #attach-mood, #dreamField #new_dream-attach #attach-links, #dreamField #new_dream-attach #attach-analysis {
+    #dreamField #newDream-attach .tag, #dreamField #newDream-attach #attach-images, #dreamField #newDream-attach .mood, #dreamField #newDream-attach .links, #dreamField #newDream-attach .analysis {
       height: 34px;
       line-height: 34px;
       margin: 0 0 0 8px;
@@ -241,31 +278,18 @@
       -moz-border-radius: 16px;
       -webkit-border-radius: 16px;
       background: white; }
-    #dreamField #new_dream-attach #attach-tag {
+    #dreamField #newDream-attach .tag {
       width: 72px; }
-    #dreamField #new_dream-attach #attach-images {
+    #dreamField #newDream-attach #attach-images {
       width: 96px; }
-    #dreamField #new_dream-attach #attach-mood {
+    #dreamField #newDream-attach .mood {
       width: 90px; }
-    #dreamField #new_dream-attach #attach-links {
+    #dreamField #newDream-attach .links {
       width: 82px; }
-    #dreamField #new_dream-attach #attach-analysis {
+    #dreamField #newDream-attach .analysis {
       width: 100px; }
 
 /* UNIVERSAL STYLES */
-.new_dream_Headers {
-  padding: 0 10px;
-  height: 34px;
-  line-height: 34px;
-  text-align: center;
-  float: left;
-  cursor: pointer;
-  border-radius: 16px;
-  -moz-border-radius: 16px;
-  -webkit-border-radius: 16px;
-  background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(white));
-  background: -moz-linear-gradient(top, #e1e1e1, white); }
-
 .round8button-0-15 {
   height: 30px;
   line-height: 30px;
@@ -277,7 +301,7 @@
   background: -webkit-gradient(linear, left top, left bottom, from(white), to(#e1e1e1));
   background: -moz-linear-gradient(top, white, #e1e1e1); }
 
-#new_dream-tag, #new_dream-attach, #new_dream-link, #new_dream-mood {
+.newDream_assets {
   width: 662px;
   padding: 8px;
   border: 1px solid #464646;
