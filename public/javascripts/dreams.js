@@ -24,10 +24,13 @@ function setupEvents(){
 function checkForPastedLink(newText){
   var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
   if(regexp.test(newText)){
-    alert('is link')
-  } else {
-    alert('not link')
+    addLink(newText)
   }
+}
+
+function addLink(newText){
+  var newElement = '<div class="linkContainer"><div class="title">Title of Link</div><div class="url">' + newText + '</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+  $('#newDream-link').append(newElement); 
 }
 
 function resetImageButtons(){
