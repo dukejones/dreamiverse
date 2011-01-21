@@ -143,6 +143,7 @@ protected
       if (url_matches = @incoming_filename.scan(/(^http-::[^\s]+)(.*)/).first)
         url, extra = url_matches
         url.gsub!(':','/')
+        url.sub!('http-','http:')
         self.source_url = url
         last_bit = url.split('/').last
         @incoming_filename = last_bit + extra
