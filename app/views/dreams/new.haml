@@ -8,7 +8,7 @@
 / DREAM ENTRY
 #dreamField
 
-  #new_dream-panel.light.O.round-16.glow-40
+  #newDream-panel.light.O.round-16.glow-40
     #entryTypeWrap
       %span#entryType_current{value: 'Dream'}
       %select#entryType_list
@@ -20,48 +20,48 @@
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
       = f.text_area :body
 
-      #dreamEntryOptionsBar.round-16.light.C-shine
-        #myBooks My Lucid Dreams
+      #entryOptions.round-16.light.C-shine
+        .myBooks My Lucid Dreams
         = f.submit :value => 'post', :class => 'button-big-green'
-        #visibility Everyone
-        #location Local
-        #date Date
+        .visibility Everyone
+        .location Local
+        .date Date
   
   = render :partial => "image_panel"
   
-  #new_dream-tag.round-16.light.transparent-50
-    .new_dream_Headers tag
+  #newDream-tag.newDream_assets.light.transparent-50
+    .headers tag
     #tagInputWrap
       %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
-      #tagInutTextFrame
-        %input#tagInputText
-        #tagInputAdd.round8button-0-15 Add
+      #tagInput
+        %input
+        #tagAdd.round8button-0-15 Add
       %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
     #tagBrowse.round-8
       %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
   
-  #new_dream-link.round-16.light.transparent-50
-    .new_dream_Headers links
+  #newDream-link.newDream_assets.light.transparent-50
+    .headers links
     #linkInputWrap
-      %input#linkInput
-      #linkInputAdd.round8button-0-15 Add
+      %input
+      #linkAdd.round8button-0-15 Add
     .linkContainer
-      .linkTitle Title of Link
-      .linkUrl http://www.urloflink.com/link
-      .linkIcon icon
+      .title Title of Link
+      .url http://www.urloflink.com/link
+      .icon icon
   
-  #new_dream-mood.round-16.light.transparent-50
-    .new_dream_Headers mood
+  #newDream-mood.newDream_assets.light.transparent-50
+    .headers mood
     %ul
       <li><a href="/">smilies</a> |</li>
       <li><a href="/">classical</a> |</li>
       <li><a href="/">animals</a> |</li>
       <li><a href="/">emotional profile</a> |</li>
   
-  #new_dream-attach.round-16.light.transparent-50
+  #newDream-attach.newDream_assets.light.transparent-50
     %p attach:
-    #attach-tag tag
+    .tag tag
     #attach-images images
-    #attach-mood mood
-    #attach-links links
-    #attach-analysis analysis
+    .mood mood
+    .links links
+    .analysis analysis
