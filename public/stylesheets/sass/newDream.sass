@@ -233,6 +233,7 @@
         margin: 4px 14px 4px 0
     .linkContainer
       clear: both
+      display: none
       margin: 8px 0 0
       padding: 3px 8px
       width: 632px
@@ -246,17 +247,30 @@
         float: left
         width: 122px
         margin: 0 0 0 10px 
+        cursor: pointer
       .url
-        text-align: center
+        text-align: left
         float: left
         margin: 0 0 0 102px
-        width: 214px
+        width: 330px
+        cursor: pointer
       .icon
         float: right
         width: 32px
         height: 32px
-        border: 1px solid #999
-
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+      .removeicon
+        float: right
+        width: 32px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+        cursor: pointer
+        color: red
+       
   /* NEW DREAM MOOD */
   #newDream-mood
     height: 160px
@@ -300,6 +314,7 @@
 
 /* UNIVERSAL STYLES */
 .round8button-0-15
+  cursor: pointer
   height: 30px
   line-height: 30px
   text-align: center
