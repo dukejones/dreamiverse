@@ -29,4 +29,5 @@ group :development, :test do
   gem 'capistrano-ext'
   gem 'webrat'
   gem 'ruby-debug19'
+  gem 'factory_girl'
 end
