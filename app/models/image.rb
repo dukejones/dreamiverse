@@ -1,10 +1,12 @@
 class Image < ActiveRecord::Base
+  UPLOADS_PATH = "images/uploads"
+
   #
   # Callbacks 
   #
   before_validation :parse_incoming_parameters
   
-  # on_destroy: delete the files: original & resized.
+  before_destroy :delete_all_files!
 
   #
   # Validations
@@ -79,9 +81,9 @@ class Image < ActiveRecord::Base
   end
 
   def url(descriptor=nil)
-    path = "/images/uploads"
+    path = UPLOADS_PATH
     path += '/originals' unless descriptor
-    "#{path}/#{filename(descriptor)}"
+    "/#{path}/#{filename(descriptor)}"
   end
   
   def filename(descriptor=nil)
@@ -171,4 +173,16 @@ protected
     })
   end
 
+  def delete_all_files!
+    File.delete self.path
+    Rails.logger.info "Deleted #{self.path}."
+    delete_all_resized_files!
+  end
+
+  def delete_all_resized_files!
+    Dir["#{Rails.public_path}/#{UPLOADS_PATH}/#{self.id}-*"].each do |filename|
+      File.delete filename
+      Rails.logger.info "Deleted #{filename}."
+    end
+  end
 end
