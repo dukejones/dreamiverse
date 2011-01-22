@@ -1,7 +1,6 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs'
-  = stylesheet_link_tag 'contextPanel'
-  = javascript_include_tag 'jquery-ui.min', 'modal'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream'
+  = javascript_include_tag 'jquery-ui.min', 'modal', 'jquery-1', 'jquery', 'ga'
 
 
 
@@ -15,7 +14,10 @@
 #dreamField
 
   / NEW ENTRY BAR
-  =render :partial => 'entry_bar'
+  =render :partial => 'newEntry'
+  
+  / TAG ENTRY & STREAM
+  =render :partial => 'tag_stream'
 
   / DREAM THUMBS
   - @dreams.each do |dream|
@@ -23,7 +25,7 @@
 
   / NO DREAMS TO DISPLAY
   - if @dreams.empty?
-    .light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+    .noDreams.light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
 
 
 

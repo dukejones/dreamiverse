@@ -1,0 +1,122 @@
+.tagStream {
+  width: 656px;
+  height: 96px;
+  margin: 0px 0 20px 0;
+  position: absolute;
+  padding: 12px; }
+  .tagStream .stream {
+    background: black;
+    width: 656px;
+    height: 98px;
+    position: relative;
+    z-index: 333; }
+
+.stream-convo {
+  padding: 4px;
+  left: 0;
+  position: absolute;
+  top: 50px;
+  z-index: 333;
+  width: 360px; }
+  .stream-convo .connector-arrow-convo {
+    position: absolute;
+    top: -10px;
+    left: 180px; }
+  .stream-convo .tag-description {
+    padding: 8px;
+    margin-bottom: 4px;
+    color: #4c4c4c !important;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+    height: 30px;
+    line-height: 30px; }
+  .stream-convo .user-bar {
+    padding: 4px; }
+  .stream-convo .user-bar-img {
+    float: left;
+    width: 20px;
+    height: 20px; }
+  .stream-convo .user-title {
+    background-color: #cecece;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 11px;
+    height: 16px;
+    padding: 2px 4px;
+    margin-left: 5px;
+    float: left; }
+  .stream-convo .post-time {
+    color: #a1a1a1;
+    display: inline-block;
+    float: left;
+    margin-left: 5px;
+    font-size: 11px;
+    height: 20px;
+    line-height: 20px; }
+  .stream-convo .post-title-social {
+    float: right; }
+  .stream-convo .convo {
+    padding: 4px;
+    margin-top: 4px;
+    background: none repeat scroll 0% 0% white; }
+    .stream-convo .convo .userComment {
+      height: 26px;
+      padding: 4px; }
+    .stream-convo .convo .post-comment {
+      color: #4c4c4c;
+      display: inline-block;
+      float: left;
+      margin-left: 5px;
+      font-size: 12px;
+      height: 20px;
+      line-height: 20px; }
+    .stream-convo .convo .input {
+      padding: 4px;
+      height: 26px; }
+      .stream-convo .convo .input img {
+        float: right;
+        margin: 6px; }
+      .stream-convo .convo .input input {
+        float: left;
+        width: 90%;
+        height: 26px;
+        border: 0;
+        background: transparent; }
+
+.stream-node {
+  position: absolute;
+  min-height: 15px;
+  display: inline-block;
+  padding: 10px;
+  cursor: pointer;
+  left: -200px;
+  float: left; }
+  .stream-node span {
+    padding: 5px;
+    display: block;
+    font-size: 12px;
+    font-weight: bold; }
+
+.stream-count {
+  background-color: #a63700;
+  color: white;
+  font-size: 9px;
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  padding: 1px 4px; }
+
+.stream-node-user {
+  padding: 0px !important;
+  margin: 10px;
+  height: 24px !important; }
+  .stream-node-user span {
+    float: left;
+    padding: 4px !important; }
+
+.stream-avatar {
+  width: 24px;
+  height: 24px;
+  overflow: hidden;
+  float: left; }

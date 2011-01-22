@@ -1,0 +1,141 @@
+#tagEntry
+  margin: 0
+  padding: 8px 12px
+  position: absolute
+  width: 656px
+  height: 40px
+  background: #fff
+  z-index: 1000
+  .inputWrap
+    width: 660px
+    height: 40px
+    float: left
+    margin: 0
+    img
+      float: left
+      margin: 0
+    .input
+      width: 612px
+      height: 40px
+      float: left
+      margin: 0
+      background: url(../images/slices/inputContentLight-40.png) repeat-x
+      input
+        width: 480px
+        height: 32px
+        float: left
+        line-height: 32px
+        margin: 4px 0
+        font-size: 18px
+        background: transparent
+        border: 0
+      #location, #visibility
+        margin: 14px 8px 0 0
+        float: right
+        cursor: pointer
+      #location
+        margin-top: 12px
+    #add
+      width: 62px
+      height: 30px
+      line-height: 30px
+      float: right
+      margin: 4px 0
+      cursor: pointer
+      text-align: center
+      color: #fff
+      border: 1px solid #C2C2C2
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      background: -webkit-gradient(linear, left top, left bottom, from(#464646), to(#000))
+      background: -moz-linear-gradient(top, #464646, #000) /* gradient-80-100 */
+      span
+        color: #349200
+
+
+  /* AUTOCOMPLETE */
+  #autocomplete
+    padding: 4px
+    width: 207px
+    min-height: 32px
+    position: absolute 
+    top: 48px
+    left: 36px
+    z-index: 100
+    ul
+      list-style-type: none
+      margin: 0px
+      padding: 0px
+      li
+        height: 32px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
+        line-height: 32px
+        color: #666
+        border: 1px solid #ccc
+        cursor: pointer
+      .result-listing
+      .result-listing:hover
+        background: -webkit-gradient(linear, left top, left bottom, from(#7D7D7D), to(#000))
+        background: -moz-linear-gradient(top, #7D7D7D, #000) /* gradient-60-100 */
+      a
+        float: left
+        display: inline-block
+        font-weight: bold
+      .user-stream-node
+        float: right
+        .user-stream-status
+          z-index: 200
+          position: relative
+          top: 3px
+          right: 3px
+          float: right
+          width: 17px 
+          height: 17px
+          overflow: hidden 
+          cursor: pointer
+          background: url('../images/icons/friend-stream-sprite.png') no-repeat 0% 0%
+          margin: 8px
+          top: 0px !important
+          left: 0px !important
+
+
+  /* TAG NODE */
+  #tag-node
+    width: 150px
+    height: 32px
+    position: absolute
+    top: 12px
+    left: 48px
+    float: left
+    line-height: 32px
+    font-weight: bold
+    background: #b6b5b3
+    -moz-box-shadow: 0 15px 10px #e6e6e6 inset
+    span
+      float: left
+      margin-left: 10px
+    #remove-tag
+      position: absolute
+      top: 7px
+      right: 6px
+      cursor: pointer
+
+
+  /* UNIVERSAL NEW ENTRY STYLES */
+  .auto-avatar
+    height: 32px
+    border-radius: 8px
+    -moz-border-radius: 8px
+    -webkit-border-radius: 8px
+    width: 32px
+    overflow: hidden
+    float: left !important
+    margin-right: 10px
+    display: inline-block
+
+.noDreams
+  position: absolute
+  top: 200px

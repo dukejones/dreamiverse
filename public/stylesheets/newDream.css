@@ -271,6 +271,8 @@
       margin: 0 0 0 102px;
       width: 330px;
       cursor: pointer; }
+      #dreamField #newDream-link .linkContainer .url a:link, #dreamField #newDream-link .linkContainer .url a:visited {
+        height: 14px; }
     #dreamField #newDream-link .linkContainer .icon {
       float: right;
       width: 32px;
