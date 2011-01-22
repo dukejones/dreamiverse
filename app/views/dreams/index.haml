@@ -19,13 +19,16 @@
   / TAG ENTRY & STREAM
   =render :partial => 'tag_stream'
 
-  / DREAM THUMBS
-  - @dreams.each do |dream|
-    = render :partial => 'dream_thumb', :locals => {:dream => dream}
+  / DREAM MATRIX
+  .matrix
 
-  / NO DREAMS TO DISPLAY
-  - if @dreams.empty?
-    .noDreams.light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+    / DREAM THUMBS
+    - @dreams.each do |dream|
+      = render :partial => 'dream_thumb', :locals => {:dream => dream}
+
+    / NO DREAMS TO DISPLAY
+    - if @dreams.empty?
+      .noDreams.light.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
 
 
 
