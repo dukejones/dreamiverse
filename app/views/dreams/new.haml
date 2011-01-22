@@ -10,6 +10,7 @@
 
   #newDream-panel.light.O.round-16.glow-40
     #entryTypeWrap
+      %img{src: '/images/icons/entryType-32.png'}
       %span#entryType_current{value: 'Dream'}
       %select#entryType_list
         %option{value: 'Dream'} Dream
@@ -21,15 +22,19 @@
       = f.text_area :body
 
       #entryOptions.round-16.light.C-shine
-        .myBooks My Lucid Dreams
+        .myBooks
+          %img{src: '/images/icons/books-16.png'} My Lucid Dreams
         = f.submit :value => 'post', :class => 'button-big-green'
-        .visibility Everyone
-        .location Local
-        .date Date
+        .visibility
+          %img{src: '/images/icons/visibility-16.png'} Everyone
+        .location
+          %img{src: '/images/icons/location-21.png'}
+        .date
+          %img{src: '/images/icons/date-19.png'}
   
   = render :partial => "image_panel"
   
-  #newDream-tag.newDream_assets.light.transparent-50
+  #newDream-tag.newDream_assets.hidden.light.transparent-50
     .headers tag
     #tagInputWrap
       %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
@@ -40,14 +45,14 @@
     #tagBrowse.round-8
       %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
   
-  #newDream-link.newDream_assets.light.transparent-50
+  #newDream-link.newDream_assets.hidden.light.transparent-50
     .headers links
     #linkInputWrap
       %input#linkValue
       #linkAdd.round8button-0-15 Add
     %br{style: 'clear: both;'}
   
-  #newDream-mood.newDream_assets.light.transparent-50
+  #newDream-mood.newDream_assets.hidden.light.transparent-50
     .headers mood
     %ul
       <li><a href="/">smilies</a> |</li>
