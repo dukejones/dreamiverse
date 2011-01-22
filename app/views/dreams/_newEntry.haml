@@ -1,0 +1,34 @@
+#entryBar.round-16.light.transparent-50
+  %a.entryBar_entry.block{href: new_dream_path} new entry
+  .entryBar_tag tag
+  .entryBar_quote quote
+  .entryBar_book book
+
+#tagEntry.round-16.light.glow-40
+  #stream-input.inputWrap
+    %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
+    .input
+      %input#stream-form{maxlength: '60', name: 'dreamTitle', value: 'WHO / WHAT / WHERE are you dreaming?'}
+      #add
+        %span +
+        Add
+      %img#visibility{src: '/images/icons/visibility-16.png'}
+      %img#location{src: '/images/icons/location-21.png'}
+    %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+
+  #autocomplete.light.A-bevel.round-12
+    %ul
+      %li#searching-temp &nbsp;SEARCHING
+      %li.result-listing
+        .auto-avatar
+          %img{src: '/images/avatars/xavitar.jpg'}
+        %a{href: '#'} Xavi
+        // User-follow
+        .user-stream-node
+          .user-stream-status
+
+  #tag-node.round-8
+    .auto-avatar.round-8
+      %img{src: '/images/avatars/xavitar.jpg'}
+    %span Xavi
+    %img#remove-tag{src: '/images/icons/removeTag-16.png'}
