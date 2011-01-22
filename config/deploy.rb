@@ -15,18 +15,14 @@ set :scm_verbose, true
 set :user, "www-data"
 set :use_sudo, false
 
-#role :web, "dev.dreamcatcher.net"                          # Your HTTP server, Apache/etc
-#role :app, "dev.dreamcatcher.net"                          # This may be the same as your `Web` server
-#role :db,  "dev.dreamcatcher.net", :primary => true # This is where Rails migrations will run
 server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
-
 set :deploy_to, "/var/www/#{application}"
 
-after "deploy", "deploy:cleanup"
-after "deploy:migrations", "deploy:cleanup"
 
+after "deploy", "deploy:cleanup"
 after "deploy", "uploads:symlink"
-after "deploy:migrations", "uploads:symlink"
+after "deploy", "deploy:migrate"
+
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
