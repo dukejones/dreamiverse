@@ -628,10 +628,11 @@ TD.form_label B {}
 
 /* SETTINGS MENU */
 #settings_menu { float:right; margin-right: 10px }
-#userNode { overflow: hidden; margin:0 0 -2px; height: 30px; border: 1px solid #999; cursor: pointer; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px;}
-#userNode:hover { border: 1px solid #ccc }
-#userNode span { color: #fff; display: block; margin-left: 32px; background-color: #000; padding: 2px 4px 8px }
-#settingsButton a img { margin: 1px 1px -2px; border: 0px }
+#settings_menu .user { overflow: hidden; margin:0 0 -2px; height: 30px; border: 1px solid #999; cursor: pointer; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px;}
+#settings_menu .user:hover { border: 1px solid #ccc }
+#settings_menu .user span { color: #fff; display: block; margin-left: 32px; background-color: #000; padding: 2px 4px 8px }
+#settings_menu .account a img { margin: -2px 1px -2px; border: 0px }
+#settings_menu .appearance a img { margin: -4px 0px -2px; border: 0px }
 
 /* FLOATING BUTTONS */
 #dreamStarLink { position: absolute; top: 0; left: 420px; margin: 8px; text-decoration: none; height: 21px }
@@ -640,6 +641,7 @@ TD.form_label B {}
 #adminLink img { padding-top:2px; }
 #newEntry { display: block; padding: 4px 8px; font-size: 17px; font-weight: bold; margin: 8px 12px 0 0; text-decoration: none; border: 2px solid transparent }
 #newEntry span { color: #093 }
+#logOut {margin: 10px 8px 0 0; text-decoration: none; }
 
 
 

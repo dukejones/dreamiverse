@@ -265,14 +265,20 @@
       width: 122px;
       margin: 0 0 0 10px;
       cursor: pointer; }
+    #dreamField #newDream-link .linkContainer .linkTitleValue {
+      border: none;
+      background: white;
+      font-size: 14px; }
     #dreamField #newDream-link .linkContainer .url {
       text-align: left;
       float: left;
       margin: 0 0 0 102px;
       width: 330px;
-      cursor: pointer; }
+      cursor: pointer;}
       #dreamField #newDream-link .linkContainer .url a:link, #dreamField #newDream-link .linkContainer .url a:visited {
-        height: 14px; }
+        height: 14px;
+        cursor: pointer;
+        overflow: hidden;}
     #dreamField #newDream-link .linkContainer .icon {
       float: right;
       width: 32px;
