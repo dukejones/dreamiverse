@@ -661,24 +661,6 @@ TD.form_label B {}
 #dreamField .matrix {position: absolute; top: 200px}
 
 
-/*********** ENTRY BAR ***********/
-#entryBar {width:680px; height:48px; margin:0 0 15px;}
-#entryBar a {text-decoration:none; color:#000}
-.entryBar_entry, .entryBar_tag, .entryBar_quote, .entryBar_book {height:32px; line-height:32px; float:left; margin:8px 0 0 10px; padding:0; text-align:center; border:1px solid #ACACAC; cursor:pointer;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ACACAC));
-  background: -moz-linear-gradient(top, #fff, #ACACAC); /* gradient-0-40 */
-  border-radius:16px; -moz-border-radius:16px; -webkit-border-radius:16px;}
-.entryBar_entry {width:114px;
-  background:#fff;
-  -moz-box-shadow: 0 8px 5px #CCCCCC inset;
-  -webkit-box-shadow: 0 8px 5px #CCCCCC inset;
-  box-shadow: 0 8px 5px #CCCCCC inset;
-  cursor:text}
-.entryBar_tag {width:70px;}
-.entryBar_quote {width:96px;}
-.entryBar_book {width:88px; float:right; margin:8px 10px 0 10px;}
-
-
 /*********** OLD MODIFY DREAM - after theta launch, probably can delete ***********/
 /* SHARING SETTINGS */
 #sharing-module {position: relative;}

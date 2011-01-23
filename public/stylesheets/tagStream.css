@@ -45,7 +45,10 @@
     font-size: 11px;
     height: 16px;
     padding: 2px 4px;
-    margin-left: 5px; }
+    margin-left: 5px;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px; }
   .tagChat .time {
     color: #a1a1a1;
     display: inline-block;
@@ -78,7 +81,7 @@
         margin: 6px; }
       .tagChat .chat .input input {
         margin-left: 4px;
-        width: 90%;
+        width: 88%;
         height: 24px;
         border: 0;
         background: transparent; }

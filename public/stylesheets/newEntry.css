@@ -1,3 +1,42 @@
+/* ENTRY BAR */
+#entryBar {
+  width: 680px;
+  height: 48px;
+  margin: 0 0 15px; }
+  #entryBar a:link, #entryBar a:visited {
+    display: block;
+    text-decoration: none;
+    color: black; }
+  #entryBar .entry, #entryBar .tag, #entryBar .quote, #entryBar .book {
+    height: 32px;
+    line-height: 32px;
+    float: left;
+    margin: 8px 0 0 10px;
+    padding: 0;
+    text-align: center;
+    border: 1px solid #acacac;
+    cursor: pointer;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#acacac));
+    background: -moz-linear-gradient(top, white, #acacac);
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px; }
+  #entryBar .entry {
+    width: 114px;
+    background: white;
+    -moz-box-shadow: 0 8px 5px #cccccc inset;
+    -webkit-box-shadow: 0 8px 5px #cccccc inset;
+    box-shadow: 0 8px 5px #cccccc inset;
+    cursor: text; }
+  #entryBar .tag {
+    width: 70px; }
+  #entryBar .quote {
+    width: 96px; }
+  #entryBar .book {
+    width: 88px;
+    float: right;
+    margin: 8px 10px 0 10px; }
+
 #tagEntry {
   margin: 0;
   padding: 8px 12px;
@@ -6,39 +45,38 @@
   height: 40px;
   background: white;
   z-index: 1000;
-  /* AUTOCOMPLETE */
+  /* AUTO COMPLETE */
   /* TAG NODE */
   /* UNIVERSAL NEW ENTRY STYLES */ }
-  #tagEntry .inputWrap {
+  #tagEntry .entryWrap, #tagEntry .input, #tagEntry input {
+    float: left; }
+  #tagEntry .entryWrap {
     width: 660px;
     height: 40px;
-    float: left;
     margin: 0; }
-    #tagEntry .inputWrap img {
+    #tagEntry .entryWrap img {
       float: left;
       margin: 0; }
-    #tagEntry .inputWrap .input {
+    #tagEntry .entryWrap .input {
       width: 612px;
       height: 40px;
-      float: left;
       margin: 0;
       background: url(../images/slices/inputContentLight-40.png) repeat-x; }
-      #tagEntry .inputWrap .input input {
+      #tagEntry .entryWrap .input input {
         width: 480px;
         height: 32px;
-        float: left;
         line-height: 32px;
         margin: 4px 0;
         font-size: 18px;
         background: transparent;
         border: 0; }
-      #tagEntry .inputWrap .input #location, #tagEntry .inputWrap .input #visibility {
+      #tagEntry .entryWrap .input .location, #tagEntry .entryWrap .input .visibility {
         margin: 14px 8px 0 0;
         float: right;
         cursor: pointer; }
-      #tagEntry .inputWrap .input #location {
+      #tagEntry .entryWrap .input .location {
         margin-top: 12px; }
-    #tagEntry .inputWrap #add {
+    #tagEntry .entryWrap .add {
       width: 62px;
       height: 30px;
       line-height: 30px;
@@ -53,9 +91,9 @@
       -webkit-border-radius: 8px;
       background: -webkit-gradient(linear, left top, left bottom, from(#464646), to(black));
       background: -moz-linear-gradient(top, #464646, black); }
-      #tagEntry .inputWrap #add span {
+      #tagEntry .entryWrap .add span {
         color: #349200; }
-  #tagEntry #autocomplete {
+  #tagEntry #autoComplete {
     padding: 4px;
     width: 207px;
     min-height: 32px;
@@ -63,11 +101,11 @@
     top: 48px;
     left: 36px;
     z-index: 100; }
-    #tagEntry #autocomplete ul {
+    #tagEntry #autoComplete ul {
       list-style-type: none;
       margin: 0px;
       padding: 0px; }
-      #tagEntry #autocomplete ul li {
+      #tagEntry #autoComplete ul li {
         height: 32px;
         border-radius: 8px;
         -moz-border-radius: 8px;
@@ -76,30 +114,31 @@
         color: #666666;
         border: 1px solid #cccccc;
         cursor: pointer; }
-      #tagEntry #autocomplete ul .result-listing:hover {
+      #tagEntry #autoComplete ul .results:hover {
         background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(black));
         background: -moz-linear-gradient(top, #7d7d7d, black); }
-      #tagEntry #autocomplete ul a {
+      #tagEntry #autoComplete ul .results:hover a:link {
+        color: white; }
+      #tagEntry #autoComplete ul a:link, #tagEntry #autoComplete ul a:visited {
         float: left;
         display: inline-block;
         font-weight: bold; }
-      #tagEntry #autocomplete ul .user-stream-node {
-        float: right; }
-        #tagEntry #autocomplete ul .user-stream-node .user-stream-status {
-          z-index: 200;
-          position: relative;
-          top: 3px;
-          right: 3px;
-          float: right;
-          width: 17px;
-          height: 17px;
-          overflow: hidden;
-          cursor: pointer;
-          background: url("../images/icons/friend-stream-sprite.png") no-repeat 0% 0%;
-          margin: 8px;
-          top: 0px !important;
-          left: 0px !important; }
-  #tagEntry #tag-node {
+      #tagEntry #autoComplete ul .userStatus {
+        float: right;
+        z-index: 200;
+        position: relative;
+        top: 3px;
+        right: 3px;
+        float: right;
+        width: 17px;
+        height: 17px;
+        overflow: hidden;
+        cursor: pointer;
+        background: url("../images/icons/friend-stream-sprite.png") no-repeat 0% 0%;
+        margin: 8px;
+        top: 0px !important;
+        left: 0px !important; }
+  #tagEntry .tagNode {
     width: 150px;
     height: 32px;
     position: absolute;
@@ -110,15 +149,15 @@
     font-weight: bold;
     background: #b6b5b3;
     -moz-box-shadow: 0 15px 10px #e6e6e6 inset; }
-    #tagEntry #tag-node span {
+    #tagEntry .tagNode span {
       float: left;
       margin-left: 10px; }
-    #tagEntry #tag-node #remove-tag {
+    #tagEntry .tagNode .removeTag {
       position: absolute;
       top: 7px;
       right: 6px;
       cursor: pointer; }
-  #tagEntry .auto-avatar {
+  #tagEntry .avatar {
     height: 32px;
     border-radius: 8px;
     -moz-border-radius: 8px;

@@ -1,3 +1,43 @@
+/* ENTRY BAR */
+#entryBar
+  width: 680px
+  height: 48px
+  margin: 0 0 15px
+  a:link, a:visited
+    display: block
+    text-decoration: none
+    color: #000
+  .entry, .tag, .quote, .book
+    height: 32px
+    line-height: 32px
+    float: left
+    margin: 8px 0 0 10px
+    padding: 0
+    text-align: center
+    border: 1px solid #ACACAC
+    cursor: pointer
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ACACAC))
+    background: -moz-linear-gradient(top, #fff, #ACACAC) /* gradient-0-40 */
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+  .entry
+    width: 114px
+    background: #fff
+    -moz-box-shadow: 0 8px 5px #CCCCCC inset
+    -webkit-box-shadow: 0 8px 5px #CCCCCC inset
+    box-shadow: 0 8px 5px #CCCCCC inset
+    cursor: text
+  .tag
+    width: 70px
+  .quote
+    width: 96px
+  .book
+    width: 88px
+    float: right
+    margin: 8px 10px 0 10px
+
+
 #tagEntry
   margin: 0
   padding: 8px 12px
@@ -6,10 +46,11 @@
   height: 40px
   background: #fff
   z-index: 1000
-  .inputWrap
+  .entryWrap, .input, input
+    float: left
+  .entryWrap
     width: 660px
     height: 40px
-    float: left
     margin: 0
     img
       float: left
@@ -17,25 +58,23 @@
     .input
       width: 612px
       height: 40px
-      float: left
       margin: 0
       background: url(../images/slices/inputContentLight-40.png) repeat-x
       input
         width: 480px
         height: 32px
-        float: left
         line-height: 32px
         margin: 4px 0
         font-size: 18px
         background: transparent
         border: 0
-      #location, #visibility
+      .location, .visibility
         margin: 14px 8px 0 0
         float: right
         cursor: pointer
-      #location
+      .location
         margin-top: 12px
-    #add
+    .add
       width: 62px
       height: 30px
       line-height: 30px
@@ -54,8 +93,8 @@
         color: #349200
 
 
-  /* AUTOCOMPLETE */
-  #autocomplete
+  /* AUTO COMPLETE */
+  #autoComplete
     padding: 4px
     width: 207px
     min-height: 32px
@@ -76,34 +115,35 @@
         color: #666
         border: 1px solid #ccc
         cursor: pointer
-      .result-listing
-      .result-listing:hover
+      .results
+      .results:hover
         background: -webkit-gradient(linear, left top, left bottom, from(#7D7D7D), to(#000))
         background: -moz-linear-gradient(top, #7D7D7D, #000) /* gradient-60-100 */
-      a
+      .results:hover a:link
+        color: #fff
+      a:link, a:visited
         float: left
         display: inline-block
         font-weight: bold
-      .user-stream-node
+      .userStatus
         float: right
-        .user-stream-status
-          z-index: 200
-          position: relative
-          top: 3px
-          right: 3px
-          float: right
-          width: 17px 
-          height: 17px
-          overflow: hidden 
-          cursor: pointer
-          background: url('../images/icons/friend-stream-sprite.png') no-repeat 0% 0%
-          margin: 8px
-          top: 0px !important
-          left: 0px !important
+        z-index: 200
+        position: relative
+        top: 3px
+        right: 3px
+        float: right
+        width: 17px 
+        height: 17px
+        overflow: hidden 
+        cursor: pointer
+        background: url('../images/icons/friend-stream-sprite.png') no-repeat 0% 0%
+        margin: 8px
+        top: 0px !important
+        left: 0px !important
 
 
   /* TAG NODE */
-  #tag-node
+  .tagNode
     width: 150px
     height: 32px
     position: absolute
@@ -117,7 +157,7 @@
     span
       float: left
       margin-left: 10px
-    #remove-tag
+    .removeTag
       position: absolute
       top: 7px
       right: 6px
@@ -125,7 +165,7 @@
 
 
   /* UNIVERSAL NEW ENTRY STYLES */
-  .auto-avatar
+  .avatar
     height: 32px
     border-radius: 8px
     -moz-border-radius: 8px
