@@ -626,11 +626,11 @@ qq.extend(qq.FileUploader.prototype, {
         });                
     },
     _onSubmit: function(id, fileName){
-        if($('#IB_current_type').text() != "Choose" && $('#IB_current_genre').text() != "Choose"){
+        if($('#IB_current_genre').text() != 'Choose'){
           qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
           this._addToList(id, fileName);
         } else {
-          alert('Please choose a TYPE & GENRE for this image.')
+          alert('You must choose a Genre.')
         }
     },
     _onProgress: function(id, fileName, loaded, total){
