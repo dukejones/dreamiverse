@@ -358,6 +358,7 @@ var updateCurrentImagesMeta = function(){
 }
 
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){
+  totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
     alert('Images have been updated.')
   }
