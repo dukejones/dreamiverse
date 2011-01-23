@@ -30,6 +30,8 @@
     height: 24px;
     padding: 8px 3px;
     margin: 0; }
+    #contextPanel .item .image img.dream {
+      margin: -8px -4px; }
     #contextPanel .item .image img.starlight {
       margin: -20px;
       z-index: 1004; }
