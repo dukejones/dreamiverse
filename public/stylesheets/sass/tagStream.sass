@@ -11,18 +11,18 @@
     position:  relative
     z-index: 333
 
-.stream-convo
+.tagChat
   padding: 4px
   left: 0
   position: absolute
   top: 50px
   z-index: 333
   width: 360px
-  .connector-arrow-convo
+  .arrow
     position: absolute
     top: -10px
     left: 180px
-  .tag-description
+  .description
     padding: 8px
     margin-bottom: 4px
     color: #4c4c4c !important
@@ -31,13 +31,14 @@
     text-align: center
     height: 30px
     line-height: 30px
-  .user-bar
+  .postInfo
     padding: 4px
-  .user-bar-img
+  .avatar, .name, .time, .comment, input
     float: left
+  .avatar
     width: 20px
     height: 20px
-  .user-title
+  .name
     background-color: #cecece
     display: inline-block
     font-weight: bold
@@ -45,42 +46,40 @@
     height: 16px
     padding: 2px 4px
     margin-left: 5px
-    float: left
-  .post-time
+  .time
     color: #a1a1a1
     display: inline-block
-    float: left
     margin-left: 5px
     font-size: 11px
     height: 20px
     line-height: 20px
-  .post-title-social
+  .shared
     float: right
-  .convo
+    margin: 4px 4px 0 0
+  .chat
     padding: 4px
     margin-top: 4px
     background: none repeat scroll 0% 0% rgb(255, 255, 255)
     .userComment
       height: 26px
       padding: 4px
-    .post-comment
+    .comment
       color: #4C4C4C
       display: inline-block
-      float: left
       margin-left: 5px
       font-size: 12px
       height: 20px
       line-height: 20px
     .input
       padding: 4px
-      height: 26px
+      height: 24px
       img
         float: right
         margin: 6px
       input
-        float: left
-        width: 90%
-        height: 26px
+        margin-left: 4px
+        width: 88%
+        height: 24px
         border: 0
         background: transparent
 

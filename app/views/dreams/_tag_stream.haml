@@ -1,31 +1,30 @@
 .tagStream.dark.transparent-50.round-16
-  #live-stream.stream.round-16
+  .stream.round-16
  
 
     // EXPANDED CONVO STATE
-    .stream-convo.light.A.round-12.glow-40
-      %img.connector-arrow-convo{src: '/images/icons/uparrow-white.png'}
-      .tag-description.light.A-indent.A-outline.round-8 Swimming with a pod of dolphins.
-      .user-bar
-        %img.user-bar-img{src: '/images/avatars/xavitar.jpg'}
-        .user-title.round-4 phong
-        .post-time 1 second ago
-        .post-title-social
-          %img{src: '/images/icons/facebook-16.png'}
-        %br.clear-both
-      .convo.round-8.light.A-indent
+    .tagChat.light.A.round-12.glow-40
+      %img.arrow{src: '/images/icons/uparrow-white.png'}
+      .description.light.A-indent.A-outline.round-8 Swimming with a pod of dolphins.
+      .postInfo
+        %img.avatar{src: '/images/avatars/xavitar.jpg'}
+        .name.round-4 phong
+        .time 1 second ago
+        %img.shared{src: '/images/icons/facebook-16.png'}
+        .clear-both
+      .chat.round-8.light.A-indent
         .userComment
-          %img.user-bar-img{src: '/images/avatars/xavitar.jpg'}
-          .user-title.round-4 phong
-          .post-comment this is a comment
+          %img.avatar{src: '/images/avatars/xavitar.jpg'}
+          .name.round-4 phong
+          .comment this is a comment
         .userComment
-          %img.user-bar-img{src: '/images/avatars/xavitar.jpg'}
-          .user-title.round-4 phong
-          .post-comment yes i see, very well
+          %img.avatar{src: '/images/avatars/xavitar.jpg'}
+          .name.round-4 phong
+          .comment yes i see, very well
         .userComment
-          %img.user-bar-img{src: '/images/avatars/xavitar.jpg'}
-          .user-title.round-4 phong
-          .post-comment ahh, you do, how about now?
+          %img.avatar{src: '/images/avatars/xavitar.jpg'}
+          .name.round-4 phong
+          .comment ahh, you do, how about now?
         .input.light.A-outline.round-4
           %input{value: 'comment'}
           %img{src: '/images/icons/comments-16.png'}
