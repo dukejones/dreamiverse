@@ -70,7 +70,7 @@
         font-size: 18px;
         background: transparent;
         border: 0; }
-      #tagEntry .entryWrap .input .location, #tagEntry .entryWrap .input .visibility {
+      #tagEntry .entryWrap .input .location, #tagEntry .entryWrap .input .sharing {
         margin: 14px 8px 0 0;
         float: right;
         cursor: pointer; }
