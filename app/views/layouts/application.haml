@@ -3,9 +3,11 @@
   %head
     %title Dreamcatcher
     = stylesheet_link_tag 'basic', 'clearfix'
+    = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
     /, 'shared'
     = javascript_include_tag :defaults
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    = javascript_include_tag "imageBank"
     = csrf_meta_tag
     = yield :head
 

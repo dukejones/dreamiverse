@@ -1,7 +1,27 @@
 $(document).ready(function() {
   setupEvents();
   setupTags();
+  setupImagebank();
 });
+
+function setupImagebank(){
+  $('#addFromImageBank').click(function(){
+    displayImageBank();
+  });
+}
+
+function displayImageBank(){
+  var filePath = '/images/image_browser';
+  $.ajax({
+    url: filePath,
+    dataType: 'jsonp',
+    success: function(data) {
+      var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      $('body').append(data);
+      //$('.linkContainer').fadeIn();
+    }
+  });
+}
 
 function setupTags(){
   // Add tag click
@@ -18,11 +38,11 @@ function setupTags(){
   });
   
   // Set up tag list sortability
-  $( "#tag-list" ).sortable( {
+  /*$( "#tag-list" ).sortable( {
     distance: 10,
     start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
     stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
-  } ); // this prevents the tag from being deleted when it's dragged
+  } );*/ // this prevents the tag from being deleted when it's dragged
 }
 
 //************************************//
@@ -98,6 +118,7 @@ function removeTagFromList (idd){
   
   setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
   setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
+  setTimeout(function(){ $(idd).remove();}, 350);
   
   //updateCurrentImageTags();
 
@@ -109,31 +130,83 @@ function removeTagFromList (idd){
 function setupEvents(){
   // Listen for attach toggles
   $('#attach-images').unbind();
-  $('#attach-images').toggle(function(){
+  $('#attach-images').click(function(){
     $('#new_dream-images').slideDown();
-  }, function(){
-    $('#new_dream-images').slideUp();
+    $(this).fadeOut();
+    
+    // Set newly displayed header click
+    $('#imagesHeader').click(function(){
+      // if no images added, remove panel 
+      // and show button
+      if($('#currentImages').children().length == 1){
+        $('#new_dream-images').slideUp();
+        $('#attach-images').fadeIn();
+      } else {
+        // if content added, minimize panel
+        if($('#currentImages').css('display') != 'none'){
+          $('#currentImages').slideUp();
+        } else {
+          $('#currentImages').slideDown();
+        }
+      }
+    })
+    
   })
   
   $('#newDream-attach .tag').unbind();
-  $('#newDream-attach .tag').toggle(function(){
+  $('#newDream-attach .tag').click(function(){
     $('#newDream-tag').slideDown();
-  }, function(){
-    $('#newDream-tag').slideUp();
+    $(this).fadeOut();
+    
+    // Set newly displayed header click
+    $('#newDream-tag .headers').click(function(){
+      if($('#tag-list').children().length == 1){
+        // No tags added hide it all
+        $('#newDream-tag').slideUp();
+        $('#newDream-attach .tag').fadeIn();
+      } else {
+        // tags added only minimize
+        if($('#tag-list').css('display') != 'none'){
+          $('#tag-list').slideUp();
+        } else {
+          $('#tag-list').slideDown();
+        }
+      }
+    })
   })
   
   $('#newDream-attach .mood').unbind();
-  $('#newDream-attach .mood').toggle(function(){
+  $('#newDream-attach .mood').click(function(){
     $('#newDream-mood').slideDown();
-  }, function(){
-    $('#newDream-mood').slideUp();
+    $(this).fadeOut();
+    
+    $('#newDream-mood .headers').click(function(){
+      $('#newDream-mood').slideUp();
+      $('#newDream-attach .mood').fadeIn();
+    })
   })
   
   $('#newDream-attach .links').unbind();
-  $('#newDream-attach .links').toggle(function(){
+  $('#newDream-attach .links').click(function(){
     $('#newDream-link').slideDown();
-  }, function(){
-    $('#newDream-link').slideUp();
+    $(this).fadeOut();
+    
+    // Set newly displayed header click
+    $('#newDream-link .headers').unbind();
+    $('#newDream-link .headers').click(function(){
+      if($('#linkHolder').children().length < 1){
+        // No tags added hide it all
+        $('#newDream-link').slideUp();
+        $('#newDream-attach .links').fadeIn();
+      } else {
+        // tags added only minimize
+        if($('#linkHolder').css('display') != 'none'){
+          $('#linkHolder').slideUp();
+        } else {
+          $('#linkHolder').slideDown();
+        }
+      }
+    })
   })
   
   $('#newDream-attach .analysis').unbind();
@@ -183,7 +256,7 @@ function addLink(newText){
       
     default:
         var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
-        $('#newDream-link').append(newElement);
+        $('#linkHolder').append(newElement);
         $('.linkContainer').fadeIn();
       break;
       
@@ -219,7 +292,10 @@ function resetImageButtons(){
   // Click to remove Image
   $('.imageRemoveButton').click(function(){
     // Remove from list of used images
-    $(this).parent().parent().fadeOut();
+    $(this).parent().parent().fadeOut('fast', function(){
+      $(this).remove();
+    });
+    
   })
   
   // Click to expand/contract image

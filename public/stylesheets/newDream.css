@@ -6,11 +6,13 @@
   /* NEW DREAM MOOD */
   /* NEW DREAM ATTACH */ }
   #dreamField .headers {
-    padding: 0 20px;
+    padding: 0 12px;
     height: 34px;
     line-height: 34px;
     text-align: center;
     float: left;
+    font-weight: bold;
+    color: #464646;
     cursor: pointer;
     border-radius: 16px;
     -moz-border-radius: 16px;
@@ -100,6 +102,8 @@
   #dreamField #new_dream-images {
     border: 1px solid #333333;
     display: none; }
+    #dreamField #new_dream-images #imagesHeader img {
+      margin: 11px 8px 0 0; }
     #dreamField #new_dream-images #addFromImageBank {
       float: left;
       height: 32px;
@@ -130,7 +134,7 @@
         float: left;
         margin: 6px 8px; }
     #dreamField #new_dream-images #currentImages {
-      margin-top: 12px; }
+      margin: 12px 0 0 12px; }
       #dreamField #new_dream-images #currentImages .dreamImageContainer, #dreamField #new_dream-images #currentImages .dreamImage {
         border-radius: 8px;
         -moz-border-radius: 8px;
