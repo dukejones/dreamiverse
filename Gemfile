@@ -5,11 +5,9 @@ gem 'rails', '3.0.3'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'mini_magick'
 gem 'mysql2'
 gem 'haml'
-# gem 'devise'
 gem 'omniauth'
 gem 'amistad'
 gem 'coffee-script'
@@ -36,6 +34,16 @@ group :test do
   gem 'faker'
   # gem 'mocha'
 end
+
+### Install these gems yourself if you wish to use Autotest. ###
+# autotest-standalone
+# autotest-rails-pure
+### Mac
+# autotest-fsevent
+# autotest-growl
+### Linux
+# autotest-inotify
+
 
 group :development, :test do
   gem 'ruby-debug19'
