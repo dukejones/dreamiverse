@@ -1277,11 +1277,11 @@ $(document).ready(function() {
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
 
   // Set up tag list sortability
-  $( "#tag-list" ).sortable( {
+  /*$( "#tag-list" ).sortable( {
     distance: 10,
     start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
     stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
-  } ); // this prevents the tag from being deleted when it's dragged
+  } );*/ // this prevents the tag from being deleted when it's dragged
   
   // Setup search button/tab transitions
   
