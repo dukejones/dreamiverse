@@ -6,7 +6,7 @@
   /* NEW DREAM MOOD */
   /* NEW DREAM ATTACH */ }
   #dreamField .headers {
-    padding: 0 10px;
+    padding: 0 20px;
     height: 34px;
     line-height: 34px;
     text-align: center;
@@ -173,7 +173,7 @@
           border: 0px;
           background: none; }
   #dreamField #newDream-tag {
-    height: 144px; }
+    min-height: 42px; }
     #dreamField #newDream-tag #tagInputWrap {
       width: 520px;
       height: 40px;
