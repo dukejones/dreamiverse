@@ -22,8 +22,11 @@
       = f.text_area :body
 
       #entryOptions.round-16.light.C-shine
-        .myBooks
-          %img{src: '/images/icons/books-16.png'} My Lucid Dreams
+        /
+          Save for later  
+          .myBooks
+            %img{src: '/images/icons/books-16.png'} My Lucid Dreams
+      
         = f.submit :value => 'post', :class => 'button-big-green'
         .visibility
           %img{src: '/images/icons/sharing-16.png'} Everyone
@@ -72,4 +75,4 @@
     #attach-images images
     .mood mood
     .links links
-    .analysis analysis
+    / Save for later .analysis analysis
