@@ -15,8 +15,11 @@ class ImagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json  { render :json => @images }
+      format.html do
+        render :partial => 'image_browser' if request.xhr?
+        # otherwise, index.html.erb
+      end
+      format.json { render :json => @images }
     end
   end
 
