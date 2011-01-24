@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110122045830) do
+ActiveRecord::Schema.define(:version => 20110124083951) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110122045830) do
   create_table "starlights", :force => true do |t|
     t.integer  "entity_id"
     t.string   "entity_type"
-    t.integer  "value"
+    t.integer  "value",       :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
