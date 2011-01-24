@@ -145,7 +145,8 @@
         height: 120px;
         width: 120px;
         overflow: hidden;
-        background: white; }
+        background: white;
+        position: relative; }
         #dreamField #new_dream-images #currentImages .dreamImageContainer .dreamImage {
           float: left;
           width: 120px;
@@ -175,7 +176,9 @@
           padding: 8px;
           width: 184px;
           border: 0px;
-          background: none; }
+          background: none;
+          position: absolute;
+          right: 0px; }
   #dreamField #newDream-tag {
     min-height: 42px; }
     #dreamField #newDream-tag #tagInputWrap {

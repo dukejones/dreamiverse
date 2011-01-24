@@ -658,7 +658,7 @@ TD.form_label B {}
 
 /*********** DREAM FIELD ***********/
 #dreamField {position:absolute; top:82px; left: 240px; width: 680px;}
-#dreamField .matrix {position: absolute; top: 200px}
+#dreamField .matrix {position: relative;}
 
 
 /*********** OLD MODIFY DREAM - after theta launch, probably can delete ***********/
