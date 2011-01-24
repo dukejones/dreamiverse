@@ -55,6 +55,21 @@ function setupDropdownEvents(){
       $('#IB_category_checkbox').attr('checked', true);
       checkForcedParams();
     }
+    if($("#IB_categoryList option:selected").val() == "Modern Art"){
+      var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
+      
+      $('#IB_genreList').html(newGenres);
+    } else if($("#IB_categoryList option:selected").val() == "Classical Art"){
+      var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
+      
+      $('#IB_genreList').html(newGenres);
+    } else if($("#IB_categoryList option:selected").val() == "Photo"){
+      var newGenres = '<option value="None"></option><option value="People">People</option><option value="Places">Places</option><option value="Things">Things</option><option value="Concept">Concept</option><option value="Animals">Animals</option>';
+      
+      $('#IB_genreList').html(newGenres);
+    }
+    
+    $('#IB_current_genre').html('Choose')
   })
   
   $('#IB_typeList').change(function(){
@@ -323,38 +338,40 @@ var totalImagesToUpdate = 0;
 var totalImagesUpdated = 0;
 
 var updateCurrentImagesMeta = function(){
-  // Collect data from fields for JSON
-  collectParams();
+  if($('#IB_current_genre').text() != 'Choose'){
+    // Collect data from fields for JSON
+    collectParams();
   
-  // Get currently selected images
-  imagesSelected = false;
+    // Get currently selected images
+    imagesSelected = false;
    
-  $('#IB_dropboxImages li').each(function(){
-    if($(this).hasClass('selected')){
-      totalImagesToUpdate++ // add another image to the count
-      imagesSelected = true; // an image has been found!
+    $('#IB_dropboxImages li').each(function(){
+      if($(this).hasClass('selected')){
+        totalImagesToUpdate++ // add another image to the count
+        imagesSelected = true; // an image has been found!
       
-      // Get current ID
-      var currentImageID = getIDFromUrl($(this).find('img').attr('src'));
+        // Get current ID
+        var currentImageID = getIDFromUrl($(this).find('img').attr('src'));
       
-      // Make call & set data
-      $.ajax({
-          url: "/images/" + currentImageID + ".json",
-          type: 'PUT',
-          contentType: 'application/json',
-          data: JSON.stringify(imageMetaParams),
-          dataType: 'json',
-          complete: checkImagesUpdates
-      });
+        // Make call & set data
+        $.ajax({
+            url: "/images/" + currentImageID + ".json",
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(imageMetaParams),
+            dataType: 'json',
+            complete: checkImagesUpdates
+        });
+      }
+    });
+  
+    if(!imagesSelected){
+      // No Images were selected
+      alert('No images selected.')
     }
-  });
-  
-  if(!imagesSelected){
-    // No Images were selected
-    alert('No images selected.')
+  } else {
+    alert('You must choose a Genre.')
   }
-  
-  
 }
 
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){

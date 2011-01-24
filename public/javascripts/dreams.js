@@ -1,6 +1,110 @@
 $(document).ready(function() {
   setupEvents();
+  setupTags();
 });
+
+function setupTags(){
+  // Add tag click
+  $('#tagAdd').click(function(){
+    addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+  })
+  
+  // Capture ENTER press
+  $($('#newTag')).keypress(function (e) {
+    if (e.which == 13){
+     addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+    }
+    activateRemoveTag('.tag_box');
+  });
+  
+  // Set up tag list sortability
+  $( "#tag-list" ).sortable( {
+    distance: 10,
+    start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
+    stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
+  } ); // this prevents the tag from being deleted when it's dragged
+}
+
+//************************************//
+//            TAG HANDLING            //
+//************************************//
+
+//*********** ADDING TAGS ***********//
+        
+// ADDS DATA TO TAG LIST
+function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
+  //alert("addTagToList() " + tagToAdd)
+  var tag_selected =  tagToAdd; // set selected city to be the same as contents of the selected city
+  var tag_type =  tagType; // type of tag (tag/thread/emotion/place/person/etc.)
+
+  var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
+  var tagID = 'tagID_' + randomNumber ; // Define ID for New Region
+  var tagID_element = '#' + tagID ; // Create variable to handle the ID
+  
+  if (tag_selected != ''){ // if it's not empty
+    $('#empty-tag').clone().attr('id', tagID ).appendTo('#tag-list').end; // clone tempty tag box
+    $(tagID_element).removeClass('hidden') ; // and unhide the new one
+    $(tagID_element).addClass('current-tags');
+    //$(tagID_element).contents().find('.tag-icon').addClass( tag_type ); // populate with tag icon
+    $(tagID_element).find('.content').html( tag_selected ); // populate with tag text
+    
+    $(tagID_element).css('background-color', '#ccc');
+    setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
+    
+    
+  }
+  
+  
+  $(tagInputBoxIdd).val(''); // Clear textbox
+  $(tagInputBoxIdd).focus(); // Focus text input
+  
+  //$(tagInputBoxIdd).autocomplete( 'close' );
+  
+  activateRemoveTag('.tag_box');
+  
+  // Update on server
+  if(tagInputBoxIdd == "#IB_tagText"){
+    //updateCurrentImageTags();
+  }
+  
+  //$(tagID_element).addClass('tag_box_pop', 1000);
+  
+  return false;
+    
+            
+ };
+
+
+//*********** REMOVING TAGS ***********//  
+
+function activateRemoveTag (context) {
+  $(context).mouseup(function() {
+    //alert('this :: ' + $('#sorting').val())
+    if ($("#sorting").val() == 0)
+      removeTagFromList(this);
+  }); 
+  
+}
+
+$(function() {
+  activateRemoveTag('.tag_box');
+});
+
+// REMOVES DATA FROM TAG LIST          
+function removeTagFromList (idd){
+  
+  //$(idd).removeClass('tag_box', 0 );
+  $(idd).addClass('kill_tag');
+  
+  setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
+  setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
+  
+  //updateCurrentImageTags();
+
+};
+
+/*** END OF TAGS ***/
+
 
 function setupEvents(){
   // Listen for attach toggles
