@@ -6,6 +6,16 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def add_starlight(entity)
+    if unique_hit?
+      Starlight.add(5, entity)
+    end
+  end
+  
+  def unique_hit?
+    Hit.unique? request.fullpath, request.remote_ip, current_user
+  end
+  
 protected
   def set_current_user(user)
     session[:user_id] = user ? user.id : nil

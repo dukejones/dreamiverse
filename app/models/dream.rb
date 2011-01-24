@@ -6,6 +6,9 @@ class Dream < ActiveRecord::Base
   has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
 
+  has_many :starlights, :as => :entity
+  # has_one  :starlight, :through => :starlights, 
+  
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.

@@ -34,7 +34,6 @@ GEM
     arel (2.0.6)
     barista (1.0.0)
       coffee-script (~> 2.1.1)
-    bcrypt-ruby (2.1.4)
     builder (2.1.2)
     capistrano (2.5.19)
       highline
@@ -50,11 +49,10 @@ GEM
       coffee-script-source
     coffee-script-source (1.0.0)
     columnize (0.3.2)
-    devise (1.1.5)
-      bcrypt-ruby (~> 2.1.2)
-      warden (~> 1.0.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    faker (0.9.4)
+      i18n (~> 0.4)
     faraday (0.5.4)
       addressable (~> 2.2.2)
       multipart-post (~> 1.1.0)
@@ -64,6 +62,7 @@ GEM
     i18n (0.5.0)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
+    machinist (1.0.6)
     mail (2.2.14)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -162,8 +161,6 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
-    warden (1.0.3)
-      rack (>= 1.0.0)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -179,8 +176,9 @@ DEPENDENCIES
   capistrano-ext
   coffee-haml-filter
   coffee-script
-  devise
+  faker
   haml
+  machinist
   mini_magick
   mysql2
   omniauth

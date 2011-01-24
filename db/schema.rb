@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110121043346) do
+ActiveRecord::Schema.define(:version => 20110122045830) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(:version => 20110121043346) do
 
   add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
 
+  create_table "hits", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "ip_address", :limit => 15
+    t.string   "url_path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "images", :force => true do |t|
     t.string   "section"
     t.string   "category"
@@ -62,6 +70,14 @@ ActiveRecord::Schema.define(:version => 20110121043346) do
     t.integer  "height"
     t.string   "original_filename"
     t.string   "source_url"
+  end
+
+  create_table "starlights", :force => true do |t|
+    t.integer  "entity_id"
+    t.string   "entity_type"
+    t.integer  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tags", :force => true do |t|
