@@ -8,6 +8,7 @@
 / DREAM ENTRY
 #dreamField
 
+  / NEW DREAM INPUT PANEL
   #newDream-panel.light.O.round-16.glow-40
     #entryTypeWrap
       %img{src: '/images/icons/dream-32.png'}
@@ -26,7 +27,7 @@
           Save for later  
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
-      
+
         = f.submit :value => 'post', :class => 'button-big-green'
         .visibility
           %img{src: '/images/icons/sharing-16.png'} Everyone
@@ -34,9 +35,17 @@
           %img{src: '/images/icons/location-21.png'}
         .date
           %img{src: '/images/icons/date-19.png'}
-  
+
+  / NEW DREAM DATE TIME
+  = render :partial => "dateTime"
+
+  / NEW DREAM TIME STAMP
+
+
+  / NEW DREAM IMAGES
   = render :partial => "image_panel"
-  
+
+  / NEW DREAM TAG
   #newDream-tag.newDream_assets.hidden.light.transparent-50
     .headers tag
     #tagInputWrap
@@ -52,7 +61,8 @@
         .content
     #sorting
     %br{style: 'clear: both'}
-    
+
+  / NEW DREAM LINK
   #newDream-link.newDream_assets.hidden.light.transparent-50
     .headers links
     #linkInputWrap
@@ -60,7 +70,8 @@
       #linkAdd.round8button-0-15 Add
     %br{style: 'clear: both;'}
     #linkHolder
-  
+
+  / NEW DREAM MOOD
   #newDream-mood.newDream_assets.hidden.light.transparent-50
     .headers mood
     %ul
@@ -68,7 +79,8 @@
       <li><a href="/">classical</a> |</li>
       <li><a href="/">animals</a> |</li>
       <li><a href="/">emotional profile</a> |</li>
-  
+
+  / NEW DREAM ATTACHMENTS
   #newDream-attach.newDream_assets.light.transparent-50
     %p attach:
     .tag tag

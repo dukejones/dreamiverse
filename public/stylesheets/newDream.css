@@ -1,5 +1,7 @@
 /********** NEW DREAM ********** */
 #dreamField {
+  /* NEW DREAM INPUT PANEL */
+  /* NEW DREAM DATE */
   /* NEW DREAM - IMAGES PANEL */
   /* NEW DREAM TAG */
   /* NEW DREAM LINK */
@@ -17,13 +19,14 @@
     border-radius: 16px;
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(white));
-    background: -moz-linear-gradient(top, #e1e1e1, white); }
+    background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(white));
+    background: -moz-linear-gradient(top, #cccccc, white); }
     #dreamField .headers img {
       float: left; }
   #dreamField #newDream-panel {
     width: 662px;
-    padding: 8px; }
+    padding: 8px;
+    /* NEW DREAM ENTRY OPTIONS */ }
     #dreamField #newDream-panel #entryTypeWrap {
       width: 126px;
       border: 1px solid #e1e1e1; }
@@ -99,6 +102,18 @@
       -webkit-border-radius: 8px;
       background: -webkit-gradient(linear, left top, left bottom, from(#b7b7b7), to(#363636));
       background: -moz-linear-gradient(top, #b7b7b7, #363636); }
+  #dreamField #dateTimeHeader img {
+    margin: 9px 8px 0 0; }
+  #dreamField .date, #dreamField .time {
+    float: left;
+    margin: 3px 0 0 8px; }
+  #dreamField #hour, #dreamField #month, #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
+    padding: 2px;
+    font-size: 16px; }
+  #dreamField #hour, #dreamField #month {
+    margin-left: 8px; }
+  #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
+    margin-left: -4px; }
   #dreamField #new_dream-images {
     border: 1px solid #333333;
     display: none; }
