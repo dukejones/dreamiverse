@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Fri, 21 Jan 2011 04:17:41 GMT from
+/* DO NOT MODIFY. This file was compiled Tue, 25 Jan 2011 05:13:51 GMT from
  * /Users/iotus/Sites/dreamcatcher/app/coffee/modal.coffee
  */
 
@@ -9,12 +9,12 @@
       modal: true,
       dialogClass: 'light O O-shine',
       buttons: {
-        "Ok": function() {
-          console.log('ok');
-          return $(this).dialog("close");
-        },
         "Cancel": function() {
           console.log('no way');
+          return $(this).dialog("close");
+        },
+        "Ok": function() {
+          console.log('ok');
           return $(this).dialog("close");
         }
       }
