@@ -29,13 +29,13 @@ function displayImageBank(){
 function setupTags(){
   // Add tag click
   $('#tagAdd').click(function(){
-    addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+    addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
   })
   
   // Capture ENTER press
   $($('#newTag')).keypress(function (e) {
     if (e.which == 13){
-     addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+     addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
     }
     activateRemoveTag('.tag_box');
   });
@@ -55,8 +55,7 @@ function setupTags(){
 //*********** ADDING TAGS ***********//
         
 // ADDS DATA TO TAG LIST
-function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
-  //alert("addTagToList() " + tagToAdd)
+function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
   var tag_selected =  tagToAdd; // set selected city to be the same as contents of the selected city
   var tag_type =  tagType; // type of tag (tag/thread/emotion/place/person/etc.)
 
@@ -135,7 +134,7 @@ function setupEvents(){
   $('#attach-images').unbind();
   $('#attach-images').click(function(){
     $('#new_dream-images').slideDown();
-    $(this).fadeOut();
+    $(this).hide();
     
     // Set newly displayed header click
     $('#imagesHeader').click(function(){
@@ -143,7 +142,7 @@ function setupEvents(){
       // and show button
       if($('#currentImages').children().length == 1){
         $('#new_dream-images').slideUp();
-        $('#attach-images').fadeIn();
+        $('#attach-images').show();
       } else {
         // if content added, minimize panel
         if($('#currentImages').css('display') != 'none'){
@@ -159,14 +158,14 @@ function setupEvents(){
   $('#newDream-attach .tag').unbind();
   $('#newDream-attach .tag').click(function(){
     $('#newDream-tag').slideDown();
-    $(this).fadeOut();
+    $(this).hide();
     
     // Set newly displayed header click
     $('#newDream-tag .headers').click(function(){
       if($('#tag-list').children().length == 1){
         // No tags added hide it all
         $('#newDream-tag').slideUp();
-        $('#newDream-attach .tag').fadeIn();
+        $('#newDream-attach .tag').show();
       } else {
         // tags added only minimize
         if($('#tag-list').css('display') != 'none'){
@@ -181,18 +180,18 @@ function setupEvents(){
   $('#newDream-attach .mood').unbind();
   $('#newDream-attach .mood').click(function(){
     $('#newDream-mood').slideDown();
-    $(this).fadeOut();
+    $(this).hide();
     
     $('#newDream-mood .headers').click(function(){
       $('#newDream-mood').slideUp();
-      $('#newDream-attach .mood').fadeIn();
+      $('#newDream-attach .mood').show();
     })
   })
   
   $('#newDream-attach .links').unbind();
   $('#newDream-attach .links').click(function(){
     $('#newDream-link').slideDown();
-    $(this).fadeOut();
+    $(this).hide();
     
     // Set newly displayed header click
     $('#newDream-link .headers').unbind();
@@ -200,7 +199,7 @@ function setupEvents(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
         $('#newDream-link').slideUp();
-        $('#newDream-attach .links').fadeIn();
+        $('#newDream-attach .links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){
@@ -217,6 +216,20 @@ function setupEvents(){
     $('#newDream-analysis').slideDown();
   }, function(){
     $('#newDream-analysis').slideUp();
+  })
+  
+  $('#entryOptions .date').unbind();
+  $('#entryOptions .date').toggle(function(){
+    $('#newDream-dateTime').slideDown();
+  }, function(){
+    $('#newDream-dateTime').slideUp();
+  })
+  
+  $('#entryOptions .location').unbind();
+  $('#entryOptions .location').toggle(function(){
+    $('#newDream-location').slideDown();
+  }, function(){
+    $('#newDream-location').slideUp();
   })
   
   // Listen for paste in DREAM field
@@ -338,4 +351,22 @@ function resetImageButtons(){
       $(this).animate({width: '120px'});
      }
    });
+}
+
+/* LOCATION DATA */
+
+var getGeo = function(){
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+}
+
+function geoError(error){
+  alert("geolocation error : " + error);
+}
+
+function geoSuccess(position) {
+  // Temp solution.
+  var lat = position.coords.latitude;
+  var lng = position.coords.longitude;
+  alert(lat + ' / ' + lng);
+  //$('#IB_geotag_input').val(lng + ' / ' + lat);
 }
