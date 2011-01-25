@@ -179,6 +179,13 @@ addImageToDropbox = function(imageId) {
     $('#IB_searchResultsSelectEdit').click(function(){
       editImages();
     });
+    
+    $('#IB_searchResultsSelectAdd').unbind();
+    $('#IB_searchResultsSelectAdd').click(function(){
+      // Add images to dream
+      
+      addImagesToDream(getSelectedImagesWithFormat());
+    });
   
     $("#IB_searchResultsSelectCancel").unbind();
     $("#IB_searchResultsSelectCancel").click(function() {
@@ -192,6 +199,31 @@ addImageToDropbox = function(imageId) {
     
     $('#IB_imageDrop').css('background', 'none');
   }
+}
+
+addImagesToDream = function(images){
+  // Create image node for each image passed
+  // image returns thumbnail w/ format
+  for(var u = 0; u < images.length; u++){
+    var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;/images/uploads/' + images[u] + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
+    
+    $('#currentImages').prepend(newNode);
+  }
+  
+  $('#IB_browser_frame').fadeOut('fast', function(){
+    $(this).remove();
+  });
+  
+  resetImageButtons();
+  
+  // show images
+  $('#currentImages').fadeIn();
+}
+
+closeImaagebank = function(){
+  $('#IB_browser_frame').fadeOut('fast', function(){
+    $(this).remove();
+  });
 }
 
 removeImageFromDropbox = function(imageId){
@@ -284,11 +316,26 @@ loadArtist = function(artist) {
     
     return images;
   };
+  getImagesDropBoxFormat = function(root) {
+    var images = [];
+    
+    $("img",root).each(function() {
+      var tempVal = $(this).attr("src").replace("/images/uploads/","");
+      images.push(tempVal);
+      
+    });
+    
+    return images;
+  };
   getAllImages = function() {
     return getImages($("#albums")); 
   };
   getSelectedImages = function() {
     return getImagesDropBox($("#IB_imageDrop"));
+  };
+  
+  getSelectedImagesWithFormat = function() {
+    return getImagesDropBoxFormat($("#IB_imageDrop"));
   };
   
   populateAlbums = function(albums) {
@@ -352,7 +399,7 @@ loadArtist = function(artist) {
             })
 
             //Make images draggable to the drop-box below.
-            $(".images li",element).draggable({
+            /*$(".images li",element).draggable({
               containment: 'document',
               helper: 'clone',
               zIndex:10000,
@@ -365,7 +412,7 @@ loadArtist = function(artist) {
               stop: function(event, ui) {
                 isDragging = false;
               }
-            });
+            });*/
             
             // Set up header manage
             $('.header-manage').click(function(event){
@@ -447,12 +494,12 @@ loadArtist = function(artist) {
     
     //$("#IB_searchResultsSelectBar").show();
 
-    $("#IB_imageDrop").droppable({
+    /*$("#IB_imageDrop").droppable({
       drop: function(event, ui) {
         var imageId = $("img",ui.draggable).attr("id").split("_")[1];
         addImageToDropbox(imageId);
       }
-    });
+    });*/
   };
   
   $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter,
@@ -1008,7 +1055,7 @@ loadSearchResults = function() {
         })
 
         //Make images draggable to the drop-box below.
-        $(".images li").draggable({
+        /*$(".images li").draggable({
           containment: 'document',
           helper: 'clone',
           zIndex:10000,
@@ -1021,13 +1068,13 @@ loadSearchResults = function() {
           stop: function(event, ui) {
             isDragging = false;
           }
-        });
-        $("#IB_searchResultsSelectBar").droppable({
+        });*/
+        /*$("#IB_searchResultsSelectBar").droppable({
           drop: function(event, ui) {
             var imageId = $("img",ui.draggable).attr("id").split("_")[1];
             addImageToDropboxSearch(imageId);
           }
-        });
+        });*/
       }
       /*// Empty Old Search Results
       $('#IB_searchImageResults').empty();
@@ -1267,25 +1314,14 @@ var checkForParams = function(){
 
 // INIT STUFF
 
-$(document).ready(function() {
-  // FOR DEV ONLY todo :: remove me
-  $('body').append('<p class="padding-12 round-8" style="opacity: .3; margin-left: 32px; display: inline-block; background-color: #fff;">Showing only sectionFilter :: ' + sectionFilter + '</p>');
-  
-  
+function initImageBank(_sectionFilter){
+  // set sectionFilter
+  sectionFilter = _sectionFilter;
   
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
-
-  // Set up tag list sortability
-  /*$( "#tag-list" ).sortable( {
-    distance: 10,
-    start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
-    stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
-  } );*/ // this prevents the tag from being deleted when it's dragged
   
   // Setup search button/tab transitions
-  
-  
   var genre = getParameterByName("genre");
   if (genre != "") {
     setGenre(genre);
@@ -1302,13 +1338,27 @@ $(document).ready(function() {
     
   if (artist != "") {  
     loadArtist(0,artist);
-  }
-  else if (genre != "") {
+  } else if (genre != "") {
     loadArtistList(0,genre);
-  }
-  else {
+  } else {
     loadBrowse();
     // Check for passed data
     checkForParams();
   }
+  
+  // TEMP
+  $('.browseBars').click(function(){
+      closeImaagebank();
+    });
+}
+
+$(document).ready(function() {
+  
+
+  // Set up tag list sortability
+  /*$( "#tag-list" ).sortable( {
+    distance: 10,
+    start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
+    stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
+  } );*/ // this prevents the tag from being deleted when it's dragged
 });
