@@ -232,6 +232,9 @@
           right: 0px; }
   #dreamField #newDream-tag {
     min-height: 42px; }
+    #dreamField #newDream-tag #tag-list div {
+      width: auto;
+      height: 28px; }
     #dreamField #newDream-tag #tagInputWrap {
       width: 520px;
       height: 40px;
