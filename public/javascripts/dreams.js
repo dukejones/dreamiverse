@@ -233,8 +233,13 @@ function setupEvents(){
   })
   
   // Listen for paste in DREAM field
-  $("#dream_body").bind('paste', function() {
-    setTimeout('checkForPastedLink($("#dream_body").val())', 400)
+  $("#dream_body").bind('paste', function(e) {
+    // Get pasted link
+    var el = $(this);
+    setTimeout(function() {
+      var text = $(el).val();
+      checkForPastedLink(text)
+    }, 100);
     
   });
   
@@ -256,6 +261,10 @@ function checkForPastedLink(newText){
 }
 
 function addLink(newText){
+  if($('#newDream-link').css('display') == 'none'){
+    $('#newDream-link').slideDown();
+    $('#newDream-attach .links').hide();
+  }
   // Check what DOMAIN they are pasting
   var tempAnchor = $("<a />");
   tempAnchor.attr('href', newText)
@@ -271,9 +280,25 @@ function addLink(newText){
       break;
       
     default:
-        var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+        var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
+        var newID = 'link-' + randomNumber;
+        var newEle = '#' + newID;
+        var newDOM = $(newEle);
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
         $('#linkHolder').append(newElement);
-        $('.linkContainer').fadeIn();
+        //$('.linkContainer').fadeIn();
+        var dataSent = {url: newText};
+        // Get the title from server
+        var filePath = '/parse/title'
+        $.ajax({
+          url: filePath,
+          context: $(newEle),
+          data: dataSent,
+          success: function(data) {
+            $(this).find('.linkTitleValue').val(data.title)
+            $('.linkContainer').fadeIn();
+          }
+        });
       break;
       
   }
