@@ -1179,7 +1179,7 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
   $(tagInputBoxIdd).val(''); // Clear textbox
   $(tagInputBoxIdd).focus(); // Focus text input
   
-  $(tagInputBoxIdd).autocomplete( 'close' );
+  //$(tagInputBoxIdd).autocomplete( 'close' );
   
   activateRemoveTag('.tag_box');
   

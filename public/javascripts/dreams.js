@@ -29,6 +29,7 @@ function displayImageBank(){
 function setupTags(){
   // Add tag click
   $('#tagAdd').click(function(){
+    alert($('#newTag').val())
     addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
   })
   
@@ -70,6 +71,7 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
     $(tagID_element).addClass('current-tags');
     //$(tagID_element).contents().find('.tag-icon').addClass( tag_type ); // populate with tag icon
     $(tagID_element).find('.content').html( tag_selected ); // populate with tag text
+    alert(tag_selected)
     
     $(tagID_element).css('background-color', '#ccc');
     setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
