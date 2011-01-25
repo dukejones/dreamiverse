@@ -29,14 +29,13 @@ function displayImageBank(){
 function setupTags(){
   // Add tag click
   $('#tagAdd').click(function(){
-    alert($('#newTag').val())
-    addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+    addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
   })
   
   // Capture ENTER press
   $($('#newTag')).keypress(function (e) {
     if (e.which == 13){
-     addTagToList( $('#newTag').val(), 'newTag', '#newTag' );
+     addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
     }
     activateRemoveTag('.tag_box');
   });
@@ -56,8 +55,7 @@ function setupTags(){
 //*********** ADDING TAGS ***********//
         
 // ADDS DATA TO TAG LIST
-function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
-  //alert("addTagToList() " + tagToAdd)
+function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
   var tag_selected =  tagToAdd; // set selected city to be the same as contents of the selected city
   var tag_type =  tagType; // type of tag (tag/thread/emotion/place/person/etc.)
 
@@ -71,7 +69,6 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
     $(tagID_element).addClass('current-tags');
     //$(tagID_element).contents().find('.tag-icon').addClass( tag_type ); // populate with tag icon
     $(tagID_element).find('.content').html( tag_selected ); // populate with tag text
-    alert(tag_selected)
     
     $(tagID_element).css('background-color', '#ccc');
     setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
