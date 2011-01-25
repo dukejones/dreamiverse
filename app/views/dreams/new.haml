@@ -39,8 +39,30 @@
   / NEW DREAM DATE TIME
   = render :partial => "dateTime"
 
-  / NEW DREAM TIME STAMP
-
+  / NEW DREAM LOCATION
+  #newDream-location.newDream_assets.light.transparent-50
+    #locationHeader.headers
+      %img{src: '/images/icons/location-21.png', height: '16', width: '16'}
+      location
+    %select#locations.light.O-input.round-8
+      %option{value: 'Home'} Home
+      %option{value: 'The Pearl'} The Pearl
+      %option{value: 'Flow Space'} Flow Space
+      %option{value: 'Under I580'} Under I580
+      %option{value: 'No Location'} No Location
+    #new.round-8 New Location
+    #name
+      %p Location Name
+      %input.light.O-input
+    #city
+      %p City
+      %input.light.O-input
+    #state
+      %p State / province
+      %input.light.O-input
+    #country
+      %p Country
+      %input.light.O-input
 
   / NEW DREAM IMAGES
   = render :partial => "image_panel"
