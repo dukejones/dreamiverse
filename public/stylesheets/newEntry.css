@@ -92,6 +92,46 @@
       background: -moz-linear-gradient(top, #464646, black); }
       #tagEntry .entryWrap .add span {
         color: #349200; }
+  #tagEntry #share {
+    width: 148px;
+    padding: 8px;
+    position: absolute;
+    top: 112px;
+    left: 490px;
+    background: white;
+    -moz-box-shadow: 0 0 40px black;
+    border: 1px solid white;
+    z-index: 900; }
+    #tagEntry #share .arrow {
+      position: absolute;
+      top: -12px;
+      left: 70px; }
+    #tagEntry #share select, #tagEntry #share .social {
+      font-size: 16px;
+      width: 100%;
+      height: 28px;
+      line-height: 28px;
+      padding: 4px;
+      margin: 2px 0; }
+    #tagEntry #share .social {
+      border: 1px solid #c2c2c2;
+      width: 138px;
+      height: 22px;
+      line-height: 22px;
+      cursor: pointer; }
+      #tagEntry #share .social label {
+        display: block; }
+      #tagEntry #share .social .icon, #tagEntry #share .social .name {
+        float: left;
+        cursor: pointer; }
+      #tagEntry #share .social .icon {
+        margin: 4px 8px 0 4px; }
+      #tagEntry #share .social .name {
+        text-align: center; }
+      #tagEntry #share .social .checkbox {
+        float: right;
+        margin: 4px 0 0;
+        cursor: pointer; }
   #tagEntry #autoComplete {
     padding: 4px;
     width: 207px;
