@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :add_starlight
   protect_from_forgery
 
   def current_user
@@ -7,9 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def add_starlight(entity)
-    if unique_hit?
-      Starlight.add(5, entity)
-    end
+    Starlight.change(entity, 5)
   end
   
   def unique_hit?
