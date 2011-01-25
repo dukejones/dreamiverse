@@ -1,6 +1,6 @@
 #IB_browser_frame {
   position:absolute;
-  margin:90px 40px 20px;
+  margin:50px 0px 0px 80px;
   width:760px;
   background-color:#272727;
   -moz-box-shadow: 0 5px 20px #000;}
@@ -10,7 +10,6 @@
   padding:0;
   width:760px;
   height:74px;}
-  
 #IB_browseArrow {
   margin:12px 0 0 20px;
   width:auto; 

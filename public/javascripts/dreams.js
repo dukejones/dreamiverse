@@ -11,14 +11,17 @@ function setupImagebank(){
 }
 
 function displayImageBank(){
-  var filePath = '/images/image_browser';
+  var filePath = '/images';
   $.ajax({
     url: filePath,
-    dataType: 'jsonp',
+    dataType: 'html',
     success: function(data) {
-      var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      //var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
       $('body').append(data);
-      //$('.linkContainer').fadeIn();
+      $('#IB_browser_frame').fadeIn();
+      
+      // Initialize imagebank w/ sectionFilter (Library, Bedsheets, etc...)
+      initImageBank('Library');
     }
   });
 }
