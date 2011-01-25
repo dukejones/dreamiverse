@@ -1,8 +1,6 @@
 .tagStream {
   width: 656px;
-  height: 96px;
-  margin: 12px 0 12px 0;
-  position: relative;
+  margin: 0 0 12px 0;
   padding: 12px; }
   .tagStream .stream {
     background: black;
