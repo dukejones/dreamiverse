@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
   # GET /artists.json
   def index
     if params[:genre]
-      @artist_names = Image.sectioned(params[:section]).where(genre: params[:genre]).artists
+      @artist_names = Image.sectioned(params[:section]).where(genre: params[:genre]).artists << nil
       @artists = @artist_names.map do |name|
         {name: name, images: Image.sectioned(params[:section]).where(artist: name).limit(6)}
       end
