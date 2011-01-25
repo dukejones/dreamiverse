@@ -657,7 +657,7 @@ TD.form_label B {}
 .logo-shadow { background:transparent; box-shadow: inset 0px 0px 40px #000; -moz-box-shadow: inset 0px 0px 40px #000; -webkit-box-shadow: inset 0px 0px 40px #000; }
 
 /*********** DREAM FIELD ***********/
-#dreamField {position:absolute; top:82px; left: 240px; width: 680px;}
+#dreamField {position:absolute; top:82px; left: 240px; }
 #dreamField .matrix {position: relative;}
 
 
