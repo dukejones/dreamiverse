@@ -13,11 +13,12 @@
     border-radius: 16px
     -moz-border-radius: 16px
     -webkit-border-radius: 16px
-    background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff))
-    background: -moz-linear-gradient(top, #E1E1E1, #fff) /* gradient-15-0 */
+    background: -webkit-gradient(linear, left top, left bottom, from(#CCCCCC), to(#fff))
+    background: -moz-linear-gradient(top, #CCCCCC, #fff) /* gradient-25-0 */
     img
       float: left
-  
+
+  /* NEW DREAM INPUT PANEL */
   #newDream-panel
     width: 662px 
     padding: 8px
@@ -45,6 +46,7 @@
       min-height: 134px
       height: 134px
 
+    /* NEW DREAM ENTRY OPTIONS */
     #entryOptions
       width: 664px 
       height: 48px
@@ -98,7 +100,57 @@
       -webkit-border-radius: 8px
       background: -webkit-gradient(linear, left top, left bottom, from(#B7B7B7), to(#363636))
       background: -moz-linear-gradient(top, #B7B7B7, #363636) /* gradient-35-85 */
-  
+
+  /* NEW DREAM DATE */
+  #dateTimeHeader
+    img
+      margin: 9px 8px 0 0
+  .date, .time
+    float: left
+    margin: 3px 0 0 8px
+  #hour, #month, #day, #year, #minute, #amPm
+    padding: 2px
+    font-size: 16px
+  #hour, #month
+    margin-left: 8px
+  #day, #year, #minute, #amPm
+    margin-left: -4px
+
+  /* NEW DREAM LOCATION */
+  #newDream-location
+    height: 140px
+    #locationHeader
+      img
+        margin: 9px 8px 0 0
+    #locations, #new
+      float: left
+      font-size: 16px
+      height: 28px
+      line-height: 28px
+      margin: 3px 0 0 8px
+      padding: 0 8px
+    #locations
+      width: 120px
+    #new
+      cursor: pointer
+      padding: 0 8px
+      background: #fff
+    #name, #city, #state, #country
+      float: left
+      margin: 4px 0 0 8px
+      p 
+        margin: 2px 0 0 10px
+        font-size: 11px
+      input
+        padding: 4px
+        width: 244px
+        font-size: 16px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
+    #name
+      clear: both
+
   /* NEW DREAM - IMAGES PANEL */
   #new_dream-images
     border: 1px solid #333
