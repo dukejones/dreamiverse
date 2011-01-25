@@ -1,5 +1,8 @@
 /********** NEW DREAM ********** */
 #dreamField {
+  /* NEW DREAM INPUT PANEL */
+  /* NEW DREAM DATE */
+  /* NEW DREAM LOCATION */
   /* NEW DREAM - IMAGES PANEL */
   /* NEW DREAM TAG */
   /* NEW DREAM LINK */
@@ -17,13 +20,14 @@
     border-radius: 16px;
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px;
-    background: -webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(white));
-    background: -moz-linear-gradient(top, #e1e1e1, white); }
+    background: -webkit-gradient(linear, left top, left bottom, from(#cccccc), to(white));
+    background: -moz-linear-gradient(top, #cccccc, white); }
     #dreamField .headers img {
       float: left; }
   #dreamField #newDream-panel {
     width: 662px;
-    padding: 8px; }
+    padding: 8px;
+    /* NEW DREAM ENTRY OPTIONS */ }
     #dreamField #newDream-panel #entryTypeWrap {
       width: 126px;
       border: 1px solid #e1e1e1; }
@@ -99,6 +103,50 @@
       -webkit-border-radius: 8px;
       background: -webkit-gradient(linear, left top, left bottom, from(#b7b7b7), to(#363636));
       background: -moz-linear-gradient(top, #b7b7b7, #363636); }
+  #dreamField #dateTimeHeader img {
+    margin: 9px 8px 0 0; }
+  #dreamField .date, #dreamField .time {
+    float: left;
+    margin: 3px 0 0 8px; }
+  #dreamField #hour, #dreamField #month, #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
+    padding: 2px;
+    font-size: 16px; }
+  #dreamField #hour, #dreamField #month {
+    margin-left: 8px; }
+  #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
+    margin-left: -4px; }
+  #dreamField #newDream-location {
+    height: 140px; }
+    #dreamField #newDream-location #locationHeader img {
+      margin: 9px 8px 0 0; }
+    #dreamField #newDream-location #locations, #dreamField #newDream-location #new {
+      float: left;
+      font-size: 16px;
+      height: 28px;
+      line-height: 28px;
+      margin: 3px 0 0 8px;
+      padding: 0 8px; }
+    #dreamField #newDream-location #locations {
+      width: 120px; }
+    #dreamField #newDream-location #new {
+      cursor: pointer;
+      padding: 0 8px;
+      background: white; }
+    #dreamField #newDream-location #name, #dreamField #newDream-location #city, #dreamField #newDream-location #state, #dreamField #newDream-location #country {
+      float: left;
+      margin: 4px 0 0 8px; }
+      #dreamField #newDream-location #name p, #dreamField #newDream-location #city p, #dreamField #newDream-location #state p, #dreamField #newDream-location #country p {
+        margin: 2px 0 0 10px;
+        font-size: 11px; }
+      #dreamField #newDream-location #name input, #dreamField #newDream-location #city input, #dreamField #newDream-location #state input, #dreamField #newDream-location #country input {
+        padding: 4px;
+        width: 244px;
+        font-size: 16px;
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px; }
+    #dreamField #newDream-location #name {
+      clear: both; }
   #dreamField #new_dream-images {
     border: 1px solid #333333;
     display: none; }
