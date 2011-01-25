@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream', 'modal'
   = javascript_include_tag 'jquery-ui.min', 'modal', 'jquery-1', 'jquery', 'ga', 'tagStream'
 
 
@@ -33,6 +33,9 @@
 
 
 / MODAL WINDOW
+/:javascript
+/  $(document).ready(function(){ dc.modal(); });
+
 /= render :partial => "modal_temp"
 
 

@@ -1,0 +1,16 @@
+.ui-dialog {
+  width: 370px;
+  background-color: black;
+  border: 3px solid white;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  padding: 6px; }
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
+    cursor: pointer;
+    width: 172px;
+    height: 30px;
+    border: 2px solid;
+    border-color: #333333; }
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:hover {
+    border-color: white; }

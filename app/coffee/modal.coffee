@@ -5,11 +5,11 @@ dc.modal = ->
     modal: true
     dialogClass: 'light O O-shine'
     buttons: {
-      "Ok": ->
-        console.log('ok')
-        $(this).dialog("close")
       "Cancel": ->
         console.log('no way')
+        $(this).dialog("close")
+      "Ok": ->
+        console.log('ok')
         $(this).dialog("close")
     }
   })
