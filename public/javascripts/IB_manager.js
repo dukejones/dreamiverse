@@ -188,7 +188,7 @@ var displayImages = function(images){
     $.getJSON("/images/" + images[0] + ".json",
     function(data) {
       //alert("TAGS :: " + data.image.tags)
-      var newTags = data.image.tags;
+      var newTags = data.tags;
       $('.IB_managerTagInput').val(newTags);
       
     });
