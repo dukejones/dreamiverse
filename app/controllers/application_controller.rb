@@ -25,4 +25,8 @@ protected
       redirect_to :root and return
     end
   end
+  
+  def render_404
+    render :file => "#{Rails.public_path}/404.html",  :status => 404
+  end
 end
