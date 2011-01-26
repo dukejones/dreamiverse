@@ -17,4 +17,11 @@ function setupTagStream(){
       $(this).val($(this).attr('title'));
     }
   });
+  
+  // Sharing & Location Expander
+  $('#sharingExpand').toggle(function(){
+    $('#share').slideDown();
+  }, function(){
+    $('#share').slideUp();
+  })
 }
