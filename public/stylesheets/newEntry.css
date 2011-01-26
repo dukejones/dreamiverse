@@ -57,11 +57,11 @@
       float: left;
       margin: 0; }
     #tagEntry .entryWrap .input {
-      width: 620px;
+      width: 612px;
       height: 40px;
       margin: 0;
       background: url(../images/slices/inputContentLight-40.png) repeat-x; }
-      #tagEntry .entryWrap .input input {
+      #tagEntry .entryWrap .input #tagInput {
         width: 480px;
         height: 32px;
         line-height: 32px;
