@@ -502,11 +502,11 @@ loadArtist = function(artist) {
     });*/
   };
   
-  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter,
-    function(albums) {
-      populateAlbums(albums);
-    }
-  );
+  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
+      function(albums) {
+        populateAlbums(albums);
+      }
+    );
   
   $("#IB_manageArtistImages").unbind();
   $("#IB_manageArtistImages").click(function() {
@@ -1179,7 +1179,7 @@ function addTagToList(tagToAdd,tagType,tagInputBoxIdd){
   $(tagInputBoxIdd).val(''); // Clear textbox
   $(tagInputBoxIdd).focus(); // Focus text input
   
-  $(tagInputBoxIdd).autocomplete( 'close' );
+  //$(tagInputBoxIdd).autocomplete( 'close' );
   
   activateRemoveTag('.tag_box');
   

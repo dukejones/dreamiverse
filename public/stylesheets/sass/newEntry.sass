@@ -55,7 +55,7 @@
       float: left
       margin: 0
     .input
-      width: 612px
+      width: 620px
       height: 40px
       margin: 0
       background: url(../images/slices/inputContentLight-40.png) repeat-x
@@ -98,12 +98,14 @@
     left: 490px
     background: #fff
     -moz-box-shadow: 0 0 40px #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
     border: 1px solid #fff
     z-index: 900
     .arrow
       position: absolute
       top: -12px
-      left: 70px
+      left: 72px
     select, .social
       font-size: 16px
       width: 100%
@@ -117,6 +119,7 @@
       height: 22px
       line-height: 22px
       cursor: pointer
+      background: #fff
       label
         display: block
       .icon, .name

@@ -1,15 +1,13 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  helper_method :current_user, :add_starlight
   protect_from_forgery
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def add_starlight(entity)
-    if unique_hit?
-      Starlight.add(5, entity)
-    end
+  def add_starlight(entity, amt)
+    Starlight.change(entity, amt)
   end
   
   def unique_hit?
@@ -26,5 +24,9 @@ protected
     unless current_user
       redirect_to :root and return
     end
+  end
+  
+  def render_404
+    render :file => "#{Rails.public_path}/404.html",  :status => 404
   end
 end

@@ -102,6 +102,8 @@
       background: -moz-linear-gradient(top, #B7B7B7, #363636) /* gradient-35-85 */
 
   /* NEW DREAM DATE */
+  #newDream-dateTime
+    display: none
   #dateTimeHeader
     img
       margin: 9px 8px 0 0
@@ -119,10 +121,11 @@
   /* NEW DREAM LOCATION */
   #newDream-location
     height: 140px
+    display: none
     #locationHeader
       img
         margin: 9px 8px 0 0
-    #locations, #new
+    #locations, #newLocation
       float: left
       font-size: 16px
       height: 28px
@@ -131,7 +134,7 @@
       padding: 0 8px
     #locations
       width: 120px
-    #new
+    #newLocation
       cursor: pointer
       padding: 0 8px
       background: #fff
@@ -237,6 +240,16 @@
   /* NEW DREAM TAG */
   #newDream-tag
     min-height: 42px
+    #tag-list
+      width: 660px
+      min-height: 28px
+      .tag_box
+        padding: 0 4px
+        text-align: center
+        height: 28px
+        line-height: 28px
+        color: #262626 /* 90% Black */
+        margin: 8px 8px 0 0
     #tagInputWrap
       width: 520px
       height: 40px
@@ -342,6 +355,8 @@
         float: left
         margin: 0 0 0 102px
         width: 330px
+        height: 24px
+        overflow: hidden
         cursor: pointer
         a:link, a:visited
           height: 14px

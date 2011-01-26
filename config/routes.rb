@@ -26,6 +26,8 @@ Dreamcatcher::Application.routes.draw do
 
   # Image auto-resizing
   match '/images/uploads/:id-:size.:format', to: 'images#resize'
+
+  match '/parse/title', to: 'home#parse_url_title'
   
   root :to => "home#index"
 

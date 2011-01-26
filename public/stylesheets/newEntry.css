@@ -57,7 +57,7 @@
       float: left;
       margin: 0; }
     #tagEntry .entryWrap .input {
-      width: 612px;
+      width: 620px;
       height: 40px;
       margin: 0;
       background: url(../images/slices/inputContentLight-40.png) repeat-x; }
@@ -100,12 +100,14 @@
     left: 490px;
     background: white;
     -moz-box-shadow: 0 0 40px black;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
+    background: -moz-linear-gradient(top, white, #cccccc);
     border: 1px solid white;
     z-index: 900; }
     #tagEntry #share .arrow {
       position: absolute;
       top: -12px;
-      left: 70px; }
+      left: 72px; }
     #tagEntry #share select, #tagEntry #share .social {
       font-size: 16px;
       width: 100%;
@@ -118,7 +120,8 @@
       width: 138px;
       height: 22px;
       line-height: 22px;
-      cursor: pointer; }
+      cursor: pointer;
+      background: white; }
       #tagEntry #share .social label {
         display: block; }
       #tagEntry #share .social .icon, #tagEntry #share .social .name {

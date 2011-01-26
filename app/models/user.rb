@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :dreams
   has_many :hits
+
+  has_many :starlights, :as => :entity
+  has_one  :starlight, :as => :entity, :order => "id DESC"
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

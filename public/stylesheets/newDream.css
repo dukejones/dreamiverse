@@ -103,6 +103,8 @@
       -webkit-border-radius: 8px;
       background: -webkit-gradient(linear, left top, left bottom, from(#b7b7b7), to(#363636));
       background: -moz-linear-gradient(top, #b7b7b7, #363636); }
+  #dreamField #newDream-dateTime {
+    display: none; }
   #dreamField #dateTimeHeader img {
     margin: 9px 8px 0 0; }
   #dreamField .date, #dreamField .time {
@@ -116,10 +118,11 @@
   #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
     margin-left: -4px; }
   #dreamField #newDream-location {
-    height: 140px; }
+    height: 140px;
+    display: none; }
     #dreamField #newDream-location #locationHeader img {
       margin: 9px 8px 0 0; }
-    #dreamField #newDream-location #locations, #dreamField #newDream-location #new {
+    #dreamField #newDream-location #locations, #dreamField #newDream-location #newLocation {
       float: left;
       font-size: 16px;
       height: 28px;
@@ -128,7 +131,7 @@
       padding: 0 8px; }
     #dreamField #newDream-location #locations {
       width: 120px; }
-    #dreamField #newDream-location #new {
+    #dreamField #newDream-location #newLocation {
       cursor: pointer;
       padding: 0 8px;
       background: white; }
@@ -229,6 +232,16 @@
           right: 0px; }
   #dreamField #newDream-tag {
     min-height: 42px; }
+    #dreamField #newDream-tag #tag-list {
+      width: 660px;
+      min-height: 28px; }
+      #dreamField #newDream-tag #tag-list .tag_box {
+        padding: 0 4px;
+        text-align: center;
+        height: 28px;
+        line-height: 28px;
+        color: #262626;
+        margin: 8px 8px 0 0; }
     #dreamField #newDream-tag #tagInputWrap {
       width: 520px;
       height: 40px;
@@ -329,6 +342,8 @@
       float: left;
       margin: 0 0 0 102px;
       width: 330px;
+      height: 24px;
+      overflow: hidden;
       cursor: pointer; }
       #dreamField #newDream-link .linkContainer .url a:link, #dreamField #newDream-link .linkContainer .url a:visited {
         height: 14px;

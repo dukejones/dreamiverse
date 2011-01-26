@@ -9,4 +9,10 @@ class HomeController < ApplicationController
 
     @user = User.new(:username => "username")
   end
+  
+  def parse_url_title
+    @url = params[:url]
+    @title = ExternalUrl.title(@url)
+    render :json => {:title => @title}
+  end
 end

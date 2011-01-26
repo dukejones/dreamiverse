@@ -10,10 +10,17 @@ class DreamsController < ApplicationController
     end
 
     @dreams = @user.dreams
+    
+    add_starlight @user, 1 if unique_hit?
   end
 
   def show
     @dream = Dream.find params[:id]
+
+    if unique_hit?
+      add_starlight @dream, 1
+      add_starlight current_user, 1
+    end
   end
   
   def new
