@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream', 'modal'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream', 'modal', 'dreamStream'
   = javascript_include_tag 'jquery-ui.min', 'modal', 'jquery-1', 'jquery', 'ga', 'tagStream'
 
 
@@ -14,7 +14,7 @@
 #dreamField
 
   / NEW ENTRY BAR
-  =render :partial => 'newEntry'
+  =render :partial => 'new_entry'
   
   / TAG ENTRY & STREAM
   =render :partial => 'tag_stream'
@@ -25,6 +25,9 @@
     / DREAM THUMBS
     - @dreams.each do |dream|
       = render :partial => 'dream_thumb', :locals => {:dream => dream}
+
+    / DREAM THUMBS 1D
+    = render :partial => 'dream_thumb_1d'
 
     / NO DREAMS TO DISPLAY
     - if @dreams.empty?
