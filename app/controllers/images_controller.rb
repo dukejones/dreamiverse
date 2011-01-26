@@ -116,7 +116,8 @@ class ImagesController < ApplicationController
   def resize
     image = Image.find params[:id]
     image.resize params[:size]
-    send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
+    # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
+    redirect_to image.url(params[:size])
   rescue => e
     Rails.logger.error "Error in Realtime Resize: #{e}"
     render_404
