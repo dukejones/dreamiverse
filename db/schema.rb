@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110126041200) do
   create_table "starlights", :force => true do |t|
     t.integer  "entity_id"
     t.string   "entity_type"
-    t.integer  "value",       :default => 0, :null => false
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

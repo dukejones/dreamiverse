@@ -8,11 +8,13 @@
   %a#label.block.light.O-button.O-shine.round-12{href: '/'}
     = user.username
 
-  / FOLLOW THIS
-  / %a#follow.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
+  / FOLLOW
   - unless user == current_user
     - if true
-      = render partial: 'shared/friend'
+      /%a#follow.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
+      /= render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
+      = render partial: 'shared/following', locals: {icon: 'friend-following', text: 'following'}
+
   
   / CONTEXT ITEMS
   .item
