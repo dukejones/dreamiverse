@@ -9,8 +9,11 @@
     = user.username
 
   / FOLLOW THIS
-  %a#follow.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
-
+  / %a#follow.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
+  - unless user == current_user
+    - if true
+      = render partial: 'shared/friend'
+  
   / CONTEXT ITEMS
   .item
     .label.light.B-bevel.round-12.flat-right dreams
