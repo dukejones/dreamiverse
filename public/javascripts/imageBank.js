@@ -502,11 +502,11 @@ loadArtist = function(artist) {
     });*/
   };
   
-  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter,
-    function(albums) {
-      populateAlbums(albums);
-    }
-  );
+  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
+      function(albums) {
+        populateAlbums(albums);
+      }
+    );
   
   $("#IB_manageArtistImages").unbind();
   $("#IB_manageArtistImages").click(function() {

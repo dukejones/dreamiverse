@@ -2,7 +2,15 @@ $(document).ready(function() {
   setupEvents();
   setupTags();
   setupImagebank();
+  setupGeo();
 });
+
+function setupGeo(){
+  $('#newLocation').click(function(){
+    $('#newLocation').unbind();
+    getGeo();
+  })
+}
 
 function setupImagebank(){
   $('#addFromImageBank').click(function(){
@@ -233,8 +241,13 @@ function setupEvents(){
   })
   
   // Listen for paste in DREAM field
-  $("#dream_body").bind('paste', function() {
-    setTimeout('checkForPastedLink($("#dream_body").val())', 400)
+  $("#dream_body").bind('paste', function(e) {
+    // Get pasted link
+    var el = $(this);
+    setTimeout(function() {
+      var text = $(el).val();
+      checkForPastedLink(text)
+    }, 100);
     
   });
   
@@ -256,6 +269,27 @@ function checkForPastedLink(newText){
 }
 
 function addLink(newText){
+  if($('#newDream-link').css('display') == 'none'){
+    $('#newDream-link').slideDown();
+    $('#newDream-attach .links').hide();
+    
+    // Set newly displayed header click
+    $('#newDream-link .headers').unbind();
+    $('#newDream-link .headers').click(function(){
+      if($('#linkHolder').children().length < 1){
+        // No tags added hide it all
+        $('#newDream-link').slideUp();
+        $('#newDream-attach .links').show();
+      } else {
+        // tags added only minimize
+        if($('#linkHolder').css('display') != 'none'){
+          $('#linkHolder').slideUp();
+        } else {
+          $('#linkHolder').slideDown();
+        }
+      }
+    })
+  }
   // Check what DOMAIN they are pasting
   var tempAnchor = $("<a />");
   tempAnchor.attr('href', newText)
@@ -271,9 +305,25 @@ function addLink(newText){
       break;
       
     default:
-        var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+        var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
+        var newID = 'link-' + randomNumber;
+        var newEle = '#' + newID;
+        var newDOM = $(newEle);
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
         $('#linkHolder').append(newElement);
-        $('.linkContainer').fadeIn();
+        //$('.linkContainer').fadeIn();
+        var dataSent = {url: newText};
+        // Get the title from server
+        var filePath = '/parse/title'
+        $.ajax({
+          url: filePath,
+          context: $(newEle),
+          data: dataSent,
+          success: function(data) {
+            $(this).find('.linkTitleValue').val(data.title)
+            $('.linkContainer').fadeIn();
+          }
+        });
       break;
       
   }
@@ -356,17 +406,37 @@ function resetImageButtons(){
 /* LOCATION DATA */
 
 var getGeo = function(){
+  alert('getGEO')
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 }
+//http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854966/-122.6950651
 
 function geoError(error){
   alert("geolocation error : " + error);
 }
 
 function geoSuccess(position) {
+  alert('geoSuccess')
   // Temp solution.
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
-  alert(lat + ' / ' + lng);
-  //$('#IB_geotag_input').val(lng + ' / ' + lat);
+  getAddress(lat, lng);
+  
+  // Turn on new location button
+  setupGeo();
+}
+
+function getAddress(lat, lng){
+  // Get location data from google
+  var filePath = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true'
+  
+  $.ajax({
+    url: filePath,
+    dataType: 'jsonp',
+    success: function(data) {
+      //var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      alert('test')
+      alert(data)
+    }
+  });
 }
