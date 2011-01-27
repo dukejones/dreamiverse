@@ -170,7 +170,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  amistad
+  amistad (~> 0.6)
   barista
   capistrano
   capistrano-ext
