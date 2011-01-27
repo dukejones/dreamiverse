@@ -188,9 +188,6 @@
     font-size: 12px;
     font-weight: bold; }
 
-.stream-node:hover {
-  border: 1px solid #cccccc; }
-
 .stream-count {
   background-color: #a63700;
   color: white;
