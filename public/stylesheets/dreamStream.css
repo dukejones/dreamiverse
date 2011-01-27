@@ -1,0 +1,71 @@
+.dreamThumbs_1d .thumb:hover {
+  box-shadow: 0px 0px 40px black;
+  -moz-box-shadow: 0px 0px 40px black;
+  -webkit-box-shadow: 0px 0px 40px black; }
+.dreamThumbs_1d .thumb {
+  width: 680px;
+  height: 90px;
+  overflow: hidden; }
+  .dreamThumbs_1d .thumb .left {
+    float: left;
+    width: 256px;
+    height: 90px;
+    margin: 0;
+    padding: 0; }
+    .dreamThumbs_1d .thumb .left .image {
+      width: 256px;
+      height: 45px;
+      border-radius-topleft: 16px;
+      -moz-border-radius-topleft: 16px;
+      -webkit-border-radius-topleft: 16px;
+      background: url(../images/art/cloud-temple-banner.jpg) no-repeat top; }
+    .dreamThumbs_1d .thumb .left .tagCloud {
+      height: 45px;
+      border-radius-bottomleft: 16px;
+      -moz-border-radius-bottomleft: 16px;
+      -webkit-border-radius-bottomleft: 16px; }
+  .dreamThumbs_1d .thumb .right {
+    float: right;
+    height: 90px;
+    width: 424px;
+    margin: 0;
+    padding: 0;
+    border-radius-topright: 16px;
+    -moz-border-radius-topright: 16px;
+    -webkit-border-radius-topright: 16px;
+    border-radius-bottomright: 16px;
+    -moz-border-radius-bottomright: 16px;
+    -webkit-border-radius-bottomright: 16px;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
+    background: -moz-linear-gradient(top, white, #cccccc); }
+    .dreamThumbs_1d .thumb .right .user {
+      float: left;
+      width: 25%;
+      height: 33px;
+      line-height: 35px;
+      margin: 6px 0 0 4px;
+      color: #034c99;
+      background: white url(../images/avatars/xavitar.jpg) no-repeat left; }
+      .dreamThumbs_1d .thumb .right .user .name {
+        margin: 0 0 0 40px;
+        font-size: 16px;
+        font-weight: bold; }
+    .dreamThumbs_1d .thumb .right .title {
+      width: 73%;
+      height: 48px;
+      line-height: 48px;
+      margin: -34px 0 0 4px;
+      float: right;
+      font-weight: bold; }
+      .dreamThumbs_1d .thumb .right .title h1 {
+        overflow: hidden;
+        height: 43px;
+        font-size: 48px; }
+      .dreamThumbs_1d .thumb .right .title h2 {
+        margin-top: -74px;
+        font-size: 17px;
+        color: #262626; }
+    .dreamThumbs_1d .thumb .right .text {
+      clear: both;
+      color: #666666;
+      margin: 44px 0 0 15px; }
