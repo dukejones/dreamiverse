@@ -90,64 +90,46 @@ loadArtistList = function(genre) {
   setGenre(genre);
   $("#IB_browseArrow p").text("Browse");
   $("#IB_category").text(genre);
-  $("#IB_browseArrow").click(function() {
-    loadBrowse();
-  });
+  $("#IB_browseArrow").click(loadBrowse);
   $("#IB_browseArrow").show();
   
-  populateArtistList = function(artists) {
-    //Clear list
+
+  // Populate Artists List
+  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter, function(artists) {
+    // Clear list
     $("#artists").html("");
     
     // Clean up search just in case
     closeSearchExpand();
-    alert("populate artist list")
-    alert(artists[0].album)
-    //Incrementally add each item
-    for (i = 0; i < artists.length; i++) {
-      var artist = artists[i];
-      
+
+    $.each(artists, function(artist, images) {
       // Only allow 6 max images
-      var imageLength;
-      if(artist.length > 5){
-        imageLength = 6;
-      } else {
-        imageLength = artist.length;
-      }
+      var imageLength = (artist.length > 5) ? 6 : artist.length;
       
-      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist.name+'</h2>';
-      alert(imageLength)
-      if (artist.length > 0) {
+      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist+'</h2>';
+      if (images.length > 0) {
         item += "<div class=\"images\">";
-        for (j = 0; j < imageLength; j++)
-        {
-          var image = artist[j];
-          
+        $.each(images, function(i, image) {
           // Get file path from results
           var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
           
           var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
           item += '<img src="' + filePath + '"/>';
           //item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
-        }
+        });
         item += "</div>";
       }
       item += "</li>";
       $("#artists").append(item);
-    }
+    });
     
-    //Assign events to each item
+    // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
       $("#IB_search_artist").val(artist);
       loadArtist(artist);
     });  
-  };
-  var filePath = "/artists.json?genre="+genre+"&section="+sectionFilter;
-  $.getJSON(filePath,
-    function(artists) {
-      populateArtistList(artists);
-    });
+  });
       
   $("#IB_artistContainer").fadeIn();
 };
@@ -222,7 +204,7 @@ addImagesToDream = function(images){
   $('#currentImages').fadeIn();
 }
 
-closeImaagebank = function(){
+closeImagebank = function(){
   $('#IB_browser_frame').fadeOut('fast', function(){
     $(this).remove();
   });
@@ -1350,7 +1332,7 @@ function initImageBank(_sectionFilter){
   
   // TEMP
   $('.browseBars').click(function(){
-      closeImaagebank();
+      closeImagebank();
     });
 }
 
