@@ -13,9 +13,11 @@
     padding: 4px 8px;
     cursor: pointer;
     font-size: 21px; }
-  #contextPanel #label.follow img {
-    position: absolute;
-    right: 20px; }
+    #contextPanel #label img.follower {
+      position: relative;
+      float: right;
+      top: 6px;
+      margin-left: -16px; }
   #contextPanel #follow {
     margin-bottom: 6px; }
   #contextPanel .item, #contextPanel .item2 {

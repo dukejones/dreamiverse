@@ -1,8 +1,11 @@
 
 / FOLLOW
-.item
-  .label.light.B-bevel.round-12.flat-right you are
-  .image
-    %img.dream{src: "/images/icons/#{icon}-32.png", width: '32', height: '27'}
-  .detail.light.O.round-12.flat-left= text
-  .clear-both
+.item{onMouseOver: "$('#followState').addClass(hidden), $('#follow').removeClass(hidden)", onMouseOut: "$('#followState').removeClass(hidden), $('#follow').addClass(hidden)"}
+  #followState
+    .label.light.B-bevel.round-12.flat-right you are
+    .image
+      %img.follow{src: "/images/icons/#{icon}-24.png", width: '24', height: '24'}
+    .detail.light.O.round-12.flat-left= text
+    .clear-both
+
+%a#follow.block.light.O.B-shine.round-12.button-delete.align-center.font-bold.padding-8.hidden{href: '#'} unfollow
