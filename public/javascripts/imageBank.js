@@ -90,21 +90,19 @@ loadArtistList = function(genre) {
   setGenre(genre);
   $("#IB_browseArrow p").text("Browse");
   $("#IB_category").text(genre);
-  $("#IB_browseArrow").click(function() {
-    loadBrowse();
-  });
+  $("#IB_browseArrow").click(loadBrowse);
   $("#IB_browseArrow").show();
   
-  populateArtistList = function(artists) {
-    //Clear list
+
+  // Populate Artists List
+  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter, function(artists) {
+    // Clear list
     $("#artists").html("");
     
     // Clean up search just in case
     closeSearchExpand();
 
-    //Incrementally add each item
     $.each(artists, function(artist, images) {
-      
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
       
@@ -125,18 +123,13 @@ loadArtistList = function(genre) {
       $("#artists").append(item);
     });
     
-    //Assign events to each item
+    // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
       $("#IB_search_artist").val(artist);
       loadArtist(artist);
     });  
-  };
-  var filePath = "/artists.json?genre="+genre+"&section="+sectionFilter;
-  $.getJSON(filePath,
-    function(artists) {
-      populateArtistList(artists);
-    });
+  });
       
   $("#IB_artistContainer").fadeIn();
 };
@@ -211,7 +204,7 @@ addImagesToDream = function(images){
   $('#currentImages').fadeIn();
 }
 
-closeImaagebank = function(){
+closeImagebank = function(){
   $('#IB_browser_frame').fadeOut('fast', function(){
     $(this).remove();
   });
@@ -1339,7 +1332,7 @@ function initImageBank(_sectionFilter){
   
   // TEMP
   $('.browseBars').click(function(){
-      closeImaagebank();
+      closeImagebank();
     });
 }
 
