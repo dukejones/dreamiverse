@@ -1,0 +1,47 @@
+.dreamThumbs_1d .thumb {
+  width: 680px; }
+  .dreamThumbs_1d .thumb .left {
+    float: left;
+    width: 424px;
+    height: 82px;
+    margin: 0;
+    padding: 0; }
+    .dreamThumbs_1d .thumb .left .user {
+      width: 25%;
+      height: 33px;
+      line-height: 33px;
+      margin: 0 0 0 4px;
+      color: #034c99;
+      background: white url(../images/avatars/xavitar.jpg) no-repeat left; }
+      .dreamThumbs_1d .thumb .left .user p {
+        margin-left: 48px;
+        font-size: 16px;
+        font-weight: bold; }
+    .dreamThumbs_1d .thumb .left .title {
+      width: 73%;
+      height: 48px;
+      line-height: 48px;
+      margin: -74px 0 0 4px;
+      float: right;
+      font-weight: bold; }
+      .dreamThumbs_1d .thumb .left .title h1 {
+        overflow: hidden;
+        height: 43px;
+        font-size: 48px; }
+      .dreamThumbs_1d .thumb .left .title p {
+        margin-top: -74px;
+        font-size: 17px; }
+    .dreamThumbs_1d .thumb .left p {
+      color: #666666;
+      margin-left: 15px; }
+  .dreamThumbs_1d .thumb .right {
+    float: right;
+    width: 256px;
+    margin: 0;
+    padding: 0; }
+    .dreamThumbs_1d .thumb .right .image {
+      width: 256px;
+      height: 64px;
+      overflow: hidden;
+      -moz-border-radius: 0 16px 0 0;
+      background: url(../images/avatars/xavitar.jpg) no-repeat top; }
