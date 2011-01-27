@@ -3,50 +3,74 @@
 
 // DREAM STREAM 1D
 .dreamThumbs_1d
+  .thumb:hover
+    box-shadow: 0px 0px 40px #000
+    -moz-box-shadow: 0px 0px 40px #000
+    -webkit-box-shadow: 0px 0px 40px #000
   .thumb
     width: 680px
+    height: 90px
+    overflow: hidden
     .left
       float: left
-      width: 424px
-      height: 82px
+      width: 256px
+      height: 90px
       margin: 0
       padding: 0
+      .image
+        width: 256px
+        height: 45px
+        border-radius-topleft: 16px
+        -moz-border-radius-topleft: 16px
+        -webkit-border-radius-topleft: 16px
+        background: url(../images/art/cloud-temple-banner.jpg) no-repeat top
+      .tagCloud
+        height: 45px
+        border-radius-bottomleft: 16px
+        -moz-border-radius-bottomleft: 16px
+        -webkit-border-radius-bottomleft: 16px
+    .right
+      float: right
+      height: 90px
+      width: 424px
+      margin: 0
+      padding: 0
+      border-radius-topright: 16px
+      -moz-border-radius-topright: 16px
+      -webkit-border-radius-topright: 16px
+      border-radius-bottomright: 16px
+      -moz-border-radius-bottomright: 16px
+      -webkit-border-radius-bottomright: 16px
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+      background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
       .user
+        float: left
         width: 25%
         height: 33px
-        line-height: 33px
-        margin: 0 0 0 4px
+        line-height: 35px
+        margin: 6px 0 0 4px
         color: #034c99
         background: #fff url(../images/avatars/xavitar.jpg) no-repeat left
-        p
-          margin-left: 48px
+        .name
+          margin: 0 0 0 40px
           font-size: 16px
           font-weight: bold
       .title
         width: 73%
         height: 48px
         line-height: 48px
-        margin: -74px 0 0 4px
+        margin: -34px 0 0 4px
         float: right
         font-weight: bold
         h1
           overflow: hidden
           height: 43px
           font-size: 48px
-        p
+        h2
           margin-top: -74px
           font-size: 17px
-      p
+          color: #262626 /* 90% Black */
+      .text
+        clear: both
         color: #666
-        margin-left: 15px
-    .right
-      float: right
-      width: 256px
-      margin: 0
-      padding: 0
-      .image
-        width: 256px
-        height: 64px
-        overflow: hidden
-        -moz-border-radius: 0 16px 0 0
-        background: url(../images/avatars/xavitar.jpg) no-repeat top
+        margin: 44px 0 0 15px
