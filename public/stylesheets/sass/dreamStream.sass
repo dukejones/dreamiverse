@@ -17,10 +17,52 @@
     margin: 20px 0 0
     width: 680px
     overflow: hidden
-  .thumbAll
+  .thumbAll, .thumbNoImage
     height: 90px
-  .thumbTag
+  .thumbTag, .thumbNewImages
     height: 62px
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+  .thumbTag
+    padding: 15px 0
+    height: 32px
+    line-height: 32px
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+    .user
+      margin: 0 8px
+    .tagText
+      float: left
+      margin: 0 0 0 12px
+      font-size: 18px
+  .thumbNoImage
+    .left
+      .tagCloud
+        height: 90px
+        border-radius-topleft: 16px
+        -moz-border-radius-topleft: 16px
+        -webkit-border-radius-topleft: 16px
+  .thumbNewImages
+    .left
+      .image
+        height: 62px
+        border-radius-bottomleft: 16px
+        -moz-border-radius-bottomleft: 16px
+        -webkit-border-radius-bottomleft: 16px
+    .right
+      height: 62px
+      .user
+        margin: 15px 8px
+      .display
+        float: left
+        margin: 10px 0 0
+        .gallery
+          margin: 0
+          font-size: 18px
+          color: #262626 /* 90% Black */
+        .text
+          margin: 0
 
   .left
     float: left
@@ -56,10 +98,10 @@
     background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
   .user
     float: left
-    width: 25%
-    height: 33px
+    width: 90px
+    height: 32px
     line-height: 35px
-    margin: 6px 0 0 4px
+    margin: 7px 0 0 8px
     color: #034c99
     background: #fff url(../images/avatars/xavitar.jpg) no-repeat left
     .name
@@ -67,10 +109,10 @@
       font-size: 16px
       font-weight: bold
   .title
-    width: 73%
+    width: 320px
     height: 48px
     line-height: 48px
-    margin: -34px 0 0 4px
+    margin: -34px 0 0
     float: right
     font-weight: bold
     h1
@@ -79,7 +121,7 @@
       font-size: 48px
     h2
       margin-top: -74px
-      font-size: 17px
+      font-size: 18px
       color: #262626 /* 90% Black */
   .text
     clear: both
