@@ -101,40 +101,29 @@ loadArtistList = function(genre) {
     
     // Clean up search just in case
     closeSearchExpand();
-    alert("populate artist list")
-    alert(artists[0].album)
+
     //Incrementally add each item
-    for (i = 0; i < artists.length; i++) {
-      var artist = artists[i];
+    $.each(artists, function(artist, images) {
       
       // Only allow 6 max images
-      var imageLength;
-      if(artist.length > 5){
-        imageLength = 6;
-      } else {
-        imageLength = artist.length;
-      }
+      var imageLength = (artist.length > 5) ? 6 : artist.length;
       
-      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist.name+'</h2>';
-      alert(imageLength)
-      if (artist.length > 0) {
+      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist+'</h2>';
+      if (images.length > 0) {
         item += "<div class=\"images\">";
-        for (j = 0; j < imageLength; j++)
-        {
-          var image = artist[j];
-          
+        $.each(images, function(i, image) {
           // Get file path from results
           var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
           
           var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
           item += '<img src="' + filePath + '"/>';
           //item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
-        }
+        });
         item += "</div>";
       }
       item += "</li>";
       $("#artists").append(item);
-    }
+    });
     
     //Assign events to each item
     $("#artists li").click(function() {
