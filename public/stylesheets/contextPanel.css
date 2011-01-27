@@ -19,7 +19,15 @@
       top: 6px;
       margin-left: -16px; }
   #contextPanel #follow {
-    margin-bottom: 6px; }
+    margin-bottom: 6px;
+    padding: 8px;
+    height: 20px;
+    font-weight: bold;
+    text-align: center; }
+    #contextPanel #follow img {
+      margin: -12px 6px -12px -12px;
+      position: relative;
+      top: -4px; }
   #contextPanel .item, #contextPanel .item2 {
     clear: both;
     margin-bottom: 6px; }
@@ -28,12 +36,12 @@
   #contextPanel .item .label {
     width: 66px;
     height: 24px;
-    padding: 6px 8px;
+    padding: 5px 8px;
     text-align: right; }
   #contextPanel .item .image {
     width: 24px;
     height: 24px;
-    padding: 8px 3px;
+    padding: 7px 3px;
     margin: 0; }
     #contextPanel .item .image img.dream {
       margin: -8px -4px; }
@@ -42,7 +50,7 @@
       z-index: 1004; }
   #contextPanel .item .detail {
     width: 70px;
-    height: 26px;
+    height: 24px;
     padding: 6px 8px;
     line-height: 26px;
     font-weight: bold;
