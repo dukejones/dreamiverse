@@ -101,25 +101,27 @@ loadArtistList = function(genre) {
     
     // Clean up search just in case
     closeSearchExpand();
-    
+    alert("populate artist list")
+    alert(artists[0].album)
     //Incrementally add each item
     for (i = 0; i < artists.length; i++) {
       var artist = artists[i];
       
       // Only allow 6 max images
       var imageLength;
-      if(artist.images.length > 5){
+      if(artist.length > 5){
         imageLength = 6;
       } else {
-        imageLength = artist.images.length;
+        imageLength = artist.length;
       }
       
       var item = '<li><h2 class="color-0 font-H1 font-light">'+artist.name+'</h2>';
-      if (artist.images.length > 0) {
+      alert(imageLength)
+      if (artist.length > 0) {
         item += "<div class=\"images\">";
         for (j = 0; j < imageLength; j++)
         {
-          var image = artist.images[j];
+          var image = artist[j];
           
           // Get file path from results
           var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
@@ -141,8 +143,8 @@ loadArtistList = function(genre) {
       loadArtist(artist);
     });  
   };
-  
-  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter,
+  var filePath = "/artists.json?genre="+genre+"&section="+sectionFilter;
+  $.getJSON(filePath,
     function(artists) {
       populateArtistList(artists);
     });
