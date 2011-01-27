@@ -14,4 +14,8 @@ class Starlight < ActiveRecord::Base
     Rails.logger.info "Cloning starlight: #{starlight.id}"
     self.create!(:value => starlight.value, :entity => starlight.entity)
   end
+  
+  def self.entropize!
+    # group most recent starlight for every entity
+  end
 end
