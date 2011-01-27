@@ -10,7 +10,8 @@ class ArtistsController < ApplicationController
       
       @artists = {}
       images.each do |image|
-        @artists[image.artist] = image
+        @artists[image.artist] ||= []
+        @artists[image.artist] << image
       end
     elsif params[:starts_with]
       @artists = image_finder.where("artist LIKE ?", "#{params[:starts_with]}%").artists
