@@ -9,15 +9,14 @@
     = user.username
     / if follower
     /- if true 
-    /  %img.follower{src: "/images/icons/friend-follower-16.png", width: '16', height: '16'}
+    /  %img.follower{src: "/images/icons/friend-follow-16.png", width: '16', height: '16'}
 
   / FOLLOW
   - unless user == current_user
     - if true
-      /%a#follow.block.light.O.B-shine.round-12.button-post.align-center.font-bold.padding-8{href: '#'} follow
+      /= render partial: 'shared/follow'
       /= render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
-      = render partial: 'shared/following', locals: {icon: 'friend-following', text: 'following'}
-      /= render partial: 'shared/follower', locals: {icon: 'friend-follower'}
+      = render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
 
   
   / CONTEXT ITEMS

@@ -3,74 +3,139 @@
 
 // DREAM STREAM 1D
 .dreamThumbs_1d
+  height: auto
+
   .thumb:hover
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
     box-shadow: 0px 0px 40px #000
     -moz-box-shadow: 0px 0px 40px #000
     -webkit-box-shadow: 0px 0px 40px #000
   .thumb
+    clear: both
+    margin: 20px 0 0
     width: 680px
-    height: 90px
     overflow: hidden
     .left
+      .details
+        position: absolute
+        .date, .location
+          float: left
+          padding: 4px 8px
+          margin: 4px
+          font-size: 11px
+          text-align: center
+          border-radius: 12px
+          -moz-border-radius: 12px
+          -webkit-border-radius: 12px
+  .thumbAll, .thumbNoImage
+    height: 90px
+  .thumbTag, .thumbNewImages
+    height: 62px
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+  .thumbTag
+    padding: 15px 0
+    height: 32px
+    line-height: 32px
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+    .user
+      margin: 0 8px
+    .tagText
       float: left
-      width: 256px
-      height: 90px
-      margin: 0
-      padding: 0
-      .image
-        width: 256px
-        height: 45px
+      margin: 0 0 0 12px
+      font-size: 18px
+  .thumbNoImage
+    .left
+      .tagCloud
+        height: 90px
         border-radius-topleft: 16px
         -moz-border-radius-topleft: 16px
         -webkit-border-radius-topleft: 16px
-        background: url(../images/art/cloud-temple-banner.jpg) no-repeat top
-      .tagCloud
-        height: 45px
+  .thumbNewImages
+    .left
+      .image
+        height: 62px
         border-radius-bottomleft: 16px
         -moz-border-radius-bottomleft: 16px
         -webkit-border-radius-bottomleft: 16px
     .right
-      float: right
-      height: 90px
-      width: 424px
-      margin: 0
-      padding: 0
-      border-radius-topright: 16px
-      -moz-border-radius-topright: 16px
-      -webkit-border-radius-topright: 16px
-      border-radius-bottomright: 16px
-      -moz-border-radius-bottomright: 16px
-      -webkit-border-radius-bottomright: 16px
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
-      background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+      height: 62px
       .user
+        margin: 15px 8px
+      .display
         float: left
-        width: 25%
-        height: 33px
-        line-height: 35px
-        margin: 6px 0 0 4px
-        color: #034c99
-        background: #fff url(../images/avatars/xavitar.jpg) no-repeat left
-        .name
-          margin: 0 0 0 40px
-          font-size: 16px
-          font-weight: bold
-      .title
-        width: 73%
-        height: 48px
-        line-height: 48px
-        margin: -34px 0 0 4px
-        float: right
-        font-weight: bold
-        h1
-          overflow: hidden
-          height: 43px
-          font-size: 48px
-        h2
-          margin-top: -74px
-          font-size: 17px
+        margin: 10px 0 0
+        .gallery
+          margin: 0
+          font-size: 18px
           color: #262626 /* 90% Black */
-      .text
-        clear: both
-        color: #666
-        margin: 44px 0 0 15px
+        .text
+          margin: 0
+
+  .left
+    float: left
+    width: 256px
+    height: 90px
+    margin: 0
+    padding: 0
+    .image
+      width: 256px
+      height: 45px
+      border-radius-topleft: 16px
+      -moz-border-radius-topleft: 16px
+      -webkit-border-radius-topleft: 16px
+      background: url(../images/art/cloud-temple-banner.jpg) no-repeat top
+    .tagCloud
+      height: 45px
+      border-radius-bottomleft: 16px
+      -moz-border-radius-bottomleft: 16px
+      -webkit-border-radius-bottomleft: 16px
+  .right
+    float: right
+    height: 90px
+    width: 424px
+    margin: 0
+    padding: 0
+    border-radius-topright: 16px
+    -moz-border-radius-topright: 16px
+    -webkit-border-radius-topright: 16px
+    border-radius-bottomright: 16px
+    -moz-border-radius-bottomright: 16px
+    -webkit-border-radius-bottomright: 16px
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+  .user
+    float: left
+    width: 90px
+    height: 32px
+    line-height: 35px
+    margin: 7px 0 0 8px
+    color: #034c99
+    background: #fff url(../images/avatars/xavitar.jpg) no-repeat left
+    .name
+      margin: 0 0 0 40px
+      font-size: 16px
+      font-weight: bold
+  .title
+    width: 320px
+    height: 48px
+    line-height: 48px
+    margin: -34px 0 0
+    float: right
+    font-weight: bold
+    h1
+      overflow: hidden
+      height: 43px
+      font-size: 48px
+    h2
+      margin-top: -74px
+      font-size: 18px
+      color: #262626 /* 90% Black */
+  .text
+    clear: both
+    color: #666
+    margin: 44px 0 0 15px

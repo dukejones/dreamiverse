@@ -1,6 +1,6 @@
 
 / FOLLOW
-.item{onMouseOver: "$('#followState').addClass(hidden), $('#follow').removeClass(hidden)", onMouseOut: "$('#followState').removeClass(hidden), $('#follow').addClass(hidden)"}
+.item{onMouseOver: "$('#followState').addClass('hidden'), $('#follow').removeClass('hidden')", onMouseOut: "$('#followState').removeClass('hidden'), $('#follow').addClass('hidden')"}
   #followState
     .label.light.B-bevel.round-12.flat-right you are
     .image
@@ -8,4 +8,6 @@
     .detail.light.O.round-12.flat-left= text
     .clear-both
 
-%a#follow.block.light.O.B-shine.round-12.button-delete.align-center.font-bold.padding-8.hidden{href: '#'} unfollow
+  %a#follow.block.light.O.B-shine.round-12.button-delete.hidden{href: '#'}
+    %img.follow{src: "/images/icons/friend-unfollow-24.png", width: '24', height: '24'}
+    unfollow
