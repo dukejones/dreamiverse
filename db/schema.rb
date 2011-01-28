@@ -115,8 +115,8 @@ ActiveRecord::Schema.define(:version => 20110128205955) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.integer "user",      :limit => 8
-    t.string  "user_type"
+    t.string  "source"
+    t.integer "user",   :limit => 8
   end
 
 end

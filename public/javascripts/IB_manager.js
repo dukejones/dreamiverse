@@ -58,19 +58,8 @@ function setupDropdownEvents(){
     if($('#IB_dropboxCover').css('display') == 'none'){
       $('#IB_dropboxCover').fadeIn();
     }
-    if($("#IB_categoryList option:selected").val() == "Modern Art"){
-      var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
-      
-      $('#IB_genreList').html(newGenres);
-    } else if($("#IB_categoryList option:selected").val() == "Classical Art"){
-      var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
-      
-      $('#IB_genreList').html(newGenres);
-    } else if($("#IB_categoryList option:selected").val() == "Photo"){
-      var newGenres = '<option value="None"></option><option value="People">People</option><option value="Places">Places</option><option value="Things">Things</option><option value="Concept">Concept</option><option value="Animals">Animals</option>';
-      
-      $('#IB_genreList').html(newGenres);
-    }
+    
+    setGenreOptions();
     
     $('#IB_current_genre').html('Choose')
   })
@@ -83,6 +72,22 @@ function setupDropdownEvents(){
     }
   })
   
+}
+
+function setGenreOptions(){
+  if($("#IB_categoryList option:selected").val() == "Modern Art"){
+    var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
+    
+    $('#IB_genreList').html(newGenres);
+  } else if($("#IB_categoryList option:selected").val() == "Classical Art"){
+    var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
+    
+    $('#IB_genreList').html(newGenres);
+  } else if($("#IB_categoryList option:selected").val() == "Photo"){
+    var newGenres = '<option value="None"></option><option value="People">People</option><option value="Places">Places</option><option value="Things">Things</option><option value="Concept">Concept</option><option value="Animals">Animals</option>';
+    
+    $('#IB_genreList').html(newGenres);
+  }
 }
 
 $(document).ready(function() {
@@ -120,6 +125,7 @@ $(document).ready(function() {
   $('#IB_user_input').keyup(function() { $('#IB_user_checkbox').attr("checked", true) });
   $('#IB_geotag_input').keyup(function() { $('#IB_geotag_checkbox').attr("checked", true) });
   $('.IB_managerTagInput').keyup(function() { $('.IB_managerTagCheckbox').attr("checked", true) });
+  $('#IB_source_input').keyup(function() { $('#IB_source_checkbox').attr("checked", true) });
   
   $("#IB_selectAllImages").click(function() {
     $("#IB_dropboxImages li").addClass("selected");
@@ -284,6 +290,7 @@ var removeAllImages = function(){
 
 var emptyAllFields = function(){
   $('input').val('');
+  $('textarea').val('')
   $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
 
   $('#IB_current_type, #IB_current_category, #IB_current_genre').html('Choose');
@@ -339,10 +346,23 @@ var displayMetaData = function(metadata){
   // Clean up any old meta data
   $('.meta-value').empty();
   $("input[type='checkbox']").attr('checked', false);
-  // Set the top check boxes
+  
+  // Set the top display fields
   $('#IB_current_type').html(metadata.section);
   $('#IB_current_category').html(metadata.category);
   $('#IB_current_genre').html(metadata.genre);
+  
+  // Set the top dropdowns
+  $('#IB_typeList').val(metadata.section)
+  $('#IB_categoryList').val(metadata.category)
+  
+  // Must set the genreList dropdown options before
+  // setting the dropdown state
+  setGenreOptions()
+  
+  $('#IB_genreList').val(metadata.genre)
+  
+  
   
   // Set Meta Fields
   $('#IB_title_input').val(metadata.title);
@@ -355,6 +375,7 @@ var displayMetaData = function(metadata){
   $('#IB_user_input').val(metadata.uploaded_by);
   $('#IB_geotag_input').val(metadata.geotag);
   $('.IB_managerTagInput').val(metadata.tags);
+  $('#IB_source_input').val(metadata.attribution);
 }
 
 // Check to make sure there are images selected
@@ -476,5 +497,9 @@ function collectParams(){
   
   if($('.IB_managerTagCheckbox').attr("checked")){
     imageMetaParams.image.tags =  $('.IB_managerTagInput').val();
+  }
+  
+  if($('#IB_source_checkbox').attr("checked")){
+    imageMetaParams.image.attribution =  $('#IB_source_input').val();
   }
 }
