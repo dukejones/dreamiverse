@@ -177,9 +177,14 @@ var displayImages = function(images){
       }
       
       resetImageSelectionEvents();
+      
+      // set all images to be selected by default
+      $('#IB_dropboxImages li').each(function(){
+        $(this).addClass('selected');
+      });
+  
+      updateSelectedList();
     });
-  
-  
   
   // temp hack!
   // IF 1 image is loaded, grab its tags
@@ -215,6 +220,8 @@ var updateSelectedList = function(){
       }
     }
   })
+  
+  displaySelectedImageMetaData();
 }
 
 // Returns an IMAGE ID based on its FILE name
@@ -234,14 +241,9 @@ var resetImageSelectionEvents = function(){
     if ($(this).hasClass("selected")) {
       $(this).removeClass("selected");
       updateSelectedList();
-      
-      displaySelectedImageMetaData();
     } else {
       $(this).addClass("selected");
       updateSelectedList();
-      //ajax call to get all common property values for all selected images
-      
-      displaySelectedImageMetaData();
     }
   });
 }
