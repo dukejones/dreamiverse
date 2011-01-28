@@ -275,9 +275,16 @@ var displaySelectedImageMetaData = function(){
   }
 }
 
+var removeAllImages = function(){
+  $('#IB_dropboxImages').empty();
+}
+
 var emptyAllFields = function(){
   $('input').val('');
   $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
+
+  $('#IB_current_type, #IB_current_category, #IB_current_genre').html('Choose');
+  $('#IB_typeList, #IB_categoryList, #IB_genreList').val('None');
 }
 
 var checkForSimilarMetaData = function(images){
@@ -392,7 +399,10 @@ var updateCurrentImagesMeta = function(){
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
-    alert('Images have been updated.')
+    alert('Images have been updated.');
+    
+    emptyAllFields();
+    removeAllImages();
   }
 }
 
@@ -464,5 +474,4 @@ function collectParams(){
   if($('.IB_managerTagCheckbox').attr("checked")){
     imageMetaParams.image.tags =  $('.IB_managerTagInput').val();
   }
-
 }
