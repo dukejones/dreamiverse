@@ -1,12 +1,12 @@
 / STREAM FILTER
-.streamFilter.light.O.glow-40.round-16
+.streamFilter
   .filterList.round-12
-    %label.light.C-shine
+    %label#title.light.C-shine
       Stream
       %input{type: 'checkbox'}
 
     / FILTER BY NETWORKS
-    .filterType.round-12
+    #networksFilter.filterType.round-12
       %label.type
         %img{src: '/images/icons/arrow-down-16.png'} 
         %span Network:
@@ -29,13 +29,13 @@
         %input{type: 'checkbox'}
 
     / FILTER BY WHO'S DREAMING ABOUUT ME
-    .filterType.round-12
-      %label.typeTall
+    #whoFilter.filterType.round-12
+      %label.type
         <span>Who's dreaming <br> about me:</span>
         %input{type: 'checkbox'}
 
     / FILTER BY FOLLOWING
-    .filterType.round-12
+    #followFilter.filterType.round-12
       %label.type
         %img{src: '/images/icons/arrow-right-16.png'} 
         %span Following:
@@ -55,14 +55,14 @@
         %input{type: 'checkbox'}
 
     / FILTER BY CHANNELS
-    .filterType.round-12
+    #channelsFilter.filterType.round-12
       %label.type
         %img{src: '/images/icons/arrow-right-16.png'} 
         %span Channels:
         %input{type: 'checkbox'}
 
     / FILTER BY CATEGORY
-    .filterType.round-12
+    #categoryFilter.filterType.round-12
       %label.type
         %img{src: '/images/icons/arrow-down-16.png'} 
         %span Category:

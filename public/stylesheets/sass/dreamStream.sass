@@ -1,12 +1,10 @@
 // DREAM STREAM FILTER + THUMBS 1D
 .streamFilter
   clear: both
-  width: 178px
-  margin: 20px 0 0
-  padding: 10px
+  margin: 8px 0 0
   .filterList
-    background: #e8e8e8
-    width: 178px
+    #title
+      margin: 0 0 6px
     label
       display: block
       text-align: center
@@ -14,20 +12,20 @@
       line-height: 40px
       font-weight: bold
       cursor: pointer
-      -moz-border-radius: 12px 12px 0 0
+      -moz-border-radius: 12px
       input
+        float: right
         cursor: pointer
-        margin-top: 15px
+        margin: 15px 11px 0 0
     .filterType, .refresh
       clear: both
-      margin: 10px 0
+      margin: 0 0 6px
       padding: 0 10px
       border: 2px solid #bdbdbd
-      -moz-box-shadow: 0 4px 8px
+      background: #e8e8e8
       label
         height: 30px
         line-height: 30px
-        width: 158px
         display: block
         font-weight: normal
         img, span
@@ -37,10 +35,15 @@
         input
           float: right
           margin: 10px 0 0
-      label.type, label.typeTall
+      label.type
         font-weight: bold
-      label.typeTall
+    #whoFilter
+      height: 50px
+      label
+        text-align: left
+        margin-top: 8px
         height: 60px
+        line-height: 18px
 
     .refresh
       cursor: pointer
