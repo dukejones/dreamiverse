@@ -1,7 +1,54 @@
 .streamFilter {
-  width: 194px;
-  margin: 0 0 20px 0;
+  clear: both;
+  width: 178px;
+  margin: 20px 0 0;
   padding: 10px; }
+  .streamFilter .filterList {
+    background: #e8e8e8;
+    width: 178px; }
+    .streamFilter .filterList label {
+      display: block;
+      text-align: center;
+      height: 40px;
+      line-height: 40px;
+      font-weight: bold;
+      cursor: pointer;
+      -moz-border-radius: 12px 12px 0 0; }
+      .streamFilter .filterList label input {
+        cursor: pointer;
+        margin-top: 15px; }
+    .streamFilter .filterList .filterType, .streamFilter .filterList .refresh {
+      clear: both;
+      margin: 10px 0;
+      padding: 0 10px;
+      border: 2px solid #bdbdbd;
+      -moz-box-shadow: 0 4px 8px; }
+      .streamFilter .filterList .filterType label, .streamFilter .filterList .refresh label {
+        height: 30px;
+        line-height: 30px;
+        width: 158px;
+        display: block;
+        font-weight: normal; }
+        .streamFilter .filterList .filterType label img, .streamFilter .filterList .filterType label span, .streamFilter .filterList .refresh label img, .streamFilter .filterList .refresh label span {
+          float: left; }
+        .streamFilter .filterList .filterType label img, .streamFilter .filterList .refresh label img {
+          margin: 8px 4px 0 0; }
+        .streamFilter .filterList .filterType label input, .streamFilter .filterList .refresh label input {
+          float: right;
+          margin: 10px 0 0; }
+      .streamFilter .filterList .filterType label.type, .streamFilter .filterList .filterType label.typeTall, .streamFilter .filterList .refresh label.type, .streamFilter .filterList .refresh label.typeTall {
+        font-weight: bold; }
+      .streamFilter .filterList .filterType label.typeTall, .streamFilter .filterList .refresh label.typeTall {
+        height: 60px; }
+    .streamFilter .filterList .refresh {
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+      font-weight: bold;
+      -moz-box-shadow: 0 0 0;
+      text-align: center;
+      background: -moz-linear-gradient(center top, #999999, #333333) repeat scroll 0% 0% transparent;
+      border: 2px solid #bdbdbd; }
 
 .dreamThumbs_1d {
   height: auto; }
