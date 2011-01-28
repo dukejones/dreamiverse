@@ -690,7 +690,9 @@ qq.extend(qq.FileUploader.prototype, {
             qq.addClass(item, this._classes.success);    
         } else {
             qq.addClass(item, this._classes.fail);
-        }         
+        } 
+        
+        selectAllImages();        
     },
     _addToList: function(id, fileName){
         var item = qq.toElement(this._options.fileTemplate);                
