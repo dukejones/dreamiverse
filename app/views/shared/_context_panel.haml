@@ -5,47 +5,48 @@
   %a#image.block.round-12{href: '/', style: 'background:url(/images/avatars/default-avatar-full.jpg) top left'}
 
   / LABEL
-  %a#label.block.light.O-button.O-shine.round-12{href: '/'}
+  %a#label.block.light.shine.button.round-12{href: '/'}
     = user.username
-    / if follower
-    /- if true 
+    / if friend or follower
+    - if true 
+      %img.follower{src: "/images/icons/friend-16.png", width: '16', height: '16'}
     /  %img.follower{src: "/images/icons/friend-follow-16.png", width: '16', height: '16'}
 
   / FOLLOW
   - unless user == current_user
     - if true
       /= render partial: 'shared/follow'
-      /= render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
-      = render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
+      = render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
+      /= render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
 
   
   / CONTEXT ITEMS
   .item
-    .label.light.B-bevel.round-12.flat-right dreams
+    .label.light.bevel.round-12.flat-right dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
-    .detail.light.O.round-12.flat-left 247
+    .detail.light.inner-shadow-10.round-12.flat-left #
     .clear-both
   .item
-    .label.light.B-bevel.round-12.flat-right starlight
+    .label.light.bevel.round-12.flat-right starlight
     .image
       %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-    .detail.light.O.round-12.flat-left 376
+    .detail.light.inner-shadow-10.round-12.flat-left #
     .clear-both
 
   .divider.light.transparent-33.round-4
 
   .item2
-    .label.light.B-bevel.round-12.flat-right followers
-    .detail.light.O.round-12.flat-left 1,250
+    .label.light.bevel.round-12.flat-right followers
+    .detail.light.inner-shadow-10.round-12.flat-left #
     .clear-both
   .item2
-    .label.light.B-bevel.round-12.flat-right friends
-    .detail.light.O.round-12.flat-left 250
+    .label.light.bevel.round-12.flat-right friends
+    .detail.light.inner-shadow-10.round-12.flat-left #
     .clear-both
   .item2
-    .label.light.B-bevel.round-12.flat-right following
-    .detail.light.O.round-12.flat-left 333
+    .label.light.bevel.round-12.flat-right following
+    .detail.light.inner-shadow-10.round-12.flat-left #
     .clear-both
 
   .divider.light.transparent-33.round-4

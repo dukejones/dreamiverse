@@ -18,16 +18,24 @@
       float: right;
       top: 6px;
       margin-left: -16px; }
-  #contextPanel #follow {
+  #contextPanel #follow, #contextPanel #unfollow {
     margin-bottom: 6px;
     padding: 8px;
     height: 20px;
     font-weight: bold;
     text-align: center; }
-    #contextPanel #follow img {
+    #contextPanel #follow img, #contextPanel #unfollow img {
       margin: -12px 6px -12px -12px;
       position: relative;
       top: -4px; }
+  #contextPanel #unfollow {
+    color: white;
+    border: 1px solid #c1633c;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12));
+    background: -moz-linear-gradient(top, #ee7c44, #8b2e12);
+    box-shadow: inset 0px 15px rgba(255, 255, 255, 0.1);
+    -moz-box-shadow: inset 0px 15px rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: inset 0px 15px rgba(255, 255, 255, 0.1); }
   #contextPanel .item, #contextPanel .item2 {
     clear: both;
     margin-bottom: 6px; }
@@ -35,8 +43,8 @@
     float: left; }
   #contextPanel .item .label {
     width: 66px;
-    height: 24px;
-    padding: 5px 8px;
+    height: 26px;
+    padding: 6px 8px;
     text-align: right; }
   #contextPanel .item .image {
     width: 24px;
@@ -50,14 +58,11 @@
       z-index: 1004; }
   #contextPanel .item .detail {
     width: 70px;
-    height: 24px;
+    height: 26px;
     padding: 6px 8px;
     line-height: 26px;
     font-weight: bold;
-    border: 0;
-    box-shadow: 0 8px 5px #999999 inset;
-    -moz-box-shadow: 0 8px 5px #999999 inset;
-    -webkit-box-shadow: 0 8px 5px #999999 inset; }
+    border: 0; }
   #contextPanel .divider {
     height: 6px;
     margin-bottom: 6px; }
@@ -74,7 +79,4 @@
     font-weight: bold;
     border: 0;
     font-weight: normal;
-    line-height: 25px;
-    box-shadow: 0 8px 5px #999999 inset;
-    -moz-box-shadow: 0 8px 5px #999999 inset;
-    -webkit-box-shadow: 0 8px 5px #999999 inset; }
+    line-height: 25px; }
