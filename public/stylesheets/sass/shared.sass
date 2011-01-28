@@ -41,29 +41,61 @@
 .alpha-10
   +alpha(10)
 
-/* ROUNDED CORNERS */
-=round($amt)
-  border-radius: $amt
-  -moz-border-radius: $amt
-  -webkit-border-radius: $amt
 
 
-.round-2
-  +round(2px)
-.round-4
-  +round(4px)
-.round-8
-  +round(8px)
-.round-12
-  +round(12px)
-.round-16
-  +round(16px)
-.round-24
-  +round(24px)
-.round-32
-  +round(32px)
-.round-48
-  +round(48px)
-.round-64
-  +round(64px)
+
+
+
+/* POST BUTTONS */
+.button-post:hover, .button-post a:hover
+  cursor: pointer
+  background-color: #7bbd0d
+  color: #FFF
+  box-shadow: inset 0px 15px 0px #99cc33
+  -moz-box-shadow: inset 0px 15px 0px #99cc33
+  -webkit-box-shadow: inset 0px 15px 0px #99cc33
+.button-cancel:hover, .button-cancel a:hover
+  cursor: pointer
+  background-color: #656565
+  color: #FFF
+  box-shadow: inset 0px 15px 0px #7f7f7f
+  -moz-box-shadow: inset 0px 15px 0px #7f7f7f
+  -webkit-box-shadow: inset 0px 15px 0px #7f7f7f
+.button-delete:hover, .button-delete a:hover
+  cursor: pointer
+  background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+  background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+  border: 1px solid #c1633c
+  color: #FFF
+  box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+
+/* COLOR BUTTONS */
+.button-big-blue
+  border: 2px solid #999
+  cursor: pointer
+.button-big-blue:hover, .selected.button-big-blue
+  border: 2px solid #0099ff
+  box-shadow: 0px 0px 40px #0099ff inset
+  -moz-box-shadow: 0px 0px 40px #0099ff inset
+  -webkit-box-shadow: 0px 0px 40px #0099ff inset
+.button-big-green
+  border: 2px solid #999
+  cursor: pointer
+.button-big-green:hover, .selected.button-big-green
+  border: 2px solid #7BBD0D
+  box-shadow: 0px 0px 40px #7BBD0D inset
+  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
+  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
+.button-big-gray
+  border: 2px solid #999
+  cursor: pointer
+.button-big-gray:hover, .selected.button-big-gray
+  border: 2px solid #CCC
+  box-shadow: 0px 0px 40px #CCC inset
+  -moz-box-shadow: 0px 0px 40px #CCC inset
+  -webkit-box-shadow: 0px 0px 40px #CCC inset
+
+
 

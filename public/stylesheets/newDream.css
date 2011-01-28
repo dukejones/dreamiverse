@@ -52,6 +52,7 @@
       min-height: 134px;
       height: 134px; }
     #dreamField #newDream-panel #entryOptions {
+      position: relative;
       width: 664px;
       height: 48px;
       margin: 0 auto;
@@ -60,9 +61,8 @@
       background: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#b7b7b7));
       background: -moz-linear-gradient(top, #ebebeb, #b7b7b7); }
       #dreamField #newDream-panel #entryOptions #share {
-        position: relative;
         top: 50px;
-        left: 484px; }
+        float: right; }
     #dreamField #newDream-panel .myBooks, #dreamField #newDream-panel .date, #dreamField #newDream-panel .location, #dreamField #newDream-panel .visibility, #dreamField #newDream-panel #dream_submit, #dreamField #newDream-panel #entryTypeWrap {
       height: 34px;
       line-height: 34px;

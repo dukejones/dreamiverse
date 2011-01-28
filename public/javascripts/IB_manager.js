@@ -118,13 +118,13 @@ $(document).ready(function() {
   $("#IB_selectAllImages").click(function() {
     $("#IB_dropboxImages li").addClass("selected");
     //ajax call to get all common property values for all selected images
-    displaySelectedImageMetaData();
+    updateSelectedList();
   });
   
   $("#IB_selectNoneImages").click(function() {
     $("#IB_dropboxImages li").removeClass("selected");
     //ajax call to get all common property values for all selected images
-    displaySelectedImageMetaData();
+    updateSelectedList();
   });
   
   // Auto-fill GEOLOCATION tag
@@ -258,13 +258,19 @@ var currentSelectedImages = [];
 
 var displaySelectedImageMetaData = function(){
   // Get images data
-  var imageIDString = currentSelectedImages.toString();
+  if(currentSelectedImages == ''){
+    // Empty all input's
+    $('input').val('');
+    $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
+  } else {
+    var imageIDString = currentSelectedImages.toString();
   
-  $.getJSON("/images.json?ids=" + imageIDString,
-    function(images) {
-      checkForSimilarMetaData(images);
-      currentSelectedImages = [];
-    });
+    $.getJSON("/images.json?ids=" + imageIDString,
+      function(images) {
+        checkForSimilarMetaData(images);
+        currentSelectedImages = [];
+      });
+  }
 }
 
 var checkForSimilarMetaData = function(images){
@@ -283,7 +289,7 @@ var checkForSimilarMetaData = function(images){
      
      // Check for match OLD WAY
      for(var u = 1; u < images.length; u++){
-      alert("FOR :: " + param + " ::\n" + images[0][param] + ' / ' + images[u][param]);
+      //alert("FOR :: " + param + " ::\n" + images[0][param] + ' / ' + images[u][param]);
       
       if(images[0][param] != images[u][param]){
         valuesMatch = false;

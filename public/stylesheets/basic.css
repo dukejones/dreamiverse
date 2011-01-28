@@ -349,20 +349,6 @@ TD.form_label B {}
 .dark.button-small-delete:hover, .dark.button-small-delete.button-selected  {box-shadow: inset 0px 0px 20px #fff; -moz-box-shadow: inset 0px 0px 20px #fff; -webkit-box-shadow: inset 0px 0px 20px #fff;}
 
 
-/* POST BUTTONS */
-.button-post:hover, .button-post a:hover {cursor:pointer; background-color: #7bbd0d; color:#FFF; box-shadow: inset 0px 15px 0px #99cc33; -moz-box-shadow: inset 0px 15px 0px #99cc33; -webkit-box-shadow: inset 0px 15px 0px #99cc33;}
-.button-cancel:hover, .button-cancel a:hover {cursor:pointer; background-color:#656565; color:#FFF; box-shadow: inset 0px 15px 0px #7f7f7f; -moz-box-shadow: inset 0px 15px 0px #7f7f7f; -webkit-box-shadow: inset 0px 15px 0px #7f7f7f;}
-.button-delete:hover, .button-delete a:hover {cursor:pointer; background-color: #e92b42; color:#FFF; box-shadow: inset 0px 15px 0px #eb5162; -moz-box-shadow: inset 0px 15px 0px #ff9999; -webkit-box-shadow: inset 0px 15px 0px #eb5162;}
-
-/* COLOR BUTTONS */
-.button-big-blue {border:2px solid #999; cursor:pointer}
-.button-big-blue:hover, .selected.button-big-blue {border:2px solid #0099ff; box-shadow: 0px 0px 40px #0099ff inset; -moz-box-shadow: 0px 0px 40px #0099ff inset; -webkit-box-shadow: 0px 0px 40px #0099ff inset;}
-.button-big-green {border:2px solid #999; cursor:pointer;}
-.button-big-green:hover, .selected.button-big-green {border:2px solid #7BBD0D; box-shadow: 0px 0px 40px #7BBD0D inset; -moz-box-shadow: 0px 0px 40px #7BBD0D inset; -webkit-box-shadow: 0px 0px 40px #7BBD0D inset;}
-.button-big-gray {border:2px solid #999; cursor:pointer}
-.button-big-gray:hover, .selected.button-big-gray {border:2px solid #CCC; box-shadow: 0px 0px 40px #CCC inset; -moz-box-shadow: 0px 0px 40px #CCC inset; -webkit-box-shadow: 0px 0px 40px #CCC inset;}
-
-
 
 /* TAG CLOUDS */
 .TC, .TC A, .sub_tags A {text-decoration:none; padding:2px 5px ; -moz-border-radius: 8px; -webkit-border-radius: 8px; -khtml-border-radius: 8px; border-radius: 8px; float:left}

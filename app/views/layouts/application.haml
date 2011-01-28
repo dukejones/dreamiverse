@@ -5,15 +5,14 @@
     = csrf_meta_tag
 
     = stylesheet_link_tag 'basic', 'clearfix'
-    = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-    /, 'shared'
+    = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow', 'shared'
 
     = javascript_include_tag 'jquery', 'rails', 'application'
     = javascript_include_tag "jquery.hoverIntent.minified", "functions.core"
 
     = yield :head
 
-  %body{style: 'background: url("http://dreamcatcher.net/basic/inc/bedsheets/collection/geo/beyond/synapses-hi.jpg") repeat fixed 0 0 #202020'}
+  %body{style: 'background: url("http://dreamcatcher.net/basic/inc/bedsheets/collection/geo/beyond/synapses-hi.jpg") repeat scroll 0 0 #202020'}
     = render "shared/facebook_sdk"
     #drop_shadow
     = render "layouts/meta_menu"
