@@ -6,11 +6,49 @@ var sharingExpanded = false;
 
 $(document).ready(function() {
   setupTagStream();
+  setupMood();
 })
+
+function setupMood(){
+  $('.moodIcon').unbind();
+  $('.moodIcon').click(function(){
+    if($('.moodIcon-picker').css('display') == 'none'){
+      $('.moodIcon-picker').fadeIn();
+      
+      // Setup close button
+      $('.currentIcon').unbind();
+      $('.currentIcon').click(function(){
+        $('.moodIcon-picker').fadeOut();
+      })
+    } else {
+      $('.moodIcon-picker').fadeOut();
+    }
+  })
+}
 
 function setupTagStream(){
   // Hide nodes
   $('#autoComplete .results').hide();
+  
+  // expand tag entry field
+  $('#entryBar .quote').click(function(){
+    if($('#quoteEntry').css('display') == 'none'){
+      closeEntryPanels();
+      $('#quoteEntry').slideDown();
+    } else {
+      $('#quoteEntry').slideUp();
+    }
+  })
+  
+  // expand tag entry field
+  $('#entryBar .tag').click(function(){
+    if($('#tagEntry').css('display') == 'none'){
+      closeEntryPanels();
+      $('#tagEntry').slideDown();
+    } else {
+      $('#tagEntry').slideUp();
+    }
+  })
   
   // Setup auto-complete
   $('#tagInput').keypress(function(event){
@@ -62,6 +100,12 @@ function setupTagStream(){
   }, function(){
     $('#share').slideUp();
   })
+}
+
+function closeEntryPanels(){
+  // closes all entry panels so the next can open
+  // only one visible at a time
+  $('.entryObj').slideUp();
 }
 
 function selectTag($this){
