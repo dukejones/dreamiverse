@@ -167,6 +167,15 @@ var checkForPassedImages = function(){
   
 };
 
+var selectAllImages = function(){
+  // set all images to be selected by default
+  $('#IB_dropboxImages li').each(function(){
+    $(this).addClass('selected');
+  });
+
+  updateSelectedList();
+}
+
 var displayImages = function(images){
   // Request JSON
   $.getJSON("/images.json?ids=" + images.toString(),
@@ -178,12 +187,7 @@ var displayImages = function(images){
       
       resetImageSelectionEvents();
       
-      // set all images to be selected by default
-      $('#IB_dropboxImages li').each(function(){
-        $(this).addClass('selected');
-      });
-  
-      updateSelectedList();
+      selectAllImages();
     });
   
   // temp hack!
@@ -252,12 +256,6 @@ var resetImageSelectionEvents = function(){
 // Multi image meta-data handler
 var currentSelectedImages = [];
 
-
-// JSON Obj to check data against
-// for multi-image meta data handler
-
-
-
 var displaySelectedImageMetaData = function(){
   // Get images data
   var imageIDString = currentSelectedImages.toString();
@@ -271,7 +269,7 @@ var displaySelectedImageMetaData = function(){
 
 var checkForSimilarMetaData = function(images){
   // create temp var
-  var similarMetaData = {"image":{"album":"","artist":"","category":"","created_at":"","format":null,"genre":"","geotag":null,"id":null,"location":"","notes":"","public":null,"tags":null,"title":"","updated_at":"","uploaded_at":null,"uploaded_by":"","year":null}}
+  var similarMetaData = {"album":"","artist":"","category":"","created_at":"","format":null,"genre":"","geotag":null,"id":null,"location":"","notes":"","public":null,"tags":null,"title":"","updated_at":"","uploaded_at":null,"uploaded_by":"","year":null};
 
   // check if it has more than 1 image
   if(images.length > 1){
@@ -285,7 +283,7 @@ var checkForSimilarMetaData = function(images){
      
      // Check for match OLD WAY
      for(var u = 1; u < images.length; u++){
-      //alert("FOR :: " + param + " ::\n" + images[0].image[param] + ' / ' + images[u].image[param]);
+      alert("FOR :: " + param + " ::\n" + images[0][param] + ' / ' + images[u][param]);
       
       if(images[0][param] != images[u][param]){
         valuesMatch = false;
@@ -301,7 +299,7 @@ var checkForSimilarMetaData = function(images){
       var obj = images[0];
  
       // Values all matched, display them on UI
-      similarMetaData.image[param] = images[0][param];
+      similarMetaData[param] = images[0][param];
       //alert('match + ' +  obj.image[param])
      }
      
@@ -318,9 +316,8 @@ var displayMetaData = function(metadata){
   // Clean up any old meta data
   $('.meta-value').empty();
   $("input[type='checkbox']").attr('checked', false);
-  
   // Set the top check boxes
-  $('#IB_current_type span').html(metadata.section);
+  $('#IB_current_type').html(metadata.section);
   $('#IB_current_category').html(metadata.category);
   $('#IB_current_genre').html(metadata.genre);
   
