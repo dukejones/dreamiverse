@@ -295,7 +295,6 @@ loadArtist = function(artist) {
       var tempVal = $(this).attr("src").replace("/images/uploads/","")+",";
       var tempVal2 = tempVal.split('.');
       images.push(tempVal2[0]);
-      
     });
     
     return images;
