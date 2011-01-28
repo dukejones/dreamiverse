@@ -197,6 +197,7 @@ var displayImages = function(images){
 }
 
 var updateSelectedList = function(){
+  currentSelectedImages = [];
   $('#IB_dropboxImages li').each(function(){
     if($(this).hasClass('selected')){
       var selectedImageID = getImageIDFromURL($(this).find('img').attr('src'));
@@ -233,6 +234,8 @@ var resetImageSelectionEvents = function(){
     if ($(this).hasClass("selected")) {
       $(this).removeClass("selected");
       updateSelectedList();
+      
+      displaySelectedImageMetaData();
     } else {
       $(this).addClass("selected");
       updateSelectedList();
