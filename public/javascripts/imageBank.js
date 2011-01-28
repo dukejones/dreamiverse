@@ -114,13 +114,18 @@ loadArtistList = function(genre) {
           var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
           
           var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
-          item += '<img src="' + filePath + '"/>';
+          item += '<img alt="' + image.id + '" src="' + filePath + '"/>';
           //item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
         });
         item += "</div>";
       }
       item += "</li>";
       $("#artists").append(item);
+      
+      $('#artists .images img').click(function(event){
+        //event.stopPropagation();
+        //loadSlideshow($(this).attr('alt') + ',');
+      })
     });
     
     // A click on any image simply loads that artist's page.
@@ -542,7 +547,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
   $('#IB_slideshow').empty();
   
   // Setup buttons
-  $("#IB_browseArrow p").text(currentArtist);  
+  $("#IB_browseArrow p").text(currentArtist);
   $("#IB_browseArrow").unbind();
   $("#IB_browseArrow").click(function() {
     // Just hide & show the last section
@@ -581,7 +586,7 @@ loadSlideshow = function(newImageIds, currentIndex) {
   $("#IB_category").text("Slideshow");
   var imageIds = [];
   imageIds = String(newImageIds).split(",");
-  
+
   // NEW WAY - Store all images Obj's in slideshowJSONContainer
   //var imageIDString = imageIds.toString();
   

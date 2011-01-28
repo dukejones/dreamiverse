@@ -55,6 +55,9 @@ function setupDropdownEvents(){
       $('#IB_category_checkbox').attr('checked', true);
       checkForcedParams();
     }
+    if($('#IB_dropboxCover').css('display') == 'none'){
+      $('#IB_dropboxCover').fadeIn();
+    }
     if($("#IB_categoryList option:selected").val() == "Modern Art"){
       var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
       
