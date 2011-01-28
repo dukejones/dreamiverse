@@ -90,49 +90,50 @@
       background: -moz-linear-gradient(top, #464646, #000) /* gradient-80-100 */
       span
         color: #349200
-  #share
-    width: 148px
-    padding: 8px
+
+#share
+  width: 148px
+  padding: 8px
+  position: absolute
+  top: 112px
+  left: 490px
+  background: #fff
+  -moz-box-shadow: 0 0 40px #000
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+  background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+  border: 1px solid #fff
+  z-index: 900
+  .arrow
     position: absolute
-    top: 112px
-    left: 490px
+    top: -12px
+    left: 72px
+  select, .social
+    font-size: 16px
+    width: 100%
+    height: 28px
+    line-height: 28px
+    padding: 2px 4px
+    margin: 2px 0
+  .social
+    border: 1px solid #C2C2C2
+    width: 138px
+    height: 22px
+    line-height: 22px
+    cursor: pointer
     background: #fff
-    -moz-box-shadow: 0 0 40px #000
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
-    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
-    border: 1px solid #fff
-    z-index: 900
-    .arrow
-      position: absolute
-      top: -12px
-      left: 72px
-    select, .social
-      font-size: 16px
-      width: 100%
-      height: 28px
-      line-height: 28px
-      padding: 4px
-      margin: 2px 0
-    .social
-      border: 1px solid #C2C2C2
-      width: 138px
-      height: 22px
-      line-height: 22px
+    label
+      display: block
+    .icon, .name
+      float: left
       cursor: pointer
-      background: #fff
-      label
-        display: block
-      .icon, .name
-        float: left
-        cursor: pointer
-      .icon
-        margin: 4px 8px 0 4px
-      .name
-        text-align: center
-      .checkbox
-        float: right
-        margin: 4px 0 0
-        cursor: pointer
+    .icon
+      margin: 4px 8px 0 4px
+    .name
+      text-align: center
+    .checkbox
+      float: right
+      margin: 4px 0 0
+      cursor: pointer
 
   /* AUTO COMPLETE */
   #autoComplete
