@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110124083951) do
+ActiveRecord::Schema.define(:version => 20110128065828) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20110124083951) do
     t.integer  "height"
     t.string   "original_filename"
     t.string   "source_url"
+    t.boolean  "enabled",                         :default => false
   end
 
   create_table "starlights", :force => true do |t|
@@ -113,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20110124083951) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.string  "source"
-    t.integer "user",   :limit => 8
+    t.integer "user",      :limit => 8
+    t.string  "user_type"
   end
 
 end

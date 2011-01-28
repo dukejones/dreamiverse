@@ -21,7 +21,9 @@
       top: 6px
       margin-left: -16px
 
-  #follow
+
+
+  #follow, #unfollow
     margin-bottom: 6px
     padding: 8px
     height: 20px
@@ -31,6 +33,16 @@
       margin: -12px 6px -12px -12px
       position: relative
       top: -4px
+  #unfollow
+    color: #fff
+    border: 1px solid #c1633c
+    background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+    background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+    box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+    -moz-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+    -webkit-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
+
+
 
   .item, .item2
     clear: both
@@ -43,8 +55,8 @@
   .item
     .label
       width: 66px
-      height: 24px
-      padding: 5px 8px
+      height: 26px
+      padding: 6px 8px
       text-align: right
 
     .image
@@ -61,15 +73,12 @@
 
     .detail
       width: 70px
-      height: 24px
+      height: 26px
       padding: 6px 8px
       line-height: 26px
       font-weight: bold
       border: 0
-      // consolidate into general classes
-      box-shadow: 0 8px 5px #999 inset
-      -moz-box-shadow: 0 8px 5px #999 inset
-      -webkit-box-shadow: 0 8px 5px #999 inset
+
 
 
   .divider
@@ -92,7 +101,3 @@
       border: 0
       font-weight: normal
       line-height: 25px
-      // consolidate into general classes
-      box-shadow: 0 8px 5px #999 inset
-      -moz-box-shadow: 0 8px 5px #999 inset
-      -webkit-box-shadow: 0 8px 5px #999 inset

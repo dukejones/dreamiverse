@@ -12,7 +12,7 @@ end
 
 Dream.blueprint do
   body { Faker::Lorem.paragraphs(6) }
-  title { Faker::Lorem.words(5).titleize }
+  title { Faker::Lorem.words(5).join(' ').titleize }
   
 end
 
@@ -22,6 +22,10 @@ Hit.blueprint do
   url_path { '/dreams/123' }
 end
 
+Starlight.blueprint do
+  value { rand 1000 }
+  entity { Dream.make }
+end
 
 
 def random_ip

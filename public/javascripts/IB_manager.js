@@ -55,6 +55,9 @@ function setupDropdownEvents(){
       $('#IB_category_checkbox').attr('checked', true);
       checkForcedParams();
     }
+    if($('#IB_dropboxCover').css('display') == 'none'){
+      $('#IB_dropboxCover').fadeIn();
+    }
     if($("#IB_categoryList option:selected").val() == "Modern Art"){
       var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
       
@@ -98,6 +101,9 @@ $(document).ready(function() {
   });
   
   $('#IB_browseBack, #IB_managerCancel').click(function(){
+    // Empty fields
+    emptyAllFields();
+    
     // Return user to browser
     window.location = '/images';
   });
@@ -118,13 +124,13 @@ $(document).ready(function() {
   $("#IB_selectAllImages").click(function() {
     $("#IB_dropboxImages li").addClass("selected");
     //ajax call to get all common property values for all selected images
-    displaySelectedImageMetaData();
+    updateSelectedList();
   });
   
   $("#IB_selectNoneImages").click(function() {
     $("#IB_dropboxImages li").removeClass("selected");
     //ajax call to get all common property values for all selected images
-    displaySelectedImageMetaData();
+    updateSelectedList();
   });
   
   // Auto-fill GEOLOCATION tag
@@ -258,13 +264,30 @@ var currentSelectedImages = [];
 
 var displaySelectedImageMetaData = function(){
   // Get images data
-  var imageIDString = currentSelectedImages.toString();
+  if(currentSelectedImages == ''){
+    // Empty all input's
+    emptyAllFields();
+  } else {
+    var imageIDString = currentSelectedImages.toString();
   
-  $.getJSON("/images.json?ids=" + imageIDString,
-    function(images) {
-      checkForSimilarMetaData(images);
-      currentSelectedImages = [];
-    });
+    $.getJSON("/images.json?ids=" + imageIDString,
+      function(images) {
+        checkForSimilarMetaData(images);
+        currentSelectedImages = [];
+      });
+  }
+}
+
+var removeAllImages = function(){
+  $('#IB_dropboxImages').empty();
+}
+
+var emptyAllFields = function(){
+  $('input').val('');
+  $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
+
+  $('#IB_current_type, #IB_current_category, #IB_current_genre').html('Choose');
+  $('#IB_typeList, #IB_categoryList, #IB_genreList').val('None');
 }
 
 var checkForSimilarMetaData = function(images){
@@ -283,7 +306,7 @@ var checkForSimilarMetaData = function(images){
      
      // Check for match OLD WAY
      for(var u = 1; u < images.length; u++){
-      alert("FOR :: " + param + " ::\n" + images[0][param] + ' / ' + images[u][param]);
+      //alert("FOR :: " + param + " ::\n" + images[0][param] + ' / ' + images[u][param]);
       
       if(images[0][param] != images[u][param]){
         valuesMatch = false;
@@ -379,7 +402,10 @@ var updateCurrentImagesMeta = function(){
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
-    alert('Images have been updated.')
+    alert('Images have been updated.');
+    
+    emptyAllFields();
+    removeAllImages();
   }
 }
 
@@ -451,5 +477,4 @@ function collectParams(){
   if($('.IB_managerTagCheckbox').attr("checked")){
     imageMetaParams.image.tags =  $('.IB_managerTagInput').val();
   }
-
 }

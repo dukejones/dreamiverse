@@ -1,3 +1,102 @@
+
+
+/* LIGHT */
+.light
+
+  .button
+    cursor: pointer
+    border: 1px solid #959595
+  .button:hover
+    border: 1px solid #000
+
+  .shine, .bevel
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#c5c5c5))
+    background: -moz-linear-gradient(top, #fff, #c5c5c5)
+    color: #000
+
+  .shine
+    box-shadow: inset 0px 18px rgba(255,255,255,0.5)
+    -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
+    -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
+
+  .inner-shadow-10
+    background: #ebeaea
+    box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
+    -moz-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
+    -webkit-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
+
+
+/* BUTTONS */
+.button.save:hover
+  color: #fff
+  border: 1px solid #54943d
+  background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
+  background: -moz-linear-gradient(top, #70d03b, #235b1b)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.cancel:hover
+  color: #fff
+  border: 1px solid #848484
+  background: -webkit-gradient(linear, left top, left bottom, from(#979797), to(#4e4e4e))
+  background: -moz-linear-gradient(top, #979797, #4e4e4e)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.delete:hover
+  color: #fff
+  border: 1px solid #c1633c
+  background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+  background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+
+
+
+
+
+
+
+
+
+
+/* COLOR BUTTONS */
+.button-big-blue
+  border: 2px solid #999
+  cursor: pointer
+.button-big-blue:hover, .selected.button-big-blue
+  border: 2px solid #0099ff
+  box-shadow: 0px 0px 40px #0099ff inset
+  -moz-box-shadow: 0px 0px 40px #0099ff inset
+  -webkit-box-shadow: 0px 0px 40px #0099ff inset
+.button-big-green
+  border: 2px solid #999
+  cursor: pointer
+.button-big-green:hover, .selected.button-big-green
+  border: 2px solid #7BBD0D
+  box-shadow: 0px 0px 40px #7BBD0D inset
+  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
+  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
+.button-big-gray
+  border: 2px solid #999
+  cursor: pointer
+.button-big-gray:hover, .selected.button-big-gray
+  border: 2px solid #CCC
+  box-shadow: 0px 0px 40px #CCC inset
+  -moz-box-shadow: 0px 0px 40px #CCC inset
+  -webkit-box-shadow: 0px 0px 40px #CCC inset
+
+
+
+
+
+
+
+
+
+
+
 .notice, .alert
   position: absolute
   top: -16px
@@ -40,30 +139,3 @@
   +alpha(20)
 .alpha-10
   +alpha(10)
-
-/* ROUNDED CORNERS */
-=round($amt)
-  border-radius: $amt
-  -moz-border-radius: $amt
-  -webkit-border-radius: $amt
-
-
-.round-2
-  +round(2px)
-.round-4
-  +round(4px)
-.round-8
-  +round(8px)
-.round-12
-  +round(12px)
-.round-16
-  +round(16px)
-.round-24
-  +round(24px)
-.round-32
-  +round(32px)
-.round-48
-  +round(48px)
-.round-64
-  +round(64px)
-

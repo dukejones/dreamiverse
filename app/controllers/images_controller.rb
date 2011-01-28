@@ -90,7 +90,7 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
 
     respond_to do |format|
-      if @image.update_attributes(params[:image])
+      if @image.update_attributes(params[:image].merge(enabled: true))
         format.html { redirect_to(@image, :notice => 'Image was successfully updated.') }
         format.json  { head :ok }
       else
@@ -113,7 +113,8 @@ class ImagesController < ApplicationController
   end
 
   # this method is called when a url for a size image that has not yet been generated is requested.
-  # it expects a binary response.
+  # it responds with a redirect
+  # We should find a way to show a nice spinner while it is redirecting.
   # this may be a prime place for optimization.
   def resize
     image = Image.find params[:id]
