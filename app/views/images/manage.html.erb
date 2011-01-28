@@ -2,8 +2,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>ImageBank Manager - Dreamcatcher</title>
   <%= stylesheet_link_tag "IB_manager", "fileuploader" %>
-  <%= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" %>
-  <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js" %>
   <%= javascript_include_tag "fileuploader", "IB_manager", "dropdowns" %>
 <% end %>
 
@@ -183,6 +181,14 @@
       <h3>File Size</h3>
       <div class="IB_managerSourceInputWrap gradient-light-up round-8">
         <input id="IB_filesize_input" disabled='true' class="IB_managerSourceInput meta-value" type="text"/>
+      </div><!-- End IB_managerSourceInputWrap -->
+    </div><!-- End IB_managerInfo -->
+    
+    <div class="IB_managerInfo">
+      <h3>Source URL</h3>
+      <div style="width: 690px" class="IB_managerSourceInputWrap gradient-light-up round-8">
+        <input id="IB_source_input" class="IB_managerSourceInput meta-value" type="text"/>
+        <input  id="IB_source_checkbox" class="IB_managerSourceCheckbox" type="checkbox"/>
       </div><!-- End IB_managerSourceInputWrap -->
     </div><!-- End IB_managerInfo -->
 

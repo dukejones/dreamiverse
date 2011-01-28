@@ -55,6 +55,9 @@ function setupDropdownEvents(){
       $('#IB_category_checkbox').attr('checked', true);
       checkForcedParams();
     }
+    if($('#IB_dropboxCover').css('display') == 'none'){
+      $('#IB_dropboxCover').fadeIn();
+    }
     if($("#IB_categoryList option:selected").val() == "Modern Art"){
       var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
       
@@ -98,6 +101,9 @@ $(document).ready(function() {
   });
   
   $('#IB_browseBack, #IB_managerCancel').click(function(){
+    // Empty fields
+    emptyAllFields();
+    
     // Return user to browser
     window.location = '/images';
   });
@@ -260,8 +266,7 @@ var displaySelectedImageMetaData = function(){
   // Get images data
   if(currentSelectedImages == ''){
     // Empty all input's
-    $('input').val('');
-    $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
+    emptyAllFields();
   } else {
     var imageIDString = currentSelectedImages.toString();
   
@@ -271,6 +276,18 @@ var displaySelectedImageMetaData = function(){
         currentSelectedImages = [];
       });
   }
+}
+
+var removeAllImages = function(){
+  $('#IB_dropboxImages').empty();
+}
+
+var emptyAllFields = function(){
+  $('input').val('');
+  $('.IB_managerSourceCheckbox, .IB_managerInfoCheckbox').attr('checked', false);
+
+  $('#IB_current_type, #IB_current_category, #IB_current_genre').html('Choose');
+  $('#IB_typeList, #IB_categoryList, #IB_genreList').val('None');
 }
 
 var checkForSimilarMetaData = function(images){
@@ -385,7 +402,10 @@ var updateCurrentImagesMeta = function(){
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
-    alert('Images have been updated.')
+    alert('Images have been updated.');
+    
+    emptyAllFields();
+    removeAllImages();
   }
 }
 
@@ -457,5 +477,4 @@ function collectParams(){
   if($('.IB_managerTagCheckbox').attr("checked")){
     imageMetaParams.image.tags =  $('.IB_managerTagInput').val();
   }
-
 }

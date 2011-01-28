@@ -4,11 +4,10 @@
     %title Dreamcatcher
     = csrf_meta_tag
 
-    = stylesheet_link_tag 'basic', 'clearfix'
-    = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow', 'shared'
+    = stylesheet_link_tag 'basic', 'clearfix', 'shared'
+    = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
-    = javascript_include_tag 'jquery', 'rails', 'application'
-    = javascript_include_tag "jquery.hoverIntent.minified", "functions.core"
+    = javascript_include_tag 'jquery', 'rails', 'application', "jquery.hoverIntent.minified", "functions.core"
 
     = yield :head
 
@@ -27,4 +26,5 @@
 
     = yield :foot
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
-    = javascript_include_tag "imageBank"
+    = javascript_include_tag "jquery-ui.min", "imageBank"
+    
