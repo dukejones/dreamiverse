@@ -31,7 +31,8 @@
 #IB_browse li span {
   position: absolute;
   text-align:center;
-  width: 100%;}  
+  width: 100%;
+  z-index: 1000;}  
 .nav-expand {
   position: absolute;
   width: 75%;

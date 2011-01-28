@@ -69,6 +69,10 @@ loadBrowse = function() {
   $('#IB_browse li').find('.nav-expand p').click(function(){
     loadArtistList($(this).text());
   })
+  $('#IB_browse li').find('span').unbind();
+  $('#IB_browse li').find('span').click(function(){
+    loadCategoryList($(this).text());
+  })
 };
 
 contractNav = function(){
@@ -83,7 +87,60 @@ closeSearchExpand = function(){
   $("#IB_searchBoxActive,#IB_searchBoxActiveWrap,#IB_browseBack,#IB_browseBackWrap").hide();
   $("#IB_searchBox,#IB_searchBoxWrap").show();
 }
+loadCategoryList = function(genre){
+  $(".uiMode,.browseBars").hide();
+  
+  setGenre(genre);
+  $("#IB_browseArrow p").text("Browse");
+  $("#IB_category").text(genre);
+  $("#IB_browseArrow").click(loadBrowse);
+  $("#IB_browseArrow").show();
+  
 
+  // Populate Artists List
+  $.getJSON("/artists.json?category="+genre+"&section="+sectionFilter, function(artists) {
+    // Clear list
+    $("#artists").html("");
+    
+    // Clean up search just in case
+    closeSearchExpand();
+
+    $.each(artists, function(artist, images) {
+      // Only allow 6 max images
+      var imageLength = (artist.length > 5) ? 6 : artist.length;
+      
+      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist+'</h2>';
+      if (images.length > 0) {
+        item += "<div class=\"images\">";
+        $.each(images, function(i, image) {
+          // Get file path from results
+          var filePath = '/images/uploads/' + image.id + '-62x62.' + image.format;
+          
+          var metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year;
+          item += '<img alt="' + image.id + '" src="' + filePath + '"/>';
+          //item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>';
+        });
+        item += "</div>";
+      }
+      item += "</li>";
+      $("#artists").append(item);
+      
+      $('#artists .images img').click(function(event){
+        //event.stopPropagation();
+        //loadSlideshow($(this).attr('alt') + ',');
+      })
+    });
+    
+    // A click on any image simply loads that artist's page.
+    $("#artists li").click(function() {
+      var artist = $("h2",this).text();
+      $("#IB_search_artist").val(artist);
+      loadArtist(artist);
+    });  
+  });
+      
+  $("#IB_artistContainer").fadeIn();
+}
 loadArtistList = function(genre) {
   $(".uiMode,.browseBars").hide();
   
