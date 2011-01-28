@@ -14,6 +14,7 @@ class Starlight < ActiveRecord::Base
     Starlight.group("entity_id,entity_type").select("entity_id,entity_type").map(&:entity)    
   end
 
+  # TODO: deprecate
   def self.change(entity, amt)
     starlight = self.for(entity)
     starlight.change(amt)
