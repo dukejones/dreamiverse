@@ -239,9 +239,9 @@ addImageToDropbox = function(imageId) {
   
     $("#IB_searchResultsSelectCancel").unbind();
     $("#IB_searchResultsSelectCancel").click(function() {
-      $("#IB_browseBack,#IB_searchBoxActive").hide();
+      /*$("#IB_browseBack,#IB_searchBoxActive").hide();
       $("#IB_searchBox").show();
-      loadBrowse();
+      loadBrowse();*/
     
       // Empty the dropBox
       $('#IB_imageDrop').empty();
