@@ -710,6 +710,8 @@ loadSlideshow = function(newImageIds, currentIndex) {
     $("#IB_slideshow img").eq(currentItem).hide();
   };
   showCurrentImage = function() {
+    $("#IB_footerAddDrop").css('border', '1px solid #333');
+    $("#IB_footerAddDrop span").html('Add to Collection');
     // Turn off keyboard shortcut handler
     setTimeout(function() { keyCaptured = false; }, 100);
     
@@ -808,6 +810,9 @@ loadSlideshow = function(newImageIds, currentIndex) {
   $("#IB_footerAddDrop").click(function() {
     var imageId = getCurrentImageId();
     addImageToDropbox(imageId);
+    
+    $("#IB_footerAddDrop").css('border', '1px solid #fff');
+    $("#IB_footerAddDrop span").html('Added');
   });
   
   $("#IB_footer .tag").unbind();
