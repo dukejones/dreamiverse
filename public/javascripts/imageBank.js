@@ -461,7 +461,7 @@ loadArtist = function(artist) {
               zIndex:10000,
               distance: 40,
               scroll: false,
-              revert: true,
+              revert: false,
               start: function(event, ui) {
                 isDragging = true;
               },
