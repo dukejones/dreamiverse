@@ -310,6 +310,8 @@ loadArtist = function(artist) {
   $('#IB_browseArrow').show();
   $("#IB_browseArrow").unbind();
   $("#IB_browseArrow").click(function() {
+    // clear albums list
+    $('#albums').empty();
     if(!viewingTopLevel){
       loadArtistList(currentGenre);
     } else {
