@@ -1,10 +1,11 @@
-#entryBar.round-16.light.transparent-50
-  %a.entry{href: new_dream_path} new entry
-  .tag tag
-  .quote quote
-  / Save for later  .book book
+#entryBar.round-16.light
+  %a.entry{href: new_dream_path} <span>+</span> new entry
+  .tag.bevel.button tag
+  .quote.bevel.button quote
+  .clear-both
+  / Save for later  .book.bevel.button book
 
-#tagEntry.round-16.light.glow-40
+#tagEntry.entryObj.round-16.light.glow-40.hidden
   .entryWrap
     %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
     .input

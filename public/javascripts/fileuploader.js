@@ -678,7 +678,7 @@ qq.extend(qq.FileUploader.prototype, {
         var tempIMG = id + '_fade';
         
         // Use format var to determine format of image uploaded
-        var raw = '<img id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
+        var raw = '<img alt="' + filePath + '" id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
         var el = qq.toElement(raw);
         item.appendChild(el);
         

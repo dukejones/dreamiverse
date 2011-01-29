@@ -222,6 +222,7 @@ var updateSelectedList = function(){
   $('#IB_dropboxImages li').each(function(){
     if($(this).hasClass('selected')){
       var selectedImageID = getImageIDFromURL($(this).find('img').attr('src'));
+      //var selectedImageID = getImageIDFromURL($(this).find('img').attr('alt'));
       
       // Check for duplicate
       var hasDupe = false;

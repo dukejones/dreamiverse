@@ -5,8 +5,8 @@
 .light .button:hover {
   border: 1px solid black; }
 .light .shine, .light .bevel {
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#c5c5c5));
-  background: -moz-linear-gradient(top, white, #c5c5c5);
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
+  background: -moz-linear-gradient(top, white, #adadad);
   color: black; }
 .light .shine {
   box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);

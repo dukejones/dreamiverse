@@ -1,8 +1,12 @@
 /* ENTRY BAR */
+#entryBar.light {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.5)), to(rgba(0, 0, 0, 0.5)));
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5)); }
+
 #entryBar {
   width: 680px;
-  height: 48px;
-  margin: 0 0 15px; }
+  margin: 0 0 10px;
+  padding: 8px; }
   #entryBar a:link, #entryBar a:visited {
     display: block;
     text-decoration: none;
@@ -11,23 +15,28 @@
     height: 32px;
     line-height: 32px;
     float: left;
-    margin: 8px 0 0 10px;
+    margin-right: 10px;
     padding: 0;
     text-align: center;
-    border: 1px solid #acacac;
-    cursor: pointer;
-    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#acacac));
-    background: -moz-linear-gradient(top, white, #acacac);
     border-radius: 16px;
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px; }
-  #entryBar .entry {
+  #entryBar a.entry {
     width: 114px;
+    cursor: pointer;
+    height: 34px;
     background: white;
-    -moz-box-shadow: 0 8px 5px #cccccc inset;
-    -webkit-box-shadow: 0 8px 5px #cccccc inset;
-    box-shadow: 0 8px 5px #cccccc inset;
-    cursor: text; }
+    box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.8);
+    -moz-box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: inset 0 4px 12px rgba(0, 0, 0, 0.8); }
+    #entryBar a.entry span {
+      font-weight: bold;
+      font-size: 18px;
+      color: #68b800; }
+  #entryBar a.entry:hover {
+    box-shadow: 0 0 12px black;
+    -moz-box-shadow: 0 0 12px black;
+    -webkit-box-shadow: 0 0 12px black; }
   #entryBar .tag {
     width: 70px; }
   #entryBar .quote {

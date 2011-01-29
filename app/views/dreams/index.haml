@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream', 'modal', 'dreamStream'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'modal', 'dreamStream'
   = javascript_include_tag 'modal', 'tagStream'
 
 
@@ -13,7 +13,7 @@
 #dreamField
 
   / NEW ENTRY BAR
-  =render :partial => 'new_entry'
+  =render :partial => 'entry_bar'
   
   / TAG ENTRY & STREAM
   =render :partial => 'tag_stream'
