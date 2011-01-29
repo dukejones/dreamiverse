@@ -14,20 +14,13 @@
     margin: 8px 0 0 10px;
     padding: 0;
     text-align: center;
-    border: 1px solid #acacac;
-    cursor: pointer;
-    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#acacac));
-    background: -moz-linear-gradient(top, white, #acacac);
     border-radius: 16px;
     -moz-border-radius: 16px;
     -webkit-border-radius: 16px; }
   #entryBar .entry {
     width: 114px;
-    background: white;
-    -moz-box-shadow: 0 8px 5px #cccccc inset;
-    -webkit-box-shadow: 0 8px 5px #cccccc inset;
-    box-shadow: 0 8px 5px #cccccc inset;
-    cursor: text; }
+    cursor: text;
+    height: 34px; }
   #entryBar .tag {
     width: 70px; }
   #entryBar .quote {

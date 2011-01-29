@@ -5,15 +5,15 @@
   width:760px;
   height:30px;}
 
-.tag, .info, .fullscreen, .shuffle, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDrop, #IB_footerCancel, #IB_footerSet {cursor:pointer;}
+#IB_footer .tag, .info, .fullscreen, .shuffle, #IB_prevWrap, #IB_nextWrap, #IB_footerAddDrop, #IB_footerCancel, #IB_footerSet {cursor:pointer;}
 
-.tag, .info, .fullscreen, .shuffle {
+#IB_footer .tag, .info, .fullscreen, .shuffle {
   margin:10px 0 0 8px;
   width:36px;
   height:36px;
   float:left;
   background:url(../images/icons/tag-25.png) no-repeat center;}
-.tag:hover {background:url(../images/icons/tag-25-over.png) no-repeat center;}
+#IB_footer .tag:hover {background:url(../images/icons/tag-25-over.png) no-repeat center;}
 /*.tag:active {background:url(../images/icons/tag-25-selected.png) no-repeat center;}*/
 .info {background:url(../images/icons/info-25.png) no-repeat center;}
 .info:hover {background:url(../images/icons/info-25-over.png) no-repeat center;}
