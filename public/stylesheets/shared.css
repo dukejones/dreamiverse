@@ -1,22 +1,204 @@
 /* LIGHT */
-.light .button {
-  cursor: pointer;
-  border: 1px solid #959595; }
-.light .button:hover {
-  border: 1px solid black; }
-.light .shine, .light .bevel {
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
-  background: -moz-linear-gradient(top, white, #adadad);
-  color: black; }
-.light .shine {
-  box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5); }
-.light .inner-shadow-10 {
-  background: #ebeaea;
-  box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+.light {
+  /* BACKGROUNDS */ }
+  .light .button {
+    cursor: pointer;
+    border: 1px solid #959595; }
+  .light .button:hover {
+    border: 1px solid black; }
+  .light .shine, .light .bevel {
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
+    background: -moz-linear-gradient(top, white, #adadad);
+    color: black; }
+  .light .shine {
+    box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5); }
+  .light .inner-shadow-10 {
+    background: #ebeaea;
+    box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+  .light .white {
+    background: white; }
+  .light .transparent-80 {
+    background: rgba(255, 255, 255, 0.8); }
+  .light .transparent-66 {
+    background: rgba(255, 255, 255, 0.66); }
+  .light .transparent-50 {
+    background: rgba(255, 255, 255, 0.5); }
+  .light .transparent-33 {
+    background: rgba(255, 255, 255, 0.33); }
+  .light .transparent-25 {
+    background: rgba(255, 255, 255, 0.25); }
+  .light .transparent-15 {
+    background: rgba(255, 255, 255, 0.15); }
+  .light .glow-20 {
+    box-shadow: 8px 8px 20px black;
+    -moz-box-shadow: 0px 5px 20px black;
+    -webkit-box-shadow: 2px 2px 20px black; }
+  .light .glow-40 {
+    box-shadow: 8px 8px 40px black;
+    -moz-box-shadow: 0px 0px 40px black;
+    -webkit-box-shadow: 2px 2px 40px black; }
+  .light .glow-80 {
+    box-shadow: 8px 8px 80px black;
+    -moz-box-shadow: 10px 10px 80px black;
+    -webkit-box-shadow: 8px 8px 80px black; }
+  .light .glow-160 {
+    box-shadow: 8px 8px 160px black;
+    -moz-box-shadow: 10px 10px 160px black;
+    -webkit-box-shadow: 8px 8px 160px black; }
+
+.dark .transparent-80 {
+  background: rgba(0, 0, 0, 0.8); }
+.dark .transparent-66 {
+  background: rgba(0, 0, 0, 0.66); }
+.dark .transparent-50 {
+  background: rgba(0, 0, 0, 0.5); }
+.dark .transparent-33 {
+  background: rgba(0, 0, 0, 0.33); }
+.dark .transparent-25 {
+  background: rgba(0, 0, 0, 0.25); }
+.dark .transparent-15 {
+  background: rgba(0, 0, 0, 0.15); }
+.dark .glow-20 {
+  box-shadow: 0px 0px 20px white;
+  -moz-box-shadow: 1px 1px 20px white;
+  -webkit-box-shadow: 0px 0px 20px white; }
+.dark .glow-40 {
+  box-shadow: 0px 0px 40px white;
+  -moz-box-shadow: 0px 0px 40px white;
+  -webkit-box-shadow: 0px 0px 40px white; }
+.dark .glow-80 {
+  box-shadow: 0px 0px 80px white;
+  -moz-box-shadow: 0px 0px 80px white;
+  -webkit-box-shadow: 0px 0px 80px white; }
+.dark .glow-160 {
+  box-shadow: 0px 0px 160px white;
+  -moz-box-shadow: 0px 0px 160px white;
+  -webkit-box-shadow: 0px 0px 160px white; }
+
+/**********TOP MENU********** */
+#drop_shadow {
+  background: url(../images/gradients/top_shadow-100px.png) repeat-x top;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  z-index: -10; }
+
+#metaMenu {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1000; }
+  #metaMenu .left-panel, #metaMenu .right-panel {
+    background-color: white; }
+    #metaMenu .left-panel .item, #metaMenu .right-panel .item {
+      font-weight: bold;
+      display: block;
+      float: left;
+      background: white;
+      margin: 0 2px;
+      font-size: 15px;
+      height: 26px;
+      line-height: 26px;
+      color: black;
+      border: #cccccc 1px solid;
+      display: inline-block;
+      text-decoration: none;
+      padding: 2px 4px;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px; }
+    #metaMenu .left-panel .item:hover, #metaMenu .right-panel .item:hover {
+      border: black 1px solid;
+      background: black;
+      color: white; }
+    #metaMenu .left-panel .item.selected, #metaMenu .right-panel .item.selected {
+      color: white;
+      border: black 1px solid;
+      background: black; }
+  #metaMenu .left-panel {
+    position: absolute;
+    top: 0;
+    left: 248px; }
+  #metaMenu .right-panel {
+    float: right;
+    margin-right: 10px; }
+    #metaMenu .right-panel .user {
+      overflow: hidden;
+      margin: 0 0 -2px;
+      border: 1px solid #999999;
+      cursor: pointer;
+      border-radius: 8px;
+      -moz-border-radius: 8px;
+      -webkit-border-radius: 8px; }
+      #metaMenu .right-panel .user span {
+        color: white;
+        display: block;
+        margin-left: 32px;
+        background-color: black;
+        margin-top: -6px;
+        padding: 6px 4px 8px; }
+    #metaMenu .right-panel .user:hover {
+      border: 1px solid #cccccc; }
+    #metaMenu .right-panel .account img {
+      margin: -2px 1px -2px;
+      border: 0px; }
+    #metaMenu .right-panel .appearance img {
+      margin: -4px 0px -2px;
+      border: 0px; }
+
+#report_box {
+  position: absolute;
+  width: 235px;
+  text-align: right;
+  font-size: 9px;
+  color: #666666;
+  opacity: 1;
+  z-index: 1003;
+  top: 0; }
+
+#logo {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  margin: 4px 14px 0px 13px;
+  width: 230px;
+  z-index: 1001; }
+
+/* FLOATING BUTTONS */
+#adminLink, #newEntry, #logOut {
+  color: white;
+  display: block;
+  text-decoration: none;
+  border: 1px solid #777777;
+  background: rgba(0, 0, 0, 0.5); }
+
+#adminLink:hover, #newEntry:hover, #logOut:hover {
+  border: 1px solid #cccccc; }
+
+#adminLink {
+  padding: 5px 8px;
+  margin: 8px;
+  height: 21px; }
+  #adminLink img {
+    padding-top: 2px; }
+
+#newEntry {
+  padding: 4px 8px;
+  font-size: 17px;
+  font-weight: bold;
+  margin: 8px 12px 0 0;
+  border: 2px solid transparent; }
+  #newEntry span {
+    color: #009933; }
+
+#logOut {
+  margin: 10px 8px 0 0; }
 
 /* BUTTONS */
 .button.save:hover {

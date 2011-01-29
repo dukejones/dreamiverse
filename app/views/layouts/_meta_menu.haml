@@ -5,39 +5,30 @@
   %a{href: '/'}
     %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
 
-#meta_menu
+#metaMenu
   / INTRO MENU
-  #intro_menu.light.O.padding-8.round-16.flat-top
-    .sub_menu-item
-      %a{href: '/intro'} intro
-    .sub_menu-item
-      %a{href: '/faq'} faq
-    .sub_menu-item
-      %a{href: '/feedback'} feedback
-
-  / DREAMSTARS LINK
-  %a#dreamStarLink.block.dark.transparent-50.round-24.A-button.A-outline.padding-4-8.float-left{href: '/dreamstars'}
-    %img{src: 'http://www.dreamcatcher.net/basic/inc/images/icons/dreamstars-16.png'}
-    dreamstars
+  .left-panel.padding-8.round-16.flat-top
+    %a.item{href: '/dreams'}
+      my dreams
+    %a.item{href: '/dreamstars'}
+      dreamstars
 
   / LOG OUT
-  %a#logOut.dark.transparent-50.padding-4-8.round-24.A-button.A-outline.float-right{href: '/logout'}
+  %a#logOut.padding-4-8.round-24.A-button.A-outline.float-right{href: '/logout'}
     log out
 
   / SETTINGS MENU
-  #settings_menu.light.O.padding-8.round-16.flat-top
-    %a.user.sub_menu-item.selected{href: '/', style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
+  .right-panel.padding-8.round-16.flat-top
+    %a.item.user.selected{href: '/', style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
       %span.round-16.flat-left username
-    .account.sub_menu-item
-      %a{href: 'JavaScript:toggleSettingsPanel();void(0);'}
-        %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
-    .appearance.sub_menu-item
-      %a{href: 'JavaScript:toggleSettingsPanel();void(0);'}
-        %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
+    %a.item.account{href: 'JavaScript:toggleAppearance();void(0);'}
+      %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
+    %a.item.appearance{href: 'JavaScript:toggleAppearance();void(0);'}
+      %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
 
 
   / ADMIN LINK
-  %a#adminLink.dark.transparent-50.round-24.A-button.A-outline.float-right{href: '/admin'}
+  %a#adminLink.round-24.A-button.A-outline.float-right{href: '/admin'}
     %img{src: '/images/icons/key-16.png', border: '0'}
 
 

@@ -2,10 +2,10 @@
 / FOLLOW
 .item{onMouseOver: "$('#followState').addClass('hidden'), $('#unfollow').removeClass('hidden')", onMouseOut: "$('#unfollow').addClass('hidden'), $('#followState').removeClass('hidden')"}
   #followState
-    .label.light.bevel.round-12.flat-right you are
+    .label.bevel.round-12.flat-right you are
     .image
       %img.follow{src: "/images/icons/#{icon}-24.png", width: '24', height: '24'}
-    .detail.light.inner-shadow-10.round-12.flat-left= text
+    .detail.inner-shadow-10.round-12.flat-left= text
     .clear-both
 
   %a#unfollow.block.round-12.hidden{href: '#'}

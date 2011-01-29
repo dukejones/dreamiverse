@@ -307,7 +307,7 @@ window.onload = function() {
             };
           };
         setBodyBackground();
-        toggleSettingsPanel();
+        toggleAppearance();
       };
     };
 
@@ -334,7 +334,7 @@ window.onload = function() {
           FM.removeClass('ubiquityCheckbox','checked');
         };
         setBodyBackground();
-        toggleSettingsPanel();
+        toggleAppearance();
       };
     };
 
@@ -399,24 +399,24 @@ function createModal(callback) {
 // OPEN AND CLOSE THEME PANEL
 var settingsExpanded = false;
 //500000
-function toggleSettingsPanel() {
+function toggleAppearance() {
   if(!settingsExpanded){
     // Show Settings
     settingsExpanded = true;
-    $('#settingsPanelWrapper').fadeIn('fast');
-    $('#settingsArrow').fadeIn('fast');
+    $('#appearancePanel').fadeIn('fast');
+    $('#appearanceArrow').fadeIn('fast');
     
     createModal(function() {
       // Hide Settings
       settingsExpanded = false;
-      $('#settingsPanelWrapper').fadeOut('fast');
-      $('#settingsArrow').fadeOut('fast');
+      $('#appearancePanel').fadeOut('fast');
+      $('#appearanceArrow').fadeOut('fast');
     });
   } else {
     // Hide Settings
     settingsExpanded = false;
-    $('#settingsPanelWrapper').fadeOut('fast');
-    $('#settingsArrow').fadeOut('fast');
+    $('#appearancePanel').fadeOut('fast');
+    $('#appearanceArrow').fadeOut('fast');
     $('#bodyClick').fadeOut().remove();
   }
 };
