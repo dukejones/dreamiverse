@@ -3,6 +3,8 @@ var currentArtist = "";
 var currentSlideshowImage = '';
 var currentView = "browse"; // Changes to "search"
 
+var viewingTopLevel = false;
+
 // Maximum size of any image side in full-screen/slideshow mode
 var maxImageSide = 700;
 
@@ -88,6 +90,7 @@ closeSearchExpand = function(){
   $("#IB_searchBox,#IB_searchBoxWrap").show();
 }
 loadCategoryList = function(genre){
+  viewingTopLevel = true;
   $(".uiMode,.browseBars").hide();
   
   setGenre(genre);
@@ -142,6 +145,7 @@ loadCategoryList = function(genre){
   $("#IB_artistContainer").fadeIn();
 }
 loadArtistList = function(genre) {
+  viewingTopLevel = false;
   $(".uiMode,.browseBars").hide();
   
   setGenre(genre);
@@ -306,7 +310,11 @@ loadArtist = function(artist) {
   $('#IB_browseArrow').show();
   $("#IB_browseArrow").unbind();
   $("#IB_browseArrow").click(function() {
-    loadArtistList(currentGenre);
+    if(!viewingTopLevel){
+      loadArtistList(currentGenre);
+    } else {
+      loadCategoryList(currentGenre);
+    }
   });
   
   // Check to see if there are dropbox images
