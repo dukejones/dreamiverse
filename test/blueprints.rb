@@ -13,7 +13,6 @@ end
 Dream.blueprint do
   body { Faker::Lorem.paragraphs(6) }
   title { Faker::Lorem.words(5).join(' ').titleize }
-  
 end
 
 Hit.blueprint do

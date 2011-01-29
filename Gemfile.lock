@@ -29,7 +29,6 @@ GEM
       activesupport (= 3.0.3)
     activesupport (3.0.3)
     addressable (2.2.2)
-    amistad (0.6.0)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
     barista (1.0.0)
@@ -170,7 +169,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  amistad (~> 0.6)
   barista
   capistrano
   capistrano-ext
