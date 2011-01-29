@@ -202,7 +202,7 @@ loadArtistList = function(genre) {
 
 checkForEmptyDropbox = function(){
   if($('#IB_imageDrop').children().length < 1){
-    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').hide();
+    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeOut();
   }
 }
 
@@ -229,7 +229,7 @@ addImageToDropbox = function(imageId) {
     });
     
     // Hide background & show buttons
-    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').show();
+    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeIn();
     $('#IB_searchResultsSelectEdit').unbind();
     $('#IB_searchResultsSelectEdit').click(function(){
       editImages();
@@ -247,7 +247,7 @@ addImageToDropbox = function(imageId) {
       /*$("#IB_browseBack,#IB_searchBoxActive").hide();
       $("#IB_searchBox").show();
       loadBrowse();*/
-    
+      $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeOut();
       // Empty the dropBox
       $('#IB_imageDrop').empty();
     });
