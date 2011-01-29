@@ -26,8 +26,8 @@ class Starlight < ActiveRecord::Base
   end
   
   def change(amt)
-    value += amt
-    save
+    self.value += amt
+    self.save
   end
   
   def entropize!

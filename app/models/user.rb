@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  include Amistad::FriendModel
   has_many :authentications
   has_many :dreams
   has_many :hits
@@ -7,6 +6,8 @@ class User < ActiveRecord::Base
   has_many :starlights, :as => :entity
   has_one  :starlight, :as => :entity, :order => "id DESC"
   
+  has_many :follows
+  has_many :followeds, :inverse_of => :follows
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   #devise :database_authenticatable, :registerable,
