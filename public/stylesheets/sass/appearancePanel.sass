@@ -1,6 +1,7 @@
 #appearancePanel
-  clear: both
-  float: right
+  position: absolute
+  right: 45px
+  top: 55px
   padding: 0 8px 8px
   width: 334px
   height: 580px
@@ -12,6 +13,10 @@
     margin: 8px
     font-size: 24px
     font-weight: normal
+
+  #bedsheets, #colorPicker
+    border: 1px solid #999
+
   #bedsheets
     clear: both
     padding: 10px
@@ -53,11 +58,12 @@
         -webkit-border-radius: 4px
         img
           border: 4px solid #fff
-    #more
+    .more
+      display: block
       height: 32px
       line-height: 32px
       text-align: center
-      background: #262626 /* 90% Black */
+      background: rgba(255,255,255,0.9) /* 100% white */
 
   #colorPicker
     clear: both
@@ -85,4 +91,9 @@
         line-height: 28px
         text-align:  center
         font-size: 14px
+        img
+          margin: -8px -8px -8px 4px
+      #sun
+        
+      #moon
          
