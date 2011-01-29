@@ -457,7 +457,7 @@ loadArtist = function(artist) {
             $(".images li",element).draggable({
               containment: 'document',
               helper: 'clone',
-              appendTo: 'imageDrop',
+              appendTo: '#imageDrop',
               zIndex:10000,
               distance: 40,
               scroll: false,
