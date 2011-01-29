@@ -444,7 +444,7 @@ loadArtist = function(artist) {
             })
 
             //Make images draggable to the drop-box below.
-            /*$(".images li",element).draggable({
+            $(".images li",element).draggable({
               containment: 'document',
               helper: 'clone',
               zIndex:10000,
@@ -457,7 +457,7 @@ loadArtist = function(artist) {
               stop: function(event, ui) {
                 isDragging = false;
               }
-            });*/
+            });
             
             // Set up header manage
             $('.header-manage').click(function(event){
@@ -539,12 +539,12 @@ loadArtist = function(artist) {
     
     //$("#IB_searchResultsSelectBar").show();
 
-    /*$("#IB_imageDrop").droppable({
+    $("#IB_imageDrop").droppable({
       drop: function(event, ui) {
         var imageId = $("img",ui.draggable).attr("id").split("_")[1];
         addImageToDropbox(imageId);
       }
-    });*/
+    });
   };
   
   $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
@@ -1100,7 +1100,7 @@ loadSearchResults = function() {
         })
 
         //Make images draggable to the drop-box below.
-        /*$(".images li").draggable({
+        $(".images li").draggable({
           containment: 'document',
           helper: 'clone',
           zIndex:10000,
@@ -1113,13 +1113,13 @@ loadSearchResults = function() {
           stop: function(event, ui) {
             isDragging = false;
           }
-        });*/
-        /*$("#IB_searchResultsSelectBar").droppable({
+        });
+        $("#IB_searchResultsSelectBar").droppable({
           drop: function(event, ui) {
             var imageId = $("img",ui.draggable).attr("id").split("_")[1];
             addImageToDropboxSearch(imageId);
           }
-        });*/
+        });
       }
       /*// Empty Old Search Results
       $('#IB_searchImageResults').empty();
