@@ -200,6 +200,11 @@ loadArtistList = function(genre) {
   $("#IB_artistContainer").fadeIn();
 };
 
+checkForEmptyDropbox = function(){
+  if($('#IB_imageDrop').children().length < 1){
+    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').hide();
+  }
+}
 
 addImageToDropbox = function(imageId) {
   // Store image data in dropBoxJSONContainer
@@ -281,6 +286,7 @@ removeImageFromDropbox = function(imageId){
     if($(this).attr('id').split("_")[1] == imageId){
       $(this).parent().remove();
       
+      checkForEmptyDropbox();
       // Break callback loop
       return false;
     }
