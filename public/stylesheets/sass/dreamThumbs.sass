@@ -80,12 +80,18 @@
         line-height: 30px
         text-align: center
         overflow: hidden
+        top: 62px
       .detailsTop, .detailsBottom
         position: absolute
         z-index: 40
+        display: none
       .detailsTop
         width: 220px
         z-index: 100
+        .date
+          max-width: 60px
+          overflow: hidden
+          white-space: nowrap
       .detailsBottom
         bottom: 0
         width: 100%
@@ -100,7 +106,11 @@
         margin: 0 2px -5px 0
       .sharing img
         margin: -1px 0 -4px 2px
-      .title 
+      .title
+        display: none
+        position: absolute
+        width: 100%
+        top: 90px
         font-size: 21px
         text-align: center
       .tags
@@ -109,7 +119,20 @@
         bottom: 6px
         padding: 0 16px
 
-
+  /* HOVER */
+  .dream_thumb.hover
+    .detailsTop, .detailsBottom, .title
+      display: block
+.light
+  .dream_thumb.hover
+    box-shadow: 0px 0px 40px #000
+    -moz-box-shadow: 0px 0px 40px #000
+    -webkit-box-shadow: 0px 0px 40px #000
+.dark
+  .dream_thumb.hover
+    box-shadow: 0px 0px 40px #fff
+    -moz-box-shadow: 0px 0px 40px #fff
+    -webkit-box-shadow: 0px 0px 40px #fff
 
 
 

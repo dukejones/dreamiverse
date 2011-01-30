@@ -12,7 +12,7 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      padding-bottom: 8px; }
+      padding: 20px 0 8px; }
       #contextPanel #image #uploadAvatarWrap #uploadAvatar {
         cursor: pointer;
         display: block;

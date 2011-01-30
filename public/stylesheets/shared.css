@@ -383,3 +383,19 @@
   -khtml-opacity: 0.1;
   -webkit-opacity: 0.1;
   opacity: 0.1; }
+
+/* background */
+body {
+  font-family: Calibri, Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0; }
+
+body.light {
+  background-color: #cccccc; }
+
+body.dark {
+  background-color: black; }
+
+/* removes dotted line around links */
+a:active, a:focus {
+  outline: none; }
