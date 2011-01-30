@@ -1,6 +1,13 @@
+.light .matrix .dream_thumb .fadedBack {
+  background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top transparent; }
+
+.dark .matrix .dream_thumb .fadedBack {
+  background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top transparent; }
+
 .matrix {
   /* PAGINATION */
-  /* 2D DREAM THUMBS */ }
+  /* 2D DREAM THUMBS */
+  /* HOVER */ }
   .matrix .dark.pageFirst, .matrix .dark.pageFirst:hover {
     border: 2px solid transparent;
     margin-right: 1px;
@@ -39,64 +46,78 @@
     line-height: 17px;
     cursor: default;
     border: 2px solid white; }
-  .matrix .dream_thumb.light {
-    background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top white; }
-  .matrix .dream_thumb.dark {
-    background: url("../images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black; }
   .matrix .dream_thumb {
-    width: 220px;
-    height: 300px;
     margin: 0 12px 12px 0;
     overflow: hidden;
+    float: left;
     border: 0;
     position: relative; }
-    .matrix .dream_thumb .link {
-      display: block;
-      border: 0 none;
-      position: absolute;
-      z-index: 900;
+    .matrix .dream_thumb .fadedBack {
       width: 220px;
       height: 300px; }
-    .matrix .dream_thumb .image {
-      width: 220px;
-      height: 96px;
-      -moz-border-radius-bottomright: 0px;
-      position: absolute;
-      background: url("../images/art/astral-eyes-banner.jpg") center; }
-    .matrix .dream_thumb .watermark {
-      position: absolute;
-      width: 220px;
-      height: 128px;
-      font-size: 45px;
-      line-height: 30px;
-      text-align: center;
-      overflow: hidden; }
-    .matrix .dream_thumb .detailsTop {
-      position: absolute;
-      width: 220px;
-      z-index: 100; }
-    .matrix .dream_thumb .detailsBottom {
-      position: absolute;
-      bottom: 0;
-      width: 100%; }
-    .matrix .dream_thumb .date, .matrix .dream_thumb .location, .matrix .dream_thumb .comments, .matrix .dream_thumb .sharing {
-      margin: 4px;
-      font-size: 11px;
-      padding: 4px 8px;
-      text-align: center; }
-    .matrix .dream_thumb .comments img {
-      margin: 0 2px -5px 0; }
-    .matrix .dream_thumb .sharing img {
-      margin: -1px 0 -4px 2px; }
-    .matrix .dream_thumb .title {
-      margin-top: 96px;
-      font-size: 17px;
-      font-weight: bold;
-      text-align: center; }
-      .matrix .dream_thumb .title a {
-        padding: 12px; }
-    .matrix .dream_thumb .tags {
-      padding: 0 16px; }
+      .matrix .dream_thumb .fadedBack .link {
+        display: block;
+        border: 0 none;
+        position: absolute;
+        z-index: 900;
+        width: 220px;
+        height: 300px; }
+      .matrix .dream_thumb .fadedBack .watermark {
+        position: absolute;
+        width: 220px;
+        height: 128px;
+        font-size: 45px;
+        line-height: 30px;
+        text-align: center;
+        overflow: hidden;
+        top: 62px; }
+      .matrix .dream_thumb .fadedBack .detailsTop, .matrix .dream_thumb .fadedBack .detailsBottom, .matrix .dream_thumb .fadedBack .title {
+        position: absolute;
+        z-index: 40;
+        display: none; }
+      .matrix .dream_thumb .fadedBack .detailsTop {
+        width: 220px;
+        z-index: 100; }
+        .matrix .dream_thumb .fadedBack .detailsTop .date {
+          max-width: 60px;
+          overflow: hidden;
+          white-space: nowrap; }
+      .matrix .dream_thumb .fadedBack .detailsBottom {
+        bottom: 0;
+        width: 100%; }
+      .matrix .dream_thumb .fadedBack .date, .matrix .dream_thumb .fadedBack .location, .matrix .dream_thumb .fadedBack .comments, .matrix .dream_thumb .fadedBack .sharing {
+        color: white;
+        margin: 4px;
+        font-size: 11px;
+        padding: 4px 8px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5); }
+      .matrix .dream_thumb .fadedBack .comments img {
+        margin: 0 2px -5px 0; }
+      .matrix .dream_thumb .fadedBack .sharing img {
+        margin: -1px 0 -4px 2px; }
+      .matrix .dream_thumb .fadedBack .title {
+        width: 100%;
+        top: 90px;
+        font-size: 21px;
+        text-align: center; }
+      .matrix .dream_thumb .fadedBack .tags {
+        z-index: 20;
+        position: absolute;
+        bottom: 6px;
+        padding: 0 16px; }
+  .matrix .dream_thumb.hover .detailsTop, .matrix .dream_thumb.hover .detailsBottom, .matrix .dream_thumb.hover .title {
+    display: block; }
+
+.light .dream_thumb.hover {
+  box-shadow: 0px 0px 40px black;
+  -moz-box-shadow: 0px 0px 40px black;
+  -webkit-box-shadow: 0px 0px 40px black; }
+
+.dark .dream_thumb.hover {
+  box-shadow: 0px 0px 40px white;
+  -moz-box-shadow: 0px 0px 40px white;
+  -webkit-box-shadow: 0px 0px 40px white; }
 
 /* 1D DREAM THUMBS */
 .dreamThumbs_1d {
@@ -178,7 +199,7 @@
       border-radius-topleft: 16px;
       -moz-border-radius-topleft: 16px;
       -webkit-border-radius-topleft: 16px;
-      background: url(../images/art/cloud-temple-banner.jpg) no-repeat top; }
+      background: url(/images/art/cloud-temple-banner.jpg) no-repeat top; }
     .dreamThumbs_1d .left .tagCloud {
       height: 45px;
       border-radius-bottomleft: 16px;
@@ -205,7 +226,7 @@
     line-height: 35px;
     margin: 7px 0 0 8px;
     color: #034c99;
-    background: white url(../images/avatars/xavitar.jpg) no-repeat left; }
+    background: white url(/images/avatars/xavitar.jpg) no-repeat left; }
     .dreamThumbs_1d .user .name {
       margin: 0 0 0 40px;
       font-size: 16px;

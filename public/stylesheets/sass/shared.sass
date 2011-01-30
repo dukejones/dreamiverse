@@ -2,9 +2,10 @@
 
 /* LIGHT */
 .light
+  color: #333
 
   .button
-    border: 1px solid #959595
+    border: 1px solid #848484
   .button:hover
     border: 1px solid #000
 
@@ -16,18 +17,17 @@
   .shine, .bevel
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
     background: -moz-linear-gradient(top, #fff, #adadad)
-    color: #000
 
   .shine
-    box-shadow: inset 0px 18px rgba(255,255,255,0.5)
-    -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
-    -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
+    box-shadow: inset 0 18px rgba(255,255,255,0.5)
+    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
 
   .inner-shadow-10
     background: #ebeaea
-    box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
-    -moz-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
-    -webkit-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
+    box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+    -moz-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+    -webkit-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
 
   .input
     border: 1px solid transparent
@@ -56,11 +56,11 @@
 
   .glow-20
     box-shadow: 8px 8px 20px #000
-    -moz-box-shadow: 0px 5px 20px #000
+    -moz-box-shadow: 8px 5px 20px #000
     -webkit-box-shadow: 2px 2px 20px #000
   .glow-40
     box-shadow: 8px 8px 40px #000
-    -moz-box-shadow: 0px 0px 40px #000
+    -moz-box-shadow: 0 0 40px #000
     -webkit-box-shadow: 2px 2px 40px #000
   .glow-80
     box-shadow: 8px 8px 80px #000
@@ -75,9 +75,10 @@
 
 
 .dark
+  color: #fff
 
   .button
-    border: 1px solid #959595
+    border: 1px solid #555
   .button:hover
     border: 1px solid #fff
     box-shadow: inset 0 0 20px #fff
@@ -88,20 +89,19 @@
 
 
   .shine, .bevel
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
-    background: -moz-linear-gradient(top, #fff, #adadad)
-    color: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+    background: -moz-linear-gradient(top, #aaa, #222)
 
   .shine
-    box-shadow: inset 0px 18px rgba(255,255,255,0.5)
-    -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
-    -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.5)
+    box-shadow: inset 0 18px rgba(255,255,255,0.2)
+    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
 
   .inner-shadow-10
-    background: #ebeaea
-    box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
-    -moz-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
-    -webkit-box-shadow: inset 0px 6px 10px rgba(0,0,0,0.6)
+    background: #444444
+    box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+    -moz-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+    -webkit-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
 
   .input
     border: 1px solid transparent
@@ -125,21 +125,21 @@
     background: rgba(0,0,0,0.15)
 
   .glow-20
-    box-shadow: 0px 0px 20px #fff
-    -moz-box-shadow: 1px 1px 20px #fff
-    -webkit-box-shadow: 0px 0px 20px #fff
+    box-shadow: 0 0 20px #fff
+    -moz-box-shadow: 0 0 20px #fff
+    -webkit-box-shadow: 0 0 20px #fff
   .glow-40
-    box-shadow: 0px 0px 40px #fff
-    -moz-box-shadow: 0px 0px 40px #fff
-    -webkit-box-shadow: 0px 0px 40px #fff
+    box-shadow: 0 0 40px #fff
+    -moz-box-shadow: 0 0 40px #fff
+    -webkit-box-shadow: 0 0 40px #fff
   .glow-80
-    box-shadow: 0px 0px 80px #fff
-    -moz-box-shadow: 0px 0px 80px #fff
-    -webkit-box-shadow: 0px 0px 80px #fff
+    box-shadow: 0 0 80px #fff
+    -moz-box-shadow: 0 0 80px #fff
+    -webkit-box-shadow: 0 0 80px #fff
   .glow-160
-    box-shadow: 0px 0px 160px #fff
-    -moz-box-shadow: 0px 0px 160px #fff
-    -webkit-box-shadow: 0px 0px 160px #fff
+    box-shadow: 0 0 160px #fff
+    -moz-box-shadow: 0 0 160px #fff
+    -webkit-box-shadow: 0 0 160px #fff
 
 
 
@@ -148,6 +148,7 @@
 .light, .dark
   .button
     cursor: pointer
+    border: 1px solid #555
   .input
     border: 1px solid transparent
 
@@ -264,6 +265,9 @@
   background: rgba(0,0,0,0.50)
 #adminLink:hover, #newEntry:hover, #logOut:hover
   border: 1px solid #ccc
+  box-shadow: inset 0 0 20px #fff
+  -moz-box-shadow: inset 0 0 20px #fff
+  -webkit-box-shadow: inset 0 0 20px #fff
 
 #adminLink
   padding: 5px 8px
@@ -403,3 +407,23 @@
   +alpha(20)
 .alpha-10
   +alpha(10)
+
+
+
+
+
+
+/* body */
+body
+  font-family: Calibri, Arial, Helvetica, sans-serif
+  margin: 0
+  padding: 0
+body.light
+  background-color: #ccc
+body.dark
+  background-color: #000
+
+
+/* removes dotted line around links */
+a:active, a:focus
+  outline: none
