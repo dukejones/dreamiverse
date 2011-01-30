@@ -687,10 +687,11 @@ qq.extend(qq.FileUploader.prototype, {
         $(elementjq).fadeIn('slow');
         
         if (result.image){
-            qq.addClass(item, this._classes.success);    
+          qq.addClass(item, this._classes.success);
         } else {
-            qq.addClass(item, this._classes.fail);
-        } 
+          qq.addClass(item, this._classes.fail);
+        }
+        qq.removeClass(item, 'uploading');
         
         selectAllImages();        
     },
