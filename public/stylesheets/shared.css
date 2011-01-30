@@ -2,7 +2,6 @@
 .light {
   /* BACKGROUNDS */ }
   .light .button {
-    cursor: pointer;
     border: 1px solid #959595; }
   .light .button:hover {
     border: 1px solid black; }
@@ -19,7 +18,12 @@
     box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
     -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
     -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
-  .light .white {
+  .light .input {
+    border: 1px solid transparent;
+    box-shadow: inset 0 2px 5px #cccccc;
+    -moz-box-shadow: inset 0 2px 5px #cccccc;
+    -webkit-box-shadow: inset 0 2px 5px #cccccc; }
+  .light .flat {
     background: white; }
   .light .transparent-80 {
     background: rgba(255, 255, 255, 0.8); }
@@ -50,6 +54,33 @@
     -moz-box-shadow: 10px 10px 160px black;
     -webkit-box-shadow: 8px 8px 160px black; }
 
+.dark .button {
+  border: 1px solid #959595; }
+.dark .button:hover {
+  border: 1px solid white;
+  box-shadow: inset 0 0 20px white;
+  -moz-box-shadow: inset 0 0 20px white;
+  -webkit-box-shadow: inset 0 0 20px white; }
+.dark .shine, .dark .bevel {
+  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
+  background: -moz-linear-gradient(top, white, #adadad);
+  color: black; }
+.dark .shine {
+  box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
+  -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
+  -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5); }
+.dark .inner-shadow-10 {
+  background: #ebeaea;
+  box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+.dark .input {
+  border: 1px solid transparent;
+  box-shadow: inset 0 2px 5px #cccccc;
+  -moz-box-shadow: inset 0 2px 5px #cccccc;
+  -webkit-box-shadow: inset 0 2px 5px #cccccc; }
+.dark .flat {
+  background: black; }
 .dark .transparent-80 {
   background: rgba(0, 0, 0, 0.8); }
 .dark .transparent-66 {
@@ -78,6 +109,12 @@
   box-shadow: 0px 0px 160px white;
   -moz-box-shadow: 0px 0px 160px white;
   -webkit-box-shadow: 0px 0px 160px white; }
+
+/* LIGHT AND DARK */
+.light .button, .dark .button {
+  cursor: pointer; }
+.light .input, .dark .input {
+  border: 1px solid transparent; }
 
 /**********TOP MENU********** */
 #drop_shadow {
@@ -130,7 +167,7 @@
     margin-right: 10px; }
     #metaMenu .right-panel .user {
       overflow: hidden;
-      margin: 0 0 -2px;
+      margin: 0 2px -2px;
       border: 1px solid #999999;
       cursor: pointer;
       border-radius: 8px;

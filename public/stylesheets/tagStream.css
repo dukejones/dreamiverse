@@ -1,11 +1,11 @@
 .tagStream {
   width: 656px;
   margin: 0 0 12px 0;
-  padding: 12px; }
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.5); }
   .tagStream .stream {
     background: black;
-    width: 656px;
-    height: 98px;
+    height: 100px;
     position: relative;
     z-index: 333; }
     .tagStream .stream .moodIcon, .tagStream .stream .moodIcon-picker, .tagStream .stream .currentIcon {
