@@ -3,9 +3,6 @@ class User < ActiveRecord::Base
   has_many :dreams
   has_many :hits
 
-  has_many :starlights, :as => :entity
-  has_one  :starlight, :as => :entity, :order => "id DESC"
-  
   has_many :follows
   has_many :followings, :through => :follows
   

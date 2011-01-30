@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
     
     if params[:artist] && params[:album]
       params[:album] = nil if params[:album] == "null"
+      params[:artist] = nil if params[:artist] == ""
       @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
     elsif params[:q] # search
       @images = Image.sectioned(params[:section]).search(params) # takes filters etc as well
