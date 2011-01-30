@@ -13,6 +13,8 @@ class UserTest < ActiveSupport::TestCase
     u2.follow!(u1)
     assert u1.friends_with?(u2)
     assert u2.friends_with?(u1)
+    
+    assert u1.friends.include?(u2)
   end
   
   test "validate_password_confirmation" do

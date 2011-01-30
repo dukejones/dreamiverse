@@ -59,31 +59,9 @@ loadBrowse = function() {
   $("#IB_browse li").click(function() {
     loadArtistList($(this).find('span').text());
   });*/
-  var config = {
-     over: expandNav, // function = onMouseOver callback (REQUIRED)    
-     sensitivity: 20, 
-     interval: 30,
-     out: contractNav // function = onMouseOut callback (REQUIRED)    
-   };
 
-  $('#IB_browse li').hoverIntent(config);
-  $('#IB_browse li').find('.nav-expand p').unbind();
-  $('#IB_browse li').find('.nav-expand p').click(function(){
-    loadArtistList($(this).text());
-  })
-  $('#IB_browse li').find('span').unbind();
-  $('#IB_browse li').find('span').click(function(){
-    loadCategoryList($(this).text());
-  })
+  new ImageBank()
 };
-
-contractNav = function(){
-  $(this).find('.nav-expand').fadeOut();
-}
-
-expandNav = function(){
-  $(this).find('.nav-expand').fadeIn();
-}
 
 closeSearchExpand = function(){
   $("#IB_searchBoxActive,#IB_searchBoxActiveWrap,#IB_browseBack,#IB_browseBackWrap").hide();
