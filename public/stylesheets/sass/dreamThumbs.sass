@@ -1,11 +1,13 @@
 .light
   .matrix
     .dream_thumb
-      background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top white
+      .fadedBack
+        background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top transparent
 .dark
   .matrix
     .dream_thumb
-      background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black
+      .fadedBack
+        background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top transparent
 
 .matrix
 
@@ -55,62 +57,63 @@
 
   /* 2D DREAM THUMBS */
   .dream_thumb
-    width: 220px
-    height: 300px
     margin: 0 12px 12px 0
     overflow: hidden
     float: left
     border: 0
     position: relative
-    .link
-      display: block
-      border: 0 none
-      position: absolute
-      z-index: 900
+    .fadedBack
       width: 220px
       height: 300px
-    .image
-      width: 220px
-      height: 96px
-      -moz-border-radius-bottomright: 0px
-      position: absolute
-      background: url("/images/art/astral-eyes-banner.jpg") center
-    .watermark
-      position: absolute
-      width: 220px
-      height: 128px
-      font-size: 45px
-      line-height: 30px
-      text-align: center
-      overflow: hidden
-    .detailsTop
-      position: absolute
-      width: 220px
-      z-index: 100
-    .detailsBottom
-      position: absolute
-      bottom: 0
-      width: 100%
-    .date, .location, .comments, .sharing
-      color: #fff
-      margin: 4px
-      font-size: 11px
-      padding: 4px 8px
-      text-align: center
-      background: rgba(0,0,0,0.50)
-    .comments img
-      margin: 0 2px -5px 0
-    .sharing img
-      margin: -1px 0 -4px 2px
-    .title 
-      margin-top: 96px
-      font-size: 17px
-      font-weight: bold
-      text-align: center
-      a
-        padding: 12px
-    .tags 
-      padding: 0 16px
+      .link
+        display: block
+        border: 0 none
+        position: absolute
+        z-index: 900
+        width: 220px
+        height: 300px
+      .watermark
+        position: absolute
+        width: 220px
+        height: 128px
+        font-size: 45px
+        line-height: 30px
+        text-align: center
+        overflow: hidden
+      .detailsTop, .detailsBottom
+        position: absolute
+        z-index: 40
+      .detailsTop
+        width: 220px
+        z-index: 100
+      .detailsBottom
+        bottom: 0
+        width: 100%
+      .date, .location, .comments, .sharing
+        color: #fff
+        margin: 4px
+        font-size: 11px
+        padding: 4px 8px
+        text-align: center
+        background: rgba(0,0,0,0.50)
+      .comments img
+        margin: 0 2px -5px 0
+      .sharing img
+        margin: -1px 0 -4px 2px
+      .title 
+        font-size: 21px
+        text-align: center
+      .tags
+        z-index: 20
+        position: absolute
+        bottom: 6px
+        padding: 0 16px
+
+
+
+
+
+
 
 
 /* 1D DREAM THUMBS */

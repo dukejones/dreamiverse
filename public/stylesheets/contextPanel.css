@@ -83,8 +83,7 @@
     width: 60px;
     height: 24px;
     padding: 6px 8px;
-    text-align: right;
-    border: 1px solid #848484; }
+    text-align: right; }
   #contextPanel .item .image {
     width: 34px;
     height: 24px;
@@ -119,3 +118,9 @@
     border: 0;
     font-weight: normal;
     line-height: 25px; }
+
+.light #contextPanel .item .label {
+  border: 1px solid #848484; }
+
+.dark #contextPanel .item .label {
+  border: 1px solid #555555; }

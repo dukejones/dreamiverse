@@ -1,45 +1,42 @@
-.dream_thumb.round-16
+.dream_thumb.round-16{style: 'background: url("/images/art/astral-eyes-banner.jpg") top center'}
+  .fadedBack.round-16
 
-  / LINK
-  %a.link{:href => dream_path(dream)}
+    / LINK
+    %a.link{:href => dream_path(dream)}
 
-  / THUMBNAIL
-  .image.round-16.flat-bottom
+    / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
+    .watermark.font-georgia.alpha-10= dream.title
 
-  / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
-  .watermark.font-georgia.alpha-10= dream.title
+    / DETAILS (DATE + LOCATION)
+    .detailsTop
+      .date.round-12.float-left= dream.created_at
+      .location.round-12.float-right dream location
+    .detailsBottom
+      .comments.round-12.float-left
+        = image_tag("icons/comments-16.png")
+        11
+      .sharing.round-12.float-right
+        = image_tag("icons/mask-16.png")
+        private
 
-  / DETAILS (DATE + LOCATION)
-  .detailsTop
-    .date.round-12.float-left= dream.created_at
-    .location.round-12.float-right dream location
-  .detailsBottom
-    .comments.round-12.float-left
-      = image_tag("icons/comments-16.png")
-      11
-    .sharing.round-12.float-right
-      = image_tag("icons/mask-16.png")
-      private
+    / TITLE
+    .title= dream.title
 
-  / TITLE
-  .title
-    %a{:href => dream_path(dream)}= dream.title
-
-  / TAG CLOUD
-  .tags
-    <div class="TC s-1 water">device</div>
-    <div class="TC s-1 water">dead</div>
-    <div class="TC s-1 water">mystical</div>
-    <div class="TC s-5 water">project</div>
-    <div class="TC s-1 water">class</div>
-    <div class="TC s-8 water">duke</div>
-    <div class="TC s-1 water">abyss</div>
-    <div class="TC s-3 water">art</div>
-    <div class="TC s-1 water">trees</div>
-    <div class="TC s-3 water">ancient</div>
-    <div class="TC s-3 water">goldfinger</div>
-    <div class="TC s-1 water">hartman</div>
-    <div class="TC s-3 water">janell</div>
-    <div class="TC s-1 water">intersection</div>
-    <div class="TC s-1 water">dorje</div>
-    <div class="TC s-5 water">pit</div>
+    / TAG CLOUD
+    .tags
+      <div class="TC s-1 water">device</div>
+      <div class="TC s-1 water">dead</div>
+      <div class="TC s-1 water">mystical</div>
+      <div class="TC s-5 water">project</div>
+      <div class="TC s-1 water">class</div>
+      <div class="TC s-8 water">duke</div>
+      <div class="TC s-1 water">abyss</div>
+      <div class="TC s-3 water">art</div>
+      <div class="TC s-1 water">trees</div>
+      <div class="TC s-3 water">ancient</div>
+      <div class="TC s-3 water">goldfinger</div>
+      <div class="TC s-1 water">hartman</div>
+      <div class="TC s-3 water">janell</div>
+      <div class="TC s-1 water">intersection</div>
+      <div class="TC s-1 water">dorje</div>
+      <div class="TC s-5 water">pit</div>
