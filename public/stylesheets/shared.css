@@ -10,14 +10,14 @@
     background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
     background: -moz-linear-gradient(top, white, #adadad); }
   .light .shine {
-    box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-    -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-    -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5); }
+    box-shadow: inset 0 18px rgba(255, 255, 255, 0.5);
+    -moz-box-shadow: inset 0 18px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0 18px rgba(255, 255, 255, 0.5); }
   .light .inner-shadow-10 {
     background: #ebeaea;
-    box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+    box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6); }
   .light .input {
     border: 1px solid transparent;
     box-shadow: inset 0 2px 5px #cccccc;
@@ -39,11 +39,11 @@
     background: rgba(255, 255, 255, 0.15); }
   .light .glow-20 {
     box-shadow: 8px 8px 20px black;
-    -moz-box-shadow: 0px 5px 20px black;
+    -moz-box-shadow: 8px 5px 20px black;
     -webkit-box-shadow: 2px 2px 20px black; }
   .light .glow-40 {
     box-shadow: 8px 8px 40px black;
-    -moz-box-shadow: 0px 0px 40px black;
+    -moz-box-shadow: 0 0 40px black;
     -webkit-box-shadow: 2px 2px 40px black; }
   .light .glow-80 {
     box-shadow: 8px 8px 80px black;
@@ -67,14 +67,14 @@
     background: -webkit-gradient(linear, left top, left bottom, from(#aaaaaa), to(#222222));
     background: -moz-linear-gradient(top, #aaaaaa, #222222); }
   .dark .shine {
-    box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2);
-    -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2);
-    -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2); }
+    box-shadow: inset 0 18px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 0 18px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: inset 0 18px rgba(255, 255, 255, 0.2); }
   .dark .inner-shadow-10 {
     background: #444444;
-    box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-    -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-    -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+    box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0 6px 10px rgba(0, 0, 0, 0.6); }
   .dark .input {
     border: 1px solid transparent;
     box-shadow: inset 0 2px 5px #cccccc;
@@ -95,21 +95,21 @@
   .dark .transparent-15 {
     background: rgba(0, 0, 0, 0.15); }
   .dark .glow-20 {
-    box-shadow: 0px 0px 20px white;
-    -moz-box-shadow: 1px 1px 20px white;
-    -webkit-box-shadow: 0px 0px 20px white; }
+    box-shadow: 0 0 20px white;
+    -moz-box-shadow: 0 0 20px white;
+    -webkit-box-shadow: 0 0 20px white; }
   .dark .glow-40 {
-    box-shadow: 0px 0px 40px white;
-    -moz-box-shadow: 0px 0px 40px white;
-    -webkit-box-shadow: 0px 0px 40px white; }
+    box-shadow: 0 0 40px white;
+    -moz-box-shadow: 0 0 40px white;
+    -webkit-box-shadow: 0 0 40px white; }
   .dark .glow-80 {
-    box-shadow: 0px 0px 80px white;
-    -moz-box-shadow: 0px 0px 80px white;
-    -webkit-box-shadow: 0px 0px 80px white; }
+    box-shadow: 0 0 80px white;
+    -moz-box-shadow: 0 0 80px white;
+    -webkit-box-shadow: 0 0 80px white; }
   .dark .glow-160 {
-    box-shadow: 0px 0px 160px white;
-    -moz-box-shadow: 0px 0px 160px white;
-    -webkit-box-shadow: 0px 0px 160px white; }
+    box-shadow: 0 0 160px white;
+    -moz-box-shadow: 0 0 160px white;
+    -webkit-box-shadow: 0 0 160px white; }
 
 /* LIGHT AND DARK */
 .light .button, .dark .button {

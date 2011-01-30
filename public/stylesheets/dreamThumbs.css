@@ -1,3 +1,9 @@
+.light .matrix .dream_thumb {
+  background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top white; }
+
+.dark .matrix .dream_thumb {
+  background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black; }
+
 .matrix {
   /* PAGINATION */
   /* 2D DREAM THUMBS */ }
@@ -39,15 +45,12 @@
     line-height: 17px;
     cursor: default;
     border: 2px solid white; }
-  .matrix .dream_thumb.light {
-    background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top white; }
-  .matrix .dream_thumb.dark {
-    background: url("../images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black; }
   .matrix .dream_thumb {
     width: 220px;
     height: 300px;
     margin: 0 12px 12px 0;
     overflow: hidden;
+    float: left;
     border: 0;
     position: relative; }
     .matrix .dream_thumb .link {
@@ -62,7 +65,7 @@
       height: 96px;
       -moz-border-radius-bottomright: 0px;
       position: absolute;
-      background: url("../images/art/astral-eyes-banner.jpg") center; }
+      background: url("/images/art/astral-eyes-banner.jpg") center; }
     .matrix .dream_thumb .watermark {
       position: absolute;
       width: 220px;
@@ -80,10 +83,12 @@
       bottom: 0;
       width: 100%; }
     .matrix .dream_thumb .date, .matrix .dream_thumb .location, .matrix .dream_thumb .comments, .matrix .dream_thumb .sharing {
+      color: white;
       margin: 4px;
       font-size: 11px;
       padding: 4px 8px;
-      text-align: center; }
+      text-align: center;
+      background: rgba(0, 0, 0, 0.5); }
     .matrix .dream_thumb .comments img {
       margin: 0 2px -5px 0; }
     .matrix .dream_thumb .sharing img {
@@ -178,7 +183,7 @@
       border-radius-topleft: 16px;
       -moz-border-radius-topleft: 16px;
       -webkit-border-radius-topleft: 16px;
-      background: url(../images/art/cloud-temple-banner.jpg) no-repeat top; }
+      background: url(/images/art/cloud-temple-banner.jpg) no-repeat top; }
     .dreamThumbs_1d .left .tagCloud {
       height: 45px;
       border-radius-bottomleft: 16px;
@@ -205,7 +210,7 @@
     line-height: 35px;
     margin: 7px 0 0 8px;
     color: #034c99;
-    background: white url(../images/avatars/xavitar.jpg) no-repeat left; }
+    background: white url(/images/avatars/xavitar.jpg) no-repeat left; }
     .dreamThumbs_1d .user .name {
       margin: 0 0 0 40px;
       font-size: 16px;

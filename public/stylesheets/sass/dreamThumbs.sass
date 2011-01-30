@@ -1,4 +1,15 @@
+.light
+  .matrix
+    .dream_thumb
+      background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top white
+.dark
+  .matrix
+    .dream_thumb
+      background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black
+
 .matrix
+
+  /* PAGINATION */
   .dark.pageFirst, .dark.pageFirst:hover
     border: 2px solid transparent
     margin-right: 1px
@@ -7,8 +18,6 @@
     border: 2px solid transparent
     margin-left: 1px
     height: 37px
-
-  /* PAGINATION */
   .pageFirst
     img
       padding: 8px 4px
@@ -45,15 +54,12 @@
 
 
   /* 2D DREAM THUMBS */
-  .dream_thumb.light
-    background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top white
-  .dream_thumb.dark
-    background: url("../images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black
   .dream_thumb
     width: 220px
     height: 300px
     margin: 0 12px 12px 0
     overflow: hidden
+    float: left
     border: 0
     position: relative
     .link
@@ -68,7 +74,7 @@
       height: 96px
       -moz-border-radius-bottomright: 0px
       position: absolute
-      background: url("../images/art/astral-eyes-banner.jpg") center
+      background: url("/images/art/astral-eyes-banner.jpg") center
     .watermark
       position: absolute
       width: 220px
@@ -86,10 +92,12 @@
       bottom: 0
       width: 100%
     .date, .location, .comments, .sharing
+      color: #fff
       margin: 4px
       font-size: 11px
       padding: 4px 8px
       text-align: center
+      background: rgba(0,0,0,0.50)
     .comments img
       margin: 0 2px -5px 0
     .sharing img
@@ -192,7 +200,7 @@
       border-radius-topleft: 16px
       -moz-border-radius-topleft: 16px
       -webkit-border-radius-topleft: 16px
-      background: url(../images/art/cloud-temple-banner.jpg) no-repeat top
+      background: url(/images/art/cloud-temple-banner.jpg) no-repeat top
     .tagCloud
       height: 45px
       border-radius-bottomleft: 16px
@@ -219,7 +227,7 @@
     line-height: 35px
     margin: 7px 0 0 8px
     color: #034c99
-    background: #fff url(../images/avatars/xavitar.jpg) no-repeat left
+    background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
     .name
       margin: 0 0 0 40px
       font-size: 16px

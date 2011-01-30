@@ -6,7 +6,43 @@
   #contextPanel #image {
     display: block;
     width: 200px;
-    height: 266px; }
+    height: 266px;
+    position: relative; }
+    #contextPanel #image #uploadAvatarWrap {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 8px; }
+      #contextPanel #image #uploadAvatarWrap #uploadAvatar {
+        cursor: pointer;
+        display: block;
+        color: white;
+        font-size: 12px;
+        padding: 2px 6px;
+        text-align: center;
+        width: 120px;
+        margin: 0 auto;
+        border: 1px solid white;
+        background: rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 20px white;
+        -moz-box-shadow: 0 0 20px white;
+        -webkit-box-shadow: 0 0 20px white;
+        -moz-opacity: 0.6;
+        -khtml-opacity: 0.6;
+        -webkit-opacity: 0.6;
+        opacity: 0.6; }
+        #contextPanel #image #uploadAvatarWrap #uploadAvatar span {
+          font-weight: bold;
+          color: #68b800; }
+      #contextPanel #image #uploadAvatarWrap #uploadAvatar.hover {
+        border: 1px solid transparent;
+        box-shadow: inset 0 0 20px white;
+        -moz-box-shadow: inset 0 0 20px white;
+        -webkit-box-shadow: inset 0 0 20px white;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        opacity: 1; }
   #contextPanel #label {
     display: block;
     margin: 6px 0;
