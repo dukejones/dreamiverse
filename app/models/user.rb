@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   
   has_many :followeds, :class_name => "Follow", :foreign_key => :following_id
   has_many :followers, :through => :followeds, :source => :user
+
+  # has_many :friends, :through => :follows, :where => 
+  
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

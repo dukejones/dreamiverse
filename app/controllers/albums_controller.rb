@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
 
-    image_finder = Image.where(true)
+    image_finder = Image.where({})
     image_finder = image_finder.where(section: params[:section]) if params[:section]
 
     if params[:artist]
