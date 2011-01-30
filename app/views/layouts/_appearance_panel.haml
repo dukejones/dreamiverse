@@ -27,9 +27,9 @@
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
     #buttons.inner-shadow-10.round-8
-      #sun.round-4.bevel.button.O-outline
+      #sun.round-4.bevel.button.O-outline{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
         sun
         %img{src: '/images/icons/sun-24.png'}
-      #moon.round-4.bevel.button.O-outline
+      #moon.round-4.bevel.button.O-outline{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
         moon
         %img{src: '/images/icons/moon-24.png'}
