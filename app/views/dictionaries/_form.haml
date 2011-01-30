@@ -1,0 +1,10 @@
+= form_for(dict) do |f|
+  .name
+    = f.label :name
+    %br
+    = f.text_field :name
+  .attr
+    = f.label :attribution
+    %br
+    = f.text_field :attribution
+  = f.submit

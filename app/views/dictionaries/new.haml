@@ -4,8 +4,4 @@
 .light.transparent-50.round-16.padding-8
 
   %h1 New Dictionary
-
-  = form_for(@dict) do |f|
-    = f.label :name
-    = f.text_field :name
-    = f.submit
+  = render { partial: 'form', locals: { dict: @dict } }
