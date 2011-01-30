@@ -71,7 +71,7 @@
         text-align: center;
         overflow: hidden;
         top: 62px; }
-      .matrix .dream_thumb .fadedBack .detailsTop, .matrix .dream_thumb .fadedBack .detailsBottom {
+      .matrix .dream_thumb .fadedBack .detailsTop, .matrix .dream_thumb .fadedBack .detailsBottom, .matrix .dream_thumb .fadedBack .title {
         position: absolute;
         z-index: 40;
         display: none; }
@@ -97,8 +97,6 @@
       .matrix .dream_thumb .fadedBack .sharing img {
         margin: -1px 0 -4px 2px; }
       .matrix .dream_thumb .fadedBack .title {
-        display: none;
-        position: absolute;
         width: 100%;
         top: 90px;
         font-size: 21px;
