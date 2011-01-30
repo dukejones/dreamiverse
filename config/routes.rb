@@ -20,6 +20,9 @@ Dreamcatcher::Application.routes.draw do
   resources :artists # actually only index...
   resources :albums # actually only index...
 
+  resources :dictionaries do
+    resources :words
+  end
   # Pretty URLs
   # match '/#:tag', :to => 'tags#show'
   match '/:username', :to => 'dreams#index'
