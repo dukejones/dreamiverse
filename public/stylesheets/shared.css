@@ -1,5 +1,6 @@
 /* LIGHT */
 .light {
+  color: #333333;
   /* BACKGROUNDS */ }
   .light .button {
     border: 1px solid #959595; }
@@ -7,8 +8,7 @@
     border: 1px solid black; }
   .light .shine, .light .bevel {
     background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
-    background: -moz-linear-gradient(top, white, #adadad);
-    color: black; }
+    background: -moz-linear-gradient(top, white, #adadad); }
   .light .shine {
     box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
     -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
@@ -54,61 +54,62 @@
     -moz-box-shadow: 10px 10px 160px black;
     -webkit-box-shadow: 8px 8px 160px black; }
 
-.dark .button {
-  border: 1px solid #959595; }
-.dark .button:hover {
-  border: 1px solid white;
-  box-shadow: inset 0 0 20px white;
-  -moz-box-shadow: inset 0 0 20px white;
-  -webkit-box-shadow: inset 0 0 20px white; }
-.dark .shine, .dark .bevel {
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#adadad));
-  background: -moz-linear-gradient(top, white, #adadad);
-  color: black; }
-.dark .shine {
-  box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-  -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5);
-  -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.5); }
-.dark .inner-shadow-10 {
-  background: #ebeaea;
-  box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-  -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
-  -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
-.dark .input {
-  border: 1px solid transparent;
-  box-shadow: inset 0 2px 5px #cccccc;
-  -moz-box-shadow: inset 0 2px 5px #cccccc;
-  -webkit-box-shadow: inset 0 2px 5px #cccccc; }
-.dark .flat {
-  background: black; }
-.dark .transparent-80 {
-  background: rgba(0, 0, 0, 0.8); }
-.dark .transparent-66 {
-  background: rgba(0, 0, 0, 0.66); }
-.dark .transparent-50 {
-  background: rgba(0, 0, 0, 0.5); }
-.dark .transparent-33 {
-  background: rgba(0, 0, 0, 0.33); }
-.dark .transparent-25 {
-  background: rgba(0, 0, 0, 0.25); }
-.dark .transparent-15 {
-  background: rgba(0, 0, 0, 0.15); }
-.dark .glow-20 {
-  box-shadow: 0px 0px 20px white;
-  -moz-box-shadow: 1px 1px 20px white;
-  -webkit-box-shadow: 0px 0px 20px white; }
-.dark .glow-40 {
-  box-shadow: 0px 0px 40px white;
-  -moz-box-shadow: 0px 0px 40px white;
-  -webkit-box-shadow: 0px 0px 40px white; }
-.dark .glow-80 {
-  box-shadow: 0px 0px 80px white;
-  -moz-box-shadow: 0px 0px 80px white;
-  -webkit-box-shadow: 0px 0px 80px white; }
-.dark .glow-160 {
-  box-shadow: 0px 0px 160px white;
-  -moz-box-shadow: 0px 0px 160px white;
-  -webkit-box-shadow: 0px 0px 160px white; }
+.dark {
+  color: white; }
+  .dark .button {
+    border: 1px solid #959595; }
+  .dark .button:hover {
+    border: 1px solid white;
+    box-shadow: inset 0 0 20px white;
+    -moz-box-shadow: inset 0 0 20px white;
+    -webkit-box-shadow: inset 0 0 20px white; }
+  .dark .shine, .dark .bevel {
+    background: -webkit-gradient(linear, left top, left bottom, from(#aaaaaa), to(#222222));
+    background: -moz-linear-gradient(top, #aaaaaa, #222222); }
+  .dark .shine {
+    box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: inset 0px 18px rgba(255, 255, 255, 0.2); }
+  .dark .inner-shadow-10 {
+    background: #444444;
+    box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: inset 0px 6px 10px rgba(0, 0, 0, 0.6); }
+  .dark .input {
+    border: 1px solid transparent;
+    box-shadow: inset 0 2px 5px #cccccc;
+    -moz-box-shadow: inset 0 2px 5px #cccccc;
+    -webkit-box-shadow: inset 0 2px 5px #cccccc; }
+  .dark .flat {
+    background: black; }
+  .dark .transparent-80 {
+    background: rgba(0, 0, 0, 0.8); }
+  .dark .transparent-66 {
+    background: rgba(0, 0, 0, 0.66); }
+  .dark .transparent-50 {
+    background: rgba(0, 0, 0, 0.5); }
+  .dark .transparent-33 {
+    background: rgba(0, 0, 0, 0.33); }
+  .dark .transparent-25 {
+    background: rgba(0, 0, 0, 0.25); }
+  .dark .transparent-15 {
+    background: rgba(0, 0, 0, 0.15); }
+  .dark .glow-20 {
+    box-shadow: 0px 0px 20px white;
+    -moz-box-shadow: 1px 1px 20px white;
+    -webkit-box-shadow: 0px 0px 20px white; }
+  .dark .glow-40 {
+    box-shadow: 0px 0px 40px white;
+    -moz-box-shadow: 0px 0px 40px white;
+    -webkit-box-shadow: 0px 0px 40px white; }
+  .dark .glow-80 {
+    box-shadow: 0px 0px 80px white;
+    -moz-box-shadow: 0px 0px 80px white;
+    -webkit-box-shadow: 0px 0px 80px white; }
+  .dark .glow-160 {
+    box-shadow: 0px 0px 160px white;
+    -moz-box-shadow: 0px 0px 160px white;
+    -webkit-box-shadow: 0px 0px 160px white; }
 
 /* LIGHT AND DARK */
 .light .button, .dark .button {
