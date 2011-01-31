@@ -1,8 +1,8 @@
 
 = form_for([@dict, word]) do |f|
-  .word
-    = f.text_field :name
-  .def
-    = f.text_area :definition
+  .word= f.text_field :name
+  .def= f.text_area :definition
+  .attr= f.label :attribution
+  .attr= f.text_field :attribution
   .submit
     = f.submit
