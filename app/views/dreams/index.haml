@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'dreamStream'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'dreamStream', 'friendsList'
   = javascript_include_tag 'modal', 'tagStream'
 
 
@@ -11,6 +11,9 @@
 
   / NEW ENTRY BAR
   =render :partial => 'entry_bar'
+  
+  / FRIENDS LIST STREAM
+  =render :partial => 'friends_list'
   
   / TAG ENTRY & STREAM
   =render :partial => 'tag_stream'
