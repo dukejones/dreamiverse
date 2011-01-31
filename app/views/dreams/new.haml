@@ -1,6 +1,6 @@
 - content_for :head do
   = stylesheet_link_tag 'newDream', "contextPanel", 'newEntry', 'dreamStream'
-  = javascript_include_tag "dreams"
+  = javascript_include_tag "dreams", "autoresize.jquery.min"
 
 / CONTEXT BAR
 = render :partial => "shared/context_panel", :locals => {:user => current_user}
