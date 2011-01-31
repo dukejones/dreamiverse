@@ -21,10 +21,7 @@ class Nav
     )
     $('#IB_browse li').find('span').unbind()
     $('#IB_browse li').find('span').click(->
-      if $(this).text() is 'Photos'
-        loadCategoryList("Photo")
-      else
-        loadCategoryList($(this).text())
+      loadCategoryList($(this).text())
     )
     
 
