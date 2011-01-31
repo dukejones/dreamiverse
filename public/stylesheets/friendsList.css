@@ -1,14 +1,19 @@
+#userStream .user:hover {
+  box-shadow: 8px 8px 40px black;
+  -moz-box-shadow: 0 0 40px black;
+  -webkit-box-shadow: 2px 2px 40px black; }
 #userStream .user {
   position: relative;
   float: left;
-  min-height: 63px;
-  width: 237px;
+  min-height: 52px;
+  width: 222px;
   margin: 0 10px 10px 0;
+  padding: 8px;
   cursor: pointer; }
-  #userStream .user .status {
+  #userStream .user .userStatus {
     position: relative;
     float: right;
-    margin: 8px;
+    margin: 0;
     right: 3px;
     top: 3px;
     width: 17px;
@@ -20,26 +25,26 @@
   #userStream .user .statusHover {
     position: absolute;
     cursor: pointer;
-    padding: 4px;
-    margin: 8px;
-    right: 0;
-    top: 0; }
-  #userStream .user .thumb {
+    padding: 2px 4px;
+    margin: 0;
+    right: 8px; }
+  #userStream .user .userThumb {
     float: left;
-    margin: 8px;
-    height: 46px;
+    margin: 0;
+    height: 60px;
     overflow: hidden;
-    width: 46px;
+    width: 60px;
     background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat; }
-  #userStream .user .info {
+  #userStream .user .userInfo {
     float: left;
-    margin: 8px; }
-    #userStream .user .info h3 {
+    margin: 0 0 0 8px;
+    width: auto; }
+    #userStream .user .userInfo h3 {
       margin: 0; }
-    #userStream .user .info p {
+    #userStream .user .userInfo p {
       color: #5c5c5c;
       font-size: 10px;
       margin: 0; }
-    #userStream .user .info p.mutual {
+    #userStream .user .userInfo p.mutual {
       color: #262626;
       background-position: 0 100%; }
