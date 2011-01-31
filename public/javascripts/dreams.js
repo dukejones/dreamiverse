@@ -17,7 +17,8 @@ function setupTextareaAutoExpander(){
         $(this).css({opacity:1});
     },
     // Quite slow animation:
-    animateDuration : 300,
+    animateDuration : 500,
+    animate: true,
     // More extra space:
     extraSpace : 40
 });
