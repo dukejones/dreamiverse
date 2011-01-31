@@ -1,13 +1,10 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'modal', 'dreamStream'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'dreamStream'
   = javascript_include_tag 'modal', 'tagStream'
 
 
 / CONTEXT PANEL
 = render :partial => "shared/context_panel", :locals => {:user => @user}
-
-
-
 
 / DREAM FIELD
 #dreamField
@@ -38,7 +35,6 @@
 /:javascript
 /  $(document).ready(function(){ dc.modal(); });
 
-/= render :partial => "modal_temp"
 
 
 / DEBUG

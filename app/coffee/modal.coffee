@@ -1,15 +1,18 @@
 dc ?= {}
 
 dc.modal = ->
-  $("<div>You should use Chrome Frame. Our site doesn't work on jank browsers like IE 6.</div>").dialog({
+  $("<div>Your web browser is incompatible with Dreamcatcher.net. Please install Google's Chrome Frame to fix the issue.</div>").dialog({
+    title: 'Incompbatible browser'
     modal: true
-    dialogClass: 'light O O-shine'
+    width: 358
+    dialogClass: 'static-glow-40'
+    closeText: ''
     buttons: {
-      "Cancel": ->
-        console.log('no way')
-        $(this).dialog("close")
       "Ok": ->
         console.log('ok')
+        $(this).dialog("close")
+      "Cancel": ->
+        console.log('no way')
         $(this).dialog("close")
     }
   })

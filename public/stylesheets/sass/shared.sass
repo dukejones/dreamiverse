@@ -1,6 +1,6 @@
 
 
-/* LIGHT */
+/******** LIGHT ********/
 .light
   color: #333
 
@@ -73,7 +73,7 @@
 
 
 
-
+/******** DARK ********/
 .dark
   color: #fff
 
@@ -144,7 +144,7 @@
 
 
 
-/* LIGHT AND DARK */
+/******** LIGHT AND DARK ********/
 .light, .dark
   .button
     cursor: pointer
@@ -152,12 +152,156 @@
   .input
     border: 1px solid transparent
 
+.static-glow-inner-40
+  box-shadow: inset 0px 0px 40px #fff
+  -moz-box-shadow: inset 0px 0px 40px #fff
+  -webkit-box-shadow: inset 0px 0px 40px #fff
+.static-glow-40
+  box-shadow: 0px 0px 40px #fff
+  -moz-box-shadow: 0px 0px 40px #fff
+  -webkit-box-shadow: 0px 0px 40px #fff
+.static-shadow-40
+  box-shadow: 0px 0px 40px #000
+  -moz-box-shadow: 0px 0px 40px #000
+  -webkit-box-shadow: 0px 0px 40px #000
 
 
 
 
 
-/***********TOP MENU***********/
+
+
+
+/* BUTTONS */
+.button.save:hover
+  color: #fff
+  border: 1px solid #54943d
+  background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
+  background: -moz-linear-gradient(top, #70d03b, #235b1b)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.cancel:hover
+  color: #fff
+  border: 1px solid #848484
+  background: -webkit-gradient(linear, left top, left bottom, from(#979797), to(#4e4e4e))
+  background: -moz-linear-gradient(top, #979797, #4e4e4e)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.delete:hover
+  color: #fff
+  border: 1px solid #c1633c
+  background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+  background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+
+
+/* COLOR BUTTONS */
+.button-big-blue
+  border: 2px solid #999
+  cursor: pointer
+.button-big-blue:hover, .selected.button-big-blue
+  border: 2px solid #0099ff
+  box-shadow: 0px 0px 40px #0099ff inset
+  -moz-box-shadow: 0px 0px 40px #0099ff inset
+  -webkit-box-shadow: 0px 0px 40px #0099ff inset
+.button-big-green
+  border: 2px solid #999
+  cursor: pointer
+.button-big-green:hover, .selected.button-big-green
+  border: 2px solid #7BBD0D
+  box-shadow: 0px 0px 40px #7BBD0D inset
+  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
+  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
+.button-big-gray
+  border: 2px solid #999
+  cursor: pointer
+.button-big-gray:hover, .selected.button-big-gray
+  border: 2px solid #CCC
+  box-shadow: 0px 0px 40px #CCC inset
+  -moz-box-shadow: 0px 0px 40px #CCC inset
+  -webkit-box-shadow: 0px 0px 40px #CCC inset
+
+
+
+
+
+
+
+
+
+
+
+.notice, .alert
+  position: absolute
+  top: -16px
+  width: 100%
+  text-align: center
+
+.notice
+  background: lightgreen
+
+.alert
+  background: lightcoral
+
+
+
+/* ALPHA */
+=alpha($percent)
+  filter: alpha(opacity=$percent)
+  -moz-opacity: $percent / 100
+  -khtml-opacity: $percent / 100
+  -webkit-opacity: $percent / 100
+  opacity: $percent / 100
+
+.alpha-100
+  +alpha(100)
+.alpha-90
+  +alpha(90)
+.alpha-80
+  +alpha(80)
+.alpha-70
+  +alpha(70)
+.alpha-60
+  +alpha(60)
+.alpha-50
+  +alpha(50)
+.alpha-40
+  +alpha(40)
+.alpha-30
+  +alpha(30)
+.alpha-20
+  +alpha(20)
+.alpha-10
+  +alpha(10)
+
+
+
+
+
+
+/* body */
+body
+  font-family: Calibri, Arial, Helvetica, sans-serif
+  margin: 0
+  padding: 0
+body.light
+  background-color: #ccc
+body.dark
+  background-color: #000
+
+
+/* removes dotted line around links */
+a:active, a:focus
+  outline: none
+
+
+
+
+/*********** META MENU ***********/
 #drop_shadow
   background: url(../images/gradients/top_shadow-100px.png) repeat-x top
   position: absolute
@@ -285,145 +429,126 @@
     color: #093
 #logOut
   margin: 10px 8px 0 0
+/*********** END META MENU ***********/
+
+
+/******* MODAL WINDOW *******/
+.light
+  .ui-widget-overlay
+    background-color: rgba(255,255,255,0.5)
+  .ui-dialog
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d6d6d6))
+    background: -moz-linear-gradient(top, #fff, #d6d6d6)
+  .ui-dialog-titlebar
+    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#c6c6c6))
+    background: -moz-linear-gradient(top, #f3f3f3, #c6c6c6)
+  .ui-dialog-buttonpane
+    .ui-dialog-buttonset
+      margin-bottom: 6px
+      .ui-button
+        background-color: #fff
+        border-color: #a6a6a6
+      .ui-button:hover, .ui-button:focus, .ui-state-focus
+        border-color: #000
+        color: #fff
+        background: -webkit-gradient(linear, left top, left bottom, from(#808080), to(#2d2d2d))
+        background: -moz-linear-gradient(top, #808080, #2d2d2d)
+
+.dark
+  .ui-widget-overlay
+    background-color: rgba(0,0,0,0.5)
+  .ui-dialog
+    color: #999
+    background: -webkit-gradient(linear, left top, left bottom, from(#292929), to(#000))
+    background: -moz-linear-gradient(top, #292929, #000)
+  .ui-dialog-titlebar
+    color: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#272727))
+    background: -moz-linear-gradient(top, #505050, #272727)
+  .ui-dialog-buttonpane
+    .ui-dialog-buttonset
+      margin-bottom: 6px
+      .ui-button
+        background-color: #000
+        color: #fff
+        border-color: #333
+      .ui-button:hover, .ui-button:focus, .ui-state-focus
+        border-color: #fff
+        color: #000
+        background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#7c7c7c))
+        background: -moz-linear-gradient(top, #f7f7f7, #7c7c7c)
 
 
 
 
 
-
-
-
-
-/* BUTTONS */
-.button.save:hover
-  color: #fff
-  border: 1px solid #54943d
-  background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
-  background: -moz-linear-gradient(top, #70d03b, #235b1b)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.cancel:hover
-  color: #fff
-  border: 1px solid #848484
-  background: -webkit-gradient(linear, left top, left bottom, from(#979797), to(#4e4e4e))
-  background: -moz-linear-gradient(top, #979797, #4e4e4e)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.delete:hover
-  color: #fff
-  border: 1px solid #c1633c
-  background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
-  background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-
-
-
-
-
-
-
-
-
-
-/* COLOR BUTTONS */
-.button-big-blue
-  border: 2px solid #999
-  cursor: pointer
-.button-big-blue:hover, .selected.button-big-blue
-  border: 2px solid #0099ff
-  box-shadow: 0px 0px 40px #0099ff inset
-  -moz-box-shadow: 0px 0px 40px #0099ff inset
-  -webkit-box-shadow: 0px 0px 40px #0099ff inset
-.button-big-green
-  border: 2px solid #999
-  cursor: pointer
-.button-big-green:hover, .selected.button-big-green
-  border: 2px solid #7BBD0D
-  box-shadow: 0px 0px 40px #7BBD0D inset
-  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
-  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
-.button-big-gray
-  border: 2px solid #999
-  cursor: pointer
-.button-big-gray:hover, .selected.button-big-gray
-  border: 2px solid #CCC
-  box-shadow: 0px 0px 40px #CCC inset
-  -moz-box-shadow: 0px 0px 40px #CCC inset
-  -webkit-box-shadow: 0px 0px 40px #CCC inset
-
-
-
-
-
-
-
-
-
-
-
-.notice, .alert
-  position: absolute
-  top: -16px
-  width: 100%
+.ui-dialog
+  background: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#000))
+  background: -moz-linear-gradient(top, #242424, #000)
+  border: 4px solid #fff
+  border-radius: 12px
+  -moz-border-radius: 12px
+  -webkit-border-radius: 12px
   text-align: center
+  cursor: default
+  .ui-dialog-titlebar
+    height: 34px
+    line-height: 34px
+    font-weight: bold
+    font-size: 21px
+    margin-bottom: 2px
+    /* rounded corners */
+    border-radius-topleft: 8px
+    -moz-border-radius-topleft: 8px
+    -webkit-border-radius-topleft: 8px
+    border-radius-topright: 8px
+    -moz-border-radius-topright: 8px
+    -webkit-border-radius-topright: 8px
 
-.notice
-  background: lightgreen
+    .ui-dialog-titlebar-close
+      background: url('/images/icons/close-22.png') top center no-repeat
+      position: absolute
+      left: 6px
+      top: 6px
+      width: 22px
+      height: 22px
+      -moz-opacity: 0.6
+      -khtml-opacity: 0.6
+      -webkit-opacity: 0.6
+      opacity: 0.6
+    .ui-dialog-titlebar-close.ui-state-hover
+      -moz-opacity: 1
+      -khtml-opacity: 1
+      -webkit-opacity: 1
+      opacity: 1
 
-.alert
-  background: lightcoral
+  .ui-dialog-content
+    font-size: 17px
+    padding: 0 6px 10px
 
+  .ui-dialog-buttonpane
+    .ui-dialog-buttonset
+      margin-bottom: 6px
+      padding: 0 3px
+      height: 30px
+      .ui-button
+        float: right
+        font-size: 17px
+        font-weight: normal
+        cursor: pointer
+        width: 170px
+        height: 30px
+        margin: 0 3px
+        padding-bottom: 4px
+        border: 2px solid
+        border-radius: 4px
+        -moz-border-radius: 4px
+        -webkit-border-radius: 4px
+      .ui-button:hover, .ui-button:focus, .ui-state-focus
+        font-weight: bold
+        outline: none
 
-
-/* ALPHA */
-=alpha($percent)
-  filter: alpha(opacity=$percent)
-  -moz-opacity: $percent / 100
-  -khtml-opacity: $percent / 100
-  -webkit-opacity: $percent / 100
-  opacity: $percent / 100
-
-.alpha-100
-  +alpha(100)
-.alpha-90
-  +alpha(90)
-.alpha-80
-  +alpha(80)
-.alpha-70
-  +alpha(70)
-.alpha-60
-  +alpha(60)
-.alpha-50
-  +alpha(50)
-.alpha-40
-  +alpha(40)
-.alpha-30
-  +alpha(30)
-.alpha-20
-  +alpha(20)
-.alpha-10
-  +alpha(10)
-
-
-
-
-
-
-/* body */
-body
-  font-family: Calibri, Arial, Helvetica, sans-serif
-  margin: 0
-  padding: 0
-body.light
-  background-color: #ccc
-body.dark
-  background-color: #000
-
-
-/* removes dotted line around links */
-a:active, a:focus
-  outline: none
+.ui-widget-overlay
+  position: absolute
+  top: 0
+/******* END MODAL WINDOW *******/

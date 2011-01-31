@@ -12,10 +12,6 @@
 .absolutely-centered { margin: auto; position:absolute; top: 0; bottom: 0; left: 0; right: 0; }
 
 /* SHADOWS & GLOWS */
-.static-glow-inner-40 { box-shadow: inset 0px 0px 40px #fff; -moz-box-shadow: inset 0px 0px 40px #fff; -webkit-box-shadow: inset 0px 0px 40px #fff; }
-.static-glow-40 { box-shadow: 0px 0px 40px #fff; -moz-box-shadow: 0px 0px 40px #fff; -webkit-box-shadow: 0px 0px 40px #fff; }
-.static-shadow-40 { box-shadow: 0px 0px 40px #000; -moz-box-shadow: 0px 0px 40px #000; -webkit-box-shadow: 0px 0px 40px #000; }
-
 .light.glow-contrast-20 { box-shadow: 0px 0px 20px #fff; -moz-box-shadow: 0px 0px 20px #fff; -webkit-box-shadow: 0px 0px 20px #fff; }
 .light.glow-contrast-40 { box-shadow: 0px 0px 40px #fff; -moz-box-shadow: 0px 0px 40px #fff; -webkit-box-shadow: 0px 0px 40px #fff; }
 
