@@ -1,17 +1,22 @@
 // FRIEND'S LIST
 #userStream
-
+  
+  .user:hover
+    box-shadow: 8px 8px 40px #000
+    -moz-box-shadow: 0 0 40px #000
+    -webkit-box-shadow: 2px 2px 40px #000
   .user 
     position: relative
     float: left
-    min-height: 63px
-    width: 237px
+    min-height: 52px
+    width: 222px
     margin: 0 10px 10px 0
+    padding: 8px
     cursor: pointer
-    .status
+    .userStatus
       position: relative
       float: right
-      margin: 8px
+      margin: 0
       right: 3px
       top: 3px
       width: 17px
@@ -23,20 +28,19 @@
     .statusHover
       position: absolute
       cursor: pointer
-      padding: 4px
-      margin: 8px
-      right: 0
-      top: 0
-    .thumb
+      padding: 2px 4px
+      margin: 0
+      right: 8px
+    .userThumb
       float: left
-      margin: 8px
-      height: 46px
+      margin: 0
+      height: 60px
       overflow: hidden
-      width: 46px
+      width: 60px
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat
-    .info
+    .userInfo
       float: left
-      margin: 8px
+      margin: 0 0 0 8px
       width: auto
       h3
         margin: 0
