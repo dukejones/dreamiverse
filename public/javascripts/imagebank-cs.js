@@ -1,5 +1,5 @@
-/* DO NOT MODIFY. This file was compiled Mon, 31 Jan 2011 02:40:26 GMT from
- * /Users/scotthedstrom/Sites/dreamcatcher/app/coffee/imagebank-cs.coffee
+/* DO NOT MODIFY. This file was compiled Sun, 30 Jan 2011 03:02:41 GMT from
+ * /Users/dorje/work/Dreamcatcher/dreamcatcher/app/coffee/imagebank-cs.coffee
  */
 
 (function() {
@@ -31,11 +31,7 @@
       });
       $('#IB_browse li').find('span').unbind();
       $('#IB_browse li').find('span').click(function() {
-        if ($(this).text() === 'Photos') {
-          return loadCategoryList("Photo");
-        } else {
-          return loadCategoryList($(this).text());
-        }
+        return loadCategoryList($(this).text());
       });
     }
     return Nav;
