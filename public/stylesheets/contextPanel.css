@@ -94,6 +94,8 @@
     #contextPanel .item .image img.starlight {
       margin: -18px -16px;
       z-index: 1004; }
+    #contextPanel .item .image img.follow {
+      margin: -12px 1px; }
   #contextPanel .item .detail {
     width: 66px;
     height: 26px;
@@ -111,9 +113,9 @@
     font-weight: bold;
     padding: 5px 8px; }
   #contextPanel .item2 .detail {
-    width: 76px;
+    width: 78px;
     height: 26px;
-    padding: 6px 8px;
+    padding: 5px 8px;
     font-weight: bold;
     border: 0;
     font-weight: normal;
