@@ -24,6 +24,12 @@
     background: -moz-linear-gradient(top, #cccccc, white); }
     #dreamField .headers img {
       float: left; }
+  #dreamField #moodHeader img, #dreamField #linksHeader img, #dreamField #tagHeader img, #dreamField #locationHeader img, #dreamField #dateTimeHeader img {
+    margin: 9px 8px 0 0; }
+  #dreamField #tagHeader img {
+    margin: 8px 8px 0 0; }
+  #dreamField #imagesHeader img {
+    margin: 11px 8px 0 0; }
   #dreamField #newDream-panel {
     width: 662px;
     padding: 8px;
@@ -109,8 +115,6 @@
       background: -moz-linear-gradient(top, #b7b7b7, #363636); }
   #dreamField #newDream-dateTime {
     display: none; }
-  #dreamField #dateTimeHeader img {
-    margin: 9px 8px 0 0; }
   #dreamField .date, #dreamField .time {
     float: left;
     margin: 3px 0 0 8px; }
@@ -124,8 +128,6 @@
   #dreamField #newDream-location {
     height: 140px;
     display: none; }
-    #dreamField #newDream-location #locationHeader img {
-      margin: 9px 8px 0 0; }
     #dreamField #newDream-location #locations, #dreamField #newDream-location #newLocation {
       float: left;
       font-size: 16px;
@@ -157,8 +159,6 @@
   #dreamField #new_dream-images {
     border: 1px solid #333333;
     display: none; }
-    #dreamField #new_dream-images #imagesHeader img {
-      margin: 11px 8px 0 0; }
     #dreamField #new_dream-images #addFromImageBank {
       float: left;
       height: 32px;
