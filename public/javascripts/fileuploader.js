@@ -678,7 +678,7 @@ qq.extend(qq.FileUploader.prototype, {
         var tempIMG = id + '_fade';
         
         // Use format var to determine format of image uploaded
-        var raw = '<img id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
+        var raw = '<img alt="' + filePath + '" id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
         var el = qq.toElement(raw);
         item.appendChild(el);
         
@@ -687,10 +687,11 @@ qq.extend(qq.FileUploader.prototype, {
         $(elementjq).fadeIn('slow');
         
         if (result.image){
-            qq.addClass(item, this._classes.success);    
+          qq.addClass(item, this._classes.success);
         } else {
-            qq.addClass(item, this._classes.fail);
-        } 
+          qq.addClass(item, this._classes.fail);
+        }
+        qq.removeClass(item, 'uploading');
         
         selectAllImages();        
     },
@@ -943,7 +944,7 @@ qq.UploadHandlerAbstract = function(o){
 };
 qq.UploadHandlerAbstract.prototype = {
     log: function(str){
-        if (this._options.debug && window.console) console.log('[uploader] ' + str);        
+        if (this._options.debug && window.console) console.log('[uploader] ' + str);
     },
     /**
      * Adds file or file input to the queue

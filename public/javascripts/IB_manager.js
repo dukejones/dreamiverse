@@ -184,7 +184,6 @@ var selectAllImages = function(){
   $('#IB_dropboxImages li').each(function(){
     $(this).addClass('selected');
   });
-
   updateSelectedList();
 }
 
@@ -220,8 +219,9 @@ var displayImages = function(images){
 var updateSelectedList = function(){
   currentSelectedImages = [];
   $('#IB_dropboxImages li').each(function(){
-    if($(this).hasClass('selected')){
+    if($(this).hasClass('selected') && !$(this).hasClass('uploading')){
       var selectedImageID = getImageIDFromURL($(this).find('img').attr('src'));
+      //var selectedImageID = getImageIDFromURL($(this).find('img').attr('alt'));
       
       // Check for duplicate
       var hasDupe = false;
@@ -252,7 +252,7 @@ var getImageIDFromURL = function(filePath){
 var resetImageSelectionEvents = function(){
   // Set events
   $("#IB_dropboxImages li").unbind();
-  
+
   $("#IB_dropboxImages li").click(function() {
     if ($(this).hasClass("selected")) {
       $(this).removeClass("selected");

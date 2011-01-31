@@ -1,0 +1,11 @@
+%br
+%br
+%br
+.light.transparent-50.round-16.padding-8
+  %h1 Dictionaries
+  %ul
+    - @dicts.each do |dict|
+      %li= link_to dict.name, dictionary_words_path(dict)
+%br
+.light.transparent-50.round-16.padding-8
+  = link_to 'New Dictionary', new_dictionary_path

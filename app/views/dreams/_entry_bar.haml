@@ -1,25 +1,24 @@
-#entryBar.round-16.light.transparent-50
-  %a.entry{href: new_dream_path} new entry
-  .tag tag
-  .quote quote
-  / Save for later  .book book
+#entryBar.round-16
+  %a.entry{href: new_dream_path} <span>+</span> new entry
+  .tag.bevel.button tag
+  .quote.bevel.button quote
+  .clear-both
+  / Save for later  .book.bevel.button book
 
-#tagEntry.round-16.light.glow-40
+#tagEntry.entryObj.round-16.transparent-50.glow-40.hidden
   .entryWrap
-    %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
-    .input
+    .entryInput
       %input{id: 'tagInput', maxlength: '60', name: 'dreamTitle', title: 'WHO / WHAT / WHERE are you dreaming?', value: 'WHO / WHAT / WHERE are you dreaming?'}
       .add
         %span +
         Add
       %img#sharingExpand.sharing{src: '/images/icons/sharing-16.png'}
       %img#locationExpand.location{src: '/images/icons/location-21.png'}
-    %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
 
   #share.round-8.hidden
     %img.arrow{src: '/images/icons/uparrow-black.png'}
     %select.light.O-input.round-8
-      %option{value: 'Public'} Public
+      %option{value: 'Everyone'} Everyone
       %option{value: 'Friends Only'} Friends Only
       %option{value: 'Private'} Private
     .social.round-8

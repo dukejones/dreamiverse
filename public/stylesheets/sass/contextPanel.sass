@@ -6,9 +6,48 @@
   width: 200px
 
   #image
+    display: block
     width: 200px
     height: 266px
+    position: relative
+    #uploadAvatarWrap
+      position: absolute
+      bottom: 0
+      width: 100%
+      padding: 20px 0 8px
+      #uploadAvatar
+        cursor: pointer
+        display: block
+        color: #fff
+        font-size: 12px
+        padding: 2px 6px
+        text-align: center
+        width: 120px
+        margin: 0 auto
+        border: 1px solid #fff
+        background: rgba(0,0,0,0.50)
+        box-shadow: 0 0 20px #fff
+        -moz-box-shadow: 0 0 20px #fff
+        -webkit-box-shadow: 0 0 20px #fff
+        -moz-opacity: 0.6
+        -khtml-opacity: 0.6
+        -webkit-opacity: 0.6
+        opacity: 0.6
+        span
+          font-weight: bold
+          color: #68b800
+      #uploadAvatar.hover
+        border: 1px solid transparent
+        box-shadow: inset 0 0 20px #fff
+        -moz-box-shadow: inset 0 0 20px #fff
+        -webkit-box-shadow: inset 0 0 20px #fff
+        -moz-opacity: 1
+        -khtml-opacity: 1
+        -webkit-opacity: 1
+        opacity: 1
+
   #label
+    display: block
     margin: 6px 0
     text-align: center
     font-weight: bold
@@ -54,25 +93,26 @@
 
   .item
     .label
-      width: 66px
-      height: 26px
+      width: 60px
+      height: 24px
       padding: 6px 8px
       text-align: right
 
     .image
-      width: 24px
+      width: 34px
       height: 24px
       padding: 7px 3px
       margin: 0
       img.dream
-        margin: -8px -4px
+        margin: -8px 0
       img.starlight
-        margin: -20px
+        margin: -18px -16px
         z-index: 1004
       img.follow
+        margin: -12px 1px
 
     .detail
-      width: 70px
+      width: 66px
       height: 26px
       padding: 6px 8px
       line-height: 26px
@@ -94,10 +134,21 @@
       font-weight: bold
       padding: 5px 8px
     .detail
-      width: 76px
+      width: 78px
       height: 26px
-      padding: 6px 8px
+      padding: 5px 8px
       font-weight: bold
       border: 0
       font-weight: normal
       line-height: 25px
+
+.light
+  #contextPanel
+    .item
+      .label
+        border: 1px solid #848484
+.dark
+  #contextPanel
+    .item
+      .label
+        border: 1px solid #555

@@ -1,92 +1,44 @@
 #appearanceWrap {
+  position: absolute;
+  right: 45px;
+  top: 48px;
   clear: both;
-  float: right;
   padding: 0;
   width: 350px; }
   #appearanceWrap #appearanceArrow {
     padding: 0;
     height: 16px; }
     #appearanceWrap #appearanceArrow img {
-      margin: 0 0 0 224px; }
-  #appearanceWrap #appearancePanel {
-    padding: 0 8px 8px;
-    width: 334px;
-    height: 580px; }
-    #appearanceWrap #appearancePanel img.appearanceIcon, #appearanceWrap #appearancePanel h1, #appearanceWrap #appearancePanel h2 {
-      float: left; }
-    #appearanceWrap #appearancePanel img.appearanceIcon {
-      margin: 4px 0 0 4px; }
-    #appearanceWrap #appearancePanel h1 {
-      margin: 8px;
-      font-size: 24px;
-      font-weight: normal;
-      color: #959595; }
-    #appearanceWrap #appearancePanel #bedsheets {
-      clear: both;
-      padding: 10px; }
-      #appearanceWrap #appearancePanel #bedsheets #details {
-        height: 32px;
-        line-height: 32px; }
-        #appearanceWrap #appearancePanel #bedsheets #details h2 {
-          margin: 0 8px;
-          font-size: 16px;
-          font-weight: bold; }
-        #appearanceWrap #appearancePanel #bedsheets #details a:link, #appearanceWrap #appearancePanel #bedsheets #details a:visited, #appearanceWrap #appearancePanel #bedsheets #details img.appearanceIcon {
-          margin-right: 8px;
-          float: right;
-          color: #555555; }
-        #appearanceWrap #appearancePanel #bedsheets #details img.appearanceIcon {
-          margin: 0 8px 0 0; }
-      #appearanceWrap #appearancePanel #bedsheets ul {
-        margin: 12px 0;
-        height: 346px;
-        padding: 4px;
-        list-style: none;
-        overflow-y: scroll; }
-        #appearanceWrap #appearancePanel #bedsheets ul li {
-          float: left;
-          margin: 0 12px 12px 0;
-          height: 116px;
-          width: 116px;
-          cursor: pointer;
-          overflow: hidden;
-          -moz-box-shadow: 2px 5px 10px #111111;
-          border: 4px solid #cccccc; }
-          #appearanceWrap #appearancePanel #bedsheets ul li img {
-            border: 4px solid #333333; }
-          #appearanceWrap #appearancePanel #bedsheets ul li img:hover {
-            border: 4px solid white; }
-        #appearanceWrap #appearancePanel #bedsheets ul li.selected {
-          border: 4px solid #427ee8;
-          border-radius: 4px;
-          -moz-border-radius: 4px;
-          -webkit-border-radius: 4px; }
-          #appearanceWrap #appearancePanel #bedsheets ul li.selected img {
-            border: 4px solid white; }
-      #appearanceWrap #appearancePanel #bedsheets #more {
-        height: 32px;
-        line-height: 32px;
-        text-align: center;
-        background: #262626; }
-    #appearanceWrap #appearancePanel #colorPicker {
-      clear: both;
-      font-weight: bold;
-      padding: 8px;
-      margin: 4px 0;
-      height: 42px;
-      line-height: 42px; }
-      #appearanceWrap #appearancePanel #colorPicker img.colorSwatch, #appearanceWrap #appearancePanel #colorPicker h2, #appearanceWrap #appearancePanel #colorPicker #sun, #appearanceWrap #appearancePanel #colorPicker #moon {
-        float: left; }
-      #appearanceWrap #appearancePanel #colorPicker img.colorSwatch {
-        margin: 14px 0 0 8px; }
-      #appearanceWrap #appearancePanel #colorPicker h2 {
+      margin: 0 0 0 270px; }
+
+#appearancePanel {
+  padding: 0 8px 8px;
+  width: 334px;
+  height: 580px; }
+  #appearancePanel img.appearanceIcon, #appearancePanel h1, #appearancePanel h2 {
+    float: left; }
+  #appearancePanel img.appearanceIcon {
+    margin: 4px 0 0; }
+  #appearancePanel h1 {
+    margin: 8px;
+    font-size: 24px;
+    font-weight: normal; }
+  #appearancePanel #bedsheets, #appearancePanel #colorPicker {
+    border: 1px solid #999999; }
+  #appearancePanel #bedsheets {
+    clear: both;
+    padding: 10px; }
+    #appearancePanel #bedsheets #details {
+      height: 32px;
+      line-height: 32px; }
+      #appearancePanel #bedsheets #details h2 {
         margin: 0 8px;
         font-size: 16px;
         font-weight: bold; }
-      #appearanceWrap #appearancePanel #colorPicker #buttons {
+      #appearancePanel #bedsheets #details #buttons {
         float: right;
         padding: 4px; }
-        #appearanceWrap #appearancePanel #colorPicker #buttons #sun, #appearanceWrap #appearancePanel #colorPicker #buttons #moon {
+        #appearancePanel #bedsheets #details #buttons #sun, #appearancePanel #bedsheets #details #buttons #moon {
           margin: 0 4px;
           padding: 2px 4px;
           width: 86px;
@@ -94,9 +46,71 @@
           line-height: 24px;
           text-align: center;
           font-size: 14px; }
-          #appearanceWrap #appearancePanel #colorPicker #buttons #sun p, #appearanceWrap #appearancePanel #colorPicker #buttons #sun img, #appearanceWrap #appearancePanel #colorPicker #buttons #moon p, #appearanceWrap #appearancePanel #colorPicker #buttons #moon img {
+          #appearancePanel #bedsheets #details #buttons #sun p, #appearancePanel #bedsheets #details #buttons #sun img, #appearancePanel #bedsheets #details #buttons #moon p, #appearancePanel #bedsheets #details #buttons #moon img {
             text-align: center;
             margin: 0;
             float: left; }
-          #appearanceWrap #appearancePanel #colorPicker #buttons #sun p, #appearanceWrap #appearancePanel #colorPicker #buttons #moon p {
+          #appearancePanel #bedsheets #details #buttons #sun p, #appearancePanel #bedsheets #details #buttons #moon p {
             margin: 0 4px 0 12px; }
+      #appearancePanel #bedsheets #details img.appearanceIcon {
+        margin: 0 8px 0 0; }
+    #appearancePanel #bedsheets ul {
+      margin: 12px 0;
+      height: 346px;
+      padding: 4px;
+      list-style: none;
+      overflow-y: scroll; }
+      #appearancePanel #bedsheets ul li {
+        float: left;
+        margin: 0 12px 12px 0;
+        height: 116px;
+        width: 116px;
+        cursor: pointer;
+        overflow: hidden;
+        -moz-box-shadow: 2px 5px 10px #111111;
+        border: 4px solid #cccccc; }
+        #appearancePanel #bedsheets ul li img {
+          border: 4px solid #333333; }
+        #appearancePanel #bedsheets ul li img:hover {
+          border: 4px solid white; }
+      #appearancePanel #bedsheets ul li.selected {
+        border: 4px solid #427ee8;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px; }
+        #appearancePanel #bedsheets ul li.selected img {
+          border: 4px solid white; }
+    #appearancePanel #bedsheets .more {
+      display: block;
+      height: 32px;
+      line-height: 32px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.9); }
+  #appearancePanel #colorPicker {
+    clear: both;
+    font-weight: bold;
+    padding: 8px;
+    margin: 4px 0;
+    height: 42px;
+    line-height: 42px; }
+    #appearancePanel #colorPicker img.colorSwatch, #appearancePanel #colorPicker h2, #appearancePanel #colorPicker #sun, #appearancePanel #colorPicker #moon {
+      float: left; }
+    #appearancePanel #colorPicker img.colorSwatch {
+      margin: 14px 0 0; }
+    #appearancePanel #colorPicker h2 {
+      margin: 0 8px;
+      font-size: 16px;
+      font-weight: bold; }
+    #appearancePanel #colorPicker #buttons {
+      float: right;
+      padding: 4px; }
+      #appearancePanel #colorPicker #buttons #sun, #appearancePanel #colorPicker #buttons #moon {
+        margin: 0 4px;
+        padding: 0 4px;
+        width: 86px;
+        height: 28px;
+        line-height: 28px;
+        text-align: center;
+        font-size: 14px; }
+        #appearancePanel #colorPicker #buttons #sun img, #appearancePanel #colorPicker #buttons #moon img {
+          margin: -8px -8px -8px 4px; }

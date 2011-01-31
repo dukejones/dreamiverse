@@ -1,11 +1,14 @@
 / CONTEXT PANEL
-#contextPanel.light.transparent-50.glow-40.round-16.padding-6
+#contextPanel.transparent-50.glow-40.round-16.padding-6
 
   / IMAGE
-  %a#image.block.round-12{href: '/', style: 'background:url(/images/avatars/default-avatar-full.jpg) top left'}
+  %a#image.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left", onMouseOver: "$('#uploadAvatarWrap').removeClass('hidden')", onMouseOut: "$('#uploadAvatarWrap').addClass('hidden')"}
+    #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
+      #uploadAvatar.round-8
+        <span>+</span> upload new avatar
 
   / LABEL
-  %a#label.block.light.shine.button.round-12{href: '/'}
+  %a#label.shine.button.round-12{href: '/'}
     = user.username
     / if friend or follower
     - if true 
@@ -22,34 +25,47 @@
   
   / CONTEXT ITEMS
   .item
-    .label.light.bevel.round-12.flat-right dreams
+    .label.bevel.round-12.flat-right dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
-    .detail.light.inner-shadow-10.round-12.flat-left #
+    .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
   .item
-    .label.light.bevel.round-12.flat-right starlight
+    .label.bevel.round-12.flat-right starlight
     .image
       %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-    .detail.light.inner-shadow-10.round-12.flat-left #
+    .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
 
-  .divider.light.transparent-33.round-4
+  .divider.transparent-33.round-4
 
-  .item2
-    .label.light.bevel.round-12.flat-right followers
-    .detail.light.inner-shadow-10.round-12.flat-left #
+  .item
+    .label.bevel.round-12.flat-right friends
+    .image
+      %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
-  .item2
-    .label.light.bevel.round-12.flat-right friends
-    .detail.light.inner-shadow-10.round-12.flat-left #
+  .item
+    .label.bevel.round-12.flat-right following
+    .image
+      %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
-  .item2
-    .label.light.bevel.round-12.flat-right following
-    .detail.light.inner-shadow-10.round-12.flat-left #
+  .item
+    .label.bevel.round-12.flat-right followers
+    .image
+      %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
 
-  .divider.light.transparent-33.round-4
+  /
+    .item2
+      .label.bevel.round-12.flat-right example
+      .detail.inner-shadow-10.round-12.flat-left #
+      .clear-both
+
+
+  .divider.transparent-33.round-4
   
   / STREAM FILTER
   = render :partial => "stream_filter"

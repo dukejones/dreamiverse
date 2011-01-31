@@ -3,6 +3,8 @@ var currentArtist = "";
 var currentSlideshowImage = '';
 var currentView = "browse"; // Changes to "search"
 
+var viewingTopLevel = false;
+
 // Maximum size of any image side in full-screen/slideshow mode
 var maxImageSide = 700;
 
@@ -57,37 +59,16 @@ loadBrowse = function() {
   $("#IB_browse li").click(function() {
     loadArtistList($(this).find('span').text());
   });*/
-  var config = {
-     over: expandNav, // function = onMouseOver callback (REQUIRED)    
-     sensitivity: 20, 
-     interval: 30,
-     out: contractNav // function = onMouseOut callback (REQUIRED)    
-   };
 
-  $('#IB_browse li').hoverIntent(config);
-  $('#IB_browse li').find('.nav-expand p').unbind();
-  $('#IB_browse li').find('.nav-expand p').click(function(){
-    loadArtistList($(this).text());
-  })
-  $('#IB_browse li').find('span').unbind();
-  $('#IB_browse li').find('span').click(function(){
-    loadCategoryList($(this).text());
-  })
+  new ImageBank()
 };
-
-contractNav = function(){
-  $(this).find('.nav-expand').fadeOut();
-}
-
-expandNav = function(){
-  $(this).find('.nav-expand').fadeIn();
-}
 
 closeSearchExpand = function(){
   $("#IB_searchBoxActive,#IB_searchBoxActiveWrap,#IB_browseBack,#IB_browseBackWrap").hide();
   $("#IB_searchBox,#IB_searchBoxWrap").show();
 }
 loadCategoryList = function(genre){
+  viewingTopLevel = true;
   $(".uiMode,.browseBars").hide();
   
   setGenre(genre);
@@ -142,6 +123,7 @@ loadCategoryList = function(genre){
   $("#IB_artistContainer").fadeIn();
 }
 loadArtistList = function(genre) {
+  viewingTopLevel = false;
   $(".uiMode,.browseBars").hide();
   
   setGenre(genre);
@@ -196,6 +178,11 @@ loadArtistList = function(genre) {
   $("#IB_artistContainer").fadeIn();
 };
 
+checkForEmptyDropbox = function(){
+  if($('#IB_imageDrop').children().length < 1){
+    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeOut();
+  }
+}
 
 addImageToDropbox = function(imageId) {
   // Store image data in dropBoxJSONContainer
@@ -220,7 +207,7 @@ addImageToDropbox = function(imageId) {
     });
     
     // Hide background & show buttons
-    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').show();
+    $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeIn();
     $('#IB_searchResultsSelectEdit').unbind();
     $('#IB_searchResultsSelectEdit').click(function(){
       editImages();
@@ -235,10 +222,10 @@ addImageToDropbox = function(imageId) {
   
     $("#IB_searchResultsSelectCancel").unbind();
     $("#IB_searchResultsSelectCancel").click(function() {
-      $("#IB_browseBack,#IB_searchBoxActive").hide();
+      /*$("#IB_browseBack,#IB_searchBoxActive").hide();
       $("#IB_searchBox").show();
-      loadBrowse();
-    
+      loadBrowse();*/
+      $('#IB_searchResultsSelectEditWrap, #IB_searchResultsSelectCancelWrap, #IB_searchResultsSelectAddWrap').fadeOut();
       // Empty the dropBox
       $('#IB_imageDrop').empty();
     });
@@ -277,6 +264,7 @@ removeImageFromDropbox = function(imageId){
     if($(this).attr('id').split("_")[1] == imageId){
       $(this).parent().remove();
       
+      checkForEmptyDropbox();
       // Break callback loop
       return false;
     }
@@ -306,7 +294,13 @@ loadArtist = function(artist) {
   $('#IB_browseArrow').show();
   $("#IB_browseArrow").unbind();
   $("#IB_browseArrow").click(function() {
-    loadArtistList(currentGenre);
+    // clear albums list
+    $('#albums').empty();
+    if(!viewingTopLevel){
+      loadArtistList(currentGenre);
+    } else {
+      loadCategoryList(currentGenre);
+    }
   });
   
   // Check to see if there are dropbox images
@@ -444,20 +438,21 @@ loadArtist = function(artist) {
             })
 
             //Make images draggable to the drop-box below.
-            /*$(".images li",element).draggable({
+            $(".images li",element).draggable({
               containment: 'document',
               helper: 'clone',
+              appendTo: '#imageDrop',
               zIndex:10000,
               distance: 40,
               scroll: false,
-              revert: true,
+              revert: false,
               start: function(event, ui) {
                 isDragging = true;
               },
               stop: function(event, ui) {
                 isDragging = false;
               }
-            });*/
+            });
             
             // Set up header manage
             $('.header-manage').click(function(event){
@@ -539,12 +534,12 @@ loadArtist = function(artist) {
     
     //$("#IB_searchResultsSelectBar").show();
 
-    /*$("#IB_imageDrop").droppable({
+    $("#IB_imageDrop").droppable({
       drop: function(event, ui) {
         var imageId = $("img",ui.draggable).attr("id").split("_")[1];
         addImageToDropbox(imageId);
       }
-    });*/
+    });
   };
   
   $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
@@ -693,6 +688,8 @@ loadSlideshow = function(newImageIds, currentIndex) {
     $("#IB_slideshow img").eq(currentItem).hide();
   };
   showCurrentImage = function() {
+    $("#IB_footerAddDrop").css('border', '1px solid #333');
+    $("#IB_footerAddDrop span").html('Add to Collection');
     // Turn off keyboard shortcut handler
     setTimeout(function() { keyCaptured = false; }, 100);
     
@@ -791,6 +788,9 @@ loadSlideshow = function(newImageIds, currentIndex) {
   $("#IB_footerAddDrop").click(function() {
     var imageId = getCurrentImageId();
     addImageToDropbox(imageId);
+    
+    $("#IB_footerAddDrop").css('border', '1px solid #fff');
+    $("#IB_footerAddDrop span").html('Added');
   });
   
   $("#IB_footer .tag").unbind();
@@ -1100,7 +1100,7 @@ loadSearchResults = function() {
         })
 
         //Make images draggable to the drop-box below.
-        /*$(".images li").draggable({
+        $(".images li").draggable({
           containment: 'document',
           helper: 'clone',
           zIndex:10000,
@@ -1113,13 +1113,13 @@ loadSearchResults = function() {
           stop: function(event, ui) {
             isDragging = false;
           }
-        });*/
-        /*$("#IB_searchResultsSelectBar").droppable({
+        });
+        $("#IB_searchResultsSelectBar").droppable({
           drop: function(event, ui) {
             var imageId = $("img",ui.draggable).attr("id").split("_")[1];
             addImageToDropboxSearch(imageId);
           }
-        });*/
+        });
       }
       /*// Empty Old Search Results
       $('#IB_searchImageResults').empty();

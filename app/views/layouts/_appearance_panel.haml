@@ -2,14 +2,15 @@
 #appearanceWrap
   #appearanceArrow
     %img{src: '/images/icons/arrow-up-27.png'}
-  #appearancePanel.dark.O.O-outline.A-bevel.round-8.hidden
+  #appearancePanel.bevel.glow-40.round-8.hidden
+    #appearanceArrow
     %img.appearanceIcon{src: '/images/icons/appearance-32.png'}
     %h1 Appearance
-    #bedsheets.dark.O.O-outline.A-bevel.round-8
+    #bedsheets.bevel.round-8
       #details
         %h2 Bedsheets
         %img.appearanceIcon{src: '/images/icons/appearance-32.png'}
-        %a{href: '/'} options
+        %a{href: '#'} options
       %ul
         %li
           %img{src: '/images/art/IB_artistImages/artistImage120-1.jpg'}
@@ -22,16 +23,16 @@
         %li
           %img{src: '/images/art/IB_artistImages/artistImage120-5.jpg'}
 
-      #more.round-8 + browse more...
+      %a.more.button.round-8{href: '#'} + browse more...
 
 
-    #colorPicker.dark.O-outline.O-bevel.round-8
+    #colorPicker.bevel.round-8
       %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
       %h2 Color
-      #buttons.dark.O.O-indent.round-8
-        #sun.light.round-4.O.O-button.A-bevel.O-outline
-          %p sun
+      #buttons.inner-shadow-10.round-8
+        #sun.round-4.bevel.button.O-outline{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
+          sun
           %img{src: '/images/icons/sun-24.png'}
-        #moon.dark.round-4.O.O-button.B-bevel.O-outline
-          %p moon
+        #moon.round-4.bevel.button.O-outline{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
+          moon
           %img{src: '/images/icons/moon-24.png'}

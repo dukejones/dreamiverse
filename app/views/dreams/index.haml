@@ -1,19 +1,16 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'newEntry', 'tagStream', 'modal', 'dreamStream'
+  = stylesheet_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'dreamStream'
   = javascript_include_tag 'modal', 'tagStream'
 
 
 / CONTEXT PANEL
 = render :partial => "shared/context_panel", :locals => {:user => @user}
 
-
-
-
 / DREAM FIELD
 #dreamField
 
   / NEW ENTRY BAR
-  =render :partial => 'new_entry'
+  =render :partial => 'entry_bar'
   
   / TAG ENTRY & STREAM
   =render :partial => 'tag_stream'
@@ -26,7 +23,7 @@
       = render :partial => 'dream_thumb', :locals => {:dream => dream}
 
     / DREAM THUMBS 1D
-    = render :partial => 'dream_thumb_1d'
+    /= render :partial => 'dream_thumb_1d'
 
     / NO DREAMS TO DISPLAY
     - if @dreams.empty?
@@ -38,7 +35,6 @@
 /:javascript
 /  $(document).ready(function(){ dc.modal(); });
 
-/= render :partial => "modal_temp"
 
 
 / DEBUG

@@ -1,96 +1,252 @@
-#dreamField .dark.pageFirst, #dreamField .dark.pageFirst:hover {
-  border: 2px solid transparent;
-  margin-right: 1px;
-  height: 37px; }
-#dreamField .dark.pageLast, #dreamField .dark.pageLast:hover {
-  border: 2px solid transparent;
-  margin-left: 1px;
-  height: 37px; }
-#dreamField .pageFirst img {
-  padding: 8px 4px; }
-#dreamField .pageLast img {
-  padding: 8px 4px; }
-#dreamField .pagePrev {
-  display: block;
-  padding: 8px 4px;
-  font-weight: bold; }
-#dreamField .pageNext {
-  display: block;
-  padding: 8px 4px;
-  font-weight: bold; }
-#dreamField .pageNumber {
-  display: block;
-  padding: 11px 6px;
-  float: left; }
-#dreamField .pagination a.pageNumber {
-  color: #999999; }
-#dreamField .pagination a.pageNumber:hover {
-  color: white;
-  font-weight: bold; }
-#dreamField .pageNumber.currentPage {
-  display: block;
-  padding: 10px 7px;
-  font-weight: bold;
-  font-size: 21px;
-  float: left;
-  line-height: 17px;
-  cursor: default;
-  border: 2px solid white; }
-#dreamField .dream_thumb.light {
-  background: url("../images/gradients/light-dream_thumb-BG-A.png") repeat-x top white; }
-#dreamField .dream_thumb.dark {
-  background: url("../images/gradients/dark-dream_thumb-BG-A.png") repeat-x top black; }
-#dreamField .dream_thumb {
-  width: 220px;
-  height: 300px;
-  margin: 0 12px 12px 0;
-  overflow: hidden;
-  border: 0;
-  position: relative; }
-  #dreamField .dream_thumb .link {
+.light .matrix .dream_thumb .fadedBack {
+  background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top transparent; }
+
+.dark .matrix .dream_thumb .fadedBack {
+  background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top transparent; }
+
+.matrix {
+  /* PAGINATION */
+  /* 2D DREAM THUMBS */
+  /* HOVER */ }
+  .matrix .dark.pageFirst, .matrix .dark.pageFirst:hover {
+    border: 2px solid transparent;
+    margin-right: 1px;
+    height: 37px; }
+  .matrix .dark.pageLast, .matrix .dark.pageLast:hover {
+    border: 2px solid transparent;
+    margin-left: 1px;
+    height: 37px; }
+  .matrix .pageFirst img {
+    padding: 8px 4px; }
+  .matrix .pageLast img {
+    padding: 8px 4px; }
+  .matrix .pagePrev {
     display: block;
-    border: 0 none;
-    position: absolute;
-    z-index: 900;
-    width: 220px;
-    height: 300px; }
-  #dreamField .dream_thumb .image {
-    width: 220px;
-    height: 96px;
-    -moz-border-radius-bottomright: 0px;
-    position: absolute;
-    background: url("../images/art/astral-eyes-banner.jpg") center; }
-  #dreamField .dream_thumb .watermark {
-    position: absolute;
-    width: 220px;
-    height: 128px;
-    font-size: 45px;
-    line-height: 30px;
-    text-align: center;
-    overflow: hidden; }
-  #dreamField .dream_thumb .detailsTop {
-    position: absolute;
-    width: 220px;
-    z-index: 100; }
-  #dreamField .dream_thumb .detailsBottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%; }
-  #dreamField .dream_thumb .date, #dreamField .dream_thumb .location, #dreamField .dream_thumb .comments, #dreamField .dream_thumb .sharing {
-    margin: 4px;
-    font-size: 11px;
-    padding: 4px 8px;
-    text-align: center; }
-  #dreamField .dream_thumb .comments img {
-    margin: 0 2px -5px 0; }
-  #dreamField .dream_thumb .sharing img {
-    margin: -1px 0 -4px 2px; }
-  #dreamField .dream_thumb .title {
-    margin-top: 96px;
-    font-size: 17px;
+    padding: 8px 4px;
+    font-weight: bold; }
+  .matrix .pageNext {
+    display: block;
+    padding: 8px 4px;
+    font-weight: bold; }
+  .matrix .pageNumber {
+    display: block;
+    padding: 11px 6px;
+    float: left; }
+  .matrix .pagination a.pageNumber {
+    color: #999999; }
+  .matrix .pagination a.pageNumber:hover {
+    color: white;
+    font-weight: bold; }
+  .matrix .pageNumber.currentPage {
+    display: block;
+    padding: 10px 7px;
     font-weight: bold;
-    text-align: center; }
-    #dreamField .dream_thumb .title a {
-      padding: 12px; }
-  #dreamField .dream_thumb .tags {
-    padding: 0 16px; }
+    font-size: 21px;
+    float: left;
+    line-height: 17px;
+    cursor: default;
+    border: 2px solid white; }
+  .matrix .dream_thumb {
+    margin: 0 12px 12px 0;
+    overflow: hidden;
+    float: left;
+    border: 0;
+    position: relative; }
+    .matrix .dream_thumb .fadedBack {
+      width: 220px;
+      height: 300px; }
+      .matrix .dream_thumb .fadedBack .link {
+        display: block;
+        border: 0 none;
+        position: absolute;
+        z-index: 900;
+        width: 220px;
+        height: 300px; }
+      .matrix .dream_thumb .fadedBack .watermark {
+        position: absolute;
+        width: 220px;
+        height: 128px;
+        font-size: 45px;
+        line-height: 30px;
+        text-align: center;
+        overflow: hidden;
+        top: 62px; }
+      .matrix .dream_thumb .fadedBack .detailsTop, .matrix .dream_thumb .fadedBack .detailsBottom, .matrix .dream_thumb .fadedBack .title {
+        position: absolute;
+        z-index: 40;
+        display: none; }
+      .matrix .dream_thumb .fadedBack .detailsTop {
+        width: 220px;
+        z-index: 100; }
+        .matrix .dream_thumb .fadedBack .detailsTop .date {
+          max-width: 60px;
+          overflow: hidden;
+          white-space: nowrap; }
+      .matrix .dream_thumb .fadedBack .detailsBottom {
+        bottom: 0;
+        width: 100%; }
+      .matrix .dream_thumb .fadedBack .date, .matrix .dream_thumb .fadedBack .location, .matrix .dream_thumb .fadedBack .comments, .matrix .dream_thumb .fadedBack .sharing {
+        color: white;
+        margin: 4px;
+        font-size: 11px;
+        padding: 4px 8px;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5); }
+      .matrix .dream_thumb .fadedBack .comments img {
+        margin: 0 2px -5px 0; }
+      .matrix .dream_thumb .fadedBack .sharing img {
+        margin: -1px 0 -4px 2px; }
+      .matrix .dream_thumb .fadedBack .title {
+        width: 100%;
+        top: 90px;
+        font-size: 21px;
+        text-align: center; }
+      .matrix .dream_thumb .fadedBack .tags {
+        z-index: 20;
+        position: absolute;
+        bottom: 6px;
+        padding: 0 16px; }
+  .matrix .dream_thumb.hover .detailsTop, .matrix .dream_thumb.hover .detailsBottom, .matrix .dream_thumb.hover .title {
+    display: block; }
+
+.light .dream_thumb.hover {
+  box-shadow: 0px 0px 40px black;
+  -moz-box-shadow: 0px 0px 40px black;
+  -webkit-box-shadow: 0px 0px 40px black; }
+
+.dark .dream_thumb.hover {
+  box-shadow: 0px 0px 40px white;
+  -moz-box-shadow: 0px 0px 40px white;
+  -webkit-box-shadow: 0px 0px 40px white; }
+
+/* 1D DREAM THUMBS */
+.dreamThumbs_1d {
+  height: auto; }
+  .dreamThumbs_1d .thumb:hover {
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    box-shadow: 0px 0px 40px black;
+    -moz-box-shadow: 0px 0px 40px black;
+    -webkit-box-shadow: 0px 0px 40px black; }
+  .dreamThumbs_1d .thumb {
+    clear: both;
+    margin: 20px 0 0;
+    width: 680px;
+    overflow: hidden; }
+    .dreamThumbs_1d .thumb .left .details {
+      position: absolute; }
+      .dreamThumbs_1d .thumb .left .details .date, .dreamThumbs_1d .thumb .left .details .location {
+        float: left;
+        padding: 4px 8px;
+        margin: 4px;
+        font-size: 11px;
+        text-align: center;
+        border-radius: 12px;
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px; }
+  .dreamThumbs_1d .thumbAll, .dreamThumbs_1d .thumbNoImage {
+    height: 90px; }
+  .dreamThumbs_1d .thumbTag, .dreamThumbs_1d .thumbNewImages {
+    height: 62px;
+    border-radius: 16px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px; }
+  .dreamThumbs_1d .thumbTag {
+    padding: 15px 0;
+    height: 32px;
+    line-height: 32px;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
+    background: -moz-linear-gradient(top, white, #cccccc); }
+    .dreamThumbs_1d .thumbTag .user {
+      margin: 0 8px; }
+    .dreamThumbs_1d .thumbTag .tagText {
+      float: left;
+      margin: 0 0 0 12px;
+      font-size: 18px; }
+  .dreamThumbs_1d .thumbNoImage .left .tagCloud {
+    height: 90px;
+    border-radius-topleft: 16px;
+    -moz-border-radius-topleft: 16px;
+    -webkit-border-radius-topleft: 16px; }
+  .dreamThumbs_1d .thumbNewImages .left .image {
+    height: 62px;
+    border-radius-bottomleft: 16px;
+    -moz-border-radius-bottomleft: 16px;
+    -webkit-border-radius-bottomleft: 16px; }
+  .dreamThumbs_1d .thumbNewImages .right {
+    height: 62px; }
+    .dreamThumbs_1d .thumbNewImages .right .user {
+      margin: 15px 8px; }
+    .dreamThumbs_1d .thumbNewImages .right .display {
+      float: left;
+      margin: 10px 0 0; }
+      .dreamThumbs_1d .thumbNewImages .right .display .gallery {
+        margin: 0;
+        font-size: 18px;
+        color: #262626; }
+      .dreamThumbs_1d .thumbNewImages .right .display .text {
+        margin: 0; }
+  .dreamThumbs_1d .left {
+    float: left;
+    width: 256px;
+    height: 90px;
+    margin: 0;
+    padding: 0; }
+    .dreamThumbs_1d .left .image {
+      width: 256px;
+      height: 45px;
+      border-radius-topleft: 16px;
+      -moz-border-radius-topleft: 16px;
+      -webkit-border-radius-topleft: 16px;
+      background: url(/images/art/cloud-temple-banner.jpg) no-repeat top; }
+    .dreamThumbs_1d .left .tagCloud {
+      height: 45px;
+      border-radius-bottomleft: 16px;
+      -moz-border-radius-bottomleft: 16px;
+      -webkit-border-radius-bottomleft: 16px; }
+  .dreamThumbs_1d .right {
+    float: right;
+    height: 90px;
+    width: 424px;
+    margin: 0;
+    padding: 0;
+    border-radius-topright: 16px;
+    -moz-border-radius-topright: 16px;
+    -webkit-border-radius-topright: 16px;
+    border-radius-bottomright: 16px;
+    -moz-border-radius-bottomright: 16px;
+    -webkit-border-radius-bottomright: 16px;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
+    background: -moz-linear-gradient(top, white, #cccccc); }
+  .dreamThumbs_1d .user {
+    float: left;
+    width: 90px;
+    height: 32px;
+    line-height: 35px;
+    margin: 7px 0 0 8px;
+    color: #034c99;
+    background: white url(/images/avatars/xavitar.jpg) no-repeat left; }
+    .dreamThumbs_1d .user .name {
+      margin: 0 0 0 40px;
+      font-size: 16px;
+      font-weight: bold; }
+  .dreamThumbs_1d .title {
+    width: 320px;
+    height: 48px;
+    line-height: 48px;
+    margin: -34px 0 0;
+    float: right;
+    font-weight: bold; }
+    .dreamThumbs_1d .title h1 {
+      overflow: hidden;
+      height: 43px;
+      font-size: 48px; }
+    .dreamThumbs_1d .title h2 {
+      margin-top: -74px;
+      font-size: 18px;
+      color: #262626; }
+  .dreamThumbs_1d .text {
+    clear: both;
+    color: #666666;
+    margin: 44px 0 0 15px; }

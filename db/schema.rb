@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110128205955) do
+ActiveRecord::Schema.define(:version => 20110130192907) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20110128205955) do
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
 
+  create_table "dictionaries", :force => true do |t|
+    t.string   "name"
+    t.string   "attribution"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "dreams", :force => true do |t|
     t.text     "body"
     t.string   "title"
@@ -31,14 +38,12 @@ ActiveRecord::Schema.define(:version => 20110128205955) do
     t.datetime "updated_at"
   end
 
-  create_table "friendships", :force => true do |t|
+  create_table "follows", :force => true do |t|
     t.integer "user_id"
-    t.integer "friend_id"
-    t.boolean "pending",   :default => true
-    t.boolean "blocked",   :default => false
+    t.integer "following_id"
   end
 
-  add_index "friendships", ["user_id", "friend_id"], :name => "index_friendships_on_user_id_and_friend_id", :unique => true
+  add_index "follows", ["user_id", "following_id"], :name => "index_follows_on_user_id_and_following_id", :unique => true
 
   create_table "hits", :force => true do |t|
     t.integer  "user_id"
@@ -115,8 +120,17 @@ ActiveRecord::Schema.define(:version => 20110128205955) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.string  "source"
-    t.integer "user",   :limit => 8
+    t.integer "user",      :limit => 8
+    t.string  "user_type"
   end
+
+  create_table "words", :force => true do |t|
+    t.string  "name"
+    t.text    "definition"
+    t.string  "attribution"
+    t.integer "dictionary_id"
+  end
+
+  add_index "words", ["name"], :name => "index_words_on_name"
 
 end

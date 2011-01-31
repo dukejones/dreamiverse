@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
-  include Amistad::FriendModel
   has_many :authentications
   has_many :dreams
   has_many :hits
 
-  has_many :starlights, :as => :entity
-  has_one  :starlight, :as => :entity, :order => "id DESC"
+  has_many :follows
+  has_many :followings, :through => :follows
+  
+  has_many :followeds, :class_name => "Follow", :foreign_key => :following_id
+  has_many :followers, :through => :followeds, :source => :user
+
+  # has_many :friends, :through => :follows, :where => 
+  
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
@@ -42,6 +47,19 @@ class User < ActiveRecord::Base
 
   def apply_omniauth!(omniauth)
     self.apply_omniauth(omniauth).save!
+  end
+  
+  def follow!(user)
+    self.followings << user
+  end
+  def following?(user)
+    self.followings.exists?(user.id)
+  end
+  def followed_by?(user)
+    self.followers.exists?(user.id)
+  end
+  def friends_with?(user)
+    self.following?(user) && self.followed_by?(user)
   end
   
   def encrypted_password= *args

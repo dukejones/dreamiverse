@@ -81,7 +81,10 @@ h2.IB_imageDropTitle {
   border:1px solid #959595; /* 50% Black */
   float:left;
   cursor:pointer;
-  z-index:99;}
+  z-index:99;
+  list-style-type: none}
+#imageDrop li {
+  list-style-type: none; /* to remove li style for drag and drop appendTo */}
 #albums .images li:hover {
   border:1px solid #EBEBEB; /* 10% Black */}
 

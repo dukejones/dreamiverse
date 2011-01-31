@@ -1,0 +1,20 @@
+%br
+%br
+%br
+.light.transparent-50.round-16.padding-8
+  %h2
+    = @dict.name
+    %span{:style => "font-size: 10px"}
+      = link_to "edit", edit_dictionary_path(@dict)
+      = link_to "change", dictionaries_path
+  
+  %ul
+    - @dict.words.each do |word|
+      %li 
+        %b= link_to word.name, edit_dictionary_word_path(@dict, word)
+        = truncate(word.definition, {length: 70})
+
+%br
+.light.transparent-50.round-16.padding-8
+  %h3 New Word
+  = render :partial => 'form', :locals => {:word => Word.new}
