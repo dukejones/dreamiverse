@@ -3,9 +3,11 @@ $(document).ready(function(){
 })
 
 function setupHeaderButtons(){
-  $('#settings_menu .appearance').toggle(function(){
-    $('#appearancePanel').fadeIn();
-  }, function(){
-    $('#appearancePanel').fadeOut();
+  $('#settings_menu .appearance').click(function(){
+    if($('#appearanceWrap').css('display') == 'none'){
+      $('#appearanceWrap').fadeIn();
+    } else {
+      $('#appearanceWrap').fadeOut();
+    }
   })
 }

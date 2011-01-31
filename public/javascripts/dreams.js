@@ -6,10 +6,10 @@ $(document).ready(function() {
 });
 
 function setupGeo(){
-  $('#newLocation').click(function(){
+  /*$('#newLocation').click(function(){
     $('#newLocation').unbind();
     getGeo();
-  })
+  })*/
 }
 
 function setupImagebank(){
@@ -238,6 +238,13 @@ function setupEvents(){
     $('#newDream-location').slideDown();
   }, function(){
     $('#newDream-location').slideUp();
+  })
+  
+  // Location content expander
+  $('#newLocation').toggle(function(){
+    $('#locationExpand').slideDown();
+  }, function(){
+    $('#locationExpand').slideUp();
   })
   
   // Listen for paste in DREAM field

@@ -126,7 +126,7 @@
   #dreamField #day, #dreamField #year, #dreamField #minute, #dreamField #amPm {
     margin-left: -4px; }
   #dreamField #newDream-location {
-    height: 140px;
+    min-height: 35px;
     display: none; }
     #dreamField #newDream-location #locations, #dreamField #newDream-location #newLocation {
       float: left;
@@ -141,6 +141,8 @@
       cursor: pointer;
       padding: 0 8px;
       background: white; }
+    #dreamField #newDream-location #locationExpand {
+      width: 600px; }
     #dreamField #newDream-location #name, #dreamField #newDream-location #city, #dreamField #newDream-location #state, #dreamField #newDream-location #country {
       float: left;
       margin: 4px 0 0 8px; }

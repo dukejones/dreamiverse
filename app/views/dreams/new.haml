@@ -64,18 +64,20 @@
       %option{value: 'Under I580'} Under I580
       %option{value: 'No Location'} No Location
     #newLocation.round-8 New Location
-    #name
-      %p Location Name
-      %input.light.O-input
-    #city
-      %p City
-      %input.light.O-input
-    #state
-      %p State / province
-      %input.light.O-input
-    #country
-      %p Country
-      %input.light.O-input
+    #locationExpand.hidden
+      #name
+        %p Location Name
+        %input.light.O-input
+      #city
+        %p City
+        %input.light.O-input
+      #state
+        %p State / province
+        %input.light.O-input
+      #country
+        %p Country
+        %input.light.O-input
+      %br{:style => 'clear: both'}
 
   / NEW DREAM IMAGES
   = render :partial => "image_panel"
