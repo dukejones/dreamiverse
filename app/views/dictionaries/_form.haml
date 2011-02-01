@@ -2,9 +2,9 @@
   .name
     = f.label :name
     %br
-    = f.text_field :name
+    = f.text_field :name, :class => 'font-21'
   .attr
     = f.label :attribution
     %br
-    = f.text_field :attribution
-  = f.submit
+    = f.text_field :attribution, :class => 'font-21'
+  = f.submit :class => 'shine font-17 button padding-4-8 block save round-12', :style => 'width: 100%; margin-top: 20px'

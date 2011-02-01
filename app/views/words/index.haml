@@ -1,20 +1,21 @@
 %br
 %br
 %br
-.light.transparent-50.round-16.padding-8
-  %h2
-    = @dict.name
-    %span{:style => "font-size: 10px"}
-      = link_to "edit", edit_dictionary_path(@dict)
-      = link_to "change", dictionaries_path
-  
-  %ul
-    - @dict.words.each do |word|
-      %li 
-        %b= link_to word.name, edit_dictionary_word_path(@dict, word)
-        = truncate(word.definition, {length: 70})
+%div{style: 'width:600px; margin: 20px'}
 
-%br
-.light.transparent-50.round-16.padding-8
-  %h3 New Word
-  = render :partial => 'form', :locals => {:word => Word.new}
+  .transparent-50.round-16.padding-8
+    %h1.bevel.round-12.padding-8.align-center{style: 'margin: 0 0 8px'} New Word
+    = render :partial => 'form', :locals => {:word => Word.new}
+
+  .transparent-50.round-16.padding-8{style: 'margin-top: 8px'}
+    %h2.bevel.block.round-12.padding-8.align-center{style: 'margin-top: 0'}
+      = @dict.name
+      %span{:style => "font-size: 10px"}
+        = link_to "edit", edit_dictionary_path(@dict), :class => 'button save round-8 bevel padding-4-8'
+        = link_to "< bookshelf", dictionaries_path, :class => 'font-17 button cancel round-8 shine padding-4-8 float-left'
+  
+    %ul{style: 'list-style-type: none; margin-left: -32px'}
+      - @dict.words.each do |word|
+        %li{style: 'margin-bottom: 16px'}
+          = link_to word.name, edit_dictionary_word_path(@dict, word), :class => 'transparent-50 font-17 button round-24 padding-4-8', :style => 'margin-left: -8px'
+          = truncate(word.definition, {length: 70})

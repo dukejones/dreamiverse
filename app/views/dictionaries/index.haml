@@ -1,11 +1,16 @@
 %br
 %br
 %br
-.light.transparent-50.round-16.padding-8
-  %h1 Dictionaries
-  %ul
-    - @dicts.each do |dict|
-      %li= link_to dict.name, dictionary_words_path(dict)
-%br
-.light.transparent-50.round-16.padding-8
-  = link_to 'New Dictionary', new_dictionary_path
+%div{style: 'width:600px; margin: 20px'}
+
+  %a.block.shine.button.save.round-16.font-bold.font-21.align-center.padding-8{href: new_dictionary_path}
+    + New dictionary
+
+  %br
+  .transparent-50.round-16.padding-8
+    %h1.bevel.round-12.padding-8.align-center{style: 'margin-top: 0px'} Dictionaries
+    %ul{style: 'list-style-type: none; margin-left: -40px'}
+      - @dicts.each do |dict|
+        %li
+          %a.transparent-50.block.font-21.button.round-24.padding-4-8.margin-8{href: dictionary_words_path(dict)}
+            = dict.name
