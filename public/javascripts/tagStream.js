@@ -135,6 +135,8 @@ function setInputType(type){
       
       // Show tag node
       $('.tagNode').fadeIn();
+      
+      //$('.entryInput .add').
       break;
   }
 }
