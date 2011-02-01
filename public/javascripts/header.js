@@ -6,7 +6,7 @@ function setupHeaderButtons(){
   $('#metaMenu .appearance').click(function(){
     if($('#appearanceWrap').css('display') == 'none'){
       $('#appearanceWrap').fadeIn();
-      // Create clickable iFrame to close when not clicking on element
+      // Create clickable div to close when not clicking on element
       var newElement = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>';
     
       $('body').prepend(newElement);
@@ -22,6 +22,7 @@ function setupHeaderButtons(){
     
     } else {
       $('#appearanceWrap').fadeOut();
+      $('#bodyClick').fadeOut().remove();
     }
   })
 }

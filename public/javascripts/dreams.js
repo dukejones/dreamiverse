@@ -24,11 +24,21 @@ function setupTextareaAutoExpander(){
 });
 }
 
+var geoFetching = false;
+
 function setupGeo(){
-  /*$('#newLocation').click(function(){
-    $('#newLocation').unbind();
-    getGeo();
-  })*/
+  // Location content expander
+  $('#newLocation').click(function(){
+    if($('#locationExpand').css('display') == 'none'){
+      $('#locationExpand').slideDown();
+      if(!geoFetching) {
+        getGeo();
+      }
+    } else {
+      $('#locationExpand').slideUp();
+    }
+    
+  })
 }
 
 function setupImagebank(){
@@ -259,13 +269,6 @@ function setupEvents(){
     $('#newDream-location').slideUp();
   })
   
-  // Location content expander
-  $('#newLocation').toggle(function(){
-    $('#locationExpand').slideDown();
-  }, function(){
-    $('#locationExpand').slideUp();
-  })
-  
   // Listen for paste in DREAM field
   $("#dream_body").bind('paste', function(e) {
     // Get pasted link
@@ -432,17 +435,19 @@ function resetImageButtons(){
 /* LOCATION DATA */
 
 var getGeo = function(){
-  alert('getGEO')
-  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:15000});
+  } else {
+    alert('This browser does not support geolocation')
+  }
 }
 //http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854966/-122.6950651
 
 function geoError(error){
-  alert("geolocation error : " + error);
+  alert("geolocation error : " + error.code + ' / ' + error.message);
 }
 
 function geoSuccess(position) {
-  alert('geoSuccess')
   // Temp solution.
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
@@ -455,14 +460,13 @@ function geoSuccess(position) {
 function getAddress(lat, lng){
   // Get location data from google
   var filePath = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true'
-  
+
   $.ajax({
     url: filePath,
-    dataType: 'jsonp',
-    success: function(data) {
-      //var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
-      alert('test')
+    dataType: 'json',
+    success: function(data, textStatus, jqXHR) {
       alert(data)
     }
   });
+  alert('reverse geo sent')
 }
