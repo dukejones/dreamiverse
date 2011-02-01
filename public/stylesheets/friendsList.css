@@ -14,8 +14,8 @@
     position: relative;
     float: right;
     margin: 0;
-    right: 4px;
-    top: 4px;
+    right: 8px;
+    top: 8px;
     width: 17px;
     height: 17px;
     cursor: pointer;
@@ -51,14 +51,15 @@
       background-position: 0 100%; }
   #userStream .user .expanded {
     clear: both;
-    margin: 4px 0; }
+    margin: 4px 0 0;
+    padding: 4px; }
     #userStream .user .expanded .item, #userStream .user .expanded .item2 {
       clear: both;
       margin-bottom: 6px; }
     #userStream .user .expanded .label, #userStream .user .expanded .image, #userStream .user .expanded .detail {
       float: left; }
     #userStream .user .expanded .item .label {
-      width: 60px;
+      width: 68px;
       height: 24px;
       padding: 6px 8px;
       text-align: right; }
@@ -75,7 +76,7 @@
       #userStream .user .expanded .item .image img.follow {
         margin: -12px 1px; }
     #userStream .user .expanded .item .detail {
-      width: 66px;
+      width: 72px;
       height: 26px;
       padding: 6px 8px;
       line-height: 26px;
@@ -98,3 +99,11 @@
       border: 0;
       font-weight: normal;
       line-height: 25px; }
+    #userStream .user .expanded .close {
+      clear: both;
+      height: 20px;
+      line-height: 20px;
+      text-align: center;
+      color: #555555;
+      background: #262626;
+      border: 2px solid black; }
