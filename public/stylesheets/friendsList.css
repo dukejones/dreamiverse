@@ -15,7 +15,7 @@
     float: right;
     margin: 0;
     right: 8px;
-    top: 8px;
+    top: 6px;
     width: 17px;
     height: 17px;
     cursor: pointer;
@@ -25,7 +25,8 @@
   #userStream .user .statusHover {
     position: absolute;
     cursor: pointer;
-    padding: 2px 4px;
+    font-size: 12px;
+    padding: 2px 24px 2px 4px;
     margin: 0;
     top: 4px;
     right: 4px; }
