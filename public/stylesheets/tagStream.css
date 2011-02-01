@@ -26,8 +26,8 @@
       margin: 17px 17px 0 0; }
     .tagStream .stream .moodIcon-picker {
       position: absolute;
-      top: 0;
-      left: 326px;
+      top: 5px;
+      left: 321px;
       padding: 12px;
       height: auto;
       background: -webkit-gradient(linear, left top, left bottom, from(white), to(#d7d7d7));
@@ -201,8 +201,6 @@
       -moz-border-radius: 8px;
       -webkit-border-radius: 8px; }
   .stream .tagWho {
-    padding: 0px;
-    height: 24px;
     box-shadow: inset 0px 15px 10px #404040;
     -moz-box-shadow: inset 0px 15px 10px #404040;
     -webkit-box-shadow: inset 0px 15px 10px #404040;
