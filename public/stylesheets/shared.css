@@ -330,7 +330,7 @@ a:active, a:focus {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: 1000; }
+  z-index: 1111; }
   #metaMenu .left-panel, #metaMenu .right-panel {
     background-color: white; }
     #metaMenu .left-panel .item, #metaMenu .right-panel .item {
