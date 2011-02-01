@@ -5,6 +5,7 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.5); }
   .tagStream .stream {
+    position: relative;
     background: black;
     height: 100px;
     z-index: 333; }
@@ -170,11 +171,15 @@
         border: 0;
         background: transparent; }
 
-.stream {
-  position: relative; }
-  .stream .stream_tag:hover {
+.stream #tagsLive {
+  position: relative;
+  overflow: hidden;
+  height: 100px;
+  margin: 0;
+  padding: 0; }
+  .stream #tagsLive .stream_tag:hover {
     border: 1px solid white; }
-  .stream .stream_tag {
+  .stream #tagsLive .stream_tag {
     height: 24px;
     margin: 10px 10px 0;
     padding: 0;
@@ -184,12 +189,12 @@
     border-radius: 8px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px; }
-    .stream .stream_tag span {
+    .stream #tagsLive .stream_tag span {
       padding: 4px;
       float: left;
       font-size: 12px;
       font-weight: bold; }
-    .stream .stream_tag .count {
+    .stream #tagsLive .stream_tag .count {
       background-color: #a63700;
       color: white;
       font-size: 9px;
@@ -200,14 +205,14 @@
       border-radius: 8px;
       -moz-border-radius: 8px;
       -webkit-border-radius: 8px; }
-  .stream .tagWho {
+  .stream #tagsLive .tagWho {
     box-shadow: inset 0px 15px 10px #404040;
     -moz-box-shadow: inset 0px 15px 10px #404040;
     -webkit-box-shadow: inset 0px 15px 10px #404040;
     border-radius: 8px;
     -moz-border-radius: 8px;
     -webkit-border-radius: 8px; }
-    .stream .tagWho .avatar {
+    .stream #tagsLive .tagWho .avatar {
       width: 24px;
       height: 24px;
       overflow: hidden;
@@ -219,6 +224,6 @@
       border-radius-bottomleft: 8px;
       -moz-border-radius-bottomleft: 8px;
       -webkit-border-radius-bottomleft: 8px; }
-    .stream .tagWho span {
+    .stream #tagsLive .tagWho span {
       float: right;
       margin: 0 8px; }

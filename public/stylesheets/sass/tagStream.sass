@@ -5,6 +5,7 @@
   position:  absolute
   background: rgba(0,0,0,0.5)
   .stream
+    position: relative
     background: #000
     height: 100px
     z-index: 333
@@ -172,64 +173,71 @@
 
 // TAG STREAM
 .stream
-  position: relative
 
-  // GENERAL TAG STYLES
-  .stream_tag:hover
-    border: 1px solid #fff
-  .stream_tag
-    height: 24px
-    margin: 10px 10px 0
+  // LIVE TAG STREAM
+  #tagsLive
+    position: relative
+    overflow: hidden
+    height: 100px
+    margin: 0
     padding: 0
-    cursor: pointer
-    float: left
-    border: 1px solid transparent
-    border-radius: 8px
-    -moz-border-radius: 8px
-    -webkit-border-radius: 8px
-    span
-      padding: 4px
+
+    // GENERAL TAG STYLES
+    .stream_tag:hover
+      border: 1px solid #fff
+    .stream_tag
+      height: 24px
+      margin: 10px 10px 0
+      padding: 0
+      cursor: pointer
       float: left
-      font-size: 12px
-      font-weight: bold
-    .count
-      background-color: #a63700
-      color: #fff
-      font-size: 9px
-      display: inline-block
-      float: left
-      top: -4px
-      padding: 1px 4px
+      border: 1px solid transparent
       border-radius: 8px
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
+      span
+        padding: 4px
+        float: left
+        font-size: 12px
+        font-weight: bold
+      .count
+        background-color: #a63700
+        color: #fff
+        font-size: 9px
+        display: inline-block
+        float: left
+        top: -4px
+        padding: 1px 4px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
 
-  // WHAT TAG STYLES
-  .tagWhat
+    // WHAT TAG STYLES
+    .tagWhat
 
-  // WHERE TAG STYLES
-  .tagWhere
+    // WHERE TAG STYLES
+    .tagWhere
 
-  // WHO TAG STYLES
-  .tagWho
-    box-shadow: inset 0px 15px 10px #404040
-    -moz-box-shadow: inset 0px 15px 10px #404040
-    -webkit-box-shadow: inset 0px 15px 10px #404040
-    border-radius: 8px
-    -moz-border-radius: 8px
-    -webkit-border-radius: 8px
-    .avatar
-      width: 24px
-      height: 24px
-      overflow: hidden
-      float: left
-      background: url(/images/avatars/xavitar.jpg) no-repeat
-      border-radius-topleft: 8px
-      -moz-border-radius-topleft: 8px
-      -webkit-border-radius-topleft: 8px
-      border-radius-bottomleft: 8px
-      -moz-border-radius-bottomleft: 8px
-      -webkit-border-radius-bottomleft: 8px
-    span
-      float: right
-      margin: 0 8px
+    // WHO TAG STYLES
+    .tagWho
+      box-shadow: inset 0px 15px 10px #404040
+      -moz-box-shadow: inset 0px 15px 10px #404040
+      -webkit-box-shadow: inset 0px 15px 10px #404040
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      .avatar
+        width: 24px
+        height: 24px
+        overflow: hidden
+        float: left
+        background: url(/images/avatars/xavitar.jpg) no-repeat
+        border-radius-topleft: 8px
+        -moz-border-radius-topleft: 8px
+        -webkit-border-radius-topleft: 8px
+        border-radius-bottomleft: 8px
+        -moz-border-radius-bottomleft: 8px
+        -webkit-border-radius-bottomleft: 8px
+      span
+        float: right
+        margin: 0 8px

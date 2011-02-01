@@ -8,14 +8,14 @@
   min-height: 52px;
   width: 222px;
   margin: 0 10px 10px 0;
-  padding: 8px;
+  padding: 0;
   cursor: pointer; }
   #userStream .user .userStatus {
     position: relative;
     float: right;
     margin: 0;
-    right: 3px;
-    top: 3px;
+    right: 4px;
+    top: 4px;
     width: 17px;
     height: 17px;
     cursor: pointer;
@@ -27,17 +27,18 @@
     cursor: pointer;
     padding: 2px 4px;
     margin: 0;
-    right: 8px; }
+    top: 4px;
+    right: 4px; }
   #userStream .user .userThumb {
     float: left;
-    margin: 0;
+    margin: 4px;
     height: 60px;
     overflow: hidden;
     width: 60px;
     background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat; }
   #userStream .user .userInfo {
     float: left;
-    margin: 0 0 0 8px;
+    margin: 4px 0 0 4px;
     width: auto; }
     #userStream .user .userInfo h3 {
       margin: 0; }
@@ -48,3 +49,52 @@
     #userStream .user .userInfo p.mutual {
       color: #262626;
       background-position: 0 100%; }
+  #userStream .user .expanded {
+    clear: both;
+    margin: 4px 0; }
+    #userStream .user .expanded .item, #userStream .user .expanded .item2 {
+      clear: both;
+      margin-bottom: 6px; }
+    #userStream .user .expanded .label, #userStream .user .expanded .image, #userStream .user .expanded .detail {
+      float: left; }
+    #userStream .user .expanded .item .label {
+      width: 60px;
+      height: 24px;
+      padding: 6px 8px;
+      text-align: right; }
+    #userStream .user .expanded .item .image {
+      width: 34px;
+      height: 24px;
+      padding: 7px 3px;
+      margin: 0; }
+      #userStream .user .expanded .item .image img.dream {
+        margin: -8px 0; }
+      #userStream .user .expanded .item .image img.starlight {
+        margin: -18px -16px;
+        z-index: 1004; }
+      #userStream .user .expanded .item .image img.follow {
+        margin: -12px 1px; }
+    #userStream .user .expanded .item .detail {
+      width: 66px;
+      height: 26px;
+      padding: 6px 8px;
+      line-height: 26px;
+      font-weight: bold;
+      border: 0; }
+    #userStream .user .expanded .divider {
+      height: 6px;
+      margin-bottom: 6px; }
+    #userStream .user .expanded .item2 .label {
+      width: 90px;
+      line-height: 26px;
+      text-align: right;
+      font-weight: bold;
+      padding: 5px 8px; }
+    #userStream .user .expanded .item2 .detail {
+      width: 78px;
+      height: 26px;
+      padding: 5px 8px;
+      font-weight: bold;
+      border: 0;
+      font-weight: normal;
+      line-height: 25px; }
