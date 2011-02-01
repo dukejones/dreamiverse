@@ -5,9 +5,6 @@ class Dream < ActiveRecord::Base
   has_many :whats, :through => :tags, :source => :noun, :source_type => 'What'
   has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
-
-  has_many :starlights, :as => :entity
-  has_one  :starlight, :as => :entity, :order => "id DESC"
   
   def nouns
     whos + wheres + whats
