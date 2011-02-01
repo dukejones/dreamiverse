@@ -170,46 +170,48 @@
         border: 0;
         background: transparent; }
 
-.stream-node {
-  position: absolute;
+.stream .stream_tag:hover {
+  border: 1px solid white; }
+.stream .stream_tag {
   min-height: 15px;
   display: inline-block;
   padding: 10px;
   cursor: pointer;
-  left: -200px;
+  left: 0;
   float: left;
   border: 1px solid transparent;
   border-radius: 8px;
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px; }
-  .stream-node span {
+  .stream .stream_tag span {
     padding: 5px;
     display: block;
     font-size: 12px;
     font-weight: bold; }
-
-.stream-node:hover {
-  border: 1px solid white; }
-
-.stream-count {
-  background-color: #a63700;
-  color: white;
-  font-size: 9px;
-  display: inline-block;
-  position: relative;
-  top: -5px;
-  padding: 1px 4px; }
-
-.stream-node-user {
+  .stream .stream_tag .count {
+    background-color: #a63700;
+    color: white;
+    font-size: 9px;
+    display: inline-block;
+    float: left;
+    top: -5px;
+    padding: 1px 4px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px; }
+.stream .tagWho {
   padding: 0px !important;
   margin: 10px;
   height: 24px !important; }
-  .stream-node-user span {
+  .stream .tagWho span {
     float: left;
     padding: 4px !important; }
-
-.stream-avatar {
-  width: 24px;
-  height: 24px;
-  overflow: hidden;
-  float: left; }
+  .stream .tagWho .avatar {
+    width: 24px;
+    height: 24px;
+    overflow: hidden;
+    float: left;
+    background: url(/images/avatars/xavitar.jpg) no-repeat; }
+    .stream .tagWho .avatar span {
+      float: right;
+      margin: 0 8px; }
