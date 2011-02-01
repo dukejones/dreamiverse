@@ -64,7 +64,10 @@
   padding: 8px;
   width: 664px;
   height: 40px;
-  z-index: 1000; }
+  z-index: 1000;
+  /* AUTO COMPLETE */
+  /* TAG NODE */
+  /* UNIVERSAL NEW ENTRY STYLES */ }
   #tagEntry .entryWrap, #tagEntry .entryInput, #tagEntry input {
     float: left; }
   #tagEntry .entryWrap {
@@ -110,54 +113,50 @@
       #tagEntry .entryWrap .add span {
         font-weight: bold;
         color: #349200; }
-
-#share {
-  width: 148px;
-  padding: 8px;
-  position: absolute;
-  top: 112px;
-  left: 490px;
-  background: white;
-  -moz-box-shadow: 0 0 40px black;
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
-  background: -moz-linear-gradient(top, white, #cccccc);
-  border: 1px solid white;
-  z-index: 900;
-  /* AUTO COMPLETE */
-  /* TAG NODE */
-  /* UNIVERSAL NEW ENTRY STYLES */ }
-  #share .arrow {
+  #tagEntry #share {
+    width: 148px;
+    padding: 8px;
     position: absolute;
-    top: -12px;
-    left: 72px; }
-  #share select, #share .social {
-    font-size: 16px;
-    width: 100%;
-    height: 28px;
-    line-height: 28px;
-    padding: 2px 4px;
-    margin: 2px 0; }
-  #share .social {
-    border: 1px solid #c2c2c2;
-    width: 138px;
-    height: 22px;
-    line-height: 22px;
-    cursor: pointer;
-    background: white; }
-    #share .social label {
-      display: block; }
-    #share .social .icon, #share .social .name {
-      float: left;
-      cursor: pointer; }
-    #share .social .icon {
-      margin: 4px 8px 0 4px; }
-    #share .social .name {
-      text-align: center; }
-    #share .social .checkbox {
-      float: right;
-      margin: 4px 0 0;
-      cursor: pointer; }
-  #share #autoComplete {
+    top: 112px;
+    left: 490px;
+    background: white;
+    -moz-box-shadow: 0 0 40px black;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#cccccc));
+    background: -moz-linear-gradient(top, white, #cccccc);
+    border: 1px solid white;
+    z-index: 900; }
+    #tagEntry #share .arrow {
+      position: absolute;
+      top: -12px;
+      left: 72px; }
+    #tagEntry #share select, #tagEntry #share .social {
+      font-size: 16px;
+      width: 100%;
+      height: 28px;
+      line-height: 28px;
+      padding: 2px 4px;
+      margin: 2px 0; }
+    #tagEntry #share .social {
+      border: 1px solid #c2c2c2;
+      width: 138px;
+      height: 22px;
+      line-height: 22px;
+      cursor: pointer;
+      background: white; }
+      #tagEntry #share .social label {
+        display: block; }
+      #tagEntry #share .social .icon, #tagEntry #share .social .name {
+        float: left;
+        cursor: pointer; }
+      #tagEntry #share .social .icon {
+        margin: 4px 8px 0 4px; }
+      #tagEntry #share .social .name {
+        text-align: center; }
+      #tagEntry #share .social .checkbox {
+        float: right;
+        margin: 4px 0 0;
+        cursor: pointer; }
+  #tagEntry #autoComplete {
     padding: 4px;
     width: 207px;
     min-height: 32px;
@@ -165,11 +164,11 @@
     top: 110px;
     left: 36px;
     z-index: 500; }
-    #share #autoComplete ul {
+    #tagEntry #autoComplete ul {
       list-style-type: none;
       margin: 0px;
       padding: 0px; }
-      #share #autoComplete ul li {
+      #tagEntry #autoComplete ul li {
         height: 32px;
         border-radius: 8px;
         -moz-border-radius: 8px;
@@ -178,16 +177,16 @@
         color: #666666;
         border: 1px solid #cccccc;
         cursor: pointer; }
-      #share #autoComplete ul .results:hover {
+      #tagEntry #autoComplete ul .results:hover {
         background: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(black));
         background: -moz-linear-gradient(top, #7d7d7d, black); }
-      #share #autoComplete ul .results:hover a:link {
+      #tagEntry #autoComplete ul .results:hover a:link {
         color: white; }
-      #share #autoComplete ul a:link, #share #autoComplete ul a:visited {
+      #tagEntry #autoComplete ul a:link, #tagEntry #autoComplete ul a:visited {
         float: left;
         display: inline-block;
         font-weight: bold; }
-      #share #autoComplete ul .userStatus {
+      #tagEntry #autoComplete ul .userStatus {
         float: right;
         z-index: 200;
         position: relative;
@@ -202,7 +201,7 @@
         margin: 8px;
         top: 0px !important;
         left: 0px !important; }
-  #share .tagNode {
+  #tagEntry .tagNode {
     width: 150px;
     height: 32px;
     position: absolute;
@@ -213,15 +212,15 @@
     font-weight: bold;
     background: #b6b5b3;
     -moz-box-shadow: 0 15px 10px #e6e6e6 inset; }
-    #share .tagNode span {
+    #tagEntry .tagNode span {
       float: left;
       margin-left: 10px; }
-    #share .tagNode .removeTag {
+    #tagEntry .tagNode .removeTag {
       position: absolute;
       top: 7px;
       right: 6px;
       cursor: pointer; }
-  #share .avatar {
+  #tagEntry .avatar {
     height: 32px;
     border-radius: 8px;
     -moz-border-radius: 8px;

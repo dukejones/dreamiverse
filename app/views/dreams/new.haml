@@ -9,7 +9,7 @@
 #dreamField
 
   / NEW DREAM INPUT PANEL
-  #newDream-panel.light.O.round-16.glow-40
+  #newDream-panel.flat.round-16.glow-40
     #entryTypeWrap
       %img{src: '/images/icons/dream-32.png'}
       %span#entryType_current{value: 'Dream'}
@@ -54,7 +54,7 @@
 
   / NEW DREAM LOCATION
   #newDream-location.newDream_assets.light.transparent-50
-    #locationHeader.headers
+    #locationHeader.headers.indent.button
       %img{src: '/images/icons/location-21.png', height: '16', width: '16'}
       location
     %select#locations.light.O-input.round-8
@@ -84,7 +84,7 @@
 
   / NEW DREAM TAG
   #newDream-tag.newDream_assets.hidden.light.transparent-50
-    #tagHeader.headers 
+    #tagHeader.headers.indent.button
       tag
       %img{src: '/images/icons/tag-20.png'}
     #tagInputWrap
@@ -103,7 +103,7 @@
 
   / NEW DREAM LINK
   #newDream-link.newDream_assets.hidden.light.transparent-50
-    #linksHeader.headers
+    #linksHeader.headers.indent.button
       links
       %img{src: '/images/icons/links-19.png'}
     #linkInputWrap
@@ -114,7 +114,7 @@
 
   / NEW DREAM MOOD
   #newDream-mood.newDream_assets.hidden.light.transparent-50
-    #moodHeader.headers
+    #moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
     %ul
@@ -126,8 +126,9 @@
   / NEW DREAM ATTACHMENTS
   #newDream-attach.newDream_assets.light.transparent-50
     %p attach:
-    .tag tag
-    #attach-images images
-    .mood mood
-    .links links
-    / Save for later .analysis analysis
+    .tag.bevel.button tag
+    #attach-images.bevel.button images
+    .mood.bevel.button mood
+    .links.bevel.button links
+    / Save for later .analysis.bevel.button analysis
+    .clear-both

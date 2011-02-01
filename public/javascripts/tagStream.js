@@ -15,13 +15,29 @@ function setupMood(){
     if($('.moodIcon-picker').css('display') == 'none'){
       $('.moodIcon-picker').fadeIn();
       
+      // Create clickable div to close when not clicking on element
+      var newElement = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>';
+    
+      $('body').prepend(newElement);
+    
+      // Scroll to top of page
+      $('html, body').animate({scrollTop:0}, 'slow');
+    
+      $('#bodyClick').click(function(event){
+        // Hide Settings
+        $('.moodIcon-picker').fadeOut();
+        $('#bodyClick').fadeOut().remove();
+      })
+      
       // Setup close button
       $('.currentIcon').unbind();
       $('.currentIcon').click(function(){
         $('.moodIcon-picker').fadeOut();
+        $('#bodyClick').fadeOut().remove();
       })
     } else {
       $('.moodIcon-picker').fadeOut();
+      $('#bodyClick').fadeOut().remove();
     }
   })
 }
@@ -119,13 +135,18 @@ function selectTag($this){
 function setInputType(type){
   switch(type){
     case "tag":
+      // hide all data & clear
+      $('.tagNode').hide();
+      $('#tagInput').val('WHO / WHAT / WHERE are you dreaming?');
+      $('#tagInput').css('width', '480px');
+      $('#tagInput').css('margin', '4px 0 4px 35px');
       
       break;
     
     case "info":
       $('#tagInput').val('What were they doing?');
       $('#tagInput').css('width', '300px');
-      $('#tagInput').css('margin', '4px 0 4px 170px');
+      $('#tagInput').css('margin', '4px 0 4px 190px');
       
       $('#tagInput').focus(function(){
         if($(this).val() == 'What were they doing?'){
@@ -133,8 +154,58 @@ function setInputType(type){
         }
       })
       
+      $('.add').click(function(){
+        if($('#tagInput').val() != 'What were they doing?'){
+          createNewTag();
+        }
+      })
+      
       // Show tag node
       $('.tagNode').fadeIn();
+      
+      //$('.entryInput .add').
       break;
+  }
+}
+
+var tagsObj = [
+  {"type": "tag", "value": "magic"},
+  {"type": "user", "value": "Sporeganic"},
+  {"type": "user", "value": "phong"},
+  {"type": "tag", "value": "magic"},
+  {"type": "location", "value": "Portland, OR"},
+  {"type": "user", "value": "Eph"},
+];
+
+function createNewTag(){
+  var newElement = {"type": "tag", "value": $('#tagInput').val()};
+  
+  tagsObj.pop()
+  tagsObj.push(newElement);
+  
+  buildTags();
+}
+
+function buildTags(){
+  // clear tag field
+  $('#tagsLive').empty();
+  
+  for(var u = 0; u < tagsObj.length; u++){
+    var newElement = '';
+    switch(tagsObj[u].type){
+      case "tag":
+        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        break;
+      case "user":
+        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWho"><div class="avatar"></div><span>' + tagsObj[u].value + '</span></div>'
+        break;
+      case "location":
+        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        break;
+    }
+    
+    setInputType('tag');
+    
+    $('#tagsLive').append(newElement);
   }
 }
