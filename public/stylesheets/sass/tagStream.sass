@@ -2,11 +2,11 @@
   width: 656px
   margin: 0 0 12px 0
   padding: 12px
+  position:  absolute
   background: rgba(0,0,0,0.5)
   .stream
     background: #000
     height: 100px
-    position:  relative
     z-index: 333
     .moodIcon, .moodIcon-picker, .currentIcon
       float: right
@@ -26,8 +26,8 @@
       margin: 17px 17px 0 0
     .moodIcon-picker
       position: absolute
-      top: 0
-      left: 326px
+      top: 5px
+      left: 321px
       padding: 12px
       height: auto
       background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
@@ -172,24 +172,24 @@
 
 // TAG STREAM
 .stream
+  position: relative
 
   // GENERAL TAG STYLES
   .stream_tag:hover
     border: 1px solid #fff
   .stream_tag
-    min-height: 15px
-    display: inline-block
-    padding: 10px
+    height: 24px
+    margin: 10px 10px 0
+    padding: 0
     cursor: pointer
-    left: 0
     float: left
     border: 1px solid transparent
     border-radius: 8px
     -moz-border-radius: 8px
     -webkit-border-radius: 8px
     span
-      padding: 5px
-      display: block
+      padding: 4px
+      float: left
       font-size: 12px
       font-weight: bold
     .count
@@ -198,26 +198,40 @@
       font-size: 9px
       display: inline-block
       float: left
-      top: -5px
+      top: -4px
       padding: 1px 4px
       border-radius: 8px
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
 
+  // WHAT TAG STYLES
+  .tagWhat
+
+  // WHERE TAG STYLES
+  .tagWhere
+
   // WHO TAG STYLES
   .tagWho
-    padding: 0px !important
-    margin: 10px
-    height: 24px !important
-    span
-      float: left
-      padding: 4px !important
+    padding: 0px
+    height: 24px
+    box-shadow: inset 0px 15px 10px #404040
+    -moz-box-shadow: inset 0px 15px 10px #404040
+    -webkit-box-shadow: inset 0px 15px 10px #404040
+    border-radius: 8px
+    -moz-border-radius: 8px
+    -webkit-border-radius: 8px
     .avatar
       width: 24px
       height: 24px
       overflow: hidden
       float: left
       background: url(/images/avatars/xavitar.jpg) no-repeat
-      span
-        float: right
-        margin: 0 8px
+      border-radius-topleft: 8px
+      -moz-border-radius-topleft: 8px
+      -webkit-border-radius-topleft: 8px
+      border-radius-bottomleft: 8px
+      -moz-border-radius-bottomleft: 8px
+      -webkit-border-radius-bottomleft: 8px
+    span
+      float: right
+      margin: 0 8px
