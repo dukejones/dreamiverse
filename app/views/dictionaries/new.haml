@@ -1,7 +1,10 @@
 %br
 %br
 %br
-.light.transparent-50.round-16.padding-8
+%div{style: 'width:600px; margin: 20px'}
+  .transparent-50.round-16.padding-8
 
-  %h1 New Dictionary
-  = render({ partial: 'form', locals: { dict: @dict } })
+    %h1.bevel.round-12.padding-8.align-center{style: 'margin-top: 0px'}
+      New Dictionary
+      = link_to "< cancel", dictionaries_path, :class => 'font-21 button cancel round-8 shine padding-4-8 float-left', :style => 'margin-right: -66px'
+    = render({ partial: 'form', locals: { dict: @dict } })
