@@ -1,5 +1,5 @@
 / CONTEXT PANEL
-#contextPanel.transparent-50.glow-40.round-16.padding-6
+#contextPanel.transparent-50.glow-40.round-16
 
   / IMAGE
   %a#image.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left", onMouseOver: "$('#uploadAvatarWrap').removeClass('hidden')", onMouseOut: "$('#uploadAvatarWrap').addClass('hidden')"}
@@ -37,26 +37,25 @@
     .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
 
-  .divider.transparent-33.round-4
-
-  .item
+  .item.pointer
     .label.bevel.round-12.flat-right friends
     .image
       %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
     .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
-  .item
-    .label.bevel.round-12.flat-right following
-    .image
-      %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
-    .detail.inner-shadow-10.round-12.flat-left #
-    .clear-both
-  .item
-    .label.bevel.round-12.flat-right followers
-    .image
-      %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
-    .detail.inner-shadow-10.round-12.flat-left #
-    .clear-both
+  .expander.hidden
+    .item
+      .label.bevel.round-12.flat-right following
+      .image
+        %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
+      .detail.inner-shadow-10.round-12.flat-left #
+      .clear-both
+    .item
+      .label.bevel.round-12.flat-right followers
+      .image
+        %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
+      .detail.inner-shadow-10.round-12.flat-left #
+      .clear-both
 
   /
     .item2
@@ -64,11 +63,7 @@
       .detail.inner-shadow-10.round-12.flat-left #
       .clear-both
 
-
-  .divider.transparent-33.round-4
-  
-  / STREAM FILTER
-  = render :partial => "stream_filter"
+    .divider.transparent-33.round-4
 
   / SOCIAL NETWORK LINKS
 /  #contextBottom.light.B-indent.round-12.padding-8.flat-top.clear-both.align-center

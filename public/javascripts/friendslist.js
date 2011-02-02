@@ -24,14 +24,14 @@ function setupFriendsElements(){
  $('.user').click(function(){
    if($(this).find('.expanded').css('display') == 'none'){
      // Expand user node
-     $(this).addClass('z-top');
+     $(this).addClass('z-top flat-bottom');
      $(this).find('.close').click(function(){
        $(this).slideUp();
      })
      $(this).find('.expanded').slideDown();
    } else {
      $(this).find('.expanded').slideUp();
-     $(this).removeClass('z-top');
+     $(this).removeClass('z-top flat-bottom');
    }
  })
  
