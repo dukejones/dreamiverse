@@ -6,14 +6,15 @@ Dreamcatcher::Application.routes.draw do
   end
   match '/login' => 'user/sessions#create', :as => :login
   match '/logout' => 'user/sessions#destroy', :as => :logout
-  
+
   match '/auth/:provider/callback', :to => 'user/authentications#create'
-  
+
   # Resources
   resource :user
   match '/dreamstars' => 'users#index', :as => :dreamstars
+  match '/stream' => 'dreams#stream', :as => :stream
   resources :dreams
-  
+
   resources :images do
     get 'manage', :on => :collection
   end
@@ -31,7 +32,7 @@ Dreamcatcher::Application.routes.draw do
   match '/images/uploads/:id-:size.:format', to: 'images#resize'
 
   match '/parse/title', to: 'home#parse_url_title'
-  
+
   root :to => "home#index"
 
   # The priority is based upon order of creation:

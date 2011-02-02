@@ -42,4 +42,8 @@ class DreamsController < ApplicationController
     @dream.destroy
     redirect_to :index
   end
+
+  def stream
+    @dreams = Dream.all
+  end
 end
