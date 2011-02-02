@@ -10,10 +10,10 @@ function setupFriendsElements(){
     $(this).find('.statusHover').unbind();
     $(this).find('.statusHover').click(function(){
       if($(this).find('span').text() == 'unfollow'){
-        $(this).parent().find('.userStatus').css('background-position', '0 0%')
+        $(this).parent().find('.status').css('background-position', '0 0%')
         $(this).find('span').text('follow');
       } else if($(this).find('span').text() == 'follow'){
-        $(this).parent().find('.userStatus').css('background-position', '0 33%')
+        $(this).parent().find('.status').css('background-position', '0 33%')
         $(this).find('span').text('unfollow');
       }
     })
@@ -21,15 +21,17 @@ function setupFriendsElements(){
     $(this).find('.statusHover').fadeOut('fast');
   })
  // Click to expand node
- $('.user .userInfo').find('h3').click(function(){
-   if($(this).parent().parent().find('.expanded').css('display') == 'none'){
+ $('.user').click(function(){
+   if($(this).find('.expanded').css('display') == 'none'){
      // Expand user node
-     $(this).parent().parent().find('.close').click(function(){
-       $(this).parent().slideUp();
+     $(this).addClass('z-top');
+     $(this).find('.close').click(function(){
+       $(this).slideUp();
      })
-     $(this).parent().parent().find('.expanded').slideDown();
+     $(this).find('.expanded').slideDown();
    } else {
-     $(this).parent().parent().find('.expanded').slideUp();
+     $(this).find('.expanded').slideUp();
+     $(this).removeClass('z-top');
    }
  })
  

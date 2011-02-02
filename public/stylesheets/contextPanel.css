@@ -2,7 +2,8 @@
   position: absolute;
   top: 82px;
   left: 12px;
-  width: 200px; }
+  width: 200px;
+  cursor: default; }
   #contextPanel #image {
     display: block;
     width: 200px;

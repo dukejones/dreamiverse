@@ -140,8 +140,7 @@
 
 /******* LIGHT AND DARK ******* */
 .light .button, .dark .button {
-  cursor: pointer;
-  border: 1px solid #555555; }
+  cursor: pointer; }
 
 .static-glow-inner-40 {
   box-shadow: inset 0px 0px 40px white;

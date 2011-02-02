@@ -18,8 +18,13 @@
   / DREAM MATRIX
   .matrix
 
-    / FRIENDS LIST STREAM
-    =render :partial => 'friends_list'
+    #friendField
+      / FRIENDS LIST STREAM
+      =render :partial => 'friend_node'
+      =render :partial => 'friend_node'
+      =render :partial => 'friend_node'
+      =render :partial => 'friend_node'
+      =render :partial => 'friend_node'
 
     / DREAM THUMBS
     - @dreams.each do |dream|
