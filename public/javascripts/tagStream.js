@@ -135,6 +135,9 @@ function selectTag($this){
 function setInputType(type){
   switch(type){
     case "tag":
+      // unbind stuff
+      $('.add').unbind();
+      
       // hide all data & clear
       $('.tagNode').hide();
       $('#tagInput').val('WHO / WHAT / WHERE are you dreaming?');
