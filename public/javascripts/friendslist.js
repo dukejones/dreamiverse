@@ -28,9 +28,6 @@ function setupFriendsElements(){
      var oldZ = $(this).parent().css('z-index');
      var newZ = Number(oldZ) + 1;
      $(this).parent().css('z-index', newZ);
-     $(this).parent().find('.close').click(function(){
-       $(this).parent().slideUp();
-     })
      $(this).parent().find('.expanded').slideDown();
    } else {
      $(this).parent().find('.expanded').slideUp(100);

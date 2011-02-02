@@ -66,56 +66,14 @@ function setupTagStream(){
     }
   })
   
-  // Setup auto-complete
-  $('#tagInput').keypress(function(event){
-    // Change me, just makes the results show after
-    // more than 3 chars have been typed
-    var numberOfChars = $('#tagInput').val().split('').length;
-    if(numberOfChars > 2){
-      // Hide searching
-      $('#searching-temp').hide();
-      
-      if(!autoCompleteExpanded){
-        // Expand auto-complete dropdown
-        autoCompleteExpanded = true;
-      
-        // Setup click event on .results
-        $('#autoComplete .results').click(function(){
-          // add tag to display
-          selectTag($(this));
-        });
-      
-        $('#autoComplete').slideDown('fast');
-      
-      
-      }
-      
-      // Display results
-      $('#autoComplete .results').fadeIn('fast');
-    }
-  });
-  
-  // Tag input clear on focus
-  $('#tagInput').focus(function(){
-    if($(this).val() == $(this).attr('title')){
-      clearMePrevious = $(this).val();
-      $(this).val('');
-    }
-  });
-  
-  // Tag input put text back on blur if empty
-  $('#tagInput').blur(function(){
-    if($(this).val() == ""){
-      $(this).val($(this).attr('title'));
-    }
-  });
-  
   // Sharing & Location Expander
   $('#sharingExpand').toggle(function(){
     $('#share').slideDown();
   }, function(){
     $('#share').slideUp();
   })
+  
+  setInputType('tag');
 }
 
 function closeEntryPanels(){
@@ -142,24 +100,75 @@ function setInputType(type){
       $('.tagNode').hide();
       $('#tagInput').val('WHO / WHAT / WHERE are you dreaming?');
       $('#tagInput').css('width', '480px');
+      $('#tagInput').css('color', '#ccc');
       $('#tagInput').css('margin', '4px 0 4px 35px');
+      
+      $('#tagInput').unbind();
+      
+      // Tag input clear on focus
+      $('#tagInput').focus(function(){
+        $(this).css('color', '#333')
+        if($(this).val() == $(this).attr('title')){
+          clearMePrevious = $(this).val();
+          $(this).val('');
+        }
+      });
+  
+      // Tag input put text back on blur if empty
+      $('#tagInput').blur(function(){
+        if($(this).val() == ""){
+          $(this).val($(this).attr('title'));
+        }
+      });
+      
+      // Setup auto-complete
+      $('#tagInput').keypress(function(event){
+        // Change me, just makes the results show after
+        // more than 3 chars have been typed
+        var numberOfChars = $('#tagInput').val().split('').length;
+        if(numberOfChars > 2){
+          // Hide searching
+          $('#searching-temp').hide();
+      
+          if(!autoCompleteExpanded){
+            // Expand auto-complete dropdown
+            autoCompleteExpanded = true;
+      
+            // Setup click event on .results
+            $('#autoComplete .results').click(function(){
+              // add tag to display
+              selectTag($(this));
+            });
+      
+            $('#autoComplete').slideDown('fast');
+      
+      
+          }
+      
+          // Display results
+          $('#autoComplete .results').fadeIn('fast');
+        }
+      });
       
       break;
     
     case "info":
       $('#tagInput').val('What were they doing?');
       $('#tagInput').css('width', '300px');
+      $('#tagInput').css('color', '#ccc');
       $('#tagInput').css('margin', '4px 0 4px 190px');
       
       $('#tagInput').focus(function(){
         if($(this).val() == 'What were they doing?'){
           $(this).val('');
+          $(this).css('color', '#333');
         }
       })
       
       $('.add').click(function(){
         if($('#tagInput').val() != 'What were they doing?'){
           createNewTag();
+          $('#tagEntry').slideUp('slow');
         }
       })
       
@@ -209,6 +218,6 @@ function buildTags(){
     
     setInputType('tag');
     
-    $('#tagsLive').append(newElement);
+    $('#tagsLive').prepend(newElement);
   }
 }
