@@ -22,7 +22,10 @@
       = render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
       /= render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
 
-  
+  - if user == current_user
+    .find.button.bevel.round-12.padding-4-8
+      Dreams about me &rsaquo;
+
   / CONTEXT ITEMS
   .item
     .label.bevel.round-12.flat-right dreams
