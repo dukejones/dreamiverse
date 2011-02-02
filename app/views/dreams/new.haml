@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'compiled/newDream', "compiled/contextPanel", 'compiled/newEntry', 'compiled/dreamStream'
+  = sass_link_tag 'newDream', "contextPanel", 'newEntry', 'dreamStream'
   = javascript_include_tag "dreams", "autoresize.jquery.min"
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 

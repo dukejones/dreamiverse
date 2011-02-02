@@ -3,11 +3,13 @@
   <title>ImageBank Browser - Dreamcatcher</title>
   <%= stylesheet_link_tag "imageBank", "imageBank.browse", "imageBank.artist", "imageBank.artistList", 
     "imageBank.slideshow", "imageBank.search", "imageBank.searchList", "imageBank.searchImages" %>
-  <%= javascript_include_tag "functions.core", "compiled/imagebank", "imageBank" %>
+  <%= coffee_script_include_tag "imagebank" %>
+  <%= javascript_include_tag "functions.core", "imageBank" %>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#IB_browser_frame').fadeIn();
       loadBrowse();
+      // ib.showBrowser()
+      $('#IB_browser_frame').fadeIn();
     });
   </script>
 

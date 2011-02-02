@@ -4,7 +4,8 @@
     %title Dreamcatcher
     = csrf_meta_tag
 
-    = stylesheet_link_tag 'basic', 'clearfix', 'compiled/shared', 'compiled/appearancePanel'
+    = sass_link_tag 'shared', 'appearancePanel'
+    = stylesheet_link_tag 'basic', 'clearfix'
     = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
     = javascript_include_tag 'jquery', 'rails', 'application', "jquery.hoverIntent.minified", "functions.core", "header"
