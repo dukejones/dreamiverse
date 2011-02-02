@@ -26,9 +26,20 @@ class DreamsController < ApplicationController
   def new
     @dream = Dream.new
   end
+  
+  def edit
+    @dream = Dream.find params[:id]
+    render :new
+  end
 
   def create
     new_dream = current_user.dreams.create!(params[:dream])
     redirect_to dream_path(new_dream)
+  end
+  
+  def destroy
+    @dream = Dream.find params[:id]
+    @dream.destroy
+    redirect_to :index
   end
 end

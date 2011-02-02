@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'newDream', "contextPanel", 'newEntry', 'dreamStream'
+  = stylesheet_link_tag 'compiled/newDream', "compiled/contextPanel", 'compiled/newEntry', 'compiled/dreamStream'
   = javascript_include_tag "dreams", "autoresize.jquery.min"
 
 / CONTEXT BAR
@@ -17,6 +17,7 @@
         %option{value: 'Dream'} Dream
         %option{value: 'Vision'} Vision
         %option{value: 'Experience'} Experience
+    
     = form_for @dream do |f|
       = f.text_field :title, :maxlength => '72', :class => 'font-21'
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
