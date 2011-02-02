@@ -1,3 +1,6 @@
+- content_for :foot do
+  = javascript_include_tag 'context_menu'
+  
 / CONTEXT PANEL
 #contextPanel.transparent-50.glow-40.round-16
 
@@ -40,7 +43,7 @@
     .detail.inner-shadow-10.round-12.flat-left #
     .clear-both
 
-  .friends.item.pointer
+  .friends.item
     .label.bevel.round-12.flat-right friends
     .image
       %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
