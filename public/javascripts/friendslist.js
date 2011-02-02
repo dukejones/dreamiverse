@@ -20,18 +20,20 @@ function setupFriendsElements(){
   }, function(){
     $(this).find('.statusHover').fadeOut('fast');
   })
+  
  // Click to expand node
- $('.user').click(function(){
-   if($(this).find('.expanded').css('display') == 'none'){
+ $('.user .backdrop, .user .userInfo').click(function(){
+   if($(this).parent().find('.expanded').css('display') == 'none'){
      // Expand user node
-     $(this).addClass('z-top');
-     $(this).find('.close').click(function(){
-       $(this).slideUp();
+     var oldZ = $(this).parent().css('z-index');
+     var newZ = Number(oldZ) + 1;
+     $(this).parent().css('z-index', newZ);
+     $(this).parent().find('.close').click(function(){
+       $(this).parent().slideUp();
      })
-     $(this).find('.expanded').slideDown();
+     $(this).parent().find('.expanded').slideDown();
    } else {
-     $(this).find('.expanded').slideUp();
-     $(this).removeClass('z-top');
+     $(this).parent().find('.expanded').slideUp(100);
    }
  })
  
