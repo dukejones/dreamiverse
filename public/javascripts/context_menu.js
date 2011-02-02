@@ -4,7 +4,9 @@ $(document).ready(function(){
 
 function initContextMenu(){
   // Setup friends expander
-  $('.friends').click(function(){
-    $(this).next().slideDown();
+  $('.friends').hover(function(){
+    $(this).find('.expander').slideDown();
+  }, function(){
+    $(this).find('.expander').slideUp();
   })
 }
