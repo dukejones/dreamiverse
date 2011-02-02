@@ -1,6 +1,7 @@
 - content_for :head do
-  = stylesheet_link_tag 'compiled/dreamThumbs', 'compiled/contextPanel', 'compiled/entryBar', 'compiled/tagStream', 'compiled/dreamStream', 'compiled/friendsList'
-  = javascript_include_tag 'compiled/modal', 'tagStream', 'friendslist'
+  = sass_link_tag 'dreamThumbs', 'contextPanel', 'entryBar', 'tagStream', 'dreamStream', 'friendsList'
+  = coffee_script_include_tag 'modal'
+  = javascript_include_tag 'tagStream', 'friendslist'
 
 
 / CONTEXT PANEL
