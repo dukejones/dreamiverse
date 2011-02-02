@@ -448,7 +448,6 @@ function geoError(error){
 }
 
 function geoSuccess(position) {
-  // Temp solution.
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
   getAddress(lat, lng);
@@ -457,16 +456,21 @@ function geoSuccess(position) {
   setupGeo();
 }
 
-function getAddress(lat, lng){
+function getAddress(_lat, _lng){
   // Get location data from google
-  var filePath = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + lat + ',' + lng + '&sensor=true'
+  var lat = parseFloat(_lat);
+  var lng = parseFloat(_lng);
+  var latlng = new google.maps.LatLng(lat, lng);
+  
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode( {'latLng': latlng }, function(data, status){
+    // Set geo data
+    $('#city input').val(data[0].address_components[2].long_name);
+    $('#state input').val(data[0].address_components[5].short_name);
+    $('#country input').val(data[0].address_components[6].long_name);
+  })
+}
 
-  $.ajax({
-    url: filePath,
-    dataType: 'json',
-    success: function(data, textStatus, jqXHR) {
-      alert(data)
-    }
-  });
-  alert('reverse geo sent')
+function parseme(results){
+  alert("results :: " + results);
 }
