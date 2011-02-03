@@ -7,7 +7,7 @@ class WordsController < ApplicationController
   def create
     params[:word][:dictionary_id] = params[:dictionary_id]
     word = Word.create!(params[:word])
-    redirect_to dictionary_words_path(word.dictionary)
+    redirect_to new_dictionary_word_path(@dict)
   end
   
   def update
@@ -22,6 +22,7 @@ class WordsController < ApplicationController
   
   def new
     @word = Word.new
+    @last_words = Word.order('id DESC').limit(30)
     render 'edit'
   end
   
