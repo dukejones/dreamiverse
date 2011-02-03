@@ -29,6 +29,17 @@ function setupMood(){
         $('#bodyClick').fadeOut().remove();
       })
       
+      // Setup icon select
+      $('.moodIcon-list li').click(function(){
+        var newPath = $(this).find('img').attr('src');
+        $('.currentIcon img').attr('src', newPath);
+        $('.moodIcon img').attr('src', newPath);
+        
+        // Hide Settings
+        $('.moodIcon-picker').fadeOut();
+        $('#bodyClick').fadeOut().remove();
+      })
+      
       // Setup close button
       $('.currentIcon').unbind();
       $('.currentIcon').click(function(){

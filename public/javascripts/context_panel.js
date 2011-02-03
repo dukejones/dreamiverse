@@ -17,4 +17,7 @@ function initContextMenu(){
       friendsExpanded = false;
     });
   })
+  .click(function(){
+    window.locaiton = '/friends'
+  })
 }
