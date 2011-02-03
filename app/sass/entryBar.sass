@@ -3,6 +3,20 @@
   #entryBar
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.5)), to(rgba(0,0,0,0.5)))
     background: -moz-linear-gradient(top, rgba(255,255,255,0.5), rgba(0,0,0,0.5))
+.light
+  #entryBar
+    .entry.selected, .tag.selected, .quote.selected, .book.selected
+      background: #2e2e2e
+      background: -webkit-gradient(linear, left top, left bottom, from(#2e2e2e), to(#515151))
+      background: -moz-linear-gradient(top, #2e2e2e, #515151)
+      color: #dadada
+.dark
+  #entryBar
+    .entry.selected, .tag.selected, .quote.selected, .book.selected
+      background: #2e2e2e
+      background: -webkit-gradient(linear, left top, left bottom, from(#2e2e2e), to(#515151))
+      background: -moz-linear-gradient(top, #2e2e2e, #515151)
+      color: #000
 
 #entryBar
   width: 664px
@@ -22,6 +36,7 @@
     border-radius: 16px
     -moz-border-radius: 16px
     -webkit-border-radius: 16px
+    
   a.entry
     font-weight: bold
     color: #444
