@@ -1,99 +1,169 @@
-.tagStream
-  width: 656px
+#tagStream
+  width: 672px
+  height: 100px
+  z-index: 333
   margin: 0 0 12px 0
-  padding: 12px
-  background: rgba(0,0,0,0.5)
-  .stream
-    position: relative
-    background: #000
-    height: 100px
-    z-index: 333
-    .moodIcon, .moodIcon-picker, .currentIcon
-      float: right
+  padding: 6px
+  background: rgba(0,0,0,0.8)
+  position: relative
+
+  .moodIcon, .moodIcon-picker, .currentIcon
+    float: right
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+    z-index: 800
+  .currentIcon, .moodIcon
+    width: 64px
+    height: 50px
+    padding: 7px 0
+    background: #fff
+    text-align: center
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+    background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+  .moodIcon
+    margin: 17px 17px 0 0
+  .moodIcon-picker
+    position: absolute
+    top: 5px
+    left: 321px
+    padding: 12px
+    height: auto
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+    background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+    #buttons
+      float: left
+      margin: 12px 0 0 4px
+      width: 58px
+    .cancel, .clear, .currentMood
+      color: #000
+      text-align: center
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      border: 1px solid #959595 /* 50% Black */
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+      background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+    .cancel, .clear
+      margin: 0 0 4px
+      padding: 0 4px
+      width: 48px
+      height: 14px
+      line-height: 14px
+      font-size: 11px
+      cursor: pointer
+    .currentMood
+      float: left
+      margin: 12px 0 0 24px
+      padding: 0 8px
+      width: 112px
+      height: 36px
+      line-height: 36px
+      font-size: 16px
+      font-weight: bold
+      text-transform: uppercase
       border-radius: 16px
       -moz-border-radius: 16px
       -webkit-border-radius: 16px
-      z-index: 800
-    .currentIcon, .moodIcon
-      width: 64px
-      height: 50px
-      padding: 7px 0
-      background: #fff
-      text-align: center
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
-      background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
-    .moodIcon
-      margin: 17px 17px 0 0
-    .moodIcon-picker
-      position: absolute
-      top: 5px
-      left: 321px
-      padding: 12px
-      height: auto
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
-      background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
-      #buttons
+    .currentIcon
+      margin: 0 0 10px
+      box-shadow: 0 0 12px #000
+      -moz-box-shadow: 0 0 12px #000
+      -webkit-box-shadow: 0 0 12px #000
+    .moodIcon-list
+      clear: both
+      list-style: none
+      margin: 0
+      padding: 0
+      width: 306px
+      li
         float: left
-        margin: 12px 0 0 4px
-        width: 58px
-      .cancel, .clear, .currentMood
-        color: #000
+        margin: 0 4px 4px 0
+        padding: 10px 0
+        width: 90px
+        height: 70px
         text-align: center
-        border-radius: 8px
-        -moz-border-radius: 8px
-        -webkit-border-radius: 8px
-        border: 1px solid #959595 /* 50% Black */
-        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
-        background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
-      .cancel, .clear
-        margin: 0 0 4px
-        padding: 0 4px
-        width: 48px
-        height: 14px
-        line-height: 14px
-        font-size: 11px
         cursor: pointer
-      .currentMood
-        float: left
-        margin: 12px 0 0 24px
-        padding: 0 8px
-        width: 112px
-        height: 36px
-        line-height: 36px
-        font-size: 16px
-        font-weight: bold
-        text-transform: uppercase
+        border: 1px solid #959595 /* 50% Black */
         border-radius: 16px
         -moz-border-radius: 16px
         -webkit-border-radius: 16px
-      .currentIcon
-        margin: 0 0 10px
-        box-shadow: 0 0 12px #000
-        -moz-box-shadow: 0 0 12px #000
-        -webkit-box-shadow: 0 0 12px #000
-      .moodIcon-list
-        clear: both
-        list-style: none
-        margin: 0
-        padding: 0
-        width: 306px
-        li
-          float: left
-          margin: 5px
-          padding: 10px 0
-          width: 90px
-          height: 70px
-          text-align: center
-          cursor: pointer
-          border: 1px solid #959595 /* 50% Black */
-          border-radius: 16px
-          -moz-border-radius: 16px
-          -webkit-border-radius: 16px
-          background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
-          background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
-          p
-            margin: 0
-            color: #959595 /* 50% Black */
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+        background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+        p
+          margin: 0
+          color: #959595 /* 50% Black */
+
+
+  // LIVE TAG STREAM
+  #tagsLive
+    position: relative
+    overflow: hidden
+    height: 100px
+    margin: 0
+    padding: 0
+
+    // GENERAL TAG STYLES
+    .stream_tag:hover
+      border: 1px solid #fff
+    .stream_tag
+      height: 24px
+      margin: 10px 10px 0
+      padding: 0
+      cursor: pointer
+      float: left
+      border: 1px solid transparent
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      span
+        padding: 4px
+        float: left
+        font-size: 12px
+        font-weight: bold
+      .count
+        background-color: #a63700
+        color: #fff
+        font-size: 9px
+        display: inline-block
+        float: left
+        top: -4px
+        padding: 1px 4px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
+
+    // WHAT TAG STYLES
+    .tagWhat
+
+    // WHERE TAG STYLES
+    .tagWhere
+
+    // WHO TAG STYLES
+    .tagWho
+      box-shadow: inset 0px 15px 10px #404040
+      -moz-box-shadow: inset 0px 15px 10px #404040
+      -webkit-box-shadow: inset 0px 15px 10px #404040
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      .avatar
+        width: 24px
+        height: 24px
+        overflow: hidden
+        float: left
+        background: url(/images/avatars/xavitar.jpg) no-repeat
+        border-radius-topleft: 8px
+        -moz-border-radius-topleft: 8px
+        -webkit-border-radius-topleft: 8px
+        border-radius-bottomleft: 8px
+        -moz-border-radius-bottomleft: 8px
+        -webkit-border-radius-bottomleft: 8px
+      span
+        float: right
+        margin: 0 8px
+
+
 
 .tagChat
   padding: 4px
@@ -169,74 +239,3 @@
         height: 24px
         border: 0
         background: transparent
-
-// TAG STREAM
-.stream
-
-  // LIVE TAG STREAM
-  #tagsLive
-    position: relative
-    overflow: hidden
-    height: 100px
-    margin: 0
-    padding: 0
-
-    // GENERAL TAG STYLES
-    .stream_tag:hover
-      border: 1px solid #fff
-    .stream_tag
-      height: 24px
-      margin: 10px 10px 0
-      padding: 0
-      cursor: pointer
-      float: left
-      border: 1px solid transparent
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-      span
-        padding: 4px
-        float: left
-        font-size: 12px
-        font-weight: bold
-      .count
-        background-color: #a63700
-        color: #fff
-        font-size: 9px
-        display: inline-block
-        float: left
-        top: -4px
-        padding: 1px 4px
-        border-radius: 8px
-        -moz-border-radius: 8px
-        -webkit-border-radius: 8px
-
-    // WHAT TAG STYLES
-    .tagWhat
-
-    // WHERE TAG STYLES
-    .tagWhere
-
-    // WHO TAG STYLES
-    .tagWho
-      box-shadow: inset 0px 15px 10px #404040
-      -moz-box-shadow: inset 0px 15px 10px #404040
-      -webkit-box-shadow: inset 0px 15px 10px #404040
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-      .avatar
-        width: 24px
-        height: 24px
-        overflow: hidden
-        float: left
-        background: url(/images/avatars/xavitar.jpg) no-repeat
-        border-radius-topleft: 8px
-        -moz-border-radius-topleft: 8px
-        -webkit-border-radius-topleft: 8px
-        border-radius-bottomleft: 8px
-        -moz-border-radius-bottomleft: 8px
-        -webkit-border-radius-bottomleft: 8px
-      span
-        float: right
-        margin: 0 8px
