@@ -28,6 +28,7 @@ class WordsController < ApplicationController
   
   def edit
     @word = Word.find params[:id]
+    @last_words = []
   rescue
     redirect_to new_word_path
   end

@@ -15,5 +15,5 @@
 
   .transparent-50.round-16.padding-8{style: 'margin-top: 8px'}
     %ul{style: 'list-style-type: none; margin-left: -32px'}
-      - @last_words.each do |word|
+      - @last_words._?.each do |word|
         = render(partial: 'word', object: word)
