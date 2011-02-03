@@ -49,9 +49,11 @@ function setupTagStream(){
   // expand tag entry field
   $('#entryBar .quote').click(function(){
     if($('#quoteEntry').css('display') == 'none'){
+      $(this).addClass('selected');
       closeEntryPanels();
       $('#quoteEntry').slideDown();
     } else {
+      $(this).removeClass('selected');
       $('#quoteEntry').slideUp();
     }
   })
@@ -59,9 +61,11 @@ function setupTagStream(){
   // expand tag entry field
   $('#entryBar .tag').click(function(){
     if($('#tagEntry').css('display') == 'none'){
+      $(this).addClass('selected');
       closeEntryPanels();
       $('#tagEntry').slideDown();
     } else {
+      $(this).removeClass('selected');
       $('#tagEntry').slideUp();
     }
   })
@@ -168,6 +172,9 @@ function setInputType(type){
       $('.add').click(function(){
         if($('#tagInput').val() != 'What were they doing?'){
           createNewTag();
+          
+          // Hide tagStream and reset toggle button
+          $('#entryBar .tag').removeClass('selected');
           $('#tagEntry').slideUp('slow');
         }
       })
