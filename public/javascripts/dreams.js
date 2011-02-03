@@ -28,10 +28,12 @@ var geoFetching = false;
 
 function setupGeo(){
   // Location content expander
+  $('#newLocation').unbind();
   $('#newLocation').click(function(){
     if($('#locationExpand').css('display') == 'none'){
       $('#locationExpand').slideDown();
       if(!geoFetching) {
+        geoFetching = true;
         getGeo();
       }
     } else {

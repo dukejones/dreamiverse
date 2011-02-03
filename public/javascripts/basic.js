@@ -1,12 +1,22 @@
 // JavaScript Document
 
 // HEADER INIT CODE basic/templates/header.html init code
-/*
-window.onload = function() { // run the setFontSizeButton function after html has loaded
-  
-  setFontSizeButton(); 
-}
-*/
+$(document).ready(function(){
+  // setupInput Clearer
+  $('.inputFunctions').focus(function(){
+    if($(this).val() == $(this).attr('title')){
+      $(this).attr('title')= $(this).val();
+      $(this).val('');
+    }
+  });
+
+  // Tag input put text back on blur if empty
+  $('.inputFunctions').blur(function(){
+    if($(this).val() == ""){
+      $(this).val($(this).attr('title'));
+    }
+  });
+})
 
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
   eval(targ+".location=\'"+selObj.options[selObj.selectedIndex].value+"\'"); 
