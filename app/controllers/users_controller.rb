@@ -15,5 +15,6 @@ class UsersController < ApplicationController
 
   def friends
     @users = User.all
+    # params[:mode] is either friends, followed, or following.
   end
 end

@@ -1,38 +1,49 @@
+class UsernameConstraint
+  def initialize
+    @usernames = User.select('username').all.map(&:username)
+  end
+  
+  def matches?(request)
+    request.url
+  end
+end
+
 Dreamcatcher::Application.routes.draw do
   # Authorization Routes
   namespace "user" do
     resource :session
     resource :registration
   end
-  match '/login' => 'user/sessions#create', :as => :login
-  match '/logout' => 'user/sessions#destroy', :as => :logout
+  match 'login' => 'user/sessions#create', :as => :login
+  match 'logout' => 'user/sessions#destroy', :as => :logout
 
-  match '/auth/:provider/callback', :to => 'user/authentications#create'
+  match 'auth/:provider/callback', :to => 'user/authentications#create'
 
+  match 'dreamstars' => 'users#index', :as => :dreamstars
+  match 'friends' => 'users#friends', :as => :friends
+  match 'stream' => 'dreams#stream', :as => :stream
   # Resources
   resource :user
-  match '/dreamstars' => 'users#index', :as => :dreamstars
-  match '/friends' => 'users#friends', :as => :friends
-  match '/stream' => 'dreams#stream', :as => :stream
   resources :dreams
-
   resources :images do
     get 'manage', :on => :collection
   end
   resources :artists # actually only index...
   resources :albums # actually only index...
-
   resources :dictionaries do
     resources :words
   end
+  
   # Pretty URLs
-  # match '/#:tag', :to => 'tags#show'
-  match '/:username', :to => 'dreams#index'
+  # match '#:tag', :to => 'tags#show'
+  # username_constraint = UsernameConstraint.new
+  match ':username', :to => 'dreams#index' #, :constraint => username_constraint
+  match ':username/:mode', :to => 'users#friends', :constraints => {mode: /friends|following|followed/}
 
   # Image auto-resizing
-  match '/images/uploads/:id-:size.:format', to: 'images#resize'
+  match 'images/uploads/:id-:size.:format', to: 'images#resize'
 
-  match '/parse/title', to: 'home#parse_url_title'
+  match 'parse/title', to: 'home#parse_url_title'
 
   root :to => "home#index"
 
