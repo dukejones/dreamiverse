@@ -28,4 +28,11 @@ function initContextMenu(){
   $('.item .followers').click(function(){
     window.locaiton = '/followers';
   });
+  
+  $('#contextPanel #image').bind('mouseenter', function (e) {
+    $('#uploadAvatarWrap').fadeIn();
+  })
+  .bind('mouseleave', function (e) {
+    $('#uploadAvatarWrap').fadeOut();
+  })
 }
