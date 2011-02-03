@@ -185,11 +185,14 @@ function setInputType(type){
       break;
     
     case "info":
+      autoCompleteExpanded = false;
+      
       $('#tagInput').val('What were they doing?');
       $('#tagInput').css('width', '300px');
       $('#tagInput').css('color', '#ccc');
       $('#tagInput').css('margin', '4px 0 4px 190px');
       
+      $('#tagInput').unbind();
       $('#tagInput').focus(function(){
         if($(this).val() == 'What were they doing?'){
           $(this).val('');
@@ -197,6 +200,7 @@ function setInputType(type){
         }
       })
       
+      $('.add').unbind();
       $('.add').click(function(){
         if($('#tagInput').val() != 'What were they doing?'){
           createNewTag();
@@ -228,7 +232,7 @@ function createNewTag(){
   var newElement = {"type": "tag", "value": $('#tagInput').val()};
   
   tagsObj.pop()
-  tagsObj.push(newElement);
+  tagsObj.unshift(newElement);
   
   buildTags();
 }
@@ -253,6 +257,6 @@ function buildTags(){
     
     setInputType('tag');
     
-    $('#tagsLive').prepend(newElement);
+    $('#tagsLive').append(newElement);
   }
 }
