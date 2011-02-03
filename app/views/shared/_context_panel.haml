@@ -5,13 +5,13 @@
 #contextPanel.transparent-50.glow-40.round-16
 
   / IMAGE
-  %a#image.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+  %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
     #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
       #uploadAvatar.round-8
         <span>+</span> upload new avatar
 
   / LABEL
-  %a#label.shine.button.round-12{href: '/'}
+  %a.context.shine.button.round-12{href: '/'}
     = user.username
     / if friend or follower
     - if true 
@@ -27,7 +27,7 @@
 
   - if user == current_user
     .find.button.bevel.round-12.padding-4-8
-      Dreams about me &rsaquo;
+      Who's dreaming about me &rsaquo;
 
   / CONTEXT ITEMS
   .item

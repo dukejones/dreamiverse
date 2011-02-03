@@ -29,7 +29,7 @@ function initContextMenu(){
     window.locaiton = '/followers';
   });
   
-  $('#contextPanel #image').bind('mouseenter', function (e) {
+  $('#contextPanel .avatar').bind('mouseenter', function (e) {
     $('#uploadAvatarWrap').fadeIn();
   })
   .bind('mouseleave', function (e) {
