@@ -3,11 +3,28 @@ var autoCompleteExpanded = false;
 var textTyped = false;
 var locationExpanded = false;
 var sharingExpanded = false;
+var tagExpanding = false;
 
 $(document).ready(function() {
   setupTagStream();
+  setupTagNodes();
   setupMood();
 })
+
+function setupTagNodes(){
+  $('.stream_tag span').click(function(){
+    if(!tagExpanding && $(this).parent().find('.tagChat').css('display') == 'none'){
+      tagExpanding = true;
+      
+      $('.tagChat').slideUp();
+      $(this).parent().find('.tagChat').slideDown(300, function(){
+        tagExpanding = false;
+      });
+    } else if($(this).parent().find('.tagChat').css('display') != 'none'){
+      $(this).parent().find('.tagChat').slideUp();
+    }
+  });
+}
 
 function setupMood(){
   $('.moodIcon').unbind();
