@@ -22,7 +22,7 @@ class WordsController < ApplicationController
   
   def new
     @word = Word.new
-    @last_words = Word.order('id DESC').limit(30)
+    @last_words = @dict.words.order('id DESC').limit(30)
     render 'edit'
   end
   
