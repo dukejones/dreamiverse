@@ -18,6 +18,14 @@ function initContextMenu(){
     });
   })
   .click(function(){
-    window.locaiton = '/friends'
-  })
+    window.locaiton = '/friends';
+  });
+  
+  $('.item .following').click(function(){
+    window.locaiton = '/following';
+  });
+  
+  $('.item .followers').click(function(){
+    window.locaiton = '/followers';
+  });
 }

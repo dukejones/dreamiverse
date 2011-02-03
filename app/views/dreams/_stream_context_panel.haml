@@ -1,5 +1,5 @@
 - content_for :foot do
-  = javascript_include_tag 'context_menu'
+  = javascript_include_tag 'context_menu', 'stream_context_panel'
   
 / CONTEXT PANEL
 #contextPanel.transparent-50.glow-40.round-16
@@ -28,25 +28,26 @@
       / FILTER BY NETWORKS
       #networksFilter.filterType.round-12
         %label.type
-          %img{src: '/images/icons/arrow-down-16.png'} 
+          %img{src: '/images/icons/arrow-right-16.png'} 
           %span Network:
           %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/facebook-16.png'} 
-          %span Facebook
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/twitter-16.png'} 
-          %span Twitter
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Friends
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Dreamcatcher
-          %input{type: 'checkbox'}
+        .expander.hidden
+          %label
+            %img{src: '/images/icons/facebook-16.png'} 
+            %span Facebook
+            %input{type: 'checkbox'}
+          %label
+            %img{src: '/images/icons/twitter-16.png'} 
+            %span Twitter
+            %input{type: 'checkbox'}
+          %label
+            %img{src: '/images/icons/iconDc.gif'} 
+            %span Friends
+            %input{type: 'checkbox'}
+          %label
+            %img{src: '/images/icons/iconDc.gif'} 
+            %span Dreamcatcher
+            %input{type: 'checkbox'}
 
       / FILTER BY WHO'S DREAMING ABOUUT ME
       #whoFilter.filterType.round-12
@@ -64,15 +65,16 @@
       / FILTER BY TAGS
       #tagFilter.filterType.round-12
         %label.type
-          %img{src: '/images/icons/arrow-down-16.png'} 
+          %img{src: '/images/icons/arrow-right-16.png'} 
           %span Tags:
           %input{type: 'checkbox'}
-        %label
-          %span dolphins
-          %input{type: 'checkbox'}
-        %label
-          %span victory
-          %input{type: 'checkbox'}
+        .expander.hidden
+          %label
+            %span dolphins
+            %input{type: 'checkbox'}
+          %label
+            %span victory
+            %input{type: 'checkbox'}
 
       / FILTER BY CHANNELS
       #channelsFilter.filterType.round-12
@@ -84,20 +86,21 @@
       / FILTER BY CATEGORY
       #categoryFilter.filterType.round-12
         %label.type
-          %img{src: '/images/icons/arrow-down-16.png'} 
+          %img{src: '/images/icons/arrow-right-16.png'} 
           %span Category:
           %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Dreams
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Vision
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Experience
-          %input{type: 'checkbox'}
+        .expander.hidden
+          %label
+            %img{src: '/images/icons/'} 
+            %span Dreams
+            %input{type: 'checkbox'}
+          %label
+            %img{src: '/images/icons/'} 
+            %span Vision
+            %input{type: 'checkbox'}
+          %label
+            %img{src: '/images/icons/'} 
+            %span Experience
+            %input{type: 'checkbox'}
 
       .refresh.dark.round-12 Refresh
