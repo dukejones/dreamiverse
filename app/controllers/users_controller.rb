@@ -12,4 +12,8 @@ class UsersController < ApplicationController
 
     @users = User.all
   end
+
+  def friends
+    @users = User.all
+  end
 end
