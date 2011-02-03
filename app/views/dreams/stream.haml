@@ -5,7 +5,7 @@
 
 
 / CONTEXT PANEL
-= render :partial => "shared/context_panel", :locals => {:user => @user}
+= render :partial => "stream_context_panel", :locals => {:user => @user}
 
 / DREAM FIELD
 #dreamField
@@ -20,11 +20,11 @@
   .matrix
 
     / DREAM THUMBS
-    - @dreams.each do |dream|
-      = render :partial => 'dream_thumb', :locals => {:dream => dream}
+    /- @dreams.each do |dream|
+    /  = render :partial => 'dream_thumb', :locals => {:dream => dream}
 
     / DREAM THUMBS 1D
-    /= render :partial => 'dream_thumb_1d'
+    = render :partial => 'dream_thumb_1d'
 
     / NO DREAMS TO DISPLAY
     - if @dreams.empty?
