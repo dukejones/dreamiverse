@@ -22,23 +22,25 @@
   .filterType
     clear: both
     margin: 0 0 6px
-    padding: 0 10px
-    border: 2px solid #bdbdbd
-    background: #e8e8e8
-    label
-      height: 30px
-      line-height: 30px
-      display: block
-      font-weight: normal
-      img, span
-        float: left
-      img
-        margin: 8px 4px 0 0
-      input
-        float: right
-        margin: 10px 0 0
-    label.type
+    cursor: pointer
+    .type
       font-weight: bold
+      padding: 4px 8px
+    .expander
+      padding: 0px 8px 4px
+      label
+        height: 30px
+        line-height: 30px
+        display: block
+        font-weight: normal
+        img, span
+          float: left
+        img
+          margin: 8px 4px 0 0
+        input
+          float: right
+          margin: 10px 0 0
+
 
 
   .refresh
@@ -47,3 +49,21 @@
     font-weight: bold
     text-align: center
     margin-bottom: 4px
+
+
+
+.light
+  .streamFilter
+    .filterType
+      clear: both
+      margin: 0 0 6px
+      border: 2px solid #bdbdbd
+      background: #e8e8e8
+
+.dark
+  .streamFilter
+    .filterType
+      clear: both
+      margin: 0 0 6px
+      border: 2px solid #bdbdbd
+      background: #e8e8e8

@@ -4,11 +4,15 @@
 / CONTEXT PANEL
 #contextPanel.transparent-50.glow-40.round-16
 
-  / IMAGE
-  %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+  / DETAILS
+  %a.avatar-64.button.round-8{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
+  %a.userInfo{href: '/'}
+    %h3 username
+    %p Oakland, CA
+
 
   / LABEL
-  %a.context.shine.button.round-12{href: '/stream'}
+  %a.context.shine.round-12{href: '/stream'}
     DreamStream
 
   .find.button.bevel.round-12.padding-4-8
@@ -20,8 +24,16 @@
     .filterType.round-12
       .type
         %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Network
+        %span Friends
       .expander.hidden
+        %label
+          %img{src: '/images/icons/iconDc.gif'} 
+          %span Following
+          %input{type: 'checkbox'}
+        %label
+          %img{src: '/images/icons/iconDc.gif'} 
+          %span Dreamcatcher
+          %input{type: 'checkbox'}
         %label
           %img{src: '/images/icons/facebook-16.png'} 
           %span Facebook
@@ -29,14 +41,6 @@
         %label
           %img{src: '/images/icons/twitter-16.png'} 
           %span Twitter
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Friends
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Dreamcatcher
           %input{type: 'checkbox'}
 
 
