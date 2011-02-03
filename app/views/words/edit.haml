@@ -1,3 +1,4 @@
+
 %br
 %br
 %br
@@ -5,7 +6,7 @@
   .transparent-50.round-16.padding-8
 
     %h1.bevel.round-12.padding-8.align-center{style: 'margin: 0 0 8px'}
-      Edit word
+      = @word.new_record? ? "New Word" : "Edit word"
       %a.shine.font-21.button.padding-4-8.block.cancel.align-center.float-left.round-12{href:  dictionary_words_path(@dict), style: 'margin-right: -80px'}
         &lsaquo; cancel
 

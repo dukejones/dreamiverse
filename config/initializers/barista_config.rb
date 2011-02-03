@@ -5,7 +5,8 @@ Barista.configure do |c|
   c.root = Rails.root.join("app", "coffee")
   
   c.output_root = Rails.root.join("public", "javascripts", "compiled")
-  
+
+  c.embedded_interpreter = false
   # Set the compiler
   
   # Disable wrapping in a closure:
