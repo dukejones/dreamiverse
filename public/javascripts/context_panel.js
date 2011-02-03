@@ -18,6 +18,21 @@ function initContextMenu(){
     });
   })
   .click(function(){
-    window.locaiton = '/friends'
+    window.locaiton = '/friends';
+  });
+  
+  $('.item .following').click(function(){
+    window.locaiton = '/following';
+  });
+  
+  $('.item .followers').click(function(){
+    window.locaiton = '/followers';
+  });
+  
+  $('#contextPanel #image').bind('mouseenter', function (e) {
+    $('#uploadAvatarWrap').fadeIn();
+  })
+  .bind('mouseleave', function (e) {
+    $('#uploadAvatarWrap').fadeOut();
   })
 }

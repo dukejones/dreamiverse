@@ -5,7 +5,7 @@
 #contextPanel.transparent-50.glow-40.round-16
 
   / IMAGE
-  %a#image.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left", onMouseOver: "$('#uploadAvatarWrap').removeClass('hidden')", onMouseOut: "$('#uploadAvatarWrap').addClass('hidden')"}
+  %a#image.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
     #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
       #uploadAvatar.round-8
         <span>+</span> upload new avatar
@@ -51,13 +51,13 @@
       .detail.inner-shadow-10.round-12.flat-left #
       .clear-both
     .expander.hidden
-      .item
+      .item.following
         .label.bevel.round-12.flat-right following
         .image
           %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
         .detail.inner-shadow-10.round-12.flat-left #
         .clear-both
-      .item
+      .item.followers
         .label.bevel.round-12.flat-right followers
         .image
           %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
