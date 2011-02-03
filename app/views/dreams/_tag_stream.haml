@@ -1,32 +1,5 @@
 #tagStream.round-16
 
-  // EXPANDED CONVO STATE
-  .tagChat.light.flat.round-12.glow-40.hidden
-    %img.arrow{src: '/images/icons/uparrow-white.png'}
-    .description.inner-shadow-10.A-outline.round-8 Swimming with a pod of dolphins.
-    .postInfo
-      %img.avatar{src: '/images/avatars/xavitar.jpg'}
-      .name phong
-      .time 1 second ago
-      %img.shared{src: '/images/icons/facebook-16.png'}
-      .clear-both
-    .chat.round-8.inner-shadow-10
-      .userComment
-        %img.avatar{src: '/images/avatars/xavitar.jpg'}
-        .name phong
-        .comment this is a comment
-      .userComment
-        %img.avatar{src: '/images/avatars/xavitar.jpg'}
-        .name phong
-        .comment yes i see, very well
-      .userComment
-        %img.avatar{src: '/images/avatars/xavitar.jpg'}
-        .name phong
-        .comment ahh, you do, how about now?
-      .input.light.A-outline.round-4
-        %input{value: 'comment'}
-        %img{src: '/images/icons/comments-16.png'}
-
 
   // MOOD ICON
   .moodIcon.button
@@ -76,6 +49,34 @@
     / WHAT TAG
     .stream_tag.tagWhat{style: 'color: rgb(107, 185, 255)',}
       %span collectivation
+
+      // EXPANDED CONVO STATE
+      .tagChat.light.flat.round-12.glow-40.hidden
+        %img.arrow{src: '/images/icons/uparrow-white.png'}
+        .description.inner-shadow-10.A-outline.round-8 Swimming with a pod of dolphins.
+        .postInfo
+          %img.avatar{src: '/images/avatars/xavitar.jpg'}
+          .name phong
+          .time 1 second ago
+          %img.shared{src: '/images/icons/facebook-16.png'}
+          .clear-both
+        .chat.round-8.inner-shadow-10
+          .userComment
+            %img.avatar{src: '/images/avatars/xavitar.jpg'}
+            .name phong
+            .comment this is a comment
+          .userComment
+            %img.avatar{src: '/images/avatars/xavitar.jpg'}
+            .name phong
+            .comment yes i see, very well
+          .userComment
+            %img.avatar{src: '/images/avatars/xavitar.jpg'}
+            .name phong
+            .comment ahh, you do, how about now?
+          .input.light.A-outline.round-4
+            %input{value: 'comment'}
+            %img{src: '/images/icons/comments-16.png'}
+
 
     / WHERE TAG + COUNT
     .stream_tag.tagWhere{style: 'color: rgb(159, 243, 255)'}
