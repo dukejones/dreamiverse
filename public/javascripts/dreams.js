@@ -264,11 +264,11 @@ function setupEvents(){
     $('#newDream-dateTime').slideUp();
   })
   
-  $('#entryOptions .location').unbind();
-  $('#entryOptions .location').toggle(function(){
-    $('#newDream-location').slideDown();
+  $('#dreamField .addLocation').unbind();
+  $('#dreamField .addLocation').toggle(function(){
+    $('#locationPanel').slideDown();
   }, function(){
-    $('#newDream-location').slideUp();
+    $('#locationPanel').slideUp();
   })
   
   // Listen for paste in DREAM field
