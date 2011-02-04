@@ -8,9 +8,11 @@
   .avatar.button.round-4
 
   .userInfo
-    %h3 Duke
+    %h3= friend.name
     %p Oakland, CA
-    %p.mutual 90 mutual followers
+    %p.mutual 
+      = (current_user.followers & friend.followers).count
+      mutual followers
 
   .backdrop.bevel.round-8
 
