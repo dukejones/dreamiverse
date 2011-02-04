@@ -4,7 +4,7 @@ $(document).ready(function(){
 
 function setupFriendsElements(){
   // Hover to display status
-  $('.user').hover(function(){
+  $('.userNode').hover(function(){
     $(this).find('.statusHover').fadeIn('fast');
     
     $(this).find('.statusHover').unbind();
@@ -22,7 +22,7 @@ function setupFriendsElements(){
   })
   
  // Click to expand node
- $('.user .backdrop, .user .userInfo').click(function(){
+ $('.userNode .backdrop, .userNode .userInfo').click(function(){
    if($(this).parent().find('.expanded').css('display') == 'none'){
      // Expand user node
      var oldZ = $(this).parent().css('z-index');

@@ -16,263 +16,258 @@
 
 
 
+#dreamField
+  .matrix
 
-.matrix
-  /******** 2D DREAM THUMBS ********/
-  /* HOVER */
-  .dream_thumb.hover
-    z-index: 81
-    .fadedBack
-      .detailsTop, .detailsBottom, .title
-        display: block
-        z-index: 84
-  /* */
-  .dream_thumb
-    cursor: pointer
-    margin: 0 12px 12px 0
-    overflow: hidden
-    float: left
-    border: 0
-    position: relative
-    z-index: 80
-    .fadedBack
-      width: 220px
-      height: 300px
-      .link
-        display: block
-        border: 0 none
-        position: absolute
-        z-index: 82
+
+    /******** 2D DREAM THUMBS ********/
+    /* HOVER */
+    .dream_thumb.hover
+      z-index: 81
+      .fadedBack
+        .detailsTop, .detailsBottom, .title
+          display: block
+          z-index: 84
+    /* */
+    .dream_thumb
+      cursor: pointer
+      margin: 0 12px 12px 0
+      overflow: hidden
+      float: left
+      border: 0
+      position: relative
+      z-index: 80
+      .fadedBack
         width: 220px
         height: 300px
-      .watermark
-        position: absolute
-        width: 220px
-        height: 128px
-        font-size: 45px
-        line-height: 30px
-        text-align: center
-        overflow: hidden
-        top: 38px
-      .detailsTop, .detailsBottom, .title
-        position: absolute
-        display: none
-      .detailsTop
-        width: 220px
-        z-index: 100
-        .date
-          max-width: 60px
+        .link
+          display: block
+          border: 0 none
+          position: absolute
+          z-index: 82
+          width: 220px
+          height: 300px
+        .watermark
+          position: absolute
+          width: 220px
+          height: 128px
+          font-size: 45px
+          line-height: 30px
+          text-align: center
           overflow: hidden
-          white-space: nowrap
-      .detailsBottom
-        bottom: 0
-        width: 100%
-      .date, .location, .comments, .sharing
-        color: #fff
-        margin: 4px
-        font-size: 11px
-        padding: 4px 8px
-        text-align: center
-        background: rgba(0,0,0,0.50)
-      .comments img
-        margin: 0 2px -5px 0
-      .sharing img
-        margin: -1px 0 -4px 2px
-      .title
-        width: 97%
-        top: 90px
-        font-size: 21px
-        text-align: center
-      .tags
-        z-index: 20
-        position: absolute
-        bottom: 6px
-        padding: 0 16px
-
-
-
-
-
-
-/* 1D DREAM THUMBS */
-.dreamThumbs_1d
-  height: auto
-
-  .thumb:hover
-    box-shadow: 0px 0px 40px #000
-    -moz-box-shadow: 0px 0px 40px #000
-    -webkit-box-shadow: 0px 0px 40px #000
-  .thumb
-    clear: both
-    margin: 20px 0 0
-    width: 680px
-    overflow: hidden
-    cursor: pointer
-    .left
-      .details
-        position: absolute
-        .date, .location
-          float: left
-          padding: 4px 8px
+          top: 38px
+        .detailsTop, .detailsBottom, .title
+          position: absolute
+          display: none
+        .detailsTop
+          width: 220px
+          z-index: 100
+          .date
+            max-width: 60px
+            overflow: hidden
+            white-space: nowrap
+        .detailsBottom
+          bottom: 0
+          width: 100%
+        .date, .location, .comments, .sharing
+          color: #fff
           margin: 4px
           font-size: 11px
+          padding: 4px 8px
           text-align: center
-          border-radius: 12px
-          -moz-border-radius: 12px
-          -webkit-border-radius: 12px
-  .thumbAll, .thumbNoImage
-    height: 90px
-  .thumbTag, .thumbNewImages
-    height: 62px
-    border-radius: 16px
-    -moz-border-radius: 16px
-    -webkit-border-radius: 16px
-  .thumbTag
-    padding: 15px 0
-    height: 32px
-    line-height: 32px
-    .user
-      margin: 0 8px
-    .tagText
-      float: left
-      margin: 0 0 0 12px
-      font-size: 18px
-  .thumbNoImage
+          background: rgba(0,0,0,0.50)
+        .comments img
+          margin: 0 2px -5px 0
+        .sharing img
+          margin: -1px 0 -4px 2px
+        .title
+          width: 97%
+          top: 90px
+          font-size: 21px
+          text-align: center
+        .tags
+          z-index: 20
+          position: absolute
+          bottom: 6px
+          padding: 0 16px
+
+
+
+
+
+
+    /******** 1D DREAM THUMBS *******/
+    .thumb:hover
+      box-shadow: 0px 0px 40px #000
+      -moz-box-shadow: 0px 0px 40px #000
+      -webkit-box-shadow: 0px 0px 40px #000
+    .thumb
+      clear: both
+      margin: 20px 0 0
+      width: 680px
+      overflow: hidden
+      cursor: pointer
+      .left
+        .details
+          position: absolute
+          .date, .location
+            float: left
+            padding: 4px 8px
+            margin: 4px
+            font-size: 11px
+            text-align: center
+            border-radius: 12px
+            -moz-border-radius: 12px
+            -webkit-border-radius: 12px
+    .thumbAll, .thumbNoImage
+      height: 90px
+    .thumbTag, .thumbNewImages
+      height: 62px
+      border-radius: 16px
+      -moz-border-radius: 16px
+      -webkit-border-radius: 16px
+    .thumbTag
+      padding: 15px 0
+      height: 32px
+      line-height: 32px
+      .user
+        margin: 0 8px
+      .tagText
+        float: left
+        margin: 0 0 0 12px
+        font-size: 18px
+    .thumbNoImage
+      .left
+        .tagCloud
+          height: 90px
+          border-radius-topleft: 16px
+          -moz-border-radius-topleft: 16px
+          -webkit-border-radius-topleft: 16px
+    .thumbNewImages
+      .left
+        .image
+          height: 62px
+          border-radius-bottomleft: 16px
+          -moz-border-radius-bottomleft: 16px
+          -webkit-border-radius-bottomleft: 16px
+      .right
+        height: 62px
+        .user
+          margin: 15px 8px
+        .display
+          float: left
+          margin: 10px 0 0
+          .gallery
+            margin: 0
+            font-size: 18px
+            color: #262626 /* 90% Black */
+          .text
+            margin: 0
+
     .left
-      .tagCloud
-        height: 90px
+      float: left
+      width: 256px
+      height: 90px
+      margin: 0
+      padding: 0
+      .image
+        width: 256px
+        height: 45px
         border-radius-topleft: 16px
         -moz-border-radius-topleft: 16px
         -webkit-border-radius-topleft: 16px
-  .thumbNewImages
-    .left
-      .image
-        height: 62px
+        background: url(/images/art/cloud-temple-banner.jpg) no-repeat top
+      .tagCloud
+        height: 45px
         border-radius-bottomleft: 16px
         -moz-border-radius-bottomleft: 16px
         -webkit-border-radius-bottomleft: 16px
     .right
-      height: 62px
-      .user
-        margin: 15px 8px
-      .display
-        float: left
-        margin: 10px 0 0
-        .gallery
-          margin: 0
-          font-size: 18px
-          color: #262626 /* 90% Black */
-        .text
-          margin: 0
-
-  .left
-    float: left
-    width: 256px
-    height: 90px
-    margin: 0
-    padding: 0
-    .image
-      width: 256px
-      height: 45px
-      border-radius-topleft: 16px
-      -moz-border-radius-topleft: 16px
-      -webkit-border-radius-topleft: 16px
-      background: url(/images/art/cloud-temple-banner.jpg) no-repeat top
-    .tagCloud
-      height: 45px
-      border-radius-bottomleft: 16px
-      -moz-border-radius-bottomleft: 16px
-      -webkit-border-radius-bottomleft: 16px
-  .right
-    float: right
-    height: 90px
-    width: 424px
-    margin: 0
-    padding: 0
-    border-radius-topright: 16px
-    -moz-border-radius-topright: 16px
-    -webkit-border-radius-topright: 16px
-    border-radius-bottomright: 16px
-    -moz-border-radius-bottomright: 16px
-    -webkit-border-radius-bottomright: 16px
-  .user
-    float: left
-    width: 90px
-    height: 32px
-    line-height: 35px
-    margin: 7px 0 0 8px
-    color: #034c99
-    background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
-    .name
-      margin: 0 0 0 40px
-      font-size: 16px
+      float: right
+      height: 90px
+      width: 424px
+      margin: 0
+      padding: 0
+      border-radius-topright: 16px
+      -moz-border-radius-topright: 16px
+      -webkit-border-radius-topright: 16px
+      border-radius-bottomright: 16px
+      -moz-border-radius-bottomright: 16px
+      -webkit-border-radius-bottomright: 16px
+    .user
+      float: left
+      width: 90px
+      height: 32px
+      line-height: 35px
+      margin: 7px 0 0 8px
+      color: #034c99
+      background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
+      .name
+        margin: 0 0 0 40px
+        font-size: 16px
+        font-weight: bold
+    .title
+      width: 320px
+      height: 48px
+      line-height: 48px
+      margin: -34px 0 0
+      float: right
       font-weight: bold
-  .title
-    width: 320px
-    height: 48px
-    line-height: 48px
-    margin: -34px 0 0
-    float: right
-    font-weight: bold
-    h1
-      overflow: hidden
-      height: 43px
-      font-size: 48px
-    h2
-      margin-top: -74px
-      font-size: 18px
-      color: #262626 /* 90% Black */
-  .text
-    clear: both
-    color: #666
-    margin: 44px 0 0 15px
+      h1
+        overflow: hidden
+        height: 43px
+        font-size: 48px
+      h2
+        margin-top: -74px
+        font-size: 18px
+        color: #262626 /* 90% Black */
+    .text
+      clear: both
+      color: #666
+      margin: 44px 0 0 15px
 
 
 
-
-
-
-.matrix
-  /******** PAGINATION ********/
-  .dark.pageFirst, .dark.pageFirst:hover
-    border: 2px solid transparent
-    margin-right: 1px
-    height: 37px
-  .dark.pageLast, .dark.pageLast:hover
-    border: 2px solid transparent
-    margin-left: 1px
-    height: 37px
-  .pageFirst
-    img
+    /******** PAGINATION ********/
+    .dark.pageFirst, .dark.pageFirst:hover
+      border: 2px solid transparent
+      margin-right: 1px
+      height: 37px
+    .dark.pageLast, .dark.pageLast:hover
+      border: 2px solid transparent
+      margin-left: 1px
+      height: 37px
+    .pageFirst
+      img
+        padding: 8px 4px
+    .pageLast
+      img
+        padding: 8px 4px
+    .pagePrev
+      display: block
       padding: 8px 4px
-  .pageLast
-    img
-      padding: 8px 4px
-  .pagePrev
-    display: block
-    padding: 8px 4px
-    font-weight: bold
-  .pageNext
-    display: block
-    padding: 8px 4px
-    font-weight: bold
-  .pageNumber
-    display: block
-    padding: 11px 6px
-    float: left
-  .pagination
-    a.pageNumber
-      color: #999999
-    a.pageNumber:hover
-      color: white
       font-weight: bold
-  .pageNumber.currentPage
-    display: block
-    padding: 10px 7px
-    font-weight: bold
-    font-size: 21px
-    float: left
-    line-height: 17px
-    cursor: default
-    border: 2px solid white
+    .pageNext
+      display: block
+      padding: 8px 4px
+      font-weight: bold
+    .pageNumber
+      display: block
+      padding: 11px 6px
+      float: left
+    .pagination
+      a.pageNumber
+        color: #999999
+      a.pageNumber:hover
+        color: white
+        font-weight: bold
+    .pageNumber.currentPage
+      display: block
+      padding: 10px 7px
+      font-weight: bold
+      font-size: 21px
+      float: left
+      line-height: 17px
+      cursor: default
+      border: 2px solid white
 
