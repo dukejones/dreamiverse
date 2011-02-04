@@ -24,7 +24,16 @@
     /  = render :partial => 'dream_thumb', :locals => {:dream => dream}
 
     / DREAM THUMBS 1D
-    = render :partial => 'dream_thumb_1d'
+    = render :partial => 'thumb_1d'
+
+    / DREAM THUMBS 1D
+    = render :partial => 'thumb_1d_tag'
+
+    / DREAM THUMBS 1D
+    = render :partial => 'thumb_1d_noimage'
+
+    / DREAM THUMBS 1D
+    = render :partial => 'thumb_1d_newimages'
 
     / NO DREAMS TO DISPLAY
     - if @dreams.empty?
