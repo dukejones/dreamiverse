@@ -8,7 +8,7 @@
     = stylesheet_link_tag 'basic', 'clearfix'
     = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
-    = javascript_include_tag 'jquery', 'rails', 'application', "jquery.hoverIntent.minified", "functions.core", "header", 'chat'
+    = javascript_include_tag 'jquery', 'rails', 'application', 'pubsub', "jquery.hoverIntent.minified", "functions.core"
 
     = yield :head
 
@@ -21,11 +21,11 @@
 
     = yield
 
-    - if Rails.env == 'production'
+    - if Rails.env == 'production' || Rails.env == 'theta'
       = javascript_include_tag "google_analytics"
 
 
     = yield :foot
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
-    = javascript_include_tag "jquery-ui.min", "imageBank"
+    = javascript_include_tag "jquery-ui.min", "imageBank", "header", 'chat'
     

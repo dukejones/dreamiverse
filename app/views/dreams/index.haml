@@ -1,11 +1,11 @@
 - content_for :head do
-  = sass_link_tag 'dream_thumbs', 'context_panel', 'entry_bar', 'tag_stream', 'dream_stream', 'friends_list'
+  = sass_link_tag 'dream_thumbs', 'context_panel', 'entry_bar', 'tag_stream', 'dream_stream', 'friends_list', 'dream_new'
   = coffee_script_include_tag 'modal'
   = javascript_include_tag 'tag_stream', 'friendslist'
 
 
 / CONTEXT PANEL
-= render :partial => "shared/context_panel", :locals => {:user => @user}
+= render :partial => "users/context_panel", :locals => {:user => @user}
 
 / DREAM FIELD
 #dreamField
