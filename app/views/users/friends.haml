@@ -12,5 +12,4 @@
 #friendField
 
   / USER LIST
-  - @user.friends.each do |friend|
-    = render :partial => 'friend'
+  = render :partial => 'friend', :collection => @friends
