@@ -54,7 +54,6 @@ class User < ActiveRecord::Base
   def friends
     following & followers
   end
-  
   def following?(user)
     self.following.exists?(user.id)
   end
@@ -64,6 +63,18 @@ class User < ActiveRecord::Base
   def friends_with?(user)
     self.following?(user) && self.followed_by?(user)
   end
+  def relationship_with(other)
+    if self.friends_with? other
+      :friends
+    elsif self.following? other
+      :following
+    elsif self.followed_by? other
+      :followed_by
+    else
+      :none
+    end
+  end
+  
   
   def encrypted_password= *args
     # raise "Can't set the encrypted password directly."

@@ -13,21 +13,24 @@
   / LABEL
   %a.context.shine.button.round-12{href: '/'}
     = user.username
-    / if friend or follower
-    - if true 
-      %img.follower{src: "/images/icons/friend-16.png", width: '16', height: '16'}
-    /  %img.follower{src: "/images/icons/friend-follow-16.png", width: '16', height: '16'}
+    - icon = friend_icon(current_user, user, 16)
+    %img.follower{src: "/images/icons/#{icon}", width: '16', height: '16'}
 
-  / FOLLOW
-  - unless user == current_user
-    - if true
-      /= render partial: 'shared/follow'
-      = render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
-      /= render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
 
   - if user == current_user
     .find.button.bevel.round-12.padding-4-8
       Who's dreaming about me &rsaquo;
+  - else
+    / FOLLOWING
+    - if current_user.friends_with? user
+      = render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
+    - elsif current_user.following? user
+      = render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
+    - elsif current_user.followed_by? user
+      = render partial: 'shared/following', locals: {icon: 'friend-followed', text: 'followed'}
+    - else
+      = render partial: 'shared/follow'
+
 
   / CONTEXT ITEMS
   .item
