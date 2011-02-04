@@ -23,13 +23,13 @@
   - else
     / FOLLOWING
     - if current_user.friends_with? user
-      = render partial: 'shared/following', locals: {icon: 'friend', text: 'friends'}
+      = render partial: 'users/following', locals: {icon: 'friend', text: 'friends'}
     - elsif current_user.following? user
-      = render partial: 'shared/following', locals: {icon: 'friend-follow', text: 'following'}
+      = render partial: 'users/following', locals: {icon: 'friend-follow', text: 'following'}
     - elsif current_user.followed_by? user
-      = render partial: 'shared/following', locals: {icon: 'friend-followed', text: 'followed'}
+      = render partial: 'users/following', locals: {icon: 'friend-followed', text: 'followed'}
     - else
-      = render partial: 'shared/follow'
+      = render partial: 'users/follow'
 
 
   / CONTEXT ITEMS

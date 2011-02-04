@@ -1,15 +1,16 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'friends_list'
+- content_for :foot do
   = coffee_script_include_tag 'modal'
   = javascript_include_tag 'friendslist'
 
 
 / CONTEXT PANEL
-= render :partial => "shared/context_panel", :locals => {:user => @user}
+= render :partial => "context_panel", :locals => {:user => @user}
 
 / USER FIELD
 #friendField
 
   / USER LIST
-  - @users.each do
+  - @user.friends.each do |friend|
     = render :partial => 'friend_node'
