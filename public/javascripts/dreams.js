@@ -29,7 +29,7 @@ var geoFetching = false;
 function setupGeo(){
   // Location content expander
   $('#newLocation').unbind();
-  $('#newLocation').click(function(){
+  $('#newLocation').select(function(){
     if($('#locationExpand').css('display') == 'none'){
       $('#locationExpand').slideDown();
       if(!geoFetching) {
