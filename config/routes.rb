@@ -38,7 +38,7 @@ Dreamcatcher::Application.routes.draw do
   # match '#:tag', :to => 'tags#show'
   # username_constraint = UsernameConstraint.new
   match ':username', :to => 'dreams#index' #, :constraint => username_constraint
-  match ':username/:mode', :to => 'users#friends', :constraints => {mode: /friends|following|followed/}
+  match ':username/:mode', :to => 'users#friends', :constraints => {mode: /friends|following|followers/}
 
   # Image auto-resizing
   match 'images/uploads/:id-:size.:format', to: 'images#resize'
