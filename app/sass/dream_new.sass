@@ -8,14 +8,13 @@
     text-align: center
     float: left
     font-weight: bold
-    color: #464646
     cursor: pointer
     border-radius: 16px
     -moz-border-radius: 16px
     -webkit-border-radius: 16px
     img
       float: left
-  #moodHeader, #linksHeader, #tagHeader, #locationHeader, #dateTimeHeader
+  #moodHeader, #linksHeader, #tagHeader, .locationHeader, #dateTimeHeader
     img
       margin: 9px 8px 0 0
   #tagHeader
@@ -127,42 +126,37 @@
     margin-left: -4px
 
   /* NEW DREAM LOCATION */
-  #newDream-location
+  #addLocation
     min-height: 35px
     display: none
-    #locations, #newLocation
+    .locations
       float: left
+      width: 120px
       font-size: 16px
       height: 28px
       line-height: 28px
-      margin: 3px 0 0 8px
-      padding: 0 8px
-    #locations
-      width: 120px
-    #newLocation
-      cursor: pointer
-      padding: 0 8px
-      background: #fff
-    #locationExpand
-      width: 600px
-    #name, #city, #state, #country
-      float: left
       margin: 4px 0 0 8px
-      p 
-        margin: 2px 0 0 10px
-        font-size: 11px
-      input
-        padding: 4px
-        width: 244px
-        font-size: 16px
-        border-radius: 8px
-        -moz-border-radius: 8px
-        -webkit-border-radius: 8px
-    #name
-      clear: both
+      padding: 0 8px
+    .expander
+      width: 600px
+      .name, .city, .state, .country
+        float: left
+        margin: 4px 0 0 8px
+        p 
+          margin: 2px 0 0 10px
+          font-size: 11px
+        input
+          padding: 4px
+          width: 244px
+          font-size: 16px
+          border-radius: 8px
+          -moz-border-radius: 8px
+          -webkit-border-radius: 8px
+      .name
+        clear: both
   // FOR TAG ENTRY IN ENTRY BAR
   #tagEntry
-    #newDream-location
+    #addLocation
       position: absolute
       top: 57px
       left: 0
