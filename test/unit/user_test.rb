@@ -1,20 +1,47 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "following" do
-    u1 = User.make
-    u2 = User.make
-    u1.follow!(u2)
-    assert u1.following?(u2)
-    assert u2.followed_by?(u1)
-    assert !u1.friends_with?(u2)
-    assert !u2.friends_with?(u1)
+  test "follow" do
+    geo = User.make
+    eph = User.make
+    phong = User.make
+    eph.following << geo
+
+    assert eph.following == [geo]
+    assert eph.following?(geo)
+
+    assert geo.followers == [eph]
+    assert geo.followed_by?(eph)
+
+    assert eph.followers.empty?
+    assert geo.following.empty?
+    assert !eph.friends_with?(geo)
+    assert !geo.friends_with?(eph)
     
-    u2.follow!(u1)
-    assert u1.friends_with?(u2)
-    assert u2.friends_with?(u1)
+    phong.following << geo
+    geo.reload
+    assert geo.followers == [eph, phong]
+    assert geo.followed_by?(phong)
+    assert phong.following?(geo)
+    assert !phong.following?(eph)
+    assert geo.followed_by?(eph)
+  end
+  
+  test 'friend' do
+    geo = User.make
+    eph = User.make
+    phong = User.make
+    geo.following << eph
+    geo.following << phong
+    geo.followers << eph
+    [geo, eph, phong].map(&:reload)
     
-    assert u1.friends.include?(u2)
+    assert eph.friends_with?(geo)
+    assert geo.friends_with?(eph)
+    assert !geo.friends_with?(phong)
+
+    assert geo.friends.include?(eph)
+    assert !geo.friends.include?(phong)
   end
   
   test "validate_password_confirmation" do

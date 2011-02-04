@@ -3,13 +3,15 @@ class User < ActiveRecord::Base
   has_many :dreams
   has_many :hits
 
+  # follows are the follows this user has
+  # following are the users this user is following
   has_many :follows
-  has_many :followings, :through => :follows
+  has_many :following, :through => :follows
   
-  has_many :followeds, :class_name => "Follow", :foreign_key => :following_id
-  has_many :followers, :through => :followeds, :source => :user
-
-  # has_many :friends, :through => :follows, :where => 
+  # followings are the follows that point to this user
+  # followers are the users that follow this user
+  has_many :followings, :class_name => "Follow", :foreign_key => :following_id
+  has_many :followers, :through => :followings, :source => :user
   
   
   # Include default devise modules. Others available are:
@@ -49,11 +51,12 @@ class User < ActiveRecord::Base
     self.apply_omniauth(omniauth).save!
   end
   
-  def follow!(user)
-    self.followings << user
+  def friends
+    following & followers
   end
+  
   def following?(user)
-    self.followings.exists?(user.id)
+    self.following.exists?(user.id)
   end
   def followed_by?(user)
     self.followers.exists?(user.id)
@@ -63,12 +66,12 @@ class User < ActiveRecord::Base
   end
   
   def encrypted_password= *args
-    raise "Can't set the encrypted password directly."
+    # raise "Can't set the encrypted password directly."
   end
 
 protected
   def validate_password_confirmation
-    if !password || (password != password_confirmation)
+    if password && (password != password_confirmation)
       errors.add :password, "should match password confirmation"
     end
   end
