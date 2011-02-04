@@ -14,7 +14,8 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @users = User.all
+    @user = User.find_by_username(params[:username])
+
     # params[:mode] is either friends, followed, or following.
   end
 end
