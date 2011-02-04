@@ -44,6 +44,24 @@ class UserTest < ActiveSupport::TestCase
     assert !geo.friends.include?(phong)
   end
   
+  test 'relationship with' do
+    phong = User.make
+    geo = User.make
+    
+    assert_equal phong.relationship_with(geo), :none
+    
+    phong.following << geo
+    [phong, geo].map(&:reload)
+    assert_equal phong.relationship_with(geo), :following
+    assert_equal geo.relationship_with(phong), :followed_by
+    
+    geo.following << phong
+    [phong, geo].map(&:reload)
+    assert_equal phong.relationship_with(geo), :friends
+    assert_equal geo.relationship_with(phong), :friends
+    
+  end
+
   test "validate_password_confirmation" do
     assert_raise(ActiveRecord::RecordInvalid) { User.make(password: 'pw1', password_confirmation: 'pw2') }
   end
