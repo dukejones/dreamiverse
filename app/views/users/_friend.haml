@@ -10,9 +10,9 @@
   .userInfo
     %h3= friend.name
     %p Oakland, CA
-    %p.mutual 
-      = (current_user.followers & friend.followers).count
-      mutual followers
+    %p.mutual
+      - mutual_followers = (user.followers & friend.followers).count
+      = pluralize(mutual_followers, "mutual follower")
 
   .backdrop.bevel.round-8
 
@@ -36,3 +36,4 @@
           %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
         .detail.inner-shadow-10.round-12.flat-left #
         .clear-both
+        
