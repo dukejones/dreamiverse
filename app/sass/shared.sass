@@ -454,6 +454,139 @@ a:active, a:focus
     color: #093
 #logOut
   margin: 10px 8px 0 0
+
+
+
+
+
+
+/******** APPEARANCE PANEL ********/
+
+// APPEARANCE WRAPPER
+#appearanceWrap
+  position: absolute
+  right: 45px
+  top: 48px
+  clear: both
+  padding: 0
+  width: 350px 
+  #appearanceArrow
+    padding: 0
+    height: 16px
+    img
+      margin: 0 0 0 270px
+
+
+#appearancePanel
+  padding: 0 8px 8px
+  width: 334px
+  height: 580px
+  img.appearanceIcon, h1, h2
+    float: left
+  img.appearanceIcon
+    margin: 4px 0 0
+  h1
+    margin: 8px
+    font-size: 24px
+    font-weight: normal
+
+  #bedsheets, #colorPicker
+    border: 1px solid #999
+
+  #bedsheets
+    clear: both
+    padding: 10px
+    #details
+      height: 32px
+      line-height: 32px
+      h2
+        margin: 0 8px
+        font-size: 16px
+        font-weight: bold
+      #buttons
+        float: right
+        padding: 4px
+        #sun, #moon
+          margin: 0 4px
+          padding: 2px 4px
+          width: 86px
+          height: 24px
+          line-height: 24px
+          text-align:  center
+          font-size: 14px
+          p, img
+            text-align: center
+            margin: 0
+            float: left
+          p
+            margin: 0 4px 0 12px
+      img.appearanceIcon
+        margin: 0 8px 0 0
+    ul
+      margin: 12px 0
+      height: 346px
+      padding: 4px
+      list-style: none
+      overflow-y: scroll
+      li
+        float: left
+        margin: 0 12px 12px 0
+        height: 116px
+        width: 116px
+        cursor: pointer
+        overflow: hidden
+        -moz-box-shadow: 2px 5px 10px #111
+        border: 4px solid #CCCCCC
+        img
+          border: 4px solid #333
+        img:hover
+          border: 4px solid #fff
+      li.selected
+        border: 4px solid #427ee8
+        border-radius: 4px
+        -moz-border-radius: 4px
+        -webkit-border-radius: 4px
+        img
+          border: 4px solid #fff
+    .more
+      display: block
+      height: 32px
+      line-height: 32px
+      text-align: center
+      background: rgba(255,255,255,0.9) /* 100% white */
+
+  #colorPicker
+    clear: both
+    font-weight: bold
+    padding: 8px
+    margin: 4px 0
+    height: 42px
+    line-height: 42px
+    img.colorSwatch, h2, #sun, #moon
+      float: left
+    img.colorSwatch
+      margin: 14px 0 0
+    h2
+      margin: 0 8px
+      font-size: 16px
+      font-weight: bold
+    #buttons
+      float: right
+      padding: 4px
+      #sun, #moon
+        margin: 0 4px
+        padding: 0 4px
+        width: 86px
+        height: 28px
+        line-height: 28px
+        text-align:  center
+        font-size: 14px
+        img
+          margin: -8px -8px -8px 4px
+      #sun
+        
+      #moon
+         
 /*********** END META MENU ***********/
 
 

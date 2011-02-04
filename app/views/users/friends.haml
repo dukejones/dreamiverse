@@ -12,4 +12,4 @@
 #friendField
 
   / USER LIST
-  = render :partial => 'friend', :collection => @friends
+  = render :partial => 'friend', :collection => @friends, :locals => {user: @user}
