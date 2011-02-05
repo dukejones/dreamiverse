@@ -32,7 +32,7 @@ function setupGeo(){
   $('#locationList').change(function(){
     selectedValue = $(this).find('option:selected').attr('value');
     expander = $(this).parent().find('.expander').css('display')
-    if(( expander == 'none') && ( selectedValue == 'New Location' )){
+    if(( expander == 'none') && ( selectedValue == 'New location' )){
       $(this).parent().find('.expander').slideDown();
       if(!geoFetching) {
         geoFetching = true;
