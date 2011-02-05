@@ -482,22 +482,19 @@ a:active, a:focus
   right: 45px
   top: 64px
   clear: both
-  padding: 0
-  width: 350px  
+  padding: 0 8px 8px
+  width: 334px 
   .arrow
     position: relative
     top: -15px
     padding: 0
     height: 16px
-  .appearance, .settings
-    padding: 0 8px 8px
-    width: 334px
-    img.appearanceIcon, h1, h2
-      float: left
-    h1
-      margin: 8px
-      font-size: 24px
-      font-weight: normal
+  img.appearanceIcon, h1, h2
+    float: left
+  h1
+    margin: 8px
+    font-size: 24px
+    font-weight: normal
 
 
 /******** APPEARANCE PANEL ********/
@@ -506,11 +503,8 @@ a:active, a:focus
 #appearancePanel
   .arrow
     background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
-
-  .appearance
-    height: 580px
-    img.appearanceIcon
-      margin: 4px 0 0
+  img.appearanceIcon
+    margin: 4px 0 0
 
   .bedsheets, .colorPicker
     border: 1px solid #999
@@ -606,7 +600,7 @@ a:active, a:focus
         img
           margin: -8px -8px -8px 4px
       #sun
-        
+      
       #moon
 
 
@@ -616,73 +610,72 @@ a:active, a:focus
 #settingsPanel
   .arrow
     background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
-  .settings
-    img, h1, p, .sharingList
-      float: left
-    .sharing
-      .defaultSharing, .network
-        height: 32px
-        line-height: 32px
-        margin: 0 0 8px
-        img
-          margin: 8px 8px 0 0
-        p
-          margin: 0
-      .sharingList
-        float: right
-        font-size: 16px
-        margin-left: 8px
-        padding: 5px 8px
-        cursor: pointer
-        height: 34px
-        line-height: 34px
-        margin: 0 0 0 14px
-        padding: 6px 8px
-      .network
-        clear: both
-        .linkAccount
-          float: right
-          padding: 4px
-          height: 28px
-          line-height: 28px
-          div
-            padding: 0 4px
-            text-align: center
-    .savedLocations
-      .locations
-        p
-          float: none
-          margin: 0
-          padding: 6px 8px
-          border: 1px solid #999
-          cursor: pointer
-        p:hover
-          background: url(/images/icons/edit-16.png) no-repeat 290px 8px
-    .changePassword
-      .input
-        margin: 0 0 4px
-        padding: 4px
-        width: 306px
-        font-size: 12px
-        border-radius: 8px
-        -moz-border-radius: 8px
-        -webkit-border-radius: 8px
-      .cancel
-        float: left
-      .save
-        float: right
-
-    // Shared Styles
-    .sharing, .savedLocations, .changePassword
-      clear: both
-      padding: 8px
-      border: 1px solid #999
+  img, h1, p, .sharingList
+    float: left
+  .sharing
+    .defaultSharing, .network
+      height: 32px
+      line-height: 32px
       margin: 0 0 8px
-      h2
+      img
+        margin: 8px 8px 0 0
+      p
+        margin: 0
+    .sharingList
+      float: right
+      font-size: 16px
+      margin-left: 8px
+      padding: 5px 8px
+      cursor: pointer
+      height: 34px
+      line-height: 34px
+      margin: 0 0 0 14px
+      padding: 6px 8px
+    .network
+      clear: both
+      .linkAccount
+        float: right
+        padding: 4px
+        height: 28px
+        line-height: 28px
+        div
+          padding: 0 4px
+          text-align: center
+  .savedLocations
+    .locations
+      p
         float: none
-        margin: 0 8px
-        font-size: 16px
-        font-weight: bold
+        margin: 0
+        padding: 6px 8px
+        border: 1px solid #999
+        cursor: pointer
+      p:hover
+        background: url(/images/icons/edit-16.png) no-repeat 290px 8px
+  .changePassword
+    .input
+      margin: 0 0 4px
+      padding: 4px
+      width: 306px
+      font-size: 12px
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+    .cancel
+      float: left
+    .save
+      float: right
+
+  // Shared Styles
+  .sharing, .savedLocations, .changePassword
+    clear: both
+    padding: 8px
+    border: 1px solid #999
+    margin: 0 0 8px
+    h2
+      float: none
+      margin: 0 8px
+      font-size: 16px
+      font-weight: bold
 
 
 
