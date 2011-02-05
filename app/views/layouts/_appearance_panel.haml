@@ -1,9 +1,8 @@
 / APPEARANCE PANEL
-#appearanceWrap.hidden
-  #appearanceArrow
-    %img{src: '/images/icons/arrow-up-white-27.png'}
-  #appearancePanel.bevel.glow-40.round-8
-    #appearanceArrow
+#appearancePanel.hidden
+  .arrow
+
+  .panel.bevel.glow-40.round-8
     %img.appearanceIcon{src: '/images/icons/appearance-32.png'}
     %h1 Appearance
     #bedsheets.bevel.round-8
@@ -26,7 +25,7 @@
       %a.more.button.round-8{href: '#'} + browse more...
 
 
-    #colorPicker.bevel.round-8
+    .colorPicker.bevel.round-8
       %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
       %h2 Color
       #buttons.inner-shadow-10.round-8
