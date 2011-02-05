@@ -22,4 +22,14 @@ class UsersController < ApplicationController
       when 'followers' then @user.followers
     end
   end
+  
+  # ajax only
+  def follow
+    user = User.find(params[:user_id])
+    case params[:verb]
+      when 'follow' then current_user.following << user
+      when 'unfollow' then current_user.following.delete user
+    end
+    render :json => {message: 'success'}
+  end
 end
