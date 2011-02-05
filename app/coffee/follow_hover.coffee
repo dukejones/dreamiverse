@@ -1,5 +1,3 @@
-window.log = (msg)-> console.log(msg) if console?
-
 
 $(document).ready ->
   refreshUserNodes()
@@ -10,17 +8,6 @@ window.refreshUserNodes = ->
     button = new FollowButton(node)
     button.refresh()
 
-# For adding hoverIntent:
-# http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
-$('.userNode').live('mouseenter mouseleave click', (event) ->
-  switch event.type
-    when 'mouseenter'
-      $(this).find('.statusHover').fadeIn('fast')
-    when 'mouseleave'
-      $(this).find('.statusHover').fadeOut('fast')
-    when 'click'
-      $.publish('follow/change', [this])
-)
 
 $.subscribe('follow/change', (userNode) ->
   follow = new Follow(userNode)
@@ -33,6 +20,18 @@ $.subscribe('follow/changed', (userNode) ->
 $.subscribe('follow/changing', (userNode) ->
   followButton = new FollowButton(userNode)
   followButton.intermediateState()
+)
+
+# For adding hoverIntent:
+# http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
+$('.userNode').live('mouseenter mouseleave click', (event) ->
+  switch event.type
+    when 'mouseenter'
+      $(this).find('.statusHover').fadeIn('fast')
+    when 'mouseleave'
+      $(this).find('.statusHover').fadeOut('fast')
+    when 'click'
+      $.publish('follow/change', [this])
 )
 
 # Data View
