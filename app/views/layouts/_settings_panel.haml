@@ -1,1 +1,25 @@
 / SETTINGS PANEL
+#settingsPanel
+  .arrow
+
+  .settings.panel.glow-40.round-8
+    %img.appearanceIcon{src: '/images/icons/appearance-32.png'}
+    %h1 Settings
+
+    .sharing.panel.round-8
+
+      .defaultSharing
+        %img{src: ''}
+        %p default sharing
+        %select.sharingList.input.round-8
+          %option{value: 'Everyone'} Everyone
+          %option{value: 'Friends Only'} Friend's Only
+          %option{value: 'Anonymous'} Anonymous
+          %option{value: 'Private'} Private
+
+      .network
+        %img{src: '/images/icons/facebook-16.png'}
+        %p Facebook
+        .linkAccount.input.round-8
+          .shine.button.round-8
+            Link Account
