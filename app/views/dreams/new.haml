@@ -38,18 +38,19 @@
         .date
           %img{src: '/images/icons/date-19.png'}
 
-        / NEW DREAM SHARING
-        #share.round-8
-          %img.arrow{src: '/images/icons/uparrow-black.png'}
-          %select.light.O-input.round-8
-            %option{value: 'Public'} Public
-            %option{value: 'Friends Only'} Friends Only
-            %option{value: 'Private'} Private
-          .social.round-8
-            %label
-              %img.icon{src: '/images/icons/facebook-16.png'}
-              %span.name Facebook
-              %input.checkbox{type: 'checkbox'}
+        /
+          NEW DREAM SHARING
+          #share.round-8
+            %img.arrow{src: '/images/icons/uparrow-black.png'}
+            %select.light.O-input.round-8
+              %option{value: 'Public'} Public
+              %option{value: 'Friends Only'} Friends Only
+              %option{value: 'Private'} Private
+            .social.round-8
+              %label
+                %img.icon{src: '/images/icons/facebook-16.png'}
+                %span.name Facebook
+                %input.checkbox{type: 'checkbox'}
 
   / NEW DREAM DATE TIME
   = render :partial => "date_time"
