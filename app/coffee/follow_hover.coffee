@@ -4,7 +4,7 @@ $(document).ready ->
   
 # attaching to window object means it can be accessed outside of the enclosing closure.
 window.refreshUserNodes = ->
-  $('.userNode').each (i, node)->
+  for node in $('.userNode') 
     button = new FollowButton(node)
     button.refresh()
 
@@ -35,24 +35,28 @@ $('.userNode').live('mouseenter mouseleave click', (event) ->
 )
 
 # Data View
-class window.FollowButton
+class FollowButton
   constructor: (userNode)->
     @$userNode = $(userNode)
     @follow = new Follow(userNode)
   refresh: ->
+    $status = @$userNode.find('.status')
+    $actionWord = @$userNode.find('span')
+    $status.removeClass('none following followed_by friends')
     switch @follow.state()
+      when "none"
+        $status.addClass('none')
+        $actionWord.text('follow');
       when "following"
-        @followingState()
-      when "notfollowing"
-        @notfollowingState()
-      
-  followingState: ->
-    @$userNode.find('.status').css('background-position', '0 33%')
-    @$userNode.find('span').text('unfollow');
-    
-  notfollowingState: ->
-    @$userNode.find('.status').css('background-position', '0 0%')
-    @$userNode.find('span').text('follow');
+        $status.addClass('following')
+        $actionWord.text('unfollow');
+      when "followed_by"
+        $status.addClass('followed_by')
+        $actionWord.text('befriend');
+      when "friends"
+        $status.addClass('friends')
+        $actionWord.text('unfriend');
+        
   intermediateState: ->
     # not yet implemented
 
@@ -61,16 +65,15 @@ class window.FollowButton
 class Follow
   constructor: (node)->
     @$userNode = $(node)
-  possibleStates: ["following", "notfollowing", "changing"]
   id: -> @$userNode.attr('userId')
-  state: -> @$userNode.attr('followState')
+  state: -> @$userNode.attr('relationshipWith')
   setState: (newState) ->
-    @$userNode.attr('followState', newState)
+    @$userNode.attr('relationshipWith', newState)
   change: ->
     switch @state()
-      when "following"
+      when "following", "friends"
         @unfollow()
-      when "notfollowing"
+      when "none", "followed_by"
         @follow()
       else
         log "changing: invalid state! #{@state()}"
@@ -78,16 +81,16 @@ class Follow
     node = @$userNode[0]
     $.publish('follow/changing', [node])
     $.post('/user/follow', {user_id: @id(), verb: 'follow'}, (data) =>
-      log data
-      @setState('following')
+      if @state() is 'none' then @setState('following') else @setState('friends')
+
       $.publish('follow/changed', [node])
     )
   unfollow: ->
     node = @$userNode[0]
     $.publish('follow/changing', [node])
     $.post('/user/follow', {user_id: @id(), verb: 'unfollow'}, (data) =>
-      log data
-      @setState('notfollowing')
+      if @state() is 'following' then @setState('none') else @setState('followed_by')
+
       $.publish('follow/changed', [node])
     )
 
