@@ -24,25 +24,25 @@
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
       = f.text_area :body
 
-      #entryOptions.round-16.light.C-shine
+      #entryOptions.shine.round-16
         /
           Save for later  
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post', :class => 'button-big-green'
-        .visibility
+        .visibility.indent
           %img{src: '/images/icons/sharing-16.png'} Everyone
-        .addLocation
+        .addLocation.indent
           %img{src: '/images/icons/location-21.png'}
-        .date
+        .date.indent
           %img{src: '/images/icons/date-19.png'}
 
         /
           NEW DREAM SHARING
           #share.round-8
             %img.arrow{src: '/images/icons/uparrow-black.png'}
-            %select.light.O-input.round-8
+            %select.input.round-8
               %option{value: 'Public'} Public
               %option{value: 'Friends Only'} Friends Only
               %option{value: 'Private'} Private
@@ -62,7 +62,7 @@
   = render :partial => "image_panel"
 
   / NEW DREAM TAG
-  #newDream-tag.newDream_assets.hidden.light.transparent-50
+  #newDream-tag.newDream_assets.hidden.transparent-50
     .tagHeader.headers.indent.button
       tag
       %img{src: '/images/icons/tag-20.png'}
@@ -81,7 +81,7 @@
     %br{style: 'clear: both'}
 
   / NEW DREAM LINK
-  #newDream-link.newDream_assets.hidden.light.transparent-50
+  #newDream-link.newDream_assets.hidden.transparent-50
     .linksHeader.headers.indent.button
       links
       %img{src: '/images/icons/links-19.png'}
@@ -92,7 +92,7 @@
     #linkHolder
 
   / NEW DREAM MOOD
-  #newDream-mood.newDream_assets.hidden.light.transparent-50
+  #newDream-mood.newDream_assets.hidden.transparent-50
     .moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
@@ -103,7 +103,7 @@
       <li><a href="/">emotional profile</a> |</li>
 
   / NEW DREAM ATTACHMENTS
-  #newDream-attach.newDream_assets.light.transparent-50
+  #newDream-attach.newDream_assets.transparent-50
     %p attach:
     .tag.bevel.button tag
     #attach-images.bevel.button images
