@@ -1,17 +1,20 @@
 / NEW DREAM LOCATION
-#locationPanel.newDream_assets.light.transparent-50
+#locationPanel.newDream_assets.transparent-50
   .locationHeader.headers.indent.button
     %img{src: '/images/icons/location-21.png', height: '16', width: '16'}
     location
   %select#locationList.locations.input.round-8
     %option.finding Finding your location...
+    %option.newLocation{value: 'New location'} Add to saved locations
+    %option.divider{disabled: 'true'}
+    %option.saved{disabled: 'true'} Saved locations
     %option{value: 'Home'} Home
     %option{value: 'The Pearl'} The Pearl
     %option{value: 'Flow Space'} Flow Space
     %option{value: 'Under I580'} Under I580
-    %option{value: 'No Location'} No Location
-    %option.divider{disabled: 'true'}
-    %option.newLocation{value: 'New location'} Save new location
+    %option.noLocation{value: 'No Location'} No Location
+  .spinner-16
+
   .bevel.button.delete.round-16 X
   .expander.hidden
     .name
