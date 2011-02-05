@@ -27,7 +27,16 @@
       width: 16px
       height: 16px
       overflow: hidden
-      background: url(/images/icons/friend-stream-sprite.png) no-repeat 0% 33%
+      background: url(/images/icons/friend-stream-sprite.png) no-repeat
+      // These class names correspond to the symbols returned by User#relationship_with.
+      &.none
+        background-position: 0% 0%
+      &.following
+        background-position: 0% 33%        
+      &.followed_by
+        background-position: 0% 66%
+      &.friends
+        background-position: 0% 100%
     .status, .avatar, .userInfo
       z-index: 102
     .statusHover

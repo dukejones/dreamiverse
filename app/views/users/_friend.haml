@@ -1,7 +1,7 @@
 / FRIEND'S LIST
-.userNode{:userId => friend.id, :followState => (current_user.following?(friend) ? 'following' : 'notfollowing')}
+.userNode{:userId => friend.id, :relationshipWith => current_user.relationship_with(friend)}
 
-  .status
+  .status{:class => current_user.relationship_with(friend)}
   .statusHover.bevel.button.round-4.hidden
     %span unfollow
 

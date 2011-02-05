@@ -3,7 +3,7 @@
 // HEADER INIT CODE basic/templates/header.html init code
 $(document).ready(function(){
   // setupInput Clearer
-  $('.inputFunctions').focus(function(){
+  $('input').focus(function(){
     if($(this).val() == $(this).attr('title')){
       $(this).attr('title')= $(this).val();
       $(this).val('');
@@ -11,7 +11,7 @@ $(document).ready(function(){
   });
 
   // Tag input put text back on blur if empty
-  $('.inputFunctions').blur(function(){
+  $('input').blur(function(){
     if($(this).val() == ""){
       $(this).val($(this).attr('title'));
     }

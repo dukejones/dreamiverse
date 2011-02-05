@@ -59,7 +59,7 @@ var getGeo = function(){
 
 function geoError(error){
   alert("geolocation error : " + error.code + ' / ' + error.message);
-  $('#locationPanel .spinner-16').fadeOut();
+  $('#locationPanel .spinner-small').fadeOut();
 }
 
 function geoSuccess(position) {
@@ -100,7 +100,7 @@ function getAddress(_lat, _lng){
     $('#locationPanel .country input').val(data[0].address_components[6].long_name);
     
     // Remove Spinner
-    $('#locationPanel .spinner-16').fadeOut();
+    $('#locationPanel .spinner-small').fadeOut();
   })
 }
 
