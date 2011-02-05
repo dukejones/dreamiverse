@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'dream_new', "context_panel", 'new_entry', 'dream_stream'
+  = sass_link_tag 'dreams', "context_panel"
   = javascript_include_tag "dreams", "autoresize.jquery.min"
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 
@@ -33,23 +33,24 @@
         = f.submit :value => 'post', :class => 'button-big-green'
         .visibility
           %img{src: '/images/icons/sharing-16.png'} Everyone
-        .location
+        .addLocation
           %img{src: '/images/icons/location-21.png'}
         .date
           %img{src: '/images/icons/date-19.png'}
 
-        / NEW DREAM SHARING
-        #share.round-8
-          %img.arrow{src: '/images/icons/uparrow-black.png'}
-          %select.light.O-input.round-8
-            %option{value: 'Public'} Public
-            %option{value: 'Friends Only'} Friends Only
-            %option{value: 'Private'} Private
-          .social.round-8
-            %label
-              %img.icon{src: '/images/icons/facebook-16.png'}
-              %span.name Facebook
-              %input.checkbox{type: 'checkbox'}
+        /
+          NEW DREAM SHARING
+          #share.round-8
+            %img.arrow{src: '/images/icons/uparrow-black.png'}
+            %select.light.O-input.round-8
+              %option{value: 'Public'} Public
+              %option{value: 'Friends Only'} Friends Only
+              %option{value: 'Private'} Private
+            .social.round-8
+              %label
+                %img.icon{src: '/images/icons/facebook-16.png'}
+                %span.name Facebook
+                %input.checkbox{type: 'checkbox'}
 
   / NEW DREAM DATE TIME
   = render :partial => "date_time"
@@ -62,7 +63,7 @@
 
   / NEW DREAM TAG
   #newDream-tag.newDream_assets.hidden.light.transparent-50
-    #tagHeader.headers.indent.button
+    .tagHeader.headers.indent.button
       tag
       %img{src: '/images/icons/tag-20.png'}
     #tagInputWrap
@@ -81,7 +82,7 @@
 
   / NEW DREAM LINK
   #newDream-link.newDream_assets.hidden.light.transparent-50
-    #linksHeader.headers.indent.button
+    .linksHeader.headers.indent.button
       links
       %img{src: '/images/icons/links-19.png'}
     #linkInputWrap
@@ -92,7 +93,7 @@
 
   / NEW DREAM MOOD
   #newDream-mood.newDream_assets.hidden.light.transparent-50
-    #moodHeader.headers.indent.button
+    .moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
     %ul

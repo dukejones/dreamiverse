@@ -28,16 +28,18 @@ var geoFetching = false;
 
 function setupGeo(){
   // Location content expander
-  $('#newLocation').unbind();
-  $('#newLocation').click(function(){
-    if($('#locationExpand').css('display') == 'none'){
-      $('#locationExpand').slideDown();
+  $('#locationList').unbind();
+  $('#locationList').change(function(){
+    selectedValue = $(this).find('option:selected').attr('value');
+    expander = $(this).parent().find('.expander').css('display')
+    if(( expander == 'none') && ( selectedValue == 'New location' )){
+      $(this).parent().find('.expander').slideDown();
       if(!geoFetching) {
         geoFetching = true;
         getGeo();
       }
     } else {
-      $('#locationExpand').slideUp();
+      $(this).parent().find('.expander').slideUp();
     }
     
   })
@@ -264,11 +266,11 @@ function setupEvents(){
     $('#newDream-dateTime').slideUp();
   })
   
-  $('#entryOptions .location').unbind();
-  $('#entryOptions .location').toggle(function(){
-    $('#newDream-location').slideDown();
+  $('#dreamField .addLocation').unbind();
+  $('#dreamField .addLocation').toggle(function(){
+    $('#locationPanel').slideDown();
   }, function(){
-    $('#newDream-location').slideUp();
+    $('#locationPanel').slideUp();
   })
   
   // Listen for paste in DREAM field

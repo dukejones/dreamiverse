@@ -1,26 +1,25 @@
 / NEW DREAM LOCATION
-#newDream-location.newDream_assets.light.transparent-50
-  #locationHeader.headers.indent.button
+#locationPanel.newDream_assets.light.transparent-50
+  .locationHeader.headers.indent.button
     %img{src: '/images/icons/location-21.png', height: '16', width: '16'}
     location
-  %select#locations.light.O-input.round-8
+  %select#locationList.locations.input.round-8
+    %option.finding Finding your location...
     %option{value: 'Home'} Home
     %option{value: 'The Pearl'} The Pearl
     %option{value: 'Flow Space'} Flow Space
     %option{value: 'Under I580'} Under I580
     %option{value: 'No Location'} No Location
-  #newLocation.round-8 New Location
-  #locationExpand.hidden
-    #name
-      %p Location Name
-      %input.light.O-input
-    #city
-      %p City
-      %input.light.O-input
-    #state
-      %p State / province
-      %input.light.O-input
-    #country
-      %p Country
-      %input.light.O-input
-    %br{:style => 'clear: both'}
+    %option.divider{disabled: 'true'}
+    %option.newLocation{value: 'New location'} New location
+  .bevel.button.delete.round-16 X
+  .expander.hidden
+    .name
+      %input.input{value: 'Location Name'}
+    .city
+      %input.input{value: 'City'}
+    .state
+      %input.input{value: 'State/Province'}
+    .country
+      %input.input{value: 'Country'}
+    %br.clear-both
