@@ -28,16 +28,18 @@ var geoFetching = false;
 
 function setupGeo(){
   // Location content expander
-  $('#newLocation').unbind();
-  $('#newLocation').select(function(){
-    if($('#locationExpand').css('display') == 'none'){
-      $('#locationExpand').slideDown();
+  $('#locationList').unbind();
+  $('#locationList').change(function(){
+    selectedValue = $(this).find('option:selected').attr('value');
+    expander = $(this).parent().find('.expander').css('display')
+    if(( expander == 'none') && ( selectedValue == 'New Location' )){
+      $(this).parent().find('.expander').slideDown();
       if(!geoFetching) {
         geoFetching = true;
         getGeo();
       }
     } else {
-      $('#locationExpand').slideUp();
+      $(this).parent().find('.expander').slideUp();
     }
     
   })
