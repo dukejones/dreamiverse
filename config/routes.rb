@@ -23,7 +23,9 @@ Dreamcatcher::Application.routes.draw do
   match 'friends' => 'users#friends', :as => :friends
   match 'stream' => 'dreams#stream', :as => :stream
   # Resources
-  resource :user
+  resource :user do
+    post 'follow'
+  end
   resources :dreams
   resources :images do
     get 'manage', :on => :collection
