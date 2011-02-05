@@ -476,33 +476,40 @@ a:active, a:focus
 
 
 
-/******** APPEARANCE PANEL ********/
-
-// APPEARANCE PANEL
-#appearancePanel
+/******** APPEARANCE & SETTINGS PANELS ********/
+#appearancePanel, #settingsPanel
   position: absolute
   right: 45px
   top: 48px
   clear: both
   padding: 0
-  width: 350px
+  width: 350px  
   .arrow
     padding: 0
     height: 16px
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
-
+    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
   .appearance, .settings
     padding: 0 8px 8px
     width: 334px
-    height: 580px
     img.appearanceIcon, h1, h2
       float: left
-    img.appearanceIcon
-      margin: 4px 0 0
     h1
       margin: 8px
       font-size: 24px
       font-weight: normal
+
+
+/******** APPEARANCE PANEL ********/
+
+// APPEARANCE PANEL
+#appearancePanel
+  .arrow
+    background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+
+  .appearance
+    height: 580px
+    img.appearanceIcon
+      margin: 4px 0 0
 
   .bedsheets, .colorPicker
     border: 1px solid #999
@@ -606,34 +613,18 @@ a:active, a:focus
 
 // SETTINGS PANEL
 #settingsPanel
-  position: absolute
-  right: 45px
-  top: 48px
-  clear: both
-  padding: 0
-  width: 350px  
   .arrow
-    padding: 0
-    height: 16px
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
   .settings
-    padding: 0 8px 8px
-    width: 334px
-    height: 580px
     img, h1, p, .sharingList
       float: left
-    h1
-      margin: 8px
-      font-size: 24px
-      font-weight: normal
     .sharing
-      clear: both
-      padding: 8px
-      border: 1px solid #999
       .defaultSharing, .network
         height: 32px
         line-height: 32px
         margin: 0 0 8px
+        img
+          margin: 8px 8px 0 0
         p
           margin: 0
       .sharingList
@@ -648,8 +639,6 @@ a:active, a:focus
         padding: 6px 8px
       .network
         clear: both
-        img
-          margin: 8px 8px 0 0
         .linkAccount
           float: right
           padding: 4px
@@ -658,6 +647,30 @@ a:active, a:focus
           div
             padding: 0 4px
             text-align: center
+    .savedLocations
+      h2
+        float: none
+        margin: 0 8px
+        font-size: 16px
+        font-weight: bold
+      .locations
+        p
+          float: none
+          margin: 0
+          padding: 6px 8px
+          border: 1px solid #999
+          cursor: pointer
+        p:hover
+          background: url(/images/icons/edit-16.png) no-repeat 290px 8px
+
+    // Shared Styles
+    .savedLocations, .sharing
+      clear: both
+      padding: 8px
+      border: 1px solid #999
+      margin: 0 0 8px
+
+
 
 
 /*********** END META MENU ***********/
