@@ -406,10 +406,8 @@
       width: 664px 
       height: 48px
       margin: 0 auto
-      bottom: 8px
+      bottom: 0
       border: 1px solid #D7D7D7
-      background: -webkit-gradient(linear, left top, left bottom, from(#EBEBEB), to(#B7B7B7))
-      background: -moz-linear-gradient(top, #EBEBEB, #B7B7B7) /* gradient-10-35 */
       #share
         top: 50px
         float: right
@@ -423,8 +421,6 @@
       border-radius: 16px
       -moz-border-radius: 16px
       -webkit-border-radius: 16px
-      background: -webkit-gradient(linear, left top, left bottom, from(#E1E1E1), to(#fff))
-      background: -moz-linear-gradient(top, #E1E1E1, #fff) /* gradient-15-0 */
     .myBooks
       width: 184px
       float: left
@@ -490,14 +486,28 @@
       line-height: 34px
       margin: 0 0 0 14px
       padding: 6px 8px
+      option
+        padding: 1px 4px
+      .newLocation
+        background: url('/images/icons/add-16.png') no-repeat 25px 8px
+        padding: 6px 0 6px 45px
+      .saved
+        font-size: 17px
+        padding-bottom: 6px
       .divider
         background-color: #777777
-        font-size: 2px
-        margin: 6px 0 0
+        font-size: 1px
+        margin: 0 0 6px
         width: 98%
-      .newLocation
-        background: url('/images/icons/add-16.png') no-repeat 45px 8px
-        padding: 6px 0 6px 65px
+      .noLocation
+        color: #777777
+    .spinner-small
+      width: 32px
+      height: 32px
+      margin-bottom: -32px
+      position: relative
+      left: 314px
+      top: 2px
     .expander
       clear: both
       .name, .city, .state, .country

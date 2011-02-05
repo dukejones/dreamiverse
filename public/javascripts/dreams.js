@@ -2,7 +2,6 @@ $(document).ready(function() {
   setupEvents();
   setupTags();
   setupImagebank();
-  setupGeo();
   setupTextareaAutoExpander();
 });
 
@@ -24,26 +23,7 @@ function setupTextareaAutoExpander(){
 });
 }
 
-var geoFetching = false;
 
-function setupGeo(){
-  // Location content expander
-  $('#locationList').unbind();
-  $('#locationList').change(function(){
-    selectedValue = $(this).find('option:selected').attr('value');
-    expander = $(this).parent().find('.expander').css('display')
-    if(( expander == 'none') && ( selectedValue == 'New location' )){
-      $(this).parent().find('.expander').slideDown();
-      if(!geoFetching) {
-        geoFetching = true;
-        getGeo();
-      }
-    } else {
-      $(this).parent().find('.expander').slideUp();
-    }
-    
-  })
-}
 
 function setupImagebank(){
   $('#addFromImageBank').click(function(){
@@ -266,13 +246,6 @@ function setupEvents(){
     $('#newDream-dateTime').slideUp();
   })
   
-  $('#dreamField .addLocation').unbind();
-  $('#dreamField .addLocation').toggle(function(){
-    $('#locationPanel').slideDown();
-  }, function(){
-    $('#locationPanel').slideUp();
-  })
-  
   // Listen for paste in DREAM field
   $("#dream_body").bind('paste', function(e) {
     // Get pasted link
@@ -434,47 +407,4 @@ function resetImageButtons(){
       $(this).animate({width: '120px'});
      }
    });
-}
-
-/* LOCATION DATA */
-
-var getGeo = function(){
-  if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:15000});
-  } else {
-    alert('This browser does not support geolocation')
-  }
-}
-//http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854966/-122.6950651
-
-function geoError(error){
-  alert("geolocation error : " + error.code + ' / ' + error.message);
-}
-
-function geoSuccess(position) {
-  var lat = position.coords.latitude;
-  var lng = position.coords.longitude;
-  getAddress(lat, lng);
-  
-  // Turn on new location button
-  setupGeo();
-}
-
-function getAddress(_lat, _lng){
-  // Get location data from google
-  var lat = parseFloat(_lat);
-  var lng = parseFloat(_lng);
-  var latlng = new google.maps.LatLng(lat, lng);
-  
-  var geocoder = new google.maps.Geocoder();
-  geocoder.geocode( {'latLng': latlng }, function(data, status){
-    // Set geo data
-    $('#city input').val(data[0].address_components[2].long_name);
-    $('#state input').val(data[0].address_components[5].short_name);
-    $('#country input').val(data[0].address_components[6].long_name);
-  })
-}
-
-function parseme(results){
-  alert("results :: " + results);
 }
