@@ -2,6 +2,7 @@
 #appearancePanel.hidden.panel.glow-40.round-8
   .arrow
 
+  / BEDSHEETS
   .bedsheets.panel.round-8
     #details
       %h2 Bedsheets
@@ -21,7 +22,7 @@
 
     %a.more.button.round-8{href: '#'} + browse more...
 
-
+  / COLOR PICKER
   .colorPicker.panel.round-8
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
@@ -32,3 +33,11 @@
       #moon.round-4.bevel.button{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
         moon
         %img{src: '/images/icons/moon-24.png'}
+
+  / FONT SIZING
+  .fontSizing.panel.round-8
+    %img.fontImage{src: '/images/icons/font_size-16.png'}
+    %h2 Font Sizing
+    .large A
+    .medium A
+    .small A

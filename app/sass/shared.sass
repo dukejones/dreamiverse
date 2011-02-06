@@ -499,15 +499,34 @@ a:active, a:focus
 
 /******** APPEARANCE PANEL ********/
 
+// APPEARANCE PANEL SHARED STYLES
+#appearancePanel
+  .bedsheets, .colorPicker, .fontSizing, .small, .medium, .large
+    border: 1px solid #999
+
+  .colorPicker, .fontSizing
+    clear: both
+    font-weight: bold
+    padding: 8px
+    margin: 4px 0
+    height: 36px
+    img.colorSwatch, img.fontImage, h2, #sun, #moon
+      float: left
+    img.colorSwatch, img.fontImage
+      margin: 12px 0 0
+    h2
+      margin: 0 8px
+      font-size: 16px
+      line-height: 36px
+      font-weight: bold
+
+
 // APPEARANCE PANEL
 #appearancePanel
   .arrow
     background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
   img.appearanceIcon
     margin: 4px 0 0
-
-  .bedsheets, .colorPicker
-    border: 1px solid #999
 
   .bedsheets
     clear: both
@@ -572,20 +591,6 @@ a:active, a:focus
       background: rgba(255,255,255,0.9) /* 100% white */
 
   .colorPicker
-    clear: both
-    font-weight: bold
-    padding: 8px
-    margin: 4px 0
-    height: 42px
-    line-height: 42px
-    img.colorSwatch, h2, #sun, #moon
-      float: left
-    img.colorSwatch
-      margin: 14px 0 0
-    h2
-      margin: 0 8px
-      font-size: 16px
-      font-weight: bold
     #buttons
       float: right
       padding: 4px
@@ -599,10 +604,26 @@ a:active, a:focus
         font-size: 14px
         img
           margin: -8px -8px -8px 4px
-      #sun
-      
-      #moon
 
+  .fontSizing
+    .small, .medium, .large
+      float: right
+      width: 32px
+      margin-right: 8px
+      text-align: center
+      cursor: pointer
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+    .small
+      font-size: 12px
+      margin-top: 12px
+    .medium
+      font-size: 14px
+      margin-top: 10px
+    .large
+      font-size: 16px
+      margin-top: 8px
 
 /******** SETTINGS PANEL ********/
 
@@ -635,12 +656,10 @@ a:active, a:focus
       clear: both
       .linkAccount
         float: right
-        padding: 4px
+        padding: 0 4px
         height: 28px
         line-height: 28px
-        div
-          padding: 0 4px
-          text-align: center
+        text-align: center
   .savedLocations
     .locations
       p
