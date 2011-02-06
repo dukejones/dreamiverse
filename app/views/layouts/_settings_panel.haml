@@ -9,15 +9,16 @@
       %p Default Sharing
       %select.sharingList.input.round-8
         %option{value: 'Everyone'} Everyone
-        %option{value: 'Friends Only'} Friend's Only
+        %option{value: 'Friends Only'} Friends Only
         %option{value: 'Anonymous'} Anonymous
         %option{value: 'Private'} Private
-
     .network
       %img{src: '/images/icons/facebook-16.png'}
       %p Facebook
       .linkAccount.shine.button.round-8
         Link Account
+    %label
+      %input{type: 'checkbox'} Auto share
 
   / SAVED LOCATIONS
   .savedLocations.panel.round-8
