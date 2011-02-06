@@ -476,7 +476,7 @@ a:active, a:focus
 
 
 
-/******** APPEARANCE & SETTINGS PANELS ********/
+/******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
 #appearancePanel, #settingsPanel
   position: absolute
   right: 45px
@@ -489,6 +489,7 @@ a:active, a:focus
     top: -15px
     padding: 0
     height: 16px
+    margin-bottom: -8px
   img.appearanceIcon, h1, h2
     float: left
   h1
@@ -508,7 +509,7 @@ a:active, a:focus
     clear: both
     font-weight: bold
     padding: 8px
-    margin: 4px 0
+    margin: 0 0 8px
     height: 36px
     img.colorSwatch, img.fontImage, h2, #sun, #moon
       float: left
@@ -530,7 +531,8 @@ a:active, a:focus
 
   .bedsheets
     clear: both
-    padding: 10px
+    padding: 8px
+    margin: 0 0 8px
     #details
       height: 32px
       line-height: 32px
@@ -606,6 +608,7 @@ a:active, a:focus
           margin: -8px -8px -8px 4px
 
   .fontSizing
+    margin: 0
     .small, .medium, .large
       float: right
       width: 32px
@@ -626,6 +629,20 @@ a:active, a:focus
       margin-top: 8px
 
 /******** SETTINGS PANEL ********/
+
+
+// SETTINGS PANEL SHARED STYLES
+#settingsPanel
+  .sharing, .savedLocations, .changePassword
+    clear: both
+    padding: 8px
+    border: 1px solid #999
+    margin: 0 0 8px
+    h2
+      float: none
+      margin: 0 8px
+      font-size: 16px
+      font-weight: bold
 
 // SETTINGS PANEL
 #settingsPanel
@@ -672,6 +689,7 @@ a:active, a:focus
       p:hover
         background: url(/images/icons/edit-16.png) no-repeat 290px 8px
   .changePassword
+    margin: 0
     .input
       margin: 0 0 4px
       padding: 4px
@@ -688,17 +706,6 @@ a:active, a:focus
     .save
       float: right
 
-  // Shared Styles
-  .sharing, .savedLocations, .changePassword
-    clear: both
-    padding: 8px
-    border: 1px solid #999
-    margin: 0 0 8px
-    h2
-      float: none
-      margin: 0 8px
-      font-size: 16px
-      font-weight: bold
 
 
 
