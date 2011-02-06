@@ -27,15 +27,15 @@
       #entryOptions.shine.round-16
         /
           Save for later  
-          .myBooks
+          .myBooks.indent.button
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post', :class => 'shine button save'
-        .visibility.indent
+        .sharing.indent.button
           %img{src: '/images/icons/sharing-16.png'} Everyone
-        .addLocation.indent
+        .addLocation.indent.button
           %img{src: '/images/icons/location-21.png'}
-        .date.indent
+        .date.indent.button
           %img{src: '/images/icons/date-19.png'}
 
         /
@@ -62,7 +62,7 @@
   = render :partial => "image_panel"
 
   / NEW DREAM TAG
-  #newDream-tag.newDream_assets.hidden.transparent-50
+  #newDream-tag.newDream_assets.hidden.shine-alpha
     .tagHeader.headers.indent.button
       tag
       %img{src: '/images/icons/tag-20.png'}
@@ -81,7 +81,7 @@
     %br{style: 'clear: both'}
 
   / NEW DREAM LINK
-  #newDream-link.newDream_assets.hidden.transparent-50
+  #newDream-link.newDream_assets.hidden.shine-alpha
     .linksHeader.headers.indent.button
       links
       %img{src: '/images/icons/links-19.png'}
@@ -92,7 +92,7 @@
     #linkHolder
 
   / NEW DREAM MOOD
-  #newDream-mood.newDream_assets.hidden.transparent-50
+  #newDream-mood.newDream_assets.hidden.shine-alpha
     .moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
@@ -103,11 +103,11 @@
       <li><a href="/">emotional profile</a> |</li>
 
   / NEW DREAM ATTACHMENTS
-  #newDream-attach.newDream_assets.transparent-50
+  #newDream-attach.newDream_assets.shine-alpha
     %p attach:
-    .tag.bevel.button tag
     #attach-images.bevel.button images
-    .mood.bevel.button mood
+    .tag.bevel.button tag
     .links.bevel.button links
+    .mood.bevel.button mood
     / Save for later .analysis.bevel.button analysis
     .clear-both
