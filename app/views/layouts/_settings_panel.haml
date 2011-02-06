@@ -9,16 +9,16 @@
       %p Default Sharing
       %select.sharingList.input.round-8
         %option{value: 'Everyone'} Everyone
-        %option{value: 'Friends Only'} Friend's Only
+        %option{value: 'Friends Only'} Friends Only
         %option{value: 'Anonymous'} Anonymous
         %option{value: 'Private'} Private
-
     .network
       %img{src: '/images/icons/facebook-16.png'}
       %p Facebook
-      .linkAccount.input.round-8
-        .shine.button.round-8
-          Link Account
+      .linkAccount.shine.button.round-8
+        Link Account
+    %label
+      %input{type: 'checkbox'} Auto share
 
   / SAVED LOCATIONS
   .savedLocations.panel.round-8
@@ -35,6 +35,6 @@
     %input.input{value: 'Current Password'}
     %input.input{value: 'New Password'}
     %input.input{value: 'Confirm New Password'}
-    .cancel.round-8 Cancel
-    .save.round-8 Save
+    .cancel.button.bevel.round-8 Cancel
+    .save.button.bevel.round-8 Change Password
     .clear-both

@@ -43,8 +43,8 @@
 
   .panel
     background: #ececec
-    background: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#adadad))
-    background: -moz-linear-gradient(top, #ececec, #adadad)
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
+    background: -moz-linear-gradient(top, #fff, #e6e6e6)
 
   .inner-shadow-10
     background: #ebeaea
@@ -501,7 +501,7 @@ a:active, a:focus
 
 
 
-/******** APPEARANCE & SETTINGS PANELS ********/
+/******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
 #appearancePanel, #settingsPanel
   position: absolute
   right: 45px
@@ -514,6 +514,7 @@ a:active, a:focus
     top: -15px
     padding: 0
     height: 16px
+    margin-bottom: -8px
   img.appearanceIcon, h1, h2
     float: left
   h1
@@ -524,6 +525,28 @@ a:active, a:focus
 
 /******** APPEARANCE PANEL ********/
 
+// APPEARANCE PANEL SHARED STYLES
+#appearancePanel
+  .bedsheets, .colorPicker, .fontSizing, .small, .medium, .large
+    border: 1px solid #999
+
+  .colorPicker, .fontSizing
+    clear: both
+    font-weight: bold
+    padding: 8px
+    margin: 0 0 8px
+    height: 36px
+    img.colorSwatch, img.fontImage, h2, #sun, #moon
+      float: left
+    img.colorSwatch, img.fontImage
+      margin: 12px 0 0
+    h2
+      margin: 0 8px
+      font-size: 16px
+      line-height: 36px
+      font-weight: bold
+
+
 // APPEARANCE PANEL
 #appearancePanel
   .arrow
@@ -531,12 +554,10 @@ a:active, a:focus
   img.appearanceIcon
     margin: 4px 0 0
 
-  .bedsheets, .colorPicker
-    border: 1px solid #999
-
   .bedsheets
     clear: both
-    padding: 10px
+    padding: 8px
+    margin: 0 0 8px
     #details
       height: 32px
       line-height: 32px
@@ -597,20 +618,6 @@ a:active, a:focus
       background: rgba(255,255,255,0.9) /* 100% white */
 
   .colorPicker
-    clear: both
-    font-weight: bold
-    padding: 8px
-    margin: 4px 0
-    height: 42px
-    line-height: 42px
-    img.colorSwatch, h2, #sun, #moon
-      float: left
-    img.colorSwatch
-      margin: 14px 0 0
-    h2
-      margin: 0 8px
-      font-size: 16px
-      font-weight: bold
     #buttons
       float: right
       padding: 4px
@@ -624,12 +631,43 @@ a:active, a:focus
         font-size: 14px
         img
           margin: -8px -8px -8px 4px
-      #sun
-      
-      #moon
 
+  .fontSizing
+    margin: 0
+    .small, .medium, .large
+      float: right
+      width: 32px
+      margin-right: 8px
+      text-align: center
+      cursor: pointer
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+    .small
+      font-size: 12px
+      margin-top: 12px
+    .medium
+      font-size: 14px
+      margin-top: 10px
+    .large
+      font-size: 16px
+      margin-top: 8px
 
 /******** SETTINGS PANEL ********/
+
+
+// SETTINGS PANEL SHARED STYLES
+#settingsPanel
+  .sharing, .savedLocations, .changePassword
+    clear: both
+    padding: 8px
+    border: 1px solid #999
+    margin: 0 0 8px
+    h2
+      float: none
+      margin: 0 8px
+      font-size: 16px
+      font-weight: bold
 
 // SETTINGS PANEL
 #settingsPanel
@@ -641,42 +679,52 @@ a:active, a:focus
     .defaultSharing, .network
       height: 32px
       line-height: 32px
-      margin: 0 0 8px
+      margin: 0 0 4px
       img
         margin: 8px 8px 0 0
       p
         margin: 0
     .sharingList
       float: right
-      font-size: 16px
+      font-size: 12px
       margin-left: 8px
       padding: 5px 8px
       cursor: pointer
-      height: 34px
-      line-height: 34px
-      margin: 0 0 0 14px
+      height: 28px
+      line-height: 28px
+      margin: 4px 0 0 14px
       padding: 6px 8px
     .network
       clear: both
       .linkAccount
         float: right
-        padding: 4px
-        height: 28px
-        line-height: 28px
-        div
-          padding: 0 4px
-          text-align: center
+        margin: 4px 0 0
+        padding: 0 4px
+        height: 24px
+        line-height: 24px
+        text-align: center
+    label
+      clear: both
+      height: 26px
+      line-height: 26px
+      cursor: pointer
+      input
+        cursor: pointer
+        margin: 8px 8px 0 16px
+        float: left
   .savedLocations
     .locations
       p
         float: none
         margin: 0
         padding: 6px 8px
-        border: 1px solid #999
+        border: 1px solid #ccc
         cursor: pointer
+        background-color: white
       p:hover
         background: url(/images/icons/edit-16.png) no-repeat 290px 8px
   .changePassword
+    margin: 0
     .input
       margin: 0 0 4px
       padding: 4px
@@ -685,22 +733,14 @@ a:active, a:focus
       border-radius: 8px
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
+    .cancel, .save
+      padding: 0 12px
+      text-align: center
     .cancel
       float: left
     .save
       float: right
 
-  // Shared Styles
-  .sharing, .savedLocations, .changePassword
-    clear: both
-    padding: 8px
-    border: 1px solid #999
-    margin: 0 0 8px
-    h2
-      float: none
-      margin: 0 8px
-      font-size: 16px
-      font-weight: bold
 
 
 
