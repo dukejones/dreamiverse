@@ -7,31 +7,44 @@
   .button
     border: 1px solid #848484
   .button:hover
-    border: 1px solid #000
+    border: 1px solid #464646
 
 
 
 
 
-
-  .shine, .bevel
-    background: #fff
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
-    background: -moz-linear-gradient(top, #fff, #adadad)
-  .indent
-    background: #adadad
-    background: -webkit-gradient(linear, left top, left bottom, from(#adadad), to(#fff))
-    background: -moz-linear-gradient(top, #adadad, #fff)
-
-  .panel
-    background: #ececec
-    background: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#adadad))
-    background: -moz-linear-gradient(top, #ececec, #adadad)
 
   .shine
     box-shadow: inset 0 18px rgba(255,255,255,0.5)
     -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
     -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+    background: #f0f0f0
+    background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bababa))
+    background: -moz-linear-gradient(top, #f0f0f0, #bababa)
+
+  .shine-alpha
+    box-shadow: inset 0 28px rgba(255,255,255,0.3)
+    -moz-box-shadow: inset 0 28px rgba(255,255,255,0.3)
+    -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.3)
+    background: #f0f0f0
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(215,215,215,0.75)))
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.75))
+
+  .bevel
+    background: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
+    background: -moz-linear-gradient(top, #fff, #adadad)
+
+  .indent
+    border: 1px solid #fff
+    background: #e6e6e6
+    background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
+    background: -moz-linear-gradient(top, #e6e6e6, #fff)
+
+  .panel
+    background: #ececec
+    background: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#adadad))
+    background: -moz-linear-gradient(top, #ececec, #adadad)
 
   .inner-shadow-10
     background: #ebeaea
@@ -110,10 +123,27 @@
 
 
 
-  .shine, .bevel
+  .shine
+    box-shadow: inset 0 18px rgba(255,255,255,0.2)
+    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
     background: #aaa
     background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
     background: -moz-linear-gradient(top, #aaa, #222)
+
+  .shine-alpha
+    box-shadow: inset 0 28px rgba(255,255,255,0.1)
+    -moz-box-shadow: inset 0 28px rgba(255,255,255,0.1)
+    -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.1)
+    background: #f0f0f0
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(120,120,120,0.75)), to(rgba(34,34,34,0.75)))
+    background: -moz-linear-gradient(top, rgba(120,120,120,0.75), rgba(34,34,34,0.75))
+
+  .bevel
+    background: #aaa
+    background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+    background: -moz-linear-gradient(top, #aaa, #222)
+
   .indent
     background: #222
     background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
@@ -123,11 +153,6 @@
     background: #aaa
     background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
     background: -moz-linear-gradient(top, #aaa, #222)
-
-  .shine
-    box-shadow: inset 0 18px rgba(255,255,255,0.2)
-    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
 
   .inner-shadow-10
     background: #444444
