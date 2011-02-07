@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @user = User.find_by_username(params[:username])
+    @user = User.find_by_username(params[:username]) || current_user
     @mode = params[:mode] 
     @friends = case @mode
       when 'friends'   then @user.friends
