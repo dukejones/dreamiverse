@@ -6,21 +6,23 @@ $(document).ready(function() {
 });
 
 function setupTextareaAutoExpander(){
-  $('textarea#dream_body').autoResize({
-    // On resize:
-    onResize : function() {
-        $(this).css({opacity:0.8});
-    },
-    // After resize:
-    animateCallback : function() {
-        $(this).css({opacity:1});
-    },
-    // Quite slow animation:
-    animateDuration : 500,
-    animate: true,
-    // More extra space:
-    extraSpace : 40
-});
+  if($('textarea#dream_body').attr('id') == 'dream_body'){
+    $('textarea#dream_body').autoResize({
+      // On resize:
+      onResize : function() {
+          $(this).css({opacity:0.8});
+      },
+      // After resize:
+      animateCallback : function() {
+          $(this).css({opacity:1});
+      },
+      // Quite slow animation:
+      animateDuration : 500,
+      animate: true,
+      // More extra space:
+      extraSpace : 40
+    });
+  }
 }
 
 
