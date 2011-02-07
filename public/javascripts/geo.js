@@ -3,14 +3,30 @@ $(document).ready(function(){
 })
 
 var geoFetching = false;
+var locationSuccess = false;
 
 function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
     if($('#locationPanel').css('display') == 'none'){
       $(this).addClass('selected');
-      $('#locationPanel').slideDown();
+      
+      //$('#locationPanel').slideDown();
+      // Fix for the min-height bug
+      
+      $('#locationPanel').height(0);
+      $('#locationPanel').css('display', 'block');
+      
+      if($('#locationPanel .expander').css('display') == 'none'){
+        $('#locationPanel').animate({height: 35}, "slow");
+      } else {
+        $('#locationPanel').animate({height: 100}, "slow");
+      }
+      
+      
+      
       if(!geoFetching){
+        geoFetching = true;
         getGeo();
       }
     } else {
@@ -26,27 +42,20 @@ function initGeo(){
   $('#locationPanel .delete').click(function(){
     $('.addLocation').removeClass('selected');
     $('#locationPanel, #locationPanel .expander').slideUp();
+    $('#locationList').val('No location');
   });
-}
-
-/*function setupGeo(){
-  // Location content expander
-  $('#locationList').unbind();
+  
   $('#locationList').change(function(){
-    selectedValue = $(this).find('option:selected').attr('value');
-    expander = $(this).parent().find('.expander').css('display')
-    if(( expander == 'none') && ( selectedValue == 'New location' )){
-      $(this).parent().find('.expander').slideDown();
-      if(!geoFetching) {
-        geoFetching = true;
-        getGeo();
+    if($(this).find('option:selected').attr('value') == 'New location'){
+      if(locationSuccess){
+        $('#locationPanel .expander .name .input').val('');
       }
-    } else {
-      $(this).parent().find('.expander').slideUp();
+      
+      $('#locationPanel .expander').slideDown();
+      $('#locationPanel').animate({height: 100}, "slow");
     }
-    
   })
-}*/
+}
 
 /* LOCATION DATA */
 var getGeo = function(){
@@ -60,6 +69,9 @@ var getGeo = function(){
 function geoError(error){
   alert("geolocation error : " + error.code + ' / ' + error.message);
   $('#locationPanel .spinner-small').fadeOut();
+  
+  $('#locationList').val('No location');
+  $('#locationList .finding').remove();
 }
 
 function geoSuccess(position) {
@@ -80,18 +92,12 @@ function getAddress(_lat, _lng){
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
     
-    $('#locationList').change(function(){
-      if($(this).find('option:selected').attr('value') == 'New location'){
-        $('#locationPanel .expander').slideDown();
-      }
-    })
-    
     // Remove finding your location option
     $('#locationList .finding').remove();
     
     // Add new location
     var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
-    $('#locationList').append(newElement);
+    $('#locationList').prepend(newElement);
     $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)
     
     // Set geo data
