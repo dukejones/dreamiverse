@@ -1,8 +1,9 @@
 .thumb-2d.round-16{style: "background: url('/images/art/astral-eyes-banner.jpg') top center", onMouseOver: "$(this).addClass('hover')", onMouseOut: "$(this).removeClass('hover')"}
-  .fadedBack.round-16
 
-    / LINK
-    %a.link{:href => dream_path(dream)}
+  / LINK
+  %a.link{:href => dream_path(dream)}
+
+  .fadedBack.round-16
 
     / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
     .watermark.font-georgia.alpha-10= dream.title
@@ -12,6 +13,7 @@
       .date.round-12.float-left= dream.created_at
       .location.round-12.float-right dream location
     .detailsBottom
+      .newComments.round-12.float-left
       .comments.round-12.float-left
         = image_tag("icons/comments-16.png")
         11

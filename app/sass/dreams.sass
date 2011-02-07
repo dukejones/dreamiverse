@@ -25,7 +25,7 @@
 
     /******** 2D DREAM THUMBS ********/
     /* HOVER */
-    .thumb-2d:hover
+    .thumb-2d.hover
       z-index: 81
       .fadedBack
         .detailsTop, .detailsBottom, .title
@@ -40,6 +40,12 @@
       border: 0
       position: relative
       z-index: 80
+      .link
+        display: block
+        width: 220px
+        height: 300px
+        position: absolute
+        z-index: 10000
       .fadedBack
         width: 220px
         height: 300px
@@ -78,8 +84,9 @@
         margin: -1px 0 -4px 2px
       .title
         width: 97%
-        top: 90px
+        top: 130px
         font-size: 21px
+        line-height: 21px
         text-align: center
       .tags
         z-index: 20
