@@ -52,7 +52,8 @@ Dreamcatcher::Application.routes.draw do
 
   match 'parse/title', to: 'home#parse_url_title'
 
-  root :to => 'dreams#stream'#, :as => :stream
+  #root :to => 'dreams#stream'#, :as => :stream
+  root :to => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
