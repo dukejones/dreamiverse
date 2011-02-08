@@ -20,7 +20,6 @@ Dreamcatcher::Application.routes.draw do
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
   match 'dreamstars' => 'users#index', :as => :dreamstars
-  match 'friends' => 'users#friends', :as => :friends
   match 'stream' => 'dreams#stream', :as => :stream
   # Resources
   resource :user do
@@ -39,15 +38,20 @@ Dreamcatcher::Application.routes.draw do
   # Pretty URLs
   # match '#:tag', :to => 'tags#show'
   # username_constraint = UsernameConstraint.new
-  match ':username', :to => 'dreams#index' #, :constraint => username_constraint
+
+  # Friends
+  ['friends', 'following', 'followers'].each do |mode|
+    match mode => 'users#friends', :mode => mode, :as => mode
+  end
   match ':username/:mode', :to => 'users#friends', :constraints => {mode: /friends|following|followers/}
+  match ':username', :to => 'dreams#index' #, :constraint => username_constraint
 
   # Image auto-resizing
   match 'images/uploads/:id-:size.:format', to: 'images#resize'
 
   match 'parse/title', to: 'home#parse_url_title'
 
-  root :to => "home#index"
+  root :to => 'dreams#stream'#, :as => :stream
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -355,6 +355,77 @@
 
 #dreamField
 
+  /*********** SHOW DREAM ***********/
+  #showDream
+    width: 662px 
+    padding: 8px
+
+    a.next, .stream, a.prev, .books, .type
+      margin: 0 0 8px
+      padding: 0 8px
+      height: 32px
+      line-height: 32px
+      text-align: center
+      display: block
+    .type
+      float: left
+    a.next, .stream, a.prev, .books
+      float: right
+    .books
+      margin: 0 8px
+
+    .imageHeader
+      clear: both
+      position: relative
+      margin: 0
+      height: 200px
+      background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+      .title
+        position: absolute
+        margin: 0 0 0 20px
+        bottom: 0
+        padding: 0 12px
+        height: 36px
+        line-height: 36px
+        max-width: 620px
+        text-align: center
+        font-size: 22px
+        overflow: hidden
+    .content
+      background: white
+      .body
+        margin: 0
+        padding: 36px
+      ul.gallery
+        margin: 0 0 0 18px
+        padding: 4px
+        list-style: none
+        li
+          margin: 0 2px 2px 0
+          float: left
+          height: 120px
+          width: 120px
+          background: #ababab
+      .sharePanel
+        clear: both
+        margin: 4px
+        padding: 8px
+        background-color: #eee
+        .facebook, .www, .rePost
+          float: left
+          margin: 0 8px 0 0
+          padding: 0 12px
+          height: 30px
+          line-height: 30px
+          text-align: center
+          img, span
+            float: left
+          img
+            margin: 7px 8px 0 0
+
+
+#dreamField
+
   /*********** NEW DREAM ***********/
   .headers
     padding: 0 12px
@@ -478,7 +549,7 @@
 
   // ADD LOCATION
   #locationPanel
-    min-height: 35px
+    height: 35px
     display: none
     .locations
       float: left
@@ -612,7 +683,6 @@
     min-height: 42px
     #tag-list
       width: 660px
-      min-height: 28px
       .tag_box
         padding: 0 4px
         text-align: center
