@@ -15,15 +15,20 @@
 
     .type.round-12 Dream
 
-    %a.next.button.round-12-right{:href => dreams_path}
+    %a.next.button.shine.round-12-right{:href => dreams_path}
       %span &rsaquo;
-    .stream.button.flat-all sream
-    %a.prev.button.round-12-left{:href => dreams_path}
+    .stream.button.shine.flat-all sream
+    %a.prev.button.shine.round-12-left{:href => dreams_path}
       %span &lsaquo;
     .books.button.round-8 My Book of Dreams
 
     / HEADER IMAGE & TITLE
     .imageHeader.round-16.flat-bottom
+
+      // MOOD ICON
+      .moodIcon.button.glow-10
+        %img{src: '/images/moods/plants/Fungi.png'}
+
       .title.round-8-top.transparent-50= @dream.title
 
     .content.flat-top.round-16
@@ -43,6 +48,7 @@
         %li.round-8
         %li.round-8
         %li.round-8
+      .clear-both
 
       / SHARING
       #sharePanel.round-8
@@ -59,12 +65,12 @@
 
       / INFO
       #infoPanel
-        .when.round-16 2 hours ago
-        .where.round-16 Tokyo, Japan
-        .starlightCount.round-16
+        .postTime.infoTab.round-16 2 hours ago
+        .postLocation.infoTab.round-16 Tokyo, Japan
+        .starlightCount.infoTab.round-16
           %img.starlight{src: '/images/icons/starlight-22.png'}
           %span 23,243
-        .shareOptions.round-16
+        .shareOptions.infoTab.round-16
           .love.selected
           .share
           .repost.selected
@@ -132,6 +138,7 @@
           .images
             %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
             images
+        .clear-both
 
       .prevCommentWrap
         .avatar.button.round-12
@@ -142,6 +149,7 @@
           .rePost.bevel.button.round-16
             %img{src: '', width: '16', height: '16'}
             Another Related Dream
+        .clear-both
 
       .clear-both
 
