@@ -444,7 +444,7 @@
         clear: both
         margin: 0
         padding: 8px
-        .when, .where
+        .when, .where, .love, .share, .repost, .starlight
           float: left
         .when, .where, .starlightCount, .shareOptions
           height: 32px
@@ -452,18 +452,29 @@
           padding: 0 12px
           margin: 0 4px 0 0
           background-color: #ddd
-        .starlightCount, .shareOptions
-          float: right
-          img
-            float: left
-          img.love
-            margin: 9px 8px 0 0
-          img.share
-            margin: 8px 8px 0 0
-          img.repost
-            margin: 10px 0 0
+        .starlightCount
           img.starlight
             margin: 6px 8px 0 0
+        .starlightCount, .shareOptions
+          float: right
+        .shareOptions
+          width: 86px
+          .love, .share, .repost
+            width: 28px
+            height: 32px
+            cursor: pointer
+          .love
+            background: url(/images/icons/love-16.png) no-repeat center
+          .love.selected
+            background: url(/images/icons/love-16-selected.png) no-repeat center
+          .share
+            background: url(/images/icons/share-16.png) no-repeat center
+          .share.selected
+            background: url(/images/icons/share-16-selected.png) no-repeat center
+          .repost
+            background: url(/images/icons/repost-24.png) no-repeat center
+          .repost.selected
+            background: url(/images/icons/repost-24-selected.png) no-repeat center
 
     // #tagDream - see NEW DREAM TAG below
     #tagDream
@@ -475,7 +486,7 @@
         margin-bottom: 8px
         img
           margin: 7px 8px 0 0
-      .analysisTags
+      .analysisTags, .expanded
         clear: both
         height: 32px
         line-height: 32px
@@ -492,9 +503,22 @@
           overflow: hidden
         span
           margin: 0 0 0 12px
-        img.arrowDown, img.arrowUp
+        .arrow
           float: right
-          margin: 8px 0 0
+          height: 32px
+          width: 16px
+      .analysisTags
+        .arrow
+          background: url(/images/icons/arrow-down-16.png) no-repeat center
+      .expanded
+        height: auto
+        background: white
+        .arrow
+          background: url(/images/icons/arrow-up-16.png) no-repeat center
+        p
+          clear: both
+          margin: 20px 8px 20px 20px
+          line-height: 20px
 
 
 
