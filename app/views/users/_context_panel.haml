@@ -6,19 +6,20 @@
 
   / IMAGE
   %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
-    #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
-      #uploadAvatar.round-8
-        <span>+</span> upload new avatar
+    - if user == current_user
+      #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
+        #uploadAvatar.round-8
+          <span>+</span> upload new avatar
 
   / LABEL
-  %a.context.shine.button.round-12{href: '/'}
+  %a.context.shine-small-alpha.button.round-12.flat-bottom{href: '/'}
     = user.username
     - icon = friend_icon(current_user, user, 16)
     %img.follower{src: "/images/icons/#{icon}", width: '16', height: '16'}
 
 
   - if user == current_user
-    .find.button.bevel.round-12.padding-4-8
+    .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
   - else
     / FOLLOWING
@@ -34,14 +35,14 @@
 
   / CONTEXT ITEMS
   .item
-    .label.bevel.round-12.flat-right dreams
+    .label.shine-small-alpha.round-12.flat-right dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
     .detail.inner-shadow-10.round-12.flat-left
       = user.dreams.count
     .clear-both
   .item
-    .label.bevel.round-12.flat-right starlight
+    .label.shine-small-alpha.round-12.flat-right starlight
     .image
       %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
     .detail.inner-shadow-10.round-12.flat-left
@@ -50,25 +51,13 @@
 
   .friends
     .item
-      .label.bevel.round-12.flat-right friends
+      .label.shine-small-alpha.round-12.flat-right
+        friends
       .image
         %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
       .detail.inner-shadow-10.round-12.flat-left
         = user.friends.count
       .clear-both
-    .expander.hidden
-      .item.following
-        .label.bevel.round-12.flat-right following
-        .image
-          %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
-        .detail.inner-shadow-10.round-12.flat-left #
-        .clear-both
-      .item.followers
-        .label.bevel.round-12.flat-right followers
-        .image
-          %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
-        .detail.inner-shadow-10.round-12.flat-left #
-        .clear-both
 
   /
     .item2
