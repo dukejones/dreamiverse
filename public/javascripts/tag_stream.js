@@ -221,11 +221,14 @@ function setInputType(type){
 
 var tagsObj = [
   {"type": "tag", "value": "magic"},
-  {"type": "user", "value": "Sporeganic"},
+  {"type": "user", "value": "Sporeganic", "updates": 2012},
   {"type": "user", "value": "phong"},
-  {"type": "tag", "value": "magic"},
+  {"type": "tag", "value": "magic", "updates": 4},
   {"type": "location", "value": "Portland, OR"},
-  {"type": "user", "value": "Eph"},
+  {"type": "user", "value": "Eph", "updates": 2},
+  {"type": "tag", "value": "magic", "updates": 4},
+  {"type": "location", "value": "Portland, OR"},
+  {"type": "user", "value": "Eph", "updates": 2}
 ];
 
 function createNewTag(){
@@ -245,18 +248,39 @@ function buildTags(){
     var newElement = '';
     switch(tagsObj[u].type){
       case "tag":
-        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        if(tagsObj[u].updates != undefined){
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span><div class="count">' + tagsObj[u].updates + '</div></div>';
+        } else {
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        }
         break;
       case "user":
-        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWho"><div class="avatar"></div><span>' + tagsObj[u].value + '</span></div>'
+        if(tagsObj[u].updates != undefined){
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWho"><div class="avatar"></div><span>' + tagsObj[u].value + '</span><div class="count">' + tagsObj[u].updates + '</div></div>'
+        } else {
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWho"><div class="avatar"></div><span>' + tagsObj[u].value + '</span></div>'
+        }
         break;
       case "location":
-        newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        if(tagsObj[u].updates != undefined){
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span><div class="count">' + tagsObj[u].updates + '</div></div>';
+        } else {
+          newElement = '<div style="color: rgb(107, 185, 255);" class="stream_tag tagWhat"><span>' + tagsObj[u].value +'</span></div>';
+        }
         break;
     }
     
     setInputType('tag');
     
     $('#tagsLive').append(newElement);
+    
+    // Set most recent tag to hidden
+    if(u < 1){
+      $('.stream_tag').addClass('hidden');
+      $('.stream_tag').css('background-color', '#fff');
+      $('.stream_tag').delay(700).fadeIn(1000, function(){
+        $(this).css('background-color', 'transparent');
+      });
+    }
   }
 }
