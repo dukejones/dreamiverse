@@ -23,5 +23,11 @@
         signup
       %a.item{href: '#'}
         login
-    .loginPanel
-    .signupPanel
+    .loginPanel.hidden
+      %input.input.padding-4-8.round-16{type: 'text', name: 'username', value: 'username / email' }
+      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'password' }
+    .signupPanel.hidden
+      %input.input.padding-4-8.round-16{type: 'text', name: 'email', value: 'email' }
+      %input.input.padding-4-8.round-16{type: 'text', name: 'username', value: 'username' }
+      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'password' }
+      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'repeat password' }
