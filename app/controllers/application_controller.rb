@@ -20,6 +20,13 @@ protected
     @current_user = user
   end
 
+  def require_username
+    if !params[:username]
+      redirect_to(params.merge(username: current_user.username)) and return if current_user
+      redirect_to root_path, :alert => "you must be logged in to access this page." and return
+    end
+  end
+
   def require_user
     unless current_user
       redirect_to :root and return

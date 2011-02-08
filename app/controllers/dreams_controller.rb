@@ -1,14 +1,16 @@
 class DreamsController < ApplicationController
   before_filter :require_user, :except => [:stream]
+  before_filter :require_username
+  before_filter :query_username
+
+  def query_username
+    @user = User.find_by_username( params[:username] )
+
+    redirect_to root_path, :alert => "user #{params[:username]} does not exist." and return unless @user
+  end
   
   def index
-    if params[:username]
-      @user = User.find_by_username(params[:username])
-      redirect_to :root, :alert => "user #{params[:username]} does not exist." and return unless @user
-    else
-      @user = current_user
-    end
-
+    # public dreams only if != current_user
     @dreams = @user.dreams
     
     add_starlight @user, 1 if unique_hit?
