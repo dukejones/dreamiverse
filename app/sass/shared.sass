@@ -4,15 +4,10 @@
 .light
   color: #333
 
-  .button
-    border: 1px solid #848484
+  .button, .border
+    border: 1px solid #ccc
   .button:hover
     border: 1px solid #464646
-
-
-
-
-
 
   .shine
     box-shadow: inset 0 18px rgba(255,255,255,0.5)
@@ -68,7 +63,6 @@
     -moz-box-shadow: 0px 0px 20px #000
     -webkit-box-shadow: 0px 0px 20px #000
 
-
   .spinner-small
     background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
 
@@ -112,16 +106,13 @@
 .dark
   color: #fff
 
-  .button
+  .button, .border
     border: 1px solid #555
   .button:hover
     border: 1px solid #fff
     box-shadow: inset 0 0 20px #fff
     -moz-box-shadow: inset 0 0 20px #fff
     -webkit-box-shadow: inset 0 0 20px #fff
-
-
-
 
   .shine
     box-shadow: inset 0 18px rgba(255,255,255,0.2)
@@ -238,6 +229,18 @@
 
 
 /* BUTTONS */
+.button.confirm:hover
+  color: #fff
+  border: 1px solid #4794b5
+  background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b))
+  background: -moz-linear-gradient(top, #3ba4d1, #1b485b)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.confirm:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.save:hover
   color: #fff
   border: 1px solid #54943d
@@ -246,6 +249,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.save:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.cancel:hover
   color: #fff
   border: 1px solid #848484
@@ -254,6 +261,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.cancel:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.delete:hover
   color: #fff
   border: 1px solid #c1633c
@@ -262,6 +273,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.delete:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 
 
 /* COLOR BUTTONS */
@@ -515,7 +530,7 @@ a:active, a:focus
     padding: 0
     height: 16px
     margin-bottom: -8px
-  img.appearanceIcon, h1, h2
+  img.appearanceIcon, h1
     float: left
   h1
     margin: 8px
@@ -653,29 +668,38 @@ a:active, a:focus
       font-size: 16px
       margin-top: 8px
 
+
+
+
+
 /******** SETTINGS PANEL ********/
-
-
-// SETTINGS PANEL SHARED STYLES
 #settingsPanel
+
+  .arrow
+    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
+  img, .sharingList
+    float: left
+
+
   .sharing, .savedLocations, .changePassword
     clear: both
-    padding: 8px
     border: 1px solid #999
     margin: 0 0 8px
     h2
-      float: left
-      margin: 4px
-      font-size: 16px
+      margin: 0px
+      padding: 8px
+      font-size: 18px
       font-weight: bold
 
-// SETTINGS PANEL
-#settingsPanel
-  .arrow
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
-  img, h1, h2, .sharingList
-    float: left
+  .savedLocations h2, .changePassword h2
+    display: block
+    cursor: pointer
+    img
+      padding-right: 8px 
+
+
   .sharing
+    padding: 8px
     .defaultSharing, .network
       height: 32px
       line-height: 32px
@@ -684,6 +708,8 @@ a:active, a:focus
         margin: 8px 8px 0 0
       h2
         margin: 0
+        padding: 0
+        float: left
       p
         float: left
     .sharingList
@@ -723,77 +749,82 @@ a:active, a:focus
       line-height: 26px
       cursor: pointer
       float: right
+      padding: 0 4px
+      border: 1px solid transparent
       input
         cursor: pointer
         margin: 7px 4px 0 8px
         float: right
     label:hover
-      text-decoration: underline
+      border: 1px solid #ccc
+      border-radius: 4px
+      -moz-border-radius: 4px
+      -webkit-border-radius: 4px
+
+
   .savedLocations
-    img
-      padding-top: 5px 
-    .newLocation
-      width: 186px
-      text-align: center
-      margin-top: 5px
-      img
-        padding: 3px 3px 0 0
-    .autoLocate
-      display: block
-      float: right
-      margin-top: 5px
-    .locationList
-      width: 100%
-      max-height: 180px
-      overflow-y: auto
-      clear: both
-      .locations
-        float: none
+    .locationView
+      padding: 8px
+      .newLocation, .autoLocate
+        margin-top: 8px
+      .newLocation
+        width: 186px
+        text-align: center
+        img
+          float: none
+          margin: -3px 3px
+      .autoLocate
+        display: block
+        float: right
+      .locationList
+        width: 100%
+        max-height: 180px
+        overflow-y: auto
         clear: both
-        margin: 0
-        padding: 6px 8px
-        border: 1px solid #ccc
-        cursor: pointer
-        background-color: white
-        .edit, label
-          display: none
-        label.selected
-          display: block
-          -moz-opacity: 1
-          -khtml-opacity: 1
-          -webkit-opacity: 1
-          opacity: 1
-        label
-          border: 1px solid transparent
+        .locations
+          float: none
+          clear: both
+          margin: 0
+          padding: 6px 8px
           cursor: pointer
-          font-size: 11px
-          float: right
-          padding: 2px 4px
-          input
-            margin: -5px 0
+          .edit, label
+            display: none
+          label.selected
+            display: block
+            -moz-opacity: 1
+            -khtml-opacity: 1
+            -webkit-opacity: 1
+            opacity: 1
+          label
+            border: 1px solid transparent
             cursor: pointer
-      .locations:hover
-        .edit
-          display: block
-          width: 16px
-          height: 16px
-          float: right
-          padding: 3px
-          margin-right: 8px
-          background: url(/images/icons/edit-16.png) no-repeat center center
-          border: 1px solid transparent
-        .edit:hover, label:hover
-          border: 1px solid #333
-          border-radius: 4px
-          -moz-border-radius: 4px
-          -webkit-border-radius: 4px
-        label
-          display: block
+            font-size: 11px
+            float: right
+            padding: 2px 4px
+            input
+              margin: -5px 0
+              cursor: pointer
+        .locations:hover
+          .edit
+            display: block
+            width: 16px
+            height: 16px
+            float: right
+            padding: 3px
+            margin-right: 8px
+            background: url(/images/icons/edit-16.png) no-repeat center center
+            border: 1px solid transparent
+          .edit:hover, label:hover
+            border: 1px solid #ccc
+            border-radius: 4px
+            -moz-border-radius: 4px
+            -webkit-border-radius: 4px
+          label
+            display: block
+
 
   .changePassword
     margin: 0
-    img
-      padding-top: 4px
     .input
       margin: 0 0 4px
       padding: 4px
@@ -802,20 +833,18 @@ a:active, a:focus
       border-radius: 4px
       -moz-border-radius: 4px
       -webkit-border-radius: 4px
-    .cancel, .save
+    .cancel, .confirm
       margin: 8px 0 0
       padding: 0 12px
       text-align: center
     .cancel
       float: left
-    .save
+    .confirm
       float: right
 
-
-
-
-
 /*********** END META MENU ***********/
+
+
 
 
 /******* MODAL WINDOW *******/

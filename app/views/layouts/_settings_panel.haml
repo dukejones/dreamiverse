@@ -17,7 +17,7 @@
     .network
       %img{src: '/images/icons/facebook-16.png'}
       Facebook
-      .linkAccount.button.bevel.round-4
+      .linkAccount.button.small.confirm.bevel.round-4
         Link account
     %label
       By default, share on Facebook
@@ -29,57 +29,90 @@
 
   / SAVED LOCATIONS
   .savedLocations.panel.round-8
-    %img{src: '/images/icons/world-16.png'}
-    %h2 Saved locations
 
-    %form
-      .locationList
-        .locations
-          %label.default.alpha-50
-            set as default
-            %input{name: 'default', type: 'radio'}
-          .edit
-          Home
+    %h2
+      %img{src: '/images/icons/world-16.png'}
+      Saved locations
 
-        .locations
-          %label.default.alpha-50
-            set as default
-            %input{name: 'default', type: 'radio'}
-          .edit
-          The Pearl
 
-        .locations
-          %label.default.alpha-50.selected
-            set as default
-            %input{name: 'default', type: 'radio'}
-          Flow Space
-          .edit
+    .locationView
+      %form
+        .locationList.border
 
-        .locations
-          %label.default.alpha-50
-            set as default
-            %input{name: 'default', type: 'radio'}
-          .edit
-          Under I580
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            .edit
+            Home
 
-      %label.autoLocate.bevel.round-4.padding-2-4.button
-        auto locate
-        %input{name: 'default', type: 'radio'}
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            .edit
+            The Pearl
 
-    .newLocation.bevel.float-left.round-4.padding-2-4.button.save
-      %img{src: '/images/icons/add-16.png'}
-      new location
-    .clear-both
+          .locations.flat.button
+            %label.default.alpha-50.selected
+              set as default
+              %input{name: 'default', type: 'radio'}
+            Flow Space
+            .edit
+
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            Flow Space
+            .edit
+
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            Flow Space
+            .edit
+
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            Flow Space
+            .edit
+
+          .locations.flat.button
+            %label.default.alpha-50
+              set as default
+              %input{name: 'default', type: 'radio'}
+            .edit
+            Under I580
+
+        %label.autoLocate.bevel.round-4.padding-2-4.button.small.cancel
+          auto locate
+          %input{name: 'default', type: 'radio'}
+
+      .newLocation.bevel.float-left.round-4.padding-2-4.button.small.confirm
+        %img{src: '/images/icons/add-16.png'}
+        new location
+      .clear-both
+
+    .modifyLocationView.hidden
+      %input.input{value: 'Location name'}
+
+
 
 
 
   / CHANGE PASSWORD
   .changePassword.panel.round-8
-    %img{src: '/images/icons/key-16.png'}
-    %h2 Change password
-    %input.input{value: 'Current Password'}
-    %input.input{value: 'New Password'}
-    %input.input{value: 'Confirm New Password'}
-    .cancel.button.bevel.round-4 Cancel
-    .save.button.bevel.round-4 Change password
+    %h2
+      %img{src: '/images/icons/key-16.png'}
+      Change password
+
+    %input.input{value: 'Current password'}
+    %input.input{value: 'New password'}
+    %input.input{value: 'Confirm new password'}
+    .cancel.button.small.bevel.round-4 Cancel
+    .confirm.button.small.bevel.round-4 Change password
     .clear-both
