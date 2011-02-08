@@ -7,10 +7,21 @@
       books
     %a.item{href: '#'}
       channels
+    %form.float-left
+      %input.input.padding-4-8.round-16{type: 'text', name: 'search' }
 
 
   .right-panel.padding-8.round-16.flat-top
-    %a.item{href: '#'}
-      intro
-    %a.item{href: '#'}
-      intro
+    .prompt
+      %a.item
+        %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
+      %a.item
+        %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
+      %a.item
+        %img{src: '/images/icons/google-16.png', alt: 'Log in with Google', border: '0'}
+      %a.item{href: '#'}
+        signup
+      %a.item{href: '#'}
+        login
+    .loginPanel
+    .signupPanel
