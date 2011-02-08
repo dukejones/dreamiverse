@@ -3,14 +3,10 @@
 
 
 
-
-
-
-
-
-
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => current_user}
+
+
 
 #dreamField
 
@@ -26,12 +22,16 @@
       %span &lsaquo;
     .books.button.round-8 My Book of Dreams
 
+    / HEADER IMAGE & TITLE
     .imageHeader.round-16.flat-bottom
       .title.round-8-top.transparent-50= @dream.title
 
-    .content.flat-top.round-12-bottom
+    .content.flat-top.round-16
+
+      / BODY
       .body= @dream.body
 
+      / IMAGE GALLERY
       %ul.gallery
         %li.round-8
         %li.round-8
@@ -44,15 +44,44 @@
         %li.round-8
         %li.round-8
 
-      .sharePanel.round-4
-        .facebook.button.round-16
+      / SHARING
+      #sharePanel.round-8
+        .facebook.button.bevel.round-16
           %img{src: '/images/icons/facebook-16.png'}
           %span Link on Facebook
-        .www.button.round-16
+        .www.button.bevel.round-16
           %img{src: '/images/icons/link-16.gif'}
           %span Link on WWW
-        .rePost.button.round-16
+        .rePost.button.bevel.round-16
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
         .clear-both
+
+      / INFO
+      #infoPanel
+        .when.round-16 2 hours ago
+        .where.round-16 Tokyo, Japan
+        .starlightCount.round-16
+          %img.starlight{src: '/images/icons/starlight-22.png'}
+          %span 23,243
+        .shareOptions.round-16
+          %img.love{src: '/images/icons/love-16-selected.png'}
+          %img.share{src: '/images/icons/share-16.png'}
+          %img.repost{src: '/images/icons/repost-24-selected.png'}
+        .clear-both
       .clear-both
+
+    / TAG
+    #tagDream.panel.round-12
+      .tagHeader.headers.indent.button
+        tag
+        %img{src: '/images/icons/tag-20.png'}
+      .tagInputWrap
+        %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
+        .tagInput
+          %input#newTag
+          .tagAdd.button.bevel.round-4
+            %span +
+            Add
+        %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+      %img.tagCheck{src: '/images/icons/check-33.png', width: '33', height: '33'}

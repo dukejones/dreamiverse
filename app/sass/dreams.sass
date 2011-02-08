@@ -355,6 +355,11 @@
 
 #dreamField
 
+  /*********** SHOW DREAM SHARED STYLES***********/
+  #showDream
+    .panel
+      border: 1px solid #666
+
   /*********** SHOW DREAM ***********/
   #showDream
     width: 662px 
@@ -374,6 +379,7 @@
     .books
       margin: 0 8px
 
+    // HEADER IMAGE & TITLE
     .imageHeader
       clear: both
       position: relative
@@ -391,11 +397,17 @@
         text-align: center
         font-size: 22px
         overflow: hidden
+
     .content
       background: white
+      margin: 0 0 12px
+
+      // BODY
       .body
         margin: 0
         padding: 36px
+
+      // GALLERY
       ul.gallery
         margin: 0 0 0 18px
         padding: 4px
@@ -406,11 +418,13 @@
           height: 120px
           width: 120px
           background: #ababab
-      .sharePanel
+
+      // SHARING
+      #sharePanel
         clear: both
-        margin: 4px
+        margin: 8px
         padding: 8px
-        background-color: #eee
+        background-color: #ddd
         .facebook, .www, .rePost
           float: left
           margin: 0 8px 0 0
@@ -422,6 +436,39 @@
             float: left
           img
             margin: 7px 8px 0 0
+
+      // INFO
+      #infoPanel
+        clear: both
+        margin: 0
+        padding: 8px
+        .when, .where
+          float: left
+        .when, .where, .starlightCount, .shareOptions
+          height: 32px
+          line-height: 32px
+          padding: 0 12px
+          margin: 0 4px 0 0
+          background-color: #ddd
+        .starlightCount, .shareOptions
+          float: right
+          img
+            float: left
+          img.love
+            margin: 9px 8px 0 0
+          img.share
+            margin: 8px 8px 0 0
+          img.repost
+            margin: 10px 0 0
+          img.starlight
+            margin: 6px 8px 0 0
+
+    // #tagDream - see NEW DREAM TAG below
+    #tagDream
+      padding: 8px
+      img.tagCheck
+        margin: 4px 0 0 8px
+
 
 
 #dreamField
@@ -461,7 +508,7 @@
         float: left
         margin: 3px 0 0 4px
       #entryType_current
-        background: url(../images/icons/arrowDark-16-open.png) no-repeat 118px 3px
+        background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
         background: transparent
         border: 0
@@ -679,7 +726,7 @@
           right: 0px
 
   /* NEW DREAM TAG */
-  #newDream-tag
+  #tagDream
     min-height: 42px
     #tag-list
       width: 660px
@@ -690,7 +737,7 @@
         line-height: 28px
         color: #262626 /* 90% Black */
         margin: 8px 8px 0 0
-    #tagInputWrap
+    .tagInputWrap
       width: 520px
       height: 40px
       float: left
@@ -698,12 +745,12 @@
       img
         float: left
         margin: 0
-      #tagInput
+      .tagInput
         width: 480px
         height: 40px
         float: left
         margin: 0
-        background: url(../images/slices/inputContentLight-40.png) repeat-x
+        background: url(/images/slices/inputContentLight-40.png) repeat-x
         input
           width: 410px
           height: 32px
@@ -713,10 +760,15 @@
           font-size: 18px
           background: transparent
           border: 0
-      #tagAdd
+      .tagAdd
         width: 62px
+        height: 30px
+        line-height: 30px
+        text-align: center
         float: right
-        margin: 4px 0
+        margin: 5px 0
+        span
+          color: green
     #tagBrowse
       width: 36px
       height: 32px
