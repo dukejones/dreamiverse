@@ -6,6 +6,6 @@ class What < ActiveRecord::Base
   before_create :clean
   
   def clean
-    self.name = self.name.gsub(/[^[:alnum:]]/, '') # replace non alpha numeric chars wiht nothing
+    self.name = self.name.gsub(/[^[:alnum:]]/, '') # replace non alpha numeric chars with nothing
   end
 end
