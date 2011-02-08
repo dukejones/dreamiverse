@@ -13,8 +13,7 @@
   / LABEL
   %a.context.shine.button.round-12{href: '/'}
     = user.username
-    - icon = friend_icon(current_user, user, 16)
-    %img.follower{src: "/images/icons/#{icon}", width: '16', height: '16'}
+    = friend_icon_tag current_user.relationship_with(user), 16, {class: 'follower'}
 
 
   - if user == current_user
@@ -22,16 +21,13 @@
       Who's dreaming about me &rsaquo;
   - else
     / FOLLOWING
-    - if current_user.friends_with? user
-      = render partial: 'users/following', locals: {icon: 'friend', text: 'friends'}
-    - elsif current_user.following? user
-      = render partial: 'users/following', locals: {icon: 'friend-follow', text: 'following', text2: 'unfollow'}
-    - elsif current_user.followed_by? user
-      = render partial: 'users/following', locals: {icon: 'friend-followed', text: 'followed', text2: 'block user'}
+    - relationship = current_user.relationship_with(user)
+    - if follow_action(relationship) == "unfollow"
+      = render partial: 'users/following', locals: { relationship: relationship }
     - else
       = render partial: 'users/follow'
-
-
+    
+    
   / CONTEXT ITEMS
   .item
     .label.bevel.round-12.flat-right dreams
