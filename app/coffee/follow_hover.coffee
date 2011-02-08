@@ -19,11 +19,12 @@ $.subscribe('follow/changed', (userNode) ->
 )
 $.subscribe('follow/changing', (userNode) ->
   followButton = new FollowButton(userNode)
-  followButton.intermediateState()
+  followButton.loadingState()
 )
 
 # For adding hoverIntent:
 # http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
+
 $('.userNode').live('mouseenter mouseleave click', (event) ->
   switch event.type
     when 'mouseenter'
@@ -57,7 +58,7 @@ class FollowButton
         $status.addClass('friends')
         $actionWord.text('unfriend');
         
-  intermediateState: ->
+  loadingState: ->
     # not yet implemented
 
   
