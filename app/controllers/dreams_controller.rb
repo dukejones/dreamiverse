@@ -1,5 +1,5 @@
 class DreamsController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :except => [:stream]
   
   def index
     if params[:username]
