@@ -359,8 +359,9 @@
   #showDream
     .panel
       padding: 8px
-      margin: 0 0 8px
       border: 1px solid #666
+    .content, #tagDream, #analysis
+      margin: 0 0 8px
 
   /*********** SHOW DREAM ***********/
   #showDream
@@ -402,7 +403,6 @@
 
     .content
       background: white
-      margin: 0 0 12px
 
       // BODY
       .body
@@ -476,11 +476,12 @@
           .repost.selected
             background: url(/images/icons/repost-24-selected.png) no-repeat center
 
-    // #tagDream - see NEW DREAM TAG below
+    // TAG - see NEW DREAM TAG below
     #tagDream
       img.tagCheck
         margin: 4px 0 0 8px
 
+    // ANALYSIS
     #analysis
       .analysisHeader
         margin-bottom: 8px
@@ -519,7 +520,80 @@
           clear: both
           margin: 20px 8px 20px 20px
           line-height: 20px
+        .dreamMoods
+          float: left
+          margin: 0 0 12px 12px
+          padding: 0 12px
+          height: 24px
+          line-height: 24px
+          text-align: center
 
+    // COMMENTS
+    #comments
+      margin-bottom: 0
+      .commentsHeader
+        margin-bottom: 8px
+        img
+          margin: 7px 8px 0 0
+        .counter
+          float: right
+
+      .newCommentWrap, .prevCommentWrap
+        clear: both
+        margin-bottom: 8px
+        .avatar
+          float: left
+          height: 62px
+          width: 62px
+          margin: 0 8px
+          overflow: hidden
+          background: url(/images/avatars/default-avatar-tiny.jpg) top left
+        .newComment
+          float: right
+          width: 546px
+          padding: 8px
+          textarea
+            min-height: 118px
+            width: 546px
+            background: transparent
+            border: none
+          .images, .links, .save
+            float: right
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            text-align: center
+          .images, .links
+            img
+              margin: 11px 8px 0 0
+              float: left
+          .links
+            img
+              margin-top: 9px
+      .prevCommentWrap
+        margin-bottom: 0
+        .prevComment
+          float: right
+          min-height: 132px
+          width: 546px
+          padding: 8px
+          .user, .postTime
+            float: left
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            margin: 0 0 12px
+            text-align: center
+          .comment
+            clear: both
+          .rePost
+            float: left
+            height: 32px
+            line-height: 32px
+            padding: 0 12px
+            margin: 12px 0 0
+            text-align: center
+          
 
 
 #dreamField
