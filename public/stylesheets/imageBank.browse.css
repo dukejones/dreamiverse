@@ -32,6 +32,7 @@
   position: absolute;
   text-align:center;
   width: 100%;
+  height: 40px;
   z-index: 1000;}  
 .nav-expand {
   position: absolute;
@@ -41,6 +42,8 @@
 .nav-expand p {
   float: left;
   display: block;
-  height: 80px;
-  margin: 0px 8px;
-  font-size: 14px;}
+  padding: 5px;
+  height: 40px;
+  line-height: 40px;
+  margin: 32px 8px 0px 8px;
+  font-size: 16px;}

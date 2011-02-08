@@ -397,7 +397,7 @@ loadArtist = function(artist) {
       }
       
       var element = $(this);
-      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter,
+      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter+"&genre="+currentGenre,
         function(images) {
           if (images.length > 0) {
             item = '<ul class="clearfix images">';
