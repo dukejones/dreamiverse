@@ -1,3 +1,4 @@
+VERSION = "theta v.1.0 (a)"
 
 require 'digest/sha1'
 def sha1(string)

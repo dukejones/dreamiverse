@@ -14,7 +14,8 @@ Dreamcatcher::Application.routes.draw do
     resource :session
     resource :registration
   end
-  match 'login' => 'user/sessions#create', :as => :login
+  post 'login' => 'user/sessions#create', :as => :login
+  get  'login' => 'user/sessions#new', :as => :login
   match 'logout' => 'user/sessions#destroy', :as => :logout
 
   match 'auth/:provider/callback', :to => 'user/authentications#create'
