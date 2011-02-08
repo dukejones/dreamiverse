@@ -664,7 +664,7 @@ a:active, a:focus
     border: 1px solid #999
     margin: 0 0 8px
     h2
-      float: none
+      float: left
       margin: 4px
       font-size: 16px
       font-weight: bold
@@ -673,7 +673,7 @@ a:active, a:focus
 #settingsPanel
   .arrow
     background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
-  img, h1, p, .sharingList
+  img, h1, h2, .sharingList
     float: left
   .sharing
     .defaultSharing, .network
@@ -682,8 +682,10 @@ a:active, a:focus
       margin: 0 0 4px
       img
         margin: 8px 8px 0 0
-      p
+      h2
         margin: 0
+      p
+        float: left
     .sharingList
       float: right
       font-size: 12px
@@ -698,7 +700,7 @@ a:active, a:focus
       option
         padding: 6px 0 6px 24px
       option.everyone
-        background: url(/images/icons/public-16.png) no-repeat 4px
+        background: url(/images/icons/everyone-16.png) no-repeat 4px
       option.friends
         background: url(/images/icons/friend-16.png) no-repeat 4px
       option.anonymous
@@ -720,31 +722,86 @@ a:active, a:focus
       height: 26px
       line-height: 26px
       cursor: pointer
+      float: right
       input
         cursor: pointer
-        margin: 6px 8px 0 24px
-        float: left
+        margin: 7px 4px 0 8px
+        float: right
+    label:hover
+      text-decoration: underline
   .savedLocations
-    .locations
-      p
+    img
+      padding-top: 5px 
+    .newLocation
+      width: 186px
+      text-align: center
+      margin-top: 5px
+      img
+        padding: 3px 3px 0 0
+    .autoLocate
+      display: block
+      float: right
+      margin-top: 5px
+    .locationList
+      width: 100%
+      max-height: 180px
+      overflow-y: auto
+      clear: both
+      .locations
         float: none
+        clear: both
         margin: 0
         padding: 6px 8px
         border: 1px solid #ccc
         cursor: pointer
         background-color: white
-      p:hover
-        background: url(/images/icons/edit-16.png) no-repeat 290px 8px
+        .edit, label
+          display: none
+        label.selected
+          display: block
+          -moz-opacity: 1
+          -khtml-opacity: 1
+          -webkit-opacity: 1
+          opacity: 1
+        label
+          border: 1px solid transparent
+          cursor: pointer
+          font-size: 11px
+          float: right
+          padding: 2px 4px
+          input
+            margin: -5px 0
+            cursor: pointer
+      .locations:hover
+        .edit
+          display: block
+          width: 16px
+          height: 16px
+          float: right
+          padding: 3px
+          margin-right: 8px
+          background: url(/images/icons/edit-16.png) no-repeat center center
+          border: 1px solid transparent
+        .edit:hover, label:hover
+          border: 1px solid #333
+          border-radius: 4px
+          -moz-border-radius: 4px
+          -webkit-border-radius: 4px
+        label
+          display: block
+
   .changePassword
     margin: 0
+    img
+      padding-top: 4px
     .input
       margin: 0 0 4px
       padding: 4px
       width: 306px
       font-size: 12px
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
+      border-radius: 4px
+      -moz-border-radius: 4px
+      -webkit-border-radius: 4px
     .cancel, .save
       margin: 8px 0 0
       padding: 0 12px

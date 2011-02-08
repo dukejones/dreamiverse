@@ -2,39 +2,84 @@
 #settingsPanel.hidden.panel.glow-40.round-8
   .arrow
 
+
+
   / SHARING
   .sharing.panel.round-8
     .defaultSharing
-      %img{src: '/images/icons/sharing-16.png'}
-      %p Default Sharing
+      %img{src: '/images/icons/everyone-16.png'}
+      %h2 Default sharing
       %select.sharingList.input.round-8
         %option.everyone{value: 'Everyone'} Everyone
-        %option.friends{value: 'Friends Only'} Friends Only
+        %option.friends{value: 'Friends Only'} Friends only
         %option.anonymous{value: 'Anonymous'} Anonymous
         %option.private{value: 'Private'} Private
     .network
       %img{src: '/images/icons/facebook-16.png'}
-      %p Facebook
+      Facebook
       .linkAccount.button.bevel.round-4
-        Link Account
+        Link account
     %label
-      %input{type: 'checkbox'} By default, share on Facebook
+      By default, share on Facebook
+      %input{type: 'checkbox'}
+    .clear-both
+
+
+
 
   / SAVED LOCATIONS
   .savedLocations.panel.round-8
-    %h2 Saved Locations
-    .locations
-      %p Home
-      %p The Pearl
-      %p Flow Space
-      %p Under I580
+    %img{src: '/images/icons/world-16.png'}
+    %h2 Saved locations
+
+    %form
+      .locationList
+        .locations
+          %label.default.alpha-50
+            set as default
+            %input{name: 'default', type: 'radio'}
+          .edit
+          Home
+
+        .locations
+          %label.default.alpha-50
+            set as default
+            %input{name: 'default', type: 'radio'}
+          .edit
+          The Pearl
+
+        .locations
+          %label.default.alpha-50.selected
+            set as default
+            %input{name: 'default', type: 'radio'}
+          Flow Space
+          .edit
+
+        .locations
+          %label.default.alpha-50
+            set as default
+            %input{name: 'default', type: 'radio'}
+          .edit
+          Under I580
+
+      %label.autoLocate.bevel.round-4.padding-2-4.button
+        auto locate
+        %input{name: 'default', type: 'radio'}
+
+    .newLocation.bevel.float-left.round-4.padding-2-4.button.save
+      %img{src: '/images/icons/add-16.png'}
+      new location
+    .clear-both
+
+
 
   / CHANGE PASSWORD
   .changePassword.panel.round-8
-    %h2 Change Password
+    %img{src: '/images/icons/key-16.png'}
+    %h2 Change password
     %input.input{value: 'Current Password'}
     %input.input{value: 'New Password'}
     %input.input{value: 'Confirm New Password'}
     .cancel.button.bevel.round-4 Cancel
-    .save.button.bevel.round-4 Change Password
+    .save.button.bevel.round-4 Change password
     .clear-both
