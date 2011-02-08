@@ -10,11 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110130192907) do
+ActiveRecord::Schema.define(:version => 20110207202017) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -91,6 +92,8 @@ ActiveRecord::Schema.define(:version => 20110130192907) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "score"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -119,8 +122,8 @@ ActiveRecord::Schema.define(:version => 20110130192907) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.string  "source"
-    t.integer "user",   :limit => 8
+    t.integer "user",      :limit => 8
+    t.string  "user_type"
   end
 
   create_table "words", :force => true do |t|
