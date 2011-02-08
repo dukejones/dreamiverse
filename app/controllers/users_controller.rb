@@ -14,7 +14,12 @@ class UsersController < ApplicationController
   end
 
   def friends
-    @user = User.find_by_username(params[:username]) || current_user
+    @user = 
+      if params[:username]
+        User.find_by_username(params[:username]) # || raise "User #{params[:username]} does not exist."
+      else
+        current_user
+      end
     @mode = params[:mode] 
     @friends = case @mode
       when 'friends'   then @user.friends
