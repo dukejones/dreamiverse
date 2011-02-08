@@ -8,8 +8,6 @@
       , ->
         $('#unfollow').addClass('hidden')
         $('#followState').removeClass('hidden')
-    ).click(->
-      
     )
 
 .item
@@ -20,6 +18,6 @@
     .detail.inner-shadow-10.round-12.flat-left.flat-top= relationship.to_s.humanize.downcase
     .clear-both
 
-  %a#unfollow.block.round-12.flat-top.hidden{href: '#'}
+  %a#unfollow.block.round-12.flat-top.hidden{href: unfollow_path(user.username)}
     %img.follow{src: "/images/icons/friend-unfollow-24.png", width: '24', height: '24'}
     = follow_action( relationship )

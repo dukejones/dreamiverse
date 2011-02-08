@@ -26,9 +26,9 @@ Dreamcatcher::Application.routes.draw do
 
   # Resources
 
-  # resource :user do
-  #   post 'follow'
-  # end
+  resource :user do
+    post 'follow'
+  end
 
   # Random path from dreams.js
   match 'parse/title', to: 'home#parse_url_title'
@@ -54,8 +54,10 @@ Dreamcatcher::Application.routes.draw do
   # username_constraint = UsernameConstraint.new
   scope '(:username)' do
     # Dreams
-    # match '/' => redirect("/%{username}/dreams")
+    match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
+    match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
     resources :dreams
+    match '/' => redirect("/%{username}/dreams")
 
     # Friends
     ['friends', 'following', 'followers'].each do |mode|

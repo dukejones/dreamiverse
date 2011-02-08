@@ -23,9 +23,9 @@
     / FOLLOWING
     - relationship = current_user.relationship_with(user)
     - if follow_action(relationship) == "unfollow"
-      = render partial: 'users/following', locals: { relationship: relationship }
+      = render partial: 'users/following', locals: { relationship: relationship, user: user }
     - else
-      = render partial: 'users/follow'
+      = render partial: 'users/follow', locals: { user: user }
     
     
   / CONTEXT ITEMS

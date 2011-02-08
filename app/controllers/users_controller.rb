@@ -28,13 +28,21 @@ class UsersController < ApplicationController
     end
   end
   
-  # ajax only
   def follow
-    user = User.find(params[:user_id])
-    case params[:verb]
-      when 'follow' then current_user.following << user
-      when 'unfollow' then current_user.following.delete user
+    if request.xhr?
+      user = User.find(params[:user_id])
+    else
+      user = User.find_by_username(params[:username])
     end
-    render :json => {message: 'success'}
+
+    case params[:verb]
+      when 'follow' then current_user.following << user unless current_user.following?(user)
+      when 'unfollow' then current_user.following.delete user if current_user.following?(user)
+    end
+    
+    respond_to do |format|
+      format.html { redirect_to dreams_path(user.username) }
+      format.json { render :json => {message: 'success'} }
+    end
   end
 end
