@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'shared', 'home'
+  = sass_link_tag 'shared', 'home', 'dreams'
 
 #drop_shadow
 
@@ -18,26 +18,25 @@
     .dreamsFilter.transparent-66.round-8 dreams
     .randomDream.button.round-12 random dream!
 
-
-    = render "login_box"
-
     
     / DREAM MATRIX
     .matrix
 
 
       / DREAM THUMBS 1D
-      = render :partial => 'thumb_1d'
+      = render :partial => 'dreams/thumb_1d'
 
       / DREAM THUMBS 1D
-      = render :partial => 'thumb_1d_tag'
+      = render :partial => 'dreams/thumb_1d_tag'
 
       / DREAM THUMBS 1D
-      = render :partial => 'thumb_1d_noimage'
+      = render :partial => 'dreams/thumb_1d_noimage'
 
       / DREAM THUMBS 1D
-      = render :partial => 'thumb_1d_newimages'
+      = render :partial => 'dreams/thumb_1d_newimages'
 
-      / NO DREAMS TO DISPLAY
-      - if @dreams.empty?
-        .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+
+
+
+
+    = render "login_box"
