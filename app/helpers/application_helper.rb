@@ -9,9 +9,9 @@ module ApplicationHelper
     when :friends
       "friend-#{size}.png"
     when :following
-      "friend-follower-#{size}.png"
-    when :followed_by
       "friend-follow-#{size}.png"
+    when :followed_by
+      "friend-follower-#{size}.png"
     when :none
       "friend-none-#{size}.png"
     end

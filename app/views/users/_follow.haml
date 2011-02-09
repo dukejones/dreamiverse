@@ -1,5 +1,50 @@
 
 / FOLLOW
-%a.changeRelation.follow.block.shine-small-alpha.round-12.flat-top.button.save{href: follow_path(user.username)}
-  = friend_icon_tag( :followed_by, 24, {class: 'follow'} )
-  follow
+:coffeescript
+  $(document).ready ->
+    $('#contextPanel .item.relationship')
+      .hover( ->
+        $('.relation').addClass('hidden')
+        $('.changeRelation').removeClass('hidden')
+      , ->
+        $('.changeRelation').addClass('hidden')
+        $('.relation').removeClass('hidden')
+    )
+
+
+
+.item.relationship
+  .relation.button.shine-small-alpha.round-12.flat-top
+    .image
+      = friend_icon_tag( relationship, 24, {class: 'following'} )
+    = relationship.to_s.humanize.downcase
+
+
+
+  - if relationship == :none || relationship == :followed_by
+    %a.changeRelation.follow.block.shine-small-alpha.round-12.flat-top.hidden.button.save{href: follow_path(user.username)}
+      - if relationship == :none
+        .image
+          = friend_icon_tag( :following, 24, {class: 'follow'} )
+        follow
+
+      - elsif relationship == :followed_by
+        .image
+          = friend_icon_tag( :friends, 24, {class: 'follow'} )
+        befriend
+
+
+
+  - if relationship == :friends || relationship == :following
+    %a.changeRelation.unfollow.block.shine-small-alpha.round-12.flat-top.hidden.button.delete{href: unfollow_path(user.username)}
+
+      - if relationship == :friends
+        .image
+          = friend_icon_tag( :following, 24, {class: 'unfollow'} )
+        unfriend
+
+      - elsif relationship == :following
+        .image
+          = friend_icon_tag( :none, 24, {class: 'unfollow'} )
+        unfollow
+
