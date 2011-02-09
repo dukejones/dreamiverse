@@ -6,19 +6,16 @@ class Dream < ActiveRecord::Base
   has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
-  after_create :auto_generate_tags
+  after_create :process_tags
   
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
   
-  def auto_generate_tags
-    tags = body.split(/\s+/) # make tags array by splitting body up on space chars
-    tags.each do |tag|
-      w = What.new(name: tag)
-      w.save
-    end
+  def process_tags
+    n = Nephele.new
+    n.process_single_entry_tags(self)
   end
   
 end
