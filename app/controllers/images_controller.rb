@@ -4,8 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    
-    if params[:artist] && params[:album]
+    if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
       params[:artist] = nil if params[:artist] == ""
       @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
