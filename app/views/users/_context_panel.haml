@@ -13,19 +13,22 @@
           <span>+</span> upload new avatar
 
 
-
-
-  / LABEL
-  %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
-    = user.username
-
-
   - if user == current_user
+    / LABEL
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
+      = user.username
+
     / WHOS DREAMING
     .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
 
   - else
+    / LABEL
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
+      = user.username
+      .image
+        = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
+
     / FOLLOW
     = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
