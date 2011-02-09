@@ -1,23 +1,23 @@
 / FOLLOW
 :coffeescript
   $(document).ready ->
-    $('.item')
+    $('#contextPanel .item')
       .hover( -> 
-        $('#followState').addClass('hidden')
-        $('#unfollow').removeClass('hidden')
+        $('.relation').addClass('hidden')
+        $('.changeRelation').removeClass('hidden')
       , ->
-        $('#unfollow').addClass('hidden')
-        $('#followState').removeClass('hidden')
+        $('.changeRelation').addClass('hidden')
+        $('.relation').removeClass('hidden')
     )
 
 .item
-  #followState
-    .label.bevel.round-12.flat-right.flat-top you are
+  .relation.bevel.round-12.flat-top
     .image
-      = friend_icon_tag( relationship, 24, {class: 'follow'} )
-    .detail.inner-shadow-10.round-12.flat-left.flat-top= relationship.to_s.humanize.downcase
-    .clear-both
+      = friend_icon_tag( relationship, 24, {class: 'following'} )
+    = relationship.to_s.humanize.downcase
 
-  %a#unfollow.block.round-12.flat-top.hidden{href: unfollow_path(user.username)}
-    %img.follow{src: "/images/icons/friend-unfollow-24.png", width: '24', height: '24'}
+
+  %a.changeRelation.unfollow.block.round-12.flat-top.hidden{href: unfollow_path(user.username)}
+    .image
+      = friend_icon_tag( :unfollow, 24, {class: 'unfollow'} )
     = follow_action( relationship )

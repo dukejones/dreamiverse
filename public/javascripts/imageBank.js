@@ -145,7 +145,14 @@ loadArtistList = function(genre) {
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
       
-      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist+'</h2>';
+      var artistName;
+      if(artist == ''){
+        artistName = 'Unknown Artist';
+      } else {
+        artistName = artist
+      }
+      
+      var item = '<li><h2 class="color-0 font-H1 font-light">'+artistName+'</h2>';
       if (images.length > 0) {
         item += "<div class=\"images\">";
         $.each(images, function(i, image) {
@@ -170,6 +177,11 @@ loadArtistList = function(genre) {
     // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
+      
+      if(artist == 'Unknown Artist'){
+        artist = '';
+      }
+      
       $("#IB_search_artist").val(artist);
       loadArtist(artist);
     });  
@@ -381,23 +393,28 @@ loadArtist = function(artist) {
     $("#albums").html("");
     
     for (i = 0; i < albums.length; i++) {
-      if(albums[i] == "null"){
-        $("#albums").append('<li><h2 class="gradient-10-up">All Images<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
+      //alert("albums :: " + albums[0]);
+      
+      var albumName;
+      if(albums[i] == null){
+        albumName = 'Unknown Album';
       } else {
-        $("#albums").append('<li><h2 class="gradient-10-up">'+albums[i]+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
+        albumName = albums[i];
       }
+      
+      $("#albums").append('<li><h2 class="gradient-10-up">'+albumName+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
     }
     
     $("#albums > li").each(function() {
       var album;
-      if($("h2",this).text() == "All Images"){
+      if($("h2",this).text() == "Unknown Album"){
         album = "null";
       } else {
         album = $("h2",this).text();
       }
       
       var element = $(this);
-      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter,
+      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter+"&genre="+currentGenre,
         function(images) {
           if (images.length > 0) {
             item = '<ul class="clearfix images">';
