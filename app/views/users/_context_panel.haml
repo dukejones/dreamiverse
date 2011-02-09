@@ -19,10 +19,12 @@
   %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
     = user.username
 
+
   - if user == current_user
-    / FILTER
+    / WHOS DREAMING
     .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
+
   - else
     / FOLLOW
     = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
@@ -49,13 +51,12 @@
     .clear-both
 
 
-  .friends
-    .item
-      %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
-        friends
-      .image
-        %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
-      .detail.inner-shadow-10.round-12.flat-left
-        = user.friends.count
-      .clear-both
+  .item
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
+      friends
+    .image
+      %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left
+      = user.friends.count
+    .clear-both
 
