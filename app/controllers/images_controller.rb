@@ -89,22 +89,6 @@ class ImagesController < ApplicationController
     end
   end
 
-  # # GET /images/new
-  # # GET /images/new.json
-  # def new
-  #   @image = Image.new
-  # 
-  #   respond_to do |format|
-  #     format.html # new.html.erb
-  #     format.json  { render :json => @image }
-  #   end
-  # end
-
-  # # GET /images/1/edit
-  # def edit
-  #   @image = Image.find(params[:id])
-  # end
-
   # POST /images
   # POST /images.json
   def create
@@ -145,6 +129,20 @@ class ImagesController < ApplicationController
     end
   end
 
+  def disable
+    @image = Image.find(params[:id])
+    respond_to do |format|
+      if @image.update_attribute(:enabled, false)
+        format.html { redirect_to(@image, :notice => 'Image was disabled.') }
+        format.json  { head :ok }
+      else
+        format.html { redirect_to(@image, :alert => 'Could not disable the image.') }
+        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
+  
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
