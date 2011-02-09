@@ -37,10 +37,14 @@ Dreamcatcher::Application.routes.draw do
   # Images
   match 'images/uploads/:id-:size.:format', to: 'images#resize'
   resources :images do
-    get 'manage', :on => :collection
+    collection do
+      get 'manage'
+      get 'artists'
+      get 'albums'
+    end
   end
-  resources :artists # actually only index...
-  resources :albums # actually only index...
+  match 'artists', to: 'images#artists'
+  match 'albums', to: 'images#albums'
 
   # Dream Dictionaries
   resources :dictionaries do

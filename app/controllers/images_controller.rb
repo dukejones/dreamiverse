@@ -4,8 +4,7 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    
-    if params[:artist] && params[:album]
+    if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
       params[:artist] = nil if params[:artist] == ""
       @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
@@ -23,6 +22,51 @@ class ImagesController < ApplicationController
         # otherwise, index.html.erb
       end
       format.json { render :json => @images }
+    end
+  end
+  
+  def artists
+    image_finder = Image.where({})
+    image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(category: params[:category]) if params[:category]
+    image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
+
+    if params[:starts_with]
+      @artists = image_finder.where("artist LIKE ?", "#{params[:starts_with]}%").artists
+    else
+      @artists = {}
+      image_finder.each do |image|
+        @artists[image.artist] ||= []
+        @artists[image.artist] << image unless @artists[image.artist].size >= 6
+      end
+    end
+
+    respond_to do |format|
+      format.html { render(partial: 'images/browser/artists') }
+      format.json { render :json => @artists }
+    end
+  end
+  
+  def albums
+    image_finder = Image.where({})
+    image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
+
+    if params.has_key?(:artist)
+      params[:artist] = nil if ["null", "", "Unknown"].include?(params[:artist])
+      image_finder = image_finder.where(artist: params[:artist])
+      @albums = {}
+      image_finder.each do |image|
+        @albums[image.album] ||= []
+        @albums[image.album] << image
+      end
+    elsif params[:starts_with]
+      @albums = image_finder.where("album LIKE ?", "#{params[:starts_with]}%").albums
+    end
+
+    respond_to do |format|
+      format.html { render(partial:"images/browser/album") }
+      format.json { render :json => @albums }
     end
   end
 
