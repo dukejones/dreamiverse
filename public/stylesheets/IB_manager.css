@@ -266,14 +266,14 @@ h2.IB_managerHeader {
 .IB_managerTagCheckbox {margin:0;}
 
 #IB_managerSaveWrap, #IB_managerCancelWrap {
-  width:96px; 
+  min-width:96px; 
   height:38px; 
   text-align:center; 
   float:right; 
   margin:8px 8px 8px 0;
   padding:2px 0;}
 #IB_managerSave, #IB_managerCancel {
-  width:92px;
+  width:120px;
   height:38px;
   margin:0 auto;
   line-height:38px;
