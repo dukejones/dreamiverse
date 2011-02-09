@@ -13,12 +13,12 @@
     width: 200px
     height: 266px
     position: relative
-    #uploadAvatarWrap
+    .uploadAvatarWrap
       position: absolute
       bottom: 0
       width: 100%
       padding: 20px 0 8px
-      #uploadAvatar
+      .uploadAvatar
         cursor: pointer
         display: block
         color: #fff
@@ -39,7 +39,7 @@
         span
           font-weight: bold
           color: #68b800
-      #uploadAvatar.hover
+      .uploadAvatar:hover
         border: 1px solid transparent
         box-shadow: inset 0 0 20px #fff
         -moz-box-shadow: inset 0 0 20px #fff
@@ -78,40 +78,10 @@
     padding: 4px 8px
     cursor: pointer
     font-size: 21px
-    img.follower
-      position: relative
-      float: right
-      top: 6px
-      margin-left: -16px
 
 
 
-  .relation, .changeRelation
-    margin-bottom: 4px
-    padding: 6px
-    height: 20px
-    font-weight: bold
-    text-align: center
-    .image
-      display: none
-  .relation:hover, .changeRelation:hover
-    img
-      display: block
-      margin: -12px 6px -12px -12px
-      position: relative
-      top: -28px
-      float: right
-  .changeRelation.unfollow
-    color: #fff
-    border: 1px solid #c1633c
-    background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
-    background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
-    box-shadow: inset 0px 15px rgba(255,255,255,0.1)
-    -moz-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
-    -webkit-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
 
-
-    
   .label, .image, .detail
     float: left
 
@@ -120,13 +90,10 @@
     text-align: center
 
 
-  .friends
-    .item
-      cursor: pointer
-
   .item
     clear: both
     margin-bottom: 4px
+    min-height: 32px
     .label
       width: 86px
       height: 24px
@@ -155,6 +122,30 @@
       line-height: 26px
       font-weight: bold
       border: 0
+
+
+
+
+  .relation, .changeRelation
+    margin-bottom: 4px
+    padding: 6px
+    height: 20px
+    font-weight: bold
+    text-align: center
+    .image
+      margin: -12px 6px -12px -12px
+      position: relative
+      top: -28px
+      float: right
+  .changeRelation .image
+    display: none
+  .changeRelation:hover .image
+    display: block
+
+
+
+    
+
 
 
 

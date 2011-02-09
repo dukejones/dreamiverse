@@ -22,7 +22,7 @@ set :deploy_to, "/var/www/#{application}"
 after "deploy", "deploy:cleanup"
 after "deploy", "uploads:symlink"
 after "deploy", "deploy:migrate"
-
+after "deploy", "barista:brew"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -49,4 +49,10 @@ namespace :uploads do
   # task :create_shared do
   #   run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 777 #{shared_path}/images/uploads"
   # end
+end
+
+namespace :barista do
+  task :brew do
+    run("cd #{deploy_to}/current; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+  end
 end

@@ -1,41 +1,45 @@
 - content_for :foot do
   = javascript_include_tag 'context_panel'
-  
+
 / CONTEXT PANEL
 #contextPanel.transparent-50.glow-40.round-16
 
+
   / IMAGE
-  %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+  %a.avatar.round-12{href: dreams_path(user.username), style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
     - if user == current_user
-      #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
-        #uploadAvatar.round-8
+      .uploadAvatarWrap.hidden
+        .uploadAvatar.round-8
           <span>+</span> upload new avatar
 
+
+
+
   / LABEL
-  %a.context.shine-small-alpha.button.round-12.flat-bottom{href: '/'}
+  %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
     = user.username
 
-
   - if user == current_user
+    / FILTER
     .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
   - else
-    / FOLLOWING
-    - relationship = current_user.relationship_with(user)
-    - if follow_action(relationship) == "unfollow"
-      = render partial: 'users/following', locals: { relationship: relationship, user: user }
-    - else
-      = render partial: 'users/follow', locals: { user: user }
+    / FOLLOW
+    = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
+
     
     
   / CONTEXT ITEMS
   .item
-    .label.shine-small-alpha.round-12.flat-right dreams
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: dreams_path(user.username)}
+      dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
     .detail.inner-shadow-10.round-12.flat-left
       = user.dreams.count
     .clear-both
+
+
   .item
     .label.shine-small-alpha.round-12.flat-right starlight
     .image
@@ -44,9 +48,10 @@
       = user.starlight._?.value || 0
     .clear-both
 
+
   .friends
     .item
-      .label.shine-small-alpha.round-12.flat-right
+      %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
         friends
       .image
         %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
