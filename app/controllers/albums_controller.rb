@@ -4,8 +4,9 @@ class AlbumsController < ApplicationController
   def index
     image_finder = Image.where({})
     image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
 
-    if params[:artist]
+    if params.has_key?(:artist)
       params[:artist] = nil if ["null", "", "Unknown"].include?(params[:artist])
       image_finder = image_finder.where(artist: params[:artist])
       @albums = {}
