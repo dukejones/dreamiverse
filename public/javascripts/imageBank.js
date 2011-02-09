@@ -390,21 +390,115 @@ loadArtist = function(artist) {
   };
   
   populateAlbums = function(albums) {
-    $("#albums").html("");
+    $("#albums").html($(albums).find('#albums'));
     
-    for (i = 0; i < albums.length; i++) {
-      //alert("albums :: " + albums[0]);
+    // Make the + icon clickable
+    $('.images > li > .addToDropboxButton').click(function(){
+      var imageId = $(this).parent().find('img').attr("id").split("_")[1];
+      addImageToDropbox(imageId);
+    });
+    
+    // Make the thumbnails clickable to slideshow.
+    // contain all current images in this album in slideshow
+    $('.images > li > img').click(function(){
+      if(!isDragging){
+        var clickedImageID = $(this).attr('id').split("_")[1];
+        var currentAlbumIDs = '';
+    
+        $(this).parent().parent().find('li > img').each(function(){
+          currentAlbumIDs += $(this).attr('id').split("_")[1];
+        })
+        // Pass special param to show index of current image $(this).index
+        loadSlideshow(getImages($(this).parent().parent()), $(this).parent().index());
+      }
+    })
+
+    //Make images draggable to the drop-box below.
+    $(".images li").draggable({
+      containment: 'document',
+      helper: 'clone',
+      appendTo: '#imageDrop',
+      zIndex:10000,
+      distance: 40,
+      scroll: false,
+      revert: false,
+      start: function(event, ui) {
+        isDragging = true;
+      },
+      stop: function(event, ui) {
+        isDragging = false;
+      }
+    });
+    
+    // Set up header manage
+    $('.header-manage').click(function(event){
+      event.stopPropagation();
       
+      var tempString = '';
+      
+      $(this).parent().next().find('li img').each(function(index, element){
+        if(index == 0){
+          tempString += $(this).attr('id').split("_")[1];
+        } else {
+          tempString += "," + $(this).attr('id').split("_")[1];
+        }
+        
+      });
+      
+      // Go-to manage page
+      window.location.href = managerPath + "?images=" + tempString;
+    })
+    
+    // Set up manage on TOP BAR
+    $('#IB_manageArtistImages').unbind();
+    $('#IB_manageArtistImages').click(function(){
+      // get all images by artist
+      var imageIDCollector = '';
+      $('#albums ul.images img.albumPreviewThumbsLarger').each(function(index, element){
+        if(index == 0){
+          imageIDCollector = $(this).attr('id').split("_")[1];
+        } else {
+          imageIDCollector += ',' + $(this).attr('id').split("_")[1];
+        }
+      });
+      
+      // Go-to manage page
+      window.location.href = managerPath + "?images=" + imageIDCollector;
+    });
+    
+    // Slideshow 
+    $('#IB_artistSlideshow').unbind();
+    $('#IB_artistSlideshow').click(function(){
+      // get all images by artist
+      var imageIDCollector = '';
+      $('#albums ul.images img.albumPreviewThumbsLarger').each(function(index, element){
+        if(index == 0){
+          imageIDCollector = $(this).attr('id').split("_")[1];
+        } else {
+          imageIDCollector += ',' + $(this).attr('id').split("_")[1];
+        }
+      });
+      
+      // Start Slideshow
+      loadSlideshow(imageIDCollector);
+    });
+
+    // Show manage/slideshow buttons
+    $('#IB_manageArtistImages').show();
+    $('#IB_artistSlideshow').show();
+    
+    /*$.each(albums, function(i, value){
       var albumName;
-      if(albums[i] == null){
+      if(i == null){
         albumName = 'Unknown Album';
       } else {
-        albumName = albums[i];
+        albumName = i;
       }
       
       $("#albums").append('<li><h2 class="gradient-10-up">'+albumName+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
-    }
-    
+    })*/
+
+    /*
     $("#albums > li").each(function() {
       var album;
       if($("h2",this).text() == "Unknown Album"){
@@ -534,7 +628,7 @@ loadArtist = function(artist) {
           }
         }
       );
-    });
+    });*/
     
     $('#albums > li > h2').click(function(){
       // Start slideshow on header click
@@ -559,7 +653,7 @@ loadArtist = function(artist) {
     });
   };
   
-  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
+  $.get("/albums?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
       function(albums) {
         populateAlbums(albums);
       }
@@ -691,11 +785,11 @@ loadSlideshow = function(newImageIds, currentIndex) {
     $("#IB_info_author span").text(metaData[2]);
     $("#IB_info_year span").text(metaData[3]);
 
-    var tags = metaData[1].split(",");
+    /*var tags = metaData[1].split(",");
     $("#tags").html("");
     for(i = 0; i < tags.length; i++) {
       $("#tags").append('<li>'+tags[i]+'</li>');  
-    }
+    }*/
   };
 
   currentItem = currentIndex;
