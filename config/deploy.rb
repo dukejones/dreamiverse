@@ -50,3 +50,9 @@ namespace :uploads do
   #   run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 777 #{shared_path}/images/uploads"
   # end
 end
+
+namespace :barista do
+  task :brew do
+    run("cd #{deploy_to}/current; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+  end
+end
