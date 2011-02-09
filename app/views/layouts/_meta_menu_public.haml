@@ -31,10 +31,10 @@
         %span.bevel.button.round-4 I forgot my password
         = f.text_field(:username, {class: 'login-input input round-12', tabindex: '1'})
         = f.password_field(:password, {class: 'login-input input round-12', tabindex: '2'})
-        %label.bevel.button.round-4
+        %input#loginButton.round-12.button.post.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+        %label
           keep me logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        %input#loginButton.round-12.button.post.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
 
     .signupPanel.hidden
       %input.input.round-12{type: 'text', name: 'email', value: 'email' }
