@@ -11,21 +11,24 @@
 #dreamField
 
   / SHOW DREAM
-  #showDream.transparent-80.round-16.glow-40
+  #showDream.transparent-50.round-16.glow-40
 
-    .type.round-12 Dream
+    .type.bevel.border.round-16 Dream
 
-    %a.next.button.shine.round-12-right{:href => dreams_path}
+    %a.next.button.shine.round-16-right{:href => dreams_path}
       %span &rsaquo;
     .stream.button.shine.flat-all sream
-    %a.prev.button.shine.round-12-left{:href => dreams_path}
+    %a.prev.button.shine.round-16-left{:href => dreams_path}
       %span &lsaquo;
-    .books.button.round-8 My Book of Dreams
+
+    / 
+      Save for later
+      .books.button.round-8 My Book of Dreams
 
     / HEADER IMAGE & TITLE
     .imageHeader.round-16.flat-bottom
 
-      // MOOD ICON
+      / MOOD ICON
       .moodIcon.button.glow-10
         %img{src: '/images/moods/plants/Fungi.png'}
 
@@ -38,16 +41,16 @@
 
       / IMAGE GALLERY
       %ul.gallery
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
-        %li.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
+        %li.button.round-8
       .clear-both
 
       / SHARING
@@ -100,28 +103,24 @@
 
       / ANALYSIS TAGS
       .analysisTags.bevel.button.round-12
-        .image.round-12-left
         %span dolphin
         .arrow
       .analysisTags.bevel.button.round-12
-        .image.round-12-left
         %span tsunami
         .arrow
       .analysisTags.expanded.bevel.button.round-12
-        .image.round-12-left
         %span flying
         .arrow
         .clear-both
         %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-        .dreamMoods.round-12.button Dream Moods
+        .dreamMoods.button.bevel.round-12 Dream Moods
         .clear-both
       .analysisTags.bevel.button.round-12
-        .image.round-12-left
         %span telepathy
         .arrow
 
     / COMMENTS
-    #comments.panel.round-12
+    .commentsPanel.panel.shine-alpha.round-12
       .commentsHeader.headers.indent.button
         comments
         %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
@@ -129,7 +128,7 @@
 
       .newCommentWrap
         .avatar.button.round-12
-        .newComment.input.round-12
+        .newComment.inputTextarea.round-12
           %textarea
           .save.shine.button.round-16 post
           .links
@@ -145,6 +144,11 @@
         .prevComment.input.round-12
           .user.button.bevel.round-8 Iotus
           .postTime 15 minutes ago
+          %ul
+            %li.button.round-8
+            %li.button.round-8
+            %li.button.round-8
+            %li.button.round-8
           .comment Check it out, did it look like this??
           .rePost.bevel.button.round-16
             %img{src: '', width: '16', height: '16'}

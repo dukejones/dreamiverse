@@ -499,6 +499,10 @@ TD.form_label B {}
 .round-12-left { border-radius-topleft:12px; -moz-border-radius-topleft:12px; -webkit-border-radius-topleft:12px; border-radius-bottomleft:12px; -moz-border-radius-bottomleft:12px; -webkit-border-radius-bottomleft:12px; }
 .round-12-right { border-radius-topright:12px; -moz-border-radius-topright:12px; -webkit-border-radius-topright:12px; border-radius-bottomright:12px; -moz-border-radius-bottomright:12px; -webkit-border-radius-bottomright:12px; }
 
+.round-16-left { border-radius-topleft:16px; -moz-border-radius-topleft:16px; -webkit-border-radius-topleft:16px; border-radius-bottomleft:16px; -moz-border-radius-bottomleft:16px; -webkit-border-radius-bottomleft:16px; }
+.round-16-right { border-radius-topright:16px; -moz-border-radius-topright:16px; -webkit-border-radius-topright:16px; border-radius-bottomright:16px; -moz-border-radius-bottomright:16px; -webkit-border-radius-bottomright:16px; }
+
+
 
 /* FLAT CORNERS */
 .flat-bottom { border-radius-bottomleft:0px; -moz-border-radius-bottomleft:0px; -webkit-border-radius-bottomleft:0px; border-radius-bottomright:0px; -moz-border-radius-bottomright:0px; -webkit-border-radius-bottomright:0px;    }
