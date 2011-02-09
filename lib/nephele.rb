@@ -7,6 +7,7 @@ class Nephele
   # generating / scoring auto generated tags
   def process_single_entry_tags(dream)
     freqs = auto_generate_single_entry_tags(dream)
+    add_stop_words
   end
   
   def auto_generate_single_entry_tags(dream)
@@ -83,6 +84,13 @@ class Nephele
     whether, which, while, whither, who, who's, whoever, whole, whom, whose, why, will, willing, wish, with, within, without, 
     won't, wonder, would, would, wouldn't, yes, yet, you, you'd, you'll, you're, you've, your, yours, yourself, yourselves, zero,
     title,dream,body}
+    
+    stop_words.each do |word|
+      if word.length > 2
+        b = BlackListWord.new(name: word.strip, type: 'nephele') 
+        b.save
+      end
+    end
   end
   
 end

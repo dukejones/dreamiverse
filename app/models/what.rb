@@ -6,16 +6,12 @@ class What < ActiveRecord::Base
   #validates :name,
   #          :presence => true,
   #          :uniqueness => true
-  
+ #
   before_create :clean
   
   def clean
-    self.name = self.name.downcase.gsub(/[^[:alnum:]]/, '') # downcase & replace non alpha numeric chars with nothing
+    # downcase & strip non alpha numeric chars at begin/end of string
+    self.name = self.name.downcase.gsub(/^\W+|\W+$/, '')
   end
   
-  def tag_exists(name)
-      w = What.find_by_name(name)
-      return w.id if w
-      else return nil
-  end
 end

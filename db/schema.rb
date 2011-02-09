@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110207202017) do
+ActiveRecord::Schema.define(:version => 20110209044528) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,13 @@ ActiveRecord::Schema.define(:version => 20110207202017) do
   end
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
+
+  create_table "black_list_words", :force => true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dictionaries", :force => true do |t|
     t.string   "name"
