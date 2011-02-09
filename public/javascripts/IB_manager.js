@@ -385,6 +385,10 @@ var totalImagesUpdated = 0;
 
 var updateCurrentImagesMeta = function(){
   if($('#IB_current_genre').text() != 'Choose'){
+    // Set Save button to spinner
+    var newElement = '<div class="spinner-small" style="float: left; margin-left: 5px;"></div>';
+    $('#IB_managerSave').prepend(newElement);
+    
     // Collect data from fields for JSON
     collectParams();
   
@@ -425,6 +429,7 @@ var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   if(totalImagesToUpdate == totalImagesUpdated){
     alert('Images have been updated.');
     
+    $('#IB_dropboxCover').fadeIn();
     emptyAllFields();
     removeAllImages();
   }
