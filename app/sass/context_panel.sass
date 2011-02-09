@@ -50,7 +50,7 @@
         opacity: 1
 
 
-  /* DREAM STREAM */
+  /* DREAM STREAM AVATAR AND USER DETAILS */
   .avatar-64
     display: block
     width: 64px
@@ -86,22 +86,22 @@
 
 
 
-  .relation, #unfollow
+  .relation, .changeRelation
     margin-bottom: 4px
     padding: 6px
     height: 20px
     font-weight: bold
     text-align: center
-    img
+    .image
       display: none
-  .relation:hover, #unfollow:hover
+  .relation:hover, .changeRelation:hover
     img
       display: block
       margin: -12px 6px -12px -12px
       position: relative
       top: -28px
       float: right
-  #unfollow
+  .changeRelation.unfollow
     color: #fff
     border: 1px solid #c1633c
     background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
@@ -111,10 +111,6 @@
     -webkit-box-shadow: inset 0px 15px rgba(255,255,255,0.1)
 
 
-
-  .item, .item2
-    clear: both
-    margin-bottom: 4px
     
   .label, .image, .detail
     float: left
@@ -129,6 +125,8 @@
       cursor: pointer
 
   .item
+    clear: both
+    margin-bottom: 4px
     .label
       width: 86px
       height: 24px
@@ -159,27 +157,6 @@
       border: 0
 
 
-
-  .divider
-    height: 6px
-    margin-bottom: 4px
-
-
-  .item2
-    .label
-      width: 90px
-      line-height: 26px
-      text-align: right
-      font-weight: bold
-      padding: 5px 8px
-    .detail
-      width: 78px
-      height: 26px
-      padding: 5px 8px
-      font-weight: bold
-      border: 0
-      font-weight: normal
-      line-height: 25px
 
 .light
   #contextPanel
