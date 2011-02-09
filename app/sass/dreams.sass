@@ -370,10 +370,11 @@
 
     a.next, .stream, a.prev, .books, .type
       margin: 0 0 8px
-      padding: 0 8px
+      padding: 0 22px
       height: 32px
       line-height: 32px
       text-align: center
+      font-weight: bold
       display: block
     .type
       float: left
@@ -411,7 +412,7 @@
 
       // GALLERY
       ul.gallery
-        margin: 0 0 0 22px
+        margin: 0 0 0 20px
         padding: 4px
         list-style: none
         li
@@ -492,27 +493,21 @@
         line-height: 32px
         margin: 0 0 8px
         padding: 0 12px 0 0
-        .image, span
-          float: left
-        .image
-          margin: 0
-          padding: 0
-          height: 32px
-          width: 40px
-          background: url(/images/avatars/xavitar.jpg) no-repeat left
-          overflow: hidden
         span
-          margin: 0 0 0 12px
+          float: left
+          margin: 0 0 0 42px
+          font-weight: bold
         .arrow
           float: right
           height: 32px
           width: 16px
       .analysisTags
+        background: #d7d7d7 url(/images/avatars/xavitar.jpg) no-repeat top left
         .arrow
           background: url(/images/icons/arrow-down-16.png) no-repeat center
       .expanded
         height: auto
-        background: white
+        background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
         .arrow
           background: url(/images/icons/arrow-up-16.png) no-repeat center
         p
@@ -528,7 +523,7 @@
           text-align: center
 
     // COMMENTS
-    #comments
+    .commentsPanel
       margin-bottom: 0
       .commentsHeader
         margin-bottom: 8px
@@ -552,7 +547,7 @@
           width: 546px
           padding: 8px
           textarea
-            min-height: 118px
+            min-height: 90px
             width: 546px
             background: transparent
             border: none
@@ -573,9 +568,10 @@
         margin-bottom: 0
         .prevComment
           float: right
-          min-height: 132px
-          width: 546px
+          min-height: 112px
+          width: 544px
           padding: 8px
+          border: 2px solid white
           .user, .postTime
             float: left
             height: 32px
@@ -583,6 +579,19 @@
             padding: 0 16px
             margin: 0 0 12px
             text-align: center
+          ul
+            float: right
+            max-width: 270px
+            margin: 0 0 0 8px
+            padding: 0
+            list-style: none
+            li
+              margin: 0 2px 2px 0
+              float: right
+              height: 62px
+              width: 62px
+              background: #ababab
+            
           .comment
             clear: both
           .rePost
