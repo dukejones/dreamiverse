@@ -390,7 +390,7 @@ loadArtist = function(artist) {
   };
   
   populateAlbums = function(albums) {
-    $("#albums").html($(albums).find('#albums'));
+    $("#albums").html($(albums).find('#albums').children());
     
     // Make the + icon clickable
     $('.images > li > .addToDropboxButton').click(function(){
