@@ -11,14 +11,10 @@
 #dreamField
 
   / NEW ENTRY BAR
-  /=render :partial => 'entry_bar'
-  
   / TAG ENTRY & STREAM
-  /=render :partial => 'tag_stream'
 
   / DREAM MATRIX
   .matrix
-
 
     / DREAM THUMBS 1D
     = render :partial => 'thumb_1d'
@@ -35,15 +31,3 @@
     / NO DREAMS TO DISPLAY
     - if @dreams.empty?
       .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
-
-
-
-/ MODAL WINDOW
-/:javascript
-/  $(document).ready(function(){ dc.modal(); });
-
-
-
-/ DEBUG
-/  .transparent-50.round-16.padding-8
-/    = debug current_user

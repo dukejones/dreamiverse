@@ -30,9 +30,9 @@ function initContextMenu(){
   });
   
   $('#contextPanel .avatar').bind('mouseenter', function (e) {
-    $('#uploadAvatarWrap').fadeIn();
+    $('.avatar .uploadAvatarWrap').fadeIn();
   })
   .bind('mouseleave', function (e) {
-    $('#uploadAvatarWrap').fadeOut();
+    $('.avatar .uploadAvatarWrap').fadeOut();
   })
 }
