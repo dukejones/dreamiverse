@@ -10,25 +10,21 @@ var uploader = null;
 var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
 
 function setupUploader(){            
-  uploader = new qq.FileUploader({
-    element: document.getElementById('imageDropArea'),
-    action: '/images.json',
-    maxConnections: 1,
-    params: imageMetaParams,
-    debug: true,
-    onSubmit: function(id, fileName){
-     alert('image uploading')
-    },
-    onComplete: function(id, fileName, responseJSON){
-      if(responseJSON.success){
-        // Image made it
-        // Get image info from
-        // responseJSON.id
-        alert('image uploaded');
+  if(document.getElementById('imageDropArea')){
+    uploader = new qq.FileUploader({
+      element: document.getElementById('imageDropArea'),
+      action: '/images.json',
+      maxConnections: 1,
+      params: imageMetaParams,
+      debug: true,
+      onSubmit: function(id, fileName){
+     
+      },
+      onComplete: function(id, fileName, responseJSON){
+        resetImageButtons();
       }
-      
-    }
-  });           
+    });
+  }      
 }
 
 function setupTextareaAutoExpander(){
