@@ -15,8 +15,6 @@
 
 .item.relationship
   .relation.button.shine-small-alpha.round-12.flat-top
-    .image
-      = friend_icon_tag( relationship, 24, {class: 'following'} )
     = relationship.to_s.humanize.downcase
 
 

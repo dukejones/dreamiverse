@@ -6,39 +6,45 @@
 
 
   / IMAGE
-  %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+  %a.avatar.round-12{href: dreams_path(user.username), style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
     - if user == current_user
       .uploadAvatarWrap.hidden
         .uploadAvatar.round-8
           <span>+</span> upload new avatar
 
 
-
   - if user == current_user
     / LABEL
-    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: '/'}
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
       = user.username
-    / FILTER
+
+    / WHOS DREAMING
     .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
 
   - else
     / LABEL
-    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: '/'}
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: dreams_path(user.username)}
       = user.username
+      .image
+        = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
 
+    / FOLLOW
     = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
     
     
   / CONTEXT ITEMS
   .item
-    .label.shine-small-alpha.round-12.flat-right dreams
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: dreams_path(user.username)}
+      dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
     .detail.inner-shadow-10.round-12.flat-left
       = user.dreams.count
     .clear-both
+
+
   .item
     .label.shine-small-alpha.round-12.flat-right starlight
     .image
@@ -47,13 +53,13 @@
       = user.starlight._?.value || 0
     .clear-both
 
-  .friends
-    .item
-      %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
-        friends
-      .image
-        %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
-      .detail.inner-shadow-10.round-12.flat-left
-        = user.friends.count
-      .clear-both
+
+  .item
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
+      friends
+    .image
+      %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left
+      = user.friends.count
+    .clear-both
 
