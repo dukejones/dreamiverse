@@ -42,6 +42,9 @@ Dreamcatcher::Application.routes.draw do
       get 'artists'
       get 'albums'
     end
+    member do
+      post 'disable'
+    end
   end
   match 'artists', to: 'images#artists'
   match 'albums', to: 'images#albums'
