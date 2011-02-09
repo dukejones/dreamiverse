@@ -18,8 +18,8 @@ class ArtistsController < ApplicationController
     end
 
     respond_to do |format|
-      # format.html # index.html.erb
-      format.json  { render :json => @artists }
+      format.html { render(partial: 'images/browser/artists') }
+      format.json { render :json => @artists }
     end
   end
 
