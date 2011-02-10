@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :authentications
-  has_many :dreams
+  has_many :entries
   has_many :hits
 
   # follows are the follows this user has
