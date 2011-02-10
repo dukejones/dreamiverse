@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'dreams'
+  = coffeescript_include_tag 'dream'
 
 
 
@@ -54,14 +55,14 @@
       .clear-both
 
       / SHARING
-      #sharePanel.round-8
-        .facebook.button.bevel.round-16
+      #linkPanel.round-8
+        .button.bevel.round-16
           %img{src: '/images/icons/facebook-16.png'}
           %span Link on Facebook
-        .www.button.bevel.round-16
+        .button.bevel.round-16
           %img{src: '/images/icons/link-16.gif'}
           %span Link on WWW
-        .rePost.button.bevel.round-16
+        .button.bevel.round-16
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
         .clear-both
@@ -74,9 +75,9 @@
           %img.starlight{src: '/images/icons/starlight-22.png'}
           %span 23,243
         .shareOptions.infoTab.round-16
-          .love.selected
-          .share
-          .repost.selected
+          .option.love.selected
+          .option.share
+          .option.repost.selected
         .clear-both
       .clear-both
 
@@ -85,7 +86,11 @@
       .tagHeader.headers.indent.button
         tag
         %img{src: '/images/icons/tag-20.png'}
-      .tagInputWrap
+      .tagThisEntry.button.bevel.round-4{style: 'width: 200px; float: right'}
+        %span +
+        Tag this dream
+      %img.tagCheck.hidden{src: '/images/icons/check-33.png', width: '33', height: '33'}
+      .tagInputWrap.hidden
         %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
         .tagInput
           %input#newTag
@@ -93,68 +98,78 @@
             %span +
             Add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      %img.tagCheck{src: '/images/icons/check-33.png', width: '33', height: '33'}
+      .target
+        #tag-list.tag-list.ui-sortable
+          #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
+            .tagContent
+          %br{style: 'clear: both;'}
+        #sorting
+        %br{style: 'clear: both'}
 
     / ANALYSIS
     #analysis.panel.round-12
-      .analysisHeader.headers.indent.button
-        analysis
-        %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
+      .trigger
+        .analysisHeader.headers.indent.button
+          analysis
+          %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
 
-      / ANALYSIS TAGS
-      / * with avatar on background, bevel class becomes null *
-      .analysisTags.bevel.button.round-12
-        %span dolphin
-        .arrow
-      .analysisTags.bevel.button.round-12
-        %span tsunami
-        .arrow
-      .analysisTags.expanded.bevel.button.round-12
-        %span flying
-        .arrow
-        .clear-both
-        %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-        .dreamMoods.button.bevel.round-12 Dream Moods
-        .clear-both
-      .analysisTags.bevel.button.round-12
-        %span telepathy
-        .arrow
+      .target
+        / ANALYSIS TAGS
+        / * with avatar on background, bevel class becomes null *
+        .analysisTags.bevel.button.round-12
+          %span dolphin
+          .arrow
+        .analysisTags.bevel.button.round-12
+          %span tsunami
+          .arrow
+        .analysisTags.expanded.bevel.button.round-12
+          %span flying
+          .arrow
+          .clear-both
+          %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+          .dreamMoods.button.bevel.round-12 Dream Moods
+          .clear-both
+        .analysisTags.bevel.button.round-12
+          %span telepathy
+          .arrow
 
     / COMMENTS
     .commentsPanel.panel.shine-alpha.round-12
-      .commentsHeader.headers.indent.button
-        comments
-        %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
-        .counter (6)
+      .trigger
+        .commentsHeader.headers.indent.button
+          comments
+          %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
+          .counter (6)
 
-      .newCommentWrap
-        .avatar.button.round-12
-        .newComment.inputTextarea.round-12
-          %textarea
-          .save.shine.button.round-16 post
-          .links
-            %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
-            links
-          .images
-            %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
-            images
+      .target
+        .newCommentWrap
+          .avatar.button.round-12
+          .newComment.inputTextarea.round-12
+            %textarea
+            .save.shine.button.round-16 post
+            .links
+              %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
+              links
+            .images
+              %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
+              images
+          .clear-both
+
+        .prevCommentWrap
+          .avatar.button.round-12
+          .prevComment.input.round-12
+            .user.button.bevel.round-8 Iotus
+            .postTime 15 minutes ago
+            %ul
+              %li.button.round-8
+              %li.button.round-8
+              %li.button.round-8
+              %li.button.round-8
+            .comment Check it out, did it look like this??
+            .rePost.bevel.button.round-16
+              %img{src: '', width: '16', height: '16'}
+              Another Related Dream
+          .clear-both
+
         .clear-both
-
-      .prevCommentWrap
-        .avatar.button.round-12
-        .prevComment.input.round-12
-          .user.button.bevel.round-8 Iotus
-          .postTime 15 minutes ago
-          %ul
-            %li.button.round-8
-            %li.button.round-8
-            %li.button.round-8
-            %li.button.round-8
-          .comment Check it out, did it look like this??
-          .rePost.bevel.button.round-16
-            %img{src: '', width: '16', height: '16'}
-            Another Related Dream
-        .clear-both
-
-      .clear-both
 

@@ -1,5 +1,5 @@
 / SETTINGS PANEL
-#settingsPanel.hidden.panel.glow-40.round-8
+#settingsPanel.hidden.panel.glow-40.round-8.target
   .arrow
 
 
@@ -16,7 +16,7 @@
         %option.private{value: 'Private'} Private
     %label
       I must authorize all follow requests
-      %input{type: 'checkbox'}
+      %input.authFollow{type: 'checkbox'}
 
     .network
       %img{src: '/images/icons/facebook-16.png'}
@@ -39,7 +39,7 @@
       Saved locations
 
 
-    .locationView.target.hidden
+    .locationView.target
       %form
         .locationList.border
 
@@ -101,11 +101,14 @@
         new location
       .clear-both
 
-    .modifyLocationView
+    .modifyLocationView.hidden
       %input.input{value: 'Location name'}
       %input.input{value: 'City'}
       %input.input{value: 'State / Province'}
       %input.input{value: 'Country'}
+      .cancel.button.small.bevel.round-4 Cancel
+      .confirm.button.small.bevel.round-4 Save
+      .clear-both
 
 
 
@@ -124,3 +127,12 @@
       .cancel.button.small.bevel.round-4 Cancel
       .confirm.button.small.bevel.round-4 Change password
       .clear-both
+
+
+  / FONT SIZING
+  .fontSizing.panel.round-8
+    %img.fontImage{src: '/images/icons/font_size-16.png'}
+    %h2 Font
+    .large A
+    .medium A
+    .small A

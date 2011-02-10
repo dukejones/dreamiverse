@@ -31,7 +31,7 @@ group :test do
   # gem 'factory_girl'
   gem 'machinist'
   gem 'faker'
-  # gem 'mocha'
+  gem 'mocha'
 end
 
 ### Install these gems yourself if you wish to use Autotest. ###
