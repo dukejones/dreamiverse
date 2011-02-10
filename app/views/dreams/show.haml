@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'dreams'
+  = coffeescript_include_tag 'dream'
 
 
 
@@ -93,7 +94,14 @@
             %span +
             Add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      %img.tagCheck{src: '/images/icons/check-33.png', width: '33', height: '33'}
+        %img.tagCheck{src: '/images/icons/check-33.png', width: '33', height: '33'}
+      .target
+        #tag-list.tag-list.ui-sortable
+          #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
+            .tagContent
+          %br{style: 'clear: both;'}
+        #sorting
+        %br{style: 'clear: both'}
 
     / ANALYSIS
     #analysis.panel.round-12
