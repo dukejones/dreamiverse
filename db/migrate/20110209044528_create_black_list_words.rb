@@ -1,8 +1,8 @@
 class CreateBlackListWords < ActiveRecord::Migration
   def self.up
     create_table :black_list_words do |t|
-      t.string :name
-      t.string :type
+      t.integer :what_id
+      t.string :filter_type
 
       t.timestamps
     end

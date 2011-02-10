@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(:version => 20110209044528) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
 
   create_table "black_list_words", :force => true do |t|
-    t.string   "name"
-    t.string   "type"
+    t.integer  "what_id"
+    t.string   "filter_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
