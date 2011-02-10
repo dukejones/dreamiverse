@@ -5,18 +5,18 @@
     $('#contextPanel .item.relationship')
       .hover( ->
         $('.relation').addClass('hidden')
-        $('.context .image').addClass('hidden')
+        $('.context .icon').addClass('hidden')
         $('.changeRelation').removeClass('hidden')
       , ->
         $('.relation').removeClass('hidden')
-        $('.context .image').removeClass('hidden')
+        $('.context .icon').removeClass('hidden')
         $('.changeRelation').addClass('hidden')
     )
 
 
 
 .item.relationship
-  .relation.button.shine-small-alpha.round-12.flat-top
+  .relation.button.transparent-50.round-12.flat-top
     = relationship.to_s.humanize.downcase
 
 
@@ -24,12 +24,12 @@
   - if relationship == :none || relationship == :followed_by
     %a.changeRelation.follow.block.shine-small-alpha.round-12.flat-top.hidden.button{href: follow_path(user.username)}
       - if relationship == :none
-        .image
+        .icon
           = friend_icon_tag( :following, 24, {class: 'follow'} )
         follow
 
       - elsif relationship == :followed_by
-        .image
+        .icon
           = friend_icon_tag( :friends, 24, {class: 'follow'} )
         befriend
 
@@ -39,12 +39,12 @@
     %a.changeRelation.unfollow.block.shine-small-alpha.round-12.flat-top.hidden.button{href: unfollow_path(user.username)}
 
       - if relationship == :friends
-        .image
+        .icon
           = friend_icon_tag( :following, 24, {class: 'unfollow'} )
         unfriend
 
       - elsif relationship == :following
-        .image
+        .icon
           = friend_icon_tag( :none, 24, {class: 'unfollow'} )
         unfollow
 
