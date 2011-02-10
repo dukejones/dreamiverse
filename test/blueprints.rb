@@ -26,6 +26,20 @@ Starlight.blueprint do
   entity { Dream.make }
 end
 
+Image.blueprint do
+  incoming_filename { "somefile.jpg" }
+  section { "Library" }
+  category { "Art" }
+  genre { "Africa" }
+  title { Faker::Lorem.words(2).join(' ').titleize }
+  artist { Faker::Name.name }
+  album { Faker::Lorem.words(1).first.titleize }
+  enabled { true }
+  width { 128 }
+  height { 256 }
+  size { 1024 }
+  
+end
 
 def random_ip
   (0...4).to_a.map { rand(256) }.join('.')
