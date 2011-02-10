@@ -5,10 +5,12 @@
     $('#contextPanel .item.relationship')
       .hover( ->
         $('.relation').addClass('hidden')
+        $('.context .image').addClass('hidden')
         $('.changeRelation').removeClass('hidden')
       , ->
-        $('.changeRelation').addClass('hidden')
         $('.relation').removeClass('hidden')
+        $('.context .image').removeClass('hidden')
+        $('.changeRelation').addClass('hidden')
     )
 
 
