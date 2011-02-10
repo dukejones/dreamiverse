@@ -1,7 +1,7 @@
-#metaMenu
+#metaMenu.user
 
   / INTRO MENU
-  .left-panel.padding-8.round-16.flat-top
+  .leftPanel.padding-8.round-16.flat-top
     %a.item{href: stream_path}
       stream
     %a.item{href: dreams_path(current_user.username)}
@@ -18,7 +18,7 @@
 
 
   / SETTINGS MENU
-  .right-panel.padding-8.round-16.flat-top
+  .rightPanel.padding-8.round-16.flat-top
     %a.item.user.selected{href: dreams_path(current_user.username), style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
       %span.round-16.flat-left
         = current_user.username
