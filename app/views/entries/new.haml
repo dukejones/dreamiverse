@@ -20,7 +20,7 @@
         %option{value: 'Vision'} Vision
         %option{value: 'Experience'} Experience
     
-    = form_for @dream do |f|
+    = form_for @entry do |f|
       = f.text_field :title, :maxlength => '72', :class => 'font-21'
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
       = f.text_area :body
@@ -100,11 +100,33 @@
     .moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
-    %ul
-      <li><a href="/">smilies</a> |</li>
-      <li><a href="/">classical</a> |</li>
-      <li><a href="/">animals</a> |</li>
-      <li><a href="/">emotional profile</a> |</li>
+
+    .moodPicker.transparent-50.round-12
+      .love
+        %label.one.round-16-left
+          %span Love
+          %input{type: 'checkbox'}
+        %label.two.shine
+          %input{type: 'checkbox'}
+        %label.three.shine
+          %input{type: 'checkbox'}
+        %label.four.shine
+          %input{type: 'checkbox'}
+        %label.five.shine.round-16-right
+          %input{type: 'checkbox'}
+      .joy
+        %label.one.round-16-left
+          %span Joy
+          %input{type: 'checkbox'}
+        %label.two.shine
+          %input{type: 'checkbox'}
+        %label.three.shine
+          %input{type: 'checkbox'}
+        %label.four.shine
+          %input{type: 'checkbox'}
+        %label.five.shine.round-16-right
+          %input{type: 'checkbox'}
+
 
   / NEW DREAM ATTACHMENTS
   #newDream-attach.newDream_assets.shine-alpha

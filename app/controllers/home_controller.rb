@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     if current_user
       flash.keep
-      redirect_to dreams_path(current_user.username)
+      redirect_to stream_path
     end
 
     @user = User.new(:username => "username")
