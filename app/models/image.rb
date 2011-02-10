@@ -21,7 +21,7 @@ module ImageProfiles
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
   def profiles
-    [:dream_header, :dream_header_small]
+    [:entry_header, :entry_header_small]
   end
 
   def generate_profile(profile, size, opts)
@@ -35,7 +35,7 @@ module ImageProfiles
     File.exists?(path(profile, size))
   end
   
-  def dream_header(size, options)
+  def entry_header(size, options)
     vertical_offset = options[:vertical_offset]
 
     img = magick_image
@@ -44,10 +44,10 @@ module ImageProfiles
     vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
     img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
 
-    img.write(path('dream_header'))
+    img.write(path('entry_header'))
   end
 
-  def dream_header_small
+  def entry_header_small
     
   end
 
@@ -59,7 +59,7 @@ class Image < ActiveRecord::Base
   include ImageProfiles
 
   # This is the syntax we want:
-  # profile 'dream_header' do |img|
+  # profile 'entry_header' do |img|
   #   img.resize '720' # width => 720.
   #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
   #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].

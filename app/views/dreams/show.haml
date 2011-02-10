@@ -4,7 +4,7 @@
 
 
 / CONTEXT PANEL
-= render :partial => "users/context_panel", :locals => {:user => @dream.user}
+= render :partial => "users/context_panel", :locals => {:user => @entry.user}
 
 
 
@@ -15,10 +15,10 @@
 
     .type.bevel.border.round-16 Dream
 
-    %a.next.button.shine.round-16-right{:href => dreams_path}
+    %a.next.button.shine.round-16-right{:href => entries_path}
       %span &rsaquo;
     .stream.button.shine.flat-all sream
-    %a.prev.button.shine.round-16-left{:href => dreams_path}
+    %a.prev.button.shine.round-16-left{:href => entries_path}
       %span &lsaquo;
 
     / 
@@ -32,12 +32,12 @@
       .moodIcon.button.glow-10
         %img{src: '/images/moods/plants/Fungi.png'}
 
-      .title.round-8-top.transparent-50= @dream.title
+      .title.round-8-top.transparent-50= @entry.title
 
     .content.flat-top.round-16
 
       / BODY
-      .body= @dream.body
+      .body= @entry.body
 
       / IMAGE GALLERY
       %ul.gallery

@@ -22,7 +22,7 @@ Dreamcatcher::Application.routes.draw do
 
   # Universal
   match 'dreamstars' => 'users#index', :as => :dreamstars
-  match 'stream' => 'dreams#stream', :as => :stream
+  match 'stream' => 'entries#stream', :as => :stream
 
   # Resources
 
@@ -60,11 +60,11 @@ Dreamcatcher::Application.routes.draw do
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
-    # Dreams
+    # Entries
     match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
     match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
-    resources :dreams
-    match '/' => 'dreams#index'
+    resources :entries
+    match '/' => 'entries#index'
     # match '/' => redirect("/%{username}/dreams"), :defaults => { :username => ''}
 
     # Friends

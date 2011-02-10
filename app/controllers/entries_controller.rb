@@ -1,4 +1,4 @@
-class DreamsController < ApplicationController
+class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
   before_filter :require_username
   before_filter :query_username
@@ -10,42 +10,42 @@ class DreamsController < ApplicationController
   end
   
   def index
-    # public dreams only if != current_user
-    @dreams = @user.dreams
+    # public entries only if != current_user
+    @entries = @user.entries
     
     add_starlight @user, 1 if unique_hit?
   end
 
   def show
-    @dream = Dream.find params[:id]
+    @entry = Entry.find params[:id]
 
     if unique_hit?
-      add_starlight @dream, 1
+      add_starlight @entry, 1
       add_starlight current_user, 1
     end
   end
   
   def new
-    @dream = Dream.new
+    @entry = Entry.new
   end
   
   def edit
-    @dream = Dream.find params[:id]
+    @entry = Entry.find params[:id]
     render :new
   end
 
   def create
-    new_dream = current_user.dreams.create!(params[:dream])
-    redirect_to dream_path(new_dream)
+    new_entry = current_user.entries.create!(params[:entry])
+    redirect_to entry_path(current_user.username, new_entry)
   end
   
   def destroy
-    @dream = Dream.find params[:id]
-    @dream.destroy
+    @entry = Entry.find params[:id]
+    @entry.destroy
     redirect_to :index
   end
 
   def stream
-    @dreams = Dream.all
+    @entry = Entry.all
   end
 end

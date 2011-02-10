@@ -1,5 +1,5 @@
 class What < ActiveRecord::Base
   has_many :tags, :as => :noun
 
-  has_many :dreams, :through => :tags, :source => :entry, :source_type => 'Dream'
+  has_many :entries, :through => :tags # , :source => :entry, :source_type => 'Dream'
 end

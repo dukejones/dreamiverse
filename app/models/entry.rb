@@ -1,4 +1,4 @@
-class Dream < ActiveRecord::Base
+class Entry < ActiveRecord::Base
   belongs_to :user
   has_many :tags, :as => :entry
   

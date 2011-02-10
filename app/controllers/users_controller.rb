@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to dreams_path(user.username) }
+      format.html { redirect_to entries_path(user.username) }
       format.json { render :json => {message: 'success'} }
     end
   end
