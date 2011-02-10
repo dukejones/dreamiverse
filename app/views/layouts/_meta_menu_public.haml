@@ -1,6 +1,6 @@
-#metaMenu
+#metaMenu.public
 
-  .left-panel.padding-8.round-16.flat-top
+  .leftPanel.padding-8.round-16.flat-top
     %a.item{href: '#'}
       intro
     %a.item{href: '#'}
@@ -11,23 +11,33 @@
       %input.input.padding-4-8.round-16{type: 'text', name: 'search' }
 
 
-  .right-panel.padding-8.round-16.flat-top
+  .rightPanel.bevel.round-16.flat-top
     .prompt
-      %a.item
+      %a.loginItem.button.round-12
         %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
-      %a.item
+      %a.loginItem.button.round-12
         %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
-      %a.item
+      %a.loginItem.button.round-12
         %img{src: '/images/icons/google-16.png', alt: 'Log in with Google', border: '0'}
-      %a.item{href: '#'}
-        signup
-      %a.item{href: '#'}
+      %a.login.button.confirm.bevel.round-12{href: '#'}
         login
-    .loginPanel.hidden
-      %input.input.padding-4-8.round-16{type: 'text', name: 'username', value: 'username / email' }
-      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'password' }
+      .joinWrap.round-12
+        %a.join.round-12{href: '#'}
+          Join Now >
+
+    / LOGIN PANEL
+    .loginPanel
+      = form_for('user', {url: user_session_path}) do |f|
+        %span.bevel.button.round-4 I forgot my password
+        = f.text_field(:username, {class: 'login-input input round-12', tabindex: '1'})
+        = f.password_field(:password, {class: 'login-input input round-12', tabindex: '2'})
+        %input#loginButton.round-12.button.post.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+        %label
+          keep me logged in
+          %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+
     .signupPanel.hidden
-      %input.input.padding-4-8.round-16{type: 'text', name: 'email', value: 'email' }
-      %input.input.padding-4-8.round-16{type: 'text', name: 'username', value: 'username' }
-      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'password' }
-      %input.input.padding-4-8.round-16{type: 'password', name: 'password', value: 'repeat password' }
+      %input.input.round-12{type: 'text', name: 'email', value: 'email' }
+      %input.input.round-12{type: 'text', name: 'username', value: 'username' }
+      %input.input.round-12{type: 'password', name: 'password', value: 'password' }
+      %input.input.round-12{type: 'password', name: 'password', value: 'repeat password' }

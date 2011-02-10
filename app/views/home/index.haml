@@ -1,34 +1,67 @@
-#wrapper
+- content_for :head do
+  = sass_link_tag 'shared', 'home', 'dreams'
 
-  /LEFT COLUMN
-  #column-left
-    / LOGO
-    .front-logo
-      %a{href: '/'}
-        %img{src: '/images/logos/frontpage-logo.png', alt: 'Dreamcatcher - Life is a dream.', width: '447', height: '129', border: '0'}
-    = render "info_box"
-    #bottomPadding
+#drop_shadow
 
+#home.light
+
+  / META MENU
+  = render "layouts/meta_menu"
+  %p.notice= notice
+  %p.alert= alert
 
   / RIGHT COLUMN
-  #column-right
-    = render "login_box"
+  #rightColumn
 
-    / MESSAGE BOX MODULE
-    #messageBox.float-right.light.round-8.glow-80{style: 'display:none;'}
-      %table.light.A-bevel.round-8{width:'480', border:'0', cellspacing:'8'}
-        %tr
-          %td.round-4{style: 'background:url(/images/art/vertical-panel-01.jpg) 50% bottom', width: '87', rowspan: '2'}
-          %td#messageTitle.light.B-soft.round-4.font-25.font-bold.error{align: 'left', height:'57', valign: 'middle'}
-        %tr
-          %td.message-content
-            %ul
+    .dreamstarsMini.transparent-50.round-16
+      %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
 
-    / ACTION BUTTON MODULE
-    #actionButtons.light.glow-40.float-left.gradient-C.round-8
-      = render 'signup_panel'
-      = render 'share_panel'
-      / EXPLORE THE DREAMSPHERE
-      %a#dreamSphereButton.block.button-explore.button-action.round-8.light.text-glow-10.button-big-blue{style: 'margin:0', href: '/dreamstars'} Explore the Dreamsphere
-      = render 'fb_login'
-      = render 'forgot_password'
+      .dreamstar-1.round-32.transparent-50
+        .badge
+        .rank 1
+        .name deepak
+      .dreamstar-2.round-32.transparent-50
+        .badge
+        .rank 2
+        .name deepak
+      .dreamstar-3.round-32.transparent-50
+        .badge
+        .rank 3
+        .name deepak
+      .dreamstar-4.round-32.transparent-50
+        .badge
+        .rank 4
+        .name deepak
+      .dreamstar-5.round-32.transparent-50
+        .badge
+        .rank 5
+        .name deepak
+      .dreamstar-6.round-32.transparent-50
+        .badge
+        .rank 6
+        .name deepak
+
+  / PUBLIC STREAM
+  #publicStream
+    .todayFilter.transparent-66.round-8 today
+    %h1 in
+    .dreamsFilter.transparent-66.round-8 dreams
+    .randomDream.button.round-12 random dream!
+
+    
+    / DREAM MATRIX
+    .matrix
+
+
+      / DREAM THUMBS 1D
+      = render :partial => 'dreams/thumb_1d'
+
+      / DREAM THUMBS 1D
+      = render :partial => 'dreams/thumb_1d_tag'
+
+      / DREAM THUMBS 1D
+      = render :partial => 'dreams/thumb_1d_noimage'
+
+      / DREAM THUMBS 1D
+      = render :partial => 'dreams/thumb_1d_newimages'
+

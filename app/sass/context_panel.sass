@@ -5,7 +5,8 @@
   left: 12px
   width: 200px
   cursor: default
-  padding: 6px 6px 2px
+  padding: 4px 4px 2px
+  border: 1px solid #000
 
 
   .avatar
@@ -72,32 +73,33 @@
 
   .context
     display: block
-    margin: 6px 0 4px
+    margin: 4px 0 2px
     text-align: center
     font-weight: bold
     padding: 4px 8px
-    cursor: pointer
     font-size: 21px
-    .image
-      margin: 2px -16px
+    .icon
+      right: 20px
+      top: 18px
+
+  .relation, .changeRelation, .context
+    .icon
+      margin: -16px
       float: right
       position: relative
-      right: 20px
-
 
 
   .label, .image, .detail
     float: left
 
   .find
-    margin-bottom: 4px
+    margin-bottom: 2px
     text-align: center
 
 
   .item
     clear: both
-    margin-bottom: 4px
-    min-height: 32px
+    margin-bottom: 2px
     .label
       width: 86px
       height: 24px
@@ -127,26 +129,35 @@
       font-weight: bold
       border: 0
 
+    .relation, .changeRelation
+      padding: 6px
+      height: 16px
+      font-weight: bold
+      text-align: center
+      margin: 0
+      .icon
+        right: 22px
+        top: -23px      
 
 
 
-  .relation, .changeRelation
-    margin-bottom: 4px
-    padding: 6px
-    height: 20px
-    font-weight: bold
-    text-align: center
-    .image
-      margin: 2px -16px
-      position: relative
-      right: 20px
-      top: -48px
-      float: right
-  .changeRelation .image
-    display: none
-  .changeRelation:hover .image
-    display: block
+    .changeRelation.follow, .changeRelation.unfollow
+      color: #fff
 
+    .changeRelation.follow
+      border: 1px solid #54943d
+      background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
+      background: -moz-linear-gradient(top, #70d03b, #235b1b)
+      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+    .changeRelation.unfollow
+      border: 1px solid #c1633c
+      background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+      background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
 
 
     
