@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'dreams'
+  = coffeescript_include_tag 'dream'
 
 
 
@@ -85,7 +86,11 @@
       .tagHeader.headers.indent.button
         tag
         %img{src: '/images/icons/tag-20.png'}
-      .tagInputWrap
+      .tagThisEntry.button.bevel.round-4{style: 'width: 200px; float: right'}
+        %span +
+        Tag this dream
+      %img.tagCheck.hidden{src: '/images/icons/check-33.png', width: '33', height: '33'}
+      .tagInputWrap.hidden
         %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
         .tagInput
           %input#newTag
@@ -93,7 +98,13 @@
             %span +
             Add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      %img.tagCheck{src: '/images/icons/check-33.png', width: '33', height: '33'}
+      .target
+        #tag-list.tag-list.ui-sortable
+          #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
+            .tagContent
+          %br{style: 'clear: both;'}
+        #sorting
+        %br{style: 'clear: both'}
 
     / ANALYSIS
     #analysis.panel.round-12

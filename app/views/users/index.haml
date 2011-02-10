@@ -1,65 +1,75 @@
 - content_for :head do
-  = stylesheet_link_tag 'dreamstars', 'shared', 'home'
-  :css
-    .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6 {
-      height:48px; margin-top:8px; margin-left:24px
-      }
-    
-    .dreamstar-1:hover, .dreamstar-2:hover, .dreamstar-3:hover, .dreamstar-4:hover, .dreamstar-5:hover, .dreamstar-6:hover {
-      cursor:pointer; border:4px solid #fff;
-      }
+  = stylesheet_link_tag 'dreamstars', 'shared'
 
-    .dreamstar-1 { border:4px solid #ff40d9; }
-    .dreamstar-1:hover { box-shadow: 0px 0px 60px #ff40d9 ; -webkit-box-shadow: 0px 0px 60px #ff40d9 ; -moz-box-shadow: 0px 0px 60px #ff40d9 }
-  
-    .dreamstar-2 { border:4px solid #7140ff; }
-    .dreamstar-2:hover { box-shadow: 0px 0px 60px #7140ff ; -webkit-box-shadow: 0px 0px 60px #7140ff ; -moz-box-shadow: 0px 0px 60px #7140ff }
+#dreamstars.dark
 
-    .dreamstar-3 { border:4px solid #4049ff; }
-    .dreamstar-3:hover { box-shadow: 0px 0px 60px #4049ff ; -webkit-box-shadow: 0px 0px 60px #4049ff ; -moz-box-shadow: 0px 0px 60px #4049ff }
-  
-    .dreamstar-4 { border:4px solid #407aff; }
-    .dreamstar-4:hover { box-shadow: 0px 0px 60px #407aff ; -webkit-box-shadow: 0px 0px 60px #407aff ; -moz-box-shadow: 0px 0px 60px #407aff }
-  
-    .dreamstar-5 { border:4px solid #409aff; }
-    .dreamstar-5:hover { box-shadow: 0px 0px 60px #409aff ; -webkit-box-shadow: 0px 0px 60px #409aff ; -moz-box-shadow: 0px 0px 60px #409aff }
+  / HEADER
+  .header
+    %img{:src => "http://www.dreamcatcher.net/basic/inc/images/logos/header-dreamstars.png", :alt => "Dreamstars"}
+    .date.transparent-50.round-16
+      %span global:
+      december 28, 2010
+    .clear-both
 
-    .dreamstar-6 { border:4px solid #40bfff; }
-    .dreamstar-6:hover { box-shadow: 0px 0px 60px #40bfff ; -webkit-box-shadow: 0px 0px 60px #40bfff ; -moz-box-shadow: 0px 0px 60px #40bfff }
-  
-    .userList-rank { width:30px }
-    .userList-name { width:200px; margin:0 155px }
-    .userList-starlight { width:50px; margin-left:-15px }
-    
-#dreamstarsLogo
-  %img.float-left{:src => "http://www.dreamcatcher.net/basic/inc/images/logos/header-dreamstars.png", :alt => "Dreamstars"}
-  .date.dark.transparent-50.padding-8.align-center.round-16
-    %b global:
-    december 28, 2010
-  .clear-both
- 
-#dreamstars
-  .dark.round-16
-    .dark.A-shine.round-16.padding-8
-      #dreamstarRank.dark.padding-8.round-8.font-17.O-indent.align-center.float-left
-        %b.alpha-60 #
-      #dreamstarName.dark.padding-8.round-8.font-17.O-indent.align-center.float-left
-        %b.alpha-60 username
-      #dreamstarStarlight.dark.padding-8.round-8.font-17.O-indent.align-center.float-left
-        %b starlight
-      %br.clear-both
-    
+  / COLUMNS PANEL
+  .columnsPanel.shine.round-16
+    .rankColumn.round-8.input
+      &#35;
+    .nameColumn.round-8.input
+      username
+    .starlightColumn.round-8.input
+      starlight
+    .clear-both
 
+  / TOP 6 DREAMSTARS
   - (1..6).each do |rank|
     - user = @users[rank-1] # @users index starts at 0.
-    .dark.static-black-transparent-50.round-32{class: "dreamstar-#{rank}"}
+    %a.static-black-transparent-50.round-32{class: "dreamstar-#{rank}"}
       .badge
-        = image_tag "dreamstars/#{@top_images[rank]}", :class => "float-left"
+        = image_tag "dreamstars/#{@top_images[rank]}"
       .rank
-        %b.alpha-60= rank
+        = rank
       .name
-        %b.alpha-60= user.username if user
+        = user.username if user
       .starlight
-        %b 1500
+        1500
       .clear-both
-   
+
+  / ALL DREAMSTARS
+  .dreamstarsAll.transparent-50.round-32
+    %a.dreamstar.transparent-80.button.round-16
+      .rank
+        rank
+      .name
+        username
+      .starlight
+        1500
+    %a.dreamstar.transparent-50.button.round-16
+      .rank
+        rank
+      .name
+        username
+      .starlight
+        1500
+    %a.dreamstar.transparent-50.button.round-16
+      .rank
+        rank
+      .name
+        username
+      .starlight
+        1500
+    %a.dreamstar.transparent-50.button.round-16
+      .rank
+        rank
+      .name
+        username
+      .starlight
+        1500
+    %a.dreamstar.transparent-50.button.round-16
+      .rank
+        rank
+      .name
+        username
+      .starlight
+        1500
+      
