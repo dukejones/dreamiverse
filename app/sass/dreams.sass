@@ -1005,14 +1005,44 @@
        
   /* NEW DREAM MOOD */
   #newDream-mood
-    height: 160px
-    ul
-      list-style: none
-      margin: 6px
-    li, a:link, a:visited
-      float: left
-    a:link, a:visited
-      padding: 0 16px
+    min-height: 160px
+
+    .moodPicker
+      padding: 8px
+      .love, .joy
+        clear: both
+        .one, .two, .three, .four, .five
+          float: left
+          height: 32px
+          line-height: 32px
+          width: 110px
+          text-align: center
+          display: block
+        .one
+          width: 200px
+          background: #fff
+          span, input
+            float: left
+      .love
+        .two
+          background-color: rgb(216, 235, 157)
+        .three
+          background-color: rgb(196, 225, 99)
+        .four
+          background-color: rgb(153, 204, 51)
+        .five
+          background-color: rgb(123, 189, 13)
+      .joy
+        .two
+          background-color: rgb(255, 255, 204)
+        .three
+          background-color: rgb(254, 241, 130)
+        .four
+          background-color: rgb(250, 219, 77)
+        .five
+          background-color: rgb(237, 197, 0)
+
+
 
   /* NEW DREAM ATTACH */
   #newDream-attach
