@@ -3,6 +3,7 @@
   top: 90px
   left: 32px
 
+  // HEADER
   .header
     img, .date
       float: left
@@ -14,6 +15,7 @@
       height: 40px
       line-height: 40px
 
+  // COLUMNS PANEL
   .columnsPanel
     width: 640px
     padding: 8px
@@ -34,11 +36,11 @@
     .starlightColumn
       left: 562px
 
+  // TOP 6 DREAMSTARS
   a
     display: block
     position: relative
     margin: 0 0 8px 88px
-    width: 640px
     height: 50px
     line-height: 50px
     cursor: pointer
@@ -60,7 +62,6 @@
       text-align: center
     .starlight
       left: 580px
-
   .dreamstar-1
     border: 4px solid #FF40D9
     .rank
@@ -85,3 +86,25 @@
     border: 4px solid #40BFFF
     .rank
       color: #365ba6
+
+  // ALL DREAMSTARS
+  .dreamstarsAll
+    padding: 16px
+    margin: 20px 0 8px 88px
+    border: 4px solid #fff
+    a.dreamstar
+      position: relative
+      height: 32px
+      margin: 0 0 8px
+      .rank, .name, .starlight
+        position: absolute
+        height: 32px
+        line-height: 32px
+      .rank
+        left: 20px
+      .name
+        left: 60px
+        width: 490px
+        text-align: center
+      .starlight
+        left: 555px
