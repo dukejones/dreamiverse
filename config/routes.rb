@@ -57,6 +57,7 @@ Dreamcatcher::Application.routes.draw do
   # Tagging
   # match '#:tag', :to => 'tags#show'
 
+  resources :entries
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do

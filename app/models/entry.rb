@@ -1,4 +1,6 @@
 class Entry < ActiveRecord::Base
+  self.inheritance_column = nil
+  
   belongs_to :user
   has_many :tags, :as => :entry
   

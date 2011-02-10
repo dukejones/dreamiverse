@@ -1,7 +1,7 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
-  before_filter :require_username
-  before_filter :query_username
+  # before_filter :require_username, :only => [:index, :show]
+  # before_filter :query_username, :except => [:stream]
 
   def query_username
     @user = User.find_by_username( params[:username] )
@@ -39,6 +39,12 @@ class EntriesController < ApplicationController
     redirect_to entry_path(current_user.username, new_entry)
   end
   
+  def update
+    @entry = Entry.find params[:id]
+    @entry.update_attributes( params[:entry] )
+    redirect_to :action => :show, :id => params[:id]
+  end
+  
   def destroy
     @entry = Entry.find params[:id]
     @entry.destroy
@@ -46,6 +52,6 @@ class EntriesController < ApplicationController
   end
 
   def stream
-    @entry = Entry.all
+    @entries = Entry.all
   end
 end
