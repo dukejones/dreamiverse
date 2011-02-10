@@ -732,12 +732,26 @@ a:active, a:focus
     font-size: 24px
     font-weight: normal
 
-
-/******** APPEARANCE PANEL ********/
-
-// APPEARANCE PANEL SHARED STYLES
-#appearancePanel
   .fontSizing
+    margin: 0
+    .small, .medium, .large
+      float: right
+      width: 32px
+      margin-right: 8px
+      text-align: center
+      cursor: pointer
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+    .small
+      font-size: 12px
+      margin-top: 12px
+    .medium
+      font-size: 14px
+      margin-top: 10px
+    .large
+      font-size: 16px
+      margin-top: 8px
     .small, .medium, .large
       border: 1px solid #999
 
@@ -745,7 +759,7 @@ a:active, a:focus
     clear: both
     font-weight: bold
     padding: 8px
-    margin: 0 0 8px
+    margin: 0 0 2px
     height: 36px
     img.colorSwatch, img.fontImage, h2, #sun, #moon
       float: left
@@ -756,6 +770,9 @@ a:active, a:focus
       font-size: 16px
       line-height: 36px
       font-weight: bold
+
+
+/******** APPEARANCE PANEL ********/
 
 
 // APPEARANCE PANEL
@@ -843,26 +860,6 @@ a:active, a:focus
         img
           margin: -8px -8px -8px 4px
 
-  .fontSizing
-    margin: 0
-    .small, .medium, .large
-      float: right
-      width: 32px
-      margin-right: 8px
-      text-align: center
-      cursor: pointer
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-    .small
-      font-size: 12px
-      margin-top: 12px
-    .medium
-      font-size: 14px
-      margin-top: 10px
-    .large
-      font-size: 16px
-      margin-top: 8px
 
 
 
@@ -1033,14 +1030,23 @@ a:active, a:focus
             display: block
 
 
+  .cancel, .confirm
+    text-align: center
+    height: 26px
+    line-height: 26px
+    font-weight: bold
+  .cancel
+    float: left
+    width: 80px
+  .confirm
+    float: right
+    width: 180px
+
   .changePassword
-    margin: 0
+    margin: 0 0 8px
     .changePasswordForm
       padding: 8px
-      .cancel
-        float: left
-      .confirm
-        float: right
+
 
 /*********** END META MENU ***********/
 
