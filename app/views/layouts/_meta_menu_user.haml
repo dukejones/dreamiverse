@@ -24,13 +24,13 @@
         = current_user.username
 
     .settingsPanel.wrapper.float-left
-      .item.account.trigger.fade
+      .item.account.trigger
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
       / APPEARANCE PANEL
       = render :partial => "layouts/settings_panel"
 
     .appearancePanel.wrapper.float-left
-      .item.appearance.trigger.fade
+      .item.appearance.trigger
         %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
       / APPEARANCE PANEL
       = render :partial => "layouts/appearance_panel"
