@@ -23,14 +23,14 @@
       %span.round-16.flat-left
         = current_user.username
 
-    .wrapper
-      %a.item.account.trigger
+    .settingsPanel.wrapper.float-left
+      .item.account.trigger.fade
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
       / APPEARANCE PANEL
       = render :partial => "layouts/settings_panel"
 
-    .wrapper
-      %a.item.appearance.trigger
+    .appearancePanel.wrapper.float-left
+      .item.appearance.trigger.fade
         %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
       / APPEARANCE PANEL
       = render :partial => "layouts/appearance_panel"
