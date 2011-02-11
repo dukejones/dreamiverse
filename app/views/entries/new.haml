@@ -12,6 +12,11 @@
 
   / NEW ENTRY INPUT PANEL
   #newEntry.flat.round-16.glow-40
+
+    .wrapper
+      / MOOD ICON
+      = render :partial => "mood_icon"
+
     #entryTypeWrap
       %img{src: '/images/icons/dream-32.png'}
       %span#entryType_current{value: 'Dream'}
@@ -19,7 +24,8 @@
         %option{value: 'Dream'} Dream
         %option{value: 'Vision'} Vision
         %option{value: 'Experience'} Experience
-    
+
+
     = form_for @entry do |f|
       = f.text_field :title, :maxlength => '72', :class => 'font-21'
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
