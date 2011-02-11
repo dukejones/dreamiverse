@@ -34,6 +34,7 @@
         = f.submit :value => 'post', :class => 'shine button save'
         .sharing.indent.button
           %img{src: '/images/icons/share-16.png'} Everyone
+          = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
         .addLocation.indent.button
           %img{src: '/images/icons/location-21.png'}
         .date.indent.button
