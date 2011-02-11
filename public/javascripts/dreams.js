@@ -73,7 +73,7 @@ function displayImageBank(){
 
 function setupTags(){
   // Add tag click
-  $('#tagAdd').click(function(){
+  /*$('#tagAdd').click(function(){
     addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
   })
   
@@ -83,7 +83,7 @@ function setupTags(){
      addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
     }
     activateRemoveDreamTag('.tag_box');
-  });
+  });*/
   
   // Set up tag list sortability
   /*$( "#tag-list" ).sortable( {
@@ -184,9 +184,9 @@ var tagHeight;
 
 function setupEvents(){
   // Listen for attach toggles
-  $('#attach-images').unbind();
-  $('#attach-images').click(function(){
-    $('#new_dream-images').slideDown();
+  $('.entryAttach .images').unbind();
+  $('.entryAttach .images').click(function(){
+    $('.entryImages').slideDown();
     $(this).hide();
     
     // Set newly displayed header click
@@ -194,7 +194,7 @@ function setupEvents(){
       // if no images added, remove panel 
       // and show button
       if($('#currentImages').children().length == 1){
-        $('#new_dream-images').slideUp();
+        $('.entryImages').slideUp();
         $('#attach-images').show();
       } else {
         // if content added, minimize panel
@@ -208,9 +208,9 @@ function setupEvents(){
     
   })
   
-  $('#newDream-attach .tag').unbind();
-  $('#newDream-attach .tag').click(function(){
-    $('#newDream-tag').slideDown();
+  $('.entryAttach .tag').unbind();
+  $('.entryAttach .tag').click(function(){
+    $('.entryTags').slideDown();
     //$('#newDream-tag').height(0);
     //$('#newDream-tag').css('display', 'block');
     //$('#newDream-tag').animate({height: 42}, "slow");
@@ -218,12 +218,12 @@ function setupEvents(){
     $(this).hide();
     
     // Set newly displayed header click
-    $('#newDream-tag .headers').unbind();
-    $('#newDream-tag .headers').click(function(){
+    $('.entryTags .headers').unbind();
+    $('.entryTags .headers').click(function(){
       if($('#tag-list').children().length == 2){
         // No tags added hide it all
-        $('#newDream-tag').slideUp();
-        $('#newDream-attach .tag').show();
+        $('.entryTags').slideUp();
+        $('.entryAttach .tag').show();
       } else {
         // tags added only minimize
         if($('#tag-list').css('display') != 'none'){

@@ -33,6 +33,28 @@ window.setupDreamplugs = ->
       $newTargetFade.fadeOut()
   )
   
+  # Setup fade w/ bodyclick triggers to work
+  $('.trigger.fadeclick').click( (event) ->
+    $newTargetFade = $(event.currentTarget).parent().find('.target.fadeclick')
+    
+    if $newTargetFade.css('display') is 'none'
+      # Create bodyclick
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('html, body').animate({scrollTop:0}, 'slow');
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetFade.hide()
+        $('#bodyClick').remove()
+      )
+      
+      $newTargetFade.fadeIn()
+    else
+      $newTargetFade.fadeOut()
+      $('body').remove()
+  )
+  
   # Setup toggle handler
   $('.trigger.toggle').click( (event) ->
     $newTargetToggle = $(event.currentTarget).parent().parent().find('.target.toggle')
