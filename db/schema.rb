@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20110211001943) do
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,8 +127,8 @@ ActiveRecord::Schema.define(:version => 20110211001943) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.integer "user",      :limit => 8
-    t.string  "user_type"
+    t.string  "source"
+    t.integer "user",   :limit => 8
   end
 
   create_table "words", :force => true do |t|
