@@ -1,9 +1,9 @@
 - content_for :head do
   = sass_link_tag 'entries', "context_panel"
   = stylesheet_link_tag "IB_manager"
-  = javascript_include_tag "dreams", "autoresize.jquery.min", "geo", "userfileuploader"
+  = javascript_include_tag "autoresize.jquery.min", "geo", "userfileuploader", 'dreams'
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
-
+  = coffeescript_include_tag 'tag', 'dream'
 / CONTEXT BAR
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 

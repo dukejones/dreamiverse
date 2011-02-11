@@ -49,9 +49,9 @@ class MetaMenu
   expand: ->
     bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
     $('body').prepend(bodyClick)
-    
+  
     $('html, body').animate({scrollTop:0}, 'slow');
-    
+  
     $('#bodyClick').click( (event) =>
       @$currentMenuPanel.hide()
       $('#bodyClick').remove()
