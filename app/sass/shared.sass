@@ -527,16 +527,15 @@ a:active, a:focus
     .login
       width: auto
       padding: 0 12px
-    .joinWrap
+    .joinWrap, .signupWrap
       cursor: pointer
       clear: both
       width: 196px
-      height: 34px
       padding: 2px 0
       background: #fff
       background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
       background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join
+      .join, .signup
         margin: 0 auto
         display: block
         width: 190px
@@ -550,7 +549,7 @@ a:active, a:focus
         background: -moz-linear-gradient(top, #ffe658, #ffa614)
         border: 1px solid #ffa614
     .loginPanel, .signupPanel
-      .input, label, span, #loginButton
+      .input, #loginButton
         clear: both
         display: block
         margin: 4px 0 0
@@ -560,14 +559,22 @@ a:active, a:focus
         line-height: 32px
       #loginButton
         width: 192px
-      label, span
-        margin: 4px auto 0
-        width: 160px
-        height: 18px
-        line-height: 18px
+      label.stay, a.forgot
+        margin: 4px
+        padding: 0 4px
         text-align: center
-        font-size: 12px
+        height: 16px
+        line-height: 16px
+        font-size: 10px
         font-weight: normal
+      a.forgot
+        float: left
+      label.stay
+        width: 80px
+        float: right
+        input
+          margin: 1px 0 0
+          float: right
 
     .user
       overflow: hidden
