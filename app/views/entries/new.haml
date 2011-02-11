@@ -7,11 +7,11 @@
 / CONTEXT BAR
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
-/ DREAM ENTRY
-#dreamField
+/ ENTRY
+#entryField
 
-  / NEW DREAM INPUT PANEL
-  #newDream-panel.flat.round-16.glow-40
+  / NEW ENTRY INPUT PANEL
+  #newEntry.flat.round-16.glow-40
     #entryTypeWrap
       %img{src: '/images/icons/dream-32.png'}
       %span#entryType_current{value: 'Dream'}
@@ -40,7 +40,7 @@
           %img{src: '/images/icons/date-19.png'}
 
         /
-          NEW DREAM SHARING
+          NEW ENTRY SHARING
           #share.round-8
             %img.arrow{src: '/images/icons/uparrow-black.png'}
             %select.input.round-8
@@ -53,17 +53,17 @@
                 %span.name Facebook
                 %input.checkbox{type: 'checkbox'}
 
-  / NEW DREAM DATE TIME
+  / NEW ENTRY DATE TIME
   = render :partial => "date_time"
 
-  / NEW DREAM LOCATION
+  / NEW ENTRY LOCATION
   = render :partial => "location"
 
-  / NEW DREAM IMAGES
+  / NEW ENTRY IMAGES
   = render :partial => "image_panel"
 
-  / NEW DREAM TAG
-  #tagDream.newDream_assets.hidden.shine-alpha
+  / NEW ENTRY TAG
+  .entryTags.entryAssets.hidden.shine-alpha
     .tagHeader.headers.indent.button
       tag
       %img{src: '/images/icons/tag-20.png'}
@@ -84,8 +84,8 @@
     #sorting
     %br{style: 'clear: both'}
 
-  / NEW DREAM LINK
-  #newDream-link.newDream_assets.hidden.shine-alpha
+  / NEW ENTRY LINK
+  .entryLinks.entryAssets.hidden.shine-alpha
     .linksHeader.headers.indent.button
       links
       %img{src: '/images/icons/links-19.png'}
@@ -95,8 +95,8 @@
     %br{style: 'clear: both;'}
     #linkHolder
 
-  / NEW DREAM MOOD
-  #newDream-mood.newDream_assets.hidden.shine-alpha
+  / NEW ENTRY MOOD
+  .entryMood.entryAssets.hidden.shine-alpha
     .moodHeader.headers.indent.button
       mood
       %img{src: '/images/icons/mood-19.png'}
@@ -214,8 +214,8 @@
       .clear-both
 
 
-  / NEW DREAM ATTACHMENTS
-  #newDream-attach.newDream_assets.shine-alpha
+  / NEW ENTRY ATTACHMENTS
+  .entryAttach.entryAssets.shine-alpha
     %p attach:
     #attach-images.bevel.button images
     .tag.bevel.button tag

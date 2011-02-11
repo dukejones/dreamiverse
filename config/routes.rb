@@ -64,7 +64,7 @@ Dreamcatcher::Application.routes.draw do
     # Entries
     match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
     match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
-    resources :entries
+    resources :entries, :as => 'user_entries'
     match '/' => 'entries#index'
     # match '/' => redirect("/%{username}/dreams"), :defaults => { :username => ''}
 
