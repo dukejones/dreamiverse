@@ -39,77 +39,78 @@
       Saved locations
 
 
-    .locationView.target.slide.hidden
-      %form
-        .locationList.border
+    .wrapper.target.slide.hidden
+      .locationView
+        %form
+          .locationList.border
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'Home', type: 'radio'}
-            .edit
-            Home
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'Home', type: 'radio'}
+              .edit
+              Home
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'The Pearl', type: 'radio'}
-            .edit
-            The Pearl
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'The Pearl', type: 'radio'}
+              .edit
+              The Pearl
 
-          .locations.flat.button
-            %label.default.alpha-50.selected
-              set as default
-              %input{name: 'default', value:'Flow Space', type: 'radio'}
-            Flow Space
-            .edit
+            .locations.flat.button
+              %label.default.alpha-50.selected
+                set as default
+                %input{name: 'default', value:'Flow Space', type: 'radio'}
+              Flow Space
+              .edit
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'Flow Space', type: 'radio'}
-            Flow Space
-            .edit
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'Flow Space', type: 'radio'}
+              Flow Space
+              .edit
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'Flow Space', type: 'radio'}
-            Flow Space
-            .edit
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'Flow Space', type: 'radio'}
+              Flow Space
+              .edit
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'Flow Space', type: 'radio'}
-            Flow Space
-            .edit
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'Flow Space', type: 'radio'}
+              Flow Space
+              .edit
 
-          .locations.flat.button
-            %label.default.alpha-50
-              set as default
-              %input{name: 'default', value:'Under I580', type: 'radio'}
-            .edit
-            Under I580
+            .locations.flat.button
+              %label.default.alpha-50
+                set as default
+                %input{name: 'default', value:'Under I580', type: 'radio'}
+              .edit
+              Under I580
 
-        %label.autoLocate.bevel.round-4.padding-2-4.button.small.cancel
-          auto locate
-          %input{name: 'default', value:'auto', type: 'radio'}
+          %label.autoLocate.bevel.round-4.padding-2-4.button.small.cancel
+            auto locate
+            %input{name: 'default', value:'auto', type: 'radio'}
 
-      .newLocation.trigger.toggle.bevel.float-left.round-4.padding-2-4.button.small.confirm
-        %img{src: '/images/icons/add-16.png'}
-        new location
-      .clear-both
+        .newLocation.trigger.toggle.bevel.float-left.round-4.padding-2-4.button.small.confirm
+          %img{src: '/images/icons/add-16.png'}
+          new location
+        .clear-both
 
-    / ADD NEW LOCATION
-    .modifyLocationView.target.toggle.hidden
-      %input.input{value: 'Location name'}
-      %input.input{value: 'City'}
-      %input.input{value: 'State / Province'}
-      %input.input{value: 'Country'}
-      .confirm.button.small.bevel.round-4 Save
-      .cancel.button.small.bevel.round-4 Cancel
-      .clear-both
+      / ADD NEW LOCATION
+      .modifyLocationView.target.toggle.hidden
+        %input.input{value: 'Location name'}
+        %input.input{value: 'City'}
+        %input.input{value: 'State / Province'}
+        %input.input{value: 'Country'}
+        .confirm.button.small.bevel.round-4 Save
+        .cancel.button.small.bevel.round-4 Cancel
+        .clear-both
 
 
 
