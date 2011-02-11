@@ -1,5 +1,5 @@
 / SETTINGS PANEL
-#settingsPanel.hidden.panel.glow-40.round-8.target.fade
+#settingsPanel.hidden.panel.glow-40.round-8.target
   .arrow
 
 
@@ -34,12 +34,12 @@
   / SAVED LOCATIONS
   .savedLocations.wrapper.panel.round-8
 
-    %h2.trigger.slide
+    %h2.trigger.showhide
       %img{src: '/images/icons/world-16.png'}
       Saved locations
 
 
-    .wrapper.target.slide.hidden
+    .wrapper.target.showhide.hidden
       .locationView
         %form
           .locationList.border
@@ -117,12 +117,12 @@
 
 
   / CHANGE PASSWORD
-  .changePassword.wrapper.slide.panel.round-8
-    %h2.trigger.slide
+  .changePassword.wrapper.showhide.panel.round-8
+    %h2.trigger.showhide
       %img{src: '/images/icons/key-16.png'}
       Change password
 
-    .changePasswordForm.target.slide.hidden
+    .changePasswordForm.target.showhide.hidden
       %input.input{value: 'Current password'}
       %input.input{value: 'New password'}
       %input.input{value: 'Confirm new password'}
