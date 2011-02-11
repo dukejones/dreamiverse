@@ -89,7 +89,12 @@ class SettingsPanel extends MetaMenu
       alert "SEND SAVED LOCATION DATA TO SERVER"
     )
     
-    $()
+    $('.locationForm input:radio').change( (event) ->
+      $('.locations input:radio').each( (index, value) ->
+        $(value).parent().removeClass('selected')
+      )
+      $(event.currentTarget).parent().addClass('selected')
+    )
   
   changePassword: ->
     alert "change password"

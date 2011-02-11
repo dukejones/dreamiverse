@@ -498,38 +498,37 @@
         margin-bottom: 8px
         img
           margin: 7px 8px 0 0
+
       .analysisTags, .expanded
         clear: both
-        height: 32px
         line-height: 32px
         margin: 0 0 8px
         padding: 0 12px 0 0
-        span
+        overflow: hidden
+        .title
+          height: 32px
           padding-left: 42px
           font-weight: bold
-        .arrow
-          float: right
-          height: 32px
-          width: 16px
-      .analysisTags
-        .arrow
-          background: url(/images/icons/arrow-down-16.png) no-repeat center
-        &.expanded
-          height: auto
-          background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
           .arrow
-            background: url(/images/icons/arrow-up-16.png) no-repeat center
-          .description
-            clear: both
-            margin: 20px 8px 20px 20px
-            line-height: 20px
-            .source
-              float: left
-              margin: 0 0 12px 12px
-              padding: 0 12px
-              height: 24px
-              line-height: 24px
-              text-align: center
+            float: right
+            height: 32px
+            width: 16px
+            background: url(/images/icons/arrow-down-16.png) no-repeat center
+        .description
+          clear: both
+          margin: 20px 8px 20px 20px
+          line-height: 20px
+          .source
+            float: left
+            margin: 0 0 12px 12px
+            padding: 0 12px
+            height: 24px
+            line-height: 24px
+            text-align: center
+      .analysisTags.expanded .title
+        .arrow
+          background: url(/images/icons/arrow-up-16.png) no-repeat center
+
 
     // COMMENTS
     .commentsPanel
@@ -643,9 +642,22 @@
   #newEntry
     width: 662px 
     padding: 8px
+
+    // MOOD ICON
+    .wrapper
+      .moodIcon
+        position: absolute
+        right: -26px
+        top: -26px
+      .moodIcon-picker
+        position: absolute
+        right: -8px
+        top: -8px
+
     #entryTypeWrap
       width: 126px
       border: 1px solid #E1E1E1
+      margin-right: 60px
       img
         float: left
         margin: 3px 0 0 4px
@@ -659,7 +671,7 @@
       background: transparent
       border: none
     #entry_title
-      width: 500px
+      width: 400px
       height: 26px
       line-height: 26px
     #entry_body
@@ -1030,6 +1042,8 @@
       margin: 8px 0
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         clear: both
+        margin: 0 0 2px
+        height: 32px
         .one, .two, .three, .four, .five
           float: left
           height: 32px
@@ -1457,6 +1471,9 @@
   background: rgba(0,0,0,0.8)
   position: relative
 
+  .moodIcon-picker
+    left: 321px
+
 #tagStream, #entryField
   .moodIcon, .moodIcon-picker, .currentIcon
     float: right
@@ -1477,8 +1494,8 @@
   .moodIcon-picker
     position: absolute
     top: 5px
-    left: 321px
-    padding: 6px 2px 2px 6px
+    padding: 8px
+    width: 286px
     height: auto
     z-index: 1200
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
@@ -1506,7 +1523,7 @@
       cursor: pointer
     .currentMood
       float: left
-      margin: 12px 0 0 24px
+      margin: 12px 0 0 14px
       padding: 0 8px
       width: 112px
       height: 36px
@@ -1518,7 +1535,7 @@
       -moz-border-radius: 16px
       -webkit-border-radius: 16px
     .currentIcon
-      margin: 0 0 10px
+      margin: 0 0 2px
       box-shadow: 0 0 12px #000
       -moz-box-shadow: 0 0 12px #000
       -webkit-box-shadow: 0 0 12px #000
@@ -1530,7 +1547,7 @@
       width: 306px
       li
         float: left
-        margin: 0 4px 4px 0
+        margin: 4px 4px 0 0
         padding: 10px 0
         width: 90px
         height: 70px
