@@ -51,7 +51,7 @@ class EntriesController < ApplicationController
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
     new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))
-    redirect_to entry_path(current_user.username, new_entry)
+    redirect_to user_entry_path(current_user.username, new_entry)
   end
   
   def update

@@ -106,6 +106,7 @@
       -moz-box-shadow: 0px 0px 40px #000
       -webkit-box-shadow: 0px 0px 40px #000
     .thumb-1d
+      position: relative
       clear: both
       margin: 20px 0 0
       padding: 4px 4px 0
@@ -120,7 +121,7 @@
       -moz-border-radius-topright: 16px
       -webkit-border-radius-topright: 16px
       .left
-        position: relative
+        position: absolute
         width: 360px
 
         // USERNAME + AVATAR
@@ -167,11 +168,11 @@
           overflow: hidden
           width: 330px
         h1.title
-          margin: 14px 8px 0 14px
+          margin: 8px 8px 0 8px
           font-size: 24px
           height: 30px
         p.text
-          margin: 4px 8px 0 14px
+          margin: 4px 8px 0 8px
           height: 40px
 
         // POST DETAILS
@@ -201,10 +202,36 @@
             line-height: 24px
 
       .right
-        position: relative
-        top: 0
-        left: 360px
+        position: absolute
+        left: 364px
+
+        ul
+          list-style: none
+          margin: 0
+          padding: 0
+          width: 320px
+          li
+            float: left
+            margin: 0 0 0 2px
+            background: #ccc
+            height: 60px
+            width: 60px
+
         .tagCloud
+          clear: both
+          border: none
+          height: 100px
+          width: 260px
+          background: transparent
+
+        .entryTagList
+          div
+            float: left
+            height: 24px
+            line-height: 24px
+            margin: 8px 8px 0 0
+            padding: 0 8px
+            text-align: center
 
 
       //
