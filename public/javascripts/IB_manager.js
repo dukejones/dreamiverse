@@ -80,7 +80,7 @@ function setGenreOptions(){
     
     $('#IB_genreList').html(newGenres);
   } else if($("#IB_categoryList option:selected").val() == "Classical Art"){
-    var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
+    var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Eurasia">Eurasia</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
     
     $('#IB_genreList').html(newGenres);
   } else if($("#IB_categoryList option:selected").val() == "Photo"){

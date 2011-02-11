@@ -513,16 +513,17 @@ a:active, a:focus
     .login
       width: auto
       padding: 0 12px
-    .joinWrap
+    .joinWrap, .signupWrap
       cursor: pointer
       clear: both
       width: 196px
-      height: 34px
+      margin: 4px 0 0
       padding: 2px 0
       background: #fff
       background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
       background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join
+      .join, .signup
+        cursor: pointer
         margin: 0 auto
         display: block
         width: 190px
@@ -535,25 +536,50 @@ a:active, a:focus
         background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
         background: -moz-linear-gradient(top, #ffe658, #ffa614)
         border: 1px solid #ffa614
+      .join:hover, .signup:hover
+        box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+      .join:active, .signup:active
+        background: #ffa614
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
+        background: -moz-linear-gradient(top, #ffa614, #ffe658)
     .loginPanel, .signupPanel
-      .input, label, span, #loginButton
+      clear: both
+      .input, #loginButton
         clear: both
         display: block
         margin: 4px 0 0
         padding: 0 8px
         width: 176px
+        font-size: 14px
         height: 32px
         line-height: 32px
+      .haveSeedcode
+        cursor: pointer
+        clear: both
+        display: block
+        margin: 4px 0 0
+        text-align: center
+        font-size: 14px
       #loginButton
         width: 192px
-      label, span
-        margin: 4px auto 0
-        width: 160px
-        height: 18px
-        line-height: 18px
+      label.stay, a.forgot
+        margin: 4px
+        padding: 0 4px
         text-align: center
-        font-size: 12px
+        height: 16px
+        line-height: 16px
+        font-size: 10px
         font-weight: normal
+      a.forgot
+        float: left
+      label.stay
+        width: 80px
+        float: right
+        input
+          margin: 1px 0 0
+          float: right
 
     .user
       overflow: hidden
