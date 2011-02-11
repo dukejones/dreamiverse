@@ -10,16 +10,12 @@ class window.TagController
     
 
   create: ->
-    log 'creating'
     $entryForm = $('#new_entry')
     # get text
     tagName = @tagInputView.value()
-    log 'tag value'
-    log tagName
     # create tag
     tag = new Tag($entryForm, tagName)
     tag.create()
-    log tag
     # show it
     @tagViews.push(new TagView(tag))
     
