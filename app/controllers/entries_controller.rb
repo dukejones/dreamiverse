@@ -65,5 +65,6 @@ class EntriesController < ApplicationController
 
   def stream
     @entries = Entry.all
+    @user = current_user
   end
 end
