@@ -1,5 +1,12 @@
 class Entry < ActiveRecord::Base
   self.inheritance_column = nil
+
+  Access = {
+    private: 0,
+    friends_of_friends: 80,
+    friends: 100,
+    everyone: 200
+  }
   
   belongs_to :user
   has_many :tags, :as => :entry
