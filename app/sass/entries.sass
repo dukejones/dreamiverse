@@ -498,38 +498,37 @@
         margin-bottom: 8px
         img
           margin: 7px 8px 0 0
+
       .analysisTags, .expanded
         clear: both
-        height: 32px
         line-height: 32px
         margin: 0 0 8px
         padding: 0 12px 0 0
-        span
+        overflow: hidden
+        .title
+          height: 32px
           padding-left: 42px
           font-weight: bold
-        .arrow
-          float: right
-          height: 32px
-          width: 16px
-      .analysisTags
-        .arrow
-          background: url(/images/icons/arrow-down-16.png) no-repeat center
-        &.expanded
-          height: auto
-          background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
           .arrow
-            background: url(/images/icons/arrow-up-16.png) no-repeat center
-          .description
-            clear: both
-            margin: 20px 8px 20px 20px
-            line-height: 20px
-            .source
-              float: left
-              margin: 0 0 12px 12px
-              padding: 0 12px
-              height: 24px
-              line-height: 24px
-              text-align: center
+            float: right
+            height: 32px
+            width: 16px
+            background: url(/images/icons/arrow-down-16.png) no-repeat center
+        .description
+          clear: both
+          margin: 20px 8px 20px 20px
+          line-height: 20px
+          .source
+            float: left
+            margin: 0 0 12px 12px
+            padding: 0 12px
+            height: 24px
+            line-height: 24px
+            text-align: center
+      .analysisTags.expanded .title
+        .arrow
+          background: url(/images/icons/arrow-up-16.png) no-repeat center
+
 
     // COMMENTS
     .commentsPanel
