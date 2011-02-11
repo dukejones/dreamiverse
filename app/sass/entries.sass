@@ -100,7 +100,7 @@
 
 
 
-    /* 1D ENTRY THUMBS */
+    /******** 1D ENTRY THUMBS ********/
     .thumb-1d:hover
       box-shadow: 0px 0px 40px #000
       -moz-box-shadow: 0px 0px 40px #000
@@ -108,127 +108,149 @@
     .thumb-1d
       clear: both
       margin: 20px 0 0
-      width: 680px
+      padding: 4px 4px 0
+      width: 672px
+      height: 220px
       overflow: hidden
       cursor: pointer
-      .left
-        .details
-          position: absolute
-          .date, .location
-            float: left
-            padding: 4px 8px
-            margin: 4px
-            font-size: 11px
-            text-align: center
-            border-radius: 12px
-            -moz-border-radius: 12px
-            -webkit-border-radius: 12px
-    .thumb-1d.all
-      height: 90px
-    .thumb-1d.tag, .thumb-1d.newImages
-      height: 62px
-      border-radius: 16px
-      -moz-border-radius: 16px
-      -webkit-border-radius: 16px
-    .thumb-1d.tag
-      padding: 15px 0
-      height: 32px
-      line-height: 32px
-      .user
-        margin: 0 8px
-      .tagText
-        float: left
-        margin: 0 0 0 12px
-        font-size: 18px
-    .thumb-1d.noImage
-      .left
-        .tagCloud
-          height: 90px
-          border-radius-topleft: 16px
-          -moz-border-radius-topleft: 16px
-          -webkit-border-radius-topleft: 16px
-    .thumb-1d.newImages
-      .left
-        .image
-          height: 62px
-          border-radius-bottomleft: 16px
-          -moz-border-radius-bottomleft: 16px
-          -webkit-border-radius-bottomleft: 16px
-      .right
-        height: 62px
-        .user
-          margin: 15px 8px
-        .display
-          float: left
-          margin: 10px 0 0
-          .gallery
-            margin: 0
-            font-size: 18px
-            color: #262626 /* 90% Black */
-          .text
-            margin: 0
-
-    .left
-      float: left
-      width: 256px
-      height: 90px
-      margin: 0
-      padding: 0
-      .image
-        width: 256px
-        height: 45px
-        border-radius-topleft: 16px
-        -moz-border-radius-topleft: 16px
-        -webkit-border-radius-topleft: 16px
-        background: url(/images/art/cloud-temple-banner.jpg) no-repeat top
-      .tagCloud
-        height: 45px
-        border-radius-bottomleft: 16px
-        -moz-border-radius-bottomleft: 16px
-        -webkit-border-radius-bottomleft: 16px
-    .right
-      float: right
-      height: 90px
-      width: 424px
-      margin: 0
-      padding: 0
+      border-radius-topleft: 16px
+      -moz-border-radius-topleft: 16px
+      -webkit-border-radius-topleft: 16px
       border-radius-topright: 16px
       -moz-border-radius-topright: 16px
       -webkit-border-radius-topright: 16px
-      border-radius-bottomright: 16px
-      -moz-border-radius-bottomright: 16px
-      -webkit-border-radius-bottomright: 16px
-    .user
-      float: left
-      width: 90px
-      height: 32px
-      line-height: 35px
-      margin: 7px 0 0 8px
-      color: #034c99
-      background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
-      .name
-        margin: 0 0 0 40px
-        font-size: 16px
-        font-weight: bold
-    .title
-      width: 320px
-      height: 48px
-      line-height: 48px
-      margin: -34px 0 0
-      float: right
-      font-weight: bold
-      h1
-        overflow: hidden
-        height: 43px
-        font-size: 48px
-      h2
-        margin-top: -74px
-        font-size: 18px
-        color: #262626 /* 90% Black */
-    .text
-      clear: both
-      color: #666
-      margin: 44px 0 0 15px
+      .left
+        position: relative
+        width: 360px
+
+        // USERNAME + AVATAR
+        .user
+          position: absolute
+          top: 4px
+          left: 4px
+          padding: 0 12px 0 0
+          height: 30px
+          line-height: 30px
+          background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
+          .name
+            margin: 0 0 0 42px
+            font-size: 16px
+            font-weight: bold
+
+        // COMMENT COUNT
+        .commentCount
+          position: absolute
+          top: 8px
+          right: 8px
+          background: url(/images/icons/comments-16.png) no-repeat right
+          .counter
+            float: right
+            margin: 0 20px 0 0
+            height: 16px
+            line-height: 16px
+            padding: 0 8px
+            text-align: center
+            font-size: 14px
+            font-weight: bold
+
+        // IMAGE
+        .image
+          width: 360px
+          height: 96px
+          border-radius-topleft: 16px
+          -moz-border-radius-topleft: 16px
+          -webkit-border-radius-topleft: 16px
+          background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left
+
+        // TITLE & TEXT
+        h1.title, p.text
+          overflow: hidden
+          width: 330px
+        h1.title
+          margin: 14px 8px 0 14px
+          font-size: 24px
+          height: 30px
+        p.text
+          margin: 4px 8px 0 14px
+          height: 40px
+
+        // POST DETAILS
+        .details
+          position: absolute
+          top: 190px
+          left: 4px
+          height: 26px
+          width: 352px
+          .rePost, .date, .starlight
+            float: left
+            padding: 0 8px
+            text-align: center
+          .rePost
+            margin: 4px 8px 0 0
+            font-size: 10px
+            height: 16px
+            line-height: 16px
+          .date
+            margin: 6px 0
+            font-size: 11px
+            font-weight: bold
+          .starlight
+            float: right
+            font-size: 12px
+            height: 24px
+            line-height: 24px
+
+      .right
+        position: relative
+        top: 0
+        left: 360px
+        .tagCloud
+
+
+      //
+        .thumb-1d.tag, .thumb-1d.newImages
+          height: 62px
+          border-radius: 16px
+          -moz-border-radius: 16px
+          -webkit-border-radius: 16px
+        .thumb-1d.tag
+          padding: 15px 0
+          height: 32px
+          line-height: 32px
+          .user
+            margin: 0 8px
+          .tagText
+            float: left
+            margin: 0 0 0 12px
+            font-size: 18px
+        .thumb-1d.noImage
+          .left
+            .tagCloud
+              height: 90px
+              border-radius-topleft: 16px
+              -moz-border-radius-topleft: 16px
+              -webkit-border-radius-topleft: 16px
+        .thumb-1d.newImages
+          .left
+            .image
+              height: 62px
+              border-radius-bottomleft: 16px
+              -moz-border-radius-bottomleft: 16px
+              -webkit-border-radius-bottomleft: 16px
+          .right
+            height: 62px
+            .user
+              margin: 15px 8px
+            .display
+              float: left
+              margin: 10px 0 0
+              .gallery
+                margin: 0
+                font-size: 18px
+                color: #262626 /* 90% Black */
+              .text
+                margin: 0
+
 
 
 
