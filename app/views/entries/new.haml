@@ -17,7 +17,7 @@
       / MOOD ICON
       = render :partial => "mood_icon"
 
-    #entryTypeWrap
+    #entryTypeWrap.border.round-16
       %img{src: '/images/icons/dream-32.png'}
       %span#entryType_current{value: 'Dream'}
       %select#entryType_list
@@ -225,9 +225,17 @@
   / NEW ENTRY ATTACHMENTS
   .entryAttach.entryAssets.shine-alpha
     %p attach:
-    #attach-images.bevel.button images
-    .tag.bevel.button tag
-    .links.bevel.button links
-    .mood.bevel.button mood
+    .images.bevel.button
+      %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
+      images
+    .tag.bevel.button
+      %img{src: '/images/icons/tag-20.png', width: '20', height: '20'}
+      tag
+    .links.bevel.button
+      %img{src: '/images/icons/links-19.png', width: '19', height: '19'}
+      links
+    .mood.bevel.button
+      %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
+      mood
     / Save for later .analysis.bevel.button analysis
     .clear-both
