@@ -7,7 +7,7 @@
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
 
-/ DREAM FIELD
+/ ENTRY FIELD
 #entryField
 
   / NEW ENTRY BAR
@@ -16,18 +16,19 @@
   / DREAM MATRIX
   .matrix
 
-    / DREAM THUMBS 1D
+    / ENTRY THUMBS 1D
     = render :partial => 'thumb_1d'
 
-    / DREAM THUMBS 1D
-    = render :partial => 'thumb_1d_tag'
+    / 
+      ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_tag'
 
-    / DREAM THUMBS 1D
-    = render :partial => 'thumb_1d_noimage'
+      / ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_noimage'
 
-    / DREAM THUMBS 1D
-    = render :partial => 'thumb_1d_newimages'
+      / ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_newimages'
 
-    / NO DREAMS TO DISPLAY
-    - if @entries.empty?
-      .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display
+      / NO ENTRY TO DISPLAY
+      - if @entries.empty?
+        .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display

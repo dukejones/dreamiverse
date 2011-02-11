@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'shared', 'home', 'dreams'
+  = sass_link_tag 'shared', 'home', 'entries'
 
 #drop_shadow
 
@@ -43,10 +43,12 @@
 
   / PUBLIC STREAM
   #publicStream
-    .todayFilter.transparent-60.round-8 today
+    .todayFilter.dark.transparent-30.round-8.border today
     %h1 in
-    .dreamsFilter.transparent-60.round-8 dreams
-    .randomDream.button.round-12 random dream!
+    .dreamsFilter.dark.transparent-30.round-8.border dreams
+    .randomDream.button.round-12 
+      %span random
+      dream!
 
     
     / DREAM MATRIX
@@ -56,12 +58,13 @@
       / DREAM THUMBS 1D
       = render :partial => 'entries/thumb_1d'
 
-      / DREAM THUMBS 1D
-      = render :partial => 'entries/thumb_1d_tag'
+      / 
+        DREAM THUMBS 1D
+        = render :partial => 'entries/thumb_1d_tag'
 
-      / DREAM THUMBS 1D
-      = render :partial => 'entries/thumb_1d_noimage'
+        / DREAM THUMBS 1D
+        = render :partial => 'entries/thumb_1d_noimage'
 
-      / DREAM THUMBS 1D
-      = render :partial => 'entries/thumb_1d_newimages'
+        / DREAM THUMBS 1D
+        = render :partial => 'entries/thumb_1d_newimages'
 
