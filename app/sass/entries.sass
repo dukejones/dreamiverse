@@ -1,4 +1,4 @@
-/******** 2D DREAM THUMBS LIGHT / DARK ********/
+/******** 2D ENTRY THUMBS LIGHT / DARK ********/
 
 .light
   #entryField, #home
@@ -23,7 +23,7 @@
 #entryField, #home
   .matrix
 
-    /******** 2D DREAM THUMBS ********/
+    /******** 2D ENTRY THUMBS ********/
     /* HOVER */
     .thumb-2d.hover
       z-index: 81
@@ -100,7 +100,7 @@
 
 
 
-    /* 1D DREAM THUMBS */
+    /* 1D ENTRY THUMBS */
     .thumb-1d:hover
       box-shadow: 0px 0px 40px #000
       -moz-box-shadow: 0px 0px 40px #000
@@ -283,7 +283,7 @@
 
 
 
-    /******** DREAM STREAM FILTER ********/
+    /******** ENTRY STREAM FILTER ********/
     .streamFilter
       clear: both
       margin: 8px 0 0
@@ -355,7 +355,7 @@
 
 #entryField
 
-  /*********** SHOW DREAM SHARED STYLES***********/
+  /*********** SHOW ENTRY SHARED STYLES***********/
   #showEntry
     .panel
       padding: 8px
@@ -363,7 +363,7 @@
     .content, .tagEntry, .entryAnalysis
       margin: 0 0 8px
 
-  /*********** SHOW DREAM ***********/
+  /*********** SHOW ENTRY ***********/
   #showEntry
     width: 662px 
     padding: 8px
@@ -415,7 +415,6 @@
         overflow: hidden
 
     .content
-      background: white
 
       // BODY
       .body
@@ -488,7 +487,7 @@
           .repost.selected
             background: url(/images/icons/repost-24-selected.png) no-repeat center
 
-    // TAG - see NEW DREAM TAG below
+    // TAG - see NEW ENTRY TAG below
     .entryTags
       img.tagCheck
         margin: 4px 0 0 6px
@@ -506,33 +505,31 @@
         margin: 0 0 8px
         padding: 0 12px 0 0
         span
-          float: left
-          margin: 0 0 0 42px
+          padding-left: 42px
           font-weight: bold
         .arrow
           float: right
           height: 32px
           width: 16px
       .analysisTags
-        background: #d7d7d7 url(/images/avatars/xavitar.jpg) no-repeat top left
         .arrow
           background: url(/images/icons/arrow-down-16.png) no-repeat center
-      .expanded
-        height: auto
-        background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
-        .arrow
-          background: url(/images/icons/arrow-up-16.png) no-repeat center
-        p
-          clear: both
-          margin: 20px 8px 20px 20px
-          line-height: 20px
-        .dreamMoods
-          float: left
-          margin: 0 0 12px 12px
-          padding: 0 12px
-          height: 24px
-          line-height: 24px
-          text-align: center
+        &.expanded
+          height: auto
+          background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
+          .arrow
+            background: url(/images/icons/arrow-up-16.png) no-repeat center
+          .description
+            clear: both
+            margin: 20px 8px 20px 20px
+            line-height: 20px
+            .source
+              float: left
+              margin: 0 0 12px 12px
+              padding: 0 12px
+              height: 24px
+              line-height: 24px
+              text-align: center
 
     // COMMENTS
     .commentsPanel
@@ -642,7 +639,7 @@
     img
       margin: 11px 8px 0 0
 
-  /* NEW ENTRY INPUT PANEL */
+  // NEW ENTRY INPUT PANEL
   #newEntry
     width: 662px 
     padding: 8px
@@ -657,15 +654,15 @@
       #entryType_list
         background: transparent
         border: 0
-    #dream_title, #dream_body
+    #entry_title, #entry_body
       margin: 16px 0 0 20px
       background: transparent
       border: none
-    #dream_title
+    #entry_title
       width: 500px
       height: 26px
       line-height: 26px
-    #dream_body
+    #entry_body
       width: 626px
       min-height: 134px
       height: 134px
@@ -681,7 +678,7 @@
       #share
         top: 50px
         float: right
-    .myBooks, .date, .addLocation, .sharing, #dream_submit, #entryTypeWrap
+    .myBooks, .date, .addLocation, .sharing, #entry_submit, #entryTypeWrap
       height: 34px
       line-height: 34px
       margin: 8px 0 0 8px
@@ -711,9 +708,9 @@
     .sharing
       width: 104px
       img
-        margin: 9px 10px 0 0
+        margin: 10px 10px 0 0
         float: right
-    #dream_submit
+    #entry_submit
       width: 64px
       height: 34px
       line-height: 28px
@@ -825,11 +822,11 @@
         margin: 6px 8px
     #currentImages
       margin: 12px 0 0 12px
-      .dreamImageContainer, .dreamImage
+      .entryImageContainer, .entryImage
         border-radius: 8px
         -moz-border-radius: 8px
         -webkit-border-radius: 8px 
-      .dreamImageContainer
+      .entryImageContainer
         float: left
         margin: 0px 8px 8px 0px
         height: 120px
@@ -837,7 +834,7 @@
         overflow: hidden
         background: #fff
         position: relative
-        .dreamImage
+        .entryImage
           float: left
           width: 120px
           height: 120px
@@ -857,7 +854,7 @@
             border-radius: 4px
             -moz-border-radius: 4px
             -webkit-border-radius: 4px
-        .dreamImageCaption
+        .entryImageCaption
           color: #333333
           font-size: 16px
           font-weight: bold
@@ -962,10 +959,15 @@
         font-size: 18px
         background: transparent
         border: 0
-      #linkAdd
+      .linkAdd
         width: 62px
+        height: 30px
+        line-height: 30px
+        text-align: center
         float: right
-        margin: 4px 14px 4px 0
+        margin: 4px 12px 0 0
+        span
+          color: green
     .linkContainer
       clear: both
       display: none
@@ -1729,7 +1731,7 @@
 
 
 
-.noDreams
+.noEntrys
   position: absolute
   top: 0px
   width: 680px

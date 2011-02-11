@@ -659,12 +659,19 @@ loadArtist = function(artist) {
       }
     });
   };
-  
-  $.get("/albums?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
-      function(albums) {
-        populateAlbums(albums);
-      }
-    );
+  if(viewingTopLevel){
+    $.get("/albums?artist="+artist+"&section="+sectionFilter+"&category="+currentGenre,
+        function(albums) {
+          populateAlbums(albums);
+        }
+      );
+  } else {
+    $.get("/albums?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
+        function(albums) {
+          populateAlbums(albums);
+        }
+      );
+  }
   
   $("#IB_manageArtistImages").unbind();
   $("#IB_manageArtistImages").click(function() {

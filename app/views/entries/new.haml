@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'dreams', "context_panel"
+  = sass_link_tag 'entries', "context_panel"
   = stylesheet_link_tag "IB_manager"
   = javascript_include_tag "dreams", "autoresize.jquery.min", "geo", "userfileuploader"
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
@@ -33,7 +33,7 @@
 
         = f.submit :value => 'post', :class => 'shine button save'
         .sharing.indent.button
-          %img{src: '/images/icons/sharing-16.png'} Everyone
+          %img{src: '/images/icons/share-16.png'} Everyone
         .addLocation.indent.button
           %img{src: '/images/icons/location-21.png'}
         .date.indent.button
@@ -81,8 +81,7 @@
       #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
         .content
       %br{style: 'clear: both;'}
-    #sorting
-    %br{style: 'clear: both'}
+    #sorting.clear-both
 
   / NEW ENTRY LINK
   .entryLinks.entryAssets.hidden.shine-alpha
@@ -91,8 +90,10 @@
       %img{src: '/images/icons/links-19.png'}
     #linkInputWrap
       %input#linkValue
-      #linkAdd.round8button-0-15 Add
-    %br{style: 'clear: both;'}
+      .linkAdd.button.bevel.round-4
+        %span +
+        Add
+    .clear-both
     #linkHolder
 
   / NEW ENTRY MOOD

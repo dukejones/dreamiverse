@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'dreams', 'context_panel', 'friends_list'
+  = sass_link_tag 'entries', 'context_panel', 'friends_list'
   = coffeescript_include_tag 'modal', 'follow_hover'
   = javascript_include_tag 'tag_stream', 'dreams', 'geo' # 'friendslist'
 
@@ -8,7 +8,7 @@
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
 / DREAM FIELD
-#dreamField
+#entryField
 
   / NEW ENTRY BAR
   / TAG ENTRY & STREAM
