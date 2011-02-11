@@ -86,13 +86,13 @@ loadCategoryList = function(genre){
   
 
   // Populate Artists List
-  $.getJSON("/artists.json?category="+genre+"&section="+sectionFilter, function(artists) {
+  $.get("/artists?category="+genre+"&section="+sectionFilter, function(artists) {
     // Clear list
-    $("#artists").html("");
+    $("#artists").html($(artists).find('#artists').children());
     
     // Clean up search just in case
     closeSearchExpand();
-
+    /*
     $.each(artists, function(artist, images) {
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
@@ -118,7 +118,7 @@ loadCategoryList = function(genre){
         //loadSlideshow($(this).attr('alt') + ',');
       })
     });
-    
+    */
     // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
@@ -141,13 +141,14 @@ loadArtistList = function(genre) {
   
 
   // Populate Artists List
-  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter, function(artists) {
+  $.get("/artists?genre="+genre+"&section="+sectionFilter, function(artists) {
     // Clear list
-    $("#artists").html("");
+    $("#artists").html($(artists).find('#artists').children());
+    
     
     // Clean up search just in case
     closeSearchExpand();
-
+    /*
     $.each(artists, function(artist, images) {
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
@@ -180,7 +181,7 @@ loadArtistList = function(genre) {
         //loadSlideshow($(this).attr('alt') + ',');
       })
     });
-    
+    */
     // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
