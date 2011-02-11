@@ -9,18 +9,22 @@
 
 
 
-#dreamField
+#entryField
 
-  / SHOW DREAM
-  #showDream.transparent-50.round-16.glow-40
+  / SHOW ENTRY
+  #showEntry.transparent-50.round-16.glow-40
 
     .type.bevel.border.round-16 Dream
 
-    %a.next.button.shine.round-16-right{:href => entries_path}
+    %a.next.button.cancel.shine.round-16.flat-left{href: entries_path}
       %span &rsaquo;
-    .stream.button.shine.flat-all sream
-    %a.prev.button.shine.round-16-left{:href => entries_path}
+    .stream.button.cancel.shine.flat-all sream
+    %a.prev.button.cancel.shine.round-16.flat-right{href: entries_path}
       %span &lsaquo;
+
+    %a.editEntry.alpha-60.button.confirm.bevel.round-16{href: edit_entry_path(@entry)} edit
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
+
 
     / 
       Save for later
@@ -54,8 +58,8 @@
         %li.button.round-8
       .clear-both
 
-      / SHARING
-      #linkPanel.round-8
+      / ENTRY LINKS
+      .entryLinks.round-8
         .button.bevel.round-16
           %img{src: '/images/icons/facebook-16.png'}
           %span Link on Facebook
@@ -68,7 +72,7 @@
         .clear-both
 
       / INFO
-      #infoPanel
+      .entryInfo
         .postTime.infoTab.round-16 2 hours ago
         .postLocation.infoTab.round-16 Tokyo, Japan
         .starlightCount.infoTab.round-16
@@ -82,7 +86,7 @@
       .clear-both
 
     / TAG
-    #tagDream.panel.round-12
+    .entryTags.panel.round-12
       .tagHeader.headers.indent.button
         tag
         %img{src: '/images/icons/tag-20.png'}
@@ -107,7 +111,7 @@
         %br{style: 'clear: both'}
 
     / ANALYSIS
-    #analysis.panel.round-12
+    .entryAnalysis.panel.round-12
       .trigger
         .analysisHeader.headers.indent.button
           analysis
@@ -158,14 +162,14 @@
         .prevCommentWrap
           .avatar.button.round-12
           .prevComment.input.round-12
-            .user.button.bevel.round-8 Iotus
+            .user.button.bevel.round-8 iotus
             .postTime 15 minutes ago
             %ul
               %li.button.round-8
               %li.button.round-8
               %li.button.round-8
               %li.button.round-8
-            .comment Check it out, did it look like this??
+            .comment Check it out, did it look like this?? 
             .rePost.bevel.button.round-16
               %img{src: '', width: '16', height: '16'}
               Another Related Dream

@@ -353,24 +353,24 @@
 
 
 
-#dreamField
+#entryField
 
   /*********** SHOW DREAM SHARED STYLES***********/
-  #showDream
+  #showEntry
     .panel
       padding: 8px
       border: 1px solid #666
-    .content, #tagDream, #analysis
+    .content, .tagEntry, .entryAnalysis
       margin: 0 0 8px
 
   /*********** SHOW DREAM ***********/
-  #showDream
+  #showEntry
     width: 662px 
     padding: 8px
 
-    a.next, .stream, a.prev, .books, .type
+    a.next, .stream, a.prev, .books, .type, .editEntry
       margin: 0 0 8px
-      padding: 0 22px
+      padding: 0 18px
       height: 32px
       line-height: 32px
       text-align: center
@@ -378,10 +378,22 @@
       display: block
     .type
       float: left
-    a.next, .stream, a.prev, .books
+      cursor: default
+    a.next, .stream, a.prev, .books, .editEntry
       float: right
     .books
-      margin: 0 8px
+      margin-right: 8px
+    .editEntry:hover
+      -moz-opacity: 1
+      -khtml-opacity: 1
+      -webkit-opacity: 1
+      opacity: 1
+    .editEntry.confirm
+      margin-right: 16px
+    .editEntry.delete
+      margin-right: 4px
+      
+      
 
     // HEADER IMAGE & TITLE
     .imageHeader
@@ -423,7 +435,7 @@
           background: #ababab
 
       // SHARING
-      #linkPanel
+      .entryLinks
         clear: both
         margin: 8px
         padding: 8px
@@ -441,7 +453,7 @@
             margin: 7px 8px 0 0
 
       // INFO
-      #infoPanel
+      .entryInfo
         clear: both
         margin: 0
         padding: 8px
@@ -477,12 +489,12 @@
             background: url(/images/icons/repost-24-selected.png) no-repeat center
 
     // TAG - see NEW DREAM TAG below
-    #tagDream
+    .entryTags
       img.tagCheck
         margin: 4px 0 0 6px
 
     // ANALYSIS
-    #analysis
+    .entryAnalysis
       .analysisHeader
         margin-bottom: 8px
         img
