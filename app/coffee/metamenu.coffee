@@ -52,7 +52,7 @@ class MetaMenu
     
   contract: ->
     # code to contract menu item
-    @$currentMenuPanel.fadeOut()
+    @$currentMenuPanel.fadeOut('fast')
     
 
 # Appearance Model Subclass
