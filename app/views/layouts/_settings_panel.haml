@@ -39,7 +39,7 @@
       Saved locations
 
 
-    .locationView.target.slide
+    .locationView.target.slide.hidden
       %form
         .locationList.border
 
@@ -101,6 +101,7 @@
         new location
       .clear-both
 
+    / ADD NEW LOCATION
     .modifyLocationView.target.toggle.hidden
       %input.input{value: 'Location name'}
       %input.input{value: 'City'}
