@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  setupHeaderButtons();
+  //setupHeaderButtons();
 })
 
 function closeAllHeaders(){
