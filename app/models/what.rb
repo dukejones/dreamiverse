@@ -5,7 +5,8 @@ class What < ActiveRecord::Base
   
   validates :name,
             :presence => true,
-            :uniqueness => true
+            :uniqueness => true,
+            :length => { :minimum => 3, :maximum => 40 }
  
   before_create :clean
   
