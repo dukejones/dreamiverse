@@ -11,11 +11,7 @@ class Entry
   constructor: (@name) ->
     @$currentEntry = $(@name)
     
-    @setupTags()
     @setupComments()
-  
-  setupTags: ->
-    tagSystem = new TagController('.entryTags')
     
   setupComments: ->
     comments = new Comments '#showEntry .commentsPanel'
