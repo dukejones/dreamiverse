@@ -1,7 +1,7 @@
 /******** 2D DREAM THUMBS LIGHT / DARK ********/
 
 .light
-  #dreamField, #home
+  #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top transparent
@@ -10,7 +10,7 @@
         -moz-box-shadow: 0px 0px 40px #000
         -webkit-box-shadow: 0px 0px 40px #000
 .dark
-  #dreamField, #home
+  #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top transparent
@@ -20,7 +20,7 @@
         -webkit-box-shadow: 0px 0px 40px #fff
 
 
-#dreamField, #home
+#entryField, #home
   .matrix
 
     /******** 2D DREAM THUMBS ********/
@@ -353,14 +353,14 @@
 
 
 
-#dreamField
+#entryField
 
   /*********** SHOW DREAM SHARED STYLES***********/
   #showDream
     .panel
       padding: 8px
       border: 1px solid #666
-    .content, #tagDream, #analysis
+    .content, .entry-tag, #analysis
       margin: 0 0 8px
 
   /*********** SHOW DREAM ***********/
@@ -477,7 +477,7 @@
             background: url(/images/icons/repost-24-selected.png) no-repeat center
 
     // TAG - see NEW DREAM TAG below
-    #tagDream
+    .entry-tag
       img.tagCheck
         margin: 4px 0 0 6px
 
@@ -604,9 +604,9 @@
           
 
 
-#dreamField
+#entryField
 
-  /*********** NEW DREAM ***********/
+  /*********** NEW ENTRY ***********/
   .headers
     padding: 0 12px
     height: 34px
@@ -630,8 +630,8 @@
     img
       margin: 11px 8px 0 0
 
-  /* NEW DREAM INPUT PANEL */
-  #newDream-panel
+  /* NEW ENTRY INPUT PANEL */
+  #newEntry
     width: 662px 
     padding: 8px
     #entryTypeWrap
@@ -712,23 +712,23 @@
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
 
-  /* NEW DREAM DATE */
-  #newDream-dateTime
+  /* ENTRY DATE / TIME */
+  .entry-dateTime
     display: none
-  .date, .time
-    float: left
-    margin: 0 0 0 8px
-  #hour, #month, #day, #year, #minute, #amPm
-    padding: 6px 12px
-    font-size: 16px
-  #hour, #month
-    margin-left: 8px
-  #day, #year, #minute, #amPm
-    margin-left: -4px
+    .date, .time
+      float: left
+      margin: 0 0 0 8px
+    #hour, #month, #day, #year, #minute, #amPm
+      padding: 6px 12px
+      font-size: 16px
+    #hour, #month
+      margin-left: 8px
+    #day, #year, #minute, #amPm
+      margin-left: -4px
 
 
-  // ADD LOCATION
-  #locationPanel
+  // ENTRY LOCATION
+  .entry-location
     height: 35px
     display: none
     .locations
@@ -784,8 +784,8 @@
       text-align: center
 
 
-  /* NEW DREAM - IMAGES PANEL */
-  #new_dream-images
+  // ENTRY IMAGES
+  .entry-images
     border: 1px solid #333
     display: none
     #addFromImageBank
@@ -858,8 +858,8 @@
           position: absolute
           right: 0px
 
-  /* NEW DREAM TAG */
-  #tagDream
+  /* NEW ENTRY TAG */
+  .entry-tag
     min-height: 42px
     #tag-list
       width: 660px
@@ -926,7 +926,7 @@
       clear:both
 
   /* NEW DREAM LINK */
-  #newDream-link
+  .entry-link
     #linkInputWrap
       box-shadow: 0 8px 5px #999 inset
       -moz-box-shadow: 0 8px 5px #999 inset
@@ -1003,8 +1003,8 @@
         cursor: pointer
         color: red
        
-  /* NEW DREAM MOOD */
-  #newDream-mood
+  /* NEW ENTRY MOOD */
+  .entry-mood
     min-height: 160px
     .moodHeader
       margin-bottom: 8px
@@ -1118,8 +1118,8 @@
 
 
 
-  /* NEW DREAM ATTACH */
-  #newDream-attach
+  /* NEW ENTRY ATTACH */
+  .entry-attach
 
     p
       height: 34px
@@ -1443,7 +1443,7 @@
   background: rgba(0,0,0,0.8)
   position: relative
 
-#tagStream, #dreamField
+#tagStream, #entryField
   .moodIcon, .moodIcon-picker, .currentIcon
     float: right
     border-radius: 16px
@@ -1707,7 +1707,7 @@
 
 
 /* UNIVERSAL STYLES */
-.newDream_assets
+.entryAssets
   width: 662px
   padding: 8px
   border: 1px solid #464646 /* 80% Black */ 
