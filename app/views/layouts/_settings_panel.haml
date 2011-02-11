@@ -32,14 +32,14 @@
 
 
   / SAVED LOCATIONS
-  .savedLocations.panel.round-8
+  .savedLocations.wrapper.panel.round-8
 
-    %h2.trigger
+    %h2.trigger.slide
       %img{src: '/images/icons/world-16.png'}
       Saved locations
 
 
-    .locationView.target
+    .locationView.target.slide
       %form
         .locationList.border
 
@@ -96,18 +96,18 @@
           auto locate
           %input{name: 'default', value:'auto', type: 'radio'}
 
-      .newLocation.bevel.float-left.round-4.padding-2-4.button.small.confirm
+      .newLocation.trigger.toggle.bevel.float-left.round-4.padding-2-4.button.small.confirm
         %img{src: '/images/icons/add-16.png'}
         new location
       .clear-both
 
-    .modifyLocationView.hidden
+    .modifyLocationView.target.toggle.hidden
       %input.input{value: 'Location name'}
       %input.input{value: 'City'}
       %input.input{value: 'State / Province'}
       %input.input{value: 'Country'}
-      .cancel.button.small.bevel.round-4 Cancel
       .confirm.button.small.bevel.round-4 Save
+      .cancel.button.small.bevel.round-4 Cancel
       .clear-both
 
 
@@ -115,12 +115,12 @@
 
 
   / CHANGE PASSWORD
-  .changePassword.panel.round-8
+  .changePassword.wrapper.slide.panel.round-8
     %h2.trigger
       %img{src: '/images/icons/key-16.png'}
       Change password
 
-    .changePasswordForm.target
+    .changePasswordForm.target.hidden
       %input.input{value: 'Current password'}
       %input.input{value: 'New password'}
       %input.input{value: 'Confirm new password'}
