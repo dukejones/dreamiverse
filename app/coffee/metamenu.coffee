@@ -72,9 +72,30 @@ class AppearancePanel extends MetaMenu
 
 # Settings Model Subclass
 class SettingsPanel extends MetaMenu
-  defaultSharing: -> @$currentMenuPanel.find('.sharingList').val()
-  authorizeAllFollows: -> @$currentMenuPanel.find('.authFollow').is(':checked')
-  facebookSharing: -> @$currentMenuPanel.find('.fbShare').is(':checked')
+  constructor: (@name)->
+    super(@name)
+    
+    @$defaultSharing = @$currentMenuPanel.find('.sharingList').val()
+    @$authorizeAllFollows = @$currentMenuPanel.find('.authFollow').is(':checked')
+    @$facebookSharing =  @$currentMenuPanel.find('.fbShare').is(':checked')
+    
+    # setup saved locations
+    $('.modifyLocationView .cancel').click( (event) ->
+      $(event.currentTarget).parent().hide().prev().show()
+    )
+    
+    $('.modifyLocationView .confirm').click( (event) ->
+      $(event.currentTarget).parent().hide().prev().show()
+      alert "SEND SAVED LOCATION DATA TO SERVER"
+    )
+    
+    $('.locationForm input:radio').change( (event) ->
+      $('.locations input:radio').each( (index, value) ->
+        $(value).parent().removeClass('selected')
+      )
+      $(event.currentTarget).parent().addClass('selected')
+    )
+  
   changePassword: ->
     alert "change password"
   

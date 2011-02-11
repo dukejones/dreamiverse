@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :entries
   has_many :hits
+  
+  has_many :entry_accesses
 
   # follows are the follows this user has
   # following are the users this user is following

@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
-  before_filter :ensure_username_url, :only => [:index, :show]
+  # before_filter :ensure_username_url, :only => [:index, :show]
   before_filter :query_username, :except => [:stream]
 
   def ensure_username_url
