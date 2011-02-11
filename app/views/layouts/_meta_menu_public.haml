@@ -28,7 +28,7 @@
         Join Now &rsaquo;
 
     / LOGIN PANEL
-    .loginPanel
+    .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
         %a.forgot.button.round-4{href: '#'} Forgot password
         %label.stay.button.round-4
@@ -47,6 +47,6 @@
       .haveSeedcode have a seed code?
       %input.input.round-12{type: 'THETA', name: 'seedcode', value: 'THETA' }
 
-    / SIGN UP
+    / SIGN UP BUTTON
     .signupWrap.round-12
       %input.signup.round-12{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}
