@@ -48,17 +48,17 @@ h1#IB_category {
   text-transform:uppercase;
   color:#414042; /* 90% Black */}
 
-#IB_searchButtonWrap {
+#IB_searchButtonWrap, #IB_deleteButtonWrap {
   width:58px;  
   height:46px;
   float:right;
   margin:12px 12px 0 0;
   padding:2px 0;
   text-align:center;}
-#IB_searchButtonWrap:active {
+#IB_searchButtonWrap:active, , #IB_deleteButtonWrap:active {
   background: -webkit-gradient(linear, left top, left bottom, from(#a7a9ac), to(#fff));
   background: -moz-linear-gradient(top, #a7a9ac, #fff);}
-#IB_searchButton {
+#IB_searchButton, #IB_deleteButton {
   width:42px;  
   height:34px;
   text-align:center;
@@ -67,7 +67,7 @@ h1#IB_category {
   cursor:pointer;
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#E1E1E1));
   background: -moz-linear-gradient(top, #fff, #E1E1E1);}
-#IB_searchButton:hover {
+#IB_searchButton:hover, #IB_deleteButton:hover {
   background:#fff;}
 
 /* IB dropbox Container */  

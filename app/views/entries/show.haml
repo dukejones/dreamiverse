@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'dreams'
-  = coffeescript_include_tag 'dream'
+  = coffeescript_include_tag 'tag_system', 'dream'
 
 
 
@@ -144,7 +144,7 @@
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           .counter (6)
-
+      .clear-both
       .target
         .newCommentWrap
           .avatar.button.round-12

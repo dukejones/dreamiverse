@@ -141,6 +141,38 @@ $(document).ready(function() {
   
   // Auto-fill GEOLOCATION tag
   autoFillGeo();
+  
+  // Delete button functionality
+  $('#IB_deleteButton').click(function(){
+    var selectedImages = [];
+    $('#IB_dropboxImages li').each(function(){
+      if($(this).hasClass('selected') && !$(this).hasClass('uploading')){
+        totalImagesToUpdate++ // add another image to the count
+        imagesSelected = true; // an image has been found!
+        
+        var selectedImageID = getImageIDFromURL($(this).find('img').attr('src'));
+        var imageID = selectedImageID.split('-')[0];
+        selectedImages.push(imageID);
+      }
+    });
+    
+    // Loop thru and remove imagery
+    for(var u = 0; u < selectedImages.length; u++){
+      $.ajax({
+            url: "/images/" + selectedImages[u] + "/disable.json",
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            complete: checkImagesUpdates
+        });
+        
+      /*$.post("/images/" + selectedImages[u] + "/disable.json",
+        function(data) {
+          console.log(data)
+          alert('image removed');
+      });*/
+    }
+  })
 });
 
 var autoFillGeo = function(){

@@ -7,13 +7,13 @@ class ImagesController < ApplicationController
     if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
       params[:artist] = nil if params[:artist] == ""
-      @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
+      @images = Image.enabled.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
     elsif params[:q] # search
-      @images = Image.sectioned(params[:section]).search(params) # takes filters etc as well
+      @images = Image.enabled.sectioned(params[:section]).search(params) # takes filters etc as well
     elsif params[:ids]
-      @images = Image.where(id: params[:ids].split(','))
+      @images = Image.enabled.where(id: params[:ids].split(','))
     else
-      @images = Image.sectioned(params[:section]).all
+      @images = Image.enabled.sectioned(params[:section]).all
     end
 
     respond_to do |format|
@@ -26,7 +26,7 @@ class ImagesController < ApplicationController
   end
   
   def artists
-    image_finder = Image.where({})
+    image_finder = Image.enabled
     image_finder = image_finder.where(section: params[:section]) if params[:section]
     image_finder = image_finder.where(category: params[:category]) if params[:category]
     image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
@@ -48,7 +48,7 @@ class ImagesController < ApplicationController
   end
   
   def albums
-    image_finder = Image.where({})
+    image_finder = Image.enabled
     image_finder = image_finder.where(section: params[:section]) if params[:section]
     image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
 
@@ -133,10 +133,10 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     respond_to do |format|
       if @image.update_attribute(:enabled, false)
-        format.html { redirect_to(@image, :notice => 'Image was disabled.') }
+        format.html { redirect_to(url_for(@image), :notice => 'Image was disabled.') }
         format.json  { head :ok }
       else
-        format.html { redirect_to(@image, :alert => 'Could not disable the image.') }
+        format.html { redirect_to(url_for(@image), :alert => 'Could not disable the image.') }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
       end
     end
