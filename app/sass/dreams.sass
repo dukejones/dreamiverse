@@ -415,7 +415,6 @@
         overflow: hidden
 
     .content
-      background: white
 
       // BODY
       .body
@@ -506,33 +505,31 @@
         margin: 0 0 8px
         padding: 0 12px 0 0
         span
-          float: left
-          margin: 0 0 0 42px
+          padding-left: 42px
           font-weight: bold
         .arrow
           float: right
           height: 32px
           width: 16px
       .analysisTags
-        background: #d7d7d7 url(/images/avatars/xavitar.jpg) no-repeat top left
         .arrow
           background: url(/images/icons/arrow-down-16.png) no-repeat center
-      .expanded
-        height: auto
-        background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
-        .arrow
-          background: url(/images/icons/arrow-up-16.png) no-repeat center
-        p
-          clear: both
-          margin: 20px 8px 20px 20px
-          line-height: 20px
-        .entryMoods
-          float: left
-          margin: 0 0 12px 12px
-          padding: 0 12px
-          height: 24px
-          line-height: 24px
-          text-align: center
+        &.expanded
+          height: auto
+          background: #fff url(/images/avatars/xavitar.jpg) no-repeat top left
+          .arrow
+            background: url(/images/icons/arrow-up-16.png) no-repeat center
+          .description
+            clear: both
+            margin: 20px 8px 20px 20px
+            line-height: 20px
+            .source
+              float: left
+              margin: 0 0 12px 12px
+              padding: 0 12px
+              height: 24px
+              line-height: 24px
+              text-align: center
 
     // COMMENTS
     .commentsPanel
@@ -711,7 +708,7 @@
     .sharing
       width: 104px
       img
-        margin: 9px 10px 0 0
+        margin: 10px 10px 0 0
         float: right
     #entry_submit
       width: 64px

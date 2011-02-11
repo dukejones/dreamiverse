@@ -39,7 +39,7 @@
 
       .title.round-8-top.transparent-50= @entry.title
 
-    .content.flat-top.round-16
+    .content.flat.flat-top.round-16
 
       / BODY
       .body= @entry.body
@@ -111,41 +111,49 @@
         %br{style: 'clear: both'}
 
     / ANALYSIS
-    .entryAnalysis.panel.round-12
-      .trigger
+    .entryAnalysis.panel.round-12.wrapper
+      .trigger.slide
         .analysisHeader.headers.indent.button
           analysis
           %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
 
-      .target
+      .target.slide
         / ANALYSIS TAGS
         / * with avatar on background, bevel class becomes null *
+        .analysisTags.bevel.button.round-12.wrapper
+          %span.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+            dolphin
+            .arrow
+          .description.target.slide
+            To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+            .source.button.bevel.round-12 Dream Moods
+
         .analysisTags.bevel.button.round-12
-          %span dolphin
-          .arrow
-        .analysisTags.bevel.button.round-12
-          %span tsunami
-          .arrow
+          %span
+            tsunami
+            .arrow
         .analysisTags.expanded.bevel.button.round-12
-          %span flying
-          .arrow
+          %span
+            flying
+            .arrow
           .clear-both
           %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-          .dreamMoods.button.bevel.round-12 Dream Moods
+          .source.button.bevel.round-12 Dream Moods
           .clear-both
         .analysisTags.bevel.button.round-12
-          %span telepathy
-          .arrow
+          %span
+            telepathy
+            .arrow
 
     / COMMENTS
     .commentsPanel.panel.shine-alpha.round-12
-      .trigger
+      .trigger.slide
         .commentsHeader.headers.indent.button
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           .counter (6)
       .clear-both
-      .target
+      .target.slide
         .newCommentWrap
           .avatar.button.round-12
           .newComment.inputTextarea.round-12
