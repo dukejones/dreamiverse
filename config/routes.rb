@@ -56,6 +56,7 @@ Dreamcatcher::Application.routes.draw do
   
   # Tagging
   # match '#:tag', :to => 'tags#show'
+  resources :tags
 
   resources :entries
   # Username-Specific Routes

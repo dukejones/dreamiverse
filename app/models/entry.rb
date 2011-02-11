@@ -32,6 +32,6 @@ class Entry < ActiveRecord::Base
 
   def set_sharing_level
     # sharing_level ||= user.default_sharing_level
-    sharing_level ||= self::Sharing[:everyone]
+    # sharing_level ||= self::Sharing[:everyone]
   end
 end

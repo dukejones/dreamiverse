@@ -1,7 +1,73 @@
+
+class window.TagController
+  constructor: (containerSelector)->
+    @$container = $(containerSelector)
+    @tagViews = []
+
+    @tagInputView = new TagInputView(@$container.find('#newTag'))
+    # new TagList(@$container.find('.tag-list'))
+    @$container.find('.tagAdd').click => @create()
+    
+
+  create: ->
+    log 'creating'
+    $entryForm = $('#new_entry')
+    # get text
+    tagName = @tagInputView.value()
+    log 'tag value'
+    log tagName
+    # create tag
+    tag = new Tag($entryForm, tagName)
+    tag.create()
+    log tag
+    # show it
+    @tagViews.push(new TagView(tag))
+    
+# class TagList
+#   constructor: ($list)->
+#     @$element = $list
+    
+
+class TagInputView
+  constructor: ($input)->
+    @$input = $input
+    
+  value: ->
+    @$input.val()
+    
+    
+class TagView
+  constructor: (tag)->
+    @tag = tag
+    # append a tagview element to the list of tags
+    @create()
+  create: ->
+    @$element = $('#empty-tag').clone().show()
+    @setValue(@tag.name)
+  setValue: (tagName) ->
+    @$element.find('.tagContent').html(tagName)
+    
+
 # Tag Model
+# <input type="hidden" value="unicorn" name="what_tags[]" id="what_tags_">
 class Tag
-  constructor: (@name) ->
-    @$tagContainer = $(@name)
+  constructor: ($form, name) ->
+    @$form = $form
+    @name = name
+  create: ->
+    # add to the what_tags[] hidden fields
+    hiddenFieldString = '<input type="hidden" value=":name" name="what_tags[]" />'
+    hiddenFieldString = hiddenFieldString.replace(/:name/, @name)
+
+    @$form.append(hiddenFieldString)
+  destroy: ->
+    # remove from the what_tags fields
+    # add to the remove_what_tags fields
+  
+  
+class OldTag
+  constructor: (name) ->
+    @$tagContainer = $(name)
     @$tagHeader = @$tagContainer.find('.tagHeader')
     @$tagsExpand = @$tagContainer.find('.target')
     @$tagsList = @$tagContainer.find('.tag-list')
@@ -61,7 +127,6 @@ class Tag
     @$tagsExpand.slideUp()
     
   addTag: ->
-    alert "add tag"
     randomNumber = Math.round( Math.random() * 100001)
     @tagID = ('tagID_' + randomNumber)
     
