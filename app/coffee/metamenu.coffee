@@ -91,7 +91,8 @@ class SettingsPanel extends MetaMenu
     
     # setup saved locations
     $('.modifyLocationView .cancel').click( (event) ->
-      $(event.currentTarget).parent().hide().prev().show()
+      $(event.currentTarget).prev().show()
+      $(event.currentTarget).parent().hide()
     )
     
     $('.modifyLocationView .confirm').click( (event) ->
