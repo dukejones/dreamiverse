@@ -17,15 +17,18 @@
     %label
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
+    .clear-both
 
-    .network
+    %hr.alpha-20
+
+    .network.wrapper
       %img{src: '/images/icons/facebook-16.png'}
-      Facebook
-      .linkAccount.button.small.confirm.bevel.round-4
+      %h2 Facebook
+      .linkAccount.trigger.showhide.button.small.confirm.bevel.round-4
         Link account
-    %label
-      By default, share on Facebook
-      %input.fbShare{type: 'checkbox'}
+      %label.target.showhide.hidden
+        By default, share on Facebook
+        %input.fbShare{type: 'checkbox'}
     .clear-both
 
 
@@ -133,8 +136,9 @@
 
   / FONT SIZING
   .fontSizing.panel.round-8
-    %img.fontImage{src: '/images/icons/font_size-16.png'}
-    %h2 Font
-    .large A
-    .medium A
-    .small A
+    %h2.float-left
+      %img{src: '/images/icons/font_size-16.png'}
+      Font
+    .large.button A
+    .medium.button A
+    .small.button A

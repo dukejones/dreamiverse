@@ -744,53 +744,29 @@ a:active, a:focus
     font-size: 24px
     font-weight: normal
 
-  .fontSizing
-    margin: 0
-    .small, .medium, .large
-      float: right
-      width: 32px
-      margin-right: 8px
-      text-align: center
-      cursor: pointer
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-    .small
-      font-size: 12px
-      margin-top: 12px
-    .medium
-      font-size: 14px
-      margin-top: 10px
-    .large
-      font-size: 16px
-      margin-top: 8px
-    .small, .medium, .large
-      border: 1px solid #999
-
-  .colorPicker, .fontSizing
-    clear: both
-    font-weight: bold
-    padding: 8px
-    margin: 0 0 2px
-    height: 36px
-    img.colorSwatch, img.fontImage, h2, #sun, #moon
-      float: left
-    img.colorSwatch, img.fontImage
-      margin: 12px 0 0
-    h2
-      margin: 0 8px
-      font-size: 18px
-      line-height: 36px
-      font-weight: bold
 
 
 /******** APPEARANCE PANEL ********/
 
 
 // APPEARANCE PANEL
+.light
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+  #settingsPanel
+    .arrow
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 214px
+.dark
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-27.png) no-repeat 262px
+  #settingsPanel
+    .arrow
+      background: url(/images/icons/arrow-up-27.png) no-repeat 214px
+
 #appearancePanel
-  .arrow
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+
   img.appearanceIcon
     margin: 4px 0 0
 
@@ -847,6 +823,11 @@ a:active, a:focus
 
 
   .colorPicker
+    clear: both
+    font-weight: bold
+    padding: 8px
+    margin: 0 0 2px
+    height: 36px
     #buttons
       float: right
       padding: 4px
@@ -860,7 +841,15 @@ a:active, a:focus
         font-size: 14px
         img
           margin: -8px -8px -8px 4px
-
+    img.colorSwatch, img.fontImage, h2, #sun, #moon
+      float: left
+    img.colorSwatch, img.fontImage
+      margin: 12px 0 0
+    h2
+      margin: 0 8px
+      font-size: 18px
+      line-height: 36px
+      font-weight: bold
 
 
 
@@ -873,20 +862,17 @@ a:active, a:focus
     margin: 8px 0 0
     padding: 2px 12px
 
-  .arrow
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
   img, .sharingList
     float: left
 
-
+  h2
+    margin: 0px
+    padding: 8px
+    font-size: 18px
+    font-weight: bold
   .sharing, .savedLocations, .changePassword
     clear: both
     margin: 0 0 8px
-    h2
-      margin: 0px
-      padding: 8px
-      font-size: 18px
-      font-weight: bold
 
   .savedLocations h2, .changePassword h2
     display: block
@@ -898,7 +884,6 @@ a:active, a:focus
     width: 306px
     margin: 0 0 4px
     padding: 4px
-    font-size: 12px
     border-radius: 4px
     -moz-border-radius: 4px
     -webkit-border-radius: 4px
@@ -908,12 +893,12 @@ a:active, a:focus
   .sharing
     padding: 8px
     .defaultSharing, .network
-      height: 32px
-      line-height: 32px
       margin: 0 0 4px
       img
         margin: 8px 8px 0 0
       h2
+        cursor: pointer
+        line-height: 32px
         margin: 0
         padding: 0
         float: left
@@ -921,14 +906,11 @@ a:active, a:focus
         float: left
     .sharingList
       float: right
-      font-size: 12px
-      margin-left: 8px
-      padding: 5px 8px
+      font-size: 16px
+      height: 36px
       cursor: pointer
-      width: 128px
-      height: 28px
-      line-height: 28px
-      margin: 4px 0 0 14px
+      width: 138px
+      margin-top: 4px
       padding: 6px 8px
       option
         padding: 6px 0 6px 24px
@@ -958,6 +940,7 @@ a:active, a:focus
       float: right
       padding: 0 4px
       border: 1px solid transparent
+      margin-top: 8px
       input
         cursor: pointer
         margin: 7px 4px 0 8px
@@ -1052,6 +1035,36 @@ a:active, a:focus
     .changePasswordForm
       padding: 8px
 
+
+  .fontSizing
+    margin: 0
+    height: 50px
+    margin: 0 0 2px
+    h2
+      line-height: 36px
+      cursor: default
+      img
+        padding: 8px 8px 0 0 
+    .small, .medium, .large
+      float: right
+      margin-left: 4px
+      text-align: center
+      cursor: pointer
+      border-radius: 24px
+      -moz-border-radius: 24px
+      -webkit-border-radius: 24px
+    .small
+      padding: 2px 6px
+      font-size: 12px
+      margin-top: 16px
+    .medium
+      padding: 3px 8px
+      font-size: 16px
+      margin-top: 12px
+    .large
+      padding: 6px 12px
+      font-size: 18px
+      margin: 8px 8px 0 4px
 
 /*********** END META MENU ***********/
 
