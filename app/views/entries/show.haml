@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'entries'
-  = coffeescript_include_tag 'tag_system', 'dream'
+  = coffeescript_include_tag 'tag', 'dream'
 
 
 
@@ -18,7 +18,7 @@
 
     %a.next.button.cancel.shine.round-16.flat-left{href: entries_path}
       %span &rsaquo;
-    .stream.button.cancel.shine.flat-all sream
+    .stream.button.cancel.shine.flat-all stream
     %a.prev.button.cancel.shine.round-16.flat-right{href: entries_path}
       %span &lsaquo;
 
