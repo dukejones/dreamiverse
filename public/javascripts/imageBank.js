@@ -77,6 +77,13 @@ loadCategoryList = function(genre){
   $("#IB_browseArrow").click(loadBrowse);
   $("#IB_browseArrow").show();
   
+  // setup slideshow button for whole genre
+  /*$('#IB_artistSlideshow').unbind();
+  $('#IB_artistSlideshow').click(function(){
+    loadSlideshow(null, null, genre);
+  });
+  $('#IB_artistSlideshow').css('display', 'inline');*/
+  
 
   // Populate Artists List
   $.getJSON("/artists.json?category="+genre+"&section="+sectionFilter, function(artists) {
@@ -685,7 +692,11 @@ loadArtist = function(artist) {
 var currentItem;
 var keyCaptured = false;
 
-loadSlideshow = function(newImageIds, currentIndex) {
+
+loadSlideshow = function(newImageIds, currentIndex, genre) {
+  if(newImageIds == null && currentIndex == null){
+    // Genre level slideshow, get all imageID's from genre
+  }
   if ( currentIndex === undefined ) {
       currentIndex = 0;
    }
