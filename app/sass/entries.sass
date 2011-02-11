@@ -655,9 +655,13 @@
         top: -8px
 
     #entryTypeWrap
+      position: absolute
+      right: 70px
       width: 126px
-      border: 1px solid #E1E1E1
-      margin-right: 60px
+      height: 34px
+      line-height: 34px
+      text-align: center
+      cursor: pointer
       img
         float: left
         margin: 3px 0 0 4px
@@ -667,15 +671,15 @@
         background: transparent
         border: 0
     #entry_title, #entry_body
-      margin: 16px 0 0 20px
+      margin: 10px 0 0 10px
       background: transparent
       border: none
     #entry_title
-      width: 400px
+      width: 460px
       height: 26px
       line-height: 26px
     #entry_body
-      width: 626px
+      width: 640px
       min-height: 134px
       height: 134px
 
@@ -690,7 +694,7 @@
       #share
         top: 50px
         float: right
-    .myBooks, .date, .addLocation, .sharing, #entry_submit, #entryTypeWrap
+    .myBooks, .date, .addLocation, .sharing, #entry_submit
       height: 34px
       line-height: 34px
       margin: 8px 0 0 8px
@@ -1366,7 +1370,7 @@
         margin: 4px 0 0
         cursor: pointer
 
-  /* AUTO COMPLETE */
+  // AUTO COMPLETE
   #autoComplete
     padding: 4px
     width: 207px
@@ -1436,8 +1440,7 @@
       right: 6px
       cursor: pointer
 
-
-  /* UNIVERSAL NEW ENTRY STYLES */
+  // TAG ENTRY AVATAR
   .avatar
     height: 32px
     border-radius: 8px
@@ -1457,24 +1460,10 @@
 
 
 
-
-
-
-
-/******** TAG STREAM ********/
-#tagStream
-  width: 672px
-  height: 100px
-  z-index: 333
-  margin: 0 0 12px 0
-  padding: 6px
-  background: rgba(0,0,0,0.8)
-  position: relative
-
-  .moodIcon-picker
-    left: 321px
+/******** MOOD ICON PICKER ********/
 
 #tagStream, #entryField
+
   .moodIcon, .moodIcon-picker, .currentIcon
     float: right
     border-radius: 16px
@@ -1563,6 +1552,29 @@
           margin: 0
           color: #959595 /* 50% Black */
 
+
+
+
+
+
+
+
+
+
+
+
+/******** TAG STREAM ********/
+#tagStream
+  width: 672px
+  height: 100px
+  z-index: 333
+  margin: 0 0 12px 0
+  padding: 6px
+  background: rgba(0,0,0,0.8)
+  position: relative
+
+  .moodIcon-picker
+    left: 321px
 
   // LIVE TAG STREAM
   #tagsLive
