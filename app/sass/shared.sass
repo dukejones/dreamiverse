@@ -1,3 +1,11 @@
+// MIXINS
+
+@mixin user-select
+  user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+
+
 
 
 /******** LIGHT ********/
@@ -8,7 +16,9 @@
 .light
   color: #333
 
-  .button, .border
+  .button
+    border: 1px solid #bbb
+  .border
     border: 1px solid #777
   .button:hover
     border: 1px solid #464646
@@ -142,7 +152,9 @@
 .dark
   color: #fff
 
-  .button, .border
+  .button
+    border: 1px solid #555
+  .border
     border: 1px solid #555
   .button:hover
     border: 1px solid #fff
@@ -256,6 +268,8 @@
 .light, .dark
   .button
     cursor: pointer
+    text-decoration: none
+    outline: none
   .spinner-small
     width: 32px
     height: 32px

@@ -137,17 +137,6 @@ IMG.sn_link_img { position:relative; top:3px }
 .light.A, .light.A-shine, .light.A-soft, .light.A-bevel, .light.A-indent, .light.A-innerglow, .light.A-outline, .light.A-button, .light.A-input, .light.A-contrast,
 .light.B, .light.B-shine, .light.B-soft, .light.B-bevel, .light.B-indent, .light.B-innerglow, .light.B-outline, .light.B-button, .light.B-input, .light.B-contrast,
 .light.C, .light.C-shine, .light.C-soft, .light.C-bevel, .light.C-indent, .light.C-innerglow, .light.C-outline, .light.C-button, .light.C-input, .light.C-contrast {border:1px solid transparent;}
-  
-.light.A-soft, light-B-soft, light-C-soft {box-shadow: inset 0px 0px 16px #000; -moz-box-shadow: inset 0px 0px 16px #000; -webkit-box-shadow: inset 0px 0px 16px #000;}
-
-.light.O-input:focus, .light.A-input:focus, .light.B-input:focus, .light.C-input:focus { border:1px solid #000; background:#fff; box-shadow: 0px 0px 20px #fff; -moz-box-shadow: 0px 0px 20px #000; -webkit-box-shadow: 0px 0px 20px #000; }
-  
-.light.border-bottom-1{ border-bottom:1px solid #666 }
-  
-
-/* LIGHT BUTTONS */
-.light.O-button A, .light.A-button A, .light.B-button A, .light.C-button A { text-decoration:none; color:#000; border:1px solid transparent; outline:none; -webkit-
-	-select:none; -moz-user-select:none; }
 
 /* LIGHT O */
 .light.O, .light.O-indent, .light.O-soft, .light.O-innerglow, .light.O-input { background:#fff; color:#000 }
