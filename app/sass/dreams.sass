@@ -1,7 +1,7 @@
 /******** 2D DREAM THUMBS LIGHT / DARK ********/
 
 .light
-  #dreamField, #home
+  #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/light-dream_thumb-BG-A.png") repeat-x top transparent
@@ -10,7 +10,7 @@
         -moz-box-shadow: 0px 0px 40px #000
         -webkit-box-shadow: 0px 0px 40px #000
 .dark
-  #dreamField, #home
+  #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/dark-dream_thumb-BG-A.png") repeat-x top transparent
@@ -20,7 +20,7 @@
         -webkit-box-shadow: 0px 0px 40px #fff
 
 
-#dreamField, #home
+#entryField, #home
   .matrix
 
     /******** 2D DREAM THUMBS ********/
@@ -618,7 +618,7 @@
 
 #entryField
 
-  /*********** NEW DREAM ***********/
+  /*********** NEW ENTRY ***********/
   .headers
     padding: 0 12px
     height: 34px
@@ -642,8 +642,8 @@
     img
       margin: 11px 8px 0 0
 
-  /* NEW DREAM INPUT PANEL */
-  #newDream-panel
+  /* NEW ENTRY INPUT PANEL */
+  #newEntry
     width: 662px 
     padding: 8px
     #entryTypeWrap
@@ -657,20 +657,20 @@
       #entryType_list
         background: transparent
         border: 0
-    #dream_title, #dream_body
+    #entry_title, #entry_body
       margin: 16px 0 0 20px
       background: transparent
       border: none
-    #dream_title
+    #entry_title
       width: 500px
       height: 26px
       line-height: 26px
-    #dream_body
+    #entry_body
       width: 626px
       min-height: 134px
       height: 134px
 
-    /* NEW DREAM ENTRY OPTIONS */
+    /* NEW ENTRY OPTIONS */
     #entryOptions
       position: relative
       width: 664px 
@@ -681,7 +681,7 @@
       #share
         top: 50px
         float: right
-    .myBooks, .date, .addLocation, .sharing, #dream_submit, #entryTypeWrap
+    .myBooks, .date, .addLocation, .sharing, #entry_submit, #entryTypeWrap
       height: 34px
       line-height: 34px
       margin: 8px 0 0 8px
@@ -713,7 +713,7 @@
       img
         margin: 9px 10px 0 0
         float: right
-    #dream_submit
+    #entry_submit
       width: 64px
       height: 34px
       line-height: 28px
@@ -724,23 +724,23 @@
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
 
-  /* NEW DREAM DATE */
-  #newDream-dateTime
+  // ENTRY DATE / TIME
+  .entryDateTime
     display: none
-  .date, .time
-    float: left
-    margin: 0 0 0 8px
-  #hour, #month, #day, #year, #minute, #amPm
-    padding: 6px 12px
-    font-size: 16px
-  #hour, #month
-    margin-left: 8px
-  #day, #year, #minute, #amPm
-    margin-left: -4px
+    .date, .time
+      float: left
+      margin: 0 0 0 8px
+    #hour, #month, #day, #year, #minute, #amPm
+      padding: 6px 12px
+      font-size: 16px
+    #hour, #month
+      margin-left: 8px
+    #day, #year, #minute, #amPm
+      margin-left: -4px
 
 
-  // ADD LOCATION
-  #locationPanel
+  // ENTRY LOCATION
+  .entryLocation
     height: 35px
     display: none
     .locations
@@ -796,8 +796,8 @@
       text-align: center
 
 
-  /* NEW DREAM - IMAGES PANEL */
-  #new_dream-images
+  // ENTRY IMAGES
+  .entryImages
     border: 1px solid #333
     display: none
     #addFromImageBank
@@ -870,8 +870,8 @@
           position: absolute
           right: 0px
 
-  /* NEW DREAM TAG */
-  #tagDream
+  // NEW ENTRY TAGS
+  .entryTags
     min-height: 42px
     #tag-list
       width: 660px
@@ -937,8 +937,8 @@
     .tag-list
       clear:both
 
-  /* NEW DREAM LINK */
-  #newDream-link
+  // NEW ENTRY LINKS
+  .entryLinks
     #linkInputWrap
       box-shadow: 0 8px 5px #999 inset
       -moz-box-shadow: 0 8px 5px #999 inset
@@ -1015,8 +1015,8 @@
         cursor: pointer
         color: red
        
-  /* NEW DREAM MOOD */
-  #newDream-mood
+  // NEW ENTRY MOOD
+  .entryMood
     min-height: 160px
     .moodHeader
       margin-bottom: 8px
@@ -1130,8 +1130,8 @@
 
 
 
-  /* NEW DREAM ATTACH */
-  #newDream-attach
+  // NEW ENTRY ATTACH
+  .entryAttach
 
     p
       height: 34px
@@ -1719,7 +1719,7 @@
 
 
 /* UNIVERSAL STYLES */
-.newDream_assets
+.entryAssets
   width: 662px
   padding: 8px
   border: 1px solid #464646 /* 80% Black */ 
