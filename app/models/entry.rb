@@ -1,11 +1,13 @@
 class Entry < ActiveRecord::Base
   self.inheritance_column = nil
 
-  Access = {
-    private: 0,
-    friends_of_friends: 80,
-    friends: 100,
-    everyone: 200
+  Sharing = {
+    private:              0,
+    anonymous:           50,
+    some_friends:       100,
+    friends:            200,
+    friends_of_friends: 300,
+    everyone:           500
   }
   
   belongs_to :user

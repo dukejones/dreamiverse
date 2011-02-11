@@ -1,15 +1,26 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
-  # before_filter :require_username, :only => [:index, :show]
+  before_filter :ensure_username_url, :only => [:index, :show]
   before_filter :query_username, :except => [:stream]
 
-  def query_username
-    @user = User.find_by_username( params[:username] )
+  def ensure_username_url
+    # if !params[:username]
+    #   if current_user
+    #     redirect_to(url_for(params.merge(username: current_user.username))) and return 
+    #   else
+    #     redirect_to root_path, :alert => "you must be logged in to access this page." and return
+    #   end
+    # end
+  end
 
-    # redirect_to root_path, :alert => "user #{params[:username]} does not exist." and return unless @user
+
+  def query_username
+    @user = params[:username] ? User.find_by_username( params[:username] ) : current_user
+    redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
   end
   
   def index
+    redirect_to(user_entries_path(@user.username)) unless params[:username]
     # public entries only if != current_user
     @entries = @user.entries
     
@@ -18,6 +29,7 @@ class EntriesController < ApplicationController
 
   def show
     @entry = Entry.find params[:id]
+    redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     if unique_hit?
       add_starlight @entry, 1
