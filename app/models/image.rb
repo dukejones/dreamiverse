@@ -81,6 +81,7 @@ class Image < ActiveRecord::Base
   #
   # Scopes
   #
+  scope :enabled, where(enabled: true)
   scope :by, lambda { |artist| where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?

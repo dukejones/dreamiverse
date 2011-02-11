@@ -1,12 +1,12 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
   # before_filter :require_username, :only => [:index, :show]
-  # before_filter :query_username, :except => [:stream]
+  before_filter :query_username, :except => [:stream]
 
   def query_username
     @user = User.find_by_username( params[:username] )
 
-    redirect_to root_path, :alert => "user #{params[:username]} does not exist." and return unless @user
+    # redirect_to root_path, :alert => "user #{params[:username]} does not exist." and return unless @user
   end
   
   def index
