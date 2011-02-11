@@ -14,6 +14,15 @@ window.setupDreamplugs = ->
       $newTargetSlide.slideUp()
   )
   
+  $('.trigger.showhide').click( (event) ->
+    $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
+    
+    if $newTargetShowHide.css('display') is 'none'
+      $newTargetShowHide.show()
+    else
+      $newTargetShowHide.hide()
+  )
+  
   # Setup fade triggers to work
   $('.trigger.fade').click( (event) ->
     $newTargetFade = $(event.currentTarget).parent().find('.target.fade')
