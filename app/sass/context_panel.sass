@@ -8,6 +8,7 @@
   padding: 4px
   border: 1px solid #000
 
+  // USER INFO
   .userInfo
     height: 66px
 
@@ -20,9 +21,21 @@
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
     .userName
       float: left
+      h3
+        margin: 4px 0 8px
 
+    .following, .followers
+      float: left
+      margin: 0
+      font-size: 12px
+      text-align: center
+      .count
+        width: 76px
+        height: 14px
+        line-height: 14px
+        text-align: center
 
-
+  // MY STREAM
   .myStream
     display: block
     margin: 4px 0 2px
@@ -33,6 +46,7 @@
     line-height: 26px
     font-size: 21px
 
+  // STREAM FILTERS
   .wrapper
     position: relative
     .entryFilter, .followFilter, .starlightTab
