@@ -10,30 +10,37 @@
 
   // USER INFO
   .userInfo
+    position: relative
     height: 66px
 
     .avatar-64
-      float: left
+      position: absolute
       width: 50px
       height: 64px
       margin: 0 8px 0 0
-      display: block
+      display: inline-block
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
-    .userName
-      float: left
-      h3
-        margin: 4px 0 8px
 
-    .following, .followers
-      float: left
-      margin: 0
-      font-size: 12px
-      text-align: center
-      .count
-        width: 76px
-        height: 14px
-        line-height: 14px
+    .infoRight
+      float: right
+      height: 64px
+      left: 60px
+
+      .userName
+        h3
+          margin: 4px 0 8px
+
+      .following, .followers
+        float: left
+        margin: 0
+        font-size: 12px
         text-align: center
+        width: 78px
+        .count
+          width: 76px
+          height: 14px
+          line-height: 14px
+          text-align: center
 
   // MY STREAM
   .myStream
