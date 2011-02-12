@@ -239,6 +239,7 @@
 
 
 /* NEW TAGGING STYLES */
+/* XXX: Top-level styles with broad class names interfering with our tag styles */
 /* Tag list */
     .tag-list .filter_box { font-family:calibri; font-size:15px; font-weight:bold }
     .tag_box, .tag_box_pop {
