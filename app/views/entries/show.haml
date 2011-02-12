@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'context_panel', 'entries'
+- content_for :foot do
   = coffeescript_include_tag 'tag', 'dream'
 
 
@@ -106,6 +107,10 @@
         #tag-list.tag-list.ui-sortable
           #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
             .tagContent
+          - @entry.whats.each do |what|
+            .tag_box.thumb-controls.float-left.light.round-8
+              .tagContent= what.name
+            
           %br{style: 'clear: both;'}
         #sorting
         %br{style: 'clear: both'}
