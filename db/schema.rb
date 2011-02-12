@@ -10,16 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211001943) do
+ActiveRecord::Schema.define(:version => 20110211224144) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
     t.string   "uid"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "default_sharing", :default => false
   end
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "dictionaries", :force => true do |t|
     t.string   "name"
@@ -110,7 +113,15 @@ ActiveRecord::Schema.define(:version => 20110211001943) do
     t.datetime "updated_at"
     t.string   "encrypted_password"
     t.string   "seed_code"
+    t.string   "phone"
+    t.string   "skype"
+    t.integer  "default_location_id"
+    t.integer  "default_sharing_level", :default => 200
+    t.boolean  "follow_authorization",  :default => false
   end
+
+  add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
+  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
 
   create_table "whats", :force => true do |t|
     t.string "name"
@@ -127,8 +138,8 @@ ActiveRecord::Schema.define(:version => 20110211001943) do
 
   create_table "whos", :force => true do |t|
     t.string  "name"
-    t.string  "source"
-    t.integer "user",   :limit => 8
+    t.integer "user",      :limit => 8
+    t.string  "user_type"
   end
 
   create_table "words", :force => true do |t|

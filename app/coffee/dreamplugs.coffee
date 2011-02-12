@@ -14,6 +14,46 @@ window.setupDreamplugs = ->
       $newTargetSlide.slideUp()
   )
   
+  # Setup slide w/ arrows to work
+  $('.trigger.slideArrow').click( (event) ->
+    $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
+    $toggleText = $(event.currentTarget).find('span')
+    
+    offsetSize = 30
+    
+    if $newTargetSlideArrow.css('display') is 'none'
+      $newTargetSlideArrow.fadeIn()
+      
+      # Create bodyclick
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetSlideArrow.hide()
+        $('#bodyClick').remove()
+      )
+      
+      $newTargetSlideArrow.find('.type').unbind()
+      $newTargetSlideArrow.find('.type').click( (event) ->
+        $('#bodyClick').remove()
+        
+        newText = $(event.currentTarget).find('span').text()
+        $toggleText.text(newText)
+        
+        index = $(event.currentTarget).index()
+        newPosition = index * offsetSize
+        newPositionString = -newPosition + 'px'
+        $newTargetSlideArrow.fadeOut(500, (event) ->
+          $newTargetSlideArrow.css('top', newPositionString)
+        )
+      )
+      
+    else
+      $newTargetSlideArrow.fadeOut()
+      
+  )
+  
+  # Setup showhide triggers
   $('.trigger.showhide').click( (event) ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
     

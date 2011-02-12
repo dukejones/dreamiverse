@@ -10,79 +10,66 @@ class TagsController
   constructor: (containerSelector)->
     @$container = $(containerSelector)
 
-    @tagInputView = new TagInputView(@$container.find('#newTag'))
-    @tagList = new TagList(@$container.find('#tag-list'))
+    @tagInput = new TagInput(@$container.find('#newTag'))
+    @tagViews = new TagViewList(@$container.find('#tag-list'))
 
-    @$container.find('.tagAdd').click => $.publish 'tags:create'
-    $.subscribe 'tags:create', => @createTag()
+    @$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
+
+    $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
     
+  createTag: (tagName)->
+    tagView = new TagView( new Tag(tagName) )
+    @tagViews.add(tagView)
 
-  create: ->
-    $entryForm = $('#new_entry')
-    tagName = @tagInputView.value()
-    tag = new Tag($entryForm, tagName)
-    tag.create()
-    tagView = new TagView(tag)
-    tagView.create()
-    @tagViews.push(tagView)
-    
-
-class TagInputView
+class TagInput
   constructor: ($input)->
     @$input = $input
-    @$input.submit -> log "submit!"
 
     @$input.keypress (event) =>
-      log event
       if event.which is 13
-        $.publish 'tags:create'
+        $.publish 'tags:create', [@value()]
+        return false
+
+    $.subscribe 'tags:create', => @clear()
+  value: -> @$input.val()
+  clear: -> @$input.val('')
     
-  value: ->
-    @$input.val()
-    
-class TagListView
+class TagViewList
   constructor: ->
     @$container = $('#tag-list')
-    @tags = []
+    @tagViews = []
+  add: (tagView)->
+    @tagViews.push(tagView)
+    @$container.append( tagView.createElement() )
+    tagView.fadeIn()
+    
 
-# Should TagView just have its own container, or should TagList hold a bunch of Tags?
 class TagView
+  inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   constructor: (tag)->
-
     @tag = tag
-  bind: ->
-    # delegate tag click/etc functionality to the TagView container
-  find: ->
-    # search through existing tags and find the one with the tag name
-  create: ->
+  createElement: ->
     @$element = $('#empty-tag').clone().attr('id', '').show()
-    @setTag(@tag.name)
-    @$container.append(@$element)
-    @fadeIn()
-  setTag: (tagName) ->
+    @setValue(@tag.name)
+    @createFormElement()
+    return @$element
+  setValue: (tagName) ->
     @$element.find('.content').html(tagName)
   fadeIn: ->
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
     @$element.css('backgroundColor', '#777');
     setTimeout (=> @$element.animate {backgroundColor: "#ccc"}, 'slow'), 200
+  createFormElement: ->
+    hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
+    @$element.append(hiddenFieldString)
     
 
 # Tag Model
-# <input type="hidden" value="unicorn" name="what_tags[]" id="what_tags_">
-# is this really a model?
 class Tag
-  constructor: ($form, name) ->
-    @$form = $form
+  constructor: (name) ->
     @name = name
   create: ->
-    # add to the what_tags[] hidden fields
-    hiddenFieldString = '<input type="hidden" value=":name" name="what_tags[]" />'
-    hiddenFieldString = hiddenFieldString.replace(/:name/, @name)
-
-    @$form.append(hiddenFieldString)
   destroy: ->
-    # remove from the what_tags fields
-    # add to the remove_what_tags fields
   
   
 class OldTag

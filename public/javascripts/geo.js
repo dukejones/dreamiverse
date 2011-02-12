@@ -8,19 +8,19 @@ var locationSuccess = false;
 function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
-    if($('#locationPanel').css('display') == 'none'){
+    if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
       
-      //$('#locationPanel').slideDown();
+      //$('.entryLocation').slideDown();
       // Fix for the min-height bug
       
-      $('#locationPanel').height(0);
-      $('#locationPanel').css('display', 'block');
+      $('.entryLocation').height(0);
+      $('.entryLocation').css('display', 'block');
       
-      if($('#locationPanel .expander').css('display') == 'none'){
-        $('#locationPanel').animate({height: 35}, "fast");
+      if($('.entryLocation .expander').css('display') == 'none'){
+        $('.entryLocation').animate({height: 35}, "fast");
       } else {
-        $('#locationPanel').animate({height: 100}, "fast");
+        $('.entryLocation').animate({height: 100}, "fast");
       }
       
       
@@ -30,32 +30,32 @@ function initGeo(){
         getGeo();
       }
     } else {
-      $('#locationPanel').slideUp();
+      $('.entryLocation').slideUp();
     }
   });
   
-  $('#locationPanel .locationHeader').click(function(){
-    $('#locationPanel').slideUp();
+  $('.entryLocation .locationHeader').click(function(){
+    $('.entryLocation').slideUp();
   })
   
-  $('#locationPanel .delete').unbind();
-  $('#locationPanel .delete').click(function(){
+  $('.entryLocation .delete').unbind();
+  $('.entryLocation .delete').click(function(){
     $('.addLocation').removeClass('selected');
-    $('#locationPanel, #locationPanel .expander').slideUp();
+    $('.entryLocation, .entryLocation .expander').slideUp();
     $('#locationList').val('No location');
   });
   
   $('#locationList').change(function(){
     if($(this).find('option:selected').attr('value') == 'New location'){
       if(locationSuccess){
-        $('#locationPanel .expander .name .input').val('');
+        $('.entryLocation .expander .name .input').val('');
       }
       
-      $('#locationPanel .expander').slideDown();
-      $('#locationPanel').animate({height: 100}, "fast");
+      $('.entryLocation .expander').slideDown();
+      $('.entryLocation').animate({height: 100}, "fast");
     } else {
-      $('#locationPanel .expander').slideUp();
-      $('#locationPanel').animate({height: 35}, "fast");
+      $('.entryLocation .expander').slideUp();
+      $('.entryLocation').animate({height: 35}, "fast");
     }
   })
 }
@@ -71,7 +71,7 @@ var getGeo = function(){
 
 function geoError(error){
   alert("geolocation error : " + error.code + ' / ' + error.message);
-  $('#locationPanel .spinner-small').fadeOut();
+  $('.entryLocation .spinner-small').fadeOut();
   
   $('#locationList').val('No location');
   $('#locationList .finding').remove();
@@ -104,12 +104,12 @@ function getAddress(_lat, _lng){
     $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)
     
     // Set geo data
-    $('#locationPanel .city .input').val(data[0].address_components[2].long_name);
-    $('#locationPanel .state .input').val(data[0].address_components[5].short_name);
-    $('#locationPanel .country input').val(data[0].address_components[6].long_name);
+    $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
+    $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
+    $('.entryLocation .country input').val(data[0].address_components[6].long_name);
     
     // Remove Spinner
-    $('#locationPanel .spinner-small').fadeOut();
+    $('.entryLocation .spinner-small').fadeOut();
   })
 }
 

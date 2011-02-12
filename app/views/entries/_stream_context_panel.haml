@@ -1,105 +1,56 @@
 - content_for :foot do
-  = javascript_include_tag 'context_menu', 'stream_context_panel'
+  = javascript_include_tag 'context_menu'
   
 / CONTEXT PANEL
-#contextPanel.transparent-50.glow-40.round-16
+#streamContextPanel.transparent-50.glow-40.round-16
 
   / DETAILS
-  %a.avatar-64.button.round-8{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
-  %a.userInfo{href: '/'}
-    %h3= user.username
-    %p Oakland, CA
+  .userInfo.flat.border.round-12
+    %a.avatar-64.button.round-8.flat-right{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
+    %a.userName{href: '/'}
+      %h3= user.username
 
 
   / LABEL
-  %a.context.shine.round-12{href: '/stream'}
-    DreamStream
+  .myStream.shine.round-12.flat-bottom
+    my stream
 
-  .find.button.bevel.round-12.padding-4-8
-    Who's dreaming about me &rsaquo;
+  .wrapper
 
-  / STREAM FILTER
-  .streamFilter
-    / FILTER BY NETWORKS
-    .filterType.round-12
-      .type
-        %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Friends
-      .expander.hidden
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Following
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/iconDc.gif'} 
-          %span Dreamcatcher
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/facebook-16.png'} 
-          %span Facebook
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/twitter-16.png'} 
-          %span Twitter
-          %input{type: 'checkbox'}
+    / FILTER BY ENTRY TYPE
+    .entryFilter.flat.button.round-8.trigger.slideArrow
+      %img.icon{src: '/images/icons/allEntries-16.png'}
+      %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+      %span all entries
+    .filterList.border.flat.round-8.target.slideArrow.hidden
+      .type.button.round-8.flat-bottom
+        %img{src: '/images/icons/'} 
+        %span all entries
+      .type.button
+        %img{src: '/images/icons/'} 
+        %span dream
+      .type.button
+        %img{src: '/images/icons/'} 
+        %span vision
+      .type.button.round-8.flat-top
+        %img{src: '/images/icons/'} 
+        %span experience
 
+  .wrapper
 
-    / FILTER BY FOLLOWING
-    .filterType.round-12
-      .type
-        %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Following
+    / FILTER BY FOLLOW TYPE
+    .followFilter.flat.button.round-8.trigger.slideArrow
+      %img.icon{src: '/images/icons/friend-follow-16.png'}
+      %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+      %span following
+    .filterList.border.flat.round-8.target.slideArrow.hidden
+      .type.button.round-8.flat-bottom
+        %img{src: '/images/icons/'} 
+        %span friends
+      .type.button.round-8.flat-top
+        %img{src: '/images/icons/'} 
+        %span following
 
-
-    / FILTER BY TAGS
-    .filterType.round-12
-      .type
-        %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Tags
-      .expander.hidden
-        %label
-          %span dolphins
-          %input{type: 'checkbox'}
-        %label
-          %span victory
-          %input{type: 'checkbox'}
-
-    / FILTER BY CHANNELS
-    .filterType.round-12
-      .type
-        %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Channels
-      .expander.hidden
-        %label
-          %img{src: '/images/icons/'} 
-          %span whatevs
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Vision
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Experience
-          %input{type: 'checkbox'}
-
-    / FILTER BY CATEGORY
-    .filterType.round-12
-      .type
-        %img{src: '/images/icons/arrow-right-16.png'} 
-        %span Category
-      .expander.hidden
-        %label
-          %img{src: '/images/icons/'} 
-          %span Dreams
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Vision
-          %input{type: 'checkbox'}
-        %label
-          %img{src: '/images/icons/'} 
-          %span Experience
-          %input{type: 'checkbox'}
-
-    .refresh.shine.button.cancel.round-12 Refresh
+    .starlightTab.flat.button.round-8
+      %img.icon{src: '/images/icons/starlight-17.png'}
+      starlight

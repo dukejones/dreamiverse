@@ -1,12 +1,14 @@
 class User::RegistrationsController < ApplicationController
   
   def create
-    # or creates a user with an email / password.
+    # creates a user with an email / password.
+    params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
+    
     if user = User.create(params[:user])
       set_current_user user
     end
 
-    redirect_to :root
+    redirect_to :root_path
   end
   
   def update

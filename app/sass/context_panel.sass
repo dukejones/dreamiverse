@@ -56,14 +56,6 @@
 
 #contextPanel
   +round(16)
-  position: absolute
-  top: 82px
-  left: 12px
-  width: 200px
-  cursor: default
-  padding: 4px 4px 2px
-  border: 1px solid #000
-
 
   .avatar
     +round(12)
@@ -128,9 +120,51 @@
     margin: 4px 0 2px
     padding: 4px 8px
     font-size: 21px
-    .icon
-      right: 20px
-      top: 18px
+
+  .wrapper
+    position: relative
+    .entryFilter, .followFilter, .starlightTab
+      width: 192px
+      position: relative
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        float: left
+      img.icon
+        float: left
+        margin: 8px 8px 0 0
+      img.arrow
+        float: right
+        margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+    .followFilter
+
+    .filterList
+      width: 208px
+      position: absolute
+      top: 0
+      cursor: pointer
+      z-index: 1200
+      .type
+        display: block
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+      .type:hover
+        background: #000
+        color: #fff
+    
+
+
+
+
 
   .relation, .changeRelation, .context
     .icon
@@ -222,3 +256,45 @@
       box-shadow: inset 0px 14px rgba(255,255,255,0.1)
       -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
       -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+
+
+
+
+
+
+
+
+
+
+
+
+#streamContextPanel
+  position: absolute
+  top: 82px
+  left: 12px
+  width: 210px
+  cursor: default
+  padding: 4px
+  border: 1px solid #000
+
+  .userInfo
+    height: 66px
+
+    .avatar-64
+      float: left
+      width: 50px
+      height: 64px
+      margin: 0 8px 0 0
+      display: block
+      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
+    .userName
+      float: left
+
+  .myStream
+    display: block
+    margin: 4px 0 2px
+    text-align: center
+    font-weight: bold
+    padding: 0
+    height: 26px
+    line-height: 26px
