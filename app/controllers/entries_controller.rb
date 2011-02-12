@@ -47,7 +47,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    what_names = params[:what_tags]
+    what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
     new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))
@@ -55,7 +55,7 @@ class EntriesController < ApplicationController
   end
   
   def update
-    what_names = params[:what_tags]
+    what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
     
     @entry = Entry.find params[:id]
