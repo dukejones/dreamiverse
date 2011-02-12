@@ -8,66 +8,18 @@
   padding: 4px
   border: 1px solid #000
 
-
-  .avatar
-    display: block
-    width: 200px
-    height: 266px
-    position: relative
-    .uploadAvatarWrap
-      position: absolute
-      bottom: 0
-      width: 100%
-      padding: 20px 0 8px
-      .uploadAvatar
-        cursor: pointer
-        display: block
-        color: #fff
-        font-size: 12px
-        padding: 2px 6px
-        text-align: center
-        width: 120px
-        margin: 0 auto
-        border: 1px solid #fff
-        background: rgba(0,0,0,0.50)
-        box-shadow: 0 0 20px #fff
-        -moz-box-shadow: 0 0 20px #fff
-        -webkit-box-shadow: 0 0 20px #fff
-        -moz-opacity: 0.6
-        -khtml-opacity: 0.6
-        -webkit-opacity: 0.6
-        opacity: 0.6
-        span
-          font-weight: bold
-          color: #68b800
-      .uploadAvatar:hover
-        border: 1px solid transparent
-        box-shadow: inset 0 0 20px #fff
-        -moz-box-shadow: inset 0 0 20px #fff
-        -webkit-box-shadow: inset 0 0 20px #fff
-        -moz-opacity: 1
-        -khtml-opacity: 1
-        -webkit-opacity: 1
-        opacity: 1
-
-
-  /* DREAM STREAM AVATAR AND USER DETAILS */
-  .avatar-64
-    display: block
-    width: 64px
-    height: 64px
-    position: relative
   .userInfo
-    display: block
-    position: absolute
-    top: 30px
-    left: 78px
-    width: auto
-    h3
-      margin: 0
-    p
-      font-size: 10px
-      margin: 0
+    height: 66px
+
+    .avatar-64
+      float: left
+      width: 50px
+      height: 64px
+      margin: 0 8px 0 0
+      display: block
+      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
+    .userName
+      float: left
 
 
 
@@ -87,21 +39,29 @@
       width: 192px
       position: relative
       padding: 0 8px
+      margin: 4px 0 0
       height: 30px
       line-height: 30px
       text-align: center
       font-weight: bold
       span
         float: left
-      img
+      img.icon
+        float: left
+        margin: 8px 8px 0 0
+      img.arrow
         float: right
         margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
     .followFilter
 
     .filterList
       width: 208px
       position: absolute
       top: 0
+      cursor: pointer
       z-index: 1200
       .type
         display: block
