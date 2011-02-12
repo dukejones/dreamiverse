@@ -17,6 +17,8 @@
   position: absolute
 =relative
   position: relative
+=overflow
+  overflow: hidden
 =float-left
   float: left
 =float-right
@@ -270,13 +272,13 @@
 =flat-light
   background: #fff
 
-=transparent($rgb, $percent)
-  background: rgba($rgb,$rgb,$rgb, $percent / 100 )
+=transparent-light($percent)
+  background: rgba(255,255,255, $percent / 100 )
 
-=glow-light($offset, $depth)
-  box-shadow: $offset + px $offset + px $depth + px #000
-  -moz-box-shadow: $offset + px $offset + px $depth + px #000
-  -webkit-box-shadow: $offset + px $offset + px $depth + px #000
+=glow-light($depth)
+  box-shadow: 0px 0px $depth + px #000
+  -moz-box-shadow: 0px 0px $depth + px #000
+  -webkit-box-shadow: 0px 0px $depth + px #000
 
 
 
@@ -385,10 +387,13 @@
 =flat-dark
   background: #fff
 
-=glow-dark($offset, $depth)
-  box-shadow: $offset + px $offset + px $depth + px #fff
-  -moz-box-shadow: $offset + px $offset + px $depth + px #fff
-  -webkit-box-shadow: $offset + px $offset + px $depth + px #fff
+=transparent-dark($percent)
+  background: rgba(0,0,0, $percent / 100 )
+
+=glow-dark($depth)
+  box-shadow: 0px 0px $depth + px #fff
+  -moz-box-shadow: 0px 0px $depth + px #fff
+  -webkit-box-shadow: 0px 0px $depth + px #fff
 
 
 
