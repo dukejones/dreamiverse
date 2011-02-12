@@ -440,51 +440,33 @@
     width: 32px
     height: 32px
 
-.static-glow-inner-40
-  box-shadow: inset 0px 0px 40px #fff
-  -moz-box-shadow: inset 0px 0px 40px #fff
-  -webkit-box-shadow: inset 0px 0px 40px #fff
-.static-glow-40
-  box-shadow: 0px 0px 40px #fff
-  -moz-box-shadow: 0px 0px 40px #fff
-  -webkit-box-shadow: 0px 0px 40px #fff
-.static-shadow-40
-  box-shadow: 0px 0px 40px #000
-  -moz-box-shadow: 0px 0px 40px #000
-  -webkit-box-shadow: 0px 0px 40px #000
 
 
 
-
-
-
+=bg($color1, $color2)
+  background: $color
+  background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color1))
+  background: -moz-linear-gradient(top, $color1, $color2)
+=bg-shine($offset)
+  box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
 
 
 /* BUTTONS */
 .button.confirm:hover
+  +bg(#3ba4d1, #1b485b)
+  +bg-shine(18)
   color: #fff
   border: 1px solid #4794b5
-  background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b))
-  background: -moz-linear-gradient(top, #3ba4d1, #1b485b)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.confirm:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+
+.button.small.confirm:hover, .button.small.save:hover, .button.small.cancel:hover, .button.small.delete:hover
+  +bg-shine(12)
 .button.save:hover
+  +bg(#70d03b, #235b1b)
+  +bg-shine(18)
   color: #fff
   border: 1px solid #54943d
-  background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
-  background: -moz-linear-gradient(top, #70d03b, #235b1b)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.save:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.cancel:hover
   color: #fff
   border: 1px solid #848484
@@ -493,10 +475,6 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.cancel:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.delete:hover
   color: #fff
   border: 1px solid #c1633c
@@ -505,10 +483,6 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.delete:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 
 
 /* COLOR BUTTONS */

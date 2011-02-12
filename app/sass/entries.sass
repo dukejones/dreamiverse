@@ -1,20 +1,4 @@
 /******** 2D ENTRY THUMBS LIGHT / DARK ********/
-.light
-  #entryField, #home
-    .matrix
-      .fadedBack
-        background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
-      .thumb-2d.hover
-        +glow-light(40)
-.dark
-  #entryField, #home
-    .matrix
-      .fadedBack
-        background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
-      .thumb-2d.hover
-        +glow-dark(40)
-
-
 #entryField, #home
   .matrix
 
@@ -109,27 +93,34 @@
         bottom: 6px
         padding: 0 16px
 
-
-
-
-
+// COLORS
 .light
   #entryField, #home
     .matrix
-      .thumb-1d:hover
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
+      .thumb-2d.hover
         +glow-light(40)
-
-.light
+.dark
   #entryField, #home
     .matrix
-      .thumb-1d:hover
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
+      .thumb-2d.hover
         +glow-dark(40)
 
 
+
+
+
+
+
+
+
+
+/******** 1D ENTRY THUMBS ********/
 #entryField, #home
   .matrix
-
-    /******** 1D ENTRY THUMBS ********/
     .thumb-1d
       +relative
       +clear
@@ -308,13 +299,23 @@
                 color: #262626 /* 90% Black */
               .text
                 margin: 0
+// COLORS
+.light
+  #entryField, #home
+    .matrix
+      .thumb-1d:hover
+        +glow-light(40)
+
+.light
+  #entryField, #home
+    .matrix
+      .thumb-1d:hover
+        +glow-dark(40)
 
 
 
-
-
-
-
+#entryField, #home
+  .matrix
     /******** PAGINATION ********/
     .dark.pageFirst, .dark.pageFirst:hover
       border: 2px solid transparent
