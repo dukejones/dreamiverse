@@ -5,10 +5,10 @@
 #streamContextPanel.transparent-50.glow-40.round-16
 
   / DETAILS
-  %a.avatar-64.button.round-8{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
-  %a.userInfo{href: '/'}
-    %h3= user.username
-    %p Oakland, CA
+  .userInfo.flat.border.round-12
+    %a.avatar-64.button.round-8.flat-right{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
+    %a.userName{href: '/'}
+      %h3= user.username
 
 
   / LABEL
@@ -19,19 +19,20 @@
 
     / FILTER BY ENTRY TYPE
     .entryFilter.flat.button.round-8.trigger.slideArrow
-      %img{src: '/images/icons/arrow-down-16.png'} 
+      %img.icon{src: '/images/icons/allEntries-16.png'}
+      %img.arrow{src: '/images/icons/arrow-down-16.png'} 
       %span all entries
-    .filterList.flat.round-8.target.slideArrow.hidden
-      .type
+    .filterList.border.flat.round-8.target.slideArrow.hidden
+      .type.button.round-8.flat-bottom
         %img{src: '/images/icons/'} 
         %span all entries
-      .type
+      .type.button
         %img{src: '/images/icons/'} 
         %span dream
-      .type
+      .type.button
         %img{src: '/images/icons/'} 
         %span vision
-      .type
+      .type.button.round-8.flat-top
         %img{src: '/images/icons/'} 
         %span experience
 
@@ -39,15 +40,17 @@
 
     / FILTER BY FOLLOW TYPE
     .followFilter.flat.button.round-8.trigger.slideArrow
-      %img{src: '/images/icons/arrow-down-16.png'} 
+      %img.icon{src: '/images/icons/friend-follow-16.png'}
+      %img.arrow{src: '/images/icons/arrow-down-16.png'} 
       %span following
-    .filterList.flat.round-8.target.slideArrow.hidden
-      .type
+    .filterList.border.flat.round-8.target.slideArrow.hidden
+      .type.button.round-8.flat-bottom
         %img{src: '/images/icons/'} 
         %span friends
-      .type
+      .type.button.round-8.flat-top
         %img{src: '/images/icons/'} 
         %span following
 
     .starlightTab.flat.button.round-8
+      %img.icon{src: '/images/icons/starlight-17.png'}
       starlight
