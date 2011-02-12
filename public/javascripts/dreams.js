@@ -1,6 +1,5 @@
 $(document).ready(function() {
   setupEvents();
-  setupTags();
   setupImagebank();
   setupTextareaAutoExpander();
   setupUploader();
@@ -69,28 +68,6 @@ function displayImageBank(){
       initImageBank('Library');
     }
   });
-}
-
-function setupTags(){
-  // Add tag click
-  /*$('#tagAdd').click(function(){
-    addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
-  })
-  
-  // Capture ENTER press
-  $($('#newTag')).keypress(function (e) {
-    if (e.which == 13){
-     addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
-    }
-    activateRemoveDreamTag('.tag_box');
-  });*/
-  
-  // Set up tag list sortability
-  /*$( "#tag-list" ).sortable( {
-    distance: 10,
-    start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
-    stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
-  } );*/ // this prevents the tag from being deleted when it's dragged
 }
 
 //************************************//
@@ -195,7 +172,7 @@ function setupEvents(){
       // and show button
       if($('#currentImages').children().length == 1){
         $('.entryImages').slideUp();
-        $('#attach-images').show();
+        $('.entryAttach .images').show();
       } else {
         // if content added, minimize panel
         if($('#currentImages').css('display') != 'none'){
@@ -247,29 +224,29 @@ function setupEvents(){
     })
   })
   
-  $('#newDream-attach .mood').unbind();
-  $('#newDream-attach .mood').click(function(){
-    $('#newDream-mood').slideDown();
+  $('.entryAttach .mood').unbind();
+  $('.entryAttach .mood').click(function(){
+    $('.entryMood').slideDown();
     $(this).hide();
     
-    $('#newDream-mood .headers').click(function(){
-      $('#newDream-mood').slideUp();
-      $('#newDream-attach .mood').show();
+    $('.entryMood .headers').click(function(){
+      $('.entryMood').slideUp();
+      $('.entryAttach .mood').show();
     })
   })
   
-  $('#newDream-attach .links').unbind();
-  $('#newDream-attach .links').click(function(){
-    $('#newDream-link').slideDown();
+  $('.entryAttach .links').unbind();
+  $('.entryAttach .links').click(function(){
+    $('.entryLinks').slideDown();
     $(this).hide();
     
     // Set newly displayed header click
-    $('#newDream-link .headers').unbind();
-    $('#newDream-link .headers').click(function(){
+    $('.entryLinks .headers').unbind();
+    $('.entryLinks .headers').click(function(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
-        $('#newDream-link').slideUp();
-        $('#newDream-attach .links').show();
+        $('.entryLinks').slideUp();
+        $('.entryAttach .links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){
@@ -281,22 +258,15 @@ function setupEvents(){
     })
   })
   
-  $('#newDream-attach .analysis').unbind();
-  $('#newDream-attach .analysis').toggle(function(){
-    $('#newDream-analysis').slideDown();
-  }, function(){
-    $('#newDream-analysis').slideUp();
-  })
-  
   $('#entryOptions .date').unbind();
   $('#entryOptions .date').toggle(function(){
-    $('#newDream-dateTime').slideDown();
+    $('.entryDateTime').slideDown();
   }, function(){
-    $('#newDream-dateTime').slideUp();
+    $('.entryDateTime').slideUp();
   })
   
   // Listen for paste in DREAM field
-  $("#dream_body").bind('paste', function(e) {
+  $("#entry_body").bind('paste', function(e) {
     // Get pasted link
     var el = $(this);
     setTimeout(function() {
@@ -307,7 +277,7 @@ function setupEvents(){
   });
   
   // Listen for paste in LINK field
-  $('#linkAdd').click(function() {
+  $('.linkAdd').click(function() {
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
 
@@ -326,7 +296,7 @@ function checkForPastedLink(newText){
 function addLink(newText){
   if($('#newDream-link').css('display') == 'none'){
     $('#newDream-link').slideDown();
-    $('#newDream-attach .links').hide();
+    $('.entryAttach .links').hide();
     
     // Set newly displayed header click
     $('#newDream-link .headers').unbind();
@@ -334,7 +304,7 @@ function addLink(newText){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
         $('#newDream-link').slideUp();
-        $('#newDream-attach .links').show();
+        $('.entryAttach .links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){

@@ -1,11 +1,11 @@
 
-#contextPanel
+#streamContextPanel
   position: absolute
   top: 82px
   left: 12px
-  width: 200px
+  width: 210px
   cursor: default
-  padding: 4px 4px 2px
+  padding: 4px
   border: 1px solid #000
 
 
@@ -71,16 +71,52 @@
 
 
 
-  .context
+  .myStream
     display: block
     margin: 4px 0 2px
     text-align: center
     font-weight: bold
-    padding: 4px 8px
+    padding: 0
+    height: 26px
+    line-height: 26px
     font-size: 21px
-    .icon
-      right: 20px
-      top: 18px
+
+  .wrapper
+    position: relative
+    .entryFilter, .followFilter, .starlightTab
+      width: 192px
+      position: relative
+      padding: 0 8px
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        float: left
+      img
+        float: right
+        margin: 8px 0 0
+    .followFilter
+
+    .filterList
+      width: 208px
+      position: absolute
+      top: 0
+      z-index: 1200
+      .type
+        display: block
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+      .type:hover
+        background: #000
+        color: #fff
+    
+
+
+
+
 
   .relation, .changeRelation, .context
     .icon
