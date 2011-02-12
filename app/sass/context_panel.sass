@@ -56,8 +56,7 @@
 
 // STRUCTURE
 
-
-#contextPanel, #streamContextPanel
+#contextPanel
   +round(16)
   position: absolute
   top: 82px
@@ -119,17 +118,6 @@
       font-size: 10px
       margin: 0
 
-    .following, .followers
-      float: left
-      margin: 0
-      font-size: 12px
-      text-align: center
-      .count
-        width: 76px
-        height: 14px
-        line-height: 14px
-        text-align: center
-
 
   .context
     +round(12)
@@ -140,47 +128,6 @@
     margin: 4px 0 2px
     padding: 4px 8px
     font-size: 21px
-
-  // STREAM FILTERS
-  .wrapper
-    position: relative
-    .entryFilter, .followFilter, .starlightTab
-      width: 192px
-      position: relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
-      span
-        float: left
-      img.icon
-        float: left
-        margin: 8px 8px 0 0
-      img.arrow
-        float: right
-        margin: 8px 0 0
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-    .followFilter
-
-    .filterList
-      width: 208px
-      position: absolute
-      top: 0
-      cursor: pointer
-      z-index: 1200
-      .type
-        display: block
-        height: 30px
-        line-height: 30px
-        text-align: center
-        font-weight: bold
-      .type:hover
-        background: #000
-        color: #fff
     
 
 
@@ -290,25 +237,53 @@
 
 
 #streamContextPanel
+  +round(16)
+  position: absolute
+  top: 82px
+  left: 12px
+  width: 210px
+  cursor: default
+  padding: 4px
+  border: 1px solid #000
 
-  .userInfo
-    height: 66px
   // USER INFO
   .userInfo
+    position: relative
     height: 66px
 
+
     .avatar-64
-      float: left
+      position: absolute
       width: 50px
       height: 64px
       margin: 0 8px 0 0
-      display: block
+      display: inline-block
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
 
-    .userName
-      float: left
-      h3
-        margin: 4px 0 8px
+
+
+    .infoRight
+      float: right
+      height: 64px
+      left: 60px
+
+      .userName
+        float: left
+        h3
+          margin: 4px 0 8px
+
+      .following, .followers
+        float: left
+        margin: 0
+        font-size: 12px
+        text-align: center
+        width: 78px
+        .count
+          width: 76px
+          height: 14px
+          line-height: 14px
+          text-align: center
+
   .myStream
     display: block
     margin: 4px 0 2px
@@ -319,4 +294,46 @@
     line-height: 26px
     padding: 4px 8px
     font-size: 21px
+
+
+  // STREAM FILTERS
+  .wrapper
+    position: relative
+    .entryFilter, .followFilter, .starlightTab
+      width: 192px
+      position: relative
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        float: left
+      img.icon
+        float: left
+        margin: 8px 8px 0 0
+      img.arrow
+        float: right
+        margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+    .followFilter
+
+    .filterList
+      width: 208px
+      position: absolute
+      top: 0
+      cursor: pointer
+      z-index: 1200
+      .type
+        display: block
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+      .type:hover
+        background: #000
+        color: #fff
 

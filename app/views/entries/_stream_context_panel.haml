@@ -7,16 +7,18 @@
   / USER INFO
   .userInfo.flat.border.round-12
     %a.avatar-64.button.round-8.flat-right{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
-    %a.userName{href: '/'}
-      %h3= user.username
-    .clear-both
 
-    .following
-      .count 142
-      following
-    .followers
-      .count 142,342
-      followers
+    .infoRight
+      %a.userName{href: '/'}
+        %h3= user.username
+      .clear-both
+
+      .following
+        .count 142
+        following
+      .followers
+        .count 142,342
+        followers
 
   / LABEL
   .myStream.shine.round-12.flat-bottom
