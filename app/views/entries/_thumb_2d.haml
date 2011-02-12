@@ -1,12 +1,12 @@
-.thumb-2d.round-16{style: "background: url('/images/art/astral-eyes-banner.jpg') top center", onMouseOver: "$(this).addClass('hover')", onMouseOut: "$(this).removeClass('hover')"}
+.thumb-2d{style: "background: url('/images/art/astral-eyes-banner.jpg') top center", onMouseOver: "$(this).addClass('hover')", onMouseOut: "$(this).removeClass('hover')"}
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
 
-  .fadedBack.round-16
+  .fadedBack
 
     / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
-    .watermark.font-georgia.alpha-10= entry.title
+    .watermark= entry.title
 
     / DETAILS (DATE + LOCATION)
     .detailsTop

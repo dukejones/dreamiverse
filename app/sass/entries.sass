@@ -28,6 +28,7 @@
           z-index: 84
     /* */
     .thumb-2d
+      +round(16)
       +pointer
       +float-left
       +relative
@@ -42,9 +43,12 @@
         height: 300px
         z-index: 10000
       .fadedBack
+        +round(16)
         width: 200px
         height: 300px
       .watermark
+        +font-georgia
+        +alpha(10)
         +absolute
         +align-center
         +font(45)

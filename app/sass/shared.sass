@@ -13,20 +13,25 @@
 // DISPLAY
 =block
   display: block
+=hidden
+  display: none
+.hidden
+  display: none
 =absolute
   position: absolute
 =relative
   position: relative
 =overflow
   overflow: hidden
-=float-left
+=left
   float: left
-=float-right
+=right
   float: right
 =clear
   clear: both
 .clear
   clear: both
+
 
 // FONTS
 =bold
@@ -35,6 +40,31 @@
   text-align: center
 =font($px)
   font-size: $px + px
+
+/* sans serif */
+=arial
+  font-family: Arial, Arial, Helvetica, sans-serif
+=calibri
+  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
+=verdana
+  font-family: Verdana, Verdana, Geneva, sans-serif
+=monospace
+  font-family: Lucida Console, Monaco, monospace
+=comic
+  font-family: Comic Sans MS, Comic Sans MS
+
+/* serif */
+=georgia
+  font-family: Georgia, Georgia, serif
+=garamond
+  font-family: Garamond, serif
+=book
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
+=times
+  font-family: "Times New Roman", Times, serif
+
+
+
 
 // CURSORS
 =pointer
@@ -1509,35 +1539,6 @@ body
   color: #88e3f7
 .water.s-9
   color: #88e3f7
-
-
-
-/* sans serif */
-.font-arial
-  font-family: Arial, Arial, Helvetica, sans-serif
-.font-calibri
-  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
-.font-verdana
-  font-family: Verdana, Verdana, Geneva, sans-serif
-.font-monospace
-  font-family: Lucida Console, Monaco, monospace
-.font-comic
-  font-family: Comic Sans MS, Comic Sans MS
-
-/* serif */
-.font-georgia
-  font-family: Georgia, Georgia, serif
-.font-garamond
-  font-family: Garamond, serif
-.font-book
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
-.font-times
-  font-family: "Times New Roman", Times, serif
-
-
-/* VARIOUS */
-.hidden
-  display: none
 
 /* ALLOWS FOR PROPPER SELECT DROPDOWN SHADOW AND ROUNDED CORNERS */
 SELECT.search-bar
