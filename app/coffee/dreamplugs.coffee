@@ -39,7 +39,9 @@ window.setupDreamplugs = ->
         
         newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
-        newPosition = $(event.currentTarget).index() * offsetSize
+        
+        index = $(event.currentTarget).index()
+        newPosition = index * offsetSize
         newPositionString = -newPosition + 'px'
         $newTargetSlideArrow.fadeOut(500, (event) ->
           $newTargetSlideArrow.css('top', newPositionString)

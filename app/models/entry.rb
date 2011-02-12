@@ -27,6 +27,10 @@ class Entry < ActiveRecord::Base
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
+  
+  def add_what_tag(what)
+    self.whats << what unless self.whats.exists? what
+  end
 
   protected #######################
 

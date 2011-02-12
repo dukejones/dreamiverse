@@ -88,6 +88,10 @@
       #tag-list.tag-list.ui-sortable
         #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
           .content
+        - @entry.whats.each do |what|
+          .tag_box.thumb-controls.float-left.light.C-contrast.round-8
+            .content= what.name
+          
         %br{style: 'clear: both;'}
       #sorting.clear-both
 
