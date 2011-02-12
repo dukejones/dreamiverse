@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :set_seed_code
   helper_method :current_user, :add_starlight
   protect_from_forgery
 
@@ -28,5 +29,10 @@ protected
   
   def render_404
     render :file => "#{Rails.public_path}/404.html",  :status => 404
+  end
+
+  def set_seed_code
+    session[:seed_code] = params[:seed] if params[:seed]
+    session[:seed_code] ||= params[:username] if params[:username]
   end
 end

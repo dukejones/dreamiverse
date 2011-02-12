@@ -32,9 +32,9 @@ class LoginView
     @$joinButton.click => @showSignup()
     
   showLogin: ->
+    @$signupPanel.hide()
     @$signupButton.hide()
     @$joinButton.show()
-    @$signupPanel.hide()
     
     @$loginButton.hide()
     @$loginPanel.show()
@@ -45,9 +45,13 @@ class LoginView
   showSignup: ->
     @$loginButton.show()
     @$signupButton.show()
+    
     @$joinButton.hide()
     @$loginPanel.hide()
     
-    @$signupPanel.show()
+    @$signupPanel.slideDown()
+    
+  showSeedCodeInput: ->
+    # hide seed code button show seed code input
     
   

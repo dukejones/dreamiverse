@@ -38,21 +38,21 @@
     
   / CONTEXT ITEMS
   .item
+    .label.shine-small-alpha.round-12.flat-right starlight
+    .image
+      %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+    .detail.inner-shadow-10.round-12.flat-left
+      = user.starlight._?.value || 0
+    .clear-both
+
+
+  .item
     %a.block.label.shine-small-alpha.round-12.flat-right{href: entries_path(user.username)}
       dreams
     .image
       %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
     .detail.inner-shadow-10.round-12.flat-left
       = user.entries.count
-    .clear-both
-
-
-  .item
-    .label.shine-small-alpha.round-12.flat-right starlight
-    .image
-      %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-    .detail.inner-shadow-10.round-12.flat-left
-      = user.starlight._?.value || 0
     .clear-both
 
 
