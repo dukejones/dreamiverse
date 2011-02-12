@@ -22,7 +22,8 @@ class Entry < ActiveRecord::Base
   validates_presence_of :user
   
   before_save :set_sharing_level
-  
+  after_create :process_tags
+    
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
@@ -31,6 +32,11 @@ class Entry < ActiveRecord::Base
   def add_what_tag(what)
     self.whats << what unless self.whats.exists? what
   end
+  
+  def process_tags
+    n = Nephele.new
+    n.process_single_entry_tags(self)
+  end  
 
   protected #######################
 

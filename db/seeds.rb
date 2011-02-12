@@ -6,4 +6,5 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+require 'init_nephele_black_list_words'
 InitNepheleBlackListWords.init_first_words 
