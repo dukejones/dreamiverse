@@ -1,5 +1,51 @@
+// CONTEXT PANEL
+.light
+  #contextPanel
+    +transparent(255, 50)
+    +glow-light(0, 40)
+
+    .context, .find, .label
+      +button-light
+      +shine-light-alpha(16)
+    .relation
+      +button-light
+    .item .relation
+      +transparent(255, 50)
+      .label
+        border: 1px solid #848484
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-light
+      +shine-light-alpha(16)
+    .detail
+      +inner-shadow-light(10)
+
+
+
+.dark
+  #contextPanel
+    +transparent(0, 50)
+    +glow-dark(0, 40)
+
+    .context, .find, .label
+      +button-dark
+      +shine-dark-alpha(16)
+    .relation
+      +button-dark
+    .item .relation
+      +transparent(255, 50)
+      .label
+        border: 1px solid #555
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-dark
+      +shine-dark-alpha(16)
+    .detail
+      +inner-shadow-dark(10)
+
+
+
 
 #contextPanel
+  +round(16)
   position: absolute
   top: 82px
   left: 12px
@@ -10,6 +56,7 @@
 
 
   .avatar
+    +round(12)
     display: block
     width: 200px
     height: 266px
@@ -20,45 +67,36 @@
       width: 100%
       padding: 20px 0 8px
       .uploadAvatar
-        cursor: pointer
-        display: block
+        +block
+        +round(8)
+        +align-center
+        +pointer
+        +alpha(60)
+        +transparent(0, 50)
+        +glow-light(0, 20)
         color: #fff
         font-size: 12px
         padding: 2px 6px
-        text-align: center
         width: 120px
         margin: 0 auto
         border: 1px solid #fff
-        background: rgba(0,0,0,0.50)
-        box-shadow: 0 0 20px #fff
-        -moz-box-shadow: 0 0 20px #fff
-        -webkit-box-shadow: 0 0 20px #fff
-        -moz-opacity: 0.6
-        -khtml-opacity: 0.6
-        -webkit-opacity: 0.6
-        opacity: 0.6
         span
-          font-weight: bold
+          +bold
           color: #68b800
       .uploadAvatar:hover
+        +alpha(100)
+        +inner-shadow-light(20)
         border: 1px solid transparent
-        box-shadow: inset 0 0 20px #fff
-        -moz-box-shadow: inset 0 0 20px #fff
-        -webkit-box-shadow: inset 0 0 20px #fff
-        -moz-opacity: 1
-        -khtml-opacity: 1
-        -webkit-opacity: 1
-        opacity: 1
 
 
   /* DREAM STREAM AVATAR AND USER DETAILS */
   .avatar-64
-    display: block
+    +block
     width: 64px
     height: 64px
     position: relative
   .userInfo
-    display: block
+    +block
     position: absolute
     top: 30px
     left: 78px
@@ -72,10 +110,12 @@
 
 
   .context
-    display: block
+    +round(12)
+    +flat-bottom
+    +align-center
+    +bold
+    +block
     margin: 4px 0 2px
-    text-align: center
-    font-weight: bold
     padding: 4px 8px
     font-size: 21px
     .icon
@@ -93,20 +133,28 @@
     float: left
 
   .find
+    +round(12)
+    +flat-top
+    +padding(4, 8)
+    +align-center
     margin-bottom: 2px
-    text-align: center
 
 
   .item
     clear: both
     margin-bottom: 2px
+    .relation
+      +round(12)
+      +flat-top
     .label
+      +round(12)
+      +flat-right
+      +align-center
       width: 84px
       height: 24px
       line-height: 24px
       font-size: 18px
       padding: 6px 8px
-      text-align: center
 
     .image
       width: 34px
@@ -122,19 +170,21 @@
         margin: -12px 1px
 
     .detail
+      +round(12)
+      +flat-left
+      +bold
+      +align-center
       width: 36px
       height: 26px
       padding: 6px 8px
       line-height: 26px
-      font-weight: bold
       border: 0
-      text-align: center
 
     .relation, .changeRelation
+      +bold
+      +align-center
       padding: 6px
       height: 16px
-      font-weight: bold
-      text-align: center
       margin: 0
       .icon
         right: 22px
@@ -143,6 +193,9 @@
 
 
     .changeRelation.follow, .changeRelation.unfollow
+      +block
+      +round(12)
+      +flat-top
       color: #fff
 
     .changeRelation.follow
@@ -159,20 +212,3 @@
       box-shadow: inset 0px 14px rgba(255,255,255,0.1)
       -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
       -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-
-
-    
-
-
-
-
-.light
-  #contextPanel
-    .item
-      .label
-        border: 1px solid #848484
-.dark
-  #contextPanel
-    .item
-      .label
-        border: 1px solid #555
