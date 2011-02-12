@@ -55,8 +55,14 @@ class EntriesController < ApplicationController
   end
   
   def update
+    what_names = params[:what_tags]
+    whats = what_names.map {|name| What.find_or_create_by_name name }
+    
     @entry = Entry.find params[:id]
-    @entry.update_attributes( params[:entry] )
+
+    whats.each { |what| @entry.add_what_tag(what) }
+
+    @entry.update_attributes( params[:entry] )    
     redirect_to :action => :show, :id => params[:id]
   end
   
