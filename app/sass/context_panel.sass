@@ -83,10 +83,9 @@
 
   .wrapper
     position: relative
-    .filterType
+    .entryFilter, .followFilter
       width: 192px
       position: absolute
-      margin: 4px 0 0
       padding: 0 8px
       height: 30px
       line-height: 30px
@@ -96,8 +95,10 @@
         float: left
       img
         float: right
+    .followFilter
+      top: 34px
 
-    .typeList
+    .filterList
       width: 208px
       position: absolute
       z-index: 1200
