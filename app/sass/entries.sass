@@ -1,23 +1,18 @@
 /******** 2D ENTRY THUMBS LIGHT / DARK ********/
-
 .light
   #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
       .thumb-2d.hover
-        box-shadow: 0px 0px 40px #000
-        -moz-box-shadow: 0px 0px 40px #000
-        -webkit-box-shadow: 0px 0px 40px #000
+        +glow-light(40)
 .dark
   #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
       .thumb-2d.hover
-        box-shadow: 0px 0px 40px #fff
-        -moz-box-shadow: 0px 0px 40px #fff
-        -webkit-box-shadow: 0px 0px 40px #fff
+        +glow-dark(40)
 
 
 #entryField, #home
@@ -29,68 +24,68 @@
       z-index: 81
       .fadedBack
         .detailsTop, .detailsBottom, .title
-          display: block
+          +block
           z-index: 84
     /* */
     .thumb-2d
-      cursor: pointer
+      +pointer
+      +float-left
+      +relative
+      +overflow
       margin: 0 10px 10px 0
-      overflow: hidden
-      float: left
       border: 0
-      position: relative
       z-index: 80
       .link
-        display: block
+        +block
+        +absolute
         width: 200px
         height: 300px
-        position: absolute
         z-index: 10000
       .fadedBack
         width: 200px
         height: 300px
       .watermark
-        position: absolute
+        +absolute
+        +align-center
+        +font(45)
+        +overflow
         width: 200px
         height: 128px
-        font-size: 45px
         line-height: 30px
-        text-align: center
-        overflow: hidden
         top: 38px
       .detailsTop, .detailsBottom, .title
-        position: absolute
+        +absolute
         display: none
       .detailsTop
         width: 200px
         z-index: 100
         .date
+          +overflow
           max-width: 60px
-          overflow: hidden
           white-space: nowrap
       .detailsBottom
         bottom: 0
         width: 100%
       .date, .location, .comments, .sharing
+        +align-center
+        +font(11)
         color: #fff
         margin: 4px
-        font-size: 11px
         padding: 4px 8px
-        text-align: center
         background: rgba(0,0,0,0.50)
       .comments img
         margin: 0 2px -5px 0
       .sharing img
         margin: -1px 0 -4px 2px
       .title
+        +align-center
+        +font(21)
         width: 97%
         top: 130px
-        font-size: 21px
         line-height: 21px
-        text-align: center
       .tags
+        +absolute
         z-index: 20
-        position: absolute
         bottom: 6px
         padding: 0 16px
 
@@ -98,22 +93,32 @@
 
 
 
+.light
+  #entryField, #home
+    .matrix
+      .thumb-1d:hover
+        +glow-light(40)
 
+.light
+  #entryField, #home
+    .matrix
+      .thumb-1d:hover
+        +glow-dark(40)
+
+
+#entryField, #home
+  .matrix
 
     /******** 1D ENTRY THUMBS ********/
-    .thumb-1d:hover
-      box-shadow: 0px 0px 40px #000
-      -moz-box-shadow: 0px 0px 40px #000
-      -webkit-box-shadow: 0px 0px 40px #000
     .thumb-1d
-      position: relative
-      clear: both
+      +relative
+      +clear
+      +pointer
+      +overflow
       margin: 20px 0 0
       padding: 4px 4px 0
       width: 672px
       height: 220px
-      overflow: hidden
-      cursor: pointer
       border-radius-topleft: 16px
       -moz-border-radius-topleft: 16px
       -webkit-border-radius-topleft: 16px

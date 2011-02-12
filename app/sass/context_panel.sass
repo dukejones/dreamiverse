@@ -2,8 +2,8 @@
 // COLORS
 .light
   #contextPanel
-    +transparent(255, 50)
-    +glow-light(0, 40)
+    +transparent-light(50)
+    +glow-light(40)
 
     .context, .find, .label
       +button-light
@@ -13,7 +13,7 @@
       +button-light
 
     .item .relation
-      +transparent(255, 50)
+      +transparent-dark(50)
       .label
         border: 1px solid #848484
 
@@ -28,8 +28,8 @@
 
 .dark
   #contextPanel
-    +transparent(0, 50)
-    +glow-dark(0, 40)
+    +transparent-dark(50)
+    +glow-dark(40)
 
     .context, .find, .label
       +button-dark
@@ -37,7 +37,7 @@
     .relation
       +button-dark
     .item .relation
-      +transparent(255, 50)
+      +transparent-light(50)
       .label
         border: 1px solid #555
     .changeRelation.follow, .changeRelation.unfollow
@@ -83,8 +83,8 @@
         +align-center
         +pointer
         +alpha(60)
-        +transparent(255, 50)
-        +glow-light(0, 20)
+        +transparent-dark(50)
+        +glow-light(20)
         color: #fff
         font-size: 12px
         padding: 2px 6px
@@ -147,8 +147,8 @@
   .find
     +round(12)
     +flat-top
-    +padding(4, 8)
     +align-center
+    padding: 4px 8px
     margin-bottom: 2px
 
 
