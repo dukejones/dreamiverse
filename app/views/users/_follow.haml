@@ -16,13 +16,13 @@
 
 
 .item.relationship
-  .relation.button.transparent-50.round-12.flat-top
+  .relation
     = relationship.to_s.humanize.downcase
 
 
 
   - if relationship == :none || relationship == :followed_by
-    %a.changeRelation.follow.block.shine-small-alpha.round-12.flat-top.hidden.button{href: follow_path(user.username)}
+    %a.changeRelation.follow.hidden{href: follow_path(user.username)}
       - if relationship == :none
         .icon
           = friend_icon_tag( :following, 24, {class: 'follow'} )
@@ -36,7 +36,7 @@
 
 
   - if relationship == :friends || relationship == :following
-    %a.changeRelation.unfollow.block.shine-small-alpha.round-12.flat-top.hidden.button{href: unfollow_path(user.username)}
+    %a.changeRelation.unfollow.hidden{href: unfollow_path(user.username)}
 
       - if relationship == :friends
         .icon

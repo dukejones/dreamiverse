@@ -1,5 +1,243 @@
+// CONTEXT PANEL
+// COLORS
+.light
+  #contextPanel
+    +transparent(255, 50)
+    +glow-light(0, 40)
+
+    .context, .find, .label
+      +button-light
+      +shine-light-alpha(16)
+
+    .relation
+      +button-light
+
+    .item .relation
+      +transparent(255, 50)
+      .label
+        border: 1px solid #848484
+
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-light
+      +shine-light-alpha(16)
+
+    .detail
+      +inner-shadow-light(10)
+
+
+
+.dark
+  #contextPanel
+    +transparent(0, 50)
+    +glow-dark(0, 40)
+
+    .context, .find, .label
+      +button-dark
+      +shine-dark-alpha(16)
+    .relation
+      +button-dark
+    .item .relation
+      +transparent(255, 50)
+      .label
+        border: 1px solid #555
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-dark
+      +shine-dark-alpha(16)
+    .detail
+      +inner-shadow-dark(10)
+
+
+
+
+
+
+
+
+
+// STRUCTURE
+
+#contextPanel
+  +round(16)
+  position: absolute
+  top: 82px
+  left: 12px
+  width: 210px
+  cursor: default
+  padding: 4px
+  border: 1px solid #000
+
+  .avatar
+    +round(12)
+    display: block
+    width: 200px
+    height: 266px
+    position: relative
+    .uploadAvatarWrap
+      position: absolute
+      bottom: 0
+      width: 100%
+      padding: 20px 0 8px
+      .uploadAvatar
+        +block
+        +round(8)
+        +align-center
+        +pointer
+        +alpha(60)
+        +transparent(255, 50)
+        +glow-light(0, 20)
+        color: #fff
+        font-size: 12px
+        padding: 2px 6px
+        width: 120px
+        margin: 0 auto
+        border: 1px solid #fff
+        span
+          +bold
+          color: #68b800
+      .uploadAvatar:hover
+        +alpha(100)
+        +inner-shadow-light(20)
+        border: 1px solid transparent
+
+
+  /* DREAM STREAM AVATAR AND USER DETAILS */
+  .avatar-64
+    +block
+    width: 64px
+    height: 64px
+    position: relative
+  .userInfo
+    +block
+    position: absolute
+    top: 30px
+    left: 78px
+    width: auto
+    h3
+      margin: 0
+    p
+      font-size: 10px
+      margin: 0
+
+
+  .context
+    +round(12)
+    +flat-bottom
+    +align-center
+    +bold
+    +block
+    margin: 4px 0 2px
+    padding: 4px 8px
+    font-size: 21px
+    
+
+
+
+
+
+  .relation, .changeRelation, .context
+    .icon
+      margin: -16px
+      float: right
+      position: relative
+
+
+  .label, .image, .detail
+    float: left
+
+  .find
+    +round(12)
+    +flat-top
+    +padding(4, 8)
+    +align-center
+    margin-bottom: 2px
+
+
+  .item
+    clear: both
+    margin-bottom: 2px
+    .relation
+      +round(12)
+      +flat-top
+    .label
+      +round(12)
+      +flat-right
+      +align-center
+      width: 84px
+      height: 24px
+      line-height: 24px
+      font-size: 18px
+      padding: 6px 8px
+
+    .image
+      width: 34px
+      height: 24px
+      padding: 7px 5px
+      margin: 0
+      img.dream
+        margin: -8px 0
+      img.starlight
+        margin: -18px -16px
+        z-index: 1004
+      img.follow
+        margin: -12px 1px
+
+    .detail
+      +round(12)
+      +flat-left
+      +bold
+      +align-center
+      width: 36px
+      height: 26px
+      padding: 6px 8px
+      line-height: 26px
+      border: 0
+
+    .relation, .changeRelation
+      +bold
+      +align-center
+      padding: 6px
+      height: 16px
+      margin: 0
+      .icon
+        right: 22px
+        top: -23px      
+
+
+
+    .changeRelation.follow, .changeRelation.unfollow
+      +block
+      +round(12)
+      +flat-top
+      color: #fff
+
+    .changeRelation.follow
+      border: 1px solid #54943d
+      background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
+      background: -moz-linear-gradient(top, #70d03b, #235b1b)
+      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+    .changeRelation.unfollow
+      border: 1px solid #c1633c
+      background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
+      background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
+      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+
+
+
+
+
+
+
+
+
+
+
 
 #streamContextPanel
+  +round(16)
   position: absolute
   top: 82px
   left: 12px
@@ -13,6 +251,7 @@
     position: relative
     height: 66px
 
+
     .avatar-64
       position: absolute
       width: 50px
@@ -21,12 +260,15 @@
       display: inline-block
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
 
+
+
     .infoRight
       float: right
       height: 64px
       left: 60px
 
       .userName
+        float: left
         h3
           margin: 4px 0 8px
 
@@ -42,7 +284,6 @@
           line-height: 14px
           text-align: center
 
-  // MY STREAM
   .myStream
     display: block
     margin: 4px 0 2px
@@ -51,7 +292,9 @@
     padding: 0
     height: 26px
     line-height: 26px
+    padding: 4px 8px
     font-size: 21px
+
 
   // STREAM FILTERS
   .wrapper
@@ -93,103 +336,4 @@
       .type:hover
         background: #000
         color: #fff
-    
 
-
-
-
-
-  .relation, .changeRelation, .context
-    .icon
-      margin: -16px
-      float: right
-      position: relative
-
-
-  .label, .image, .detail
-    float: left
-
-  .find
-    margin-bottom: 2px
-    text-align: center
-
-
-  .item
-    clear: both
-    margin-bottom: 2px
-    .label
-      width: 84px
-      height: 24px
-      line-height: 24px
-      font-size: 18px
-      padding: 6px 8px
-      text-align: center
-
-    .image
-      width: 34px
-      height: 24px
-      padding: 7px 5px
-      margin: 0
-      img.dream
-        margin: -8px 0
-      img.starlight
-        margin: -18px -16px
-        z-index: 1004
-      img.follow
-        margin: -12px 1px
-
-    .detail
-      width: 36px
-      height: 26px
-      padding: 6px 8px
-      line-height: 26px
-      font-weight: bold
-      border: 0
-      text-align: center
-
-    .relation, .changeRelation
-      padding: 6px
-      height: 16px
-      font-weight: bold
-      text-align: center
-      margin: 0
-      .icon
-        right: 22px
-        top: -23px      
-
-
-
-    .changeRelation.follow, .changeRelation.unfollow
-      color: #fff
-
-    .changeRelation.follow
-      border: 1px solid #54943d
-      background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
-      background: -moz-linear-gradient(top, #70d03b, #235b1b)
-      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-    .changeRelation.unfollow
-      border: 1px solid #c1633c
-      background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
-      background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
-      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-
-
-    
-
-
-
-
-.light
-  #contextPanel
-    .item
-      .label
-        border: 1px solid #848484
-.dark
-  #contextPanel
-    .item
-      .label
-        border: 1px solid #555

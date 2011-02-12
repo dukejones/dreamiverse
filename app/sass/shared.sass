@@ -1,151 +1,271 @@
+.light
+  color: #333
+
+
 // MIXINS
 
+// NON SELECTABLE CONTENTS
 =user-select
   user-select: none
   -webkit-user-select: none
   -moz-user-select: none
 
-=shine(!px)
-  box-shadow: inset 0 !px rgba(255,255,255,0.5)
-  -moz-box-shadow: inset 0 !px rgba(255,255,255,0.5)
-  -webkit-box-shadow: inset 0 !px rgba(255,255,255,0.5)
+// DISPLAY: BLOCK
+=block
+  display: block
+
+// FONTS
+=bold
+  font-weight: bold
+=align-center
+  text-align: center
+=font($px)
+  font-size: $px + px
+
+// CURSORS
+=pointer
+  cursor: pointer
+=cursor
+  cursor: default
+
+// ROUND CORNERS
+=round($radius)
+  border-radius: $radius + px
+  -moz-border-radius: $radius + px
+  -webkit-border-radius: $radius + px
+// ROUND OVERRIDES
+=round-bottom($px)
+  border-radius-bottomleft: $px + px
+  -moz-border-radius-bottomleft: $px + px
+  -webkit-border-radius-bottomleft: $px + px
+  border-radius-bottomright: $px + px
+  -moz-border-radius-bottomright: $px + px
+  -webkit-border-radius-bottomright: $px + px
+=round-top($px)
+  border-radius-topleft: $px + px
+  -moz-border-radius-topleft: $px + px
+  -webkit-border-radius-topleft: $px + px
+  border-radius-topright: $px + px
+  -moz-border-radius-topright: $px + px
+  -webkit-border-radius-topright: $px + px
+=round-bottomRight($px)
+  border-radius-bottomright: $px + px
+  -moz-border-radius-bottomright: $px + px
+  -webkit-border-radius-bottomright: $px + px
+=round-bottomLeft($px)
+  border-radius-bottomleft: $px + px
+  -moz-border-radius-bottomleft: $px + px
+  -webkit-border-radius-bottomleft: $px + px
+=round-topRight($px)
+  border-radius-topright: $px + px
+  -moz-border-radius-topright: $px + px
+  -webkit-border-radius-topright: $px + px
+=round-topLeft($px)
+  border-radius-topleft: $px + px
+  -moz-border-radius-topleft: $px + px
+  -webkit-border-radius-topleft: $px + px
+=round-left($px)
+  border-radius-topleft: $px + px
+  -moz-border-radius-topleft: $px + px
+  -webkit-border-radius-topleft: $px + px
+  border-radius-bottomleft: $px + px
+  -moz-border-radius-bottomleft: $px + px
+  -webkit-border-radius-bottomleft: $px + px
+=round-right($px)
+  border-radius-topright: $px + px
+  -moz-border-radius-topright: $px + px
+  -webkit-border-radius-topright: $px + px
+  border-radius-bottomright: $px + px
+  -moz-border-radius-bottomright: $px + px
+  -webkit-border-radius-bottomright: $px + px
+=round-all($px)
+  border-radius-topright: $px + px
+  -moz-border-radius-topright: $px + px
+  -webkit-border-radius-topright: $px + px
+  border-radius-bottomright: $px + px
+  -moz-border-radius-bottomright: $px + px
+  -webkit-border-radius-bottomright: $px + px
+  border-radius-topleft: $px + px
+  -moz-border-radius-topleft: $px + px
+  -webkit-border-radius-topleft: $px + px
+  border-radius-bottomleft: $px + px
+  -moz-border-radius-bottomleft: $px + px
+  -webkit-border-radius-bottomleft: $px + px
+
+// FLAT SIDES
+=flat-top
+  border-radius-topleft: 0px
+  -moz-border-radius-topleft: 0px
+  -webkit-border-radius-topleft: 0px
+  border-radius-topright: 0px
+  -moz-border-radius-topright: 0px
+  -webkit-border-radius-topright: 0px
+=flat-right
+  border-radius-topright: 0px
+  -moz-border-radius-topright: 0px
+  -webkit-border-radius-topright: 0px
+  border-radius-bottomright: 0px
+  -moz-border-radius-bottomright: 0px
+  -webkit-border-radius-bottomright: 0px
+=flat-bottom
+  border-radius-bottomleft: 0px
+  -moz-border-radius-bottomleft: 0px
+  -webkit-border-radius-bottomleft: 0px
+  border-radius-bottomright: 0px
+  -moz-border-radius-bottomright: 0px
+  -webkit-border-radius-bottomright: 0px
+=flat-left
+  border-radius-topleft: 0px
+  -moz-border-radius-topleft: 0px
+  -webkit-border-radius-topleft: 0px
+  border-radius-bottomleft: 0px
+  -moz-border-radius-bottomleft: 0px
+  -webkit-border-radius-bottomleft: 0px
+
+=flat-all
+  border-radius-topright: 0px
+  -moz-border-radius-topright: 0px
+  -webkit-border-radius-topright: 0px
+  border-radius-bottomright: 0px
+  -moz-border-radius-bottomright: 0px
+  -webkit-border-radius-bottomright: 0px
+  border-radius-topleft: 0px
+  -moz-border-radius-topleft: 0px
+  -webkit-border-radius-topleft: 0px
+  border-radius-bottomleft: 0px
+  -moz-border-radius-bottomleft: 0px
+  -webkit-border-radius-bottomleft: 0px
+=flat-topLeft
+  border-radius-topleft: 0px
+  -moz-border-radius-topleft: 0px
+  -webkit-border-radius-topleft: 0px
+=flat-topRight
+  border-radius-topright: 0px
+  -moz-border-radius-topright: 0px
+  -webkit-border-radius-topright: 0px
+=flat-bottomLeft
+  border-radius-bottomleft: 0px
+  -moz-border-radius-bottomleft: 0px
+  -webkit-border-radius-bottomleft: 0px
+=flat-bottomRight
+  border-radius-bottomright: 0px
+  -moz-border-radius-bottomright: 0px
+  -webkit-border-radius-bottomright: 0px
+
+// PADDING
+=padding($v, $h)
+  padding: $v + px $h + px
+
+// MARGIN
+=margin($v, $h)
+  margin: $v + px $h + px
 
 
 
-/******** LIGHT ********/
 
-// .light
-//   &.shine
-  
-.light
-  color: #333
 
-  .button
-    border: 1px solid #bbb
-  .border
-    border: 1px solid #777
-  .button:hover
+//  ***  *****  ***
+//  ***  LIGHT  ***
+//  ***  *****  ***
+
+=button-light
+  border: 1px solid #bbb
+  &:hover
     border: 1px solid #464646
 
-  .infoTab
-    background-color: #e7e7e7
-    border: 1px solid #ccc
+=border-light
+  border: 1px solid #777
 
-  .shine
-    background: #f0f0f0
-    background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bababa))
-    background: -moz-linear-gradient(top, #f0f0f0, #bababa)
+=infoTab-light
+  background-color: #e7e7e7
+  border: 1px solid #ccc
 
-  .shine-alpha
-    box-shadow: inset 0 28px rgba(255,255,255,0.3)
-    -moz-box-shadow: inset 0 28px rgba(255,255,255,0.3)
-    -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.3)
-    background: #f0f0f0
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(215,215,215,0.75)))
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.75))
+=shine-light($px)
+  box-shadow: inset 0 $px + px rgba(255,255,255,0.5)
+  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.5)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.5)
+  background: #f0f0f0
+  background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bababa))
+  background: -moz-linear-gradient(top, #f0f0f0, #bababa)
 
-  .shine-small-alpha
-    box-shadow: inset 0 18px rgba(255,255,255,0.3)
-    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.3)
-    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.3)
-    background: #f0f0f0
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.5)), to(rgba(215,215,215,0.5)))
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.5))
+=shine-light-alpha($px)
+  box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+  background: #f0f0f0
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(215,215,215,0.75)))
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.75))
 
-  .bevel
-    background: #fff
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
-    background: -moz-linear-gradient(top, #fff, #adadad)
+=bevel-light
+  background: #fff
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
+  background: -moz-linear-gradient(top, #fff, #adadad)
 
-  .indent
-    border: 1px solid #fff
-    background: #e6e6e6
-    background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
-    background: -moz-linear-gradient(top, #e6e6e6, #fff)
+=indent-light
+  border: 1px solid #fff
+  background: #e6e6e6
+  background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
+  background: -moz-linear-gradient(top, #e6e6e6, #fff)
 
-  .panel
-    border: 1px solid #bbb
-    background: #ececec
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
-    background: -moz-linear-gradient(top, #fff, #e6e6e6)
+=panel-light
+  border: 1px solid #bbb
+  background: #ececec
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
+  background: -moz-linear-gradient(top, #fff, #e6e6e6)
 
-  .inner-shadow-10
-    background: #ebeaea
-    box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
-    -moz-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
-    -webkit-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+=inner-shadow-light($px)
+  background: #ebeaea
+  box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
+  -moz-box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
+  -webkit-box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
 
-  .input
-    color: #000
-    border: 1px solid #666
-    background: #fff
-    margin: 0
-    outline: none
-    box-shadow: inset 2px 5px 10px #ccc
-    -moz-box-shadow: inset 0px 2px 5px #ccc
-    -webkit-box-shadow: inset 2px 5px 10px #ccc
-  .input:focus, .inputTextarea:focus
+=input-light
+  color: #000
+  border: 1px solid #666
+  background: #fff
+  margin: 0
+  outline: none
+  box-shadow: inset 2px 5px 10px #ccc
+  -moz-box-shadow: inset 0px 2px 5px #ccc
+  -webkit-box-shadow: inset 2px 5px 10px #ccc
+  &:focus
     border: 1px solid #000
     background: #fff
     box-shadow: 0px 0px 20px #000
     -moz-box-shadow: 0px 0px 20px #000
     -webkit-box-shadow: 0px 0px 20px #000
 
-  .inputTextarea // need dark class too
-    color: #000
-    border: 1px solid #666
+=inputTextarea-light // need dark class too
+  color: #000
+  border: 1px solid #666
+  background: #fff
+  margin: 0
+  outline: none
+  box-shadow: inset 0px 10px 20px #bbb
+  -moz-box-shadow: inset 0px 10px 20px #bbb
+  -webkit-box-shadow: inset 0px 10px 20px #bbb
+  &:focus
+    border: 1px solid #000
     background: #fff
-    margin: 0
-    outline: none
-    box-shadow: inset 0px 10px 20px #bbb
-    -moz-box-shadow: inset 0px 10px 20px #bbb
-    -webkit-box-shadow: inset 0px 10px 20px #bbb
+    box-shadow: 0px 0px 20px #000
+    -moz-box-shadow: 0px 0px 20px #000
+    -webkit-box-shadow: 0px 0px 20px #000
 
-  .spinner-small
-    background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
+=spinner-small-light
+  background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
 
+// BACKGROUNDS
+=flat-light
+  background: #fff
 
-  /* BACKGROUNDS */
-  .flat
-    background: #fff
-  .transparent-80
-    background: rgba(255,255,255,0.8)
-  .transparent-70
-    background: rgba(255,255,255,0.7)
-  .transparent-60
-    background: rgba(255,255,255,0.6)
-  .transparent-50
-    background: rgba(255,255,255,0.5)
-  .transparent-40
-    background: rgba(255,255,255,0.4)
-  .transparent-30
-    background: rgba(255,255,255,0.3)
-  .transparent-20
-    background: rgba(255,255,255,0.2)
-  .transparent-10
-    background: rgba(255,255,255,0.1)
+=transparent($rgb, $percent)
+  background: rgba($rgb,$rgb,$rgb, $percent / 100 )
 
+=glow-light($offset, $depth)
+  box-shadow: $offset + px $offset + px $depth + px #000
+  -moz-box-shadow: $offset + px $offset + px $depth + px #000
+  -webkit-box-shadow: $offset + px $offset + px $depth + px #000
 
-  .glow-10
-    box-shadow: 0 0 10px #000
-    -moz-box-shadow: 0 0 10px #000
-    -webkit-box-shadow: 0 0 10px #000
-  .glow-20
-    box-shadow: 8px 8px 20px #000
-    -moz-box-shadow: 8px 5px 20px #000
-    -webkit-box-shadow: 2px 2px 20px #000
-  .glow-40
-    box-shadow: 8px 8px 40px #000
-    -moz-box-shadow: 0 0 40px #000
-    -webkit-box-shadow: 2px 2px 40px #000
-  .glow-80
-    box-shadow: 8px 8px 80px #000
-    -moz-box-shadow: 10px 10px 80px #000
-    -webkit-box-shadow: 8px 8px 80px #000
-  .glow-160
-    box-shadow: 8px 8px 160px #000
-    -moz-box-shadow: 10px 10px 160px #000
-    -webkit-box-shadow: 8px 8px 160px #000
 
 
 
@@ -153,114 +273,112 @@
 .dark
   color: #fff
 
-  .button
-    border: 1px solid #555
-  .border
-    border: 1px solid #555
-  .button:hover
-    border: 1px solid #fff
+
+//  ***  ****  ***
+//  ***  DARK  ***
+//  ***  ****  ***
+
+=button-dark
+  border: 1px solid #555
+  &:hover
+    border: 1px solid #464646
     box-shadow: inset 0 0 20px #fff
     -moz-box-shadow: inset 0 0 20px #fff
     -webkit-box-shadow: inset 0 0 20px #fff
 
-  .infoTab
-    background-color: #a1a1a1
-    border: 1px solid #ccc
+=border-dark
+  border: 1px solid #555
 
-  .shine
-    box-shadow: inset 0 18px rgba(255,255,255,0.2)
-    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-    background: #aaa
-    background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-    background: -moz-linear-gradient(top, #aaa, #222)
+=infoTab-dark
+  background-color: #a1a1a1
+  border: 1px solid #ccc
 
-  .shine-alpha
-    box-shadow: inset 0 28px rgba(255,255,255,0.1)
-    -moz-box-shadow: inset 0 28px rgba(255,255,255,0.1)
-    -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.1)
-    background: #f0f0f0
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(120,120,120,0.75)), to(rgba(34,34,34,0.75)))
-    background: -moz-linear-gradient(top, rgba(120,120,120,0.75), rgba(34,34,34,0.75))
+=shine-dark($px)
+  box-shadow: inset 0 18px rgba(255,255,255,0.2)
+  -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+  -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+  background: -moz-linear-gradient(top, #aaa, #222)
 
-  .bevel
-    background: #aaa
-    background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-    background: -moz-linear-gradient(top, #aaa, #222)
+=shine-dark-alpha($px)
+  box-shadow: inset 0 28px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0 28px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.1)
+  background: #f0f0f0
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(120,120,120,0.75)), to(rgba(34,34,34,0.75)))
+  background: -moz-linear-gradient(top, rgba(120,120,120,0.75), rgba(34,34,34,0.75))
 
-  .indent
-    background: #222
-    background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
-    background: -moz-linear-gradient(top, #222, #aaa)
+=bevel-dark
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+  background: -moz-linear-gradient(top, #aaa, #222)
 
-  .panel
-    border: 1px solid #222
-    background: #aaa
-    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111))
-    background: -moz-linear-gradient(top, #444, #111)
+=indent-dark
+  border: 1px solid #000
+  background: #222
+  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
+  background: -moz-linear-gradient(top, #222, #aaa)
 
-  .inner-shadow-10
-    background: #444444
-    box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
-    -moz-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
-    -webkit-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
+=panel-dark
+  border: 1px solid #222
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111))
+  background: -moz-linear-gradient(top, #444, #111)
 
-  .input
-    color: #fff
-    border: 1px solid #666
-    background: #000
-    box-shadow: inset 0 0 10px #666666
-    -moz-box-shadow: inset 0 0 10px #666666
-    -webkit-box-shadow:inset 0 0 10px #666666
-  .input:focus
+=inner-shadow-dark($px)
+  background: #444444
+  box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
+  -moz-box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
+  -webkit-box-shadow: inset 0 6px $px + px rgba(0,0,0,0.6)
+
+
+
+=input-dark
+  color: #000
+  border: 1px solid #666
+  background: #fff
+  margin: 0
+  outline: none
+  box-shadow: inset 2px 5px 10px #ccc
+  -moz-box-shadow: inset 0px 2px 5px #ccc
+  -webkit-box-shadow: inset 2px 5px 10px #ccc
+  &:focus
     border: 1px solid #fff
     background: #000
     box-shadow: 0px 0px 20px #fff
     -moz-box-shadow: 0px 0px 20px #fff
     -webkit-box-shadow: 0px 0px 20px #fff
 
-  .spinner-small
-    background: url('/images/icons/spinner-dark-32.gif') no-repeat top left transparent
+=inputTextarea-dark
+  color: #000
+  border: 1px solid #666
+  background: #fff
+  margin: 0
+  outline: none
+  box-shadow: inset 0px 10px 20px #bbb
+  -moz-box-shadow: inset 0px 10px 20px #bbb
+  -webkit-box-shadow: inset 0px 10px 20px #bbb
+  &:focus
+    border: 1px solid #000
+    background: #fff
+    box-shadow: 0px 0px 20px #000
+    -moz-box-shadow: 0px 0px 20px #000
+    -webkit-box-shadow: 0px 0px 20px #000
 
-  .flat
-    background: #000
-  .transparent-80
-    background: rgba(0,0,0,0.8)
-  .transparent-70
-    background: rgba(0,0,0,0.7)
-  .transparent-60
-    background: rgba(0,0,0,0.6)
-  .transparent-50
-    background: rgba(0,0,0,0.5)
-  .transparent-40
-    background: rgba(0,0,0,0.4)
-  .transparent-30
-    background: rgba(0,0,0,0.3)
-  .transparent-20
-    background: rgba(0,0,0,0.2)
-  .transparent-10
-    background: rgba(0,0,0,0.1)
+=spinner-small-dark
+  background: url('/images/icons/spinner-dark-32.gif') no-repeat top left transparent
 
-  .glow-10
-    box-shadow: 0 0 10px #fff
-    -moz-box-shadow: 0 0 10px #fff
-    -webkit-box-shadow: 0 0 10px #fff
-  .glow-20
-    box-shadow: 0 0 20px #fff
-    -moz-box-shadow: 0 0 20px #fff
-    -webkit-box-shadow: 0 0 20px #fff
-  .glow-40
-    box-shadow: 0 0 40px #fff
-    -moz-box-shadow: 0 0 40px #fff
-    -webkit-box-shadow: 0 0 40px #fff
-  .glow-80
-    box-shadow: 0 0 80px #fff
-    -moz-box-shadow: 0 0 80px #fff
-    -webkit-box-shadow: 0 0 80px #fff
-  .glow-160
-    box-shadow: 0 0 160px #fff
-    -moz-box-shadow: 0 0 160px #fff
-    -webkit-box-shadow: 0 0 160px #fff
+// BACKGROUNDS
+=flat-dark
+  background: #fff
+
+=glow-dark($offset, $depth)
+  box-shadow: $offset + px $offset + px $depth + px #fff
+  -moz-box-shadow: $offset + px $offset + px $depth + px #fff
+  -webkit-box-shadow: $offset + px $offset + px $depth + px #fff
+
+
 
 
 
@@ -268,7 +386,7 @@
 /******** LIGHT AND DARK ********/
 .light, .dark
   .button
-    cursor: pointer
+    +pointer
     text-decoration: none
     outline: none
   .spinner-small
@@ -349,23 +467,23 @@
 /* COLOR BUTTONS */
 .button-big-blue
   border: 2px solid #999
-  cursor: pointer
+  +pointer
 .button-big-blue:hover, .selected.button-big-blue
   border: 2px solid #0099ff
   box-shadow: 0px 0px 40px #0099ff inset
   -moz-box-shadow: 0px 0px 40px #0099ff inset
   -webkit-box-shadow: 0px 0px 40px #0099ff inset
 .button-big-green
+  +pointer
   border: 2px solid #999
-  cursor: pointer
 .button-big-green:hover, .selected.button-big-green
   border: 2px solid #7BBD0D
   box-shadow: 0px 0px 40px #7BBD0D inset
   -moz-box-shadow: 0px 0px 40px #7BBD0D inset
   -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
 .button-big-gray
+  +pointer
   border: 2px solid #999
-  cursor: pointer
 .button-big-gray:hover, .selected.button-big-gray
   border: 2px solid #CCC
   box-shadow: 0px 0px 40px #CCC inset
@@ -403,29 +521,6 @@
   -khtml-opacity: $percent / 100
   -webkit-opacity: $percent / 100
   opacity: $percent / 100
-
-.alpha-100
-  +alpha(100)
-.alpha-90
-  +alpha(90)
-.alpha-80
-  +alpha(80)
-.alpha-70
-  +alpha(70)
-.alpha-60
-  +alpha(60)
-.alpha-50
-  +alpha(50)
-.alpha-40
-  +alpha(40)
-.alpha-30
-  +alpha(30)
-.alpha-20
-  +alpha(20)
-.alpha-10
-  +alpha(10)
-
-
 
 
 
@@ -470,8 +565,9 @@ a:active, a:focus
   .leftPanel
     background-color: #fff
     .item
-      font-weight: bold
-      display: block
+      +pointer
+      +block
+      +bold
       float: left
       background: #fff
       margin: 0 2px
@@ -483,7 +579,6 @@ a:active, a:focus
       border: #ccc 1px solid
       display: inline-block
       text-decoration: none
-      cursor: pointer
       border-radius: 8px
       -moz-border-radius: 8px
       -webkit-border-radius: 8px
@@ -496,11 +591,11 @@ a:active, a:focus
       border: #000 1px solid
       background: #000
     .input
+      +block
       width: 142px
       background: url('/images/icons/search-18.png') no-repeat 134px center
       margin: 0 2px
       font-size: 12px
-      display: block
       height: 18px
       line-height: 18px
 
@@ -1276,3 +1371,184 @@ a:active, a:focus
       font-size: 21px
       width: 100%
       padding: 8px
+
+
+
+
+
+
+
+
+
+
+
+
+// BASIC CSS
+
+/* CONTENT BOXES */
+.text_input-big
+  background: #fff
+  color: #000
+  font-size: 21px
+  border: 1px solid #666
+  margin: 0
+  padding: 5px
+  box-shadow: inset 2px 5px 15px #bbb
+  -moz-box-shadow: inset 2px 5px 15px #bbb
+  -webkit-box-shadow: inset 2px 5px 15px #bbb
+  border-radius: 12px
+  -moz-border-radius: 12px
+  -webkit-border-radius: 12px
+  outline: none
+.text_input-big:focus, .search-bar:focus
+  border: 1px solid #000
+  box-shadow: 0px 0px 10px #06F
+  -moz-box-shadow: 0px 0px 10px #06F
+  -webkit-box-shadow: 0px 0px 10px #06F
+
+
+/* ********* UNIVERSALS ********* */
+/* DREAM INPUTS */
+body
+  font-family: Calibri, Arial, Helvetica, sans-serif
+
+/* TAG CLOUDS */
+.TC, .TC A, .sub_tags A
+  text-decoration: none
+  padding: 2px 5px
+  -moz-border-radius: 8px
+  -webkit-border-radius: 8px
+  -khtml-border-radius: 8px
+  border-radius: 8px
+  float: left
+#headerTagCloud1 .TC
+  float: right
+#headerTagCloud2 .TC
+  float: left
+.thumb_TC
+  padding: 5px
+.TC A:hover, .TC A:focus, .sub_tags A:hover, .sub_tags A:focus
+  border: 1px #fff solid
+  padding: 1px 9px
+  color: #fff
+  background: #000
+
+.s-0
+  font-size: 20px
+.s-1
+  font-size: 14px
+.s-2
+  font-size: 15px
+.s-3
+  font-size: 16px
+.s-4
+  font-size: 17px
+.s-5
+  font-size: 18px
+.s-6
+  font-size: 19px
+.s-7
+  font-size: 20px
+.s-8
+  font-size: 21px
+
+#dreamHeader .s-0
+  font-size: 30px
+#dreamHeader .s-1
+  font-size: 16px
+#dreamHeader .s-2
+  font-size: 17px
+#dreamHeader .s-3
+  font-size: 18px
+#dreamHeader .s-4
+  font-size: 20px
+#dreamHeader .s-5
+  font-size: 22px
+#dreamHeader .s-6
+  font-size: 26px
+#dreamHeader .s-7
+  font-size: 30px
+#dreamHeader .s-8
+  font-size: 31px
+
+
+.water.s-0
+  color: #fff 
+.water.s-1
+  color: #0049a2
+.water.s-2
+  color: #1265c2
+.water.s-3
+  color: #3086cf
+.water.s-4
+  color: #3ea7eb
+.water.s-5
+  color: #3ea7eb
+.water.s-6
+  color: #55ccff
+.water.s-7
+  color: #55ccff
+.water.s-8
+  color: #88e3f7
+.water.s-9
+  color: #88e3f7
+
+
+
+/* sans serif */
+.font-arial
+  font-family: Arial, Arial, Helvetica, sans-serif
+.font-calibri
+  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
+.font-verdana
+  font-family: Verdana, Verdana, Geneva, sans-serif
+.font-monospace
+  font-family: Lucida Console, Monaco, monospace
+.font-comic
+  font-family: Comic Sans MS, Comic Sans MS
+
+/* serif */
+.font-georgia
+  font-family: Georgia, Georgia, serif
+.font-garamond
+  font-family: Garamond, serif
+.font-book
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
+.font-times
+  font-family: "Times New Roman", Times, serif
+
+
+/* VARIOUS */
+.hidden
+  display: none
+
+/* ALLOWS FOR PROPPER SELECT DROPDOWN SHADOW AND ROUNDED CORNERS */
+SELECT.search-bar
+  border-style: solid
+  -moz-border-radius: 8px
+
+
+/* IMAGE LIGHTBOX */
+.imagePopup
+  position: fixed
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+  background: url(/basic/inc/images/colors/black-50.png) repeat
+  text-align: center
+  z-index: 30000
+  cursor: pointer
+
+
+
+
+
+
+
+
+
+
+
+
+@import context_panel
