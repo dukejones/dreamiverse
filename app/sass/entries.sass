@@ -26,28 +26,32 @@
         .detailsTop, .detailsBottom, .title
           +block
           z-index: 84
+
     /* */
     .thumb-2d
       +round(16)
       +pointer
-      +float-left
+      +left
       +relative
       +overflow
       margin: 0 10px 10px 0
       border: 0
       z-index: 80
+
       .link
         +block
         +absolute
         width: 200px
         height: 300px
         z-index: 10000
+
       .fadedBack
         +round(16)
         width: 200px
         height: 300px
+
       .watermark
-        +font-georgia
+        +georgia
         +alpha(10)
         +absolute
         +align-center
@@ -57,6 +61,7 @@
         height: 128px
         line-height: 30px
         top: 38px
+
       .detailsTop, .detailsBottom, .title
         +absolute
         display: none
@@ -64,12 +69,19 @@
         width: 200px
         z-index: 100
         .date
+          +round(12)
+          +left
           +overflow
           max-width: 60px
           white-space: nowrap
+        .location
+          +round(12)
+          +right
+
       .detailsBottom
         bottom: 0
         width: 100%
+
       .date, .location, .comments, .sharing
         +align-center
         +font(11)
@@ -77,16 +89,20 @@
         margin: 4px
         padding: 4px 8px
         background: rgba(0,0,0,0.50)
+
       .comments img
         margin: 0 2px -5px 0
+
       .sharing img
         margin: -1px 0 -4px 2px
+
       .title
         +align-center
         +font(21)
         width: 97%
-        top: 130px
+        top: 90px
         line-height: 21px
+
       .tags
         +absolute
         z-index: 20
