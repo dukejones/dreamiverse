@@ -1,45 +1,15 @@
+= coffeescript_include_tag 'metamenu', 'dreamplugs'
 / HEADER
 #report_box
-  theta v.1.0 (a)
+  / = VERSION
+
 #logo
   %a{href: '/'}
     %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
 
-#metaMenu
-  / INTRO MENU
-  .left-panel.padding-8.round-16.flat-top
-    %a.item{href: '/stream'}
-      stream
-    %a.item{href: '/dreams'}
-      my dreams
-    %a.item{href: '/dreamstars'}
-      dreamstars
-
-  / LOG OUT
-  %a#logOut.padding-4-8.round-24.A-button.A-outline.float-right{href: '/logout'}
-    log out
-
-  / SETTINGS MENU
-  .right-panel.padding-8.round-16.flat-top
-    %a.item.user.selected{href: '/', style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
-      %span.round-16.flat-left
-        = current_user.username
-    %a.item.account
-      %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
-    %a.item.appearance
-      %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
-
-
-  / ADMIN LINK
-  %a#adminLink.round-24.A-button.A-outline.float-right{href: '/admin'}
-    %img{src: '/images/icons/key-16.png', border: '0'}
-
-
-
-  / APPEARANCE PANEL
-  = render :partial => "layouts/settings_panel"
-
-  / APPEARANCE PANEL
-  = render :partial => "layouts/appearance_panel"
-
-/= current_user.username
+- if current_user.blank?
+  / META MENU - PUBLIC
+  = render :partial => "layouts/meta_menu_public"
+- else
+  / META MENU - USER
+  = render :partial => "layouts/meta_menu_user"

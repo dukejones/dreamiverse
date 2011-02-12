@@ -1,23 +1,37 @@
+// MIXINS
+
+=user-select
+  user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+
+=shine(!px)
+  box-shadow: inset 0 !px rgba(255,255,255,0.5)
+  -moz-box-shadow: inset 0 !px rgba(255,255,255,0.5)
+  -webkit-box-shadow: inset 0 !px rgba(255,255,255,0.5)
+
 
 
 /******** LIGHT ********/
+
+// .light
+//   &.shine
+  
 .light
   color: #333
 
   .button
-    border: 1px solid #848484
+    border: 1px solid #bbb
+  .border
+    border: 1px solid #777
   .button:hover
     border: 1px solid #464646
 
-
-
-
-
+  .infoTab
+    background-color: #e7e7e7
+    border: 1px solid #ccc
 
   .shine
-    box-shadow: inset 0 18px rgba(255,255,255,0.5)
-    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
-    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
     background: #f0f0f0
     background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bababa))
     background: -moz-linear-gradient(top, #f0f0f0, #bababa)
@@ -29,6 +43,14 @@
     background: #f0f0f0
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(215,215,215,0.75)))
     background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.75))
+
+  .shine-small-alpha
+    box-shadow: inset 0 18px rgba(255,255,255,0.3)
+    -moz-box-shadow: inset 0 18px rgba(255,255,255,0.3)
+    -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.3)
+    background: #f0f0f0
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.5)), to(rgba(215,215,215,0.5)))
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.5))
 
   .bevel
     background: #fff
@@ -42,6 +64,7 @@
     background: -moz-linear-gradient(top, #e6e6e6, #fff)
 
   .panel
+    border: 1px solid #bbb
     background: #ececec
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
     background: -moz-linear-gradient(top, #fff, #e6e6e6)
@@ -61,13 +84,22 @@
     box-shadow: inset 2px 5px 10px #ccc
     -moz-box-shadow: inset 0px 2px 5px #ccc
     -webkit-box-shadow: inset 2px 5px 10px #ccc
-  .input:focus
+  .input:focus, .inputTextarea:focus
     border: 1px solid #000
     background: #fff
     box-shadow: 0px 0px 20px #000
     -moz-box-shadow: 0px 0px 20px #000
     -webkit-box-shadow: 0px 0px 20px #000
 
+  .inputTextarea // need dark class too
+    color: #000
+    border: 1px solid #666
+    background: #fff
+    margin: 0
+    outline: none
+    box-shadow: inset 0px 10px 20px #bbb
+    -moz-box-shadow: inset 0px 10px 20px #bbb
+    -webkit-box-shadow: inset 0px 10px 20px #bbb
 
   .spinner-small
     background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
@@ -78,17 +110,26 @@
     background: #fff
   .transparent-80
     background: rgba(255,255,255,0.8)
-  .transparent-66
-    background: rgba(255,255,255,0.66)
+  .transparent-70
+    background: rgba(255,255,255,0.7)
+  .transparent-60
+    background: rgba(255,255,255,0.6)
   .transparent-50
-    background: rgba(255,255,255,0.50)
-  .transparent-33
-    background: rgba(255,255,255,0.33)
-  .transparent-25
-    background: rgba(255,255,255,0.25)
-  .transparent-15
-    background: rgba(255,255,255,0.15)
+    background: rgba(255,255,255,0.5)
+  .transparent-40
+    background: rgba(255,255,255,0.4)
+  .transparent-30
+    background: rgba(255,255,255,0.3)
+  .transparent-20
+    background: rgba(255,255,255,0.2)
+  .transparent-10
+    background: rgba(255,255,255,0.1)
 
+
+  .glow-10
+    box-shadow: 0 0 10px #000
+    -moz-box-shadow: 0 0 10px #000
+    -webkit-box-shadow: 0 0 10px #000
   .glow-20
     box-shadow: 8px 8px 20px #000
     -moz-box-shadow: 8px 5px 20px #000
@@ -114,14 +155,17 @@
 
   .button
     border: 1px solid #555
+  .border
+    border: 1px solid #555
   .button:hover
     border: 1px solid #fff
     box-shadow: inset 0 0 20px #fff
     -moz-box-shadow: inset 0 0 20px #fff
     -webkit-box-shadow: inset 0 0 20px #fff
 
-
-
+  .infoTab
+    background-color: #a1a1a1
+    border: 1px solid #ccc
 
   .shine
     box-shadow: inset 0 18px rgba(255,255,255,0.2)
@@ -150,9 +194,10 @@
     background: -moz-linear-gradient(top, #222, #aaa)
 
   .panel
+    border: 1px solid #222
     background: #aaa
-    background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-    background: -moz-linear-gradient(top, #aaa, #222)
+    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111))
+    background: -moz-linear-gradient(top, #444, #111)
 
   .inner-shadow-10
     background: #444444
@@ -161,6 +206,7 @@
     -webkit-box-shadow: inset 0 6px 10px rgba(0,0,0,0.6)
 
   .input
+    color: #fff
     border: 1px solid #666
     background: #000
     box-shadow: inset 0 0 10px #666666
@@ -176,22 +222,29 @@
   .spinner-small
     background: url('/images/icons/spinner-dark-32.gif') no-repeat top left transparent
 
-
   .flat
     background: #000
   .transparent-80
     background: rgba(0,0,0,0.8)
-  .transparent-66
-    background: rgba(0,0,0,0.66)
+  .transparent-70
+    background: rgba(0,0,0,0.7)
+  .transparent-60
+    background: rgba(0,0,0,0.6)
   .transparent-50
-    background: rgba(0,0,0,0.50)
-  .transparent-33
-    background: rgba(0,0,0,0.33)
-  .transparent-25
-    background: rgba(0,0,0,0.25)
-  .transparent-15
-    background: rgba(0,0,0,0.15)
+    background: rgba(0,0,0,0.5)
+  .transparent-40
+    background: rgba(0,0,0,0.4)
+  .transparent-30
+    background: rgba(0,0,0,0.3)
+  .transparent-20
+    background: rgba(0,0,0,0.2)
+  .transparent-10
+    background: rgba(0,0,0,0.1)
 
+  .glow-10
+    box-shadow: 0 0 10px #fff
+    -moz-box-shadow: 0 0 10px #fff
+    -webkit-box-shadow: 0 0 10px #fff
   .glow-20
     box-shadow: 0 0 20px #fff
     -moz-box-shadow: 0 0 20px #fff
@@ -216,6 +269,11 @@
 .light, .dark
   .button
     cursor: pointer
+    text-decoration: none
+    outline: none
+  .spinner-small
+    width: 32px
+    height: 32px
 
 .static-glow-inner-40
   box-shadow: inset 0px 0px 40px #fff
@@ -238,6 +296,18 @@
 
 
 /* BUTTONS */
+.button.confirm:hover
+  color: #fff
+  border: 1px solid #4794b5
+  background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b))
+  background: -moz-linear-gradient(top, #3ba4d1, #1b485b)
+  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.confirm:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.save:hover
   color: #fff
   border: 1px solid #54943d
@@ -246,6 +316,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.save:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.cancel:hover
   color: #fff
   border: 1px solid #848484
@@ -254,6 +328,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.cancel:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.delete:hover
   color: #fff
   border: 1px solid #c1633c
@@ -262,6 +340,10 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
+.button.small.delete:hover
+  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 
 
 /* COLOR BUTTONS */
@@ -366,6 +448,7 @@ a:active, a:focus
 
 
 
+
 /*********** META MENU ***********/
 #drop_shadow
   background: url(/images/gradients/top_shadow-100px.png) repeat-x top
@@ -376,13 +459,178 @@ a:active, a:focus
   height: 120px
   z-index: -10
 
-#metaMenu
+
+// HOME META MENU
+#metaMenu.public
   position: absolute
   top: 0
   width: 100%
   z-index: 1111
 
-  .left-panel, .right-panel
+  .leftPanel
+    background-color: #fff
+    .item
+      font-weight: bold
+      display: block
+      float: left
+      background: #fff
+      margin: 0 2px
+      padding: 0 8px
+      font-size: 15px
+      height: 26px
+      line-height: 26px
+      color: #000
+      border: #ccc 1px solid
+      display: inline-block
+      text-decoration: none
+      cursor: pointer
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+    .item:hover
+      border: #000 1px solid
+      background: #000
+      color: #fff
+    .item.selected
+      color: #fff
+      border: #000 1px solid
+      background: #000
+    .input
+      width: 142px
+      background: url('/images/icons/search-18.png') no-repeat 134px center
+      margin: 0 2px
+      font-size: 12px
+      display: block
+      height: 18px
+      line-height: 18px
+
+
+
+  .leftPanel
+    position: absolute
+    top: 0
+    left: 248px
+  .rightPanel
+    float: right
+    margin-right: 10px
+    padding: 8px
+    .loginItem, .login
+      float: left
+      width: 16px
+      height: 28px
+      line-height: 28px
+      padding: 0 8px
+      margin: 0 8px 8px 0
+      text-align: center
+      display: block
+      img
+        margin: 6px 0 0
+    .login
+      width: auto
+      padding: 0 12px
+    .joinWrap, .signupWrap
+      cursor: pointer
+      clear: both
+      width: 196px
+      margin: 4px 0 0
+      padding: 2px 0
+      background: #fff
+      background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
+      background: -moz-linear-gradient(top, #dcdcdc, #fff)
+      .join, .signup
+        cursor: pointer
+        margin: 0 auto
+        display: block
+        width: 190px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        color: #fff
+        font-weight: bold
+        background: #ffa614
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
+        background: -moz-linear-gradient(top, #ffe658, #ffa614)
+        border: 1px solid #ffa614
+      .join:hover, .signup:hover
+        box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+      .join:active, .signup:active
+        background: #ffa614
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
+        background: -moz-linear-gradient(top, #ffa614, #ffe658)
+    .loginPanel, .signupPanel
+      clear: both
+      .input, #loginButton
+        clear: both
+        display: block
+        margin: 4px 0 0
+        padding: 0 8px
+        width: 176px
+        font-size: 14px
+        height: 32px
+        line-height: 32px
+      .haveSeedcode
+        cursor: pointer
+        clear: both
+        display: block
+        margin: 4px 0 0
+        text-align: center
+        font-size: 14px
+      #loginButton
+        width: 192px
+      label.stay, a.forgot
+        margin: 4px
+        padding: 0 4px
+        text-align: center
+        height: 16px
+        line-height: 16px
+        font-size: 10px
+        font-weight: normal
+      a.forgot
+        float: left
+      label.stay
+        width: 80px
+        float: right
+        input
+          margin: 1px 0 0
+          float: right
+
+    .user
+      overflow: hidden
+      margin: 0 2px -2px
+      border: 1px solid #999
+      cursor: pointer
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      span
+        color: #fff
+        display: block
+        margin-left: 32px
+        background-color: #000
+        margin-top: -6px
+        padding: 6px 4px 8px
+    .user:hover
+      border: 1px solid #ccc
+    .account
+      img
+        margin: -2px 1px -2px
+        border: 0px
+    .appearance
+      img
+        margin: -4px 0px -2px
+        border: 0px
+
+
+
+#metaMenu.user
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 1111
+
+  .leftPanel, .rightPanel
     background-color: #fff
     .item
       font-weight: bold
@@ -410,14 +658,22 @@ a:active, a:focus
       color: #fff
       border: #000 1px solid
       background: #000
+  .leftPanel
+    .input
+      width: 144px
+      background: url('/images/icons/search-18.png') no-repeat 134px center
+      margin: 0 2px
+      font-size: 12px
+      display: block
+      height: 22px
 
 
 
-  .left-panel
+  .leftPanel
     position: absolute
     top: 0
     left: 248px
-  .right-panel
+  .rightPanel
     float: right
     margin-right: 10px
     .user
@@ -445,7 +701,7 @@ a:active, a:focus
       img
         margin: -4px 0px -2px
         border: 0px
-  
+
 #report_box
   position: absolute
   width: 235px
@@ -467,34 +723,41 @@ a:active, a:focus
 
 
 /* FLOATING BUTTONS */
-#adminLink, #newEntry, #logOut
-  color: #fff
-  display: block
-  text-decoration: none
-  border: 1px solid #777
-  background: rgba(0,0,0,0.50)
-#adminLink:hover, #newEntry:hover, #logOut:hover
-  border: 1px solid #ccc
-  box-shadow: inset 0 0 20px #fff
-  -moz-box-shadow: inset 0 0 20px #fff
-  -webkit-box-shadow: inset 0 0 20px #fff
+#metaMenu
+  .adminLink, .newEntry, .logOut
+    color: #fff
+    display: block
+    text-decoration: none
+    border: 1px solid #777
+    background: rgba(0,0,0,0.50)
+  .adminLink:hover, .newEntry:hover, .logOut:hover
+    border: 1px solid #ccc
+    box-shadow: inset 0 0 20px #fff
+    -moz-box-shadow: inset 0 0 20px #fff
+    -webkit-box-shadow: inset 0 0 20px #fff
+    -moz-opacity: 1
+    -khtml-opacity: 1
+    -webkit-opacity: 1
+    opacity: 1
 
-#adminLink
-  padding: 5px 8px
-  margin: 8px
-  height: 21px
-  img
-    padding-top: 2px
-#newEntry
-  padding: 4px 8px
-  font-size: 17px
-  font-weight: bold
-  margin: 8px 12px 0 0
-  border: 2px solid transparent
-  span
-    color: #093
-#logOut
-  margin: 10px 8px 0 0
+  .adminLink
+    padding: 5px 8px
+    margin: 8px
+    height: 21px
+    img
+      padding-top: 2px
+  .newEntry
+    padding: 4px 8px
+    font-size: 17px
+    font-weight: bold
+    margin: 8px 12px 0 0
+    border: 2px solid transparent
+    span
+      color: #093
+  .newEntry:hover
+    border: 2px solid transparent
+  .logOut
+    margin: 10px 8px 0 0
 
 
 
@@ -515,7 +778,7 @@ a:active, a:focus
     padding: 0
     height: 16px
     margin-bottom: -8px
-  img.appearanceIcon, h1, h2
+  img.appearanceIcon, h1
     float: left
   h1
     margin: 8px
@@ -523,34 +786,28 @@ a:active, a:focus
     font-weight: normal
 
 
+
 /******** APPEARANCE PANEL ********/
-
-// APPEARANCE PANEL SHARED STYLES
-#appearancePanel
-  .bedsheets, .colorPicker, .fontSizing, .small, .medium, .large
-    border: 1px solid #999
-
-  .colorPicker, .fontSizing
-    clear: both
-    font-weight: bold
-    padding: 8px
-    margin: 0 0 8px
-    height: 36px
-    img.colorSwatch, img.fontImage, h2, #sun, #moon
-      float: left
-    img.colorSwatch, img.fontImage
-      margin: 12px 0 0
-    h2
-      margin: 0 8px
-      font-size: 16px
-      line-height: 36px
-      font-weight: bold
 
 
 // APPEARANCE PANEL
+.light
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+  #settingsPanel
+    .arrow
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 214px
+.dark
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-27.png) no-repeat 262px
+  #settingsPanel
+    .arrow
+      background: url(/images/icons/arrow-up-27.png) no-repeat 214px
+
 #appearancePanel
-  .arrow
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 262px
+
   img.appearanceIcon
     margin: 4px 0 0
 
@@ -558,32 +815,17 @@ a:active, a:focus
     clear: both
     padding: 8px
     margin: 0 0 8px
-    #details
+    h2
+      display: block
       height: 32px
       line-height: 32px
-      h2
-        margin: 0 8px
-        font-size: 16px
-        font-weight: bold
-      #buttons
-        float: right
-        padding: 4px
-        #sun, #moon
-          margin: 0 4px
-          padding: 2px 4px
-          width: 86px
-          height: 24px
-          line-height: 24px
-          text-align:  center
-          font-size: 14px
-          p, img
-            text-align: center
-            margin: 0
-            float: left
-          p
-            margin: 0 4px 0 12px
-      img.appearanceIcon
-        margin: 0 8px 0 0
+      margin: 0 8px
+      font-size: 18px
+      font-weight: bold
+    .options
+      position: absolute
+      right: 20px
+      top: 20px
     ul
       margin: 12px 0
       height: 346px
@@ -592,9 +834,9 @@ a:active, a:focus
       overflow-y: scroll
       li
         float: left
-        margin: 0 12px 12px 0
-        height: 116px
-        width: 116px
+        margin: 0 4px 4px 0
+        height: 132px
+        width: 132px
         cursor: pointer
         overflow: hidden
         -moz-box-shadow: 2px 5px 10px #111
@@ -611,13 +853,22 @@ a:active, a:focus
         img
           border: 4px solid #fff
     .more
-      display: block
       height: 32px
       line-height: 32px
       text-align: center
-      background: rgba(255,255,255,0.9) /* 100% white */
+    .more:hover
+      -moz-opacity: 1
+      -khtml-opacity: 1
+      -webkit-opacity: 1
+      opacity: 1
+
 
   .colorPicker
+    clear: both
+    font-weight: bold
+    padding: 8px
+    margin: 0 0 2px
+    height: 36px
     #buttons
       float: right
       padding: 4px
@@ -631,74 +882,81 @@ a:active, a:focus
         font-size: 14px
         img
           margin: -8px -8px -8px 4px
-
-  .fontSizing
-    margin: 0
-    .small, .medium, .large
-      float: right
-      width: 32px
-      margin-right: 8px
-      text-align: center
-      cursor: pointer
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-    .small
-      font-size: 12px
-      margin-top: 12px
-    .medium
-      font-size: 14px
-      margin-top: 10px
-    .large
-      font-size: 16px
-      margin-top: 8px
-
-/******** SETTINGS PANEL ********/
-
-
-// SETTINGS PANEL SHARED STYLES
-#settingsPanel
-  .sharing, .savedLocations, .changePassword
-    clear: both
-    padding: 8px
-    border: 1px solid #999
-    margin: 0 0 8px
+    img.colorSwatch, img.fontImage, h2, #sun, #moon
+      float: left
+    img.colorSwatch, img.fontImage
+      margin: 12px 0 0
     h2
-      float: none
-      margin: 4px
-      font-size: 16px
+      margin: 0 8px
+      font-size: 18px
+      line-height: 36px
       font-weight: bold
 
-// SETTINGS PANEL
+
+
+
+
+/******** SETTINGS PANEL ********/
 #settingsPanel
-  .arrow
-    background: url(/images/icons/arrow-up-white-27.png) no-repeat 220px
-  img, h1, p, .sharingList
+
+  .button
+    margin: 8px 0 0
+    padding: 2px 12px
+
+  img, .sharingList
     float: left
+
+  h2
+    margin: 0px
+    padding: 8px
+    font-size: 18px
+    font-weight: bold
+  .sharing, .savedLocations, .changePassword
+    clear: both
+    margin: 0 0 8px
+
+  .savedLocations h2, .changePassword h2
+    display: block
+    cursor: pointer
+    img
+      padding-right: 8px 
+
+  .input
+    width: 306px
+    margin: 0 0 4px
+    padding: 4px
+    border-radius: 4px
+    -moz-border-radius: 4px
+    -webkit-border-radius: 4px
+
+
+
   .sharing
+    padding: 8px
     .defaultSharing, .network
-      height: 32px
-      line-height: 32px
       margin: 0 0 4px
       img
         margin: 8px 8px 0 0
-      p
+      h2
+        cursor: pointer
+        line-height: 32px
         margin: 0
+        padding: 0
+        float: left
+      p
+        float: left
     .sharingList
       float: right
-      font-size: 12px
-      margin-left: 8px
-      padding: 5px 8px
+      font-size: 16px
+      height: 36px
       cursor: pointer
-      width: 128px
-      height: 28px
-      line-height: 28px
-      margin: 4px 0 0 14px
+      width: 138px
+      margin-top: 4px
       padding: 6px 8px
       option
         padding: 6px 0 6px 24px
       option.everyone
-        background: url(/images/icons/public-16.png) no-repeat 4px
+        background: url(/images/icons/everyone-16.png) no-repeat 4px
       option.friends
         background: url(/images/icons/friend-16.png) no-repeat 4px
       option.anonymous
@@ -720,45 +978,138 @@ a:active, a:focus
       height: 26px
       line-height: 26px
       cursor: pointer
+      float: right
+      padding: 0 4px
+      border: 1px solid transparent
+      margin-top: 8px
       input
         cursor: pointer
-        margin: 6px 8px 0 24px
-        float: left
+        margin: 7px 4px 0 8px
+        float: right
+    label:hover
+      border: 1px solid #ccc
+      border-radius: 4px
+      -moz-border-radius: 4px
+      -webkit-border-radius: 4px
+
+
   .savedLocations
-    .locations
-      p
-        float: none
-        margin: 0
-        padding: 6px 8px
-        border: 1px solid #ccc
-        cursor: pointer
-        background-color: white
-      p:hover
-        background: url(/images/icons/edit-16.png) no-repeat 290px 8px
+    .locationView, .modifyLocationView
+      padding: 8px
+      .newLocation, .autoLocate
+        margin-top: 8px
+      .newLocation
+        width: 186px
+        text-align: center
+        float: left
+        img
+          float: none
+          margin: -3px 3px
+      .autoLocate
+        display: block
+        float: right
+      .locationList
+        width: 100%
+        max-height: 180px
+        overflow-y: auto
+        clear: both
+        .locations
+          float: none
+          clear: both
+          margin: 0
+          padding: 6px 8px
+          cursor: pointer
+          .edit, label
+            display: none
+          label.selected
+            display: block
+            -moz-opacity: 1
+            -khtml-opacity: 1
+            -webkit-opacity: 1
+            opacity: 1
+          label
+            border: 1px solid transparent
+            cursor: pointer
+            font-size: 11px
+            float: right
+            padding: 2px 4px
+            input
+              margin: -5px 0
+              cursor: pointer
+        .locations:hover
+          .edit
+            display: block
+            width: 16px
+            height: 16px
+            float: right
+            padding: 3px
+            margin-right: 8px
+            background: url(/images/icons/edit-16.png) no-repeat center center
+            border: 1px solid transparent
+          .edit:hover, label:hover
+            border: 1px solid #ccc
+            border-radius: 4px
+            -moz-border-radius: 4px
+            -webkit-border-radius: 4px
+          label
+            display: block
+      .cancel
+        width: 100px
+      .confirm
+        width: 156px
+
+
+  .cancel, .confirm
+    text-align: center
+    height: 26px
+    line-height: 26px
+    font-weight: bold
+  .cancel
+    float: left
+    width: 80px
+  .confirm
+    float: right
+    width: 180px
+
   .changePassword
+    margin: 0 0 8px
+    .changePasswordForm
+      padding: 8px
+
+
+  .fontSizing
     margin: 0
-    .input
-      margin: 0 0 4px
-      padding: 4px
-      width: 306px
-      font-size: 12px
-      border-radius: 8px
-      -moz-border-radius: 8px
-      -webkit-border-radius: 8px
-    .cancel, .save
-      margin: 8px 0 0
-      padding: 0 12px
-      text-align: center
-    .cancel
-      float: left
-    .save
+    height: 50px
+    margin: 0 0 2px
+    h2
+      line-height: 36px
+      cursor: default
+      img
+        padding: 8px 8px 0 0 
+    .small, .medium, .large
       float: right
-
-
-
-
+      margin-left: 4px
+      text-align: center
+      cursor: pointer
+      border-radius: 24px
+      -moz-border-radius: 24px
+      -webkit-border-radius: 24px
+    .small
+      padding: 2px 6px
+      font-size: 12px
+      margin-top: 16px
+    .medium
+      padding: 3px 8px
+      font-size: 16px
+      margin-top: 12px
+    .large
+      padding: 6px 12px
+      font-size: 18px
+      margin: 8px 8px 0 4px
 
 /*********** END META MENU ***********/
+
+
 
 
 /******* MODAL WINDOW *******/
@@ -888,11 +1239,11 @@ a:active, a:focus
 
 
 /*********** FIELDS ***********/
-#dreamField, #friendField
+#entryField, #friendField
   position: absolute
   top: 82px
-  left: 240px
-#dreamField .matrix
+  left: 232px
+.matrix
   position: relative
 
 
@@ -900,4 +1251,28 @@ a:active, a:focus
 
 
 
-
+#loginPage
+  position: absolute
+  top: 300px
+  width: 100%
+  font-size: 18px
+  .navigation
+    width: 300px
+    margin: auto
+    .button
+      float: left
+      padding: 4px 8px
+      margin: 4px
+  .login
+    clear: both
+    width: 300px
+    margin: auto
+    .input
+      font-size: 18px
+      padding: 8px
+      width: 280px
+    #loginButton
+      margin-top: 8px
+      font-size: 21px
+      width: 100%
+      padding: 8px

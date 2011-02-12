@@ -4,17 +4,16 @@ class ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    
-    if params[:artist] && params[:album]
+    if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
       params[:artist] = nil if params[:artist] == ""
-      @images = Image.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
+      @images = Image.enabled.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
     elsif params[:q] # search
-      @images = Image.sectioned(params[:section]).search(params) # takes filters etc as well
+      @images = Image.enabled.sectioned(params[:section]).search(params) # takes filters etc as well
     elsif params[:ids]
-      @images = Image.where(id: params[:ids].split(','))
+      @images = Image.enabled.where(id: params[:ids].split(','))
     else
-      @images = Image.sectioned(params[:section]).all
+      @images = Image.enabled.sectioned(params[:section]).all
     end
 
     respond_to do |format|
@@ -23,6 +22,51 @@ class ImagesController < ApplicationController
         # otherwise, index.html.erb
       end
       format.json { render :json => @images }
+    end
+  end
+  
+  def artists
+    image_finder = Image.enabled
+    image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(category: params[:category]) if params[:category]
+    image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
+
+    if params[:starts_with]
+      @artists = image_finder.where("artist LIKE ?", "#{params[:starts_with]}%").artists
+    else
+      @artists = {}
+      image_finder.each do |image|
+        @artists[image.artist] ||= []
+        @artists[image.artist] << image unless @artists[image.artist].size >= 6
+      end
+    end
+
+    respond_to do |format|
+      format.html { render(partial: 'images/browser/artists') }
+      format.json { render :json => @artists }
+    end
+  end
+  
+  def albums
+    image_finder = Image.enabled
+    image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
+
+    if params.has_key?(:artist)
+      params[:artist] = nil if ["null", "", "Unknown"].include?(params[:artist])
+      image_finder = image_finder.where(artist: params[:artist])
+      @albums = {}
+      image_finder.each do |image|
+        @albums[image.album] ||= []
+        @albums[image.album] << image
+      end
+    elsif params[:starts_with]
+      @albums = image_finder.where("album LIKE ?", "#{params[:starts_with]}%").albums
+    end
+
+    respond_to do |format|
+      format.html { render(partial:"images/browser/album") }
+      format.json { render :json => @albums }
     end
   end
 
@@ -44,22 +88,6 @@ class ImagesController < ApplicationController
       format.json  { render :json => @image }
     end
   end
-
-  # # GET /images/new
-  # # GET /images/new.json
-  # def new
-  #   @image = Image.new
-  # 
-  #   respond_to do |format|
-  #     format.html # new.html.erb
-  #     format.json  { render :json => @image }
-  #   end
-  # end
-
-  # # GET /images/1/edit
-  # def edit
-  #   @image = Image.find(params[:id])
-  # end
 
   # POST /images
   # POST /images.json
@@ -101,6 +129,20 @@ class ImagesController < ApplicationController
     end
   end
 
+  def disable
+    @image = Image.find(params[:id])
+    respond_to do |format|
+      if @image.update_attribute(:enabled, false)
+        format.html { redirect_to(url_for(@image), :notice => 'Image was disabled.') }
+        format.json  { head :ok }
+      else
+        format.html { redirect_to(url_for(@image), :alert => 'Could not disable the image.') }
+        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
+  
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy
@@ -119,11 +161,11 @@ class ImagesController < ApplicationController
   # this may be a prime place for optimization.
   def resize
     image = Image.find params[:id]
-    image.resize params[:size]
+    image.generate params[:descriptor], params[:size]
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
-    redirect_to image.url(params[:size])
-  rescue => e
-    Rails.logger.error "Error in Realtime Resize: #{e}"
-    render_404
+    redirect_to image.url(params[:descriptor], params[:size])
+  # rescue => e
+  #   Rails.logger.error "Error in Realtime Resize: #{e}"
+  #   render_404
   end
 end

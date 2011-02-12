@@ -1,0 +1,45 @@
+#metaMenu.user
+
+  / INTRO MENU
+  .leftPanel.padding-8.round-16.flat-top
+    %a.item{href: stream_path}
+      stream
+    %a.item{href: entries_path(current_user.username)}
+      my dreams
+    %a.item{href: '/dreamstars'}
+      dreamstars
+
+
+
+  / LOG OUT
+  %a.logOut.alpha-60.padding-4-8.round-24.button.float-right{href: '/logout'}
+    log out
+
+
+
+  / SETTINGS MENU
+  .rightPanel.padding-8.round-16.flat-top
+    %a.item.user.selected{href: entries_path(current_user.username), style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
+      %span.round-16.flat-left
+        = current_user.username
+
+    .settingsPanel.wrapper.float-left
+      .item.account.trigger
+        %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
+      / APPEARANCE PANEL
+      = render :partial => "layouts/settings_panel"
+
+    .appearancePanel.wrapper.float-left
+      .item.appearance.trigger
+        %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
+      / APPEARANCE PANEL
+      = render :partial => "layouts/appearance_panel"
+
+  / ADMIN LINK
+  %a.adminLink.round-24.button.float-right.alpha-60{href: '/admin'}
+    %img{src: '/images/icons/admin-16.png', border: '0'}
+
+  / NEW ENTRY LINK
+  %a.newEntry.round-24.button.float-right.static-glow-40{href: new_entry_path}
+    %span +
+    new entry

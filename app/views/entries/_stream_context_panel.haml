@@ -1,0 +1,53 @@
+- content_for :foot do
+  = javascript_include_tag 'context_menu'
+  
+/ CONTEXT PANEL
+#streamContextPanel.transparent-50.glow-40.round-16
+
+  / DETAILS
+  %a.avatar-64.button.round-8{href: "/", style: "background:url(/images/avatars/default-avatar-tiny.jpg) top left"}
+  %a.userInfo{href: '/'}
+    %h3= user.username
+    %p Oakland, CA
+
+
+  / LABEL
+  .myStream.shine.round-12.flat-bottom
+    my stream
+
+  .wrapper
+
+    / FILTER BY ENTRY TYPE
+    .entryFilter.flat.button.round-8.trigger.slideArrow
+      %img{src: '/images/icons/arrow-down-16.png'} 
+      %span all entries
+    .filterList.flat.round-8.target.slideArrow.hidden
+      .type
+        %img{src: '/images/icons/'} 
+        %span all entries
+      .type
+        %img{src: '/images/icons/'} 
+        %span dream
+      .type
+        %img{src: '/images/icons/'} 
+        %span vision
+      .type
+        %img{src: '/images/icons/'} 
+        %span experience
+
+  .wrapper
+
+    / FILTER BY FOLLOW TYPE
+    .followFilter.flat.button.round-8.trigger.slideArrow
+      %img{src: '/images/icons/arrow-down-16.png'} 
+      %span following
+    .filterList.flat.round-8.target.slideArrow.hidden
+      .type
+        %img{src: '/images/icons/'} 
+        %span friends
+      .type
+        %img{src: '/images/icons/'} 
+        %span following
+
+    .starlightTab.flat.button.round-8
+      starlight

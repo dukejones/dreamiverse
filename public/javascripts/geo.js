@@ -3,50 +3,62 @@ $(document).ready(function(){
 })
 
 var geoFetching = false;
+var locationSuccess = false;
 
 function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
-    if($('#locationPanel').css('display') == 'none'){
+    if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
-      $('#locationPanel').slideDown();
-      if(!geoFetching){
-        getGeo();
+      
+      //$('.entryLocation').slideDown();
+      // Fix for the min-height bug
+      
+      $('.entryLocation').height(0);
+      $('.entryLocation').css('display', 'block');
+      
+      if($('.entryLocation .expander').css('display') == 'none'){
+        $('.entryLocation').animate({height: 35}, "fast");
+      } else {
+        $('.entryLocation').animate({height: 100}, "fast");
       }
-    } else {
-      $('#locationPanel').slideUp();
-    }
-  });
-  
-  $('#locationPanel .locationHeader').click(function(){
-    $('#locationPanel').slideUp();
-  })
-  
-  $('#locationPanel .delete').unbind();
-  $('#locationPanel .delete').click(function(){
-    $('.addLocation').removeClass('selected');
-    $('#locationPanel, #locationPanel .expander').slideUp();
-  });
-}
-
-/*function setupGeo(){
-  // Location content expander
-  $('#locationList').unbind();
-  $('#locationList').change(function(){
-    selectedValue = $(this).find('option:selected').attr('value');
-    expander = $(this).parent().find('.expander').css('display')
-    if(( expander == 'none') && ( selectedValue == 'New location' )){
-      $(this).parent().find('.expander').slideDown();
-      if(!geoFetching) {
+      
+      
+      
+      if(!geoFetching){
         geoFetching = true;
         getGeo();
       }
     } else {
-      $(this).parent().find('.expander').slideUp();
+      $('.entryLocation').slideUp();
     }
-    
+  });
+  
+  $('.entryLocation .locationHeader').click(function(){
+    $('.entryLocation').slideUp();
   })
-}*/
+  
+  $('.entryLocation .delete').unbind();
+  $('.entryLocation .delete').click(function(){
+    $('.addLocation').removeClass('selected');
+    $('.entryLocation, .entryLocation .expander').slideUp();
+    $('#locationList').val('No location');
+  });
+  
+  $('#locationList').change(function(){
+    if($(this).find('option:selected').attr('value') == 'New location'){
+      if(locationSuccess){
+        $('.entryLocation .expander .name .input').val('');
+      }
+      
+      $('.entryLocation .expander').slideDown();
+      $('.entryLocation').animate({height: 100}, "fast");
+    } else {
+      $('.entryLocation .expander').slideUp();
+      $('.entryLocation').animate({height: 35}, "fast");
+    }
+  })
+}
 
 /* LOCATION DATA */
 var getGeo = function(){
@@ -59,7 +71,10 @@ var getGeo = function(){
 
 function geoError(error){
   alert("geolocation error : " + error.code + ' / ' + error.message);
-  $('#locationPanel .spinner-small').fadeOut();
+  $('.entryLocation .spinner-small').fadeOut();
+  
+  $('#locationList').val('No location');
+  $('#locationList .finding').remove();
 }
 
 function geoSuccess(position) {
@@ -80,27 +95,21 @@ function getAddress(_lat, _lng){
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
     
-    $('#locationList').change(function(){
-      if($(this).find('option:selected').attr('value') == 'New location'){
-        $('#locationPanel .expander').slideDown();
-      }
-    })
-    
     // Remove finding your location option
     $('#locationList .finding').remove();
     
     // Add new location
     var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
-    $('#locationList').append(newElement);
+    $('#locationList').prepend(newElement);
     $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)
     
     // Set geo data
-    $('#locationPanel .city .input').val(data[0].address_components[2].long_name);
-    $('#locationPanel .state .input').val(data[0].address_components[5].short_name);
-    $('#locationPanel .country input').val(data[0].address_components[6].long_name);
+    $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
+    $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
+    $('.entryLocation .country input').val(data[0].address_components[6].long_name);
     
     // Remove Spinner
-    $('#locationPanel .spinner-small').fadeOut();
+    $('.entryLocation .spinner-small').fadeOut();
   })
 }
 

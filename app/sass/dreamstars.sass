@@ -1,23 +1,110 @@
-#dreamstarsLogo
-  margin: 16px 0 0 32px
-  width: 730px
-  
-  .date
-    margin-bottom: 28px
-
 #dreamstars
-  margin-left: 120px
-  width: 640px
-  position: relative
-  
-  .badge
-    position: absolute
-    img
-      position: relative
-      left: -50px
+  position: absolute
+  top: 90px
+  left: 32px
+
+  // HEADER
+  .header
+    img, .date
+      float: left
+    .date
+      float: right
+      margin: 60px 0 0
+      padding: 0 12px
+      text-align: center
+      height: 40px
+      line-height: 40px
+
+  // COLUMNS PANEL
+  .columnsPanel
+    width: 640px
+    padding: 8px
+    height: 40px
+    margin: 10px 0 20px 80px
+    position: relative
+    .rankColumn, .nameColumn, .starlightColumn
+      position: absolute
+      width: 80px
+      height: 36px
+      line-height: 36px
+      text-align: center
+    .rankColumn
+      left: 10px
+    .nameColumn
+      left: 98px
+      width: 458px
+    .starlightColumn
+      left: 564px
+
+  // TOP 6 DREAMSTARS
+  a
+    display: block
+    position: relative
+    margin: 0 0 8px 88px
+    height: 50px
+    line-height: 50px
+    cursor: pointer
+    .badge, .rank, .name, .starlight
+      position: absolute
+    .badge
       top: -40px
-  .rank
-    float: left
-    margin-left: 45px
-  .name
-  .starlight
+      left:  -48px
+      img
+        margin: 0
+    .rank, .name, .starlight
+      height: 50px
+      line-height: 50px
+    .rank
+      left: 60px
+    .name
+      left: 70px
+      width: 500px
+      text-align: center
+    .starlight
+      left: 580px
+  .dreamstar-1
+    border: 4px solid #FF40D9
+    .rank
+      color: #e7d44d
+  .dreamstar-2
+    border: 4px solid #7140FF
+    .rank
+      color: #448e09
+  .dreamstar-3
+    border: 4px solid #4049FF
+    .rank
+      color: #419b69
+  .dreamstar-4
+    border: 4px solid #407AFF
+    .rank
+      color: #338c9b
+  .dreamstar-5
+    border: 4px solid #409AFF
+    .rank
+      color: #3375a5
+  .dreamstar-6
+    border: 4px solid #40BFFF
+    .rank
+      color: #365ba6
+
+  // ALL DREAMSTARS
+  .dreamstarsAll
+    padding: 16px
+    margin: 20px 0 8px 88px
+    border: 4px solid #fff
+    a.dreamstar
+      position: relative
+      height: 32px
+      margin: 0 0 8px
+      .rank, .name, .starlight
+        position: absolute
+        height: 32px
+        line-height: 32px
+      .rank
+        left: 20px
+      .name
+        left: 60px
+        width: 490px
+        text-align: center
+      .starlight
+        left: 555px

@@ -80,7 +80,7 @@ function setGenreOptions(){
     
     $('#IB_genreList').html(newGenres);
   } else if($("#IB_categoryList option:selected").val() == "Classical Art"){
-    var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
+    var newGenres = '<option value="None"></option><option value="Europe">Europe</option><option value="Eurasia">Eurasia</option><option value="Asia">Asia</option><option value="Americas">Americas</option><option value="Africa">Africa</option><option value="Australia">Australia</option>';
     
     $('#IB_genreList').html(newGenres);
   } else if($("#IB_categoryList option:selected").val() == "Photo"){
@@ -141,6 +141,38 @@ $(document).ready(function() {
   
   // Auto-fill GEOLOCATION tag
   autoFillGeo();
+  
+  // Delete button functionality
+  $('#IB_deleteButton').click(function(){
+    var selectedImages = [];
+    $('#IB_dropboxImages li').each(function(){
+      if($(this).hasClass('selected') && !$(this).hasClass('uploading')){
+        totalImagesToUpdate++ // add another image to the count
+        imagesSelected = true; // an image has been found!
+        
+        var selectedImageID = getImageIDFromURL($(this).find('img').attr('src'));
+        var imageID = selectedImageID.split('-')[0];
+        selectedImages.push(imageID);
+      }
+    });
+    
+    // Loop thru and remove imagery
+    for(var u = 0; u < selectedImages.length; u++){
+      $.ajax({
+            url: "/images/" + selectedImages[u] + "/disable.json",
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            complete: checkImagesUpdates
+        });
+        
+      /*$.post("/images/" + selectedImages[u] + "/disable.json",
+        function(data) {
+          console.log(data)
+          alert('image removed');
+      });*/
+    }
+  })
 });
 
 var autoFillGeo = function(){
@@ -385,6 +417,11 @@ var totalImagesUpdated = 0;
 
 var updateCurrentImagesMeta = function(){
   if($('#IB_current_genre').text() != 'Choose'){
+    // Set Save button to spinner
+    $('#IB_managerSave').html('Saving');
+    var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
+    $('#IB_managerSave').prepend(newElement);
+    
     // Collect data from fields for JSON
     collectParams();
   
@@ -424,12 +461,21 @@ var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
     alert('Images have been updated.');
-    
-    emptyAllFields();
-    removeAllImages();
+    resetInterface();
   }
 }
 
+var resetInterface = function(){
+  $('#IB_managerSave').html('Save');
+  $('#IB_dropboxCover').fadeIn();
+  emptyAllFields();
+  removeAllImages();
+  
+  $('#IB_managerSave').unbind();
+  $('#IB_managerSave').click(function(){
+    updateCurrentImagesMeta();
+  }) 
+}
 
 // removes the extension & returns ID number from image URL
 var getIDFromUrl = function(filename){

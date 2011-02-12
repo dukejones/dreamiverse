@@ -1,5 +1,70 @@
+
+module ImageProfiles
+  # Options are always optional; defaults will be provided.
+  # Size determines the size to generate. For some profiles, size will be nil because it is always the same size.
+  # We should always generate the nil size profile, then resize to the specified size.
+
+  module ClassMethods
+    # def profile(name)
+    #   define_method("generate_#{name}") do
+    #     img = magick_image
+    #     debugger
+    #     yield img
+    #     debugger
+    #     1
+    #   end
+    # end
+  end
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  # For every profile, we must define a method with the same name which generates the image for that profile.
+  def profiles
+    [:entry_header, :entry_header_small]
+  end
+
+  def generate_profile(profile, size, opts)
+    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym)
+    self.send(profile.to_sym, size, opts)
+  end
+
+  def profile?(profile, size=nil)
+    raise "Profile #{profile} does not exist." unless profiles.include?(profile)
+
+    File.exists?(path(profile, size))
+  end
+  
+  def entry_header(size, options)
+    vertical_offset = options[:vertical_offset]
+
+    img = magick_image
+    # self.magick.combine_options do |i|
+    img.resize '720' # width => 720.
+    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+
+    img.write(path('entry_header'))
+  end
+
+  def entry_header_small
+    
+  end
+
+
+end
+
 class Image < ActiveRecord::Base
   UPLOADS_PATH = "images/uploads"
+  include ImageProfiles
+
+  # This is the syntax we want:
+  # profile 'entry_header' do |img|
+  #   img.resize '720' # width => 720.
+  #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+  #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+  #   img
+  # end
 
   #
   # Callbacks 
@@ -16,6 +81,7 @@ class Image < ActiveRecord::Base
   #
   # Scopes
   #
+  scope :enabled, where(enabled: true)
   scope :by, lambda { |artist| where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?
@@ -60,14 +126,24 @@ class Image < ActiveRecord::Base
   rescue => e
     e
   ensure
-    file && file.close
+    file._?.close
   end
 
-  def resize(size)
-    return if resized? size
+  # Generates the crops and resizes necessary for the requested profile.
+  def generate(descriptor, size=nil, options={})
+    if size.nil? && descriptor =~ /\d+x\d+/
+      resize(descriptor)
+    else
+      generate_profile(descriptor, size, options)
+    end
+  end
+
+  # Invoked if passed a single descriptor consisting of the dimensions, eg: 64x64
+  def resize(dimensions)
+    return if resized? dimensions
     img = magick_image
-    img.resize size
-    img.write path(size) # size is the descriptor.
+    img.resize dimensions
+    img.write path(dimensions) # dimensions is the descriptor.
   end
   
   def resized?(size)
@@ -76,19 +152,20 @@ class Image < ActiveRecord::Base
   
   # Descriptor is a descriptor of the transformation.
   # Can be a role name or a resize geometry.
-  def path(descriptor=nil)
-    Rails.public_path + url(descriptor)
+  def path(descriptor=nil, size=nil)
+    Rails.public_path + url(descriptor, size)
   end
 
-  def url(descriptor=nil)
+  def url(descriptor=nil, size=nil)
     path = UPLOADS_PATH
     path += '/originals' unless descriptor
-    "/#{path}/#{filename(descriptor)}"
+    "/#{path}/#{filename(descriptor, size)}"
   end
   
-  def filename(descriptor=nil)
+  def filename(descriptor=nil, size=nil)
     fname = "#{id}"
     fname += "-#{descriptor}" if descriptor
+    fname += "-#{size}" if size
     "#{fname}.#{format}"
   end
   
@@ -96,48 +173,7 @@ class Image < ActiveRecord::Base
     MiniMagick::Image.open(path(descriptor))
   end
 
-  # profile :dream_header
-  def self.profiles
-    {
-      dream_header: %w(large small)
-    }
-  end
-  
-  def dream_header(activate=true)
-    if activate
-      dream_header_large
-      dream_header_small
-    else
-      # deactivate - delete the crops
-    end
-  end
-  
-  def dream_header?
-    profile = :dream_header
-    Image.profiles[profile].all? do |transformation|
-      descriptor = [role.to_s, transformation.to_s].join('_').dasherize
-      File.exists?(path(descriptor))
-    end
-  end
-  
-  def dream_header_large_file
-    path('dream_header_large'.dasherize)
-  end
-
 protected
-  def dream_header_large(vertical_offset=nil)
-    img = magick_image
-    # self.magick.combine_options do |i|
-    img.resize '720' # width => 720.
-    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
-    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
-
-    img.write(dream_header_large_file)
-  end
-
-  def dream_header_small
-    
-  end
   
   def parse_incoming_parameters
     if @incoming_filename
@@ -186,3 +222,4 @@ protected
     end
   end
 end
+

@@ -1,85 +1,67 @@
 - content_for :foot do
   = javascript_include_tag 'context_panel'
-  
+
 / CONTEXT PANEL
 #contextPanel.transparent-50.glow-40.round-16
 
-  / IMAGE
-  %a.avatar.round-12{href: "/", style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
-    #uploadAvatarWrap.hidden{onMouseOver: "$('#uploadAvatar').addClass('hover')", onMouseOut: "$('#uploadAvatar').removeClass('hover')"}
-      #uploadAvatar.round-8
-        <span>+</span> upload new avatar
 
-  / LABEL
-  %a.context.shine.button.round-12{href: '/'}
-    = user.username
-    - icon = friend_icon(current_user, user, 16)
-    %img.follower{src: "/images/icons/#{icon}", width: '16', height: '16'}
+  / IMAGE
+  %a.avatar.round-12{href: entries_path(user.username), style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+    - if user == current_user
+      .uploadAvatarWrap.hidden
+        .uploadAvatar.round-8
+          <span>+</span> upload new avatar
 
 
   - if user == current_user
-    .find.button.bevel.round-12.padding-4-8
+    / LABEL
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: entries_path(user.username)}
+      = user.username
+
+    / WHO'S DREAMING
+    .find.button.shine-small-alpha.round-12.flat-top.padding-4-8
       Who's dreaming about me &rsaquo;
+
   - else
-    / FOLLOWING
-    - if current_user.friends_with? user
-      = render partial: 'users/following', locals: {icon: 'friend', text: 'friends'}
-    - elsif current_user.following? user
-      = render partial: 'users/following', locals: {icon: 'friend-follow', text: 'following'}
-    - elsif current_user.followed_by? user
-      = render partial: 'users/following', locals: {icon: 'friend-followed', text: 'followed'}
-    - else
-      = render partial: 'users/follow'
+    / LABEL
+    %a.context.shine-small-alpha.button.round-12.flat-bottom{href: entries_path(user.username)}
+      = user.username
 
+      - unless current_user.relationship_with(user) == :none
+        .icon
+          = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
 
+    / FOLLOW
+    = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
+
+    
+    
   / CONTEXT ITEMS
   .item
-    .label.bevel.round-12.flat-right dreams
-    .image
-      %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
-    .detail.inner-shadow-10.round-12.flat-left
-      = user.dreams.count
-    .clear-both
-  .item
-    .label.bevel.round-12.flat-right starlight
+    .label.shine-small-alpha.round-12.flat-right starlight
     .image
       %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
     .detail.inner-shadow-10.round-12.flat-left
       = user.starlight._?.value || 0
     .clear-both
 
-  .friends
-    .item
-      .label.bevel.round-12.flat-right friends
-      .image
-        %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
-      .detail.inner-shadow-10.round-12.flat-left
-        = user.friends.count
-      .clear-both
-    .expander.hidden
-      .item.following
-        .label.bevel.round-12.flat-right following
-        .image
-          %img.follow{src: '/images/icons/friend-follow-32.png', width: '32', height: '32'}
-        .detail.inner-shadow-10.round-12.flat-left #
-        .clear-both
-      .item.followers
-        .label.bevel.round-12.flat-right followers
-        .image
-          %img.follow{src: '/images/icons/friend-follower-32.png', width: '32', height: '32'}
-        .detail.inner-shadow-10.round-12.flat-left #
-        .clear-both
 
-  /
-    .item2
-      .label.bevel.round-12.flat-right example
-      .detail.inner-shadow-10.round-12.flat-left #
-      .clear-both
+  .item
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: entries_path(user.username)}
+      dreams
+    .image
+      %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
+    .detail.inner-shadow-10.round-12.flat-left
+      = user.entries.count
+    .clear-both
 
-    .divider.transparent-33.round-4
 
-  / SOCIAL NETWORK LINKS
-/  #contextBottom.light.B-indent.round-12.padding-8.flat-top.clear-both.align-center
-/    %a#sn-facebook.sn_link{href: '#', target: '_blank'} facebook
-/    %a#sn-twitter.sn_link{href: '#', target: '_blank'} twitter
-/    .clear-both
+  .item
+    %a.block.label.shine-small-alpha.round-12.flat-right{href: friends_path(user.username)}
+      friends
+    .image
+      %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+    .detail.inner-shadow-10.round-12.flat-left
+      = user.friends.count
+    .clear-both
+

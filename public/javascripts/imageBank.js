@@ -77,15 +77,22 @@ loadCategoryList = function(genre){
   $("#IB_browseArrow").click(loadBrowse);
   $("#IB_browseArrow").show();
   
+  // setup slideshow button for whole genre
+  /*$('#IB_artistSlideshow').unbind();
+  $('#IB_artistSlideshow').click(function(){
+    loadSlideshow(null, null, genre);
+  });
+  $('#IB_artistSlideshow').css('display', 'inline');*/
+  
 
   // Populate Artists List
-  $.getJSON("/artists.json?category="+genre+"&section="+sectionFilter, function(artists) {
+  $.get("/artists?category="+genre+"&section="+sectionFilter, function(artists) {
     // Clear list
-    $("#artists").html("");
+    $("#artists").html($(artists).find('#artists').children());
     
     // Clean up search just in case
     closeSearchExpand();
-
+    /*
     $.each(artists, function(artist, images) {
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
@@ -111,7 +118,7 @@ loadCategoryList = function(genre){
         //loadSlideshow($(this).attr('alt') + ',');
       })
     });
-    
+    */
     // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
@@ -134,18 +141,26 @@ loadArtistList = function(genre) {
   
 
   // Populate Artists List
-  $.getJSON("/artists.json?genre="+genre+"&section="+sectionFilter, function(artists) {
+  $.get("/artists?genre="+genre+"&section="+sectionFilter, function(artists) {
     // Clear list
-    $("#artists").html("");
+    $("#artists").html($(artists).find('#artists').children());
+    
     
     // Clean up search just in case
     closeSearchExpand();
-
+    /*
     $.each(artists, function(artist, images) {
       // Only allow 6 max images
       var imageLength = (artist.length > 5) ? 6 : artist.length;
       
-      var item = '<li><h2 class="color-0 font-H1 font-light">'+artist+'</h2>';
+      var artistName;
+      if(artist == ''){
+        artistName = 'Unknown Artist';
+      } else {
+        artistName = artist
+      }
+      
+      var item = '<li><h2 class="color-0 font-H1 font-light">'+artistName+'</h2>';
       if (images.length > 0) {
         item += "<div class=\"images\">";
         $.each(images, function(i, image) {
@@ -166,10 +181,15 @@ loadArtistList = function(genre) {
         //loadSlideshow($(this).attr('alt') + ',');
       })
     });
-    
+    */
     // A click on any image simply loads that artist's page.
     $("#artists li").click(function() {
       var artist = $("h2",this).text();
+      
+      if(artist == 'Unknown Artist'){
+        artist = '';
+      }
+      
       $("#IB_search_artist").val(artist);
       loadArtist(artist);
     });  
@@ -378,26 +398,125 @@ loadArtist = function(artist) {
   };
   
   populateAlbums = function(albums) {
-    $("#albums").html("");
+    $("#albums").html($(albums).find('#albums').children());
     
-    for (i = 0; i < albums.length; i++) {
-      if(albums[i] == "null"){
-        $("#albums").append('<li><h2 class="gradient-10-up">All Images<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
-      } else {
-        $("#albums").append('<li><h2 class="gradient-10-up">'+albums[i]+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
+    // Make the + icon clickable
+    $('.images > li > .addToDropboxButton').click(function(){
+      var imageId = $(this).parent().find('img').attr("id").split("_")[1];
+      addImageToDropbox(imageId);
+    });
+    
+    // Make the thumbnails clickable to slideshow.
+    // contain all current images in this album in slideshow
+    $('.images > li > img').click(function(){
+      if(!isDragging){
+        var clickedImageID = $(this).attr('id').split("_")[1];
+        var currentAlbumIDs = '';
+    
+        $(this).parent().parent().find('li > img').each(function(){
+          currentAlbumIDs += $(this).attr('id').split("_")[1];
+        })
+        // Pass special param to show index of current image $(this).index
+        loadSlideshow(getImages($(this).parent().parent()), $(this).parent().index());
       }
-    }
+    })
+
+    //Make images draggable to the drop-box below.
+    $(".images li").draggable({
+      containment: 'document',
+      helper: 'clone',
+      appendTo: '#imageDrop',
+      zIndex:10000,
+      distance: 40,
+      scroll: false,
+      revert: false,
+      start: function(event, ui) {
+        isDragging = true;
+      },
+      stop: function(event, ui) {
+        isDragging = false;
+      }
+    });
     
+    // Set up header manage
+    $('.header-manage').click(function(event){
+      event.stopPropagation();
+      
+      var tempString = '';
+      
+      $(this).parent().next().find('li img').each(function(index, element){
+        if(index == 0){
+          tempString += $(this).attr('id').split("_")[1];
+        } else {
+          tempString += "," + $(this).attr('id').split("_")[1];
+        }
+        
+      });
+      
+      // Go-to manage page
+      window.location.href = managerPath + "?images=" + tempString;
+    })
+    
+    // Set up manage on TOP BAR
+    $('#IB_manageArtistImages').unbind();
+    $('#IB_manageArtistImages').click(function(){
+      // get all images by artist
+      var imageIDCollector = '';
+      $('#albums ul.images img.albumPreviewThumbsLarger').each(function(index, element){
+        if(index == 0){
+          imageIDCollector = $(this).attr('id').split("_")[1];
+        } else {
+          imageIDCollector += ',' + $(this).attr('id').split("_")[1];
+        }
+      });
+      
+      // Go-to manage page
+      window.location.href = managerPath + "?images=" + imageIDCollector;
+    });
+    
+    // Slideshow 
+    $('#IB_artistSlideshow').unbind();
+    $('#IB_artistSlideshow').click(function(){
+      // get all images by artist
+      var imageIDCollector = '';
+      $('#albums ul.images img.albumPreviewThumbsLarger').each(function(index, element){
+        if(index == 0){
+          imageIDCollector = $(this).attr('id').split("_")[1];
+        } else {
+          imageIDCollector += ',' + $(this).attr('id').split("_")[1];
+        }
+      });
+      
+      // Start Slideshow
+      loadSlideshow(imageIDCollector);
+    });
+
+    // Show manage/slideshow buttons
+    $('#IB_manageArtistImages').show();
+    $('#IB_artistSlideshow').show();
+    
+    /*$.each(albums, function(i, value){
+      var albumName;
+      if(i == null){
+        albumName = 'Unknown Album';
+      } else {
+        albumName = i;
+      }
+      
+      $("#albums").append('<li><h2 class="gradient-10-up">'+albumName+'<img class="header-manage" src="../images/icons/edit-23.png" /></h2></li>');
+    })*/
+
+    /*
     $("#albums > li").each(function() {
       var album;
-      if($("h2",this).text() == "All Images"){
+      if($("h2",this).text() == "Unknown Album"){
         album = "null";
       } else {
         album = $("h2",this).text();
       }
       
       var element = $(this);
-      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter,
+      $.getJSON("/images.json?artist="+artist+"&album="+album+"&section="+sectionFilter+"&genre="+currentGenre,
         function(images) {
           if (images.length > 0) {
             item = '<ul class="clearfix images">';
@@ -517,7 +636,7 @@ loadArtist = function(artist) {
           }
         }
       );
-    });
+    });*/
     
     $('#albums > li > h2').click(function(){
       // Start slideshow on header click
@@ -541,12 +660,19 @@ loadArtist = function(artist) {
       }
     });
   };
-  
-  $.getJSON("/albums.json?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
-      function(albums) {
-        populateAlbums(albums);
-      }
-    );
+  if(viewingTopLevel){
+    $.get("/albums?artist="+artist+"&section="+sectionFilter+"&category="+currentGenre,
+        function(albums) {
+          populateAlbums(albums);
+        }
+      );
+  } else {
+    $.get("/albums?artist="+artist+"&section="+sectionFilter+"&genre="+currentGenre,
+        function(albums) {
+          populateAlbums(albums);
+        }
+      );
+  }
   
   $("#IB_manageArtistImages").unbind();
   $("#IB_manageArtistImages").click(function() {
@@ -574,7 +700,11 @@ loadArtist = function(artist) {
 var currentItem;
 var keyCaptured = false;
 
-loadSlideshow = function(newImageIds, currentIndex) {
+
+loadSlideshow = function(newImageIds, currentIndex, genre) {
+  if(newImageIds == null && currentIndex == null){
+    // Genre level slideshow, get all imageID's from genre
+  }
   if ( currentIndex === undefined ) {
       currentIndex = 0;
    }
@@ -674,11 +804,11 @@ loadSlideshow = function(newImageIds, currentIndex) {
     $("#IB_info_author span").text(metaData[2]);
     $("#IB_info_year span").text(metaData[3]);
 
-    var tags = metaData[1].split(",");
+    /*var tags = metaData[1].split(",");
     $("#tags").html("");
     for(i = 0; i < tags.length; i++) {
       $("#tags").append('<li>'+tags[i]+'</li>');  
-    }
+    }*/
   };
 
   currentItem = currentIndex;

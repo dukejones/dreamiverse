@@ -1,0 +1,34 @@
+- content_for :head do
+  = sass_link_tag 'entries', 'context_panel', 'friends_list'
+  = coffeescript_include_tag 'modal'
+  = javascript_include_tag 'tag_stream', 'friendslist', 'dreams', 'geo'
+
+
+/ CONTEXT PANEL
+= render :partial => "stream_context_panel", :locals => {:user => @user}
+
+/ ENTRY FIELD
+#entryField
+
+  / NEW ENTRY BAR
+  / TAG ENTRY & STREAM
+
+  / DREAM MATRIX
+  .matrix
+
+    / ENTRY THUMBS 1D
+    = render :partial => 'thumb_1d'
+
+    / 
+      ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_tag'
+
+      / ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_noimage'
+
+      / ENTRY THUMBS 1D
+      = render :partial => 'thumb_1d_newimages'
+
+      / NO ENTRY TO DISPLAY
+      - if @entries.empty?
+        .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display

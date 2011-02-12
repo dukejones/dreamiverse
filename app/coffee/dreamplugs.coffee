@@ -1,107 +1,105 @@
-###
-Start Expander
-scott@dreamcatcher.net
 
-Example Use:
-$('#myObj').expander({params});
-// See defaults belowfor params to pass
-
-###
-$.fn.expander = (options) ->
-  $this = $(this)
+$(document).ready ->
+  setupDreamplugs()
   
-  defaults = { 
-    speed: '',
-    toClick: '.expand-click',
-    toExpand: '.expander',
-    type: 'slide'
-  }
+# init
+window.setupDreamplugs = ->
+  # Setup slide triggers to work
+  $('.trigger.slide').click( (event) ->
+    $newTargetSlide = $(event.currentTarget).parent().find('.target.slide')
+    
+    if $newTargetSlide.css('display') is 'none'
+      $newTargetSlide.slideDown()
+    else
+      $newTargetSlide.slideUp()
+  )
   
-  opts = $.extend defaults, options
- 
-  $this
-    .find(opts.toExpand)
-    .hide()
-
-  $this
-    .find(opts.toClick)
-    .css('cursor', 'pointer')
+  # Setup slide w/ arrows to work
+  $('.trigger.slideArrow').click( (event) ->
+    $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
+    $toggleText = $(event.currentTarget).find('span')
     
-  $this.find(opts.toClick).click (event) -> 
-   if $this.find(opts.toExpand).css "display" is "none"
-      switch opts.type
-        when "slide" then $this.find(opts.toExpand).slideDown opts.speed
-        when "fade" then $this.find(opts.toExpand).fadeIn opts.speed
-   else
-      switch opts.type
-        when "slide" then $this.find(opts.toExpand).slideUp opts.speed
-        when "fade" then $this.find(opts.toExpand).fadeOut opts.speed
-
-###
-Start dcHover
-scott@dreamcatcher.net
-
-Example Use:
-$('#myObj').dcHover({hoverClass: "myHoverState"});
-
-###
-$.fn.dcHover = (options) ->
-  $this = $(this)
-
-  defaults = { 
-    hoverClass: 'hoverState'
-  }
-
-  opts = $.extend defaults, options
-
-  $this
-    .find(opts.toClick)
-    .css('cursor', 'pointer')
+    offsetSize = 30
     
-  ### Create functions for hover ###
-  hoverOn = (event) ->
-    $this
-      .addClass(opts.hoverClass)
-  
-  hoverOff = (event) ->
-    $this
-      .removeClass(opts.hoverClass)
-    
-  $this
-    .hover hoverOn, hoverOff
+    if $newTargetSlideArrow.css('display') is 'none'
+      $newTargetSlideArrow.fadeIn()
       
+      # Create bodyclick
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetSlideArrow.hide()
+        $('#bodyClick').remove()
+      )
       
-###
-Start dcFadeHover
-scott@dreamcatcher.net
-
-Example Use:
-$('#myObj').dcFadeHover({color: "#000"});
-
-###
-$.fn.dcFadeHover = (options) ->
-  $this = $(this)
-
-  defaults = { 
-    color: '#000'
-  }
-
-  opts = $.extend defaults, options
-
-  $this
-    .find(opts.toClick)
-    .css('cursor', 'pointer')
-
-  ### Create functions for hover ###
-  hoverOn = (event) ->
-    $this
-      .stop()
-      .animate({shadow: '0 0 30px ' + opts.color + ' inset'})
-
-  hoverOff = (event) ->
-    $this
-      .stop()
-      .animate({shadow: '0 0 0px ' + opts.color + ' inset'})
-
-  $this
-    .hover hoverOn, hoverOff
+      $newTargetSlideArrow.find('.type').unbind()
+      $newTargetSlideArrow.find('.type').click( (event) ->
+        $('#bodyClick').remove()
+        
+        newText = $(event.currentTarget).find('span').text()
+        $toggleText.text(newText)
+        
+        index = $(event.currentTarget).index()
+        newPosition = index * offsetSize
+        newPositionString = -newPosition + 'px'
+        $newTargetSlideArrow.fadeOut(500, (event) ->
+          $newTargetSlideArrow.css('top', newPositionString)
+        )
+      )
+      
+    else
+      $newTargetSlideArrow.fadeOut()
+      
+  )
+  
+  # Setup showhide triggers
+  $('.trigger.showhide').click( (event) ->
+    $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
+    
+    if $newTargetShowHide.css('display') is 'none'
+      $newTargetShowHide.show()
+    else
+      $newTargetShowHide.hide()
+  )
+  
+  # Setup fade triggers to work
+  $('.trigger.fade').click( (event) ->
+    $newTargetFade = $(event.currentTarget).parent().find('.target.fade')
+    
+    if $newTargetFade.css('display') is 'none'
+      $newTargetFade.fadeIn()
+    else
+      $newTargetFade.fadeOut()
+  )
+  
+  # Setup fade w/ bodyclick triggers to work
+  $('.trigger.fadeclick').click( (event) ->
+    $newTargetFade = $(event.currentTarget).parent().find('.target.fadeclick')
+    
+    if $newTargetFade.css('display') is 'none'
+      # Create bodyclick
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('html, body').animate({scrollTop:0}, 'slow');
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetFade.hide()
+        $('#bodyClick').remove()
+      )
+      
+      $newTargetFade.fadeIn()
+    else
+      $newTargetFade.fadeOut()
+      $('body').remove()
+  )
+  
+  # Setup toggle handler
+  $('.trigger.toggle').click( (event) ->
+    $newTargetToggle = $(event.currentTarget).parent().parent().find('.target.toggle')
+    $oldTargetToggle = $(event.currentTarget).parent()
+    
+    $oldTargetToggle.hide()
+    $newTargetToggle.show()
+  )

@@ -1,0 +1,1819 @@
+/******** 2D ENTRY THUMBS LIGHT / DARK ********/
+
+.light
+  #entryField, #home
+    .matrix
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
+      .thumb-2d.hover
+        box-shadow: 0px 0px 40px #000
+        -moz-box-shadow: 0px 0px 40px #000
+        -webkit-box-shadow: 0px 0px 40px #000
+.dark
+  #entryField, #home
+    .matrix
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
+      .thumb-2d.hover
+        box-shadow: 0px 0px 40px #fff
+        -moz-box-shadow: 0px 0px 40px #fff
+        -webkit-box-shadow: 0px 0px 40px #fff
+
+
+#entryField, #home
+  .matrix
+
+    /******** 2D ENTRY THUMBS ********/
+    /* HOVER */
+    .thumb-2d.hover
+      z-index: 81
+      .fadedBack
+        .detailsTop, .detailsBottom, .title
+          display: block
+          z-index: 84
+    /* */
+    .thumb-2d
+      cursor: pointer
+      margin: 0 10px 10px 0
+      overflow: hidden
+      float: left
+      border: 0
+      position: relative
+      z-index: 80
+      .link
+        display: block
+        width: 200px
+        height: 300px
+        position: absolute
+        z-index: 10000
+      .fadedBack
+        width: 200px
+        height: 300px
+      .watermark
+        position: absolute
+        width: 200px
+        height: 128px
+        font-size: 45px
+        line-height: 30px
+        text-align: center
+        overflow: hidden
+        top: 38px
+      .detailsTop, .detailsBottom, .title
+        position: absolute
+        display: none
+      .detailsTop
+        width: 200px
+        z-index: 100
+        .date
+          max-width: 60px
+          overflow: hidden
+          white-space: nowrap
+      .detailsBottom
+        bottom: 0
+        width: 100%
+      .date, .location, .comments, .sharing
+        color: #fff
+        margin: 4px
+        font-size: 11px
+        padding: 4px 8px
+        text-align: center
+        background: rgba(0,0,0,0.50)
+      .comments img
+        margin: 0 2px -5px 0
+      .sharing img
+        margin: -1px 0 -4px 2px
+      .title
+        width: 97%
+        top: 130px
+        font-size: 21px
+        line-height: 21px
+        text-align: center
+      .tags
+        z-index: 20
+        position: absolute
+        bottom: 6px
+        padding: 0 16px
+
+
+
+
+
+
+
+    /******** 1D ENTRY THUMBS ********/
+    .thumb-1d:hover
+      box-shadow: 0px 0px 40px #000
+      -moz-box-shadow: 0px 0px 40px #000
+      -webkit-box-shadow: 0px 0px 40px #000
+    .thumb-1d
+      position: relative
+      clear: both
+      margin: 20px 0 0
+      padding: 4px 4px 0
+      width: 672px
+      height: 220px
+      overflow: hidden
+      cursor: pointer
+      border-radius-topleft: 16px
+      -moz-border-radius-topleft: 16px
+      -webkit-border-radius-topleft: 16px
+      border-radius-topright: 16px
+      -moz-border-radius-topright: 16px
+      -webkit-border-radius-topright: 16px
+      .left
+        position: absolute
+        width: 360px
+
+        // USERNAME + AVATAR
+        .user
+          position: absolute
+          top: 4px
+          left: 4px
+          padding: 0 12px 0 0
+          height: 30px
+          line-height: 30px
+          background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
+          .name
+            margin: 0 0 0 42px
+            font-size: 16px
+            font-weight: bold
+
+        // COMMENT COUNT
+        .commentCount
+          position: absolute
+          top: 8px
+          right: 8px
+          background: url(/images/icons/comments-16.png) no-repeat right
+          .counter
+            float: right
+            margin: 0 20px 0 0
+            height: 16px
+            line-height: 16px
+            padding: 0 8px
+            text-align: center
+            font-size: 14px
+            font-weight: bold
+
+        // IMAGE
+        .image
+          width: 360px
+          height: 96px
+          border-radius-topleft: 16px
+          -moz-border-radius-topleft: 16px
+          -webkit-border-radius-topleft: 16px
+          background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left
+
+        // TITLE & TEXT
+        h1.title, p.text
+          overflow: hidden
+          width: 330px
+        h1.title
+          margin: 8px 8px 0 8px
+          font-size: 24px
+          height: 30px
+        p.text
+          margin: 4px 8px 0 8px
+          height: 40px
+
+        // POST DETAILS
+        .details
+          position: absolute
+          top: 190px
+          left: 4px
+          height: 26px
+          width: 352px
+          .rePost, .date, .starlight
+            float: left
+            padding: 0 8px
+            text-align: center
+          .rePost
+            margin: 4px 8px 0 0
+            padding-left: 24px
+            font-size: 10px
+            height: 16px
+            line-height: 14px
+            background: url(/images/icons/repost-18.png) no-repeat 4px center
+          .date
+            margin: 6px 0
+            font-size: 11px
+            font-weight: bold
+          .starlight
+            float: right
+            font-size: 12px
+            height: 24px
+            line-height: 24px
+            img
+              margin: 4px 4px 0 0
+
+      .right
+        position: absolute
+        left: 364px
+
+        ul
+          list-style: none
+          margin: 0
+          padding: 0
+          width: 320px
+          li
+            float: left
+            margin: 0 0 0 2px
+            background: #ccc
+            height: 60px
+            width: 60px
+
+        .tagCloud
+          clear: both
+          border: none
+          height: 100px
+          width: 260px
+          background: transparent
+
+        .entryTagList
+          position: absolute
+          div
+            float: left
+            height: 24px
+            line-height: 24px
+            margin: 8px 8px 0 0
+            padding: 0 8px
+            text-align: center
+            background: #7a7a7a
+
+
+      //
+        .thumb-1d.tag, .thumb-1d.newImages
+          height: 62px
+          border-radius: 16px
+          -moz-border-radius: 16px
+          -webkit-border-radius: 16px
+        .thumb-1d.tag
+          padding: 15px 0
+          height: 32px
+          line-height: 32px
+          .user
+            margin: 0 8px
+          .tagText
+            float: left
+            margin: 0 0 0 12px
+            font-size: 18px
+        .thumb-1d.noImage
+          .left
+            .tagCloud
+              height: 90px
+              border-radius-topleft: 16px
+              -moz-border-radius-topleft: 16px
+              -webkit-border-radius-topleft: 16px
+        .thumb-1d.newImages
+          .left
+            .image
+              height: 62px
+              border-radius-bottomleft: 16px
+              -moz-border-radius-bottomleft: 16px
+              -webkit-border-radius-bottomleft: 16px
+          .right
+            height: 62px
+            .user
+              margin: 15px 8px
+            .display
+              float: left
+              margin: 10px 0 0
+              .gallery
+                margin: 0
+                font-size: 18px
+                color: #262626 /* 90% Black */
+              .text
+                margin: 0
+
+
+
+
+
+
+
+    /******** PAGINATION ********/
+    .dark.pageFirst, .dark.pageFirst:hover
+      border: 2px solid transparent
+      margin-right: 1px
+      height: 37px
+    .dark.pageLast, .dark.pageLast:hover
+      border: 2px solid transparent
+      margin-left: 1px
+      height: 37px
+    .pageFirst
+      img
+        padding: 8px 4px
+    .pageLast
+      img
+        padding: 8px 4px
+    .pagePrev
+      display: block
+      padding: 8px 4px
+      font-weight: bold
+    .pageNext
+      display: block
+      padding: 8px 4px
+      font-weight: bold
+    .pageNumber
+      display: block
+      padding: 11px 6px
+      float: left
+    .pagination
+      a.pageNumber
+        color: #999999
+      a.pageNumber:hover
+        color: white
+        font-weight: bold
+    .pageNumber.currentPage
+      display: block
+      padding: 10px 7px
+      font-weight: bold
+      font-size: 21px
+      float: left
+      line-height: 17px
+      cursor: default
+      border: 2px solid white
+
+
+
+
+
+
+    /******** ENTRY STREAM FILTER ********/
+    .streamFilter
+      clear: both
+      margin: 8px 0 0
+
+      .title
+        margin: 0 0 4px
+      label
+        display: block
+        text-align: center
+        height: 40px
+        line-height: 40px
+        font-weight: bold
+        cursor: pointer
+        border-radius: 12px
+        -moz-border-radius: 12px
+        -webkit-border-radius: 12px
+        input
+          float: right
+          cursor: pointer
+          margin: 15px 11px 0 0
+      .filterType
+        clear: both
+        margin: 0 0 6px
+        cursor: pointer
+        .type
+          font-weight: bold
+          padding: 4px 8px
+        .expander
+          padding: 0px 8px 4px
+          label
+            height: 30px
+            line-height: 30px
+            display: block
+            font-weight: normal
+            img, span
+              float: left
+            img
+              margin: 8px 4px 0 0
+            input
+              float: right
+              margin: 10px 0 0
+
+      .refresh
+        height: 30px
+        line-height: 30px
+        font-weight: bold
+        text-align: center
+        margin-bottom: 4px
+
+.light
+  .streamFilter
+    .filterType
+      clear: both
+      margin: 0 0 6px
+      border: 2px solid #bdbdbd
+      background: #e8e8e8
+
+.dark
+  .streamFilter
+    .filterType
+      clear: both
+      margin: 0 0 6px
+      border: 2px solid #bdbdbd
+      background: #e8e8e8
+
+
+
+
+
+#entryField
+
+  /*********** SHOW ENTRY SHARED STYLES***********/
+  #showEntry
+    .panel
+      padding: 8px
+      border: 1px solid #666
+    .content, .tagEntry, .entryAnalysis
+      margin: 0 0 8px
+
+  /*********** SHOW ENTRY ***********/
+  #showEntry
+    width: 662px 
+    padding: 8px
+
+    a.next, .stream, a.prev, .books, .type, .editEntry
+      margin: 0 0 8px
+      padding: 0 18px
+      height: 32px
+      line-height: 32px
+      text-align: center
+      font-weight: bold
+      display: block
+    .type
+      float: left
+      cursor: default
+    a.next, .stream, a.prev, .books, .editEntry
+      float: right
+    .books
+      margin-right: 8px
+    .editEntry:hover
+      -moz-opacity: 1
+      -khtml-opacity: 1
+      -webkit-opacity: 1
+      opacity: 1
+    .editEntry.confirm
+      margin-right: 16px
+    .editEntry.delete
+      margin-right: 4px
+      
+      
+
+    // HEADER IMAGE & TITLE
+    .imageHeader
+      clear: both
+      position: relative
+      margin: 0
+      height: 200px
+      background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+      .title
+        position: absolute
+        margin: 0 0 0 20px
+        bottom: 0
+        padding: 0 12px
+        height: 36px
+        line-height: 36px
+        max-width: 620px
+        text-align: center
+        font-size: 22px
+        overflow: hidden
+
+    .content
+
+      // BODY
+      .body
+        margin: 0
+        padding: 36px
+
+      // GALLERY
+      ul.gallery
+        margin: 0 0 0 20px
+        padding: 4px
+        list-style: none
+        li
+          margin: 0 2px 2px 0
+          float: left
+          height: 120px
+          width: 120px
+          background: #ababab
+
+      // SHARING
+      .entryLinks
+        clear: both
+        margin: 8px
+        padding: 8px
+        background-color: #ddd
+        .button
+          float: left
+          margin: 0 8px 0 0
+          padding: 0 12px
+          height: 30px
+          line-height: 30px
+          text-align: center
+          img, span
+            float: left
+          img
+            margin: 7px 8px 0 0
+
+      // INFO
+      .entryInfo
+        clear: both
+        margin: 0
+        padding: 8px
+        .postTime, .postLocation, .love, .share, .repost, .starlight
+          float: left
+        .postTime, .postLocation, .starlightCount, .shareOptions
+          height: 32px
+          line-height: 32px
+          padding: 0 12px
+          margin: 0 4px 0 0
+        .starlightCount
+          img.starlight
+            margin: 6px 8px 0 0
+        .starlightCount, .shareOptions
+          float: right
+        .shareOptions
+          width: 86px
+          .love, .share, .repost
+            width: 28px
+            height: 32px
+            cursor: pointer
+          .love
+            background: url(/images/icons/love-16.png) no-repeat center
+          .love.selected
+            background: url(/images/icons/love-16-selected.png) no-repeat center
+          .share
+            background: url(/images/icons/share-16.png) no-repeat center
+          .share.selected
+            background: url(/images/icons/share-16-selected.png) no-repeat center
+          .repost
+            background: url(/images/icons/repost-24.png) no-repeat center
+          .repost.selected
+            background: url(/images/icons/repost-24-selected.png) no-repeat center
+
+    // TAG - see NEW ENTRY TAG below
+    .entryTags
+      img.tagCheck
+        margin: 4px 0 0 6px
+
+    // ANALYSIS
+    .entryAnalysis
+      .analysisHeader
+        margin-bottom: 8px
+        img
+          margin: 7px 8px 0 0
+
+      .analysisTags, .expanded
+        clear: both
+        line-height: 32px
+        margin: 0 0 8px
+        padding: 0 12px 0 0
+        overflow: hidden
+        .title
+          height: 32px
+          padding-left: 42px
+          font-weight: bold
+          .arrow
+            float: right
+            height: 32px
+            width: 16px
+            background: url(/images/icons/arrow-down-16.png) no-repeat center
+        .description
+          clear: both
+          margin: 20px 8px 20px 20px
+          line-height: 20px
+          .source
+            float: left
+            margin: 0 0 12px 12px
+            padding: 0 12px
+            height: 24px
+            line-height: 24px
+            text-align: center
+      .analysisTags.expanded .title
+        .arrow
+          background: url(/images/icons/arrow-up-16.png) no-repeat center
+
+
+    // COMMENTS
+    .commentsPanel
+      margin-bottom: 0
+      .commentsHeader
+        margin-bottom: 8px
+        img
+          margin: 7px 8px 0 0
+        .counter
+          float: right
+
+      .newCommentWrap, .prevCommentWrap
+        clear: both
+        margin-bottom: 8px
+        .avatar
+          float: left
+          height: 62px
+          width: 62px
+          margin: 0 8px
+          overflow: hidden
+          background: url(/images/avatars/default-avatar-tiny.jpg) top left
+        .newComment
+          float: right
+          width: 546px
+          padding: 8px
+          textarea
+            min-height: 90px
+            width: 546px
+            background: transparent
+            border: none
+          .images, .links, .save
+            float: right
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            text-align: center
+          .images, .links
+            img
+              margin: 11px 8px 0 0
+              float: left
+          .links
+            img
+              margin-top: 9px
+      .prevCommentWrap
+        margin-bottom: 0
+        .prevComment
+          float: right
+          min-height: 112px
+          width: 544px
+          padding: 8px
+          border: 2px solid white
+          .user, .postTime
+            float: left
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            margin: 0 0 12px
+            text-align: center
+          ul
+            float: right
+            max-width: 270px
+            margin: 0 0 0 8px
+            padding: 0
+            list-style: none
+            li
+              margin: 0 2px 2px 0
+              float: right
+              height: 62px
+              width: 62px
+              background: #ababab
+            
+          .comment
+            clear: both
+          .rePost
+            float: left
+            height: 32px
+            line-height: 32px
+            padding: 0 12px
+            margin: 12px 0 0
+            text-align: center
+          
+
+
+#entryField
+
+  /*********** NEW ENTRY ***********/
+  .headers
+    padding: 0 12px
+    height: 34px
+    line-height: 34px
+    text-align: center
+    float: left
+    font-weight: bold
+    cursor: pointer
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+    img
+      float: left
+  .moodHeader, .linksHeader, .tagHeader, .locationHeader, .dateTimeHeader
+    img
+      margin: 9px 8px 0 0
+  .tagHeader
+    img
+      margin: 8px 8px 0 0
+  .imagesHeader
+    img
+      margin: 11px 8px 0 0
+
+  // NEW ENTRY INPUT PANEL
+  #newEntry
+    width: 662px 
+    padding: 8px
+
+    // MOOD ICON
+    .wrapper
+      .moodIcon
+        position: absolute
+        right: -26px
+        top: -26px
+      .moodIcon-picker
+        position: absolute
+        right: -8px
+        top: -8px
+
+    #entryTypeWrap
+      position: absolute
+      right: 70px
+      width: 126px
+      height: 34px
+      line-height: 34px
+      text-align: center
+      cursor: pointer
+      img
+        float: left
+        margin: 3px 0 0 4px
+      #entryType_current
+        background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
+      #entryType_list
+        background: transparent
+        border: 0
+    #entry_title, #entry_body
+      margin: 10px 0 0 10px
+      background: transparent
+      border: none
+    #entry_title
+      width: 460px
+      height: 26px
+      line-height: 26px
+    #entry_body
+      width: 640px
+      min-height: 134px
+      height: 134px
+
+    /* NEW ENTRY OPTIONS */
+    #entryOptions
+      position: relative
+      width: 664px 
+      height: 48px
+      margin: 0 auto
+      bottom: 0
+      border: 1px solid #D7D7D7
+      #share
+        top: 50px
+        float: right
+    .myBooks, .date, .addLocation, .sharing, #entry_submit
+      height: 34px
+      line-height: 34px
+      margin: 8px 0 0 8px
+      text-align: center
+      cursor: pointer
+      float: right
+      border-radius: 16px
+      -moz-border-radius: 16px
+      -webkit-border-radius: 16px
+    .myBooks
+      width: 184px
+      float: left
+      font-weight: bold
+      img
+        margin: 9px 0 0 14px
+        float: left
+
+    .date, .addLocation
+      width: 42px
+      img
+        margin: 9px 0 0
+    .addLocation
+      img
+        margin: 7px 0 0
+    .addLocation.selected
+      border: 1px solid #333
+    .sharing
+      width: 104px
+      img
+        margin: 10px 10px 0 0
+        float: right
+    #entry_submit
+      width: 64px
+      height: 34px
+      line-height: 28px
+      margin-right: 8px
+      font-weight: bold
+      font-size: 12px
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+
+  // ENTRY DATE / TIME
+  .entryDateTime
+    display: none
+    .date, .time
+      float: left
+      margin: 0 0 0 8px
+    #hour, #month, #day, #year, #minute, #amPm
+      padding: 6px 12px
+      font-size: 16px
+    #hour, #month
+      margin-left: 8px
+    #day, #year, #minute, #amPm
+      margin-left: -4px
+
+
+  // ENTRY LOCATION
+  .entryLocation
+    height: 35px
+    display: none
+    .locations
+      float: left
+      font-size: 16px
+      margin-left: 8px
+      padding: 5px 8px
+      cursor: pointer
+      height: 34px
+      line-height: 34px
+      margin: 0 0 0 14px
+      padding: 6px 8px
+      option
+        padding: 1px 4px
+      .newLocation
+        background: url('/images/icons/add-16.png') no-repeat 25px 8px
+        padding: 6px 0 6px 45px
+      .saved
+        font-size: 17px
+        padding-bottom: 6px
+      .divider
+        background-color: #777777
+        font-size: 1px
+        margin: 0 0 6px
+        width: 98%
+      .noLocation
+        color: #777777
+    .spinner-small
+      width: 32px
+      height: 32px
+      margin-bottom: -32px
+      position: relative
+      left: 314px
+      top: 2px
+    .expander
+      clear: both
+      .name, .city, .state, .country
+        float: right
+        margin: 4px 0 0 8px
+        input
+          padding: 4px
+          width: 258px
+          font-size: 16px
+          border-radius: 8px
+          -moz-border-radius: 8px
+          -webkit-border-radius: 8px
+    .delete
+      float: right
+      height: 34px
+      padding: 0 12px
+      line-height: 34px
+      margin: 0
+      text-align: center
+
+
+  // ENTRY IMAGES
+  .entryImages
+    border: 1px solid #333
+    display: none
+    #addFromImageBank
+      float: left
+      height: 32px
+      line-height: 32px
+      padding: 0 8px
+      cursor: pointer
+      margin-left: 8px
+      img
+        margin: 6px 8px 6px 0
+        float: left
+    #imageDropArea
+      float: right
+      font-weight: bold
+      font-size: 13px
+      width: 380px
+      height: 32px
+      line-height: 32px
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      img
+        float: left
+        margin: 6px 8px
+    #currentImages
+      margin: 12px 0 0 12px
+      .entryImageContainer, .entryImage
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px 
+      .entryImageContainer
+        float: left
+        margin: 0px 8px 8px 0px
+        height: 120px
+        width: 120px
+        overflow: hidden
+        background: #fff
+        position: relative
+        .entryImage
+          float: left
+          width: 120px
+          height: 120px
+          overflow: hidden
+          cursor: pointer
+          .imageRemoveButton
+            margin: 8px
+            padding: 8px
+            width: 12px
+            height: 12px
+            cursor: pointer
+            display: inline-block
+            color: #ff1e00 !important
+            font-size: 12px
+            font-weight: bold
+            text-align: center
+            border-radius: 4px
+            -moz-border-radius: 4px
+            -webkit-border-radius: 4px
+        .entryImageCaption
+          color: #333333
+          font-size: 16px
+          font-weight: bold
+          height: 94px
+          margin: 4px
+          padding: 8px
+          width: 184px
+          border: 0px
+          background: none
+          position: absolute
+          right: 0px
+
+  // NEW ENTRY TAGS
+  .entryTags
+    min-height: 42px
+    #tag-list
+      width: 660px
+      .tag_box
+        padding: 0 4px
+        text-align: center
+        height: 28px
+        line-height: 28px
+        color: #262626 /* 90% Black */
+        margin: 8px 8px 0 0
+    .tagInputWrap
+      width: 520px
+      height: 40px
+      float: left
+      margin: 0 0 0 8px
+      img
+        float: left
+        margin: 0
+      .tagInput
+        width: 480px
+        height: 40px
+        float: left
+        margin: 0
+        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        input
+          width: 410px
+          height: 32px
+          float: left
+          line-height: 32px
+          margin: 4px 0
+          font-size: 18px
+          background: transparent
+          border: 0
+      .tagAdd
+        width: 62px
+        height: 30px
+        line-height: 30px
+        text-align: center
+        float: right
+        margin: 5px 0
+        span
+          color: green
+    #tagBrowse
+      width: 36px
+      height: 32px
+      float: right
+      margin: 0
+      padding: 4px 3px
+      border: 1px solid #C2C2C2
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
+      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
+    .tag-who, .tag-where, .tag-what
+      height: 34px
+      line-height: 34px 
+      text-align: center
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px 
+      background: #fff
+    .tag-who
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
+      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
+    .tag-list
+      clear:both
+
+  // NEW ENTRY LINKS
+  .entryLinks
+    #linkInputWrap
+      box-shadow: 0 8px 5px #999 inset
+      -moz-box-shadow: 0 8px 5px #999 inset
+      -webkit-box-shadow: 0 8px 5px #999 inset
+      margin: 0 8px 8px 8px
+      float: left
+      background: #fff
+      border: 1px solid #fff 
+      border-radius: 8px 
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      width: 550px
+      height: 38px
+      line-height: 38px
+      input
+        width: 460px
+        height: 32px
+        float: left
+        line-height: 32px
+        margin: 4px 0 4px 8px
+        font-size: 18px
+        background: transparent
+        border: 0
+      .linkAdd
+        width: 62px
+        height: 30px
+        line-height: 30px
+        text-align: center
+        float: right
+        margin: 4px 12px 0 0
+        span
+          color: green
+    .linkContainer
+      clear: both
+      display: none
+      margin: 8px 0 0
+      padding: 3px 8px
+      width: 632px
+      height: 34px
+      line-height: 34px
+      background: #fff
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      .title
+        float: left
+        width: 122px
+        margin: 0 0 0 10px
+        cursor: pointer
+      .linkTitleValue
+        border: none
+        background: #fff
+        font-size: 14px
+      .url
+        text-align: left
+        float: left
+        margin: 0 0 0 102px
+        width: 330px
+        height: 24px
+        overflow: hidden
+        cursor: pointer
+        a:link, a:visited
+          height: 14px
+          overflow: hidden
+      .icon
+        float: right
+        width: 32px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+      .removeicon
+        float: right
+        width: 32px
+        height: 32px
+        line-height: 32px
+        text-align: center
+        padding-top: 4px
+        cursor: pointer
+        color: red
+       
+  // NEW ENTRY MOOD
+  .entryMood
+    .moodHeader
+      margin-bottom: 8px
+
+    // MOOD PICKER
+    .moodPicker
+      padding: 8px
+      clear: both
+      margin: 8px 0
+      .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
+        clear: both
+        margin: 0 0 2px
+        height: 32px
+        .one, .two, .three, .four, .five
+          float: left
+          height: 32px
+          line-height: 32px
+          width: 110px
+          text-align: center
+          display: block
+          box-shadow: inset 0 18px rgba(255,255,255,0.5)
+          -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+          -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+        .one
+          width: 200px
+          background: #fff
+          span
+            margin-right: 44px
+            text-align: right
+            width: 80px
+            display: inline-block
+      .love
+        .two
+          background-color: rgb(216, 235, 157)
+        .three
+          background-color: rgb(196, 225, 99)
+        .four
+          background-color: rgb(153, 204, 51)
+        .five
+          background-color: rgb(123, 189, 13)
+      .joy
+        .two
+          background-color: rgb(255, 255, 204)
+        .three
+          background-color: rgb(254, 241, 130)
+        .four
+          background-color: rgb(250, 219, 77)
+        .five
+          background-color: rgb(237, 197, 0)
+      .surprise
+        .two
+          background-color: rgb(254, 218, 164)
+        .three
+          background-color: rgb(248, 185, 104)
+        .four
+          background-color: rgb(242, 153, 58)
+        .five
+          background-color: rgb(232, 114, 0)
+      .anger
+        .two
+          background-color: rgb(248, 166, 164)
+        .three
+          background-color: rgb(237, 100, 107)
+        .four
+          background-color: rgb(228, 48, 84)
+        .five
+          background-color: rgb(220, 0, 71)
+      .mystical
+        .two
+          background-color: rgb(206, 178, 216)
+        .three
+          background-color: rgb(186, 153, 203)
+        .four
+          background-color: rgb(148, 99, 198)
+        .five
+          background-color: rgb(123, 78, 163)
+      .wonder
+        .two
+          background-color: rgb(198, 238, 255)
+        .three
+          background-color: rgb(138, 220, 254)
+        .four
+          background-color: rgb(68, 194, 246)
+        .five
+          background-color: rgb(0, 113, 208)
+      .sadness
+        .two
+          background-color: rgb(200, 223, 212)
+        .three
+          background-color: rgb(150, 198, 191)
+        .four
+          background-color: rgb(150, 198, 191)
+        .five
+          background-color: rgb(41, 82, 94)
+      .stress
+        .two
+          background-color: rgb(217, 205, 203)
+        .three
+          background-color: rgb(188, 171, 158)
+        .four
+          background-color: rgb(147, 130, 95)
+        .five
+          background-color: rgb(85, 79, 52)
+      .fear
+        .two
+          background-color: rgb(196, 196, 196)
+        .three
+          background-color: rgb(162, 162, 162)
+        .four
+          background-color: rgb(127, 127, 127)
+        .five
+          background-color: rgb(101, 101, 101)
+
+
+
+  // NEW ENTRY ATTACH
+  .entryAttach
+
+    p
+      height: 34px
+      line-height: 32px
+      margin: 0 30px
+      float: left
+    .tag, .images, .mood, .links, .analysis
+      height: 34px
+      line-height: 32px
+      margin: 0 0 0 8px
+      padding: 0 12px
+      text-align: center
+      cursor: pointer
+      float: left
+      border-radius: 16px
+      -moz-border-radius: 16px
+      -webkit-border-radius: 16px
+      img
+        float: left
+        margin: 7px 8px 0 0
+    .images
+      img
+        margin-top: 11px
+
+
+
+
+
+
+/* ENTRY BAR */
+.light, .dark
+  #entryBar
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.5)), to(rgba(0,0,0,0.5)))
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.5), rgba(0,0,0,0.5))
+.light
+  #entryBar
+    .entry.selected, .tag.selected, .quote.selected, .book.selected
+      background: #2e2e2e
+      background: -webkit-gradient(linear, left top, left bottom, from(#2e2e2e), to(#515151))
+      background: -moz-linear-gradient(top, #2e2e2e, #515151)
+      color: #dadada
+.dark
+  #entryBar
+    .entry.selected, .tag.selected, .quote.selected, .book.selected
+      background: #adadad
+      background: -webkit-gradient(linear, left top, left bottom, from(#adadad), to(#fff))
+      background: -moz-linear-gradient(top, #adadad, #fff)
+      color: #000
+
+#entryBar
+  width: 668px
+  margin: 0 0 10px
+  padding: 8px
+  a:link, a:visited
+    display: block
+    text-decoration: none
+    color: #000
+  .entry, .tag, .quote, .book
+    height: 32px
+    line-height: 32px
+    float: left
+    margin-right: 10px
+    padding: 0
+    text-align: center
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+    
+  a.entry
+    font-weight: bold
+    color: #444
+    width: 114px
+    cursor: text
+    height: 34px
+    background: #fff
+    box-shadow: inset 0 4px 12px rgba(0,0,0,0.8)
+    -moz-box-shadow: inset 0 4px 12px rgba(0,0,0,0.8)
+    -webkit-box-shadow: inset 0 4px 12px rgba(0,0,0,0.8)
+    span
+      font-size: 18px
+      color: #68b800
+  a.entry:hover
+    box-shadow: 0 0 12px rgba(0,0,0,1)
+    -moz-box-shadow: 0 0 12px rgba(0,0,0,1)
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,1)    
+  .tag
+    width: 70px
+  .quote
+    width: 96px
+  .book
+    width: 88px
+    float: right
+    margin: 8px 10px 0 10px
+
+
+
+
+
+
+
+/******** TAG STREAM ********/
+/* LIGHT AND DARK */
+
+.light
+  #tagEntry
+    .entryInput
+      background: url(/images/slices/tagInput-light-660.png) top left
+      input
+        color: #000
+.dark
+  #tagEntry
+    .entryInput
+      color: #fff
+      background: url(/images/slices/tagInput-dark-660.png) top left
+      input
+        color: #ccc
+
+#tagEntry
+  margin: 0 0 18px
+  padding: 8px
+  width: 668px
+  height: 40px
+  z-index: 1000
+  position: absolute
+  .entryInput, input
+    float: left
+  .entryWrap
+    height: 40px
+    margin: 0
+    float: right
+    img
+      float: left
+      margin: 0
+      z-index: 0
+    .entryInput
+      width: 660px
+      height: 40px
+      margin: 0
+      #tagInput
+        width: 480px
+        height: 32px
+        line-height: 32px
+        margin: 4px 0 4px 20px
+        font-size: 18px
+        background: transparent
+        border: 0
+      .location, .sharing
+        margin: 14px 8px 0 0
+        float: right
+        cursor: pointer
+      .location
+        margin-top: 12px
+    .add
+      width: 62px
+      height: 30px
+      line-height: 30px
+      float: right
+      margin: 4px
+      cursor: pointer
+      text-align: center
+      color: #fff
+      border: 1px solid #C2C2C2
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      background: -webkit-gradient(linear, left top, left bottom, from(#464646), to(#000))
+      background: -moz-linear-gradient(top, #464646, #000) /* gradient-80-100 */
+      span
+        font-weight: bold
+        color: #349200
+
+  #share
+    width: 148px
+    padding: 8px
+    position: absolute
+    top: 112px
+    left: 490px
+    background: #fff
+    -moz-box-shadow: 0 0 40px #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
+    background: -moz-linear-gradient(top, #fff, #ccc) /* gradient-0-30 */
+    border: 1px solid #fff
+    z-index: 900
+    .arrow
+      position: absolute
+      top: -12px
+      left: 72px
+    select, .social
+      font-size: 16px
+      width: 100%
+      height: 28px
+      line-height: 28px
+      padding: 2px 4px
+      margin: 2px 0
+    .social
+      border: 1px solid #C2C2C2
+      width: 138px
+      height: 22px
+      line-height: 22px
+      cursor: pointer
+      background: #fff
+      label
+        display: block
+      .icon, .name
+        float: left
+        cursor: pointer
+      .icon
+        margin: 4px 8px 0 4px
+      .name
+        text-align: center
+      .checkbox
+        float: right
+        margin: 4px 0 0
+        cursor: pointer
+
+  // AUTO COMPLETE
+  #autoComplete
+    padding: 4px
+    width: 207px
+    min-height: 32px
+    position: absolute 
+    top: 65px
+    left: 36px
+    z-index: 500
+    ul
+      list-style-type: none
+      margin: 0px
+      padding: 0px
+      li
+        height: 32px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
+        line-height: 32px
+        color: #666
+        border: 1px solid #ccc
+        cursor: pointer
+      .results
+      .results:hover
+        background: -webkit-gradient(linear, left top, left bottom, from(#7D7D7D), to(#000))
+        background: -moz-linear-gradient(top, #7D7D7D, #000) /* gradient-60-100 */
+      .results:hover a:link
+        color: #fff
+      a:link, a:visited
+        float: left
+        display: inline-block
+        font-weight: bold
+      .userStatus
+        float: right
+        z-index: 200
+        position: relative
+        top: 3px
+        right: 3px
+        float: right
+        width: 17px 
+        height: 17px
+        overflow: hidden 
+        cursor: pointer
+        background: url('../images/icons/friend-stream-sprite.png') no-repeat 0% 0%
+        margin: 8px
+        top: 0px !important
+        left: 0px !important
+
+
+  /* TAG NODE */
+  .tagNode
+    width: 150px
+    height: 32px
+    position: absolute
+    top: 15px
+    left: 40px
+    float: left
+    line-height: 32px
+    font-weight: bold
+    background: #b6b5b3
+    -moz-box-shadow: 0 15px 10px #e6e6e6 inset
+    span
+      float: left
+      margin-left: 10px
+    .removeTag
+      position: absolute
+      top: 7px
+      right: 6px
+      cursor: pointer
+
+  // TAG ENTRY AVATAR
+  .avatar
+    height: 32px
+    border-radius: 8px
+    -moz-border-radius: 8px
+    -webkit-border-radius: 8px
+    width: 32px
+    overflow: hidden
+    float: left !important
+    margin-right: 10px
+    display: inline-block
+
+
+
+
+
+
+
+
+
+/******** MOOD ICON PICKER ********/
+
+#tagStream, #entryField
+
+  .moodIcon, .moodIcon-picker, .currentIcon
+    float: right
+    border-radius: 16px
+    -moz-border-radius: 16px
+    -webkit-border-radius: 16px
+    z-index: 1200
+  .currentIcon, .moodIcon
+    width: 64px
+    height: 50px
+    padding: 7px 0
+    background: #fff
+    text-align: center
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+    background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+  .moodIcon
+    margin: 17px 17px 0 0
+  .moodIcon-picker
+    position: absolute
+    top: 5px
+    padding: 8px
+    width: 286px
+    height: auto
+    z-index: 1200
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+    background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+    #buttons
+      float: left
+      margin: 12px 0 0 4px
+      width: 58px
+    .cancel, .clear, .currentMood
+      color: #000
+      text-align: center
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      border: 1px solid #959595 /* 50% Black */
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+      background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+    .cancel, .clear
+      margin: 0 0 4px
+      padding: 0 4px
+      width: 48px
+      height: 14px
+      line-height: 14px
+      font-size: 11px
+      cursor: pointer
+    .currentMood
+      float: left
+      margin: 12px 0 0 14px
+      padding: 0 8px
+      width: 112px
+      height: 36px
+      line-height: 36px
+      font-size: 16px
+      font-weight: bold
+      text-transform: uppercase
+      border-radius: 16px
+      -moz-border-radius: 16px
+      -webkit-border-radius: 16px
+    .currentIcon
+      margin: 0 0 2px
+      box-shadow: 0 0 12px #000
+      -moz-box-shadow: 0 0 12px #000
+      -webkit-box-shadow: 0 0 12px #000
+    .moodIcon-list
+      clear: both
+      list-style: none
+      margin: 0
+      padding: 0
+      width: 306px
+      li
+        float: left
+        margin: 4px 4px 0 0
+        padding: 10px 0
+        width: 90px
+        height: 70px
+        text-align: center
+        cursor: pointer
+        border: 1px solid #959595 /* 50% Black */
+        border-radius: 16px
+        -moz-border-radius: 16px
+        -webkit-border-radius: 16px
+        background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#D7D7D7))
+        background: -moz-linear-gradient(top, #fff, #D7D7D7) /* gradient-0-20 */
+        p
+          margin: 0
+          color: #959595 /* 50% Black */
+
+
+
+
+
+
+
+
+
+
+
+
+/******** TAG STREAM ********/
+#tagStream
+  width: 672px
+  height: 100px
+  z-index: 333
+  margin: 0 0 12px 0
+  padding: 6px
+  background: rgba(0,0,0,0.8)
+  position: relative
+
+  .moodIcon-picker
+    left: 321px
+
+  // LIVE TAG STREAM
+  #tagsLive
+    position: relative
+    height: 100px
+    margin: 0
+    padding: 0
+
+    // GENERAL TAG STYLES
+    .stream_tag:hover
+      border: 1px solid #fff
+    .stream_tag
+      height: 24px
+      margin: 10px 10px 0
+      padding: 0
+      cursor: pointer
+      float: left
+      border: 1px solid transparent
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      span
+        padding: 4px
+        float: left
+        font-size: 12px
+        font-weight: bold
+      .count
+        background-color: #a63700
+        color: #fff
+        font-size: 9px
+        display: inline-block
+        float: left
+        top: -4px
+        padding: 1px 4px
+        border-radius: 8px
+        -moz-border-radius: 8px
+        -webkit-border-radius: 8px
+
+    // WHAT TAG STYLES
+    .tagWhat
+
+    // WHERE TAG STYLES
+    .tagWhere
+
+    // WHO TAG STYLES
+    .tagWho
+      box-shadow: inset 0px 15px 10px #404040
+      -moz-box-shadow: inset 0px 15px 10px #404040
+      -webkit-box-shadow: inset 0px 15px 10px #404040
+      border-radius: 8px
+      -moz-border-radius: 8px
+      -webkit-border-radius: 8px
+      .avatar
+        width: 24px
+        height: 24px
+        overflow: hidden
+        float: left
+        background: url(/images/avatars/xavitar.jpg) no-repeat
+        border-radius-topleft: 8px
+        -moz-border-radius-topleft: 8px
+        -webkit-border-radius-topleft: 8px
+        border-radius-bottomleft: 8px
+        -moz-border-radius-bottomleft: 8px
+        -webkit-border-radius-bottomleft: 8px
+      span
+        float: right
+        margin: 0 8px
+
+
+
+.tagChat
+  padding: 4px
+  left: 0
+  position: absolute
+  top: 50px
+  z-index: 333
+  width: 360px
+  .arrow
+    position: absolute
+    top: -10px
+    left: 180px
+  .description
+    padding: 8px
+    margin-bottom: 4px
+    color: #4c4c4c !important
+    font-size: 13px
+    font-weight: bold
+    text-align: center
+    height: 30px
+    line-height: 30px
+  .postInfo
+    padding: 4px
+  .avatar, .name, .time, .comment, input
+    float: left
+  .avatar
+    width: 20px
+    height: 20px
+  .name
+    background-color: #cecece
+    display: inline-block
+    font-weight: bold
+    font-size: 11px
+    height: 16px
+    padding: 2px 4px
+    margin-left: 5px
+    border-radius: 4px
+    -moz-border-radius: 4px
+    -webkit-border-radius: 4px
+  .time
+    color: #a1a1a1
+    display: inline-block
+    margin-left: 5px
+    font-size: 11px
+    height: 20px
+    line-height: 20px
+  .shared
+    float: right
+    margin: 4px 4px 0 0
+  .chat
+    padding: 4px
+    margin-top: 4px
+    background: none repeat scroll 0% 0% rgb(255, 255, 255)
+    .userComment
+      height: 26px
+      padding: 4px
+    .comment
+      color: #4C4C4C
+      display: inline-block
+      margin-left: 5px
+      font-size: 12px
+      height: 20px
+      line-height: 20px
+    .input
+      padding: 4px
+      height: 24px
+      img
+        float: right
+        margin: 6px
+      input
+        margin-left: 4px
+        width: 88%
+        height: 24px
+        border: 0
+        background: transparent
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* UNIVERSAL STYLES */
+.entryAssets
+  width: 662px
+  padding: 8px
+  border: 1px solid #464646 /* 80% Black */ 
+  border-radius: 12px
+  -moz-border-radius: 12px
+  -webkit-border-radius: 12px
+
+
+
+.noEntrys
+  position: absolute
+  top: 0px
+  width: 680px
+  text-align: center
+  cursor: default

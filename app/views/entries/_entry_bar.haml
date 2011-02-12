@@ -1,0 +1,50 @@
+#entryBar.round-24
+  %a.entry{href: new_entry_path} <span>+</span> new entry
+  .tag.bevel.button tag
+  / Save for later  .quote.bevel.button quote
+  .clear-both
+  / Save for later  .book.bevel.button book
+
+
+
+#tagEntry.entryObj.round-16.transparent-50.glow-40.hidden
+  .entryWrap
+    .entryInput
+      %input{id: 'tagInput', maxlength: '64', name: 'tagTitle', title: 'WHO / WHAT / WHERE are you dreaming?', value: 'WHO / WHAT / WHERE are you dreaming?'}
+      .add
+        %span +
+        Add
+      %img#sharingExpand.sharing{src: '/images/icons/sharing-16.png'}
+      %img.addLocation.location{src: '/images/icons/location-21.png'}
+
+  #autoComplete.bevel.round-12.hidden
+    %ul
+      %li.searching &nbsp;SEARCHING
+      %li.results
+        .avatar
+          %img{src: '/images/avatars/xavitar.jpg'}
+        %a{href: '#'} Xavi
+        // User-follow
+        .userStatus
+
+  .tagNode.round-8.hidden
+    .avatar.round-8
+      %img{src: '/images/avatars/xavitar.jpg'}
+    %span Xavi
+    %img.removeTag{src: '/images/icons/removeTag-16.png'}
+
+
+  #share.round-8.hidden
+    %img.arrow{src: '/images/icons/uparrow-black.png'}
+    %select.input.round-8
+      %option{value: 'Everyone'} Everyone
+      %option{value: 'Friends Only'} Friends Only
+      %option{value: 'Private'} Private
+    .social.round-8
+      %label
+        %img.icon{src: '/images/icons/facebook-16.png'}
+        %span.name Facebook
+        %input.checkbox{type: 'checkbox'}
+
+  / NEW DREAM LOCATION
+  = render :partial => "location"

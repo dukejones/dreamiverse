@@ -1,9 +1,30 @@
 $(document).ready(function() {
   setupEvents();
-  setupTags();
   setupImagebank();
   setupTextareaAutoExpander();
+  setupUploader();
 });
+
+var uploader = null;
+var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
+
+function setupUploader(){            
+  if(document.getElementById('imageDropArea')){
+    uploader = new qq.FileUploader({
+      element: document.getElementById('imageDropArea'),
+      action: '/images.json',
+      maxConnections: 1,
+      params: imageMetaParams,
+      debug: true,
+      onSubmit: function(id, fileName){
+     
+      },
+      onComplete: function(id, fileName, responseJSON){
+        resetImageButtons();
+      }
+    });
+  }      
+}
 
 function setupTextareaAutoExpander(){
   if($('textarea#dream_body').attr('id') == 'dream_body'){
@@ -49,28 +70,6 @@ function displayImageBank(){
   });
 }
 
-function setupTags(){
-  // Add tag click
-  $('#tagAdd').click(function(){
-    addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
-  })
-  
-  // Capture ENTER press
-  $($('#newTag')).keypress(function (e) {
-    if (e.which == 13){
-     addTagToListDream( $('#newTag').val(), 'newTag', '#newTag' );
-    }
-    activateRemoveTag('.tag_box');
-  });
-  
-  // Set up tag list sortability
-  /*$( "#tag-list" ).sortable( {
-    distance: 10,
-    start: function(event, ui) { $("#sorting").val(1) }, // while sorting, change hidden value to 1
-    stop: function(event, ui) { $("#sorting").val(0) }, // on ending, change the value back to 0
-  } );*/ // this prevents the tag from being deleted when it's dragged
-}
-
 //************************************//
 //            TAG HANDLING            //
 //************************************//
@@ -87,15 +86,24 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
   var tagID_element = '#' + tagID ; // Create variable to handle the ID
   
   if (tag_selected != ''){ // if it's not empty
-    $('#empty-tag').clone().attr('id', tagID ).appendTo('#tag-list').end; // clone tempty tag box
+    //$('#empty-tag').clone().attr('id', tagID ).appendTo('#tag-list').end; // clone tempty tag box
+    
+    var newElement = $('#empty-tag').clone().attr('id', tagID );
+    $('#tag-list br').before(newElement);
     $(tagID_element).removeClass('hidden') ; // and unhide the new one
     $(tagID_element).addClass('current-tags');
-    //$(tagID_element).contents().find('.tag-icon').addClass( tag_type ); // populate with tag icon
-    $(tagID_element).find('.content').html( tag_selected ); // populate with tag text
+    $(tagID_element).find('.tagContent').html( tag_selected ); // populate with tag text
     
     $(tagID_element).css('background-color', '#ccc');
     setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
     
+    /*var elementHeight = $('#tag-list').height(); 
+    //$('#tag-list').css('height', elementHeight + 'px');
+    
+    var combinedHeight = elementHeight;
+    $('#newDream-tag').animate({height: combinedHeight}, "fast", function(){
+      var elementHeight = $('#tag-list').height(); 
+    });*/
     
   }
   
@@ -105,7 +113,7 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
   
   //$(tagInputBoxIdd).autocomplete( 'close' );
   
-  activateRemoveTag('.tag_box');
+  activateRemoveDreamTag('.tag_box');
   
   // Update on server
   if(tagInputBoxIdd == "#IB_tagText"){
@@ -122,28 +130,26 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
 
 //*********** REMOVING TAGS ***********//  
 
-function activateRemoveTag (context) {
+function activateRemoveDreamTag (context) {
   $(context).mouseup(function() {
     //alert('this :: ' + $('#sorting').val())
     if ($("#sorting").val() == 0)
-      removeTagFromList(this);
+      removeTagFromDreamList(this);
   }); 
   
 }
 
 $(function() {
-  activateRemoveTag('.tag_box');
+  activateRemoveDreamTag('.tag_box');
 });
 
 // REMOVES DATA FROM TAG LIST          
-function removeTagFromList (idd){
-  
-  //$(idd).removeClass('tag_box', 0 );
+function removeTagFromDreamList (idd){
   $(idd).addClass('kill_tag');
   
   setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
   setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
-  setTimeout(function(){ $(idd).remove();}, 350);
+  setTimeout(function() { $(idd).remove(); }, 400);
   
   //updateCurrentImageTags();
 
@@ -151,21 +157,22 @@ function removeTagFromList (idd){
 
 /*** END OF TAGS ***/
 
+var tagHeight;
 
 function setupEvents(){
   // Listen for attach toggles
-  $('#attach-images').unbind();
-  $('#attach-images').click(function(){
-    $('#new_dream-images').slideDown();
+  $('.entryAttach .images').unbind();
+  $('.entryAttach .images').click(function(){
+    $('.entryImages').slideDown();
     $(this).hide();
     
     // Set newly displayed header click
-    $('#imagesHeader').click(function(){
+    $('.imagesHeader').click(function(){
       // if no images added, remove panel 
       // and show button
       if($('#currentImages').children().length == 1){
-        $('#new_dream-images').slideUp();
-        $('#attach-images').show();
+        $('.entryImages').slideUp();
+        $('.entryAttach .images').show();
       } else {
         // if content added, minimize panel
         if($('#currentImages').css('display') != 'none'){
@@ -178,51 +185,68 @@ function setupEvents(){
     
   })
   
-  $('#newDream-attach .tag').unbind();
-  $('#newDream-attach .tag').click(function(){
-    $('#newDream-tag').slideDown();
+  $('.entryAttach .tag').unbind();
+  $('.entryAttach .tag').click(function(){
+    $('.entryTags').slideDown();
+    //$('#newDream-tag').height(0);
+    //$('#newDream-tag').css('display', 'block');
+    //$('#newDream-tag').animate({height: 42}, "slow");
+    
     $(this).hide();
     
     // Set newly displayed header click
-    $('#newDream-tag .headers').click(function(){
-      if($('#tag-list').children().length == 1){
+    $('.entryTags .headers').unbind();
+    $('.entryTags .headers').click(function(){
+      if($('#tag-list').children().length == 2){
         // No tags added hide it all
-        $('#newDream-tag').slideUp();
-        $('#newDream-attach .tag').show();
+        $('.entryTags').slideUp();
+        $('.entryAttach .tag').show();
       } else {
         // tags added only minimize
         if($('#tag-list').css('display') != 'none'){
-          $('#tag-list').slideUp();
+          var elementHeight = $('#tag-list').height(); 
+          $('#tag-list').css('height', elementHeight + 'px');
+          $('#tag-list').slideUp('fast');
+          
+          /*var combinedHeight = elementHeight;
+          $('#newDream-tag').height(combinedHeight);
+          $('#newDream-tag').animate({height: 42}, "fast");*/
         } else {
-          $('#tag-list').slideDown();
+          var elementHeight = $('#tag-list').height(); 
+          $('#tag-list').css('height', elementHeight + 'px');
+          $('#tag-list').slideDown('fast');
+          
+          /*var combinedHeight = 50 + elementHeight;
+          $('#newDream-tag').height(42);
+          $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
         }
       }
     })
   })
   
-  $('#newDream-attach .mood').unbind();
-  $('#newDream-attach .mood').click(function(){
-    $('#newDream-mood').slideDown();
+  $('.entryAttach .mood').unbind();
+  $('.entryAttach .mood').click(function(){
+    $('.entryMood').slideDown();
     $(this).hide();
     
-    $('#newDream-mood .headers').click(function(){
-      $('#newDream-mood').slideUp();
-      $('#newDream-attach .mood').show();
+    $('.entryMood .headers').click(function(){
+      $('.entryMood').slideUp();
+      $('.entryAttach .mood').show();
     })
   })
   
-  $('#newDream-attach .links').unbind();
-  $('#newDream-attach .links').click(function(){
-    $('#newDream-link').slideDown();
+  $('.entryAttach .links').unbind();
+  $('.entryAttach .links').click(function(){
+    $('.entryLinks').slideDown();
     $(this).hide();
     
     // Set newly displayed header click
-    $('#newDream-link .headers').unbind();
-    $('#newDream-link .headers').click(function(){
+    $('.entryLinks .headers').unbind();
+    $('.entryLinks .headers').click(function(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
-        $('#newDream-link').slideUp();
-        $('#newDream-attach .links').show();
+        $('.entryLinks').slideUp();
+        $('.entryAttach .links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){
@@ -234,22 +258,15 @@ function setupEvents(){
     })
   })
   
-  $('#newDream-attach .analysis').unbind();
-  $('#newDream-attach .analysis').toggle(function(){
-    $('#newDream-analysis').slideDown();
-  }, function(){
-    $('#newDream-analysis').slideUp();
-  })
-  
   $('#entryOptions .date').unbind();
   $('#entryOptions .date').toggle(function(){
-    $('#newDream-dateTime').slideDown();
+    $('.entryDateTime').slideDown();
   }, function(){
-    $('#newDream-dateTime').slideUp();
+    $('.entryDateTime').slideUp();
   })
   
   // Listen for paste in DREAM field
-  $("#dream_body").bind('paste', function(e) {
+  $("#entry_body").bind('paste', function(e) {
     // Get pasted link
     var el = $(this);
     setTimeout(function() {
@@ -260,7 +277,7 @@ function setupEvents(){
   });
   
   // Listen for paste in LINK field
-  $('#linkAdd').click(function() {
+  $('.linkAdd').click(function() {
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
 
@@ -279,7 +296,7 @@ function checkForPastedLink(newText){
 function addLink(newText){
   if($('#newDream-link').css('display') == 'none'){
     $('#newDream-link').slideDown();
-    $('#newDream-attach .links').hide();
+    $('.entryAttach .links').hide();
     
     // Set newly displayed header click
     $('#newDream-link .headers').unbind();
@@ -287,7 +304,7 @@ function addLink(newText){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
         $('#newDream-link').slideUp();
-        $('#newDream-attach .links').show();
+        $('.entryAttach .links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){
