@@ -1,4 +1,4 @@
-.thumb-2d{style: "background: url('/images/art/astral-eyes-banner.jpg') top center", onMouseOver: "$(this).addClass('hover')", onMouseOut: "$(this).removeClass('hover')"}
+.thumb-2d{style: "background: url('/images/art/astral-eyes-banner.jpg') top center"}
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
@@ -14,10 +14,10 @@
       .location dream location
     .detailsBottom
       .newComments
-      .comments.round-12.float-left
+      .comments
         = image_tag("icons/comments-16.png")
         11
-      .sharing.round-12.float-right
+      .sharing
         = image_tag("icons/mask-16.png")
         private
 
