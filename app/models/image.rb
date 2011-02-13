@@ -73,7 +73,7 @@ module ImageProfiles
   
   def thumb(options)
     # img.thumbnail # => Faster but no pixel averaging.
-    size = options[:size]
+    size = options[:size] || 128
     img = magick_image
     # img.combine_options do |i|
     img.resize (width > height) ? "x#{size}" : size
@@ -107,9 +107,18 @@ module ImageProfiles
     img.write(path(:avatar_medium))
   end
   
+  # Make sure you do not ask for an avatar > 128x128 !
   def avatar(options)
-    size = options[:size]
-    
+    if size = options[:size]
+      img = profile_magick_image(:avatar) # this profile with no size
+      img.resize "#{size}x#{size}"
+    else
+      img = profile_magick_image(:avatar_main)
+      # avatar_main is 200x266, so shave top 66 px
+      img.crop "200x200+0+66"
+      img.resize "128x128"
+    end
+    img.write(path(:avatar, size))
   end
 end
 
