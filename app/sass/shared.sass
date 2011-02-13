@@ -193,13 +193,16 @@ a:active, a:focus
     .loginPanel, .signupPanel
       +clear
 
+      span
+        +font(11)
+        margin-left: 4px
       .login-input, #loginButton
         +clear
         +block
         +font(14)
         +input-light
         +round(12)
-        margin: 4px 0 0
+        margin: 0 0 2px
         padding: 0 8px
         width: 176px
         height: 32px
@@ -211,7 +214,7 @@ a:active, a:focus
         +block
         +center
         +font(14)
-        margin: 4px 0 0
+        margin: 4px 0 6px
 
       #loginButton
         +round(12)
