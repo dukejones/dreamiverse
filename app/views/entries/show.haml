@@ -1,3 +1,5 @@
+- content_for :head do
+  = sass_link_tag 'entries'
 - content_for :foot do
   = coffeescript_include_tag 'tag', 'dream'
 
@@ -15,10 +17,10 @@
 
     .type Dream
 
-    %a.next{href: entries_path}
+    %a.next.cancel{href: entries_path}
       %span &rsaquo;
-    .stream stream
-    %a.prev{href: entries_path}
+    .stream.cancel stream
+    %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
     %a.editEntry.confirm{href: edit_entry_path(@entry)} edit

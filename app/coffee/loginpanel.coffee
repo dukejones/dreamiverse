@@ -21,7 +21,7 @@ class LoginView
   constructor: (containerSelector)->
     @$container = $(containerSelector)
     
-    @$loginButton = @$container.find('.login.button')
+    @$loginButton = @$container.find('.login')
     @$joinButton = @$container.find('.joinWrap')
     @$signupButton = @$container.find('.signupWrap')
     

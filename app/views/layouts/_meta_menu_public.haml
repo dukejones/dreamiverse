@@ -1,52 +1,52 @@
 #metaMenu.public
 
-  .leftPanel.padding-8.round-16.flat-top
+  .leftPanel
     %a.item{href: '#'}
       intro
     %a.item{href: '#'}
       books
     %a.item{href: '#'}
       channels
-    %form.float-left
-      %input.input.padding-4-8.round-16{type: 'text', name: 'search' }
+    %form
+      %input{type: 'text', name: 'search' }
 
 
-  .rightPanel.bevel.round-16.flat-top
+  .rightPanel
     .prompt
-      %a.loginItem.button.round-12
+      %a.loginItem
         %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
-      %a.loginItem.button.round-12
+      %a.loginItem
         %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
-      %a.loginItem.button.round-12
+      %a.loginItem
         %img{src: '/images/icons/google-16.png', alt: 'Log in with Google', border: '0'}
-      %a.login.button.confirm.bevel.round-12{href: '#'}
+      %a.login.confirm{href: '#'}
         login
 
     / JOIN NOW
-    .joinWrap.round-12
-      %a.join.round-12{href: '#'}
+    .joinWrap
+      %a.join{href: '#'}
         Join Now &rsaquo;
 
     / LOGIN PANEL
     .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
-        %a.forgot.button.round-4{href: '#'} Forgot password
-        %label.stay.button.round-4
+        %a.forgot{href: '#'} Forgot password
+        %label.stay
           Stay logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        = f.text_field(:username, {class: 'login-input input round-12', tabindex: '1'})
-        = f.password_field(:password, {class: 'login-input input round-12', tabindex: '2'})
-        %input#loginButton.round-12.button.bevel.post.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+        = f.text_field(:username, {class: 'login-input', tabindex: '1'})
+        = f.password_field(:password, {class: 'login-input', tabindex: '2'})
+        %input#loginButton.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
 
     / SIGN UP
     .signupPanel.hidden
-      %input.input.round-12{type: 'text', name: 'email', value: 'email' }
-      %input.input.round-12{type: 'text', name: 'username', value: 'username' }
-      %input.input.round-12{type: 'password', name: 'password', value: 'password' }
-      %input.input.round-12{type: 'password', name: 'password', value: 'repeat password' }
+      %input.login-input{type: 'text', name: 'email', value: 'email' }
+      %input.login-input{type: 'text', name: 'username', value: 'username' }
+      %input.login-input{type: 'password', name: 'password', value: 'password' }
+      %input.login-input{type: 'password', name: 'password', value: 'repeat password' }
       .haveSeedcode have a seed code?
-      %input.input.round-12{type: 'THETA', name: 'seedcode', value: 'THETA' }
+      %input.login-input.hidden{type: 'THETA', name: 'seedcode', value: 'THETA' }
 
     / SIGN UP BUTTON
-    .signupWrap.round-12
-      %input.signup.round-12{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}
+    .signupWrap
+      %input.signup{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}
