@@ -41,7 +41,7 @@
           color: #68b800
       .uploadAvatar:hover
         +alpha(100)
-        +inner-shadow-light(20)
+        +inner-shadow(20)
         border: 1px solid transparent
 
 
@@ -123,6 +123,7 @@
         margin: -12px 1px
 
     .detail
+      +inner-shadow(10)
       +round(12)
       +flat-left
       +bold
@@ -189,8 +190,6 @@
       +button-light
       +shine-light-alpha(16)
 
-    .detail
-      +inner-shadow-light(10)
 
 
 
@@ -211,8 +210,7 @@
     .changeRelation.follow, .changeRelation.unfollow
       +button-dark
       +shine-dark-alpha(16)
-    .detail
-      +inner-shadow-dark(10)
+
 
 
 
