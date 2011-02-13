@@ -433,7 +433,10 @@
     width: 662px 
     padding: 8px
 
-    a.next, a.prev
+    a.prev
+      +round(16)
+      +flat-right
+    a.next
       +round(16)
       +flat-left
     .stream
@@ -465,6 +468,7 @@
     .editEntry.confirm
       margin-right: 16px
     .editEntry.delete
+      +round(16)
       margin-right: 4px
       
       
@@ -722,7 +726,6 @@
             margin: 12px 0 0
 
 
-
 // COLORS
 .light
   #entryField
@@ -739,6 +742,11 @@
         +shine-light(18)
 
       a.editEntry
+        +alpha(60)
+        +button-light
+        +bevel-light
+
+      .editEntry.delete
         +alpha(60)
         +button-light
         +bevel-light
@@ -818,7 +826,7 @@
       // COMMENTS
       .commentsPanel
         +panel-light
-        +shine-light-alpha
+        +shine-light-alpha(16)
 
         .commentsHeader
           +indent-light
@@ -826,11 +834,11 @@
 
         .newCommentWrap
           .avatar
-            +button-level
+            +button-light
           .newComment
             +inputTextarea-light
             .save
-              +shine-light
+              +shine-light(16)
               +button-light
 
         .prevCommentWrap
@@ -846,6 +854,135 @@
             .rePost
               +bevel-light
               +button-light
+
+// COLORS
+.dark
+  #entryField
+    #showEntry
+      +transparent-dark(50)
+      +glow-dark(40)
+
+      .type
+        +bevel-dark
+        +border-dark
+
+      a.next, .stream, a.prev
+        +button-dark
+        +shine-dark(18)
+
+      a.editEntry
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .editEntry.delete
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .books
+        +button-dark
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        // MOOD ICON
+        .moodIcon
+          +button-dark
+          +glow-dark(10)
+
+        .title
+          +transparent-dark(50)
+
+      .content
+        +flat-dark
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-dark
+
+        // ENTRY LINKS
+        .entryLinks
+          .link
+            +button-dark
+            +bevel-dark
+
+        // INFO
+        .entryInfo
+          .postTime, .postLocation, .starlightCount, .shareOptions
+            +infoTab-dark
+
+      // TAG
+      .entryTags
+        +panel-dark
+
+        .tagHeader
+          +indent-dark
+          +button-dark
+
+        .tagThisEntry
+          +button-dark
+          +bevel-dark
+
+        .tagInputWrap
+          .tagInput
+            .tagAdd
+              +button-dark
+              +bevel-dark
+
+        .target
+          #tag-list
+            #empty-tag
+
+      // ANALYSIS
+      .entryAnalysis
+        +panel-dark
+
+        .analysisHeader
+          +indent-dark
+          +button-dark
+
+        // ANALYSIS TAGS
+        .analysisTags
+          +bevel-dark
+          +button-dark
+
+          .description
+            .source
+              +button-dark
+              +bevel-dark
+
+      // COMMENTS
+      .commentsPanel
+        +panel-dark
+        +shine-dark-alpha(16)
+
+        .commentsHeader
+          +indent-dark
+          +button-dark
+
+        .newCommentWrap
+          .avatar
+            +button-dark
+          .newComment
+            +inputTextarea-dark
+            .save
+              +shine-dark(16)
+              +button-dark
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-dark
+            .user
+              +button-dark
+              +bevel-dark
+            ul
+              li
+                +button-dark
+            .rePost
+              +bevel-dark
+              +button-dark
 
 
 

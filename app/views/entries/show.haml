@@ -24,7 +24,7 @@
       %span &lsaquo;
 
     %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
 
 
     / 
@@ -57,7 +57,7 @@
         %li
         %li
         %li
-      .clear-both
+      .clear
 
       / ENTRY LINKS
       .entryLinks
@@ -70,7 +70,7 @@
         .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
-        .clear-both
+        .clear
 
       / INFO
       .entryInfo
@@ -83,8 +83,8 @@
           .option.love.selected
           .option.share
           .option.repost.selected
-        .clear-both
-      .clear-both
+        .clear
+      .clear
 
     / TAG
     .entryTags
@@ -123,7 +123,7 @@
         .analysisHeader.headers
           analysis
           %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
-        .clear-both
+        .clear
 
       .target.slide
         / ANALYSIS TAGS
@@ -145,10 +145,10 @@
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
             flying
             .arrow
-          .clear-both
+          .clear
           %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
           .source Dream Moods
-          .clear-both
+          .clear
 
         .analysisTags.wrapper
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
@@ -178,7 +178,7 @@
             .images
               %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
               images
-          .clear-both
+          .clear
 
         .prevCommentWrap
           .avatar
@@ -194,7 +194,7 @@
             .rePost
               %img{src: '', width: '16', height: '16'}
               Another Related Dream
-          .clear-both
+          .clear
 
-        .clear-both
+        .clear
 
