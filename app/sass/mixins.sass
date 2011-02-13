@@ -358,10 +358,16 @@
 
 
 
+=inner-glow($depth)
+  box-shadow: inset 0px 0px $depth + px #fff
+  -moz-box-shadow: inset 0px 0px $depth + px #fff
+  -webkit-box-shadow: inset 0px 0px $depth + px #fff
 
 
 
-=bg($color1, $color2)
+
+
+=gradient($color1, $color2)
   background: $color1
   background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color1))
   background: -moz-linear-gradient(top, $color1, $color2)
@@ -388,28 +394,28 @@
 /* BUTTONS */
 =confirm($offset)
   +bg-shine($offset)
-  +bg(#3ba4d1, #1b485b)
+  +gradient(#3ba4d1, #1b485b)
   +pointer
   color: #fff
   border: 1px solid #4794b5
 
 =save($offset)
   +bg-shine($offset)
-  +bg(#70d03b, #235b1b)
+  +gradient(#70d03b, #235b1b)
   +pointer
   color: #fff
   border: 1px solid #54943d
 
 =cancel($offset)
   +bg-shine($offset)
-  +bg(#979797, #4e4e4e)
+  +gradient(#979797, #4e4e4e)
   +pointer
   color: #fff
   border: 1px solid #848484
 
 =delete($offset)
   +bg-shine($offset)
-  +bg(#ee7c44, #8b2e12)
+  +gradient(#ee7c44, #8b2e12)
   +pointer
   color: #fff
   border: 1px solid #c1633c
