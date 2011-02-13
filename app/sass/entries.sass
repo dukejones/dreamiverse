@@ -424,26 +424,37 @@
       margin: 0 0 8px
 
   /*********** SHOW ENTRY ***********/
+  // STRUCTURE
   #showEntry
+    +round(16)
     width: 662px 
     padding: 8px
 
+    a.next, a.prev
+      +round(16)
+      +flat-left
+    .stream
+      +flat-all
     a.next, .stream, a.prev, .books, .type, .editEntry
+      +block
+      +center
       margin: 0 0 8px
       padding: 0 18px
       height: 32px
       line-height: 32px
-      text-align: center
       font-weight: bold
-      display: block
     .type
-      float: left
+      +round(16)
+      +left
       cursor: default
     a.next, .stream, a.prev, .books, .editEntry
-      float: right
+      +right
     .books
+      +round(8)
       margin-right: 8px
-    .editEntry:hover
+    a.editEntry
+      +round(16)
+    a.editEntry:hover
       -moz-opacity: 1
       -khtml-opacity: 1
       -webkit-opacity: 1
@@ -457,24 +468,30 @@
 
     // HEADER IMAGE & TITLE
     .imageHeader
+      +round(16)
+      +flat-bottom
+      +relative
       clear: both
-      position: relative
       margin: 0
       height: 200px
       background: url(/images/bedsheets/air-01.jpg) no-repeat top left
       .title
-        position: absolute
+        +round(8)
+        +flat-bottom
+        +absolute
+        +overflow
+        +center
         margin: 0 0 0 20px
         bottom: 0
         padding: 0 12px
         height: 36px
         line-height: 36px
         max-width: 620px
-        text-align: center
         font-size: 22px
-        overflow: hidden
 
     .content
+      +round(16)
+      +flat-top
 
       // BODY
       .body
@@ -487,6 +504,7 @@
         padding: 4px
         list-style: none
         li
+          +round-8
           margin: 0 2px 2px 0
           float: left
           height: 120px
@@ -495,17 +513,19 @@
 
       // SHARING
       .entryLinks
+        +round(8)
         clear: both
         margin: 8px
         padding: 8px
         background-color: #ddd
-        .button
-          float: left
+        .link
+          +round(16)
+          +left
+          +center
           margin: 0 8px 0 0
           padding: 0 12px
           height: 30px
           line-height: 30px
-          text-align: center
           img, span
             float: left
           img
@@ -519,6 +539,7 @@
         .postTime, .postLocation, .love, .share, .repost, .starlight
           float: left
         .postTime, .postLocation, .starlightCount, .shareOptions
+          +round(16)
           height: 32px
           line-height: 32px
           padding: 0 12px
@@ -549,6 +570,7 @@
 
     // TAG - see NEW ENTRY TAG below
     .entryTags
+      +round(12)
       img.tagCheck
         margin: 4px 0 0 6px
 
@@ -669,11 +691,69 @@
             padding: 0 12px
             margin: 12px 0 0
             text-align: center
-          
 
 
 
+// COLORS
+.light
+  #entryField
+    #showEntry
+      +transparent-light(50)
+      +glow-light(40)
 
+      .type
+        +bevel-light
+        +border-light
+
+      a.next, .stream, a.prev
+        +button-light
+        +cancel-light
+        +shine-light
+
+      a.editEntry
+        +alpha(60)
+        +button-light
+        +confirm-light
+        +bevel-light
+
+      .books
+        +button-light
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        // MOOD ICON
+        .moodIcon
+          +button-light
+          +glow-light(10)
+
+        .title
+          +transparent(50)
+
+      .content
+        +flat-light
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-light
+
+        // ENTRY LINKS
+        .entryLinks
+          .link
+            +button-light
+            +bevel-light
+
+        // INFO
+        .entryInfo
+          .postTime, .postLocation, .starlightCount, .shareOptions
+            +infoTab-light
+
+      // TAG
+      .entryTags
+        +panel-light
+        .tagHeader
+          +indent-light
+          +button-light
 
 
 

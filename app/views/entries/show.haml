@@ -11,17 +11,17 @@
 #entryField
 
   / SHOW ENTRY
-  #showEntry.transparent-50.round-16.glow-40
+  #showEntry
 
-    .type.bevel.border.round-16 Dream
+    .type Dream
 
-    %a.next.button.cancel.shine.round-16.flat-left{href: entries_path}
+    %a.next{href: entries_path}
       %span &rsaquo;
-    .stream.button.cancel.shine.flat-all stream
-    %a.prev.button.cancel.shine.round-16.flat-right{href: entries_path}
+    .stream stream
+    %a.prev{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry.alpha-60.button.confirm.bevel.round-16{href: edit_entry_path(@entry)} edit
+    %a.editEntry{href: edit_entry_path(@entry)} edit
     = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
 
 
@@ -30,54 +30,54 @@
       .books.button.round-8 My Book of Dreams
 
     / HEADER IMAGE & TITLE
-    .imageHeader.round-16.flat-bottom
+    .imageHeader
 
       / MOOD ICON
-      .moodIcon.button.glow-10
+      .moodIcon
         %img{src: '/images/moods/plants/Fungi.png'}
 
-      .title.round-8-top.transparent-50= @entry.title
+      .title= @entry.title
 
-    .content.flat.flat-top.round-16
+    .content
 
       / BODY
       .body= @entry.body
 
       / IMAGE GALLERY
       %ul.gallery
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
       .clear-both
 
       / ENTRY LINKS
-      .entryLinks.round-8
-        .button.bevel.round-16
+      .entryLinks
+        .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Link on Facebook
-        .button.bevel.round-16
+        .link
           %img{src: '/images/icons/link-16.gif'}
           %span Link on WWW
-        .button.bevel.round-16
+        .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
         .clear-both
 
       / INFO
       .entryInfo
-        .postTime.infoTab.round-16 2 hours ago
-        .postLocation.infoTab.round-16 Tokyo, Japan
-        .starlightCount.infoTab.round-16
+        .postTime 2 hours ago
+        .postLocation Tokyo, Japan
+        .starlightCount
           %img.starlight{src: '/images/icons/starlight-22.png'}
           %span 23,243
-        .shareOptions.infoTab.round-16
+        .shareOptions
           .option.love.selected
           .option.share
           .option.repost.selected
@@ -85,8 +85,8 @@
       .clear-both
 
     / TAG
-    .entryTags.panel.round-12
-      .tagHeader.headers.indent.button
+    .entryTags
+      .tagHeader.headers
         tag
         %img{src: '/images/icons/tag-20.png'}
       .tagThisEntry.button.bevel.round-4{style: 'width: 200px; float: right'}
