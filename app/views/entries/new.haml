@@ -13,13 +13,13 @@
   = form_for @entry do |f|
 
     / NEW ENTRY INPUT PANEL
-    #newEntry.flat.glow-40
+    #newEntry
 
       .wrapper
         / MOOD ICON
         = render :partial => "mood_icon"
 
-      #entryTypeWrap.border.round-16
+      .entryType.border
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
         %select#entryType_list
