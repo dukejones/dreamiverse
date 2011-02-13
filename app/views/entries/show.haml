@@ -98,17 +98,16 @@
             %span +
             Add
 
-      .target
-        #tag-list.tag-list.ui-sortable
-          #empty-tag.tag_box.thumb-controls.hidden
-            .tagContent
-          - @entry.whats.each do |what|
-            .tag_box.thumb-controls
-              .tagContent= what.name
+          #tag-list.tag-list.ui-sortable.target
+            #empty-tag.tag_box.thumb-controls.hidden
+              .tagContent
+            - @entry.whats.each do |what|
+              .tag_box.thumb-controls
+                .tagContent= what.name
             
-          %br{style: 'clear: both;'}
-        #sorting
-        %br{style: 'clear: both'}
+            %br{style: 'clear: both;'}
+          #sorting
+          %br{style: 'clear: both'}
 
       / ANALYSIS
       .entryAnalysis.wrapper
