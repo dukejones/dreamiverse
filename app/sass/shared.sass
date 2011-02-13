@@ -114,7 +114,8 @@ a:active, a:focus
       color: #fff
       border: #000 1px solid
       background: #000
-    .input
+    input
+      +input-light
       +block
       +font(12)
       width: 142px
@@ -268,6 +269,8 @@ a:active, a:focus
 
 
 
+//  META MENU USER
+
 #metaMenu.user
   +absolute
   top: 0
@@ -275,7 +278,11 @@ a:active, a:focus
   z-index: 1111
 
   .leftPanel, .rightPanel
+    +round(16)
+    +flat-top
     background-color: #fff
+    padding: 8px
+
     .item
       +block
       +bold
@@ -300,6 +307,7 @@ a:active, a:focus
       color: #fff
       border: #000 1px solid
       background: #000
+
   .leftPanel
     .input
       +block
@@ -315,10 +323,14 @@ a:active, a:focus
     +absolute
     top: 0
     left: 248px
+
   .rightPanel
     +right
     margin-right: 10px
+
     .user
+      +round(16)
+      +flat-left
       +overflow
       +pointer
       +round(8)
@@ -333,10 +345,15 @@ a:active, a:focus
         padding: 6px 4px 8px
     .user:hover
       border: 1px solid #ccc
+
+    .settingsPanel, .appearancePanel
+      +left
+
     .account
       img
         margin: -2px 1px -2px
         border: 0px
+
     .appearance
       img
         margin: -4px 0px -2px
@@ -364,9 +381,17 @@ a:active, a:focus
 
 /* FLOATING BUTTONS */
 #metaMenu
+
+  .adminLink, .logOut
+    padding: 5px 8px
+    +alpha(60)
+
   .adminLink, .newEntry, .logOut
+    +round(24)
+    +button-light
+    +right
+    +block
     color: #fff
-    display: block
     text-decoration: none
     border: 1px solid #777
     background: rgba(0,0,0,0.50)
@@ -381,21 +406,23 @@ a:active, a:focus
     opacity: 1
 
   .adminLink
-    padding: 5px 8px
     margin: 8px
     height: 21px
     img
       padding-top: 2px
+
   .newEntry
+    +glow-light(40)
+    +bold
     padding: 4px 8px
     font-size: 17px
-    font-weight: bold
     margin: 8px 12px 0 0
     border: 2px solid transparent
     span
       color: #093
   .newEntry:hover
     border: 2px solid transparent
+
   .logOut
     margin: 10px 8px 0 0
 
@@ -406,20 +433,23 @@ a:active, a:focus
 
 /******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
 #appearancePanel, #settingsPanel
-  position: absolute
+  +absolute
+  +clear
   right: 45px
   top: 64px
-  clear: both
   padding: 0 8px 8px
   width: 334px 
+
   .arrow
-    position: relative
+    +relative
     top: -15px
     padding: 0
     height: 16px
     margin-bottom: -8px
+
   img.appearanceIcon, h1
-    float: left
+    +left
+
   h1
     margin: 8px
     font-size: 24px
@@ -452,18 +482,18 @@ a:active, a:focus
     margin: 4px 0 0
 
   .bedsheets
-    clear: both
+    +clear
     padding: 8px
     margin: 0 0 8px
     h2
-      display: block
+      +block
+      +bold
+      +font(18)
       height: 32px
       line-height: 32px
       margin: 0 8px
-      font-size: 18px
-      font-weight: bold
     .options
-      position: absolute
+      +absolute
       right: 20px
       top: 20px
     ul
@@ -473,12 +503,12 @@ a:active, a:focus
       list-style: none
       overflow-y: scroll
       li
-        float: left
+        +left
+        +pointer
+        +overflow
         margin: 0 4px 4px 0
         height: 132px
         width: 132px
-        cursor: pointer
-        overflow: hidden
         -moz-box-shadow: 2px 5px 10px #111
         border: 4px solid #CCCCCC
         img
@@ -486,51 +516,47 @@ a:active, a:focus
         img:hover
           border: 4px solid #fff
       li.selected
+        +round(4)
         border: 4px solid #427ee8
-        border-radius: 4px
-        -moz-border-radius: 4px
-        -webkit-border-radius: 4px
         img
           border: 4px solid #fff
     .more
+      +center
       height: 32px
       line-height: 32px
-      text-align: center
     .more:hover
-      -moz-opacity: 1
-      -khtml-opacity: 1
-      -webkit-opacity: 1
-      opacity: 1
+      +alpha(100)
 
 
   .colorPicker
-    clear: both
-    font-weight: bold
+    +clear
+    +bold
     padding: 8px
     margin: 0 0 2px
     height: 36px
     #buttons
-      float: right
+      +right
       padding: 4px
       #sun, #moon
+        +font(14)
+        +center
         margin: 0 4px
         padding: 0 4px
         width: 86px
         height: 28px
         line-height: 28px
-        text-align:  center
-        font-size: 14px
         img
           margin: -8px -8px -8px 4px
     img.colorSwatch, img.fontImage, h2, #sun, #moon
-      float: left
+      +left
+
     img.colorSwatch, img.fontImage
       margin: 12px 0 0
     h2
+      +bold
+      +font(18)
       margin: 0 8px
-      font-size: 18px
       line-height: 36px
-      font-weight: bold
 
 
 
@@ -544,30 +570,28 @@ a:active, a:focus
     padding: 2px 12px
 
   img, .sharingList
-    float: left
+    +left
 
   h2
+    +font(18)
+    +bold
     margin: 0px
     padding: 8px
-    font-size: 18px
-    font-weight: bold
   .sharing, .savedLocations, .changePassword
-    clear: both
+    +clear
     margin: 0 0 8px
 
   .savedLocations h2, .changePassword h2
-    display: block
-    cursor: pointer
+    +block
+    +pointer
     img
       padding-right: 8px 
 
   .input
+    +round(4)
     width: 306px
     margin: 0 0 4px
     padding: 4px
-    border-radius: 4px
-    -moz-border-radius: 4px
-    -webkit-border-radius: 4px
 
 
 
@@ -578,18 +602,18 @@ a:active, a:focus
       img
         margin: 8px 8px 0 0
       h2
-        cursor: pointer
+        +pointer
+        +left
         line-height: 32px
         margin: 0
         padding: 0
-        float: left
       p
-        float: left
+        +left
     .sharingList
-      float: right
-      font-size: 16px
+      +right
+      +font(16)
+      +pointer
       height: 36px
-      cursor: pointer
       width: 138px
       margin-top: 4px
       padding: 6px 8px
@@ -604,33 +628,34 @@ a:active, a:focus
       option.private
         background: url(/images/icons/lock-16.png) no-repeat 4px
     .network
-      clear: both
+      +clear
+
       .linkAccount
-        float: right
+        +right
+        +center
         margin: 4px 0 0
         padding: 0 8px
         width: 110px
         height: 24px
         line-height: 24px
-        text-align: center
+
     label
-      clear: both
+      +clear
+      +pointer
+      +right
       height: 26px
       line-height: 26px
-      cursor: pointer
-      float: right
       padding: 0 4px
       border: 1px solid transparent
       margin-top: 8px
       input
-        cursor: pointer
+        +pointer
+        +right
         margin: 7px 4px 0 8px
-        float: right
+
     label:hover
+      +round(4)
       border: 1px solid #ccc
-      border-radius: 4px
-      -moz-border-radius: 4px
-      -webkit-border-radius: 4px
 
 
   .savedLocations
@@ -639,60 +664,59 @@ a:active, a:focus
       .newLocation, .autoLocate
         margin-top: 8px
       .newLocation
+        +center
+        +left
         width: 186px
-        text-align: center
-        float: left
         img
           float: none
           margin: -3px 3px
       .autoLocate
-        display: block
-        float: right
+        +block
+        +right
+
       .locationList
+        +clear
         width: 100%
         max-height: 180px
         overflow-y: auto
-        clear: both
+
         .locations
+          +clear
+          +pointer
           float: none
-          clear: both
           margin: 0
           padding: 6px 8px
-          cursor: pointer
           .edit, label
             display: none
           label.selected
-            display: block
-            -moz-opacity: 1
-            -khtml-opacity: 1
-            -webkit-opacity: 1
-            opacity: 1
+            +block
+            +alph(100)
           label
+            +pointer
+            +font(11)
+            +right
             border: 1px solid transparent
-            cursor: pointer
-            font-size: 11px
-            float: right
             padding: 2px 4px
             input
+              +pointer
               margin: -5px 0
-              cursor: pointer
+
         .locations:hover
           .edit
-            display: block
+            +block
+            +right
             width: 16px
             height: 16px
-            float: right
             padding: 3px
             margin-right: 8px
             background: url(/images/icons/edit-16.png) no-repeat center center
             border: 1px solid transparent
           .edit:hover, label:hover
+            +round(4)
             border: 1px solid #ccc
-            border-radius: 4px
-            -moz-border-radius: 4px
-            -webkit-border-radius: 4px
           label
-            display: block
+            +block
+
       .cancel
         width: 100px
       .confirm
@@ -700,15 +724,15 @@ a:active, a:focus
 
 
   .cancel, .confirm
-    text-align: center
+    +center
+    +bold
     height: 26px
     line-height: 26px
-    font-weight: bold
   .cancel
-    float: left
+    +left
     width: 80px
   .confirm
-    float: right
+    +right
     width: 180px
 
   .changePassword
@@ -722,29 +746,29 @@ a:active, a:focus
     height: 50px
     margin: 0 0 2px
     h2
+      +cursor
       line-height: 36px
-      cursor: default
+
       img
         padding: 8px 8px 0 0 
     .small, .medium, .large
-      float: right
+      +right
+      +center
+      +pointer
+      +round(24)
       margin-left: 4px
-      text-align: center
-      cursor: pointer
-      border-radius: 24px
-      -moz-border-radius: 24px
-      -webkit-border-radius: 24px
+
     .small
+      +font(12)
       padding: 2px 6px
-      font-size: 12px
       margin-top: 16px
     .medium
+      +font(16)
       padding: 3px 8px
-      font-size: 16px
       margin-top: 12px
     .large
+      +font(18)
       padding: 6px 12px
-      font-size: 18px
       margin: 8px 8px 0 4px
 
 /*********** END META MENU ***********/
