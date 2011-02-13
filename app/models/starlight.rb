@@ -1,7 +1,7 @@
 class Starlight < ActiveRecord::Base
   belongs_to :entity, :polymorphic => true
   
-  scope :all_for, lambda {|e| where(entity_id: e.id, entity_type: e.class.to_s) }
+  scope :all_for, -> e { where(entity_id: e.id, entity_type: e.class.to_s) }
   
   def self.for(entity)
     starlight = all_for(entity).last
