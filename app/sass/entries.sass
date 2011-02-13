@@ -1979,33 +1979,53 @@
         top: -4px
         padding: 1px 4px
 
+#tagStream, #showEntry
+  #tagsLive, #tag-list
+    // WHO, WHERE, WHAT TAG STYLES
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage
+      +round(8)
+      +button-light
+      +left
+      margin: 0 8px 4px 0
+      height: 32px
+      line-height: 32px
+      background-color: #fff
+      .avatar, .whereIcon, .tagImage
+        +round(8)
+        +flat-right
+        +left
+        +overflow
+        width: 32px
+        height: 32px
+      .avatar
+        background: url(/images/avatars/xavitar.jpg) no-repeat
+      .whereIcon
+        background: url(/images/icons/tagWhere-24.png) no-repeat center
+      .tagImage
+        background: url(/images/avatars/xavitar.jpg) no-repeat
+      span
+        +left
+        margin: 0 8px
+      .analysisIcon, .followStatus
+        +right
+        width: 32px
+        height: 32px
+      .analysisIcon
+        background: url(/images/icons/analysis-16.png) no-repeat center
+      .followStatus
+        background: url(/images/icons/friend-none-16.png) no-repeat center
+
+    // TAG NO IMAGE
+    .tagNoImage
+      +center
+      padding: 0 8px
+
     // WHAT TAG STYLES
     .tagWhat
 
     // WHERE TAG STYLES
     .tagWhere
 
-    // WHO TAG STYLES
-    .tagWho
-      +round(8)
-      box-shadow: inset 0px 15px 10px #404040
-      -moz-box-shadow: inset 0px 15px 10px #404040
-      -webkit-box-shadow: inset 0px 15px 10px #404040
-      .avatar
-        +left
-        +overflow
-        width: 24px
-        height: 24px
-        background: url(/images/avatars/xavitar.jpg) no-repeat
-        border-radius-topleft: 8px
-        -moz-border-radius-topleft: 8px
-        -webkit-border-radius-topleft: 8px
-        border-radius-bottomleft: 8px
-        -moz-border-radius-bottomleft: 8px
-        -webkit-border-radius-bottomleft: 8px
-      span
-        +right
-        margin: 0 8px
 
 
 
