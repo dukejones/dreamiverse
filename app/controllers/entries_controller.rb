@@ -53,7 +53,7 @@ class EntriesController < ApplicationController
     #new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))
     #redirect_to user_entry_path(current_user.username, new_entry)
 
-    # temp fix by dr. J
+    # temp fix by dr. J - feb 11
     new_entry = current_user.entries.create!(params[:entry])
     redirect_to user_entry_path(current_user.username, new_entry)
 

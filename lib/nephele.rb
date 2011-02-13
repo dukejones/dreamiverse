@@ -5,13 +5,42 @@ class Nephele
   multi-entry tag clouds and tag context clouds (clouds attached to tags)
   started feb/2011 - doktorj@dreamcatcher.net
 =end
-  
+
+
   # invoke processes for scoring custom tags and 
   # generating / scoring auto generated tags
   def process_single_entry_tags(dream)
     freqs = auto_generate_single_entry_tags(dream)
     puts 'test: freqs' + freqs.to_s #testing
   end
+
+  # downcase & strip non alpha numeric chars at begin/end of tag
+  def self.prep_tag(tag)
+    return tag.downcase.gsub(/^\W+|\W+$/, '') 
+  end
+
+  # render html tag cloud with css font sizes/colors
+  # this need ALOT of refactoring!!!
+  def self.render_single_entry_tag_cloud(entry_id,user_id)
+    rendered_fonts = []
+    font_size = 16
+    last_score = nil #init
+    count = 0
+    scores = Tag.where(:entry_id => entry_id,:user_id => user_id).limit(16)
+    scores.map{ |s|     
+      what = What.find_by_id(s.noun_id)     
+      last_score = s.score if last_score.nil?
+      puts 'noun_id: ' + s.noun_id.to_s + 'name: ' + what.name + ' score ' + s.score.to_s + 'font_size: ' + font_size.to_s + 'last_score: ' + last_score.to_s
+      rendered_fonts.push('<font size="' + font_size.to_s + '">' + what.name + '</font>')
+      font_size -= 1 if last_score != s.score
+      last_score = s.score #if count > 0
+    }
+    rendered_fonts
+  end
+
+
+
+private ###################  
   
   def auto_generate_single_entry_tags(dream)
     tag_string = dream.body << ' ' + dream.title #concat body/title
@@ -63,10 +92,6 @@ class Nephele
     return w.id 
   end
   
-  # downcase & strip non alpha numeric chars at begin/end of tag
-  def self.prep_tag(tag)
-    return tag.downcase.gsub(/^\W+|\W+$/, '') 
-  end  
   
   def nephele_id?
     u = User.find_by_username('nephele')
@@ -89,5 +114,5 @@ class Nephele
       Tag.delete_all(:entry_id => entry_id, :user_id => user_id)
     end  
   end  
-    
+  
 end

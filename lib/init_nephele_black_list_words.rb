@@ -1,6 +1,6 @@
   class InitNepheleBlackListWords < ActiveRecord::Base
 
-  # this method is for entering our default blacklisted words (for nephele to skip during auto generating tags)
+  # this method is for entering our default blacklisted words (for nephele to skip during tag processing)
   def self.init_first_words
     black_list_words = %w{able about above according accordingly across actually after afterwards again 
     against ain't all allow allows almost alone along already also although always am among amongst an and 
