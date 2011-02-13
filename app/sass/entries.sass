@@ -600,18 +600,29 @@
             +flat-left
             +left
             +center
+            margin: 0 0 8px
             padding: 0 12px
             height: 34px
             line-height: 34px
             font-weight: bold
+            &:hover
+              +save(17)
             span
               color: green
 
         .target
           #tag-list
+            +clear
             #empty-tag, .tag_box
               +left
               +round(8)
+              height: 24px
+              line-height: 24px
+              margin: 8px 8px 0 0
+              padding: 0 8px
+              text-align: center
+              background: #7a7a7a
+              color: #fff
 
       // ANALYSIS
       .entryAnalysis
