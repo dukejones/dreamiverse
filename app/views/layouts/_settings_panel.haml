@@ -1,15 +1,13 @@
 / SETTINGS PANEL
-#settingsPanel.hidden.panel.glow-40.round-8.target
+#settingsPanel.hidden.target
   .arrow
 
-
-
   / SHARING
-  .sharing.panel.round-8
+  .sharing
     .defaultSharing
-      %img.sharingIcon{src: '/images/icons/everyone-16.png'}
+      %img{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
-      %select.sharingList.input.round-8
+      %select
         %option.everyone{value: 'Everyone'} Everyone
         %option.friends{value: 'Friends Only'} Friends only
         %option.anonymous{value: 'Anonymous'} Anonymous
@@ -24,7 +22,7 @@
     .network.wrapper
       %img{src: '/images/icons/facebook-16.png'}
       %h2 Facebook
-      .linkAccount.trigger.showhide.button.small.confirm.bevel.round-4
+      .linkAccount.trigger.showhide
         Link account
       %label.target.showhide.hidden
         By default, share on Facebook
@@ -35,7 +33,7 @@
 
 
   / SAVED LOCATIONS
-  .savedLocations.wrapper.panel.round-8
+  .savedLocations.wrapper
 
     %h2.trigger.showhide
       %img{src: '/images/icons/world-16.png'}
@@ -45,74 +43,75 @@
     .wrapper.target.showhide.hidden
       .locationView
         %form
-          .locationList.border
+          .locationList
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'Home', type: 'radio'}
               .edit
               Home
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'The Pearl', type: 'radio'}
               .edit
               The Pearl
 
-            .locations.flat.button
-              %label.default.alpha-50.selected
+            .locations
+              %label.selected
                 set as default
                 %input{name: 'default', value:'Flow Space', type: 'radio'}
               Flow Space
               .edit
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'Flow Space', type: 'radio'}
               Flow Space
               .edit
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'Flow Space', type: 'radio'}
               Flow Space
               .edit
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'Flow Space', type: 'radio'}
               Flow Space
               .edit
 
-            .locations.flat.button
-              %label.default.alpha-50
+            .locations
+              %label
                 set as default
                 %input{name: 'default', value:'Under I580', type: 'radio'}
               .edit
               Under I580
 
-          %label.autoLocate.bevel.round-4.padding-2-4.button.small.cancel
+          %label.autoLocate
             auto locate
             %input{name: 'default', value:'auto', type: 'radio'}
 
-        .newLocation.trigger.toggle.bevel.float-left.round-4.padding-2-4.button.small.confirm
+        .newLocation.trigger.toggle
           %img{src: '/images/icons/add-16.png'}
           new location
         .clear
 
       / ADD NEW LOCATION
       .modifyLocationView.target.toggle.hidden
-        %input.input{value: 'Location name'}
-        %input.input{value: 'City'}
-        %input.input{value: 'State / Province'}
-        %input.input{value: 'Country'}
-        .confirm.button.small.bevel.round-4 Save
-        .cancel.button.small.bevel.round-4 Cancel
+        <b>Add a new location</b>
+        %input{value: 'Location name'}
+        %input{value: 'City'}
+        %input{value: 'State / Province'}
+        %input{value: 'Country'}
+        .save Save
+        .cancel Cancel
         .clear
 
 
@@ -120,25 +119,29 @@
 
 
   / CHANGE PASSWORD
-  .changePassword.wrapper.showhide.panel.round-8
+  .changePassword.wrapper.showhide
     %h2.trigger.showhide
       %img{src: '/images/icons/key-16.png'}
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      %input.input{value: 'Current password'}
-      %input.input{value: 'New password'}
-      %input.input{value: 'Confirm new password'}
-      .cancel.button.small.bevel.round-4 Cancel
-      .confirm.button.small.bevel.round-4 Change password
+      %span Current password
+      %input{type: 'password'}
+      %span New password
+      %input{type: 'password'}
+      %span Repeat new password
+      %input{type: 'password'}
+
+      .cancel Cancel
+      .confirm Change password
       .clear
 
 
   / FONT SIZING
-  .fontSizing.panel.round-8
-    %h2.float-left
+  .fontSizing
+    %h2
       %img{src: '/images/icons/font_size-16.png'}
       Font
-    .large.button A
-    .medium.button A
-    .small.button A
+    .large A
+    .medium A
+    .small A

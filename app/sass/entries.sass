@@ -1,3 +1,6 @@
+@import mixins
+@import context_panel
+
 /******** 2D ENTRY THUMBS LIGHT / DARK ********/
 #entryField, #home
   .matrix
@@ -417,9 +420,6 @@
 
   /*********** SHOW ENTRY SHARED STYLES***********/
   #showEntry
-    .panel
-      padding: 8px
-      border: 1px solid #666
     .content, .tagEntry, .entryAnalysis
       margin: 0 0 8px
 
@@ -430,7 +430,10 @@
     width: 662px 
     padding: 8px
 
-    a.next, a.prev
+    a.prev
+      +round(16)
+      +flat-right
+    a.next
       +round(16)
       +flat-left
     .stream
@@ -462,6 +465,7 @@
     .editEntry.confirm
       margin-right: 16px
     .editEntry.delete
+      +round(16)
       margin-right: 4px
       
       
@@ -504,7 +508,7 @@
         padding: 4px
         list-style: none
         li
-          +round-8
+          +round(8)
           margin: 0 2px 2px 0
           float: left
           height: 120px
@@ -515,7 +519,7 @@
       .entryLinks
         +round(8)
         clear: both
-        margin: 8px
+        margin: 8px 8px 0
         padding: 8px
         background-color: #ddd
         .link
@@ -568,52 +572,99 @@
           .repost.selected
             background: url(/images/icons/repost-24-selected.png) no-repeat center
 
-    // TAG - see NEW ENTRY TAG below
-    .entryTags
-      +round(12)
-      img.tagCheck
-        margin: 4px 0 0 6px
-
-    // ANALYSIS
-    .entryAnalysis
-      .analysisHeader
-        margin-bottom: 8px
-        img
-          margin: 7px 8px 0 0
-
-      .analysisTags, .expanded
-        clear: both
-        line-height: 32px
+      // TAG - see NEW ENTRY TAG below
+      .entryTags
+        padding: 8px
         margin: 0 0 8px
-        padding: 0 12px 0 0
-        overflow: hidden
-        .title
-          height: 32px
-          padding-left: 42px
-          font-weight: bold
-          .arrow
-            float: right
-            height: 32px
-            width: 16px
-            background: url(/images/icons/arrow-down-16.png) no-repeat center
-        .description
-          clear: both
-          margin: 20px 8px 20px 20px
-          line-height: 20px
-          .source
-            float: left
-            margin: 0 0 12px 12px
+        img.tagCheck
+          margin: 4px 0 0 6px
+
+        .tagHeader
+          +flat-right
+
+        .wrapper
+          .tagInput
+            +left
+            width: 250px
+            padding: 4px
+            height: 26px
+            line-height: 26px
+            input
+              height: 26px
+              line-height: 26px
+              background: transparent
+              border: none
+
+          .tagThisEntry
+            +round(12)
+            +flat-left
+            +left
+            +center
+            margin: 0 0 8px
             padding: 0 12px
-            height: 24px
-            line-height: 24px
-            text-align: center
-      .analysisTags.expanded .title
-        .arrow
-          background: url(/images/icons/arrow-up-16.png) no-repeat center
+            height: 34px
+            line-height: 34px
+            font-weight: bold
+            &:hover
+              +save(17)
+            span
+              color: green
+
+        .target
+          #tag-list
+            +clear
+            #empty-tag, .tag_box
+              +left
+              +round(8)
+              height: 24px
+              line-height: 24px
+              margin: 8px 8px 0 0
+              padding: 0 8px
+              text-align: center
+              background: #7a7a7a
+              color: #fff
+
+      // ANALYSIS
+      .entryAnalysis
+        padding: 8px
+        .analysisHeader
+          margin-bottom: 8px
+          img
+            margin: 7px 8px 0 0
+
+        .analysisTags
+          +round(12)
+          +overflow
+          clear: both
+          line-height: 32px
+          margin: 0 0 8px
+          padding: 0 12px 0 0
+          .title
+            height: 32px
+            padding-left: 42px
+            font-weight: bold
+            .arrow
+              +right
+              height: 32px
+              width: 16px
+              background: url(/images/icons/arrow-down-16.png) no-repeat center
+          .description
+            clear: both
+            margin: 20px 8px 20px 20px
+            line-height: 20px
+            .source
+              +round(12)
+              +left
+              margin: 0 0 12px 12px
+              padding: 0 12px
+              height: 24px
+              line-height: 24px
+              text-align: center
 
 
     // COMMENTS
     .commentsPanel
+      +round(12)
       margin-bottom: 0
       .commentsHeader
         margin-bottom: 8px
@@ -626,27 +677,29 @@
         clear: both
         margin-bottom: 8px
         .avatar
-          float: left
+          +round(12)
+          +left
+          +overflow
           height: 62px
           width: 62px
           margin: 0 8px
-          overflow: hidden
           background: url(/images/avatars/default-avatar-tiny.jpg) top left
         .newComment
-          float: right
+          +round(12)
+          +right
           width: 546px
           padding: 8px
           textarea
+            +transparent
             min-height: 90px
             width: 546px
-            +transparent
             border: none
           .images, .links, .save
-            float: right
+            +right
+            +center
             height: 32px
             line-height: 32px
             padding: 0 16px
-            text-align: center
           .images, .links
             img
               margin: 11px 8px 0 0
@@ -654,30 +707,36 @@
           .links
             img
               margin-top: 9px
+          .save
+            +round(16)
       .prevCommentWrap
         margin-bottom: 0
         .prevComment
-          float: right
+          +round(12)
+          +right
           min-height: 112px
           width: 544px
           padding: 8px
           border: 2px solid white
+          .user
+            +round(8)
           .user, .postTime
-            float: left
+            +left
+            +center
             height: 32px
             line-height: 32px
             padding: 0 16px
             margin: 0 0 12px
-            text-align: center
           ul
-            float: right
+            +right
             max-width: 270px
             margin: 0 0 0 8px
             padding: 0
             list-style: none
             li
+              +round(8)
+              +right
               margin: 0 2px 2px 0
-              float: right
               height: 62px
               width: 62px
               background: #ababab
@@ -685,13 +744,13 @@
           .comment
             clear: both
           .rePost
-            float: left
+            +round(16)
+            +left
+            +center
             height: 32px
             line-height: 32px
             padding: 0 12px
             margin: 12px 0 0
-            text-align: center
-
 
 
 // COLORS
@@ -707,13 +766,16 @@
 
       a.next, .stream, a.prev
         +button-light
-        +cancel-light
-        +shine-light
+        +shine-light(18)
 
       a.editEntry
         +alpha(60)
         +button-light
-        +confirm-light
+        +bevel-light
+
+      .editEntry.delete
+        +alpha(60)
+        +button-light
         +bevel-light
 
       .books
@@ -727,7 +789,7 @@
           +glow-light(10)
 
         .title
-          +transparent(50)
+          +transparent-light(50)
 
       .content
         +flat-light
@@ -748,13 +810,194 @@
           .postTime, .postLocation, .starlightCount, .shareOptions
             +infoTab-light
 
-      // TAG
-      .entryTags
+        // TAG
+        .entryTags
+          .tagHeader
+            +indent-light
+            +button-light
+
+          .tagThisEntry
+            +button-light
+            +shine-light(17)
+
+          .tagInput
+            +input-light
+
+          .target
+            #tag-list
+              #empty-tag
+
+        // ANALYSIS
+        .entryAnalysis
+          .analysisHeader
+            +indent-light
+            +button-light
+
+          // ANALYSIS TAGS
+          .analysisTags
+            +bevel-light
+            +button-light
+
+            .description
+              .source
+                +button-light
+                +bevel-light
+
+      // COMMENTS
+      .commentsPanel
         +panel-light
-        .tagHeader
+        +shine-light-alpha(16)
+
+        .commentsHeader
           +indent-light
           +button-light
 
+        .newCommentWrap
+          .avatar
+            +button-light
+          .newComment
+            +inputTextarea-light
+            .save
+              +shine-light(16)
+              +button-light
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-light
+            border: 2px solid #fff
+            .user
+              +button-light
+              +bevel-light
+            ul
+              li
+                +button-light
+            .rePost
+              +bevel-light
+              +button-light
+
+// COLORS
+.dark
+  #entryField
+    #showEntry
+      +transparent-dark(50)
+      +glow-dark(40)
+
+      .type
+        +bevel-dark
+        +border-dark
+
+      a.next, .stream, a.prev
+        +button-dark
+        +shine-dark(18)
+
+      a.editEntry
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .editEntry.delete
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .books
+        +button-dark
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        // MOOD ICON
+        .moodIcon
+          +button-dark
+          +glow-dark(10)
+
+        .title
+          +transparent-dark(50)
+
+      .content
+        +flat-dark
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-dark
+
+        // ENTRY LINKS
+        .entryLinks
+          .link
+            +button-dark
+            +bevel-dark
+
+        // INFO
+        .entryInfo
+          .postTime, .postLocation, .starlightCount, .shareOptions
+            +infoTab-dark
+
+        // TAG
+        .entryTags
+          .tagHeader
+            +indent-dark
+            +button-dark
+
+          .tagThisEntry
+            +button-dark
+            +shine-dark(17)
+
+          .tagInput
+            +input-dark
+
+          .target
+            #tag-list
+              #empty-tag
+
+      // ANALYSIS
+      .entryAnalysis
+        .analysisHeader
+          +indent-dark
+          +button-dark
+
+        // ANALYSIS TAGS
+        .analysisTags
+          +bevel-dark
+          +button-dark
+
+          .description
+            .source
+              +button-dark
+              +bevel-dark
+
+      // COMMENTS
+      .commentsPanel
+        +panel-dark
+        +shine-dark-alpha(16)
+
+        .commentsHeader
+          +indent-dark
+          +button-dark
+
+        .newCommentWrap
+          .avatar
+            +button-dark
+          .newComment
+            +inputTextarea-dark
+            .save
+              +shine-dark(16)
+              +button-dark
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-dark
+            border: 2px solid #000
+            .user
+              +button-dark
+              +bevel-dark
+            ul
+              li
+                +button-dark
+            .rePost
+              +bevel-dark
+              +button-dark
 
 
 
@@ -1022,7 +1265,6 @@
 
   // NEW ENTRY TAGS
   .entryTags
-    min-height: 42px
     #tag-list
       width: 660px
       .tag_box
@@ -1380,7 +1622,7 @@
   a.entry:hover
     box-shadow: 0 0 12px rgba(0,0,0,1)
     -moz-box-shadow: 0 0 12px rgba(0,0,0,1)
-    -webkit-box-shadow: 0 0 12px rgba(0,0,0,1)    
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,1)
   .tag
     width: 70px
   .quote
