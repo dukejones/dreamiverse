@@ -255,25 +255,25 @@
     .infoRight
       +right
       height: 64px
-      left: 60px
 
       .userName
-        +left
         h3
-          margin: 4px 0 8px
+          margin: 4px 0 8px 8px
 
       .following, .followers
-        +round(8)
         +left
         margin: 0
         font-size: 12px
         text-align: center
-        width: 78px
+        width: 72px
         .count
-          width: 76px
+          +round(4)
+          width: 72px
           height: 14px
           line-height: 14px
           text-align: center
+      .following
+        margin-left: 8px
 
   .myStream
     +round(12)
@@ -349,7 +349,8 @@
 
       .infoRight
         .following, .followers
-          +flat-light
+          .count
+            +flat-dark
 
     // LABEL
     .myStream
@@ -383,7 +384,8 @@
 
       .infoRight
         .following, .followers
-          +flat-dark
+          .count
+            +flat-light
 
     // LABEL
     .myStream
