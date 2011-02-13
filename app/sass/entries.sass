@@ -574,25 +574,43 @@
       img.tagCheck
         margin: 4px 0 0 6px
 
+      .tagThisEntry
+        +round(4)
+        +right
+        width: 200px
+
+      .tagInputWrap
+        .tagInput
+          .tagAdd
+            +round(4)
+
+      .target
+        #tag-list
+          #empty-tag, .tag_box
+            +left
+            +round(8)
+
     // ANALYSIS
     .entryAnalysis
+      +round(12)
       .analysisHeader
         margin-bottom: 8px
         img
           margin: 7px 8px 0 0
 
-      .analysisTags, .expanded
+      .analysisTags
+        +round(12)
+        +overflow
         clear: both
         line-height: 32px
         margin: 0 0 8px
         padding: 0 12px 0 0
-        overflow: hidden
         .title
           height: 32px
           padding-left: 42px
           font-weight: bold
           .arrow
-            float: right
+            +right
             height: 32px
             width: 16px
             background: url(/images/icons/arrow-down-16.png) no-repeat center
@@ -601,19 +619,18 @@
           margin: 20px 8px 20px 20px
           line-height: 20px
           .source
-            float: left
+            +round(12)
+            +left
             margin: 0 0 12px 12px
             padding: 0 12px
             height: 24px
             line-height: 24px
             text-align: center
-      .analysisTags.expanded .title
-        .arrow
-          background: url(/images/icons/arrow-up-16.png) no-repeat center
 
 
     // COMMENTS
     .commentsPanel
+      +round(12)
       margin-bottom: 0
       .commentsHeader
         margin-bottom: 8px
@@ -626,27 +643,29 @@
         clear: both
         margin-bottom: 8px
         .avatar
-          float: left
+          +round(12)
+          +left
+          +overflow
           height: 62px
           width: 62px
           margin: 0 8px
-          overflow: hidden
           background: url(/images/avatars/default-avatar-tiny.jpg) top left
         .newComment
-          float: right
+          +round(12)
+          +right
           width: 546px
           padding: 8px
           textarea
+            +transparent
             min-height: 90px
             width: 546px
-            +transparent
             border: none
           .images, .links, .save
-            float: right
+            +right
+            +center
             height: 32px
             line-height: 32px
             padding: 0 16px
-            text-align: center
           .images, .links
             img
               margin: 11px 8px 0 0
@@ -654,30 +673,36 @@
           .links
             img
               margin-top: 9px
+          .save
+            +round(16)
       .prevCommentWrap
         margin-bottom: 0
         .prevComment
-          float: right
+          +round(12)
+          +right
           min-height: 112px
           width: 544px
           padding: 8px
           border: 2px solid white
+          .user
+            +round(8)
           .user, .postTime
-            float: left
+            +left
+            +center
             height: 32px
             line-height: 32px
             padding: 0 16px
             margin: 0 0 12px
-            text-align: center
           ul
-            float: right
+            +right
             max-width: 270px
             margin: 0 0 0 8px
             padding: 0
             list-style: none
             li
+              +round(8)
+              +right
               margin: 0 2px 2px 0
-              float: right
               height: 62px
               width: 62px
               background: #ababab
@@ -685,12 +710,13 @@
           .comment
             clear: both
           .rePost
-            float: left
+            +round(16)
+            +left
+            +center
             height: 32px
             line-height: 32px
             padding: 0 12px
             margin: 12px 0 0
-            text-align: center
 
 
 
@@ -707,13 +733,11 @@
 
       a.next, .stream, a.prev
         +button-light
-        +cancel-light
         +shine-light
 
       a.editEntry
         +alpha(60)
         +button-light
-        +confirm-light
         +bevel-light
 
       .books
@@ -751,10 +775,74 @@
       // TAG
       .entryTags
         +panel-light
+
         .tagHeader
           +indent-light
           +button-light
 
+        .tagThisEntry
+          +button-light
+          +bevel-light
+
+        .tagInputWrap
+          .tagInput
+            .tagAdd
+              +button-light
+              +bevel-light
+
+        .target
+          #tag-list
+            #empty-tag
+
+      // ANALYSIS
+      .entryAnalysis
+        +panel-light
+
+        .analysisHeader
+          +indent-light
+          +button-light
+
+        // ANALYSIS TAGS
+        .analysisTags
+          +bevel-light
+          +button-light
+
+          .description
+            .source
+              +button-light
+              +bevel-light
+
+      // COMMENTS
+      .commentsPanel
+        +panel-light
+        +shine-light-alpha
+
+        .commentsHeader
+          +indent-light
+          +button-light
+
+        .newCommentWrap
+          .avatar
+            +button-level
+          .newComment
+            +inputTextarea-light
+            .save
+              +shine-light
+              +button-light
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-light
+            .user
+              +button-light
+              +bevel-light
+            ul
+              li
+                +button-light
+            .rePost
+              +bevel-light
+              +button-light
 
 
 
