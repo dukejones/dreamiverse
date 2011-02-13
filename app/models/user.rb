@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
   
+  before_create :create_view_preference
+  
   def self.create_from_omniauth(omniauth)
     user = create!(
       :name => omniauth['user_info']['name'],
@@ -94,6 +96,11 @@ class User < ActiveRecord::Base
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
     (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self)) ||
     (entry.sharing_level == Entry::Sharing[:private]  && entry.user == self)
+  end
+
+  def create_view_preference
+    return if view_preference
+    self.view_preference = ViewPreference.create(theme: "light")
   end
 
   protected

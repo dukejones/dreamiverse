@@ -7,6 +7,13 @@ class CreateViewPreferences < ActiveRecord::Migration
       t.timestamps
     end
     add_index :view_preferences, [:viewable_id, :viewable_type]
+
+    User.all.each do |user|
+      user.create_view_preference
+    end
+    Entry.all.each do |entry|
+      entry.create_view_preference
+    end
   end
 
   def self.down

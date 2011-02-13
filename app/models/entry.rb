@@ -25,6 +25,7 @@ class Entry < ActiveRecord::Base
   validates_presence_of :user
   
   before_save :set_sharing_level
+  before_create :create_view_preference
   
   def nouns
     whos + wheres + whats
@@ -39,10 +40,16 @@ class Entry < ActiveRecord::Base
     self.class::Sharing.invert[sharing_level]
   end
 
+  def create_view_preference
+    return if view_preference
+    self.view_preference = user.view_preference.clone!
+  end
+
   protected #######################
 
   def set_sharing_level
     # sharing_level ||= user.default_sharing_level
     # sharing_level ||= self::Sharing[:everyone]
   end
+
 end
