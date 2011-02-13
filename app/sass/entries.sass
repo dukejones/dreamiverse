@@ -120,9 +120,12 @@
 
 
 /******** 1D ENTRY THUMBS ********/
+// STRUCTURE
 #entryField, #home
   .matrix
     .thumb-1d
+      +round(16)
+      +flat-bottom
       +relative
       +clear
       +pointer
@@ -131,19 +134,16 @@
       padding: 4px 4px 0
       width: 672px
       height: 220px
-      border-radius-topleft: 16px
-      -moz-border-radius-topleft: 16px
-      -webkit-border-radius-topleft: 16px
-      border-radius-topright: 16px
-      -moz-border-radius-topright: 16px
-      -webkit-border-radius-topright: 16px
+
+      // LEFT SIDE
       .left
-        position: absolute
+        +absolute
         width: 360px
 
         // USERNAME + AVATAR
         .user
-          position: absolute
+          +round(12)
+          +absolute
           top: 4px
           left: 4px
           padding: 0 12px 0 0
@@ -157,17 +157,18 @@
 
         // COMMENT COUNT
         .commentCount
-          position: absolute
+          +absolute
           top: 8px
           right: 8px
           background: url(/images/icons/comments-16.png) no-repeat right
           .counter
-            float: right
+            +round(12)
+            +right
+            +center
             margin: 0 20px 0 0
             height: 16px
             line-height: 16px
             padding: 0 8px
-            text-align: center
             font-size: 14px
             font-weight: bold
 
@@ -182,7 +183,7 @@
 
         // TITLE & TEXT
         h1.title, p.text
-          overflow: hidden
+          +overflow
           width: 330px
         h1.title
           margin: 8px 8px 0 8px
@@ -194,28 +195,36 @@
 
         // POST DETAILS
         .details
-          position: absolute
+          +absolute
           top: 190px
           left: 4px
           height: 26px
           width: 352px
           .rePost, .date, .starlight
-            float: left
+            +center
+            +left
             padding: 0 8px
-            text-align: center
+
+          // REPOSTED BY
           .rePost
+            +round(4)
             margin: 4px 8px 0 0
             padding-left: 24px
             font-size: 10px
             height: 16px
             line-height: 14px
             background: url(/images/icons/repost-18.png) no-repeat 4px center
+
+          // DATE
           .date
             margin: 6px 0
             font-size: 11px
             font-weight: bold
+
+          // STARLIGHT
           .starlight
-            float: right
+            +round(8)
+            +right
             font-size: 12px
             height: 24px
             line-height: 24px
@@ -223,7 +232,7 @@
               margin: 4px 4px 0 0
 
       .right
-        position: absolute
+        +absolute
         left: 364px
 
         ul
@@ -232,7 +241,7 @@
           padding: 0
           width: 320px
           li
-            float: left
+            +left
             margin: 0 0 0 2px
             background: #ccc
             height: 60px
@@ -247,8 +256,9 @@
 
         .entryTagList
           position: absolute
-          div
-            float: left
+          .tag
+            +round(8)
+            +left
             height: 24px
             line-height: 24px
             margin: 8px 8px 0 0
@@ -304,14 +314,52 @@
 .light
   #entryField, #home
     .matrix
-      .thumb-1d:hover
-        +glow-light(40)
+      .thumb-1d
+        +flat-light
+        &:hover
+          +glow-light(40)
 
-.light
+        // LEFT SIDE
+        .left
+          .commentCount
+            .counter
+              +flat-light
+
+          // ENTRY THUMB DETAILS
+          .details
+            // REPOSTED BY
+            .rePost
+              +border-light
+            // STARLIGHT
+            .starlight
+              +bevel-light
+              +button-light
+
+
+.dark
   #entryField, #home
     .matrix
-      .thumb-1d:hover
-        +glow-dark(40)
+      .thumb-1d
+        +flat-dark
+        &:hover
+          +glow-dark(40)
+
+        // LEFT SIDE
+        .left
+          .commentCount
+            .counter
+              +flat-dark
+
+          // ENTRY THUMB DETAILS
+          .details
+            // REPOSTED BY
+            .rePost
+              +border-dark
+            // STARLIGHT
+            .starlight
+              +bevel-dark
+              +button-dark
+
 
 
 
