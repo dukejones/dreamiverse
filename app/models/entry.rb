@@ -13,6 +13,7 @@ class Entry < ActiveRecord::Base
   belongs_to :user
 
   has_many :entry_accesses
+  has_many :authorized_users, :through => :entry_accesses, :source => :user
   
   has_many :tags, :as => :entry
   has_many :whats, :through => :tags, :source => :noun, :source_type => 'What'
@@ -30,6 +31,10 @@ class Entry < ActiveRecord::Base
   
   def add_what_tag(what)
     self.whats << what unless self.whats.exists? what
+  end
+
+  def sharing
+    self.class::Sharing.invert[sharing_level]
   end
 
   protected #######################

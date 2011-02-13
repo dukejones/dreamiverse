@@ -1,36 +1,21 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream]
-  # before_filter :ensure_username_url, :only => [:index, :show]
   before_filter :query_username, :except => [:stream]
 
-  def ensure_username_url
-    # if !params[:username]
-    #   if current_user
-    #     redirect_to(url_for(params.merge(username: current_user.username))) and return 
-    #   else
-    #     redirect_to root_path, :alert => "you must be logged in to access this page." and return
-    #   end
-    # end
-  end
-
-
-  def query_username
-    @user = params[:username] ? User.find_by_username( params[:username] ) : current_user
-    redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
-  end
-  
   def index
     redirect_to(user_entries_path(@user.username)) unless params[:username]
-    # public entries only if != current_user
-    @entries = @user.entries
+
+    # TODO: Write a custom finder for this SLOW method!
+    @entries = @user.entries.select {|e| current_user.can_access?(e) }
     
     add_starlight @user, 1 if unique_hit?
   end
 
   def show
     @entry = Entry.find params[:id]
+    restrict_access
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
-
+    
     if unique_hit?
       add_starlight @entry, 1
       add_starlight current_user, 1
@@ -43,6 +28,7 @@ class EntriesController < ApplicationController
   
   def edit
     @entry = Entry.find params[:id]
+    restrict_write
     render :new
   end
 
@@ -55,11 +41,11 @@ class EntriesController < ApplicationController
   end
   
   def update
+    @entry = Entry.find params[:id]
+    restrict_write
+
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
-    
-    @entry = Entry.find params[:id]
-
     whats.each { |what| @entry.add_what_tag(what) }
 
     @entry.update_attributes( params[:entry] )    
@@ -68,6 +54,8 @@ class EntriesController < ApplicationController
   
   def destroy
     @entry = Entry.find params[:id]
+    restrict_write
+    
     @entry.destroy
     redirect_to :index
   end
@@ -75,5 +63,29 @@ class EntriesController < ApplicationController
   def stream
     @entries = Entry.all
     @user = current_user
+  end
+
+  protected
+
+  # sets @user to be either params[:username]'s user or current_user
+  # Redirect to / if neither param nor current_user.
+  def query_username
+    @user = params[:username] ? User.find_by_username( params[:username] ) : current_user
+    redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
+  end
+  
+  
+  # requires @entry be set
+  def restrict_access
+    deny unless current_user.can_access?(@entry)
+  end
+
+  # requires @entry be set
+  def restrict_write
+    deny unless current_user == @entry.user
+  end
+  
+  def deny
+    redirect_to :root, :warn => "Access denied to this entry." and return
   end
 end
