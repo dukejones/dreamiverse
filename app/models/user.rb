@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   
   has_many :entry_accesses
 
+  has_one :view_preference, :as => "viewable"
+  
   # follows are the follows this user has
   # following are the users this user is following
   has_many :follows

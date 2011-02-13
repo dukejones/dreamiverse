@@ -2,14 +2,18 @@
 class Image < ActiveRecord::Base
   UPLOADS_PATH = "images/uploads"
   include ImageProfiles
-
   # This is the syntax we want:
   # profile 'entry_header' do |img|
   #   img.resize '720' # width => 720.
   #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
   #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
-  #   img
   # end
+
+  #
+  # Assocations
+  # 
+  has_many :view_preferences
+
 
   #
   # Callbacks 
