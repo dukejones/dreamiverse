@@ -383,35 +383,30 @@
 
 
 /* BUTTONS */
-.confirm:hover
+=confirm($offset)
+  +bg-shine($offset)
   +bg(#3ba4d1, #1b485b)
-  +bg-shine(18)
   color: #fff
   border: 1px solid #4794b5
-.save:hover
+
+=save($offset)
+  +bg-shine($offset)
   +bg(#70d03b, #235b1b)
-  +bg-shine(18)
   color: #fff
   border: 1px solid #54943d
-.cancel:hover
+
+=cancel($offset)
+  +bg-shine($offset)
+  +bg(#979797, #4e4e4e)
   color: #fff
   border: 1px solid #848484
-  background: -webkit-gradient(linear, left top, left bottom, from(#979797), to(#4e4e4e))
-  background: -moz-linear-gradient(top, #979797, #4e4e4e)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.delete:hover
+
+=delete($offset)
+  +bg-shine($offset)
+  +bg(#ee7c44, #8b2e12)
   color: #fff
   border: 1px solid #c1633c
-  background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
-  background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
 
-.confirm-small:hover, .save-small:hover, .cancel-small:hover, .delete-small:hover
-  +bg-shine(12)
 
 
 /* COLOR BUTTONS */

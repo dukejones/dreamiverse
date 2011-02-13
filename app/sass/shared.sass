@@ -431,29 +431,7 @@ a:active, a:focus
 
 
 
-/******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
-#appearancePanel, #settingsPanel
-  +absolute
-  +clear
-  right: 45px
-  top: 64px
-  padding: 0 8px 8px
-  width: 334px 
 
-  .arrow
-    +relative
-    top: -15px
-    padding: 0
-    height: 16px
-    margin-bottom: -8px
-
-  img.appearanceIcon, h1
-    +left
-
-  h1
-    margin: 8px
-    font-size: 24px
-    font-weight: normal
 
 
 
@@ -568,15 +546,14 @@ a:active, a:focus
   .button
     margin: 8px 0 0
     padding: 2px 12px
-
-  img, .sharingList
+  img
     +left
-
   h2
     +font(18)
     +bold
     margin: 0px
     padding: 8px
+    
   .sharing, .savedLocations, .changePassword
     +clear
     margin: 0 0 8px
@@ -586,6 +563,9 @@ a:active, a:focus
     +pointer
     img
       padding-right: 8px 
+
+  hr
+    +alpha(30)
 
   .input
     +round(4)
@@ -607,12 +587,15 @@ a:active, a:focus
         line-height: 32px
         margin: 0
         padding: 0
+      select
+        +round(8)
       p
         +left
-    .sharingList
+    select
       +right
       +font(16)
       +pointer
+      +round(8)
       height: 36px
       width: 138px
       margin-top: 4px
@@ -631,13 +614,17 @@ a:active, a:focus
       +clear
 
       .linkAccount
+        +round(4)
         +right
         +center
+        +pointer
         margin: 4px 0 0
         padding: 0 8px
         width: 110px
         height: 24px
         line-height: 24px
+        &:hover
+          +confirm(12)
 
     label
       +clear
@@ -770,6 +757,71 @@ a:active, a:focus
       +font(18)
       padding: 6px 12px
       margin: 8px 8px 0 4px
+
+
+
+/******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
+#appearancePanel, #settingsPanel
+  +absolute
+  +clear
+  +round(8)
+  right: 45px
+  top: 64px
+  padding: 0 8px 8px
+  width: 334px 
+
+  .arrow
+    +relative
+    top: -15px
+    padding: 0
+    height: 16px
+    margin-bottom: -8px
+
+  img.appearanceIcon, h1
+    +left
+
+  h1
+    margin: 8px
+    font-size: 24px
+    font-weight: normal
+
+  .panel
+    +round(8)
+
+
+// COLORS
+.light
+  #settingsPanel, #appearancePanel
+    +panel-light
+    +glow-light(40)
+
+    .defaultSharing
+      select
+        +input-light
+
+    .network
+      .linkAccount
+        +button-light
+        +bevel-light
+
+
+
+
+.dark
+  #settingsPanel, #appearancePanel
+    +panel-dark
+    +glow-dark(40)
+
+    .defaultSharing
+      select
+        +input-dark
+
+    .network
+      .linkAccount
+        +button-dark
+        +bevel-dark
+
+
 
 /*********** END META MENU ***********/
 
