@@ -18,7 +18,7 @@ module ImageProfiles
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
   def profiles
-    [:header, :stream_header, :dreamfield_header, :thumb, :avatar, :avatar_square]
+    [:medium, :header, :stream_header, :dreamfield_header, :thumb, :avatar_main, :avatar_medium, :avatar]
   end
 
   def generate_profile(profile, size=nil, opts={})
@@ -33,7 +33,19 @@ module ImageProfiles
     File.exists?(path(profile, size))
   end
   
-  def header(options)
+  def profile_magick_image(profile, size=nil, opts={})
+    generate_profile(profile, size, opts) unless profile?(profile, size)
+    magick_image(profile, size)
+  end
+  
+  def medium(options={})
+    img = magick_image
+    img.resize '720x720'
+    
+    img.write(path('medium'))
+  end
+  
+  def header(options={})
     vertical_offset = options[:vertical_offset]
 
     img = magick_image
@@ -42,14 +54,63 @@ module ImageProfiles
     vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
     img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
 
-    img.write(path('entry_header'))
+    img.write(path('header'))
   end
 
-  def entry_header_small
+  def stream_header(options={})
+    img = profile_magick_image(:header)
+    img.resize '50%'
+    
+    img.write(path('stream_header'))
+  end
+  
+  def dreamfield_header(options={})
+    img = profile_magick_image(:stream_header)
+    # stream_header = 360x100.  Resize width -> 200.  x-offset: +80px
+    img.crop "200x+80+0"
+    img.write(path('dreamfield_header'))
+  end
+  
+  def thumb(options)
+    # img.thumbnail # => Faster but no pixel averaging.
+    size = options[:size]
+    img = magick_image
+    # img.combine_options do |i|
+    img.resize (width > height) ? "x#{size}" : size
+    
+    offset = if (width > height)
+      pix = (img[:width] - size.to_i) / 2
+      "+#{pix}+0" 
+    else
+      pix = (img[:height] - size.to_i) / 2
+      "+0+#{pix}"
+    end
+    img.crop "#{size}x#{size}#{offset}"
+    # img.repage
+    img.write(path('thumb', size))
+  end
+  
+  def avatar_main(options)
+    img = magick_image
+    img.resize "x266"
+    # crop center 200
+    offset = (img[:width] - 200) / 2
+    img.crop "200x+#{offset}+0"
+    
+    img.write(path(:avatar_main))
+  end
+  
+  def avatar_medium(options)
+    img = profile_magick_image(:avatar_main)
+    img.resize "24%"
+    
+    img.write(path(:avatar_medium))
+  end
+  
+  def avatar(options)
+    size = options[:size]
     
   end
-
-
 end
 
 class Image < ActiveRecord::Base
@@ -167,8 +228,8 @@ class Image < ActiveRecord::Base
     "#{fname}.#{format}"
   end
   
-  def magick_image(descriptor=nil)
-    MiniMagick::Image.open(path(descriptor))
+  def magick_image(descriptor=nil, size=nil)
+    MiniMagick::Image.open(path(descriptor, size))
   end
 
 protected
