@@ -15,13 +15,13 @@
 
     .type Dream
 
-    %a.next{href: entries_path}
+    %a.next.cancel{href: entries_path}
       %span &rsaquo;
-    .stream stream
-    %a.prev{href: entries_path}
+    .stream.cancel stream
+    %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry{href: edit_entry_path(@entry)} edit
+    %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
     = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
 
 

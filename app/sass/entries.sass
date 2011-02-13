@@ -1,3 +1,6 @@
+@import mixins
+@import context_panel
+
 /******** 2D ENTRY THUMBS LIGHT / DARK ********/
 #entryField, #home
   .matrix
@@ -504,7 +507,7 @@
         padding: 4px
         list-style: none
         li
-          +round-8
+          +round(8)
           margin: 0 2px 2px 0
           float: left
           height: 120px
@@ -707,13 +710,11 @@
 
       a.next, .stream, a.prev
         +button-light
-        +cancel-light
-        +shine-light
+        +shine-light(18)
 
       a.editEntry
         +alpha(60)
         +button-light
-        +confirm-light
         +bevel-light
 
       .books
@@ -727,7 +728,7 @@
           +glow-light(10)
 
         .title
-          +transparent(50)
+          +transparent-light(50)
 
       .content
         +flat-light
