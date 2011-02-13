@@ -8,10 +8,7 @@ module ImageProfiles
     # def profile(name)
     #   define_method("generate_#{name}") do
     #     img = magick_image
-    #     debugger
     #     yield img
-    #     debugger
-    #     1
     #   end
     # end
   end
@@ -21,12 +18,13 @@ module ImageProfiles
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
   def profiles
-    [:entry_header, :entry_header_small]
+    [:medium, :header, :stream_header, :dreamfield_header, :thumb, :avatar_main, :avatar_medium, :avatar]
   end
 
-  def generate_profile(profile, size, opts)
-    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym)
-    self.send(profile.to_sym, size, opts)
+  def generate_profile(profile, size=nil, opts={})
+    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
+    opts.merge!(:size => size) if size
+    self.send(profile.to_sym, opts)
   end
 
   def profile?(profile, size=nil)
@@ -35,7 +33,19 @@ module ImageProfiles
     File.exists?(path(profile, size))
   end
   
-  def entry_header(size, options)
+  def profile_magick_image(profile, size=nil, opts={})
+    generate_profile(profile, size, opts) unless profile?(profile, size)
+    magick_image(profile, size)
+  end
+  
+  def medium(options={})
+    img = magick_image
+    img.resize '720x720'
+    
+    img.write(path('medium'))
+  end
+  
+  def header(options={})
     vertical_offset = options[:vertical_offset]
 
     img = magick_image
@@ -44,14 +54,63 @@ module ImageProfiles
     vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
     img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
 
-    img.write(path('entry_header'))
+    img.write(path('header'))
   end
 
-  def entry_header_small
+  def stream_header(options={})
+    img = profile_magick_image(:header)
+    img.resize '50%'
+    
+    img.write(path('stream_header'))
+  end
+  
+  def dreamfield_header(options={})
+    img = profile_magick_image(:stream_header)
+    # stream_header = 360x100.  Resize width -> 200.  x-offset: +80px
+    img.crop "200x+80+0"
+    img.write(path('dreamfield_header'))
+  end
+  
+  def thumb(options)
+    # img.thumbnail # => Faster but no pixel averaging.
+    size = options[:size]
+    img = magick_image
+    # img.combine_options do |i|
+    img.resize (width > height) ? "x#{size}" : size
+    
+    offset = if (width > height)
+      pix = (img[:width] - size.to_i) / 2
+      "+#{pix}+0" 
+    else
+      pix = (img[:height] - size.to_i) / 2
+      "+0+#{pix}"
+    end
+    img.crop "#{size}x#{size}#{offset}"
+    # img.repage
+    img.write(path('thumb', size))
+  end
+  
+  def avatar_main(options)
+    img = magick_image
+    img.resize "x266"
+    # crop center 200
+    offset = (img[:width] - 200) / 2
+    img.crop "200x+#{offset}+0"
+    
+    img.write(path(:avatar_main))
+  end
+  
+  def avatar_medium(options)
+    img = profile_magick_image(:avatar_main)
+    img.resize "24%"
+    
+    img.write(path(:avatar_medium))
+  end
+  
+  def avatar(options)
+    size = options[:size]
     
   end
-
-
 end
 
 class Image < ActiveRecord::Base
@@ -82,13 +141,13 @@ class Image < ActiveRecord::Base
   # Scopes
   #
   scope :enabled, where(enabled: true)
-  scope :by, lambda { |artist| where(artist: artist) }
+  scope :by, -> artist { where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?
-  scope :sectioned, lambda { |section| where(section ? {section: section} : {}) }
+  scope :sectioned, -> section { where(section ? {section: section} : {}) }
 
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
-  scope :search, lambda { |params|
+  scope :search, -> params {
     # search term
     results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
             params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q]])
@@ -169,14 +228,17 @@ class Image < ActiveRecord::Base
     "#{fname}.#{format}"
   end
   
-  def magick_image(descriptor=nil)
-    MiniMagick::Image.open(path(descriptor))
+  def magick_image(descriptor=nil, size=nil)
+    MiniMagick::Image.open(path(descriptor, size))
   end
 
 protected
   
   def parse_incoming_parameters
     if @incoming_filename
+      # TODO: use named regexp matches
+      # p "hello 2011!".match(/(?<year>\d+)/)[:year]  # => "2011"
+
       # Parse the URL if it's in the filename.
       if (url_matches = @incoming_filename.scan(/(^http-::[^\s]+)(.*)/).first)
         url, extra = url_matches
