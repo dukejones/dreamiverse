@@ -24,7 +24,7 @@
       %span &lsaquo;
 
     %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
 
 
     / 
@@ -57,7 +57,7 @@
         %li
         %li
         %li
-      .clear-both
+      .clear
 
       / ENTRY LINKS
       .entryLinks
@@ -70,7 +70,7 @@
         .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
-        .clear-both
+        .clear
 
       / INFO
       .entryInfo
@@ -83,15 +83,15 @@
           .option.love.selected
           .option.share
           .option.repost.selected
-        .clear-both
-      .clear-both
+        .clear
+      .clear
 
     / TAG
     .entryTags
       .tagHeader.headers
         tag
         %img{src: '/images/icons/tag-20.png'}
-      .tagThisEntry.button.bevel.round-4{style: 'width: 200px; float: right'}
+      .tagThisEntry
         %span +
         Tag this dream
       %img.tagCheck.hidden{src: '/images/icons/check-33.png', width: '33', height: '33'}
@@ -99,16 +99,16 @@
         %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
         .tagInput
           %input#newTag
-          .tagAdd.button.bevel.round-4
+          .tagAdd
             %span +
             Add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
       .target
         #tag-list.tag-list.ui-sortable
-          #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
+          #empty-tag.tag_box.thumb-controls.hidden
             .tagContent
           - @entry.whats.each do |what|
-            .tag_box.thumb-controls.float-left.light.round-8
+            .tag_box.thumb-controls
               .tagContent= what.name
             
           %br{style: 'clear: both;'}
@@ -118,39 +118,39 @@
 
 
     / ANALYSIS
-    .entryAnalysis.panel.round-12.wrapper
+    .entryAnalysis.wrapper
       .trigger.slide
-        .analysisHeader.headers.indent.button
+        .analysisHeader.headers
           analysis
           %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
-        .clear-both
+        .clear
 
       .target.slide
         / ANALYSIS TAGS
-        .analysisTags.bevel.button.round-12.wrapper
+        .analysisTags.wrapper
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
             dolphin
             .arrow
           .description.target.slide.hidden
             To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
             %br
-            .source.button.bevel.round-12 Dream Moods
+            .source Dream Moods
 
-        .analysisTags.bevel.button.round-12.wrapper
+        .analysisTags.wrapper
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
             tsunami
             .arrow
 
-        .analysisTags.bevel.button.round-12.wrapper
+        .analysisTags.wrapper
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
             flying
             .arrow
-          .clear-both
+          .clear
           %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-          .source.button.bevel.round-12 Dream Moods
-          .clear-both
+          .source Dream Moods
+          .clear
 
-        .analysisTags.bevel.button.round-12.wrapper
+        .analysisTags.wrapper
           .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
             telepathy
             .arrow
@@ -159,42 +159,42 @@
 
 
     / COMMENTS
-    .commentsPanel.panel.shine-alpha.round-12
+    .commentsPanel
       .trigger.slide
-        .commentsHeader.headers.indent.button
+        .commentsHeader.headers
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           .counter (6)
       .clear-both
       .target.slide
         .newCommentWrap
-          .avatar.button.round-12
-          .newComment.inputTextarea.round-12
+          .avatar
+          .newComment
             %textarea
-            .save.shine.button.round-16 post
+            .save post
             .links
               %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
               links
             .images
               %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
               images
-          .clear-both
+          .clear
 
         .prevCommentWrap
-          .avatar.button.round-12
-          .prevComment.input.round-12
-            .user.button.bevel.round-8 iotus
+          .avatar
+          .prevComment
+            .user iotus
             .postTime 15 minutes ago
             %ul
-              %li.button.round-8
-              %li.button.round-8
-              %li.button.round-8
-              %li.button.round-8
+              %li
+              %li
+              %li
+              %li
             .comment Check it out, did it look like this?? 
-            .rePost.bevel.button.round-16
+            .rePost
               %img{src: '', width: '16', height: '16'}
               Another Related Dream
-          .clear-both
+          .clear
 
-        .clear-both
+        .clear
 
