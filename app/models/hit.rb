@@ -1,7 +1,7 @@
 class Hit < ActiveRecord::Base
   belongs_to :user
   
-  scope :recent, lambda { where(["updated_at > ?", 24.hours.ago]).order("updated_at DESC") }
+  scope :recent, -> { where(["updated_at > ?", 24.hours.ago]).order("updated_at DESC") }
   
   def self.unique? url_path, ip, user=nil
     previous_hit = self.recent.where(ip_address: ip, url_path: url_path).first

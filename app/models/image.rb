@@ -8,10 +8,7 @@ module ImageProfiles
     # def profile(name)
     #   define_method("generate_#{name}") do
     #     img = magick_image
-    #     debugger
     #     yield img
-    #     debugger
-    #     1
     #   end
     # end
   end
@@ -21,12 +18,13 @@ module ImageProfiles
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
   def profiles
-    [:entry_header, :entry_header_small]
+    [:header, :stream_header, :dreamfield_header, :thumb, :avatar, :avatar_square]
   end
 
-  def generate_profile(profile, size, opts)
-    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym)
-    self.send(profile.to_sym, size, opts)
+  def generate_profile(profile, size=nil, opts={})
+    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
+    opts.merge!(:size => size) if size
+    self.send(profile.to_sym, opts)
   end
 
   def profile?(profile, size=nil)
@@ -35,7 +33,7 @@ module ImageProfiles
     File.exists?(path(profile, size))
   end
   
-  def entry_header(size, options)
+  def header(options)
     vertical_offset = options[:vertical_offset]
 
     img = magick_image
@@ -82,13 +80,13 @@ class Image < ActiveRecord::Base
   # Scopes
   #
   scope :enabled, where(enabled: true)
-  scope :by, lambda { |artist| where(artist: artist) }
+  scope :by, -> artist { where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?
-  scope :sectioned, lambda { |section| where(section ? {section: section} : {}) }
+  scope :sectioned, -> section { where(section ? {section: section} : {}) }
 
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
-  scope :search, lambda { |params|
+  scope :search, -> params {
     # search term
     results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
             params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q]])
@@ -177,6 +175,9 @@ protected
   
   def parse_incoming_parameters
     if @incoming_filename
+      # TODO: use named regexp matches
+      # p "hello 2011!".match(/(?<year>\d+)/)[:year]  # => "2011"
+
       # Parse the URL if it's in the filename.
       if (url_matches = @incoming_filename.scan(/(^http-::[^\s]+)(.*)/).first)
         url, extra = url_matches

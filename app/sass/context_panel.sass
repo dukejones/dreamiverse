@@ -262,7 +262,7 @@
 
       .following, .followers
         +left
-        margin: 0
+        margin: 0 4px 0 0
         font-size: 12px
         text-align: center
         width: 72px
@@ -272,8 +272,6 @@
           height: 14px
           line-height: 14px
           text-align: center
-      .following
-        margin-left: 8px
 
   .myStream
     +round(12)
@@ -351,10 +349,12 @@
         .following, .followers
           .count
             +flat-dark
+            color: #fff
 
     // LABEL
     .myStream
-      +shine-light(13)
+      +shine-dark(13)
+      color: #fff
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
@@ -367,7 +367,6 @@
         +flat-light
 
         .type
-          +button-light
 
 .dark
   #streamContextPanel
@@ -386,10 +385,12 @@
         .following, .followers
           .count
             +flat-light
+            color: #000
 
     // LABEL
     .myStream
-      +shine-dark(13)
+      +shine-light(13)
+      color: #000
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
@@ -402,7 +403,6 @@
         +flat-dark
 
         .type
-          +button-dark
 
 
 
