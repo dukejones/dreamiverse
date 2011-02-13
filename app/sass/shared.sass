@@ -10,17 +10,63 @@
   -webkit-user-select: none
   -moz-user-select: none
 
-// DISPLAY: BLOCK
+// DISPLAY
 =block
   display: block
+=hidden
+  display: none
+.hidden
+  display: none
+=absolute
+  position: absolute
+=relative
+  position: relative
+=overflow
+  overflow: hidden
+=left
+  float: left
+=right
+  float: right
+=clear
+  clear: both
+.clear
+  clear: both
+=transparent
+  background: transparent
+
 
 // FONTS
 =bold
   font-weight: bold
-=align-center
+=center
   text-align: center
 =font($px)
   font-size: $px + px
+
+/* sans serif */
+=arial
+  font-family: Arial, Arial, Helvetica, sans-serif
+=calibri
+  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
+=verdana
+  font-family: Verdana, Verdana, Geneva, sans-serif
+=monospace
+  font-family: Lucida Console, Monaco, monospace
+=comic
+  font-family: Comic Sans MS, Comic Sans MS
+
+/* serif */
+=georgia
+  font-family: Georgia, Georgia, serif
+=garamond
+  font-family: Garamond, serif
+=book
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
+=times
+  font-family: "Times New Roman", Times, serif
+
+
+
 
 // CURSORS
 =pointer
@@ -34,64 +80,6 @@
   -moz-border-radius: $radius + px
   -webkit-border-radius: $radius + px
 // ROUND OVERRIDES
-=round-bottom($px)
-  border-radius-bottomleft: $px + px
-  -moz-border-radius-bottomleft: $px + px
-  -webkit-border-radius-bottomleft: $px + px
-  border-radius-bottomright: $px + px
-  -moz-border-radius-bottomright: $px + px
-  -webkit-border-radius-bottomright: $px + px
-=round-top($px)
-  border-radius-topleft: $px + px
-  -moz-border-radius-topleft: $px + px
-  -webkit-border-radius-topleft: $px + px
-  border-radius-topright: $px + px
-  -moz-border-radius-topright: $px + px
-  -webkit-border-radius-topright: $px + px
-=round-bottomRight($px)
-  border-radius-bottomright: $px + px
-  -moz-border-radius-bottomright: $px + px
-  -webkit-border-radius-bottomright: $px + px
-=round-bottomLeft($px)
-  border-radius-bottomleft: $px + px
-  -moz-border-radius-bottomleft: $px + px
-  -webkit-border-radius-bottomleft: $px + px
-=round-topRight($px)
-  border-radius-topright: $px + px
-  -moz-border-radius-topright: $px + px
-  -webkit-border-radius-topright: $px + px
-=round-topLeft($px)
-  border-radius-topleft: $px + px
-  -moz-border-radius-topleft: $px + px
-  -webkit-border-radius-topleft: $px + px
-=round-left($px)
-  border-radius-topleft: $px + px
-  -moz-border-radius-topleft: $px + px
-  -webkit-border-radius-topleft: $px + px
-  border-radius-bottomleft: $px + px
-  -moz-border-radius-bottomleft: $px + px
-  -webkit-border-radius-bottomleft: $px + px
-=round-right($px)
-  border-radius-topright: $px + px
-  -moz-border-radius-topright: $px + px
-  -webkit-border-radius-topright: $px + px
-  border-radius-bottomright: $px + px
-  -moz-border-radius-bottomright: $px + px
-  -webkit-border-radius-bottomright: $px + px
-=round-all($px)
-  border-radius-topright: $px + px
-  -moz-border-radius-topright: $px + px
-  -webkit-border-radius-topright: $px + px
-  border-radius-bottomright: $px + px
-  -moz-border-radius-bottomright: $px + px
-  -webkit-border-radius-bottomright: $px + px
-  border-radius-topleft: $px + px
-  -moz-border-radius-topleft: $px + px
-  -webkit-border-radius-topleft: $px + px
-  border-radius-bottomleft: $px + px
-  -moz-border-radius-bottomleft: $px + px
-  -webkit-border-radius-bottomleft: $px + px
-
 // FLAT SIDES
 =flat-top
   border-radius-topleft: 0px
@@ -258,13 +246,13 @@
 =flat-light
   background: #fff
 
-=transparent($rgb, $percent)
-  background: rgba($rgb,$rgb,$rgb, $percent / 100 )
+=transparent-light($percent)
+  background: rgba(255,255,255, $percent / 100 )
 
-=glow-light($offset, $depth)
-  box-shadow: $offset + px $offset + px $depth + px #000
-  -moz-box-shadow: $offset + px $offset + px $depth + px #000
-  -webkit-box-shadow: $offset + px $offset + px $depth + px #000
+=glow-light($depth)
+  box-shadow: 0px 0px $depth + px #000
+  -moz-box-shadow: 0px 0px $depth + px #000
+  -webkit-box-shadow: 0px 0px $depth + px #000
 
 
 
@@ -371,12 +359,15 @@
 
 // BACKGROUNDS
 =flat-dark
-  background: #fff
+  background: #000
 
-=glow-dark($offset, $depth)
-  box-shadow: $offset + px $offset + px $depth + px #fff
-  -moz-box-shadow: $offset + px $offset + px $depth + px #fff
-  -webkit-box-shadow: $offset + px $offset + px $depth + px #fff
+=transparent-dark($percent)
+  background: rgba(0,0,0, $percent / 100 )
+
+=glow-dark($depth)
+  box-shadow: 0px 0px $depth + px #fff
+  -moz-box-shadow: 0px 0px $depth + px #fff
+  -webkit-box-shadow: 0px 0px $depth + px #fff
 
 
 
@@ -393,51 +384,33 @@
     width: 32px
     height: 32px
 
-.static-glow-inner-40
-  box-shadow: inset 0px 0px 40px #fff
-  -moz-box-shadow: inset 0px 0px 40px #fff
-  -webkit-box-shadow: inset 0px 0px 40px #fff
-.static-glow-40
-  box-shadow: 0px 0px 40px #fff
-  -moz-box-shadow: 0px 0px 40px #fff
-  -webkit-box-shadow: 0px 0px 40px #fff
-.static-shadow-40
-  box-shadow: 0px 0px 40px #000
-  -moz-box-shadow: 0px 0px 40px #000
-  -webkit-box-shadow: 0px 0px 40px #000
 
 
 
-
-
-
+=bg($color1, $color2)
+  background: $color1
+  background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color1))
+  background: -moz-linear-gradient(top, $color1, $color2)
+=bg-shine($offset)
+  box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
 
 
 /* BUTTONS */
 .button.confirm:hover
+  +bg(#3ba4d1, #1b485b)
+  +bg-shine(18)
   color: #fff
   border: 1px solid #4794b5
-  background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b))
-  background: -moz-linear-gradient(top, #3ba4d1, #1b485b)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.confirm:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
+
+.button.small.confirm:hover, .button.small.save:hover, .button.small.cancel:hover, .button.small.delete:hover
+  +bg-shine(12)
 .button.save:hover
+  +bg(#70d03b, #235b1b)
+  +bg-shine(18)
   color: #fff
   border: 1px solid #54943d
-  background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
-  background: -moz-linear-gradient(top, #70d03b, #235b1b)
-  box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.save:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.cancel:hover
   color: #fff
   border: 1px solid #848484
@@ -446,10 +419,6 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.cancel:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 .button.delete:hover
   color: #fff
   border: 1px solid #c1633c
@@ -458,10 +427,6 @@
   box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -moz-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px 18px rgba(255,255,255,0.1)
-.button.small.delete:hover
-  box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0px 12px rgba(255,255,255,0.1)
 
 
 /* COLOR BUTTONS */
@@ -1493,35 +1458,6 @@ body
 .water.s-9
   color: #88e3f7
 
-
-
-/* sans serif */
-.font-arial
-  font-family: Arial, Arial, Helvetica, sans-serif
-.font-calibri
-  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
-.font-verdana
-  font-family: Verdana, Verdana, Geneva, sans-serif
-.font-monospace
-  font-family: Lucida Console, Monaco, monospace
-.font-comic
-  font-family: Comic Sans MS, Comic Sans MS
-
-/* serif */
-.font-georgia
-  font-family: Georgia, Georgia, serif
-.font-garamond
-  font-family: Garamond, serif
-.font-book
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
-.font-times
-  font-family: "Times New Roman", Times, serif
-
-
-/* VARIOUS */
-.hidden
-  display: none
-
 /* ALLOWS FOR PROPPER SELECT DROPDOWN SHADOW AND ROUNDED CORNERS */
 SELECT.search-bar
   border-style: solid
@@ -1552,3 +1488,6 @@ SELECT.search-bar
 
 
 @import context_panel
+@import entries
+@import friends
+@import home

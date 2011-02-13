@@ -1,8 +1,7 @@
 - content_for :head do
-  = sass_link_tag 'entries', "context_panel"
-  = stylesheet_link_tag "IB_manager"
+  = stylesheet_link_tag 'IB_manager'
 - content_for :foot do
-  = javascript_include_tag "autoresize.jquery.min", "geo", "userfileuploader", 'dreams'
+  = javascript_include_tag 'autoresize.jquery.min', 'geo', 'userfileuploader', 'dreams'
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
   = coffeescript_include_tag 'tag', 'dream', 'sharing'
 / CONTEXT BAR
@@ -14,13 +13,13 @@
   = form_for @entry do |f|
 
     / NEW ENTRY INPUT PANEL
-    #newEntry.flat.round-16.glow-40
+    #newEntry
 
       .wrapper
         / MOOD ICON
         = render :partial => "mood_icon"
 
-      #entryTypeWrap.border.round-16
+      .entryType.border
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
         %select#entryType_list

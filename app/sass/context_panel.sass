@@ -1,60 +1,7 @@
 // CONTEXT PANEL
-.light
-  #contextPanel
-    +transparent(255, 50)
-    +glow-light(0, 40)
+// STRUCTURE
 
-    .context, .find, .label
-      +button-light
-      +shine-light-alpha(16)
-
-    .relation
-      +button-light
-
-    .item .relation
-      +transparent(255, 50)
-      .label
-        border: 1px solid #848484
-
-    .changeRelation.follow, .changeRelation.unfollow
-      +button-light
-      +shine-light-alpha(16)
-
-    .detail
-      +inner-shadow-light(10)
-
-
-
-.dark
-  #contextPanel
-    +transparent(0, 50)
-    +glow-dark(0, 40)
-
-    .context, .find, .label
-      +button-dark
-      +shine-dark-alpha(16)
-    .relation
-      +button-dark
-    .item .relation
-      +transparent(255, 50)
-      .label
-        border: 1px solid #555
-    .changeRelation.follow, .changeRelation.unfollow
-      +button-dark
-      +shine-dark-alpha(16)
-    .detail
-      +inner-shadow-dark(10)
-
-
-
-
-
-
-
-
-
-
-#contextPanel, #streamContextPanel
+#contextPanel
   +round(16)
   position: absolute
   top: 82px
@@ -78,11 +25,11 @@
       .uploadAvatar
         +block
         +round(8)
-        +align-center
+        +center
         +pointer
         +alpha(60)
-        +transparent(255, 50)
-        +glow-light(0, 20)
+        +transparent-dark(50)
+        +glow-light(20)
         color: #fff
         font-size: 12px
         padding: 2px 6px
@@ -116,72 +63,16 @@
       font-size: 10px
       margin: 0
 
-    .following, .followers
-      float: left
-      margin: 0
-      font-size: 12px
-      text-align: center
-      .count
-        width: 76px
-        height: 14px
-        line-height: 14px
-        text-align: center
-
 
   .context
     +round(12)
     +flat-bottom
-    +align-center
+    +center
     +bold
     +block
     margin: 4px 0 2px
     padding: 4px 8px
     font-size: 21px
-
-  // STREAM FILTERS
-  .wrapper
-    position: relative
-    .entryFilter, .followFilter, .starlightTab
-      width: 192px
-      position: relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
-      span
-        float: left
-      img.icon
-        float: left
-        margin: 8px 8px 0 0
-      img.arrow
-        float: right
-        margin: 8px 0 0
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-    .followFilter
-
-    .filterList
-      width: 208px
-      position: absolute
-      top: 0
-      cursor: pointer
-      z-index: 1200
-      .type
-        display: block
-        height: 30px
-        line-height: 30px
-        text-align: center
-        font-weight: bold
-      .type:hover
-        background: #000
-        color: #fff
-    
-
-
-
 
 
   .relation, .changeRelation, .context
@@ -197,8 +88,8 @@
   .find
     +round(12)
     +flat-top
-    +padding(4, 8)
-    +align-center
+    +center
+    padding: 4px 8px
     margin-bottom: 2px
 
 
@@ -211,7 +102,7 @@
     .label
       +round(12)
       +flat-right
-      +align-center
+      +center
       width: 84px
       height: 24px
       line-height: 24px
@@ -235,7 +126,7 @@
       +round(12)
       +flat-left
       +bold
-      +align-center
+      +center
       width: 36px
       height: 26px
       padding: 6px 8px
@@ -244,14 +135,13 @@
 
     .relation, .changeRelation
       +bold
-      +align-center
+      +center
       padding: 6px
       height: 16px
       margin: 0
       .icon
         right: 22px
         top: -23px      
-
 
 
     .changeRelation.follow, .changeRelation.unfollow
@@ -276,6 +166,53 @@
       -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
 
 
+// CONTEXT PANEL
+// COLORS
+.light
+  #contextPanel
+    +transparent-light(50)
+    +glow-light(40)
+
+    .context, .find, .label
+      +button-light
+      +shine-light-alpha(16)
+
+    .relation
+      +button-light
+
+    .item .relation
+      +transparent-light(50)
+      .label
+        border: 1px solid #848484
+
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-light
+      +shine-light-alpha(16)
+
+    .detail
+      +inner-shadow-light(10)
+
+
+
+.dark
+  #contextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    .context, .find, .label
+      +button-dark
+      +shine-dark-alpha(16)
+    .relation
+      +button-dark
+    .item .relation
+      +transparent-dark(50)
+      .label
+        border: 1px solid #555
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-dark
+      +shine-dark-alpha(16)
+    .detail
+      +inner-shadow-dark(10)
 
 
 
@@ -286,28 +223,60 @@
 
 
 
+// STREAM CONTEXT PANEL
+// STRUCTURE
 #streamContextPanel
+  +round(16)
+  +absolute
+  +cursor
+  top: 82px
+  left: 12px
+  width: 210px
+  padding: 4px
+  border: 1px solid #000
 
-  .userInfo
-    height: 66px
   // USER INFO
   .userInfo
+    +round(12)
+    +relative
     height: 66px
 
+
     .avatar-64
-      float: left
+      +round(8)
+      +flat-right
+      +absolute
       width: 50px
       height: 64px
       margin: 0 8px 0 0
-      display: block
+      display: inline-block
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
 
-    .userName
-      float: left
-      h3
-        margin: 4px 0 8px
+    .infoRight
+      +right
+      height: 64px
+
+      .userName
+        h3
+          margin: 4px 0 8px 8px
+
+      .following, .followers
+        +left
+        margin: 0 4px 0 0
+        font-size: 12px
+        text-align: center
+        width: 72px
+        .count
+          +round(4)
+          width: 72px
+          height: 14px
+          line-height: 14px
+          text-align: center
+
   .myStream
-    display: block
+    +round(12)
+    +flat-bottom
+    +block
     margin: 4px 0 2px
     text-align: center
     font-weight: bold
@@ -316,4 +285,125 @@
     line-height: 26px
     padding: 4px 8px
     font-size: 21px
+
+
+  // STREAM FILTERS
+  .wrapper
+    +relative
+    .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      width: 192px
+      +relative
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+    .followFilter
+
+    .filterList
+      +round(8)
+      width: 208px
+      +absolute
+      top: 0
+      cursor: pointer
+      z-index: 1200
+      .type
+        +block
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+      .type:hover
+        background: #000
+        color: #fff
+
+
+// COLORS
+.light
+  #streamContextPanel
+    +transparent-light(50)
+    +glow-light(40)
+
+    // USER INFO
+    .userInfo
+      +flat-light
+      +border-light
+
+      a.avatar-64
+        +button-light
+
+      .infoRight
+        .following, .followers
+          .count
+            +flat-dark
+            color: #fff
+
+    // LABEL
+    .myStream
+      +shine-dark(13)
+      color: #fff
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-light
+        +button-light
+
+      .filterList
+        +border-light
+        +flat-light
+
+        .type
+
+.dark
+  #streamContextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    // USER INFO
+    .userInfo
+      +flat-dark
+      +border-dark
+
+      a.avatar-64
+        +button-dark
+
+      .infoRight
+        .following, .followers
+          .count
+            +flat-light
+            color: #000
+
+    // LABEL
+    .myStream
+      +shine-light(13)
+      color: #000
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-dark
+        +button-dark
+
+      .filterList
+        +border-dark
+        +flat-dark
+
+        .type
+        
+
+
 
