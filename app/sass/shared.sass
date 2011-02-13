@@ -387,6 +387,7 @@ a:active, a:focus
     +alpha(60)
 
   .adminLink, .newEntry, .logOut
+    +transparent-dark(50)
     +round(24)
     +button-light
     +right
@@ -394,16 +395,10 @@ a:active, a:focus
     color: #fff
     text-decoration: none
     border: 1px solid #777
-    background: rgba(0,0,0,0.50)
-  .adminLink:hover, .newEntry:hover, .logOut:hover
-    border: 1px solid #ccc
-    box-shadow: inset 0 0 20px #fff
-    -moz-box-shadow: inset 0 0 20px #fff
-    -webkit-box-shadow: inset 0 0 20px #fff
-    -moz-opacity: 1
-    -khtml-opacity: 1
-    -webkit-opacity: 1
-    opacity: 1
+
+  .adminLink:hover, .logOut:hover
+    +alpha(100)
+    +glow-dark(8)
 
   .adminLink
     margin: 8px
@@ -412,7 +407,7 @@ a:active, a:focus
       padding-top: 2px
 
   .newEntry
-    +glow-light(40)
+    +glow-dark(40)
     +bold
     padding: 4px 8px
     font-size: 17px
@@ -421,6 +416,7 @@ a:active, a:focus
     span
       color: #093
   .newEntry:hover
+    +inner-glow(20)
     border: 2px solid transparent
 
   .logOut
