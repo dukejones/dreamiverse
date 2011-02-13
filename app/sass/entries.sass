@@ -4,7 +4,7 @@
 
     /******** 2D ENTRY THUMBS ********/
     /* HOVER */
-    .thumb-2d.hover
+    .thumb-2d:hover
       z-index: 81
       .fadedBack
         .detailsTop, .detailsBottom, .title
@@ -49,39 +49,37 @@
       .detailsTop, .detailsBottom, .title
         +absolute
         display: none
+
+        .date, .location, .comments, .newComments, .sharing
+          +round(12)
+          +align-center
+          +font(11)
+          color: #fff
+          margin: 4px
+          padding: 4px 8px
+          background: rgba(0,0,0,0.50)
+
+        .date, .comments, .newComments
+          +left
+        .location, .sharing
+          +right
+
       .detailsTop
         width: 200px
         z-index: 100
         .date
-          +round(12)
-          +left
           +overflow
           max-width: 60px
           white-space: nowrap
-        .location
-          +round(12)
-          +right
 
       .detailsBottom
         bottom: 0
         width: 100%
-        .newComments
-          +round(12)
-          +left
 
-      .date, .location, .comments, .sharing
-        +align-center
-        +font(11)
-        color: #fff
-        margin: 4px
-        padding: 4px 8px
-        background: rgba(0,0,0,0.50)
-
-      .comments img
-        margin: 0 2px -5px 0
-
-      .sharing img
-        margin: -1px 0 -4px 2px
+        .comments img
+          margin: 0 2px -5px 0
+        .sharing img
+          margin: -1px 0 -4px 2px
 
       .title
         +align-center
@@ -102,14 +100,14 @@
     .matrix
       .fadedBack
         background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
-      .thumb-2d.hover
+      .thumb-2d:hover
         +glow-light(40)
 .dark
   #entryField, #home
     .matrix
       .fadedBack
         background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
-      .thumb-2d.hover
+      .thumb-2d:hover
         +glow-dark(40)
 
 
