@@ -1,15 +1,13 @@
 / SETTINGS PANEL
-#settingsPanel.hidden.panel.glow-40.round-8.target
+#settingsPanel.hidden.target
   .arrow
 
-
-
   / SHARING
-  .sharing.panel.round-8
+  .sharing.panel
     .defaultSharing
-      %img.sharingIcon{src: '/images/icons/everyone-16.png'}
+      %img{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
-      %select.sharingList.input.round-8
+      %select
         %option.everyone{value: 'Everyone'} Everyone
         %option.friends{value: 'Friends Only'} Friends only
         %option.anonymous{value: 'Anonymous'} Anonymous
@@ -24,7 +22,7 @@
     .network.wrapper
       %img{src: '/images/icons/facebook-16.png'}
       %h2 Facebook
-      .linkAccount.trigger.showhide.button.small.confirm.bevel.round-4
+      .linkAccount.trigger.showhide
         Link account
       %label.target.showhide.hidden
         By default, share on Facebook
@@ -35,7 +33,7 @@
 
 
   / SAVED LOCATIONS
-  .savedLocations.wrapper.panel.round-8
+  .savedLocations.wrapper.panel
 
     %h2.trigger.showhide
       %img{src: '/images/icons/world-16.png'}
@@ -120,7 +118,7 @@
 
 
   / CHANGE PASSWORD
-  .changePassword.wrapper.showhide.panel.round-8
+  .changePassword.wrapper.showhide.panel
     %h2.trigger.showhide
       %img{src: '/images/icons/key-16.png'}
       Change password
@@ -135,7 +133,7 @@
 
 
   / FONT SIZING
-  .fontSizing.panel.round-8
+  .fontSizing.panel
     %h2.float-left
       %img{src: '/images/icons/font_size-16.png'}
       Font
