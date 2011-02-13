@@ -86,23 +86,18 @@
         .clear
       .clear
 
-    / TAG
-    .entryTags
-      .tagHeader.headers
-        tag
-        %img{src: '/images/icons/tag-20.png'}
-      .tagThisEntry
-        %span +
-        Tag this dream
-      %img.tagCheck.hidden{src: '/images/icons/check-33.png', width: '33', height: '33'}
-      .tagInputWrap.hidden
-        %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
-        .tagInput
-          %input#newTag
-          .tagAdd
+      / TAG
+      .entryTags
+        .tagHeader.headers
+          tag
+          %img{src: '/images/icons/tag-20.png'}
+        .wrapper
+          .tagInput.target
+            %input{value: 'who/where/what'}
+          .tagThisEntry.trigger
             %span +
             Add
-        %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+
       .target
         #tag-list.tag-list.ui-sortable
           #empty-tag.tag_box.thumb-controls.hidden
@@ -115,45 +110,41 @@
         #sorting
         %br{style: 'clear: both'}
 
-
-
-    / ANALYSIS
-    .entryAnalysis.wrapper
-      .trigger.slide
-        .analysisHeader.headers
-          analysis
-          %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
-        .clear
-
-      .target.slide
-        / ANALYSIS TAGS
-        .analysisTags.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            dolphin
-            .arrow
-          .description.target.slide.hidden
-            To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-            %br
-            .source Dream Moods
-
-        .analysisTags.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            tsunami
-            .arrow
-
-        .analysisTags.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            flying
-            .arrow
-          .clear
-          %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-          .source Dream Moods
+      / ANALYSIS
+      .entryAnalysis.wrapper
+        .trigger.slide
+          .analysisHeader.headers
+            analysis
+            %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
           .clear
 
-        .analysisTags.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            telepathy
-            .arrow
+        .target.slide
+          / ANALYSIS TAGS
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              dolphin
+              .arrow
+            .description.target.slide.hidden
+              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              tsunami
+              .arrow
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              flying
+              .arrow
+            .description.target.slide.hidden
+              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              telepathy
+              .arrow
 
 
 
