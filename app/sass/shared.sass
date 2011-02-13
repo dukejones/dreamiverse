@@ -543,9 +543,6 @@ a:active, a:focus
 /******** SETTINGS PANEL ********/
 #settingsPanel
 
-  .button
-    margin: 8px 0 0
-    padding: 2px 12px
   img
     +left
   h2
@@ -554,8 +551,9 @@ a:active, a:focus
     margin: 0px
     padding: 8px
     
-  .sharing, .savedLocations, .changePassword
+  .sharing, .savedLocations, .changePassword, .fontSizing
     +clear
+    +round(8)
     margin: 0 0 8px
 
   .savedLocations h2, .changePassword h2
@@ -566,13 +564,6 @@ a:active, a:focus
 
   hr
     +alpha(30)
-
-  .input
-    +round(4)
-    width: 306px
-    margin: 0 0 4px
-    padding: 4px
-
 
 
   .sharing
@@ -623,8 +614,6 @@ a:active, a:focus
         width: 110px
         height: 24px
         line-height: 24px
-        &:hover
-          +confirm(12)
 
     label
       +clear
@@ -648,18 +637,25 @@ a:active, a:focus
   .savedLocations
     .locationView, .modifyLocationView
       padding: 8px
+
       .newLocation, .autoLocate
         margin-top: 8px
+
       .newLocation
         +center
         +left
+        +round(4)
         width: 186px
+        padding: 2px 4px
         img
           float: none
           margin: -3px 3px
+
       .autoLocate
         +block
         +right
+        +round(4)
+        padding: 2px 4px
 
       .locationList
         +clear
@@ -675,10 +671,8 @@ a:active, a:focus
           padding: 6px 8px
           .edit, label
             display: none
-          label.selected
-            +block
-            +alpha(100)
           label
+            +alpha(50)
             +pointer
             +font(11)
             +right
@@ -687,6 +681,9 @@ a:active, a:focus
             input
               +pointer
               margin: -5px 0
+          label.selected
+            +block
+            +alpha(100)
 
         .locations:hover
           .edit
@@ -704,17 +701,12 @@ a:active, a:focus
           label
             +block
 
-      .cancel
-        width: 100px
-      .confirm
-        width: 156px
-
-
-  .cancel, .confirm
+  .cancel, .confirm, .save
     +center
     +bold
     height: 26px
     line-height: 26px
+    margin-top: 8px
   .cancel
     +left
     width: 80px
@@ -722,23 +714,47 @@ a:active, a:focus
     +right
     width: 180px
 
+
+  .modifyLocationView, .changePasswordForm
+    input
+      +round(4)
+      +font(15)
+      margin-bottom: 4px
+      padding: 4px
+      width: 306px
+    .save, .cancel
+      +round(4)
+    .save
+      +right
+      width: 186px
+    .cancel
+      +left
+      width: 120px
+
+
   .changePassword
     margin: 0 0 8px
     .changePasswordForm
       padding: 8px
+      span
+        +font(11)
+        padding-left: 4px
+        margin-bottom: 1px
+      .cancel, .confirm
+        +round(4)
 
 
   .fontSizing
-    margin: 0
     height: 50px
     margin: 0 0 2px
     h2
+      +left
       +cursor
       line-height: 36px
-
       img
         padding: 8px 8px 0 0 
     .small, .medium, .large
+      +relative
       +right
       +center
       +pointer
@@ -795,6 +811,9 @@ a:active, a:focus
     +panel-light
     +glow-light(40)
 
+    .sharing, .savedLocations, .changePassword, .fontSizing
+      +panel-light
+
     .defaultSharing
       select
         +input-light
@@ -803,14 +822,67 @@ a:active, a:focus
       .linkAccount
         +button-light
         +bevel-light
+        &:hover
+          +confirm(12)
 
+    .savedLocations
+      +panel-light
 
+      .locationView
+        .newLocation
+          +bevel-light
+          +button-light
+          &:hover
+            +confirm(12)
 
+        .autoLocate
+          +bevel-light
+          +button-light
+          &:hover
+            +cancel(12)
+
+        .locationList
+          +border-light
+
+          .locations
+            +flat-light
+            +border-light
+
+      .modifyLocationView
+        input
+          +input-light
+        .save, .cancel
+          +button-light
+          +bevel-light
+        .save
+          &:hover
+            +confirm(12)
+        .cancel
+          &:hover
+            +cancel(12)
+
+    .changePasswordForm
+      input
+        +input-light
+      .cancel, .confirm
+        +button-light
+        +bevel-light
+      .cancel:hover
+        +cancel(12)
+      .confirm:hover
+        +confirm(12)
+
+    .fontSizing
+      .large, .medium, .small
+        +button-light
 
 .dark
   #settingsPanel, #appearancePanel
     +panel-dark
     +glow-dark(40)
+
+    .sharing, .savedLocations, .changePassword, .fontSizing
+      +panel-dark
 
     .defaultSharing
       select
@@ -820,10 +892,63 @@ a:active, a:focus
       .linkAccount
         +button-dark
         +bevel-dark
+        &:hover
+          +confirm(12)
 
+    .savedLocations
+      +panel-dark
 
+      .locationView
+        .newLocation
+          +bevel-dark
+          +button-dark
+          &:hover
+            +confirm(12)
+
+        .autoLocate
+          +bevel-dark
+          +button-dark
+          &:hover
+            +cancel(12)
+
+        .locationList
+          +border-dark
+
+          .locations
+            +flat-dark
+            +border-dark
+
+      .modifyLocationView
+        input
+          +input-dark
+        .save, .cancel
+          +button-dark
+          +bevel-dark
+        .save
+          &:hover
+            +confirm(12)
+        .cancel
+          &:hover
+            +cancel(12)
+
+    .changePasswordForm
+      input
+        +input-dark
+      .cancel, .confirm
+        +button-dark
+        +bevel-dark
+      .cancel:hover
+        +cancel(12)
+      .confirm:hover
+        +confirm(12)
+
+    .fontSizing
+      .large, .medium, .small
+        +button-dark
 
 /*********** END META MENU ***********/
+
+
 
 
 

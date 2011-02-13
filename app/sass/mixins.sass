@@ -200,7 +200,6 @@
 =input-light
   color: #000
   border: 1px solid #666
-  margin: 0
   outline: none
   box-shadow: inset 2px 5px 10px #ccc
   -moz-box-shadow: inset 0px 2px 5px #ccc
@@ -309,7 +308,6 @@
   color: #000
   border: 1px solid #666
   background: #fff
-  margin: 0
   outline: none
   box-shadow: inset 2px 5px 10px #ccc
   -moz-box-shadow: inset 0px 2px 5px #ccc
@@ -386,24 +384,28 @@
 =confirm($offset)
   +bg-shine($offset)
   +bg(#3ba4d1, #1b485b)
+  +pointer
   color: #fff
   border: 1px solid #4794b5
 
 =save($offset)
   +bg-shine($offset)
   +bg(#70d03b, #235b1b)
+  +pointer
   color: #fff
   border: 1px solid #54943d
 
 =cancel($offset)
   +bg-shine($offset)
   +bg(#979797, #4e4e4e)
+  +pointer
   color: #fff
   border: 1px solid #848484
 
 =delete($offset)
   +bg-shine($offset)
   +bg(#ee7c44, #8b2e12)
+  +pointer
   color: #fff
   border: 1px solid #c1633c
 
