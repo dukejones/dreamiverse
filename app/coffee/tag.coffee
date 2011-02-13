@@ -18,8 +18,7 @@ class TagsController
     $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
     
   createTag: (tagName)->
-    tag = new Tag(tagName)
-    tagView = new TagView(tag)
+    tagView = new TagView( new Tag(tagName) )
     @tagViews.add(tagView)
 
 class TagInput
@@ -29,14 +28,11 @@ class TagInput
     @$input.keypress (event) =>
       if event.which is 13
         $.publish 'tags:create', [@value()]
-        log event
         return false
 
     $.subscribe 'tags:create', => @clear()
-  value: ->
-    @$input.val()
-  clear: ->
-    @$input.val('')
+  value: -> @$input.val()
+  clear: -> @$input.val('')
     
 class TagViewList
   constructor: ->
@@ -44,13 +40,10 @@ class TagViewList
     @tagViews = []
   add: (tagView)->
     @tagViews.push(tagView)
-    tagViewElement = tagView.createElement()
-    log tagViewElement
-    @$container.append( tagViewElement )
+    @$container.append( tagView.createElement() )
     tagView.fadeIn()
     
 
-# Should TagView just have its own container, or should TagList hold a bunch of Tags?
 class TagView
   inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   constructor: (tag)->
@@ -67,9 +60,7 @@ class TagView
     @$element.css('backgroundColor', '#777');
     setTimeout (=> @$element.animate {backgroundColor: "#ccc"}, 'slow'), 200
   createFormElement: ->
-    # add to the what_tags[] hidden fields
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
-
     @$element.append(hiddenFieldString)
     
 

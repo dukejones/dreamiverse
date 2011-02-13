@@ -1,5 +1,8 @@
+// CONTEXT PANEL
+// STRUCTURE
 
-#streamContextPanel
+#contextPanel
+  +round(16)
   position: absolute
   top: 82px
   left: 12px
@@ -8,74 +11,68 @@
   padding: 4px
   border: 1px solid #000
 
-  .userInfo
-    height: 66px
-
-    .avatar-64
-      float: left
-      width: 50px
-      height: 64px
-      margin: 0 8px 0 0
-      display: block
-      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
-    .userName
-      float: left
-
-
-
-  .myStream
+  .avatar
+    +round(12)
     display: block
-    margin: 4px 0 2px
-    text-align: center
-    font-weight: bold
-    padding: 0
-    height: 26px
-    line-height: 26px
-    font-size: 21px
-
-  .wrapper
+    width: 200px
+    height: 266px
     position: relative
-    .entryFilter, .followFilter, .starlightTab
-      width: 192px
-      position: relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
-      span
-        float: left
-      img.icon
-        float: left
-        margin: 8px 8px 0 0
-      img.arrow
-        float: right
-        margin: 8px 0 0
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-    .followFilter
-
-    .filterList
-      width: 208px
+    .uploadAvatarWrap
       position: absolute
-      top: 0
-      cursor: pointer
-      z-index: 1200
-      .type
-        display: block
-        height: 30px
-        line-height: 30px
-        text-align: center
-        font-weight: bold
-      .type:hover
-        background: #000
+      bottom: 0
+      width: 100%
+      padding: 20px 0 8px
+      .uploadAvatar
+        +block
+        +round(8)
+        +align-center
+        +pointer
+        +alpha(60)
+        +transparent-dark(50)
+        +glow-light(20)
         color: #fff
-    
+        font-size: 12px
+        padding: 2px 6px
+        width: 120px
+        margin: 0 auto
+        border: 1px solid #fff
+        span
+          +bold
+          color: #68b800
+      .uploadAvatar:hover
+        +alpha(100)
+        +inner-shadow-light(20)
+        border: 1px solid transparent
 
 
+  /* DREAM STREAM AVATAR AND USER DETAILS */
+  .avatar-64
+    +block
+    width: 64px
+    height: 64px
+    position: relative
+  .userInfo
+    +block
+    position: absolute
+    top: 30px
+    left: 78px
+    width: auto
+    h3
+      margin: 0
+    p
+      font-size: 10px
+      margin: 0
 
+
+  .context
+    +round(12)
+    +flat-bottom
+    +align-center
+    +bold
+    +block
+    margin: 4px 0 2px
+    padding: 4px 8px
+    font-size: 21px
 
 
   .relation, .changeRelation, .context
@@ -89,20 +86,28 @@
     float: left
 
   .find
+    +round(12)
+    +flat-top
+    +align-center
+    padding: 4px 8px
     margin-bottom: 2px
-    text-align: center
 
 
   .item
     clear: both
     margin-bottom: 2px
+    .relation
+      +round(12)
+      +flat-top
     .label
+      +round(12)
+      +flat-right
+      +align-center
       width: 84px
       height: 24px
       line-height: 24px
       font-size: 18px
       padding: 6px 8px
-      text-align: center
 
     .image
       width: 34px
@@ -118,27 +123,31 @@
         margin: -12px 1px
 
     .detail
+      +round(12)
+      +flat-left
+      +bold
+      +align-center
       width: 36px
       height: 26px
       padding: 6px 8px
       line-height: 26px
-      font-weight: bold
       border: 0
-      text-align: center
 
     .relation, .changeRelation
+      +bold
+      +align-center
       padding: 6px
       height: 16px
-      font-weight: bold
-      text-align: center
       margin: 0
       .icon
         right: 22px
         top: -23px      
 
 
-
     .changeRelation.follow, .changeRelation.unfollow
+      +block
+      +round(12)
+      +flat-top
       color: #fff
 
     .changeRelation.follow
@@ -157,18 +166,211 @@
       -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
 
 
-    
-
-
-
-
+// CONTEXT PANEL
+// COLORS
 .light
   #contextPanel
-    .item
+    +transparent-light(50)
+    +glow-light(40)
+
+    .context, .find, .label
+      +button-light
+      +shine-light-alpha(16)
+
+    .relation
+      +button-light
+
+    .item .relation
+      +transparent-light(50)
       .label
         border: 1px solid #848484
+
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-light
+      +shine-light-alpha(16)
+
+    .detail
+      +inner-shadow-light(10)
+
+
+
 .dark
   #contextPanel
-    .item
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    .context, .find, .label
+      +button-dark
+      +shine-dark-alpha(16)
+    .relation
+      +button-dark
+    .item .relation
+      +transparent-dark(50)
       .label
         border: 1px solid #555
+    .changeRelation.follow, .changeRelation.unfollow
+      +button-dark
+      +shine-dark-alpha(16)
+    .detail
+      +inner-shadow-dark(10)
+
+
+
+
+
+
+
+
+
+
+// STREAM CONTEXT PANEL
+// STRUCTURE
+#streamContextPanel
+  +round(16)
+  +absolute
+  +cursor
+  top: 82px
+  left: 12px
+  width: 210px
+  padding: 4px
+  border: 1px solid #000
+
+  // USER INFO
+  .userInfo
+    +round(12)
+    +relative
+    height: 66px
+
+
+    .avatar-64
+      +round(8)
+      +flat-right
+      +absolute
+      width: 50px
+      height: 64px
+      margin: 0 8px 0 0
+      display: inline-block
+      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
+
+    .infoRight
+      +right
+      height: 64px
+      left: 60px
+
+      .userName
+        +left
+        h3
+          margin: 4px 0 8px
+
+      .following, .followers
+        +round(8)
+        +left
+        margin: 0
+        font-size: 12px
+        text-align: center
+        width: 78px
+        .count
+          width: 76px
+          height: 14px
+          line-height: 14px
+          text-align: center
+
+  .myStream
+    +round(12)
+    +flat-bottom
+    +block
+    margin: 4px 0 2px
+    text-align: center
+    font-weight: bold
+    padding: 0
+    height: 26px
+    line-height: 26px
+    padding: 4px 8px
+    font-size: 21px
+
+
+  // STREAM FILTERS
+  .wrapper
+    +relative
+    .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      width: 192px
+      +relative
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+    .followFilter
+
+    .filterList
+      +round(8)
+      width: 208px
+      +absolute
+      top: 0
+      cursor: pointer
+      z-index: 1200
+      .type
+        +block
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+      .type:hover
+        background: #000
+        color: #fff
+
+
+
+
+// STREAM CONTEXT PANEL
+// COLORS
+.light
+  #streamContextPanel
+    +transparent-light(50)
+    +glow-light(40)
+
+    // USER INFO
+    .userInfo
+      +flat-light
+      +border-light
+
+      a.avatar-64
+        +button-light
+
+      .infoRight
+        .following, .followers
+          +flat-light
+
+      // LABEL
+      .myStream
+        +shine-light(13)
+
+      .wrapper
+        // FILTER BY ENTRY TYPE & FOLLOW TYPE
+        .entryFilter, .followFilter, .starlightTab
+          +flat-light
+          +button-light
+
+        .filterList
+          +border-light
+          +flat-light
+
+          .type
+            +button-light
+
+
+
+
