@@ -333,9 +333,6 @@
         color: #fff
 
 
-
-
-// STREAM CONTEXT PANEL
 // COLORS
 .light
   #streamContextPanel
@@ -354,23 +351,56 @@
         .following, .followers
           +flat-light
 
-      // LABEL
-      .myStream
-        +shine-light(13)
+    // LABEL
+    .myStream
+      +shine-light(13)
 
-      .wrapper
-        // FILTER BY ENTRY TYPE & FOLLOW TYPE
-        .entryFilter, .followFilter, .starlightTab
-          +flat-light
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-light
+        +button-light
+
+      .filterList
+        +border-light
+        +flat-light
+
+        .type
           +button-light
 
-        .filterList
-          +border-light
-          +flat-light
+.dark
+  #streamContextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
 
-          .type
-            +button-light
+    // USER INFO
+    .userInfo
+      +flat-dark
+      +border-dark
 
+      a.avatar-64
+        +button-dark
+
+      .infoRight
+        .following, .followers
+          +flat-dark
+
+    // LABEL
+    .myStream
+      +shine-dark(13)
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-dark
+        +button-dark
+
+      .filterList
+        +border-dark
+        +flat-dark
+
+        .type
+          +button-dark
 
 
 
