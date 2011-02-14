@@ -46,14 +46,34 @@
     .clear
 
 
-  .item
-    %a.block.label{href: entries_path(user.username)}
-      dreams
-    .image
-      %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
-    .detail
-      = user.entries.count
-    .clear
+  .wrapper
+
+    / FILTER BY ENTRY TYPE
+    .item.entryFilter.trigger.slideArrow
+      .label
+        dreams
+      .image
+        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
+      .detail
+        = user.entries.count
+      .clear
+
+    .filterList.target.slideArrow.hidden
+      %a.type.top{href: entries_path(user.username)}
+        %img{src: '/images/icons/'} 
+        all entries
+      %a.type{href: entries_path(user.username)}
+        %img{src: '/images/icons/'} 
+        %span dreams
+      %a.type{href: entries_path(user.username)}
+        %img{src: '/images/icons/'} 
+        %span visions
+      %a.type.bottom{href: entries_path(user.username)}
+        %img{src: '/images/icons/'} 
+        %span experiences
+
+
+
 
 
   .item

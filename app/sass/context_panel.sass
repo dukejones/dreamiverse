@@ -287,7 +287,64 @@
     font-size: 21px
 
 
-  // STREAM FILTERS
+
+
+
+// STREAM CONTEXT PANEL
+// COLORS
+.light
+  #streamContextPanel
+    +transparent-light(50)
+    +glow-light(40)
+
+    // USER INFO
+    .userInfo
+      +flat-light
+      +border-light
+
+      a.avatar-64
+        +button-light
+
+      .infoRight
+        .following, .followers
+          .count
+
+    // LABEL
+    .myStream
+      +shine-dark(13)
+      color: #fff
+
+
+.dark
+  #streamContextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    // USER INFO
+    .userInfo
+      +flat-dark
+      +border-dark
+
+      a.avatar-64
+        +button-dark
+
+      .infoRight
+        .following, .followers
+          .count
+            +flat-light
+            color: #000
+
+    // LABEL
+    .myStream
+      +shine-light(13)
+      color: #000
+
+        
+
+
+// STREAM FILTERS
+
+#contextPanel, #streamContextPanel
   .wrapper
     +relative
     .entryFilter, .followFilter, .starlightTab
@@ -323,14 +380,12 @@
       &:hover
         +round(8)
       .type
-        +block
         height: 30px
         line-height: 30px
         text-align: center
         font-weight: bold
         &:hover
-          background: #000
-          color: #fff
+          +block
         &.top:hover
           +round(8)
           +flat-bottom
@@ -338,30 +393,10 @@
           +round(8)
           +flat-top
 
-
-// STREAM CONTEXT PANEL
+// STREAM FILTER COLORS
 // COLORS
 .light
-  #streamContextPanel
-    +transparent-light(50)
-    +glow-light(40)
-
-    // USER INFO
-    .userInfo
-      +flat-light
-      +border-light
-
-      a.avatar-64
-        +button-light
-
-      .infoRight
-        .following, .followers
-          .count
-
-    // LABEL
-    .myStream
-      +shine-dark(13)
-      color: #fff
+  #contextPanel, #streamContextPanel
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
@@ -375,34 +410,18 @@
         +flat-light
 
         .type
+          &:hover
+            background: #000
+            color: #fff
 
 .dark
-  #streamContextPanel
-    +transparent-dark(50)
-    +glow-dark(40)
-
-    // USER INFO
-    .userInfo
-      +flat-dark
-      +border-dark
-
-      a.avatar-64
-        +button-dark
-
-      .infoRight
-        .following, .followers
-          .count
-
-    // LABEL
-    .myStream
-      +shine-light(13)
-      color: #000
+  #contextPanel, #streamContextPanel
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .entryFilter, .followFilter, .starlightTab
-        +flat-dark
-        +button-dark
+        +flat-light
+        +button-light
 
       .filterList
         +glow-dark(40)
@@ -410,7 +429,6 @@
         +flat-dark
 
         .type
-        
-
-
-
+          &:hover
+            background: #fff
+            color: #000
