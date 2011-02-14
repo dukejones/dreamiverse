@@ -3,9 +3,10 @@
   .arrow
 
   / BEDSHEETS
-  .bedsheets.panel
+  .bedsheets
     %h2 Bedsheets
-    .options.round-12.button.padding-2-4.alpha-60 options
+    .options{onclick: 'dc.modal()'}
+      options
     %ul
       %li
         %img{src: '/images/art/IB_artistImages/artistImage120-1.jpg'}
@@ -18,16 +19,16 @@
       %li
         %img{src: '/images/art/IB_artistImages/artistImage120-5.jpg'}
 
-    .more.button.confirm.round-8.alpha-60 + browse more...
+    .more + browse more...
 
   / COLOR PICKER
-  .colorPicker.panel
+  .colorPicker
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
-    #buttons.inner-shadow-10.round-8
-      #sun.light.round-4.bevel.button{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
+    .buttons
+      .sun{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
         sun
         %img{src: '/images/icons/sun-24.png'}
-      #moon.dark.round-4.bevel.button{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
+      .moon{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
         moon
         %img{src: '/images/icons/moon-24.png'}

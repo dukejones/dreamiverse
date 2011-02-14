@@ -39,14 +39,17 @@
         %input#loginButton.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
 
     / SIGN UP
-    .signupPanel.hidden
-      %input.login-input{type: 'text', name: 'email', value: 'email' }
-      %input.login-input{type: 'text', name: 'username', value: 'username' }
-      %input.login-input{type: 'password', name: 'password', value: 'password' }
-      %input.login-input{type: 'password', name: 'password', value: 'repeat password' }
-      .haveSeedcode have a seed code?
-      %input.login-input.hidden{type: 'THETA', name: 'seedcode', value: 'THETA' }
+    = form_for("user", url: user_registration_path) do |f|
+      .signupPanel.hidden
+        = f.text_field :email, :class => 'login-input', :value => "email"
+        = f.text_field :username, :class => 'login-input', :value => "username"
+        %span password
+        = f.password_field :password, :class => 'login-input'
+        %span confirm password
+        = f.password_field :password_confirmation, :class => 'login-input'
+        .haveSeedcode have a seed code?
+        = f.text_field :seed_code, :value => 'theta', :class => 'login-input'
 
-    / SIGN UP BUTTON
-    .signupWrap
-      %input.signup{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}
+        / SIGN UP BUTTON
+        .signupWrap
+          %input.signup{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}

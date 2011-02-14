@@ -13,15 +13,19 @@ class Entry < ActiveRecord::Base
   belongs_to :user
 
   has_many :entry_accesses
+  has_many :authorized_users, :through => :entry_accesses, :source => :user
   
   has_many :tags, :as => :entry
   has_many :whats, :through => :tags, :source => :noun, :source_type => 'What'
   has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
+  has_one :view_preference, :as => "viewable"
+  
   validates_presence_of :user
   
   before_save :set_sharing_level
+  before_create :create_view_preference
   
   def nouns
     whos + wheres + whats
@@ -32,10 +36,20 @@ class Entry < ActiveRecord::Base
     self.whats << what unless self.whats.exists? what
   end
 
+  def sharing
+    self.class::Sharing.invert[sharing_level]
+  end
+
+  def create_view_preference
+    return if view_preference
+    self.view_preference = user.view_preference.clone!
+  end
+
   protected #######################
 
   def set_sharing_level
     # sharing_level ||= user.default_sharing_level
     # sharing_level ||= self::Sharing[:everyone]
   end
+
 end
