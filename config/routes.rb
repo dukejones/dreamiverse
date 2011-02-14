@@ -35,7 +35,8 @@ Dreamcatcher::Application.routes.draw do
 
 
   # Images
-  match 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize'
+  match 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
+    constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/ }
   resources :images do
     collection do
       get 'manage'

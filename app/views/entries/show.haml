@@ -1,3 +1,5 @@
+- content_for :head do
+  = sass_link_tag 'entries'
 - content_for :foot do
   = coffeescript_include_tag 'tag', 'dream'
 
@@ -11,18 +13,18 @@
 #entryField
 
   / SHOW ENTRY
-  #showEntry.transparent-50.round-16.glow-40
+  #showEntry
 
-    .type.bevel.border.round-16 Dream
+    .type Dream
 
-    %a.next.button.cancel.shine.round-16.flat-left{href: entries_path}
+    %a.next.cancel{href: entries_path}
       %span &rsaquo;
-    .stream.button.cancel.shine.flat-all stream
-    %a.prev.button.cancel.shine.round-16.flat-right{href: entries_path}
+    .stream.cancel stream
+    %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry.alpha-60.button.confirm.bevel.round-16{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry alpha-60 button delete bevel round-16'})
+    %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
 
 
     / 
@@ -30,169 +32,180 @@
       .books.button.round-8 My Book of Dreams
 
     / HEADER IMAGE & TITLE
-    .imageHeader.round-16.flat-bottom
+    .imageHeader
 
       / MOOD ICON
-      .moodIcon.button.glow-10
+      .moodIcon
         %img{src: '/images/moods/plants/Fungi.png'}
 
-      .title.round-8-top.transparent-50= @entry.title
+      .title= @entry.title
 
-    .content.flat.flat-top.round-16
+    .content
 
       / BODY
       .body= @entry.body
 
       / IMAGE GALLERY
       %ul.gallery
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-        %li.button.round-8
-      .clear-both
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+        %li
+      .clear
 
       / ENTRY LINKS
-      .entryLinks.round-8
-        .button.bevel.round-16
+      .entryLinks
+        .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Link on Facebook
-        .button.bevel.round-16
+        .link
           %img{src: '/images/icons/link-16.gif'}
           %span Link on WWW
-        .button.bevel.round-16
+        .link
           %img{src: '/images/icons/facebook-16.png'}
           %span Another Related Dream
-        .clear-both
+        .clear
 
       / INFO
       .entryInfo
-        .postTime.infoTab.round-16 2 hours ago
-        .postLocation.infoTab.round-16 Tokyo, Japan
-        .starlightCount.infoTab.round-16
+        .postTime 2 hours ago
+        .postLocation Tokyo, Japan
+        .starlightCount
           %img.starlight{src: '/images/icons/starlight-22.png'}
           %span 23,243
-        .shareOptions.infoTab.round-16
+        .shareOptions
           .option.love.selected
           .option.share
           .option.repost.selected
-        .clear-both
-      .clear-both
+        .clear
+      .clear
 
-    / TAG
-    .entryTags.panel.round-12
-      .tagHeader.headers.indent.button
-        tag
-        %img{src: '/images/icons/tag-20.png'}
-      .tagThisEntry.button.bevel.round-4{style: 'width: 200px; float: right'}
-        %span +
-        Tag this dream
-      %img.tagCheck.hidden{src: '/images/icons/check-33.png', width: '33', height: '33'}
-      .tagInputWrap.hidden
-        %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
-        .tagInput
-          %input#newTag
-          .tagAdd.button.bevel.round-4
+      / TAG
+      .entryTags
+        .tagHeader.headers
+          tag
+          %img{src: '/images/icons/tag-20.png'}
+        .wrapper
+          .tagInput.target
+            %input{value: 'who/where/what'}
+          .tagThisEntry.trigger
             %span +
             Add
-        %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      .target
-        #tag-list.tag-list.ui-sortable
-          #empty-tag.tag_box.thumb-controls.float-left.hidden.light.C-contrast.round-8
-            .tagContent
-          - @entry.whats.each do |what|
-            .tag_box.thumb-controls.float-left.light.round-8
-              .tagContent= what.name
+
+          #tag-list.tag-list.ui-sortable.target
+
+            .tagWhat.tagNoImage
+              %span Dolphin
+              .analysisIcon
+
+            .tagWhere
+              .whereIcon
+              %span San Francisco
+
+            .tagWho
+              .avatar
+              %span Xavi
+              .followStatus
+
+            .tagWhat
+              .tagImage
+              %span Tsunami
+
+            .tagNoImage
+              %span Just Text
+
+            #empty-tag.tag_box.thumb-controls.hidden
+              .tagContent
+            - @entry.whats.each do |what|
+              .tag_box.thumb-controls
+                .tagContent= what.name
             
-          %br{style: 'clear: both;'}
-        #sorting
-        %br{style: 'clear: both'}
+            %br{style: 'clear: both;'}
+          #sorting
+          %br{style: 'clear: both'}
 
+      / ANALYSIS
+      .entryAnalysis.wrapper
+        .trigger.slide
+          .analysisHeader.headers
+            analysis
+            %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
+          .clear
 
+        .target.slide
+          / ANALYSIS TAGS
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              dolphin
+              .arrow
+            .description.target.slide.hidden
+              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
 
-    / ANALYSIS
-    .entryAnalysis.panel.round-12.wrapper
-      .trigger.slide
-        .analysisHeader.headers.indent.button
-          analysis
-          %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
-        .clear-both
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              tsunami
+              .arrow
 
-      .target.slide
-        / ANALYSIS TAGS
-        .analysisTags.bevel.button.round-12.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            dolphin
-            .arrow
-          .description.target.slide.hidden
-            To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-            %br
-            .source.button.bevel.round-12 Dream Moods
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              flying
+              .arrow
+            .description.target.slide.hidden
+              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
 
-        .analysisTags.bevel.button.round-12.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            tsunami
-            .arrow
-
-        .analysisTags.bevel.button.round-12.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            flying
-            .arrow
-          .clear-both
-          %P To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-          .source.button.bevel.round-12 Dream Moods
-          .clear-both
-
-        .analysisTags.bevel.button.round-12.wrapper
-          .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-            telepathy
-            .arrow
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              telepathy
+              .arrow
 
 
 
 
     / COMMENTS
-    .commentsPanel.panel.shine-alpha.round-12
+    .commentsPanel
       .trigger.slide
-        .commentsHeader.headers.indent.button
+        .commentsHeader.headers
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           .counter (6)
       .clear-both
       .target.slide
         .newCommentWrap
-          .avatar.button.round-12
-          .newComment.inputTextarea.round-12
+          .avatar
+          .newComment
             %textarea
-            .save.shine.button.round-16 post
+            .save post
             .links
               %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
               links
             .images
               %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
               images
-          .clear-both
+          .clear
 
         .prevCommentWrap
-          .avatar.button.round-12
-          .prevComment.input.round-12
-            .user.button.bevel.round-8 iotus
+          .avatar
+          .prevComment
+            .user iotus
             .postTime 15 minutes ago
             %ul
-              %li.button.round-8
-              %li.button.round-8
-              %li.button.round-8
-              %li.button.round-8
+              %li
+              %li
+              %li
+              %li
             .comment Check it out, did it look like this?? 
-            .rePost.bevel.button.round-16
+            .rePost
               %img{src: '', width: '16', height: '16'}
               Another Related Dream
-          .clear-both
+          .clear
 
-        .clear-both
+        .clear
 

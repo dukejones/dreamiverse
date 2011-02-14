@@ -6,7 +6,7 @@
   position: absolute
   top: 82px
   left: 12px
-  width: 210px
+  width: 200px
   cursor: default
   padding: 4px
   border: 1px solid #000
@@ -25,7 +25,7 @@
       .uploadAvatar
         +block
         +round(8)
-        +align-center
+        +center
         +pointer
         +alpha(60)
         +transparent-dark(50)
@@ -41,7 +41,7 @@
           color: #68b800
       .uploadAvatar:hover
         +alpha(100)
-        +inner-shadow-light(20)
+        +inner-shadow(20)
         border: 1px solid transparent
 
 
@@ -67,7 +67,7 @@
   .context
     +round(12)
     +flat-bottom
-    +align-center
+    +center
     +bold
     +block
     margin: 4px 0 2px
@@ -88,7 +88,7 @@
   .find
     +round(12)
     +flat-top
-    +align-center
+    +center
     padding: 4px 8px
     margin-bottom: 2px
 
@@ -102,7 +102,7 @@
     .label
       +round(12)
       +flat-right
-      +align-center
+      +center
       width: 84px
       height: 24px
       line-height: 24px
@@ -123,10 +123,11 @@
         margin: -12px 1px
 
     .detail
+      +inner-shadow(10)
       +round(12)
       +flat-left
       +bold
-      +align-center
+      +center
       width: 36px
       height: 26px
       padding: 6px 8px
@@ -135,7 +136,7 @@
 
     .relation, .changeRelation
       +bold
-      +align-center
+      +center
       padding: 6px
       height: 16px
       margin: 0
@@ -189,8 +190,6 @@
       +button-light
       +shine-light-alpha(16)
 
-    .detail
-      +inner-shadow-light(10)
 
 
 
@@ -211,8 +210,7 @@
     .changeRelation.follow, .changeRelation.unfollow
       +button-dark
       +shine-dark-alpha(16)
-    .detail
-      +inner-shadow-dark(10)
+
 
 
 
@@ -255,22 +253,20 @@
     .infoRight
       +right
       height: 64px
-      left: 60px
 
       .userName
-        +left
         h3
-          margin: 4px 0 8px
+          margin: 4px 0 8px 8px
 
       .following, .followers
-        +round(8)
         +left
-        margin: 0
+        margin: 0 4px 0 0
         font-size: 12px
         text-align: center
-        width: 78px
+        width: 72px
         .count
-          width: 76px
+          +round(4)
+          width: 72px
           height: 14px
           line-height: 14px
           text-align: center
@@ -333,9 +329,6 @@
         color: #fff
 
 
-
-
-// STREAM CONTEXT PANEL
 // COLORS
 .light
   #streamContextPanel
@@ -352,25 +345,63 @@
 
       .infoRight
         .following, .followers
-          +flat-light
+          .count
+            +flat-dark
+            color: #fff
 
-      // LABEL
-      .myStream
-        +shine-light(13)
+    // LABEL
+    .myStream
+      +shine-dark(13)
+      color: #fff
 
-      .wrapper
-        // FILTER BY ENTRY TYPE & FOLLOW TYPE
-        .entryFilter, .followFilter, .starlightTab
-          +flat-light
-          +button-light
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-light
+        +button-light
 
-        .filterList
-          +border-light
-          +flat-light
+      .filterList
+        +border-light
+        +flat-light
 
-          .type
-            +button-light
+        .type
 
+.dark
+  #streamContextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    // USER INFO
+    .userInfo
+      +flat-dark
+      +border-dark
+
+      a.avatar-64
+        +button-dark
+
+      .infoRight
+        .following, .followers
+          .count
+            +flat-light
+            color: #000
+
+    // LABEL
+    .myStream
+      +shine-light(13)
+      color: #000
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-dark
+        +button-dark
+
+      .filterList
+        +border-dark
+        +flat-dark
+
+        .type
+        
 
 
 

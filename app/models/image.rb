@@ -1,70 +1,19 @@
 
-module ImageProfiles
-  # Options are always optional; defaults will be provided.
-  # Size determines the size to generate. For some profiles, size will be nil because it is always the same size.
-  # We should always generate the nil size profile, then resize to the specified size.
-
-  module ClassMethods
-    # def profile(name)
-    #   define_method("generate_#{name}") do
-    #     img = magick_image
-    #     debugger
-    #     yield img
-    #     debugger
-    #     1
-    #   end
-    # end
-  end
-  def self.included(base)
-    base.extend(ClassMethods)
-  end
-
-  # For every profile, we must define a method with the same name which generates the image for that profile.
-  def profiles
-    [:entry_header, :entry_header_small]
-  end
-
-  def generate_profile(profile, size, opts)
-    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym)
-    self.send(profile.to_sym, size, opts)
-  end
-
-  def profile?(profile, size=nil)
-    raise "Profile #{profile} does not exist." unless profiles.include?(profile)
-
-    File.exists?(path(profile, size))
-  end
-  
-  def entry_header(size, options)
-    vertical_offset = options[:vertical_offset]
-
-    img = magick_image
-    # self.magick.combine_options do |i|
-    img.resize '720' # width => 720.
-    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
-    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
-
-    img.write(path('entry_header'))
-  end
-
-  def entry_header_small
-    
-  end
-
-
-end
-
 class Image < ActiveRecord::Base
   UPLOADS_PATH = "images/uploads"
   include ImageProfiles
-
   # This is the syntax we want:
   # profile 'entry_header' do |img|
   #   img.resize '720' # width => 720.
   #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
   #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
-  #   img
   # end
+
+  #
+  # Assocations
+  # 
+  has_many :view_preferences
+
 
   #
   # Callbacks 
@@ -82,13 +31,13 @@ class Image < ActiveRecord::Base
   # Scopes
   #
   scope :enabled, where(enabled: true)
-  scope :by, lambda { |artist| where(artist: artist) }
+  scope :by, -> artist { where(artist: artist) }
 
   # TIDY: where({}) causes unnecessary clone, possible performance hit?
-  scope :sectioned, lambda { |section| where(section ? {section: section} : {}) }
+  scope :sectioned, -> section { where(section ? {section: section} : {}) }
 
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
-  scope :search, lambda { |params|
+  scope :search, -> params {
     # search term
     results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
             params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q]])
@@ -169,14 +118,17 @@ class Image < ActiveRecord::Base
     "#{fname}.#{format}"
   end
   
-  def magick_image(descriptor=nil)
-    MiniMagick::Image.open(path(descriptor))
+  def magick_image(descriptor=nil, size=nil)
+    MiniMagick::Image.open(path(descriptor, size))
   end
 
 protected
   
   def parse_incoming_parameters
     if @incoming_filename
+      # TODO: use named regexp matches
+      # p "hello 2011!".match(/(?<year>\d+)/)[:year]  # => "2011"
+
       # Parse the URL if it's in the filename.
       if (url_matches = @incoming_filename.scan(/(^http-::[^\s]+)(.*)/).first)
         url, extra = url_matches

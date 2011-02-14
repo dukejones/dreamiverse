@@ -1,10 +1,14 @@
 class User < ActiveRecord::Base
   has_many :authentications
+
   has_many :entries
+
   has_many :hits
   
   has_many :entry_accesses
 
+  has_one :view_preference, :as => "viewable"
+  
   # follows are the follows this user has
   # following are the users this user is following
   has_many :follows
@@ -29,6 +33,8 @@ class User < ActiveRecord::Base
   before_validation :encrypt_password
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
+  
+  before_create :create_view_preference
   
   def self.create_from_omniauth(omniauth)
     user = create!(
@@ -64,10 +70,12 @@ class User < ActiveRecord::Base
     self.followers.exists?(user.id)
   end
   def friends_with?(user)
-    self.following?(user) && self.followed_by?(user)
+    (self.following?(user) && self.followed_by?(user)) || (self == user)
   end
   def relationship_with(other)
-    if self.friends_with? other
+    if self == other
+      :self
+    elsif self.friends_with? other
       :friends
     elsif self.following? other
       :following
@@ -82,8 +90,21 @@ class User < ActiveRecord::Base
   def encrypted_password= *args
     # raise "Can't set the encrypted password directly."
   end
+  
+  def can_access?(entry)
+    (entry.sharing_level == Entry::Sharing[:everyone]) ||
+    (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
+    (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self)) ||
+    (entry.sharing_level == Entry::Sharing[:private]  && entry.user == self)
+  end
 
-protected
+  def create_view_preference
+    return if view_preference
+    self.view_preference = ViewPreference.create(theme: "light")
+  end
+
+  protected
+  
   def validate_password_confirmation
     if password && (password != password_confirmation)
       errors.add :password, "should match password confirmation"

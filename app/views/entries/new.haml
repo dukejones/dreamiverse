@@ -1,4 +1,5 @@
 - content_for :head do
+  = sass_link_tag 'entries'
   = stylesheet_link_tag 'IB_manager'
 - content_for :foot do
   = javascript_include_tag 'autoresize.jquery.min', 'geo', 'userfileuploader', 'dreams'
@@ -13,13 +14,13 @@
   = form_for @entry do |f|
 
     / NEW ENTRY INPUT PANEL
-    #newEntry.flat.glow-40
+    #newEntry
 
       .wrapper
         / MOOD ICON
         = render :partial => "mood_icon"
 
-      #entryTypeWrap.border.round-16
+      .entryType.border
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
         %select#entryType_list

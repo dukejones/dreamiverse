@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211224144) do
+ActiveRecord::Schema.define(:version => 20110213224717) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -131,6 +131,17 @@ ActiveRecord::Schema.define(:version => 20110211224144) do
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "view_preferences", :force => true do |t|
+    t.string   "theme"
+    t.integer  "image_id"
+    t.integer  "viewable_id"
+    t.string   "viewable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"
 
   create_table "whats", :force => true do |t|
     t.string "name"
