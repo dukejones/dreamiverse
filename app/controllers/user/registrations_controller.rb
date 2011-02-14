@@ -8,7 +8,7 @@ class User::RegistrationsController < ApplicationController
       set_current_user user
     end
 
-    redirect_to :root_path
+    redirect_to :root
   end
   
   def update
