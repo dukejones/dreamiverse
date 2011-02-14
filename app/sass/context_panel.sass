@@ -329,6 +329,12 @@
         &:hover
           background: #000
           color: #fff
+        &.top:hover
+          +round(8)
+          +flat-bottom
+        &.bottom:hover
+          +round(8)
+          +flat-top
 
 
 // STREAM CONTEXT PANEL
@@ -364,6 +370,7 @@
         +button-light
 
       .filterList
+        +glow-light(40)
         +border-light
         +flat-light
 
@@ -400,6 +407,7 @@
         +button-dark
 
       .filterList
+        +glow-dark(40)
         +border-dark
         +flat-dark
 
