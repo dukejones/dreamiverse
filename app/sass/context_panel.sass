@@ -229,7 +229,7 @@
   +cursor
   top: 82px
   left: 12px
-  width: 210px
+  width: 200px
   padding: 4px
   border: 1px solid #000
 
@@ -263,13 +263,15 @@
         margin: 0 4px 0 0
         font-size: 12px
         text-align: center
-        width: 72px
+        width: 68px
         .count
           +round(4)
-          width: 72px
+          +center
+          width: 68px
           height: 14px
           line-height: 14px
-          text-align: center
+          color: #fff
+          background: #7a7a7a
 
   .myStream
     +round(12)
@@ -290,7 +292,7 @@
     +relative
     .entryFilter, .followFilter, .starlightTab
       +round(8)
-      width: 192px
+      width: 182px
       +relative
       padding: 0 8px
       margin: 4px 0 0
@@ -313,7 +315,7 @@
 
     .filterList
       +round(8)
-      width: 208px
+      width: 198px
       +absolute
       top: 0
       cursor: pointer
@@ -355,8 +357,6 @@
       .infoRight
         .following, .followers
           .count
-            +flat-dark
-            color: #fff
 
     // LABEL
     .myStream
@@ -392,8 +392,6 @@
       .infoRight
         .following, .followers
           .count
-            +flat-light
-            color: #000
 
     // LABEL
     .myStream
