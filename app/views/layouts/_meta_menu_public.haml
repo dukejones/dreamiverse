@@ -1,5 +1,8 @@
 #metaMenu.public
 
+  %p.notice= notice
+  %p.alert= alert
+
   .leftPanel
     %a.item{href: '#'}
       intro
@@ -22,11 +25,6 @@
       %a.login.confirm{href: '#'}
         login
 
-    / JOIN NOW
-    .joinWrap
-      %a.join{href: '#'}
-        Join Now &rsaquo;
-
     / LOGIN PANEL
     .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
@@ -37,6 +35,11 @@
         = f.text_field(:username, {class: 'login-input', tabindex: '1'})
         = f.password_field(:password, {class: 'login-input', tabindex: '2'})
         %input#loginButton.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+
+    / JOIN NOW
+    .joinWrap
+      %a.join{href: '#'}
+        Join Now &rsaquo;
 
     / SIGN UP
     = form_for("user", url: user_registration_path) do |f|
