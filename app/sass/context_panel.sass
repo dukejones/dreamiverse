@@ -318,17 +318,20 @@
       top: 0
       cursor: pointer
       z-index: 1200
+      &:hover
+        +round(8)
       .type
         +block
         height: 30px
         line-height: 30px
         text-align: center
         font-weight: bold
-      .type:hover
-        background: #000
-        color: #fff
+        &:hover
+          background: #000
+          color: #fff
 
 
+// STREAM CONTEXT PANEL
 // COLORS
 .light
   #streamContextPanel
