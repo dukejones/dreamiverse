@@ -1,8 +1,5 @@
 #metaMenu.public
 
-  %p.notice= notice
-  %p.alert= alert
-
   .leftPanel
     %a.item{href: '#'}
       intro
@@ -22,7 +19,7 @@
         %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
       %a.loginItem
         %img{src: '/images/icons/google-16.png', alt: 'Log in with Google', border: '0'}
-      %a.login.confirm{href: '#'}
+      %a.login{href: '#'}
         login
 
     / LOGIN PANEL
@@ -34,7 +31,7 @@
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
         = f.text_field(:username, {class: 'login-input', tabindex: '1'})
         = f.password_field(:password, {class: 'login-input', tabindex: '2'})
-        %input#loginButton.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
 
     / JOIN NOW
     .joinWrap
