@@ -1,4 +1,4 @@
-
+@import mixins
 
 
 /******** 1D ENTRY THUMBS ********/
@@ -14,7 +14,7 @@
       +pointer
       +overflow
       margin: 0 0 20px
-      padding: 4px 4px 0
+      padding: 4px
       width: 672px
       height: 220px
       border-bottom: 4px solid rgba(0,0,0,0.50)
@@ -128,39 +128,50 @@
           background: -moz-linear-gradient(top, rgba(122,122,122,1.0), rgba(122,122,122,0.0))
 
       // RIGHT SIDE
-      .right
+      table.right
         +absolute
+        +overflow
         left: 365px
-
-        ul
-          list-style: none
-          margin: 0
+        height: 212px
+        td
+          border-spacing: 0
           padding: 0
-          width: 320px
-          li
-            +left
-            margin: 0 0 0 2px
-            background: #ccc
-            height: 60px
-            width: 60px
 
-        .tagCloud
-          +transparent
-          +clear
-          border: none
-          height: 90px
-          width: 308px
-          margin-left: 4px
+        // TOP
+        tr.top
+          max-height: 62px
+          ul
+            list-style: none
+            margin: 0
+            padding: 0
+            width: 320px
+            li
+              +left
+              margin: 0 0 0 2px
+              background: #ccc
+              height: 60px
+              width: 60px
 
-        table.entryTagList
-          +absolute
-          +overflow
-          width: 308px
-          height: 65px
-          border: none
-          margin-left: 4px
-          padding: 0
-          td
+        // MIDDLE
+        tr.middle
+          .tagCloud
+            +transparent
+            +clear
+            border: none
+            height: 90px
+            width: 308px
+            margin-left: 4px
+
+        // BOTTOM
+        tr.bottom
+          .entryTagList
+            +absolute
+            +overflow
+            width: 308px
+            height: 65px
+            border: none
+            margin-left: 4px
+            padding: 0
             vertical-align: bottom
             .tag
               +round(8)
