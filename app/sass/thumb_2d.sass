@@ -1,0 +1,111 @@
+/******** 2D ENTRY THUMBS LIGHT / DARK ********/
+#entryField, #home
+  .matrix
+
+    /******** 2D ENTRY THUMBS ********/
+    /* HOVER */
+    .thumb-2d:hover
+      z-index: 81
+      .fadedBack
+        .detailsTop, .detailsBottom, .title
+          +block
+          z-index: 84
+
+    /* */
+    .thumb-2d
+      +round(16)
+      +pointer
+      +left
+      +relative
+      +overflow
+      margin: 0 10px 10px 0
+      border: 0
+      z-index: 80
+
+      .link
+        +block
+        +absolute
+        width: 200px
+        height: 300px
+        z-index: 10000
+
+      .fadedBack
+        +round(16)
+        width: 200px
+        height: 300px
+
+      .watermark
+        +georgia
+        +alpha(10)
+        +absolute
+        +center
+        +font(45)
+        +overflow
+        width: 200px
+        height: 128px
+        line-height: 30px
+        top: 38px
+
+      .detailsTop, .detailsBottom, .title
+        +absolute
+        +hidden
+
+        .date, .location, .comments, .newComments, .sharing
+          +round(12)
+          +center
+          +font(11)
+          color: #fff
+          margin: 4px
+          padding: 4px 8px
+          background: rgba(0,0,0,0.50)
+
+        .date, .comments, .newComments
+          +left
+        .location, .sharing
+          +right
+
+      .detailsTop
+        width: 200px
+        z-index: 100
+        .date
+          +overflow
+          max-width: 60px
+          white-space: nowrap
+
+      .detailsBottom
+        bottom: 0
+        width: 100%
+
+        .comments img
+          margin: 0 2px -5px 0
+        .sharing img
+          margin: -1px 0 -4px 2px
+
+      .title
+        +center
+        +font(21)
+        width: 97%
+        top: 90px
+        line-height: 21px
+
+      .tags
+        +absolute
+        z-index: 20
+        bottom: 6px
+        padding: 0 16px
+
+// COLORS
+.light
+  #entryField, #home
+    .matrix
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
+      .thumb-2d:hover
+        +glow-light(40)
+.dark
+  #entryField, #home
+    .matrix
+      .fadedBack
+        background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
+      .thumb-2d:hover
+        +glow-dark(40)

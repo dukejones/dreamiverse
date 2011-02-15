@@ -45,4 +45,13 @@ class UsersController < ApplicationController
       format.json { render :json => {message: 'success'} }
     end
   end
+  
+  def bedsheet
+    @user = User.find(params[:id])
+    @user.view_preference.image = Image.find(params[:bedsheet_id])
+    @user.save!
+    render :json => "user bedsheet updated"
+  rescue => e
+    render :json => e.message, :status => :unprocessable_entity
+  end
 end

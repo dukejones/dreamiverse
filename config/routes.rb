@@ -28,6 +28,7 @@ Dreamcatcher::Application.routes.draw do
 
   resource :user do
     post 'follow'
+    post 'bedsheet'
   end
 
   # Random path from dreams.js
@@ -59,7 +60,11 @@ Dreamcatcher::Application.routes.draw do
   # match '#:tag', :to => 'tags#show'
   resources :tags
 
-  resources :entries
+  resources :entries do
+    collection do
+      post 'bedsheet'
+    end
+  end
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do

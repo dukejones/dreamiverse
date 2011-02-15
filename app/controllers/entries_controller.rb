@@ -82,6 +82,15 @@ class EntriesController < ApplicationController
     ).joins(:user.outer => [:following.outer, :followers.outer])
   end
 
+  def bedsheet
+    @entry = Entry.find(params[:id])
+    @entry.view_preference.image = Image.find(params[:bedsheet_id])
+    @entry.save!
+    render :json => "entry bedsheet updated"
+  rescue => e
+    render :json => e.message, :status => :unprocessable_entity
+  end
+
   protected
 
   # sets @user to be either params[:username]'s user or current_user

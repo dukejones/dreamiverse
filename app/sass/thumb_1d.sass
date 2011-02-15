@@ -1,0 +1,286 @@
+
+
+
+/******** 1D ENTRY THUMBS ********/
+// STRUCTURE
+#entryField, #home
+  .matrix
+    .thumb-1d
+      +round(16)
+      +flat-bottom
+      +flat-right
+      +relative
+      +clear
+      +pointer
+      +overflow
+      margin: 0 0 20px
+      padding: 4px 4px 0
+      width: 672px
+      height: 220px
+      border-bottom: 4px solid rgba(0,0,0,0.50)
+
+      // LEFT SIDE
+      .left
+        +absolute
+        width: 360px
+
+        // USERNAME + AVATAR
+        .user
+          +round(12)
+          +absolute
+          top: 4px
+          left: 4px
+          padding: 0 12px 0 0
+          height: 30px
+          line-height: 30px
+          .name
+            +bold
+            margin: 0 0 0 42px
+            font-size: 16px
+
+        // COMMENT COUNT
+        .commentCount
+          +absolute
+          top: 8px
+          right: 8px
+          background: url(/images/icons/comments-16.png) no-repeat right
+          .counter
+            +round(12)
+            +right
+            +center
+            +bold
+            +font(14)
+            margin: 0 20px 0 0
+            height: 16px
+            line-height: 16px
+            padding: 0 8px
+
+        // IMAGE
+        .image
+          width: 360px
+          height: 96px
+          border-radius-topleft: 16px
+          -moz-border-radius-topleft: 16px
+          -webkit-border-radius-topleft: 16px
+
+        // TITLE & TEXT
+        h1.title, p.text
+          +overflow
+          width: 330px
+        h1.title
+          +font(24)
+          margin: 8px 8px 0 8px
+          height: 30px
+        p.text
+          margin: 4px 8px 0 8px
+          height: 40px
+
+        // POST DETAILS
+        .details
+          +absolute
+          top: 190px
+          left: 4px
+          height: 26px
+          width: 352px
+          .rePost, .date, .starlight
+            +center
+            +left
+            padding: 0 8px
+
+          // REPOSTED BY
+          .rePost
+            +round(4)
+            +font(10)
+            margin: 4px 8px 0 0
+            padding-left: 24px
+            height: 16px
+            line-height: 14px
+            background: url(/images/icons/repost-18.png) no-repeat 4px center
+
+          // DATE
+          .date
+            +bold
+            +font(11)
+            margin: 6px 0
+
+          // STARLIGHT
+          .starlight
+            +round(8)
+            +right
+            +font(12)
+            height: 24px
+            line-height: 24px
+            img
+              margin: 4px 4px 0 0
+            span
+              +right
+              height: 24px
+              line-height: 24px
+
+        .divider
+          +absolute
+          top: 0
+          left: 360px
+          width: 1px
+          height: 220px
+          background: #a3a3a5
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(122,122,122,1.0)), to(rgba(122,122,122,0.0)))
+          background: -moz-linear-gradient(top, rgba(122,122,122,1.0), rgba(122,122,122,0.0))
+
+      // RIGHT SIDE
+      .right
+        +absolute
+        left: 365px
+
+        ul
+          list-style: none
+          margin: 0
+          padding: 0
+          width: 320px
+          li
+            +left
+            margin: 0 0 0 2px
+            background: #ccc
+            height: 60px
+            width: 60px
+
+        .tagCloud
+          +transparent
+          +clear
+          border: none
+          height: 90px
+          width: 308px
+          margin-left: 4px
+
+        table.entryTagList
+          +absolute
+          +overflow
+          width: 308px
+          height: 65px
+          border: none
+          margin-left: 4px
+          padding: 0
+          td
+            vertical-align: bottom
+            .tag
+              +round(8)
+              +left
+              +center
+              height: 24px
+              line-height: 24px
+              margin: 6px 6px 0 0
+              padding: 0 8px
+              color: #fff
+              background: #7a7a7a
+
+
+      //
+        .thumb-1d.tag, .thumb-1d.newImages
+          +round(16)
+          height: 62px
+        .thumb-1d.tag
+          padding: 15px 0
+          height: 32px
+          line-height: 32px
+          .user
+            margin: 0 8px
+          .tagText
+            +left
+            margin: 0 0 0 12px
+            font-size: 18px
+        .thumb-1d.noImage
+          .left
+            .tagCloud
+              height: 90px
+              border-radius-topleft: 16px
+              -moz-border-radius-topleft: 16px
+              -webkit-border-radius-topleft: 16px
+        .thumb-1d.newImages
+          .left
+            .image
+              height: 62px
+              border-radius-bottomleft: 16px
+              -moz-border-radius-bottomleft: 16px
+              -webkit-border-radius-bottomleft: 16px
+          .right
+            height: 62px
+            .user
+              margin: 15px 8px
+            .display
+              float: left
+              margin: 10px 0 0
+              .gallery
+                +font(18)
+                margin: 0
+                color: #262626 /* 90% Black */
+              .text
+                margin: 0
+
+
+// 1D ENTRY THUMBS
+// COLORS
+.light
+  #entryField, #home
+    .matrix
+      .thumb-1d
+        background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
+        &:hover
+          +glow-light(40)
+
+        // LEFT SIDE
+        .left
+
+          // USERNAME + AVATAR
+          .commentCount
+            .counter
+              +flat-light
+
+          // ENTRY THUMB DETAILS
+          .details
+            // REPOSTED BY
+            .rePost
+              +border-light
+            // STARLIGHT
+            .starlight
+              +bevel-light
+              +button-light
+
+        // RIGHT SIDE
+        .right
+          ul
+            li
+              +button-light
+
+.dark
+  #entryField, #home
+    .matrix
+      .thumb-1d
+        background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
+        &:hover
+          +glow-dark(40)
+
+        // LEFT SIDE
+        .left
+
+          // USERNAME + AVATAR
+          .commentCount
+            .counter
+              +flat-dark
+
+          // ENTRY THUMB DETAILS
+          .details
+            // REPOSTED BY
+            .rePost
+              +border-dark
+            // STARLIGHT
+            .starlight
+              +bevel-dark
+              +button-dark
+
+        // RIGHT SIDE
+        .right
+          ul
+            li
+              +button-dark
+
+
