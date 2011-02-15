@@ -7,7 +7,9 @@ class HomeController < ApplicationController
       redirect_to stream_path
     end
 
-    @user = User.new(:username => "username")
+    # @user = User.new(:username => "username")
+    @entries = Entry.where('entries.created_at > ?', Time.now.yesterday).
+      joins(:starlight).order('starlights.value DESC').limit(8)
   end
   
   def parse_url_title
