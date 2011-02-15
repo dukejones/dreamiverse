@@ -1075,6 +1075,7 @@
 
   // NEW ENTRY INPUT PANEL
   #newEntry
+    +round(16)
     width: 662px 
     padding: 8px
 
@@ -1162,6 +1163,7 @@
         +right
         margin: 10px 10px 0 0
     #entry_submit
+      +save(14)
       +bold
       +font(12)
       +round(8)
@@ -1177,12 +1179,23 @@
       +left
       margin: 0 0 0 8px
     #hour, #month, #day, #year, #minute, #amPm
-      +font(16)
-      padding: 6px 12px
+      +font(14)
+      +transparent
+      border: none
+      padding: 7px 12px
     #hour, #month
       margin-left: 8px
     #day, #year, #minute, #amPm
       margin-left: -4px
+    #month, #hour
+      +round(8)
+      +flat-right
+    #day, #minute
+      +round(8)
+      +flat-all
+    #year, #amPm
+      +round(8)
+      +flat-left
 
 
   // ENTRY LOCATION
@@ -1190,6 +1203,7 @@
     +hidden
     height: 35px
     .locations
+      +round(8)
       +left
       +font(16)
       +pointer
@@ -1219,19 +1233,23 @@
       width: 32px
       height: 32px
       margin-bottom: -32px
-      left: 314px
+      left: 284px
       top: 2px
     .expander
       +clear
       .name, .city, .state, .country
+        +round(8)
         +right
         margin: 4px 0 0 8px
         input
           +font(16)
-          +round(8)
+          +transparent
+          border: none
           padding: 4px
           width: 258px
-    .delete
+    .cancelLocation
+      +round(16)
+      +delete(17)
       +right
       +center
       height: 34px
@@ -1245,6 +1263,7 @@
     border: 1px solid #333
     +hidden
     #addFromImageBank
+      +round(8)
       +left
       +pointer
       height: 32px
@@ -1582,6 +1601,8 @@
 
   // NEW ENTRY ATTACH
   .entryAttach
+    height: 34px
+    line-height: 34px
 
     p
       +left
@@ -1615,57 +1636,103 @@
       +flat-light
       +glow-light(40)
 
-      // NEW ENTRY OPTIONS
-      #entryOptions
-        +shine-light(24)
+      .entryType
+        +border-light
 
-        .myBooks, .sharing, .addLocation, .date
-          +indent-light
-          +button-light
+    // NEW ENTRY OPTIONS
+    #entryOptions
+      +shine-light(24)
 
-      // NEW ENTRY TAG
-      .entryTags
-        +shine-light-alpha(24)
-        .tagHeader
-          +indent-light
-          +button-light
-        .tagInputWrap
-          .tagInput
-            .tagAdd
-              +button-light
-              +bevel-light
+      #entry_submit
+        +button-light
 
-      // NEW ENTRY LINK
-      .entryLinks
-        +shine-light-alpha(24)
-        .linksHeader
-          +indent-light
-          +button-light
+      .myBooks, .sharing, .addLocation, .date
+        +indent-light
+        +button-light
 
-        #linkInputWrap
-          .linkAdd
+    // ENTRY DATE & TIME
+    .entryDateTime
+      +shine-light-alpha(24)
+      .dateTimeHeader
+        +indent-light
+        +button-light
+
+      #hour, #month, #day, #year, #minute, #amPm
+        +input-light
+        +border-light
+
+    // ENTRY LOCATION
+    .entryLocation
+      +shine-light-alpha(24)
+      .locationHeader
+        +indent-light
+        +button-light
+
+      .locations
+        +input-light
+
+      .name, .city, .state, .country
+        +input-light
+
+      .cancelLocation
+        +bevel-light
+        +button-light
+
+    // ENTRY IMAGES
+    .entryImages
+      +shine-light-alpha(24)
+      .imagesHeader
+        +indent-light
+        +button-light
+
+      #addFromImageBank
+        +bevel-light
+        +button-light
+
+      #imageDropArea
+        +input-light
+
+    // NEW ENTRY TAG
+    .entryTags
+      +shine-light-alpha(24)
+      .tagHeader
+        +indent-light
+        +button-light
+      .tagInputWrap
+        .tagInput
+          .tagAdd
             +button-light
             +bevel-light
 
+    // NEW ENTRY LINK
+    .entryLinks
+      +shine-light-alpha(24)
+      .linksHeader
+        +indent-light
+        +button-light
 
-      // NEW ENTRY MOOD
-      .entryMood
-        +shine-light-alpha(24)
-        .moodHeader
-          +indent-light
+      #linkInputWrap
+        .linkAdd
           +button-light
-
-        // MOOD PICKER
-        .moodPicker
-          +transparent-light(50)
-
-      // NEW ENTRY ATTACHMENTS
-      .entryAttach
-        +shine-light-alpha(24)
-        .images, .tag, .links, .mood
           +bevel-light
-          +button-light
 
+    // NEW ENTRY MOOD
+    .entryMood
+      +shine-light-alpha(24)
+      .moodHeader
+        +indent-light
+        +button-light
+
+      // MOOD PICKER
+      .moodPicker
+        +transparent-light(50)
+
+    // NEW ENTRY ATTACHMENTS
+    .entryAttach
+      +shine-light-alpha(24)
+      .images, .tag, .links, .mood
+        +bevel-light
+        +button-light
 
 
 .dark
@@ -1674,9 +1741,104 @@
       +flat-dark
       +glow-dark(40)
 
-      // NEW ENTRY OPTIONS
-      #entryOptions
-        +shine-dark(24)
+      .entryType
+        +border-dark
+
+    // NEW ENTRY OPTIONS
+    #entryOptions
+      +shine-dark(24)
+
+      #entry_submit
+        +button-dark
+
+      .myBooks, .sharing, .addLocation, .date
+        +indent-dark
+        +button-dark
+
+    // ENTRY DATE & TIME
+    .entryDateTime
+      +shine-light-alpha(24)
+      .dateTimeHeader
+        +indent-dark
+        +button-dark
+
+      #hour, #month, #day, #year, #minute, #amPm
+        +input-dark
+        +border-dark
+
+    // ENTRY LOCATION
+    .entryLocation
+      +shine-dark-alpha(24)
+      .locationHeader
+        +indent-dark
+        +button-dark
+
+      .locations
+        +input-dark
+
+      .name, .city, .state, .country
+        +input-dark
+
+      .cancelLocation
+        +bevel-dark
+        +button-dark
+
+    // ENTRY IMAGES
+    .entryImages
+      +shine-dark-alpha(24)
+      .imagesHeader
+        +indent-dark
+        +button-dark
+
+      #addFromImageBank
+        +bevel-dark
+        +button-dark
+
+      #imageDropArea
+        +input-dark
+
+    // NEW ENTRY TAG
+    .entryTags
+      +shine-dark-alpha(24)
+      .tagHeader
+        +indent-dark
+        +button-dark
+      .tagInputWrap
+        .tagInput
+          .tagAdd
+            +button-dark
+            +bevel-dark
+
+    // NEW ENTRY LINK
+    .entryLinks
+      +shine-dark-alpha(24)
+      .linksHeader
+        +indent-dark
+        +button-dark
+
+      #linkInputWrap
+        .linkAdd
+          +button-dark
+          +bevel-dark
+
+    // NEW ENTRY MOOD
+    .entryMood
+      +shine-dark-alpha(24)
+      .moodHeader
+        +indent-dark
+        +button-dark
+
+      // MOOD PICKER
+      .moodPicker
+        +transparent-dark(50)
+
+    // NEW ENTRY ATTACHMENTS
+    .entryAttach
+      +shine-light-alpha(24)
+      .images, .tag, .links, .mood
+        +bevel-dark
+        +button-dark
+
 
 
 
@@ -1955,7 +2117,7 @@
 
 
 /******** MOOD ICON PICKER ********/
-
+// STRUCTURE
 #tagStream, #entryField
 
   .moodIcon, .moodIcon-picker, .currentIcon
@@ -2039,9 +2201,33 @@
           color: #959595 /* 50% Black */
 
 
+// MOOD ICON PICKER
+// COLOR
+
+.light
+  #tagStream, #entryField
+
+    // MOOD ICON
+    .moodIcon
+      +button-light
+      +glow-light(10)
+
+    // EXPANDED MOOD ICONS
+    .moodIcon-picker
+      +glow-light(40)
 
 
+.dark
+  #tagStream, #entryField
 
+    // MOOD ICON
+    .moodIcon
+      +button-dark
+      +glow-dark(10)
+
+    // EXPANDED MOOD ICONS
+    .moodIcon-picker
+      +glow-dark(40)
 
 
 
