@@ -120,10 +120,10 @@
             .tagNoImage
               %span Just Text
 
-            #empty-tag.hidden
+            #empty-tag.tag.hidden
               %span.tagContent
             - @entry.whats.each do |what|
-              .tag_box.thumb-controls
+              .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
             
             %br{style: 'clear: both;'}
@@ -176,7 +176,7 @@
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           .counter (6)
-      .clear-both
+      .clear
       .target.slide
         .newCommentWrap
           .avatar
