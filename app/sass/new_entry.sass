@@ -193,7 +193,6 @@
     .addLocation.selected
       border: 1px solid #333
     #entry_submit
-      +save(14)
       +bold
       +font(12)
       +round(8)
@@ -201,6 +200,8 @@
       height: 34px
       line-height: 28px
       margin-right: 8px
+      &:hover
+        +save(14)
 
   // ENTRY DATE / TIME
   .entryDateTime
@@ -686,7 +687,11 @@
             +shine-light(16)
 
       #entry_submit
-        +button-light
+        +button-dark
+        +shine-dark(16)
+        color: #fff
+        &:hover
+          +save(16)
 
       .myBooks, .addLocation, .date
         +indent-light
@@ -804,7 +809,11 @@
             +shine-dark(16)
 
       #entry_submit
-        +button-dark
+        +button-light
+        +shine-light(16)
+        color: #000
+        &:hover
+          +save(16)
 
       .myBooks, .sharing, .addLocation, .date
         +indent-dark

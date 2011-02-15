@@ -34,9 +34,9 @@
           height: 30px
           line-height: 30px
           .name
+            +bold
             margin: 0 0 0 42px
             font-size: 16px
-            font-weight: bold
 
         // COMMENT COUNT
         .commentCount
@@ -48,12 +48,12 @@
             +round(12)
             +right
             +center
+            +bold
+            +font(14)
             margin: 0 20px 0 0
             height: 16px
             line-height: 16px
             padding: 0 8px
-            font-size: 14px
-            font-weight: bold
 
         // IMAGE
         .image
@@ -68,8 +68,8 @@
           +overflow
           width: 330px
         h1.title
+          +font(24)
           margin: 8px 8px 0 8px
-          font-size: 24px
           height: 30px
         p.text
           margin: 4px 8px 0 8px
@@ -90,24 +90,24 @@
           // REPOSTED BY
           .rePost
             +round(4)
+            +font(10)
             margin: 4px 8px 0 0
             padding-left: 24px
-            font-size: 10px
             height: 16px
             line-height: 14px
             background: url(/images/icons/repost-18.png) no-repeat 4px center
 
           // DATE
           .date
+            +bold
+            +font(11)
             margin: 6px 0
-            font-size: 11px
-            font-weight: bold
 
           // STARLIGHT
           .starlight
             +round(8)
             +right
-            font-size: 12px
+            +font(12)
             height: 24px
             line-height: 24px
             img
@@ -146,7 +146,7 @@
 
         .tagCloud
           +transparent
-          clear: both
+          +clear
           border: none
           height: 90px
           width: 308px
@@ -176,10 +176,8 @@
 
       //
         .thumb-1d.tag, .thumb-1d.newImages
+          +round(16)
           height: 62px
-          border-radius: 16px
-          -moz-border-radius: 16px
-          -webkit-border-radius: 16px
         .thumb-1d.tag
           padding: 15px 0
           height: 32px
@@ -187,7 +185,7 @@
           .user
             margin: 0 8px
           .tagText
-            float: left
+            +left
             margin: 0 0 0 12px
             font-size: 18px
         .thumb-1d.noImage
@@ -212,8 +210,8 @@
               float: left
               margin: 10px 0 0
               .gallery
+                +font(18)
                 margin: 0
-                font-size: 18px
                 color: #262626 /* 90% Black */
               .text
                 margin: 0
