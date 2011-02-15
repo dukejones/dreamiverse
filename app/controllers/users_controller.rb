@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   
   def bedsheet
     @user = User.find(params[:id])
-    @user.view_preference.bedsheet = Image.find(params[:bedsheet_id])
+    @user.view_preference.image = Image.find(params[:bedsheet_id])
     @user.save!
     render :json => "user bedsheet updated"
   rescue => e

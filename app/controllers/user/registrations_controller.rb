@@ -5,11 +5,14 @@ class User::RegistrationsController < ApplicationController
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
     # TODO: must detect duplicate users!
-    if user = User.create(params[:user])
-      set_current_user user
+    @user = User.create(params[:user])
+    if @user.valid?
+      set_current_user @user
+      redirect_to :root
+    else
+      flash[:user_registration_errors] = @user.errors
+      redirect_to :root, :alert => "Could not create the user"
     end
-
-    redirect_to :root
   end
   
   def update
