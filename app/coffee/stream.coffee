@@ -35,6 +35,5 @@ class StreamModel
   updateFilters: () ->
     @filters = []
     # get new filter values (will be .filter .value to target the span)
-    $.each $('.followFilter span'), (key, value) =>
-      alert key + $(value).text()
+    $.each $('.trigger .value'), (key, value) =>
       @filters.push($(value).text())

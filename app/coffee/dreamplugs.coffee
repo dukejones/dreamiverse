@@ -17,7 +17,7 @@ window.setupDreamplugs = ->
   # Setup slide w/ arrows to work
   $('.trigger.slideArrow').click( (event) ->
     $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
-    $toggleText = $(event.currentTarget).find('span')
+    $toggleText = $(event.currentTarget).find('.value')
     
     offsetSize = 30
     
