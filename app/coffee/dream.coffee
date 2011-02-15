@@ -31,7 +31,8 @@ class Comments
   saveComment: ->
     currentUser = $('#contextPanel .context').text()
     commentText = @$commentsInput.val()
-    comment = '<div class="prevCommentWrap hidden"><div class="avatar button round-12"></div><div class="prevComment input round-12"><div class="user button bevel round-8">' + currentUser + '</div><div class="postTime">right now</div><div class="comment">' + commentText + '</div></div><div class="clear-both"></div></div>'
+    @$commentsInput.val('')
+    comment = '<div class="prevCommentWrap hidden"><div class="avatar button round-12"></div><div class="prevComment input round-12"><div class="user button bevel round-8">' + currentUser + '</div><div class="postTime">1 seccond ago</div><div class="comment">' + commentText + '</div></div><div class="clear-both"></div></div>'
     
     @$commentsTarget.children().last().before(comment)
     $('.prevCommentWrap').slideDown()

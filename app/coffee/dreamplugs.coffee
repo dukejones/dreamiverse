@@ -17,7 +17,7 @@ window.setupDreamplugs = ->
   # Setup slide w/ arrows to work
   $('.trigger.slideArrow').click( (event) ->
     $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
-    $toggleText = $(event.currentTarget).find('span')
+    $toggleText = $(event.currentTarget).find('.value')
     
     offsetSize = 30
     
@@ -39,6 +39,9 @@ window.setupDreamplugs = ->
         
         newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
+        
+        # Publish event for the Stream (or wherever its used) to listen to
+        $.publish 'filter:change'
         
         index = $(event.currentTarget).index()
         newPosition = index * offsetSize

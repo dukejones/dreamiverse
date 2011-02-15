@@ -41,7 +41,7 @@
           color: #68b800
       .uploadAvatar:hover
         +alpha(100)
-        +inner-shadow(20)
+        +inner-glow(20)
         border: 1px solid transparent
 
 
@@ -357,13 +357,19 @@
 // STREAM FILTERS
 #streamContextPanel
   .wrapper
-    +relative
     .entryFilter, .followFilter, .starlightTab
       width: 182px
       padding: 0 8px
       margin: 4px 0 0
       height: 30px
       line-height: 30px
+    .filterList
+      width: 198px
+#contextPanel
+  .wrapper
+    .filterList
+      width: 100px
+
 
 #contextPanel, #streamContextPanel
   .wrapper
@@ -389,7 +395,6 @@
       +round(8)
       +absolute
       +pointer
-      width: 198px
       top: 0
       z-index: 1200
       &:hover
