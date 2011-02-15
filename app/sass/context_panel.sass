@@ -363,10 +363,26 @@
       margin: 4px 0 0
       height: 30px
       line-height: 30px
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+
     .filterList
       width: 198px
+
 #contextPanel
   .wrapper
+    .entryFilter
+      .value
+        font-weight: normal
+      img.arrow
+        +right
+        margin: 4px -4px 0 -8px
     .filterList
       width: 100px
 
@@ -379,14 +395,7 @@
       +relative
       +bold
       +center
-      span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      img.arrow
-        +right
-        margin: 8px 0 0
+
     .starlightTab
       img.icon
         margin: 7px 8px 0 0
