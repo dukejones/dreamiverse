@@ -40,6 +40,9 @@ window.setupDreamplugs = ->
         newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
         
+        # Publish event for the Stream (or wherever its used) to listen to
+        $.publish 'filter:change'
+        
         index = $(event.currentTarget).index()
         newPosition = index * offsetSize
         newPositionString = -newPosition + 'px'
