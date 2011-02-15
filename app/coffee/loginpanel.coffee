@@ -37,7 +37,7 @@ class LoginView
     @$joinButton.show()
     
     @$loginButton.hide()
-    @$loginPanel.show()
+    @$loginPanel.slideDown()
     
     @$signupButton.unbind()
     @$signupButton.click => @showSignup()
