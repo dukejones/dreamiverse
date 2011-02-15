@@ -41,10 +41,10 @@
 
         = f.submit :value => 'post'
         .sharing
-          %img{src: '/images/icons/share-16.png'}
+          %img.listSelection{src: '/images/icons/share-16.png'}
           = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
 
-          .listOfUsers.target
+          .listOfUsers.target.hidden
             .friendsOnly
               %label
                 %input{type: 'radio', name: 'listOfUsers'}
@@ -59,6 +59,29 @@
               %label
                 %input{type: 'radio', name: 'listOfUsers'}
                 %span anybody with URL
+
+          .everyone.target.hidden
+            .facebook
+              %label
+                %img{src: '/images/icons/facebook-16.png', width: '16', height: '16'}
+                %span.shareOn share on
+                %span facebook
+                %input{type: 'radio', name: 'everyone'}
+
+            .twitter
+              %label
+                %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
+                %span.shareOn share on
+                %span twitter
+                %input{type: 'radio', name: 'everyone'}
+
+            .buzz
+              %label
+                %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
+                %span buzz
+                %span.shared shared:
+                %span.sharedWhen 10 hours ago
+            .clear
 
         .addLocation
           %img{src: '/images/icons/location-21.png'}

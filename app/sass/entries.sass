@@ -1120,7 +1120,7 @@
       min-height: 134px
       height: 134px
 
-    /* NEW ENTRY OPTIONS */
+    // NEW ENTRY OPTIONS
     #entryOptions
       +round(16)
       +relative
@@ -1130,6 +1130,7 @@
       bottom: 0
       border: 1px solid #D7D7D7
 
+      // SHARING
       .sharing
         +round(12)
         +pointer
@@ -1140,7 +1141,7 @@
         margin: 8px 0 0 8px
         width: 194px
         padding: 0 4px
-        img
+        img.listSelection
           +left
           margin: 10px 0 0 4px
 
@@ -1173,7 +1174,34 @@
             label
               background: url(/images/icons/link-light-22.png) no-repeat 8px center
             label.selected
-              background: url(/images/icons/link-22.png) no-repeat 8px center
+              background: url(/images/icons/link-light-22.png) no-repeat 8px center
+
+        .everyone
+          +clear
+          margin-bottom: 4px
+          .facebook, .twitter, .buzz
+            +round(12)
+            margin: 4px 0 0
+            label
+              +block
+              padding: 4px
+              height: 28px
+              line-height: 28px
+              img
+                margin: 7px 0 0 4px
+              input
+                +right
+                margin: 9px 8px 0 8px
+              span, img
+                +left
+                margin-right: 4px
+              span.shareOn, span.shared, span.sharedWhen
+                color: #656565
+              span.shared
+                font-size: 11px
+                text-transform: uppercase
+              span.sharedWhen
+                font-size: 11px
 
         #entry_sharing_level
           +round(8)
@@ -1694,15 +1722,18 @@
     #entryOptions
       +shine-light(24)
 
+      // SHARING
       .sharing
         +shine-light(17)
         +button-light
 
-        .listOfUsers
-          .friendsOnly, .followersOnly, .url
+        .listOfUsers, .everyone
+          .friendsOnly, .followersOnly, .url, .facebook, .twitter
             +indent-light
             +button-light
-            label
+          .buzz
+            +button-light
+            +shine-light(16)
 
       #entry_submit
         +button-light
@@ -1808,6 +1839,19 @@
     // NEW ENTRY OPTIONS
     #entryOptions
       +shine-dark(24)
+
+      // SHARING
+      .sharing
+        +shine-dark(17)
+        +button-dark
+
+        .listOfUsers, .everyone
+          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+            +indent-dark
+            +button-dark
+          .buzz
+            +button-dark
+            +shine-dark(16)
 
       #entry_submit
         +button-dark
