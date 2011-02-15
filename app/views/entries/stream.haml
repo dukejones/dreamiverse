@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'entries'
-  = coffeescript_include_tag 'modal'
+  = coffeescript_include_tag 'modal', 'stream'
   = javascript_include_tag 'tag_stream', 'friendslist', 'dreams', 'geo'
 
 
@@ -17,7 +17,8 @@
   .matrix
 
     / ENTRY THUMBS 1D
-    = render :partial => 'thumb_1d'
+    - @entries.each do |entry|
+      = render :partial => 'thumb_1d', :locals => {:entry => entry}
 
     / 
       ENTRY THUMBS 1D
