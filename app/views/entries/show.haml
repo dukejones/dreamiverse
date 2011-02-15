@@ -13,7 +13,7 @@
 #entryField
 
   / SHOW ENTRY
-  #showEntry
+  #showEntry{:'data-id' => @entry.id }
 
     .type Dream
 
@@ -96,7 +96,7 @@
             %input#newTag{value: 'who/where/what'}
           .tagThisEntry.trigger
             %span +
-            Add
+            add
 
           #tag-list.tag-list.ui-sortable.target
 
@@ -120,11 +120,11 @@
             .tagNoImage
               %span Just Text
 
-            #empty-tag.tag_box.thumb-controls.hidden
-              .tagContent
+            #empty-tag.hidden
+              %span.tagContent
             - @entry.whats.each do |what|
               .tag_box.thumb-controls
-                .tagContent= what.name
+                %span.tagContent= what.name
             
             %br{style: 'clear: both;'}
           #sorting
