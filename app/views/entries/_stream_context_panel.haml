@@ -27,9 +27,9 @@
     .entryFilter.trigger.slideArrow
       %img.icon{src: '/images/icons/allEntries-16.png'}
       %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-      %span all entries
-    .filterList.target.slideArrow.hidden
-      .type
+      %span.value all entries
+    .filterList.filter.target.slideArrow.hidden
+      .type.top
         %img{src: '/images/icons/'} 
         %span all entries
       .type
@@ -38,7 +38,7 @@
       .type
         %img{src: '/images/icons/'} 
         %span vision
-      .type
+      .type.bottom
         %img{src: '/images/icons/'} 
         %span experience
 
@@ -48,14 +48,16 @@
     .followFilter.trigger.slideArrow
       %img.icon{src: '/images/icons/friend-follow-16.png'}
       %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-      %span following
-    .filterList.target.slideArrow.hidden
-      .type
+      %span.value following
+    .filterList.filter.target.slideArrow.hidden
+      .type.top
         %img{src: '/images/icons/'} 
         %span friends
-      .type
+      .type.bottom
         %img{src: '/images/icons/'} 
         %span following
+
+  .wrapper
 
     .starlightTab.round-8
       %img.icon{src: '/images/icons/starlight-17.png'}

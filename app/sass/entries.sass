@@ -153,7 +153,6 @@
           padding: 0 12px 0 0
           height: 30px
           line-height: 30px
-          background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
           .name
             margin: 0 0 0 42px
             font-size: 16px
@@ -234,10 +233,24 @@
             line-height: 24px
             img
               margin: 4px 4px 0 0
+            span
+              +right
+              height: 24px
+              line-height: 24px
+
+        .divider
+          +absolute
+          top: 0
+          left: 360px
+          width: 1px
+          height: 220px
+          background: #a3a3a5
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(122,122,122,1.0)), to(rgba(122,122,122,0.0)))
+          background: -moz-linear-gradient(top, rgba(122,122,122,1.0), rgba(122,122,122,0.0))
 
       .right
         +absolute
-        left: 364px
+        left: 365px
 
         ul
           list-style: none
@@ -252,23 +265,33 @@
             width: 60px
 
         .tagCloud
+          +transparent
           clear: both
           border: none
-          height: 100px
-          width: 260px
-          +transparent
+          height: 90px
+          width: 308px
+          margin-left: 4px
 
-        .entryTagList
-          position: absolute
-          .tag
-            +round(8)
-            +left
-            height: 24px
-            line-height: 24px
-            margin: 8px 8px 0 0
-            padding: 0 8px
-            text-align: center
-            background: #7a7a7a
+        table.entryTagList
+          +absolute
+          +overflow
+          width: 308px
+          height: 65px
+          border: none
+          margin-left: 4px
+          padding: 0
+          td
+            vertical-align: bottom
+            .tag
+              +round(8)
+              +left
+              +center
+              height: 24px
+              line-height: 24px
+              margin: 6px 6px 0 0
+              padding: 0 8px
+              color: #fff
+              background: #7a7a7a
 
 
       //
@@ -314,17 +337,25 @@
                 color: #262626 /* 90% Black */
               .text
                 margin: 0
+
+
+// 1D ENTRY THUMBS
 // COLORS
 .light
   #entryField, #home
     .matrix
       .thumb-1d
-        +flat-light
+        background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
         &:hover
           +glow-light(40)
 
         // LEFT SIDE
         .left
+
+          // USERNAME + AVATAR
+          .user
+            background: #fff url(/images/avatars/xavitar.jpg) no-repeat left
+
           .commentCount
             .counter
               +flat-light
@@ -344,12 +375,17 @@
   #entryField, #home
     .matrix
       .thumb-1d
-        +flat-dark
+        background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
         &:hover
           +glow-dark(40)
 
         // LEFT SIDE
         .left
+
+          // USERNAME + AVATAR
+          .user
+            background: #000 url(/images/avatars/xavitar.jpg) no-repeat left
+
           .commentCount
             .counter
               +flat-dark
