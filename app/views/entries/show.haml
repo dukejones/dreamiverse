@@ -1,7 +1,7 @@
 - content_for :head do
   = sass_link_tag 'entries'
 - content_for :foot do
-  = coffeescript_include_tag 'tag', 'dream'
+  = coffeescript_include_tag 'tag', 'showentry'
 
 
 
@@ -93,7 +93,7 @@
           %img{src: '/images/icons/tag-20.png'}
         .wrapper
           .tagInput.target
-            %input{value: 'who/where/what'}
+            %input#newTag{value: 'who/where/what'}
           .tagThisEntry.trigger
             %span +
             Add
