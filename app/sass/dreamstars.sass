@@ -10,6 +10,7 @@
     img, .date
       +left
     .date
+      +transparent-dark(50)
       +round(16)
       +right
       +center
@@ -20,6 +21,7 @@
 
   // COLUMNS PANEL
   .columnsPanel
+    +shine-dark(16)
     +round(16)
     +relative
     width: 640px
@@ -27,6 +29,7 @@
     height: 40px
     margin: 10px 0 20px 80px
     .rankColumn, .nameColumn, .starlightColumn
+      +input-dark
       +round(8)
       +absolute
       +center
@@ -43,10 +46,12 @@
 
   // TOP 6 DREAMSTARS
   a
+    +transparent-dark(50)
     +round(32)
     +block
     +relative
     +cursor
+    color: #fff
     margin: 0 0 8px 88px
     height: 50px
     line-height: 50px
@@ -122,13 +127,17 @@
 
   // ALL DREAMSTARS
   .dreamstarsAll
+    +transparent-dark(50)
     +round(32)
     padding: 16px
     margin: 20px 0 8px 88px
     border: 4px solid #fff
     a.dreamstar
+      +transparent-dark(50)
+      +button-dark
       +round(16)
       +relative
+      color: #fff
       height: 32px
       margin: 0 0 8px
       .rank, .name, .starlight
@@ -143,54 +152,3 @@
         width: 490px
       .starlight
         left: 555px
-
-
-// COLORS
-.light
-  #dreamstars
-    // HEADER
-    .header
-      .date
-        +transparent-light(50)
-
-    // COLUMNS PANEL
-    .columnsPanel
-      +shine-light(16)
-      .rankColumn, .nameColumn, .starlightColumn
-        +input-light
-
-    // TOP 6 DREAMSTARS
-    a
-      +transparent-light(50)
-
-    // ALL DREAMSTARS
-    .dreamstarsAll
-      +transparent-light(50)
-      a.dreamstar
-      +transparent-light(50)
-      +button-light
-
-
-.dark
-  #dreamstars
-    // HEADER
-    .header
-      .date
-        +transparent-dark(50)
-
-    // COLUMNS PANEL
-    .columnsPanel
-      +shine-dark(16)
-      .rankColumn, .nameColumn, .starlightColumn
-        +input-dark
-
-    // TOP 6 DREAMSTARS
-    a
-      +transparent-dark(50)
-
-    // ALL DREAMSTARS
-    .dreamstarsAll
-      +transparent-dark(50)
-      a.dreamstar
-      +transparent-dark(50)
-      +button-dark
