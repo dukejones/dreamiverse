@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   before_validation :encrypt_password
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
+  validates_presence_of :view_preference
   # usernames must be lowercase
   
   before_create :create_view_preference
