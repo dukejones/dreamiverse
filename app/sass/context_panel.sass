@@ -384,7 +384,6 @@
     .starlightTab
       img.icon
         margin: 7px 8px 0 0
-    .followFilter
 
     .filterList
       +round(8)
@@ -408,6 +407,24 @@
           +round(8)
           +flat-top
 
+    .starlightTab
+      .starlightFilter
+        +round(8)
+        +right
+        +relative
+        +center
+        width: 60px
+        margin: 5px 0 0
+        height: 18px
+        line-height: 18px
+        padding: 0
+        span
+          float: none
+
+        .filterList
+          width: 60px
+          top: 0
+          left: 0
 
 
 // STREAM FILTER COLORS
@@ -427,6 +444,11 @@
             background: #000
             color: #fff
 
+      .starlightTab
+        .starlightFilter
+          +button-light
+          +flat-light
+
 .dark
   #contextPanel, #streamContextPanel
 
@@ -441,3 +463,8 @@
           &:hover
             background: #fff
             color: #000
+
+      .starlightTab
+        .starlightFilter
+          +button-dark
+          +flat-dark
