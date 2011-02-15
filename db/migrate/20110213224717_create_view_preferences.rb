@@ -12,7 +12,7 @@ class CreateViewPreferences < ActiveRecord::Migration
       user.create_view_preference
     end
     Entry.all.each do |entry|
-      entry.create_view_preference
+      entry.create_view_preference if entry.user?
     end
   end
 
