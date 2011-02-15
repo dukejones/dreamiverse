@@ -132,13 +132,13 @@
         +absolute
         +overflow
         left: 365px
-        height: 212px
+        max-height: 212px
         td
           border-spacing: 0
           padding: 0
 
         // TOP
-        tr.top
+        td.top
           max-height: 62px
           ul
             list-style: none
@@ -153,7 +153,7 @@
               width: 60px
 
         // MIDDLE
-        tr.middle
+        td.middle
           .tagCloud
             +transparent
             +clear
@@ -163,26 +163,23 @@
             margin-left: 4px
 
         // BOTTOM
-        tr.bottom
-          .entryTagList
-            +absolute
-            +overflow
-            width: 308px
-            height: 65px
-            border: none
-            margin-left: 4px
-            padding: 0
-            vertical-align: bottom
-            .tag
-              +round(8)
-              +left
-              +center
-              height: 24px
-              line-height: 24px
-              margin: 6px 6px 0 0
-              padding: 0 8px
-              color: #fff
-              background: #7a7a7a
+        td.entryTagList
+          +overflow
+          width: 308px
+          border: none
+          margin-left: 4px
+          padding: 0
+          vertical-align: bottom
+          .tag
+            +round(8)
+            +left
+            +center
+            height: 24px
+            line-height: 24px
+            margin: 6px 6px 0 0
+            padding: 0 8px
+            color: #fff
+            background: #7a7a7a
 
 
       //
