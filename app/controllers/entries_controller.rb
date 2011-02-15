@@ -63,10 +63,19 @@ class EntriesController < ApplicationController
   def stream
     @user = current_user
 
-    t = Entry.arel_table
-    
-
-    @entries = Entry.all
+    # where dream is public
+    # or i am friends with entry.user
+    # but not my own dreams
+    @entries = Entry.where(
+      (
+        { sharing_level: Entry::Sharing[:everyone] } | 
+        (
+          { sharing_level: Entry::Sharing[:friends] } & 
+          { user: { following: current_user, followers: current_user} }
+        ) 
+      ) &
+      (:user_id ^ current_user.id)
+    ).joins(:user.outer => [:following.outer, :followers.outer])
   end
 
   protected
