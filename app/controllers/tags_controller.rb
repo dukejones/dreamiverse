@@ -6,13 +6,13 @@ class TagsController < ApplicationController
     # @entry.whats.create!(params[:what_name]) # :created_by => current_user
     Tag.create!(entry: @entry, noun: what)
     
-    render :json => "created"
+    render :json => { :message => "created", :what_id => what.id }
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
   end
   
   def destroy
-    what = What.find(params[:id])
+    what = What.find(params[:what_id])
     # what = What.find_by_name(params[:what_name])
     Tag.destroy!(entry_id: params[:entry_id], noun: what)
     render :json => "destroyed"
