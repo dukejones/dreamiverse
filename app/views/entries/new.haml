@@ -33,19 +33,19 @@
       %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
       = f.text_area :body
 
-      #entryOptions.shine.round-16
+      #entryOptions
         /
           Save for later  
-          .myBooks.indent.button
+          .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post', :class => 'shine button save'
-        .sharing.indent.button
+        .sharing
           %img{src: '/images/icons/share-16.png'} Everyone
           = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
-        .addLocation.indent.button
+        .addLocation
           %img{src: '/images/icons/location-21.png'}
-        .date.indent.button
+        .date.indent
           %img{src: '/images/icons/date-19.png'}
 
         /
