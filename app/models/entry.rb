@@ -26,8 +26,9 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
+  before_update :delete_tags
   
-  after_create :process_tags
+  after_save :process_tags
   
   def nouns
     whos + wheres + whats
@@ -47,11 +48,19 @@ class Entry < ActiveRecord::Base
     self.view_preference = user.view_preference.clone!
   end
 
+  # clear out existing tags/scores so they can be repopulated on save
+  def delete_tags
+    #Nephele.delete_scores(self.id)
+    n = Nephele.new
+    n.delete_scores(self.id)
+  end
+
   def process_tags
+    #Nephele::process_single_entry_tags(self) 
     n = Nephele.new
     n.process_single_entry_tags(self)
   end
-  
+    
   protected #######################
 
   def set_sharing_level

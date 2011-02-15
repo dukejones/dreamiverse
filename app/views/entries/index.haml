@@ -18,8 +18,8 @@
 
     / DREAM THUMBS 2D
     - @entries.each do |entry|
-      = render :partial => 'thumb_2d', :locals => {:entry => entry}
-
+      - tag_cloud = Nephele.render_single_entry_tag_cloud(20,@user.id).html_safe
+      = render :partial => 'thumb_2d', :locals => {:entry => entry,:tag_cloud => tag_cloud}
 
     / NO DREAMS TO DISPLAY
     - if @entries.empty?

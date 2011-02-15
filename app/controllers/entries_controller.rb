@@ -8,6 +8,10 @@ class EntriesController < ApplicationController
     # TODO: Write a custom finder for this SLOW method!
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
     
+    # hmm, no access to entry id (loop) from here currently
+    #@tag_cloud = Nephele.render_single_entry_tag_cloud(9,@user.id).html_safe
+    #@tag_cloud.html_safe   
+    
     add_starlight @user, 1 if unique_hit?
   end
 
