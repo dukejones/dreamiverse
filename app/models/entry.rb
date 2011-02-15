@@ -27,6 +27,8 @@ class Entry < ActiveRecord::Base
   before_save :set_sharing_level
   before_create :create_view_preference
   
+  after_create :process_tags
+  
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
@@ -45,6 +47,11 @@ class Entry < ActiveRecord::Base
     self.view_preference = user.view_preference.clone!
   end
 
+  def process_tags
+    n = Nephele.new
+    n.process_single_entry_tags(self)
+  end
+  
   protected #######################
 
   def set_sharing_level
