@@ -41,8 +41,25 @@
 
         = f.submit :value => 'post'
         .sharing
-          %img{src: '/images/icons/share-16.png'} Everyone
+          %img{src: '/images/icons/share-16.png'}
           = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
+
+          .listOfUsers.target
+            .friendsOnly
+              %label
+                %input{type: 'radio', name: 'listOfUsers'}
+                %span friends only
+
+            .followersOnly
+              %label
+                %input{type: 'radio', name: 'listOfUsers'}
+                %span followers only
+
+            .url
+              %label
+                %input{type: 'radio', name: 'listOfUsers'}
+                %span anybody with URL
+
         .addLocation
           %img{src: '/images/icons/location-21.png'}
         .date.indent
@@ -243,5 +260,5 @@
       .mood
         %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
         mood
-      / Save for later .analysis.bevel.button analysis
       .clear
+

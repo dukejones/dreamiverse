@@ -1129,10 +1129,67 @@
       margin: 0 auto
       bottom: 0
       border: 1px solid #D7D7D7
-      #share
+
+      .sharing
+        +round(12)
+        +pointer
         +right
-        top: 50px
-    .myBooks, .date, .addLocation, .sharing, #entry_submit
+        +relative
+        min-height: 34px
+        line-height: 34px
+        margin: 8px 0 0 8px
+        width: 194px
+        padding: 0 4px
+        img
+          +left
+          margin: 10px 0 0 4px
+
+        .listOfUsers
+          +clear
+          margin-bottom: 4px
+          .friendsOnly, .followersOnly, .url
+            +round(12)
+            margin: 4px 0 0
+            label
+              +block
+              padding: 4px
+              height: 28px
+              line-height: 28px
+              input, span
+                +right
+              input
+                margin: 9px 8px 0 8px
+          .friendsOnly
+            label
+              background: url(/images/icons/friend-none-24.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/friend-24.png) no-repeat 8px center
+          .followersOnly
+            label
+              background: url(/images/icons/follower-none-24.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/friend-follower-24.png) no-repeat 8px center
+          .url
+            label
+              background: url(/images/icons/link-light-22.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/link-22.png) no-repeat 8px center
+
+        #entry_sharing_level
+          +round(8)
+          +font(14)
+          +pointer
+          +right
+          +transparent
+          border: none
+          margin-left: 8px
+          height: 34px
+          line-height: 34px
+          padding: 7px 8px
+          option
+            padding: 1px 4px
+
+    .myBooks, .date, .addLocation, #entry_submit
       +round(16)
       +center
       +pointer
@@ -1157,11 +1214,6 @@
         margin: 7px 0 0
     .addLocation.selected
       border: 1px solid #333
-    .sharing
-      width: 104px
-      img
-        +right
-        margin: 10px 10px 0 0
     #entry_submit
       +save(14)
       +bold
@@ -1208,7 +1260,6 @@
       +font(16)
       +pointer
       margin-left: 8px
-      padding: 5px 8px
       height: 34px
       line-height: 34px
       margin: 0 0 0 14px
@@ -1643,10 +1694,20 @@
     #entryOptions
       +shine-light(24)
 
+      .sharing
+        +shine-light(17)
+        +button-light
+
+        .listOfUsers
+          .friendsOnly, .followersOnly, .url
+            +indent-light
+            +button-light
+            label
+
       #entry_submit
         +button-light
 
-      .myBooks, .sharing, .addLocation, .date
+      .myBooks, .addLocation, .date
         +indent-light
         +button-light
 
