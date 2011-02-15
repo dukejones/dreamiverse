@@ -64,6 +64,7 @@ class EntriesController < ApplicationController
     @user = current_user
 
     t = Entry.arel_table
+    
 
     @entries = Entry.all
   end
