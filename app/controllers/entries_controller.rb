@@ -61,8 +61,11 @@ class EntriesController < ApplicationController
   end
 
   def stream
-    @entries = Entry.all
     @user = current_user
+
+    t = Entry.arel_table
+
+    @entries = Entry.all
   end
 
   protected

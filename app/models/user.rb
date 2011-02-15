@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  # usernames must be lowercase
 
   has_many :authentications
 
@@ -35,6 +34,7 @@ class User < ActiveRecord::Base
   before_validation :encrypt_password
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
+  # usernames must be lowercase
   
   before_create :create_view_preference
   
@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
   def followed_by?(user)
     self.followers.exists?(user.id)
   end
+  # Note: you are considered to be friends with yourself.
   def friends_with?(user)
     (self.following?(user) && self.followed_by?(user)) || (self == user)
   end
@@ -97,7 +98,7 @@ class User < ActiveRecord::Base
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
-    (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self)) ||
+    (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self))
   end
 
   def create_view_preference
