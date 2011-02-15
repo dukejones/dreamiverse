@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
     redirect_to(user_entries_path(@user.username)) unless params[:username]
 
     # TODO: Write a custom finder for this SLOW method!
-    @entries = @user.entries.select {|e| current_user.can_access?(e) }
+    @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
     
     add_starlight @user, 1 if unique_hit?
   end
@@ -61,8 +61,12 @@ class EntriesController < ApplicationController
   end
 
   def stream
-    @entries = Entry.all
     @user = current_user
+
+    t = Entry.arel_table
+    
+
+    @entries = Entry.all
   end
 
   protected

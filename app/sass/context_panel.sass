@@ -41,7 +41,7 @@
           color: #68b800
       .uploadAvatar:hover
         +alpha(100)
-        +inner-shadow(20)
+        +inner-glow(20)
         border: 1px solid transparent
 
 
@@ -229,7 +229,7 @@
   +cursor
   top: 82px
   left: 12px
-  width: 210px
+  width: 200px
   padding: 4px
   border: 1px solid #000
 
@@ -263,13 +263,15 @@
         margin: 0 4px 0 0
         font-size: 12px
         text-align: center
-        width: 72px
+        width: 68px
         .count
           +round(4)
-          width: 72px
+          +center
+          width: 68px
           height: 14px
           line-height: 14px
-          text-align: center
+          color: #fff
+          background: #7a7a7a
 
   .myStream
     +round(12)
@@ -285,50 +287,10 @@
     font-size: 21px
 
 
-  // STREAM FILTERS
-  .wrapper
-    +relative
-    .entryFilter, .followFilter, .starlightTab
-      +round(8)
-      width: 192px
-      +relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
-      span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      img.arrow
-        +right
-        margin: 8px 0 0
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-    .followFilter
-
-    .filterList
-      +round(8)
-      width: 208px
-      +absolute
-      top: 0
-      cursor: pointer
-      z-index: 1200
-      .type
-        +block
-        height: 30px
-        line-height: 30px
-        text-align: center
-        font-weight: bold
-      .type:hover
-        background: #000
-        color: #fff
 
 
+
+// STREAM CONTEXT PANEL
 // COLORS
 .light
   #streamContextPanel
@@ -346,8 +308,6 @@
       .infoRight
         .following, .followers
           .count
-            +flat-dark
-            color: #fff
 
     // LABEL
     .myStream
@@ -359,12 +319,6 @@
       .entryFilter, .followFilter, .starlightTab
         +flat-light
         +button-light
-
-      .filterList
-        +border-light
-        +flat-light
-
-        .type
 
 .dark
   #streamContextPanel
@@ -396,12 +350,135 @@
         +flat-dark
         +button-dark
 
+
+
+
+
+// STREAM FILTERS
+#streamContextPanel
+  .wrapper
+    .entryFilter, .followFilter, .starlightTab
+      width: 182px
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+
+    .filterList
+      width: 198px
+
+#contextPanel
+  .wrapper
+    .entryFilter
+      .value
+        font-weight: normal
+      img.arrow
+        +right
+        margin: 4px -4px 0 -8px
+    .filterList
+      width: 100px
+
+
+#contextPanel, #streamContextPanel
+  .wrapper
+    +relative
+    .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      +relative
+      +bold
+      +center
+
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+
+    .filterList
+      +round(8)
+      +absolute
+      +pointer
+      top: 0
+      z-index: 1200
+      &:hover
+        +round(8)
+      .type
+        +center
+        +bold
+        height: 30px
+        line-height: 30px
+        +block
+        &.top:hover
+          +round(8)
+          +flat-bottom
+        &.bottom:hover
+          +round(8)
+          +flat-top
+
+    .starlightTab
+      .starlightFilter
+        +round(8)
+        +right
+        +relative
+        +center
+        width: 70px
+        margin: 5px 0 0
+        height: 18px
+        line-height: 18px
+        padding: 0
+        span
+          float: none
+
+        .filterList
+          width: 70px
+          top: 0
+          left: 0
+
+
+// STREAM FILTER COLORS
+// COLORS
+.light
+  #contextPanel, #streamContextPanel
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .filterList
+        +glow-light(40)
+        +border-light
+        +flat-light
+
+        .type
+          &:hover
+            background: #000
+            color: #fff
+
+      .starlightTab
+        .starlightFilter
+          +button-light
+          +flat-light
+
+.dark
+  #contextPanel, #streamContextPanel
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .filterList
+        +glow-dark(40)
         +border-dark
         +flat-dark
 
         .type
-        
+          &:hover
+            background: #fff
+            color: #000
 
-
-
+      .starlightTab
+        .starlightFilter
+          +button-dark
+          +flat-dark

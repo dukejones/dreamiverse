@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+
   has_many :authentications
 
   has_many :entries
@@ -7,7 +8,7 @@ class User < ActiveRecord::Base
   
   has_many :entry_accesses
 
-  has_one :view_preference, :as => "viewable"
+  has_one :view_preference, :as => "viewable", :dependent => :destroy
   
   # follows are the follows this user has
   # following are the users this user is following
@@ -33,6 +34,7 @@ class User < ActiveRecord::Base
   before_validation :encrypt_password
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
+  # usernames must be lowercase
   
   before_create :create_view_preference
   
@@ -69,6 +71,7 @@ class User < ActiveRecord::Base
   def followed_by?(user)
     self.followers.exists?(user.id)
   end
+  # Note: you are considered to be friends with yourself.
   def friends_with?(user)
     (self.following?(user) && self.followed_by?(user)) || (self == user)
   end
@@ -92,10 +95,10 @@ class User < ActiveRecord::Base
   end
   
   def can_access?(entry)
+    (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
-    (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self)) ||
-    (entry.sharing_level == Entry::Sharing[:private]  && entry.user == self)
+    (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self))
   end
 
   def create_view_preference

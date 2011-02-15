@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'shared', 'home', 'entries'
+  = sass_link_tag 'home', 'entries'
   = coffeescript_include_tag 'loginpanel'
 
 #drop_shadow
@@ -57,7 +57,10 @@
 
 
       / DREAM THUMBS 1D
-      = render :partial => 'entries/thumb_1d'
+      - @entries.each do |entry|
+        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+      - if @entries.blank?
+        No dreams yet today.
 
       / 
         DREAM THUMBS 1D

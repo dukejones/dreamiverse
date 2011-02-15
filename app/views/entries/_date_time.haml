@@ -1,11 +1,11 @@
-.entryDateTime.entryAssets.shine-alpha
-  .dateTimeHeader.headers.indent.button
+.entryDateTime.entryAssets
+  .dateTimeHeader.headers
     %img{src: '/images/icons/date-19.png', height: '16', width: '16'}
     date &amp; time
 
   <!--- DATE -->
   .date
-    <select id="month" class="light O-input round-8 flat-right" name="dateMonth" tabindex="94">
+    <select id="month" name="dateMonth" tabindex="94">
     <option value="01">January</option>
     <option value="02">Febuary</option>
     <option value="03">March</option>
@@ -20,7 +20,7 @@
     <option value="12">December</option>
     </select>
 
-    <select id="day" class="light O-input round-8 flat-all" name="dateDay" tabindex="95" >
+    <select id="day" name="dateDay" tabindex="95" >
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
@@ -54,7 +54,7 @@
     <option value="31">31</option>
     </select>
 
-    <select name="dateYear" tabindex="96" class="light O-input round-8 flat-left" id="year">
+    <select id="year" name="dateYear" tabindex="96">
     <option value="2013">2013</option>
     <option value="2012">2012</option>
     <option value="2011">2011</option>
@@ -174,7 +174,8 @@
 
   <!-- TIME -->
   .time
-    <select name="timeHour" tabindex="97" class="light O-input round-8 flat-right" id="hour"><option value="1">1</option>
+    <select id="hour" name="timeHour" tabindex="97">
+    <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
@@ -188,12 +189,12 @@
     <option value="12">12</option>
     </select>
 
-    <select name="timeMinute" tabindex="98" class="light O-input round-8 flat-all" id="minute">
+    <select id="minute" name="timeMinute" tabindex="98">
     <option value="00">00</option>
     <option value="30">30</option>
     </select>
 
-    <select name="timeAmPm" tabindex="99" class="light O-input round-8 flat-left" id="amPm">
+    <select id="amPm" name="timeAmPm" tabindex="99">
     <option value="am">am</option>
     <option selected="selected" value="pm">pm</option>
     </select>

@@ -12,6 +12,7 @@ gem 'omniauth'
 gem 'coffee-script'
 gem 'barista'
 gem 'coffee-haml-filter'
+gem 'meta_where'
 # Use unicorn as the web server
 # gem 'unicorn'
 

@@ -2,16 +2,15 @@
 .thumb-1d
   / LEFT SIDE
   .left
-
-    .user
-      %p.name XAVI
+    .user{style: 'background: #fff url(/images/avatars/xavitar.jpg) no-repeat left'}
+      %p.name= entry.user.username
 
     .commentCount
       .counter 20
 
-    .image
+    .image{style: 'background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left'}
 
-    %h1.title The Ultimate Dream Reality
+    %h1.title= entry.title
     %p.text The boat is extremely high up and I'm not able to see much directly below, so I'm just hoping the driver is not actually running anyone over.
 
     / ENTRY THUMB DETAILS
@@ -26,7 +25,9 @@
       / STARLIGHT
       .starlight
         %img{src: '/images/icons/starlight-17.png', width: '17', height: '17'}
-        212,423
+        %span= entry.starlight.value
+
+    .divider
 
   / RIGHT SIDE
   .right
@@ -53,7 +54,20 @@
     <div class="TC s-7 water">long</div>
     </div>
 
-    .entryTagList
-      .tag Geo
-      .tag Android
+
+    %table.entryTagList
+      %tbody
+        %tr
+          %td
+            .tag Geo
+            .tag Android
+            .tag Geoff
+            .tag Janell
+            .tag Marisa
+            .tag Phong
+            .tag Scott
+            .tag Ephraim
+            .tag Sonja
+            .tag Tom
+
     

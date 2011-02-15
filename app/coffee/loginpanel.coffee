@@ -30,14 +30,15 @@ class LoginView
     
     @$loginButton.click => @showLogin()
     @$joinButton.click => @showSignup()
-    
+    $('.haveSeedcode').click => $('#user_seed_code').show()
+  
   showLogin: ->
     @$signupPanel.hide()
     @$signupButton.hide()
     @$joinButton.show()
     
     @$loginButton.hide()
-    @$loginPanel.show()
+    @$loginPanel.slideDown()
     
     @$signupButton.unbind()
     @$signupButton.click => @showSignup()
