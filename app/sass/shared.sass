@@ -1,10 +1,6 @@
 @import mixins
 
 
-.hidden
-  display: none
-
-
 /******** LIGHT AND DARK ********/
 .light
   color: #333
@@ -52,10 +48,18 @@ body.dark
   background-color: #000
 
 
+// LINKS
 /* removes dotted line around links */
 a:active, a:focus
   outline: none
-
+.light a, .light a:hover, .light a:focus, .light a:visited, .dark a, .dark a:hover, .dark a:focus, .dark a:visited
+  text-decoration: none
+.dark a, .dark a:visited
+  color: #fff
+.light a, .light a:visited
+  color: #000
+.light a img, .dark a img
+  border: 0px
 
 
 
@@ -143,7 +147,6 @@ a:active, a:focus
 
     .loginItem, .login
       +left
-      +block
       +center
       width: 16px
       height: 28px
@@ -153,11 +156,14 @@ a:active, a:focus
       img
         margin: 6px 0 0
     .login
+      +block
       +button-light
       +bevel-light
       +round(12)
       width: auto
       padding: 0 12px
+      &:hover
+        +confirm(12)
 
     .joinWrap, .signupWrap
       +pointer
@@ -225,6 +231,8 @@ a:active, a:focus
         +button-light
         +bevel-light
         width: 192px
+        &:hover
+          +confirm(12)
 
       label.stay, a.forgot
         +button-light
@@ -1200,10 +1208,10 @@ a:active, a:focus
   -webkit-box-shadow: 0px 0px 10px #06F
 
 
+
+
+
 /* ********* UNIVERSALS ********* */
-/* DREAM INPUTS */
-body
-  font-family: Calibri, Arial, Helvetica, sans-serif
 
 /* TAG CLOUDS */
 .TC, .TC A, .sub_tags A

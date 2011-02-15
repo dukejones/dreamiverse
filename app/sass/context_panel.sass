@@ -229,7 +229,7 @@
   +cursor
   top: 82px
   left: 12px
-  width: 210px
+  width: 200px
   padding: 4px
   border: 1px solid #000
 
@@ -263,13 +263,15 @@
         margin: 0 4px 0 0
         font-size: 12px
         text-align: center
-        width: 72px
+        width: 68px
         .count
           +round(4)
-          width: 72px
+          +center
+          width: 68px
           height: 14px
           line-height: 14px
-          text-align: center
+          color: #fff
+          background: #7a7a7a
 
   .myStream
     +round(12)
@@ -285,50 +287,7 @@
     font-size: 21px
 
 
-  // STREAM FILTERS
-  .wrapper
-    +relative
-    .entryFilter, .followFilter, .starlightTab
-      +round(8)
-      width: 192px
-      +relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
-      span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      img.arrow
-        +right
-        margin: 8px 0 0
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-    .followFilter
 
-    .filterList
-      +round(8)
-      width: 208px
-      +absolute
-      top: 0
-      cursor: pointer
-      z-index: 1200
-      &:hover
-        +round(8)
-      .type
-        +block
-        height: 30px
-        line-height: 30px
-        text-align: center
-        font-weight: bold
-        &:hover
-          background: #000
-          color: #fff
 
 
 // STREAM CONTEXT PANEL
@@ -349,25 +308,12 @@
       .infoRight
         .following, .followers
           .count
-            +flat-dark
-            color: #fff
 
     // LABEL
     .myStream
       +shine-dark(13)
       color: #fff
 
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-light
-        +button-light
-
-      .filterList
-        +border-light
-        +flat-light
-
-        .type
 
 .dark
   #streamContextPanel
@@ -393,18 +339,96 @@
       +shine-light(13)
       color: #000
 
+        
+
+
+// STREAM FILTERS
+
+#contextPanel, #streamContextPanel
+  .wrapper
+    +relative
+    .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      width: 182px
+      +relative
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      text-align: center
+      font-weight: bold
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+    .followFilter
+
+    .filterList
+      +round(8)
+      width: 198px
+      +absolute
+      top: 0
+      cursor: pointer
+      z-index: 1200
+      &:hover
+        +round(8)
+      .type
+        height: 30px
+        line-height: 30px
+        text-align: center
+        font-weight: bold
+        &:hover
+          +block
+        &.top:hover
+          +round(8)
+          +flat-bottom
+        &.bottom:hover
+          +round(8)
+          +flat-top
+
+// STREAM FILTER COLORS
+// COLORS
+.light
+  #contextPanel, #streamContextPanel
+
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .entryFilter, .followFilter, .starlightTab
-        +flat-dark
-        +button-dark
+        +flat-light
+        +button-light
 
       .filterList
+        +glow-light(40)
+        +border-light
+        +flat-light
+
+        .type
+          &:hover
+            background: #000
+            color: #fff
+
+.dark
+  #contextPanel, #streamContextPanel
+
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-light
+        +button-light
+
+      .filterList
+        +glow-dark(40)
         +border-dark
         +flat-dark
 
         .type
-        
-
-
-
+          &:hover
+            background: #fff
+            color: #000
