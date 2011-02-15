@@ -314,6 +314,11 @@
       +shine-dark(13)
       color: #fff
 
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-light
+        +button-light
 
 .dark
   #streamContextPanel
@@ -339,24 +344,35 @@
       +shine-light(13)
       color: #000
 
-        
+    .wrapper
+      // FILTER BY ENTRY TYPE & FOLLOW TYPE
+      .entryFilter, .followFilter, .starlightTab
+        +flat-dark
+        +button-dark
+
+
+
 
 
 // STREAM FILTERS
+#streamContextPanel
+  .wrapper
+    +relative
+    .entryFilter, .followFilter, .starlightTab
+      width: 182px
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
 
 #contextPanel, #streamContextPanel
   .wrapper
     +relative
     .entryFilter, .followFilter, .starlightTab
       +round(8)
-      width: 182px
       +relative
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      text-align: center
-      font-weight: bold
+      +bold
+      +center
       span
         +left
       img.icon
@@ -372,26 +388,27 @@
 
     .filterList
       +round(8)
-      width: 198px
       +absolute
+      +pointer
+      width: 198px
       top: 0
-      cursor: pointer
       z-index: 1200
       &:hover
         +round(8)
       .type
+        +center
+        +bold
         height: 30px
         line-height: 30px
-        text-align: center
-        font-weight: bold
-        &:hover
-          +block
+        +block
         &.top:hover
           +round(8)
           +flat-bottom
         &.bottom:hover
           +round(8)
           +flat-top
+
+
 
 // STREAM FILTER COLORS
 // COLORS
@@ -400,10 +417,6 @@
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-light
-        +button-light
-
       .filterList
         +glow-light(40)
         +border-light
@@ -419,10 +432,6 @@
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-light
-        +button-light
-
       .filterList
         +glow-dark(40)
         +border-dark

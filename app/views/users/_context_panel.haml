@@ -51,7 +51,8 @@
     / FILTER BY ENTRY TYPE
     .item.entryFilter.trigger.slideArrow
       .label
-        dreams
+        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+        %span.value dreams
       .image
         %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
       .detail
@@ -60,28 +61,33 @@
 
     .filterList.target.slideArrow.hidden
       %a.type.top{href: entries_path(user.username)}
-        %img{src: '/images/icons/'} 
-        all entries
-      %a.type{href: entries_path(user.username)}
-        %img{src: '/images/icons/'} 
         %span dreams
       %a.type{href: entries_path(user.username)}
-        %img{src: '/images/icons/'} 
         %span visions
       %a.type.bottom{href: entries_path(user.username)}
-        %img{src: '/images/icons/'} 
         %span experiences
 
 
 
 
+  .wrapper
 
-  .item
-    %a.block.label{href: friends_path(user.username)}
-      friends
-    .image
-      %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
-    .detail
-      = user.friends.count
-    .clear
+    / FILTER BY ENTRY TYPE
+    .item.entryFilter.trigger.slideArrow
+      .label
+        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+        %span.value friends
+      .image
+        %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+      .detail
+        = user.friends.count
+      .clear
+
+    .filterList.target.slideArrow.hidden
+      %a.type.top{href: friends_path(user.username)}
+        %span friends
+      %a.type{href: following_path(user.username)}
+        %span following
+      %a.type.bottom{href: followers_path(user.username)}
+        %span followers
 
