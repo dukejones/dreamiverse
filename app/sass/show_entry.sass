@@ -1,0 +1,585 @@
+#entryField
+
+  /*********** SHOW ENTRY SHARED STYLES***********/
+  #showEntry
+    .content, .tagEntry, .entryAnalysis
+      margin: 0 0 8px
+
+  /*********** SHOW ENTRY ***********/
+  // STRUCTURE
+  #showEntry
+    +round(16)
+    width: 662px 
+    padding: 8px
+
+    a.prev
+      +round(16)
+      +flat-right
+    a.next
+      +round(16)
+      +flat-left
+    .stream
+      +flat-all
+    a.next, .stream, a.prev, .books, .type, .editEntry
+      +block
+      +center
+      +bold
+      margin: 0 0 8px
+      padding: 0 18px
+      height: 32px
+      line-height: 32px
+    .type
+      +round(16)
+      +left
+      +cursor
+    a.next, .stream, a.prev, .books, .editEntry
+      +right
+    .books
+      +round(8)
+      margin-right: 8px
+    a.editEntry
+      +round(16)
+    a.editEntry:hover
+      +alpha(100)
+    .editEntry.confirm
+      margin-right: 16px
+    .editEntry.delete
+      +round(16)
+      margin-right: 4px
+      
+      
+
+    // HEADER IMAGE & TITLE
+    .imageHeader
+      +round(16)
+      +flat-bottom
+      +relative
+      +clear
+      margin: 0
+      height: 200px
+      background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+      .title
+        +round(8)
+        +flat-bottom
+        +absolute
+        +overflow
+        +center
+        +font(22)
+        margin: 0 0 0 20px
+        bottom: 0
+        padding: 0 12px
+        height: 36px
+        line-height: 36px
+        max-width: 620px
+
+    .content
+      +round(16)
+      +flat-top
+
+      // BODY
+      .body
+        margin: 0
+        padding: 36px
+
+      // GALLERY
+      ul.gallery
+        margin: 0 0 0 20px
+        padding: 4px
+        list-style: none
+        li
+          +round(8)
+          +left
+          margin: 0 2px 2px 0
+          height: 120px
+          width: 120px
+          background: #ababab
+
+      // SHARING
+      .entryLinks
+        +round(8)
+        +clear
+        margin: 8px 8px 0
+        padding: 8px
+        background-color: #ddd
+        .link
+          +round(16)
+          +left
+          +center
+          margin: 0 8px 0 0
+          padding: 0 12px
+          height: 30px
+          line-height: 30px
+          img, span
+            +left
+          img
+            margin: 7px 8px 0 0
+
+      // INFO
+      .entryInfo
+        +clear
+        margin: 0
+        padding: 8px
+        .postTime, .postLocation, .love, .share, .repost, .starlight
+          +left
+        .postTime, .postLocation, .starlightCount, .shareOptions
+          +round(16)
+          height: 32px
+          line-height: 32px
+          padding: 0 12px
+          margin: 0 4px 0 0
+        .starlightCount
+          img.starlight
+            margin: 6px 8px 0 0
+        .starlightCount, .shareOptions
+          +right
+        .shareOptions
+          width: 86px
+          .love, .share, .repost
+            +pointer
+            width: 28px
+            height: 32px
+          .love
+            background: url(/images/icons/love-16.png) no-repeat center
+          .love.selected
+            background: url(/images/icons/love-16-selected.png) no-repeat center
+          .share
+            background: url(/images/icons/share-16.png) no-repeat center
+          .share.selected
+            background: url(/images/icons/share-16-selected.png) no-repeat center
+          .repost
+            background: url(/images/icons/repost-24.png) no-repeat center
+          .repost.selected
+            background: url(/images/icons/repost-24-selected.png) no-repeat center
+
+      // TAG - see NEW ENTRY TAG below
+      .entryTags
+        padding: 8px
+        margin: 0 0 8px
+        img.tagCheck
+          margin: 4px 0 0 6px
+
+        .tagHeader
+          +flat-right
+
+        .wrapper
+          .tagInput
+            +left
+            +overflow
+            width: 250px
+            padding: 0
+            height: 34px
+            line-height: 34px
+            input
+              +overflow
+              margin: 0 0 0 8px
+              height: 26px
+              line-height: 26px
+              background: transparent
+              border: none
+
+          .tagThisEntry
+            +round(12)
+            +flat-left
+            +left
+            +center
+            +bold
+            margin: 0 0 8px
+            padding: 0 12px
+            height: 34px
+            line-height: 34px
+            &:hover
+              +save(17)
+            span
+              color: green
+
+        .target
+          #tag-list
+            +clear
+            #empty-tag, .tag_box
+              +left
+              +round(8)
+              +center
+              height: 24px
+              line-height: 24px
+              margin: 8px 8px 0 0
+              padding: 0 8px
+              background: #7a7a7a
+              color: #fff
+
+      // ANALYSIS
+      .entryAnalysis
+        padding: 8px
+        .analysisHeader
+          margin-bottom: 8px
+          img
+            margin: 7px 8px 0 0
+
+        .analysisTags
+          +round(12)
+          +overflow
+          +clear
+          line-height: 32px
+          margin: 0 0 8px
+          padding: 0 12px 0 0
+          .title
+            +bold
+            height: 32px
+            padding-left: 42px
+            .arrow
+              +right
+              height: 32px
+              width: 16px
+              background: url(/images/icons/arrow-down-16.png) no-repeat center
+          .description
+            +clear
+            margin: 20px 8px 20px 20px
+            line-height: 20px
+            .source
+              +round(12)
+              +left
+              +center
+              margin: 0 0 12px 12px
+              padding: 0 12px
+              height: 24px
+              line-height: 24px
+
+
+    // COMMENTS
+    .commentsPanel
+      +round(12)
+      margin-bottom: 0
+      .commentsHeader
+        margin-bottom: 8px
+        img
+          margin: 7px 8px 0 0
+        .counter
+          +right
+
+      .newCommentWrap, .prevCommentWrap
+        +clear
+        margin-bottom: 8px
+        .avatar
+          +round(12)
+          +left
+          +overflow
+          height: 62px
+          width: 62px
+          margin: 0 8px
+          background: url(/images/avatars/default-avatar-tiny.jpg) top left
+        .newComment
+          +round(12)
+          +right
+          width: 546px
+          padding: 8px
+          textarea
+            +transparent
+            min-height: 90px
+            width: 546px
+            border: none
+          .images, .links, .save
+            +right
+            +center
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+          .images, .links
+            img
+              +left
+              margin: 11px 8px 0 0
+          .links
+            img
+              margin-top: 9px
+          .save
+            +round(16)
+      .prevCommentWrap
+        margin-bottom: 0
+        .prevComment
+          +round(12)
+          +right
+          min-height: 112px
+          width: 544px
+          padding: 8px
+          border: 2px solid white
+          .user
+            +round(8)
+          .user, .postTime
+            +left
+            +center
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            margin: 0 0 12px
+          ul
+            +right
+            max-width: 270px
+            margin: 0 0 0 8px
+            padding: 0
+            list-style: none
+            li
+              +round(8)
+              +right
+              margin: 0 2px 2px 0
+              height: 62px
+              width: 62px
+              background: #ababab
+            
+          .comment
+            +clear
+          .rePost
+            +round(16)
+            +left
+            +center
+            height: 32px
+            line-height: 32px
+            padding: 0 12px
+            margin: 12px 0 0
+
+
+// COLORS
+.light
+  #entryField
+    #showEntry
+      +transparent-light(50)
+      +glow-light(40)
+
+      .type
+        +bevel-light
+        +border-light
+
+      a.next, .stream, a.prev
+        +button-light
+        +shine-light(18)
+
+      a.editEntry
+        +alpha(60)
+        +button-light
+        +bevel-light
+
+      .editEntry.delete
+        +alpha(60)
+        +button-light
+        +bevel-light
+
+      .books
+        +button-light
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        // MOOD ICON
+        .moodIcon
+          +button-light
+          +glow-light(10)
+
+        .title
+          +transparent-light(50)
+
+      .content
+        +flat-light
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-light
+
+        // ENTRY LINKS
+        .entryLinks
+          .link
+            +button-light
+            +bevel-light
+
+        // INFO
+        .entryInfo
+          .postTime, .postLocation, .starlightCount, .shareOptions
+            +infoTab-light
+
+        // TAG
+        .entryTags
+          .tagHeader
+            +indent-light
+            +button-light
+
+          .tagThisEntry
+            +button-light
+            +shine-light(17)
+
+          .tagInput
+            +input-light
+
+          .target
+            #tag-list
+              #empty-tag
+
+        // ANALYSIS
+        .entryAnalysis
+          .analysisHeader
+            +indent-light
+            +button-light
+
+          // ANALYSIS TAGS
+          .analysisTags
+            +bevel-light
+            +button-light
+
+            .description
+              .source
+                +button-light
+                +bevel-light
+
+      // COMMENTS
+      .commentsPanel
+        +panel-light
+        +shine-light-alpha(16)
+
+        .commentsHeader
+          +indent-light
+          +button-light
+
+        .newCommentWrap
+          .avatar
+            +button-light
+          .newComment
+            +inputTextarea-light
+            .save
+              +shine-light(16)
+              +button-light
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-light
+            border: 2px solid #fff
+            .user
+              +button-light
+              +bevel-light
+            ul
+              li
+                +button-light
+            .rePost
+              +bevel-light
+              +button-light
+
+// COLORS
+.dark
+  #entryField
+    #showEntry
+      +transparent-dark(50)
+      +glow-dark(40)
+
+      .type
+        +bevel-dark
+        +border-dark
+
+      a.next, .stream, a.prev
+        +button-dark
+        +shine-dark(18)
+
+      a.editEntry
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .editEntry.delete
+        +alpha(60)
+        +button-dark
+        +bevel-dark
+
+      .books
+        +button-dark
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        // MOOD ICON
+        .moodIcon
+          +button-dark
+          +glow-dark(10)
+
+        .title
+          +transparent-dark(50)
+
+      .content
+        +flat-dark
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-dark
+
+        // ENTRY LINKS
+        .entryLinks
+          .link
+            +button-dark
+            +bevel-dark
+
+        // INFO
+        .entryInfo
+          .postTime, .postLocation, .starlightCount, .shareOptions
+            +infoTab-dark
+
+        // TAG
+        .entryTags
+          .tagHeader
+            +indent-dark
+            +button-dark
+
+          .tagThisEntry
+            +button-dark
+            +shine-dark(17)
+
+          .tagInput
+            +input-dark
+
+          .target
+            #tag-list
+              #empty-tag
+
+      // ANALYSIS
+      .entryAnalysis
+        .analysisHeader
+          +indent-dark
+          +button-dark
+
+        // ANALYSIS TAGS
+        .analysisTags
+          +bevel-dark
+          +button-dark
+
+          .description
+            .source
+              +button-dark
+              +bevel-dark
+
+      // COMMENTS
+      .commentsPanel
+        +panel-dark
+        +shine-dark-alpha(16)
+
+        .commentsHeader
+          +indent-dark
+          +button-dark
+
+        .newCommentWrap
+          .avatar
+            +button-dark
+          .newComment
+            +inputTextarea-dark
+            .save
+              +shine-dark(16)
+              +button-dark
+
+        .prevCommentWrap
+          .avatar
+          .prevComment
+            +input-dark
+            border: 2px solid #000
+            .user
+              +button-dark
+              +bevel-dark
+            ul
+              li
+                +button-dark
+            .rePost
+              +bevel-dark
+              +button-dark
+
+
+

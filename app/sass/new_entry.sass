@@ -1,0 +1,904 @@
+#entryField
+
+  /*********** NEW ENTRY ***********/
+  // STRUCTURE
+  .headers
+    +round(16)
+    +center
+    +left
+    +cursor
+    +bold
+    padding: 0 12px
+    height: 34px
+    line-height: 34px
+    img
+      +left
+  .moodHeader, .linksHeader, .tagHeader, .locationHeader, .dateTimeHeader
+    img
+      margin: 9px 8px 0 0
+  .tagHeader
+    img
+      margin: 8px 8px 0 0
+  .imagesHeader
+    img
+      margin: 11px 8px 0 0
+
+  // NEW ENTRY INPUT PANEL
+  #newEntry
+    +round(16)
+    width: 662px 
+    padding: 8px
+
+    // MOOD ICON
+    .wrapper
+      .moodIcon
+        +absolute
+        right: -26px
+        top: -26px
+      .moodIcon-picker
+        +absolute
+        right: -8px
+        top: -8px
+
+    .entryType
+      +round(16)
+      +absolute
+      +pointer
+      +center
+      right: 70px
+      width: 126px
+      height: 34px
+      line-height: 34px
+      img
+        +left
+        margin: 3px 0 0 4px
+      #entryType_current
+        background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
+      #entryType_list
+        +transparent
+        border: 0
+    #entry_title, #entry_body
+      +transparent
+      margin: 10px 0 0 10px
+      border: none
+    #entry_title
+      width: 460px
+      height: 26px
+      line-height: 26px
+    #entry_body
+      width: 640px
+      min-height: 134px
+      height: 134px
+
+    // NEW ENTRY OPTIONS
+    #entryOptions
+      +round(16)
+      +relative
+      width: 664px 
+      height: 48px
+      margin: 0 auto
+      bottom: 0
+      border: 1px solid #D7D7D7
+
+      // SHARING
+      .sharing
+        +round(12)
+        +pointer
+        +right
+        +relative
+        min-height: 34px
+        line-height: 34px
+        margin: 8px 0 0 8px
+        width: 194px
+        padding: 0 4px
+        img.listSelection
+          +left
+          margin: 10px 0 0 4px
+
+        .listOfUsers
+          +clear
+          margin-bottom: 4px
+          .friendsOnly, .followersOnly, .url
+            +round(12)
+            margin: 4px 0 0
+            label
+              +block
+              padding: 4px
+              height: 28px
+              line-height: 28px
+              input, span
+                +right
+              input
+                margin: 9px 8px 0 8px
+          .friendsOnly
+            label
+              background: url(/images/icons/friend-none-24.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/friend-24.png) no-repeat 8px center
+          .followersOnly
+            label
+              background: url(/images/icons/follower-none-24.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/friend-follower-24.png) no-repeat 8px center
+          .url
+            label
+              background: url(/images/icons/link-light-22.png) no-repeat 8px center
+            label.selected
+              background: url(/images/icons/link-light-22.png) no-repeat 8px center
+
+        .everyone
+          +clear
+          margin-bottom: 4px
+          .facebook, .twitter, .buzz
+            +round(12)
+            margin: 4px 0 0
+            label
+              +block
+              padding: 4px
+              height: 28px
+              line-height: 28px
+              img
+                margin: 7px 0 0 4px
+              input
+                +right
+                margin: 9px 8px 0 8px
+              span, img
+                +left
+                margin-right: 4px
+              span.shareOn, span.shared, span.sharedWhen
+                color: #656565
+              span.shared
+                font-size: 11px
+                text-transform: uppercase
+              span.sharedWhen
+                font-size: 11px
+
+        #entry_sharing_level
+          +round(8)
+          +font(14)
+          +pointer
+          +right
+          +transparent
+          border: none
+          margin-left: 8px
+          height: 34px
+          line-height: 34px
+          padding: 7px 8px
+          option
+            padding: 1px 4px
+
+    .myBooks, .date, .addLocation, #entry_submit
+      +round(16)
+      +center
+      +pointer
+      +right
+      height: 34px
+      line-height: 34px
+      margin: 8px 0 0 8px
+    .myBooks
+      +bold
+      +left
+      width: 184px
+      img
+        +left
+        margin: 9px 0 0 14px
+
+    .date, .addLocation
+      width: 42px
+      img
+        margin: 9px 0 0
+    .addLocation
+      img
+        margin: 7px 0 0
+    .addLocation.selected
+      border: 1px solid #333
+    #entry_submit
+      +bold
+      +font(12)
+      +round(8)
+      width: 64px
+      height: 34px
+      line-height: 28px
+      margin-right: 8px
+      &:hover
+        +save(14)
+
+  // ENTRY DATE / TIME
+  .entryDateTime
+    +hidden
+    .date, .time
+      +left
+      margin: 0 0 0 8px
+    #hour, #month, #day, #year, #minute, #amPm
+      +font(14)
+      +transparent
+      border: none
+      padding: 7px 12px
+    #hour, #month
+      margin-left: 8px
+    #day, #year, #minute, #amPm
+      margin-left: -4px
+    #month, #hour
+      +round(8)
+      +flat-right
+    #day, #minute
+      +round(8)
+      +flat-all
+    #year, #amPm
+      +round(8)
+      +flat-left
+
+
+  // ENTRY LOCATION
+  .entryLocation
+    +hidden
+    height: 35px
+    .locations
+      +round(8)
+      +left
+      +font(16)
+      +pointer
+      margin-left: 8px
+      height: 34px
+      line-height: 34px
+      margin: 0 0 0 14px
+      padding: 6px 8px
+      option
+        padding: 1px 4px
+      .newLocation
+        background: url('/images/icons/add-16.png') no-repeat 25px 8px
+        padding: 6px 0 6px 45px
+      .saved
+        +font(17)
+        padding-bottom: 6px
+      .divider
+        background-color: #777777
+        font-size: 1px
+        margin: 0 0 6px
+        width: 98%
+      .noLocation
+        color: #777777
+    .spinner-small
+      +relative
+      width: 32px
+      height: 32px
+      margin-bottom: -32px
+      left: 284px
+      top: 2px
+    .expander
+      +clear
+      .name, .city, .state, .country
+        +round(8)
+        +right
+        margin: 4px 0 0 8px
+        input
+          +font(16)
+          +transparent
+          border: none
+          padding: 4px
+          width: 258px
+    .cancelLocation
+      +round(16)
+      +delete(17)
+      +right
+      +center
+      height: 34px
+      padding: 0 12px
+      line-height: 34px
+      margin: 0
+
+
+  // ENTRY IMAGES
+  .entryImages
+    border: 1px solid #333
+    +hidden
+    #addFromImageBank
+      +round(8)
+      +left
+      +pointer
+      height: 32px
+      line-height: 32px
+      padding: 0 8px
+      margin-left: 8px
+      img
+        +left
+        margin: 6px 8px 6px 0
+    #imageDropArea
+      +right
+      +bold
+      +font(13)
+      +round(8)
+      width: 380px
+      height: 32px
+      line-height: 32px
+      img
+        +left
+        margin: 6px 8px
+    #currentImages
+      margin: 12px 0 0 12px
+      .entryImageContainer, .entryImage
+        +round(8)
+      .entryImageContainer
+        +left
+        +overflow
+        +relative
+        margin: 0px 8px 8px 0px
+        height: 120px
+        width: 120px
+        background: #fff
+        .entryImage
+          +left
+          +overflow
+          +pointer
+          width: 120px
+          height: 120px
+          .imageRemoveButton
+            +pointer
+            +font(12)
+            +bold
+            +center
+            +round(4)
+            margin: 8px
+            padding: 8px
+            width: 12px
+            height: 12px
+            display: inline-block
+            color: #ff1e00 !important
+        .entryImageCaption
+          +absolute
+          +font(16)
+          +bold
+          color: #333333
+          height: 94px
+          margin: 4px
+          padding: 8px
+          width: 184px
+          border: 0px
+          background: none
+          right: 0px
+
+  // NEW ENTRY TAGS
+  .entryTags
+    #tag-list
+      width: 660px
+      .tag_box
+        +center
+        padding: 0 4px
+        height: 28px
+        line-height: 28px
+        color: #262626 /* 90% Black */
+        margin: 8px 8px 0 0
+    .tagInputWrap
+      +left
+      width: 520px
+      height: 40px
+      margin: 0 0 0 8px
+      img
+        +left
+        margin: 0
+      .tagInput
+        +left
+        width: 480px
+        height: 40px
+        margin: 0
+        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        input
+          +left
+          +font(18)
+          +transparent
+          width: 410px
+          height: 32px
+          line-height: 32px
+          margin: 4px 0
+          border: 0
+      .tagAdd
+        +round(4)
+        +center
+        +right
+        width: 62px
+        height: 30px
+        line-height: 30px
+        margin: 5px 0
+        span
+          color: green
+    #tagBrowse
+      +round(8)
+      +right
+      width: 36px
+      height: 32px
+      margin: 0
+      padding: 4px 3px
+      border: 1px solid #C2C2C2
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
+      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
+    .tag-who, .tag-where, .tag-what
+      +center
+      +round(8)
+      height: 34px
+      line-height: 34px 
+      background: #fff
+    .tag-who
+      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
+      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
+    .tag-list
+      +clear
+      #empty-tag, .tag_box
+        +round(8)
+        +left
+
+  // NEW ENTRY LINKS
+  .entryLinks
+    #linkInputWrap
+      +left
+      +round(8)
+      box-shadow: 0 8px 5px #999 inset
+      -moz-box-shadow: 0 8px 5px #999 inset
+      -webkit-box-shadow: 0 8px 5px #999 inset
+      margin: 0 8px 8px 8px
+      background: #fff
+      border: 1px solid #fff 
+      width: 550px
+      height: 38px
+      line-height: 38px
+      input
+        +left
+        +font(18)
+        +transparent
+        width: 460px
+        height: 32px
+        line-height: 32px
+        margin: 4px 0 4px 8px
+        border: 0
+      .linkAdd
+        +round(4)
+        +center
+        +right
+        width: 62px
+        height: 30px
+        line-height: 30px
+        margin: 4px 12px 0 0
+        span
+          color: green
+    .linkContainer
+      +round(8)
+      +clear
+      +hidden
+      margin: 8px 0 0
+      padding: 3px 8px
+      width: 632px
+      height: 34px
+      line-height: 34px
+      background: #fff
+      .title
+        +left
+        +pointer
+        width: 122px
+        margin: 0 0 0 10px
+      .linkTitleValue
+        +font(14)
+        border: none
+        background: #fff
+      .url
+        +left
+        +overflow
+        +pointer
+        text-align: left
+        margin: 0 0 0 102px
+        width: 330px
+        height: 24px
+        a:link, a:visited
+          +overflow
+          height: 14px
+      .icon
+        +right
+        +center
+        width: 32px
+        height: 32px
+        line-height: 32px
+        padding-top: 4px
+      .removeicon
+        +right
+        +center
+        +pointer
+        width: 32px
+        height: 32px
+        line-height: 32px
+        padding-top: 4px
+        color: red
+       
+  // NEW ENTRY MOOD
+  .entryMood
+    .moodHeader
+      margin-bottom: 8px
+
+    // MOOD PICKER
+    .moodPicker
+      +round(12)
+      +clear
+      padding: 8px
+      margin: 8px 0
+      .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
+        +clear
+        margin: 0 0 2px
+        height: 32px
+        .one, .two, .three, .four, .five
+          +left
+          +center
+          +block
+          height: 32px
+          line-height: 32px
+          width: 110px
+          box-shadow: inset 0 18px rgba(255,255,255,0.5)
+          -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+          -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+        .one
+          +round(16)
+          +flat-right
+          width: 200px
+          background: #fff
+          span
+            margin-right: 44px
+            text-align: right
+            width: 80px
+            display: inline-block
+        .five
+          +round(16)
+          +flat-left
+
+      .love
+        .two
+          background-color: rgb(216, 235, 157)
+        .three
+          background-color: rgb(196, 225, 99)
+        .four
+          background-color: rgb(153, 204, 51)
+        .five
+          background-color: rgb(123, 189, 13)
+      .joy
+        .two
+          background-color: rgb(255, 255, 204)
+        .three
+          background-color: rgb(254, 241, 130)
+        .four
+          background-color: rgb(250, 219, 77)
+        .five
+          background-color: rgb(237, 197, 0)
+      .surprise
+        .two
+          background-color: rgb(254, 218, 164)
+        .three
+          background-color: rgb(248, 185, 104)
+        .four
+          background-color: rgb(242, 153, 58)
+        .five
+          background-color: rgb(232, 114, 0)
+      .anger
+        .two
+          background-color: rgb(248, 166, 164)
+        .three
+          background-color: rgb(237, 100, 107)
+        .four
+          background-color: rgb(228, 48, 84)
+        .five
+          background-color: rgb(220, 0, 71)
+      .mystical
+        .two
+          background-color: rgb(206, 178, 216)
+        .three
+          background-color: rgb(186, 153, 203)
+        .four
+          background-color: rgb(148, 99, 198)
+        .five
+          background-color: rgb(123, 78, 163)
+      .wonder
+        .two
+          background-color: rgb(198, 238, 255)
+        .three
+          background-color: rgb(138, 220, 254)
+        .four
+          background-color: rgb(68, 194, 246)
+        .five
+          background-color: rgb(0, 113, 208)
+      .sadness
+        .two
+          background-color: rgb(200, 223, 212)
+        .three
+          background-color: rgb(150, 198, 191)
+        .four
+          background-color: rgb(150, 198, 191)
+        .five
+          background-color: rgb(41, 82, 94)
+      .stress
+        .two
+          background-color: rgb(217, 205, 203)
+        .three
+          background-color: rgb(188, 171, 158)
+        .four
+          background-color: rgb(147, 130, 95)
+        .five
+          background-color: rgb(85, 79, 52)
+      .fear
+        .two
+          background-color: rgb(196, 196, 196)
+        .three
+          background-color: rgb(162, 162, 162)
+        .four
+          background-color: rgb(127, 127, 127)
+        .five
+          background-color: rgb(101, 101, 101)
+
+
+
+  // NEW ENTRY ATTACH
+  .entryAttach
+    height: 34px
+    line-height: 34px
+
+    p
+      +left
+      height: 34px
+      line-height: 32px
+      margin: 0 30px
+    .tag, .images, .mood, .links, .analysis
+      +center
+      +left
+      +pointer
+      +round(16)
+      height: 34px
+      line-height: 32px
+      margin: 0 0 0 8px
+      padding: 0 12px
+      img
+        +left
+        margin: 7px 8px 0 0
+    .images
+      img
+        margin-top: 11px
+
+
+
+
+// NEW ENTRY
+// COLORS
+.light
+  #entryField
+    #newEntry
+      +flat-light
+      +glow-light(40)
+
+      .entryType
+        +border-light
+
+    // NEW ENTRY OPTIONS
+    #entryOptions
+      +shine-light(24)
+
+      // SHARING
+      .sharing
+        +shine-light(17)
+        +button-light
+
+        .listOfUsers, .everyone
+          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+            +indent-light
+            +button-light
+          .buzz
+            +button-light
+            +shine-light(16)
+
+      #entry_submit
+        +button-dark
+        +shine-dark(16)
+        color: #fff
+        &:hover
+          +save(16)
+
+      .myBooks, .addLocation, .date
+        +indent-light
+        +button-light
+
+    // ENTRY DATE & TIME
+    .entryDateTime
+      +shine-light-alpha(24)
+      .dateTimeHeader
+        +indent-light
+        +button-light
+
+      #hour, #month, #day, #year, #minute, #amPm
+        +input-light
+        +border-light
+
+    // ENTRY LOCATION
+    .entryLocation
+      +shine-light-alpha(24)
+      .locationHeader
+        +indent-light
+        +button-light
+
+      .locations
+        +input-light
+
+      .name, .city, .state, .country
+        +input-light
+
+      .cancelLocation
+        +bevel-light
+        +button-light
+
+    // ENTRY IMAGES
+    .entryImages
+      +shine-light-alpha(24)
+      .imagesHeader
+        +indent-light
+        +button-light
+
+      #addFromImageBank
+        +bevel-light
+        +button-light
+
+      #imageDropArea
+        +input-light
+
+    // NEW ENTRY TAG
+    .entryTags
+      +shine-light-alpha(24)
+      .tagHeader
+        +indent-light
+        +button-light
+      .tagInputWrap
+        .tagInput
+          .tagAdd
+            +button-light
+            +bevel-light
+
+    // NEW ENTRY LINK
+    .entryLinks
+      +shine-light-alpha(24)
+      .linksHeader
+        +indent-light
+        +button-light
+
+      #linkInputWrap
+        .linkAdd
+          +button-light
+          +bevel-light
+
+    // NEW ENTRY MOOD
+    .entryMood
+      +shine-light-alpha(24)
+      .moodHeader
+        +indent-light
+        +button-light
+
+      // MOOD PICKER
+      .moodPicker
+        +transparent-light(50)
+
+    // NEW ENTRY ATTACHMENTS
+    .entryAttach
+      +shine-light-alpha(24)
+      .images, .tag, .links, .mood
+        +bevel-light
+        +button-light
+
+
+.dark
+  #entryField
+    #newEntry
+      +flat-dark
+      +glow-dark(40)
+
+      .entryType
+        +border-dark
+
+    // NEW ENTRY OPTIONS
+    #entryOptions
+      +shine-dark(24)
+
+      // SHARING
+      .sharing
+        +shine-dark(17)
+        +button-dark
+
+        .listOfUsers, .everyone
+          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+            +indent-dark
+            +button-dark
+          .buzz
+            +button-dark
+            +shine-dark(16)
+
+      #entry_submit
+        +button-light
+        +shine-light(16)
+        color: #000
+        &:hover
+          +save(16)
+
+      .myBooks, .sharing, .addLocation, .date
+        +indent-dark
+        +button-dark
+
+    // ENTRY DATE & TIME
+    .entryDateTime
+      +shine-light-alpha(24)
+      .dateTimeHeader
+        +indent-dark
+        +button-dark
+
+      #hour, #month, #day, #year, #minute, #amPm
+        +input-dark
+        +border-dark
+
+    // ENTRY LOCATION
+    .entryLocation
+      +shine-dark-alpha(24)
+      .locationHeader
+        +indent-dark
+        +button-dark
+
+      .locations
+        +input-dark
+
+      .name, .city, .state, .country
+        +input-dark
+
+      .cancelLocation
+        +bevel-dark
+        +button-dark
+
+    // ENTRY IMAGES
+    .entryImages
+      +shine-dark-alpha(24)
+      .imagesHeader
+        +indent-dark
+        +button-dark
+
+      #addFromImageBank
+        +bevel-dark
+        +button-dark
+
+      #imageDropArea
+        +input-dark
+
+    // NEW ENTRY TAG
+    .entryTags
+      +shine-dark-alpha(24)
+      .tagHeader
+        +indent-dark
+        +button-dark
+      .tagInputWrap
+        .tagInput
+          .tagAdd
+            +button-dark
+            +bevel-dark
+
+    // NEW ENTRY LINK
+    .entryLinks
+      +shine-dark-alpha(24)
+      .linksHeader
+        +indent-dark
+        +button-dark
+
+      #linkInputWrap
+        .linkAdd
+          +button-dark
+          +bevel-dark
+
+    // NEW ENTRY MOOD
+    .entryMood
+      +shine-dark-alpha(24)
+      .moodHeader
+        +indent-dark
+        +button-dark
+
+      // MOOD PICKER
+      .moodPicker
+        +transparent-dark(50)
+
+    // NEW ENTRY ATTACHMENTS
+    .entryAttach
+      +shine-light-alpha(24)
+      .images, .tag, .links, .mood
+        +bevel-dark
+        +button-dark
