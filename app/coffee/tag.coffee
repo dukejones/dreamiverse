@@ -1,24 +1,24 @@
-tagsController = null
-
-$(document).ready ->
-  setupTags()
-  
-setupTags = ->
-  tagsController = new TagsController('.entryTags')
-
-class TagsController
-  constructor: (containerSelector)->
+class window.TagsController
+  constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
+    
+    switch mode
+      when 'edit'
+        @tagViewClass = EditingTagView
+        @tagInputClass = TagInput
+        @$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
+      when 'show'
+        @tagViewClass = ShowingTagView
+        @tagInputClass = ShowingTagInput
+        #@$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
-    @tagInput = new TagInput(@$container.find('#newTag'))
+    @tagInput = new @tagInputClass(@$container.find('#newTag'))
     @tagViews = new TagViewList(@$container.find('#tag-list'))
-
-    @$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
     $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
     
   createTag: (tagName)->
-    tagView = new TagView( new Tag(tagName) )
+    tagView = new @tagViewClass( new Tag(tagName) )
     @tagViews.add(tagView)
 
 class TagInput
@@ -33,6 +33,27 @@ class TagInput
     $.subscribe 'tags:create', => @clear()
   value: -> @$input.val()
   clear: -> @$input.val('')
+  
+class ShowingTagInput extends TagInput
+  constructor: ($input)->
+    super($input)
+    @buttonMode = 'expand'
+    
+    $('.tagInput').css('width', '0px')
+    $('.tagThisEntry').click => @addExpandSubmitHandler()
+  
+  addExpandSubmitHandler: ->
+    switch @buttonMode
+      when 'expand'
+        @expandInputField()
+      when 'submit' then $.publish 'tags:create', [@value()]
+  
+  expandInputField: ->
+    @buttonMode = 'submit'
+    $('.tagInput').animate({width: '250px'})
+    
+
+
     
 class TagViewList
   constructor: ->
@@ -45,13 +66,12 @@ class TagViewList
     
 
 class TagView
-  inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   constructor: (tag)->
     @tag = tag
   createElement: ->
     @$element = $('#empty-tag').clone().attr('id', '').show()
     @setValue(@tag.name)
-    @createFormElement()
+    
     return @$element
   setValue: (tagName) ->
     @$element.find('.content').html(tagName)
@@ -59,96 +79,26 @@ class TagView
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
     @$element.css('backgroundColor', '#777');
     setTimeout (=> @$element.animate {backgroundColor: "#ccc"}, 'slow'), 200
+
+class EditingTagView extends TagView
+  inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
+  createElement: ->
+    super()
+    @createFormElement()
+
   createFormElement: ->
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
-    
+  
+class ShowingTagView extends TagView
+  # ask for ajax stuff
+  constructor: (tag)->
+    super(tag)
+
 
 # Tag Model
 class Tag
   constructor: (name) ->
     @name = name
-  create: ->
-  destroy: ->
-  
-  
-class OldTag
-  constructor: (name) ->
-    @$tagContainer = $(name)
-    @$tagHeader = @$tagContainer.find('.tagHeader')
-    @$tagsExpand = @$tagContainer.find('.target')
-    @$tagsList = @$tagContainer.find('.tag-list')
-    @$tagInput = @$tagContainer.find('#newTag')
-    @$tagInputWrap = @$tagContainer.find('.tagInputWrap')
-    @$tagAddButton = @$tagContainer.find('.tagAdd')
-    @$tagCheck = @$tagContainer.find('.tagCheck')
-    @$tagEntryButton = @$tagContainer.find('.tagThisEntry')
-    
-    $.subscribe 'tagToggle', (event) =>
-      @toggleView()
 
-    @$tagHeader.click (event) =>
-      $.publish('tagToggle', [this])
-    
-    @$tagAddButton.click (event) =>
-      @addTag()
-    
-    @$tagInput.keypress (event) =>
-      if event.which is 13
-        @addTag()
-    
-    if @$tagEntryButton
-      @$tagEntryButton.click (event) =>
-        @enableTags()
-      
-  enableTags: ->
-    @$tagEntryButton.hide()
-    
-    @$tagCheck.unbind()
-    @$tagCheck.click (event) =>
-      @disableTags()
-    
-    @$tagCheck.show()
-    @$tagInputWrap.show()
-    
-    @$tagInput.focus()
-  
-  disableTags: ->
-    @$tagCheck.hide()
-    @$tagInputWrap.hide()
-    
-    @$tagEntryButton.show()
-    
-  toggleView: ->
-    if @$tagsList.is(":visible")
-      @contract()
-    else
-      @expand()
-    
-  expand: ->
-    # code to expand menu item
-    @$tagsExpand.slideDown()
-    
-  contract: ->
-    # code to contract menu item
-    @$tagsExpand.slideUp()
-    
-  addTag: ->
-    randomNumber = Math.round( Math.random() * 100001)
-    @tagID = ('tagID_' + randomNumber)
-    
-    if @$tagInput.val()
-      tag = $('#empty-tag').clone().attr('id', @tagID );
-      @$tagsList.find('br').before(tag);
-      
-      tag.removeClass('hidden').find('.tagContent').html(@$tagInput.val())
-      tag.css('background-color', '#ccc');
-      
-      # todo : this function is not running
-      setTimeout( => 
-        tag.animate({backgroundColor: "#333"}, 'slow')
-      , 200)
-      
-      @$tagInput.val('')
-      @$tagInput.focus()
     

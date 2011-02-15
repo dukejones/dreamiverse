@@ -4,7 +4,7 @@
 - content_for :foot do
   = javascript_include_tag 'autoresize.jquery.min', 'geo', 'userfileuploader', 'dreams'
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
-  = coffeescript_include_tag 'tag', 'dream', 'sharing'
+  = coffeescript_include_tag 'tag', 'newentry', 'sharing'
 / CONTEXT BAR
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
@@ -20,7 +20,7 @@
         / MOOD ICON
         = render :partial => "mood_icon"
 
-      .entryType.border
+      .entryType
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
         %select#entryType_list
@@ -39,7 +39,7 @@
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
-        = f.submit :value => 'post', :class => 'shine button save'
+        = f.submit :value => 'post'
         .sharing
           %img{src: '/images/icons/share-16.png'} Everyone
           = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
@@ -86,7 +86,7 @@
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
       #tagBrowse
         %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
-      #tag-list.tag-list.ui-sortable
+      #tag-list.tag-list.ui-sortable.hidden
         #empty-tag.tag_box.thumb-controls.hidden
           .content
         - @entry.whats.each do |what|
@@ -94,7 +94,7 @@
             .content= what.name
           
         %br{style: 'clear: both;'}
-      #sorting.clear-both
+      #sorting.clear
 
     / NEW ENTRY LINK
     .entryLinks.entryAssets.hidden
@@ -106,8 +106,8 @@
         .linkAdd
           %span +
           Add
-      .clear-both
       #linkHolder
+      .clear
 
     / NEW ENTRY MOOD
     .entryMood.entryAssets.hidden
@@ -225,7 +225,7 @@
             = radio_button_tag 'fear', 4
           %label.five
             = radio_button_tag 'fear', 5
-        .clear-both
+        .clear
 
 
     / NEW ENTRY ATTACHMENTS
@@ -244,4 +244,4 @@
         %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
         mood
       / Save for later .analysis.bevel.button analysis
-      .clear-both
+      .clear
