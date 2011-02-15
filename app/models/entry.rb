@@ -14,6 +14,8 @@ class Entry < ActiveRecord::Base
 
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
+
+  has_many :comments
   
   has_many :tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
@@ -21,6 +23,8 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
+  
+  has_and_belongs_to_many :images
   
   validates_presence_of :user
   

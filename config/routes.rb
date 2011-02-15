@@ -58,7 +58,11 @@ Dreamcatcher::Application.routes.draw do
   
   # Tagging
   # match '#:tag', :to => 'tags#show'
-  resources :tags
+  resources :tags do
+    collection do
+      delete :what
+    end
+  end
 
   resources :entries do
     collection do
