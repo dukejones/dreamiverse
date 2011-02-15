@@ -80,7 +80,7 @@ class EntriesController < ApplicationController
 
   def bedsheet
     @entry = Entry.find(params[:id])
-    @entry.view_preference.bedsheet = Image.find(params[:bedsheet_id])
+    @entry.view_preference.image = Image.find(params[:bedsheet_id])
     @entry.save!
     render :json => "entry bedsheet updated"
   rescue => e
