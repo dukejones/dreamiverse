@@ -1343,6 +1343,7 @@
           margin: 4px 0
           border: 0
       .tagAdd
+        +round(4)
         +center
         +right
         width: 62px
@@ -1352,6 +1353,7 @@
         span
           color: green
     #tagBrowse
+      +round(8)
       +right
       width: 36px
       height: 32px
@@ -1371,6 +1373,9 @@
       background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
     .tag-list
       +clear
+      #empty-tag, .tag_box
+        +round(8)
+        +left
 
   // NEW ENTRY LINKS
   .entryLinks
@@ -1396,6 +1401,7 @@
         margin: 4px 0 4px 8px
         border: 0
       .linkAdd
+        +round(4)
         +center
         +right
         width: 62px
@@ -1458,6 +1464,7 @@
 
     // MOOD PICKER
     .moodPicker
+      +round(12)
       +clear
       padding: 8px
       margin: 8px 0
@@ -1476,6 +1483,8 @@
           -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
           -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
         .one
+          +round(16)
+          +flat-right
           width: 200px
           background: #fff
           span
@@ -1483,6 +1492,10 @@
             text-align: right
             width: 80px
             display: inline-block
+        .five
+          +round(16)
+          +flat-left
+
       .love
         .two
           background-color: rgb(216, 235, 157)
@@ -1611,8 +1624,49 @@
           +button-light
 
       // NEW ENTRY TAG
-      .entryTags.entryAssets.hidden.shine-alpha
-        .tagHeader.headers.indent.button
+      .entryTags
+        +shine-light-alpha(24)
+        .tagHeader
+          +indent-light
+          +button-light
+        .tagInputWrap
+          .tagInput
+            .tagAdd
+              +button-light
+              +bevel-light
+
+      // NEW ENTRY LINK
+      .entryLinks
+        +shine-light-alpha(24)
+        .linksHeader
+          +indent-light
+          +button-light
+
+        #linkInputWrap
+          .linkAdd
+            +button-light
+            +bevel-light
+
+
+      // NEW ENTRY MOOD
+      .entryMood
+        +shine-light-alpha(24)
+        .moodHeader
+          +indent-light
+          +button-light
+
+        // MOOD PICKER
+        .moodPicker
+          +transparent-light(50)
+
+      // NEW ENTRY ATTACHMENTS
+      .entryAttach
+        +shine-light-alpha(24)
+        .images, .tag, .links, .mood
+          +bevel-light
+          +button-light
+
+
 
 .dark
   #entryField

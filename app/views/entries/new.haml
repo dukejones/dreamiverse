@@ -72,53 +72,53 @@
     = render :partial => "image_panel"
 
     / NEW ENTRY TAG
-    .entryTags.entryAssets.hidden.shine-alpha
-      .tagHeader.headers.indent.button
+    .entryTags.entryAssets.hidden
+      .tagHeader.headers
         tag
         %img{src: '/images/icons/tag-20.png'}
       .tagInputWrap
         %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
         .tagInput
           %input#newTag
-          .tagAdd.button.bevel.round-4
+          .tagAdd
             %span +
             Add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      #tagBrowse.round-8
+      #tagBrowse
         %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
       #tag-list.tag-list.ui-sortable
-        #empty-tag.tag_box.thumb-controls.float-left.hidden.light.round-8
+        #empty-tag.tag_box.thumb-controls.hidden
           .content
         - @entry.whats.each do |what|
-          .tag_box.thumb-controls.float-left.light.round-8
+          .tag_box.thumb-controls
             .content= what.name
           
         %br{style: 'clear: both;'}
       #sorting.clear-both
 
     / NEW ENTRY LINK
-    .entryLinks.entryAssets.hidden.shine-alpha
-      .linksHeader.headers.indent.button
+    .entryLinks.entryAssets.hidden
+      .linksHeader.headers
         links
         %img{src: '/images/icons/links-19.png'}
       #linkInputWrap
         %input#linkValue
-        .linkAdd.button.bevel.round-4
+        .linkAdd
           %span +
           Add
       .clear-both
       #linkHolder
 
     / NEW ENTRY MOOD
-    .entryMood.entryAssets.hidden.shine-alpha
-      .moodHeader.headers.indent.button
+    .entryMood.entryAssets.hidden
+      .moodHeader.headers
         mood
         %img{src: '/images/icons/mood-19.png'}
 
       / MOOD PICKER
-      .moodPicker.transparent-50.round-12
+      .moodPicker
         .love
-          %label.one.round-16-left
+          %label.one
             %span Love
             %input{type: 'radio', name: 'love'}
           %label.two
@@ -127,10 +127,10 @@
             %input{type: 'radio', name: 'love'}
           %label.four
             %input{type: 'radio', name: 'love'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'love'}
         .joy
-          %label.one.round-16-left
+          %label.one
             %span Joy
             %input{type: 'radio', name: 'joy'}
           %label.two
@@ -139,10 +139,10 @@
             %input{type: 'radio', name: 'joy'}
           %label.four
             %input{type: 'radio', name: 'joy'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'joy'}
         .surprise
-          %label.one.round-16-left
+          %label.one
             %span Surprise
             %input{type: 'radio', name: 'surprise'}
           %label.two
@@ -151,10 +151,10 @@
             %input{type: 'radio', name: 'surprise'}
           %label.four
             %input{type: 'radio', name: 'surprise'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'surprise'}
         .anger
-          %label.one.round-16-left
+          %label.one
             %span Anger
             %input{type: 'radio', name: 'anger'}
           %label.two
@@ -163,10 +163,10 @@
             %input{type: 'radio', name: 'anger'}
           %label.four
             %input{type: 'radio', name: 'anger'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'anger'}
         .mystical
-          %label.one.round-16-left
+          %label.one
             %span Mystical
             %input{type: 'radio', name: 'mystical'}
           %label.two
@@ -175,10 +175,10 @@
             %input{type: 'radio', name: 'mystical'}
           %label.four
             %input{type: 'radio', name: 'mystical'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'mystical'}
         .wonder
-          %label.one.round-16-left
+          %label.one
             %span Wonder
             %input{type: 'radio', name: 'wonder'}
           %label.two
@@ -187,10 +187,10 @@
             %input{type: 'radio', name: 'wonder'}
           %label.four
             %input{type: 'radio', name: 'wonder'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'wonder'}
         .sadness
-          %label.one.round-16-left
+          %label.one
             %span Sadness
             %input{type: 'radio', name: 'sadness'}
           %label.two
@@ -199,10 +199,10 @@
             %input{type: 'radio', name: 'sadness'}
           %label.four
             %input{type: 'radio', name: 'sadness'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'sadness'}
         .stress
-          %label.one.round-16-left
+          %label.one
             %span Stress
             %input{type: 'radio', name: 'stress'}
           %label.two
@@ -211,10 +211,10 @@
             %input{type: 'radio', name: 'stress'}
           %label.four
             %input{type: 'radio', name: 'stress'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'stress'}
         .fear
-          %label.one.round-16-left
+          %label.one
             %span Fear
             %input{type: 'radio', name: 'fear'}
           %label.two
@@ -223,24 +223,24 @@
             %input{type: 'radio', name: 'fear'}
           %label.four
             %input{type: 'radio', name: 'fear'}
-          %label.five.round-16-right
+          %label.five
             %input{type: 'radio', name: 'fear'}
         .clear-both
 
 
     / NEW ENTRY ATTACHMENTS
-    .entryAttach.entryAssets.shine-alpha
+    .entryAttach.entryAssets
       %p attach:
-      .images.bevel.button
+      .images
         %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
         images
-      .tag.bevel.button
+      .tag
         %img{src: '/images/icons/tag-20.png', width: '20', height: '20'}
         tag
-      .links.bevel.button
+      .links
         %img{src: '/images/icons/links-19.png', width: '19', height: '19'}
         links
-      .mood.bevel.button
+      .mood
         %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
         mood
       / Save for later .analysis.bevel.button analysis
