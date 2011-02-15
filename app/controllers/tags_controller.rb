@@ -12,7 +12,8 @@ class TagsController < ApplicationController
   end
   
   def destroy
-    what = What.find_by_name(params[:what_name])
+    what = What.find(params[:id])
+    # what = What.find_by_name(params[:what_name])
     Tag.destroy!(entry_id: params[:entry_id], noun: what)
     render :json => "destroyed"
   rescue => e
