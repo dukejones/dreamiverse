@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :require_user, :except => [:stream]
+  before_filter :require_user, :except => [:stream, :show]
   before_filter :query_username, :except => [:stream]
 
   def index
@@ -73,8 +73,7 @@ class EntriesController < ApplicationController
           { sharing_level: Entry::Sharing[:friends] } & 
           { user: { following: current_user, followers: current_user} }
         ) 
-      ) &
-      (:user_id ^ current_user.id)
+      )
     ).joins(:user.outer => [:following.outer, :followers.outer])
   end
 
