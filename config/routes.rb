@@ -60,10 +60,11 @@ Dreamcatcher::Application.routes.draw do
   # match '#:tag', :to => 'tags#show'
   resources :tags
 
-  resource :entry do
-    post 'bedsheet'
+  resources :entries do
+    collection do
+      post 'bedsheet'
+    end
   end
-  resources :entries
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
