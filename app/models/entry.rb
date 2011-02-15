@@ -15,9 +15,9 @@ class Entry < ActiveRecord::Base
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   
-  has_many :tags, :as => :entry
-  has_many :whats, :through => :tags, :source => :noun, :source_type => 'What'
-  has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
+  has_many :tags
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
+  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
