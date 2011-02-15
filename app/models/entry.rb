@@ -20,7 +20,7 @@ class Entry < ActiveRecord::Base
   has_many :whos, :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
-  has_one :view_preference, :as => "viewable"
+  has_one :view_preference, :as => "viewable", :dependent => :destroy
   
   validates_presence_of :user
   
