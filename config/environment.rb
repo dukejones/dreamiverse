@@ -5,6 +5,10 @@ def sha1(string)
   Digest::SHA1.hexdigest string if string.is_a? String
 end
 
+# Console Only #
+def show_sql
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+end
 
 # Load the rails application
 require File.expand_path('../application', __FILE__)
