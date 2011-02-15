@@ -39,7 +39,7 @@
         Join Now &rsaquo;
 
     / SIGN UP
-    = form_for("user", url: user_registration_path) do |f|
+    = form_for(User.new, url: user_registration_path) do |f|
       .signupPanel.hidden
         = f.text_field :email, :class => 'login-input', :value => "email"
         = f.text_field :username, :class => 'login-input', :value => "username"
