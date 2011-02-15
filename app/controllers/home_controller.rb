@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     end
 
     # @user = User.new(:username => "username")
-    @entries = Entry.where('entries.created_at > ?', Time.now.yesterday).
+    @entries = Entry.where(:created_at > Time.now.yesterday).
       joins(:starlight).order('starlights.value DESC').limit(8)
   end
   
