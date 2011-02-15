@@ -92,10 +92,10 @@ class User < ActiveRecord::Base
   end
   
   def can_access?(entry)
+    (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
     (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self)) ||
-    (entry.sharing_level == Entry::Sharing[:private]  && entry.user == self)
   end
 
   def create_view_preference
