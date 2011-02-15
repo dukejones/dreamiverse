@@ -17,7 +17,8 @@
   .matrix
 
     / ENTRY THUMBS 1D
-    = render :partial => 'thumb_1d'
+    - @entries.each do |entry|
+      = render :partial => 'thumb_1d', :locals => {:entry => entry}
 
     / 
       ENTRY THUMBS 1D

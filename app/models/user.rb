@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  # usernames must be lowercase
+
   has_many :authentications
 
   has_many :entries
