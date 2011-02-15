@@ -4,6 +4,7 @@ class User::RegistrationsController < ApplicationController
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
+    # TODO: must detect duplicate users!
     if user = User.create(params[:user])
       set_current_user user
     end
