@@ -1526,6 +1526,8 @@ function initImageBank(_sectionFilter){
   $('.browseBars').click(function(){
       closeImagebank();
     });
+    
+  $('#IB_browser_frame').fadeIn()
 }
 
 $(document).ready(function() {
