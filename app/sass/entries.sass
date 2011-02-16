@@ -489,6 +489,7 @@
 
 #tagStream, #showEntry
   #tagsLive, #tag-list
+    +clear
     // WHO, WHERE, WHAT TAG STYLES
     .tagWho, .tagWhat, .tagWhere, .tagNoImage
       +round(8)
@@ -505,12 +506,6 @@
         +overflow
         width: 32px
         height: 32px
-      .avatar
-        background: url(/images/avatars/xavitar.jpg) no-repeat
-      .whereIcon
-        background: url(/images/icons/tagWhere-24.png) no-repeat center
-      .tagImage
-        background: url(/images/avatars/xavitar.jpg) no-repeat
       span
         +left
         margin: 0 8px
@@ -518,10 +513,6 @@
         +right
         width: 32px
         height: 32px
-      .analysisIcon
-        background: url(/images/icons/analysis-16.png) no-repeat center
-      .followStatus
-        background: url(/images/icons/friend-none-16.png) no-repeat center
 
     // TAG NO IMAGE
     .tagNoImage
