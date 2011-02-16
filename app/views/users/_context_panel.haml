@@ -11,6 +11,12 @@
       .uploadAvatarWrap.hidden
         .uploadAvatar
           <span>+</span> upload new avatar
+      .uploader
+        .text drag new image here
+        .browse
+          .toggle browse for a file
+          .cancel cancel
+          %input{type: "file", name: "newAvatar"}
 
 
   - if user == current_user

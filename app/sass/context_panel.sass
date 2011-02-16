@@ -6,22 +6,22 @@
 
 #contextPanel
   +round(16)
-  position: absolute
+  +absolute
+  +cursor
   top: 82px
   left: 12px
   width: 200px
-  cursor: default
   padding: 4px
   border: 1px solid #000
 
   .avatar
     +round(12)
-    display: block
+    +block
+    +relative
     width: 200px
     height: 266px
-    position: relative
     .uploadAvatarWrap
-      position: absolute
+      +absolute
       bottom: 0
       width: 100%
       padding: 20px 0 8px
@@ -33,8 +33,8 @@
         +alpha(60)
         +transparent-dark(50)
         +glow-light(20)
+        +font(12)
         color: #fff
-        font-size: 12px
         padding: 2px 6px
         width: 120px
         margin: 0 auto
@@ -47,6 +47,27 @@
         +inner-glow(20)
         border: 1px solid transparent
 
+    .uploader
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      .text, .browse
+        +center
+        +absolute
+        width: 100%
+        color: #fff
+      .text
+        +font(21)
+        top: 20px
+      .browse
+        +alpha(80)
+        +overflow
+        bottom: 20px
+        input
+          +right
+        &:hover
+          +alpha(100)
 
   .context
     +round(12)
@@ -54,9 +75,9 @@
     +center
     +bold
     +block
+    +font(21)
     margin: 4px 0 2px
     padding: 4px 8px
-    font-size: 21px
     .icon
       right: 20px
       top: 18px
@@ -64,13 +85,13 @@
 
   .relation, .changeRelation, .context
     .icon
+      +right
+      +relative
       margin: -16px
-      float: right
-      position: relative
 
 
   .label, .image, .detail
-    float: left
+    +left
 
   .find
     +round(12)
@@ -81,7 +102,7 @@
 
 
   .item
-    clear: both
+    +clear
     margin-bottom: 2px
     .relation
       +round(12)
@@ -90,10 +111,10 @@
       +round(12)
       +flat-right
       +center
+      +font(18)
       width: 84px
       height: 24px
       line-height: 24px
-      font-size: 18px
       padding: 6px 8px
 
     .image
@@ -247,9 +268,9 @@
 
       .following, .followers
         +left
+        +font(12)
+        +center
         margin: 0 4px 0 0
-        font-size: 12px
-        text-align: center
         width: 68px
         .count
           +round(4)
@@ -264,14 +285,14 @@
     +round(12)
     +flat-bottom
     +block
+    +bold
+    +center
+    +font(21)
     margin: 4px 0 2px
-    text-align: center
-    font-weight: bold
     padding: 0
     height: 26px
     line-height: 26px
     padding: 4px 8px
-    font-size: 21px
 
 
 
