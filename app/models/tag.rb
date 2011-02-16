@@ -5,7 +5,6 @@ class Tag < ActiveRecord::Base
 
   attr_accessor :class_size
 
-  # render html tag cloud with css font sizes/colors
   def self.with_class_sizes_for(tags)
     min_score = tags.map(&:score).min
     max_score = tags.map(&:score).max
@@ -13,10 +12,8 @@ class Tag < ActiveRecord::Base
     tags.each do |tag|
       tag.class_size = quantize(tag.score, min_score, max_score)
     end
-    
     tags
   end
-  
   
 private
   # returns a number: 1-8
@@ -25,5 +22,4 @@ private
     scaling_factor = (8 - 1) / score_range
     (((score-min_score) * scaling_factor) + 1).to_i
   end
-
 end
