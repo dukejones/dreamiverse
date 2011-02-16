@@ -7,11 +7,18 @@ window.setupMetaDropdowns = ->
   settingsPanel = new SettingsPanel('.settingsPanel')
     
   $.subscribe('toggleSettings', (event) ->
+    appearancePanel.contract()
+    settingsPanel.contract()
+    
     settingsPanel.toggleView()
   )
-
-  $('.settingsPanel .trigger').first().click( (event)->
-    $.publish('hidePanels');
+  
+  # iOS Device Fix
+  # Checks if the UserAgent is a iOS device
+  ua = navigator.userAgent
+  clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+  
+  $('.settingsPanel .trigger').first().bind( clickEvent, (event)->
     $.publish('toggleSettings', [this])
   )
   
@@ -19,15 +26,16 @@ window.setupMetaDropdowns = ->
   appearancePanel.displayBedsheets()
     
   $.subscribe('toggleAppearance', (event) ->
+    appearancePanel.contract()
+    settingsPanel.contract()
+    
     appearancePanel.toggleView()
   )
-
-  $('.appearancePanel .trigger').first().click( (event)->
-    $.publish('hidePanels');
+  
+  $('.appearancePanel .trigger').first().bind( clickEvent, (event)->
     $.publish('toggleAppearance', [this])
   )
   
-  # close all panels listener
   $.subscribe('hidePanels', (event) ->
     # close all .panel objects
     appearancePanel.contract()
