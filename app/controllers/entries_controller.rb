@@ -75,6 +75,7 @@ class EntriesController < ApplicationController
         ) 
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
+    # todo : ordering
   end
 
   def bedsheet
