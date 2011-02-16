@@ -13,7 +13,9 @@
 #entryField
 
   = form_for @entry do |f|
-
+    / HIDDEN FORM ELEMENTS
+    %input#bedsheetInput{type:"hidden", value:":bedsheetID", name:"bedsheet"}
+    
     / NEW ENTRY INPUT PANEL
     #newEntry
 
@@ -130,10 +132,10 @@
       #tagBrowse
         %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
       #tag-list.tag-list.ui-sortable.hidden
-        #empty-tag.tag_box.thumb-controls.hidden
+        #empty-tag.tag.tag_box.tag_what.hidden
           %span.tagContent
         - @entry.whats.each do |what|
-          .tag_box.thumb-controls
+          .tag_box.tag_what.tag
             %span.tagContent= what.name
           
         %br{style: 'clear: both;'}
