@@ -26,5 +26,7 @@
 
     / TAG CLOUD
     .tags
-      = tag_cloud
+      - Tag.with_class_sizes_for(entry.tags.limit(16)).each do |tag|
+        %div.TC.water{ class: "s-#{tag.class_size}" }= tag.noun.name
+
 
