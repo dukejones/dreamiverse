@@ -276,6 +276,88 @@
 
 
 
+// STREAM CONTEXT PANEL FILTERS
+#streamContextPanel
+  .wrapper
+    .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      +relative
+      +bold
+      +center
+      width: 182px
+      padding: 0 8px
+      margin: 4px 0 0
+      height: 30px
+      line-height: 30px
+      span
+        +left
+      img.icon
+        +left
+        margin: 8px 8px 0 0
+      img.arrow
+        +right
+        margin: 8px 0 0
+
+    .filterList
+      width: 198px
+      span, img
+        +left
+      img
+        margin: 8px 12px 0 8px
+
+
+
+    .starlightTab
+      img.icon
+        margin: 7px 8px 0 0
+
+      .starlightFilter
+        +round(8)
+        +right
+        +relative
+        +center
+        width: 70px
+        margin: 5px 0 0
+        height: 18px
+        line-height: 18px
+        padding: 0
+        span
+          float: none
+
+        .filterList
+          width: 70px
+          top: 0
+          left: 0
+
+
+// SHARED BETWEEN BOTH
+#contextPanel, #streamContextPanel
+  .wrapper
+    +relative
+    .filterList
+      +round(8)
+      +absolute
+      +pointer
+      top: 0
+      z-index: 1200
+      &:hover
+        +round(8)
+      .type
+        +center
+        +bold
+        height: 30px
+        line-height: 30px
+        +block
+        &.top:hover
+          +round(8)
+          +flat-bottom
+        &.bottom:hover
+          +round(8)
+          +flat-top
+
+
+
+
 
 // STREAM CONTEXT PANEL
 // COLORS
@@ -342,85 +424,7 @@
 
 
 
-// STREAM FILTERS
-#streamContextPanel
-  .wrapper
-    .entryFilter, .followFilter, .starlightTab
-      +round(8)
-      +relative
-      +bold
-      +center
-      width: 182px
-      padding: 0 8px
-      margin: 4px 0 0
-      height: 30px
-      line-height: 30px
-      span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      img.arrow
-        +right
-        margin: 8px 0 0
-
-    .filterList
-      width: 198px
-
-
-
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-
-      .starlightFilter
-        +round(8)
-        +right
-        +relative
-        +center
-        width: 70px
-        margin: 5px 0 0
-        height: 18px
-        line-height: 18px
-        padding: 0
-        span
-          float: none
-
-        .filterList
-          width: 70px
-          top: 0
-          left: 0
-
-
-// SHARED BETWEEN BOTH
-#contextPanel, #streamContextPanel
-  .wrapper
-    +relative
-    .filterList
-      +round(8)
-      +absolute
-      +pointer
-      top: 0
-      z-index: 1200
-      &:hover
-        +round(8)
-      .type
-        +center
-        +bold
-        height: 30px
-        line-height: 30px
-        +block
-        &.top:hover
-          +round(8)
-          +flat-bottom
-        &.bottom:hover
-          +round(8)
-          +flat-top
-
-
-
-
-// STREAM FILTER COLORS
+// STREAM CONTEXT PANEL FILTERS
 // COLORS
 .light
   #contextPanel, #streamContextPanel
