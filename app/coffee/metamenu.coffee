@@ -75,6 +75,18 @@ class MetaMenu
 
 # Appearance Model Subclass
 class AppearancePanel extends MetaMenu
+  constructor: (@name) ->
+    super(@name)
+    @setupThemeSelector()
+    
+  setupThemeSelector: ->
+    @$currentMenuPanel.find('.buttons .sun').click( (event) =>
+      $('#view_preference_theme').val('light')
+    )
+    @$currentMenuPanel.find('.buttons .moon').click( (event) =>
+      $('#view_preference_theme').val('dark')
+    )
+    
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])
@@ -82,10 +94,38 @@ class AppearancePanel extends MetaMenu
       
       @$currentMenuPanel.find('.bedsheets ul').html('');
       
+      # Add elements for each bedsheet returned
       for node in data
-        newElement = '<li><img src="/images/uploads/' + node.id + '-126x126.' + node.format + '"></li>'
+        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-120x120.' + node.format + '"></li>'
         @$currentMenuPanel.find('.bedsheets ul').append(newElement)
+      
+      @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
+        # SUPER TEMP
+        
+        bedsheetUrl = 'url("/images/uploads/originals/' + $(event.currentTarget).data('id') + '.jpg")'
+        $('#body').css('background-image', bedsheetUrl)
+        
+        if $('#view_preference_image_id').attr('name')?
+          @updateEntryBedsheet($(event.currentTarget).data('id'))
+        else
+          @updateUserBedsheet($(event.currentTarget).data('id'))
+          
+        
     )
+  
+  updateUserBedsheet: (@bedsheet_id)->
+    #alert "update user bedsheet api call :: " + bedsheet_id
+    $.ajax {
+      type: 'POST'
+      url: '/user/bedsheet'
+      data:
+        bedsheet_id: @bedsheet_id
+      success: (data, status, xhr) =>
+        success = true
+    }
+  
+  updateEntryBedsheet: (bedsheet_id)->
+    $('#view_preference_image_id').val(bedsheet_id)
   
 
 # Settings Model Subclass

@@ -259,22 +259,24 @@ function setupEvents(){
   })
   
   $('#entryOptions .date').unbind();
-  $('#entryOptions .date').toggle(function(){
-    $('.entryDateTime').slideDown();
-  }, function(){
-    $('.entryDateTime').slideUp();
+  $('#entryOptions .date, .dateTimeHeader').click(function(){
+    if($('.entryDateTime').css('display') == 'none'){
+      $('.entryDateTime').slideDown();
+    } else {
+      $('.entryDateTime').slideUp();
+    }
   })
   
   // Listen for paste in DREAM field
-  $("#entry_body").bind('paste', function(e) {
+  /*$("#entry_body").bind('paste', function(e) {
     // Get pasted link
-    var el = $(this);
+    // THIS NEEDS WORK!
     setTimeout(function() {
-      var text = $(el).val();
-      checkForPastedLink(text)
+      //var text = el.val();
+      //#checkForPastedLink(text)
     }, 100);
     
-  });
+  });*/
   
   // Listen for paste in LINK field
   $('.linkAdd').click(function() {

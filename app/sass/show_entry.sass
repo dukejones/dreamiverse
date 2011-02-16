@@ -1,3 +1,4 @@
+
 #entryField
 
   /*********** SHOW ENTRY SHARED STYLES***********/
@@ -15,12 +16,14 @@
     a.prev
       +round(16)
       +flat-right
+      +font(18)
     a.next
       +round(16)
       +flat-left
+      +font(18)
     .stream
       +flat-all
-    a.next, .stream, a.prev, .books, .type, .editEntry
+    a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -32,22 +35,20 @@
       +round(16)
       +left
       +cursor
-    a.next, .stream, a.prev, .books, .editEntry
+    a.next, .stream, a.prev, .books, .editEntry, .deleteEntry
       +right
     .books
       +round(8)
       margin-right: 8px
     a.editEntry
       +round(16)
-    a.editEntry:hover
-      +alpha(100)
-    .editEntry.confirm
-      margin-right: 16px
-    .editEntry.delete
+      +font(14)
+      margin-right: 12px
+    .deleteEntry
       +round(16)
-      margin-right: 4px
-      
-      
+      +font(12)
+      margin-right: 12px
+
 
     // HEADER IMAGE & TITLE
     .imageHeader
@@ -57,7 +58,46 @@
       +clear
       margin: 0
       height: 200px
-      background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +round(16)
+        +absolute
+        bottom: 12px
+        right: 12px
+        height: 32px
+        line-height: 32px
+        padding: 0 8px
+        img.starlight
+          +left
+          margin: 6px 4px 0 0
+        span
+          +left
+          color: #444
+        hr
+          +left
+          +alpha(20)
+          height: 28px
+          width: 1px
+          margin: 2px 0 0 8px
+        .love, .share, .repost
+          +left
+          +pointer
+          width: 28px
+          height: 32px
+        .love
+          background: url(/images/icons/love-16.png) no-repeat center
+        .love.selected
+          background: url(/images/icons/love-16-selected.png) no-repeat center
+        .share
+          background: url(/images/icons/share-16.png) no-repeat center
+        .share.selected
+          background: url(/images/icons/share-16-selected.png) no-repeat center
+        .repost
+          background: url(/images/icons/repost-24.png) no-repeat center
+        .repost.selected
+          background: url(/images/icons/repost-24-selected.png) no-repeat center
+
       .title
         +round(8)
         +flat-bottom
@@ -114,49 +154,10 @@
           img
             margin: 7px 8px 0 0
 
-      // INFO
-      .entryInfo
-        +clear
-        margin: 0
-        padding: 8px
-        .postTime, .postLocation, .love, .share, .repost, .starlight
-          +left
-        .postTime, .postLocation, .starlightCount, .shareOptions
-          +round(16)
-          height: 32px
-          line-height: 32px
-          padding: 0 12px
-          margin: 0 4px 0 0
-        .starlightCount
-          img.starlight
-            margin: 6px 8px 0 0
-        .starlightCount, .shareOptions
-          +right
-        .shareOptions
-          width: 86px
-          .love, .share, .repost
-            +pointer
-            width: 28px
-            height: 32px
-          .love
-            background: url(/images/icons/love-16.png) no-repeat center
-          .love.selected
-            background: url(/images/icons/love-16-selected.png) no-repeat center
-          .share
-            background: url(/images/icons/share-16.png) no-repeat center
-          .share.selected
-            background: url(/images/icons/share-16-selected.png) no-repeat center
-          .repost
-            background: url(/images/icons/repost-24.png) no-repeat center
-          .repost.selected
-            background: url(/images/icons/repost-24-selected.png) no-repeat center
-
-      // TAG - see NEW ENTRY TAG below
-      .entryTags
+      // TAG
+      .showTags
         padding: 8px
         margin: 0 0 8px
-        img.tagCheck
-          margin: 4px 0 0 6px
 
         .tagHeader
           +flat-right
@@ -192,17 +193,18 @@
             span
               color: green
 
-        .target
+          // POST TIME & LOCATION
+          .postTime, .postLocation
+            +round(16)
+            +right
+            +center
+            margin: 0 8px 0 0
+            height: 34px
+            line-height: 34px
+            padding: 0 8px
+
           #tag-list
-            #empty-tag, .tag_box
-              +round(8)
-              +left
-              +center
-              padding: 0 8px
-              color: #fff
-              height: 28px
-              line-height: 28px
-              margin: 8px 8px 0 0
+          // SEE ENTRIES.SASS
 
       // ANALYSIS
       .entryAnalysis
@@ -349,20 +351,28 @@
         +shine-light(18)
 
       a.editEntry
-        +alpha(60)
         +button-light
         +bevel-light
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      .deleteEntry
         +button-light
         +bevel-light
+        &:hover
+          +delete(15)
 
       .books
         +button-light
 
       // HEADER IMAGE & TITLE
       .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-light(50)
+          +border-light
+
         // MOOD ICON
         .moodIcon
           +button-light
@@ -385,13 +395,13 @@
             +button-light
             +bevel-light
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-light
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-light
+          +border-light
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-light
             +button-light
@@ -402,10 +412,6 @@
 
           .tagInput
             +input-light
-
-          .target
-            #tag-list
-              #empty-tag
 
         // ANALYSIS
         .entryAnalysis
@@ -440,6 +446,8 @@
             .save
               +shine-light(16)
               +button-light
+            textarea
+              color: #333
 
         .prevCommentWrap
           .avatar
@@ -472,20 +480,28 @@
         +shine-dark(18)
 
       a.editEntry
-        +alpha(60)
         +button-dark
         +bevel-dark
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      .deleteEntry
         +button-dark
         +bevel-dark
+        &:hover
+          +delete(15)
 
       .books
         +button-dark
 
       // HEADER IMAGE & TITLE
       .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-light(50)
+          +border-light
+
         // MOOD ICON
         .moodIcon
           +button-dark
@@ -508,13 +524,13 @@
             +button-dark
             +bevel-dark
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-dark
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-dark
+          +border-dark
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-dark
             +button-dark
@@ -525,10 +541,6 @@
 
           .tagInput
             +input-dark
-
-          .target
-            #tag-list
-              #empty-tag
 
       // ANALYSIS
       .entryAnalysis
@@ -563,6 +575,8 @@
             .save
               +shine-dark(16)
               +button-dark
+            textarea
+              color: #ddd
 
         .prevCommentWrap
           .avatar

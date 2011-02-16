@@ -182,7 +182,6 @@ class Tag
     #$.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) -> alert "Data Loaded: " + data
   removeTag: ->
     $.publish 'tags:remove', [@id]
-    alert @id
     $.ajax {
       type: 'DELETE'
       url: '/tags/what'

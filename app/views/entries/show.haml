@@ -23,8 +23,8 @@
     %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
+    %a.editEntry{href: edit_entry_path(@entry)} edit
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'deleteEntry'})
 
 
     / 
@@ -32,12 +32,36 @@
       .books.button.round-8 My Book of Dreams
 
     / HEADER IMAGE & TITLE
-    .imageHeader
+    .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
+
+      / TAG CLOUD
+      <div id="tagCloud-1075" class="tagCloud hidden">
+      <div class="TC s-1 water">hanging</div>
+      <div class="TC s-1 water">friend</div>
+      <div class="TC s-7 water">plans</div>
+      <div class="TC s-1 water">mystical</div>
+      <div class="TC s-7 water">future</div>
+      <div class="TC s-2 water">love</div>
+      <div class="TC s-8 water">friends</div>
+      <div class="TC s-2 water">joy</div>
+      <div class="TC s-1 water">make</div>
+      <div class="TC s-6 water">lost</div>
+      <div class="TC s-7 water">long</div>
+      </div>
 
       / MOOD ICON
       .moodIcon
         %img{src: '/images/moods/plants/Fungi.png'}
 
+      / STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        %img.starlight{src: '/images/icons/starlight-22.png'}
+        %span 23,243
+        %hr
+        .option.love.selected
+        .option.share
+        .option.repost.selected
+        
       .title= @entry.title
 
     .content
@@ -72,25 +96,12 @@
           %span Another Related Dream
         .clear
 
-      / INFO
-      .entryInfo
-        .postTime 2 hours ago
-        .postLocation Tokyo, Japan
-        .starlightCount
-          %img.starlight{src: '/images/icons/starlight-22.png'}
-          %span 23,243
-        .shareOptions
-          .option.love.selected
-          .option.share
-          .option.repost.selected
-        .clear
-      .clear
-
       / TAG
-      .entryTags
+      .showTags
         .tagHeader.headers
           tag
           %img{src: '/images/icons/tag-20.png'}
+
         .wrapper
           .tagInput.target
             %input#newTag{value: 'who/where/what'}
@@ -98,23 +109,28 @@
             %span +
             add
 
+          / POST TIME & LOCATION
+          .postTime 2 hours ago
+          .postLocation Tokyo, Japan
+
+
           #tag-list.tag-list.ui-sortable.target
 
             .tagWhat.tagNoImage
               %span Dolphin
-              .analysisIcon
+              .analysisIcon{style: 'background: url(/images/icons/analysis-16.png) no-repeat center'}
 
             .tagWhere
-              .whereIcon
+              .whereIcon{style: 'background: url(/images/icons/tagWhere-24.png) no-repeat center'}
               %span San Francisco
 
             .tagWho
-              .avatar
+              .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
               %span Xavi
-              .followStatus
+              .followStatus{style: 'background: url(/images/icons/friend-none-16.png) no-repeat center'}
 
             .tagWhat
-              .tagImage
+              .tagImage{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
               %span Tsunami
 
             .tagNoImage
@@ -125,10 +141,10 @@
             - @entry.whats.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
-            
-            %br{style: 'clear: both;'}
+
+            .clear
           #sorting
-          %br{style: 'clear: both'}
+          .clear
 
 
     / COMMENTS

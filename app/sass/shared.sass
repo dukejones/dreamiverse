@@ -6,7 +6,7 @@
   color: #333
 
 .dark
-  color: #fff
+  color: #ddd
 
 .light, .dark
   .button
@@ -75,10 +75,8 @@ a:active, a:focus
 .hoverLabel
   +hidden
   +absolute
-  bottom: -35px
   .offset-left
     +relative
-    left: 17px
     .offset-right
       +relative
       +user-select
@@ -88,7 +86,6 @@ a:active, a:focus
 
     .arrow
       +relative
-      background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
       width: 16px
       height: 11px
       margin: auto
@@ -96,19 +93,30 @@ a:active, a:focus
       +relative
       +round(4)
       +center
-      +transparent-dark(80)
-      +glow-dark(20)
       padding: 0 8px
       overflow: visible
-      color: #fff
+
 
 .settingsPanel, .appearancePanel, .addLocation, .date, .addTheme
   &:hover
     .hoverLabel
       display: block
 
-
-
+// COLORS
+.light .hoverLabel
+  .arrow
+    background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
+  .text
+    color: #000
+    +flat-light
+    +glow-light(20)
+.dark .hoverLabel
+  .arrow
+    background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
+  .text
+    color: #fff
+    +flat-dark
+    +glow-dark(20)
 
 
 
@@ -506,7 +514,8 @@ a:active, a:focus
   +round(8)
   right: 45px
   top: 64px
-  width: 334px 
+  width: 334px
+  z-index: 1400
 
   .arrow
     +relative
