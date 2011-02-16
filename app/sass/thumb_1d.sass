@@ -1,11 +1,12 @@
 @import mixins
 
 
-/******** 1D ENTRY THUMBS ********/
+/******** 1D ENTRY THUMBS - GENERAL & NO IMAGE ********/
 // STRUCTURE
 #entryField, #home
   .matrix
-    .thumb-1d
+
+    .thumb-1d, .noImage
       +round(16)
       +flat-bottom
       +flat-right
@@ -225,12 +226,49 @@
                 margin: 0
 
 
+    // 1D THUMBS - NO IMAGE
+    // STRUCTURE
+    .noImage
+      height: 164px
+
+    .noImage:hover
+      .left
+        h1.title
+          +block
+          margin: 52px 0 0 8px
+
+    .noImage
+      .left
+        h1.title
+          +absolute
+          display: none
+        h2.titleWatermark
+          +font(48)
+          +alpha(20)
+          +absolute
+          +overflow
+          height: 56px
+          margin: 32px 0 0 8px
+          font-weight: normal
+        p.text
+          +absolute
+          margin: 4px 8px 0 8px
+          top: 82px
+          height: 40px
+
+        // POST DETAILS
+        .details
+          +absolute
+          top: 138px
+
+
+
 // 1D ENTRY THUMBS
 // COLORS
 .light
   #entryField, #home
     .matrix
-      .thumb-1d
+      .thumb-1d, .noImage
         background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
         &:hover
           +glow-light(40)
@@ -262,7 +300,7 @@
 .dark
   #entryField, #home
     .matrix
-      .thumb-1d
+      .thumb-1d, .noImage
         background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
         &:hover
           +glow-dark(40)
@@ -271,6 +309,9 @@
         .left
 
           // USERNAME + AVATAR
+          .user
+            .name
+              color: #000
           .commentCount
             .counter
               +flat-dark
