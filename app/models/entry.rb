@@ -23,6 +23,7 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
+  accepts_nested_attributes_for :view_preference, :update_only => true
   
   has_and_belongs_to_many :images
   
@@ -52,8 +53,7 @@ class Entry < ActiveRecord::Base
   protected #######################
 
   def set_sharing_level
-    # sharing_level ||= user.default_sharing_level
-    # sharing_level ||= self::Sharing[:everyone]
+    sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
   end
 
 end

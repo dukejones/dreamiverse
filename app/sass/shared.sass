@@ -17,6 +17,12 @@
     width: 32px
     height: 32px
 
+.light
+  .spinner-small
+    background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
+.dark
+  .spinner-small
+    background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
 
 
 .notice, .alert
@@ -64,6 +70,48 @@ a:active, a:focus
 
 
 
+
+// HOVER DESCRIPTIONS
+.hoverLabel
+  +hidden
+  +absolute
+  bottom: -35px
+  .offset-left
+    +relative
+    left: 17px
+    .offset-right
+      +relative
+      +user-select
+      +right
+      font-weight: normal
+      left: -50%
+
+    .arrow
+      +relative
+      background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
+      width: 16px
+      height: 11px
+      margin: auto
+    .text
+      +relative
+      +round(4)
+      +center
+      +transparent-dark(80)
+      +glow-dark(20)
+      padding: 0 8px
+      overflow: visible
+      color: #fff
+
+.settingsPanel, .appearancePanel, .addLocation, .date, .addTheme
+  &:hover
+    .hoverLabel
+      display: block
+
+
+
+
+
+
 /*********** META MENU ***********/
 #drop_shadow
   +absolute
@@ -96,7 +144,7 @@ a:active, a:focus
 
 
 
-// HOME META MENU
+// META MENU PUBLIC
 #metaMenu.public
   +absolute
   top: 0

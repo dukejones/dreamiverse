@@ -13,7 +13,11 @@
 #entryField
 
   = form_for @entry do |f|
-
+    / HIDDEN FORM ELEMENTS
+    = fields_for (@entry.view_preference||ViewPreference.new) do |v|
+      = v.hidden_field 'image_id' # Bedsheet
+      = v.hidden_field 'theme'    # Currently 'light' or 'dark'
+    
     / NEW ENTRY INPUT PANEL
     #newEntry
 
@@ -86,10 +90,13 @@
 
         .addLocation
           %img{src: '/images/icons/location-21.png'}
-        .date.indent
+          = render partial: "shared/hover_label", locals: {message: "add your location"}
+        .date
           %img{src: '/images/icons/date-19.png'}
+          = render partial: "shared/hover_label", locals: {message: "date and time"}
         .addTheme
           %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance"}
 
         /
           NEW ENTRY SHARING
@@ -129,10 +136,10 @@
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
 
       #tag-list.tag-list.ui-sortable.hidden
-        #empty-tag.tag_box.thumb-controls.hidden
+        #empty-tag.tag.tag_box.tag_what.hidden
           %span.tagContent
         - @entry.whats.each do |what|
-          .tag_box.thumb-controls
+          .tag_box.tag_what.tag
             %span.tagContent= what.name
           
         %br{style: 'clear: both;'}
