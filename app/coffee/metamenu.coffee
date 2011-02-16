@@ -83,8 +83,15 @@ class AppearancePanel extends MetaMenu
       @$currentMenuPanel.find('.bedsheets ul').html('');
       
       for node in data
-        newElement = '<li><img src="/images/uploads/' + node.id + '-126x126.' + node.format + '"></li>'
+        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-120x120.' + node.format + '"></li>'
         @$currentMenuPanel.find('.bedsheets ul').append(newElement)
+      
+      @$currentMenuPanel.find('.bedsheets ul').find('li').click ->
+        # SUPER TEMP
+        bedsheetUrl = 'url("/images/uploads/originals/' + $(this).data('id') + '.jpg")'
+        $('#body').css('background-image', bedsheetUrl)
+        
+        $('#bedsheetInput').val($(this).data('id'))
     )
   
 
