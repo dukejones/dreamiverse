@@ -17,7 +17,10 @@
 
 .item.relationship
   .relation
-    = relationship.to_s.humanize.downcase
+    - if relationship == :none
+      follow
+    - else
+      = relationship.to_s.humanize.downcase
 
 
 

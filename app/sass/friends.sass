@@ -2,34 +2,30 @@
 @import context_panel
 
 // FRIEND'S LIST
+// STRUCTURE
 #friendField
 
-  .userNode:hover
-    .panel
-      box-shadow: 8px 8px 40px #000
-      -moz-box-shadow: 0 0 40px #000
-      -webkit-box-shadow: 2px 2px 40px #000
   .userNode.z-top
     z-index: 9999
 
   .userNode
+    +left
+    +pointer
+    +relative
     z-index: 90
-    position: relative
-    float: left
-    cursor: pointer
     width: 220px
     height: 70px
     margin: 0 12px 12px 0
 
     .status
-      position: absolute
-      float: right
+      +absolute
+      +right
+      +overflow
       margin: 0
       right: 8px
       top: 6px
       width: 16px
       height: 16px
-      overflow: hidden
       background: url(/images/icons/friend-stream-sprite.png) no-repeat
       // These class names correspond to the symbols returned by User#relationship_with.
       &.none
@@ -43,62 +39,69 @@
     .status, .avatar, .userInfo
       z-index: 102
     .statusHover
+      +absolute
+      +font(12)
+      +round(4)
       z-index: 101
-      position: absolute
-      font-size: 12px
       padding: 2px 24px 2px 4px
       margin: 0
       top: 4px
       right: 4px
 
     .avatar
-      position: absolute
+      +absolute
+      +overflow
+      +round(4)
       top: 4px
       left: 4px
       height: 60px
-      overflow: hidden
       width: 60px
       background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat
 
     .userInfo
-      position: absolute
+      +absolute
       top: 12px
       left: 74px
       width: auto
       h3
         margin: 0
       p
+        +font(10)
         color: #5C5C5C
-        font-size: 10px
         margin: 0
       p.mutual
         color: #262626 /* 90% Black */
         background-position: 0 100%
 
     .backdrop
+      +absolute
+      +round(8)
       z-index: 100
-      position: absolute
       height: 70px
       width: 100%
 
         
     // FRIEND'S LIST EXPANDED
     .panel
-      position: relative
+      +relative
+      +round(8)
       top: 0
       min-height: 70px
-      background-color: #adadad
       z-index: 99
       .expanded
-        position: relative
+        +relative
+        +round(8)
+        +inner-shadow(10)
         top: 70px
         padding: 8px 4px 2px
         .item
-          clear: both
+          +clear
           margin-bottom: 4px
           .label, .image, .detail
-            float: left
+            +left
           .label
+            +round(12)
+            +flat-right
             width: 68px
             height: 24px
             padding: 6px 8px
@@ -116,9 +119,39 @@
             img.follow
               margin: -12px 1px
           .detail
+            +bold
+            +round(12)
+            +flat-left
+            +inner-shadow(10)
             width: 72px
             height: 24px
             padding: 6px 8px
             line-height: 26px
-            font-weight: bold
             border: 0
+
+
+// COLORS
+.light
+  #friendField
+
+    .userNode
+      &:hover
+        .panel
+          +glow-light(40)
+
+      .statusHover
+        +bevel-light
+        +button-light
+
+      .avatar
+        +button-light
+
+      .backdrop
+        +bevel-light
+
+      .panel
+        background-color: #adadad
+        .expanded
+          .item
+            .label
+              +bevel-light
