@@ -62,9 +62,14 @@
       margin: 10px 0 0 10px
       border: none
     #entry_title
+      +font(21)
       width: 460px
       height: 26px
       line-height: 26px
+    hr
+      +alpha(50)
+      width: 662px
+      margin: 6px auto
     #entry_body
       width: 640px
       min-height: 134px
@@ -147,11 +152,11 @@
                 margin-right: 4px
               span.shareOn, span.shared, span.sharedWhen
                 color: #656565
+              span.sharedWhen, span.shared
+                margin-top: 2px
+                font-size: 11px
               span.shared
-                font-size: 11px
                 text-transform: uppercase
-              span.sharedWhen
-                font-size: 11px
 
         #entry_sharing_level
           +round(8)
@@ -362,16 +367,17 @@
   .entryTags
     #tag-list
       width: 660px
-      .tag_box
+      #empty-tag, .tag_box
+        +round(8)
+        +left
         +center
-        padding: 0 4px
+        padding: 0 8px
+        color: #fff
         height: 28px
         line-height: 28px
-        color: #262626 /* 90% Black */
         margin: 8px 8px 0 0
     .tagInputWrap
       +left
-      width: 520px
       height: 40px
       margin: 0 0 0 8px
       img
@@ -379,7 +385,7 @@
         margin: 0
       .tagInput
         +left
-        width: 480px
+        width: 534px
         height: 40px
         margin: 0
         background: url(/images/slices/inputContentLight-40.png) repeat-x
@@ -402,16 +408,7 @@
         margin: 5px 0
         span
           color: green
-    #tagBrowse
-      +round(8)
-      +right
-      width: 36px
-      height: 32px
-      margin: 0
-      padding: 4px 3px
-      border: 1px solid #C2C2C2
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
-      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
+
     .tag-who, .tag-where, .tag-what
       +center
       +round(8)
@@ -421,11 +418,6 @@
     .tag-who
       background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
       background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
-    .tag-list
-      +clear
-      #empty-tag, .tag_box
-        +round(8)
-        +left
 
   // NEW ENTRY LINKS
   .entryLinks
