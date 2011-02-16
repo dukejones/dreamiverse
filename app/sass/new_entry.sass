@@ -367,12 +367,14 @@
   .entryTags
     #tag-list
       width: 660px
-      .tag_box
+      #empty-tag, .tag_box
+        +round(8)
+        +left
         +center
-        padding: 0 4px
+        padding: 0 8px
+        color: #fff
         height: 28px
         line-height: 28px
-        color: #262626 /* 90% Black */
         margin: 8px 8px 0 0
     .tagInputWrap
       +left
@@ -426,11 +428,6 @@
     .tag-who
       background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
       background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
-    .tag-list
-      +clear
-      #empty-tag, .tag_box
-        +round(8)
-        +left
 
   // NEW ENTRY LINKS
   .entryLinks
