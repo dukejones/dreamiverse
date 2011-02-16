@@ -120,10 +120,10 @@
             .tagNoImage
               %span Just Text
 
-            #empty-tag.hidden
+            #empty-tag.tag.hidden
               %span.tagContent
             - @entry.whats.each do |what|
-              .tag_box.thumb-controls
+              .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
             
             %br{style: 'clear: both;'}

@@ -1312,6 +1312,7 @@ getQueryValue = function(name,defaultValue) {
 
 function initialize_addTag_button(buttonIdd, inputIdd, tagType) {     
   // When click '+ Follow *add* tag'
+  //alert('add tag')
   $(buttonIdd).click(function() {
     //alert('clicked : ' + $(inputIdd).val() + ' / ' + $('#IB_tagText').val())
     addTagToList( $(inputIdd).val(), tagType, inputIdd );
@@ -1492,7 +1493,7 @@ var checkForParams = function(){
 function initImageBank(_sectionFilter){
   // set sectionFilter
   sectionFilter = _sectionFilter;
-  
+  alert('init image bank')
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
   
@@ -1525,11 +1526,13 @@ function initImageBank(_sectionFilter){
   $('.browseBars').click(function(){
       closeImagebank();
     });
+    
+  $('#IB_browser_frame').fadeIn()
 }
 
 $(document).ready(function() {
   
-
+  initImageBank('Library')
   // Set up tag list sortability
   /*$( "#tag-list" ).sortable( {
     distance: 10,
