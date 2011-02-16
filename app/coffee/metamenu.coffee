@@ -19,6 +19,7 @@ window.setupMetaDropdowns = ->
   clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
   
   $('.settingsPanel .trigger').first().bind( clickEvent, (event)->
+    alert "clicked"
     $.publish('toggleSettings', [this])
   )
   
