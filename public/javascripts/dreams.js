@@ -259,10 +259,12 @@ function setupEvents(){
   })
   
   $('#entryOptions .date').unbind();
-  $('#entryOptions .date').toggle(function(){
-    $('.entryDateTime').slideDown();
-  }, function(){
-    $('.entryDateTime').slideUp();
+  $('#entryOptions .date, .dateTimeHeader').click(function(){
+    if($('.entryDateTime').css('display') == 'none'){
+      $('.entryDateTime').slideDown();
+    } else {
+      $('.entryDateTime').slideUp();
+    }
   })
   
   // Listen for paste in DREAM field
