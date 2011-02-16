@@ -1493,7 +1493,6 @@ var checkForParams = function(){
 function initImageBank(_sectionFilter){
   // set sectionFilter
   sectionFilter = _sectionFilter;
-  alert('init image bank')
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
   
