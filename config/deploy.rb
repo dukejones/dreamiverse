@@ -21,7 +21,7 @@ set :deploy_to, "/var/www/#{application}"
 
 after "deploy", "deploy:cleanup"
 after "deploy", "uploads:symlink"
-after "deploy", "deploy:migrate"
+# after "deploy", "deploy:migrate"
 after "deploy", "barista:brew"
 
 namespace :deploy do
