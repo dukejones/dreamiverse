@@ -90,10 +90,13 @@
 
         .addLocation
           %img{src: '/images/icons/location-21.png'}
-        .date.indent
+          = render partial: "shared/hover_label", locals: {message: "add your location"}
+        .date
           %img{src: '/images/icons/date-19.png'}
+          = render partial: "shared/hover_label", locals: {message: "date and time"}
         .addTheme
           %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance"}
 
         /
           NEW ENTRY SHARING
