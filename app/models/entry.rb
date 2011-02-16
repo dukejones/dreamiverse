@@ -23,7 +23,7 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
-  accepts_nested_attributes_for :view_preference, :update_only => truef
+  accepts_nested_attributes_for :view_preference, :update_only => true
   
   has_and_belongs_to_many :images
   
