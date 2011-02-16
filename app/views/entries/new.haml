@@ -14,7 +14,7 @@
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
-    = fields_for @entry.view_preference do |v|
+    = fields_for (@entry.view_preference||ViewPreference.new) do |v|
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
     

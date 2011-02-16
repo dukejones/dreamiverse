@@ -53,8 +53,7 @@ class Entry < ActiveRecord::Base
   protected #######################
 
   def set_sharing_level
-    # sharing_level ||= user.default_sharing_level
-    # sharing_level ||= self::Sharing[:everyone]
+    sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
   end
 
 end

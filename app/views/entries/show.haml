@@ -38,6 +38,15 @@
       .moodIcon
         %img{src: '/images/moods/plants/Fungi.png'}
 
+      / STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        %img.starlight{src: '/images/icons/starlight-22.png'}
+        %span 23,243
+        %hr
+        .option.love.selected
+        .option.share
+        .option.repost.selected
+        
       .title= @entry.title
 
     .content
@@ -76,14 +85,6 @@
       .entryInfo
         .postTime 2 hours ago
         .postLocation Tokyo, Japan
-        .starlightCount
-          %img.starlight{src: '/images/icons/starlight-22.png'}
-          %span 23,243
-        .shareOptions
-          .option.love.selected
-          .option.share
-          .option.repost.selected
-        .clear
       .clear
 
       / TAG
