@@ -60,7 +60,7 @@ class Entry < ActiveRecord::Base
     n = Nephele.new
     n.process_single_entry_tags(self)
   end
-    
+       
   protected #######################
 
   def set_sharing_level

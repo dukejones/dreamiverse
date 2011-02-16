@@ -14,6 +14,7 @@ class Tag < ActiveRecord::Base
     end
     tags
   end
+
   
 private
   # returns a number: 1-8
@@ -21,5 +22,5 @@ private
     score_range = (max_score == min_score) ? 1 : (max_score - min_score)
     scaling_factor = (8 - 1) / score_range
     (((score-min_score) * scaling_factor) + 1).to_i
-  end
+  end  
 end
