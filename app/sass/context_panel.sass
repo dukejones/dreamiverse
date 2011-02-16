@@ -13,7 +13,16 @@
   width: 200px
   padding: 4px
   border: 1px solid #000
-
+  #avatarDrop
+    +round(12)
+    width: 200px
+    height: 266px
+    #avatarDropContainer
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      color: #fff
   .avatar
     +round(12)
     +block
@@ -46,7 +55,6 @@
         +alpha(100)
         +inner-glow(20)
         border: 1px solid transparent
-
     .uploader
       +round(12)
       +transparent-dark(80)
@@ -68,6 +76,10 @@
           +right
         &:hover
           +alpha(100)
+        .cancel
+          cursor: pointer
+      .dropboxBrowse
+        color: #fff
 
   .context
     +round(12)

@@ -1,3 +1,7 @@
+- content_for :foot do
+  = coffeescript_include_tag 'avatar'
+  = javascript_include_tag 'avataruploader'
+  
 / CONTEXT PANEL
 #contextPanel
 
@@ -5,18 +9,15 @@
   %a.avatar{href: entries_path(user.username), style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
     - if user == current_user
 
-      - content_for :foot do
-        = javascript_include_tag 'context_panel'
 
       .uploadAvatarWrap.hidden
         .uploadAvatar
           <span>+</span> upload new avatar
-      .uploader
+      #avatarDrop.uploader.hidden
         .text drag new image here
         .browse
-          .toggle browse for a file
           .cancel cancel
-          %input{type: "file", name: "newAvatar"}
+          .dropboxBrowse browse
 
 
   - if user == current_user

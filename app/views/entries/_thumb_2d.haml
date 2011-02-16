@@ -10,7 +10,7 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .date= entry.created_at
+      .date= time_ago_in_words(entry.created_at)
       .location dream location
     .detailsBottom
       .newComments
