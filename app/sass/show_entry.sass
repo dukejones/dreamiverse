@@ -58,6 +58,45 @@
       margin: 0
       height: 200px
       background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +round(16)
+        +absolute
+        bottom: 12px
+        right: 12px
+        height: 32px
+        line-height: 32px
+        padding: 0 8px
+        img.starlight
+          +left
+          margin: 6px 4px 0 0
+        span
+          +left
+        hr
+          +left
+          +alpha(20)
+          height: 28px
+          width: 1px
+          margin: 2px 0 0 8px
+        .love, .share, .repost
+          +left
+          +pointer
+          width: 28px
+          height: 32px
+        .love
+          background: url(/images/icons/love-16.png) no-repeat center
+        .love.selected
+          background: url(/images/icons/love-16-selected.png) no-repeat center
+        .share
+          background: url(/images/icons/share-16.png) no-repeat center
+        .share.selected
+          background: url(/images/icons/share-16-selected.png) no-repeat center
+        .repost
+          background: url(/images/icons/repost-24.png) no-repeat center
+        .repost.selected
+          background: url(/images/icons/repost-24-selected.png) no-repeat center
+
       .title
         +round(8)
         +flat-bottom
@@ -119,39 +158,16 @@
         +clear
         margin: 0
         padding: 8px
-        .postTime, .postLocation, .love, .share, .repost, .starlight
+        .postTime, .postLocation
           +left
-        .postTime, .postLocation, .starlightCount, .shareOptions
+        .postTime, .postLocation
           +round(16)
           height: 32px
           line-height: 32px
           padding: 0 12px
           margin: 0 4px 0 0
-        .starlightCount
-          img.starlight
-            margin: 6px 8px 0 0
-        .starlightCount, .shareOptions
-          +right
-        .shareOptions
-          width: 86px
-          .love, .share, .repost
-            +pointer
-            width: 28px
-            height: 32px
-          .love
-            background: url(/images/icons/love-16.png) no-repeat center
-          .love.selected
-            background: url(/images/icons/love-16-selected.png) no-repeat center
-          .share
-            background: url(/images/icons/share-16.png) no-repeat center
-          .share.selected
-            background: url(/images/icons/share-16-selected.png) no-repeat center
-          .repost
-            background: url(/images/icons/repost-24.png) no-repeat center
-          .repost.selected
-            background: url(/images/icons/repost-24-selected.png) no-repeat center
 
-      // TAG - see NEW ENTRY TAG below
+      // TAG
       .entryTags
         padding: 8px
         margin: 0 0 8px
@@ -363,6 +379,12 @@
 
       // HEADER IMAGE & TITLE
       .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-light(50)
+          +border-light
+
         // MOOD ICON
         .moodIcon
           +button-light
@@ -486,6 +508,12 @@
 
       // HEADER IMAGE & TITLE
       .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-light(50)
+          +border-light
+
         // MOOD ICON
         .moodIcon
           +button-dark
