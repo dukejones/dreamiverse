@@ -2,11 +2,10 @@
 .userNode{:userId => friend.id, :relationshipWith => current_user.relationship_with(friend)}
 
   .status{:class => current_user.relationship_with(friend)}
-  .statusHover.bevel.button.round-4.hidden
+  .statusHover.hidden
     %span unfollow
 
-
-  .avatar.button.round-4
+  .avatar.button
 
   .userInfo
     %h3= friend.name
@@ -15,7 +14,7 @@
       - mutual_followers = (user.followers & friend.followers).count
       = pluralize(mutual_followers, "mutual follower")
 
-  .backdrop.bevel.round-8
+  .backdrop
 
   .panel.round-8
     .expanded.inner-shadow-10.round-8.hidden
@@ -37,4 +36,3 @@
           %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
         .detail.inner-shadow-10.round-12.flat-left= friend.friends.count
         .clear
-        

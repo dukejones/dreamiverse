@@ -48,25 +48,6 @@
         border: 1px solid transparent
 
 
-  /* DREAM STREAM AVATAR AND USER DETAILS */
-  .avatar-64
-    +block
-    width: 64px
-    height: 64px
-    position: relative
-  .userInfo
-    +block
-    position: absolute
-    top: 30px
-    left: 78px
-    width: auto
-    h3
-      margin: 0
-    p
-      font-size: 10px
-      margin: 0
-
-
   .context
     +round(12)
     +flat-bottom
@@ -76,6 +57,9 @@
     margin: 4px 0 2px
     padding: 4px 8px
     font-size: 21px
+    .icon
+      right: 20px
+      top: 18px
 
 
   .relation, .changeRelation, .context
@@ -148,6 +132,9 @@
         top: -23px      
 
 
+    .changeRelation.follow.hidden, .changeRelation.unfollow.hidden
+      +hidden
+
     .changeRelation.follow, .changeRelation.unfollow
       +block
       +round(12)
@@ -155,19 +142,22 @@
       color: #fff
 
     .changeRelation.follow
-      border: 1px solid #54943d
-      background: -webkit-gradient(linear, left top, left bottom, from(#70d03b), to(#235b1b))
-      background: -moz-linear-gradient(top, #70d03b, #235b1b)
-      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      +save(16)
     .changeRelation.unfollow
-      border: 1px solid #c1633c
-      background: -webkit-gradient(linear, left top, left bottom, from(#ee7c44), to(#8b2e12))
-      background: -moz-linear-gradient(top, #ee7c44, #8b2e12)
-      box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -moz-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
-      -webkit-box-shadow: inset 0px 14px rgba(255,255,255,0.1)
+      +delete(16)
+
+
+// FILTERS
+#contextPanel
+  .wrapper
+    .entryFilter
+      .value
+        font-weight: normal
+      img.arrow
+        +right
+        margin: 4px -4px 0 -8px
+    .filterList
+      width: 100px
 
 
 // CONTEXT PANEL
@@ -189,10 +179,6 @@
       .label
         border: 1px solid #848484
 
-    .changeRelation.follow, .changeRelation.unfollow
-      +button-light
-      +shine-light-alpha(16)
-
 
 
 
@@ -210,9 +196,6 @@
       +transparent-dark(50)
       .label
         border: 1px solid #555
-    .changeRelation.follow, .changeRelation.unfollow
-      +button-dark
-      +shine-dark-alpha(16)
 
 
 
@@ -235,6 +218,7 @@
   width: 200px
   padding: 4px
   border: 1px solid #000
+
 
   // USER INFO
   .userInfo
@@ -357,10 +341,15 @@
 
 
 
+
 // STREAM FILTERS
 #streamContextPanel
   .wrapper
     .entryFilter, .followFilter, .starlightTab
+      +round(8)
+      +relative
+      +bold
+      +center
       width: 182px
       padding: 0 8px
       margin: 4px 0 0
@@ -378,31 +367,35 @@
     .filterList
       width: 198px
 
-#contextPanel
-  .wrapper
-    .entryFilter
-      .value
-        font-weight: normal
-      img.arrow
-        +right
-        margin: 4px -4px 0 -8px
-    .filterList
-      width: 100px
 
-
-#contextPanel, #streamContextPanel
-  .wrapper
-    +relative
-    .entryFilter, .followFilter, .starlightTab
-      +round(8)
-      +relative
-      +bold
-      +center
 
     .starlightTab
       img.icon
         margin: 7px 8px 0 0
 
+      .starlightFilter
+        +round(8)
+        +right
+        +relative
+        +center
+        width: 70px
+        margin: 5px 0 0
+        height: 18px
+        line-height: 18px
+        padding: 0
+        span
+          float: none
+
+        .filterList
+          width: 70px
+          top: 0
+          left: 0
+
+
+// SHARED BETWEEN BOTH
+#contextPanel, #streamContextPanel
+  .wrapper
+    +relative
     .filterList
       +round(8)
       +absolute
@@ -424,24 +417,7 @@
           +round(8)
           +flat-top
 
-    .starlightTab
-      .starlightFilter
-        +round(8)
-        +right
-        +relative
-        +center
-        width: 70px
-        margin: 5px 0 0
-        height: 18px
-        line-height: 18px
-        padding: 0
-        span
-          float: none
 
-        .filterList
-          width: 70px
-          top: 0
-          left: 0
 
 
 // STREAM FILTER COLORS
