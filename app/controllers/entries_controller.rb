@@ -74,7 +74,7 @@ class EntriesController < ApplicationController
           { user: { following: current_user, followers: current_user} }
         ) 
       )
-    ).joins(:user.outer => [:following.outer, :followers.outer])
+    ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   end
 
   def bedsheet
