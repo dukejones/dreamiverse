@@ -1,3 +1,4 @@
+
 #entryField
 
   /*********** SHOW ENTRY SHARED STYLES***********/
@@ -15,12 +16,14 @@
     a.prev
       +round(16)
       +flat-right
+      +font(18)
     a.next
       +round(16)
       +flat-left
+      +font(18)
     .stream
       +flat-all
-    a.next, .stream, a.prev, .books, .type, .editEntry
+    a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -32,20 +35,19 @@
       +round(16)
       +left
       +cursor
-    a.next, .stream, a.prev, .books, .editEntry
+    a.next, .stream, a.prev, .books, .editEntry, .deleteEntry
       +right
     .books
       +round(8)
       margin-right: 8px
     a.editEntry
       +round(16)
-    a.editEntry:hover
-      +alpha(100)
-    .editEntry.confirm
-      margin-right: 16px
-    .editEntry.delete
+      +font(14)
+      margin-right: 12px
+    .deleteEntry
       +round(16)
-      margin-right: 4px
+      +font(12)
+      margin-right: 12px
 
 
     // HEADER IMAGE & TITLE
@@ -71,6 +73,7 @@
           margin: 6px 4px 0 0
         span
           +left
+          color: #444
         hr
           +left
           +alpha(20)
@@ -348,14 +351,16 @@
         +shine-light(18)
 
       a.editEntry
-        +alpha(60)
         +button-light
         +bevel-light
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      .deleteEntry
         +button-light
         +bevel-light
+        &:hover
+          +delete(15)
 
       .books
         +button-light
@@ -441,6 +446,8 @@
             .save
               +shine-light(16)
               +button-light
+            textarea
+              color: #333
 
         .prevCommentWrap
           .avatar
@@ -473,14 +480,16 @@
         +shine-dark(18)
 
       a.editEntry
-        +alpha(60)
         +button-dark
         +bevel-dark
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      .deleteEntry
         +button-dark
         +bevel-dark
+        &:hover
+          +delete(15)
 
       .books
         +button-dark
@@ -566,6 +575,8 @@
             .save
               +shine-dark(16)
               +button-dark
+            textarea
+              color: #ddd
 
         .prevCommentWrap
           .avatar

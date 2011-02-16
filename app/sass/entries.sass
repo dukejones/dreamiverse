@@ -462,8 +462,6 @@
     padding: 0
 
     // GENERAL TAG STYLES
-    .stream_tag:hover
-      border: 1px solid #fff
     .stream_tag
       +pointer
       +left
@@ -472,6 +470,8 @@
       margin: 10px 10px 0
       padding: 0
       border: 1px solid transparent
+      &:hover
+        +border-light
       span
         +left
         +bold
@@ -499,6 +499,7 @@
       height: 32px
       line-height: 32px
       background-color: #fff
+      color: #333
       .avatar, .whereIcon, .tagImage
         +round(8)
         +flat-right
