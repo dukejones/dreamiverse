@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def index
     @top_images = [
-      "", # so its index starts at 1
       "dreamstars-1-128.png",
       "dreamstars-2-128.png",
       "dreamstars-3-128.png",
@@ -47,7 +46,8 @@ class UsersController < ApplicationController
   end
   
   def bedsheet
-    @user = User.find(params[:id])
+    @user = current_user
+    # @user = User.find(params[:id])
     @user.view_preference.image = Image.find(params[:bedsheet_id])
     @user.save!
     render :json => "user bedsheet updated"

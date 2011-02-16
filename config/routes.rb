@@ -68,6 +68,7 @@ Dreamcatcher::Application.routes.draw do
     collection do
       post 'bedsheet'
     end
+    resources :comments
   end
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
