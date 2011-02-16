@@ -24,14 +24,18 @@
     .settingsPanel.wrapper
       .item.account.trigger
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
-      / APPEARANCE PANEL
-      = render :partial => "layouts/settings_panel"
+        = render partial: "shared/hover_label", locals: {message: "settings"}
+
+      / SETTINGS PANEL
+      = render partial: "layouts/settings_panel"
 
     .appearancePanel.wrapper
       .item.appearance.trigger
         %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
+        = render partial: "shared/hover_label", locals: {message: "appearance"}
+
       / APPEARANCE PANEL
-      = render :partial => "layouts/appearance_panel"
+      = render partial: "layouts/appearance_panel"
 
   / ADMIN LINK
   %a.adminLink{href: '/admin'}
