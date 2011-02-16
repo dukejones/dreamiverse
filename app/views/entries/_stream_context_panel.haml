@@ -8,13 +8,13 @@
     .infoRight
       %a.userName{href: '/'}
         %h3= user.username
-      .clear-both
+      .clear
 
       .following
-        .count 142
+        .count= user.following.count
         following
       .followers
-        .count 142,342
+        .count= user.followers.count
         followers
 
   / LABEL
@@ -59,18 +59,18 @@
 
   .wrapper
 
-    .starlightTab.round-8
+    .starlightTab.trigger.slideArrow.round-8
       %img.icon{src: '/images/icons/starlight-17.png'}
       %span starlight
-      .starlightFilter.trigger.slideArrow
-        %span.value hi
+      .starlightFilter
+        %span.value all
         .filterList.target.slideArrow.hidden
           .type.top
             %span hi
           .type
             %span medium
           .type.bottom
-            %span low
+            %span all
 
 
 

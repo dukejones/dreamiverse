@@ -167,7 +167,7 @@
           option
             padding: 1px 4px
 
-    .myBooks, .date, .addLocation, #entry_submit
+    .myBooks, .addTheme, .date, .addLocation, #entry_submit
       +round(16)
       +center
       +pointer
@@ -183,13 +183,14 @@
         +left
         margin: 9px 0 0 14px
 
-    .date, .addLocation
+    .addTheme, .date, .addLocation
       width: 42px
-      img
-        margin: 9px 0 0
-    .addLocation
-      img
-        margin: 7px 0 0
+    .addTheme img
+      margin: 0
+    .date img
+      margin: 9px 0 0
+    .addLocation img
+      margin: 7px 0 0
     .addLocation.selected
       border: 1px solid #333
     #entry_submit
@@ -693,7 +694,7 @@
         &:hover
           +save(16)
 
-      .myBooks, .addLocation, .date
+      .myBooks, .addTheme, .addLocation, .date
         +indent-light
         +button-light
 
@@ -815,7 +816,7 @@
         &:hover
           +save(16)
 
-      .myBooks, .sharing, .addLocation, .date
+      .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
         +button-dark
 

@@ -2,19 +2,17 @@
 
   / INTRO MENU
   .leftPanel
-    %a.item{href: stream_path}
-      stream
-    %a.item{href: entries_path(current_user.username)}
-      my dreams
     %a.item{href: '/dreamstars'}
       dreamstars
-
+    %a.item{href: entries_path(current_user.username)}
+      my dreams
+    %a.item{href: stream_path}
+      stream
 
 
   / LOG OUT
   %a.logOut{href: '/logout'}
     log out
-
 
 
   / SETTINGS MENU

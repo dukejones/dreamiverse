@@ -1,11 +1,10 @@
 = coffeescript_include_tag 'metamenu', 'dreamplugs'
 / HEADER
 #report_box
-  / = VERSION
+  = VERSION
 
-#logo
-  %a{href: '/'}
-    %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
+%a#logo{href: root_path}
+  %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
 
 - if current_user.blank?
   / META MENU - PUBLIC

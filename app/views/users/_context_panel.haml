@@ -34,21 +34,10 @@
     / FOLLOW
     = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
-    
-    
-  / CONTEXT ITEMS
-  .item
-    .label starlight
-    .image
-      %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-    .detail
-      = user.starlight._?.value || 0
-    .clear
 
-
+  / FILTER BY ENTRY TYPE
   .wrapper
 
-    / FILTER BY ENTRY TYPE
     .item.entryFilter.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
@@ -69,10 +58,9 @@
 
 
 
-
+  / FILTER BY FRIENDS
   .wrapper
 
-    / FILTER BY ENTRY TYPE
     .item.entryFilter.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
@@ -91,3 +79,24 @@
       %a.type.bottom{href: followers_path(user.username)}
         %span followers
 
+
+  / FILTER BY starlight
+  .wrapper
+
+    .item.entryFilter.trigger.slideArrow
+      .label
+        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+        %span.value starlight
+      .image
+        %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+      .detail
+        = user.starlight._?.value || 0
+      .clear
+
+    .filterList.target.slideArrow.hidden
+      %a.type.top{href: ""}
+        %span high
+      %a.type{href: ""}
+        %span low
+      %a.type.bottom{href: ""}
+        %span no filter
