@@ -4,6 +4,6 @@ class AddUserIdToTags < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :tags, :score
+    remove_column :tags, :user_id
   end
 end

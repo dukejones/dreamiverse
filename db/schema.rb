@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215231604) do
+ActiveRecord::Schema.define(:version => 20110215223507) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20110215231604) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "entry_id"
-    t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -56,11 +55,6 @@ ActiveRecord::Schema.define(:version => 20110215231604) do
     t.datetime "updated_at"
     t.string   "type",          :default => "Dream"
     t.integer  "sharing_level"
-  end
-
-  create_table "entries_images", :id => false, :force => true do |t|
-    t.integer "entry_id"
-    t.integer "image_id"
   end
 
   create_table "entry_accesses", :force => true do |t|
