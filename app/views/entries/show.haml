@@ -23,8 +23,8 @@
     %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
+    %a.editEntry{href: edit_entry_path(@entry)} edit
+    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'deleteEntry'})
 
 
     / 
