@@ -8,7 +8,7 @@
   .avatar.button
 
   .userInfo
-    %h3= friend.name
+    %h3= friend.username
     %p friend's location
     %p.mutual
       - mutual_followers = (user.followers & friend.followers).count
@@ -16,23 +16,23 @@
 
   .backdrop
 
-  .panel.round-8
-    .expanded.inner-shadow-10.round-8.hidden
+  .panel
+    .expanded.hidden
       .item
-        .label.bevel.round-12.flat-right dreams
+        .label dreams
         .image
           %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
-        .detail.inner-shadow-10.round-12.flat-left= friend.entries.count
+        .detail= friend.entries.count
         .clear
       .item
-        .label.bevel.round-12.flat-right starlight
+        .label starlight
         .image
           %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-        .detail.inner-shadow-10.round-12.flat-left= friend.starlight._?.value || 0
+        .detail= friend.starlight._?.value || 0
         .clear
       .item
-        .label.bevel.round-12.flat-right friends
+        .label friends
         .image
           %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
-        .detail.inner-shadow-10.round-12.flat-left= friend.friends.count
+        .detail= friend.friends.count
         .clear

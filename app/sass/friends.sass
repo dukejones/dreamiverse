@@ -5,11 +5,6 @@
 // STRUCTURE
 #friendField
 
-  .userNode:hover
-    .panel
-      box-shadow: 8px 8px 40px #000
-      -moz-box-shadow: 0 0 40px #000
-      -webkit-box-shadow: 2px 2px 40px #000
   .userNode.z-top
     z-index: 9999
 
@@ -92,7 +87,6 @@
       +round(8)
       top: 0
       min-height: 70px
-      background-color: #adadad
       z-index: 99
       .expanded
         +relative
@@ -137,24 +131,27 @@
 
 
 // COLORS
-.userNode
-  .status
-    &.friends
-    &.following
-    &.followed_by
-    &.none
-  .statusHover
-    +bevel-light
-    +button-light
+.light
+  #friendField
 
-  .avatar
-    +button-light
+    .userNode
+      &:hover
+        .panel
+          +glow-light(40)
 
-  .backdrop
-    +bevel-light
+      .statusHover
+        +bevel-light
+        +button-light
 
-  .panel
-    .expanded
-      .item
-        .label
-          +bevel-light
+      .avatar
+        +button-light
+
+      .backdrop
+        +bevel-light
+
+      .panel
+        background-color: #adadad
+        .expanded
+          .item
+            .label
+              +bevel-light
