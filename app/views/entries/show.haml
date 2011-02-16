@@ -81,23 +81,23 @@
           %span Another Related Dream
         .clear
 
-      / INFO
-      .entryInfo
-        .postTime 2 hours ago
-        .postLocation Tokyo, Japan
-      .clear
-
       / TAG
-      .entryTags
+      .showTags
         .tagHeader.headers
           tag
           %img{src: '/images/icons/tag-20.png'}
+
         .wrapper
           .tagInput.target
             %input#newTag{value: 'who/where/what'}
           .tagThisEntry.trigger
             %span +
             add
+
+          / POST TIME & LOCATION
+          .postTime 2 hours ago
+          .postLocation Tokyo, Japan
+
 
           #tag-list.tag-list.ui-sortable.target
 
@@ -126,10 +126,10 @@
             - @entry.whats.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
-            
-            %br{style: 'clear: both;'}
+
+            .clear
           #sorting
-          %br{style: 'clear: both'}
+          .clear
 
 
     / COMMENTS

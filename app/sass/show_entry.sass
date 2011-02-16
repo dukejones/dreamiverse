@@ -153,26 +153,10 @@
           img
             margin: 7px 8px 0 0
 
-      // INFO
-      .entryInfo
-        +clear
-        margin: 0
-        padding: 8px
-        .postTime, .postLocation
-          +left
-        .postTime, .postLocation
-          +round(16)
-          height: 32px
-          line-height: 32px
-          padding: 0 12px
-          margin: 0 4px 0 0
-
       // TAG
-      .entryTags
+      .showTags
         padding: 8px
         margin: 0 0 8px
-        img.tagCheck
-          margin: 4px 0 0 6px
 
         .tagHeader
           +flat-right
@@ -208,8 +192,18 @@
             span
               color: green
 
-        .target
+          // POST TIME & LOCATION
+          .postTime, .postLocation
+            +round(16)
+            +right
+            +center
+            margin: 0 8px 0 0
+            height: 34px
+            line-height: 34px
+            padding: 0 8px
+
           #tag-list
+            +clear
             #empty-tag, .tag_box
               +round(8)
               +left
@@ -407,13 +401,13 @@
             +button-light
             +bevel-light
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-light
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-light
+          +border-light
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-light
             +button-light
@@ -536,13 +530,13 @@
             +button-dark
             +bevel-dark
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-dark
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-dark
+          +border-dark
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-dark
             +button-dark
