@@ -18,6 +18,7 @@ window.setupDreamplugs = ->
   $('.trigger.slideArrow').click( (event) ->
     $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
     $toggleText = $(event.currentTarget).find('.value')
+    $toggleIcon = $(event.currentTarget).find('.icon')
     
     offsetSize = 30
     
@@ -36,6 +37,9 @@ window.setupDreamplugs = ->
       $newTargetSlideArrow.find('.type').unbind()
       $newTargetSlideArrow.find('.type').click( (event) ->
         $('#bodyClick').remove()
+        
+        newIcon = $(event.currentTarget).find('img').attr('src')
+        $toggleIcon.attr('src', newIcon)
         
         newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
