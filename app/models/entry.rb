@@ -55,6 +55,10 @@ class Entry < ActiveRecord::Base
     return if view_preference
     self.view_preference = user.view_preference.clone!
   end
+  
+  def everyone?
+    sharing_level == self.class::Sharing[:everyone]
+  end
 
   protected #######################
 

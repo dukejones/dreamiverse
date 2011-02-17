@@ -101,6 +101,7 @@ class EntriesController < ApplicationController
   
   # requires @entry be set
   def restrict_access
+    return if @entry.everyone?
     deny if !current_user || !current_user.can_access?(@entry)
   end
 
