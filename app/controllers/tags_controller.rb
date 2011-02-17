@@ -14,7 +14,7 @@ class TagsController < ApplicationController
   def destroy
     # noun_type is currently always 'what'
     what = What.find(params[:what_id])
-    Tag.destroy!(entry_id: params[:entry_id], noun: what)
+    tag = Tag.where(entry_id: params[:entry_id], noun_id: params[:what_id], noun_type: 'What')
 
     tag.destroy!
     
