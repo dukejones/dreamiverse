@@ -170,12 +170,12 @@ class Tag
   constructor: (name, id = '') ->
     @name = name
     @id = id
-    @showEntry = $('#showEntry')
+    @$showEntry = $('#showEntry')
     #@attachToEntry()
   setId: (id) ->
     @id = id
   create: ->
-    @entry_id = @showEntry.data('id')
+    @entry_id = @$showEntry.data('id')
     $.ajax {
       type: 'POST'
       url: '/tags'
@@ -189,7 +189,7 @@ class Tag
     #$.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) -> alert "Data Loaded: " + data
   destroy: ->
     $.publish 'tags:remove', [@id]
-    @entry_id = @showEntry.data('id')
+    @entry_id = @$showEntry.data('id')
     
     $.ajax {
       type: 'DELETE'
