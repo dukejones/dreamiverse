@@ -59,11 +59,8 @@ Dreamcatcher::Application.routes.draw do
   
   # Tagging
   # match '#:tag', :to => 'tags#show'
-  resources :tags do
-    collection do
-      delete :what
-    end
-  end
+  post '/tags', :to => 'tags#create'
+  delete '/tags/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
 
   resources :entries do
     collection do

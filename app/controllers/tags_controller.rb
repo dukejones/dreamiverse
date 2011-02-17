@@ -11,14 +11,11 @@ class TagsController < ApplicationController
     render :json => e.message, :status => :unprocessable_entity
   end
   
-  def what
+  def destroy
+    # noun_type is currently always 'what'
     what = What.find(params[:what_id])
     Tag.destroy!(entry_id: params[:entry_id], noun: what)
-    
-  end
-  
-  def destroy
-    tag = Tag.find(params[:id])
+
     tag.destroy!
     
     render :json => "destroyed"

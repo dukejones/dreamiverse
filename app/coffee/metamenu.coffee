@@ -139,7 +139,7 @@ class SettingsPanel extends MetaMenu
     
     # setup saved locations
     $('.modifyLocationView .cancel').click( (event) ->
-      $(event.currentTarget).prev().show()
+      $(event.currentTarget).parent().prev().show()
       $(event.currentTarget).parent().hide()
     )
     
