@@ -55,6 +55,11 @@ ActiveRecord::Schema.define(:version => 20110217092042) do
     t.integer  "sharing_level"
   end
 
+  create_table "entries_images", :id => false, :force => true do |t|
+    t.integer "entry_id"
+    t.integer "image_id"
+  end
+
   create_table "entry_accesses", :force => true do |t|
     t.integer "user_id"
     t.integer "entry_id"

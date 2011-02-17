@@ -13,7 +13,11 @@
 #entryField
 
   = form_for @entry do |f|
-
+    / HIDDEN FORM ELEMENTS
+    = fields_for (@entry.view_preference||ViewPreference.new) do |v|
+      = v.hidden_field 'image_id' # Bedsheet
+      = v.hidden_field 'theme'    # Currently 'light' or 'dark'
+    
     / NEW ENTRY INPUT PANEL
     #newEntry
 
@@ -30,8 +34,8 @@
           %option{value: 'Experience'} Experience
 
 
-      = f.text_field :title, :maxlength => '72', :class => 'font-21'
-      %hr.alpha-30{style: 'width:662px; margin:6px auto;'}
+      = f.text_field :title, :maxlength => '72'
+      %hr
       = f.text_area :body
 
       #entryOptions
@@ -41,67 +45,59 @@
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post'
-        .sharing
-          %img.listSelection{src: '/images/icons/share-16.png'}
-          = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
 
-          .listOfUsers.target.hidden
-            .friendsOnly
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span friends only
 
-            .followersOnly
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span followers only
+        // SHARING PANEL
+        .sharingWrap
+          .sharing
+            %img.listSelection{src: '/images/icons/share-16.png'}
+            %select#entry_sharing_level{name: "entry[sharing_level]"}
+              %option.everyone{value: '500'} everyone
+              %option.list{} list of users
+              %option.anon{value: '50'} anonymous
+              %option.private{value: '0'} private
 
-            .url
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span anybody with URL
+            .listOfUsers.target.hidden
+              .friendsOnly
+                %label
+                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
+                  %span friends only
+              .followersOnly
+                %label
+                  %input{value:'150', type: 'radio', name: 'listOfUsers'}
+                  %span followers only
 
-          .everyone.target.hidden
-            .facebook
-              %label
-                %img{src: '/images/icons/facebook-16.png', width: '16', height: '16'}
-                %span.shareOn share on
-                %span facebook
-                %input{type: 'radio', name: 'everyone'}
-
-            .twitter
-              %label
-                %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
-                %span.shareOn share on
-                %span twitter
-                %input{type: 'radio', name: 'everyone'}
-
-            .buzz
-              %label
-                %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
-                %span buzz
-                %span.shared shared:
-                %span.sharedWhen 10 hours ago
-            .clear
+            .everyone.target.hidden
+              .facebook
+                %label
+                  %img{src: '/images/icons/facebook-16.png', width: '16', height: '16'}
+                  %span.shareOn share on
+                  %span facebook
+                  %input{type: 'checkbox', name: 'facebook'}
+              .twitter.hidden
+                %label
+                  %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
+                  %span.shareOn share on
+                  %span twitter
+                  %input{type: 'checkbox', name: 'twitter'}
+              .buzz.hidden
+                %label
+                  %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
+                  %span buzz
+                  %span.shared shared:
+                  %span.sharedWhen 10 hours ago
+              .clear
 
         .addLocation
           %img{src: '/images/icons/location-21.png'}
-        .date.indent
+          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "38"}
+        .date
           %img{src: '/images/icons/date-19.png'}
+          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "38"}
+        .addTheme
+          %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "38"}
 
-        /
-          NEW ENTRY SHARING
-          #share.round-8
-            %img.arrow{src: '/images/icons/uparrow-black.png'}
-            %select.input.round-8
-              %option{value: 'Public'} Public
-              %option{value: 'Friends Only'} Friends Only
-              %option{value: 'Private'} Private
-            .social.round-8
-              %label
-                %img.icon{src: '/images/icons/facebook-16.png'}
-                %span.name Facebook
-                %input.checkbox{type: 'checkbox'}
 
     / NEW ENTRY DATE TIME
     = render :partial => "date_time"
@@ -123,15 +119,14 @@
           %input#newTag
           .tagAdd
             %span +
-            Add
+            add
         %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
-      #tagBrowse
-        %img{src: '/images/icons/browseBars-36-over.png', width: '34', height: '30'}
-      #tag-list.tag-list.ui-sortable.hidden
-        #empty-tag.tag_box.thumb-controls.hidden
+
+      #tag-list.tag-list.ui-sortable
+        #empty-tag.tag.tag_box.tag_what.hidden
           %span.tagContent
         - @entry.whats.each do |what|
-          .tag_box.thumb-controls
+          .tag_box.tag_what.tag
             %span.tagContent= what.name
           
         %br{style: 'clear: both;'}

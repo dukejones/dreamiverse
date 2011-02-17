@@ -329,7 +329,7 @@
   .moodIcon, .moodIcon-picker, .currentIcon
     +right
     +round(16)
-    z-index: 1200
+    z-index: 1100
   .currentIcon, .moodIcon
     +center
     width: 64px
@@ -462,8 +462,6 @@
     padding: 0
 
     // GENERAL TAG STYLES
-    .stream_tag:hover
-      border: 1px solid #fff
     .stream_tag
       +pointer
       +left
@@ -472,6 +470,8 @@
       margin: 10px 10px 0
       padding: 0
       border: 1px solid transparent
+      &:hover
+        +border-light
       span
         +left
         +bold
@@ -489,6 +489,7 @@
 
 #tagStream, #showEntry
   #tagsLive, #tag-list
+    +clear
     // WHO, WHERE, WHAT TAG STYLES
     .tagWho, .tagWhat, .tagWhere, .tagNoImage
       +round(8)
@@ -498,6 +499,7 @@
       height: 32px
       line-height: 32px
       background-color: #fff
+      color: #333
       .avatar, .whereIcon, .tagImage
         +round(8)
         +flat-right
@@ -505,12 +507,6 @@
         +overflow
         width: 32px
         height: 32px
-      .avatar
-        background: url(/images/avatars/xavitar.jpg) no-repeat
-      .whereIcon
-        background: url(/images/icons/tagWhere-24.png) no-repeat center
-      .tagImage
-        background: url(/images/avatars/xavitar.jpg) no-repeat
       span
         +left
         margin: 0 8px
@@ -518,10 +514,6 @@
         +right
         width: 32px
         height: 32px
-      .analysisIcon
-        background: url(/images/icons/analysis-16.png) no-repeat center
-      .followStatus
-        background: url(/images/icons/friend-none-16.png) no-repeat center
 
     // TAG NO IMAGE
     .tagNoImage

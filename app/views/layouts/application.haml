@@ -9,11 +9,11 @@
     = stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
     = coffeescript_include_tag 'application'
-    = javascript_include_tag 'jquery', 'rails', 'application', 'pubsub', "jquery.hoverIntent.minified", "functions.core"
+    = javascript_include_tag 'jquery.min', 'rails', 'application', 'pubsub', "jquery.hoverIntent.minified", "functions.core"
 
     = yield :head
 
-  %body{id: 'body', class: 'color light', style: 'background: url("/images/bedsheets/air-03.jpg") repeat scroll 0 0 #202020'}
+  %body{id: 'body', class: 'color dark', style: bedsheet_style}
     = render "shared/facebook_sdk"
 
     #drop_shadow
@@ -33,4 +33,5 @@
     = yield :foot
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     = javascript_include_tag "jquery-ui.min", "imageBank", 'chat'
+    = render "layouts/placeholder"
     

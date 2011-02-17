@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :require_user, :except => [:stream]
+  before_filter :require_user, :except => [:stream, :show]
   before_filter :query_username, :except => [:stream]
 
   def index
@@ -19,6 +19,8 @@ class EntriesController < ApplicationController
     @entry = Entry.find params[:id]
     restrict_access
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
+
+    @comments = @entry.comments.order('created_at DESC').limit(10)
     
     if unique_hit?
       add_starlight @entry, 1
@@ -77,9 +79,9 @@ class EntriesController < ApplicationController
           { sharing_level: Entry::Sharing[:friends] } & 
           { user: { following: current_user, followers: current_user} }
         ) 
-      ) &
-      (:user_id ^ current_user.id)
-    ).joins(:user.outer => [:following.outer, :followers.outer])
+      )
+    ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
+    # todo : ordering
   end
 
   def bedsheet
@@ -103,7 +105,8 @@ class EntriesController < ApplicationController
   
   # requires @entry be set
   def restrict_access
-    deny unless current_user.can_access?(@entry)
+    return if @entry.everyone?
+    deny if !current_user || !current_user.can_access?(@entry)
   end
 
   # requires @entry be set

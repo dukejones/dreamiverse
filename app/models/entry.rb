@@ -5,15 +5,19 @@ class Entry < ActiveRecord::Base
     private:              0,
     anonymous:           50,
     users:              100,
+    followers:          150,
     friends:            200,
     friends_of_friends: 300,
     everyone:           500
   }
+
   
   belongs_to :user
 
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
+
+  has_many :comments
   
   has_many :tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
@@ -21,6 +25,9 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
+  accepts_nested_attributes_for :view_preference, :update_only => true
+  
+  has_and_belongs_to_many :images
   
   validates_presence_of :user
   
@@ -46,6 +53,10 @@ class Entry < ActiveRecord::Base
     return if view_preference
     self.view_preference = user.view_preference.clone!
   end
+  
+  def everyone?
+    sharing_level == self.class::Sharing[:everyone]
+  end
 
   # clear out existing tags/scores so they can be re-populated on save
   def delete_tags
@@ -66,8 +77,7 @@ class Entry < ActiveRecord::Base
   protected #######################
 
   def set_sharing_level
-    # sharing_level ||= user.default_sharing_level
-    # sharing_level ||= self::Sharing[:everyone]
+    sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
   end
 
 end

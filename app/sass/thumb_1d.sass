@@ -1,11 +1,13 @@
+@import mixins
 
 
-
-/******** 1D ENTRY THUMBS ********/
+/******** 1D ENTRY THUMBS - GENERAL & NO IMAGE ********/
 // STRUCTURE
 #entryField, #home
   .matrix
-    .thumb-1d
+
+    .thumb-1d, .noImage
+      +block
       +round(16)
       +flat-bottom
       +flat-right
@@ -14,7 +16,7 @@
       +pointer
       +overflow
       margin: 0 0 20px
-      padding: 4px 4px 0
+      padding: 4px
       width: 672px
       height: 220px
       border-bottom: 4px solid rgba(0,0,0,0.50)
@@ -22,7 +24,7 @@
       // LEFT SIDE
       .left
         +absolute
-        width: 360px
+        width: 352px
 
         // USERNAME + AVATAR
         .user
@@ -57,7 +59,7 @@
 
         // IMAGE
         .image
-          width: 360px
+          width: 352px
           height: 96px
           border-radius-topleft: 16px
           -moz-border-radius-topleft: 16px
@@ -81,7 +83,7 @@
           top: 190px
           left: 4px
           height: 26px
-          width: 352px
+          width: 340px
           .rePost, .date, .starlight
             +center
             +left
@@ -120,7 +122,7 @@
         .divider
           +absolute
           top: 0
-          left: 360px
+          left: 352px
           width: 1px
           height: 220px
           background: #a3a3a5
@@ -128,50 +130,58 @@
           background: -moz-linear-gradient(top, rgba(122,122,122,1.0), rgba(122,122,122,0.0))
 
       // RIGHT SIDE
-      .right
+      table.right
         +absolute
-        left: 365px
-
-        ul
-          list-style: none
-          margin: 0
+        +overflow
+        left: 358px
+        max-height: 212px
+        td
+          border-spacing: 0
           padding: 0
-          width: 320px
-          li
-            +left
-            margin: 0 0 0 2px
-            background: #ccc
-            height: 60px
-            width: 60px
 
-        .tagCloud
-          +transparent
-          +clear
-          border: none
-          height: 90px
-          width: 308px
-          margin-left: 4px
+        // TOP
+        td.top
+          max-height: 62px
+          ul
+            list-style: none
+            margin: 0
+            padding: 0
+            width: 320px
+            li
+              +left
+              margin: 0 2px 0 0
+              background: #ccc
+              height: 60px
+              width: 60px
 
-        table.entryTagList
-          +absolute
+        // MIDDLE
+        td.middle
+          .tagCloud
+            +transparent
+            +clear
+            border: none
+            height: 90px
+            width: 308px
+            margin-left: 4px
+
+        // BOTTOM
+        td.entryTagList
           +overflow
           width: 308px
-          height: 65px
           border: none
           margin-left: 4px
           padding: 0
-          td
-            vertical-align: bottom
-            .tag
-              +round(8)
-              +left
-              +center
-              height: 24px
-              line-height: 24px
-              margin: 6px 6px 0 0
-              padding: 0 8px
-              color: #fff
-              background: #7a7a7a
+          vertical-align: bottom
+          .tag
+            +round(8)
+            +left
+            +center
+            height: 24px
+            line-height: 24px
+            margin: 6px 6px 0 0
+            padding: 0 8px
+            color: #fff
+            background: #7a7a7a
 
 
       //
@@ -217,12 +227,49 @@
                 margin: 0
 
 
+    // 1D THUMBS - NO IMAGE
+    // STRUCTURE
+    .noImage
+      height: 164px
+
+    .noImage:hover
+      .left
+        h1.title
+          +block
+          margin: 52px 0 0 8px
+
+    .noImage
+      .left
+        h1.title
+          +absolute
+          display: none
+        h2.titleWatermark
+          +font(48)
+          +alpha(20)
+          +absolute
+          +overflow
+          height: 56px
+          margin: 32px 0 0 8px
+          font-weight: normal
+        p.text
+          +absolute
+          margin: 4px 8px 0 8px
+          top: 82px
+          height: 40px
+
+        // POST DETAILS
+        .details
+          +absolute
+          top: 138px
+
+
+
 // 1D ENTRY THUMBS
 // COLORS
 .light
   #entryField, #home
     .matrix
-      .thumb-1d
+      .thumb-1d, .noImage
         background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
         &:hover
           +glow-light(40)
@@ -231,6 +278,8 @@
         .left
 
           // USERNAME + AVATAR
+          .user
+            +button-light
           .commentCount
             .counter
               +flat-light
@@ -254,7 +303,7 @@
 .dark
   #entryField, #home
     .matrix
-      .thumb-1d
+      .thumb-1d, .noImage
         background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
         &:hover
           +glow-dark(40)
@@ -263,6 +312,10 @@
         .left
 
           // USERNAME + AVATAR
+          .user
+            +button-dark
+            .name
+              color: #000
           .commentCount
             .counter
               +flat-dark
@@ -284,3 +337,16 @@
               +button-dark
 
 
+// 1D ENTRY THUMBS - NO IMAGE
+// COLORS
+.light
+  #entryField, #home
+    .matrix
+      .noImage
+
+        // LEFT SIDE
+        .left
+          .commentCount
+            .counter
+              +flat-dark
+              color: #fff

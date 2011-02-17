@@ -59,8 +59,28 @@ loadBrowse = function() {
   $("#IB_browse li").click(function() {
     loadArtistList($(this).find('span').text());
   });*/
+  
+  var config = {
+      over: function(){
+        $(this).find('.nav-expand').fadeIn()
+      },
+      sensitivity: 20, 
+      interval: 30,
+      out: function(){
+        $(this).find('.nav-expand').fadeOut()
+      }
+  }
 
-  new ImageBank()
+  $('#IB_browse li').hoverIntent(config)
+  $('#IB_browse li').find('.nav-expand p').unbind()
+  $('#IB_browse li').find('.nav-expand p').click(function(){
+    loadArtistList($(this).text())
+  })
+  $('#IB_browse li').find('span').unbind()
+  $('#IB_browse li').find('span').click(function(){
+    loadCategoryList($(this).text())
+  })
+    
 };
 
 closeSearchExpand = function(){
@@ -1312,6 +1332,7 @@ getQueryValue = function(name,defaultValue) {
 
 function initialize_addTag_button(buttonIdd, inputIdd, tagType) {     
   // When click '+ Follow *add* tag'
+  //alert('add tag')
   $(buttonIdd).click(function() {
     //alert('clicked : ' + $(inputIdd).val() + ' / ' + $('#IB_tagText').val())
     addTagToList( $(inputIdd).val(), tagType, inputIdd );
@@ -1492,7 +1513,6 @@ var checkForParams = function(){
 function initImageBank(_sectionFilter){
   // set sectionFilter
   sectionFilter = _sectionFilter;
-  
   // Initialize adding tags
   $(function() { initialize_addTag_button("#IB_tagButtonWrap", '#IB_tagText', '') });
   
@@ -1525,11 +1545,13 @@ function initImageBank(_sectionFilter){
   $('.browseBars').click(function(){
       closeImagebank();
     });
+    
+  $('#IB_browser_frame').fadeIn()
 }
 
 $(document).ready(function() {
   
-
+  initImageBank('Library')
   // Set up tag list sortability
   /*$( "#tag-list" ).sortable( {
     distance: 10,

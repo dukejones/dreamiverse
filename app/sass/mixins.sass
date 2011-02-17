@@ -142,22 +142,38 @@
 
 
 
-//  ***  *****  ***
-//  ***  LIGHT  ***
-//  ***  *****  ***
+//  ***  *****  ***  ****  *** 
+//  ***  LIGHT  and  DARK  ***
+//  ***  *****  ***  ****  ***
 
 =button-light
   border: 1px solid #bbb
   &:hover
     cursor: pointer
     border: 1px solid #464646
+=button-dark
+  border: 1px solid #444
+  &:hover
+    cursor: pointer
+    border: 1px solid #464646
+    box-shadow: inset 0 0 20px #fff
+    -moz-box-shadow: inset 0 0 20px #fff
+    -webkit-box-shadow: inset 0 0 20px #fff
+
 
 =border-light
   border: 1px solid #777
+=border-dark
+  border: 1px solid #444
+
 
 =infoTab-light
   background-color: #e7e7e7
   border: 1px solid #ccc
+=infoTab-dark
+  background-color: #a1a1a1
+  border: 1px solid #ccc
+
 
 =shine-light($px)
   box-shadow: inset 0 $px + px rgba(255,255,255,0.5)
@@ -166,6 +182,14 @@
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(#f0f0f0), to(#bababa))
   background: -moz-linear-gradient(top, #f0f0f0, #bababa)
+=shine-dark($px)
+  box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+  background: -moz-linear-gradient(top, #aaa, #222)
+
 
 =shine-light-alpha($px)
   box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
@@ -174,17 +198,36 @@
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(215,215,215,0.75)))
   background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(215,215,215,0.75))
+=shine-dark-alpha($px)
+  box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  background: #f0f0f0
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))
+  background: -moz-linear-gradient(top, rgba(96,96,96,0.75), rgba(0,0,0,0.75))
+
 
 =bevel-light
   background: #fff
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
   background: -moz-linear-gradient(top, #fff, #adadad)
+=bevel-dark
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
+  background: -moz-linear-gradient(top, #aaa, #222)
+
 
 =indent-light
   border: 1px solid #fff
   background: #e6e6e6
   background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
   background: -moz-linear-gradient(top, #e6e6e6, #fff)
+=indent-dark
+  border: 1px solid #000
+  background: #222
+  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
+  background: -moz-linear-gradient(top, #222, #aaa)
+
 
 =panel-light
   padding: 8px
@@ -192,6 +235,13 @@
   background: #ececec
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
   background: -moz-linear-gradient(top, #fff, #e6e6e6)
+=panel-dark
+  padding: 8px
+  border: 1px solid #222
+  background: #aaa
+  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111))
+  background: -moz-linear-gradient(top, #444, #111)
+
 
 =input-light
   color: #000
@@ -204,6 +254,22 @@
   &:focus
     border: 1px solid #000
     +glow-light(20)
+=input-dark
+  color: #ddd
+  border: 1px solid #666
+  background: #555
+  outline: none
+  box-shadow: inset 0 0 10px #000
+  -moz-box-shadow: inset 0 0 10px #000
+  -webkit-box-shadow: inset 0 0 10px #000
+  &:focus
+    color: #fff
+    border: 1px solid #fff
+    background: #000
+    box-shadow: 0 0 20px #fff
+    -moz-box-shadow: 0 0 20px #fff
+    -webkit-box-shadow: 0 0 20px #fff
+
 
 =inputTextarea-light
   color: #000
@@ -220,101 +286,15 @@
     box-shadow: 0px 0px 20px #000
     -moz-box-shadow: 0px 0px 20px #000
     -webkit-box-shadow: 0px 0px 20px #000
-
-=spinner-small-light
-  background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
-
-// BACKGROUNDS
-=flat-light
-  background: #fff
-
-=transparent-light($percent)
-  background: rgba(255,255,255, $percent / 100 )
-
-
-
-
-
-
-
-//  ***  ****  ***
-//  ***  DARK  ***
-//  ***  ****  ***
-
-=button-dark
-  border: 1px solid #555
-  &:hover
-    cursor: pointer
-    border: 1px solid #464646
-    box-shadow: inset 0 0 20px #fff
-    -moz-box-shadow: inset 0 0 20px #fff
-    -webkit-box-shadow: inset 0 0 20px #fff
-
-=border-dark
-  border: 1px solid #555
-
-=infoTab-dark
-  background-color: #a1a1a1
-  border: 1px solid #ccc
-
-=shine-dark($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
-  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
-  background: #aaa
-  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-  background: -moz-linear-gradient(top, #aaa, #222)
-
-=shine-dark-alpha($px)
-  box-shadow: inset 0 28px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0 28px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.1)
-  background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(120,120,120,0.75)), to(rgba(34,34,34,0.75)))
-  background: -moz-linear-gradient(top, rgba(120,120,120,0.75), rgba(34,34,34,0.75))
-
-=bevel-dark
-  background: #aaa
-  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-  background: -moz-linear-gradient(top, #aaa, #222)
-
-=indent-dark
-  border: 1px solid #000
-  background: #222
-  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
-  background: -moz-linear-gradient(top, #222, #aaa)
-
-=panel-dark
-  padding: 8px
-  border: 1px solid #222
-  background: #aaa
-  background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#111))
-  background: -moz-linear-gradient(top, #444, #111)
-
-=input-dark
-  color: #000
-  border: 1px solid #666
-  background: #fff
-  outline: none
-  box-shadow: inset 2px 5px 10px #ccc
-  -moz-box-shadow: inset 0px 2px 5px #ccc
-  -webkit-box-shadow: inset 2px 5px 10px #ccc
-  &:focus
-    border: 1px solid #fff
-    background: #000
-    box-shadow: 0px 0px 20px #fff
-    -moz-box-shadow: 0px 0px 20px #fff
-    -webkit-box-shadow: 0px 0px 20px #fff
-
 =inputTextarea-dark
-  color: #000
+  color: #fff
   border: 1px solid #666
-  background: #fff
+  background: #777
   margin: 0
   outline: none
-  box-shadow: inset 0px 10px 20px #bbb
-  -moz-box-shadow: inset 0px 10px 20px #bbb
-  -webkit-box-shadow: inset 0px 10px 20px #bbb
+  box-shadow: inset 0px 10px 20px #000
+  -moz-box-shadow: inset 0px 10px 20px #000
+  -webkit-box-shadow: inset 0px 10px 20px #000
   &:focus
     border: 1px solid #000
     background: #fff
@@ -322,13 +302,20 @@
     -moz-box-shadow: 0px 0px 20px #000
     -webkit-box-shadow: 0px 0px 20px #000
 
+=spinner-small-light
+  background: url('/images/icons/spinner-light-32.gif') no-repeat top left transparent
 =spinner-small-dark
   background: url('/images/icons/spinner-dark-32.gif') no-repeat top left transparent
 
 // BACKGROUNDS
+=flat-light
+  background: #fff
 =flat-dark
   background: #000
 
+
+=transparent-light($percent)
+  background: rgba(255,255,255, $percent / 100 )
 =transparent-dark($percent)
   background: rgba(0,0,0, $percent / 100 )
 
@@ -341,20 +328,21 @@
 
 // GLOWS AND SHADOWS
 
+=glow-light($depth)
+  box-shadow: 0 0 $depth + px #000
+  -moz-box-shadow: 0 0 $depth + px #000
+  -webkit-box-shadow: 0 0 $depth + px #000
 =glow-dark($depth)
   box-shadow: 0 0 $depth + px #fff
   -moz-box-shadow: 0 0 $depth + px #fff
   -webkit-box-shadow: 0 0 $depth + px #fff
 
-=glow-light($depth)
-  box-shadow: 0 0 $depth + px #000
-  -moz-box-shadow: 0 0 $depth + px #000
-  -webkit-box-shadow: 0 0 $depth + px #000
 
 =inner-glow($depth)
   box-shadow: inset 0 0 $depth + px #fff
   -moz-box-shadow: inset 0 0 $depth + px #fff
   -webkit-box-shadow: inset 0 0 $depth + px #fff
+
 
 =inner-shadow($depth)
   box-shadow: inset 0 6px $depth + px #000
@@ -391,32 +379,36 @@
 
 /* BUTTONS */
 =confirm($offset)
-  +bg-shine($offset)
-  +gradient(#3ba4d1, #1b485b)
-  +pointer
-  color: #fff
-  border: 1px solid #4794b5
+  &:hover
+    +bg-shine($offset)
+    +gradient(#3ba4d1, #1b485b)
+    +pointer
+    color: #fff
+    border: 1px solid #4794b5
 
 =save($offset)
-  +bg-shine($offset)
-  +gradient(#70d03b, #235b1b)
-  +pointer
-  color: #fff
-  border: 1px solid #54943d
+  &:hover
+    +bg-shine($offset)
+    +gradient(#70d03b, #235b1b)
+    +pointer
+    color: #fff
+    border: 1px solid #54943d
 
 =cancel($offset)
-  +bg-shine($offset)
-  +gradient(#979797, #4e4e4e)
-  +pointer
-  color: #fff
-  border: 1px solid #848484
+  &:hover
+    +bg-shine($offset)
+    +gradient(#979797, #4e4e4e)
+    +pointer
+    color: #fff
+    border: 1px solid #848484
 
 =delete($offset)
-  +bg-shine($offset)
-  +gradient(#ee7c44, #8b2e12)
-  +pointer
-  color: #fff
-  border: 1px solid #c1633c
+  &:hover
+    +bg-shine($offset)
+    +gradient(#ee7c44, #8b2e12)
+    +pointer
+    color: #fff
+    border: 1px solid #c1633c
 
 
 

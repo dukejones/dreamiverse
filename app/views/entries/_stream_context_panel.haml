@@ -8,13 +8,13 @@
     .infoRight
       %a.userName{href: '/'}
         %h3= user.username
-      .clear-both
+      .clear
 
       .following
-        .count 142
+        .count= user.following.count
         following
       .followers
-        .count 142,342
+        .count= user.followers.count
         followers
 
   / LABEL
@@ -30,17 +30,20 @@
       %span.value all entries
     .filterList.target.slideArrow.hidden
       .type.top
-        %img{src: '/images/icons/'}
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
         %span all entries
       .type
-        %img{src: '/images/icons/'}
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
         %span dream
       .type
-        %img{src: '/images/icons/'}
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
         %span vision
-      .type.bottom
-        %img{src: '/images/icons/'}
+      .type
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
         %span experience
+      .type.bottom
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
+        %span tags
 
   .wrapper
 
@@ -51,26 +54,26 @@
       %span.value following
     .filterList.target.slideArrow.hidden
       .type.top
-        %img{src: '/images/icons/'}
+        %img{src: '/images/icons/friend-16.png', width: '16', height: '16'}
         %span friends
       .type.bottom
-        %img{src: '/images/icons/'}
+        %img{src: '/images/icons/friend-follow-16.png', width: '16', height: '16'}
         %span following
 
   .wrapper
 
-    .starlightTab.round-8
+    .starlightTab.trigger.slideArrow.round-8
       %img.icon{src: '/images/icons/starlight-17.png'}
       %span starlight
-      .starlightFilter.trigger.slideArrow
-        %span.value hi
+      .starlightFilter
+        %span.value all
         .filterList.target.slideArrow.hidden
           .type.top
             %span hi
           .type
             %span medium
           .type.bottom
-            %span low
+            %span all
 
 
 

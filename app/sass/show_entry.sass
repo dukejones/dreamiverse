@@ -1,3 +1,4 @@
+
 #entryField
 
   /*********** SHOW ENTRY SHARED STYLES***********/
@@ -7,7 +8,7 @@
 
   /*********** SHOW ENTRY ***********/
   // STRUCTURE
-  #showEntry
+  #showEntry, #showEntry.noImage
     +round(16)
     width: 662px 
     padding: 8px
@@ -15,12 +16,14 @@
     a.prev
       +round(16)
       +flat-right
+      +font(24)
     a.next
       +round(16)
       +flat-left
+      +font(24)
     .stream
       +flat-all
-    a.next, .stream, a.prev, .books, .type, .editEntry
+    a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -32,32 +35,80 @@
       +round(16)
       +left
       +cursor
-    a.next, .stream, a.prev, .books, .editEntry
+    a.next, .stream, a.prev, .books, .editEntry, .deleteEntry
       +right
     .books
       +round(8)
       margin-right: 8px
     a.editEntry
+      +alpha(60)
       +round(16)
-    a.editEntry:hover
-      +alpha(100)
-    .editEntry.confirm
-      margin-right: 16px
-    .editEntry.delete
+      +font(14)
+      margin-right: 12px
+    a.deleteEntry
+      +alpha(60)
       +round(16)
-      margin-right: 4px
-      
-      
+      +font(14)
+      margin-right: 12px
 
-    // HEADER IMAGE & TITLE
-    .imageHeader
+    .content
       +round(16)
-      +flat-bottom
       +relative
       +clear
-      margin: 0
-      height: 200px
-      background: url(/images/bedsheets/air-01.jpg) no-repeat top left
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        +round(16)
+        +flat-bottom
+        margin: 0
+        height: 200px
+        width: 662px
+
+      // MOOD ICON
+      .moodIcon
+        +absolute
+        top: 0
+        right: 0
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +round(16)
+        +absolute
+        top: 156px
+        right: 12px
+        height: 32px
+        line-height: 32px
+        padding: 0 8px
+        img.starlight
+          +left
+          margin: 6px 4px 0 0
+        span
+          +left
+        hr
+          +left
+          +alpha(20)
+          height: 28px
+          width: 1px
+          margin: 2px 0 0 8px
+        .love, .share, .repost
+          +left
+          +pointer
+          width: 28px
+          height: 32px
+        .love
+          background: url(/images/icons/love-16.png) no-repeat center
+        .love.selected
+          background: url(/images/icons/love-16-selected.png) no-repeat center
+        .share
+          background: url(/images/icons/share-16.png) no-repeat center
+        .share.selected
+          background: url(/images/icons/share-16-selected.png) no-repeat center
+        .repost
+          background: url(/images/icons/repost-24.png) no-repeat center
+        .repost.selected
+          background: url(/images/icons/repost-24-selected.png) no-repeat center
+
+      // TITLE
       .title
         +round(8)
         +flat-bottom
@@ -66,15 +117,11 @@
         +center
         +font(22)
         margin: 0 0 0 20px
-        bottom: 0
+        top: 164px
         padding: 0 12px
         height: 36px
-        line-height: 36px
+        line-height: 32px
         max-width: 620px
-
-    .content
-      +round(16)
-      +flat-top
 
       // BODY
       .body
@@ -114,49 +161,10 @@
           img
             margin: 7px 8px 0 0
 
-      // INFO
-      .entryInfo
-        +clear
-        margin: 0
-        padding: 8px
-        .postTime, .postLocation, .love, .share, .repost, .starlight
-          +left
-        .postTime, .postLocation, .starlightCount, .shareOptions
-          +round(16)
-          height: 32px
-          line-height: 32px
-          padding: 0 12px
-          margin: 0 4px 0 0
-        .starlightCount
-          img.starlight
-            margin: 6px 8px 0 0
-        .starlightCount, .shareOptions
-          +right
-        .shareOptions
-          width: 86px
-          .love, .share, .repost
-            +pointer
-            width: 28px
-            height: 32px
-          .love
-            background: url(/images/icons/love-16.png) no-repeat center
-          .love.selected
-            background: url(/images/icons/love-16-selected.png) no-repeat center
-          .share
-            background: url(/images/icons/share-16.png) no-repeat center
-          .share.selected
-            background: url(/images/icons/share-16-selected.png) no-repeat center
-          .repost
-            background: url(/images/icons/repost-24.png) no-repeat center
-          .repost.selected
-            background: url(/images/icons/repost-24-selected.png) no-repeat center
-
-      // TAG - see NEW ENTRY TAG below
-      .entryTags
+      // TAG
+      .showTags
         padding: 8px
         margin: 0 0 8px
-        img.tagCheck
-          margin: 4px 0 0 6px
 
         .tagHeader
           +flat-right
@@ -165,12 +173,13 @@
           .tagInput
             +left
             +overflow
-            width: 250px
             padding: 0
             height: 34px
             line-height: 34px
             input
               +overflow
+              +font(14)
+              width: 230px
               margin: 0 0 0 8px
               height: 26px
               line-height: 26px
@@ -192,19 +201,18 @@
             span
               color: green
 
-        .target
+          // POST TIME & LOCATION
+          .postTime, .postLocation
+            +round(16)
+            +right
+            +center
+            margin: 0 8px 0 0
+            height: 34px
+            line-height: 34px
+            padding: 0 8px
+
           #tag-list
-            +clear
-            #empty-tag, .tag_box
-              +left
-              +round(8)
-              +center
-              height: 24px
-              line-height: 24px
-              margin: 8px 8px 0 0
-              padding: 0 8px
-              background: #7a7a7a
-              color: #fff
+          // SEE ENTRIES.SASS
 
       // ANALYSIS
       .entryAnalysis
@@ -257,7 +265,6 @@
 
       .newCommentWrap, .prevCommentWrap
         +clear
-        margin-bottom: 8px
         .avatar
           +round(12)
           +left
@@ -273,7 +280,7 @@
           padding: 8px
           textarea
             +transparent
-            min-height: 90px
+            height: 90px
             width: 546px
             border: none
           .images, .links, .save
@@ -292,7 +299,7 @@
           .save
             +round(16)
       .prevCommentWrap
-        margin-bottom: 0
+        margin-top: 8px
         .prevComment
           +round(12)
           +right
@@ -335,6 +342,49 @@
             margin: 12px 0 0
 
 
+  // SHOW ENTRY - NO IMAGE
+  #showEntry.noImage
+    .content
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        +hidden
+
+      // MOOD ICON
+      .moodIcon
+        +relative
+        +right
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +relative
+        +right
+        top: 0
+        right: 0
+        margin: 16px 12px 8px 8px
+
+      // TITLE
+      .title
+        +left
+        +clear
+        text-align: left
+        height: auto
+        position: relative
+        top: 0
+        margin: -20px 0 0 20px
+        max-width: 540px
+
+      // BODY
+      .body
+        +clear
+        padding: 12px 36px 36px
+
+      // GALLERY
+      ul.gallery
+        +hidden
+
+
+
 // COLORS
 .light
   #entryField
@@ -351,30 +401,42 @@
         +shine-light(18)
 
       a.editEntry
-        +alpha(60)
         +button-light
         +bevel-light
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      .deleteEntry
         +button-light
         +bevel-light
+        &:hover
+          +delete(15)
 
       .books
         +button-light
 
-      // HEADER IMAGE & TITLE
-      .imageHeader
-        // MOOD ICON
-        .moodIcon
-          +button-light
-          +glow-light(10)
-
-        .title
-          +transparent-light(50)
-
+      // CONTENT
       .content
         +flat-light
+
+        // HEADER IMAGE
+        .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-light(50)
+          +border-light
+
+        // MOOD ICON
+        .moodIcon
+          +glow-light(10)
+          &:hover
+            +cursor
+            border: 1px solid #bbb
+
+        // TITLE
+        .title
+          +transparent-light(50)
 
         // IMAGE GALLERY
         ul.gallery
@@ -387,13 +449,13 @@
             +button-light
             +bevel-light
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-light
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-light
+          +border-light
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-light
             +button-light
@@ -404,10 +466,6 @@
 
           .tagInput
             +input-light
-
-          .target
-            #tag-list
-              #empty-tag
 
         // ANALYSIS
         .entryAnalysis
@@ -442,9 +500,14 @@
             .save
               +shine-light(16)
               +button-light
+              &:hover
+                +save(16)
+            textarea
+              color: #333
 
         .prevCommentWrap
           .avatar
+            +button-light
           .prevComment
             +input-light
             border: 2px solid #fff
@@ -474,30 +537,42 @@
         +shine-dark(18)
 
       a.editEntry
-        +alpha(60)
         +button-dark
         +bevel-dark
+        &:hover
+          +confirm(15)
 
-      .editEntry.delete
-        +alpha(60)
+      a.deleteEntry
         +button-dark
         +bevel-dark
+        &:hover
+          +delete(15)
 
       .books
         +button-dark
 
-      // HEADER IMAGE & TITLE
-      .imageHeader
-        // MOOD ICON
-        .moodIcon
-          +button-dark
-          +glow-dark(10)
-
-        .title
-          +transparent-dark(50)
-
+      // CONTENT
       .content
         +flat-dark
+
+        // HEADER IMAGE
+        .imageHeader
+
+        // STARLIGHT COUNT & SHARE OPTIONS
+        .starlight_share
+          +transparent-dark(50)
+          +border-dark
+
+        // MOOD ICON
+        .moodIcon
+          +glow-light(10)
+          &:hover
+            +cursor
+            border: 1px solid #555
+
+        // TITLE
+        .title
+          +transparent-dark(50)
 
         // IMAGE GALLERY
         ul.gallery
@@ -510,13 +585,13 @@
             +button-dark
             +bevel-dark
 
-        // INFO
-        .entryInfo
-          .postTime, .postLocation, .starlightCount, .shareOptions
-            +infoTab-dark
+        // POST TIME & LOCATION
+        .postTime, .postLocation
+          +indent-dark
+          +border-dark
 
         // TAG
-        .entryTags
+        .showTags
           .tagHeader
             +indent-dark
             +button-dark
@@ -527,10 +602,8 @@
 
           .tagInput
             +input-dark
-
-          .target
-            #tag-list
-              #empty-tag
+            input
+              color: #ddd
 
       // ANALYSIS
       .entryAnalysis
@@ -565,9 +638,14 @@
             .save
               +shine-dark(16)
               +button-dark
+              &:hover
+                +save(16)
+            textarea
+              color: #ddd
 
         .prevCommentWrap
           .avatar
+            +button-dark
           .prevComment
             +input-dark
             border: 2px solid #000
@@ -583,3 +661,41 @@
 
 
 
+// SHOW ENTRY - NO IMAGE
+// COLORS
+.light
+  #entryField
+    #showEntry.noImage
+
+      // MOOD ICON
+      .moodIcon
+        +glow-light(10)
+        &:hover
+          +cursor
+          border: 1px solid #bbb
+
+      // TITLE
+      .title
+        background: none
+
+
+.dark
+  #entryField
+    #showEntry.noImage
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +transparent-light(50)
+        +border-dark
+
+      // MOOD ICON
+      .moodIcon
+        +glow-dark(10)
+        &:hover
+          +glow-dark(10)
+          +cursor
+          border: 1px solid #555
+
+      // TITLE
+      .title
+        background: none

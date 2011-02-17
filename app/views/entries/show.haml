@@ -23,24 +23,32 @@
     %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry.confirm{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'editEntry delete'})
-
+    %a.editEntry{href: edit_entry_path(@entry)} edit
+    = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
 
     / 
       Save for later
       .books.button.round-8 My Book of Dreams
 
-    / HEADER IMAGE & TITLE
-    .imageHeader
+    .content
+
+      / HEADER IMAGE & TITLE
+      .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
 
       / MOOD ICON
       .moodIcon
         %img{src: '/images/moods/plants/Fungi.png'}
 
+      / STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        %img.starlight{src: '/images/icons/starlight-22.png'}
+        %span 23,243
+        %hr
+        .option.love.selected
+        .option.share
+        .option.repost.selected
+        
       .title= @entry.title
-
-    .content
 
       / BODY
       .body= @entry.body
@@ -72,49 +80,41 @@
           %span Another Related Dream
         .clear
 
-      / INFO
-      .entryInfo
-        .postTime 2 hours ago
-        .postLocation Tokyo, Japan
-        .starlightCount
-          %img.starlight{src: '/images/icons/starlight-22.png'}
-          %span 23,243
-        .shareOptions
-          .option.love.selected
-          .option.share
-          .option.repost.selected
-        .clear
-      .clear
-
       / TAG
-      .entryTags
+      .showTags
         .tagHeader.headers
           tag
           %img{src: '/images/icons/tag-20.png'}
+
         .wrapper
           .tagInput.target
-            %input#newTag{value: 'who/where/what'}
+            %input#newTag{placeholder: 'who/where/what'}
           .tagThisEntry.trigger
             %span +
             add
+
+          / POST TIME & LOCATION
+          .postTime= time_ago_in_words(@entry.created_at)
+          .postLocation Tokyo, Japan
+
 
           #tag-list.tag-list.ui-sortable.target
 
             .tagWhat.tagNoImage
               %span Dolphin
-              .analysisIcon
+              .analysisIcon{style: 'background: url(/images/icons/analysis-16.png) no-repeat center'}
 
             .tagWhere
-              .whereIcon
+              .whereIcon{style: 'background: url(/images/icons/tagWhere-24.png) no-repeat center'}
               %span San Francisco
 
             .tagWho
-              .avatar
+              .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
               %span Xavi
-              .followStatus
+              .followStatus{style: 'background: url(/images/icons/friend-none-16.png) no-repeat center'}
 
             .tagWhat
-              .tagImage
+              .tagImage{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
               %span Tsunami
 
             .tagNoImage
@@ -123,50 +123,12 @@
             #empty-tag.hidden
               %span.tagContent
             - @entry.whats.each do |what|
-              .tag_box.thumb-controls
+              .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
-            
-            %br{style: 'clear: both;'}
+
+            / .clear
           #sorting
-          %br{style: 'clear: both'}
-
-      / ANALYSIS
-      .entryAnalysis.wrapper
-        .trigger.slide
-          .analysisHeader.headers
-            analysis
-            %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
           .clear
-
-        .target.slide
-          / ANALYSIS TAGS
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              dolphin
-              .arrow
-            .description.target.slide.hidden
-              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-              .source Dream Moods
-
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              tsunami
-              .arrow
-
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              flying
-              .arrow
-            .description.target.slide.hidden
-              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-              .source Dream Moods
-
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              telepathy
-              .arrow
-
-
 
 
     / COMMENTS
@@ -175,37 +137,30 @@
         .commentsHeader.headers
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
-          .counter (6)
-      .clear-both
+          .counter= "(#{@comments.count})"
+      .clear
+      
       .target.slide
         .newCommentWrap
-          .avatar
+          .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
-            %textarea
-            .save post
-            .links
-              %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
-              links
-            .images
-              %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
-              images
+            = form_for [@entry, Comment.new], :remote => true do |f|
+              = f.hidden_field :user_id, :value => current_user.id
+
+              = f.text_area :body
+              
+              = f.submit 'post', :class => 'save'
+              
+              .links
+                %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
+                links
+              .images
+                %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
+                image
           .clear
 
-        .prevCommentWrap
-          .avatar
-          .prevComment
-            .user iotus
-            .postTime 15 minutes ago
-            %ul
-              %li
-              %li
-              %li
-              %li
-            .comment Check it out, did it look like this?? 
-            .rePost
-              %img{src: '', width: '16', height: '16'}
-              Another Related Dream
-          .clear
-
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .clear
 

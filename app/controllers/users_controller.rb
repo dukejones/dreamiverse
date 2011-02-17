@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   def index
     @top_images = [
-      "", # so its index starts at 1
       "dreamstars-1-128.png",
       "dreamstars-2-128.png",
       "dreamstars-3-128.png",
@@ -46,12 +45,28 @@ class UsersController < ApplicationController
     end
   end
   
+  # XHR only
   def bedsheet
-    @user = User.find(params[:id])
-    @user.view_preference.image = Image.find(params[:bedsheet_id])
-    @user.save!
+    @user = current_user
+    @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id]))
     render :json => "user bedsheet updated"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
+  end
+  
+  # XHR only.
+  def avatar
+    @image = Image.new({
+      section: 'Avatar',
+      incoming_filename: params[:qqfile],
+      uploaded_by: current_user
+    })
+    @image.write(request.body.read)
+    @image.save
+    current_user.image = @image
+    @image.update_attribute
+    
+    render :json => { :avatar_path => @image.url('avatar_main') }
+    
   end
 end

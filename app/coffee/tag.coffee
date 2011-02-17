@@ -13,16 +13,18 @@ class window.TagsController
         #@$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
     @tagInput = new @tagInputClass(@$container.find('#newTag'))
-    @tagViews = new TagViewList(@$container.find('#tag-list'))
+    @tagViews = new TagViewList(@tagViewClass)
 
     $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
     
-    @$container.find('.tag-list div').live 'click', =>
-      # How do I tell this tag to delete itself?
-      alert "tag clicked"
     
   createTag: (tagName)->
-    tagView = new @tagViewClass( new Tag(tagName) )
+    tag = new Tag(tagName)
+    tagView = new @tagViewClass(tag)
+    tagView.create()
+
+    @tagViews.$container.append( tagView.createElement() )
+    
     @tagViews.add(tagView)
 
 class TagInput
@@ -45,6 +47,7 @@ class ShowingTagInput extends TagInput
     
     $('.tagInput').css('width', '0px')
     $('.tagThisEntry').click => @addExpandSubmitHandler()
+    $('.tagHeader').click => @contractInputField()
   
   addExpandSubmitHandler: ->
     switch @buttonMode
@@ -55,71 +58,135 @@ class ShowingTagInput extends TagInput
   expandInputField: ->
     @buttonMode = 'submit'
     $('.tagInput').animate({width: '250px'})
+  contractInputField: ->
+    @buttonMode = 'expand'
+    $('.tagInput').animate({width: '0px'})
     
 
 
     
 class TagViewList
-  constructor: ->
+  constructor: (tagViewClass)->
     @$container = $('#tag-list')
     @tagViews = []
+    
+    @tagViewClass = tagViewClass
+    @addAllCurrentTags()
+    
+    @$container.delegate 'div', 'click', (event)=>
+      @removeTag($(event.currentTarget).data('id'))
+    
+    $.subscribe 'tags:remove', (id) =>
+      @findByTagId(id).startRemoveFromView()
+    
+    $.subscribe 'tags:removed', (id) =>
+      @findByTagId(id).removeFromView()
+  
+  addAllCurrentTags: ->
+    # Fill up @tagViews with tags for each currently displayed tags
+    for $currentElement in @$container.find('.tag')
+      $element = $($currentElement)
+      id = $element.data('id')
+      name = $element.find('.tagContent').text()
+      tag = new Tag(name, id)
+      tagView = new @tagViewClass( tag )
+      tagView.linkElement($element)
+      @add(tagView)
+
+  findByTagId: (tagId)->
+    return tagView for tagView in @tagViews when tagView.tag.id == tagId
+
   add: (tagView)->
     @tagViews.push(tagView)
-    @$container.append( tagView.createElement() )
-    @$container.slideDown()
     tagView.fadeIn()
-    
+
+  removeTag: (tagId) ->
+    tagViewToRemove = @findByTagId(tagId)
+    tagViewToRemove.remove()
 
 class TagView
   constructor: (tag)->
     @tag = tag
+    
+  tagNode: -> @tag
+  linkElement: (element)->
+    @$element = element
   createElement: ->
     @$element = $('#empty-tag').clone().attr('id', '').show()
+    @$element.addClass('tag')
     @$element.addClass('tagWhat')
     @setValue(@tag.name)
     
     return @$element
   setValue: (tagName) ->
     @$element.find('.tagContent').html(tagName)
+  setId: (id) ->
+    @$element.attr('data-id', id)
   fadeIn: ->
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
     currentBackground = @$element.css('backgroundColor');
     @$element.css('backgroundColor', '#777');
     setTimeout (=> @$element.animate {backgroundColor: currentBackground}, 'slow'), 200
+  startRemoveFromView: ->
+    @$element.css('backgroundColor', '#ff0000')
+  removeFromView: ->
+    @$element.fadeOut('fast', =>
+      @$element.remove()
+    )
+    
 
 class EditingTagView extends TagView
   inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   createElement: ->
     super()
     @createFormElement()
+  
+  create: ->
+    @createElement()
 
   createFormElement: ->
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
-  
+  remove: ->
+    @removeFromView()
+    
 class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+  create: ->
+    @tag.create().then (response)=>
+      @setId(response.what_id)
+  remove: ->
+    @removeFromView()
+    @tag.destroy()
 
 
+# MAKE THIS STORE THE ID OF THE TAG ALSO
 # Tag Model
 class Tag
-  constructor: (name) ->
+  constructor: (name, id = '') ->
     @name = name
-    @attachToEntry()
-  attachToEntry: ->
-    @entry_id = $('#showEntry').data('id')
-    $.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) ->
-      alert "Data Loaded: " + data
-  removeTag: ->
-    deleteObj = 
+    @id = id
+  entryId: -> $('#showEntry').data('id')
+  setId: (id)-> @id = id
+  create: ->
+    deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
+      @id = data.what_id
+    return deferred.promise()
+     
+  destroy: ->
+    $.publish 'tags:remove', [@id]
+    
+    $.ajax {
       type: 'DELETE'
-      url: '/tags'
+      url: '/tags/what'
       data:
-        entry_id: @entry_id
-        what_name: @name
-    $.ajax deleteObj
+        entry_id: @entryId()
+        what_id: @id
+      success: (data, status, xhr) =>
+        $.publish 'tags:removed', [@id]
+    }
     
 
     

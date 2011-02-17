@@ -1,0 +1,15 @@
+.prevCommentWrap
+  .avatar{ style: "background-image: url('#{avatar_image(comment.user, 64)}')"}
+  .prevComment
+    .user= comment.user.username
+    .postTime= time_ago_in_words(comment.created_at)
+    /%ul
+    /  %li
+    /  %li
+    /  %li
+    /  %li
+    .comment= comment.body
+    /.rePost
+    / %img{src: '', width: '16', height: '16'}
+    / Another Related Dream
+  .clear

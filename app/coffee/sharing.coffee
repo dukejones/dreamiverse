@@ -8,35 +8,53 @@ $(document).ready ->
 class SharingController
   constructor: (containerSelector)->
     @$container = $(containerSelector)
-    @$dropdown = @$container.find('.dropdown')
+    @$dropdown = @$container.find('#entry_sharing_level')
     
     @sharingView = new SharingView(containerSelector)
     @shareSettings = new Share()
     
+    @$container.find('.listSelection').click( (event) =>
+      currentSelection = @$dropdown.val()
+      @sharingView.changeView(currentSelection)
+    )
+    
     @$dropdown.change( (event) =>
-      @sharingView.changeView($(event.currentTarget).val())
-      @shareSettings = new Share($(event.currentTarget).val())
+      newSelection = @$dropdown.val()
+      log newSelection
+      @sharingView.changeView(newSelection)
+      @shareSettings = new Share(newSelection)
     )
 
 
 class SharingView
   constructor: (containerSelector, type = 'everyone')->
     @$container = $(containerSelector)
-    @changeView(type)
+    @type = type
   
   changeView: (type) ->
     @type = type
     
+    # Hide all items
+    @$container.find('.target').hide()
+    
+    # Remove any bodyclick & create a new one
+    $('#bodyClick').remove()
+    bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+    $('body').prepend(bodyClick)
+  
+    #$('html, body').animate({scrollTop:0}, 'slow');
+  
+    $('#bodyClick').click( (event) =>
+      @$container.find('.target').hide()
+      $('#bodyClick').remove()
+    )
+    
     # logic to update the visual display
     switch @type
-      when "everyone"
-        $.publish 'share:change', [''] # these publish calls are not used any longer
-      when "list"
-        $.publish 'share:change', ['list'] # the view change will go here
-      when "anonymous"
-        $.publish 'share:change', ['anonymous'] # this is just holding
-      when "private"
-        $.publish 'share:change', ['private'] # the space for UI changes
+      when "500" # Everyone
+        @$container.find('.everyone').slideDown()
+      when "list of users"
+        @$container.find('.listOfUsers').slideDown()
 
 # Sharing Model
 class Share

@@ -38,8 +38,8 @@ function initGeo(){
     $('.entryLocation').slideUp();
   })
   
-  $('.entryLocation .delete').unbind();
-  $('.entryLocation .delete').click(function(){
+  $('.entryLocation .cancelLocation').unbind();
+  $('.entryLocation .cancelLocation').click(function(){
     $('.addLocation').removeClass('selected');
     $('.entryLocation, .entryLocation .expander').slideUp();
     $('#locationList').val('No location');
