@@ -42,10 +42,8 @@ class Tag < ActiveRecord::Base
     tag_scores = tag_scores.first(total_scores) # grab the top total_scores elements
     tag_scores = Hash[*tag_scores.flatten] #convert array back into a hash
     
-    t = Tag.new
     # save the scores
-    tag_scores.each do |noun_id,score|
-      
+    tag_scores.each do |noun_id,score|      
       Tag.create( :entry_id   => entry.id, 
                   :entry_type => entry.type,
                   :kind       => 'nephele',
@@ -59,6 +57,8 @@ class Tag < ActiveRecord::Base
 private
   # returns a number: 1-8
   def self.quantize(score, min_score, max_score)
+    score = 8 if score > 8
+    max_score = 8 if max_score > 8
     score_range = (max_score == min_score) ? 1 : (max_score - min_score)
     scaling_factor = (8 - 1) / score_range
     (((score-min_score) * scaling_factor) + 1).to_i
