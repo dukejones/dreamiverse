@@ -1,7 +1,9 @@
 - content_for :head do
   = sass_link_tag 'entries'
+  = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 - content_for :foot do
   = coffeescript_include_tag 'tag', 'showentry'
+  = javascript_include_tag 'jquery.lightbox-0.5.pack.js'
 
 
 
@@ -55,16 +57,16 @@
 
       / IMAGE GALLERY
       %ul.gallery
-        %li
-        %li
-        %li
-        %li
-        %li
-        %li
-        %li
-        %li
-        %li
-        %li
+        %li{style: 'background: #ababab url(/images/bedsheets/air-01.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-02.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-03.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-04.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-05.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-06.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-07.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-01.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-02.jpg) no-repeat'}
+        %li{style: 'background: #ababab url(/images/bedsheets/air-03.jpg) no-repeat'}
       .clear
 
       / ENTRY LINKS
@@ -146,11 +148,8 @@
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
-
               = f.text_area :body
-              
               = f.submit 'post', :class => 'save'
-              
               .links
                 %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
                 links
