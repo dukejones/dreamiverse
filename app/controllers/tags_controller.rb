@@ -14,9 +14,7 @@ class TagsController < ApplicationController
   def destroy
     # noun_type is currently always 'what'
     what = What.find(params[:what_id])
-    Tag.destroy!(entry_id: params[:entry_id], noun: what)
-
-    tag.destroy!
+    Tag.destroy(entry_id: params[:entry_id], noun: what)
     
     render :json => "destroyed"
   rescue => e
