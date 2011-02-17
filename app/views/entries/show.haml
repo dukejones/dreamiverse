@@ -175,21 +175,9 @@
                 image
           .clear
 
-        .prevCommentWrap
-          .avatar
-          .prevComment
-            .user iotus
-            .postTime 15 minutes ago
-            %ul
-              %li
-              %li
-              %li
-              %li
-            .comment Check it out, did it look like this?? 
-            .rePost
-              %img{src: '', width: '16', height: '16'}
-              Another Related Dream
-          .clear
-
+        
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .clear
 
