@@ -48,7 +48,6 @@ class UsersController < ApplicationController
   # XHR only
   def bedsheet
     @user = current_user
-    # @user = User.find(params[:id])
     @user.view_preference.image = Image.find(params[:bedsheet_id])
     @user.save!
     render :json => "user bedsheet updated"
@@ -66,7 +65,7 @@ class UsersController < ApplicationController
     @image.save
     current_user.image = @image
     
-    render :json => { :avatar_path => @image.path('avatar_main') }
+    render :json => { :avatar_path => @image.url('avatar_main') }
     
   end
 end
