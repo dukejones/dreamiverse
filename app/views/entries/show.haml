@@ -158,8 +158,7 @@
       
       .target.slide
         .newCommentWrap
-          .avatar
-          /.avatar{ style: "background-image: url('#{avatar_image(current_user.id, 64)}')"}
+          .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id

@@ -26,6 +26,7 @@ class window.TagsController
 
 class TagInput
   constructor: ($input)->
+    log $input
     @$input = $input
 
     @$input.keypress (event) =>
@@ -70,8 +71,6 @@ class TagViewList
     @tagViewClass = tagViewClass
     
     # Fill up @tagViews with tags for each currently displayed tags
-    
-    #tagView = new @tagViewClass( new Tag(tagName) )
     i = 0
     to = @$container.find('.tag').length - 1
     while i <= to
@@ -130,9 +129,11 @@ class TagView
     @$element = $('#empty-tag').clone().attr('id', '').show()
     @$element.addClass('tagWhat')
     @setValue(@tag.name)
+    log @tag
     
     return @$element
   setValue: (tagName) ->
+    alert tagName
     @$element.find('.tagContent').html(tagName)
   setId: (id) ->
     @$element.attr('data-id', id)

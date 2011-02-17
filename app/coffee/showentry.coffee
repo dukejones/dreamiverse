@@ -1,6 +1,6 @@
 
 $(document).ready ->
-  tagsController = new TagsController('.entryTags', 'show')
+  tagsController = new TagsController('.showTags', 'show')
   entry = new Entry '#showEntry'
   
 # Model
