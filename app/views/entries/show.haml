@@ -153,6 +153,9 @@
       .clear
       
       .target.slide
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .newCommentWrap
           .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
@@ -167,9 +170,6 @@
                 %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
                 image
           .clear
-
-        - @comments.each do |comment|
-          = render :partial => "entries/comment", :object => comment
         
         .clear
 

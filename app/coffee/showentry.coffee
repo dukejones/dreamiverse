@@ -7,11 +7,12 @@ $(document).ready ->
 # There is a point where using objects is just more obfuscation.
 
 # If abstraction doesn't simplify, it's not worth it.
+commentsPanel = $('#showEntry .commentsPanel')
 
-$('form#new_comment').bind('ajax:success', (event, data)->
+$('form#new_comment').bind 'ajax:success', (event, xhr, status)->
   $('textarea', this).val('')
-  $('.prevCommentWrap').first().before(data).hide().slideDown()
-)
+  commentsPanel.find('.target').children().last().prev().before(xhr).previous().hide().slideDown()
+
 
 
 # commentsPanel = $('#showEntry .commentsPanel')
