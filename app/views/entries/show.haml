@@ -15,7 +15,7 @@
 #entryField
 
   / SHOW ENTRY
-  #showEntry{:'data-id' => @entry.id }
+  #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
     .type Dream
 
@@ -35,7 +35,7 @@
     .content
 
       / HEADER IMAGE & TITLE
-      .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
+      .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
 
       / MOOD ICON
       .moodIcon
@@ -57,26 +57,8 @@
 
       / IMAGE GALLERY
       %ul.gallery
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_medium1.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_medium1.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_medium2.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_medium2.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search1.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search1.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search2.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search2.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search3.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search3.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search4.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search4.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search5.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search5.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage_search6.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage_search6.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage120-1.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage120-1.jpg'}
-        %li{style: 'background: #ababab url(/images/art/IB_artistImages/artistImage120-2.jpg) no-repeat'}
-          %a{href: '/images/art/IB_artistImages/artistImage120-2.jpg'}
+        - @entry.images.each do |image|
+          = gallery_list_item(image)
       .clear
 
       / ENTRY LINKS
