@@ -20,8 +20,10 @@ class window.TagsController
     
   createTag: (tagName)->
     tag = new Tag(tagName)
-    tag.attachToEntry()
     tagView = new @tagViewClass(tag)
+
+    @tagViews.$container.append( tagView.createElement() )
+    
     @tagViews.add(tagView)
 
 class TagInput
@@ -69,25 +71,7 @@ class TagViewList
     @tagViews = []
     
     @tagViewClass = tagViewClass
-    
-    # Fill up @tagViews with tags for each currently displayed tags
-    i = 0
-    to = @$container.find('.tag').length - 1
-    while i <= to
-      $element = @$container.find('.tag').eq(i)
-      
-      newId = $element.data('id')
-      tagName = $element.find('.tagContent').text()
-      
-      tag = new Tag(tagName)
-      tag.setId(newId)
-      
-      tagView = new @tagViewClass(tag)
-      tagView.linkElement($element)
-      
-      @attach(tagView)
-      i++
-      
+    @addAllCurrentTags()
     
     @$container.delegate 'div', 'click', (event)=>
       @removeTag($(event.currentTarget).data('id'))
@@ -98,29 +82,30 @@ class TagViewList
     $.subscribe 'tags:removed', (id) =>
       @findByTagId(id).removeFromView()
   
+  addAllCurrentTags: ->
+    # Fill up @tagViews with tags for each currently displayed tags
+    for $element in @$container.find('.tag')
+      id = $element.data('id')
+      name = $element.find('.tagContent').text()
+      tag = new Tag(id, name)
+      tagView = new @tagViewClass( tag )
+      tagView.linkElement($element)
+      @add(tagView)
+
   findByTagId: (tagId)->
     return tagView for tagView in @tagViews when tagView.tag.id == tagId
 
-  attach: (tagView)->
-    @tagViews.push(tagView)
-    tagView.fadeIn()
-  
   add: (tagView)->
     @tagViews.push(tagView)
-    @$container.append( tagView.createElement() )
-    @$container.slideDown()
     tagView.fadeIn()
-    
+
   removeTag: (tagId) ->
-    tagToRemove = @findByTagId(tagId)
-    log tagToRemove
-    tagToRemove.tag.removeTag()
-    
+    tagViewToRemove = @findByTagId(tagId)
+    tagViewToRemove.remove()
 
 class TagView
   constructor: (tag)->
     @tag = tag
-    $.subscribe 'tags:id', (id) => @setId(id)
     
   tagNode: -> @tag
   linkElement: (element)->
@@ -129,11 +114,9 @@ class TagView
     @$element = $('#empty-tag').clone().attr('id', '').show()
     @$element.addClass('tagWhat')
     @setValue(@tag.name)
-    log @tag
     
     return @$element
   setValue: (tagName) ->
-    alert tagName
     @$element.find('.tagContent').html(tagName)
   setId: (id) ->
     @$element.attr('data-id', id)
@@ -148,6 +131,7 @@ class TagView
     @$element.fadeOut('fast', =>
       @$element.remove()
     )
+    
 
 class EditingTagView extends TagView
   inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
@@ -158,11 +142,17 @@ class EditingTagView extends TagView
   createFormElement: ->
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
-  
+  remove: ->
+    @removeFromView()
+    
 class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+  remove: ->
+    @removeFromView()
+    @tag.destroy()
+
 
 # MAKE THIS STORE THE ID OF THE TAG ALSO
 # Tag Model
@@ -172,7 +162,7 @@ class Tag
     #@attachToEntry()
   setId: (id) ->
     @id = id
-  attachToEntry: ->
+  create: ->
     @entry_id = $('#showEntry').data('id')
     $.ajax {
       type: 'POST'
@@ -182,10 +172,10 @@ class Tag
         what_name: @name
       success: (data, status, xhr) =>
         @id = data.what_id
-        $.publish 'tags:id', [@id]
+        # $.publish 'tags:id', [@id]
     }
     #$.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) -> alert "Data Loaded: " + data
-  removeTag: ->
+  destroy: ->
     $.publish 'tags:remove', [@id]
     $.ajax {
       type: 'DELETE'
