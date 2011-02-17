@@ -1,6 +1,16 @@
 @import mixins
 
 
+/* body */
+body
+  font-family: Calibri, Arial, Helvetica, sans-serif
+  margin: 0
+  padding: 0
+body.light
+  background-color: #ccc !important
+body.dark
+  background-color: #000 !important
+
 /******** LIGHT AND DARK ********/
 .light
   color: #333
@@ -40,18 +50,6 @@
 
 
 
-
-
-
-/* body */
-body
-  font-family: Calibri, Arial, Helvetica, sans-serif
-  margin: 0
-  padding: 0
-body.light
-  background-color: #ccc
-body.dark
-  background-color: #000
 
 
 // LINKS
@@ -239,8 +237,7 @@ a:active, a:focus
       +round(12)
       width: auto
       padding: 0 12px
-      &:hover
-        +confirm(12)
+      +confirm(12)
 
     .joinWrap, .signupWrap
       +pointer
@@ -308,8 +305,7 @@ a:active, a:focus
         +button-light
         +bevel-light
         width: 192px
-        &:hover
-          +confirm(12)
+        +confirm(12)
 
       label.stay, a.forgot
         +button-light
@@ -519,7 +515,7 @@ a:active, a:focus
 
   .arrow
     +relative
-    top: -20px
+    top: -23px
     padding: 0
     height: 16px
     margin-bottom: -16px
@@ -659,8 +655,7 @@ a:active, a:focus
         +button-light
       .more
         +button-light
-        &:hover
-          +confirm(16)
+        +confirm(16)
 
   #settingsPanel
     .arrow
