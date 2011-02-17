@@ -140,6 +140,9 @@ class EditingTagView extends TagView
   createElement: ->
     super()
     @createFormElement()
+  
+  create: ->
+    @createElement()
 
   createFormElement: ->
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)

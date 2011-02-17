@@ -45,4 +45,22 @@ module ApplicationHelper
   def sass_link_tag(*sources)
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
+
+  def bedsheet_style
+    bedsheet_attachment = 'scroll'
+    # TODO: these should be an imagebank url.
+    # if frontpage, use frontpage bedsheet
+    bedsheet_url = "/images/bedsheets/air-04.jpg" if request.path == '/'
+    # if dreamstars, use dreamstars bedsheet
+    bedsheet_url = "/images/bedsheets/air-02.jpg" if request.path == '/dreamstars'
+    # if user has ubiquity mode, use user's bedsheet no matter what
+    # Not yet implemented.
+    # if entry has a view preference, use entry's bedsheet
+    bedsheet_url ||= @entry._?.view_preference._?.image._?.url
+    # if user has a view preference, use user's bedsheet
+    bedsheet_url ||= current_user._?.view_preference._?.image._?.url
+    bedsheet_url ||= "/images/bedsheets/air-03.jpg"
+
+    "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
+  end
 end

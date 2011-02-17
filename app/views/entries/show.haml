@@ -94,7 +94,7 @@
             add
 
           / POST TIME & LOCATION
-          .postTime 2 hours ago
+          .postTime= time_ago_in_words(@entry.created_at)
           .postLocation Tokyo, Japan
 
 
