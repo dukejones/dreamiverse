@@ -52,10 +52,10 @@
           .sharing
             %img.listSelection{src: '/images/icons/share-16.png'}
             %select#entry_sharing_level{name: "entry[sharing_level]"}
-              %option{value: '500'} everyone
-              %option list of users
-              %option{value: '50'} anonymous
-              %option{value: '0'} private
+              %option.everyone{value: '500'} everyone
+              %option.list{} list of users
+              %option.anon{value: '50'} anonymous
+              %option.private{value: '0'} private
 
             .listOfUsers.target.hidden
               .friendsOnly
@@ -64,12 +64,8 @@
                   %span friends only
               .followersOnly
                 %label
-                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
+                  %input{value:'150', type: 'radio', name: 'listOfUsers'}
                   %span followers only
-              .url
-                %label
-                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
-                  %span anybody with URL
 
             .everyone.target.hidden
               .facebook
@@ -78,13 +74,13 @@
                   %span.shareOn share on
                   %span facebook
                   %input{type: 'checkbox', name: 'facebook'}
-              .twitter
+              .twitter.hidden
                 %label
                   %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
                   %span.shareOn share on
                   %span twitter
                   %input{type: 'checkbox', name: 'twitter'}
-              .buzz
+              .buzz.hidden
                 %label
                   %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
                   %span buzz
