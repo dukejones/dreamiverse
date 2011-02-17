@@ -60,7 +60,6 @@ class Entry < ActiveRecord::Base
 
   # clear out existing tags/scores so they can be re-populated on save
   def delete_tags
-    nephele_id = Nephele.id?
     Tag.delete_all(:entry_id => self.id,:kind => 'nephele')
   end
 
@@ -71,7 +70,8 @@ class Entry < ActiveRecord::Base
   def auto_generate_tags
     tag_string = self.body << ' ' + self.title #concat body/title
     tags = tag_string.split(/\s+/)
-    Nephele.score_auto_generated_tags(self,tags)
+    t = Tag.new
+    t.score_auto_generated_tags(self,tags)
   end 
        
   protected #######################

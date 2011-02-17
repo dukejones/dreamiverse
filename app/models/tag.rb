@@ -16,6 +16,46 @@ class Tag < ActiveRecord::Base
     tags
   end
 
+  # takes in a normal array of raw tags and returns hash of noun (what) ids
+  # and their associated score/frequency - skip black listed words
+  def score_auto_generated_tags(entry,tags,total_scores = 16)
+    tag_scores = {}
+    black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
+    w = What.new
+    
+    # loop thru each tag, get a noun (what) id for each, then score frequencies
+    tags.each do |tag|
+      tag = w.prep(tag)
+      if !black_list_words.include?(tag) #exclude black listed tags        
+        noun_id = nil #reset
+        what = What.find_or_create_by_name(tag)
+        noun_id = what.id
+        if !noun_id.nil?      
+          tag_scores[noun_id] += 1 if !tag_scores[noun_id].nil?
+          tag_scores[noun_id] = 1 if tag_scores[noun_id].nil?                         
+        end
+      end
+    end
+    
+    # sort results and keep the top (total_scores)
+    tag_scores = tag_scores.sort_by { |key,value| value }.reverse #sort by value, reversed   
+    tag_scores = tag_scores.first(total_scores) # grab the top total_scores elements
+    tag_scores = Hash[*tag_scores.flatten] #convert array back into a hash
+    
+    t = Tag.new
+    # save the scores
+    tag_scores.each do |noun_id,score|
+      
+      Tag.create( :entry_id   => entry.id, 
+                  :entry_type => entry.type,
+                  :kind       => 'nephele',
+                  :noun_id    => noun_id,
+                  :noun_type  => 'What',
+                  :score      => score)      
+    end  
+  end
+
+
 private
   # returns a number: 1-8
   def self.quantize(score, min_score, max_score)
