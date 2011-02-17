@@ -41,12 +41,14 @@
       +round(8)
       margin-right: 8px
     a.editEntry
+      +alpha(60)
       +round(16)
       +font(14)
       margin-right: 12px
-    .deleteEntry
+    a.deleteEntry
+      +alpha(60)
       +round(16)
-      +font(12)
+      +font(14)
       margin-right: 12px
 
     .content
@@ -538,7 +540,7 @@
         &:hover
           +confirm(15)
 
-      .deleteEntry
+      a.deleteEntry
         +button-dark
         +bevel-dark
         &:hover

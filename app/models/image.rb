@@ -72,8 +72,6 @@ class Image < ActiveRecord::Base
     file = File.open(path, 'wb')
     file.write(binary_data)
     set_metadata!
-  rescue => e
-    e
   ensure
     file._?.close
   end

@@ -24,7 +24,7 @@
       %span &lsaquo;
 
     %a.editEntry{href: edit_entry_path(@entry)} edit
-    = button_to('delete', entry_path(@entry), {:method => :delete, class: 'deleteEntry'})
+    = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
 
     / 
       Save for later
@@ -142,7 +142,7 @@
       
       .target.slide
         .newCommentWrap
-          .avatar
+          .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
@@ -159,23 +159,8 @@
                 image
           .clear
 
-      /
-        TEMPLATE
-        .prevCommentWrap
-          .avatar
-          .prevComment
-            .user iotus
-            .postTime 15 minutes ago
-            %ul
-              %li
-              %li
-              %li
-              %li
-            .comment Check it out, did it look like this?? 
-            .rePost
-              %img{src: '', width: '16', height: '16'}
-              Another Related Dream
-          .clear
-
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .clear
 
