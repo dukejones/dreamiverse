@@ -45,13 +45,27 @@ class UsersController < ApplicationController
     end
   end
   
+  # XHR only
   def bedsheet
     @user = current_user
-    # @user = User.find(params[:id])
     @user.view_preference.image = Image.find(params[:bedsheet_id])
     @user.save!
     render :json => "user bedsheet updated"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
+  end
+  
+  # XHR only.
+  def avatar
+    @image = Image.new(params[:image].merge({
+      incoming_filename: params[:qqfile],
+      uploaded_by: current_user
+    }))
+    @image.write(request.body.read)
+    @image.save
+    current_user.image = @image
+    
+    render :json => { :avatar_path => @image.url('avatar_main') }
+    
   end
 end

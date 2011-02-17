@@ -96,20 +96,24 @@ class ImagesController < ApplicationController
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     }))
+    @image.write(request.body.read)
 
     respond_to do |format|
       if !@image.save
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :alert => "Could not upload the file." }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      elsif (e = @image.write(request.body.read)).is_a?(Exception)
-        format.html { render :action => "new" }
-        format.json  { render :json => e.message, :status => :unprocessable_entity }
       else
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
         thumb_size = '120x120'
         @image.resize(thumb_size)
         format.json  { render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created }
       end
+    end
+  rescue => e
+    Rails.logger.warn "Error uploading file: #{e.message}"
+    respond_to do |format|
+      format.html { render :action => "new", :alert => "Could not upload the file." }
+      format.json  { render :json => e.message, :status => :unprocessable_entity }
     end
   end
 
