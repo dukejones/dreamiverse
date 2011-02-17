@@ -8,13 +8,19 @@ $(document).ready ->
 class SharingController
   constructor: (containerSelector)->
     @$container = $(containerSelector)
-    @$dropdown = @$container.find('select')
+    @$dropdown = @$container.find('#entry_sharing_level')
     
     @sharingView = new SharingView(containerSelector)
     @shareSettings = new Share()
     
+    @$container.find('.listSelection').click( (event) =>
+      currentSelection = @$dropdown.val()
+      @sharingView.changeView(currentSelection)
+    )
+    
     @$dropdown.change( (event) =>
-      newSelection = @$dropdown.find('option:selected').text()
+      newSelection = @$dropdown.val()
+      log newSelection
       @sharingView.changeView(newSelection)
       @shareSettings = new Share(newSelection)
     )
@@ -45,9 +51,9 @@ class SharingView
     
     # logic to update the visual display
     switch @type
-      when "EveryoneEveryone"
+      when "500" # Everyone
         @$container.find('.everyone').slideDown()
-      when "EveryoneUsers"
+      when "list of users"
         @$container.find('.listOfUsers').slideDown()
 
 # Sharing Model
