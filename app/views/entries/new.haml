@@ -45,7 +45,7 @@
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post'
-       
+
 
         // SHARING PANEL
         .sharingWrap
@@ -98,19 +98,6 @@
           %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
           = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "38"}
 
-        /
-          NEW ENTRY SHARING
-          #share.round-8
-            %img.arrow{src: '/images/icons/uparrow-black.png'}
-            %select.input.round-8
-              %option{value: 'Public'} Public
-              %option{value: 'Friends Only'} Friends Only
-              %option{value: 'Private'} Private
-            .social.round-8
-              %label
-                %img.icon{src: '/images/icons/facebook-16.png'}
-                %span.name Facebook
-                %input.checkbox{type: 'checkbox'}
 
     / NEW ENTRY DATE TIME
     = render :partial => "date_time"
