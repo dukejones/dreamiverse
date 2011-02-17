@@ -29,6 +29,7 @@ Dreamcatcher::Application.routes.draw do
   resource :user do
     post 'follow'
     post 'bedsheet'
+    post 'avatar'
   end
 
   # Random path from dreams.js
