@@ -45,34 +45,30 @@
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post'
-
-        .sharing
-          %img.listSelection{src: '/images/icons/share-16.png'}
-          %select#entry_sharing_level{name: "entry[sharing_level]"}
-            %option{value: '500'} everyone
-            %option users
-            %option{value: '50'} anonymous
-            %option{value: '0'} private            
-
+       
 
         // SHARING PANEL
         .sharingWrap
           .sharing
             %img.listSelection{src: '/images/icons/share-16.png'}
-            = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
+            %select#entry_sharing_level{name: "entry[sharing_level]"}
+              %option{value: '500'} everyone
+              %option list of users
+              %option{value: '50'} anonymous
+              %option{value: '0'} private
 
             .listOfUsers.target.hidden
               .friendsOnly
                 %label
-                  %input{type: 'radio', name: 'listOfUsers'}
+                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
                   %span friends only
               .followersOnly
                 %label
-                  %input{type: 'radio', name: 'listOfUsers'}
+                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
                   %span followers only
               .url
                 %label
-                  %input{type: 'radio', name: 'listOfUsers'}
+                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
                   %span anybody with URL
 
             .everyone.target.hidden
