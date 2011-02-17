@@ -266,12 +266,12 @@
   background: -moz-linear-gradient(top, #aaa, #222)
 
 =shine-dark-alpha($px)
-  box-shadow: inset 0 28px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0 28px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0 28px rgba(255,255,255,0.1)
+  box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
   background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(120,120,120,0.75)), to(rgba(34,34,34,0.75)))
-  background: -moz-linear-gradient(top, rgba(120,120,120,0.75), rgba(34,34,34,0.75))
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))
+  background: -moz-linear-gradient(top, rgba(96,96,96,0.75), rgba(0,0,0,0.75))
 
 =bevel-dark
   background: #aaa
