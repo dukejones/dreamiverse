@@ -25,10 +25,6 @@
     %a.context{href: entries_path(user.username)}
       = user.username
 
-    / WHO'S DREAMING
-    .find
-      Who's dreaming about me &rsaquo;
-
   - else
     / LABEL
     %a.context{href: entries_path(user.username)}
@@ -41,6 +37,10 @@
     / FOLLOW
     = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
+  .divider
+
+  .location
+    San Francisco, USA
 
   / FILTER BY ENTRY TYPE
   .wrapper

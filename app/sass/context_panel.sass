@@ -105,17 +105,19 @@
   .label, .image, .detail
     +left
 
-  .find
+  .divider
+    height: 2px
+    
+  .location
     +round(12)
-    +flat-top
+    +font(12)
     +center
-    padding: 4px 8px
-    margin-bottom: 2px
-
+    +transparent-light(60)
+    padding: 2px 4px
 
   .item
     +clear
-    margin-bottom: 2px
+    margin-bottom: 4px
     .relation
       +round(12)
       +flat-top
@@ -123,24 +125,26 @@
       +round(12)
       +flat-right
       +center
-      +font(18)
-      width: 84px
+      +font(17)
+      width: 100px
       height: 24px
       line-height: 24px
-      padding: 6px 8px
+      padding: 6px 0
 
     .image
-      width: 34px
+      +center
+      width: 38px
       height: 24px
-      padding: 7px 5px
+      padding: 0
       margin: 0
-      img.dream
-        margin: -8px 0
-      img.starlight
-        margin: -18px -16px
+      .dream
+        margin: 6px 0
+      .follow
+        margin: 4px 0
+      .starlight
+        margin: -11px -16px
         z-index: 1004
-      img.follow
-        margin: -12px 1px
+
 
     .detail
       +inner-shadow(10)
@@ -148,11 +152,15 @@
       +flat-left
       +bold
       +center
-      width: 36px
+      +overflow
+      width: 60px
       height: 26px
-      padding: 6px 8px
+      padding: 6px 0
       line-height: 26px
       border: 0
+      &.location
+        +font(15)
+        font-weight: normal
 
     .relation, .changeRelation
       +bold
@@ -188,7 +196,7 @@
         font-weight: normal
       img.arrow
         +right
-        margin: 4px -4px 0 -8px
+        margin: 4px 4px 0 -6px
     .filterList
       width: 100px
 
@@ -200,36 +208,38 @@
     +transparent-light(50)
     +glow-light(40)
 
-    .context, .find, .label
+    .context, .label
       +button-light
       +shine-light-alpha(16)
 
     .relation
       +button-light
 
-    .item .relation
-      +transparent-light(50)
-      .label
-        border: 1px solid #848484
-
-
-
+    .item
+      .relation
+        +transparent-light(50)
+        .label
+          border: 1px solid #848484
+      .detail
+        +flat-light
 
 .dark
   #contextPanel
     +transparent-dark(50)
     +glow-dark(40)
 
-    .context, .find, .label
+    .context, .label
       +button-dark
       +shine-dark-alpha(16)
     .relation
       +button-dark
-    .item .relation
-      +transparent-dark(50)
-      .label
-        border: 1px solid #555
-
+    .item
+      .relation
+        +transparent-dark(50)
+        .label
+          border: 1px solid #555
+      .detail
+        +flat-dark
 
 
 

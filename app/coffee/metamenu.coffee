@@ -144,7 +144,8 @@ class SettingsPanel extends MetaMenu
     )
     
     $('.modifyLocationView .confirm').click( (event) ->
-      $(event.currentTarget).parent().hide().prev().show()
+      $(event.currentTarget).parent().hide()
+      $(event.currentTarget).prev().show()
       alert "SEND SAVED LOCATION DATA TO SERVER"
     )
     
