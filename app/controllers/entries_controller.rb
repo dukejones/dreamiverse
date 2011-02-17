@@ -16,7 +16,7 @@ class EntriesController < ApplicationController
     restrict_access
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
-    @comments = @entry.comments.order('created_at DESC').limit(10)
+    @comments = @entry.comments.limit(10)
     
     if unique_hit?
       add_starlight @entry, 1
