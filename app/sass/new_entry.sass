@@ -250,6 +250,7 @@
       line-height: 34px
       margin: 0 0 0 14px
       padding: 6px 8px
+      width: 252px
       option
         padding: 1px 4px
       .newLocation
@@ -270,7 +271,7 @@
       width: 32px
       height: 32px
       margin-bottom: -32px
-      left: 284px
+      left: 312px
       top: 2px
     .expander
       +clear
@@ -290,7 +291,7 @@
       +right
       +center
       height: 34px
-      padding: 0 12px
+      padding: 0 14px
       line-height: 34px
       margin: 0
 
@@ -718,6 +719,8 @@
       .cancelLocation
         +bevel-light
         +button-light
+        &:hover
+          +delete(16)
 
     // ENTRY IMAGES
     .entryImages
@@ -840,6 +843,8 @@
       .cancelLocation
         +bevel-dark
         +button-dark
+        &:hover
+          +delete(16)
 
     // ENTRY IMAGES
     .entryImages

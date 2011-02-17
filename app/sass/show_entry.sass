@@ -8,7 +8,7 @@
 
   /*********** SHOW ENTRY ***********/
   // STRUCTURE
-  #showEntry
+  #showEntry, #showEntry.noImage
     +round(16)
     width: 662px 
     padding: 8px
@@ -51,21 +51,30 @@
       +font(14)
       margin-right: 12px
 
-
-    // HEADER IMAGE & TITLE
-    .imageHeader
+    .content
       +round(16)
-      +flat-bottom
       +relative
       +clear
-      margin: 0
-      height: 200px
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        +round(16)
+        +flat-bottom
+        margin: 0
+        height: 200px
+        width: 662px
+
+      // MOOD ICON
+      .moodIcon
+        +absolute
+        top: 0
+        right: 0
 
       // STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
         +round(16)
         +absolute
-        bottom: 12px
+        top: 156px
         right: 12px
         height: 32px
         line-height: 32px
@@ -100,6 +109,7 @@
         .repost.selected
           background: url(/images/icons/repost-24-selected.png) no-repeat center
 
+      // TITLE
       .title
         +round(8)
         +flat-bottom
@@ -108,15 +118,11 @@
         +center
         +font(22)
         margin: 0 0 0 20px
-        bottom: 0
+        top: 164px
         padding: 0 12px
         height: 36px
-        line-height: 36px
+        line-height: 32px
         max-width: 620px
-
-    .content
-      +round(16)
-      +flat-top
 
       // BODY
       .body
@@ -274,7 +280,7 @@
           padding: 8px
           textarea
             +transparent
-            min-height: 90px
+            height: 90px
             width: 546px
             border: none
           .images, .links, .save
@@ -336,6 +342,49 @@
             margin: 12px 0 0
 
 
+  // SHOW ENTRY - NO IMAGE
+  #showEntry.noImage
+    .content
+
+      // HEADER IMAGE & TITLE
+      .imageHeader
+        +hidden
+
+      // MOOD ICON
+      .moodIcon
+        +relative
+        +right
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +relative
+        +right
+        top: 0
+        right: 0
+        margin: 16px 12px 8px 8px
+
+      // TITLE
+      .title
+        +left
+        +clear
+        text-align: left
+        height: auto
+        position: relative
+        top: 0
+        margin: -20px 0 0 20px
+        max-width: 540px
+
+      // BODY
+      .body
+        +clear
+        padding: 12px 36px 36px
+
+      // GALLERY
+      ul.gallery
+        +hidden
+
+
+
 // COLORS
 .light
   #entryField
@@ -366,8 +415,12 @@
       .books
         +button-light
 
-      // HEADER IMAGE & TITLE
-      .imageHeader
+      // CONTENT
+      .content
+        +flat-light
+
+        // HEADER IMAGE
+        .imageHeader
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
@@ -379,11 +432,9 @@
           +button-light
           +glow-light(10)
 
+        // TITLE
         .title
           +transparent-light(50)
-
-      .content
-        +flat-light
 
         // IMAGE GALLERY
         ul.gallery
@@ -498,8 +549,12 @@
       .books
         +button-dark
 
-      // HEADER IMAGE & TITLE
-      .imageHeader
+      // CONTENT
+      .content
+        +flat-dark
+
+        // HEADER IMAGE
+        .imageHeader
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
@@ -511,11 +566,9 @@
           +button-dark
           +glow-dark(10)
 
+        // TITLE
         .title
           +transparent-dark(50)
-
-      .content
-        +flat-dark
 
         // IMAGE GALLERY
         ul.gallery
@@ -602,3 +655,19 @@
 
 
 
+// SHOW ENTRY - NO IMAGE
+// COLORS
+.light
+  #entryField
+    #showEntry.noImage
+
+      // MOOD ICON
+      .moodIcon
+        +glow-light(10)
+        &:hover
+          +cursor
+          border: 1px solid #bbb
+
+      // TITLE
+      .title
+        background: none

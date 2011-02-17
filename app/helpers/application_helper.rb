@@ -1,4 +1,16 @@
 module ApplicationHelper
+  def avatar_image(user, size = :main)
+    avatar_image = user.image
+    case size
+    when :main
+      avatar_image.url('avatar_main')
+    when :medium
+      avatar_image.url('avatar_medium')
+    else
+      avatar_image._?.url('avatar', size) || 'images/uploads/1-avatar-64.jpg'
+    end
+  end
+  
   def friend_icon_tag(relationship, size, html_options={})
     html_options.merge!( size: "#{size}x#{size}", alt: relationship )
     image_tag( "icons/#{friend_icon(relationship, size)}", html_options)

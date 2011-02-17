@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings, :source => :user
   
   belongs_to :default_location, :class_name => "Where"
+
+  belongs_to :image
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable

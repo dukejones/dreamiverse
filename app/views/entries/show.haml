@@ -26,28 +26,14 @@
     %a.editEntry{href: edit_entry_path(@entry)} edit
     = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
 
-
     / 
       Save for later
       .books.button.round-8 My Book of Dreams
 
-    / HEADER IMAGE & TITLE
-    .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
+    .content
 
-      / TAG CLOUD
-      <div id="tagCloud-1075" class="tagCloud hidden">
-      <div class="TC s-1 water">hanging</div>
-      <div class="TC s-1 water">friend</div>
-      <div class="TC s-7 water">plans</div>
-      <div class="TC s-1 water">mystical</div>
-      <div class="TC s-7 water">future</div>
-      <div class="TC s-2 water">love</div>
-      <div class="TC s-8 water">friends</div>
-      <div class="TC s-2 water">joy</div>
-      <div class="TC s-1 water">make</div>
-      <div class="TC s-6 water">lost</div>
-      <div class="TC s-7 water">long</div>
-      </div>
+      / HEADER IMAGE & TITLE
+      .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
 
       / MOOD ICON
       .moodIcon
@@ -63,8 +49,6 @@
         .option.repost.selected
         
       .title= @entry.title
-
-    .content
 
       / BODY
       .body= @entry.body
@@ -158,7 +142,7 @@
       
       .target.slide
         .newCommentWrap
-          .avatar
+          .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
@@ -175,23 +159,8 @@
                 image
           .clear
 
-      /
-        TEMPLATE
-        .prevCommentWrap
-          .avatar
-          .prevComment
-            .user iotus
-            .postTime 15 minutes ago
-            %ul
-              %li
-              %li
-              %li
-              %li
-            .comment Check it out, did it look like this?? 
-            .rePost
-              %img{src: '', width: '16', height: '16'}
-              Another Related Dream
-          .clear
-
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .clear
 
