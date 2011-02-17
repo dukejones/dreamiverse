@@ -26,13 +26,24 @@ $.subscribe('follow/changing', (userNode) ->
 # http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
 
 $('.userNode').live('mouseenter mouseleave click', (event) ->
+  expandNode = $(this).find('.expanded')
+  
   switch event.type
     when 'mouseenter'
       $(this).find('.statusHover').fadeIn('fast')
     when 'mouseleave'
       $(this).find('.statusHover').fadeOut('fast')
     when 'click'
-      $.publish('follow/change', [this])
+      if expandNode.css('display') is 'none' 
+        expandNode.slideDown('fast')
+      else
+        expandNode.slideUp('fast')
+      return false
+)
+
+$('.userNode .statusHover, .userNode .status').live('click', (event)->
+  $.publish('follow/change', [$(this).parent()[0]])
+  return false
 )
 
 # Data View
