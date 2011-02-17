@@ -84,7 +84,6 @@
           margin: 6px 4px 0 0
         span
           +left
-          color: #444
         hr
           +left
           +alpha(20)
@@ -430,8 +429,10 @@
 
         // MOOD ICON
         .moodIcon
-          +button-light
           +glow-light(10)
+          &:hover
+            +cursor
+            border: 1px solid #bbb
 
         // TITLE
         .title
@@ -559,13 +560,15 @@
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
-          +transparent-light(50)
-          +border-light
+          +transparent-dark(50)
+          +border-dark
 
         // MOOD ICON
         .moodIcon
-          +button-dark
-          +glow-dark(10)
+          +glow-light(10)
+          &:hover
+            +cursor
+            border: 1px solid #555
 
         // TITLE
         .title
@@ -670,6 +673,28 @@
         &:hover
           +cursor
           border: 1px solid #bbb
+
+      // TITLE
+      .title
+        background: none
+
+
+.dark
+  #entryField
+    #showEntry.noImage
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +transparent-light(50)
+        +border-dark
+
+      // MOOD ICON
+      .moodIcon
+        +glow-dark(10)
+        &:hover
+          +glow-dark(10)
+          +cursor
+          border: 1px solid #555
 
       // TITLE
       .title
