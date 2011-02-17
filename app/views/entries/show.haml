@@ -146,11 +146,8 @@
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
-
               = f.text_area :body
-              
               = f.submit 'post', :class => 'save'
-              
               .links
                 %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
                 links
