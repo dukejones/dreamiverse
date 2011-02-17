@@ -48,8 +48,7 @@ class UsersController < ApplicationController
   # XHR only
   def bedsheet
     @user = current_user
-    @user.view_preference.image = Image.find(params[:bedsheet_id])
-    @user.save!
+    @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id]))
     render :json => "user bedsheet updated"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
