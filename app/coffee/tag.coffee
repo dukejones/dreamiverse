@@ -155,13 +155,8 @@ class ShowingTagView extends TagView
   constructor: (tag) ->
     super(tag)
   create: ->
-    $.subscribe 'tags:id', (id) =>
-    # problem area
-      unless @tag.id?
-        @tag.setId(id)
-        @setId(id)
-    @tag.create()
-    
+    @tag.create().then (response)=>
+      @setId(response.what_id)
   remove: ->
     @removeFromView()
     @tag.destroy()
@@ -174,20 +169,12 @@ class Tag
     @name = name
     @id = id
   entryId: -> $('#showEntry').data('id')
-  setId: (id) ->
-    @id = id
+  setId: (id)-> @id = id
   create: ->
-    $.ajax {
-      type: 'POST'
-      url: '/tags'
-      data:
-        entry_id: @entryId()
-        what_name: @name
-      success: (data, status, xhr) =>
-        @id = data.what_id
-        $.publish 'tags:id', [@id]
-    }
-    #$.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) -> alert "Data Loaded: " + data
+    deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
+      @id = data.what_id
+    return deferred.promise()
+     
   destroy: ->
     $.publish 'tags:remove', [@id]
     
