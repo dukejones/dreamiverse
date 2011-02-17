@@ -106,6 +106,28 @@
             +left
             margin: 10px 0 0 4px
 
+          #entry_sharing_level
+            +round(8)
+            +font(14)
+            +pointer
+            +right
+            +transparent
+            border: none
+            margin-left: 8px
+            height: 34px
+            line-height: 34px
+            padding: 7px 8px
+            option
+              padding: 8px 4px 8px 38px
+            option.everyone
+              background: url(/images/icons/everyone-16.png) no-repeat 8px center
+            option.list
+              background: url(/images/icons/listofUsers-16.png) no-repeat 8px center
+            option.anon
+              background: url(/images/icons/mask-24.png) no-repeat 8px center
+            option.private
+              background: url(/images/icons/lock-16.png) no-repeat 8px center
+
           .listOfUsers
             +relative
             +clear
@@ -165,20 +187,6 @@
                   font-size: 11px
                 span.shared
                   text-transform: uppercase
-
-          #entry_sharing_level
-            +round(8)
-            +font(14)
-            +pointer
-            +right
-            +transparent
-            border: none
-            margin-left: 8px
-            height: 34px
-            line-height: 34px
-            padding: 7px 8px
-            option
-              padding: 1px 4px
 
     .myBooks, .addTheme, .date, .addLocation, #entry_submit
       +round(16)
@@ -791,6 +799,8 @@
 
       .entryType
         +border-dark
+        #entryType_list
+          color: #ddd
 
     // NEW ENTRY OPTIONS
     #entryOptions
@@ -800,6 +810,10 @@
       .sharing
         +shine-dark(17)
         +button-dark
+
+        #entry_sharing_level
+          option
+            color: #ddd
 
         .listOfUsers, .everyone
           .friendsOnly, .followersOnly, .url, .facebook, .twitter
