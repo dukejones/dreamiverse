@@ -6,7 +6,7 @@
       %p.name= entry.user.username
 
     .commentCount
-      .counter 20
+      .counter= entry.comments.count
 
     .image{style: 'background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left'}
 
@@ -106,7 +106,7 @@
       %p.name= entry.user.username
 
     .commentCount
-      .counter 20
+      .counter= entry.comments.count
 
     %h1.title= entry.title
     %h2.titleWatermark= entry.title
@@ -119,8 +119,7 @@
         reposted by:
         %span.rePostBy Phong
       / DATE
-      .date
-        10 seconds ago
+      .date= time_ago_in_words(entry.created_at)
       / STARLIGHT
       .starlight
         %img{src: '/images/icons/starlight-17.png', width: '17', height: '17'}
