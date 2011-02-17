@@ -9,13 +9,16 @@ $(document).ready ->
 
 # If abstraction doesn't simplify, it's not worth it.
 
-commentsPanel = $('#showEntry .commentsPanel')
-commentsPanel.find('.save').click ->
-  commentText = commentsPanel.find('.newComment textarea').val()
-  commentsPanel.find('.target').children().first()
-    .after('<div class="prevCommentWrap"><div class="avatar button round-12"></div><div class="prevComment input round-12"><div class="user button bevel round-8"></div><div class="postTime">1 second ago</div><div class="comment">' + commentText + '</div></div><div class="clear-both"></div></div>')
-    .hide().slideDown()
-  setTimeout(commentsPanel.find('.newComment textarea').val(''), 400)
+# commentsPanel = $('#showEntry .commentsPanel')
+# commentsPanel.find('.save').click ->
+#   commentText = commentsPanel.find('.newComment textarea').val()
+#   commentsPanel.find('.target').children().first()
+#     .after('<div class="prevCommentWrap"><div class="avatar button round-12"></div><div class="prevComment input round-12"><div class="user button bevel round-8"></div><div class="postTime">1 second ago</div><div class="comment">' + commentText + '</div></div><div class="clear-both"></div></div>')
+#     .hide().slideDown()
+#   setTimeout(commentsPanel.find('.newComment textarea').val(''), 400)
+
+
+
 
 #   entry = new Entry '#showEntry'
 #   

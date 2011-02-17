@@ -156,6 +156,11 @@
               .images
                 %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
                 image
+            :coffeescript
+              $('form#new_comment').bind('ajax:success', (event, data)->
+                $('textarea', this).val('')
+                $('.prevCommentWrap').first().before(data).hide().slideDown()
+              )
           .clear
 
         - @comments.each do |comment|
