@@ -22,9 +22,9 @@
     .clear
 
   / TOP 6 DREAMSTARS
-  - (1..6).each do |rank|
-    - user = @users[rank-1] # @users index starts at 0.
-    %a{class: "dreamstar-#{rank}"}
+  - (0..5).each do |rank|
+    - user = @users[rank]
+    %a{class: "dreamstar-#{rank+1}"}
       .badge
         = image_tag "dreamstars/#{@top_images[rank]}"
       .rank

@@ -153,20 +153,26 @@
         .commentsHeader.headers
           comments
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
-          .counter (6)
+          .counter= "(#{@comments.count})"
       .clear
+      
       .target.slide
         .newCommentWrap
           .avatar
           .newComment
-            %textarea
-            .save post
-            .links
-              %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
-              links
-            .images
-              %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
-              images
+            = form_for [@entry, Comment.new], :remote => true do |f|
+              = f.hidden_field :user_id, :value => current_user.id
+
+              = f.text_area :body
+              
+              = f.submit 'post', :class => 'save'
+              
+              .links
+                %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
+                links
+              .images
+                %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
+                image
           .clear
 
       /

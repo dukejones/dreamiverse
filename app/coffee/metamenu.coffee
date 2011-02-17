@@ -99,13 +99,33 @@ class AppearancePanel extends MetaMenu
         newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-120x120.' + node.format + '"></li>'
         @$currentMenuPanel.find('.bedsheets ul').append(newElement)
       
-      @$currentMenuPanel.find('.bedsheets ul').find('li').click ->
+      @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
         # SUPER TEMP
-        bedsheetUrl = 'url("/images/uploads/originals/' + $(this).data('id') + '.jpg")'
+        
+        bedsheetUrl = 'url("/images/uploads/originals/' + $(event.currentTarget).data('id') + '.jpg")'
         $('#body').css('background-image', bedsheetUrl)
         
-        $('#view_preference_image_id').val($(this).data('id'))
+        if $('#view_preference_image_id').attr('name')?
+          @updateEntryBedsheet($(event.currentTarget).data('id'))
+        else
+          @updateUserBedsheet($(event.currentTarget).data('id'))
+          
+        
     )
+  
+  updateUserBedsheet: (@bedsheet_id)->
+    #alert "update user bedsheet api call :: " + bedsheet_id
+    $.ajax {
+      type: 'POST'
+      url: '/user/bedsheet'
+      data:
+        bedsheet_id: @bedsheet_id
+      success: (data, status, xhr) =>
+        success = true
+    }
+  
+  updateEntryBedsheet: (bedsheet_id)->
+    $('#view_preference_image_id').val(bedsheet_id)
   
 
 # Settings Model Subclass
