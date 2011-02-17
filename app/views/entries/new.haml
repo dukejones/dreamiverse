@@ -47,7 +47,11 @@
         = f.submit :value => 'post'
         .sharing
           %img.listSelection{src: '/images/icons/share-16.png'}
-          = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
+          %select#entry_sharing_level{name: "entry[sharing_level]"}
+            %option{value: '500'} everyone
+            %option users
+            %option{value: '50'} anonymous
+            %option{value: '0'} private            
 
           .listOfUsers.target.hidden
             .friendsOnly
