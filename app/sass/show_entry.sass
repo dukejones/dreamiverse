@@ -16,11 +16,11 @@
     a.prev
       +round(16)
       +flat-right
-      +font(18)
+      +font(24)
     a.next
       +round(16)
       +flat-left
-      +font(18)
+      +font(24)
     .stream
       +flat-all
     a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
@@ -257,7 +257,6 @@
 
       .newCommentWrap, .prevCommentWrap
         +clear
-        margin-bottom: 8px
         .avatar
           +round(12)
           +left
@@ -292,7 +291,7 @@
           .save
             +round(16)
       .prevCommentWrap
-        margin-bottom: 0
+        margin-top: 8px
         .prevComment
           +round(12)
           +right
@@ -446,11 +445,14 @@
             .save
               +shine-light(16)
               +button-light
+              &:hover
+                +save(16)
             textarea
               color: #333
 
         .prevCommentWrap
           .avatar
+            +button-light
           .prevComment
             +input-light
             border: 2px solid #fff
@@ -575,11 +577,14 @@
             .save
               +shine-dark(16)
               +button-dark
+              &:hover
+                +save(16)
             textarea
               color: #ddd
 
         .prevCommentWrap
           .avatar
+            +button-dark
           .prevComment
             +input-dark
             border: 2px solid #000
