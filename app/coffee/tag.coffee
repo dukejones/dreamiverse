@@ -21,6 +21,7 @@ class window.TagsController
   createTag: (tagName)->
     tag = new Tag(tagName)
     tagView = new @tagViewClass(tag)
+    tagView.create()
 
     @tagViews.$container.append( tagView.createElement() )
     
@@ -28,7 +29,6 @@ class window.TagsController
 
 class TagInput
   constructor: ($input)->
-    log $input
     @$input = $input
 
     @$input.keypress (event) =>
@@ -84,7 +84,8 @@ class TagViewList
   
   addAllCurrentTags: ->
     # Fill up @tagViews with tags for each currently displayed tags
-    for $element in @$container.find('.tag')
+    for $currentElement in @$container.find('.tag')
+      $element = $($currentElement)
       id = $element.data('id')
       name = $element.find('.tagContent').text()
       tag = new Tag(id, name)
@@ -112,6 +113,7 @@ class TagView
     @$element = element
   createElement: ->
     @$element = $('#empty-tag').clone().attr('id', '').show()
+    @$element.addClass('tag')
     @$element.addClass('tagWhat')
     @setValue(@tag.name)
     
@@ -149,6 +151,14 @@ class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+  create: ->
+    $.subscribe 'tags:id', (id) =>
+    # problem area
+      unless @tag.id?
+        @tag.setId(id)
+        @setId(id)
+    @tag.create()
+    
   remove: ->
     @removeFromView()
     @tag.destroy()
@@ -172,7 +182,7 @@ class Tag
         what_name: @name
       success: (data, status, xhr) =>
         @id = data.what_id
-        # $.publish 'tags:id', [@id]
+        $.publish 'tags:id', [@id]
     }
     #$.post "/tags", { entry_id: @entry_id, what_name: @name }, (data) -> alert "Data Loaded: " + data
   destroy: ->
