@@ -88,7 +88,7 @@ class TagViewList
       $element = $($currentElement)
       id = $element.data('id')
       name = $element.find('.tagContent').text()
-      tag = new Tag(id, name)
+      tag = new Tag(name, id)
       tagView = new @tagViewClass( tag )
       tagView.linkElement($element)
       @add(tagView)
@@ -167,8 +167,9 @@ class ShowingTagView extends TagView
 # MAKE THIS STORE THE ID OF THE TAG ALSO
 # Tag Model
 class Tag
-  constructor: (name) ->
+  constructor: (name, id = '') ->
     @name = name
+    @id = id
     #@attachToEntry()
   setId: (id) ->
     @id = id

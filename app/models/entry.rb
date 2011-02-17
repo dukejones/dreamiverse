@@ -1,12 +1,18 @@
 class Entry < ActiveRecord::Base
   self.inheritance_column = nil
 
+  #Sharing = {
+  #  private:              0,
+  #  anonymous:           50,
+  #  users:              100,
+  #  friends:            200,
+  #  friends_of_friends: 300,
+  #  everyone:           500
+  #}
   Sharing = {
     private:              0,
     anonymous:           50,
     users:              100,
-    friends:            200,
-    friends_of_friends: 300,
     everyone:           500
   }
   
