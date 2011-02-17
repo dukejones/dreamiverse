@@ -20,8 +20,9 @@ class Tag < ActiveRecord::Base
   # and their associated score/frequency - skip black listed words
   def score_auto_generated_tags(entry,tags,total_scores = 16)
     tag_scores = {}
-    black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
     w = What.new
+    
+    black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
     tags.each do |tag|

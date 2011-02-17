@@ -58,7 +58,6 @@ class Entry < ActiveRecord::Base
     sharing_level == self.class::Sharing[:everyone]
   end
 
-  # clear out existing tags/scores so they can be re-populated on save
   def delete_tags
     Tag.delete_all(:entry_id => self.id,:kind => 'nephele')
   end
