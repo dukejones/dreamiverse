@@ -45,6 +45,7 @@
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post'
+
         .sharing
           %img.listSelection{src: '/images/icons/share-16.png'}
           %select#entry_sharing_level{name: "entry[sharing_level]"}
@@ -53,44 +54,47 @@
             %option{value: '50'} anonymous
             %option{value: '0'} private            
 
-          .listOfUsers.target.hidden
-            .friendsOnly
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span friends only
 
-            .followersOnly
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span followers only
+        // SHARING PANEL
+        .sharingWrap
+          .sharing
+            %img.listSelection{src: '/images/icons/share-16.png'}
+            = f.select 'sharing_level', Entry::Sharing.map{|share, level| [share.to_s.titleize, level]}
 
-            .url
-              %label
-                %input{type: 'radio', name: 'listOfUsers'}
-                %span anybody with URL
+            .listOfUsers.target.hidden
+              .friendsOnly
+                %label
+                  %input{type: 'radio', name: 'listOfUsers'}
+                  %span friends only
+              .followersOnly
+                %label
+                  %input{type: 'radio', name: 'listOfUsers'}
+                  %span followers only
+              .url
+                %label
+                  %input{type: 'radio', name: 'listOfUsers'}
+                  %span anybody with URL
 
-          .everyone.target.hidden
-            .facebook
-              %label
-                %img{src: '/images/icons/facebook-16.png', width: '16', height: '16'}
-                %span.shareOn share on
-                %span facebook
-                %input{type: 'radio', name: 'everyone'}
-
-            .twitter
-              %label
-                %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
-                %span.shareOn share on
-                %span twitter
-                %input{type: 'radio', name: 'everyone'}
-
-            .buzz
-              %label
-                %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
-                %span buzz
-                %span.shared shared:
-                %span.sharedWhen 10 hours ago
-            .clear
+            .everyone.target.hidden
+              .facebook
+                %label
+                  %img{src: '/images/icons/facebook-16.png', width: '16', height: '16'}
+                  %span.shareOn share on
+                  %span facebook
+                  %input{type: 'checkbox', name: 'facebook'}
+              .twitter
+                %label
+                  %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
+                  %span.shareOn share on
+                  %span twitter
+                  %input{type: 'checkbox', name: 'twitter'}
+              .buzz
+                %label
+                  %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
+                  %span buzz
+                  %span.shared shared:
+                  %span.sharedWhen 10 hours ago
+              .clear
 
         .addLocation
           %img{src: '/images/icons/location-21.png'}

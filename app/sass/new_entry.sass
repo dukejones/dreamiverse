@@ -86,92 +86,97 @@
       border: 1px solid #D7D7D7
 
       // SHARING
-      .sharing
-        +round(12)
-        +pointer
+      .sharingWrap
         +right
         +relative
-        min-height: 34px
-        line-height: 34px
+        width: 204px
         margin: 8px 0 0 8px
-        width: 194px
-        padding: 0 4px
-        z-index: 1101
-        img.listSelection
-          +left
-          margin: 10px 0 0 4px
-
-        .listOfUsers
-          +clear
-          margin-bottom: 4px
-          .friendsOnly, .followersOnly, .url
-            +round(12)
-            margin: 4px 0 0
-            label
-              +block
-              padding: 4px
-              height: 28px
-              line-height: 28px
-              input, span
-                +right
-              input
-                margin: 9px 8px 0 8px
-          .friendsOnly
-            label
-              background: url(/images/icons/friend-none-24.png) no-repeat 8px center
-            label.selected
-              background: url(/images/icons/friend-24.png) no-repeat 8px center
-          .followersOnly
-            label
-              background: url(/images/icons/follower-none-24.png) no-repeat 8px center
-            label.selected
-              background: url(/images/icons/friend-follower-24.png) no-repeat 8px center
-          .url
-            label
-              background: url(/images/icons/link-light-22.png) no-repeat 8px center
-            label.selected
-              background: url(/images/icons/link-light-22.png) no-repeat 8px center
-
-        .everyone
-          +clear
-          margin-bottom: 4px
-          .facebook, .twitter, .buzz
-            +round(12)
-            margin: 4px 0 0
-            label
-              +block
-              padding: 4px
-              height: 28px
-              line-height: 28px
-              img
-                margin: 7px 0 0 4px
-              input
-                +right
-                margin: 9px 8px 0 8px
-              span, img
-                +left
-                margin-right: 4px
-              span.shareOn, span.shared, span.sharedWhen
-                color: #656565
-              span.sharedWhen, span.shared
-                margin-top: 2px
-                font-size: 11px
-              span.shared
-                text-transform: uppercase
-
-        #entry_sharing_level
-          +round(8)
-          +font(14)
+        .sharing
+          +absolute
+          +round(12)
           +pointer
-          +right
-          +transparent
-          border: none
-          margin-left: 8px
-          height: 34px
+          min-height: 34px
           line-height: 34px
-          padding: 7px 8px
-          option
-            padding: 1px 4px
+          margin: 0
+          padding: 0 4px
+          z-index: 1101
+          img.listSelection
+            +left
+            margin: 10px 0 0 4px
+
+          .listOfUsers
+            +relative
+            +clear
+            margin-bottom: 4px
+            .friendsOnly, .followersOnly, .url
+              +round(12)
+              margin: 4px 0 0
+              label
+                +block
+                padding: 4px
+                height: 28px
+                line-height: 28px
+                input, span
+                  +right
+                input
+                  margin: 9px 8px 0 8px
+            .friendsOnly
+              label
+                background: url(/images/icons/friend-none-24.png) no-repeat 8px center
+              label.selected
+                background: url(/images/icons/friend-24.png) no-repeat 8px center
+            .followersOnly
+              label
+                background: url(/images/icons/follower-none-24.png) no-repeat 8px center
+              label.selected
+                background: url(/images/icons/friend-follower-24.png) no-repeat 8px center
+            .url
+              label
+                background: url(/images/icons/link-light-22.png) no-repeat 8px center
+              label.selected
+                background: url(/images/icons/link-light-22.png) no-repeat 8px center
+
+          .everyone
+            +relative
+            +clear
+            margin-bottom: 4px
+            .facebook, .twitter, .buzz
+              +round(12)
+              margin: 4px 0 0
+              label
+                +block
+                padding: 4px
+                height: 28px
+                line-height: 28px
+                img
+                  margin: 7px 0 0 4px
+                input
+                  +right
+                  margin: 9px 8px 0 8px
+                span, img
+                  +left
+                  margin-right: 4px
+                span.shareOn, span.shared, span.sharedWhen
+                  color: #656565
+                span.sharedWhen, span.shared
+                  margin-top: 2px
+                  font-size: 11px
+                span.shared
+                  text-transform: uppercase
+
+          #entry_sharing_level
+            +round(8)
+            +font(14)
+            +pointer
+            +right
+            +transparent
+            border: none
+            margin-left: 8px
+            height: 34px
+            line-height: 34px
+            padding: 7px 8px
+            option
+              padding: 1px 4px
 
     .myBooks, .addTheme, .date, .addLocation, #entry_submit
       +round(16)
