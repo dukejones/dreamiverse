@@ -61,7 +61,7 @@ class UsersController < ApplicationController
       section: 'Avatar',
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
-    }))
+    })
     @image.write(request.body.read)
     @image.save
     current_user.image = @image
