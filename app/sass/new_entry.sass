@@ -57,6 +57,8 @@
       #entryType_list
         +transparent
         border: 0
+        padding: 0
+        line-height: 34px
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -711,7 +713,7 @@
         +indent-light
         +button-light
 
-      #hour, #month, #day, #year, #minute, #amPm
+      .hour, .month, .day, .year, .minute, .amPm
         +input-light
         +border-light
 
@@ -812,6 +814,7 @@
         +button-dark
 
         #entry_sharing_level
+          color: #ddd
           option
             color: #ddd
 
@@ -836,12 +839,12 @@
 
     // ENTRY DATE & TIME
     .entryDateTime
-      +shine-light-alpha(24)
+      +shine-dark-alpha(24)
       .dateTimeHeader
         +indent-dark
         +button-dark
 
-      #hour, #month, #day, #year, #minute, #amPm
+      .hour, .month, .day, .year, .minute, .amPm
         +input-dark
         +border-dark
 
@@ -909,13 +912,16 @@
         +indent-dark
         +button-dark
 
+      .moodPicker
+        color: #444
+
       // MOOD PICKER
       .moodPicker
         +transparent-dark(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
-      +shine-light-alpha(24)
+      +shine-dark-alpha(24)
       .images, .tag, .links, .mood
         +bevel-dark
         +button-dark
