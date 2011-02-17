@@ -26,8 +26,7 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
-  before_update :delete_tags
-  
+  before_update :delete_tags  
   after_save :process_tags
   
   def nouns
@@ -48,18 +47,21 @@ class Entry < ActiveRecord::Base
     self.view_preference = user.view_preference.clone!
   end
 
-  # clear out existing tags/scores so they can be repopulated on save
+  # clear out existing tags/scores so they can be re-populated on save
   def delete_tags
-    #Nephele.delete_scores(self.id)
-    n = Nephele.new
-    n.delete_scores(self.id)
+    nephele_id = Nephele.id?
+    Tag.delete_all(:entry_id => self.id,:kind => 'nephele')
   end
 
   def process_tags
-    #Nephele::process_single_entry_tags(self) 
-    n = Nephele.new
-    n.process_single_entry_tags(self)
+    auto_generate_tags
   end
+
+  def auto_generate_tags
+    tag_string = self.body << ' ' + self.title #concat body/title
+    tags = tag_string.split(/\s+/)
+    Nephele.score_auto_generated_tags(self,tags)
+  end 
        
   protected #######################
 

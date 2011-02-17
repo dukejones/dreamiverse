@@ -37,16 +37,14 @@
     whether which while whither who who's whoever whole whom whose why will willing wish with within without 
     won't wonder would would wouldn't yes yet you you'd you'll you're you've your yours yourself yourselves zero
     title dream body}
-
+    
+    w = What.new
     black_list_words.each do |word|
       if word.length > 2
-        word = Nephele.prep_tag(word)  
-        what = What.find_or_create_by_name(:name => Nephele.prep_tag(word))
-        if what.id
-          BlackListWord.find_or_create_by_what_id(:what_id => what.id,:filter_type => 'nephele')
-        end
+        prepped_word = w.prep(word)  
+        what = What.find_or_create_by_name(:name => prepped_word)      
+        BlackListWord.find_or_create_by_what_id(:what_id => what.id,:kind => 'nephele') if what.id
       end
     end
   end
-  
 end

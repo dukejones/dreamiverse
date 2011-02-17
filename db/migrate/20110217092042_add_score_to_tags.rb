@@ -1,9 +1,11 @@
 class AddScoreToTags < ActiveRecord::Migration
-  def self.up
+ def self.up
     add_column :tags, :score, :integer, :default => 0
-  end
+    add_column :tags, :kind, :string
+ end
 
-  def self.down
+ def self.down
     remove_column :tags, :score
-  end
+    remove_column :tags, :kind
+ end
 end

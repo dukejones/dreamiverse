@@ -7,7 +7,6 @@ class BlackListWord < ActiveRecord::Base
             :uniqueness => true,
             :numericality => true
 
-  validates :filter_type,
-            :presence => true
-  
+  validates :kind,
+            :presence => true  
 end

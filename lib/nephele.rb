@@ -6,95 +6,88 @@ class Nephele
   started feb/2011 - doktorj@dreamcatcher.net
 =end
 
-  # Move to Tag model?
+  # get the id for username nephele - soon to replaced by the kind column
+  def self.id?
+    128
+  end
+
+  # Moved to Tag model
   # downcase & strip non alpha numeric chars at begin/end of tag
-  def self.prep_tag(tag)
-    return tag.downcase.gsub(/^\W+|\W+$/, '') 
-  end
+  #def self.prep_tag(tag)
+  #  return tag.downcase.gsub(/^\W+|\W+$/, '') 
+  #end
 
-  ### Move to Tag model?
-  def delete_scores(entry_id)
-    Tag.delete_all(:entry_id => entry_id) if entry_id > 0  
-  end
+  ### Moved to Entry model
+  #def delete_scores(entry_id)
+  #  Tag.delete_all(:entry_id => entry_id) if !entry_id.nil?  
+  #end
 
-  ### Move to Entry model?
-  def auto_generate_single_entry_tags(dream)
-    tag_string = dream.body << ' ' + dream.title #concat body/title
-    tags = tag_string.split(/\s+/)
-    return score_tags(dream,tags)
-  end
+  ### Moved to Entry model
+  #def auto_generate_single_entry_tags(dream)
+  #  tag_string = dream.body << ' ' + dream.title #concat body/title
+  #  tags = tag_string.split(/\s+/)
+  #  return score_tags(dream,tags)
+  #end
 
-  ### Move to Tag model?
+  ### Removed
   # invoke processes for scoring custom tags and 
   # generating / scoring auto generated tags
-  def process_single_entry_tags(dream)
-    tag_scores = auto_generate_single_entry_tags(dream)
-    puts 'test: tag_scores' + tag_scores.to_s #testing
-  end
+  #def process_single_entry_tags(dream)
+  #  tag_scores = auto_generate_single_entry_tags(dream)
+  #  puts 'test: tag_scores' + tag_scores.to_s #testing
+  #end
 
-private ###################  
 
-  ### Move to Tag model? + rename to score_tag_frequencies
-  # takes in a normal array of keywords and returns hash of noun (what) ids
-  # and their associated score/freq
-  def score_tags(dream,tags,num_scores = 16)
-    tag_scores = {} #init hash
+  ### Move to Tag model? 
+  # takes in a normal array of raw tags and returns hash of noun (what) ids
+  # and their associated score/frequency - skip black listed words
+  def self.score_auto_generated_tags(entry,tags,total_scores = 16)
+    tag_scores = {}
     black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
+    w = What.new
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
     tags.each do |tag|
-      tag = Nephele.prep_tag(tag)
+      tag = w.prep(tag)
       if !black_list_words.include?(tag) #exclude black listed tags        
-        tag_id = nil #reset
-        new_count = 0
-        tag_id = get_what_id(tag) 
-        if !tag_id.nil?          
-          if tag_scores[tag_id].nil? 
-            tag_scores[tag_id] = 1 # first instance of this tag_id
-          else  
-            tag_scores[tag_id]+=1  # increment score for this tag id
-          end                 
+        noun_id = nil #reset
+        what = What.find_or_create_by_name(tag)
+        noun_id = what.id
+        if !noun_id.nil?      
+          tag_scores[noun_id] += 1 if !tag_scores[noun_id].nil?
+          tag_scores[noun_id] = 1 if tag_scores[noun_id].nil?                         
         end
       end
     end
     
-    # sort results and keep the top (num_scores)
+    # sort results and keep the top (total_scores)
     tag_scores = tag_scores.sort_by { |key,value| value }.reverse #sort by value, reversed   
-    tag_scores = tag_scores.first(num_scores) # grab the top num_scores elements
-    tag_scores = Hash[*tag_scores.flatten] #convert back into a hash
+    tag_scores = tag_scores.first(total_scores) # grab the top total_scores elements
+    tag_scores = Hash[*tag_scores.flatten] #convert array back into a hash
     
-    # clear_scores(dream.id,nephele_id?) - for edit/update mode only
     # save the scores
     tag_scores.each do |tag_id,score|
-      save_score(dream,nephele_id?,tag_id,'What',score)
+      Nephele.save_auto_generated_score(entry,Nephele.id?,tag_id,'What',score)
     end  
-              
-    return tag_scores
   end
 
+  # Moved to What model
   # return the noun (what) id for a tag if it exists or insert it and returns 
-  # the new or id or return nil if invalid tag
-  def get_what_id(what)
-    w = What.find_or_create_by_name(what)
-    return w.id 
-  end
+  # the new or id or return nil if invalid 
+  #def get_what_id(what)
+  #  w = What.find_or_create_by_name(what)
+  #  return w.id 
+  #end
   
-  
-  def nephele_id?
-    128
-    # u = User.find_by_username('nephele')
-    # return u.id 
-  end
   
   # insert a tags record
-  def save_score(dream,user_id,noun_id,noun_type,score)
+  def self.save_auto_generated_score(entry,user_id,noun_id,noun_type,score)
   
-    Tag.create( :entry_id   => dream.id, 
-                :entry_type => 'Dream',
-                :user_id    => user_id,
+    Tag.create( :entry_id   => entry.id, 
+                :entry_type => entry.type,
+                :kind       => 'nephele',
                 :noun_id    => noun_id,
-                :noun_type  => 'What',
+                :noun_type  => noun_type,
                 :score      => score)
-  end
-    
+  end   
 end

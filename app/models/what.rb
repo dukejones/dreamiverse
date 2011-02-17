@@ -11,7 +11,11 @@ class What < ActiveRecord::Base
   before_create :clean
   
   def clean
-    self.name = Nephele.prep_tag(self.name)
+    self.name = prep(self.name)
   end
   
+  # downcase & strip non alpha numeric chars at begin/end of tag
+  def prep(what)
+    return what.downcase.gsub(/^\W+|\W+$/, '') 
+  end    
 end

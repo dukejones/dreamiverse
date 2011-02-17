@@ -14,8 +14,7 @@ class Tag < ActiveRecord::Base
     end
     tags
   end
-
-  
+    
 private
   # returns a number: 1-8
   def self.quantize(score, min_score, max_score)
