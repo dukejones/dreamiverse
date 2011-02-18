@@ -39,15 +39,17 @@ class AvatarController
     @avatarParams = ''
     uploader = new qq.AvatarUploader(
       element: document.getElementById('avatarDrop')
-      action: '/images.json'
+      action: '/user/avatar'
       maxConnections: 1
       params: @avatarParams
       debug: true
       onSubmit: (id, fileName) ->
         alert 'Avatar Submit'
-      onComplete: (id, fileName, response) ->
+      onComplete: (id, fileName, response) =>
+        log response
         @uploaderDisplayed = false
-        alert 'Avatar Uploaded'
+        @$avatarView.removeUploader()
+        $('.avatar').css('background-image', 'url(' + response.avatar_path + ')')
     )
 
     

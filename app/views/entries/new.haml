@@ -19,7 +19,7 @@
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
 
     - @entry.images.each do |image|
-      = hidden_field_tag 'entry[image_ids][]', image.id
+      = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
     
     / NEW ENTRY INPUT PANEL
     #newEntry
@@ -109,7 +109,7 @@
     = render :partial => "location"
 
     / NEW ENTRY IMAGES
-    = render :partial => "image_panel"
+    = render :partial => "image_panel", locals: {images: @entry.images}
 
     / NEW ENTRY TAG
     .entryTags.entryAssets.hidden
