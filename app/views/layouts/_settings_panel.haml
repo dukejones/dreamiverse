@@ -125,16 +125,17 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      %span Current password
-      %input{type: 'password'}
-      %span New password
-      %input{type: 'password'}
-      %span Repeat new password
-      %input{type: 'password'}
+      =form_for current_user, :remote => true, :html => {:id => 'change_password'} do |f|
+        %span Current password
+        = f.text_field :password
+        %span New password
+        = f.password_field :password_confirmation
+        %span Repeat new password
+        = f.password_field :password_confirmation
 
-      .cancel Cancel
-      .confirm Change password
-      .clear
+        .cancel Cancel
+        =f.submit :'Change password', :class => 'confirm'
+        .clear
 
 
   /

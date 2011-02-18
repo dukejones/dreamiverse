@@ -79,6 +79,13 @@ class AppearancePanel extends MetaMenu
     super(@name)
     @setupThemeSelector()
     
+    @$attachment = @$currentMenuPanel.find('.attachment')
+    
+    @$attachment.find('input').change (event) =>
+      $('body').removeClass('fixed, scroll')
+      $('body').css('background-attachment', $(event.currentTarget).val())
+          
+    
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun').click( (event) =>
       $('#view_preference_theme').val('light')
@@ -158,14 +165,20 @@ class SettingsPanel extends MetaMenu
     
     # setup default sharing dropdown change
     $('.sharingList').change( (event) ->
-      log $(this).val()
       switch $(this).val()
         when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
         when "Friends Only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
         when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/mask-16.png')
         when "Private" then $('.sharingIcon').attr('src', '/images/icons/lock-16.png')
     )
-  
-  changePassword: ->
-    alert "change password"
+    
+    # setup change password fields
+    $('form#change_password').bind 'ajax:beforeSend', (xhr, settings)->
+      $('.changePassword .target').hide()
+    
+    $('form#change_password').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Password has been updated')
+    
+    $('form#change_password').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
   

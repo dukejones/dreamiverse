@@ -1,5 +1,5 @@
 - content_for :foot do
-  = coffeescript_include_tag 'avatar'
+  = coffeescript_include_tag 'avatar', 'context_panel'
   = javascript_include_tag 'avataruploader'
   
 / CONTEXT PANEL
@@ -20,19 +20,19 @@
             .cancel cancel
             .dropboxBrowse{style: "position: relative; overflow: hidden; direction: ltr;"}
               browse
-              %input{type: "file", multiple: "multiple", name: "file", style: "position: absolute; right: 0pt; top: 0pt; font-family: Arial; font-size: 118px; margin: 0pt; padding: 0pt; cursor: pointer; opacity: 0;"}
+              %input{type: "file", name: "file", style: "position: absolute; right: 0pt; top: 0pt; font-family: Arial; font-size: 118px; margin: 0pt; padding: 0pt; cursor: pointer; opacity: 0;"}
 
 
 
 
   - if user == current_user
     / LABEL
-    %a.context{href: entries_path(user.username)}
+    .context
       = user.username
 
   - else
     / LABEL
-    %a.context{href: entries_path(user.username)}
+    .context
       = user.username
 
       - unless current_user.relationship_with(user) == :none
@@ -48,9 +48,9 @@
   .profile
 
     .view
-      .name Full Name
+      .name.hidden Full Name
       .location San Francisco, USA
-      .details
+      .details.hidden
         .website www.dreamcatcher.net
         .email someone@dreamcatcher.net
         .phone (206) 420-7777
@@ -62,17 +62,18 @@
         .twitter twitter
         .change edit profile
 
-    .edit
-      %input.name{type: 'text', name: 'name', value: 'full name'}
-      %input.email{type: 'text', name: 'email', value: 'email'}
-      %input.website{type: 'text', name: 'website', value: 'website'}
-      %input.phone{type: 'text', name: 'phone', value: 'phone'}
-      .skypeWrap
-        %input.skype{type: 'text', name: 'skype', value: 'skype user name'}
-        %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-      .cancel cancel
-      .save save
-      .clear
+    .edit.hidden
+      =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
+        = f.text_field :name, :placeholder => 'full name'
+        = f.text_field :email, :placeholder => 'email'
+        = f.text_field :website, :placeholder => 'website'
+        = f.text_field :phone, :placeholder => 'phone'
+        .skypeWrap
+          = f.text_field :skype, :placeholder => 'skype user name'
+          %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+        .cancel cancel
+        =f.submit :save, :class => 'save'
+        .clear
 
 
   / FILTER BY ENTRY TYPE
@@ -140,3 +141,14 @@
         %span low
       %a.type.bottom{href: ""}
         %span no filter
+
+  / VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    .favoritesWrap
+      .favorites
+      %img{src: '/images/icons/love-16.png', width: '16', height: '16', alt: 'favorites'}
+    .rePostWrap
+      .rePost
+      %img{src: '/images/icons/love-16.png', width: '16', height: '16', alt: 'favorites'}
+    .tagWrap
+      .tag

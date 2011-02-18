@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     raise "access denied" unless @user == current_user
     
     @user.update_attributes(params[:user])
-    render :json => "user updated"
+    render :text => "user updated"
   end
   
   def friends
