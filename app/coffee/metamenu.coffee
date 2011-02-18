@@ -79,6 +79,13 @@ class AppearancePanel extends MetaMenu
     super(@name)
     @setupThemeSelector()
     
+    @$attachment = @$currentMenuPanel.find('.attachment')
+    
+    @$attachment.find('input').change (event) =>
+      $('body').removeClass('fixed, scroll')
+      $('body').css('background-attachment', $(event.currentTarget).val())
+          
+    
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun').click( (event) =>
       $('#view_preference_theme').val('light')
