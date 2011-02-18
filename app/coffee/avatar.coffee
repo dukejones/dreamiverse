@@ -45,9 +45,11 @@ class AvatarController
       debug: true
       onSubmit: (id, fileName) ->
         alert 'Avatar Submit'
-      onComplete: (id, fileName, response) ->
+      onComplete: (id, fileName, response) =>
+        log response
         @uploaderDisplayed = false
-        alert 'Avatar Uploaded'
+        @$avatarView.removeUploader()
+        $('.avatar').css('background-image', 'url(' + response.avatar_path + ')')
     )
 
     
