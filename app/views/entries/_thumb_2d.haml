@@ -1,4 +1,4 @@
-.thumb-2d{style: "background: url('/images/art/astral-eyes-banner.jpg') top center"}
+.thumb-2d{style: "background: url('#{dreamfield_header_url(entry.images.first)}') top center"}
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
@@ -25,19 +25,5 @@
 
     / TAG CLOUD
     .tags
-      <div class="TC s-1 water">device</div>
-      <div class="TC s-1 water">dead</div>
-      <div class="TC s-1 water">mystical</div>
-      <div class="TC s-5 water">project</div>
-      <div class="TC s-1 water">class</div>
-      <div class="TC s-8 water">duke</div>
-      <div class="TC s-1 water">abyss</div>
-      <div class="TC s-3 water">art</div>
-      <div class="TC s-1 water">trees</div>
-      <div class="TC s-3 water">ancient</div>
-      <div class="TC s-3 water">goldfinger</div>
-      <div class="TC s-1 water">hartman</div>
-      <div class="TC s-3 water">janell</div>
-      <div class="TC s-1 water">intersection</div>
-      <div class="TC s-1 water">dorje</div>
-      <div class="TC s-5 water">pit</div>
+      - entry.whats.each do |tag|
+        .TC.water{class: "s-#{rand(7)+1}"}= tag.name
