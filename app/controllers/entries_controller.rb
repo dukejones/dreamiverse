@@ -54,9 +54,9 @@ class EntriesController < ApplicationController
     whats.each { |what| @entry.add_what_tag(what) }
 
     @entry.update_attributes( params[:entry].merge({
-      view_preference_attributes: params[:view_preference]
+      view_preference_attributes: params[:view_preference],
       links_attributes: params[:links]
-    }) )
+    }))
     redirect_to :action => :show, :id => params[:id]
   end
   
