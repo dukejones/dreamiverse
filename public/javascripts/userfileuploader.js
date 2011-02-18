@@ -586,7 +586,7 @@ qq.extend(qq.FileUploader.prototype, {
                 qq.removeClass(dropArea, self._classes.dropActive);  
             },
             onDrop: function(e){
-                dropArea.style.display = 'none';
+                //dropArea.style.display = 'none';
                 qq.removeClass(dropArea, self._classes.dropActive);
                 self._uploadFileList(e.dataTransfer.files);    
             }
@@ -646,42 +646,11 @@ qq.extend(qq.FileUploader.prototype, {
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
         
         // Add image
-        var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
+        //var newNode = '<div class="entryImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="entryImageCaption"></textarea></div></div>';
+        var newNode = '<div class="entryImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage round-8"><div class="imageRemoveButton dark O-bevel">X</div></div></div>';
         $('#currentImages').prepend(newNode);
         $('#currentImages').slideDown();
-        // mark completed
-        var item = this._getItemByFileId(id);                
-        /*qq.remove(this._find(item, 'cancel'));
-        qq.remove(this._find(item, 'spinner'));
-        qq.remove(this._find(item, 'file'));
-        qq.remove(this._find(item, 'size'));*/
-        
-        /*// Get file path from results
-        var filePath = result.image_url;
-        
-        // Check for image format from fileName
-        var pieces = fileName.split('.');
-        
-        // Add an ID to FADE in image on load
-        var tempIMG = id + '_fade';
-        
-        // Use format var to determine format of image uploaded
-        var raw = '<img alt="' + filePath + '" id="' + tempIMG + '" src="'+ filePath + '" />'; // width="120" height="120"
-        var el = qq.toElement(raw);
-        item.appendChild(el);
-        
-        var elementjq = '#' + tempIMG;
-        $(elementjq).hide();
-        $(elementjq).fadeIn('slow');
-        
-        if (result.image){
-          qq.addClass(item, this._classes.success);
-        } else {
-          qq.addClass(item, this._classes.fail);
-        }
-        qq.removeClass(item, 'uploading');
-        
-        selectAllImages(); */       
+        var item = this._getItemByFileId(id);                    
     },
     _addToList: function(id, fileName){
         /*var item = qq.toElement(this._options.fileTemplate);                

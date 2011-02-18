@@ -101,6 +101,10 @@ $(document).ready(function() {
     updateCurrentImagesMeta();
   }) 
   
+  $('#IB_managerUpdate').click(function(){
+    updateCurrentImagesMeta('update');
+  }) 
+  
   $('#IB_searchButtonWrap').click(function(){
     window.location ='/images?search=true';
   });
@@ -415,42 +419,80 @@ var imagesSelected = false;
 var totalImagesToUpdate = 0;
 var totalImagesUpdated = 0;
 
-var updateCurrentImagesMeta = function(){
+var updateCurrentImagesMeta = function(update){
   if($('#IB_current_genre').text() != 'Choose'){
-    // Set Save button to spinner
-    $('#IB_managerSave').html('Saving');
-    var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
-    $('#IB_managerSave').prepend(newElement);
+    if(update == 'update'){
+      // Set Save button to spinner
+      $('#IB_managerSave').html('Saving');
+      var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
+      $('#IB_managerSave').prepend(newElement);
     
-    // Collect data from fields for JSON
-    collectParams();
+      // Collect data from fields for JSON
+      collectParams();
   
-    // Get currently selected images
-    imagesSelected = false;
+      // Get currently selected images
+      imagesSelected = false;
    
-    $('#IB_dropboxImages li').each(function(){
-      if($(this).hasClass('selected')){
-        totalImagesToUpdate++ // add another image to the count
-        imagesSelected = true; // an image has been found!
+      $('#IB_dropboxImages li').each(function(){
+        if($(this).hasClass('selected')){
+          totalImagesToUpdate++ // add another image to the count
+          imagesSelected = true; // an image has been found!
       
-        // Get current ID
-        var currentImageID = getIDFromUrl($(this).find('img').attr('src'));
+          // Get current ID
+          var currentImageID = getIDFromUrl($(this).find('img').attr('src'));
       
-        // Make call & set data
-        $.ajax({
-            url: "/images/" + currentImageID + ".json",
-            type: 'PUT',
-            contentType: 'application/json',
-            data: JSON.stringify(imageMetaParams),
-            dataType: 'json',
-            complete: checkImagesUpdates
-        });
-      }
-    });
+          // Make call & set data
+          $.ajax({
+              url: "/images/" + currentImageID + ".json",
+              type: 'PUT',
+              contentType: 'application/json',
+              data: JSON.stringify(imageMetaParams),
+              dataType: 'json',
+              complete: checkImagesUpdates2
+          });
+        }
+      });
   
-    if(!imagesSelected){
-      // No Images were selected
-      alert('No images selected.')
+      if(!imagesSelected){
+        // No Images were selected
+        alert('No images selected.')
+      }
+    } else {
+      // Set Save button to spinner
+      $('#IB_managerSave').html('Saving');
+      var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
+      $('#IB_managerSave').prepend(newElement);
+    
+      // Collect data from fields for JSON
+      collectParams();
+  
+      // Get currently selected images
+      imagesSelected = false;
+   
+      $('#IB_dropboxImages li').each(function(){
+        if($(this).hasClass('selected')){
+          totalImagesToUpdate++ // add another image to the count
+          imagesSelected = true; // an image has been found!
+      
+          // Get current ID
+          var currentImageID = getIDFromUrl($(this).find('img').attr('src'));
+      
+          // Make call & set data
+          $.ajax({
+              url: "/images/" + currentImageID + ".json",
+              type: 'PUT',
+              contentType: 'application/json',
+              data: JSON.stringify(imageMetaParams),
+              dataType: 'json',
+              complete: checkImagesUpdates
+          });
+        }
+      });
+  
+      if(!imagesSelected){
+        // No Images were selected
+        alert('No images selected.')
+      }
     }
   } else {
     alert('You must choose a Genre.')
@@ -460,8 +502,21 @@ var updateCurrentImagesMeta = function(){
 var checkImagesUpdates = function(XMLHttpRequest, textStatus){
   totalImagesUpdated++
   if(totalImagesToUpdate == totalImagesUpdated){
-    alert('Images have been updated.');
+    alert('Images have been saved.');
     resetInterface();
+  }
+}
+
+var checkImagesUpdates2 = function(XMLHttpRequest, textStatus){
+  totalImagesUpdated++
+  if(totalImagesToUpdate == totalImagesUpdated){
+    alert('Images have been updated.');
+    $('#IB_managerSave').html('Save');
+    $('#IB_managerSave').unbind();
+    $('#IB_managerSave').click(function(){
+      updateCurrentImagesMeta();
+    }) 
+    //resetInterface();
   }
 }
 
