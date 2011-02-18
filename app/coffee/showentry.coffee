@@ -4,11 +4,17 @@ $(document).ready ->
   
   $('.gallery li a').lightBox();
   
+  
+
+  
   # setup links favico
-  #
-$('.link a').each ->
+  $('.link a').each ->
     if this.hostname && this.hostname != location.hostname
-      $(this).before '<img src="' + this.hostname + '/favicon.ico"/>'
+      $(this).before '<img class="attachedLink" src="http://' + this.hostname + '/favicon.ico" />'
+      
+      # Check for favico error
+      $(".attachedLink").bind "error", ->
+        $(this).attr('src', '/images/icons/link-16.gif')
     
 
 # There is a point where using objects is just more obfuscation.
