@@ -392,20 +392,20 @@ function resetImageButtons(){
   })
   
   // Click to expand/contract image
-  $('.dreamImage').unbind();
-   $('.dreamImage').click(function(){
+  /*$('.entryImage').unbind();
+   $('.entryImage').click(function(){
      if($(this).hasClass('round-8')){
        // Expand me
        
        // Close all other dream images that are open
-      $('.dreamImageContainer').each(function(){
-        if(!$(this).find('.dreamImage').hasClass('round-8')){
+      $('.entryImageContainer').each(function(){
+        if(!$(this).find('.entryImage').hasClass('round-8')){
           $(this).animate({width: '120px'}, 400, function(){
             // Complete
-            $(this).find('.dreamImage').removeClass('round-8-left');
-            $(this).find('.dreamImage').addClass('round-8');
+            $(this).find('.entryImage').removeClass('round-8-left');
+            $(this).find('.entryImage').addClass('round-8');
           });
-          $(this).find('.dreamImage').animate({width: '120px'});
+          $(this).find('.entryImage').animate({width: '120px'});
         }
       });
       
@@ -427,5 +427,5 @@ function resetImageButtons(){
       });
       $(this).animate({width: '120px'});
      }
-   });
+   });*/
 }
