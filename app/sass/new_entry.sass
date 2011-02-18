@@ -42,9 +42,11 @@
 
     .entryType
       +round(16)
-      +absolute
+      +right
       +pointer
-      +center
+      //
+        +center
+        +absolute
       right: 70px
       width: 126px
       height: 34px
@@ -451,14 +453,14 @@
       width: 550px
       height: 38px
       line-height: 38px
-      input
+      #linkValue
         +left
-        +font(18)
+        +font(16)
         +transparent
         width: 460px
         height: 32px
         line-height: 32px
-        margin: 4px 0 4px 8px
+        margin: 6px 0 4px 8px
         border: 0
       .linkAdd
         +round(4)
@@ -497,24 +499,25 @@
         margin: 0 0 0 102px
         width: 330px
         height: 24px
-        a:link, a:visited
-          +overflow
-          height: 14px
+        #links_url
+          +transparent
+          border: none
+          width: 320px
       .icon
         +right
         +center
         width: 32px
-        height: 32px
-        line-height: 32px
-        padding-top: 4px
+        height: 30px
+        line-height: 30px
+        margin-top: 4px
       .removeicon
+        +round(8)
         +right
         +center
         +pointer
-        width: 32px
-        height: 32px
-        line-height: 32px
-        padding-top: 4px
+        width: 30px
+        height: 30px
+        line-height: 30px
         color: red
        
   // NEW ENTRY MOOD
@@ -772,6 +775,11 @@
         .linkAdd
           +button-light
           +bevel-light
+
+      .linkContainer
+        .removeicon
+          +transparent-dark(80)
+          +button-dark
 
     // NEW ENTRY MOOD
     .entryMood

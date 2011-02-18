@@ -139,8 +139,7 @@ abbr, acronym
       padding: 0 8px
       overflow: visible
 
-
-.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap
+.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap
   &:hover
     .hoverLabel
       +block
@@ -934,7 +933,8 @@ abbr, acronym
 
 
   .modifyLocationView, .changePasswordForm
-    input
+    // INPUTS
+    #user_password, #user_password_confirmation, .save, .cancel
       +round(4)
       +font(15)
       margin-bottom: 4px
@@ -942,6 +942,7 @@ abbr, acronym
       width: 306px
     .save, .cancel
       +round(4)
+      padding: 0
     .save
       +right
       width: 186px
@@ -959,6 +960,11 @@ abbr, acronym
         margin-bottom: 1px
       .cancel, .confirm
         +round(4)
+      .confirm
+        +font(12)
+        height: 28px
+        line-height: 28px
+        padding-bottom: 2px
 
 
   .fontSizing
@@ -1043,11 +1049,12 @@ abbr, acronym
             +cancel(12)
 
     .changePasswordForm
-      input
+      #user_password, #user_password_confirmation, .save, .cancel
         +input-light
       .cancel, .confirm
         +button-light
         +bevel-light
+        color: #333
       .cancel:hover
         +cancel(12)
       .confirm:hover
@@ -1106,11 +1113,12 @@ abbr, acronym
             +cancel(12)
 
     .changePasswordForm
-      input
+      #user_password, #user_password_confirmation, .save, .cancel
         +input-dark
       .cancel, .confirm
         +button-dark
         +bevel-dark
+        color: #ddd
       .cancel:hover
         +cancel(12)
       .confirm:hover

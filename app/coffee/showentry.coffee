@@ -3,6 +3,19 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   
   $('.gallery li a').lightBox();
+  
+  
+
+  
+  # setup links favico
+  $('.link a').each ->
+    if this.hostname && this.hostname != location.hostname
+      $(this).before '<img class="attachedLink" src="http://' + this.hostname + '/favicon.ico" />'
+      
+      # Check for favico error
+      $(".attachedLink").bind "error", ->
+        $(this).attr('src', '/images/icons/link-16.gif')
+    
 
 # There is a point where using objects is just more obfuscation.
 

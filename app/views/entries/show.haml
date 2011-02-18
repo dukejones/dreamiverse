@@ -38,17 +38,19 @@
       .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
 
       / MOOD ICON
-      .moodIcon
+      .moodIcon.hidden
         %img{src: '/images/moods/plants/Fungi.png'}
 
       / STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
         %img.starlight{src: '/images/icons/starlight-22.png'}
-        %span 23,243
+        %span= @entry.starlight._?.value
         %hr
         .option.love.selected
-        .option.share
-        .option.repost.selected
+        /
+          SAVE FOR LATER
+          .option.share
+          .option.repost.selected
         
       .title= @entry.title
 
@@ -61,17 +63,13 @@
           = gallery_list_item(image)
       .clear
 
+
       / ENTRY LINKS
       .entryLinks
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Link on Facebook
-        .link
-          %img{src: '/images/icons/link-16.gif'}
-          %span Link on WWW
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Another Related Dream
+        - @entry.links.each do |link|
+          .link
+            %span
+              %a{href: "#{link.url}"}= link.title
         .clear
 
       / TAG
@@ -89,7 +87,7 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation Tokyo, Japan
+          .postLocation= @entry.wheres.first()
 
 
           #tag-list.tag-list.ui-sortable.target

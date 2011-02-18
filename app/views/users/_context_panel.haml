@@ -48,15 +48,15 @@
   .profile
 
     .view
-      .name.hidden Full Name
+      .name.hidden= user.name
       .location San Francisco, USA
       .details.hidden
-        .website www.dreamcatcher.net
-        .email someone@dreamcatcher.net
-        .phone (206) 420-7777
+        .website= user.website
+        .email= user.email
+        .phone= user.phone
         .skype
           %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-          %span user.skype
+          %span= user.skype
           .clear
         .facebook facebook
         .twitter twitter
@@ -153,3 +153,4 @@
       .rePost
     .tagWrap
       .tag
+      = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
