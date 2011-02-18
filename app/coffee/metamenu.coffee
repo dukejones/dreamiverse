@@ -87,13 +87,22 @@ class AppearancePanel extends MetaMenu
           
     
   setupThemeSelector: ->
-    @$currentMenuPanel.find('.buttons .sun').click( (event) =>
-      $('#view_preference_theme').val('light')
+    @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click( (event) =>
+      @newTheme = $(event.currentTarget).attr('id')
+      $('#view_preference_theme').val(newTheme)
+      # $.ajax {
+      #         type: 'POST'
+      #         url: '/user/theme'
+      #         data:
+      #           theme: @newTheme
+      #         success: (data, status, xhr) =>
+      #           success = true
+      #       }
     )
-    @$currentMenuPanel.find('.buttons .moon').click( (event) =>
-      $('#view_preference_theme').val('dark')
-    )
-    
+    # @$currentMenuPanel.find('.buttons .moon').click( (event) =>
+    #       $('#view_preference_theme').val('dark')
+    #     )
+    #     
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])

@@ -60,7 +60,9 @@
           .clear
         .facebook facebook
         .twitter twitter
-        .change edit profile
+        - if user == current_user
+          .change edit profile
+        .clear
 
     .edit.hidden
       =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|

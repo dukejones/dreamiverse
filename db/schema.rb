@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110215231604) do
+ActiveRecord::Schema.define(:version => 20110218074407) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -102,6 +102,17 @@ ActiveRecord::Schema.define(:version => 20110215231604) do
     t.boolean  "enabled",                         :default => false
     t.string   "attribution"
   end
+
+  create_table "links", :force => true do |t|
+    t.string   "url",        :null => false
+    t.string   "title",      :null => false
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["owner_id", "owner_type"], :name => "index_links_on_owner_id_and_owner_type"
 
   create_table "starlights", :force => true do |t|
     t.integer  "entity_id"

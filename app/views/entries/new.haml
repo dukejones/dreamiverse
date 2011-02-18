@@ -14,7 +14,8 @@
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
-    = fields_for (@entry.view_preference||ViewPreference.new) do |v|
+    
+    = fields_for (@entry.view_preference||current_user.view_preference) do |v|
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
 
@@ -24,6 +25,11 @@
     / NEW ENTRY INPUT PANEL
     #newEntry
 
+      = hidden_field_tag 'links[][url]', 'http://www.google.com'
+      = hidden_field_tag 'links[][title]', 'Goooooogle'
+      = hidden_field_tag 'links[][url]', 'http://www.froogle.com'
+      = hidden_field_tag 'links[][title]', 'Froooooogle'
+
       .wrapper
         / MOOD ICON
         = render :partial => "mood_icon"
@@ -31,7 +37,7 @@
       .entryType
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
-        %select#entryType_list
+        %select#entryType_list{name: 'entry[type]'}
           %option{value: 'Dream'} Dream
           %option{value: 'Vision'} Vision
           %option{value: 'Experience'} Experience
@@ -40,7 +46,7 @@
       = f.text_field :title, :maxlength => '72'
       %hr
       = f.text_area :body
-
+      
       #entryOptions
         /
           Save for later  
