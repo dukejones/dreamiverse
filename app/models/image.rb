@@ -57,6 +57,16 @@ class Image < ActiveRecord::Base
   #
   attr_accessor :incoming_filename
 
+  # This is loaded via seed data.  rake db:seed
+  # @@default_avatar_image = Image
+  def self.default_avatar_image
+    # section: Avatar
+    # title: Default Avatar
+
+    
+    self.first
+  end
+  
   def self.albums
     select("distinct(album)").map(&:album)
   end

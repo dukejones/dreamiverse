@@ -5,3 +5,13 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+
+if Image.where(:title => "Default Avatar").count == 0
+  default_avatar_image = Image.create({
+    :section => "Avatar",
+    :title => "Default Avatar",
+    :artist => "Andrew Jones"
+    
+  })
+end
