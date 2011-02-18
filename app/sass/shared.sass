@@ -482,6 +482,21 @@ abbr, acronym
     .user:hover
       border: 1px solid #ccc
 
+
+    // NOTIFICATIONS PANEL
+    .notificationsPanel
+      .notifyIcon
+
+      // NOTICE - SUCCESS
+      .notice
+
+      // ALERT - FAIL, WARING
+      .alert
+
+      // NOTIFICATION - NEW COMMENT, TAG
+      .notification
+
+
     .settingsPanel, .appearancePanel
       +left
 
@@ -934,7 +949,7 @@ abbr, acronym
 
   .modifyLocationView, .changePasswordForm
     // INPUTS
-    #user_password, #user_password_confirmation, .save, .cancel
+    #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
       +font(15)
       margin-bottom: 4px
