@@ -63,4 +63,11 @@ module ApplicationHelper
 
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
   end
+  
+  def theme
+    theme ||= @entry._?.view_preference._?.theme
+    theme ||= current_user._?.view_preference._?.theme
+    theme ||= "light"
+    theme
+  end
 end

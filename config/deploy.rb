@@ -22,7 +22,9 @@ set :deploy_to, "/var/www/#{application}"
 after "deploy", "deploy:cleanup"
 after "deploy", "barista:brew"
 after "deploy", "uploads:symlink"
-# after "deploy", "deploy:migrate"
+
+after "deploy:migrations", "barista:brew"
+after "deploy:migrations", "uploads:symlink"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
