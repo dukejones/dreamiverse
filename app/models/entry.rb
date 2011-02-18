@@ -27,6 +27,9 @@ class Entry < ActiveRecord::Base
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   
+  has_many :links, :as => :owner
+  accepts_nested_attributes_for :links
+  
   has_and_belongs_to_many :images
   
   validates_presence_of :user
