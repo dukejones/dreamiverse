@@ -166,7 +166,7 @@
       +flat-top
       padding: 8px
 
-      input
+      #user_name, #user_email, #user_website, #user_phone, #user_skype
         +round(8)
         +font(12)
         width: 176px
@@ -182,13 +182,14 @@
           +absolute
           left: 8px
           top: 5px
-        input
+        #user_skype
           width: 156px
           padding-left: 28px
           margin: 0
 
       .cancel, .save
         +round(4)
+        width: auto
         height: 22px
         line-height: 22px
         margin: 4px 0 0
@@ -199,7 +200,9 @@
       .save
         +right
         +save(14)
-        padding: 0 40px
+        +font(14)
+        height: 24px
+        padding: 0 36px 4px
 
 
   .item
@@ -295,6 +298,8 @@
       +flat-right
       .favorites
         background: url(/images/icons/love-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/love-16-selected.png) no-repeat center
       .favorites.selected
         background: url(/images/icons/love-16-selected.png) no-repeat center
 
@@ -306,6 +311,8 @@
       +flat-left
       .tag
         background: url(/images/icons/tag-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/tag-16-selected.png) no-repeat center
       .tag.selected
         background: url(/images/icons/tag-16-selected.png) no-repeat center
 
@@ -368,7 +375,7 @@
       .edit
         +shine-light-alpha(0)
 
-        input
+        #user_name, #user_email, #user_website, #user_phone, #user_skype
           +input-light
         .cancel, .save
           +bevel-light
@@ -377,6 +384,7 @@
           +delete(14)
         .save
           +save(14)
+          color: #333
 
     .item
       .relation
@@ -390,7 +398,7 @@
   .viewFilters
     background: #fff
     background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9a9a9a))
-    background: -moz-linear-gradient(top, #fff, #9a9a9a)
+    background: -moz-linear-gradient(top, #fff, #9a9a9a) // CUSTOM LIGHT BEVEL
 
     .favoritesWrap, .rePostWrap, .tagWrap
       +button-light
@@ -452,7 +460,7 @@
       .edit
         +shine-dark-alpha(0)
 
-        input
+        #user_name, #user_email, #user_website, #user_phone, #user_skype
           +input-dark
         .cancel, .save
           +bevel-dark
@@ -461,6 +469,7 @@
           +delete(14)
         .save
           +save(14)
+          color: #ddd
 
     .item
       .relation
@@ -469,6 +478,28 @@
           border: 1px solid #555
       .detail
         +flat-dark
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +bevel-dark
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-dark
+      +shine-dark(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #444
+      .rePost
+
+    .tagWrap
+      .tag
 
 
 
