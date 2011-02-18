@@ -17,7 +17,7 @@
 
   / SETTINGS MENU
   .rightPanel
-    %a.item.user.selected{href: entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 64)}) no-repeat scroll -8px -4px #000;"}
+    %a.item.user.selected{href: entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
       %span
         = current_user.username
 
