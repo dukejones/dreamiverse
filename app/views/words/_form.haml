@@ -1,6 +1,7 @@
 
 = form_for([@dict, word]) do |f|
-  .word= f.text_field :name, :class => 'font-21'
+  %br
+  .word= f.text_field :name
   .def= f.text_area :definition, :style => 'width: 574px; height: 200px; margin-top: 8px; padding: 4px'
 
-  = f.submit :class => 'shine font-17 button padding-4-8 block save round-12', :style => 'width: 100%; margin-top: 8px'
+  = f.submit :class => 'submit', :style => 'width: 100%; margin-top: 8px'
