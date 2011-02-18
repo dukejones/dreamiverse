@@ -66,8 +66,8 @@ class UsersController < ApplicationController
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     })
+    @image.save!
     @image.write(request.body.read)
-    @image.save
 
     current_user.update_attribute(:image, @image)
     render :json => { :avatar_path => @image.url('avatar_main'), :avatar_image => @image }
