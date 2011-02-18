@@ -44,7 +44,7 @@
       / STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
         %img.starlight{src: '/images/icons/starlight-22.png'}
-        %span 23,243
+        %span= @entry.starlight._?.value
         %hr
         .option.love.selected
         .option.share
@@ -61,17 +61,14 @@
           = gallery_list_item(image)
       .clear
 
+
       / ENTRY LINKS
       .entryLinks
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Link on Facebook
-        .link
-          %img{src: '/images/icons/link-16.gif'}
-          %span Link on WWW
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Another Related Dream
+        - @entry.links.each do |link|
+          .link
+            %img{src: '/images/icons/link-16.gif'}
+            %span
+              %a{href: "#{link.url}"}= link.title
         .clear
 
       / TAG
