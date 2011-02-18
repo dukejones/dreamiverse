@@ -38,7 +38,10 @@ class EntriesController < ApplicationController
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
-    new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))
+    new_entry = current_user.entries.create!(params[:entry].merge(whats: whats).merge({
+      view_preference_attributes: params[:view_preference],
+      links_attributes: params[:links]
+    }))
     redirect_to user_entry_path(current_user.username, new_entry)
   end
   
