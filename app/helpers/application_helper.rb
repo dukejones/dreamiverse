@@ -46,8 +46,12 @@ module ApplicationHelper
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
 
+  # Note: this depends on a "global" variable @entry being set to use @entry's preferences.
   def bedsheet_style
-    bedsheet_attachment = 'scroll'
+    bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= 'scroll'
+
     # TODO: these should be an imagebank url.
     # if frontpage, use frontpage bedsheet
     bedsheet_url = "/images/bedsheets/air-04.jpg" if request.path == '/'

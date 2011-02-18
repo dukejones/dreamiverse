@@ -4,14 +4,14 @@
 
   / SHARING
   .sharing
-    .defaultSharing
+    .defaultSharing{:'data-id' => current_user.default_sharing_level}
       %img.sharingIcon{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
-      %select.sharingList
-        %option.everyone{value: 'Everyone'} Everyone
-        %option.friends{value: 'Friends Only'} Friends only
-        %option.anonymous{value: 'Anonymous'} Anonymous
-        %option.private{value: 'Private'} Private
+      %select#sharingList.sharingList
+        %option.everyone{value: '500'} Everyone
+        %option.friends{value: '200'} Friends only
+        %option.anonymous{value: '50'} Anonymous
+        %option.private{value: '0'} Private
     %label.hidden
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
@@ -109,7 +109,7 @@
         %input.city{value: 'City'}
         %input.state{value: 'State / Province'}
         %input.country{value: 'Country'}
-        .save Save
+        %input{type: 'submit', name: 'save', class: 'save', value: 'save'}
         .cancel Cancel
         .clear
 
@@ -132,8 +132,8 @@
         %span Repeat new password
         = f.password_field :password_confirmation
 
-        .cancel Cancel
-        =f.submit :'Change password', :class => 'confirm'
+        .cancel cancel
+        =f.submit :'change password', :class => 'confirm'
         .clear
 
 

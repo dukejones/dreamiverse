@@ -461,6 +461,7 @@ abbr, acronym
     left: 248px
 
   .rightPanel
+    +relative
     +right
     margin-right: 10px
 
@@ -485,16 +486,69 @@ abbr, acronym
 
     // NOTIFICATIONS PANEL
     .notificationsPanel
+      +round(16)
+      +absolute
+      left: -40px
+      width: 214px
+      padding: 8px
+      +transparent-light(50)
+      +border-light
+
       .notifyIcon
+        +round(16)
+        +relative
+        height: 12px
+        line-height: 12px
+        width: 12px
+        padding: 4px
+        margin: 0 0 40px
+        background: #f15f29
+        color: #fff
 
-      // NOTICE - SUCCESS
-      .notice
-
-      // ALERT - FAIL, WARING
+      .notice, .alert, .notification
+        +round(12)
+        +clear
+        +relative
+        min-height: 24px
+        margin: 4px 0 0
+        +transparent-light(50)
+        +button-light
+        .close
+          +hidden
+          +absolute
+          +round(16)
+          +font(12)
+          +center
+          top: 2px
+          right: 2px
+          width: 18px
+          height: 18px
+          line-height: 18px
+          +flat-light
+          +button-light
+        &:hover
+          +transparent-light(90)
+          color: #000
+          .close
+            +block
+            &:hover
+              background: #f15f29
+              color: #fff
       .alert
+        .icon
+          +left
+          height: 24px
+          width: 24px
 
-      // NOTIFICATION - NEW COMMENT, TAG
       .notification
+        .avatar
+          +round(16)
+          +flat-right
+          +overflow
+          +left
+          width: 24px
+          height: 24px
+          margin: 0 12px 0 0
 
 
     .settingsPanel, .appearancePanel
@@ -960,6 +1014,9 @@ abbr, acronym
       padding: 0
     .save
       +right
+      +font(12)
+      padding-bottom: 2px
+      height: 28px
       width: 186px
     .cancel
       +left
@@ -1051,11 +1108,12 @@ abbr, acronym
           +border-light
 
       .modifyLocationView
-        input
+        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
           +input-light
         .save, .cancel
           +button-light
           +bevel-light
+          color: #333
         .save
           &:hover
             +confirm(12)
@@ -1115,11 +1173,12 @@ abbr, acronym
           +border-dark
 
       .modifyLocationView
-        input
+        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
           +input-dark
         .save, .cancel
           +button-dark
           +bevel-dark
+          color: #ddd
         .save
           &:hover
             +confirm(12)

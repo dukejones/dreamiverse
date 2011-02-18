@@ -14,24 +14,39 @@ class SharingController
     @shareSettings = new Share()
     
     @$container.find('.listSelection').click( (event) =>
-      currentSelection = @$dropdown.val()
-      @sharingView.changeView(currentSelection)
+      if @sharingView.isExpanded
+        @sharingView.contractCurrentView()
+      else
+        currentSelection = @$dropdown.val()
+        @sharingView.expandCurrentView(currentSelection)
     )
     
     @$dropdown.change( (event) =>
       newSelection = @$dropdown.val()
-      log newSelection
-      @sharingView.changeView(newSelection)
+      newSelectionImage = $(event.currentTarget).find('option:selected').css('background-image')
+      newSelectionImage = newSelectionImage.slice(5, newSelectionImage.length - 2)
+      $(event.currentTarget).parent().find('.listSelection').attr('src', newSelectionImage)
+      @sharingView.expandCurrentView(newSelection)
       @shareSettings = new Share(newSelection)
     )
+    
+    #setup Default Sharing dropdown
+    @$dropdown.val(@$container.find('.defaultSharing').data('id'))
+    @$dropdown.change()
+    @$container.find('.target').hide()
 
 
 class SharingView
   constructor: (containerSelector, type = 'everyone')->
     @$container = $(containerSelector)
     @type = type
-  
-  changeView: (type) ->
+  contractCurrentView: ->
+    @isExpanded = false
+    
+    @$container.find('.target').slideUp()
+    $('#bodyClick').remove()
+  expandCurrentView: (type) ->
+    @isExpanded = true
     @type = type
     
     # Hide all items
@@ -53,7 +68,7 @@ class SharingView
     switch @type
       when "500" # Everyone
         @$container.find('.everyone').slideDown()
-      when "list of users"
+      when "list"
         @$container.find('.listOfUsers').slideDown()
 
 # Sharing Model
