@@ -53,7 +53,10 @@ class EntriesController < ApplicationController
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
 
-    @entry.update_attributes( params[:entry] )    
+    @entry.update_attributes( params[:entry].merge({
+      view_preference_attributes: params[:view_preference]
+      links_attributes: params[:links]
+    }) )
     redirect_to :action => :show, :id => params[:id]
   end
   
