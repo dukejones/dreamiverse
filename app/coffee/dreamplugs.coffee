@@ -15,6 +15,7 @@ window.setupDreamplugs = ->
   )
   
   # Setup slide w/ arrows to work
+  # Used for Stream filtering
   $('.trigger.slideArrow').click( (event) ->
     $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
     $toggleText = $(event.currentTarget).find('.value')
