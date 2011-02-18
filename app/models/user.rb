@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :website # this should be a link
 
   has_many :authentications
 
@@ -9,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :entry_accesses
 
   has_one :view_preference, :as => "viewable", :dependent => :destroy
+  accepts_nested_attributes_for :view_preference, :update_only => true
   
   # follows are the follows this user has
   # following are the users this user is following
