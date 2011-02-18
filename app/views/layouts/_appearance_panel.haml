@@ -19,7 +19,16 @@
       %li
         %img{src: '/images/art/IB_artistImages/artistImage120-5.jpg'}
 
-    .more + browse more...
+    .attachment
+      %label.fixed
+        fixed
+        %input{name: 'attachment', value:'fixed', type: 'radio'}
+      %label.scroll
+        scroll
+        %input{name: 'attachment', value:'scroll', type: 'radio'}
+      .clear
+    /
+      .more + browse more...
 
   / COLOR PICKER
   .colorPicker
