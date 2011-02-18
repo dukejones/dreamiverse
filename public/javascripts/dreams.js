@@ -336,7 +336,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input id="links_title" class="linkTitleValue" name="links[][title]" value="Link Title" /></div><div class="url"><input id="links_url" class="linkUrlValue" name="links[][url]" value="' + newText + '" /></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input id="links_title" class="linkTitleValue" name="entry[links_attributes][][title]" value="Link Title" /></div><div class="url"><input id="links_url" class="linkUrlValue" name="entry[links_attributes][][url]" value="' + newText + '" /></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server

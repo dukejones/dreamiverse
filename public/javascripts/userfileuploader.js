@@ -646,14 +646,14 @@ qq.extend(qq.FileUploader.prototype, {
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
         // Add image
         //var newNode = '<div class="entryImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="entryImageCaption"></textarea></div></div>';
-        var newNode = '<div class="entryImageContainer" data-id=":image_id" style="width: 120px;"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage round-8"><div class="imageRemoveButton dark O-bevel">X</div></div></div>';
+        var newNode = '<div class="entryImageContainer" data-id=":image_id" style="width: 120px;"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage"><div class="imageRemoveButton">X</div></div></div>';
         newNode = newNode.replace(/:image_id/, result.image.id)
         newNode = newNode.replace(/:image_url/, result.image_url)
         
         var newHiddenForm = '<input class="image_upload" type="hidden" value=":image_id" name="entry[image_ids][]" id="entry_image_ids_">'
         newHiddenForm = newHiddenForm.replace(/:image_id/, result.image.id)
         
-        $('.edit_entry').prepend(newHiddenForm)
+        $('#currentImages').prepend(newHiddenForm)
         
         $('#currentImages').prepend(newNode);
         $('#currentImages').slideDown();               
