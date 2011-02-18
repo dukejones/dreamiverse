@@ -8,7 +8,7 @@ $(document).ready(function() {
 var uploader = null;
 var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
 
-function setupUploader(){            
+function setupUploader(){      
   if(document.getElementById('imageDropArea')){
     uploader = new qq.FileUploader({
       element: document.getElementById('imageDropArea'),
@@ -20,7 +20,7 @@ function setupUploader(){
      
       },
       onComplete: function(id, fileName, responseJSON){
-        resetImageButtons();
+        //setupImageButtons();
       }
     });
   }      
@@ -284,7 +284,7 @@ function setupEvents(){
   });
 
   
-  resetImageButtons();
+  setupImageButtons();
 }
 
 function checkForPastedLink(newText){
@@ -381,10 +381,18 @@ function showYoutubeData(newText){
   });
 }
 
-function resetImageButtons(){
+function setupImageButtons(){
   // Click to remove Image
-  $('.imageRemoveButton').click(function(){
+  $('.imageRemoveButton').live('click', function(event){
     // Remove from list of used images
+    var currentImageId = $(this).parent().parent().data('id');
+    
+    $('.image_upload').each(function(i, element){
+      if($(this).val() == currentImageId){
+        $(this).remove()
+      }
+    })
+    
     $(this).parent().parent().fadeOut('fast', function(){
       $(this).remove();
     });

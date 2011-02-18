@@ -39,7 +39,7 @@ class AvatarController
     @avatarParams = ''
     uploader = new qq.AvatarUploader(
       element: document.getElementById('avatarDrop')
-      action: '/images.json'
+      action: '/user/avatar'
       maxConnections: 1
       params: @avatarParams
       debug: true

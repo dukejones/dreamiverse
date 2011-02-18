@@ -158,6 +158,7 @@ class SettingsPanel extends MetaMenu
     
     # setup default sharing dropdown change
     $('.sharingList').change( (event) ->
+      log $(this).val()
       switch $(this).val()
         when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
         when "Friends Only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
