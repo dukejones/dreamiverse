@@ -43,8 +43,6 @@ class AvatarController
       maxConnections: 1
       params: @avatarParams
       debug: true
-      onSubmit: (id, fileName) ->
-        alert 'Avatar Submit'
       onComplete: (id, fileName, response) =>
         log response
         @uploaderDisplayed = false

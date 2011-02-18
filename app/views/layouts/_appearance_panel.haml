@@ -35,9 +35,9 @@
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
     .buttons
-      .sun{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
+      #light.sun{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
         sun
         %img{src: '/images/icons/sun-24.png'}
-      .moon{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
+      #dark.moon{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
         moon
         %img{src: '/images/icons/moon-24.png'}
