@@ -12,7 +12,7 @@
 
     = yield :head
 
-  %body{id: 'body', class: "color #{theme}", style: bedsheet_style}
+  %body{id: 'body', class: "#{theme} scroll", style: bedsheet_style}
     = render "shared/facebook_sdk"
 
     #drop_shadow

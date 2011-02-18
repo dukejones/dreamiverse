@@ -10,6 +10,10 @@ body.light
   background-color: #ccc !important
 body.dark
   background-color: #000 !important
+body.fixed
+  background-attachment: fixed !important
+body.scroll
+  background-attachment: scroll !important
 
 /******** LIGHT AND DARK ********/
 .light
@@ -611,9 +615,9 @@ abbr, acronym
         +left
         +pointer
         +overflow
-        margin: 0 4px 4px 0
-        height: 132px
-        width: 132px
+        margin: 0 10px 10px 0
+        height: 128px
+        width: 128px
         -moz-box-shadow: 2px 5px 10px #111
         border: 4px solid #CCCCCC
         img
@@ -625,12 +629,28 @@ abbr, acronym
         border: 4px solid #427ee8
         img
           border: 4px solid #fff
+    .attachment
+      .fixed, .scroll
+        +round(4)
+        +block
+        +center
+        width: 47%
+        padding: 2px
+        +cancel(8)
+        input
+          +pointer
+      .fixed
+        +left
+      .scroll
+        margin-left: 4px
+        +right
     .more
       +round(80)
       +alpha(60)
       +center
       height: 32px
       line-height: 32px
+      +confirm(16)
       &:hover
         +alpha(100)
 
@@ -697,9 +717,13 @@ abbr, acronym
       +panel-light
       .options
         +button-light
+      .attachment
+        .fixed, .scroll
+          +button-light
+          +bevel-light
+          +cancel(12)
       .more
         +button-light
-        +confirm(16)
 
   #settingsPanel
     .arrow
@@ -714,10 +738,13 @@ abbr, acronym
       +panel-dark
       .options
         +button-dark
+      .attachment
+        .fixed, .scroll
+          +button-dark
+          +bevel-dark
+          +cancel(12)
       .more
         +button-dark
-        &:hover
-          +confirm(16)
 
   #settingsPanel
     .arrow
@@ -802,6 +829,7 @@ abbr, acronym
         width: 110px
         height: 24px
         line-height: 24px
+        +confirm(12)
 
     label
       +clear
@@ -834,6 +862,7 @@ abbr, acronym
         +round(4)
         width: 186px
         padding: 2px 4px
+        +confirm(12)
         img
           float: none
           margin: -3px 3px
@@ -843,6 +872,7 @@ abbr, acronym
         +right
         +round(4)
         padding: 2px 4px
+        +cancel(12)
 
       .locationList
         +clear
@@ -978,31 +1008,25 @@ abbr, acronym
       .linkAccount
         +button-light
         +bevel-light
-        &:hover
-          +confirm(12)
+
 
     .savedLocations
       +panel-light
 
-      .locationView
-        .newLocation
-          +bevel-light
-          +button-light
-          &:hover
-            +confirm(12)
+      .newLocation
+        +bevel-light
+        +button-light
 
-        .autoLocate
-          +bevel-light
-          +button-light
-          &:hover
-            +cancel(12)
+      .autoLocate
+        +bevel-light
+        +button-light
 
-        .locationList
+      .locationList
+        +border-light
+
+        .locations
+          +flat-light
           +border-light
-
-          .locations
-            +flat-light
-            +border-light
 
       .modifyLocationView
         input
@@ -1048,31 +1072,24 @@ abbr, acronym
       .linkAccount
         +button-dark
         +bevel-dark
-        &:hover
-          +confirm(12)
 
     .savedLocations
       +panel-dark
 
-      .locationView
-        .newLocation
-          +bevel-dark
-          +button-dark
-          &:hover
-            +confirm(12)
+      .newLocation
+        +bevel-dark
+        +button-dark
 
-        .autoLocate
-          +bevel-dark
-          +button-dark
-          &:hover
-            +cancel(12)
+      .autoLocate
+        +bevel-dark
+        +button-dark
 
-        .locationList
+      .locationList
+        +border-dark
+
+        .locations
+          +flat-dark
           +border-dark
-
-          .locations
-            +flat-dark
-            +border-dark
 
       .modifyLocationView
         input
