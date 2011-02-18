@@ -21,6 +21,19 @@
       %span
         = current_user.username
 
+    / NOTIFICATIONS PANEL
+    .notificationsPanel.hidden
+      .notifyIcon 5
+
+      / NOTICE - SUCCESS
+      .notice
+
+      / ALERT - FAIL, WARING
+      .alert
+
+      / NOTIFICATION - NEW COMMENT, TAG
+      .notification
+
     .settingsPanel.wrapper
       .item.settings.trigger
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}

@@ -97,6 +97,8 @@
           height: 32px
         .love
           background: url(/images/icons/love-16.png) no-repeat center
+          &:hover
+            background: url(/images/icons/love-16-selected.png) no-repeat center
         .love.selected
           background: url(/images/icons/love-16-selected.png) no-repeat center
         .share
@@ -307,7 +309,6 @@
         .prevComment
           +round(12)
           +right
-          min-height: 112px
           width: 544px
           padding: 8px
           border: 2px solid white
@@ -401,6 +402,8 @@
         +bevel-light
         +border-light
 
+      a.next, a.prev
+        color: #555
       a.next, .stream, a.prev
         +button-light
         +shine-light(18)
@@ -497,7 +500,7 @@
 
         .newCommentWrap
           .avatar
-            +button-light
+            +border-light
           .newComment
             +inputTextarea-light
             .save
@@ -533,6 +536,9 @@
       .type
         +bevel-dark
         +border-dark
+
+      a.next, a.prev
+        color: #ddd
 
       a.next, .stream, a.prev
         +button-dark
@@ -632,7 +638,7 @@
 
         .newCommentWrap
           .avatar
-            +button-dark
+            +border-dark
           .newComment
             +inputTextarea-dark
             .save

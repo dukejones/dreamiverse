@@ -42,9 +42,8 @@
 
     .wrapper.target.showhide.hidden
       .locationView
-        %form
+        %form.locationForm
           .locationList
-
             .locations
               %label
                 set as default
@@ -106,10 +105,10 @@
       / ADD NEW LOCATION
       .modifyLocationView.target.toggle.hidden
         <b>Add a new location</b>
-        %input{value: 'Location name'}
-        %input{value: 'City'}
-        %input{value: 'State / Province'}
-        %input{value: 'Country'}
+        %input.name{value: 'Location name'}
+        %input.city{value: 'City'}
+        %input.state{value: 'State / Province'}
+        %input.country{value: 'Country'}
         .save Save
         .cancel Cancel
         .clear
