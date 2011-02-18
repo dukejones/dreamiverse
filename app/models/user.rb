@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :website # this should be a link
 
   has_many :authentications
 
