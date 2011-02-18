@@ -274,6 +274,37 @@
     .changeRelation.unfollow
       +delete(16)
 
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +relative
+      +round(16)
+      +left
+
+      .favorites, .rePost, .tag
+        +absolute
+        height: 34px
+        line-height: 34px
+
+    .favoritesWrap
+      +flat-right
+      .favorites
+        background: url(/images/icons/love-16.png) no-repeat center
+      .favorites.selected
+        background: url(/images/icons/love-16-selected.png) no-repeat center
+
+    .rePostWrap
+      +flat-all
+      .rePost
+
+    .tagWrap
+      +flat-left
+      .tag
+        background: url(/images/icons/tag-16.png) no-repeat center
+      .tag.selected
+        background: url(/images/icons/tag-16-selected.png) no-repeat center
+
+
 
 // FILTERS
 #contextPanel
@@ -410,7 +441,24 @@
       .detail
         +flat-dark
 
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +bevel-light
 
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-light
+      +shine-light(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      .rePost
+
+    .tagWrap
+      .tag
 
 
 
