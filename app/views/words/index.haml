@@ -1,22 +1,19 @@
-%br
-%br
-%br
-%div{style: 'width:600px; margin: 20px'}
+- content_for :head do
+  = sass_link_tag 'dictionaries'
 
-  .transparent-50.round-16.padding-8
-    / %h1.bevel.round-12.padding-8.align-center{style: 'margin: 0 0 8px'} New Word
-    / = render :partial => 'form', :locals => {:word => Word.new}
-    %a.shine.font-21.button.padding-4-8.block.cancel.align-center.round-12{href:  new_dictionary_word_path(@dict)} New Word
-    %br(style="clear:both")
+.container.light
 
-  .transparent-50.round-16.padding-8{style: 'margin-top: 8px'}
-    %h2.bevel.block.round-12.padding-8.align-center{style: 'margin-top: 0'}
+  %a.new{href: new_dictionary_word_path(@dict)}
+    + new word
+
+
+  .module
+    %h2
       = @dict.name
-      %span{:style => "font-size: 10px"}
-        = link_to "edit", edit_dictionary_path(@dict), :class => 'button save round-8 bevel padding-4-8'
-        = link_to "< bookshelf", dictionaries_path, :class => 'font-17 button cancel round-8 shine padding-4-8 float-left'
+      = link_to "edit", edit_dictionary_path(@dict), :class => 'edit'
+      = link_to "< bookshelf", dictionaries_path, :class => 'back'
   
-    %ul{style: 'list-style-type: none; margin-left: -32px'}
+    %ul{style: 'margin-left: 8px'}
       - @dict.words.each do |word|
         = render(partial: 'word', object: word)
         
