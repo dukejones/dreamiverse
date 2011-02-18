@@ -68,7 +68,6 @@
       .entryLinks
         - @entry.links.each do |link|
           .link
-            %img{src: '/images/icons/link-16.gif'}
             %span
               %a{href: "#{link.url}"}= link.title
         .clear
@@ -88,7 +87,7 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation Tokyo, Japan
+          .postLocation= @entry.wheres.first()
 
 
           #tag-list.tag-list.ui-sortable.target
