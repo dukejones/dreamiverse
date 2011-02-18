@@ -6,11 +6,11 @@ class What < ActiveRecord::Base
   validates :name,
             :presence => true,
             :uniqueness => true,
-            :length => { :minimum => 3, :maximum => 40 }
+            :length => { :minimum => 3, :maximum => 20 }
  
-  before_create :clean
+  before_create :clean_name
   
-  def clean
+  def clean_name
     self.name = prep(self.name)
   end
   

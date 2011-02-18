@@ -9,19 +9,19 @@ class Tag < ActiveRecord::Base
   def self.with_class_sizes_for(tags)
     min_score = tags.map(&:score).min
     max_score = tags.map(&:score).max
-    tags.shuffle
+    tags = tags.shuffle
     tags.each do |tag|
       tag.class_size = quantize(tag.score, min_score, max_score)
     end
     tags
   end
+  
 
   # takes in a normal array of raw tags and returns hash of noun (what) ids
-  # and their associated score/frequency - skip black listed words
+  # and their associated score/frequency - skips black listed words
   def score_auto_generated_tags(entry,tags,total_scores = 16)
     tag_scores = {}
-    w = What.new
-    
+    w = What.new    
     black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
@@ -43,7 +43,7 @@ class Tag < ActiveRecord::Base
     tag_scores = tag_scores.first(total_scores) # grab the top total_scores elements
     tag_scores = Hash[*tag_scores.flatten] #convert array back into a hash
     
-    # save the scores
+    # save the tag scores
     tag_scores.each do |noun_id,score|      
       Tag.create( :entry_id   => entry.id, 
                   :entry_type => entry.type,
@@ -59,9 +59,18 @@ private
   # returns a number: 1-8
   def self.quantize(score, min_score, max_score)
     score = 8 if score > 8
-    max_score = 8 if max_score > 8
+    max_score = 8 if max_score > 8 
     score_range = (max_score == min_score) ? 1 : (max_score - min_score)
     scaling_factor = (8 - 1) / score_range
     (((score-min_score) * scaling_factor) + 1).to_i
-  end    
+  end
+
+  # returns a number: 1-8
+  def self.quantize_new(score, min_score, max_score)
+    score = 8 - (0.01 * (score / 8)) if score >= 8
+    max_score = 8 - (0.01 * (score / 8)) if max_score >= 8        
+    score_range = (max_score == min_score) ? 1 : (max_score - min_score)
+    scaling_factor = (8 - 1) / score_range
+    (((score-min_score) * scaling_factor) + 1).to_i
+  end  
 end
