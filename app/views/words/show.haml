@@ -1,12 +1,13 @@
-%br
-%br
-%br
-%div{style: 'width:600px; margin: 20px'}
-  .light.transparent-50.round-16.padding-8
+- content_for :head do
+  = sass_link_tag 'dictionaries'
+
+.container.light
+
+  .module
     %h2= @word.name
     .dark= @word.definition
     %hr
     #edit
       = link_to "edit", edit_dictionary_word_path(@dict, @word)
     #all
-      = link_to "All Words", dictionary_words_path(@dict)
+      = link_to "all words", dictionary_words_path(@dict)
