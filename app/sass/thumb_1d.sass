@@ -73,6 +73,8 @@
           +font(24)
           margin: 8px 8px 0 8px
           height: 30px
+        h2.titleWatermark
+          display: none
         p.text
           margin: 4px 8px 0 8px
           height: 40px
@@ -231,19 +233,18 @@
     // STRUCTURE
     .noImage
       height: 164px
+      &:hover
+        .left
+          h1.title
+            +block
+            margin: 52px 0 0 8px
 
-    .noImage:hover
-      .left
-        h1.title
-          +block
-          margin: 52px 0 0 8px
-
-    .noImage
       .left
         h1.title
           +absolute
           display: none
         h2.titleWatermark
+          +block
           +font(48)
           +alpha(20)
           +absolute
@@ -256,6 +257,8 @@
           margin: 4px 8px 0 8px
           top: 82px
           height: 40px
+        .image
+          +hidden
 
         // POST DETAILS
         .details
