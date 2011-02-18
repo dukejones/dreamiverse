@@ -93,7 +93,7 @@ module ImageProfiles
   def avatar_main(options)
     img = magick_image
 
-    if height > width
+    if width > height
       img.resize "x266"
       offset = (img[:width] - 200) / 2   # crop the center 200px
       img.crop "200x+#{offset}+0"
