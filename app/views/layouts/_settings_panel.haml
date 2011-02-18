@@ -5,14 +5,14 @@
   / SHARING
   .sharing
     .defaultSharing
-      %img{src: '/images/icons/everyone-16.png'}
+      %img.sharingIcon{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
-      %select
+      %select.sharingList
         %option.everyone{value: 'Everyone'} Everyone
         %option.friends{value: 'Friends Only'} Friends only
         %option.anonymous{value: 'Anonymous'} Anonymous
         %option.private{value: 'Private'} Private
-    %label
+    %label.hidden
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
     .clear

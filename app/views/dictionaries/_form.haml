@@ -1,4 +1,5 @@
 = form_for(dict) do |f|
+  %br
   .name
     = f.label :name
     %br
@@ -7,4 +8,4 @@
     = f.label :attribution
     %br
     = f.text_field :attribution, :class => 'font-21'
-  = f.submit :class => 'shine font-17 button padding-4-8 block save round-12', :style => 'width: 100%; margin-top: 20px'
+  = f.submit :class => 'submit', :style => 'width: 100%; margin-top: 20px'

@@ -12,6 +12,11 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def update
+    @user = User.find params[:id]
+    
+  end
+  
   def friends
     @user = 
       if params[:username]
@@ -61,12 +66,10 @@ class UsersController < ApplicationController
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     })
+    @image.save!
     @image.write(request.body.read)
-    @image.save
-    current_user.image = @image
-    @image.update_attribute
-    
-    render :json => { :avatar_path => @image.url('avatar_main') }
-    
+
+    current_user.update_attribute(:image, @image)
+    render :json => { :avatar_path => @image.url('avatar_main'), :avatar_image => @image }
   end
 end

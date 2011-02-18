@@ -143,7 +143,7 @@ class SettingsPanel extends MetaMenu
       $(event.currentTarget).parent().hide()
     )
     
-    $('.modifyLocationView .confirm').click( (event) ->
+    $('.modifyLocationView .save').click( (event) ->
       $(event.currentTarget).parent().hide()
       $(event.currentTarget).prev().show()
       alert "SEND SAVED LOCATION DATA TO SERVER"
@@ -158,6 +158,7 @@ class SettingsPanel extends MetaMenu
     
     # setup default sharing dropdown change
     $('.sharingList').change( (event) ->
+      log $(this).val()
       switch $(this).val()
         when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
         when "Friends Only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
