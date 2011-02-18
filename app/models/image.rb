@@ -58,14 +58,8 @@ class Image < ActiveRecord::Base
   attr_accessor :incoming_filename
 
   # This is loaded via seed data.  rake db:seed
-  # @@default_avatar_image = Image
-  def self.default_avatar_image
-    # section: Avatar
-    # title: Default Avatar
-
-    
-    self.first
-  end
+  @@default_avatar = self.where(title: 'Default Avatar').first
+  def self.default_avatar; @@default_avatar; end
   
   def self.albums
     select("distinct(album)").map(&:album)
@@ -130,6 +124,13 @@ class Image < ActiveRecord::Base
     MiniMagick::Image.open(path(descriptor, size))
   end
 
+  def delete_all_resized_files!
+    Dir["#{Rails.public_path}/#{UPLOADS_PATH}/#{self.id}-*"].each do |filename|
+      File.delete filename
+      Rails.logger.info "Deleted #{filename}."
+    end
+  end
+
 protected
   
   def parse_incoming_parameters
@@ -177,13 +178,6 @@ protected
       Rails.logger.info "Could not find file: #{self.path}"
     end
     delete_all_resized_files!
-  end
-
-  def delete_all_resized_files!
-    Dir["#{Rails.public_path}/#{UPLOADS_PATH}/#{self.id}-*"].each do |filename|
-      File.delete filename
-      Rails.logger.info "Deleted #{filename}."
-    end
   end
 end
 
