@@ -2,13 +2,13 @@
 %a.thumb-1d{href: user_entry_path(entry.user.username, entry)}
   / LEFT SIDE
   .left
-    .user{style: 'background: #fff url(/images/avatars/xavitar.jpg) no-repeat left'}
+    .user{style: "background: #fff url(#{avatar_image(entry.user, 32)}) no-repeat left"}
       %p.name= entry.user.username
 
     .commentCount
       .counter= entry.comments.count
 
-    .image{style: 'background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left'}
+    .image{style: "background: url(#{dream_header_url(entry.images.first)}) no-repeat top left"}
 
     %h1.title= entry.title
     %p.text= entry.body
@@ -35,66 +35,67 @@
     %tr
       %td.top
         %ul
-          %li
-          %li
-          %li
-          %li
-          %li
+          - entry.images.limit(5).each do |image|
+            %li{style: "background: url(#{image.url(:thumb, 64)}) no-repeat top left"}
 
     / MIDDLE ROW - TAG CLOUD
     %tr
       %td.middle
         / TAG CLOUD
-        <div id="tagCloud-1075" class="tagCloud dark O dream_thumb-tags">
-        <div class="TC s-1 water">hanging</div>
-        <div class="TC s-1 water">friend</div>
-        <div class="TC s-7 water">plans</div>
-        <div class="TC s-1 water">mystical</div>
-        <div class="TC s-7 water">future</div>
-        <div class="TC s-2 water">love</div>
-        <div class="TC s-8 water">friends</div>
-        <div class="TC s-2 water">joy</div>
-        <div class="TC s-1 water">make</div>
-        <div class="TC s-6 water">lost</div>
-        <div class="TC s-7 water">long</div>
-        <div class="TC s-1 water">hanging</div>
-        <div class="TC s-1 water">friend</div>
-        <div class="TC s-7 water">plans</div>
-        <div class="TC s-1 water">mystical</div>
-        <div class="TC s-7 water">future</div>
-        <div class="TC s-2 water">love</div>
-        <div class="TC s-8 water">friends</div>
-        <div class="TC s-2 water">joy</div>
-        <div class="TC s-1 water">make</div>
-        <div class="TC s-6 water">lost</div>
-        <div class="TC s-7 water">long</div>
-        </div>
+        #tagCloud-1075.tagCloud.0.dream_thumb-tags
+          - entry.whats.each do |tag|
+            .TC.water{class: "s-#{rand(7)+1}"}= tag.name
+        
+        / <div id="tagCloud-1075" class="tagCloud dark O dream_thumb-tags">
+        /         <div class="TC s-1 water">hanging</div>
+        /         <div class="TC s-1 water">friend</div>
+        /         <div class="TC s-7 water">plans</div>
+        /         <div class="TC s-1 water">mystical</div>
+        /         <div class="TC s-7 water">future</div>
+        /         <div class="TC s-2 water">love</div>
+        /         <div class="TC s-8 water">friends</div>
+        /         <div class="TC s-2 water">joy</div>
+        /         <div class="TC s-1 water">make</div>
+        /         <div class="TC s-6 water">lost</div>
+        /         <div class="TC s-7 water">long</div>
+        /         <div class="TC s-1 water">hanging</div>
+        /         <div class="TC s-1 water">friend</div>
+        /         <div class="TC s-7 water">plans</div>
+        /         <div class="TC s-1 water">mystical</div>
+        /         <div class="TC s-7 water">future</div>
+        /         <div class="TC s-2 water">love</div>
+        /         <div class="TC s-8 water">friends</div>
+        /         <div class="TC s-2 water">joy</div>
+        /         <div class="TC s-1 water">make</div>
+        /         <div class="TC s-6 water">lost</div>
+        /         <div class="TC s-7 water">long</div>
+        /         </div>
 
     / BOTTOM ROW - ENTRY TAGS
-    %tr
-      %td.entryTagList
-        .tag Geo
-        .tag Android
-        .tag Geoff
-        .tag Janell
-        .tag Marisa
-        .tag Phong
-        .tag Scott
-        .tag Ephraim
-        .tag Sonja
-        .tag Tom
-        .tag Geo
-        .tag Android
-        .tag Geoff
-        .tag Janell
-        .tag Marisa
-        .tag Phong
-        .tag Scott
-        .tag Ephraim
-        .tag Sonja
-        .tag Tom
+    /%tr
+    /  %td.entryTagList
+    /    .tag Geo
+    /    .tag Android
+    /    .tag Geoff
+    /    .tag Janell
+    /    .tag Marisa
+    /    .tag Phong
+    /    .tag Scott
+    /    .tag Ephraim
+    /    .tag Sonja
+    /    .tag Tom
+    /    .tag Geo
+    /    .tag Android
+    /    .tag Geoff
+    /    .tag Janell
+    /    .tag Marisa
+    /    .tag Phong
+    /    .tag Scott
+    /    .tag Ephraim
+    /    .tag Sonja
+    /    .tag Tom
 
-        .clear
+    .clear
 
 
 
@@ -115,7 +116,7 @@
     / ENTRY THUMB DETAILS
     .details
       / REPOSTED BY
-      .rePost
+      .rePost.hidden
         reposted by:
         %span.rePostBy Phong
       / DATE

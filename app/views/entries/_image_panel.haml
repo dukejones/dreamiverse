@@ -11,7 +11,6 @@
     drag files here
   .clear
   #currentImages
-    //var newNode = '<div class="entryImageContainer" data-id=":image_id" style="width: 120px;"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent; width: 120px;" class="entryImage round-8"><div class="imageRemoveButton dark O-bevel">X</div></div></div>';
     - images.each do |image|
       .entryImageContainer{:'data-id' => image.id}
         .entryImage{style: "background: url(#{image.url(:thumb, 120)}) no-repeat scroll center center transparent"}
