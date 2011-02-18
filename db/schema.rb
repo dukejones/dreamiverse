@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218074407) do
+ActiveRecord::Schema.define(:version => 20110218225853) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
+  create_table "black_list_words", :force => true do |t|
+    t.integer  "what_id"
+    t.string   "filter_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -127,6 +134,8 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "score"
+    t.integer "user_id"
   end
 
   create_table "users", :force => true do |t|
@@ -155,6 +164,7 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.string   "viewable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bedsheet_attachment", :default => "scroll"
   end
 
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"

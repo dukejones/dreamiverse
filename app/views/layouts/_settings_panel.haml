@@ -109,7 +109,7 @@
         %input.city{value: 'City'}
         %input.state{value: 'State / Province'}
         %input.country{value: 'Country'}
-        .save Save
+        %input{type: 'submit', name: 'save', class: 'save', value: 'save'}
         .cancel Cancel
         .clear
 
@@ -132,8 +132,8 @@
         %span Repeat new password
         = f.password_field :password_confirmation
 
-        .cancel Cancel
-        =f.submit :'Change password', :class => 'confirm'
+        .cancel cancel
+        =f.submit :'change password', :class => 'confirm'
         .clear
 
 
