@@ -1,13 +1,13 @@
 module ApplicationHelper
   def avatar_image(user, size = :main)
-    avatar_image = user.image
+    avatar_image = user.image || Image.default_avatar_image
     case size
     when :main
       avatar_image.url('avatar_main')
     when :medium
       avatar_image.url('avatar_medium')
     else
-      avatar_image._?.url('avatar', size) || 'images/uploads/1-avatar-64.jpg'
+      avatar_image.url('avatar', size)
     end
   end
   
