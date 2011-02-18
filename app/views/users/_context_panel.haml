@@ -39,8 +39,36 @@
 
   .divider
 
-  .location
-    San Francisco, USA
+  / PROFILE
+  .profile
+
+    .view
+      .name Full Name
+      .location San Francisco, USA
+      .details
+        .website www.dreamcatcher.net
+        .email someone@dreamcatcher.net
+        .phone (206) 420-7777
+        .skype
+          %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+          %span user.skype
+          .clear
+        .facebook facebook
+        .twitter twitter
+        .change edit profile
+
+    .edit
+      %input.name{type: 'text', name: 'name', value: 'full name'}
+      %input.email{type: 'text', name: 'email', value: 'email'}
+      %input.website{type: 'text', name: 'website', value: 'website'}
+      %input.phone{type: 'text', name: 'phone', value: 'phone'}
+      .skypeWrap
+        %input.skype{type: 'text', name: 'skype', value: 'skype user name'}
+        %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+      .cancel cancel
+      .save save
+      .clear
+
 
   / FILTER BY ENTRY TYPE
   .wrapper

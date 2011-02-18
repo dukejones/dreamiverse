@@ -107,13 +107,100 @@
 
   .divider
     height: 2px
-    
-  .location
-    +round(12)
-    +font(12)
-    +center
-    +transparent-light(60)
-    padding: 2px 4px
+
+  // PROFILE
+  .profile
+
+    // VIEW PROFILE
+    .view
+      +round(12)
+      +flat-top
+      padding: 8px
+
+      .name
+        +round(8)
+        +font(14)
+        +bold
+        +center
+        padding: 2px 8px
+        margin: 0 0 4px
+
+      .location
+        +round(8)
+        +font(12)
+        +center
+        padding: 2px 8px
+        margin: 0 0 4px
+
+      .details
+        .website, .email, .phone, .skype
+          +font(14)
+          padding: 0 8px
+          margin: 0 0 4px
+        .skype
+          img, span
+            +left
+          img
+            margin: 2px 4px 0 0
+
+        .facebook, .twitter
+          +round(4)
+          +center
+          +font(11)
+          padding: 0 12px
+          margin-bottom: 4px
+        .facebook
+          +left
+        .twitter
+          +right
+        .change
+          +clear
+          +center
+          +round(4)
+          height: 22px
+          line-height: 22px
+
+    // EDIT PROFILE
+    .edit
+      +round(12)
+      +flat-top
+      padding: 8px
+
+      input
+        +round(8)
+        +font(12)
+        width: 176px
+        height: 24px
+        line-height: 24px
+        margin: 0 0 4px
+        padding: 0 0 0 8px
+      .skypeWrap
+        +relative
+        width: 176px
+        margin: 0 0 4px
+        img
+          +absolute
+          left: 8px
+          top: 5px
+        input
+          width: 156px
+          padding-left: 28px
+          margin: 0
+
+      .cancel, .save
+        +round(4)
+        height: 22px
+        line-height: 22px
+        margin: 4px 0 0
+      .cancel
+        +left
+        +delete(14)
+        padding: 0 12px
+      .save
+        +right
+        +save(14)
+        padding: 0 40px
+
 
   .item
     +clear
@@ -215,6 +302,46 @@
     .relation
       +button-light
 
+    // PROFILE
+    .profile
+
+      // VIEW PROFILE
+      .view
+        +shine-light-alpha(0)
+
+        .name
+          +transparent-dark(60)
+          color: #ddd
+
+        .location
+          +transparent-dark(60)
+          color: #ddd
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-light
+          .change
+            +bevel-light
+            +button-light
+            +confirm(11)
+
+      // EDIT PROFILE
+      .edit
+        +shine-light-alpha(0)
+
+        input
+          +input-light
+        .cancel, .save
+          +bevel-light
+          +button-light
+        .cancel
+          +delete(14)
+        .save
+          +save(14)
+
     .item
       .relation
         +transparent-light(50)
@@ -233,6 +360,48 @@
       +shine-dark-alpha(16)
     .relation
       +button-dark
+
+    // PROFILE
+    .profile
+
+      // VIEW PROFILE
+      .view
+        +shine-dark-alpha(0)
+
+        .name
+          +transparent-light(60)
+          color: #333
+
+        .location
+          +transparent-light(60)
+          color: #333
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-dark
+            color: #333
+          .change
+            +bevel-dark
+            +button-dark
+            +confirm(11)
+
+      // EDIT PROFILE
+      .edit
+        +shine-dark-alpha(0)
+
+        input
+          +input-dark
+        .cancel, .save
+          +bevel-dark
+          +button-dark
+        .cancel
+          +delete(14)
+        .save
+          +save(14)
+
     .item
       .relation
         +transparent-dark(50)
