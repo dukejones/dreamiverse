@@ -170,8 +170,12 @@ protected
   end
 
   def delete_all_files!
-    File.delete self.path
-    Rails.logger.info "Deleted #{self.path}."
+    if File.exists?(self.path)
+      File.delete(self.path) 
+      Rails.logger.info "Deleted #{self.path}."
+    else
+      Rails.logger.info "Could not find file: #{self.path}"
+    end
     delete_all_resized_files!
   end
 
