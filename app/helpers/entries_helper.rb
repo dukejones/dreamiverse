@@ -12,4 +12,8 @@ module EntriesHelper
   def dream_header_url(image)
     image._?.url(:header)
   end
+  
+  def dreamfield_header_url(image)
+    image._?.url(:dreamfield_header) || '/images/art/astral-eyes-banner.jpg'
+  end
 end
