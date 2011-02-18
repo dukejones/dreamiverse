@@ -32,7 +32,7 @@ function setupHeaderButtons(){
     }
   })
   
-  $('#metaMenu .account').click(function(){
+  $('#metaMenu .settings').click(function(){
     if($('#settingsPanel').css('display') == 'none'){
       closeAllHeaders();
       $('#settingsPanel').show();

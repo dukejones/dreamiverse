@@ -140,10 +140,11 @@ abbr, acronym
       overflow: visible
 
 
-.settingsPanel, .appearancePanel, .addLocation, .date, .addTheme
+.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme
   &:hover
     .hoverLabel
-      display: block
+      +block
+      z-index: 1401
 
 // COLORS
 .light .hoverLabel
@@ -394,7 +395,7 @@ abbr, acronym
         padding: 6px 4px 8px
     .user:hover
       border: 1px solid #ccc
-    .account
+    .settings
       img
         margin: -2px 1px -2px
         border: 0px
@@ -485,7 +486,7 @@ abbr, acronym
     .settingsPanel, .appearancePanel
       +left
 
-    .account
+    .settings
       img
         margin: -2px 1px -2px
         border: 0px
@@ -557,7 +558,7 @@ abbr, acronym
   +clear
   +round(8)
   right: 45px
-  top: 55px
+  top: 60px
   width: 334px
   z-index: 1400
 
