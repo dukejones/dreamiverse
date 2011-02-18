@@ -107,16 +107,15 @@ module ImageProfiles
     img.write(path(:avatar_medium))
   end
   
-  # Make sure you do not ask for an avatar > 128x128 !
+  # Make sure you do not ask for an avatar > 200x200
   def avatar(options)
     if size = options[:size]
       img = profile_magick_image(:avatar) # this profile with no size
       img.resize "#{size}x#{size}"
     else
       img = profile_magick_image(:avatar_main)
-      # avatar_main is 200x266, so shave top 66 px
-      img.crop "200x200+0+66"
-      img.resize "128x128"
+      # avatar_main is 200x266, so shave bottom 66 px
+      img.crop "200x200+0+20"
     end
     img.write(path(:avatar, size))
   end
