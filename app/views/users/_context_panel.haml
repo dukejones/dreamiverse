@@ -13,11 +13,15 @@
       .uploadAvatarWrap.hidden
         .uploadAvatar
           <span>+</span> upload new avatar
-      #avatarDrop.uploader.hidden
+      #avatarDropContainer.qq-upload-drop-area
         .text drag new image here
         .browse
           .cancel cancel
-          .dropboxBrowse browse
+          .dropboxBrowse{style: "position: relative; overflow: hidden; direction: ltr;"}
+            browse
+            %input{type: "file", multiple: "multiple", name: "file", style: "position: absolute; right: 0pt; top: 0pt; font-family: Arial; font-size: 118px; margin: 0pt; padding: 0pt; cursor: pointer; opacity: 0;"}
+
+
 
 
   - if user == current_user
