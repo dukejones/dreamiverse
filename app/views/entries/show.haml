@@ -37,9 +37,10 @@
       / HEADER IMAGE & TITLE
       .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
 
-      / MOOD ICON
-      .moodIcon
-        %img{src: '/images/moods/plants/Fungi.png'}
+      / 
+        MOOD ICON
+        .moodIcon
+          %img{src: '/images/moods/plants/Fungi.png'}
 
       / STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
@@ -47,8 +48,10 @@
         %span 23,243
         %hr
         .option.love.selected
-        .option.share
-        .option.repost.selected
+        /
+          SAVE FOR LATER
+          .option.share
+          .option.repost.selected
         
       .title= @entry.title
 

@@ -146,7 +146,9 @@
   .viewFilters
     .favoritesWrap
       .favorites
+      = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "40"}
     .rePostWrap
       .rePost
     .tagWrap
       .tag
+      = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
