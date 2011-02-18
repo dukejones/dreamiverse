@@ -276,15 +276,20 @@
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
+    +round(12)
+    height: 28px
+    padding: 4px
     .favoritesWrap, .rePostWrap, .tagWrap
       +relative
-      +round(16)
+      +round(12)
       +left
+      height: 26px
+      width: 62px
 
       .favorites, .rePost, .tag
         +absolute
-        height: 34px
-        line-height: 34px
+        height: 26px
+        width: 62px
 
     .favoritesWrap
       +flat-right
@@ -381,6 +386,30 @@
       .detail
         +flat-light
 
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    background: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9a9a9a))
+    background: -moz-linear-gradient(top, #fff, #9a9a9a)
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-light
+      +shine-light(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #bbb
+      .rePost
+
+    .tagWrap
+      .tag
+
 .dark
   #contextPanel
     +transparent-dark(50)
@@ -440,25 +469,6 @@
           border: 1px solid #555
       .detail
         +flat-dark
-
-  // VIEW FILTERS - FAVORITES, REPOST, TAG
-  .viewFilters
-    +bevel-light
-
-    .favoritesWrap, .rePostWrap, .tagWrap
-      +button-light
-      +shine-light(17)
-
-      .favorites, .rePost, .tag
-
-    .favoritesWrap
-      .favorites
-
-    .rePostWrap
-      .rePost
-
-    .tagWrap
-      .tag
 
 
 
