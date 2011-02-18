@@ -113,30 +113,30 @@
 
     // VIEW PROFILE
     .view
-      +round(12)
-      +flat-top
-      padding: 8px
+      +round(8)
+      padding: 4px 0
 
       .name
-        +round(8)
+        +round(6)
         +font(14)
         +bold
         +center
+        margin: 0 4px 4px
         padding: 2px 8px
-        margin: 0 0 4px
 
       .location
         +round(8)
         +font(12)
         +center
-        padding: 2px 8px
-        margin: 0 0 4px
 
       .details
+        +overflow
+        margin: 0 4px
+        hr
+          +alpha(30)
         .website, .email, .phone, .skype
           +font(14)
           padding: 0 8px
-          margin: 0 0 4px
         .skype
           img, span
             +left
@@ -148,7 +148,7 @@
           +center
           +font(11)
           padding: 0 12px
-          margin-bottom: 4px
+          margin: 8px 2px 0
         .facebook
           +left
         .twitter
@@ -157,6 +157,7 @@
           +clear
           +center
           +round(4)
+          margin-top: 4px
           height: 22px
           line-height: 22px
 
@@ -343,15 +344,13 @@
 
       // VIEW PROFILE
       .view
-        +shine-light-alpha(0)
+        +transparent-light(50)
 
         .name
           +transparent-dark(60)
           color: #ddd
 
         .location
-          +transparent-dark(60)
-          color: #ddd
 
         .details
           .website, .email, .phone, .skype
@@ -426,15 +425,13 @@
 
       // VIEW PROFILE
       .view
-        +shine-dark-alpha(0)
+        +transparent-dark(50)
 
         .name
           +transparent-light(60)
           color: #333
 
         .location
-          +transparent-light(60)
-          color: #333
 
         .details
           .website, .email, .phone, .skype
