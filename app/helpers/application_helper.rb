@@ -1,6 +1,6 @@
 module ApplicationHelper
   def avatar_image(user, size = :main)
-    avatar_image = user.image || Image.default_avatar_image
+    avatar_image = user.image || Image.default_avatar
     case size
     when :main
       avatar_image.url('avatar_main')

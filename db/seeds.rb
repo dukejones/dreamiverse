@@ -8,6 +8,7 @@
 
 
 if Image.where(:title => "Default Avatar").count == 0
+  puts "Seeding Default Avatar..."
   avatar_filename = "avatar_lg.jpg"
   default_avatar_image = Image.create({
     :section => "Avatar",
@@ -15,6 +16,6 @@ if Image.where(:title => "Default Avatar").count == 0
     :artist => "Andrew Jones",
     :incoming_filename => avatar_filename
   })
-  
-  default_avatar_image.write( File.open("#{Rails.root}/db/#{avatar_filename}", 'r').read )
+  avatar_file = open("#{Rails.root}/db/#{avatar_filename}", "rb")
+  default_avatar_image.write( avatar_file.read )
 end
