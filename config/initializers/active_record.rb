@@ -5,5 +5,9 @@ module ActiveRecord
     def starlight
       Starlight.for(self)
     end
+
+    # scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+    
   end
 end
+
