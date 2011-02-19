@@ -71,16 +71,27 @@ class EntriesController < ApplicationController
   def stream
     @user = current_user
 
-    # all entries, or just visions, just dreams, just experiences
     # starlight: low, medium, high, off
-    # friends, followers, or following
-    
-    
+    # for now just high
+    if params[:starlight_filter] == 'high'
+      @entries = Entry.order_by_starlight
+    else
+      @entries = Entry.scoped.order('updated_at DESC')
+    end
+    # all entries, or just visions, just dreams, just experiences
+    # friends, or following
+    if params[:friend_filter] == 'friends'
+      @entries = @entries.where( 
+        user: { following: current_user, followers: current_user } 
+      ).joins(:user => [:following, :followers])
+    elsif params[:friend_filter] == 'following'
+      @entries = @entries.where( 
+        user: { followers: current_user } 
+      ).joins(:user => [:followers])
+    end
 
-    # where dream is public
-    # or i am friends with entry.user
-    # but not my own dreams
-    @entries = Entry.where(
+    # where dream is public or i am friends with entry.user
+    @entries = @entries.where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
         (
@@ -89,7 +100,11 @@ class EntriesController < ApplicationController
         ) 
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
-    # todo : ordering
+    
+    # not my own dreams
+    # @entries = @entries.where(:user_id ^ current_user.id)
+    @entries = @entries.limit(50)
+    @entries = @entries.offset(50 * params[:page]) if params[:page]
   end
 
   def bedsheet
