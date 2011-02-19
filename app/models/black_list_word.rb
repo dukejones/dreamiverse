@@ -1,11 +1,8 @@
 class BlackListWord < ActiveRecord::Base
-  
-  belongs_to :what
-  
-  validates :what_id,
+    
+  validates :word,
             :presence => true,
-            :uniqueness => true,
-            :numericality => true
+            :uniqueness => true
 
   validates :kind,
             :presence => true  

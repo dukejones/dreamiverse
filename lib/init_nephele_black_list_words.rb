@@ -41,9 +41,9 @@
     w = What.new
     black_list_words.each do |word|
       if word.length > 2
-        prepped_word = w.prep(word)  
-        what = What.find_or_create_by_name(:name => prepped_word)      
-        BlackListWord.find_or_create_by_what_id(:what_id => what.id,:kind => 'nephele') if what.id
+        word = w.prep(word)  
+        #what = What.find_or_create_by_name(:name => prepped_word)      
+        BlackListWord.find_or_create_by_word(:word => word,:kind => 'nephele')
       end
     end
   end
