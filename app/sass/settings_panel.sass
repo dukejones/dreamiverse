@@ -1,0 +1,380 @@
+@import mixins
+/******** SETTINGS PANEL ********/
+#settingsPanel
+
+  img
+    +left
+  h2
+    +font(18)
+    +bold
+    margin: 0px
+    padding: 8px
+    
+  .sharing, .savedLocations, .changePassword, .fontSizing
+    +clear
+    +round(8)
+    margin: 0 0 8px
+
+  .savedLocations h2, .changePassword h2
+    +block
+    +pointer
+    img
+      padding-right: 8px 
+
+  hr
+    +alpha(30)
+
+
+  .sharing
+    padding: 8px
+    .defaultSharing, .network
+      margin: 0 0 4px
+      img
+        margin: 8px 8px 0 0
+      h2
+        +pointer
+        +left
+        line-height: 32px
+        margin: 0
+        padding: 0
+      select
+        +round(8)
+      p
+        +left
+    select
+      +right
+      +font(16)
+      +pointer
+      +round(8)
+      height: 36px
+      width: 138px
+      margin-top: 4px
+      padding: 6px 8px
+      option
+        padding: 6px 0 6px 24px
+      option.everyone
+        background: url(/images/icons/everyone-16.png) no-repeat 4px
+      option.friends
+        background: url(/images/icons/friend-16.png) no-repeat 4px
+      option.anonymous
+        background: url(/images/icons/mask-16.png) no-repeat 4px
+      option.private
+        background: url(/images/icons/lock-16.png) no-repeat 4px
+    .network
+      +clear
+
+      .linkAccount
+        +round(4)
+        +right
+        +center
+        +pointer
+        margin: 4px 0 0
+        padding: 0 8px
+        width: 110px
+        height: 24px
+        line-height: 24px
+        +confirm(12)
+
+    label
+      +clear
+      +pointer
+      +right
+      height: 26px
+      line-height: 26px
+      padding: 0 4px
+      border: 1px solid transparent
+      margin-top: 8px
+      input
+        +pointer
+        +right
+        margin: 7px 4px 0 8px
+
+    label:hover
+      +round(4)
+      border: 1px solid #ccc
+
+
+  .savedLocations
+    .locationView, .modifyLocationView
+
+      .newLocation, .autoLocate
+        margin-top: 8px
+
+      .newLocation
+        +center
+        +left
+        +round(4)
+        width: 186px
+        padding: 2px 4px
+        +confirm(12)
+        img
+          float: none
+          margin: -3px 3px
+
+      .autoLocate
+        +block
+        +right
+        +round(4)
+        padding: 2px 4px
+        +cancel(12)
+
+      .locationList
+        +clear
+        width: 100%
+        max-height: 180px
+        overflow-y: auto
+
+        .locations
+          +clear
+          +pointer
+          float: none
+          margin: 0
+          padding: 6px 8px
+          .edit, label
+            display: none
+          label
+            +alpha(50)
+            +pointer
+            +font(11)
+            +right
+            border: 1px solid transparent
+            padding: 2px 4px
+            input
+              +pointer
+              margin: -5px 0
+          label.selected
+            +block
+            +alpha(100)
+
+        .locations:hover
+          .edit
+            +block
+            +right
+            width: 16px
+            height: 16px
+            padding: 3px
+            margin-right: 8px
+            background: url(/images/icons/edit-16.png) no-repeat center center
+            border: 1px solid transparent
+          .edit:hover, label:hover
+            +round(4)
+            border: 1px solid #ccc
+          label
+            +block
+
+  .cancel, .confirm, .save
+    +center
+    +bold
+    height: 26px
+    line-height: 26px
+    margin-top: 8px
+  .cancel
+    +left
+    width: 80px
+  .confirm
+    +right
+    width: 180px
+
+
+  .modifyLocationView, .changePasswordForm
+    // INPUTS
+    #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+      +round(4)
+      +font(15)
+      margin-bottom: 4px
+      padding: 4px
+      width: 306px
+    .save, .cancel
+      +round(4)
+      padding: 0
+    .save
+      +right
+      +font(12)
+      padding-bottom: 2px
+      height: 28px
+      width: 186px
+    .cancel
+      +left
+      width: 120px
+
+
+  .changePassword
+    margin: 0 0 8px
+    .changePasswordForm
+      span
+        +font(11)
+        padding-left: 4px
+        margin-bottom: 1px
+      .cancel, .confirm
+        +round(4)
+      .confirm
+        +font(12)
+        height: 28px
+        line-height: 28px
+        padding-bottom: 2px
+
+
+  .fontSizing
+    height: 50px
+    margin: 0 0 2px
+    h2
+      +left
+      +cursor
+      line-height: 36px
+      img
+        padding: 8px 8px 0 0 
+    .small, .medium, .large
+      +relative
+      +right
+      +center
+      +pointer
+      +round(24)
+      margin-left: 4px
+
+    .small
+      +font(12)
+      padding: 2px 6px
+      margin-top: 16px
+    .medium
+      +font(16)
+      padding: 3px 8px
+      margin-top: 12px
+    .large
+      +font(18)
+      padding: 6px 12px
+      margin: 8px 8px 0 4px
+
+
+// COLORS
+.light
+  #settingsPanel, #appearancePanel
+    +panel-light
+    +glow-light(40)
+
+    .sharing, .savedLocations, .changePassword, .fontSizing
+      +panel-light
+
+    .defaultSharing
+      select
+        +input-light
+
+    .network
+      .linkAccount
+        +button-light
+        +bevel-light
+
+
+    .savedLocations
+      +panel-light
+
+      .newLocation
+        +bevel-light
+        +button-light
+
+      .autoLocate
+        +bevel-light
+        +button-light
+
+      .locationList
+        +border-light
+
+        .locations
+          +flat-light
+          +border-light
+
+      .modifyLocationView
+        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+          +input-light
+        .save, .cancel
+          +button-light
+          +bevel-light
+          color: #333
+        .save
+          &:hover
+            +confirm(12)
+        .cancel
+          &:hover
+            +cancel(12)
+
+    .changePasswordForm
+      #user_password, #user_password_confirmation, .save, .cancel
+        +input-light
+      .cancel, .confirm
+        +button-light
+        +bevel-light
+        color: #333
+      .cancel:hover
+        +cancel(12)
+      .confirm:hover
+        +confirm(12)
+
+    .fontSizing
+      .large, .medium, .small
+        +button-light
+
+.dark
+  #settingsPanel, #appearancePanel
+    +panel-dark
+    +glow-dark(40)
+
+    .sharing, .savedLocations, .changePassword, .fontSizing
+      +panel-dark
+
+    .defaultSharing
+      select
+        +input-dark
+
+    .network
+      .linkAccount
+        +button-dark
+        +bevel-dark
+
+    .savedLocations
+      +panel-dark
+
+      .newLocation
+        +bevel-dark
+        +button-dark
+
+      .autoLocate
+        +bevel-dark
+        +button-dark
+
+      .locationList
+        +border-dark
+
+        .locations
+          +flat-dark
+          +border-dark
+
+      .modifyLocationView
+        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+          +input-dark
+        .save, .cancel
+          +button-dark
+          +bevel-dark
+          color: #ddd
+        .save
+          &:hover
+            +confirm(12)
+        .cancel
+          &:hover
+            +cancel(12)
+
+    .changePasswordForm
+      #user_password, #user_password_confirmation, .save, .cancel
+        +input-dark
+      .cancel, .confirm
+        +button-dark
+        +bevel-dark
+        color: #ddd
+      .cancel:hover
+        +cancel(12)
+      .confirm:hover
+        +confirm(12)
+
+    .fontSizing
+      .large, .medium, .small
+        +button-dark
+
+

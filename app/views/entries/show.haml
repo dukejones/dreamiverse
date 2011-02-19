@@ -25,11 +25,12 @@
     %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry{href: edit_entry_path(@entry)} edit
-    = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
+    - if @entry.user == current_user
+      %a.editEntry{href: edit_entry_path(@entry)} edit
+      = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
 
     / 
-      Save for later
+      XXX
       .books.button.round-8 My Book of Dreams
 
     .content
@@ -45,10 +46,10 @@
       .starlight_share
         %img.starlight{src: '/images/icons/starlight-22.png'}
         %span= @entry.starlight._?.value
-        %hr
-        .option.love
         /
           SAVE FOR LATER
+          %hr
+          .option.love
           .option.share
           .option.repost.selected
         
@@ -91,26 +92,6 @@
 
 
           #tag-list.tag-list.ui-sortable.target
-
-            .tagWhat.tagNoImage
-              %span Dolphin
-              .analysisIcon{style: 'background: url(/images/icons/analysis-16.png) no-repeat center'}
-
-            .tagWhere
-              .whereIcon{style: 'background: url(/images/icons/tagWhere-24.png) no-repeat center'}
-              %span San Francisco
-
-            .tagWho
-              .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
-              %span Xavi
-              .followStatus{style: 'background: url(/images/icons/friend-none-16.png) no-repeat center'}
-
-            .tagWhat
-              .tagImage{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
-              %span Tsunami
-
-            .tagNoImage
-              %span Just Text
 
             #empty-tag.hidden
               %span.tagContent
