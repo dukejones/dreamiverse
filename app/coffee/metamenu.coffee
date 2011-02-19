@@ -84,6 +84,16 @@ class AppearancePanel extends MetaMenu
     @$attachment.find('input').change (event) =>
       $('body').removeClass('fixed, scroll')
       $('body').css('background-attachment', $(event.currentTarget).val())
+    
+    # setup theme colorPicker
+    $('.colorPicker a').bind 'ajax:beforeSend', (xhr, settings)=>
+      $('#body').removeClass('dark light').addClass($(xhr.target).attr('id'))
+    
+    $('.colorPicker a').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Theme has been updated')
+    
+    $('.colorPicker a').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
           
     
   setupThemeSelector: ->
@@ -91,19 +101,6 @@ class AppearancePanel extends MetaMenu
       @newTheme = $(event.currentTarget).attr('id')
       if $('#view_preference_theme').attr('id')?
         $('#view_preference_theme').val(newTheme)
-      else
-       $.ajax {
-               type: 'PUT'
-               url: '/users/1'
-               data:
-                 'user[view_preference][theme]': @newTheme
-               success: (data, status, xhr) =>
-                 success = true
-             }
-    # @$currentMenuPanel.find('.buttons .moon').click( (event) =>
-    #       $('#view_preference_theme').val('dark')
-    #     )
-    #     
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])

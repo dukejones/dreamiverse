@@ -35,9 +35,9 @@
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
     .buttons
-      #light.sun{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
+      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
         sun
         %img{src: '/images/icons/sun-24.png'}
-      #dark.moon{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
+      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
         moon
         %img{src: '/images/icons/moon-24.png'}
