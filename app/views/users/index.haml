@@ -28,48 +28,20 @@
       .badge
         = image_tag "dreamstars/#{@top_images[rank]}"
       .rank
-        = rank
+        = rank + 1
       .name
         = user.username if user
       .starlight
-        1500
+        = user._?.starlight._?.value || 0
       .clear
 
   / ALL DREAMSTARS
   .dreamstarsAll
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-      
+    - @users.each_with_index do |user, index|
+      %a.dreamstar
+        .rank
+          = index + 1
+        .name
+          = user.username if user
+        .starlight
+          = user._?.starlight._?.value || 0
