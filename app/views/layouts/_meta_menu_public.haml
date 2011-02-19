@@ -40,15 +40,15 @@
 
     / SIGN UP
     = form_for(User.new, url: user_registration_path) do |f|
-      .signupPanel.hidden
+      .signupPanel.wrapper.hidden
         = f.text_field :email, :class => 'login-input', :placeholder => "email"
-        = f.text_field :username, :class => 'login-input', :placeholder => "username"
-        %span password
         = f.password_field :password, :class => 'login-input', :placeholder => "password"
-        %span confirm password
         = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
-        .haveSeedcode have a seed code?
-        = f.text_field :seed_code, :value => 'theta', :class => 'login-input hidden', :onClick => "this.select()"
+        %span http://dreamcatcher.net/username
+        = f.text_field :username, :class => 'login-input', :placeholder => "username"
+
+        .haveSeedcode.trigger.slide enter a seed code &raquo;
+        = f.text_field :seed_code, :value => 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
         / SIGN UP BUTTON
         .signupWrap
