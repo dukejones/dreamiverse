@@ -148,12 +148,12 @@
         %span no filter
 
   / VIEW FILTERS - FAVORITES, REPOST, TAG
-  .viewFilters
+  .viewFilters.hidden
     .favoritesWrap
       .favorites
       = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "40"}
     .rePostWrap
       .rePost
     .tagWrap
-      .tag.hidden
+      .tag
       /= render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
