@@ -6,7 +6,7 @@
 #contextPanel
 
   / IMAGE
-  %a.avatar{href: entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
+  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
     - if user == current_user
 
 
@@ -51,6 +51,7 @@
       .name.hidden= user.name
       .location San Francisco, USA
       .details.hidden
+        %hr
         .website= user.website
         .email= user.email
         .phone= user.phone
@@ -58,8 +59,10 @@
           %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
           %span= user.skype
           .clear
-        .facebook facebook
-        .twitter twitter
+        /
+          .facebook facebook
+          .twitter twitter
+        .clear
         - if user == current_user
           .change edit profile
         .clear
@@ -86,7 +89,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
       .image
-        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
+        %img.dream{src: '/images/icons/dream-32-selected.png', width: '32', height: '32'}
       .detail
         = user.entries.count
       .clear
