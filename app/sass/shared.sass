@@ -163,1046 +163,22 @@ abbr, acronym
 
 
 
-/*********** META MENU ***********/
-#drop_shadow
-  +absolute
-  background: url(/images/gradients/top_shadow-100px.png) repeat-x top
-  top: 0
-  left: 0
-  width: 100%
-  height: 120px
-  z-index: -10
 
-#logo
-  +block
-  z-index: 1201
-  +absolute
-  top: 0px
-  left: 0
-  margin: 4px 14px 0px 13px
-  width: 230px
 
-#report_box
-  +absolute
-  +font(9)
-  +alpha(100)
-  width: 235px
-  text-align: right
-  color: #666
-  z-index: 1203
-  top: 0
 
 
+@import meta_menu
+@import meta_menu_public
+@import meta_menu_user
+@import settings_panel
+@import appearance_panel
 
 
-// META MENU PUBLIC
-#metaMenu.public
-  +absolute
-  top: 0
-  width: 100%
-  z-index: 1111
 
-  .leftPanel
-    +absolute
-    +round(16)
-    +flat-top
-    padding: 8px
-    top: 0
-    left: 248px
-    background-color: #fff
 
-    form
-      +left
-      input
-        +input-light
-        +round(16)
-        padding: 4px 8px
 
-    .item
-      +pointer
-      +block
-      +bold
-      +left
-      +font(15)
-      +round(8)
-      background: #fff
-      margin: 0 2px
-      padding: 0 8px
-      height: 26px
-      line-height: 26px
-      color: #000
-      border: #ccc 1px solid
-      display: inline-block
-      text-decoration: none
-    .item:hover
-      border: #000 1px solid
-      background: #000
-      color: #fff
-    .item.selected
-      color: #fff
-      border: #000 1px solid
-      background: #000
-    input
-      +input-light
-      +block
-      +font(12)
-      width: 142px
-      background: url('/images/icons/search-18.png') no-repeat 134px center
-      margin: 0 2px
-      height: 18px
-      line-height: 18px
 
 
-  .rightPanel
-    +bevel-light
-    +round(16)
-    +flat-top
-    +right
-    margin-right: 10px
-    padding: 8px
-
-    .loginItem
-      +button-light
-      +flat-light
-      +round(12)
-      &:hover
-        +glow-light(8)
-
-    .loginItem, .login
-      +left
-      +center
-      width: 16px
-      height: 28px
-      line-height: 28px
-      padding: 0 8px
-      margin: 0 8px 8px 0
-      img
-        margin: 6px 0 0
-    .login
-      +block
-      +button-light
-      +bevel-light
-      +round(12)
-      width: auto
-      padding: 0 12px
-      +confirm(12)
-
-    .joinWrap, .signupWrap
-      +pointer
-      +clear
-      +round(12)
-      width: 196px
-      margin: 4px 0 0
-      padding: 2px 0
-      background: #fff
-      background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
-      background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join, .signup
-        +pointer
-        +block
-        +center
-        +bold
-        +round(12)
-        margin: 0 auto
-        width: 190px
-        height: 32px
-        line-height: 32px
-        color: #fff
-        background: #ffa614
-        background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
-        background: -moz-linear-gradient(top, #ffe658, #ffa614)
-        border: 1px solid #ffa614
-      .join:hover, .signup:hover
-        box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-      .join:active, .signup:active
-        background: #ffa614
-        background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
-        background: -moz-linear-gradient(top, #ffa614, #ffe658)
-
-
-    .loginPanel, .signupPanel
-      +clear
-
-      span
-        +font(11)
-        margin-left: 4px
-      .login-input, #loginButton
-        +clear
-        +block
-        +font(14)
-        +input-light
-        +round(12)
-        margin: 0 0 2px
-        padding: 0 8px
-        width: 176px
-        height: 32px
-        line-height: 32px
-
-      .haveSeedcode
-        +pointer
-        +clear
-        +block
-        +center
-        +font(14)
-        margin: 4px 0 6px
-
-      #loginButton
-        +round(12)
-        +button-light
-        +bevel-light
-        width: 192px
-        +confirm(12)
-
-      label.stay, a.forgot
-        +button-light
-        +round(4)
-        +center
-        +font(10)
-        margin: 4px
-        padding: 0 4px
-        height: 16px
-        line-height: 16px
-        font-weight: normal
-      a.forgot
-        +left
-      label.stay
-        +right
-        width: 80px
-        input
-          +right
-          margin: 1px 0 0
-
-    .signupPanel
-      input
-        +input-light
-        +round(12)
-
-    .user
-      +overflow
-      +pointer
-      +round(8)
-      margin: 0 2px -2px
-      border: 1px solid #999
-      span
-        +block
-        color: #fff
-        margin-left: 32px
-        background-color: #000
-        margin-top: -6px
-        padding: 6px 4px 8px
-    .user:hover
-      border: 1px solid #ccc
-    .settings
-      img
-        margin: -2px 1px -2px
-        border: 0px
-    .appearance
-      img
-        margin: -4px 0px -2px
-        border: 0px
-
-
-
-//  META MENU USER
-
-#metaMenu.user
-  +absolute
-  top: 0
-  width: 100%
-  z-index: 1111
-
-  .leftPanel, .rightPanel
-    +round(16)
-    +flat-top
-    background-color: #fff
-    padding: 8px
-
-    .item
-      +block
-      +bold
-      +left
-      +font(15)
-      +pointer
-      +round(8)
-      background: #fff
-      margin: 0 2px
-      height: 26px
-      line-height: 26px
-      color: #000
-      border: #ccc 1px solid
-      display: inline-block
-      text-decoration: none
-      padding: 2px 4px
-    .item:hover
-      border: #000 1px solid
-      background: #000
-      color: #fff
-    .item.selected
-      color: #fff
-      border: #000 1px solid
-      background: #000
-
-  .leftPanel
-    .input
-      +block
-      +font(12)
-      width: 144px
-      background: url('/images/icons/search-18.png') no-repeat 134px center
-      margin: 0 2px
-      height: 22px
-
-
-
-  .leftPanel
-    +absolute
-    top: 0
-    left: 248px
-
-  .rightPanel
-    +relative
-    +right
-    margin-right: 10px
-
-    .user
-      +round(16)
-      +flat-left
-      +overflow
-      +pointer
-      +round(8)
-      margin: 0 2px -2px
-      border: 1px solid #999
-      span
-        +block
-        color: #fff
-        margin-left: 32px
-        background-color: #000
-        margin-top: -6px
-        padding: 6px 4px 8px
-    .user:hover
-      border: 1px solid #ccc
-
-
-    // NOTIFICATIONS PANEL
-    .notificationsPanel
-      +round(16)
-      +absolute
-      left: -40px
-      width: 214px
-      padding: 8px
-      +transparent-light(50)
-      +border-light
-
-      .notifyIcon
-        +round(16)
-        +relative
-        height: 12px
-        line-height: 12px
-        width: 12px
-        padding: 4px
-        margin: 0 0 40px
-        background: #f15f29
-        color: #fff
-
-      .notice, .alert, .notification
-        +round(12)
-        +clear
-        +relative
-        min-height: 24px
-        margin: 4px 0 0
-        +transparent-light(50)
-        +button-light
-        .close
-          +hidden
-          +absolute
-          +round(16)
-          +font(12)
-          +center
-          top: 2px
-          right: 2px
-          width: 18px
-          height: 18px
-          line-height: 18px
-          +flat-light
-          +button-light
-        &:hover
-          +transparent-light(90)
-          color: #000
-          .close
-            +block
-            &:hover
-              background: #f15f29
-              color: #fff
-      .alert
-        .icon
-          +left
-          height: 24px
-          width: 24px
-
-      .notification
-        .avatar
-          +round(16)
-          +flat-right
-          +overflow
-          +left
-          width: 24px
-          height: 24px
-          margin: 0 12px 0 0
-
-
-    .settingsPanel, .appearancePanel
-      +left
-
-    .settings
-      img
-        margin: -2px 1px -2px
-        border: 0px
-
-    .appearance
-      img
-        margin: -4px 0px -2px
-        border: 0px
-
-
-
-
-/* FLOATING BUTTONS */
-#metaMenu
-
-  .adminLink, .logOut
-    padding: 5px 8px
-    +alpha(60)
-
-  .adminLink, .newEntry, .logOut
-    +transparent-dark(50)
-    +round(24)
-    +button-light
-    +right
-    +block
-    color: #fff
-    text-decoration: none
-    border: 1px solid #777
-
-  .adminLink:hover, .logOut:hover
-    +alpha(100)
-    +glow-dark(8)
-    border: 1px solid transparent
-
-  .adminLink
-    margin: 8px
-    height: 21px
-    img
-      padding-top: 2px
-
-  .newEntry
-    +glow-dark(40)
-    +bold
-    padding: 4px 8px
-    font-size: 17px
-    margin: 8px 12px 0 0
-    border: 2px solid transparent
-    span
-      color: #093
-  .newEntry:hover
-    +inner-glow(20)
-    border: 2px solid transparent
-
-  .logOut
-    margin: 10px 8px 0 0
-
-
-
-
-
-
-
-
-
-
-/******** APPEARANCE & SETTINGS PANELS SHARED STYLES ********/
-#appearancePanel, #settingsPanel
-  +absolute
-  +clear
-  +round(8)
-  right: 45px
-  top: 60px
-  width: 334px
-  z-index: 1400
-
-  .arrow
-    +relative
-    top: -23px
-    padding: 0
-    height: 16px
-    margin-bottom: -16px
-
-  img.appearanceIcon, h1
-    +left
-
-  h1
-    margin: 8px
-    font-size: 24px
-    font-weight: normal
-
-
-
-
-#appearancePanel
-
-  img.appearanceIcon
-    margin: 4px 0 0
-
-  .bedsheets, .colorPicker
-    +round(8)
-
-  .bedsheets
-    +clear
-    padding: 8px
-    margin: 0 0 8px
-    h2
-      +block
-      +bold
-      +font(18)
-      height: 32px
-      line-height: 32px
-      margin: 0 8px
-    .options
-      +round(12)
-      +alpha(60)
-      +absolute
-      padding: 2px 4px
-      right: 20px
-      top: 20px
-    ul
-      margin: 12px 0
-      height: 346px
-      padding: 4px
-      list-style: none
-      overflow-y: scroll
-      li
-        +left
-        +pointer
-        +overflow
-        margin: 0 10px 10px 0
-        height: 128px
-        width: 128px
-        -moz-box-shadow: 2px 5px 10px #111
-        border: 4px solid #CCCCCC
-        img
-          border: 4px solid #333
-        img:hover
-          border: 4px solid #fff
-      li.selected
-        +round(4)
-        border: 4px solid #427ee8
-        img
-          border: 4px solid #fff
-    .attachment
-      .fixed, .scroll
-        +round(4)
-        +block
-        +center
-        width: 47%
-        padding: 2px
-        +cancel(8)
-        input
-          +pointer
-      .fixed
-        +left
-      .scroll
-        margin-left: 4px
-        +right
-    .more
-      +round(80)
-      +alpha(60)
-      +center
-      height: 32px
-      line-height: 32px
-      +confirm(16)
-      &:hover
-        +alpha(100)
-
-
-  .colorPicker
-    +clear
-    +bold
-    padding: 8px
-    margin: 4px 0 2px
-    height: 36px
-
-    img.colorSwatch, #sun, #moon
-      +left
-
-    img.colorSwatch
-      margin: 12px 0 0
-    h2
-      +left
-      +bold
-      +font(18)
-      margin: 0 8px
-      line-height: 36px
-
-    .buttons
-      +inner-shadow(10)
-      +round(8)
-      +right
-      width: 225px
-      padding: 4px 4px 4px 0
-
-      .sun, .moon
-        +left
-        +round(4)
-        +font(14)
-        +center
-        margin-left: 4px
-        padding: 0 5px
-        width: 96px
-        height: 28px
-        line-height: 28px
-        img
-          margin: -8px -8px -8px 4px
-
-      .sun
-        +bevel-light
-        +button-light
-        color: #555
-        &:hover
-          color: #000
-      .moon
-        +shine-dark(12)
-        +button-dark
-        color: #ccc
-        &:hover
-          +shine-dark(12)
-          color: #fff
-
-// COLORS
-.light
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 263px
-    .bedsheets, .colorPicker
-      +panel-light
-      .options
-        +button-light
-      .attachment
-        .fixed, .scroll
-          +button-light
-          +bevel-light
-          +cancel(12)
-      .more
-        +button-light
-
-  #settingsPanel
-    .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 215px
-
-
-.dark
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 263px
-    .bedsheets, .colorPicker
-      +panel-dark
-      .options
-        +button-dark
-      .attachment
-        .fixed, .scroll
-          +button-dark
-          +bevel-dark
-          +cancel(12)
-      .more
-        +button-dark
-
-  #settingsPanel
-    .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 215px
-
-
-
-
-
-
-/******** SETTINGS PANEL ********/
-#settingsPanel
-
-  img
-    +left
-  h2
-    +font(18)
-    +bold
-    margin: 0px
-    padding: 8px
-    
-  .sharing, .savedLocations, .changePassword, .fontSizing
-    +clear
-    +round(8)
-    margin: 0 0 8px
-
-  .savedLocations h2, .changePassword h2
-    +block
-    +pointer
-    img
-      padding-right: 8px 
-
-  hr
-    +alpha(30)
-
-
-  .sharing
-    padding: 8px
-    .defaultSharing, .network
-      margin: 0 0 4px
-      img
-        margin: 8px 8px 0 0
-      h2
-        +pointer
-        +left
-        line-height: 32px
-        margin: 0
-        padding: 0
-      select
-        +round(8)
-      p
-        +left
-    select
-      +right
-      +font(16)
-      +pointer
-      +round(8)
-      height: 36px
-      width: 138px
-      margin-top: 4px
-      padding: 6px 8px
-      option
-        padding: 6px 0 6px 24px
-      option.everyone
-        background: url(/images/icons/everyone-16.png) no-repeat 4px
-      option.friends
-        background: url(/images/icons/friend-16.png) no-repeat 4px
-      option.anonymous
-        background: url(/images/icons/mask-16.png) no-repeat 4px
-      option.private
-        background: url(/images/icons/lock-16.png) no-repeat 4px
-    .network
-      +clear
-
-      .linkAccount
-        +round(4)
-        +right
-        +center
-        +pointer
-        margin: 4px 0 0
-        padding: 0 8px
-        width: 110px
-        height: 24px
-        line-height: 24px
-        +confirm(12)
-
-    label
-      +clear
-      +pointer
-      +right
-      height: 26px
-      line-height: 26px
-      padding: 0 4px
-      border: 1px solid transparent
-      margin-top: 8px
-      input
-        +pointer
-        +right
-        margin: 7px 4px 0 8px
-
-    label:hover
-      +round(4)
-      border: 1px solid #ccc
-
-
-  .savedLocations
-    .locationView, .modifyLocationView
-
-      .newLocation, .autoLocate
-        margin-top: 8px
-
-      .newLocation
-        +center
-        +left
-        +round(4)
-        width: 186px
-        padding: 2px 4px
-        +confirm(12)
-        img
-          float: none
-          margin: -3px 3px
-
-      .autoLocate
-        +block
-        +right
-        +round(4)
-        padding: 2px 4px
-        +cancel(12)
-
-      .locationList
-        +clear
-        width: 100%
-        max-height: 180px
-        overflow-y: auto
-
-        .locations
-          +clear
-          +pointer
-          float: none
-          margin: 0
-          padding: 6px 8px
-          .edit, label
-            display: none
-          label
-            +alpha(50)
-            +pointer
-            +font(11)
-            +right
-            border: 1px solid transparent
-            padding: 2px 4px
-            input
-              +pointer
-              margin: -5px 0
-          label.selected
-            +block
-            +alpha(100)
-
-        .locations:hover
-          .edit
-            +block
-            +right
-            width: 16px
-            height: 16px
-            padding: 3px
-            margin-right: 8px
-            background: url(/images/icons/edit-16.png) no-repeat center center
-            border: 1px solid transparent
-          .edit:hover, label:hover
-            +round(4)
-            border: 1px solid #ccc
-          label
-            +block
-
-  .cancel, .confirm, .save
-    +center
-    +bold
-    height: 26px
-    line-height: 26px
-    margin-top: 8px
-  .cancel
-    +left
-    width: 80px
-  .confirm
-    +right
-    width: 180px
-
-
-  .modifyLocationView, .changePasswordForm
-    // INPUTS
-    #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
-      +round(4)
-      +font(15)
-      margin-bottom: 4px
-      padding: 4px
-      width: 306px
-    .save, .cancel
-      +round(4)
-      padding: 0
-    .save
-      +right
-      +font(12)
-      padding-bottom: 2px
-      height: 28px
-      width: 186px
-    .cancel
-      +left
-      width: 120px
-
-
-  .changePassword
-    margin: 0 0 8px
-    .changePasswordForm
-      span
-        +font(11)
-        padding-left: 4px
-        margin-bottom: 1px
-      .cancel, .confirm
-        +round(4)
-      .confirm
-        +font(12)
-        height: 28px
-        line-height: 28px
-        padding-bottom: 2px
-
-
-  .fontSizing
-    height: 50px
-    margin: 0 0 2px
-    h2
-      +left
-      +cursor
-      line-height: 36px
-      img
-        padding: 8px 8px 0 0 
-    .small, .medium, .large
-      +relative
-      +right
-      +center
-      +pointer
-      +round(24)
-      margin-left: 4px
-
-    .small
-      +font(12)
-      padding: 2px 6px
-      margin-top: 16px
-    .medium
-      +font(16)
-      padding: 3px 8px
-      margin-top: 12px
-    .large
-      +font(18)
-      padding: 6px 12px
-      margin: 8px 8px 0 4px
-
-
-// COLORS
-.light
-  #settingsPanel, #appearancePanel
-    +panel-light
-    +glow-light(40)
-
-    .sharing, .savedLocations, .changePassword, .fontSizing
-      +panel-light
-
-    .defaultSharing
-      select
-        +input-light
-
-    .network
-      .linkAccount
-        +button-light
-        +bevel-light
-
-
-    .savedLocations
-      +panel-light
-
-      .newLocation
-        +bevel-light
-        +button-light
-
-      .autoLocate
-        +bevel-light
-        +button-light
-
-      .locationList
-        +border-light
-
-        .locations
-          +flat-light
-          +border-light
-
-      .modifyLocationView
-        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
-          +input-light
-        .save, .cancel
-          +button-light
-          +bevel-light
-          color: #333
-        .save
-          &:hover
-            +confirm(12)
-        .cancel
-          &:hover
-            +cancel(12)
-
-    .changePasswordForm
-      #user_password, #user_password_confirmation, .save, .cancel
-        +input-light
-      .cancel, .confirm
-        +button-light
-        +bevel-light
-        color: #333
-      .cancel:hover
-        +cancel(12)
-      .confirm:hover
-        +confirm(12)
-
-    .fontSizing
-      .large, .medium, .small
-        +button-light
-
-.dark
-  #settingsPanel, #appearancePanel
-    +panel-dark
-    +glow-dark(40)
-
-    .sharing, .savedLocations, .changePassword, .fontSizing
-      +panel-dark
-
-    .defaultSharing
-      select
-        +input-dark
-
-    .network
-      .linkAccount
-        +button-dark
-        +bevel-dark
-
-    .savedLocations
-      +panel-dark
-
-      .newLocation
-        +bevel-dark
-        +button-dark
-
-      .autoLocate
-        +bevel-dark
-        +button-dark
-
-      .locationList
-        +border-dark
-
-        .locations
-          +flat-dark
-          +border-dark
-
-      .modifyLocationView
-        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
-          +input-dark
-        .save, .cancel
-          +button-dark
-          +bevel-dark
-          color: #ddd
-        .save
-          &:hover
-            +confirm(12)
-        .cancel
-          &:hover
-            +cancel(12)
-
-    .changePasswordForm
-      #user_password, #user_password_confirmation, .save, .cancel
-        +input-dark
-      .cancel, .confirm
-        +button-dark
-        +bevel-dark
-        color: #ddd
-      .cancel:hover
-        +cancel(12)
-      .confirm:hover
-        +confirm(12)
-
-    .fontSizing
-      .large, .medium, .small
-        +button-dark
-
-/*********** END META MENU ***********/
 
 
 
@@ -1335,6 +311,55 @@ abbr, acronym
 
 
 
+// SINGLE LOGIN PAGE
+#loginPage
+  +absolute
+  +font(18)
+  top: 300px
+  width: 100%
+  .login, .join
+    +round(16)
+    +shine-light-alpha(16)
+    padding: 8px
+    +clear
+    width: 300px
+    margin: auto
+    input
+      +input-light
+      +round(12)
+      margin-bottom: 4px
+      +font(18)
+      padding: 8px
+      width: 280px
+
+    #loginButton, #joinButton
+      +button-light
+      +shine-light(16)
+      +confirm(16)
+      +font(21)
+      margin-top: 8px
+      width: 100%
+      padding: 8px
+
+  .navigation
+    +round(16)
+    +shine-dark-alpha(16)
+    padding: 8px
+    width: 300px
+    margin: auto
+    .button
+      +button-light
+      +bevel-light
+      +round(12)
+      +cancel(16)
+      +left
+      padding: 4px 8px
+      margin: 4px
+
+
+
+
+
 /*********** FIELDS ***********/
 #entryField, #friendField
   +absolute
@@ -1346,34 +371,6 @@ abbr, acronym
 
 
 
-
-
-#loginPage
-  +absolute
-  +font(18)
-  top: 300px
-  width: 100%
-  font-size: 18px
-  .navigation
-    width: 300px
-    margin: auto
-    .button
-      float: left
-      padding: 4px 8px
-      margin: 4px
-  .login
-    clear: both
-    width: 300px
-    margin: auto
-    .input
-      font-size: 18px
-      padding: 8px
-      width: 280px
-    #loginButton
-      margin-top: 8px
-      font-size: 21px
-      width: 100%
-      padding: 8px
 
 
 
@@ -1390,18 +387,16 @@ abbr, acronym
 
 /* CONTENT BOXES */
 .text_input-big
+  +font(21)
+  +round(12)
   background: #fff
   color: #000
-  font-size: 21px
   border: 1px solid #666
   margin: 0
   padding: 5px
   box-shadow: inset 2px 5px 15px #bbb
   -moz-box-shadow: inset 2px 5px 15px #bbb
   -webkit-box-shadow: inset 2px 5px 15px #bbb
-  border-radius: 12px
-  -moz-border-radius: 12px
-  -webkit-border-radius: 12px
   outline: none
 .text_input-big:focus, .search-bar:focus
   border: 1px solid #000
@@ -1417,17 +412,12 @@ abbr, acronym
 
 /* TAG CLOUDS */
 .TC, .TC A, .sub_tags A
+  +left
+  +round(8)
   text-decoration: none
   padding: 2px 5px
-  -moz-border-radius: 8px
-  -webkit-border-radius: 8px
-  -khtml-border-radius: 8px
-  border-radius: 8px
-  float: left
-#headerTagCloud1 .TC
-  float: right
-#headerTagCloud2 .TC
-  float: left
+
+
 .thumb_TC
   padding: 5px
 .TC A:hover, .TC A:focus, .sub_tags A:hover, .sub_tags A:focus
@@ -1437,42 +427,23 @@ abbr, acronym
   background: #000
 
 .s-0
-  font-size: 20px
+  +font(20)
 .s-1
-  font-size: 14px
+  +font(14)
 .s-2
-  font-size: 15px
+  +font(15)
 .s-3
-  font-size: 16px
+  +font(16)
 .s-4
-  font-size: 17px
+  +font(17)
 .s-5
-  font-size: 18px
+  +font(18)
 .s-6
-  font-size: 19px
+  +font(19)
 .s-7
-  font-size: 20px
+  +font(20)
 .s-8
-  font-size: 21px
-
-#dreamHeader .s-0
-  font-size: 30px
-#dreamHeader .s-1
-  font-size: 16px
-#dreamHeader .s-2
-  font-size: 17px
-#dreamHeader .s-3
-  font-size: 18px
-#dreamHeader .s-4
-  font-size: 20px
-#dreamHeader .s-5
-  font-size: 22px
-#dreamHeader .s-6
-  font-size: 26px
-#dreamHeader .s-7
-  font-size: 30px
-#dreamHeader .s-8
-  font-size: 31px
+  +font(21)
 
 
 .water.s-0
@@ -1501,15 +472,3 @@ SELECT.search-bar
   border-style: solid
   -moz-border-radius: 8px
 
-
-/* IMAGE LIGHTBOX */
-.imagePopup
-  position: fixed
-  width: 100%
-  height: 100%
-  top: 0
-  left: 0
-  background: url(/basic/inc/images/colors/black-50.png) repeat
-  text-align: center
-  z-index: 30000
-  cursor: pointer
