@@ -57,8 +57,9 @@
 
 
       / DREAM THUMBS 1D
-      - @entries.each do |entry|
-        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
-      - if @entries.blank?
-        .noDreams No dreams yet today.
-
+      / - @entries.each do |entry|
+      /         = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+      /       - if @entries.blank?
+      /         .noDreams No dreams yet today.
+      / 
+      

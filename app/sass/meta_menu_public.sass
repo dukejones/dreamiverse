@@ -136,13 +136,15 @@
         +clear
         +block
         +font(14)
-        +input-light
         +round(12)
         margin: 0 0 2px
         padding: 0 8px
         width: 176px
         height: 32px
         line-height: 32px
+      .login-input
+        +input-light
+        margin-bottom: 4px
 
       .haveSeedcode
         +pointer
@@ -150,7 +152,11 @@
         +block
         +center
         +font(14)
+        +button-light
+        +round(4)
         margin: 4px 0 6px
+        width: 150px
+        margin: auto
 
       #loginButton
         +round(12)
@@ -159,19 +165,19 @@
         width: 192px
         +confirm(12)
 
-      label.stay, a.forgot
+      .stay, .forgot
         +button-light
         +round(4)
         +center
         +font(10)
-        margin: 4px
+        margin: 0 4px 4px
         padding: 0 4px
         height: 16px
         line-height: 16px
         font-weight: normal
-      a.forgot
+      .forgot
         +left
-      label.stay
+      .stay
         +right
         width: 80px
         input
@@ -182,6 +188,11 @@
       input
         +input-light
         +round(12)
+
+
+      input.seedcode
+        +hidden
+        height: 0px
 
     .user
       +overflow
