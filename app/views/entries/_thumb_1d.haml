@@ -1,22 +1,25 @@
 / ENTRY THUMB 1D - GENERAL
-%a.thumb-1d{href: user_entry_path(entry.user.username, entry)}
+%a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
   / LEFT SIDE
   .left
-    .user{style: 'background: #fff url(/images/avatars/xavitar.jpg) no-repeat left'}
+    .user{style: "background: #fff url(#{avatar_image(entry.user, 32)}) no-repeat left"}
       %p.name= entry.user.username
 
     .commentCount
-      .counter 20
+      .counter= entry.comments.count
 
-    .image{style: 'background: url(/images/art/cloud-temple-banner.jpg) no-repeat top left'}
+    / only for +image
+    .image{style: "background: url(#{dream_header_url(entry.images.first)}) no-repeat top left"}
 
     %h1.title= entry.title
+    / only for noimage
+    %h2.titleWatermark= entry.title
     %p.text= entry.body
-
+ 
     / ENTRY THUMB DETAILS
     .details
       / REPOSTED BY
-      .rePost
+      .rePost.hidden
         reposted by:
         %span.rePostBy Phong
       / DATE
@@ -32,135 +35,36 @@
   %table.right
 
     / TOP ROW - IMAGE THUMBNAILS
-    %tr
-      %td.top
-        %ul
-          %li
-          %li
-          %li
-          %li
-          %li
+    - unless entry.images.blank?
+      %tr
+        %td.top
+          %ul
+            - entry.images.limit(5).each do |image|
+              %li{style: "background: url(#{image.url(:thumb, 64)}) no-repeat top left"}
 
     / MIDDLE ROW - TAG CLOUD
     %tr
       %td.middle
         / TAG CLOUD
-        <div id="tagCloud-1075" class="tagCloud dark O dream_thumb-tags">
-        <div class="TC s-1 water">hanging</div>
-        <div class="TC s-1 water">friend</div>
-        <div class="TC s-7 water">plans</div>
-        <div class="TC s-1 water">mystical</div>
-        <div class="TC s-7 water">future</div>
-        <div class="TC s-2 water">love</div>
-        <div class="TC s-8 water">friends</div>
-        <div class="TC s-2 water">joy</div>
-        <div class="TC s-1 water">make</div>
-        <div class="TC s-6 water">lost</div>
-        <div class="TC s-7 water">long</div>
-        <div class="TC s-1 water">hanging</div>
-        <div class="TC s-1 water">friend</div>
-        <div class="TC s-7 water">plans</div>
-        <div class="TC s-1 water">mystical</div>
-        <div class="TC s-7 water">future</div>
-        <div class="TC s-2 water">love</div>
-        <div class="TC s-8 water">friends</div>
-        <div class="TC s-2 water">joy</div>
-        <div class="TC s-1 water">make</div>
-        <div class="TC s-6 water">lost</div>
-        <div class="TC s-7 water">long</div>
-        </div>
+        #tagCloud-1075.tagCloud.0.dream_thumb-tags
+          - entry.whats.each do |tag|
+            .TC.water{class: "s-#{rand(7)+1}"}= tag.name
 
-    / BOTTOM ROW - ENTRY TAGS
-    %tr
-      %td.entryTagList
-        .tag Geo
-        .tag Android
-        .tag Geoff
-        .tag Janell
-        .tag Marisa
-        .tag Phong
-        .tag Scott
-        .tag Ephraim
-        .tag Sonja
-        .tag Tom
-        .tag Geo
-        .tag Android
-        .tag Geoff
-        .tag Janell
-        .tag Marisa
-        .tag Phong
-        .tag Scott
-        .tag Ephraim
-        .tag Sonja
-        .tag Tom
-
-        .clear
+    / BOTTOM ROW - WHO TAGS
+    / %tr
+    /       %td.entryTagList
+    /         .tag Geo
+    /         .tag Android
+    /         .tag Geoff
+    /         .tag Janell
+    /         .tag Marisa
+    /         .tag Phong
+    /         .tag Scott
+    /         .tag Ephraim
+    /         .tag Sonja
+    /         .tag Tom
+    / 
+    /         .clear    
 
 
 
-/ ENTRY THUMB 1D - NO IMAGE
-.thumb-1d.noImage
-  / LEFT SIDE
-  .left
-    .user{style: 'background: #fff url(/images/avatars/xavitar.jpg) no-repeat left'}
-      %p.name= entry.user.username
-
-    .commentCount
-      .counter 20
-
-    %h1.title= entry.title
-    %h2.titleWatermark= entry.title
-    %p.text= entry.body
-
-    / ENTRY THUMB DETAILS
-    .details
-      / REPOSTED BY
-      .rePost
-        reposted by:
-        %span.rePostBy Phong
-      / DATE
-      .date
-        10 seconds ago
-      / STARLIGHT
-      .starlight
-        %img{src: '/images/icons/starlight-17.png', width: '17', height: '17'}
-        %span= entry.starlight._?.value || 0
-
-    .divider
-
-  / RIGHT SIDE
-  %table.right
-
-    / MIDDLE ROW - TAG CLOUD
-    %tr
-      %td.middle
-        / TAG CLOUD
-        <div id="tagCloud-1075" class="tagCloud dark O dream_thumb-tags">
-        <div class="TC s-1 water">hanging</div>
-        <div class="TC s-1 water">friend</div>
-        <div class="TC s-7 water">plans</div>
-        <div class="TC s-1 water">mystical</div>
-        <div class="TC s-7 water">future</div>
-        <div class="TC s-2 water">love</div>
-        <div class="TC s-8 water">friends</div>
-        <div class="TC s-2 water">joy</div>
-        <div class="TC s-1 water">make</div>
-        <div class="TC s-6 water">lost</div>
-        <div class="TC s-7 water">long</div>
-        </div>
-
-    / BOTTOM ROW - ENTRY TAGS
-    %tr
-      %td.entryTagList
-        .tag Geo
-        .tag Android
-        .tag Geoff
-        .tag Janell
-        .tag Marisa
-        .tag Phong
-        .tag Scott
-        .tag Ephraim
-        .tag Sonja
-        .tag Tom
-
-        .clear    

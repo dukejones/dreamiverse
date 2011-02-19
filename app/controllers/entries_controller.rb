@@ -7,24 +7,25 @@ class EntriesController < ApplicationController
 
     # TODO: Write a custom finder for this SLOW method!
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
+    @entries = @entries.where(type: params[:type]) if params[:type]
     
     # hmm, no access to entry id (loop) from here currently
     #@tag_cloud = Nephele.render_single_entry_tag_cloud(9,@user.id).html_safe
     #@tag_cloud.html_safe   
     
-    add_starlight @user, 1 if unique_hit?
+    @user.starlight.add( 1 ) if unique_hit?
   end
 
   def show
     @entry = Entry.find params[:id]
-    restrict_access
+    deny and return unless user_can_access?
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
-    @comments = @entry.comments.order('created_at DESC').limit(10)
+    @comments = @entry.comments.limit(10)
     
     if unique_hit?
-      add_starlight @entry, 1
-      add_starlight current_user, 1
+      @entry.starlight.add( 1 )
+      @entry.user.starlight.add( 1 )
     end
   end
   
@@ -34,7 +35,7 @@ class EntriesController < ApplicationController
   
   def edit
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
     render :new
   end
 
@@ -42,25 +43,30 @@ class EntriesController < ApplicationController
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
-    new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))
+    new_entry = current_user.entries.create!(params[:entry].merge(
+      whats: whats,
+      view_preference_attributes: params[:entry].delete(:view_preference)
+    ))
     redirect_to user_entry_path(current_user.username, new_entry)
   end
   
   def update
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
 
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
 
-    @entry.update_attributes( params[:entry] )    
+    @entry.update_attributes( params[:entry].merge(
+      view_preference_attributes: params[:entry].delete(:view_preference)
+    ) )
     redirect_to :action => :show, :id => params[:id]
   end
   
   def destroy
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
     
     @entry.destroy
     redirect_to :index
@@ -68,20 +74,36 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
-
-    # where dream is public
-    # or i am friends with entry.user
-    # but not my own dreams
-    @entries = Entry.where(
-      (
-        { sharing_level: Entry::Sharing[:everyone] } | 
-        (
-          { sharing_level: Entry::Sharing[:friends] } & 
-          { user: { following: current_user, followers: current_user} }
-        ) 
-      )
-    ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
-    # todo : ordering
+    @entries = Entry.accessible_by(current_user)
+    
+    # starlight: low, medium, high, off
+    # for now just high
+    if params[:starlight_filter] == 'high'
+      @entries = @entries.order_by_starlight
+    else
+      @entries = @entries.scoped.order('updated_at DESC')
+    end
+    # Type: visions,  dreams,  experiences
+    if params[:type_filter]
+      @entries = @entries.where(type: params[:type_filter])
+    end
+    # friends, or following
+    if params[:friend_filter] == 'friends'
+      @entries = @entries.friends_with(current_user)
+    elsif params[:friend_filter] == 'following'
+      @entries = @entries.followed_by(current_user)
+    end
+    
+    # not my own dreams
+    # @entries = @entries.where(:user_id ^ current_user.id)
+    @entries = @entries.limit(50)
+    @entries = @entries.offset(50 * params[:page]) if params[:page]
+    
+    if request.xhr?
+      thumbs_html = ""
+      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
+      render :text => thumbs_html
+    end
   end
 
   def bedsheet
@@ -104,17 +126,17 @@ class EntriesController < ApplicationController
   
   
   # requires @entry be set
-  def restrict_access
-    return if @entry.everyone?
-    deny if !current_user || !current_user.can_access?(@entry)
+  def user_can_access?
+    @entry.everyone? || (current_user && current_user.can_access?(@entry))
   end
 
   # requires @entry be set
-  def restrict_write
-    deny unless current_user == @entry.user
+  def user_can_write?
+    (current_user == @entry.user)
+  end
+
+  def deny
+    redirect_to :root, :alert => "Access denied to this entry."
   end
   
-  def deny
-    redirect_to :root, :warn => "Access denied to this entry." and return
-  end
 end

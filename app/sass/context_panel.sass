@@ -11,7 +11,7 @@
   top: 82px
   left: 12px
   width: 200px
-  padding: 4px
+  padding: 4px 4px 0
   border: 1px solid #000
   #avatarDrop
     +round(12)
@@ -107,13 +107,104 @@
 
   .divider
     height: 2px
-    
-  .location
-    +round(12)
-    +font(12)
-    +center
-    +transparent-light(60)
-    padding: 2px 4px
+
+  // PROFILE
+  .profile
+
+    // VIEW PROFILE
+    .view
+      +round(8)
+      padding: 4px 0
+
+      .name
+        +round(6)
+        +font(14)
+        +bold
+        +center
+        margin: 0 4px 4px
+        padding: 2px 8px
+
+      .location
+        +round(8)
+        +font(12)
+        +center
+
+      .details
+        +overflow
+        margin: 0 4px
+        hr
+          +alpha(30)
+        .website, .email, .phone, .skype
+          +font(14)
+          padding: 0 8px
+        .skype
+          img, span
+            +left
+          img
+            margin: 2px 4px 0 0
+
+        .facebook, .twitter
+          +round(4)
+          +center
+          +font(11)
+          padding: 0 12px
+          margin: 8px 2px 0
+        .facebook
+          +left
+        .twitter
+          +right
+        .change
+          +clear
+          +center
+          +round(4)
+          margin-top: 4px
+          height: 22px
+          line-height: 22px
+
+    // EDIT PROFILE
+    .edit
+      +round(12)
+      +flat-top
+      padding: 8px
+
+      #user_name, #user_email, #user_website, #user_phone, #user_skype
+        +round(8)
+        +font(12)
+        width: 176px
+        height: 24px
+        line-height: 24px
+        margin: 0 0 4px
+        padding: 0 0 0 8px
+      .skypeWrap
+        +relative
+        width: 176px
+        margin: 0 0 4px
+        img
+          +absolute
+          left: 8px
+          top: 5px
+        #user_skype
+          width: 156px
+          padding-left: 28px
+          margin: 0
+
+      .cancel, .save
+        +round(4)
+        width: auto
+        height: 22px
+        line-height: 22px
+        margin: 4px 0 0
+      .cancel
+        +left
+        +delete(14)
+        padding: 0 12px
+      .save
+        +right
+        +save(14)
+        +font(14)
+        height: 24px
+        padding: 0 36px 4px
+
 
   .item
     +clear
@@ -137,9 +228,7 @@
       height: 24px
       padding: 0
       margin: 0
-      .dream
-        margin: 6px 0
-      .follow
+      .dream, .follow
         margin: 4px 0
       .starlight
         margin: -11px -16px
@@ -187,6 +276,47 @@
     .changeRelation.unfollow
       +delete(16)
 
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +round(12)
+    height: 28px
+    padding: 4px
+    margin: 4px 0
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +relative
+      +round(12)
+      +left
+      height: 26px
+      width: 62px
+
+      .favorites, .rePost, .tag
+        +absolute
+        height: 26px
+        width: 62px
+
+    .favoritesWrap
+      +flat-right
+      .favorites
+        background: url(/images/icons/love-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/love-16-selected.png) no-repeat center
+      .favorites.selected
+        background: url(/images/icons/love-16-selected.png) no-repeat center
+
+    .rePostWrap
+      +flat-all
+      .rePost
+
+    .tagWrap
+      +flat-left
+      .tag
+        background: url(/images/icons/tag-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/tag-16-selected.png) no-repeat center
+      .tag.selected
+        background: url(/images/icons/tag-16-selected.png) no-repeat center
+
+
 
 // FILTERS
 #contextPanel
@@ -210,10 +340,52 @@
 
     .context, .label
       +button-light
+    .context
       +shine-light-alpha(16)
+    .label
+      +bevel-light
 
     .relation
       +button-light
+
+    // PROFILE
+    .profile
+
+      // VIEW PROFILE
+      .view
+        +transparent-light(50)
+
+        .name
+          +transparent-dark(60)
+          color: #ddd
+
+        .location
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-light
+          .change
+            +bevel-light
+            +button-light
+            +confirm(11)
+
+      // EDIT PROFILE
+      .edit
+        +shine-light-alpha(0)
+
+        #user_name, #user_email, #user_website, #user_phone, #user_skype
+          +input-light
+        .cancel, .save
+          +bevel-light
+          +button-light
+        .cancel
+          +delete(14)
+        .save
+          +save(14)
+          color: #333
 
     .item
       .relation
@@ -221,7 +393,31 @@
         .label
           border: 1px solid #848484
       .detail
-        +flat-light
+        +flat-light-medium
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    background: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9a9a9a))
+    background: -moz-linear-gradient(top, #fff, #9a9a9a) // CUSTOM LIGHT BEVEL
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-light
+      +shine-light(13)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #bbb
+      .rePost
+
+    .tagWrap
+      .tag
 
 .dark
   #contextPanel
@@ -230,18 +426,79 @@
 
     .context, .label
       +button-dark
-      +shine-dark-alpha(16)
+      +shine-dark-alpha(13)
     .relation
       +button-dark
+
+    // PROFILE
+    .profile
+
+      // VIEW PROFILE
+      .view
+        +transparent-dark(50)
+
+        .name
+          +transparent-light(60)
+          color: #333
+
+        .location
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-dark
+            color: #333
+          .change
+            +bevel-dark
+            +button-dark
+            +confirm(11)
+
+      // EDIT PROFILE
+      .edit
+        +shine-dark-alpha(0)
+
+        #user_name, #user_email, #user_website, #user_phone, #user_skype
+          +input-dark
+        .cancel, .save
+          +bevel-dark
+          +button-dark
+        .cancel
+          +delete(14)
+        .save
+          +save(14)
+          color: #ddd
+
     .item
       .relation
         +transparent-dark(50)
         .label
           border: 1px solid #555
       .detail
-        +flat-dark
+        +flat-dark-medium
 
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +bevel-dark
 
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-dark
+      +shine-dark(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #444
+      .rePost
+
+    .tagWrap
+      .tag
 
 
 
@@ -393,10 +650,10 @@
         line-height: 30px
         +block
         &.top:hover
-          +round(8)
+          +round(6)
           +flat-bottom
         &.bottom:hover
-          +round(8)
+          +round(6)
           +flat-top
 
 

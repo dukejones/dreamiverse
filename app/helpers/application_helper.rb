@@ -1,13 +1,13 @@
 module ApplicationHelper
   def avatar_image(user, size = :main)
-    avatar_image = user.image
+    avatar_image = user.image || Image.default_avatar
     case size
     when :main
       avatar_image.url('avatar_main')
     when :medium
       avatar_image.url('avatar_medium')
     else
-      avatar_image._?.url('avatar', size) || 'images/uploads/1-avatar-64.jpg'
+      avatar_image.url('avatar', size)
     end
   end
   
@@ -46,8 +46,12 @@ module ApplicationHelper
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
 
+  # Note: this depends on a "global" variable @entry being set to use @entry's preferences.
   def bedsheet_style
-    bedsheet_attachment = 'scroll'
+    bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= 'scroll'
+
     # TODO: these should be an imagebank url.
     # if frontpage, use frontpage bedsheet
     bedsheet_url = "/images/bedsheets/air-04.jpg" if request.path == '/'
@@ -62,5 +66,12 @@ module ApplicationHelper
     bedsheet_url ||= "/images/bedsheets/air-03.jpg"
 
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
+  end
+  
+  def theme
+    theme ||= @entry._?.view_preference._?.theme
+    theme ||= current_user._?.view_preference._?.theme
+    theme ||= "light"
+    theme
   end
 end

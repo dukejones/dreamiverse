@@ -17,14 +17,42 @@
 
   / SETTINGS MENU
   .rightPanel
-    %a.item.user.selected{href: entries_path(current_user.username), style: 'background: url("http://www.dreamcatcher.net/basic/inc/images/user/avatar/10/avatar_64_Sporeganic---Sonic-W.jpg") no-repeat scroll -8px -4px #000;'}
+    %a.item.user.selected{:'data-id' => current_user.id, href: entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
       %span
         = current_user.username
 
+
+    / NOTIFICATIONS PANEL
+    .notificationsPanel.hidden
+      .notifyIcon 5
+
+      / NOTICE - SUCCESS
+      .notice
+        .close X
+        %span You have successfully logged in
+
+      / ALERT - FAIL, WARING
+      .alert
+        .close X
+        %span You're password and/or username did not match our records
+
+      / ALERT - FAIL, WARING
+      .alert
+        .close X
+        .icon{style: 'background: url(/images/icons/info-24-selected.png) no-repeat left'}
+        %span The system will be down at 3pm PST
+
+      / NOTIFICATION - NEW COMMENT, TAG
+      .notification
+        .close X
+        .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat left'}
+        %span Username has commented on your dream
+
+
     .settingsPanel.wrapper
-      .item.account.trigger
+      .item.settings.trigger
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "17", y: "25"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "17", y: "35"}
 
       / SETTINGS PANEL
       = render partial: "layouts/settings_panel"
@@ -32,7 +60,7 @@
     .appearancePanel.wrapper
       .item.appearance.trigger
         %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "17", y: "25"}
+        = render partial: "shared/hover_label", locals: {message: "appearance", x: "17", y: "35"}
 
       / APPEARANCE PANEL
       = render partial: "layouts/appearance_panel"

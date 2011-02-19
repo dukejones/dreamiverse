@@ -96,13 +96,13 @@ class ImagesController < ApplicationController
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     }))
-    @image.write(request.body.read)
 
     respond_to do |format|
       if !@image.save
         format.html { render :action => "new", :alert => "Could not upload the file." }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
       else
+        @image.write(request.body.read)
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
         thumb_size = '120x120'
         @image.resize(thumb_size)

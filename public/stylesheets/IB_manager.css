@@ -205,8 +205,7 @@ h2.IB_managerHeader {
   margin:0;
   padding:0;
   opacity:0;
-  left:12px;
-  top:-25px;}
+  left:12px;}
 .IB_managerOrganizationList option {  
   float:none;
   margin:0;
@@ -265,14 +264,14 @@ h2.IB_managerHeader {
 .IB_managerTagInput {width:695px; height:58px;}
 .IB_managerTagCheckbox {margin:0;}
 
-#IB_managerSaveWrap, #IB_managerCancelWrap {
+#IB_managerSaveWrap, #IB_managerUpdateWrap, #IB_managerCancelWrap {
   min-width:96px; 
   height:38px; 
   text-align:center; 
   float:right; 
   margin:8px 8px 8px 0;
   padding:2px 0;}
-#IB_managerSave, #IB_managerCancel {
+#IB_managerSave, #IB_managerUpdate, #IB_managerCancel {
   width:120px;
   height:38px;
   margin:0 auto;
@@ -282,11 +281,11 @@ h2.IB_managerHeader {
   font-size:18px;
   padding:0px;
   cursor:pointer;}
-#IB_managerCancel {color:#58595b; /* 80% Black */}
-#IB_managerSaveWrap:hover, #IB_managerCancelWrap:hover {
+#IB_managerCancel, #IB_managerUpdate, #IB_managerSave {color:#58595b; /* 80% Black */}
+#IB_managerSaveWrap:hover, #IB_managerUpdateWrap:hover, #IB_managerCancelWrap:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#a7a9ac));
   background: -moz-linear-gradient(top, #fff, #a7a9ac);}
-#IB_managerSave:hover, #IB_managerCancel:hover {
+#IB_managerSave:hover, #IB_managerUpdate:hover, #IB_managerCancel:hover {
   background: -webkit-gradient(linear, left top, left bottom, from(#bcbec0), to(#fff));
   background: -moz-linear-gradient(top, #bcbec0, #fff);}
 

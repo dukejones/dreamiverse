@@ -8,3 +8,16 @@
 
 require 'init_nephele_black_list_words'
 InitNepheleBlackListWords.init_first_words 
+
+if Image.where(:title => "Default Avatar").count == 0
+  puts "Seeding Default Avatar..."
+  avatar_filename = "avatar_lg.jpg"
+  default_avatar_image = Image.create({
+    :section => "Avatar",
+    :title => "Default Avatar",
+    :artist => "Andrew Jones",
+    :incoming_filename => avatar_filename
+  })
+  avatar_file = open("#{Rails.root}/db/#{avatar_filename}", "rb")
+  default_avatar_image.write( avatar_file.read )
+end

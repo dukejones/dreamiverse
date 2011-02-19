@@ -20,16 +20,6 @@
     - @entries.each do |entry|
       = render :partial => 'thumb_1d', :locals => {:entry => entry}
 
-    / 
-      ENTRY THUMBS 1D
-      = render :partial => 'thumb_1d_tag'
-
-      / ENTRY THUMBS 1D
-      = render :partial => 'thumb_1d_noimage'
-
-      / ENTRY THUMBS 1D
-      = render :partial => 'thumb_1d_newimages'
-
       / NO ENTRY TO DISPLAY
       - if @entries.empty?
         .noDreams.transparent-50.round-16.padding-8.font-21 there are no public dreams to display

@@ -1,5 +1,5 @@
 - content_for :head do
-  = stylesheet_link_tag 'shared', 'dreamstars'
+  = sass_link_tag 'dreamstars'
 
 #dreamstars.dark
 
@@ -24,52 +24,24 @@
   / TOP 6 DREAMSTARS
   - (0..5).each do |rank|
     - user = @users[rank]
-    %a{class: "dreamstar-#{rank+1}"}
+    %a{class: "dreamstar-#{rank+1}", href: "/#{user._?.username._?}/entries"}
       .badge
         = image_tag "dreamstars/#{@top_images[rank]}"
       .rank
-        = rank
+        = rank + 1
       .name
         = user.username if user
       .starlight
-        1500
+        = user._?.starlight._?.value || 0
       .clear
 
   / ALL DREAMSTARS
   .dreamstarsAll
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-    %a.dreamstar
-      .rank
-        rank
-      .name
-        username
-      .starlight
-        1500
-      
+    - @users.each_with_index do |user, index|
+      %a.dreamstar{href: "/#{user._?.username._?}/entries"}
+        .rank
+          = index + 1
+        .name
+          = user.username if user
+        .starlight
+          = user._?.starlight._?.value || 0

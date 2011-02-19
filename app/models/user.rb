@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :website # this should be a link
 
   has_many :authentications
 
@@ -8,7 +9,10 @@ class User < ActiveRecord::Base
   
   has_many :entry_accesses
 
+  has_one :link, :as => :owner
+  
   has_one :view_preference, :as => "viewable", :dependent => :destroy
+  accepts_nested_attributes_for :view_preference, :update_only => true
   
   # follows are the follows this user has
   # following are the users this user is following
@@ -36,7 +40,8 @@ class User < ActiveRecord::Base
   before_validation :encrypt_password
   validate :validate_password_confirmation
   validates_presence_of :username, :encrypted_password # :email
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :allow_nil => true
+  validate :validate_at_least_one_authentication
   # usernames must be lowercase
   
   before_create :create_view_preference
@@ -92,7 +97,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  
   def encrypted_password= *args
     # raise "Can't set the encrypted password directly."
   end
@@ -120,6 +124,12 @@ class User < ActiveRecord::Base
   def encrypt_password
     if password
       self[:encrypted_password] = sha1(password)
+    end
+  end
+  
+  def validate_at_least_one_authentication
+    if (self.authentications.count == 0) && email.nil?
+      errors.add :email, " must be present, or have at least one authentication."
     end
   end
 end
