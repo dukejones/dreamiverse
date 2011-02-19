@@ -1,19 +1,29 @@
 #loginPage
 
-  .logo
-
-  .navigation.round-16.transparent-50.padding-8
-    .button.bevel.round-12
+  .navigation
+    .button
       login
-    .button.bevel.round-12
+    .button
       signup
-    .button.bevel.round-12
+    .button
       forgot password
     .clear
   %br
   
-  .login.round-16.transparent-50.padding-8
+  .login
     = form_for('user', {url: user_session_path}) do |f|
-      = f.text_field(:username, {class: 'input round-12', tabindex: '1'})
-      = f.password_field(:password, {class: 'input round-12', tabindex: '2'})
-      %input#loginButton.round-12.button.shine.post.confirm{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+      = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
+      = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
+      %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+
+  %br
+
+  .join
+    = form_for(User.new, url: user_registration_path) do |f|
+      = f.text_field :email, :placeholder => "email"
+      = f.text_field :username, :placeholder => "username"
+      = f.password_field :password, :placeholder => "password"
+      = f.password_field :password_confirmation, :placeholder => "confirm password"
+      .seed have a seed code?
+      = f.text_field :seed_code, :value => 'theta'
+      %input#joinButton{type: 'submit', name: 'signup', value: 'sign up &rsaquo;'}

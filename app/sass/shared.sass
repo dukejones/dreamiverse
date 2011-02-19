@@ -311,6 +311,55 @@ abbr, acronym
 
 
 
+// SINGLE LOGIN PAGE
+#loginPage
+  +absolute
+  +font(18)
+  top: 300px
+  width: 100%
+  .login, .join
+    +round(16)
+    +shine-light-alpha(16)
+    padding: 8px
+    +clear
+    width: 300px
+    margin: auto
+    input
+      +input-light
+      +round(12)
+      margin-bottom: 4px
+      +font(18)
+      padding: 8px
+      width: 280px
+
+    #loginButton, #joinButton
+      +button-light
+      +shine-light(16)
+      +confirm(16)
+      +font(21)
+      margin-top: 8px
+      width: 100%
+      padding: 8px
+
+  .navigation
+    +round(16)
+    +shine-dark-alpha(16)
+    padding: 8px
+    width: 300px
+    margin: auto
+    .button
+      +button-light
+      +bevel-light
+      +round(12)
+      +cancel(16)
+      +left
+      padding: 4px 8px
+      margin: 4px
+
+
+
+
+
 /*********** FIELDS ***********/
 #entryField, #friendField
   +absolute
@@ -322,33 +371,6 @@ abbr, acronym
 
 
 
-
-
-#loginPage
-  +absolute
-  +font(18)
-  top: 300px
-  width: 100%
-  .navigation
-    width: 300px
-    margin: auto
-    .button
-      +left
-      padding: 4px 8px
-      margin: 4px
-  .login
-    +clear
-    width: 300px
-    margin: auto
-    .input
-      +font(18)
-      padding: 8px
-      width: 280px
-    #loginButton
-      +font(21)
-      margin-top: 8px
-      width: 100%
-      padding: 8px
 
 
 
