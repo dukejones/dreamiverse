@@ -79,14 +79,38 @@ class AppearancePanel extends MetaMenu
     super(@name)
     @setupThemeSelector()
     
-  setupThemeSelector: ->
-    @$currentMenuPanel.find('.buttons .sun').click( (event) =>
-      $('#view_preference_theme').val('light')
-    )
-    @$currentMenuPanel.find('.buttons .moon').click( (event) =>
-      $('#view_preference_theme').val('dark')
-    )
+    @$attachment = @$currentMenuPanel.find('.attachment')
     
+    @$attachment.find('input').change (event) =>
+      $('body').removeClass('fixed, scroll')
+      $('body').css('background-attachment', $(event.currentTarget).val())
+    
+    # setup theme colorPicker
+    $('.colorPicker a').bind 'ajax:beforeSend', (xhr, settings)=>
+      $('#body').removeClass('dark light').addClass($(xhr.target).attr('id'))
+    
+    $('.colorPicker a').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Theme has been updated')
+    
+    $('.colorPicker a').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
+      
+    # setup fixed/scroll positioning
+    $('.bedsheets .attachment').bind 'ajax:beforeSend', (xhr, settings)=>
+      $('#body').removeClass('scroll fixed').addClass($(xhr.target).attr('id'))
+    
+    $('.bedsheets .attachment').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Theme has been updated')
+    
+    $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
+          
+    
+  setupThemeSelector: ->
+    @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
+      @newTheme = $(event.currentTarget).attr('id')
+      if $('#view_preference_theme').attr('id')?
+        $('#view_preference_theme').val(newTheme)
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])
@@ -105,7 +129,9 @@ class AppearancePanel extends MetaMenu
         bedsheetUrl = 'url("/images/uploads/originals/' + $(event.currentTarget).data('id') + '.jpg")'
         $('#body').css('background-image', bedsheetUrl)
         
-        if $('#view_preference_image_id').attr('name')?
+        alert $('#entry_view_preference_image_id').attr('name')?
+        
+        if $('#entry_view_preference_image_id').attr('name')?
           @updateEntryBedsheet($(event.currentTarget).data('id'))
         else
           @updateUserBedsheet($(event.currentTarget).data('id'))
@@ -133,6 +159,7 @@ class SettingsPanel extends MetaMenu
   constructor: (@name)->
     super(@name)
     
+    @$defaultSharingSelect = @$currentMenuPanel.find('.sharingList')
     @$defaultSharing = @$currentMenuPanel.find('.sharingList').val()
     @$authorizeAllFollows = @$currentMenuPanel.find('.authFollow').is(':checked')
     @$facebookSharing =  @$currentMenuPanel.find('.fbShare').is(':checked')
@@ -143,7 +170,7 @@ class SettingsPanel extends MetaMenu
       $(event.currentTarget).parent().hide()
     )
     
-    $('.modifyLocationView .confirm').click( (event) ->
+    $('.modifyLocationView .save').click( (event) ->
       $(event.currentTarget).parent().hide()
       $(event.currentTarget).prev().show()
       alert "SEND SAVED LOCATION DATA TO SERVER"
@@ -157,14 +184,25 @@ class SettingsPanel extends MetaMenu
     )
     
     # setup default sharing dropdown change
-    $('.sharingList').change( (event) ->
-      switch $(this).val()
+    $('#sharingList').change( (event) ->
+      switch $(this).find('option:selected').text()
         when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
-        when "Friends Only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
+        when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
         when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/mask-16.png')
         when "Private" then $('.sharingIcon').attr('src', '/images/icons/lock-16.png')
     )
-  
-  changePassword: ->
-    alert "change password"
+    
+    # setup change password fields
+    $('form#change_password').bind 'ajax:beforeSend', (xhr, settings)->
+      $('.changePassword .target').hide()
+    
+    $('form#change_password').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Password has been updated')
+    
+    $('form#change_password').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
+    
+    #setup Default Sharing dropdown
+    @$defaultSharingSelect.val(@$currentMenuPanel.find('.defaultSharing').data('id'))
+    $('#sharingList').change()
   

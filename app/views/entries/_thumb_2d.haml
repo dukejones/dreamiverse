@@ -1,4 +1,4 @@
-.thumb-2d{style: "background: url('/images/art/astral-eyes-banner.jpg') top center"}
+.thumb-2d{style: "background: url('#{dreamfield_header_url(entry.images.first)}') top center"}
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
@@ -13,20 +13,20 @@
       .date= time_ago_in_words(entry.created_at)
       .location dream location
     .detailsBottom
-      .newComments
       .comments
         = image_tag("icons/comments-16.png")
-        11
+        = entry.comments.count
       .sharing
-        = image_tag("icons/mask-16.png")
-        private
+        %img
+        %span= entry.sharing
 
     / TITLE
     .title= entry.title
 
     / TAG CLOUD
     .tags
-      - Tag.with_class_sizes_for(entry.tags.limit(16)).each do |tag|
-        %div.TC.water{ class: "s-#{tag.class_size}" }= tag.noun.name
+      / - Tag.with_class_sizes_for(entry.tags.limit(16)).each do |tag|
+      /   %div.TC.water{ class: "s-#{tag.class_size}" }= tag.noun.name
 
-
+      - entry.whats.each do |tag|
+        .TC.water{class: "s-#{rand(7)+1}"}= tag.name

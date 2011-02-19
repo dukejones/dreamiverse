@@ -15,7 +15,7 @@
 #entryField
 
   / SHOW ENTRY
-  #showEntry{:'data-id' => @entry.id }
+  #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
     .type Dream
 
@@ -25,30 +25,34 @@
     %a.prev.cancel{href: entries_path}
       %span &lsaquo;
 
-    %a.editEntry{href: edit_entry_path(@entry)} edit
-    = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
+    - if @entry.user == current_user
+      %a.editEntry{href: edit_entry_path(@entry)} edit
+      = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
 
     / 
-      Save for later
+      XXX
       .books.button.round-8 My Book of Dreams
 
     .content
 
       / HEADER IMAGE & TITLE
-      .imageHeader{style: 'background: url(/images/bedsheets/air-01.jpg) no-repeat top left'}
+      .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
 
       / MOOD ICON
-      .moodIcon
+      .moodIcon.hidden
         %img{src: '/images/moods/plants/Fungi.png'}
 
       / STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
         %img.starlight{src: '/images/icons/starlight-22.png'}
-        %span 23,243
-        %hr
-        .option.love.selected
-        .option.share
-        .option.repost.selected
+        %span= @entry.starlight._?.value
+
+        /
+          SAVE FOR LATER
+          %hr
+          .option.love
+          .option.share
+          .option.repost.selected
         
       .title= @entry.title
 
@@ -57,29 +61,17 @@
 
       / IMAGE GALLERY
       %ul.gallery
-        %li{style: 'background: #ababab url(/images/bedsheets/air-01.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-02.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-03.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-04.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-05.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-06.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-07.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-01.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-02.jpg) no-repeat'}
-        %li{style: 'background: #ababab url(/images/bedsheets/air-03.jpg) no-repeat'}
+        - @entry.images.each do |image|
+          = gallery_list_item(image)
       .clear
+
 
       / ENTRY LINKS
       .entryLinks
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Link on Facebook
-        .link
-          %img{src: '/images/icons/link-16.gif'}
-          %span Link on WWW
-        .link
-          %img{src: '/images/icons/facebook-16.png'}
-          %span Another Related Dream
+        - @entry.links.each do |link|
+          .link
+            %span
+              %a{href: "#{link.url}"}= link.title
         .clear
 
       / TAG
@@ -97,30 +89,10 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation Tokyo, Japan
+          .postLocation= @entry.wheres.first()
 
 
           #tag-list.tag-list.ui-sortable.target
-
-            .tagWhat.tagNoImage
-              %span Dolphin
-              .analysisIcon{style: 'background: url(/images/icons/analysis-16.png) no-repeat center'}
-
-            .tagWhere
-              .whereIcon{style: 'background: url(/images/icons/tagWhere-24.png) no-repeat center'}
-              %span San Francisco
-
-            .tagWho
-              .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
-              %span Xavi
-              .followStatus{style: 'background: url(/images/icons/friend-none-16.png) no-repeat center'}
-
-            .tagWhat
-              .tagImage{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat'}
-              %span Tsunami
-
-            .tagNoImage
-              %span Just Text
 
             #empty-tag.hidden
               %span.tagContent
@@ -143,23 +115,23 @@
       .clear
       
       .target.slide
+        - @comments.each do |comment|
+          = render :partial => "entries/comment", :object => comment
+        
         .newCommentWrap
-          .avatar{ style: "background-image: url('#{avatar_image(current_user, 64)}')"}
+          .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
               = f.text_area :body
               = f.submit 'post', :class => 'save'
-              .links
+              .links.hidden
                 %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
                 links
-              .images
+              .images.hidden
                 %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
                 image
           .clear
-
-        - @comments.each do |comment|
-          = render :partial => "entries/comment", :object => comment
         
         .clear
 

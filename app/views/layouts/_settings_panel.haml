@@ -4,15 +4,15 @@
 
   / SHARING
   .sharing
-    .defaultSharing
-      %img{src: '/images/icons/everyone-16.png'}
+    .defaultSharing{:'data-id' => current_user.default_sharing_level}
+      %img.sharingIcon{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
-      %select
-        %option.everyone{value: 'Everyone'} Everyone
-        %option.friends{value: 'Friends Only'} Friends only
-        %option.anonymous{value: 'Anonymous'} Anonymous
-        %option.private{value: 'Private'} Private
-    %label
+      %select#sharingList.sharingList
+        %option.everyone{value: '500'} Everyone
+        %option.friends{value: '200'} Friends only
+        %option.anonymous{value: '50'} Anonymous
+        %option.private{value: '0'} Private
+    %label.hidden
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
     .clear
@@ -42,9 +42,8 @@
 
     .wrapper.target.showhide.hidden
       .locationView
-        %form
+        %form.locationForm
           .locationList
-
             .locations
               %label
                 set as default
@@ -106,11 +105,11 @@
       / ADD NEW LOCATION
       .modifyLocationView.target.toggle.hidden
         <b>Add a new location</b>
-        %input{value: 'Location name'}
-        %input{value: 'City'}
-        %input{value: 'State / Province'}
-        %input{value: 'Country'}
-        .save Save
+        %input.name{value: 'Location name'}
+        %input.city{value: 'City'}
+        %input.state{value: 'State / Province'}
+        %input.country{value: 'Country'}
+        %input{type: 'submit', name: 'save', class: 'save', value: 'save'}
         .cancel Cancel
         .clear
 
@@ -125,16 +124,17 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      %span Current password
-      %input{type: 'password'}
-      %span New password
-      %input{type: 'password'}
-      %span Repeat new password
-      %input{type: 'password'}
+      =form_for current_user, :remote => true, :html => {:id => 'change_password'} do |f|
+        %span Current password
+        = f.text_field :password
+        %span New password
+        = f.password_field :password_confirmation
+        %span Repeat new password
+        = f.password_field :password_confirmation
 
-      .cancel Cancel
-      .confirm Change password
-      .clear
+        .cancel cancel
+        =f.submit :'change password', :class => 'confirm'
+        .clear
 
 
   /

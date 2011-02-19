@@ -3,12 +3,41 @@ $(document).ready(function() {
   setupImagebank();
   setupTextareaAutoExpander();
   setupUploader();
+  setupSharingImages()
 });
+
+function setupSharingImages(){
+  $('.detailsBottom .sharing span').each(function(){
+    switch($(this).text()){
+      case 'private':
+          $(this).prev().attr('src', '/images/icons/lock-16.png')
+        break;
+      case 'anonymous':
+          $(this).prev().attr('src', '/images/icons/mask-16.png')
+        break;
+      case 'users':
+          $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
+        break;
+      case 'followers':
+          $(this).prev().attr('src', '/images/icons/friend-follower-16')
+        break;
+      case 'friends':
+          $(this).prev().attr('src', '/images/icons/friend-16.png')
+        break;
+      case 'friends of friends':
+          $(this).prev().attr('src', '/images/icons/friend-16.png')
+        break;
+      case 'everyone':
+          $(this).prev().attr('src', '/images/icons/everyone-grey-16.png')
+        break;
+    }
+  })
+}
 
 var uploader = null;
 var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
 
-function setupUploader(){            
+function setupUploader(){      
   if(document.getElementById('imageDropArea')){
     uploader = new qq.FileUploader({
       element: document.getElementById('imageDropArea'),
@@ -20,7 +49,7 @@ function setupUploader(){
      
       },
       onComplete: function(id, fileName, responseJSON){
-        resetImageButtons();
+        //setupImageButtons();
       }
     });
   }      
@@ -284,7 +313,7 @@ function setupEvents(){
   });
 
   
-  resetImageButtons();
+  setupImageButtons();
 }
 
 function checkForPastedLink(newText){
@@ -336,9 +365,8 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + "Link Title" + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input id="links_title" class="linkTitleValue" name="entry[links_attributes][][title]" value="Link Title" /></div><div class="url"><input id="links_url" class="linkUrlValue" name="entry[links_attributes][][url]" value="' + newText + '" /></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
         $('#linkHolder').append(newElement);
-        //$('.linkContainer').fadeIn();
         var dataSent = {url: newText};
         // Get the title from server
         var filePath = '/parse/title'
@@ -381,10 +409,18 @@ function showYoutubeData(newText){
   });
 }
 
-function resetImageButtons(){
+function setupImageButtons(){
   // Click to remove Image
-  $('.imageRemoveButton').click(function(){
+  $('.imageRemoveButton').live('click', function(event){
     // Remove from list of used images
+    var currentImageId = $(this).parent().parent().data('id');
+    
+    $('.image_upload').each(function(i, element){
+      if($(this).val() == currentImageId){
+        $(this).remove()
+      }
+    })
+    
     $(this).parent().parent().fadeOut('fast', function(){
       $(this).remove();
     });
@@ -392,20 +428,20 @@ function resetImageButtons(){
   })
   
   // Click to expand/contract image
-  $('.dreamImage').unbind();
-   $('.dreamImage').click(function(){
+  /*$('.entryImage').unbind();
+   $('.entryImage').click(function(){
      if($(this).hasClass('round-8')){
        // Expand me
        
        // Close all other dream images that are open
-      $('.dreamImageContainer').each(function(){
-        if(!$(this).find('.dreamImage').hasClass('round-8')){
+      $('.entryImageContainer').each(function(){
+        if(!$(this).find('.entryImage').hasClass('round-8')){
           $(this).animate({width: '120px'}, 400, function(){
             // Complete
-            $(this).find('.dreamImage').removeClass('round-8-left');
-            $(this).find('.dreamImage').addClass('round-8');
+            $(this).find('.entryImage').removeClass('round-8-left');
+            $(this).find('.entryImage').addClass('round-8');
           });
-          $(this).find('.dreamImage').animate({width: '120px'});
+          $(this).find('.entryImage').animate({width: '120px'});
         }
       });
       
@@ -427,5 +463,5 @@ function resetImageButtons(){
       });
       $(this).animate({width: '120px'});
      }
-   });
+   });*/
 }

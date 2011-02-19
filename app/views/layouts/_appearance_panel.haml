@@ -5,7 +5,7 @@
   / BEDSHEETS
   .bedsheets
     %h2 Bedsheets
-    .options{onclick: 'dc.modal()'}
+    .options.hidden{onclick: 'dc.modal()'}
       options
     %ul
       %li
@@ -19,16 +19,21 @@
       %li
         %img{src: '/images/art/IB_artistImages/artistImage120-5.jpg'}
 
-    .more + browse more...
+    .attachment
+      = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
+      = link_to 'scroll', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'
+      .clear
+    /
+      .more + browse more...
 
   / COLOR PICKER
   .colorPicker
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 Color
     .buttons
-      .sun{onclick: "$('#body').removeClass('dark'), $('#body').addClass('light')"}
+      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
         sun
         %img{src: '/images/icons/sun-24.png'}
-      .moon{onclick: "$('#body').removeClass('light'), $('#body').addClass('dark')"}
+      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
         moon
         %img{src: '/images/icons/moon-24.png'}

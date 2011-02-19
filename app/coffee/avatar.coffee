@@ -1,7 +1,7 @@
 avatarController = null
 
 $(document).ready ->
-  avatarController = new AvatarController('.avatar')
+  avatarController = new AvatarController('#contextPanel .avatar')
 
 class AvatarController
   constructor: (containerSelector) ->
@@ -39,15 +39,14 @@ class AvatarController
     @avatarParams = ''
     uploader = new qq.AvatarUploader(
       element: document.getElementById('avatarDrop')
-      action: '/images.json'
+      action: '/user/avatar'
       maxConnections: 1
       params: @avatarParams
       debug: true
-      onSubmit: (id, fileName) ->
-        alert 'Avatar Submit'
-      onComplete: (id, fileName, response) ->
+      onComplete: (id, fileName, response) =>
+        log response
         @uploaderDisplayed = false
-        alert 'Avatar Uploaded'
+        @$avatarView.removeUploader(response.avatar_path, response.avatar_thumb_path)
     )
 
     
@@ -56,20 +55,18 @@ class AvatarView
     @$container = $(containerSelector)
   displayUploader: ->
     avatarStyle = $('.avatar').attr('style')
-    @oldAvatar = $('.avatar').clone()
-    $('.avatar').remove()
+    $('#contextPanel .avatar').hide()
     $('#contextPanel').prepend("<div id='avatarDrop' style='" + avatarStyle + "' class='uploader'><div class='qq-upload-drop-area' id='avatarDropContainer'><div class='text'><a xmlns='http://www.w3.org/1999/xhtml'>drag new image here</a></div><div class='browse'><div class='toggle'><a xmlns='http://www.w3.org/1999/xhtml'>browse for a file</a></div><div class='cancel'><a xmlns='http://www.w3.org/1999/xhtml'>cancel</a></div><div class='dropboxBrowse'><a xmlns='http://www.w3.org/1999/xhtml'>browse</a></div></div></div></div>")
     
     $.publish 'uploader:init', [@container]
   
-  removeUploader: ->
+  removeUploader: (avatar_path, avatar_thumb_path)->
     $('#avatarDrop').remove()
-    $('#contextPanel').prepend(@oldAvatar)
-  
-# Don't know if we need a Model for this
-class AvatarModel
-  constructor: ->
-    alert 'avatarModel created'
+    $('.uploadAvatarWrap').hide()
+    @$container.show()
+    @$container.css('background-image', 'url(' + avatar_path + ')')
+    $('.rightPanel .user').css('background-image', 'url(' + avatar_thumb_path + ')')
+
     
 ### REMOVE ME
 var uploader = null;

@@ -29,27 +29,27 @@
         %label.stay
           Stay logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'Username'})
-        = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'Password'})
-        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
+        = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
+        = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
+        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
 
     / JOIN NOW
     .joinWrap
       %a.join{href: '#'}
-        Join Now &rsaquo;
+        Join now &rsaquo;
 
     / SIGN UP
     = form_for(User.new, url: user_registration_path) do |f|
-      .signupPanel.hidden
-        = f.text_field :email, :class => 'login-input', :placeholder => "Email"
-        = f.text_field :username, :class => 'login-input', :placeholder => "Username"
-        %span password
-        = f.password_field :password, :class => 'login-input', :placeholder => "Password"
-        %span confirm password
-        = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "Password Confirmation"
-        .haveSeedcode have a seed code?
-        = f.text_field :seed_code, :value => 'theta', :class => 'login-input hidden', :onClick => "this.select()"
+      .signupPanel.wrapper.hidden
+        = f.text_field :email, :class => 'login-input', :placeholder => "email"
+        = f.password_field :password, :class => 'login-input', :placeholder => "password"
+        = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
+        %span http://dreamcatcher.net/username
+        = f.text_field :username, :class => 'login-input', :placeholder => "username"
+
+        .haveSeedcode.trigger.slide enter a seed code &raquo;
+        = f.text_field :seed_code, :value => 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
         / SIGN UP BUTTON
         .signupWrap
-          %input.signup{type: 'submit', name: 'signup', value: 'Sign up &rsaquo;'}
+          %input.signup{type: 'submit', name: 'signup', value: 'sign up &rsaquo;'}

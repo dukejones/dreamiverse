@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110217092042) do
+ActiveRecord::Schema.define(:version => 20110218225853) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110217092042) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "entry_id"
+    t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -107,6 +108,17 @@ ActiveRecord::Schema.define(:version => 20110217092042) do
     t.string   "attribution"
   end
 
+  create_table "links", :force => true do |t|
+    t.string   "url",        :null => false
+    t.string   "title",      :null => false
+    t.integer  "owner_id"
+    t.string   "owner_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "links", ["owner_id", "owner_type"], :name => "index_links_on_owner_id_and_owner_type"
+
   create_table "starlights", :force => true do |t|
     t.integer  "entity_id"
     t.string   "entity_type"
@@ -120,6 +132,7 @@ ActiveRecord::Schema.define(:version => 20110217092042) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "user_id"
     t.integer "score",      :default => 0
     t.string  "kind"
   end
@@ -150,6 +163,7 @@ ActiveRecord::Schema.define(:version => 20110217092042) do
     t.string   "viewable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bedsheet_attachment", :default => "scroll"
   end
 
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"

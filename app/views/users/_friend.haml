@@ -5,7 +5,7 @@
   .statusHover.hidden
     %span unfollow
 
-  .avatar.button
+  %a.avatar.button{href: dreams_path(friend.username)}
 
   .userInfo
     %h3= friend.username

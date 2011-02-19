@@ -12,6 +12,17 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def update
+    @user = current_user # User.find params[:id]
+    raise "access denied" unless @user == current_user
+    
+    @user.update_attributes(params[:user])
+    respond_to do |format|
+      format.html { render :text => "user updated" }
+      format.json { render :json => {:message => 'user updated'}}
+    end
+  end
+  
   def friends
     @user = 
       if params[:username]
@@ -61,12 +72,10 @@ class UsersController < ApplicationController
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     })
+    @image.save!
     @image.write(request.body.read)
-    @image.save
-    current_user.image = @image
-    @image.update_attribute
-    
-    render :json => { :avatar_path => @image.url('avatar_main') }
-    
+
+    current_user.update_attribute(:image, @image)
+    render :json => { :avatar_path => @image.url('avatar_main'), :avatar_thumb_path => @image.url(:avatar, 32), :avatar_image => @image }
   end
 end

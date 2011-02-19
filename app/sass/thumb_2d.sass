@@ -7,9 +7,8 @@
     .thumb-2d:hover
       z-index: 81
       .fadedBack
-        .detailsTop, .detailsBottom, .title
+        .detailsTop, .detailsBottom, .title, .comments, .sharing
           +block
-          z-index: 84
 
     /* */
     .thumb-2d
@@ -47,10 +46,8 @@
         top: 38px
 
       .detailsTop, .detailsBottom, .title
-        +absolute
-        +hidden
-
-        .date, .location, .comments, .newComments, .sharing
+        z-index: 84
+        .date, .location, .comments, .sharing
           +round(12)
           +center
           +font(11)
@@ -59,12 +56,15 @@
           padding: 4px 8px
           background: rgba(0,0,0,0.50)
 
-        .date, .comments, .newComments
+        .date, .comments
           +left
+
         .location, .sharing
           +right
 
       .detailsTop
+        +absolute
+        +hidden
         width: 200px
         z-index: 100
         .date
@@ -73,15 +73,25 @@
           white-space: nowrap
 
       .detailsBottom
+        +absolute
         bottom: 0
         width: 100%
 
-        .comments img
-          margin: 0 2px -5px 0
-        .sharing img
-          margin: -1px 0 -4px 2px
+        .comments
+          +hidden
+          &.new
+            background: rgba(255,0,0,0.80)
+            display: block !important
+          img
+            margin: 0 2px -5px 0
+        .sharing
+          +hidden
+          img
+            margin: -1px 0 -4px 2px
 
       .title
+        +absolute
+        +hidden
         +center
         +font(21)
         width: 97%

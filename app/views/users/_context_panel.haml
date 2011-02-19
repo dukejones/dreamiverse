@@ -1,12 +1,12 @@
 - content_for :foot do
-  = coffeescript_include_tag 'avatar'
+  = coffeescript_include_tag 'avatar', 'context_panel'
   = javascript_include_tag 'avataruploader'
   
 / CONTEXT PANEL
 #contextPanel
 
   / IMAGE
-  %a.avatar{href: entries_path(user.username), style: "background:url(/images/avatars/default-avatar-full.jpg) top left"}
+  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
     - if user == current_user
 
 
@@ -14,20 +14,25 @@
         .uploadAvatar
           <span>+</span> upload new avatar
       #avatarDrop.uploader.hidden
-        .text drag new image here
-        .browse
-          .cancel cancel
-          .dropboxBrowse browse
+        #avatarDropContainer.qq-upload-drop-area
+          .text drag new image here
+          .browse
+            .cancel cancel
+            .dropboxBrowse{style: "position: relative; overflow: hidden; direction: ltr;"}
+              browse
+              %input{type: "file", name: "file", style: "position: absolute; right: 0pt; top: 0pt; font-family: Arial; font-size: 118px; margin: 0pt; padding: 0pt; cursor: pointer; opacity: 0;"}
+
+
 
 
   - if user == current_user
     / LABEL
-    %a.context{href: entries_path(user.username)}
+    .context
       = user.username
 
   - else
     / LABEL
-    %a.context{href: entries_path(user.username)}
+    .context
       = user.username
 
       - unless current_user.relationship_with(user) == :none
@@ -39,8 +44,42 @@
 
   .divider
 
-  .location
-    San Francisco, USA
+  / PROFILE
+  .profile
+
+    .view
+      .name.hidden= user.name
+      .location San Francisco, USA
+      .details.hidden
+        %hr
+        .website= user.website
+        .email= user.email
+        .phone= user.phone
+        .skype
+          %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+          %span= user.skype
+          .clear
+        /
+          .facebook facebook
+          .twitter twitter
+        .clear
+        - if user == current_user
+          .change edit profile
+        .clear
+
+    .edit.hidden
+      =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
+        = f.text_field :name, :placeholder => 'full name'
+        = f.text_field :email, :placeholder => 'email'
+        = f.text_field :website, :placeholder => 'website'
+        = f.text_field :phone, :placeholder => 'phone'
+        .skypeWrap
+          = f.text_field :skype, :placeholder => 'skype user name'
+          %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+        .cancel cancel
+        =f.submit :save, :class => 'save'
+        .clear
+
 
   / FILTER BY ENTRY TYPE
   .wrapper
@@ -50,7 +89,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
       .image
-        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '27'}
+        %img.dream{src: '/images/icons/dream-32-selected.png', width: '32', height: '32'}
       .detail
         = user.entries.count
       .clear
@@ -104,6 +143,18 @@
       %a.type.top{href: ""}
         %span high
       %a.type{href: ""}
-        %span low
+        %span medium
       %a.type.bottom{href: ""}
         %span no filter
+
+  / VIEW FILTERS - FAVORITES, REPOST, TAG
+  / .viewFilters
+  /   .favoritesWrap
+  /     .favorites
+  /     = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "40"}
+  /   .rePostWrap
+  /     .rePost
+  /   .tagWrap
+  /     .tag.hidden
+  /     = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
+

@@ -42,9 +42,11 @@
 
     .entryType
       +round(16)
-      +absolute
+      +right
       +pointer
-      +center
+      //
+        +center
+        +absolute
       right: 70px
       width: 126px
       height: 34px
@@ -57,6 +59,8 @@
       #entryType_list
         +transparent
         border: 0
+        padding: 0
+        line-height: 34px
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -105,6 +109,28 @@
             +pointer
             +left
             margin: 10px 0 0 4px
+
+          #entry_sharing_level
+            +round(8)
+            +font(14)
+            +pointer
+            +right
+            +transparent
+            border: none
+            margin-left: 8px
+            height: 34px
+            line-height: 34px
+            padding: 7px 8px
+            option
+              padding: 8px 4px 8px 38px
+            option.everyone
+              background: url(/images/icons/everyone-16.png) no-repeat 8px center
+            option.list
+              background: url(/images/icons/listofUsers-16.png) no-repeat 8px center
+            option.anon
+              background: url(/images/icons/mask-24.png) no-repeat 8px center
+            option.private
+              background: url(/images/icons/lock-16.png) no-repeat 8px center
 
           .listOfUsers
             +relative
@@ -165,20 +191,6 @@
                   font-size: 11px
                 span.shared
                   text-transform: uppercase
-
-          #entry_sharing_level
-            +round(8)
-            +font(14)
-            +pointer
-            +right
-            +transparent
-            border: none
-            margin-left: 8px
-            height: 34px
-            line-height: 34px
-            padding: 7px 8px
-            option
-              padding: 1px 4px
 
     .myBooks, .addTheme, .date, .addLocation, #entry_submit
       +round(16)
@@ -356,7 +368,10 @@
             padding: 8px
             width: 12px
             height: 12px
+            line-height: 12px
             display: inline-block
+            +transparent-dark(70)
+            +button-dark
             color: #ff1e00 !important
         .entryImageCaption
           +absolute
@@ -441,14 +456,14 @@
       width: 550px
       height: 38px
       line-height: 38px
-      input
+      #linkValue
         +left
-        +font(18)
+        +font(16)
         +transparent
         width: 460px
         height: 32px
         line-height: 32px
-        margin: 4px 0 4px 8px
+        margin: 6px 0 4px 8px
         border: 0
       .linkAdd
         +round(4)
@@ -487,24 +502,25 @@
         margin: 0 0 0 102px
         width: 330px
         height: 24px
-        a:link, a:visited
-          +overflow
-          height: 14px
+        #links_url
+          +transparent
+          border: none
+          width: 320px
       .icon
         +right
         +center
         width: 32px
-        height: 32px
-        line-height: 32px
-        padding-top: 4px
+        height: 30px
+        line-height: 30px
+        margin-top: 4px
       .removeicon
+        +round(8)
         +right
         +center
         +pointer
-        width: 32px
-        height: 32px
-        line-height: 32px
-        padding-top: 4px
+        width: 30px
+        height: 30px
+        line-height: 30px
         color: red
        
   // NEW ENTRY MOOD
@@ -703,7 +719,7 @@
         +indent-light
         +button-light
 
-      #hour, #month, #day, #year, #minute, #amPm
+      .hour, .month, .day, .year, .minute, .amPm
         +input-light
         +border-light
 
@@ -723,8 +739,7 @@
       .cancelLocation
         +bevel-light
         +button-light
-        &:hover
-          +delete(16)
+        +delete(16)
 
     // ENTRY IMAGES
     .entryImages
@@ -764,6 +779,11 @@
           +button-light
           +bevel-light
 
+      .linkContainer
+        .removeicon
+          +transparent-dark(80)
+          +button-dark
+
     // NEW ENTRY MOOD
     .entryMood
       +shine-light-alpha(24)
@@ -791,6 +811,8 @@
 
       .entryType
         +border-dark
+        #entryType_list
+          color: #ddd
 
     // NEW ENTRY OPTIONS
     #entryOptions
@@ -800,6 +822,11 @@
       .sharing
         +shine-dark(17)
         +button-dark
+
+        #entry_sharing_level
+          color: #ddd
+          option
+            color: #ddd
 
         .listOfUsers, .everyone
           .friendsOnly, .followersOnly, .url, .facebook, .twitter
@@ -813,8 +840,7 @@
         +button-light
         +shine-light(16)
         color: #000
-        &:hover
-          +save(16)
+        +save(16)
 
       .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
@@ -822,12 +848,12 @@
 
     // ENTRY DATE & TIME
     .entryDateTime
-      +shine-light-alpha(24)
+      +shine-dark-alpha(24)
       .dateTimeHeader
         +indent-dark
         +button-dark
 
-      #hour, #month, #day, #year, #minute, #amPm
+      .hour, .month, .day, .year, .minute, .amPm
         +input-dark
         +border-dark
 
@@ -847,8 +873,7 @@
       .cancelLocation
         +bevel-dark
         +button-dark
-        &:hover
-          +delete(16)
+        +delete(16)
 
     // ENTRY IMAGES
     .entryImages
@@ -895,13 +920,16 @@
         +indent-dark
         +button-dark
 
+      .moodPicker
+        color: #444
+
       // MOOD PICKER
       .moodPicker
         +transparent-dark(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
-      +shine-light-alpha(24)
+      +shine-dark-alpha(24)
       .images, .tag, .links, .mood
         +bevel-dark
         +button-dark

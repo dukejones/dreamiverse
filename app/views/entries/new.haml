@@ -14,21 +14,26 @@
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
-    = fields_for (@entry.view_preference||ViewPreference.new) do |v|
+    
+    = f.fields_for (@entry.view_preference||current_user.view_preference) do |v|
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
+
+    - @entry.images.each do |image|
+      = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
     
     / NEW ENTRY INPUT PANEL
     #newEntry
 
       .wrapper
-        / MOOD ICON
-        = render :partial => "mood_icon"
+        / 
+          MOOD ICON
+          = render :partial => "mood_icon"
 
       .entryType
         %img{src: '/images/icons/dream-32.png'}
         %span#entryType_current{value: 'Dream'}
-        %select#entryType_list
+        %select#entryType_list{name: 'entry[type]'}
           %option{value: 'Dream'} Dream
           %option{value: 'Vision'} Vision
           %option{value: 'Experience'} Experience
@@ -37,7 +42,7 @@
       = f.text_field :title, :maxlength => '72'
       %hr
       = f.text_area :body
-
+      
       #entryOptions
         /
           Save for later  
@@ -53,7 +58,7 @@
             %img.listSelection{src: '/images/icons/share-16.png'}
             %select#entry_sharing_level{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
-              %option.list{} list of users
+              %option.list{value: 'list'} list of users
               %option.anon{value: '50'} anonymous
               %option.private{value: '0'} private
 
@@ -106,7 +111,7 @@
     = render :partial => "location"
 
     / NEW ENTRY IMAGES
-    = render :partial => "image_panel"
+    = render :partial => "image_panel", locals: {images: @entry.images}
 
     / NEW ENTRY TAG
     .entryTags.entryAssets.hidden

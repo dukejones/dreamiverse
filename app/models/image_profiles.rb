@@ -92,10 +92,16 @@ module ImageProfiles
   
   def avatar_main(options)
     img = magick_image
-    img.resize "x266"
-    # crop center 200
-    offset = (img[:width] - 200) / 2
-    img.crop "200x+#{offset}+0"
+
+    if width > height
+      img.resize "x266"
+      offset = (img[:width] - 200) / 2   # crop the center 200px
+      img.crop "200+#{offset}+0"
+    else
+      img.resize "200"
+      offset = (img[:height] - 266) / 2
+      img.crop "x266+0+#{offset}"  # crop to the center 266px
+    end
     
     img.write(path(:avatar_main))
   end
@@ -107,16 +113,15 @@ module ImageProfiles
     img.write(path(:avatar_medium))
   end
   
-  # Make sure you do not ask for an avatar > 128x128 !
+  # Make sure you do not ask for an avatar > 200x200
   def avatar(options)
     if size = options[:size]
       img = profile_magick_image(:avatar) # this profile with no size
       img.resize "#{size}x#{size}"
     else
       img = profile_magick_image(:avatar_main)
-      # avatar_main is 200x266, so shave top 66 px
-      img.crop "200x200+0+66"
-      img.resize "128x128"
+      # avatar_main is 200x266, so shave bottom 66 px
+      img.crop "200x200+0+20"
     end
     img.write(path(:avatar, size))
   end

@@ -1,12 +1,12 @@
-%br
-%br
-%br
-%div{style: 'width:600px; margin: 20px'}
-  .transparent-50.round-16.padding-8
+- content_for :head do
+  = sass_link_tag 'dictionaries'
 
-    %h1.bevel.round-12.padding-8.align-center{style: 'margin-top: 0px'}
-      Edit dictionary
-      %a.shine.font-21.button.padding-4-8.block.cancel.align-center.float-left.round-12{href: dictionary_words_path(@dict), style: 'margin-right: -80px'}
+.container.light
+
+  .module
+    %h1
+      edit dictionary
+      %a{href: dictionary_words_path(@dict)}
         &lsaquo; cancel
 
     = render({ partial: 'form', locals: { dict: @dict } })
