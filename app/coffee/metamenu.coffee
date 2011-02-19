@@ -129,7 +129,9 @@ class AppearancePanel extends MetaMenu
         bedsheetUrl = 'url("/images/uploads/originals/' + $(event.currentTarget).data('id') + '.jpg")'
         $('#body').css('background-image', bedsheetUrl)
         
-        if $('#view_preference_image_id').attr('name')?
+        alert $('#entry_view_preference_image_id').attr('name')?
+        
+        if $('#entry_view_preference_image_id').attr('name')?
           @updateEntryBedsheet($(event.currentTarget).data('id'))
         else
           @updateUserBedsheet($(event.currentTarget).data('id'))
