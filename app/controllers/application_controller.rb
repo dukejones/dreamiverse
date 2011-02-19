@@ -7,8 +7,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  # TODO: deprecate
   def add_starlight(entity, amt)
-    Starlight.change(entity, amt)
+    Starlight.add(entity, amt)
   end
   
   def unique_hit?

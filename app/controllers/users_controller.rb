@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     @user.update_attributes(params[:user])
     respond_to do |format|
       format.html { render :text => "user updated" }
-      format.json { render :json => {:message => 'user update'}}
+      format.json { render :json => {:message => 'user updated'}}
     end
   end
   
