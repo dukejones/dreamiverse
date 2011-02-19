@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
     @entries = @entries.where(type: params[:type]) if params[:type]
     
-    add_starlight @user, 1 if unique_hit?
+    @user.starlight.add( 1 ) if unique_hit?
   end
 
   def show
@@ -20,8 +20,8 @@ class EntriesController < ApplicationController
     @comments = @entry.comments.limit(10)
     
     if unique_hit?
-      add_starlight @entry, 1
-      add_starlight current_user, 1
+      @entry.starlight.add( 1 )
+      @entry.user.starlight.add( 1 )
     end
   end
   
@@ -73,7 +73,9 @@ class EntriesController < ApplicationController
 
     # all entries, or just visions, just dreams, just experiences
     # starlight: low, medium, high, off
-
+    # friends, followers, or following
+    
+    
 
     # where dream is public
     # or i am friends with entry.user
