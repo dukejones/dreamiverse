@@ -8,6 +8,9 @@ en:
       x_seconds:
         one:   "1 second ago"
         other: "%{count} seconds ago"
+      less_than_x_minutes:
+        one:   "less than a minute ago"
+        other: "less than %{count} minutes ago"
       x_minutes:
         one:   "1 minute ago"
         other: "%{count} minutes ago"
