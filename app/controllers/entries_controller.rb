@@ -71,6 +71,10 @@ class EntriesController < ApplicationController
   def stream
     @user = current_user
 
+    # all entries, or just visions, just dreams, just experiences
+    # starlight: low, medium, high, off
+
+
     # where dream is public
     # or i am friends with entry.user
     # but not my own dreams
