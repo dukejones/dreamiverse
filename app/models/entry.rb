@@ -40,6 +40,32 @@ class Entry < ActiveRecord::Base
 
   scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
   
+  scope :friends_with, -> user { 
+    where( 
+      user: { following: user, followers: user } 
+    ).joins(:user => [:following, :followers])
+  }
+  
+  scope :followed_by, -> user { 
+    where( 
+      user: { followers: user } 
+    ).joins(:user => [:followers])
+  }
+  
+  # where dream is public or i am friends with entry.user
+  scope :accessible_by, -> user { 
+    where( 
+      (
+        { sharing_level: Entry::Sharing[:everyone] } | 
+        (
+          { sharing_level: Entry::Sharing[:friends] } & 
+          { user: { following: user, followers: user} }
+        ) 
+      )
+    ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
+  }
+
+  
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.

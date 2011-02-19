@@ -70,36 +70,25 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
-
+    @entries = Entry.accessible_by(current_user)
+    
     # starlight: low, medium, high, off
     # for now just high
     if params[:starlight_filter] == 'high'
-      @entries = Entry.order_by_starlight
+      @entries = @entries.order_by_starlight
     else
-      @entries = Entry.scoped.order('updated_at DESC')
+      @entries = @entries.scoped.order('updated_at DESC')
     end
     # Type: visions,  dreams,  experiences
+    if params[:type_filter]
+      @entries = @entries.where(type: params[:type_filter])
+    end
     # friends, or following
     if params[:friend_filter] == 'friends'
-      @entries = @entries.where( 
-        user: { following: current_user, followers: current_user } 
-      ).joins(:user => [:following, :followers])
+      @entries = @entries.friends_with(current_user)
     elsif params[:friend_filter] == 'following'
-      @entries = @entries.where( 
-        user: { followers: current_user } 
-      ).joins(:user => [:followers])
+      @entries = @entries.followed_by(current_user)
     end
-
-    # where dream is public or i am friends with entry.user
-    @entries = @entries.where( 
-      (
-        { sharing_level: Entry::Sharing[:everyone] } | 
-        (
-          { sharing_level: Entry::Sharing[:friends] } & 
-          { user: { following: current_user, followers: current_user} }
-        ) 
-      )
-    ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
     
     # not my own dreams
     # @entries = @entries.where(:user_id ^ current_user.id)
@@ -108,9 +97,7 @@ class EntriesController < ApplicationController
     
     if request.xhr?
       thumbs_html = ""
-      @entries.each do |entry|
-        thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry})
-      end
+      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
       render :text => thumbs_html
     end
   end
