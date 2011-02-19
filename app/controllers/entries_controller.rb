@@ -78,7 +78,7 @@ class EntriesController < ApplicationController
     else
       @entries = Entry.scoped.order('updated_at DESC')
     end
-    # all entries, or just visions, just dreams, just experiences
+    # Type: visions,  dreams,  experiences
     # friends, or following
     if params[:friend_filter] == 'friends'
       @entries = @entries.where( 
@@ -105,6 +105,14 @@ class EntriesController < ApplicationController
     # @entries = @entries.where(:user_id ^ current_user.id)
     @entries = @entries.limit(50)
     @entries = @entries.offset(50 * params[:page]) if params[:page]
+    
+    if request.xhr?
+      thumbs_html = ""
+      @entries.each do |entry|
+        thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry})
+      end
+      render :text => thumbs_html
+    end
   end
 
   def bedsheet
