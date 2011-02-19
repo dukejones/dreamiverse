@@ -32,12 +32,13 @@ class Tag < ActiveRecord::Base
   def save_and_score_auto_tags(entry,tags,total_scores = 16)
     tag_scores = {}
     w = What.new    
-    black_list_words = BlackListWord.find(:all).map{|w| w.what.name }
+    black_list_words = BlackListWord.find(:all).map{|i| i.word}
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
     tags.each do |tag|
       tag = w.prep(tag)
-      if !black_list_words.include?(tag) #exclude black listed tags        
+      blw = BlackListWord.find_by_word(tag)
+      if blw.nil? # exclude black listed tags
         noun_id = nil #reset
         what = What.find_or_create_by_name(tag)
         noun_id = what.id
