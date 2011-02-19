@@ -1,8 +1,7 @@
 require 'test_helper'
 
-class DreamTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+class EntryTest < ActiveSupport::TestCase
+  test "followed_by scope" do
+    
   end
 end

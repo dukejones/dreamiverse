@@ -33,7 +33,7 @@ class Entry < ActiveRecord::Base
   has_and_belongs_to_many :images
   
   validates_presence_of :user
-  # TODO body is not blank
+  validates_presence_of :body
   
   before_save :set_sharing_level
   before_create :create_view_preference
