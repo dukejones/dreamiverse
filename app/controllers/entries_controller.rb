@@ -8,10 +8,6 @@ class EntriesController < ApplicationController
     # TODO: Write a custom finder for this SLOW method!
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
     
-    # hmm, no access to entry id (loop) from here currently
-    #@tag_cloud = Nephele.render_single_entry_tag_cloud(9,@user.id).html_safe
-    #@tag_cloud.html_safe   
-    
     add_starlight @user, 1 if unique_hit?
   end
 
@@ -40,6 +36,7 @@ class EntriesController < ApplicationController
 
   def create
     what_names = params[:what_tags] || []
+
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
     new_entry = current_user.entries.create!(params[:entry].merge(whats: whats))

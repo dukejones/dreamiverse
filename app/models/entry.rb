@@ -33,8 +33,8 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
-  before_update :delete_tags  
-  after_save :process_tags
+  before_update :delete_auto_tags  
+  after_save :process_all_tags
   
   def nouns
     whos + wheres + whats
@@ -58,19 +58,17 @@ class Entry < ActiveRecord::Base
     sharing_level == self.class::Sharing[:everyone]
   end
 
-  def delete_tags
+  def delete_auto_tags
     Tag.delete_all(:entry_id => self.id,:kind => 'nephele')
   end
 
-  def process_tags
-    auto_generate_tags
-  end
-
-  def auto_generate_tags
-    tag_string = self.body << ' ' + self.title #concat body/title
+  # save auto generated tags + score auto generated & users custom tags 
+  def process_all_tags
+    tag_string = self.body + ' ' + self.title #concat body/title
     tags = tag_string.split(/\s+/)
     t = Tag.new
-    t.score_auto_generated_tags(self,tags)
+    t.save_and_score_auto_tags(self,tags)
+    #t.score_custom_tags(self)
   end 
        
   protected #######################
