@@ -7,13 +7,14 @@ class EntriesController < ApplicationController
 
     # TODO: Write a custom finder for this SLOW method!
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
+    @entries = @entries.where(type: params[:type]) if params[:type]
     
     add_starlight @user, 1 if unique_hit?
   end
 
   def show
     @entry = Entry.find params[:id]
-    restrict_access
+    deny and return unless user_can_access?
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @comments = @entry.comments.limit(10)
@@ -30,7 +31,7 @@ class EntriesController < ApplicationController
   
   def edit
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
     render :new
   end
 
@@ -47,7 +48,7 @@ class EntriesController < ApplicationController
   
   def update
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
 
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
@@ -61,7 +62,7 @@ class EntriesController < ApplicationController
   
   def destroy
     @entry = Entry.find params[:id]
-    restrict_write
+    deny and return unless user_can_write?
     
     @entry.destroy
     redirect_to :index
@@ -105,17 +106,17 @@ class EntriesController < ApplicationController
   
   
   # requires @entry be set
-  def restrict_access
-    return if @entry.everyone?
-    deny if !current_user || !current_user.can_access?(@entry)
+  def user_can_access?
+    @entry.everyone? || (current_user && current_user.can_access?(@entry))
   end
 
   # requires @entry be set
-  def restrict_write
-    deny unless current_user == @entry.user
+  def user_can_write?
+    (current_user == @entry.user)
+  end
+
+  def deny
+    redirect_to :root, :alert => "Access denied to this entry."
   end
   
-  def deny
-    redirect_to :root, :warn => "Access denied to this entry." and return
-  end
 end
