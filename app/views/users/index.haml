@@ -24,7 +24,7 @@
   / TOP 6 DREAMSTARS
   - (0..5).each do |rank|
     - user = @users[rank]
-    %a{class: "dreamstar-#{rank+1}"}
+    %a{class: "dreamstar-#{rank+1}", href: "/#{user._?.username._?}/entries"}
       .badge
         = image_tag "dreamstars/#{@top_images[rank]}"
       .rank
@@ -38,7 +38,7 @@
   / ALL DREAMSTARS
   .dreamstarsAll
     - @users.each_with_index do |user, index|
-      %a.dreamstar
+      %a.dreamstar{href: "/#{user._?.username._?}/entries"}
         .rank
           = index + 1
         .name
