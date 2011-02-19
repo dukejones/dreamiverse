@@ -24,6 +24,11 @@ ActiveRecord::Schema.define(:version => 20110218225853) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
+  create_table "black_list_words", :force => true do |t|
+    t.integer "what_id"
+    t.string  "kind"
+  end
+
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -127,6 +132,9 @@ ActiveRecord::Schema.define(:version => 20110218225853) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "user_id"
+    t.integer "score",      :default => 0
+    t.string  "kind"
   end
 
   create_table "users", :force => true do |t|
