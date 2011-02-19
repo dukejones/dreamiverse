@@ -94,6 +94,16 @@ class AppearancePanel extends MetaMenu
     
     $('.colorPicker a').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
+      
+    # setup fixed/scroll positioning
+    $('.bedsheets .attachment').bind 'ajax:beforeSend', (xhr, settings)=>
+      $('#body').removeClass('scroll fixed').addClass($(xhr.target).attr('id'))
+    
+    $('.bedsheets .attachment').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Theme has been updated')
+    
+    $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
           
     
   setupThemeSelector: ->
