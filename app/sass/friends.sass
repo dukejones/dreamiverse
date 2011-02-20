@@ -38,10 +38,12 @@
         background-position: 0% 100%
     .status, .avatar, .userInfo
       z-index: 102
+      +user-select
     .statusHover
       +absolute
       +font(12)
       +round(4)
+      +user-select
       z-index: 101
       padding: 2px 24px 2px 4px
       margin: 0
@@ -111,12 +113,10 @@
             height: 24px
             padding: 7px 3px
             margin: 0
-            img.dream
-              margin: -8px 0
             img.starlight
               margin: -18px -16px
               z-index: 1004
-            img.follow
+            img.follow, img.dream
               margin: -12px 1px
           .detail
             +bold
