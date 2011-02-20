@@ -33,6 +33,8 @@ class LoginView
     @$loginButton.click => @showLogin()
     @$joinButton.unbind()
     @$joinButton.click => @showSignup()
+    @$joinToggle.unbind()
+    @$joinToggle.click => @showSignup()
     
     @bodyClickVisible = false
     
@@ -43,6 +45,7 @@ class LoginView
     @$signupButton.hide()
     @$joinButton.show()
     @$loginButton.show()
+    @$joinToggle.hide()
     
     @$loginPanel.slideUp()
     @$signupPanel.slideUp()
@@ -54,11 +57,11 @@ class LoginView
       @$loginPanel.slideDown()
     else
       @$loginPanel.show()
-      
+    
     @$signupPanel.hide()
     @$signupButton.hide()
     @$joinToggle.show()
-    @$joinButton.show()
+    @$joinButton.hide()
     
   
     @$loginButton.hide()
