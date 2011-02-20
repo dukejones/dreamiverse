@@ -28,8 +28,13 @@ class LoginView
     @$signupPanel = @$container.find('.signupPanel') #expands
     @$loginPanel = @$container.find('.loginPanel') #submits
     
+    @$loginButton.unbind()
     @$loginButton.click => @showLogin()
+    @$joinButton.unbind()
     @$joinButton.click => @showSignup()
+    
+    @bodyClickVisible = false
+    
     $('.haveSeedcode').click => $('#user_seed_code').show()
   
   closePanel: ->
@@ -42,6 +47,7 @@ class LoginView
     @$signupPanel.slideUp()
   
   showLogin: ->
+    console.log @bodyClickVisible
     if !@bodyClickVisible
       @bodyClickVisible = true
       @displayBodyClick()
