@@ -91,11 +91,19 @@
       min-height: 70px
       z-index: 99
       .expanded
+        +cursor
+        +user-select
         +relative
         +round(8)
         +inner-shadow(10)
-        top: 70px
         padding: 8px 4px 2px
+        .shadow
+          +absolute
+          +inner-shadow(10)
+          top: 70px
+          height: 180px
+        .item.top
+          margin-top: 70px
         .item
           +clear
           margin-bottom: 4px
@@ -155,3 +163,5 @@
           .item
             .label
               +bevel-light
+            .detail
+              +flat-light-medium
