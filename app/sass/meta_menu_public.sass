@@ -90,7 +90,15 @@
       // width: auto
       width: 120px
       padding: 0 12px
+    .login
       +confirm(12)
+
+    .joinToggle
+      color: #fff
+      background: #ffa614
+      background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
+      background: -moz-linear-gradient(top, #ffe658, #ffa614)
+      border: 1px solid #ffa614
 
     .joinWrap, .signupWrap
       +pointer
@@ -102,7 +110,7 @@
       background: #fff
       background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
       background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join, .signup
+      .join, .signup, .joinToggle
         +pointer
         +block
         +center
@@ -117,11 +125,11 @@
         background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
         background: -moz-linear-gradient(top, #ffe658, #ffa614)
         border: 1px solid #ffa614
-      .join:hover, .signup:hover
+      .join:hover, .signup:hover, .joinToggle:hover
         box-shadow: inset 0 18px rgba(255,255,255,0.2)
         -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
         -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-      .join:active, .signup:active
+      .join:active, .signup:active, .joinToggle:active
         background: #ffa614
         background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
         background: -moz-linear-gradient(top, #ffa614, #ffe658)
