@@ -98,10 +98,12 @@
         +inner-shadow(10)
         padding: 8px 4px 2px
         .shadow
-          +absolute
+          +relative
           +inner-shadow(10)
-          top: 70px
-          height: 180px
+          top: 62px
+          height: 130px
+          margin-bottom: -132px
+          +round(12)
         .item.top
           margin-top: 70px
         .item
@@ -112,10 +114,11 @@
           .label
             +round(12)
             +flat-right
-            width: 68px
+            +center
+            width: 64px
             height: 24px
             padding: 6px 8px
-            text-align: right
+            margin-left: 6px
           .image
             width: 34px
             height: 24px
@@ -131,7 +134,7 @@
             +round(12)
             +flat-left
             +inner-shadow(10)
-            width: 72px
+            width: 64px
             height: 24px
             padding: 6px 8px
             line-height: 26px
