@@ -22,14 +22,20 @@ class LoginView
     @$container = $(containerSelector)
     
     @$loginButton = @$container.find('.login')
+    @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')
     @$signupButton = @$container.find('.signupWrap')
     
     @$signupPanel = @$container.find('.signupPanel') #expands
     @$loginPanel = @$container.find('.loginPanel') #submits
     
+    @$loginButton.unbind()
     @$loginButton.click => @showLogin()
+    @$joinButton.unbind()
     @$joinButton.click => @showSignup()
+    
+    @bodyClickVisible = false
+    
     $('.haveSeedcode').click => $('#user_seed_code').show()
   
   closePanel: ->
@@ -51,7 +57,9 @@ class LoginView
       
     @$signupPanel.hide()
     @$signupButton.hide()
+    @$joinToggle.show()
     @$joinButton.show()
+    
   
     @$loginButton.hide()
   
@@ -65,7 +73,8 @@ class LoginView
       @$signupPanel.slideDown()
     else
       @$signupPanel.show()
-      
+    
+    @$joinToggle.hide()
     @$loginButton.show()
     @$signupButton.show()
   
