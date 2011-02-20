@@ -272,9 +272,20 @@
       color: #fff
 
     .changeRelation.follow
-      +save(16)
+      +bg-shine(16)
+      +gradient(#70d03b, #235b1b)
+      +pointer
+      color: #fff
+      border: 1px solid #54943d
     .changeRelation.unfollow
-      +delete(16)
+      +bg-shine(16)
+      +gradient(#ee7c44, #8b2e12)
+      +pointer
+      color: #fff
+      border: 1px solid #c1633c
+
+    &.relationship
+      margin-bottom: 2px
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
