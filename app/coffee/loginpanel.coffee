@@ -22,6 +22,7 @@ class LoginView
     @$container = $(containerSelector)
     
     @$loginButton = @$container.find('.login')
+    @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')
     @$signupButton = @$container.find('.signupWrap')
     
@@ -47,7 +48,6 @@ class LoginView
     @$signupPanel.slideUp()
   
   showLogin: ->
-    console.log @bodyClickVisible
     if !@bodyClickVisible
       @bodyClickVisible = true
       @displayBodyClick()
@@ -57,7 +57,9 @@ class LoginView
       
     @$signupPanel.hide()
     @$signupButton.hide()
+    @$joinToggle.show()
     @$joinButton.show()
+    
   
     @$loginButton.hide()
   
@@ -71,7 +73,8 @@ class LoginView
       @$signupPanel.slideDown()
     else
       @$signupPanel.show()
-      
+    
+    @$joinToggle.hide()
     @$loginButton.show()
     @$signupButton.show()
   
