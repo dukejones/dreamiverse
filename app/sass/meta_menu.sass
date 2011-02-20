@@ -11,6 +11,7 @@
 
 #logo
   +block
+  +user-select
   z-index: 1201
   +absolute
   top: 0px
@@ -19,6 +20,7 @@
   width: 230px
 
 #report_box
+  +user-select
   +absolute
   +font(9)
   +alpha(100)
@@ -27,6 +29,32 @@
   color: #666
   z-index: 1203
   top: 0
+
+#metaMenu.user
+  .notice, .alert
+    +absolute
+    +center
+    +round(8)
+    top: 30px
+    right: 84px
+    min-width: 188px
+    padding: 16px 4px 0
+
+#metaMenu.public
+  .notice, .alert
+    +absolute
+    +center
+    +round(8)
+    top: -16px
+    left: 450px
+    min-width: 250px
+    padding: 16px 24px 0
+
+.notice
+  background: lightgreen
+
+.alert
+  background: lightcoral
 
 
 
@@ -43,6 +71,7 @@
     +button-light
     +right
     +block
+    +user-select
     color: #fff
     text-decoration: none
     border: 1px solid #777

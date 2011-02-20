@@ -6,7 +6,7 @@
 #contextPanel
 
   / IMAGE
-  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
+  %a.avatar{href: dreams_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
     - if user == current_user
 
 
@@ -95,11 +95,11 @@
       .clear
 
     .filterList.target.slideArrow.hidden
-      %a.type.top{href: entries_path(user.username)}
+      %a.type.top{href: dreams_path(user.username)}
         %span dreams
-      %a.type{href: entries_path(user.username)}
+      %a.type{href: user_entries_path(user.username)}
         %span visions
-      %a.type.bottom{href: entries_path(user.username)}
+      %a.type.bottom{href: user_entries_path(user.username)}
         %span experiences
 
 

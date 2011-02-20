@@ -25,20 +25,21 @@ $.subscribe('follow/changing', (userNode) ->
 # For adding hoverIntent:
 # http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
 
-$('.userNode').live('mouseenter mouseleave click', (event) ->
-  expandNode = $(this).find('.expanded')
-  
+$('.backdrop, .userInfo').live('click', (event) ->
+  expandNode = $(this).parent().find('.expanded')
+  log expandNode
+  if expandNode.css('display') is 'none' 
+    expandNode.slideDown('fast')
+  else
+    expandNode.slideUp('fast')
+)
+
+$('.userNode').live('mouseenter mouseleave', (event) ->
   switch event.type
     when 'mouseenter'
       $(this).find('.statusHover').fadeIn('fast')
     when 'mouseleave'
       $(this).find('.statusHover').fadeOut('fast')
-    when 'click'
-      if expandNode.css('display') is 'none' 
-        expandNode.slideDown('fast')
-      else
-        expandNode.slideUp('fast')
-      return false
 )
 
 $('.userNode .statusHover, .userNode .status').live('click', (event)->
