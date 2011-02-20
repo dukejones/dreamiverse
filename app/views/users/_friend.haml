@@ -9,7 +9,8 @@
 
   .userInfo
     %h3= friend.username
-    %p friend's location - TODO
+    %p= friend.default_location_id
+
     %p.mutual
       - mutual_followers = (user.followers & friend.followers).count
       = pluralize(mutual_followers, "mutual follower")
