@@ -28,5 +28,9 @@
       / - Tag.with_class_sizes_for(entry.tags.limit(16)).each do |tag|
       /   %div.TC.water{ class: "s-#{tag.class_size}" }= tag.noun.name
 
-      - entry.whats.each do |tag|
-        .TC.water{class: "s-#{rand(7)+1}"}= tag.name
+      / - entry.whats.each do |tag|
+      / .TC.water{class: "s-#{rand(7)+1}"}= tag.name
+        
+      / TAG CLOUD SEQUENCE ARRAY
+      - tag_cloud_sequence = entry.get_tag_cloud_sequence
+      = tag_cloud_sequence.to_s

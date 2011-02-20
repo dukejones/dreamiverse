@@ -16,6 +16,7 @@ class What < ActiveRecord::Base
   
   # downcase & strip non alpha numeric chars at begin/end of tag
   def prep(what)
-    return what.downcase.gsub(/^\W+|\W+$/, '') 
+    what = what.downcase.gsub(/^\W+|\W+$/, '') # remove white space from begin/end
+    return what[/^\S+/] # drop everything after a white space
   end    
 end

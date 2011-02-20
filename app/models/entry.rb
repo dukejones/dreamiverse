@@ -91,7 +91,7 @@ class Entry < ActiveRecord::Base
   end
 
   def delete_auto_tags
-    Tag.delete_all(:entry_id => self.id,:kind => 'nephele')
+    Tag.delete_all(:entry_id => self.id,:kind => 'auto')
   end
 
   # save auto generated tags + score auto generated & users custom tags 
@@ -99,9 +99,15 @@ class Entry < ActiveRecord::Base
     tag_string = self.body + ' ' + self.title #concat body/title
     tags = tag_string.split(/\s+/)
     t = Tag.new
-    t.save_and_score_auto_tags(self,tags)
-    #t.score_custom_tags(self)
+    t.save_and_score_all_tags(self,tags)
   end 
+
+  # return a hash of tag sequences => names for single entry tag clouds
+  def get_tag_cloud_sequence
+    sequence = {}
+    self.tags.map{|t| sequence[t.score] = t.noun.name }
+    return sequence
+  end
        
   protected #######################
 

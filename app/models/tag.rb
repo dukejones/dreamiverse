@@ -16,21 +16,11 @@ class Tag < ActiveRecord::Base
     tags
   end
 
-  # converts custom tags sequence scores into proper scores
-  def score_custom_tags(entry)
-    tags = Tag.where(:entry_id => 1, :kind => nil)
-    tags.each do |tag|
-      # depending on order come up with a new score between 1-8 (8 is high score)
-      new_score = 9 - tag.score 
-      tag.score = (new_score > 1) ? new_score : 2
-      tag.save
-    end
-  end  
-
-  # takes in a normal array of raw tags and returns hash of noun (what) ids
-  # and their associated score/frequency - skips black listed words
-  def save_and_score_auto_tags(entry,tags,total_scores = 16)
-    tag_scores = {}
+  #  processes a raw list of tags, combines them with the custom tags and 
+  # saves a sequenced list of tag scores to  the tags table for one entry
+  def save_and_score_all_tags(entry,tags,total_scores = 16)
+    # first let's process the auto-generated tags
+    auto_scores = {}
     w = What.new    
     black_list_words = BlackListWord.find(:all).map{|i| i.word}
     
@@ -43,26 +33,39 @@ class Tag < ActiveRecord::Base
         what = What.find_or_create_by_name(tag)
         noun_id = what.id
         if !noun_id.nil?      
-          tag_scores[noun_id] += 1 if !tag_scores[noun_id].nil?
-          tag_scores[noun_id] = 1 if tag_scores[noun_id].nil?                         
+          auto_scores[noun_id] += 1 if !auto_scores[noun_id].nil?
+          auto_scores[noun_id] = 1 if auto_scores[noun_id].nil?                         
         end
       end
     end
         
     # sort results and keep the top (total_scores)
-    tag_scores = tag_scores.sort_by { |key,value| value }.reverse #sort by value   
-    tag_scores = tag_scores.first(total_scores) # grab the top total_scores 
-    tag_scores = Hash[*tag_scores.flatten] #convert array back into a hash
+    auto_scores = auto_scores.sort_by { |key,value| value }.reverse   
+    auto_scores = auto_scores.first(total_scores) # grab the top auto_scores 
+
+    # now we want to look up the custom tags, and if there are < total_scores, then insert
+    # the remaining auto generated tags / scores in their place 
     
-    # save the tag scores
-    tag_scores.each do |noun_id,score|      
-      Tag.create( :entry_id   => entry.id, 
-                  :entry_type => entry.type,
-                  :kind       => 'nephele',
-                  :noun_id    => noun_id,
-                  :noun_type  => 'What',
-                  :score      => score)      
-    end  
+    num_custom_tags = Tag.order('score asc').where(:entry_id => entry.id).limit(total_scores).count
+    
+    if (num_custom_tags < total_scores) # fill reset in with auto_tag_scores
+      position = 0
+      next_sequence = num_custom_tags += 1
+      remaining_slots = (num_custom_tags > 0) ? total_scores - (num_custom_tags - 1) : total_scores
+      
+      while (remaining_slots > 0)
+        break if auto_tag_scores[position].nil? # we ran out of auto tags
+        Tag.create( :entry_id   => entry.id, 
+                    :entry_type => entry.type,
+                    :kind       => 'auto',
+                    :noun_id    => auto_scores[position][0],
+                    :noun_type  => 'What',
+                    :score      => next_sequence)      
+        remaining_slots -= 1
+        next_sequence += 1
+        position += 1
+      end
+    end
   end
 
 private
