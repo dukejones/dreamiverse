@@ -1,7 +1,7 @@
 .prevCommentWrap
-  %a.avatar{href: user_entries_path(comment.user.username), style: "background-image: url('#{avatar_image(comment.user, 64)}')"}
+  %a.avatar{href: dreams_path(comment.user.username), style: "background-image: url('#{avatar_image(comment.user, 64)}')"}
   .prevComment
-    %a.user{href: user_entries_path(comment.user.username)}= comment.user.username
+    %a.user{href: dreams_path(comment.user.username)}= comment.user.username
     .postTime= time_ago_in_words(comment.created_at)
     /%ul
     /  %li

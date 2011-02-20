@@ -121,6 +121,7 @@
         .newCommentWrap
           .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
           .newComment
+            .user= @user.username
             = form_for [@entry, Comment.new], :remote => true do |f|
               = f.hidden_field :user_id, :value => current_user.id
               = f.text_area :body
