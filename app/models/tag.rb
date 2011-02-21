@@ -12,7 +12,7 @@ class Tag < ActiveRecord::Base
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
     tags.each do |tag_word|
-      tag = What.clean(tag_word)
+      tag_word = What.clean(tag_word)
       if BlackListWord.where(word: tag_word).count > 0 # exclude black listed tags
         noun_id = nil #reset
         what = What.find_or_create_by_name(tag_word)
