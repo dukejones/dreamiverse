@@ -10,10 +10,10 @@
         %h3= user.username
       .clear
 
-      .following
+      %a.following{href: following_path(user.username)}
         .count= user.following.count
         following
-      .followers
+      %a.followers{href: followers_path(user.username)}
         .count= user.followers.count
         followers
 
