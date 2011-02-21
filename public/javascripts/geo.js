@@ -91,7 +91,6 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
-    console.log(data)
     // Remove finding your location option
     $('#locationList .finding').remove();
     
@@ -110,8 +109,4 @@ function getAddress(_lat, _lng){
     // Remove Spinner
     $('.entryLocation .spinner-small').fadeOut();
   })
-}
-
-function parseme(results){
-  alert("results :: " + results);
 }
