@@ -21,16 +21,13 @@ class Tag < ActiveRecord::Base
   def save_and_score_all_tags(entry,tags,total_scores = 16)
     # first let's process the auto-generated tags
     auto_scores = {}
-    w = What.new    
-    black_list_words = BlackListWord.find(:all).map{|i| i.word}
     
     # loop thru each tag, get a noun (what) id for each, then score frequencies
-    tags.each do |tag|
-      tag = w.prep(tag)
-      blw = BlackListWord.find_by_word(tag)
-      if blw.nil? # exclude black listed tags
+    tags.each do |tag_word|
+      tag = What.clean(tag_word)
+      if BlackListWord.where(word: tag_word).count > 0 # exclude black listed tags
         noun_id = nil #reset
-        what = What.find_or_create_by_name(tag)
+        what = What.find_or_create_by_name(tag_word)
         noun_id = what.id
         if !noun_id.nil?      
           auto_scores[noun_id] += 1 if !auto_scores[noun_id].nil?
@@ -38,7 +35,7 @@ class Tag < ActiveRecord::Base
         end
       end
     end
-        
+
     # sort results and keep the top (total_scores)
     auto_scores = auto_scores.sort_by { |key,value| value }.reverse   
     auto_scores = auto_scores.first(total_scores) # grab the top auto_scores 

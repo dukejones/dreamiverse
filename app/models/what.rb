@@ -10,13 +10,17 @@ class What < ActiveRecord::Base
  
   before_create :clean_name
   
+  def self.clean(word)
+    word = word.downcase.gsub(/^\W+|\W+$/, '') # remove white space from begin/end
+    return word[/^\S+/] # drop everything after a white space
+  end
+  
   def clean_name
-    self.name = prep(self.name)
+    self.name = self.class.clean(self.name)
   end
   
   # downcase & strip non alpha numeric chars at begin/end of tag
   def prep(what)
-    what = what.downcase.gsub(/^\W+|\W+$/, '') # remove white space from begin/end
-    return what[/^\S+/] # drop everything after a white space
+    self.clean(what)
   end    
 end
