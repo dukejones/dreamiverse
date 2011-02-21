@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   AuthLevel = {
-    0	=> none,
-    1	=> basic,
-    2	=> moderator,
-    3	=> designer,
-    4	=> developer,
-    5	=> admin
+    0	=> :none,
+    1	=> :basic,
+    2	=> :moderator,
+    3	=> :designer,
+    4	=> :developer,
+    5	=> :admin
   }
 
   has_many :authentications
