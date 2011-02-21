@@ -1,6 +1,15 @@
 class User < ActiveRecord::Base
-  attr_accessor :website # this should be a link
+  AuthLevel = {
+    0	=> none,
+    1	=> basic,
+    2	=> moderator,
+    3	=> designer,
+    4	=> developer,
+    5	=> admin
+  }
 
+  belongs_to :link
+  
   has_many :authentications
 
   has_many :entries

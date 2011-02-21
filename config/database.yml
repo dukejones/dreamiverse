@@ -21,3 +21,10 @@ production:
   database: dreamcatcher_production
   username: dreamcatcher
   password: luc1d369
+
+dc-alpha:
+  adapter: mysql2
+  database: dc-old
+  # username: dreamcatcher
+  # password: luc1d369
+  

@@ -53,7 +53,7 @@
         = f.text_field :username, :class => 'login-input', :placeholder => "username"
 
         .haveSeedcode.trigger.slide enter a seed code &raquo;
-        = f.text_field :seed_code, :value => 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
+        = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
         / SIGN UP BUTTON
         .signupWrap
