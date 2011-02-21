@@ -19,6 +19,8 @@
   .relation
     - if relationship == :none
       follow
+    - elsif relationship == :followed_by
+      following you
     - else
       = relationship.to_s.humanize.downcase
 
