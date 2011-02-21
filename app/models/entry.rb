@@ -101,13 +101,6 @@ class Entry < ActiveRecord::Base
     t = Tag.new
     t.save_and_score_all_tags(self,tags)
   end 
-
-  # return a hash of tag sequences => names for single entry tag clouds
-  def get_tag_cloud_sequence
-    sequence = {}
-    self.tags.map{|t| sequence[t.score] = t.noun.name }
-    return sequence
-  end
        
   protected #######################
 
