@@ -117,15 +117,12 @@
       padding: 4px 0
 
       .name
-        +round(6)
-        +font(14)
-        +bold
+        +font(21)
         +center
         margin: 0 4px 4px
         padding: 2px 8px
 
       .location
-        +round(8)
         +font(12)
         +center
 
@@ -136,7 +133,7 @@
           +alpha(30)
         .website, .email, .phone, .skype
           +font(14)
-          padding: 0 8px
+          padding: 0 8px 2px
         .skype
           img, span
             +left
@@ -163,8 +160,7 @@
 
     // EDIT PROFILE
     .edit
-      +round(12)
-      +flat-top
+      +round(8)
       padding: 8px
 
       #user_name, #user_email, #user_website, #user_phone, #user_skype
@@ -363,14 +359,8 @@
     .profile
 
       // VIEW PROFILE
-      .view
+      .view, .edit
         +transparent-light(50)
-
-        .name
-          +transparent-dark(60)
-          color: #ddd
-
-        .location
 
         .details
           .website, .email, .phone, .skype
@@ -383,9 +373,6 @@
             +button-light
             +confirm(11)
 
-      // EDIT PROFILE
-      .edit
-        +shine-light-alpha(0)
 
         #user_name, #user_email, #user_website, #user_phone, #user_skype
           +input-light
@@ -445,14 +432,8 @@
     .profile
 
       // VIEW PROFILE
-      .view
-        +transparent-dark(50)
-
-        .name
-          +transparent-light(60)
-          color: #333
-
-        .location
+      .view, .edit
+        +transparent-light(30)
 
         .details
           .website, .email, .phone, .skype
@@ -465,10 +446,6 @@
             +bevel-dark
             +button-dark
             +confirm(11)
-
-      // EDIT PROFILE
-      .edit
-        +shine-dark-alpha(0)
 
         #user_name, #user_email, #user_website, #user_phone, #user_skype
           +input-dark

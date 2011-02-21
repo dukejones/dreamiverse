@@ -3,6 +3,7 @@
   /*********** NEW ENTRY ***********/
   // STRUCTURE
   .headers
+    +user-select
     +round(16)
     +center
     +left
@@ -65,15 +66,16 @@
       +transparent
       margin: 10px 0 0 10px
       border: none
+      font-family: Calibri, Arial, Helvetica, sans-serif
     #entry_title
       +font(21)
       width: 460px
       height: 26px
       line-height: 26px
     hr
-      +alpha(50)
-      width: 662px
-      margin: 6px auto
+      +alpha(20)
+      width: 480px
+      margin: 6px 12px
     #entry_body
       width: 640px
       min-height: 134px
@@ -83,11 +85,10 @@
     #entryOptions
       +round(16)
       +relative
-      width: 664px 
-      height: 48px
+      width: 660px 
+      height: 52px
       margin: 0 auto
       bottom: 0
-      border: 1px solid #D7D7D7
 
       // SHARING
       .sharingWrap
@@ -214,10 +215,13 @@
       margin: 0
     .date img
       margin: 9px 0 0
-    .addLocation img
-      margin: 7px 0 0
-    .addLocation.selected
-      border: 1px solid #333
+    .addLocation .img
+      background: url('/images/icons/location-21.png') center center no-repeat
+      width: 21px
+      height: 21px
+      margin: 7px 11px
+    .addLocation.selected .img
+      background: url('/images/icons/location-21-selected.png') center center no-repeat
     #entry_submit
       +bold
       +font(12)
@@ -297,12 +301,17 @@
         +round(8)
         +right
         margin: 4px 0 0 8px
-        input
+        input, select
           +font(16)
           +transparent
           border: none
           padding: 4px
           width: 258px
+      .country select
+        width: 266px
+        margin-bottom: -1px
+        option
+          width: 100px
     .cancelLocation
       +round(16)
       +delete(17)
@@ -318,6 +327,18 @@
   .entryImages
     border: 1px solid #333
     +hidden
+    .dropboxBrowse
+      +relative
+      +overflow
+      +center
+      +pointer
+      width: 100px
+      left: 60px
+      +round(8)
+      direction: ltr
+      height: 34px
+      line-height: 34px
+
     #addFromImageBank
       +round(8)
       +left
@@ -335,11 +356,13 @@
       +font(13)
       +round(8)
       width: 380px
-      height: 32px
-      line-height: 32px
+      height: 34px
+      line-height: 34px
       img
         +left
         margin: 6px 8px
+      .qq-upload-drop-area-active
+        background: rgba(255,255,255,0.2)
     #currentImages
       margin: 12px 0 0 12px
       .entryImageContainer, .entryImage
@@ -453,7 +476,7 @@
       margin: 0 8px 8px 8px
       background: #fff
       border: 1px solid #fff 
-      width: 550px
+      width: 560px
       height: 38px
       line-height: 38px
       #linkValue
@@ -648,11 +671,13 @@
 
   // NEW ENTRY ATTACH
   .entryAttach
-    height: 34px
-    line-height: 34px
+    height: 38px
+    line-height: 38px
 
     p
+      +user-select
       +left
+      +cursor
       height: 34px
       line-height: 32px
       margin: 0 30px
@@ -661,6 +686,7 @@
       +left
       +pointer
       +round(16)
+      +user-select
       height: 34px
       line-height: 32px
       margin: 0 0 0 8px
@@ -689,6 +715,7 @@
     // NEW ENTRY OPTIONS
     #entryOptions
       +shine-light(24)
+      +border-light
 
       // SHARING
       .sharing
@@ -755,6 +782,11 @@
       #imageDropArea
         +input-light
 
+      .dropboxBrowse
+        +bevel-light
+        +button-light
+
+
     // NEW ENTRY TAG
     .entryTags
       +shine-light-alpha(24)
@@ -805,6 +837,8 @@
 
 .dark
   #entryField
+    #entry_body, #entry_title
+      color: #ddd
     #newEntry
       +flat-dark
       +glow-dark(40)
@@ -816,7 +850,8 @@
 
     // NEW ENTRY OPTIONS
     #entryOptions
-      +shine-dark(24)
+      +shine-dark-alpha(24)
+      +border-dark
 
       // SHARING
       .sharing
@@ -869,6 +904,8 @@
 
       .name, .city, .state, .country
         +input-dark
+      input, select, option
+        color: #ccc
 
       .cancelLocation
         +bevel-dark
@@ -878,6 +915,11 @@
     // ENTRY IMAGES
     .entryImages
       +shine-dark-alpha(24)
+
+      .dropboxBrowse
+        +bevel-dark
+        +button-dark
+
       .imagesHeader
         +indent-dark
         +button-dark

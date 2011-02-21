@@ -8,7 +8,7 @@ class EntriesController < ApplicationController
     # TODO: Write a custom finder for this SLOW method!
     @entries = @user.entries.order('created_at DESC').select {|e| current_user.can_access?(e) }
     @entries = @entries.where(type: params[:type]) if params[:type]
-    
+
     @user.starlight.add( 1 ) if unique_hit?
   end
 

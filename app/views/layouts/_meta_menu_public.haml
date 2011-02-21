@@ -26,6 +26,7 @@
       /    %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
       %a.loginItem
         %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
+        = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
 
     / LOGIN PANEL
     .loginPanel.hidden

@@ -20,7 +20,7 @@
             .cancel cancel
             .dropboxBrowse{style: "position: relative; overflow: hidden; direction: ltr;"}
               browse
-              %input{type: "file", name: "file", style: "position: absolute; right: 0pt; top: 0pt; font-family: Arial; font-size: 118px; margin: 0pt; padding: 0pt; cursor: pointer; opacity: 0;"}
+              %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
 
 
 
@@ -51,17 +51,19 @@
       .name.hidden= user.name
       .location San Francisco, USA
       .details.hidden
-        %hr
-        .website= user.website
-        .email= user.email
-        .phone= user.phone
-        .skype
-          %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-          %span= user.skype
-          .clear
-        /
-          .facebook facebook
-          .twitter twitter
+        - if user.website || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
+          %hr
+          .website= user.website
+        - if current_user.relationship_with(user) == :friends || user == current_user
+          .email= user.email
+          .phone= user.phone
+          - if user.skype
+            .skype
+              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+              %span= user.skype
+            .clear
+        / .facebook facebook
+        / .twitter twitter
         .clear
         - if user == current_user
           .change edit profile
@@ -70,8 +72,8 @@
     .edit.hidden
       =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
         = f.text_field :name, :placeholder => 'full name'
-        = f.text_field :email, :placeholder => 'email'
         = f.text_field :website, :placeholder => 'website'
+        = f.text_field :email, :placeholder => 'email'
         = f.text_field :phone, :placeholder => 'phone'
         .skypeWrap
           = f.text_field :skype, :placeholder => 'skype user name'
@@ -151,10 +153,10 @@
   / .viewFilters
   /   .favoritesWrap
   /     .favorites
-  /     = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "40"}
+  /     = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "-40"}
   /   .rePostWrap
   /     .rePost
   /   .tagWrap
   /     .tag.hidden
-  /     = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
+  /     = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "-40"}
 
