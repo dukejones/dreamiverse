@@ -96,10 +96,7 @@ class Entry < ActiveRecord::Base
 
   # save auto generated tags + score auto generated & users custom tags 
   def process_all_tags
-    tag_string = self.body + ' ' + self.title #concat body/title
-    tags = tag_string.split(/\s+/)
-    t = Tag.new
-    t.save_and_score_all_tags(self,tags)
+    Tag.auto_generate_tags(self)
   end 
        
   protected #######################

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218225853) do
+ActiveRecord::Schema.define(:version => 20110221224310) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -135,8 +135,8 @@ ActiveRecord::Schema.define(:version => 20110218225853) do
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
     t.integer "user_id"
-    t.integer "score",      :default => 0
-    t.string  "kind"
+    t.integer "position",   :default => 0
+    t.string  "kind",       :default => "custom"
   end
 
   create_table "users", :force => true do |t|

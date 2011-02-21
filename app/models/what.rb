@@ -21,6 +21,6 @@ class What < ActiveRecord::Base
   
   # downcase & strip non alpha numeric chars at begin/end of tag
   def prep(what)
-    self.clean(what)
+    self.class.clean(what)
   end    
 end
