@@ -7,6 +7,7 @@ $(document).ready ->
 
 class SharingController
   constructor: (containerSelector)->
+    @firstRun = true;
     @$container = $(containerSelector)
     @$dropdown = @$container.find('#entry_sharing_level')
     
@@ -26,7 +27,11 @@ class SharingController
       newSelectionImage = $(event.currentTarget).find('option:selected').css('background-image')
       newSelectionImage = newSelectionImage.slice(5, newSelectionImage.length - 2)
       $(event.currentTarget).parent().find('.listSelection').attr('src', newSelectionImage)
-      @sharingView.expandCurrentView(newSelection)
+      
+      if !@firstRun
+        @sharingView.expandCurrentView(newSelection)
+      
+      @firstRun = false
       @shareSettings = new Share(newSelection)
     )
     
