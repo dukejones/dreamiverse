@@ -22,7 +22,7 @@
     .name
       %input.input{placeholder: 'Location name'}
     .country
-      %select.input{name: "newLocationCountry"}
+      %select#countrySelector.input{name: "newLocationCountry"}
         %option{value: "0", selected: "selected"} Country
         %optgroup{label: "----------------------", class: "font-11"}
           %option{value: "none"} none
