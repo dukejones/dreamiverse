@@ -55,7 +55,7 @@
     .settingsPanel.wrapper
       .item.settings.trigger
         %img{src: "/images/icons/account-32.png", width: '32', height: '32', alt: "account settings"}
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "17", y: "35"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "17", y: "-35"}
 
       / SETTINGS PANEL
       = render partial: "layouts/settings_panel"
@@ -63,7 +63,7 @@
     .appearancePanel.wrapper
       .item.appearance.trigger
         %img{src: "/images/icons/appearance-32.png", width: '32', height: '32', alt: "page theme"}
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "17", y: "35"}
+        = render partial: "shared/hover_label", locals: {message: "appearance", x: "17", y: "-35"}
 
       / APPEARANCE PANEL
       = render partial: "layouts/appearance_panel"

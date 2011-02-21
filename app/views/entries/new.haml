@@ -39,9 +39,9 @@
           %option{value: 'Experience'} Experience
 
 
-      = f.text_field :title, :maxlength => '72'
+      = f.text_field :title, :maxlength => '72', :placeholder => "title"
       %hr
-      = f.text_area :body
+      = f.text_area :body, :placeholder => "My dream..."
       
       #entryOptions
         /
@@ -94,14 +94,14 @@
               .clear
 
         .addLocation
-          %img{src: '/images/icons/location-21.png'}
-          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "38"}
+          .img
+          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38"}
         .date
           %img{src: '/images/icons/date-19.png'}
-          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "38"}
+          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
         .addTheme
-          %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "38"}
+          %img{src: '/images/icons/appearance-32-alpha.png', onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
 
 
     / NEW ENTRY DATE TIME
@@ -146,7 +146,7 @@
         %input#linkValue
         .linkAdd
           %span +
-          Add
+          add
       #linkHolder
       .clear
 

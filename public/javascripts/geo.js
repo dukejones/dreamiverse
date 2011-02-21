@@ -20,7 +20,7 @@ function initGeo(){
       if($('.entryLocation .expander').css('display') == 'none'){
         $('.entryLocation').animate({height: 35}, "fast");
       } else {
-        $('.entryLocation').animate({height: 100}, "fast");
+        $('.entryLocation').animate({height: 104}, "fast");
       }
       
       
@@ -52,7 +52,7 @@ function initGeo(){
       }
       
       $('.entryLocation .expander').slideDown();
-      $('.entryLocation').animate({height: 100}, "fast");
+      $('.entryLocation').animate({height: 104}, "fast");
     } else {
       $('.entryLocation .expander').slideUp();
       $('.entryLocation').animate({height: 35}, "fast");
