@@ -70,8 +70,8 @@
     .edit.hidden
       =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
         = f.text_field :name, :placeholder => 'full name'
-        = f.text_field :email, :placeholder => 'email'
         = f.text_field :website, :placeholder => 'website'
+        = f.text_field :email, :placeholder => 'email'
         = f.text_field :phone, :placeholder => 'phone'
         .skypeWrap
           = f.text_field :skype, :placeholder => 'skype user name'
@@ -151,10 +151,10 @@
   / .viewFilters
   /   .favoritesWrap
   /     .favorites
-  /     = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "40"}
+  /     = render partial: "shared/hover_label", locals: {message: "favorites", x: "30", y: "-40"}
   /   .rePostWrap
   /     .rePost
   /   .tagWrap
   /     .tag.hidden
-  /     = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "40"}
+  /     = render partial: "shared/hover_label", locals: {message: "tag", x: "30", y: "-40"}
 

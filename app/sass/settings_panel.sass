@@ -184,6 +184,8 @@
       margin-bottom: 4px
       padding: 4px
       width: 306px
+    .country
+      width: 316px
     .save, .cancel
       +round(4)
       padding: 0
@@ -199,12 +201,8 @@
 
 
   .changePassword
-    margin: 0 0 8px
+    margin: 0
     .changePasswordForm
-      span
-        +font(11)
-        padding-left: 4px
-        margin-bottom: 1px
       .cancel, .confirm
         +round(4)
       .confirm
@@ -283,7 +281,7 @@
           +border-light
 
       .modifyLocationView
-        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+        #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-light
         .save, .cancel
           +button-light
@@ -297,7 +295,7 @@
             +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation, .save, .cancel
+      #user_password, #user_password_confirmation
         +input-light
       .cancel, .confirm
         +button-light
@@ -348,7 +346,7 @@
           +border-dark
 
       .modifyLocationView
-        #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+        #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-dark
         .save, .cancel
           +button-dark
@@ -362,7 +360,7 @@
             +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation, .save, .cancel
+      #user_password, #user_password_confirmation
         +input-dark
       .cancel, .confirm
         +button-dark
