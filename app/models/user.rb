@@ -8,8 +8,6 @@ class User < ActiveRecord::Base
     5	=> admin
   }
 
-  belongs_to :link
-  
   has_many :authentications
 
   has_many :entries
