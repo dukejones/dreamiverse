@@ -10,9 +10,10 @@ User.blueprint do
   password_confirmation { PW }
 end
 
-Dream.blueprint do
+Entry.blueprint do
   body { Faker::Lorem.paragraphs(6) }
   title { Faker::Lorem.words(5).join(' ').titleize }
+  user { User.make }
 end
 
 Hit.blueprint do

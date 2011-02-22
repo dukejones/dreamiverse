@@ -20,10 +20,11 @@ class Entry < ActiveRecord::Base
   has_many :comments
   
   has_many :tags
-  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
-  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
-  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
-  
+  has_many :whats,    :through => :tags, :source => :noun, :source_type => 'What'
+  has_many :whos,     :through => :tags, :source => :noun, :source_type => 'Who'
+  has_many :wheres,   :through => :tags, :source => :noun, :source_type => 'Where'
+  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion'
+
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   

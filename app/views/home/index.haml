@@ -14,6 +14,11 @@
 
     .dreamstarsMini
       %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+      / - @users.each_with_index do |user, index|
+      /         .dreamstar-=index
+      /           .badge
+      /           .rank= user.rank + 1
+      /           .name= user.username
 
       .dreamstar-1
         .badge

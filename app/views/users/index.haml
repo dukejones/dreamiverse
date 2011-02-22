@@ -38,10 +38,11 @@
   / ALL DREAMSTARS
   .dreamstarsAll
     - @users.each_with_index do |user, index|
-      %a.dreamstar{href: "/#{user._?.username._?}/entries"}
-        .rank
-          = index + 1
-        .name
-          = user.username if user
-        .starlight
-          = user._?.starlight._?.value || 0
+      = if index > 1
+        %a.dreamstar{href: "/#{user._?.username._?}/entries"}
+          .rank
+            = index + 1
+          .name
+            = user.username if user
+          .starlight
+            = user._?.starlight._?.value || 0
