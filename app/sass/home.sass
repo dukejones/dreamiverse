@@ -110,22 +110,27 @@ body
     left: 26px
     width: 682px
 
-    .todayFilter, .dreamsFilter, h1.in
+    .today, .todayFilter, .dreamsFilter, h1.in
       +bold
       +left
-      +font(30)
+      +font(36)
       margin: 0 8px 20px 0
       padding: 0 12px
-      height: 36px
-      line-height: 36px
+      height: 40px
+      line-height: 40px
     .todayFilter, .dreamsFilter
       +transparent-dark(30)
       +round(8)
       +border-dark
-      border: 1px solid #fff
+      border: 2px solid #fff
       color: #fff
-    h1.in
+    h1.in, .today
       color: #000
+    .today
+      +transparent-dark(20)
+      +round(8)
+      +border-dark
+      border: 2px solid #fff
     .randomDream
       +right
       +button-dark
