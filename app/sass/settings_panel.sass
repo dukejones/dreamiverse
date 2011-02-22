@@ -1,6 +1,7 @@
 @import mixins
 /******** SETTINGS PANEL ********/
 #settingsPanel
+  +user-select
 
   img
     +left
@@ -32,7 +33,7 @@
       img
         margin: 8px 8px 0 0
       h2
-        +pointer
+        +cursor
         +left
         line-height: 32px
         margin: 0
@@ -177,6 +178,10 @@
 
 
   .modifyLocationView, .changePasswordForm
+    span
+      +bold
+      +cursor
+      padding: 0 0 2px 4px
     // INPUTS
     #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
@@ -186,6 +191,8 @@
       width: 306px
     .country
       width: 316px
+      option, optgroup
+        width: 280px
     .save, .cancel
       +round(4)
       padding: 0
@@ -254,7 +261,7 @@
 
     .defaultSharing
       select
-        +input-light
+        +input-light(small)
 
     .network
       .linkAccount
@@ -264,6 +271,7 @@
 
     .savedLocations
       +panel-light
+      +button-light
 
       .newLocation
         +bevel-light
@@ -282,7 +290,7 @@
 
       .modifyLocationView
         #user_password, #user_password_confirmation, .name, .city, .state, .country
-          +input-light
+          +input-light(small)
         .save, .cancel
           +button-light
           +bevel-light
@@ -296,7 +304,7 @@
 
     .changePasswordForm
       #user_password, #user_password_confirmation
-        +input-light
+        +input-light(small)
       .cancel, .confirm
         +button-light
         +bevel-light
@@ -320,7 +328,7 @@
 
     .defaultSharing
       select
-        +input-dark
+        +input-dark(small)
 
     .network
       .linkAccount
@@ -347,7 +355,7 @@
 
       .modifyLocationView
         #user_password, #user_password_confirmation, .name, .city, .state, .country
-          +input-dark
+          +input-dark(small)
         .save, .cancel
           +button-dark
           +bevel-dark
@@ -361,7 +369,7 @@
 
     .changePasswordForm
       #user_password, #user_password_confirmation
-        +input-dark
+        +input-dark(small)
       .cancel, .confirm
         +button-dark
         +bevel-dark

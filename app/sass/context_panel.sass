@@ -17,12 +17,43 @@
     +round(12)
     width: 200px
     height: 266px
+    z-index: 1200
     #avatarDropContainer
       +round(12)
       +transparent-dark(80)
       width: 200px
       height: 266px
       color: #fff
+      z-index: 1200
+      &.qq-upload-drop-area-active
+        background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.8)
+      .text
+        +font(21)
+        +center
+        padding-top: 20px
+        z-index: 1200
+      .browse
+        +font(14)
+        +center
+        top: 180px
+        z-index: 1200
+        .cancel, .dropboxBrowse
+          +absolute
+          +round(4)
+          +button-dark
+          +bevel-dark
+          padding: 4px 8px
+          z-index: 1200
+        .cancel
+          top: 220px
+          left: 18px
+          +cancel(12)
+        .dropboxBrowse
+          top: 170px
+          left: 71px
+          width: 100px
+          +confirm(12)
+          +pointer
   .avatar
     +round(12)
     +block
@@ -96,6 +127,7 @@
 
 
   .relation, .changeRelation, .context
+    +user-select
     .icon
       +right
       +relative
@@ -151,6 +183,7 @@
         .twitter
           +right
         .change
+          +user-select
           +clear
           +center
           +round(4)
@@ -163,7 +196,7 @@
       +round(8)
       padding: 8px
 
-      #user_name, #user_email, #user_website, #user_phone, #user_skype
+      #user_name, #user_email, #user_link, #user_phone, #user_skype
         +round(8)
         +font(12)
         width: 176px
@@ -186,6 +219,7 @@
 
       .cancel, .save
         +round(4)
+        +user-select
         width: auto
         height: 22px
         line-height: 22px
@@ -204,6 +238,7 @@
 
   .item
     +clear
+    +user-select
     margin-bottom: 4px
     .relation
       +round(12)
@@ -374,8 +409,8 @@
             +confirm(11)
 
 
-        #user_name, #user_email, #user_website, #user_phone, #user_skype
-          +input-light
+        #user_name, #user_email, #user_link, #user_phone, #user_skype
+          +input-light(small)
         .cancel, .save
           +bevel-light
           +button-light
@@ -424,7 +459,7 @@
 
     .context, .label
       +button-dark
-      +shine-dark-alpha(13)
+      +shine-dark-alpha(16)
     .relation
       +button-dark
 
@@ -447,8 +482,8 @@
             +button-dark
             +confirm(11)
 
-        #user_name, #user_email, #user_website, #user_phone, #user_skype
-          +input-dark
+        #user_name, #user_email, #user_link, #user_phone, #user_skype
+          +input-dark(small)
         .cancel, .save
           +bevel-dark
           +button-dark
@@ -489,6 +524,14 @@
       .tag
 
 
+.pagePadding
+  +absolute
+  top: 684px
+  height: 1px
+  width: 1px
+
+
+
 
 
 
@@ -501,6 +544,7 @@
   +round(16)
   +absolute
   +cursor
+  +user-select
   top: 82px
   left: 12px
   width: 200px
@@ -538,6 +582,7 @@
         +left
         +font(12)
         +center
+        +block
         margin: 0 4px 0 0
         width: 64px
         .count
@@ -669,7 +714,7 @@
 
     // LABEL
     .myStream
-      +shine-dark(13)
+      +shine-dark(16)
       color: #fff
 
     .wrapper
@@ -699,7 +744,7 @@
 
     // LABEL
     .myStream
-      +shine-light(13)
+      +shine-light-alpha(16)
       color: #000
 
     .wrapper

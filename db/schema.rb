@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110221224310) do
+=======
+ActiveRecord::Schema.define(:version => 20110222070136) do
+>>>>>>> master
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -39,11 +43,23 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.datetime "updated_at"
   end
 
+  create_table "countries", :force => true do |t|
+    t.string "iso2", :limit => 2
+    t.string "iso3", :limit => 3
+    t.string "name"
+  end
+
+  add_index "countries", ["iso2"], :name => "index_countries_on_iso2"
+
   create_table "dictionaries", :force => true do |t|
     t.string   "name"
     t.string   "attribution"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "emotions", :force => true do |t|
+    t.string "name"
   end
 
   create_table "entries", :force => true do |t|
@@ -55,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.datetime "updated_at"
     t.string   "type",          :default => "Dream"
     t.integer  "sharing_level"
+    t.datetime "dreamed_at"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -133,8 +150,15 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+<<<<<<< HEAD
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
+=======
+    t.integer "user_id"
+    t.integer "position",   :default => 0
+    t.string  "kind",       :default => "custom"
+    t.integer "intensity"
+>>>>>>> master
   end
 
   create_table "users", :force => true do |t|
@@ -151,6 +175,8 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level", :default => 200
     t.boolean  "follow_authorization",  :default => false
+    t.boolean  "ubiquity",              :default => false, :null => false
+    t.integer  "auth_level",            :default => 10
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"

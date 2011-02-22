@@ -14,6 +14,6 @@
       = link_to "< bookshelf", dictionaries_path, :class => 'back'
   
     %ul{style: 'margin-left: 8px'}
-      - @dict.words.each do |word|
+      - @dict.words.order(:name).each do |word|
         = render(partial: 'word', object: word)
         

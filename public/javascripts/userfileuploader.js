@@ -286,7 +286,7 @@ qq.FileUploaderBasic = function(o){
     this._handler = this._createUploadHandler(); 
     
     if (this._options.button){ 
-        //this._button = this._createUploadButton(this._options.button);
+        this._button = this._createUploadButton(this._options.button);
     }
                         
     this._preventLeaveInProgress();         
@@ -375,7 +375,7 @@ qq.FileUploaderBasic.prototype = {
                 this._uploadFile(input);                                    
             }                      
         }               
-        //this._button.reset();   
+        this._button.reset();   
     },  
     _uploadFileList: function(files){
         for (var i=0; i<files.length; i++){
@@ -497,7 +497,7 @@ qq.FileUploader = function(o){
       '<ul id="IB_dropboxImages" class="dropBoxImages">'+  
       '</ul>'+
     '</div>',*/
-        template: '<div class="qq-upload-drop-area"><img src="/images/icons/green-plus-20.png">drag files here</div>',
+        template: '<div class="dropboxBrowse">browse</div><div class="qq-upload-drop-area"><img src="/images/icons/green-plus-20.png">drag files here</div>',
 
     /*template: '<div class="qq-uploader">' + 
                 '<div class="qq-upload-drop-area"><span>DROP FILES HERE TO UPLOAD</span></div>' +
@@ -521,8 +521,8 @@ qq.FileUploader = function(o){
             drop: 'qq-upload-drop-area',
             dropActive: 'qq-upload-drop-area-active',
             list: 'qq-upload-list',
-            
-            button: 'dropboxBrowse',*/
+            */
+            button: 'dropboxBrowse',
             drop: 'qq-upload-drop-area',/*
             dropActive: 'qq-upload-drop-area-active',
             list: 'dropBoxImages',
@@ -548,7 +548,7 @@ qq.FileUploader = function(o){
     
     this._classes = this._options.classes;
         
-    //this._button = this._createUploadButton(this._find(this._element, 'button'));        
+    this._button = this._createUploadButton(this._find(this._element, 'button'));        
     
     this._bindCancelEvent();
     this._setupDragDrop();
@@ -795,8 +795,8 @@ qq.UploadButton = function(o){
         // name attribute of file input
         name: 'file',
         onChange: function(input){},
-        hoverClass: 'qq-upload-button-hover',
-        focusClass: 'qq-upload-button-focus'                       
+        // hoverClass: 'qq-upload-button-hover',
+        // focusClass: 'qq-upload-button-focus'                       
     };
     
     qq.extend(this._options, o);
@@ -805,7 +805,7 @@ qq.UploadButton = function(o){
     
     // make button suitable container for input
     qq.css(this._element, {
-        position: 'relative',
+        position: 'absolute',
         overflow: 'hidden',
         // Make sure browse button is in the right side
         // in Internet Explorer
@@ -846,7 +846,6 @@ qq.UploadButton.prototype = {
             // the right side of the input
             right: 0,
             top: 0,
-            fontFamily: 'Arial',
             // 4 persons reported this, the max values that worked for them were 243, 236, 236, 118
             fontSize: '118px',
             margin: 0,
@@ -882,8 +881,8 @@ qq.UploadButton.prototype = {
             input.setAttribute('tabIndex', "-1");
         }
 
-        return input;            
-    }        
+        return input
+    }
 };
 
 /**

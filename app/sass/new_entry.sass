@@ -24,6 +24,12 @@
     img
       margin: 11px 8px 0 0
 
+  .entryAssets
+    +round(8)
+    width: 662px
+    padding: 8px
+    border: 1px solid #464646 /* 80% Black */ 
+
   // NEW ENTRY INPUT PANEL
   #newEntry
     +round(16)
@@ -44,12 +50,11 @@
     .entryType
       +round(16)
       +right
-      +pointer
       //
         +center
         +absolute
       right: 70px
-      width: 126px
+      width: 140px
       height: 34px
       line-height: 34px
       img
@@ -59,9 +64,18 @@
         background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
         +transparent
+        +block
+        +font(14)
         border: 0
         padding: 0
         line-height: 34px
+        padding: 7px 2px 6px 35px
+        +pointer
+        +right
+        margin: 0 4px 0 -40px
+        .dream, .vision, .experience, .article
+          padding-left: 20px
+          margin-right: -20px
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -98,7 +112,7 @@
         margin: 8px 0 0 8px
         .sharing
           +absolute
-          +round(12)
+          +round(8)
           +pointer
           width: 196px
           min-height: 34px
@@ -138,7 +152,7 @@
             +clear
             margin-bottom: 4px
             .friendsOnly, .followersOnly, .url
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -170,7 +184,7 @@
             +clear
             margin-bottom: 4px
             .facebook, .twitter, .buzz
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -272,7 +286,7 @@
       line-height: 34px
       margin: 0 0 0 14px
       padding: 6px 8px
-      width: 252px
+      width: 268px
       option
         padding: 1px 4px
       .newLocation
@@ -311,7 +325,7 @@
         width: 266px
         margin-bottom: -1px
         option
-          width: 100px
+          width: 224px
     .cancelLocation
       +round(16)
       +delete(17)
@@ -328,14 +342,12 @@
     border: 1px solid #333
     +hidden
     .dropboxBrowse
-      +relative
+      position: absolute !important
       +overflow
-      +bevel-dark
-      +button-dark
       +center
       +pointer
       width: 100px
-      left: 60px
+      left: 170px
       +round(8)
       direction: ltr
       height: 34px
@@ -363,8 +375,8 @@
       img
         +left
         margin: 6px 8px
-      .qq-upload-drop-area:hover
-        background: #ccc
+      .qq-upload-drop-area-active
+        background: rgba(255,255,255,0.2)
     #currentImages
       margin: 12px 0 0 12px
       .entryImageContainer, .entryImage
@@ -433,15 +445,14 @@
         margin: 0
       .tagInput
         +left
-        width: 534px
+        width: 530px
         height: 40px
-        margin: 0
-        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        margin: 0 0 0 26px
         input
           +left
           +font(18)
           +transparent
-          width: 410px
+          width: 460px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -450,12 +461,17 @@
         +round(4)
         +center
         +right
+        +bold
         width: 62px
-        height: 30px
+        height: 28px
         line-height: 30px
         margin: 5px 0
         span
-          color: green
+          color: #009933
+      .tagInputRight
+        +right
+        width: 14px
+        height: 40px
 
     .tag-who, .tag-where, .tag-what
       +center
@@ -472,12 +488,7 @@
     #linkInputWrap
       +left
       +round(8)
-      box-shadow: 0 8px 5px #999 inset
-      -moz-box-shadow: 0 8px 5px #999 inset
-      -webkit-box-shadow: 0 8px 5px #999 inset
       margin: 0 8px 8px 8px
-      background: #fff
-      border: 1px solid #fff 
       width: 560px
       height: 38px
       line-height: 38px
@@ -486,20 +497,20 @@
         +font(16)
         +transparent
         width: 460px
-        height: 32px
-        line-height: 32px
+        height: 28px
         margin: 6px 0 4px 8px
         border: 0
       .linkAdd
         +round(4)
         +center
         +right
+        +bold
         width: 62px
-        height: 30px
+        height: 28px
         line-height: 30px
         margin: 4px 12px 0 0
         span
-          color: green
+          color: #009933
     .linkContainer
       +round(8)
       +clear
@@ -509,7 +520,6 @@
       width: 632px
       height: 34px
       line-height: 34px
-      background: #fff
       .title
         +left
         +pointer
@@ -555,13 +565,14 @@
 
     // MOOD PICKER
     .moodPicker
-      +round(12)
+      +round(8)
       +clear
       padding: 8px
       margin: 8px 0
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         +clear
-        margin: 0 0 2px
+        +pointer
+        margin: 0 0 4px
         height: 32px
         .one, .two, .three, .four, .five
           +left
@@ -647,7 +658,7 @@
         .three
           background-color: rgb(150, 198, 191)
         .four
-          background-color: rgb(150, 198, 191)
+          background-color: rgb(80, 157, 163)
         .five
           background-color: rgb(41, 82, 94)
       .stress
@@ -712,7 +723,7 @@
       +glow-light(40)
 
       .entryType
-        +border-light
+        +button-light
 
     // NEW ENTRY OPTIONS
     #entryOptions
@@ -749,7 +760,7 @@
         +button-light
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-light
+        +input-light(small)
         +border-light
 
     // ENTRY LOCATION
@@ -760,10 +771,10 @@
         +button-light
 
       .locations
-        +input-light
+        +input-light(small)
 
       .name, .city, .state, .country
-        +input-light
+        +input-light(small)
 
       .cancelLocation
         +bevel-light
@@ -782,7 +793,12 @@
         +button-light
 
       #imageDropArea
-        +input-light
+        +input-light(small)
+
+      .dropboxBrowse
+        +bevel-light
+        +button-light
+
 
     // NEW ENTRY TAG
     .entryTags
@@ -791,10 +807,16 @@
         +indent-light
         +button-light
       .tagInputWrap
+        background: url(/images/slices/inputLeftLight-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContentLight-40.png) repeat-x
+          input
+            color: #333
           .tagAdd
             +button-light
-            +bevel-light
+            +shine-light-alpha(13)
+        .tagInputRight
+          background: url(/images/slices/inputRightLight-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
@@ -804,9 +826,12 @@
         +button-light
 
       #linkInputWrap
+        +input-light(large)
+        #linkValue
+          color: #333
         .linkAdd
           +button-light
-          +bevel-light
+          +shine-light-alpha(13)
 
       .linkContainer
         .removeicon
@@ -822,7 +847,8 @@
 
       // MOOD PICKER
       .moodPicker
-        +transparent-light(50)
+        .one
+          +transparent-light(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
@@ -841,7 +867,7 @@
       +glow-dark(40)
 
       .entryType
-        +border-dark
+        +button-dark
         #entryType_list
           color: #ddd
 
@@ -870,7 +896,7 @@
 
       #entry_submit
         +button-light
-        +shine-light(16)
+        +shine-light-alpha(16)
         color: #000
         +save(16)
 
@@ -886,7 +912,7 @@
         +button-dark
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-dark
+        +input-dark(small)
         +border-dark
 
     // ENTRY LOCATION
@@ -897,11 +923,11 @@
         +button-dark
 
       .locations
-        +input-dark
+        +input-dark(small)
 
       .name, .city, .state, .country
-        +input-dark
-      input
+        +input-dark(small)
+      input, select, option
         color: #ccc
 
       .cancelLocation
@@ -912,6 +938,11 @@
     // ENTRY IMAGES
     .entryImages
       +shine-dark-alpha(24)
+
+      .dropboxBrowse
+        +bevel-dark
+        +button-dark
+
       .imagesHeader
         +indent-dark
         +button-dark
@@ -921,7 +952,7 @@
         +button-dark
 
       #imageDropArea
-        +input-dark
+        +input-dark(small)
 
     // NEW ENTRY TAG
     .entryTags
@@ -930,10 +961,16 @@
         +indent-dark
         +button-dark
       .tagInputWrap
+        background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+          input
+            color: #ddd
           .tagAdd
             +button-dark
-            +bevel-dark
+            +shine-dark-alpha(13)
+        .tagInputRight
+          background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
@@ -943,9 +980,17 @@
         +button-dark
 
       #linkInputWrap
+        +input-dark(large)
+        #linkValue
+          color: #ddd
         .linkAdd
           +button-dark
-          +bevel-dark
+          +shine-dark-alpha(13)
+
+      .linkContainer
+        .removeicon
+          +transparent-light(80)
+          +button-light
 
     // NEW ENTRY MOOD
     .entryMood
@@ -959,7 +1004,8 @@
 
       // MOOD PICKER
       .moodPicker
-        +transparent-dark(50)
+        .one
+          +transparent-light(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach

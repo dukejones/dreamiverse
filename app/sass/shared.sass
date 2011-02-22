@@ -45,8 +45,9 @@ body.scroll
 
 // LINKS
 /* removes dotted line around links */
-a:active, a:focus
+a:active, a:focus, select:active, select:focus, select::-moz-focus-inner
   outline: none
+  border: 0
 .light a, .light a:hover, .light a:focus, .light a:visited, .dark a, .dark a:hover, .dark a:focus, .dark a:visited
   text-decoration: none
 .dark a, .dark a:visited
@@ -116,6 +117,7 @@ abbr, acronym
 
     .arrow
       +relative
+      z-index: 1402
       width: 16px
       height: 11px
       margin: auto
@@ -135,14 +137,14 @@ abbr, acronym
 // COLORS
 .light .hoverLabel
   .arrow
-    background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
+    background: url('/images/icons/arrow-up-16-light.png') no-repeat 0 0 transparent
   .text
     color: #000
     +flat-light
     +glow-light(20)
 .dark .hoverLabel
   .arrow
-    background: url('/images/icons/arrow-up-16.png') no-repeat 0 0 transparent
+    background: url('/images/icons/arrow-up-16-dark.png') no-repeat 0 0 transparent
   .text
     color: #fff
     +flat-dark
@@ -312,7 +314,7 @@ abbr, acronym
     width: 300px
     margin: auto
     input
-      +input-light
+      +input-light(small)
       +round(12)
       margin-bottom: 4px
       +font(18)

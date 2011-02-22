@@ -81,9 +81,6 @@ function geoSuccess(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
   getAddress(lat, lng);
-  
-  // Turn on new location button
-  setupGeo();
 }
 
 function getAddress(_lat, _lng){
@@ -94,7 +91,6 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
-    
     // Remove finding your location option
     $('#locationList .finding').remove();
     
@@ -103,16 +99,14 @@ function getAddress(_lat, _lng){
     $('#locationList').prepend(newElement);
     $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)
     
+    var country = data[0].address_components[6].short_name.toLowerCase();
+    
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
     $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
-    $('.entryLocation .country input').val(data[0].address_components[6].long_name);
+    $('#countrySelector').val(country);
     
     // Remove Spinner
     $('.entryLocation .spinner-small').fadeOut();
   })
-}
-
-function parseme(results){
-  alert("results :: " + results);
 }

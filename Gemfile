@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -14,6 +14,8 @@ gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
 gem 'acts_as_list'
+# gem 'carmen'
+>>>>>>> master
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -47,7 +49,7 @@ end
 
 
 group :development, :test do
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 # http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail

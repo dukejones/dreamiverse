@@ -631,18 +631,26 @@
 
 
 
-/* UNIVERSAL STYLES */
-.entryAssets
-  +round(12)
-  width: 662px
-  padding: 8px
-  border: 1px solid #464646 /* 80% Black */ 
 
 
+
+
+.light
+  .noEntrys
+    +transparent-light(50)
+    +glow-light(20)
+.dark
+  .noEntrys
+    +transparent-dark(50)
+    +glow-dark(10)
 
 .noEntrys
+  +user-select
+  +round(16)
+  +font(21)
   +absolute
   +center
   +cursor
   top: 0px
-  width: 680px
+  width: 668px
+  padding: 8px

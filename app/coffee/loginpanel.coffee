@@ -38,7 +38,9 @@ class LoginView
     
     @bodyClickVisible = false
     
-    $('.haveSeedcode').click => $('#user_seed_code').show()
+    $('.haveSeedcode').click =>
+      $('.haveSeedcode').slideUp('fast')
+      $('.seedcodeExpander').slideDown('fast')
   
   closePanel: ->
     @bodyClickVisible = false
@@ -83,9 +85,6 @@ class LoginView
   
     @$joinButton.hide()
     @$loginPanel.hide()
-    
-  showSeedCodeInput: ->
-    # hide seed code button show seed code input
   
   displayBodyClick: ->
     @bodyClickVisible = true

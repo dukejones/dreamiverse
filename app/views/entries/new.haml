@@ -32,11 +32,12 @@
 
       .entryType
         %img{src: '/images/icons/dream-32.png'}
-        %span#entryType_current{value: 'Dream'}
+        %span#entryType_current.hidden{value: 'Dream'}
         %select#entryType_list{name: 'entry[type]'}
-          %option{value: 'Dream'} Dream
-          %option{value: 'Vision'} Vision
-          %option{value: 'Experience'} Experience
+          %option.dream{value: 'dream'} dream
+          %option.vision{value: 'vision'} vision
+          %option.experience{value: 'experience'} experience
+          %option.article{value: 'article'} article
 
 
       = f.text_field :title, :maxlength => '72', :placeholder => "title"
@@ -45,7 +46,7 @@
       
       #entryOptions
         /
-          Save for later  
+          Save for later
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
@@ -119,13 +120,12 @@
         tag
         %img{src: '/images/icons/tag-20.png'}
       .tagInputWrap
-        %img{src: '/images/slices/inputLeftLight-40.png', width: '26', height: '40'}
         .tagInput
           %input#newTag
           .tagAdd
             %span +
             add
-        %img{src: '/images/slices/inputRightLight-40.png', width: '14', height: '40'}
+        .tagInputRight
 
       #tag-list.tag-list.ui-sortable
         #empty-tag.tag.tag_box.tag_what.hidden
@@ -134,7 +134,7 @@
           .tag_box.tag_what.tag
             %span.tagContent= what.name
           
-        %br{style: 'clear: both;'}
+        .clear
       #sorting.clear
 
     / NEW ENTRY LINK

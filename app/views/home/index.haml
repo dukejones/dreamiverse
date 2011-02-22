@@ -13,7 +13,13 @@
   #rightColumn
 
     .dreamstarsMini
-      %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+      %a{href: '/dreamstars'}
+        %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+      / - @users.each_with_index do |user, index|
+      /         .dreamstar-=index
+      /           .badge
+      /           .rank= user.rank + 1
+      /           .name= user.username
 
       .dreamstar-1
         .badge
@@ -42,9 +48,10 @@
 
   / PUBLIC STREAM
   #publicStream
-    .todayFilter today
-    %h1.in in
-    .dreamsFilter dreams
+    .today today in dreams
+    / .todayFilter today
+    / %h1.in in
+    / .dreamsFilter dreams
     .randomDream
       %span random
       dream!
@@ -54,9 +61,9 @@
     .matrix
 
 
-      / DREAM THUMBS 1D
-      / - @entries.each do |entry|
-      /   = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
-      / - if @entries.blank?
-      /   .noDreams No dreams yet today.
+      / / DREAM THUMBS 1D
+      - @entries.each do |entry|
+        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+      - if @entries.blank?
+        .noDreams No dreams yet today.
 
