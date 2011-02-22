@@ -2,7 +2,7 @@
 %a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
   / LEFT SIDE
   .left
-    .user{style: "background: #fff url(#{avatar_image(entry.user, 32)}) no-repeat left"}
+    .user{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
       %p.name= entry.user.username
 
     .commentCount
