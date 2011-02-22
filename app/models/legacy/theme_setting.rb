@@ -3,9 +3,9 @@ class Legacy::ThemeSetting < Legacy::Base
 
   def theme_color_option
     case self.themeColorOptionId
-    when '1': "light"
-    when '2': "dark"
-    else: raise "invalid themeColorOptionId!"
+    when '1' then "light"
+    when '2' then "dark"
+    else raise "invalid themeColorOptionId!"
     end
   end
 end
