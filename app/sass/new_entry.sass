@@ -328,7 +328,7 @@
     border: 1px solid #333
     +hidden
     .dropboxBrowse
-      +absolute
+      position: absolute !important
       +overflow
       +center
       +pointer
@@ -447,12 +447,13 @@
         +round(4)
         +center
         +right
+        +bold
         width: 62px
         height: 30px
         line-height: 30px
         margin: 5px 0
         span
-          color: green
+          color: #009933
       .tagInputRight
         +right
         width: 14px
@@ -489,12 +490,13 @@
         +round(4)
         +center
         +right
+        +bold
         width: 62px
         height: 30px
         line-height: 30px
         margin: 4px 12px 0 0
         span
-          color: green
+          color: #009933
     .linkContainer
       +round(8)
       +clear
@@ -797,7 +799,7 @@
             color: #333
           .tagAdd
             +button-light
-            +bevel-light
+            +shine-light-alpha(16)
         .tagInputRight
           background: url(/images/slices/inputRightLight-40.png) no-repeat right
 
@@ -814,7 +816,7 @@
           color: #333
         .linkAdd
           +button-light
-          +bevel-light
+          +shine-light-alpha(16)
 
       .linkContainer
         .removeicon
@@ -878,7 +880,7 @@
 
       #entry_submit
         +button-light
-        +shine-light(16)
+        +shine-light-alpha(16)
         color: #000
         +save(16)
 
@@ -950,7 +952,7 @@
             color: #ddd
           .tagAdd
             +button-dark
-            +bevel-dark
+            +shine-dark-alpha(16)
         .tagInputRight
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
@@ -967,7 +969,7 @@
           color: #ddd
         .linkAdd
           +button-dark
-          +bevel-dark
+          +shine-dark-alpha(16)
 
       .linkContainer
         .removeicon
