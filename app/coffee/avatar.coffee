@@ -72,7 +72,7 @@ class AvatarView
     
     $('#avatarDrop').remove()
     @$contextPanel.css('z-index', 'auto')
-    $('.uploadAvatarWrap').show()
+    $('.uploadAvatarWrap').hide()
     @$container.show()
   
   displayBodyClick: ->
