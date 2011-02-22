@@ -431,7 +431,7 @@
         margin: 0
       .tagInput
         +left
-        width: 534px
+        width: 530px
         height: 40px
         margin: 0 0 0 26px
         input
@@ -557,7 +557,8 @@
       margin: 8px 0
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         +clear
-        margin: 0 0 2px
+        +pointer
+        margin: 0 0 4px
         height: 32px
         .one, .two, .three, .four, .five
           +left
@@ -643,7 +644,7 @@
         .three
           background-color: rgb(150, 198, 191)
         .four
-          background-color: rgb(150, 198, 191)
+          background-color: rgb(80, 157, 163)
         .five
           background-color: rgb(41, 82, 94)
       .stress
@@ -832,7 +833,8 @@
 
       // MOOD PICKER
       .moodPicker
-        +transparent-light(50)
+        .one
+          +transparent-light(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
@@ -988,7 +990,8 @@
 
       // MOOD PICKER
       .moodPicker
-        +transparent-dark(50)
+        .one
+          +transparent-light(50)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
