@@ -1,6 +1,7 @@
 @import mixins
 /******** SETTINGS PANEL ********/
 #settingsPanel
+  +user-select
 
   img
     +left
@@ -32,7 +33,7 @@
       img
         margin: 8px 8px 0 0
       h2
-        +pointer
+        +cursor
         +left
         line-height: 32px
         margin: 0
@@ -177,6 +178,10 @@
 
 
   .modifyLocationView, .changePasswordForm
+    span
+      +bold
+      +cursor
+      padding: 0 0 2px 4px
     // INPUTS
     #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
@@ -266,6 +271,7 @@
 
     .savedLocations
       +panel-light
+      +button-light
 
       .newLocation
         +bevel-light

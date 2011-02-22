@@ -1,12 +1,14 @@
 @import mixins
 /******** APPEARANCE PANEL ********/
 #appearancePanel
+  +user-select
 
   img.appearanceIcon
     margin: 4px 0 0
 
   .bedsheets, .colorPicker
     +round(8)
+    +cursor
 
   .bedsheets
     +clear
