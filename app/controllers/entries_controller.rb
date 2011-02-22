@@ -102,8 +102,6 @@ class EntriesController < ApplicationController
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
       render :text => thumbs_html
-    else
-      debugger
     end
   end
 
