@@ -38,10 +38,12 @@
         background-position: 0% 100%
     .status, .avatar, .userInfo
       z-index: 102
+      +user-select
     .statusHover
       +absolute
       +font(12)
       +round(4)
+      +user-select
       z-index: 101
       padding: 2px 24px 2px 4px
       margin: 0
@@ -89,11 +91,21 @@
       min-height: 70px
       z-index: 99
       .expanded
+        +cursor
+        +user-select
         +relative
         +round(8)
         +inner-shadow(10)
-        top: 70px
         padding: 8px 4px 2px
+        .shadow
+          +relative
+          +inner-shadow(10)
+          top: 62px
+          height: 130px
+          margin-bottom: -132px
+          +round(12)
+        .item.top
+          margin-top: 70px
         .item
           +clear
           margin-bottom: 4px
@@ -102,28 +114,27 @@
           .label
             +round(12)
             +flat-right
-            width: 68px
+            +center
+            width: 64px
             height: 24px
             padding: 6px 8px
-            text-align: right
+            margin-left: 6px
           .image
             width: 34px
             height: 24px
             padding: 7px 3px
             margin: 0
-            img.dream
-              margin: -8px 0
             img.starlight
               margin: -18px -16px
               z-index: 1004
-            img.follow
+            img.follow, img.dream
               margin: -12px 1px
           .detail
             +bold
             +round(12)
             +flat-left
             +inner-shadow(10)
-            width: 72px
+            width: 64px
             height: 24px
             padding: 6px 8px
             line-height: 26px
@@ -155,3 +166,5 @@
           .item
             .label
               +bevel-light
+            .detail
+              +flat-light-medium

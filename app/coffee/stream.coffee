@@ -26,14 +26,23 @@ class StreamView
 
 class StreamModel
   updateData: ->
+    #alert @filters[2]
+    #window.location = '/stream?starlight_filter=' + @filters[2] + '&friend_filter=' + @filters[1]
     # Update data from server
-    $.get('/stream', {filters: @filters}, (data) =>
-      # Send results to the controller
-      $.publish('stream:update', [data])
-    )
+    $.ajax {
+      type: 'GET'
+      url: '/stream'
+      data:
+        type_filter: @filters[0]
+        friend_filter: @filters[1]
+        starlight_filter: @filters[2]
+      success: (data, status, xhr) =>
+        $.publish('stream:update', [data])
+    }
     
   updateFilters: () ->
     @filters = []
     # get new filter values (will be .filter .value to target the span)
     $.each $('.trigger .value'), (key, value) =>
       @filters.push($(value).text())
+    @updateData()

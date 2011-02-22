@@ -73,6 +73,7 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
   def write(binary_data)
+    delete_all_resized_files!
     file = File.open(path, 'wb')
     file.write(binary_data)
     set_metadata!

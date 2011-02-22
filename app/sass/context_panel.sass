@@ -11,18 +11,49 @@
   top: 82px
   left: 12px
   width: 200px
-  padding: 4px
+  padding: 4px 4px 0
   border: 1px solid #000
   #avatarDrop
     +round(12)
     width: 200px
     height: 266px
+    z-index: 1200
     #avatarDropContainer
       +round(12)
       +transparent-dark(80)
       width: 200px
       height: 266px
       color: #fff
+      z-index: 1200
+      &.qq-upload-drop-area-active
+        background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.8)
+      .text
+        +font(21)
+        +center
+        padding-top: 20px
+        z-index: 1200
+      .browse
+        +font(14)
+        +center
+        top: 180px
+        z-index: 1200
+        .cancel, .dropboxBrowse
+          +absolute
+          +round(4)
+          +button-dark
+          +bevel-dark
+          padding: 4px 8px
+          z-index: 1200
+        .cancel
+          top: 220px
+          left: 18px
+          +cancel(12)
+        .dropboxBrowse
+          top: 170px
+          left: 71px
+          width: 100px
+          +confirm(12)
+          +pointer
   .avatar
     +round(12)
     +block
@@ -96,6 +127,7 @@
 
 
   .relation, .changeRelation, .context
+    +user-select
     .icon
       +right
       +relative
@@ -113,30 +145,27 @@
 
     // VIEW PROFILE
     .view
-      +round(12)
-      +flat-top
-      padding: 8px
+      +round(8)
+      padding: 4px 0
 
       .name
-        +round(8)
-        +font(14)
-        +bold
+        +font(21)
         +center
+        margin: 0 4px 4px
         padding: 2px 8px
-        margin: 0 0 4px
 
       .location
-        +round(8)
         +font(12)
         +center
-        padding: 2px 8px
-        margin: 0 0 4px
 
       .details
+        +overflow
+        margin: 0 4px
+        hr
+          +alpha(30)
         .website, .email, .phone, .skype
           +font(14)
-          padding: 0 8px
-          margin: 0 0 4px
+          padding: 0 8px 2px
         .skype
           img, span
             +left
@@ -148,7 +177,7 @@
           +center
           +font(11)
           padding: 0 12px
-          margin-bottom: 4px
+          margin: 8px 2px 0
         .facebook
           +left
         .twitter
@@ -157,16 +186,16 @@
           +clear
           +center
           +round(4)
+          margin-top: 4px
           height: 22px
           line-height: 22px
 
     // EDIT PROFILE
     .edit
-      +round(12)
-      +flat-top
+      +round(8)
       padding: 8px
 
-      #user_name, #user_email, #user_website, #user_phone, #user_skype
+      #user_name, #user_email, #user_link, #user_phone, #user_skype
         +round(8)
         +font(12)
         width: 176px
@@ -227,9 +256,7 @@
       height: 24px
       padding: 0
       margin: 0
-      .dream
-        margin: 6px 0
-      .follow
+      .dream, .follow
         margin: 4px 0
       .starlight
         margin: -11px -16px
@@ -273,15 +300,27 @@
       color: #fff
 
     .changeRelation.follow
-      +save(16)
+      +bg-shine(16)
+      +gradient(#70d03b, #235b1b)
+      +pointer
+      color: #fff
+      border: 1px solid #54943d
     .changeRelation.unfollow
-      +delete(16)
+      +bg-shine(16)
+      +gradient(#ee7c44, #8b2e12)
+      +pointer
+      color: #fff
+      border: 1px solid #c1633c
+
+    &.relationship
+      margin-bottom: 2px
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
     +round(12)
     height: 28px
     padding: 4px
+    margin: 4px 0
     .favoritesWrap, .rePostWrap, .tagWrap
       +relative
       +round(12)
@@ -340,7 +379,10 @@
 
     .context, .label
       +button-light
+    .context
       +shine-light-alpha(16)
+    .label
+      +bevel-light
 
     .relation
       +button-light
@@ -349,16 +391,8 @@
     .profile
 
       // VIEW PROFILE
-      .view
-        +shine-light-alpha(0)
-
-        .name
-          +transparent-dark(60)
-          color: #ddd
-
-        .location
-          +transparent-dark(60)
-          color: #ddd
+      .view, .edit
+        +transparent-light(50)
 
         .details
           .website, .email, .phone, .skype
@@ -371,11 +405,8 @@
             +button-light
             +confirm(11)
 
-      // EDIT PROFILE
-      .edit
-        +shine-light-alpha(0)
 
-        #user_name, #user_email, #user_website, #user_phone, #user_skype
+        #user_name, #user_email, #user_link, #user_phone, #user_skype
           +input-light
         .cancel, .save
           +bevel-light
@@ -392,7 +423,7 @@
         .label
           border: 1px solid #848484
       .detail
-        +flat-light
+        +flat-light-medium
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
@@ -425,7 +456,7 @@
 
     .context, .label
       +button-dark
-      +shine-dark-alpha(13)
+      +shine-dark-alpha(16)
     .relation
       +button-dark
 
@@ -433,16 +464,8 @@
     .profile
 
       // VIEW PROFILE
-      .view
-        +shine-dark-alpha(0)
-
-        .name
-          +transparent-light(60)
-          color: #333
-
-        .location
-          +transparent-light(60)
-          color: #333
+      .view, .edit
+        +transparent-light(30)
 
         .details
           .website, .email, .phone, .skype
@@ -456,11 +479,7 @@
             +button-dark
             +confirm(11)
 
-      // EDIT PROFILE
-      .edit
-        +shine-dark-alpha(0)
-
-        #user_name, #user_email, #user_website, #user_phone, #user_skype
+        #user_name, #user_email, #user_link, #user_phone, #user_skype
           +input-dark
         .cancel, .save
           +bevel-dark
@@ -477,7 +496,7 @@
         .label
           border: 1px solid #555
       .detail
-        +flat-dark
+        +flat-dark-medium
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
@@ -500,6 +519,14 @@
 
     .tagWrap
       .tag
+
+
+.pagePadding
+  +absolute
+  top: 684px
+  height: 1px
+  width: 1px
+
 
 
 
@@ -551,6 +578,7 @@
         +left
         +font(12)
         +center
+        +block
         margin: 0 4px 0 0
         width: 64px
         .count
@@ -651,10 +679,10 @@
         line-height: 30px
         +block
         &.top:hover
-          +round(8)
+          +round(6)
           +flat-bottom
         &.bottom:hover
-          +round(8)
+          +round(6)
           +flat-top
 
 
@@ -682,7 +710,7 @@
 
     // LABEL
     .myStream
-      +shine-dark(13)
+      +shine-dark(16)
       color: #fff
 
     .wrapper
@@ -712,7 +740,7 @@
 
     // LABEL
     .myStream
-      +shine-light(13)
+      +shine-light-alpha(16)
       color: #000
 
     .wrapper

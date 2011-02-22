@@ -3,23 +3,23 @@
 
   / USER INFO
   .userInfo
-    %a.avatar-64{href: "/", style: "background:url(#{avatar_image(current_user, :medium)}) top left"}
+    %a.avatar-64{href: user_entries_path(user.username), style: "background:url(#{avatar_image(current_user, :medium)}) top left"}
 
     .infoRight
-      %a.userName{href: '/'}
+      %a.userName{href: user_entries_path(user.username)}
         %h3= user.username
       .clear
 
-      .following
+      %a.following{href: following_path(user.username)}
         .count= user.following.count
         following
-      .followers
+      %a.followers{href: followers_path(user.username)}
         .count= user.followers.count
         followers
 
   / LABEL
   .myStream
-    my stream
+    dream stream
 
   .wrapper
 
@@ -34,14 +34,14 @@
         %span all entries
       .type
         %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
-        %span dream
+        %span Dream
       .type
         %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
-        %span vision
-      .type
-        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
-        %span experience
+        %span Vision
       .type.bottom
+        %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
+        %span Experience
+      .type.hidden
         %img{src: '/images/icons/dream_cloud-16.png', width: '16', height: '16'}
         %span tags
 
@@ -69,7 +69,7 @@
         %span.value all
         .filterList.target.slideArrow.hidden
           .type.top
-            %span hi
+            %span high
           .type
             %span medium
           .type.bottom

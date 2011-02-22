@@ -175,6 +175,7 @@
 
         .tagHeader
           +flat-right
+          +user-select
 
         .wrapper
           .tagInput
@@ -212,6 +213,8 @@
             +round(16)
             +right
             +center
+            +user-select
+            +cursor
             margin: 0 8px 0 0
             height: 34px
             line-height: 34px
@@ -264,6 +267,7 @@
       margin-bottom: 0
       .commentsHeader
         margin-bottom: 8px
+        +user-select
         img
           margin: 7px 8px 0 0
         .counter
@@ -290,6 +294,16 @@
             height: 90px
             width: 546px
             border: none
+          .user
+            +round(8)
+            +left
+            +center
+            +cursor
+            +user-select
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            margin: 0 0 12px
           .images, .links, .save
             +right
             +center
@@ -304,12 +318,11 @@
             img
               margin-top: 9px
           .save
-            +round(16)
+            +round(8)
       .prevCommentWrap
         .prevComment
           +round(12)
           +right
-          min-height: 112px
           width: 544px
           padding: 8px
           border: 2px solid white
@@ -389,6 +402,17 @@
       // GALLERY
       ul.gallery
         +hidden
+
+
+
+// LIGHTBOX
+
+#lightbox-container-image-box
+  +round(16)
+#lightbox-container-image-data-box
+  display: none !important
+
+
 
 
 
@@ -501,9 +525,12 @@
 
         .newCommentWrap
           .avatar
-            +button-light
+            +border-light
           .newComment
             +inputTextarea-light
+            .user
+              +border-light
+              +bevel-light
             .save
               +shine-light(16)
               +button-light
@@ -639,9 +666,12 @@
 
         .newCommentWrap
           .avatar
-            +button-dark
+            +border-dark
           .newComment
             +inputTextarea-dark
+            .user
+              +border-dark
+              +bevel-dark
             .save
               +shine-dark(16)
               +button-dark

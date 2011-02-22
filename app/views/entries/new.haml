@@ -39,9 +39,9 @@
           %option{value: 'Experience'} Experience
 
 
-      = f.text_field :title, :maxlength => '72'
+      = f.text_field :title, :maxlength => '72', :placeholder => "title"
       %hr
-      = f.text_area :body
+      = f.text_area :body, :placeholder => "My dream..."
       
       #entryOptions
         /
@@ -58,7 +58,7 @@
             %img.listSelection{src: '/images/icons/share-16.png'}
             %select#entry_sharing_level{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
-              %option.list{} list of users
+              %option.list{value: 'list'} list of users
               %option.anon{value: '50'} anonymous
               %option.private{value: '0'} private
 
@@ -94,14 +94,14 @@
               .clear
 
         .addLocation
-          %img{src: '/images/icons/location-21.png'}
-          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "38"}
+          .img
+          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38"}
         .date
           %img{src: '/images/icons/date-19.png'}
-          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "38"}
+          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
         .addTheme
-          %img{src: '/images/icons/appearance-32.png', onclick: "$.publish('toggleAppearance', [this])"}
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "38"}
+          %img{src: '/images/icons/appearance-32-alpha.png', onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
 
 
     / NEW ENTRY DATE TIME
@@ -133,7 +133,7 @@
           .tag_box.tag_what.tag
             %span.tagContent= what.name
           
-        %br{style: 'clear: both;'}
+        .clear
       #sorting.clear
 
     / NEW ENTRY LINK
@@ -145,7 +145,7 @@
         %input#linkValue
         .linkAdd
           %span +
-          Add
+          add
       #linkHolder
       .clear
 

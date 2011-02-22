@@ -24,17 +24,16 @@ class AvatarController
       
       # Stop event from bubbling up to DOM
       return false
+    
+    $.subscribe 'uploader:removed', (event) =>
+      @uploaderDisplayed = false
 
-    
-    $('#contextPanel .avatar').hover(
-      (e) =>
-        if !@uploaderDisplayed then $('.avatar .uploadAvatarWrap').fadeIn('fast');
-      (e) =>
-        $('.avatar .uploadAvatarWrap').fadeOut();
-    )
-    
-    #@setupUploader()
-  
+    $('#contextPanel .avatar').live "mouseenter", (event) =>
+      if !@uploaderDisplayed
+        $('.avatar .uploadAvatarWrap').fadeIn('fast')
+    .live "mouseleave", (event) =>
+      $('.avatar .uploadAvatarWrap').fadeOut()
+
   setupUploader: ->
     @avatarParams = ''
     uploader = new qq.AvatarUploader(
@@ -44,7 +43,6 @@ class AvatarController
       params: @avatarParams
       debug: true
       onComplete: (id, fileName, response) =>
-        log response
         @uploaderDisplayed = false
         @$avatarView.removeUploader(response.avatar_path, response.avatar_thumb_path)
     )
@@ -53,19 +51,40 @@ class AvatarController
 class AvatarView
   constructor: (containerSelector) ->
     @$container = $(containerSelector)
+    @$contextPanel = $('#contextPanel')
+    
   displayUploader: ->
-    avatarStyle = $('.avatar').attr('style')
-    $('#contextPanel .avatar').hide()
-    $('#contextPanel').prepend("<div id='avatarDrop' style='" + avatarStyle + "' class='uploader'><div class='qq-upload-drop-area' id='avatarDropContainer'><div class='text'><a xmlns='http://www.w3.org/1999/xhtml'>drag new image here</a></div><div class='browse'><div class='toggle'><a xmlns='http://www.w3.org/1999/xhtml'>browse for a file</a></div><div class='cancel'><a xmlns='http://www.w3.org/1999/xhtml'>cancel</a></div><div class='dropboxBrowse'><a xmlns='http://www.w3.org/1999/xhtml'>browse</a></div></div></div></div>")
+    @displayBodyClick()
+    
+    
+    @$contextPanel.find('.avatar').hide()
+    @$contextPanel.css('z-index', '1200')
+    @$contextPanel.prepend("<div id='avatarDrop' class='uploader'><div class='qq-upload-drop-area' id='avatarDropContainer'><div class='text'><a xmlns='http://www.w3.org/1999/xhtml'>drag new image here</a></div><div class='browse'><div class='toggle'><a xmlns='http://www.w3.org/1999/xhtml'>browse for a file</a></div><div class='cancel'><a xmlns='http://www.w3.org/1999/xhtml'>cancel</a></div><div class='dropboxBrowse'><a xmlns='http://www.w3.org/1999/xhtml'>browse</a></div></div></div></div>")
     
     $.publish 'uploader:init', [@container]
   
-  removeUploader: (avatar_path, avatar_thumb_path)->
+  removeUploader: (avatar_path = 'old', avatar_thumb_path = 'old')->
+    $.publish 'uploader:removed', [this]
+    
+    if avatar_path is not 'old'
+      @$container.css('background-image', 'url(' + avatar_path + ')')
+      $('.rightPanel .user').css('background-image', 'url(' + avatar_thumb_path + ')')
+    
     $('#avatarDrop').remove()
-    $('.uploadAvatarWrap').hide()
+    @$contextPanel.css('z-index', 'auto')
+    $('.uploadAvatarWrap').show()
     @$container.show()
-    @$container.css('background-image', 'url(' + avatar_path + ')')
-    $('.rightPanel .user').css('background-image', 'url(' + avatar_thumb_path + ')')
+  
+  displayBodyClick: ->
+    bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+    $('body').prepend(bodyClick)
+  
+    $('html, body').animate({scrollTop:0}, 'slow');
+  
+    $('#bodyClick').click( (event) =>
+      @removeUploader()
+      $('#bodyClick').remove()
+    )
 
     
 ### REMOVE ME

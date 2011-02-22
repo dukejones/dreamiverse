@@ -17,8 +17,8 @@
         = image_tag("icons/comments-16.png")
         = entry.comments.count
       .sharing
-        = image_tag("icons/mask-16.png")
-        private
+        %img
+        %span= entry.sharing
 
     / TITLE
     .title= entry.title

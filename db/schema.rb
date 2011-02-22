@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110218074407) do
+ActiveRecord::Schema.define(:version => 20110222015423) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -38,6 +38,10 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.string   "attribution"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "emotions", :force => true do |t|
+    t.string "name"
   end
 
   create_table "entries", :force => true do |t|
@@ -127,6 +131,7 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|
@@ -143,6 +148,8 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level", :default => 200
     t.boolean  "follow_authorization",  :default => false
+    t.boolean  "ubiquity",              :default => false, :null => false
+    t.integer  "auth_level",            :default => 10
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
@@ -155,6 +162,7 @@ ActiveRecord::Schema.define(:version => 20110218074407) do
     t.string   "viewable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bedsheet_attachment", :default => "scroll"
   end
 
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"
