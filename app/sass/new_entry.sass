@@ -24,6 +24,12 @@
     img
       margin: 11px 8px 0 0
 
+  .entryAssets
+    +round(8)
+    width: 662px
+    padding: 8px
+    border: 1px solid #464646 /* 80% Black */ 
+
   // NEW ENTRY INPUT PANEL
   #newEntry
     +round(16)
@@ -98,7 +104,7 @@
         margin: 8px 0 0 8px
         .sharing
           +absolute
-          +round(12)
+          +round(8)
           +pointer
           width: 196px
           min-height: 34px
@@ -138,7 +144,7 @@
             +clear
             margin-bottom: 4px
             .friendsOnly, .followersOnly, .url
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -170,7 +176,7 @@
             +clear
             margin-bottom: 4px
             .facebook, .twitter, .buzz
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -551,7 +557,7 @@
 
     // MOOD PICKER
     .moodPicker
-      +round(12)
+      +round(8)
       +clear
       padding: 8px
       margin: 8px 0
