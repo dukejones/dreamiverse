@@ -168,3 +168,31 @@
               +bevel-light
             .detail
               +flat-light-medium
+
+
+.dark
+  #friendField
+
+    .userNode
+      &:hover
+        .panel
+          +glow-dark(40)
+
+      .statusHover
+        +bevel-dark
+        +button-dark
+
+      .avatar
+        +button-dark
+
+      .backdrop
+        +bevel-dark
+
+      .panel
+        background-color: #222
+        .expanded
+          .item
+            .label
+              +bevel-dark
+            .detail
+              +flat-dark-medium
