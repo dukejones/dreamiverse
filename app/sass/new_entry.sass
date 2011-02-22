@@ -24,6 +24,12 @@
     img
       margin: 11px 8px 0 0
 
+  .entryAssets
+    +round(8)
+    width: 662px
+    padding: 8px
+    border: 1px solid #464646 /* 80% Black */ 
+
   // NEW ENTRY INPUT PANEL
   #newEntry
     +round(16)
@@ -44,12 +50,11 @@
     .entryType
       +round(16)
       +right
-      +pointer
       //
         +center
         +absolute
       right: 70px
-      width: 126px
+      width: 140px
       height: 34px
       line-height: 34px
       img
@@ -59,9 +64,18 @@
         background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
         +transparent
+        +block
+        +font(14)
         border: 0
         padding: 0
         line-height: 34px
+        padding: 7px 2px 6px 35px
+        +pointer
+        +right
+        margin: 0 4px 0 -40px
+        .dream, .vision, .experience, .article
+          padding-left: 20px
+          margin-right: -20px
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -98,7 +112,7 @@
         margin: 8px 0 0 8px
         .sharing
           +absolute
-          +round(12)
+          +round(8)
           +pointer
           width: 196px
           min-height: 34px
@@ -138,7 +152,7 @@
             +clear
             margin-bottom: 4px
             .friendsOnly, .followersOnly, .url
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -170,7 +184,7 @@
             +clear
             margin-bottom: 4px
             .facebook, .twitter, .buzz
-              +round(12)
+              +round(8)
               margin: 4px 0 0
               label
                 +block
@@ -551,7 +565,7 @@
 
     // MOOD PICKER
     .moodPicker
-      +round(12)
+      +round(8)
       +clear
       padding: 8px
       margin: 8px 0
@@ -709,7 +723,7 @@
       +glow-light(40)
 
       .entryType
-        +border-light
+        +button-light
 
     // NEW ENTRY OPTIONS
     #entryOptions
@@ -853,7 +867,7 @@
       +glow-dark(40)
 
       .entryType
-        +border-dark
+        +button-dark
         #entryType_list
           color: #ddd
 

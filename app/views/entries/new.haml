@@ -32,11 +32,12 @@
 
       .entryType
         %img{src: '/images/icons/dream-32.png'}
-        %span#entryType_current{value: 'Dream'}
+        %span#entryType_current.hidden{value: 'Dream'}
         %select#entryType_list{name: 'entry[type]'}
-          %option{value: 'Dream'} Dream
-          %option{value: 'Vision'} Vision
-          %option{value: 'Experience'} Experience
+          %option.dream{value: 'dream'} dream
+          %option.vision{value: 'vision'} vision
+          %option.experience{value: 'experience'} experience
+          %option.article{value: 'article'} article
 
 
       = f.text_field :title, :maxlength => '72', :placeholder => "title"
