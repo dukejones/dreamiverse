@@ -10,11 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20110221224310) do
-=======
-ActiveRecord::Schema.define(:version => 20110222070136) do
->>>>>>> master
+ActiveRecord::Schema.define(:version => 20110222202723) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -28,12 +24,12 @@ ActiveRecord::Schema.define(:version => 20110222070136) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
-  create_table "black_list_words", :force => true do |t|
+  create_table "blacklist_words", :force => true do |t|
     t.string "word"
     t.string "kind"
   end
 
-  add_index "black_list_words", ["word"], :name => "index_black_list_words_on_word"
+  add_index "blacklist_words", ["word"], :name => "index_black_list_words_on_word"
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -150,15 +146,9 @@ ActiveRecord::Schema.define(:version => 20110222070136) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-<<<<<<< HEAD
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
-=======
-    t.integer "user_id"
-    t.integer "position",   :default => 0
-    t.string  "kind",       :default => "custom"
     t.integer "intensity"
->>>>>>> master
   end
 
   create_table "users", :force => true do |t|

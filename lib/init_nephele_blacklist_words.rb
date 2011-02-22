@@ -1,8 +1,8 @@
-  class InitNepheleBlackListWords < ActiveRecord::Base
+  class InitNepheleBlacklistWords < ActiveRecord::Base
 
   # this method is for entering our default blacklisted words (for nephele to skip during tag processing)
   def self.init_first_words
-    black_list_words = %w{able about above according accordingly across actually after afterwards again 
+    blacklist_words = %w{able about above according accordingly across actually after afterwards again 
     against ain't all allow allows almost alone along already also although always am among amongst an and 
     another any anybody anyhow anyone anything anyway anyways anywhere apart appear appreciate appropriate are 
     aren't around as aside ask asking associated at available away awfully back be became because become becomes 
@@ -39,10 +39,10 @@
     title dream body}
     
     w = What.new
-    black_list_words.each do |word|
+    blacklist_words.each do |word|
       if word.length > 2
         word = w.prep(word)      
-        BlackListWord.find_or_create_by_word(:word => word,:kind => 'nephele')
+        BlacklistWord.find_or_create_by_word(:word => word,:kind => 'nephele')
       end
     end
   end

@@ -1,4 +1,4 @@
-class BlackListWord < ActiveRecord::Base
+class BlacklistWord < ActiveRecord::Base
     
   validates :word,
             :presence => true,

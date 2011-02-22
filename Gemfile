@@ -15,7 +15,6 @@ gem 'coffee-haml-filter'
 gem 'meta_where'
 gem 'acts_as_list'
 # gem 'carmen'
->>>>>>> master
 # Use unicorn as the web server
 # gem 'unicorn'
 

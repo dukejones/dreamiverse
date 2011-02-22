@@ -27,7 +27,7 @@ class Tag < ActiveRecord::Base
   # order the hash, keep top x, x = num auto tags we need    
   def self.order_and_score_tag_words(tag_words)
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
-      if (BlackListWord.where(word: tag_word).count < 1)
+      if (BlacklistWord.where(word: tag_word).count < 1)
         what = What.find_or_create_by_name(tag_word)
         if !what.id.nil? 
           tag_scores[what] ||= 0
@@ -36,7 +36,7 @@ class Tag < ActiveRecord::Base
       end
     end
 
-    tag_scores.delete_if {|tag_word, tag_score| BlackListWord.where(word: tag_word).count > 0 }
+    tag_scores.delete_if {|tag_word, tag_score| BlacklistWord.where(word: tag_word).count > 0 }
     tag_scores.sort_by { |tag_word, tag_score| tag_score }.reverse
   end
 end
