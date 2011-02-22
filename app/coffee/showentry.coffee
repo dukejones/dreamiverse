@@ -17,6 +17,12 @@ $(document).ready ->
 	  
 	$( "#tag-list" ).bind "sortstop", (event, ui) ->
 	  $("#sorting").val(1)
+	
+	# Setup comment expander
+	$('textarea#comment_body').autoResize
+	  animationDuration: 500
+	  animate: true
+	  extraSpace: 40
 	  
   # setup links favico
   $('.link a').each ->
@@ -35,6 +41,11 @@ commentsPanel = $('#showEntry .commentsPanel')
 
 $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
   $('textarea', this).val('')
+  
+  # Update comment count
+  newVal = parseInt($('.commentsHeader .counter').text()) + 1
+  $('.commentsHeader .counter').text(newVal)
+  
   commentsPanel.find('.target').children().last().prev().before(xhr).prev().hide().slideDown()
 
 
