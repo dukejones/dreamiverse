@@ -1,6 +1,9 @@
 class Legacy::Dream < Legacy::Base
   set_table_name 'dream'
   
+  def self.find_entry
+    Entry
+  end
   has_many :comments, {foreign_key: 'dreamId', class_name: "Legacy::Comment"}
   has_many :emotions, {foreign_key: 'dreamId', class_name: "Legacy::Emotion"}
 
