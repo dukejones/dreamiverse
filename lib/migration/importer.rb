@@ -6,9 +6,12 @@ class Migration::Importer
   
   def migrate
     @migrated_entity.attributes.symbolize_keys.keys.each do |attr|
-      debugger
-      if @entity_to_migrate.respond_to? attr
+      puts attr
+      if @entity_to_migrate.respond_to?(attr)
+        puts 'it responds'
         @migrated_entity.send("#{attr}=", @entity_to_migrate.send(attr))
+      else
+        puts 'no response'
       end
     end
     @migrated_entity
