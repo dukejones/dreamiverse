@@ -795,8 +795,8 @@ qq.UploadButton = function(o){
         // name attribute of file input
         name: 'file',
         onChange: function(input){},
-        hoverClass: 'qq-upload-button-hover',
-        focusClass: 'qq-upload-button-focus'                       
+        // hoverClass: 'qq-upload-button-hover',
+        // focusClass: 'qq-upload-button-focus'                       
     };
     
     qq.extend(this._options, o);
@@ -805,7 +805,7 @@ qq.UploadButton = function(o){
     
     // make button suitable container for input
     qq.css(this._element, {
-        position: 'relative',
+        position: 'absolute',
         overflow: 'hidden',
         // Make sure browse button is in the right side
         // in Internet Explorer
@@ -846,7 +846,6 @@ qq.UploadButton.prototype = {
             // the right side of the input
             right: 0,
             top: 0,
-            fontFamily: 'Arial',
             // 4 persons reported this, the max values that worked for them were 243, 236, 236, 118
             fontSize: '118px',
             margin: 0,
@@ -882,8 +881,8 @@ qq.UploadButton.prototype = {
             input.setAttribute('tabIndex', "-1");
         }
 
-        return input;            
-    }        
+        return input
+    }
 };
 
 /**

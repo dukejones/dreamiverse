@@ -1,16 +1,47 @@
 @import mixins
 //  META MENU USER
+
+#appearancePanel, #settingsPanel
+  +absolute
+  +clear
+  +round(8)
+  right: -35px
+  top: 80px
+  width: 334px
+  z-index: 1400
+
+  .arrow
+    +relative
+    top: -23px
+    padding: 0
+    height: 16px
+    margin-bottom: -16px
+
+  img.appearanceIcon, h1
+    +left
+
+  h1
+    margin: 8px
+    font-size: 24px
+    font-weight: normal
+
+
+
+
+
 #metaMenu.user
   +absolute
   top: 0
   width: 100%
   z-index: 1111
 
+
   .leftPanel, .rightPanel
     +round(16)
     +flat-top
     background-color: #fff
-    padding: 8px
+    padding: 28px 8px 8px
+    top: -20px
 
     .item
       +block
@@ -51,7 +82,6 @@
 
   .leftPanel
     +absolute
-    top: 0
     left: 248px
 
   .rightPanel
