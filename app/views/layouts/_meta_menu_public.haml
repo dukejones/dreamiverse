@@ -52,9 +52,10 @@
         = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
         %span http://dreamcatcher.net/username
         = f.text_field :username, :class => 'login-input', :placeholder => "username"
-
-        .haveSeedcode.trigger.slide enter a seed code &raquo;
-        = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
+        
+        .haveSeedcode enter a seed code &raquo;
+        .seedcodeExpander.hidden
+          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
         / SIGN UP BUTTON
         .signupWrap
