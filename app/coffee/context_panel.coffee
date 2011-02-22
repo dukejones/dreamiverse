@@ -23,7 +23,7 @@ class ContextController
     
     $('form#update_profile').bind 'ajax:beforeSend', (xhr, settings)=>
       @contextView.showProfile()
-      @contextView.contractProfile()
+      #@contextView.contractProfile()
     
     $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
       $('p.notice').text('Profile has been updated')
