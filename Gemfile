@@ -46,7 +46,7 @@ end
 
 
 group :development, :test do
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 # http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail
