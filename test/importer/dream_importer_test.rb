@@ -8,11 +8,12 @@ class DreamImporterTest < ActiveSupport::TestCase
         
       entry = Migration::DreamImporter.new(dream).migrate
     
-      assert entry.save!
+      entry.save!
       assert_equal entry.title, dream.title
       assert_equal entry.body, dream.description
       assert_equal entry.user.username, dream.user.username
       assert_equal entry.created_at, dream.created_at
+      assert_equal entry.whats.map(&:name), dream.customTagsList.split(',').compact.map(&:strip).map(&:downcase).uniq
     end
   end
 
