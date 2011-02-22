@@ -33,7 +33,7 @@ class Legacy::User < Legacy::Base
   end
   
   def image_id
-    # oh shit
+    # oh shit...
   end
   
   def name

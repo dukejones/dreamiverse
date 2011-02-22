@@ -5,15 +5,16 @@ class Migration::Importer
   end
   
   def migrate
+    puts "---#{@entity_to_migrate.class.to_s}----Migrating----#{@migrated_entity.class.to_s}---"
     @migrated_entity.attributes.symbolize_keys.keys.each do |attr|
-      puts attr
       if @entity_to_migrate.respond_to?(attr)
-        puts 'it responds'
+        puts "#{attr} responds"
         @migrated_entity.send("#{attr}=", @entity_to_migrate.send(attr))
       else
-        puts 'no response'
+        puts "#{attr} doesn't respond"
       end
     end
+    puts '=================='
     @migrated_entity
   end
   

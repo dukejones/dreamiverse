@@ -3,7 +3,7 @@ class Migration::UserImporter < Migration::Importer
     super(user, User.new)
   end
   
-  def migrate_all
+  def self.migrate_all
     migrate_all_from_collection(Legacy::User.all)
   end
 end
