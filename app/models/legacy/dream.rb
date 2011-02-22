@@ -10,6 +10,8 @@ class Legacy::Dream < Legacy::Base
   belongs_to :privacy_option, {foreign_key: 'privacyOptionId', class_name: 'Legacy::PrivacyOption'}
   belongs_to :category, {foreign_key: 'catId', class_name: 'Legacy::Category'}
   belongs_to :user, {foreign_key: 'userId', class_name: 'Legacy::User'}
+  belongs_to :theme_setting, {foreign_key: 'themeSettingId', class_name: 'Legacy::ThemeSetting'}
+
   
   def dreamed_at
     dreamDate
@@ -49,5 +51,10 @@ class Legacy::Dream < Legacy::Base
     end
     
     new_user.id
+  end
+  
+  def whats
+    tag_words = customTagsList.split(',').compact.map(&:strip).map(&:downcase).uniq
+    tag_words.map { |tag_word| What.find_or_create_by_name(tag_word) }
   end
 end
