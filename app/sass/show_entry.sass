@@ -286,12 +286,15 @@
           background: url(/images/avatars/default-avatar-tiny.jpg) top left
         .newComment
           +round(12)
+          +relative
           +right
           width: 546px
           padding: 8px
           textarea
             +transparent
-            height: 90px
+            +font(14)
+            font-family: Calibri, Arial, Helvetica, sans-serif
+            height: 60px
             width: 546px
             border: none
           .user
@@ -318,7 +321,11 @@
             img
               margin-top: 9px
           .save
+            +absolute
             +round(8)
+            +bold
+            right: 10px
+            bottom: 10px
       .prevCommentWrap
         .prevComment
           +round(12)
@@ -397,7 +404,7 @@
       // BODY
       .body
         +clear
-        padding: 12px 36px 36px
+        padding: 12px 36px 12px
 
       // GALLERY
       ul.gallery
@@ -676,6 +683,7 @@
               +shine-dark(16)
               +button-dark
               +save(16)
+              color: #fff
             textarea
               color: #ddd
 
