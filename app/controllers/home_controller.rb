@@ -8,7 +8,7 @@ class HomeController < ApplicationController
     end
 
     @entries = Entry.where(:created_at > Time.now.yesterday).
-      joins(:starlight).order('starlights.value DESC').limit(8)
+      order_by_starlight.limit(8)
   end
   
   def parse_url_title

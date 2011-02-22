@@ -13,7 +13,8 @@
   #rightColumn
 
     .dreamstarsMini
-      %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+      %a{href: '/dreamstars'}
+        %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
       / - @users.each_with_index do |user, index|
       /         .dreamstar-=index
       /           .badge
