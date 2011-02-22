@@ -96,7 +96,7 @@
 
             #empty-tag.hidden
               %span.tagContent
-            - @entry.whats.each do |what|
+            - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
 

@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "entry_id"
-    t.integer  "image_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -134,9 +133,8 @@ ActiveRecord::Schema.define(:version => 20110221224310) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-    t.integer "user_id"
     t.integer "position",   :default => 0
-    t.string  "kind",       :default => "custom"
+    t.string  "kind",       :default => "custom", :null => false
   end
 
   create_table "users", :force => true do |t|

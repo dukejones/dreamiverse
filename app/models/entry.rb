@@ -19,7 +19,9 @@ class Entry < ActiveRecord::Base
 
   has_many :comments
   
-  has_many :tags
+  has_many :tags, :order => :position
+  has_many :custom_tags, :through => :tags, :source => :noun, :source_type => 'What', :conditions => ['kind = ?', 'custom']
+  has_many :custom_whats, :through => :custom_tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'

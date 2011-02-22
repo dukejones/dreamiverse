@@ -11,7 +11,7 @@ class What < ActiveRecord::Base
   before_create :clean_name
   
   def self.clean(word)
-    word = word.downcase.gsub(/^\W+|\W+$/, '') # remove white space from begin/end
+    word = word.downcase.strip # downcase and remove white space from begin/end
     return word[/^\S+/] # drop everything after a white space
   end
   

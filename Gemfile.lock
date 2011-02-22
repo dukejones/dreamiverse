@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
+    acts_as_list (0.1.2)
     addressable (2.2.2)
     archive-tar-minitar (0.5.2)
     arel (2.0.6)
@@ -175,6 +176,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   barista
   capistrano
   capistrano-ext
