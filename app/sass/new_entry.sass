@@ -433,13 +433,12 @@
         +left
         width: 534px
         height: 40px
-        margin: 0
-        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        margin: 0 0 0 26px
         input
           +left
           +font(18)
           +transparent
-          width: 410px
+          width: 460px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -454,6 +453,10 @@
         margin: 5px 0
         span
           color: green
+      .tagInputRight
+        +right
+        width: 14px
+        height: 40px
 
     .tag-who, .tag-where, .tag-what
       +center
@@ -794,10 +797,16 @@
         +indent-light
         +button-light
       .tagInputWrap
+        background: url(/images/slices/inputLeftLight-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContentLight-40.png) repeat-x
+          input
+            color: #333
           .tagAdd
             +button-light
             +bevel-light
+        .tagInputRight
+          background: url(/images/slices/inputRightLight-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
@@ -938,10 +947,16 @@
         +indent-dark
         +button-dark
       .tagInputWrap
+        background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+          input
+            color: #ddd
           .tagAdd
             +button-dark
             +bevel-dark
+        .tagInputRight
+          background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
