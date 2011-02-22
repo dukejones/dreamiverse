@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222015423) do
+ActiveRecord::Schema.define(:version => 20110222070136) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(:version => 20110222015423) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
+  create_table "black_list_words", :force => true do |t|
+    t.string "word"
+    t.string "kind"
+  end
+
+  add_index "black_list_words", ["word"], :name => "index_black_list_words_on_word"
+
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -32,6 +39,14 @@ ActiveRecord::Schema.define(:version => 20110222015423) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "countries", :force => true do |t|
+    t.string "iso2", :limit => 2
+    t.string "iso3", :limit => 3
+    t.string "name"
+  end
+
+  add_index "countries", ["iso2"], :name => "index_countries_on_iso2"
 
   create_table "dictionaries", :force => true do |t|
     t.string   "name"
@@ -53,6 +68,7 @@ ActiveRecord::Schema.define(:version => 20110222015423) do
     t.datetime "updated_at"
     t.string   "type",          :default => "Dream"
     t.integer  "sharing_level"
+    t.datetime "dreamed_at"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -131,6 +147,9 @@ ActiveRecord::Schema.define(:version => 20110222015423) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "user_id"
+    t.integer "position",   :default => 0
+    t.string  "kind",       :default => "custom"
     t.integer "intensity"
   end
 
