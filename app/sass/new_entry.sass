@@ -328,12 +328,12 @@
     border: 1px solid #333
     +hidden
     .dropboxBrowse
-      +relative
+      position: absolute !important
       +overflow
       +center
       +pointer
       width: 100px
-      left: 60px
+      left: 170px
       +round(8)
       direction: ltr
       height: 34px
@@ -433,13 +433,12 @@
         +left
         width: 534px
         height: 40px
-        margin: 0
-        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        margin: 0 0 0 26px
         input
           +left
           +font(18)
           +transparent
-          width: 410px
+          width: 460px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -448,12 +447,17 @@
         +round(4)
         +center
         +right
+        +bold
         width: 62px
         height: 30px
         line-height: 30px
         margin: 5px 0
         span
-          color: green
+          color: #009933
+      .tagInputRight
+        +right
+        width: 14px
+        height: 40px
 
     .tag-who, .tag-where, .tag-what
       +center
@@ -470,12 +474,7 @@
     #linkInputWrap
       +left
       +round(8)
-      box-shadow: 0 8px 5px #999 inset
-      -moz-box-shadow: 0 8px 5px #999 inset
-      -webkit-box-shadow: 0 8px 5px #999 inset
       margin: 0 8px 8px 8px
-      background: #fff
-      border: 1px solid #fff 
       width: 560px
       height: 38px
       line-height: 38px
@@ -484,20 +483,20 @@
         +font(16)
         +transparent
         width: 460px
-        height: 32px
-        line-height: 32px
+        height: 28px
         margin: 6px 0 4px 8px
         border: 0
       .linkAdd
         +round(4)
         +center
         +right
+        +bold
         width: 62px
         height: 30px
         line-height: 30px
         margin: 4px 12px 0 0
         span
-          color: green
+          color: #009933
     .linkContainer
       +round(8)
       +clear
@@ -507,7 +506,6 @@
       width: 632px
       height: 34px
       line-height: 34px
-      background: #fff
       .title
         +left
         +pointer
@@ -747,7 +745,7 @@
         +button-light
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-light
+        +input-light(small)
         +border-light
 
     // ENTRY LOCATION
@@ -758,10 +756,10 @@
         +button-light
 
       .locations
-        +input-light
+        +input-light(small)
 
       .name, .city, .state, .country
-        +input-light
+        +input-light(small)
 
       .cancelLocation
         +bevel-light
@@ -780,7 +778,7 @@
         +button-light
 
       #imageDropArea
-        +input-light
+        +input-light(small)
 
       .dropboxBrowse
         +bevel-light
@@ -794,10 +792,16 @@
         +indent-light
         +button-light
       .tagInputWrap
+        background: url(/images/slices/inputLeftLight-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContentLight-40.png) repeat-x
+          input
+            color: #333
           .tagAdd
             +button-light
-            +bevel-light
+            +shine-light-alpha(16)
+        .tagInputRight
+          background: url(/images/slices/inputRightLight-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
@@ -807,9 +811,12 @@
         +button-light
 
       #linkInputWrap
+        +input-light(large)
+        #linkValue
+          color: #333
         .linkAdd
           +button-light
-          +bevel-light
+          +shine-light-alpha(16)
 
       .linkContainer
         .removeicon
@@ -873,7 +880,7 @@
 
       #entry_submit
         +button-light
-        +shine-light(16)
+        +shine-light-alpha(16)
         color: #000
         +save(16)
 
@@ -889,7 +896,7 @@
         +button-dark
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-dark
+        +input-dark(small)
         +border-dark
 
     // ENTRY LOCATION
@@ -900,10 +907,10 @@
         +button-dark
 
       .locations
-        +input-dark
+        +input-dark(small)
 
       .name, .city, .state, .country
-        +input-dark
+        +input-dark(small)
       input, select, option
         color: #ccc
 
@@ -929,7 +936,7 @@
         +button-dark
 
       #imageDropArea
-        +input-dark
+        +input-dark(small)
 
     // NEW ENTRY TAG
     .entryTags
@@ -938,10 +945,16 @@
         +indent-dark
         +button-dark
       .tagInputWrap
+        background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
         .tagInput
+          background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+          input
+            color: #ddd
           .tagAdd
             +button-dark
-            +bevel-dark
+            +shine-dark-alpha(16)
+        .tagInputRight
+          background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
     // NEW ENTRY LINK
     .entryLinks
@@ -951,9 +964,17 @@
         +button-dark
 
       #linkInputWrap
+        +input-dark(large)
+        #linkValue
+          color: #ddd
         .linkAdd
           +button-dark
-          +bevel-dark
+          +shine-dark-alpha(16)
+
+      .linkContainer
+        .removeicon
+          +transparent-light(80)
+          +button-light
 
     // NEW ENTRY MOOD
     .entryMood

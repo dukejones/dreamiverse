@@ -227,8 +227,8 @@
 =indent-dark
   border: 1px solid #000
   background: #222
-  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#aaa))
-  background: -moz-linear-gradient(top, #222, #aaa)
+  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#444))
+  background: -moz-linear-gradient(top, #222, #444)
 
 
 =panel-light
@@ -245,25 +245,37 @@
   background: -moz-linear-gradient(top, #444, #111)
 
 
-=input-light
+=input-light($size)
   color: #000
-  border: 1px solid #666
   outline: none
   background-color: #fff
-  box-shadow: inset 0 2px 5px #ccc
-  -moz-box-shadow: inset 0 2px 5px #ccc
-  -webkit-box-shadow: inset 0 2px 5px #ccc
+  @if $size == small
+    border: 1px solid #666
+    box-shadow: inset 0 2px 5px #ccc
+    -moz-box-shadow: inset 0 2px 5px #ccc
+    -webkit-box-shadow: inset 0 2px 5px #ccc
+  @else if $size == large
+    border: 1px solid #fff
+    box-shadow: inset 0 8px 5px #999
+    -moz-box-shadow: inset 0 8px 5px #999
+    -webkit-box-shadow: inset 0 2px 5px #999
+
   &:focus
     border: 1px solid #000
     +glow-light(20)
-=input-dark
+=input-dark($size)
   color: #ddd
-  border: 1px solid #666
-  background: #111
+  border: 1px solid #444
+  background: #222
   outline: none
-  box-shadow: inset 0 0 10px #000
-  -moz-box-shadow: inset 0 0 10px #000
-  -webkit-box-shadow: inset 0 0 10px #000
+  @if $size == small
+    box-shadow: inset 0 0px 10px #000
+    -moz-box-shadow: inset 0 0px 10px #000
+    -webkit-box-shadow: inset 0 0px 10px #000
+  @else if $size == large
+    box-shadow: inset 0 8px 10px #000
+    -moz-box-shadow: inset 0 8px 10px #000
+    -webkit-box-shadow: inset 0 8px 10px #000
   &:focus
     color: #fff
     border: 1px solid #fff
@@ -321,8 +333,10 @@
 
 
 =transparent-light($percent)
+  +flat-light
   background: rgba(255,255,255, $percent / 100 )
 =transparent-dark($percent)
+  +flat-dark
   background: rgba(0,0,0, $percent / 100 )
 
 

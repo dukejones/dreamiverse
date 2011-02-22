@@ -127,6 +127,7 @@
 
 
   .relation, .changeRelation, .context
+    +user-select
     .icon
       +right
       +relative
@@ -182,6 +183,7 @@
         .twitter
           +right
         .change
+          +user-select
           +clear
           +center
           +round(4)
@@ -217,6 +219,7 @@
 
       .cancel, .save
         +round(4)
+        +user-select
         width: auto
         height: 22px
         line-height: 22px
@@ -235,6 +238,7 @@
 
   .item
     +clear
+    +user-select
     margin-bottom: 4px
     .relation
       +round(12)
@@ -406,7 +410,7 @@
 
 
         #user_name, #user_email, #user_link, #user_phone, #user_skype
-          +input-light
+          +input-light(small)
         .cancel, .save
           +bevel-light
           +button-light
@@ -479,7 +483,7 @@
             +confirm(11)
 
         #user_name, #user_email, #user_link, #user_phone, #user_skype
-          +input-dark
+          +input-dark(small)
         .cancel, .save
           +bevel-dark
           +button-dark
@@ -520,6 +524,11 @@
       .tag
 
 
+.pagePadding
+  +absolute
+  top: 684px
+  height: 1px
+  width: 1px
 
 
 
@@ -535,6 +544,7 @@
   +round(16)
   +absolute
   +cursor
+  +user-select
   top: 82px
   left: 12px
   width: 200px
