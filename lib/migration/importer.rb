@@ -5,7 +5,7 @@ class Migration::Importer
   end
   
   def migrate
-    puts "---#{@entity_to_migrate.class.to_s}----Migrating----#{@migrated_entity.class.to_s}---"
+    puts "---#{@entity_to_migrate.class.to_s}<<<<<<<Migrating>>>>>>>#{@migrated_entity.class.to_s}---"
     @migrated_entity.attributes.symbolize_keys.keys.each do |attr|
       if @entity_to_migrate.respond_to?(attr)
         puts "#{attr} responds"
@@ -14,7 +14,6 @@ class Migration::Importer
         puts "#{attr} doesn't respond"
       end
     end
-    puts '=================='
     @migrated_entity
   end
   
@@ -24,6 +23,7 @@ class Migration::Importer
   
   def self.migrate_all_from_collection(collection, entity_name=nil)
     entity_name ||= collection.first.class.to_s.pluralize
+    puts entity_name
     collection.each do |entity|
       result = self.new(entity).migrate
       result.save!
