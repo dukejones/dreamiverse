@@ -56,8 +56,9 @@ function setupUploader(){
 }
 
 function setupTextareaAutoExpander(){
-  if($('textarea#dream_body').attr('id') == 'dream_body'){
-    $('textarea#dream_body').autoResize({
+  // Setup entry_body input expander
+  if($('textarea#entry_body').attr('id') == 'entry_body'){
+    $('textarea#entry_body').autoResize({
       // On resize:
       onResize : function() {
           $(this).css({opacity:0.8});
