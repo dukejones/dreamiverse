@@ -67,12 +67,13 @@
 
 
       / ENTRY LINKS
-      .entryLinks
-        - @entry.links.each do |link|
-          .link
-            %span
-              %a{href: "#{link.url}"}= link.title
-        .clear
+      - if @entry.links.count >= 1
+        .entryLinks
+          - @entry.links.each do |link|
+            .link
+              %span
+                %a{href: "#{link.url}"}= link.title
+          .clear
 
       / TAG
       .showTags
