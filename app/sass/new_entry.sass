@@ -473,12 +473,7 @@
     #linkInputWrap
       +left
       +round(8)
-      box-shadow: 0 8px 5px #999 inset
-      -moz-box-shadow: 0 8px 5px #999 inset
-      -webkit-box-shadow: 0 8px 5px #999 inset
       margin: 0 8px 8px 8px
-      background: #fff
-      border: 1px solid #fff 
       width: 560px
       height: 38px
       line-height: 38px
@@ -487,8 +482,7 @@
         +font(16)
         +transparent
         width: 460px
-        height: 32px
-        line-height: 32px
+        height: 28px
         margin: 6px 0 4px 8px
         border: 0
       .linkAdd
@@ -510,7 +504,6 @@
       width: 632px
       height: 34px
       line-height: 34px
-      background: #fff
       .title
         +left
         +pointer
@@ -750,7 +743,7 @@
         +button-light
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-light
+        +input-light(small)
         +border-light
 
     // ENTRY LOCATION
@@ -761,10 +754,10 @@
         +button-light
 
       .locations
-        +input-light
+        +input-light(small)
 
       .name, .city, .state, .country
-        +input-light
+        +input-light(small)
 
       .cancelLocation
         +bevel-light
@@ -783,7 +776,7 @@
         +button-light
 
       #imageDropArea
-        +input-light
+        +input-light(small)
 
       .dropboxBrowse
         +bevel-light
@@ -816,6 +809,9 @@
         +button-light
 
       #linkInputWrap
+        +input-light(large)
+        #linkValue
+          color: #333
         .linkAdd
           +button-light
           +bevel-light
@@ -898,7 +894,7 @@
         +button-dark
 
       .hour, .month, .day, .year, .minute, .amPm
-        +input-dark
+        +input-dark(small)
         +border-dark
 
     // ENTRY LOCATION
@@ -909,10 +905,10 @@
         +button-dark
 
       .locations
-        +input-dark
+        +input-dark(small)
 
       .name, .city, .state, .country
-        +input-dark
+        +input-dark(small)
       input, select, option
         color: #ccc
 
@@ -938,7 +934,7 @@
         +button-dark
 
       #imageDropArea
-        +input-dark
+        +input-dark(small)
 
     // NEW ENTRY TAG
     .entryTags
@@ -966,9 +962,17 @@
         +button-dark
 
       #linkInputWrap
+        +input-dark(large)
+        #linkValue
+          color: #ddd
         .linkAdd
           +button-dark
           +bevel-dark
+
+      .linkContainer
+        .removeicon
+          +transparent-light(80)
+          +button-light
 
     // NEW ENTRY MOOD
     .entryMood
