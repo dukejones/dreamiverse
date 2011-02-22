@@ -96,10 +96,14 @@ class EntriesController < ApplicationController
     @entries = @entries.limit(50)
     @entries = @entries.offset(50 * params[:page]) if params[:page]
     
+    
     if request.xhr?
+      puts "THIS IS AN XHR DOCUMENT"
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
       render :text => thumbs_html
+    else
+      debugger
     end
   end
 

@@ -3,10 +3,10 @@
 
   / USER INFO
   .userInfo
-    %a.avatar-64{href: "/", style: "background:url(#{avatar_image(current_user, :medium)}) top left"}
+    %a.avatar-64{href: user_entries_path(user.username), style: "background:url(#{avatar_image(current_user, :medium)}) top left"}
 
     .infoRight
-      %a.userName{href: '/'}
+      %a.userName{href: user_entries_path(user.username)}
         %h3= user.username
       .clear
 
@@ -19,7 +19,7 @@
 
   / LABEL
   .myStream
-    my stream
+    dream stream
 
   .wrapper
 

@@ -6,7 +6,7 @@
 #contextPanel
 
   / IMAGE
-  %a.avatar{href: dreams_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
+  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
     - if user == current_user
 
 
@@ -51,9 +51,9 @@
       .name.hidden= user.name
       .location San Francisco, USA
       .details.hidden
-        - if user.website || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
+        - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
-          .website= user.website
+          .website= user.link
         - if current_user.relationship_with(user) == :friends || user == current_user
           .email= user.email
           .phone= user.phone
@@ -73,7 +73,7 @@
       .edit.hidden
         =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
           = f.text_field :name, :placeholder => 'full name'
-          = f.text_field :website, :placeholder => 'website'
+          = f.text_field :link, :placeholder => 'website'
           = f.text_field :email, :placeholder => 'email'
           = f.text_field :phone, :placeholder => 'phone'
           .skypeWrap
