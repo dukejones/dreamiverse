@@ -104,10 +104,10 @@ class User < ActiveRecord::Base
     end
   end
   
-  def encrypted_password= *args
-    # raise "Can't set the encrypted password directly."
-  end
-  
+  # def encrypted_password= *args
+  #   # raise "Can't set the encrypted password directly."
+  # end
+  # 
   def can_access?(entry)
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
@@ -139,4 +139,5 @@ class User < ActiveRecord::Base
       errors.add :email, " must be present, or have at least one authentication."
     end
   end
+  
 end
