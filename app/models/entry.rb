@@ -32,6 +32,7 @@ class Entry < ActiveRecord::Base
   accepts_nested_attributes_for :links
   
   has_and_belongs_to_many :images
+  belongs_to :main_image, :class_name => "Image"
   
   validates_presence_of :user
   validates_presence_of :body

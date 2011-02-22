@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222070136) do
+ActiveRecord::Schema.define(:version => 20110222205457) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20110222070136) do
     t.string   "type",          :default => "Dream"
     t.integer  "sharing_level"
     t.datetime "dreamed_at"
+    t.integer  "main_image_id"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
