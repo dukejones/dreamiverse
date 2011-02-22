@@ -23,7 +23,14 @@ class ContextController
     
     $('form#update_profile').bind 'ajax:beforeSend', (xhr, settings)=>
       @contextView.showProfile()
-      #@contextView.contractProfile()
+      
+      # Is this the best way to do this? Or should we use data coming back?
+      $profileDetails = $('.profile .details')
+      $profileDetails.find('.website').text($('#user_link').val())
+      $profileDetails.find('.email').text($('#user_email').val())
+      $profileDetails.find('.phone').text($('#user_phone').val())
+      $profileDetails.find('.skype span').text($('#user_skype').val())
+      $('.profile .view .name').text($('#user_name').val())
     
     $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
       $('p.notice').text('Profile has been updated')
