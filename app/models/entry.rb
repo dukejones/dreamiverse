@@ -13,10 +13,10 @@ class Entry < ActiveRecord::Base
 
   
   belongs_to :user
+  belongs_to :location, :class_name => "Where"  
 
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
-
   has_many :comments
 
   has_many :tags, :order => :position
@@ -34,6 +34,7 @@ class Entry < ActiveRecord::Base
   accepts_nested_attributes_for :links
   
   has_and_belongs_to_many :images
+  belongs_to :main_image, :class_name => "Image"
   
   validates_presence_of :user
   validates_presence_of :body

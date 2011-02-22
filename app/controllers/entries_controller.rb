@@ -100,7 +100,6 @@ class EntriesController < ApplicationController
     
     
     if request.xhr?
-      puts "THIS IS AN XHR DOCUMENT"
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
       render :text => thumbs_html

@@ -571,10 +571,10 @@
       margin: 8px 0
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         +clear
-        +pointer
         margin: 0 0 4px
         height: 32px
         .one, .two, .three, .four, .five
+          +pointer
           +left
           +center
           +block
@@ -584,6 +584,9 @@
           box-shadow: inset 0 18px rgba(255,255,255,0.5)
           -moz-box-shadow: inset 0 18px rgba(255,255,255,0.5)
           -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+          input
+            +pointer
+            
         .one
           +round(16)
           +flat-right
@@ -999,13 +1002,12 @@
         +indent-dark
         +button-dark
 
-      .moodPicker
-        color: #444
-
       // MOOD PICKER
       .moodPicker
+        color: #444
         .one
           +transparent-light(50)
+        .one, .two, .three, .four, .five
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach

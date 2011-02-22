@@ -10,7 +10,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20110222202723) do
+=======
+ActiveRecord::Schema.define(:version => 20110222205457) do
+>>>>>>> master
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20110222202723) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
+<<<<<<< HEAD
   create_table "blacklist_words", :force => true do |t|
     t.string "word"
     t.string "kind"
@@ -31,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20110222202723) do
 
   add_index "blacklist_words", ["word"], :name => "index_black_list_words_on_word"
 
+=======
+>>>>>>> master
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -68,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110222202723) do
     t.string   "type",          :default => "Dream"
     t.integer  "sharing_level"
     t.datetime "dreamed_at"
+    t.integer  "main_image_id"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -146,8 +154,11 @@ ActiveRecord::Schema.define(:version => 20110222202723) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+<<<<<<< HEAD
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
+=======
+>>>>>>> master
     t.integer "intensity"
   end
 

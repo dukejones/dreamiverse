@@ -96,7 +96,7 @@ module ImageProfiles
     if width > height
       img.resize "x266"
       offset = (img[:width] - 200) / 2   # crop the center 200px
-      img.crop "200+#{offset}+0"
+      img.crop "200x+#{offset}+0"
     else
       img.resize "200"
       offset = (img[:height] - 266) / 2
