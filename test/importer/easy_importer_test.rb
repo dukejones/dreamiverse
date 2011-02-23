@@ -22,12 +22,20 @@ class EasyImporterTest < ActiveSupport::TestCase
   #   end
   # end
 
-  test "emotion importer" do
-    Legacy::EmotionOption.all.each do |emotion|
-      new_emo = Migration::EmotionImporter.new(emotion).migrate
-      assert new_emo.save!
-      assert_equal new_emo.name, emotion.title
+  # test "emotion importer" do
+  #   Legacy::EmotionOption.all.each do |emotion|
+  #     new_emo = Migration::EmotionImporter.new(emotion).migrate
+  #     assert new_emo.save!
+  #     assert_equal new_emo.name, emotion.title
+  #   end
+  # end
+
+  test "comment importer" do
+    Legacy::Comment.all[-30..-5].each do |comment|
+      new_comment = Migration::CommentImporter.new(comment).migrate
+      new_comment.save!
+      debugger
+      assert_equal new_comment.body, comment.comment
     end
   end
-
 end

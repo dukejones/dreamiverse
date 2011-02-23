@@ -13,9 +13,12 @@ class Legacy::User < Legacy::Base
     new_user
   end
 
-  belongs_to :auth_level, {foreign_key: "authLevel", class_name: "Legacy::AuthLevel"}
+  belongs_to :auth_level_option, {foreign_key: "authLevel", class_name: "Legacy::AuthLevel"}
   belongs_to :image, {foreign_key: "avatarImageId", class_name: "Legacy::Image"}
   belongs_to :seed_code_option, {foreign_key: "seedCodeId", class_name: "Legacy::SeedCode"}
+
+  has_many :location_options, {foreign_key: 'userId', class_name: 'UserLocationOption'}
+  has_many :locations, :through => :location_options
   
   # abandoned "class" attribute in the legacy model conflicts with Ruby's "class" method
   def class
@@ -27,6 +30,9 @@ class Legacy::User < Legacy::Base
 
   has_many :comments, {foreign_key: 'userId', class_name: "Legacy::Comment"}
 
+  def auth_level
+    authLevel
+  end
 
   def default_sharing_level
     case default_privacy_option._?.title
@@ -64,6 +70,10 @@ class Legacy::User < Legacy::Base
   end
   def phone
     self[:phone] == 'n/a' ? nil : self[:phone]
+  end
+  
+  def created_at
+    signUpDate
   end
 
 end

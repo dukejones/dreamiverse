@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110223014539) do
+ActiveRecord::Schema.define(:version => 20110223030623) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -23,6 +23,13 @@ ActiveRecord::Schema.define(:version => 20110223014539) do
 
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+
+  create_table "black_list_words", :force => true do |t|
+    t.string "word"
+    t.string "kind"
+  end
+
+  add_index "black_list_words", ["word"], :name => "index_black_list_words_on_word"
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -143,6 +150,9 @@ ActiveRecord::Schema.define(:version => 20110223014539) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "user_id"
+    t.integer "position",   :default => 0
+    t.string  "kind",       :default => "custom"
     t.integer "intensity"
   end
 
@@ -166,6 +176,13 @@ ActiveRecord::Schema.define(:version => 20110223014539) do
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "users_wheres", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "where_id"
+  end
+
+  add_index "users_wheres", ["user_id", "where_id"], :name => "index_users_wheres_on_user_id_and_where_id"
 
   create_table "view_preferences", :force => true do |t|
     t.string   "theme"
