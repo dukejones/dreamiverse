@@ -1,4 +1,4 @@
-class Migration::GlobalEnvironmentImporter < Migration::Importer
+class Migration::EnvironmentSeriesImporter < Migration::Importer
   def initialize(env)
     super(env, Tag.new)
   end
@@ -17,5 +17,6 @@ class Migration::GlobalEnvironmentImporter < Migration::Importer
   def self.migrate_all
     migrate_all_from_collection(Legacy::GlobalEnvironment.all)
     migrate_all_from_collection(Legacy::GlobalSeries.all)
+    migrate_all_from_collection(Legacy::UserEnvironment.all)
   end
 end

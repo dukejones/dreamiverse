@@ -18,26 +18,26 @@ class TagImporterTest < ActiveSupport::TestCase
   # end
 
   test 'global environments' do
-    # Legacy::GlobalEnvironment.offset(200).limit(300).each do |env|
-    #   new_tag = Migration::GlobalEnvironmentImporter.new(env).migrate
-    #   new_tag.save!
-    #   assert_equal new_tag.noun.name, env.option.title
-    #   assert new_tag.noun.kind_of? What
-    #   assert_equal new_tag.entry.title, env.dream.title
-    # end
-    # 
-    # Legacy::GlobalSeries.offset(50).limit(150).each do |series|
-    #   new_tag = Migration::GlobalEnvironmentImporter.new(series).migrate
-    #   new_tag.save!
-    #   assert_equal new_tag.noun.name, series.option.title
-    #   assert new_tag.noun.kind_of? What
-    #   assert_equal new_tag.entry.title, series.dream.title
-    # end
-
-    Legacy::UserEnvironment.offset(100).limit(200).each do |env|
-      new_tag = Migration::GlobalEnvironmentImporter.new(env).migrate
+    Legacy::GlobalEnvironment.offset(200).limit(300).each do |env|
+      new_tag = Migration::EnvironmentSeriesImporter.new(env).migrate
       new_tag.save!
       assert_equal new_tag.noun.name, env.option.title
+      assert new_tag.noun.kind_of? What
+      assert_equal new_tag.entry.title, env.dream.title
+    end
+    
+    Legacy::GlobalSeries.offset(50).limit(150).each do |series|
+      new_tag = Migration::EnvironmentSeriesImporter.new(series).migrate
+      new_tag.save!
+      assert_equal new_tag.noun.name, series.option.title
+      assert new_tag.noun.kind_of? What
+      assert_equal new_tag.entry.title, series.dream.title
+    end
+
+    Legacy::UserEnvironment.offset(100).limit(200).each do |env|
+      new_tag = Migration::EnvironmentSeriesImporter.new(env).migrate
+      new_tag.save!
+      # assert_equal new_tag.noun.name, env.option.title  # Why is it saving "Wild West" as "wild west"?
       assert new_tag.noun.kind_of? What
       assert_equal new_tag.entry.title, env.dream.title
     end
