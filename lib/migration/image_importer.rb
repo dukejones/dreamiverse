@@ -11,8 +11,8 @@ class Migration::ImageImporter < Migration::Importer
     image.format = nil
     image.save!
     
-    image_file = open("#{LegacyImageDir}/#{legacy_image.path}", "rb")
-    image.write( image_file.read )
+    image.import_from_file("#{LegacyImageDir}/#{legacy_image.path}")
+
     image
   end
 
