@@ -1,0 +1,20 @@
+#loginPage
+
+  .navigation
+    .button
+      login
+    .button.selected
+      signup
+    .button
+      forgot password
+    .clear
+
+  .join
+    = form_for(User.new, url: user_registration_path) do |f|
+      = f.text_field :email, :placeholder => "email"
+      = f.text_field :username, :placeholder => "username"
+      = f.password_field :password, :placeholder => "password"
+      = f.password_field :password_confirmation, :placeholder => "confirm password"
+      .seed have a seed code?
+      = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
+      %input.prompt{type: 'submit', name: 'signup', value: 'join now &rsaquo;'}

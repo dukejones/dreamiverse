@@ -2,11 +2,19 @@
 #welcomePanel
   .image
 
-  %h1.title Welcome Username
-  %p.text To get started using Dreamcatcher, you may:
+  %h1.title
+    welcome
+    %span= @user.username
+  %p.text to your dream field. Store and share your dreams here
 
   .getStartedButtons
-    .button set your default theme
-    .button add your first dream
-    .button check out the FAQ's
-    .button customize your profile
+    .button
+      %img.dream{src: '/images/icons/dream-32.png'}
+      <span class="green">+</span> add your first dream
+    .button
+      %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
+      set your default theme
+    .button
+      %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
+      customize your profile
+    .button find other dreamers

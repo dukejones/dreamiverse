@@ -311,7 +311,7 @@ abbr, acronym
   +font(18)
   top: 120px
   width: 100%
-  .login, .join
+  .login, .join, .forgot
     +round(16)
     +shine-light-alpha(16)
     padding: 8px
@@ -326,10 +326,22 @@ abbr, acronym
       padding: 8px
       width: 280px
 
-    #loginButton, #joinButton
+    h1
+      +font(19)
+
+    .body
+      +font(12)
+      padding-bottom: 8px
+      a
+        color: #fff
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+    .prompt
       +button-light
-      +shine-light(16)
-      +confirm(16)
+      +shine-light(22)
+      +confirm(22)
       +font(21)
       margin-top: 8px
       width: 100%
@@ -347,9 +359,14 @@ abbr, acronym
       +round(12)
       +cancel(16)
       +left
+      +bold
       padding: 4px 8px
       margin: 4px
-
+      &.selected
+        +shine-dark-alpha(16)
+        +button-dark
+        +cancel(16)
+        color: #ccc
 
 
 
