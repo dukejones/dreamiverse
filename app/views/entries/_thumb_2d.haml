@@ -10,8 +10,10 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .date= time_ago_in_words(entry.created_at)
-      .location dream location
+      %table{width: "100%"}
+        %tr
+          %td.date= time_ago_in_words(entry.created_at)
+          %td.location dream location
     .detailsBottom
       .comments
         = image_tag("icons/comments-16.png")
