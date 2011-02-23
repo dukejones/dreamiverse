@@ -14,6 +14,7 @@ class DreamImporterTest < ActiveSupport::TestCase
       assert_equal entry.user.username, dream.user.username
       assert_equal entry.created_at, dream.created_at
       assert_equal entry.whats.map(&:name), dream.customTagsList.split(',').compact.map(&:strip).map(&:downcase).uniq
+      assert_equal entry.book_list.split(','), dream.user_series.map(&:option).map(&:title)
     end
   end
 

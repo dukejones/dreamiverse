@@ -21,12 +21,8 @@ class Legacy::Emotion < Legacy::Base
   
   def entry_id
     # combination of created_at and title
-    entry = Entry.where(created_at: dream.created_at, title: dream.title).first
+    entry = dream.find_or_create_corresponding_entry
     # raise "You must migrate Dreams first: dream: #{dream.inspect}" if entry.blank?
-    if entry.blank?
-      entry = Migration::DreamImporter.new(dream).migrate
-      entry.save!
-    end
     entry.id
   end
 end

@@ -1,20 +1,35 @@
 class Legacy::Dream < Legacy::Base
   set_table_name 'dream'
   
-  def self.find_entry
-    Entry
+  def find_corresponding_entry
+    Entry.where(created_at: self.created_at, title: self.title).first
   end
+  def find_or_create_corresponding_entry
+    entry = find_corresponding_entry
+    if entry.blank?
+      entry = Migration::DreamImporter.new(self).migrate
+      entry.save!
+    end
+    entry
+  end
+
   has_many :comments, {foreign_key: 'dreamId', class_name: "Legacy::Comment"}
   has_many :emotions, {foreign_key: 'dreamId', class_name: "Legacy::Emotion"}
 
   has_many :dream_images, {foreign_key: 'dreamId', class_name: 'Legacy::DreamImage'}
   has_many :images, {through: :dream_images}
 
+  belongs_to :user, {foreign_key: 'userId', class_name: 'Legacy::User'}
   belongs_to :privacy_option, {foreign_key: 'privacyOptionId', class_name: 'Legacy::PrivacyOption'}
   belongs_to :category, {foreign_key: 'catId', class_name: 'Legacy::Category'}
-  belongs_to :user, {foreign_key: 'userId', class_name: 'Legacy::User'}
+  belongs_to :legacy_user, {foreign_key: 'userId', class_name: 'Legacy::User'}
   belongs_to :theme_setting, {foreign_key: 'themeSettingId', class_name: 'Legacy::ThemeSetting'}
 
+  has_many :user_series, {foreign_key: 'dreamId', class_name: 'UserSeries'}
+  
+  def book_list
+    user_series.map(&:option).map(&:title).join(',')
+  end
   
   def dreamed_at
     dreamDate
@@ -46,14 +61,7 @@ class Legacy::Dream < Legacy::Base
   end
   
   def user_id
-    new_user = User.find_by_username_and_email user.username, user.email
-    # raise "Must migrate users first!" if new_user.blank?
-    if new_user.blank?
-      new_user = Migration::UserImporter.new(user).migrate
-      new_user.save!
-    end
-    
-    new_user.id
+    legacy_user.find_or_create_corresponding_user.id
   end
   
   def whats

@@ -38,7 +38,7 @@
   / ALL DREAMSTARS
   .dreamstarsAll
     - @users.each_with_index do |user, index|
-      = if index > 1
+      = if index > 5
         %a.dreamstar{href: "/#{user._?.username._?}/entries"}
           .rank
             = index + 1
