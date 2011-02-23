@@ -1,0 +1,33 @@
+
+/ FEEDBACK PAGE
+%img.feedbackLogo{src: '/images/logos/header-feedback.png', width: '370', height: '96'}
+
+.wrapper
+
+  #feedbackWrap
+    .feedback
+
+      %select.type
+        %option Type of feedback...
+        %option Report a bug
+        %option I have an idea...
+
+      %select.bug
+        %option Type of bug
+        %option My data didn't save...
+        %option My browser crashed when I was...
+        %option This feature is confusing...
+        %option Other...
+
+      .details
+        %textarea
+
+    .sendPanel
+      .sendWrap
+        %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
+
+
+
+
+
+      
