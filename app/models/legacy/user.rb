@@ -18,7 +18,6 @@ class Legacy::User < Legacy::Base
   belongs_to :seed_code_option, {foreign_key: "seedCodeId", class_name: "Legacy::SeedCode"}
 
   has_many :location_options, {foreign_key: 'userId', class_name: 'UserLocationOption'}
-  has_many :locations, :through => :location_options
   
   # abandoned "class" attribute in the legacy model conflicts with Ruby's "class" method
   def class
@@ -74,6 +73,9 @@ class Legacy::User < Legacy::Base
   
   def created_at
     signUpDate
+  end
+  def updated_at
+    lastLoggedIn
   end
 
 end

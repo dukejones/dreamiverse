@@ -18,6 +18,7 @@ class Legacy::Dream < Legacy::Base
 
   has_many :dream_images, {foreign_key: 'dreamId', class_name: 'Legacy::DreamImage'}
   has_many :images, {through: :dream_images}
+  belongs_to :default_image, {foreign_key: 'defaultImageId', class_name: 'Legacy::Image'}
 
   belongs_to :user, {foreign_key: 'userId', class_name: 'Legacy::User'}
   belongs_to :privacy_option, {foreign_key: 'privacyOptionId', class_name: 'Legacy::PrivacyOption'}
@@ -26,6 +27,10 @@ class Legacy::Dream < Legacy::Base
   belongs_to :theme_setting, {foreign_key: 'themeSettingId', class_name: 'Legacy::ThemeSetting'}
 
   has_many :user_series, {foreign_key: 'dreamId', class_name: 'UserSeries'}
+  
+  def main_image_id
+    # default_image.find_or_create_corresponding_image.id
+  end
   
   def book_list
     user_series.map(&:option).map(&:title).join(',')
