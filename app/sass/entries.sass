@@ -611,10 +611,80 @@
 
 
 
+// NEW LOGIN SPLASH
+// STRUCTURE
+#welcomePanel
+  +absolute
+  +round(16)
+  top: 60px
+  padding: 8px
+  width: 464px
+  +bevel-light
+
+  .image
+    +round(12)
+    +overflow
+    width: 464px
+    height: 113px
+    background: url(/images/art/astral-eyes-banner.jpg) no-repeat center
+
+  h1.title
+    +font(18)
+    +bold
+    margin: 10px
+  p.text
+    +font(16)
+    margin: 10px
+
+  .getStartedButtons
+    +round(16)
+    padding: 8px 0 8px 8px
+    height: 92px
+    +input-light(large)
+    .button
+      +round(8)
+      +left
+      +center
+      width: 217px
+      height: 40px
+      line-height: 40px
+      margin: 0 8px 8px 0
+      +shine-light(20)
+      +button-light
 
 
+// NEW LOGIN SPLASH
+// COLORS
+.light
+  #welcomePanel
+    +bevel-light
+    +glow-light(40)
+
+    h1.title
+    p.text
+
+    .getStartedButtons
+      +input-light(large)
+
+      .button
+        +shine-light(20)
+        +button-light
 
 
+.dark
+  #welcomePanel
+    +shine-dark-alpha(20)
+    +glow-dark(40)
+
+    h1.title
+    p.text
+
+    .getStartedButtons
+      +input-dark(large)
+
+      .button
+        +shine-dark(20)
+        +button-dark
 
 
 

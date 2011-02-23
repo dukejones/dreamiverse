@@ -18,10 +18,13 @@
       padding: 0 12px
       height: 40px
       line-height: 40px
+      span
+        +bold
+        +font(19)
 
   // COLUMNS PANEL
   .columnsPanel
-    +shine-dark(16)
+    +shine-dark-alpha(24)
     +round(16)
     +relative
     width: 640px
@@ -33,9 +36,13 @@
       +round(8)
       +absolute
       +center
+      +bold
+      +font(17)
+      color: #ccc
       width: 80px
       height: 36px
       line-height: 36px
+      border: 1px solid #555
     .rankColumn
       left: 10px
     .nameColumn
@@ -67,12 +74,21 @@
       line-height: 50px
     .rank
       left: 60px
+      +bold
+      +font(19)
     .name
       +center
+      +bold
+      +font(28)
       left: 70px
       width: 500px
     .starlight
-      left: 580px
+      +absolute
+      +center
+      left: 550px
+      +bold
+      +font(16)
+      width: 86px
 
   .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
     +pointer
@@ -127,11 +143,12 @@
 
   // ALL DREAMSTARS
   .dreamstarsAll
+    +alpha(60)
     +transparent-dark(50)
     +round(32)
     padding: 16px 16px 8px
     margin: 20px 0 8px 88px
-    border: 4px solid #fff
+    border: 4px solid #ccc
     a.dreamstar
       +transparent-dark(50)
       +button-dark
@@ -140,15 +157,22 @@
       color: #fff
       height: 32px
       margin: 0 0 8px
+      &:hover
+        border: 1px solid #ccc
       .rank, .name, .starlight
         +absolute
+        font-weight: normal
+        +font(16)
         height: 32px
         line-height: 32px
       .rank
+        +bold
         left: 20px
       .name
+        +bold
         +center
         left: 60px
         width: 490px
       .starlight
-        left: 555px
+        left: 505px
+        text-align: right

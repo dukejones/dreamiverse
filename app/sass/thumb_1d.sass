@@ -109,7 +109,7 @@
 
           // STARLIGHT
           .starlight
-            +round(8)
+            +round(16)
             +right
             +font(12)
             height: 24px
@@ -283,6 +283,9 @@
           // USERNAME + AVATAR
           .user
             +button-light
+            background-color: #fff !important
+            .name
+              color: #333
           .commentCount
             .counter
               +flat-light
@@ -294,8 +297,9 @@
               +border-light
             // STARLIGHT
             .starlight
-              +bevel-light
+              +flat-dark
               +button-light
+              color: #ddd
 
         // RIGHT SIDE
         .right
@@ -317,11 +321,13 @@
           // USERNAME + AVATAR
           .user
             +button-dark
+            background-color: #000 !important
             .name
-              color: #000
+              color: #ddd
           .commentCount
             .counter
-              +flat-dark
+              +flat-light
+              color: #333
 
           // ENTRY THUMB DETAILS
           .details
@@ -330,8 +336,9 @@
               +border-dark
             // STARLIGHT
             .starlight
-              +bevel-dark
+              +flat-light
               +button-dark
+              color: #333
 
         // RIGHT SIDE
         .right
@@ -353,3 +360,16 @@
             .counter
               +flat-dark
               color: #fff
+
+
+.dark
+  #entryField, #home
+    .matrix
+      .noImage
+
+        // LEFT SIDE
+        .left
+          .commentCount
+            .counter
+              +flat-light
+              color: #333

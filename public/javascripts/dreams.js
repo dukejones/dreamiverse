@@ -56,8 +56,9 @@ function setupUploader(){
 }
 
 function setupTextareaAutoExpander(){
-  if($('textarea#dream_body').attr('id') == 'dream_body'){
-    $('textarea#dream_body').autoResize({
+  // Setup entry_body input expander
+  if($('textarea#entry_body').attr('id') == 'entry_body'){
+    $('textarea#entry_body').autoResize({
       // On resize:
       onResize : function() {
           $(this).css({opacity:0.8});
@@ -160,25 +161,17 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
 //*********** REMOVING TAGS ***********//  
 
 function activateRemoveDreamTag (context) {
-  $(context).mouseup(function() {
-    //alert('this :: ' + $('#sorting').val())
-    if ($("#sorting").val() == 0)
-      removeTagFromDreamList(this);
-  }); 
   
 }
 
-$(function() {
-  activateRemoveDreamTag('.tag_box');
-});
 
 // REMOVES DATA FROM TAG LIST          
 function removeTagFromDreamList (idd){
-  $(idd).addClass('kill_tag');
+  /*$(idd).addClass('kill_tag');
   
   setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
   setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
-  setTimeout(function() { $(idd).remove(); }, 400);
+  setTimeout(function() { $(idd).remove(); }, 400);*/
   
   //updateCurrentImageTags();
 
@@ -311,6 +304,13 @@ function setupEvents(){
   $('.linkAdd').click(function() {
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
+  
+  // Remove link listener
+  $('.removeicon').live("click", function(){
+    $(this).parent().fadeOut('fast', function(){
+      $(this).remove();
+    });
+  })
 
   
   setupImageButtons();
@@ -382,14 +382,6 @@ function addLink(newText){
       break;
       
   }
-  
-  $('.removeicon').click(function(){
-    $(this).parent().fadeOut('fast', function(){
-      $(this).remove();
-    });
-  })
-
-  
 }
 
 function showYoutubeData(newText){
