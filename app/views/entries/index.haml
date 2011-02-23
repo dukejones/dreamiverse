@@ -22,7 +22,7 @@
 
     / NEW LOGIN SPLASH
     - if @entries.empty?
-    = render :partial => "new_login"
+      = render :partial => "new_login", :locals => {:user => @user}
 
     / NO DREAMS TO DISPLAY
     - if @entries.empty?
