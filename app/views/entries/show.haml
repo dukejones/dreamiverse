@@ -2,8 +2,8 @@
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 - content_for :foot do
+  = javascript_include_tag 'jquery.lightbox-0.5.pack.js', 'autoresize.jquery.min'
   = coffeescript_include_tag 'tag', 'showentry'
-  = javascript_include_tag 'jquery.lightbox-0.5.pack.js'
 
 
 
@@ -112,9 +112,9 @@
     .commentsPanel
       .trigger.slide
         .commentsHeader.headers
-          comments
+          comments -&nbsp; 
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
-          .counter= "(#{@comments.count})"
+          .counter #{@comments.count}
       .clear
       
       .target.slide

@@ -3,4 +3,8 @@ class Legacy::GlobalEnvironment < Legacy::Base
 
   belongs_to :dream, {foreign_key: "dreamId", class_name: "Legacy::Dream"}
   belongs_to :option, {foreign_key: "globalEnvironmentOptionId", class_name: "Legacy::GlobalEnvironmentOption"}
+  
+  def entry_id
+    
+  end
 end

@@ -6,14 +6,16 @@ class window.TagsController
       when 'edit'
         @tagViewClass = EditingTagView
         @tagInputClass = TagInput
+        @tagViewListClass = EditingTagViewList
         @$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
       when 'show'
         @tagViewClass = ShowingTagView
         @tagInputClass = ShowingTagInput
+        @tagViewListClass = TagViewList
         #@$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
     @tagInput = new @tagInputClass(@$container.find('#newTag'))
-    @tagViews = new TagViewList(@tagViewClass)
+    @tagViews = new @tagViewListClass(@tagViewClass)
 
     $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
     
@@ -73,8 +75,11 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.delegate 'div', 'click', (event)=>
+    @$container.find('.tag').live "click", (event)=>
       @removeTag($(event.currentTarget).data('id'))
+    
+    #@$container.delegate 'div', 'click', (event)=>
+    #  @removeTag($(event.currentTarget).data('id'))
     
     $.subscribe 'tags:remove', (id) =>
       @findByTagId(id).startRemoveFromView()
@@ -94,6 +99,8 @@ class TagViewList
       @add(tagView)
 
   findByTagId: (tagId)->
+    for tagView in @tagViews
+      log tagView.tag.id
     return tagView for tagView in @tagViews when tagView.tag.id == tagId
 
   add: (tagView)->
@@ -101,8 +108,35 @@ class TagViewList
     tagView.fadeIn()
 
   removeTag: (tagId) ->
+    #log tagId
     tagViewToRemove = @findByTagId(tagId)
     tagViewToRemove.remove()
+
+class EditingTagViewList extends TagViewList
+  constructor: (tagViewClass)->
+    @$container = $('#tag-list')
+    @tagViews = []
+    
+    @tagViewClass = tagViewClass
+    @addAllCurrentTags()
+    
+    @$container.find('.tag').live "click", (event)=>
+      @removeTag($(event.currentTarget))
+    
+    #@$container.delegate 'div', 'click', (event)=>
+    #  @removeTag($(event.currentTarget).data('id'))
+    
+    $.subscribe 'tags:remove', (id) =>
+      @findByTagId(id).startRemoveFromView()
+    
+    $.subscribe 'tags:removed', (id) =>
+      @findByTagId(id).removeFromView()
+      
+  removeTag: ($tag) ->
+    $tag.css('backgroundColor', '#ff0000')
+    $tag.fadeOut('fast', =>
+      $tag.remove()
+    )
 
 class TagView
   constructor: (tag)->
@@ -148,7 +182,9 @@ class EditingTagView extends TagView
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
   remove: ->
-    @removeFromView()
+    alert 'remove from view'
+    if $("#sorting").val() is "1"
+      @removeFromView()
     
 class ShowingTagView extends TagView
   # ask for ajax stuff
@@ -157,9 +193,12 @@ class ShowingTagView extends TagView
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)
+      @tag.setId(response.what_id)
   remove: ->
-    @removeFromView()
-    @tag.destroy()
+    # FIX THIS HERE This if statement is not firing properly
+    if $("#sorting").val() is "1"
+      @removeFromView()
+      @tag.destroy()
 
 
 # MAKE THIS STORE THE ID OF THE TAG ALSO

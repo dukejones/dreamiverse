@@ -1404,7 +1404,9 @@ function activateRemoveTag (context) {
 }
 
 $(function() {
+  
   activateRemoveTag('.tag_box');
+
 });
 
 // REMOVES DATA FROM TAG LIST          
