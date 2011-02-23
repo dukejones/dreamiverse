@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110222205457) do
+ActiveRecord::Schema.define(:version => 20110223014539) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20110222205457) do
     t.integer  "sharing_level"
     t.datetime "dreamed_at"
     t.integer  "main_image_id"
+    t.integer  "location_id"
+    t.string   "book_list"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
