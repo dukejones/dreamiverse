@@ -1,6 +1,7 @@
 @import mixins
 
 // FAQ PAGE
+// STRUCTURE
 #faqWrap
   +absolute
   top: 240px
@@ -81,5 +82,70 @@
                 margin: 8px 0
                 font-style: italic
 
+
+// FAQ PAGE
+// COLORS
+.light
+  #faqWrap
+
+    .askWrap
+      +transparent-light(50)
+      +glow-light(40)
+
+      .ask
+        +button-light
+        +shine-light(16)
+
+    .wrapper
+
+      .faq
+        +transparent-light(50)
+        +glow-light(40)
+
+        .questionWrap
+          +bevel-light
+
+          .answer
+            background: #fff
+            +glow-light(40)
+
+            a.link
+              background-color: #ddd
+
+            .features
+              +border-light
+              background: #ddd
+
+
+.dark
+  #faqWrap
+
+    .askWrap
+      +transparent-dark(50)
+      +glow-dark(40)
+
+      .ask
+        +button-dark
+        +shine-dark(16)
+
+    .wrapper
+
+      .faq
+        +transparent-dark(50)
+        +glow-dark(40)
+
+        .questionWrap
+          +bevel-dark
+
+          .answer
+            background: #222
+            +glow-dark(40)
+
+            a.link
+              background-color: #ddd
+
+            .features
+              +border-dark
+              background: #ddd
 
 
