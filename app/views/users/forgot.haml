@@ -1,0 +1,20 @@
+#loginPage
+
+  .navigation
+    .button
+      login
+    .button
+      signup
+    .button.selected
+      forgot password
+    .clear
+
+  .forgot
+    = form_for('user', {url: user_session_path}) do |f|
+      %h1 forgot your dreamcatcher password?
+      .body
+        <br><b>A)</b> enter your email address, submit, then check your email
+        <br><b>B)</b> if it doesn't show up, check your spam box
+        <br><b>C)</b> if problems still persist, email <a href="mailto:help@dreamcatcher.net">help@dreamcatcher.net</a>
+      = f.text_field :email, :placeholder => "email"
+      %input.prompt{tabindex: '3', name: 'loginButton', type: 'submit', value: 'next &rsaquo;'}
