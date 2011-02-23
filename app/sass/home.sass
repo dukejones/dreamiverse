@@ -127,6 +127,8 @@ body
       border: 2px solid #555
       color: #fff
     h1.in, .today
+      +user-select
+      +cursor
       color: #000
     .today
       +transparent-dark(20)
@@ -145,11 +147,13 @@ body
       span
         +bold
 
-    .noDreams
+    .noEntries
       +round(12)
       +transparent-dark(60)
       +border-light
       +center
+      +user-select
+      +cursor
       text-transform: uppercase
       color: #fff
       margin: 60px 0 0
