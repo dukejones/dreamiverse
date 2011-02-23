@@ -56,7 +56,7 @@ module ApplicationHelper
     # if frontpage, use frontpage bedsheet
     bedsheet_url = "/images/bedsheets/air-04.jpg" if request.path == '/'
     # if dreamstars, use dreamstars bedsheet
-    bedsheet_url = "/images/bedsheets/air-02.jpg" if request.path == '/dreamstars'
+    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == '/dreamstars'
     # if user has ubiquity mode, use user's bedsheet no matter what
     # Not yet implemented.
     # if entry has a view preference, use entry's bedsheet
