@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110223030623) do
+ActiveRecord::Schema.define(:version => 20110223163252) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20110223030623) do
     t.string   "location"
     t.integer  "year"
     t.text     "notes"
-    t.integer  "uploaded_by"
+    t.integer  "uploaded_by_id"
     t.string   "geotag"
     t.text     "tags"
     t.boolean  "public"

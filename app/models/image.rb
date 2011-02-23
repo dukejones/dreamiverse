@@ -13,7 +13,7 @@ class Image < ActiveRecord::Base
   # Assocations
   # 
   has_many :view_preferences
-
+  belongs_to :uploaded_by, :class_name => "User"
 
   #
   # Callbacks 
