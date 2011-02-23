@@ -16,7 +16,7 @@ class Legacy::User < Legacy::Base
   belongs_to :auth_level_option, {foreign_key: "authLevel", class_name: "Legacy::AuthLevel"}
   belongs_to :image, {foreign_key: "avatarImageId", class_name: "Legacy::Image"}
   belongs_to :seed_code_option, {foreign_key: "seedCodeId", class_name: "Legacy::SeedCode"}
-
+  belongs_to :avatar_image, {foreign_key: 'avatarImageId', class_name: 'Legacy::Image'}
   has_many :location_options, {foreign_key: 'userId', class_name: 'UserLocationOption'}
   
   # abandoned "class" attribute in the legacy model conflicts with Ruby's "class" method
@@ -49,7 +49,7 @@ class Legacy::User < Legacy::Base
   end
   
   def image_id
-    # oh shit...
+    avatar_image.find_or_create_corresponding_image
   end
   
   def name
