@@ -1,0 +1,85 @@
+@import mixins
+
+// FAQ PAGE
+#faqWrap
+  +absolute
+  top: 240px
+  width: 680px
+
+  img.logo
+    +left
+
+  .askWrap
+    +right
+    +round(16)
+    +pointer
+    padding: 4px
+    margin: 40px 0 0
+    +transparent-light(50)
+    +glow-light(40)
+
+    .ask
+      +round(16)
+      +center
+      width: 200px
+      padding: 8px
+      +button-light
+      +shine-light(16)
+
+  .wrapper
+    +clear
+    margin: 40px 0 0
+
+    .faq
+      +round(16)
+      width: 664px
+      padding: 8px
+      +transparent-light(50)
+      +glow-light(40)
+
+      .questionWrap
+        +round(12)
+        margin: 0 0 8px
+        +bevel-light
+
+        .question
+          +bold
+          +pointer
+          padding: 8px 16px
+
+        .answer
+          +round(12)
+          padding: 16px
+          background: #fff
+          +glow-light(40)
+
+          p
+            margin: 0 0 10px 0
+
+          a.credit
+            +block
+            text-align: right
+            text-decoration: underline
+
+          a.link
+            +block
+            +round(8)
+            padding: 8px 16px
+            margin: 8px 0
+            background-color: #ddd
+
+          .features
+            +round(8)
+            padding: 8px
+            margin: 2px 0
+            +border-light
+            background: #ddd
+            ul
+              list-style: none
+              margin: 0 0 0 10px
+              li
+                margin: 8px 0
+                font-style: italic
+
+
+
