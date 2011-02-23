@@ -37,6 +37,7 @@
 
       / HEADER IMAGE & TITLE
       .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
+        .fade
 
       / MOOD ICON
       .moodIcon.hidden
@@ -82,11 +83,12 @@
           %img{src: '/images/icons/tag-20.png'}
 
         .wrapper
-          .tagInput.target
-            %input#newTag{placeholder: 'who/where/what'}
-          .tagThisEntry.trigger
-            %span +
-            add
+          - if @entry.user == current_user
+            .tagInput.target
+              %input#newTag{placeholder: 'who/where/what'}
+            .tagThisEntry.trigger
+              %span +
+              add
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
