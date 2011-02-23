@@ -1,12 +1,23 @@
 class Legacy::User < Legacy::Base
   set_table_name 'user'
 
+  def find_corresponding_user
+    ::User.find_by_username_and_email self.username, self.email
+  end
+  def find_or_create_corresponding_user
+    new_user = find_corresponding_user
+    if new_user.nil?
+      new_user = Migration::UserImporter.new(self).migrate
+      new_user.save!
+    end
+    new_user
+  end
+
   belongs_to :auth_level, {foreign_key: "authLevel", class_name: "Legacy::AuthLevel"}
   belongs_to :image, {foreign_key: "avatarImageId", class_name: "Legacy::Image"}
   belongs_to :seed_code_option, {foreign_key: "seedCodeId", class_name: "Legacy::SeedCode"}
   
-  # damn abandoned "class" attribute in the model conflicts with Ruby's "class" method to get your class
-  # and made all the migration code FAIL
+  # abandoned "class" attribute in the legacy model conflicts with Ruby's "class" method
   def class
     super
   end
