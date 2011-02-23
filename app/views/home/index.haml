@@ -15,36 +15,12 @@
     .dreamstarsMini
       %a{href: '/dreamstars'}
         %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
-      / - @users.each_with_index do |user, index|
-      /         .dreamstar-=index
-      /           .badge
-      /           .rank= user.rank + 1
-      /           .name= user.username
-
-      .dreamstar-1
-        .badge
-        .rank 1
-        .name deepak
-      .dreamstar-2
-        .badge
-        .rank 2
-        .name deepak
-      .dreamstar-3
-        .badge
-        .rank 3
-        .name deepak
-      .dreamstar-4
-        .badge
-        .rank 4
-        .name deepak
-      .dreamstar-5
-        .badge
-        .rank 5
-        .name deepak
-      .dreamstar-6
-        .badge
-        .rank 6
-        .name deepak
+      - @users.each_with_index do |user, index|
+        = if index < 5
+          %div{class: "dreamstar-#{index+1}"}
+            .badge
+            .rank= index + 1
+            .name= user.username
 
   / PUBLIC STREAM
   #publicStream
