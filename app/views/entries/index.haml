@@ -20,9 +20,11 @@
     - @entries.each do |entry|
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
+    - if (@user == current_user) && @entries.empty?
+      / NEW LOGIN SPLASH
+      = render :partial => "new_login", :locals => {:user => @user}
+
     / NO DREAMS TO DISPLAY
     - if @entries.empty?
       .noEntrys there are no public entries to display
-      - if @user == current_user
-        / NEW LOGIN SPLASH
-        = render :partial => "new_login", :locals => {:user => @user}
+
