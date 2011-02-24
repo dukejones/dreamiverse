@@ -8,10 +8,10 @@
       %img.sharingIcon{src: '/images/icons/everyone-16.png'}
       %h2 Default sharing
       %select#sharingList.sharingList
-        %option.everyone{value: '500'} Everyone
-        %option.friends{value: '200'} Friends only
-        %option.anonymous{value: '50'} Anonymous
-        %option.private{value: '0'} Private
+        %option.everyone{  value: Entry::Sharing[:everyone]  } Everyone
+        %option.friends{   value: Entry::Sharing[:friends]   } Friends only
+        %option.anonymous{ value: Entry::Sharing[:anonymous] } Anonymous
+        %option.private{   value: Entry::Sharing[:private]   } Private
     %label.hidden
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
@@ -42,56 +42,16 @@
 
     .wrapper.target.showhide.hidden
       .locationView
-        %form.locationForm
-          .locationList
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Home', type: 'radio'}
-              .edit
-              Home
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'The Pearl', type: 'radio'}
-              .edit
-              The Pearl
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Flow Space', type: 'radio'}
-              Flow Space
-              .edit
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Flow Space', type: 'radio'}
-              Flow Space
-              .edit
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Flow Space', type: 'radio'}
-              Flow Space
-              .edit
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Flow Space', type: 'radio'}
-              Flow Space
-              .edit
-
-            .locations
-              %label
-                set as default
-                %input{name: 'default', value:'Under I580', type: 'radio'}
-              .edit
-              Under I580
+        = form_tag :user, {method: :put, remote: true, id: 'locationForm', class: 'locationForm'} do
+          #locationList.locationList
+            - current_user.wheres.each do |where|
+              .locations
+                %label
+                  set as default
+                  -# Might be easier to use radio_button_tag or radio_button_for here.
+                  %input{name: 'user[default_location_id]', value: where.id, type: 'radio', selected: (current_user.default_location_id==where.id)}
+                .edit
+                = where.name
 
           %label.autoLocate
             auto locate
@@ -101,15 +61,26 @@
           %img{src: '/images/icons/add-16.png'}
           new location
         .clear
+        :coffeescript
+          form = $('#locationForm')
+          form.delegate('input', 'change', ->
+            if this.value == 'auto'
+              log 'auto locate!'
+            else
+              form.submit()
+          )
 
       / ADD NEW LOCATION
-      .modifyLocationView.target.toggle.hidden
-        %span Add a new location
-        %input.name{placeholder: 'Location name'}
-        %input.city{placeholder: 'City'}
-        %input.state{placeholder: 'State / Province'}
+      = form_tag :user, remote: true, method: :put, id: 'addLocationForm',class: 'modifyLocationView target toggle hidden' do
+        -# Fields within wheres table: name, city, province, country
+        = fields_for :new_location do |f|
+          %span Add a new location
+          = f.text_field :name, class: 'name', placeholder: 'Location name'
+          = f.text_field :city, class: 'city', placeholder: 'City'
+          = f.text_field :province, class: 'state', placeholder: 'State / Province'
 
-        %select.country{name: "newLocationCountry"}
+        -# Could do to research select_tag once we have a country list imported in our db.
+        %select.country{name: "new_location[country]"}
           %option{value: "0", selected: "selected"} Country
           %optgroup{label: "----------------------", class: "font-11"}
             %option{value: "none"} none
@@ -381,13 +352,13 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      =form_for @user, :url => '/user.json', :remote => true do |f|
+      = form_tag :user, :remote => true do |f|
         = f.password_field(:password, {placeholder: 'Current password'})
         = f.password_field(:password_confirmation, {placeholder: 'New password'})
         = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 
         .cancel cancel
-        =f.submit :'change password', :class => 'confirm'
+        = f.submit :'change password', :class => 'confirm'
         .clear
 
 

@@ -171,11 +171,11 @@ class SettingsPanel extends MetaMenu
       $(event.currentTarget).parent().hide()
     )
     
-    $('.modifyLocationView .save').click( (event) ->
-      $(event.currentTarget).parent().hide()
-      $(event.currentTarget).prev().show()
-      alert "SEND SAVED LOCATION DATA TO SERVER"
-    )
+    # $('.modifyLocationView .save').click( (event) ->
+    #   $(event.currentTarget).parent().hide()
+    #   $(event.currentTarget).prev().show()
+    #   true
+    # )
     
     $('.locationForm input:radio').change( (event) ->
       $('.locations input:radio').each( (index, value) ->

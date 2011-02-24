@@ -14,7 +14,10 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user # User.find params[:id]
-    raise "access denied" unless @user == current_user
+    # raise "access denied" unless @user == current_user
+    if params[:new_location]
+      @user.wheres << Where.create(params[:new_location])
+    end
     
     @user.update_attributes(params[:user])
     @user.save
