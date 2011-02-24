@@ -64,6 +64,25 @@ class UserTest < ActiveSupport::TestCase
 
   test "validate_password_confirmation" do
     assert_raise(ActiveRecord::RecordInvalid) { User.make(password: 'pw1', password_confirmation: 'pw2') }
+    
+    user = User.make
+    user.password_confirmation = 'notpassword'
+    assert !user.save
+    user.password_confirmation = PW
+    assert user.save
+
+    user = User.make
+    user.old_password = 'notpassword'
+    user.password = user.password_confirmation = 'newpass'
+    assert !user.save
+
+    user = User.make
+    user.old_password = PW
+    user.password = user.password_confirmation = 'newpass'
+    assert_equal sha1(user.old_password), user.encrypted_password
+    assert user.save
+    assert_equal sha1('newpass'), user.encrypted_password
+    
   end
 
   test "create_with_omniauth" do

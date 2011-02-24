@@ -44,10 +44,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessor :password, :password_confirmation
-  before_validation :encrypt_password
+  attr_accessor :password, :password_confirmation, :old_password
+  after_validation :encrypt_password
   validate :validate_password_confirmation
-  validates_presence_of :username, :encrypted_password # :email
+  validates_presence_of :username
+  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_uniqueness_of :email, :allow_nil => true
   validate :validate_at_least_one_authentication
   # usernames must be lowercase
@@ -124,6 +125,9 @@ class User < ActiveRecord::Base
   protected
   
   def validate_password_confirmation
+    if old_password && (sha1(old_password) != encrypted_password)
+      errors.add :old_password, "wrong password"
+    end
     if password && (password != password_confirmation)
       errors.add :password, "should match password confirmation"
     end
