@@ -168,10 +168,10 @@ class ImagesController < ApplicationController
   # We should find a way to show a nice spinner while it is redirecting.
   # This may be a prime place for optimization.
   def resize
-    detect_infinite_redirect or return
+    return if detect_infinite_redirect
     
     image = Image.find params[:id]
-    image.generate(params[:descriptor], :size => params[:size])
+    image.generate(params[:descriptor], :size => params[:size], :format => params[:format])
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
     redirect_to image.url(params[:descriptor], :size => params[:size])
   # rescue => e
@@ -186,9 +186,9 @@ private
     if (session[:resize_queries][request.path] += 1) > 5
       render :text => "Error in Realtime Resize."
       Rails.logger.error "Error in Realtime Resize: #{request.url} with params #{params}"
-      false
-    else
       true
+    else
+      false
     end
   end
 end

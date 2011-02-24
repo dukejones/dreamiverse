@@ -58,7 +58,7 @@
       .title= @entry.title
 
       / BODY
-      .body= @entry.body
+      .body= simple_format(@entry.body)
 
       / IMAGE GALLERY
       %ul.gallery

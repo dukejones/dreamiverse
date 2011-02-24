@@ -381,7 +381,7 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      =form_for :user, :remote => true, :html => {:id => 'change_password'} do |f|
+      =form_for @user, :url => '/user.json', :remote => true do |f|
         = f.password_field(:password, {placeholder: 'Current password'})
         = f.password_field(:password_confirmation, {placeholder: 'New password'})
         = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
