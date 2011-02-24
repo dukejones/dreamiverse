@@ -27,6 +27,7 @@
       padding: 8px
       +button-light
       +shine-light(16)
+      +user-select
 
   .wrapper
     +clear
@@ -47,6 +48,7 @@
         .question
           +bold
           +pointer
+          +user-select
           padding: 8px 16px
 
         .answer
@@ -63,6 +65,7 @@
             text-decoration: underline
 
           a.link
+            +button-light
             +block
             +round(8)
             padding: 8px 16px
@@ -74,6 +77,8 @@
             margin: 2px 0
             +border-light
             background: #ddd
+            .selected
+              +border-dark
             ul
               list-style: none
               margin: 0 0 0 10px
@@ -116,6 +121,8 @@
             .features
               +border-light
               background: #ddd
+              &.current
+                +border-dark
 
 
 .dark
@@ -136,11 +143,11 @@
         +glow-dark(40)
 
         .questionWrap
-          +bevel-dark
+          +shine-dark-alpha(12)
           +button-dark
 
           .answer
-            background: #222
+            +transparent-dark(50)
             +glow-dark(40)
 
             a.link
@@ -151,5 +158,7 @@
               +border-dark
               color: #333
               background: #ddd
+              &.current
+                +border-light
 
 
