@@ -7,7 +7,7 @@ module ApplicationHelper
     when :medium
       avatar_image.url('avatar_medium')
     else
-      avatar_image.url('avatar', size)
+      avatar_image.url('avatar', :size => size)
     end
   end
   

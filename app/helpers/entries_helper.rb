@@ -1,6 +1,6 @@
 module EntriesHelper
   def gallery_list_item(image)
-    small_image_url = image.url(:thumb, 120)
+    small_image_url = image.url(:thumb, :size => 120)
     large_image_url = image.url(:medium)
     raw(%{
       <li style="background: #ababab url(#{small_image_url}) no-repeat">

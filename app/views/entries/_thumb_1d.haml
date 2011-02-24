@@ -40,7 +40,7 @@
         %td.top
           %ul
             - entry.images.limit(5).each do |image|
-              %li{style: "background: url(#{image.url(:thumb, 64)}) no-repeat top left"}
+              %li{style: "background: url(#{image.url(:thumb, :size => 64)}) no-repeat top left"}
 
     / MIDDLE ROW - TAG CLOUD
     %tr

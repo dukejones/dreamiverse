@@ -163,15 +163,15 @@ class ImagesController < ApplicationController
     end
   end
 
-  # this method is called when a url for a size image that has not yet been generated is requested.
-  # it responds with a redirect
+  # This method is called when a url for a size image that has not yet been generated is requested.
+  # It responds with a redirect.
   # We should find a way to show a nice spinner while it is redirecting.
-  # this may be a prime place for optimization.
+  # This may be a prime place for optimization.
   def resize
     image = Image.find params[:id]
-    image.generate params[:descriptor], params[:size]
+    image.generate(params[:descriptor], :size => params[:size])
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
-    redirect_to image.url(params[:descriptor], params[:size])
+    redirect_to image.url(params[:descriptor], :size => params[:size])
   # rescue => e
   #   Rails.logger.error "Error in Realtime Resize: #{e}"
   #   render_404
