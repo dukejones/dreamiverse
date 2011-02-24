@@ -16,15 +16,14 @@
   / DREAM MATRIX
   .matrix
 
-    / DREAM THUMBS 2D
     - @entries.each do |entry|
+      / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 
-    / NO DREAMS TO DISPLAY
-    - if @entries.empty?
+    - elsif @entries.empty?
+      / NO DREAMS TO DISPLAY
       .noEntrys there are no public entries to display
-
