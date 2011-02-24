@@ -48,8 +48,8 @@
   .profile
 
     .view
-      .name.hidden{onclick: "$.publish('profile:toggle')"}= user.name
-      .location{onclick: "$.publish('profile:toggle')"} San Francisco, USA
+      .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
+      .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
         - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
