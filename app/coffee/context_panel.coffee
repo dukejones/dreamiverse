@@ -1,7 +1,7 @@
-contextController = null
+window.contextController = null
 
 $(document).ready ->
-  contextController = new ContextController('#contextPanel')
+  window.contextController = new ContextController('#contextPanel')
 
 class ContextController
   constructor: (containerSelector) ->
@@ -15,11 +15,8 @@ class ContextController
     @$container.find('.cancel').click (event) =>
       @contextView.showProfile()
     
-    $(containerSelector).find('.context, .profile').click (event) =>
-      if @contextView.profileState() is 'none'
-        @contextView.expandProfile()
-      else
-        @contextView.contractProfile()
+    $(containerSelector).find('.context').click (event) =>
+      @toggleProfile()
     
     $('form#update_profile').bind 'ajax:beforeSend', (xhr, settings)=>
       @contextView.showProfile()
@@ -37,6 +34,11 @@ class ContextController
     
     $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
+  toggleProfile:  ->
+    if @contextView.profileState() is 'none'
+      @contextView.expandProfile()
+    else
+      @contextView.contractProfile()
 
 class ContextView
   constructor: (containerSelector) ->
