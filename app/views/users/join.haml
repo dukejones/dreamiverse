@@ -18,5 +18,5 @@
       = f.password_field :password, :placeholder => "password"
       = f.password_field :password_confirmation, :placeholder => "confirm password"
       .seed have a seed code?
-      = f.text_field :seed_code, :placeholder => "seed code", :value => session[:seed_code] || 'theta'
+      = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
       %input.prompt{type: 'submit', name: 'signup', value: 'join now &rsaquo;'}
