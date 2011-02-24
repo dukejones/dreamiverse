@@ -139,4 +139,14 @@ class EntriesController < ApplicationController
     redirect_to :root, :alert => "Access denied to this entry."
   end
   
+  def sort_custom_tags       
+    @entry = Entry.find params[:id]
+    @entry.tags.each do |tag|
+      tag.position = params['tag-list'].index(custom_tag.data-id.to_s) + 1
+      tag.save
+    end
+
+    render :nothing => true
+  end  
+  
 end

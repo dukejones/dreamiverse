@@ -60,11 +60,25 @@ Dreamcatcher::Application.routes.draw do
   # Tagging
   # match '#:tag', :to => 'tags#show'
   post '/tags', :to => 'tags#create'
+  post '/tags/sort_custom_tags', :to => 'tags#sort_custom_tags'
   delete '/tags/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
+
+
+=begin
+  resources :entries do
+    post :sort_custom_tags, on: :collection
+  end
+  
+  # example
+  resources :books do
+    post :sort, on: :collection
+  end
+=end
 
   resources :entries do
     collection do
-      post 'bedsheet'
+      post 'bedsheet' 
+      post 'sort_custom_tags'
     end
     resources :comments
   end
@@ -86,7 +100,6 @@ Dreamcatcher::Application.routes.draw do
     end
   end
   # match ':username', :to => 'dreams#index' #, :constraint => username_constraint
-
 
   #root :to => 'dreams#stream'#, :as => :stream
   root :to => 'home#index'
