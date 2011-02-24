@@ -8,7 +8,8 @@ $(document).ready ->
 		distance: 10
 		start: (event, ui) ->
 		  $("#sorting").val(1) #// while sorting, change hidden value to 1
-		stop: (event, ui) => $("#sorting").val(0)  #// on ending, change the value back to 0
+		stop: (event, ui) =>
+		  $("#sorting").val(0)  #// on ending, change the value back to 0
 		
 	$( "#tag-list" ).bind "sortstart", (event, ui) ->
 	  $("#sorting").val(0)
