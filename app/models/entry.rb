@@ -41,6 +41,7 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
+  before_update :delete_links
 
   scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
   
@@ -90,6 +91,10 @@ class Entry < ActiveRecord::Base
   
   def everyone?
     sharing_level == self.class::Sharing[:everyone]
+  end
+
+  def delete_links
+    Link.delete_all(:owner_id => self.id)
   end
 
   protected #######################

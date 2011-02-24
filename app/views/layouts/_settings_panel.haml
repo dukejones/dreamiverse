@@ -45,7 +45,7 @@
         = form_tag :user, {method: :put, remote: true, id: 'locationForm', class: 'locationForm'} do
           #locationList.locationList
             - current_user.wheres.each do |where|
-              .locations
+              .location
                 %label
                   set as default
                   -# Might be easier to use radio_button_tag or radio_button_for here.

@@ -12,15 +12,17 @@
   / RIGHT COLUMN
   #rightColumn
 
-    .dreamstarsMini
-      %a{href: '/dreamstars'}
-        %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
-      - @users.each_with_index do |user, index|
-        = if index < 5
-          %div{class: "dreamstar-#{index+1}"}
-            .badge
-            .rank= index + 1
-            .name= user.username
+    .dreamstarsMiniWrap
+      .dreamstarsMini
+        %a{href: '/dreamstars'}
+          %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+          %span view all &rsaquo;
+        - @users.each_with_index do |user, index|
+          = if index < 5
+            %div{class: "dreamstar-#{index+1}"}
+              .badge
+              .rank= index + 1
+              .name= user.username
 
   / PUBLIC STREAM
   #publicStream
