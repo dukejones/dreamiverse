@@ -1,7 +1,7 @@
-window.contextController = null
+contextController = null
 
 $(document).ready ->
-  window.contextController = new ContextController('#contextPanel')
+  contextController = new ContextController('#contextPanel')
 
 class ContextController
   constructor: (containerSelector) ->
@@ -16,6 +16,9 @@ class ContextController
       @contextView.showProfile()
     
     $(containerSelector).find('.context').click (event) =>
+      @toggleProfile()
+    
+    $.subscribe 'profile:expand', (data)=>
       @toggleProfile()
     
     $('form#update_profile').bind 'ajax:beforeSend', (xhr, settings)=>
