@@ -106,7 +106,6 @@ class TagViewList
   add: (tagView)->
     if !@tagAlreadyExists(tagView)
       @tagViews.push(tagView)
-      log @tagViews
       tagView.fadeIn()
   
   tagAlreadyExists: (tagView) ->
