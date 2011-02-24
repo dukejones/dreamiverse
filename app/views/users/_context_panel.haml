@@ -48,12 +48,12 @@
   .profile
 
     .view
-      .name.hidden= user.name
-      .location San Francisco, USA
+      .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
+      .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
         - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
-          .website= user.link
+          %a.website{href: user.link}= user.link
         - if current_user.relationship_with(user) == :friends || user == current_user
           .email= user.email
           .phone= user.phone
@@ -71,7 +71,7 @@
 
     - if user == current_user
       .edit.hidden
-        =form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
+        = form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
           = f.text_field :name, :placeholder => 'full name'
           = f.text_field :link, :placeholder => 'website'
           = f.text_field :email, :placeholder => 'email'
@@ -80,7 +80,7 @@
             = f.text_field :skype, :placeholder => 'skype user name'
             %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
           .cancel cancel
-          =f.submit :save, :class => 'save'
+          = f.submit :save, :class => 'save'
           .clear
 
 

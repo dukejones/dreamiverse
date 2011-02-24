@@ -3,4 +3,16 @@ class Legacy::UserEnvironment < Legacy::Base
 
   belongs_to :dream, {foreign_key: "dreamId", class_name: "Legacy::Dream"}
   belongs_to :option, {foreign_key: "userEnvironmentOptionId", class_name: "Legacy::UserEnvironmentOption"}
+  
+  
+  def entry_id
+    dream.find_or_create_corresponding_entry.id
+  end
+
+  def noun_id
+    What.find_or_create_by_name(option.title).id
+  end
+  def noun_type
+    'What'
+  end
 end

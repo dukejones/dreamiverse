@@ -26,19 +26,28 @@ class StreamView
 
 class StreamModel
   updateData: ->
-    #alert @filters[2]
-    #window.location = '/stream?starlight_filter=' + @filters[2] + '&friend_filter=' + @filters[1]
-    # Update data from server
-    $.ajax {
-      type: 'GET'
-      url: '/stream'
-      data:
-        type_filter: @filters[0]
-        friend_filter: @filters[1]
-        starlight_filter: @filters[2]
-      success: (data, status, xhr) =>
-        $.publish('stream:update', [data])
-    }
+    $.getJSON("/stream.json",
+      type_filter: @filters[0]
+      friend_filter: @filters[1]
+      starlight_filter: @filters[2],
+    (data) =>
+      log data
+    )
+    # $.ajax {
+    #       type: 'GET'
+    #       dataType: 'json'
+    #       url: '/stream'
+    #       data:
+    #         type_filter: @filters[0]
+    #         friend_filter: @filters[1]
+    #         starlight_filter: @filters[2]
+    #       complete: (data, status, xhr) =>
+    #         log data
+    #         log status
+    #       success: (data, status, xhr) =>
+    #         log data
+    #         $.publish('stream:update', [data])
+    #     }
     
   updateFilters: () ->
     @filters = []

@@ -57,12 +57,13 @@
       +clear
 
       // HEADER IMAGE & TITLE
-      .imageHeader
+      .imageHeader, .fade
         +round(16)
         +flat-bottom
         margin: 0
         height: 200px
         width: 662px
+
 
       // MOOD ICON
       .moodIcon
@@ -112,7 +113,7 @@
 
       // TITLE
       .title
-        +round(8)
+        +round(16)
         +flat-bottom
         +absolute
         +overflow
@@ -128,7 +129,7 @@
       // BODY
       .body
         margin: 0
-        padding: 36px
+        padding: 18px 36px
 
       // GALLERY
       ul.gallery
@@ -148,15 +149,14 @@
             +block
           
 
-      // SHARING
+      // LINKS
       .entryLinks
-        +round(8)
+        +round(12)
         +clear
         margin: 8px 8px 0
         padding: 8px
-        background-color: #ddd
         .link
-          +round(16)
+          +round(8)
           +left
           +center
           margin: 0 8px 0 0
@@ -458,11 +458,12 @@
         +flat-light
 
         // HEADER IMAGE
-        .imageHeader
+        .imageHeader .fade
+          background: url('/images/gradients/header-fade-light.png') repeat-x bottom
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
-          +transparent-light(50)
+          +transparent-light(70)
           +border-light
 
         // MOOD ICON
@@ -474,7 +475,9 @@
 
         // TITLE
         .title
-          +transparent-light(50)
+          background: #f2f2f2
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.9)), to(#f2f2f2))
+          background: -moz-linear-gradient(top, rgba(255,255,255,0.9), #f2f2f2)
 
         // IMAGE GALLERY
         ul.gallery
@@ -597,7 +600,8 @@
         +flat-dark
 
         // HEADER IMAGE
-        .imageHeader
+        .imageHeader .fade
+          background: url('/images/gradients/header-fade-dark.png') repeat-x bottom
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
@@ -613,7 +617,9 @@
 
         // TITLE
         .title
-          +transparent-dark(50)
+          background: #0F0F0F
+          background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.5)), to(#0F0F0F))
+          background: -moz-linear-gradient(top, rgba(0,0,0,0.5), #0F0F0F)
 
         // IMAGE GALLERY
         ul.gallery
@@ -624,7 +630,9 @@
         .entryLinks
           .link
             +button-dark
-            +bevel-dark
+            +shine-dark-alpha(12)
+            a
+              color: #ccc
 
         // POST TIME & LOCATION
         .postTime, .postLocation
@@ -665,7 +673,7 @@
       // COMMENTS
       .commentsPanel
         +panel-dark
-        +shine-dark-alpha(16)
+        +shine-dark-alpha(24)
 
         .commentsHeader
           +indent-dark
@@ -729,7 +737,7 @@
 
       // STARLIGHT COUNT & SHARE OPTIONS
       .starlight_share
-        +transparent-light(50)
+        +transparent-light(30)
         +border-dark
 
       // MOOD ICON

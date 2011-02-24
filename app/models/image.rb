@@ -13,7 +13,7 @@ class Image < ActiveRecord::Base
   # Assocations
   # 
   has_many :view_preferences
-
+  belongs_to :uploaded_by, :class_name => "User"
 
   #
   # Callbacks 
@@ -73,6 +73,7 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
   def write(binary_data)
+    parse_incoming_parameters
     delete_all_resized_files!
     file = File.open(path, 'wb')
     file.write(binary_data)
@@ -81,48 +82,49 @@ class Image < ActiveRecord::Base
     file._?.close
   end
 
+  def import_from_file(filename)
+    file = open(filename, 'rb')
+    self.write( file.read )
+  end
+
   # Generates the crops and resizes necessary for the requested profile.
-  def generate(descriptor, size=nil, options={})
+  def generate(descriptor, options={})
     if size.nil? && descriptor =~ /\d+x\d+/
       resize(descriptor)
     else
-      generate_profile(descriptor, size, options)
+      generate_profile(descriptor, options)
     end
   end
 
   # Invoked if passed a single descriptor consisting of the dimensions, eg: 64x64
   def resize(dimensions)
-    return if resized? dimensions
+    return if File.exists? path(dimensions)
     img = magick_image
     img.resize dimensions
     img.write path(dimensions) # dimensions is the descriptor.
   end
   
-  def resized?(size)
-    File.exists? path(size)
-  end
-  
   # Descriptor is a descriptor of the transformation.
   # Can be a role name or a resize geometry.
-  def path(descriptor=nil, size=nil)
-    Rails.public_path + url(descriptor, size)
+  def path(descriptor=nil, options={})
+    Rails.public_path + url(descriptor, options)
   end
 
-  def url(descriptor=nil, size=nil)
+  def url(descriptor=nil, options={})
     path = UPLOADS_PATH
     path += '/originals' unless descriptor
-    "/#{path}/#{filename(descriptor, size)}"
+    "/#{path}/#{filename(descriptor, options)}"
   end
   
-  def filename(descriptor=nil, size=nil)
+  def filename(descriptor=nil, options)
     fname = "#{id}"
     fname += "-#{descriptor}" if descriptor
-    fname += "-#{size}" if size
+    fname += "-#{options[:size]}" if options[:size]
     "#{fname}.#{format}"
   end
   
-  def magick_image(descriptor=nil, size=nil)
-    MiniMagick::Image.open(path(descriptor, size))
+  def magick_image(descriptor=nil, options={})
+    MiniMagick::Image.open(path(descriptor, options))
   end
 
   def delete_all_resized_files!

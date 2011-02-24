@@ -1,20 +1,13 @@
 #loginPage
 
   .navigation
-    .button
+    %a.button{href: login_path}
       login
-    .button
-      signup
-    .button
+    %a.button.selected{href: join_path}
+      join now
+    %a.button{href: forgot_password_path}
       forgot password
     .clear
-  %br
-  
-  .login
-    = form_for('user', {url: user_session_path}) do |f|
-      = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
-      = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
-      %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'Log in &rsaquo;'}
 
   %br
 
@@ -26,4 +19,4 @@
       = f.password_field :password_confirmation, :placeholder => "confirm password"
       .seed have a seed code?
       = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
-      %input#joinButton{type: 'submit', name: 'signup', value: 'sign up &rsaquo;'}
+      %input.prompt{type: 'submit', name: 'signup', value: 'join now &rsaquo;'}

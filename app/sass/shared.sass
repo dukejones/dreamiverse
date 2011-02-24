@@ -15,6 +15,11 @@ body.fixed
 body.scroll
   background-attachment: scroll !important
 
+.clear
+  clear: both
+.hidden
+  display: none
+
 /******** LIGHT AND DARK ********/
 .light
   color: #333
@@ -306,45 +311,71 @@ abbr, acronym
   +font(18)
   top: 120px
   width: 100%
-  .login, .join
-    +round(16)
+
+  .login, .join, .forgot
+    +round(12)
     +shine-light-alpha(16)
+    +user-select
+    +cursor
     padding: 8px
     +clear
     width: 300px
     margin: auto
+
     input
       +input-light(small)
-      +round(12)
+      +round(8)
       margin-bottom: 4px
       +font(18)
       padding: 8px
       width: 280px
 
-    #loginButton, #joinButton
-      +button-light
-      +shine-light(16)
-      +confirm(16)
+    h1
+      +font(19)
+
+    .body
+      +font(12)
+      padding-bottom: 8px
+      a
+        color: #fff
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+    .prompt
+      +button-dark
+      +shine-dark(22)
+      +confirm(22)
       +font(21)
+      +bold
+      color: #fff
       margin-top: 8px
       width: 100%
       padding: 8px
 
   .navigation
-    +round(16)
-    +shine-dark-alpha(16)
+    +round(12)
+    +shine-dark-alpha(24)
+    +border-dark
+    +user-select
     padding: 8px
-    width: 300px
+    width: 304px
     margin: auto
     .button
-      +button-light
-      +bevel-light
-      +round(12)
+      +button-dark
+      +transparent-light(10)
+      +round(6)
       +cancel(16)
       +left
+      +bold
+      color: #ccc
       padding: 4px 8px
       margin: 4px
-
+      &.selected
+        +shine-dark-alpha(12)
+        +button-dark
+        +cancel(16)
+        color: #fff
 
 
 
@@ -460,4 +491,32 @@ abbr, acronym
 SELECT.search-bar
   border-style: solid
   +round(8)
+
+
+// OLD HOME PAGE BUTTONS
+/* COLOR BUTTONS */
+.button-big-blue
+  border: 2px solid #999
+  +pointer
+.button-big-blue:hover, .selected.button-big-blue
+  border: 2px solid #0099ff
+  box-shadow: 0px 0px 40px #0099ff inset
+  -moz-box-shadow: 0px 0px 40px #0099ff inset
+  -webkit-box-shadow: 0px 0px 40px #0099ff inset
+.button-big-green
+  +pointer
+  border: 2px solid #999
+.button-big-green:hover, .selected.button-big-green
+  border: 2px solid #7BBD0D
+  box-shadow: 0px 0px 40px #7BBD0D inset
+  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
+  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
+.button-big-gray
+  +pointer
+  border: 2px solid #999
+.button-big-gray:hover, .selected.button-big-gray
+  border: 2px solid #CCC
+  box-shadow: 0px 0px 40px #CCC inset
+  -moz-box-shadow: 0px 0px 40px #CCC inset
+  -webkit-box-shadow: 0px 0px 40px #CCC inset
 

@@ -17,6 +17,7 @@
       +left
       +relative
       +overflow
+      background-repeat: no-repeat
       margin: 0 10px 10px 0
       border: 0
       z-index: 80
@@ -48,28 +49,25 @@
       .detailsTop, .detailsBottom, .title
         z-index: 84
         .date, .location, .comments, .sharing
+          +transparent-dark(50)
           +round(12)
           +center
           +font(11)
           color: #fff
           margin: 4px
           padding: 4px 8px
-          background: rgba(0,0,0,0.50)
 
-        .date, .comments
-          +left
-
-        .location, .sharing
-          +right
 
       .detailsTop
         +absolute
         +hidden
         width: 200px
         z-index: 100
+        table
+          border-collapse: separate
+          border-spacing: 4px
         .date
           +overflow
-          max-width: 60px
           white-space: nowrap
 
       .detailsBottom
@@ -78,6 +76,7 @@
         width: 100%
 
         .comments
+          +left
           +hidden
           &.new
             background: rgba(255,0,0,0.80)
@@ -85,6 +84,7 @@
           img
             margin: 0 2px -5px 0
         .sharing
+          +right
           +hidden
           img
             margin: -1px 0 -4px 2px
@@ -94,20 +94,23 @@
         +hidden
         +center
         +font(21)
-        width: 97%
         top: 90px
         line-height: 21px
+        width: 192px
 
       .tags
         +absolute
         z-index: 20
         bottom: 6px
         padding: 0 16px
+        max-height: 180px
 
 // COLORS
 .light
   #entryField, #home
     .matrix
+      .thumb-2d
+        background-color: #fff !important
       .fadedBack
         background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
       .thumb-2d:hover
@@ -115,6 +118,8 @@
 .dark
   #entryField, #home
     .matrix
+      .thumb-2d
+        background-color: #3a3a3a !important
       .fadedBack
         background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
       .thumb-2d:hover

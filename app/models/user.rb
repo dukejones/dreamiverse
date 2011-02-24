@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :followers, :through => :followings, :source => :user
   
   belongs_to :default_location, :class_name => "Where"
+  has_and_belongs_to_many :wheres
 
   belongs_to :image
   

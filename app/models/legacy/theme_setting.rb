@@ -12,7 +12,7 @@ class Legacy::ThemeSetting < Legacy::Base
   end
   
   def image_id
-    # oh shit.
+    
   end
   
   def viewable_id

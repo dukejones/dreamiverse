@@ -19,6 +19,5 @@ if Image.where(:title => "Default Avatar").count == 0
     :artist => "Andrew Jones",
     :incoming_filename => avatar_filename
   })
-  avatar_file = open("#{Rails.root}/db/#{avatar_filename}", "rb")
-  default_avatar_image.write( avatar_file.read )
+  default_avatar_image.import_from_file "#{Rails.root}/db/#{avatar_filename}"
 end

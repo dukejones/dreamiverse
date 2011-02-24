@@ -2,7 +2,7 @@ class User::SessionsController < ApplicationController
   def new
     redirect_to :root and return if current_user
     
-    render "users/new_session"
+    render "users/login"
   end
 
   def create

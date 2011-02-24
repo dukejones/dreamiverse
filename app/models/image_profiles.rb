@@ -21,20 +21,21 @@ module ImageProfiles
     [:medium, :header, :stream_header, :dreamfield_header, :thumb, :avatar_main, :avatar_medium, :avatar]
   end
 
-  def generate_profile(profile, size=nil, opts={})
+  def generate_profile(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
-    opts.merge!(:size => size) if size
-    self.send(profile.to_sym, opts)
+    raise "Ridiculous resize requested" if options[:size].to_i > 12000
+
+    self.send(profile.to_sym, options)
   end
 
-  def profile?(profile, size=nil)
+  def profile?(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile)
 
-    File.exists?(path(profile, size))
+    File.exists?(path(profile, options))
   end
   
   def profile_magick_image(profile, size=nil, opts={})
-    generate_profile(profile, size, opts) unless profile?(profile, size)
+    generate_profile(profile, size, opts) unless profile?(profile, :size => size)
     magick_image(profile, size)
   end
   
@@ -87,7 +88,7 @@ module ImageProfiles
     end
     img.crop "#{size}x#{size}#{offset}"
     # img.repage
-    img.write(path('thumb', size))
+    img.write(path('thumb', options))
   end
   
   def avatar_main(options)
@@ -123,6 +124,6 @@ module ImageProfiles
       # avatar_main is 200x266, so shave bottom 66 px
       img.crop "200x200+0+20"
     end
-    img.write(path(:avatar, size))
+    img.write(path(:avatar, options))
   end
 end

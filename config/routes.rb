@@ -17,12 +17,17 @@ Dreamcatcher::Application.routes.draw do
   post 'login' => 'user/sessions#create', :as => :login
   get  'login' => 'user/sessions#new', :as => :login
   match 'logout' => 'user/sessions#destroy', :as => :logout
+  match 'join' => 'user/registrations#new', :as => :join
+  match 'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
+
 
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
   # Universal
   match 'dreamstars' => 'users#index', :as => :dreamstars
   match 'dreamstream' => 'entries#stream', :as => :stream
+  match 'faq' => 'application#faq', :as => :faq
+  match 'feedback' => 'application#feedback', :as => :feedback
 
   # Resources
 

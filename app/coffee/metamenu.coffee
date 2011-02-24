@@ -129,8 +129,6 @@ class AppearancePanel extends MetaMenu
         bedsheetUrl = 'url("/images/uploads/originals/' + $(event.currentTarget).data('id') + '.jpg")'
         $('#body').css('background-image', bedsheetUrl)
         
-        alert $('#entry_view_preference_image_id').attr('name')?
-        
         if $('#entry_view_preference_image_id').attr('name')?
           @updateEntryBedsheet($(event.currentTarget).data('id'))
         else
@@ -159,6 +157,9 @@ class SettingsPanel extends MetaMenu
   constructor: (@name)->
     super(@name)
     
+    # Only runs the initial dropdown change() listener after the first call
+    @firstRun = true
+    
     @$defaultSharingSelect = @$currentMenuPanel.find('.sharingList')
     @$defaultSharing = @$currentMenuPanel.find('.sharingList').val()
     @$authorizeAllFollows = @$currentMenuPanel.find('.authFollow').is(':checked')
@@ -184,12 +185,16 @@ class SettingsPanel extends MetaMenu
     )
     
     # setup default sharing dropdown change
-    $('#sharingList').change( (event) ->
-      switch $(this).find('option:selected').text()
+    $('#sharingList').change( (event) =>
+      switch $(event.currentTarget).find('option:selected').text()
         when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
         when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
         when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/mask-16.png')
         when "Private" then $('.sharingIcon').attr('src', '/images/icons/lock-16.png')
+      
+      if !@firstRun
+        @updateDefaultSharing($(event.currentTarget).find('option:selected').text())
+      @firstRun = false
     )
     
     # setup change password fields
@@ -205,4 +210,23 @@ class SettingsPanel extends MetaMenu
     #setup Default Sharing dropdown
     @$defaultSharingSelect.val(@$currentMenuPanel.find('.defaultSharing').data('id'))
     $('#sharingList').change()
-  
+    
+  updateDefaultSharing: (newSharingLevel) ->
+    
+    switch newSharingLevel
+        when "Everyone" then sharingLevel = 500
+        when "Friends only" then sharingLevel = 200
+        when "Anonymous" then sharingLevel = 50
+        when "Private" then sharingLevel = 0
+        
+    alert typeof sharingLevel  
+    
+    $.ajax {
+      type: 'PUT'
+      url: '/user.json'
+      dataType: 'json'
+      data:
+        "user[default_sharing_level]": parseInt(sharingLevel)
+      success: (data, status, xhr) =>
+        alert 'updated default sharing level!'
+    }

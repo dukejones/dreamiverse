@@ -1,0 +1,18 @@
+#loginPage
+
+  .navigation
+    %a.button.selected{href: login_path}
+      login
+    %a.button{href: join_path}
+      join now
+    %a.button{href: forgot_password_path}
+      forgot password
+    .clear
+
+  %br
+
+  .login
+    = form_for('user', {url: user_session_path}) do |f|
+      = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
+      = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
+      %input.prompt{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}

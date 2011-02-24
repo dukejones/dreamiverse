@@ -25,7 +25,6 @@
     .item
       +pointer
       +block
-      +bold
       +left
       +font(15)
       +round(8)
@@ -60,6 +59,7 @@
   .rightPanel
     +bevel-light
     +round(16)
+    +glow-light(20)
     +flat-top
     +absolute
     right: 20px
@@ -73,10 +73,13 @@
       +round(12)
       &:hover
         +glow-light(8)
+      .hoverLabel
+        top: 56px !important
 
     .loginItem, .login, .joinToggle
       +right
       +center
+      +user-select
       width: 16px
       height: 28px
       line-height: 28px
@@ -141,6 +144,8 @@
 
       span
         +font(11)
+        +user-select
+        +cursor
         margin-left: 4px
       .login-input, #loginButton
         +clear
@@ -164,6 +169,7 @@
         +font(14)
         +button-light
         +round(4)
+        +user-select
         margin: 4px 0 6px
         width: 150px
         margin: auto
@@ -180,6 +186,7 @@
         +round(4)
         +center
         +font(10)
+        +user-select
         margin: 0 4px 4px
         padding: 0 4px
         height: 16px

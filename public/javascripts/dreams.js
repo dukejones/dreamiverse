@@ -304,6 +304,13 @@ function setupEvents(){
   $('.linkAdd').click(function() {
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
+  
+  // Remove link listener
+  $('.removeicon').live("click", function(){
+    $(this).parent().fadeOut('fast', function(){
+      $(this).remove();
+    });
+  })
 
   
   setupImageButtons();
@@ -375,14 +382,6 @@ function addLink(newText){
       break;
       
   }
-  
-  $('.removeicon').click(function(){
-    $(this).parent().fadeOut('fast', function(){
-      $(this).remove();
-    });
-  })
-
-  
 }
 
 function showYoutubeData(newText){

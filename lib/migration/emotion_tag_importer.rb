@@ -5,14 +5,14 @@ class Migration::EmotionTagImporter < Migration::Importer
   
   def migrate
     
-    if Tag.where(noun_id: @entity_to_migrate.noun_id, noun_type: 'Emotion', 
-      entry_id: @entity_to_migrate.entry_id).count >= 1
+    if tag = Tag.where(noun_id: @entity_to_migrate.noun_id, noun_type: 'Emotion', 
+      entry_id: @entity_to_migrate.entry_id).first
       
-      break
+      puts "Duplicate tag!! #{@entity_to_migrate.inspect}"
+      tag
     else
       super
     end
-    
   end
   
   def self.migrate_all

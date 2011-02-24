@@ -1,0 +1,23 @@
+/ NEW LOGIN SPLASH
+#welcomePanel
+  .image
+
+  %p.dream-message <span>welcome</span> to the dream field, where you store and share your dreams
+  %p.stream-message <span>welcome</span> to the dream stream, where you view your friends' dreams
+
+  .getStartedButtons
+    %a.button{href: new_entry_path}
+      %img.dream{src: '/images/icons/dream-32-selected.png'}
+      <span class="green">+</span> add your first dream
+    .button{onclick: "toggleAppearance()"}
+      %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
+      set your default theme
+    .button.profile{onclick: "window.contextController.toggleProfile()"}
+      %span &lsaquo;
+      customize your profile
+    %a.button.dreamButton{href: user_entries_path(@user.username)}
+      %img.dreamfield{src: '/images/icons/dream-32.png'}
+      view your dream field
+    %a.button{href: "/dreamstars"}
+      %img.starlight{src: '/images/icons/starlight-22.png'}
+      find other dreamers

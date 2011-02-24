@@ -1,3 +1,5 @@
+= coffeescript_include_tag 'loginpanel'
+  
 #metaMenu.public
 
   .notice= notice
@@ -6,9 +8,9 @@
   .leftPanel
     %a.item{href: '#'}
       intro
-    %a.item{href: '#'}
+    %a.item{href: faq_path}
       faq
-    %a.item{href: '#'}
+    %a.item{href: feedback_path}
       feedback
     / %form
     /   %input{type: 'text', name: 'search' }
@@ -31,7 +33,7 @@
     / LOGIN PANEL
     .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
-        %a.forgot{href: '#'} Forgot password
+        %a.forgot{href: forgot_password_path} Forgot password
         %label.stay
           Stay logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
@@ -59,4 +61,4 @@
 
         / SIGN UP BUTTON
         .signupWrap
-          %input.signup{type: 'submit', name: 'signup', value: 'sign up &rsaquo;'}
+          %input.signup{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}

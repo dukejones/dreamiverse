@@ -2,20 +2,28 @@ class EntriesController < ApplicationController
   before_filter :require_user, :except => [:stream, :show]
   before_filter :query_username, :except => [:stream]
 
+  def entry_list
+    @entries = @user.entries.order('created_at DESC')
+    @entries = @entries.where(type: session[:filter_entry_type]) if session[:filter_entry_type]
+    @entries = @entries.select {|e| current_user.can_access?(e) } # TODO: Write a custom finder for this SLOW method!
+  end
+  
   def index
     redirect_to(user_entries_path(@user.username)) unless params[:username]
-
-    # TODO: Write a custom finder for this SLOW method!
-    @entries = @user.entries.order('created_at DESC')
-    @entries = @entries.where(type: params[:type]) if params[:type]
-    @entries = @entries.select {|e| current_user.can_access?(e) }
+    session[:filter_entry_type] = params[:type] ? params[:type] : nil
+    entry_list
 
     @user.starlight.add( 1 ) if unique_hit?
 
   end
 
   def show
-    @entry = Entry.find params[:id]
+    entry_list # i don't love having to generate the whole list here.
+    i = @entries.map(&:id).index( params[:id].to_i )
+    @previous = @entries[i-1]
+    @next = @entries[i+1] || @entries[0]
+    @entry = @entries[i]
+    # @entry = Entry.find params[:id]
     deny and return unless user_can_access?
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
@@ -83,7 +91,7 @@ class EntriesController < ApplicationController
       @entries = @entries.scoped.order('updated_at DESC')
     end
     # Type: visions,  dreams,  experiences
-    if params[:type_filter]
+    unless params[:type_filter].blank?
       @entries = @entries.where(type: params[:type_filter])
     end
     # friends, or following
@@ -98,10 +106,11 @@ class EntriesController < ApplicationController
     @entries = @entries.limit(50)
     @entries = @entries.offset(50 * params[:page]) if params[:page]
     
-    
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
+      
+      
       render :text => thumbs_html
     end
   end

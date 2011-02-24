@@ -45,9 +45,8 @@
 
     .item
       +block
-      +bold
       +left
-      +font(15)
+      +font(16)
       +pointer
       +round(8)
       +user-select
@@ -55,7 +54,7 @@
       margin: 0 2px
       height: 26px
       line-height: 26px
-      color: #000
+      color: #333
       border: #ccc 1px solid
       display: inline-block
       text-decoration: none
@@ -70,6 +69,11 @@
       background: #000
 
   .leftPanel
+    +absolute
+    left: 248px
+
+    a img
+      margin: 3px 1px -2px
     .input
       +block
       +font(12)
@@ -78,11 +82,6 @@
       margin: 0 2px
       height: 22px
 
-
-
-  .leftPanel
-    +absolute
-    left: 248px
 
   .rightPanel
     +relative
@@ -97,6 +96,8 @@
       +round(8)
       +center
       +user-select
+      +bold
+      +font(16)
       min-width: 80px
       margin: 0 2px -2px
       border: 1px solid #999

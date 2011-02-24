@@ -21,7 +21,7 @@
 
     .network.wrapper
       %img{src: '/images/icons/facebook-16.png'}
-      %h2 Facebook
+      %h2 Facebook login
       .linkAccount.trigger.showhide
         Link account
       %label.target.showhide.hidden
@@ -381,8 +381,8 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      =form_for current_user, :remote => true, :html => {:id => 'change_password'} do |f|
-        = f.text_field(:password, {placeholder: 'Current password'})
+      =form_for :user, :remote => true, :html => {:id => 'change_password'} do |f|
+        = f.password_field(:password, {placeholder: 'Current password'})
         = f.password_field(:password_confirmation, {placeholder: 'New password'})
         = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 

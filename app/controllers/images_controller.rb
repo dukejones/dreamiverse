@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :only => :manage
 
   # GET /images
   # GET /images.json
@@ -97,16 +97,20 @@ class ImagesController < ApplicationController
       uploaded_by: current_user
     }))
 
-    respond_to do |format|
-      if !@image.save
+    if !@image.save
+      respond_to do |format|
         format.html { render :action => "new", :alert => "Could not upload the file." }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      else
-        @image.write(request.body.read)
+      end
+    else
+      @image.write(request.body.read)
+      respond_to do |format|
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-        thumb_size = '120x120'
-        @image.resize(thumb_size)
-        format.json  { render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created }
+        format.json  { 
+          thumb_size = '120x120'
+          @image.resize(thumb_size)
+          render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
+        }
       end
     end
   rescue => e
@@ -159,17 +163,32 @@ class ImagesController < ApplicationController
     end
   end
 
-  # this method is called when a url for a size image that has not yet been generated is requested.
-  # it responds with a redirect
+  # This method is called when a url for a size image that has not yet been generated is requested.
+  # It responds with a redirect.
   # We should find a way to show a nice spinner while it is redirecting.
-  # this may be a prime place for optimization.
+  # This may be a prime place for optimization.
   def resize
+    detect_infinite_redirect or return
+    
     image = Image.find params[:id]
-    image.generate params[:descriptor], params[:size]
+    image.generate(params[:descriptor], :size => params[:size])
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
-    redirect_to image.url(params[:descriptor], params[:size])
+    redirect_to image.url(params[:descriptor], :size => params[:size])
   # rescue => e
   #   Rails.logger.error "Error in Realtime Resize: #{e}"
   #   render_404
+  end
+  
+private
+  def detect_infinite_redirect
+    (session[:resize_queries] ||= {})[request.path] ||= 0
+
+    if (session[:resize_queries][request.path] += 1) > 5
+      render :text => "Error in Realtime Resize."
+      Rails.logger.error "Error in Realtime Resize: #{request.url} with params #{params}"
+      false
+    else
+      true
+    end
   end
 end
