@@ -14,11 +14,20 @@
   / TAG ENTRY & STREAM
 
   / DREAM MATRIX
-  .matrix
+  .matrix.stream
 
     / ENTRY THUMBS 1D
     - @entries.each do |entry|
       = render :partial => 'thumb_1d', :locals => {:entry => entry}
+
+
+    - if (@user == current_user) && @entries.empty?
+      / NEW LOGIN SPLASH
+      = render :partial => "new_login", :locals => {:user => @user}
+
+    - elsif @entries.empty?
+      / NO DREAMS TO DISPLAY
+      .noEntrys there are no public entries to display
 
       / NO ENTRY TO DISPLAY
       - if @entries.empty?

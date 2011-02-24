@@ -311,16 +311,20 @@ abbr, acronym
   +font(18)
   top: 120px
   width: 100%
+
   .login, .join, .forgot
-    +round(16)
+    +round(12)
     +shine-light-alpha(16)
+    +user-select
+    +cursor
     padding: 8px
     +clear
     width: 300px
     margin: auto
+
     input
       +input-light(small)
-      +round(12)
+      +round(8)
       margin-bottom: 4px
       +font(18)
       padding: 8px
@@ -339,34 +343,39 @@ abbr, acronym
           text-decoration: underline
 
     .prompt
-      +button-light
-      +shine-light(22)
+      +button-dark
+      +shine-dark(22)
       +confirm(22)
       +font(21)
+      +bold
+      color: #fff
       margin-top: 8px
       width: 100%
       padding: 8px
 
   .navigation
-    +round(16)
-    +shine-dark-alpha(16)
+    +round(12)
+    +shine-dark-alpha(24)
+    +border-dark
+    +user-select
     padding: 8px
-    width: 300px
+    width: 304px
     margin: auto
     .button
-      +button-light
-      +bevel-light
-      +round(12)
+      +button-dark
+      +transparent-light(10)
+      +round(6)
       +cancel(16)
       +left
       +bold
+      color: #ccc
       padding: 4px 8px
       margin: 4px
       &.selected
-        +shine-dark-alpha(16)
+        +shine-dark-alpha(12)
         +button-dark
         +cancel(16)
-        color: #ccc
+        color: #fff
 
 
 

@@ -1,5 +1,7 @@
 - content_for :head do
   = sass_link_tag 'feedback'
+- content_for :foot do
+  = javascript_include_tag 'feedback'
 
 / FEEDBACK PAGE
 #feedbackPage
@@ -10,27 +12,22 @@
     #feedbackWrap
       .feedback
 
-        %select.type
-          %option Type of feedback...
-          %option Report a bug
-          %option I have an idea...
+        %select#type
+          %option{value: "none"} Type of feedback...
+          %option{value: "bug"} Report a bug
+          %option{value: "idea"} I have an idea...
 
-        %select.bug.hidden
-          %option Type of bug
-          %option My data didn't save...
-          %option My browser crashed when I was...
-          %option This feature is confusing...
-          %option Other...
+        #bugType.hidden
+          %select#bugOptions
+            %option{value: "none"} Type of bug
+            %option{value: "data not saving"} My data didn't save...
+            %option{value: "browser crash"} My browser crashed when I was...
+            %option{value: "confusing feature"} This feature is confusing...
+            %option{value: "other"} Other...
 
-        .details.hidden
-          %textarea
+        #details.hidden
+          %textarea#detailsForm
 
-      .sendPanel.hidden
+      #submitButton.hidden
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
-
-
-
-
-
-      

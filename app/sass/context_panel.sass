@@ -151,12 +151,15 @@
       .name
         +font(21)
         +center
+        +pointer
         margin: 0 4px 4px
         padding: 2px 8px
 
       .location
         +font(12)
         +center
+        +user-select
+        +pointer
 
       .details
         +overflow
@@ -164,6 +167,7 @@
         hr
           +alpha(30)
         .website, .email, .phone, .skype
+          +block
           +font(14)
           padding: 0 8px 2px
         .skype
@@ -395,6 +399,7 @@
 
       // VIEW PROFILE
       .view, .edit
+        +button-light
         +transparent-light(50)
 
         .details
@@ -469,6 +474,9 @@
       // VIEW PROFILE
       .view, .edit
         +transparent-light(30)
+        border: 1px solid transparent
+        &:hover
+          border: 1px solid #999
 
         .details
           .website, .email, .phone, .skype

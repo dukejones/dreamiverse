@@ -48,12 +48,12 @@
   .profile
 
     .view
-      .name.hidden= user.name
-      .location San Francisco, USA
+      .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
+      .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
         - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
-          .website= user.link
+          %a.website{href: user.link}= user.link
         - if current_user.relationship_with(user) == :friends || user == current_user
           .email= user.email
           .phone= user.phone
