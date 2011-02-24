@@ -89,7 +89,7 @@ class Image < ActiveRecord::Base
 
   # Generates the crops and resizes necessary for the requested profile.
   def generate(descriptor, options={})
-    if size.nil? && descriptor =~ /\d+x\d+/
+    if descriptor =~ /\d+x\d+/
       resize(descriptor)
     else
       generate_profile(descriptor, options)
@@ -116,11 +116,11 @@ class Image < ActiveRecord::Base
     "/#{path}/#{filename(descriptor, options)}"
   end
   
-  def filename(descriptor=nil, options)
+  def filename(descriptor=nil, options={})
     fname = "#{id}"
     fname += "-#{descriptor}" if descriptor
     fname += "-#{options[:size]}" if options[:size]
-    "#{fname}.#{format}"
+    "#{fname}.#{options[:format] ? options[:format] : format}"
   end
   
   def magick_image(descriptor=nil, options={})
