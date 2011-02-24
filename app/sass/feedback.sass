@@ -27,6 +27,7 @@
           +round(12)
           +bold
           +font(21)
+          +pointer
           width: 100%
           height: 44px
           padding: 8px 8px 4px
@@ -35,19 +36,19 @@
           option
             padding: 4px 8px
 
-        .details
+        #details textarea
           +round(12)
+          +font(16)
           margin: 0 0 8px
           padding: 12px
+          +transparent
+          +overflow
+          border: none
+          height: 100px
+          width: 620px
+          font-family: Calibri, Arial, Helvetica, sans-serif
 
-          textarea
-            +transparent
-            +overflow
-            border: none
-            height: 100px
-            width: 100%
-
-      .sendPanel
+      #submitButton
         +round(16)
         margin: 8px 0 0
         padding: 8px
@@ -82,16 +83,18 @@
           select
             +input-light(small)
 
-          .details
+          #details textarea
             +input-light(small)
 
-        .sendPanel
+        #submitButton
           +shine-light(20)
 
           .sendWrap
-            +indent-light
+            +inner-shadow(10)
+            +flat-light-medium
 
             input
+              +button-light
               +save(20)
               +shine-light(20)
 
@@ -110,19 +113,19 @@
           select
             +input-dark(small)
 
-          .details
+          #details textarea
             +input-dark(small)
+            color: #ddd
 
-            textarea
-              color: #ddd
-
-        .sendPanel
+        #submitButton
           +shine-dark(20)
 
           .sendWrap
-            +indent-dark
+            +inner-shadow(10)
+            +flat-dark-medium
 
             input
+              +button-dark
               +save(20)
               +shine-dark(20)
 

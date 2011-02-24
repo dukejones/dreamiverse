@@ -1,10 +1,6 @@
 
-document.getElementById('userAgent').setAttribute('value', navigator.userAgent );
 document.getElementById('type').focus();
 window.onload = function() {
-  if (document.getElementById('feedbackButton') != null) {
-    addClass('feedbackButton','sub_menu-item-on');
-  };
   var feedbackType = document.getElementById('type');
   var bugOptions = document.getElementById('bugOptions');
   feedbackType.onchange = function () {
