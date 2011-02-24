@@ -635,7 +635,7 @@
     +cursor
     margin: 10px
 
-  p.text
+  p
     +cursor
     +font(16)
     margin: 10px 0
@@ -670,25 +670,45 @@
         margin: 2px 2px -8px 0
 
       &.profile span
-        +block
         +left
         +alpha(30)
         margin-left: 26px
         +font(36)
         +bold
-      &.dreamfield
-        +hidden
+
+      .dreamfield
+        +alpha(80)
+        margin: 4px 2px -10px
 
       .starlight
         margin: 4px 14px -6px -4px
 
 // DREAM STREAM VERSION
+.matrix
+  #welcomePanel
+    .dream-message
+      display: block !important
+    .stream-message
+      display: none !important
+
+    .getStartedButtons
+      .button.profile
+        display: block !important
+      .button.dreamButton
+        display: none !important
+
 .matrix.stream
-  #welcomePage
-    .button.profile
-      +hidden
-    .button.dreamfield
-      +block
+  #welcomePanel
+    .dream-message
+      display: none !important
+    .stream-message
+      display: block !important
+
+    .getStartedButtons
+      .button.profile
+        display: none
+      .button.dreamButton
+        display: block !important
 
 
 // NEW LOGIN SPLASH
