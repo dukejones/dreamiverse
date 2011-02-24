@@ -119,7 +119,7 @@ class Image < ActiveRecord::Base
   def filename(descriptor=nil, options)
     fname = "#{id}"
     fname += "-#{descriptor}" if descriptor
-    fname += "-#{size}" if options[:size]
+    fname += "-#{options[:size]}" if options[:size]
     "#{fname}.#{format}"
   end
   
