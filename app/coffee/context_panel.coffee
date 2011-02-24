@@ -1,7 +1,7 @@
-contextController = null
+window.contextController = null
 
 $(document).ready ->
-  contextController = new ContextController('#contextPanel')
+  window.contextController = new ContextController('#contextPanel')
 
 class ContextController
   constructor: (containerSelector) ->
@@ -18,6 +18,7 @@ class ContextController
     $(containerSelector).find('.context').click (event) =>
       @toggleProfile()
     
+    # why isnt this working?
     $.subscribe 'profile:expand', (data)=>
       @toggleProfile()
     
