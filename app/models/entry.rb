@@ -42,12 +42,9 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
-<<<<<<< HEAD
-  before_update :delete_auto_tags  
+  before_update :delete_links, :delete_auto_tags
   after_save :process_all_tags 
-=======
-  before_update :delete_links
->>>>>>> master
+
 
   scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
   
