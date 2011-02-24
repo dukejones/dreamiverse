@@ -45,7 +45,7 @@
         = form_tag :user, {method: :put, remote: true, id: 'locationForm', class: 'locationForm'} do
           #locationList.locationList
             - current_user.wheres.each do |where|
-              = render :partial => "location", :locals => {:where => @where}
+            = render :partial => "location", :locals => {:where => @where}
 
           %label.autoLocate
             auto locate
