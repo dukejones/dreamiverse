@@ -45,13 +45,7 @@
         = form_tag :user, {method: :put, remote: true, id: 'locationForm', class: 'locationForm'} do
           #locationList.locationList
             - current_user.wheres.each do |where|
-              .location
-                %label
-                  set as default
-                  -# Might be easier to use radio_button_tag or radio_button_for here.
-                  %input{name: 'user[default_location_id]', value: where.id, type: 'radio', selected: (current_user.default_location_id==where.id)}
-                .edit
-                = where.name
+              = render :partial => "location", :locals => {:where => @where}
 
           %label.autoLocate
             auto locate
@@ -352,14 +346,15 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :remote => true do |f|
-        = f.password_field(:password, {placeholder: 'Current password'})
-        = f.password_field(:password_confirmation, {placeholder: 'New password'})
-        = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
+      = form_tag :user, :remote => true do
+        = fields_for current_user do |f|
+          = f.password_field(:password, {placeholder: 'Current password'})
+          = f.password_field(:password_confirmation, {placeholder: 'New password'})
+          = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 
-        .cancel cancel
-        = f.submit :'change password', :class => 'confirm'
-        .clear
+          .cancel cancel
+          = f.submit :'change password', :class => 'confirm'
+          .clear
 
 
   /
