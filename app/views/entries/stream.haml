@@ -26,9 +26,6 @@
       = render :partial => "new_login", :locals => {:user => @user}
 
     - elsif @entries.empty?
-      / NO DREAMS TO DISPLAY
+      / NO ENTRIES TO DISPLAY
       .noEntrys there are no public entries to display
 
-      / NO ENTRY TO DISPLAY
-      - if @entries.empty?
-        .noEntries there are no public dreams to display
