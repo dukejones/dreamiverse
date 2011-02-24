@@ -19,12 +19,4 @@ class HomeController < ApplicationController
     render :json => {:title => @title}
   end
 
-  def faq
-    render "home/faq"
-  end
-
-  def feedback
-    render "home/feedback"
-  end
-
 end
