@@ -55,7 +55,7 @@
         
         .haveSeedcode enter a seed code &raquo;
         .seedcodeExpander.hidden
-          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
+          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :placeholder => "seed code", :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
         / SIGN UP BUTTON
         .signupWrap

@@ -38,13 +38,9 @@ class Legacy::Image < Legacy::Base
     end
   end
   
-  attr_accessor :bedsheet
-  
   def section
     if avatar?
       "Avatar"
-    elsif bedsheet
-      "Bedsheets"
     else
       "Library"
     end
