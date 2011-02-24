@@ -15,7 +15,7 @@ class ContextController
     @$container.find('.cancel').click (event) =>
       @contextView.showProfile()
     
-    $(containerSelector).find('.context').click (event) =>
+    $(containerSelector).find('.context, .profile').click (event) =>
       if @contextView.profileState() is 'none'
         @contextView.expandProfile()
       else
