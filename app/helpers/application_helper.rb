@@ -63,7 +63,7 @@ module ApplicationHelper
     bedsheet_url ||= @entry._?.view_preference._?.image._?.url
     # if user has a view preference, use user's bedsheet
     bedsheet_url ||= current_user._?.view_preference._?.image._?.url
-    bedsheet_url ||= "/images/bedsheets/air-03.jpg"
+    bedsheet_url ||= "/images/bedsheets/dreamstars-aurora-hi.jpg"
 
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
   end

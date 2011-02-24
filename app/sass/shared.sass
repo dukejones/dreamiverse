@@ -311,13 +311,17 @@ abbr, acronym
   +font(18)
   top: 120px
   width: 100%
+
   .login, .join, .forgot
     +round(12)
     +shine-light-alpha(16)
+    +user-select
+    +cursor
     padding: 8px
     +clear
     width: 300px
     margin: auto
+
     input
       +input-light(small)
       +round(8)
@@ -353,6 +357,7 @@ abbr, acronym
     +round(12)
     +shine-dark-alpha(24)
     +border-dark
+    +user-select
     padding: 8px
     width: 304px
     margin: auto
@@ -363,14 +368,14 @@ abbr, acronym
       +cancel(16)
       +left
       +bold
-      color: #999
+      color: #ccc
       padding: 4px 8px
       margin: 4px
       &.selected
         +shine-dark-alpha(12)
         +button-dark
         +cancel(16)
-        color: #ccc
+        color: #fff
 
 
 
