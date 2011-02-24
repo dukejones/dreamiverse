@@ -352,14 +352,15 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :remote => true do |f|
-        = f.password_field(:password, {placeholder: 'Current password'})
-        = f.password_field(:password_confirmation, {placeholder: 'New password'})
-        = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
+      = form_tag :user, :remote => true do
+        = fields_for current_user do |f|
+          = f.password_field(:password, {placeholder: 'Current password'})
+          = f.password_field(:password_confirmation, {placeholder: 'New password'})
+          = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 
-        .cancel cancel
-        = f.submit :'change password', :class => 'confirm'
-        .clear
+          .cancel cancel
+          = f.submit :'change password', :class => 'confirm'
+          .clear
 
 
   /
