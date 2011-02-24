@@ -11,11 +11,19 @@ class ApplicationController < ActionController::Base
   def add_starlight(entity, amt)
     Starlight.add(entity, amt)
   end
-  
+
   def unique_hit?
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
-  
+
+  def faq
+    render "home/faq"
+  end
+
+  def feedback
+    render "home/feedback"
+  end
+
 protected
   def set_current_user(user)
     session[:user_id] = user ? user.id : nil

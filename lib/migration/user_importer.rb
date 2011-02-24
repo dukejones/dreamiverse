@@ -7,6 +7,7 @@ class Migration::UserImporter < Migration::Importer
     theme_setting = @entity_to_migrate.default_theme_setting
     if theme_setting
       # import the image : bedsheetPath
+      
       @migrated_entity.view_preference_attributes = {
         theme: theme_setting.theme,
         bedsheet_attachment: theme_setting.scroll

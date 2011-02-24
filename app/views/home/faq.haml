@@ -1,6 +1,10 @@
 - content_for :head do
+<<<<<<< HEAD
   = sass_link_tag 'faq', 'shared'
   = coffeescript_include_tag 'loginpanel'
+=======
+  = sass_link_tag 'faq'
+>>>>>>> 21f77f40463346a2d02aa734ef5bfc260e26d083
 
 
 / FAQ PAGE
@@ -9,68 +13,64 @@
   %img.logo{src: '/images/logos/header-FAQ.png', width: '256', height: '96'}
 
   .askWrap
-    .ask Ask a question...
-
-  .wrapper
-    .faq
-
-      .questionWrap
-        .question.trigger.slide I can't remember my dreams. How do I increase my dream recall?
-        .answer.target.slide.hidden
-          <p>The best way to increase your dream recall is to keep a Dream Journal..</p>
-          <p>When you wake up, try to make it a habit to think back on your dreams. If you wake up and immediately start thinking about the day ahead, the memories of your dreams will often be gone forever by the time you think to try remembering them. For most lucid dreamers, keeping a dream journal is the best and easiest way to help recall.</p>
-
-          <p>No matter how clear your dreams may seem upon waking during the night, you'll have almost completely forgotten the previous ones when you again wake in the morning. A dream journal is the most common way of recording one's dreams. Upon waking, don't allow your mind to drift - immediately attempt to focus on what you had just been dreaming, and write it down in the journal. Contemplate what you just experienced and attempt to put events in order. Often reliving the dream backwards will help: after remembering an event, ask yourself, "What was I doing before that?" Although it's best to record as much as you can, realistically you may not want to reiterate the epic novel that is your dream at 4:00 a.m.; instead write down key points, such as what you were doing, where you were, and who was around you.</p>
-          %a.credit{href: 'http://www.dreamviews.com/section/dream-recall-10/', target: 'blank'} - Dreamviews.com : Dream Recall
-
-      .questionWrap
-        .question.trigger.slide What can I share?
-        .answer.target.slide.hidden
-          <p>Dreamcatcher is a blogosphere with a focus on sharing dreams and experiences. Feel free to share anything, after all - Life is a dream.</p>
-
-      .questionWrap
-        .question.trigger.slide What is a "Seed Code" and why do I need one?
-        .answer.target.slide.hidden
-          <p>Seed Codes are created for pre-existing events, communities and interest groups.</p>
-          <p>This works like a public access password which gives you access to Dreamcatcher. Once you have a seed code you can give it to your friends, share it - spread it around.</p>
-
-      .questionWrap
-        .question.trigger.slide What is "Lucid Dreaming"?
-        .answer.target.slide.hidden
-          <p>A lucid dream, in simplest terms, is a dream in which one is aware that one is dreaming. Lucid dreaming has been researched scientifically, and its existence is well established.</p>
-          %a.credit{href: 'http://en.wikipedia.org/wiki/Lucid_dream', target: 'blank'} - Wikipedia: Lucid Dreaming
-          <p><b>How to cultivate lucid dreaming:</b></p>
-          %a.link{href: 'http://www.lucidity.com/LucidDreamingFAQ2.html', target: 'blank'} The Lucidity Institute: Lucid Dreaming
-          <p><b>Articles about Lucid Dreaming:</b></p>
-          %a.link{href: 'http://www.realitysandwich.com/lucid_dreaming_shamanic_consciousness', target: 'blank'} Reality Sandwich: Lucid Dreaming as Shamanic Consciousness
-
-      .questionWrap
-        .question.trigger.slide What is the plan for Dreamcatcher?
-        .answer.target.slide.hidden
-          <p>Our core mission is to build tools which which connect the world through the sharing of dreams and experiences.</p>
-          <p>We are currently in the Theta phase launch of the Dreamcatcher communications platform. Next phases: In the coming months we will progressively launch Delta and Beta versions of Dreamcatcher, with ever-increasing functionality.</p>
-
-          .features
-            %p.phase <b>Theta</b> - Current development phase features:
-            %ul
-              %li Browse and search dream database
-              %li Real-time status updates integrated with Facebook and Twitter
-              %li Friends Dream Feed
-
-          .features
-            %p.phase <b>Delta</b> - Added features:
-            %ul
-              %li Full integration with Facebook
-              %li Advanced search and trending tools
-
-          .features
-            %p.phase <b>Beta</b> - Added features:
-            %ul
-              %li Full accessibility on iPhone, iPad, Blackberry, Android
-              %li Find related dreams
+    %a.ask{href: feedback_path} Ask a question...
 
 
+  .faq
 
+    .wrapper
+      .question.trigger.slide I can't remember my dreams. How do I increase my dream recall?
+      .answer.target.slide.hidden
+        <p>The best way to increase your dream recall is to keep a Dream Journal..</p>
+        <p>When you wake up, try to make it a habit to think back on your dreams. If you wake up and immediately start thinking about the day ahead, the memories of your dreams will often be gone forever by the time you think to try remembering them. For most lucid dreamers, keeping a dream journal is the best and easiest way to help recall.</p>
+        <p>No matter how clear your dreams may seem upon waking during the night, you'll have almost completely forgotten the previous ones when you again wake in the morning. A dream journal is the most common way of recording one's dreams. Upon waking, don't allow your mind to drift - immediately attempt to focus on what you had just been dreaming, and write it down in the journal. Contemplate what you just experienced and attempt to put events in order. Often reliving the dream backwards will help: after remembering an event, ask yourself, "What was I doing before that?" Although it's best to record as much as you can, realistically you may not want to reiterate the epic novel that is your dream at 4:00 a.m.; instead write down key points, such as what you were doing, where you were, and who was around you.</p>
+        %a.credit{href: 'http://www.dreamviews.com/section/dream-recall-10/', target: 'blank'} - Dreamviews.com : Dream Recall
+
+    .wrapper
+      .question.trigger.slide What can I share?
+      .answer.target.slide.hidden
+        <p>Dreamcatcher is a blogosphere with a focus on sharing dreams and experiences. Feel free to share anything, after all - Life is a dream.</p>
+
+    .wrapper
+      .question.trigger.slide What is a "Seed Code" and why do I need one?
+      .answer.target.slide.hidden
+        <p>Seed Codes are created for pre-existing events, communities and interest groups.</p>
+        <p>This works like a public access password which gives you access to Dreamcatcher. Once you have a seed code you can give it to your friends, share it - spread it around.</p>
+
+    .wrapper
+      .question.trigger.slide What is "Lucid Dreaming"?
+      .answer.target.slide.hidden
+        <p>A lucid dream, in simplest terms, is a dream in which one is aware that one is dreaming. Lucid dreaming has been researched scientifically, and its existence is well established.</p>
+        %a.credit{href: 'http://en.wikipedia.org/wiki/Lucid_dream', target: 'blank'} - Wikipedia: Lucid Dreaming
+        <p><b>How to cultivate lucid dreaming:</b></p>
+        %a.link{href: 'http://www.lucidity.com/LucidDreamingFAQ2.html', target: 'blank'} The Lucidity Institute: Lucid Dreaming
+        <p><b>Articles about Lucid Dreaming:</b></p>
+        %a.link{href: 'http://www.realitysandwich.com/lucid_dreaming_shamanic_consciousness', target: 'blank'} Reality Sandwich: Lucid Dreaming as Shamanic Consciousness
+
+    .wrapper
+      .question.trigger.slide What is the plan for Dreamcatcher?
+      .answer.target.slide.hidden
+        <p>Our core mission is to build tools which which connect the world through the sharing of dreams and experiences.</p>
+        <p>We are currently in the Theta phase launch of the Dreamcatcher communications platform. In the coming months we will progressively launch Delta and Beta versions of Dreamcatcher, with ever-increasing functionality.</p>
+
+        .features.current
+          %p.phase <b>Theta</b> - Current development phase features:
+          %ul
+            %li Browse and search dream database
+            %li Real-time status updates integrated with Facebook and Twitter
+            %li Friends Dream Feed
+
+        .features
+          %p.phase <b>Delta</b> - Added features:
+          %ul
+            %li Full integration with Facebook
+            %li Advanced search and trending tools
+
+        .features
+          %p.phase <b>Beta</b> - Added features:
+          %ul
+            %li Full accessibility on iPhone, iPad, Blackberry, Android
+            %li Find related dreams
 
 
 

@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-  before_filter :require_user
+  before_filter :require_user, :only => :manage
 
   # GET /images
   # GET /images.json
@@ -97,16 +97,20 @@ class ImagesController < ApplicationController
       uploaded_by: current_user
     }))
 
-    respond_to do |format|
-      if !@image.save
+    if !@image.save
+      respond_to do |format|
         format.html { render :action => "new", :alert => "Could not upload the file." }
         format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      else
-        @image.write(request.body.read)
+      end
+    else
+      @image.write(request.body.read)
+      respond_to do |format|
         format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
-        thumb_size = '120x120'
-        @image.resize(thumb_size)
-        format.json  { render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created }
+        format.json  { 
+          thumb_size = '120x120'
+          @image.resize(thumb_size)
+          render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
+        }
       end
     end
   rescue => e
