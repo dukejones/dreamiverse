@@ -171,11 +171,17 @@ class SettingsPanel extends MetaMenu
       $(event.currentTarget).parent().hide()
     )
     
-    # $('.modifyLocationView .save').click( (event) ->
-    #   $(event.currentTarget).parent().hide()
-    #   $(event.currentTarget).prev().show()
-    #   true
-    # )
+    $('form#addLocationForm').bind 'ajax:beforeSend', (xhr, settings)=>
+      $('#addLocationForm').hide()
+      $('.locationView').show()
+      #log xhr.target.new_location[name]
+    
+    $('form#addLocationForm').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text('Profile has been updated')
+      alert 'success'
+    
+    $('form#addLocationForm').bind 'ajax:error', (xhr, status, error)->
+      $('p.alert').text(error)
     
     $('.locationForm input:radio').change( (event) ->
       $('.locations input:radio').each( (index, value) ->

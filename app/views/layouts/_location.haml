@@ -1,0 +1,7 @@
+.location
+  %label
+    set as default
+    -# Might be easier to use radio_button_tag or radio_button_for here.
+    %input{name: 'user[default_location_id]', value: where.id, type: 'radio', selected: (current_user.default_location_id==where.id)}
+  .edit
+  = where.name
