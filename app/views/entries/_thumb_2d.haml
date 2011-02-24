@@ -1,4 +1,4 @@
-.thumb-2d{style: "background: url('#{dreamfield_header_url(entry.images.first)}') top center"}
+.thumb-2d{style: "background: url('#{dreamfield_header_url(entry.images.first)}') no-repeat top center"}
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
@@ -10,8 +10,10 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .date= time_ago_in_words(entry.created_at)
-      .location dream location
+      %table{width: "100%"}
+        %tr
+          %td.date= time_ago_in_words(entry.created_at)
+          %td.location dream location
     .detailsBottom
       .comments
         = image_tag("icons/comments-16.png")

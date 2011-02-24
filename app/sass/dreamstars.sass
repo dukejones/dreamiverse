@@ -9,6 +9,8 @@
   .header
     img, .date
       +left
+      +user-select
+      +cursor
     .date
       +transparent-dark(50)
       +round(16)
@@ -27,6 +29,7 @@
     +shine-dark-alpha(24)
     +round(16)
     +relative
+    +user-select
     width: 640px
     padding: 8px
     height: 40px
@@ -38,6 +41,7 @@
       +center
       +bold
       +font(17)
+      +cursor
       color: #ccc
       width: 80px
       height: 36px
@@ -65,6 +69,7 @@
     .badge, .rank, .name, .starlight
       +absolute
     .badge
+      +user-select
       top: -40px
       left:  -48px
       img

@@ -6,6 +6,10 @@
 #entryField, #home
   .matrix
 
+    .thumb-1d:hover
+      .left .details .starlight, .left .commentCount
+        display: block
+
     .thumb-1d, .noImage
       +block
       +round(16)
@@ -42,6 +46,7 @@
 
         // COMMENT COUNT
         .commentCount
+          +hidden
           +absolute
           top: 8px
           right: 8px
@@ -55,7 +60,7 @@
             margin: 0 20px 0 0
             height: 16px
             line-height: 16px
-            padding: 0 8px
+            padding: 1px 10px
 
         // IMAGE
         .image
@@ -109,6 +114,7 @@
 
           // STARLIGHT
           .starlight
+            +hidden
             +round(16)
             +right
             +font(12)
@@ -288,7 +294,8 @@
               color: #333
           .commentCount
             .counter
-              +flat-light
+              +transparent-dark(60)
+              color: #ccc
 
           // ENTRY THUMB DETAILS
           .details
@@ -297,15 +304,11 @@
               +border-light
             // STARLIGHT
             .starlight
-              +flat-dark
-              +button-light
+              +transparent-dark(30)
+              +border-dark
               color: #ddd
 
-        // RIGHT SIDE
-        .right
-          ul
-            li
-              +button-light
+
 
 .dark
   #entryField, #home
@@ -326,8 +329,9 @@
               color: #ddd
           .commentCount
             .counter
-              +flat-light
-              color: #333
+              +border-dark
+              +transparent-light(10)
+              color: #ccc
 
           // ENTRY THUMB DETAILS
           .details
@@ -336,15 +340,11 @@
               +border-dark
             // STARLIGHT
             .starlight
-              +flat-light
-              +button-dark
-              color: #333
+              +transparent-light(10)
+              +border-dark
+              color: #ccc
 
-        // RIGHT SIDE
-        .right
-          ul
-            li
-              +button-dark
+
 
 
 // 1D ENTRY THUMBS - NO IMAGE
@@ -358,7 +358,7 @@
         .left
           .commentCount
             .counter
-              +flat-dark
+              +transparent-dark(40)
               color: #fff
 
 
@@ -371,5 +371,5 @@
         .left
           .commentCount
             .counter
-              +flat-light
-              color: #333
+              +transparent-light(10)
+              color: #ccc
