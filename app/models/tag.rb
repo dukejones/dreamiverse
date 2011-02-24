@@ -42,7 +42,7 @@ class Tag < ActiveRecord::Base
   end
 
   # udpate custom tag positions with an ordered, comma-delim list
-  def self.sort_custom_tags(entry_id = 5,position_list = '85,86,87,9000')
+  def self.sort_custom_tags(entry_id,position_list)
     entry = Entry.find_by_id(entry_id)
      
     old_positions = {}
