@@ -620,6 +620,7 @@
   padding: 8px
   width: 464px
   +bevel-light
+  +user-select
 
   .image
     +round(12)
@@ -632,9 +633,12 @@
     +font(18)
     +bold
     margin: 10px
+
   p.text
     +font(16)
-    margin: 10px
+    margin: 10px 0
+    span
+      +font(21)
 
   .getStartedButtons
     +round(16)
@@ -642,6 +646,7 @@
     height: 92px
     +input-light(large)
     .button
+      +block
       +round(8)
       +left
       +center
@@ -663,6 +668,10 @@
         margin: 2px 2px -8px 0
 
       .profile
+        margin: 4px 18px -2px 4px
+
+      .starlight
+        margin: 4px 14px -6px -4px
 
 // NEW LOGIN SPLASH
 // COLORS
@@ -675,7 +684,8 @@
     p.text
 
     .getStartedButtons
-      +input-light(large)
+      +inner-shadow(10)
+      +flat-light-medium
 
       .button
         +shine-light(20)

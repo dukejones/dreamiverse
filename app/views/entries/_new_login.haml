@@ -2,19 +2,18 @@
 #welcomePanel
   .image
 
-  %h1.title
-    welcome
-    %span= @user.username
-  %p.text to your dream field. Store and share your dreams here
+  %p.text <span>welcome</span> to the dream field, where you store and share your dreams
 
   .getStartedButtons
-    .button
+    %a.button{href: new_entry_path}
       %img.dream{src: '/images/icons/dream-32.png'}
       <span class="green">+</span> add your first dream
-    .button
+    .button{onclick: "toggleAppearance()"}
       %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
       set your default theme
     .button
-      %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
+      %img.profile{src: '/images/icons/arrowDark-16-closed.png'}
       customize your profile
-    .button find other dreamers
+    %a.button{href: "/dreamstars"}
+      %img.starlight{src: '/images/icons/starlight-22.png'}
+      find other dreamers
