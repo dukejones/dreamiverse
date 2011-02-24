@@ -669,16 +669,27 @@
       .appearance
         margin: 2px 2px -8px 0
 
-      .profile
+      &.profile span
         +block
         +left
         +alpha(30)
         margin-left: 26px
         +font(36)
         +bold
+      .button.dreamfield
+        +hidden
 
       .starlight
         margin: 4px 14px -6px -4px
+
+// DREAM STREAM VERSION
+.matrix.stream
+  #welcomePage
+    .button.profile
+      +hidden
+    .button.dreamfield
+      +block
+
 
 // NEW LOGIN SPLASH
 // COLORS

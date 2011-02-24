@@ -11,9 +11,11 @@
     .button{onclick: "toggleAppearance()"}
       %img.appearance{src: '/images/icons/appearance-32-alpha.png'}
       set your default theme
-    .button{onclick: "window.contextController.toggleProfile()"}
-      %span.profile &lsaquo;
+    .button.profile{onclick: "window.contextController.toggleProfile()"}
+      %span &lsaquo;
       customize your profile
+    .button.dreamfield
+      view your dream field
     %a.button{href: "/dreamstars"}
       %img.starlight{src: '/images/icons/starlight-22.png'}
       find other dreamers

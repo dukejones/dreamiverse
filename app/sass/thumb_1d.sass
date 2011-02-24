@@ -32,7 +32,7 @@
 
         // USERNAME + AVATAR
         .user
-          +round(12)
+          +round(8)
           +absolute
           top: 4px
           left: 4px
@@ -330,7 +330,6 @@
           .commentCount
             .counter
               +border-dark
-              +transparent-light(10)
               color: #ccc
 
           // ENTRY THUMB DETAILS
@@ -344,6 +343,11 @@
               +border-dark
               color: #ccc
 
+
+      .noImage .left .commentCount .counter
+        +transparent-light(10)
+      .thumb-1d .commentCount .counter
+        +transparent-dark(50)
 
 
 
