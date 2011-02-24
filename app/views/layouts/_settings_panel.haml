@@ -382,7 +382,7 @@
 
     .changePasswordForm.target.showhide.hidden
       =form_for current_user, :remote => true, :html => {:id => 'change_password'} do |f|
-        = f.text_field(:password, {placeholder: 'Current password'})
+        = f.password_field(:password, {placeholder: 'Current password'})
         = f.password_field(:password_confirmation, {placeholder: 'New password'})
         = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 

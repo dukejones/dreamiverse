@@ -19,10 +19,10 @@
 
     .type Dream
 
-    %a.next.cancel{href: entries_path}
+    %a.next.cancel{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
     .stream.cancel stream
-    %a.prev.cancel{href: entries_path}
+    %a.prev.cancel{href: user_entry_path(@previous.user.username, @previous)}
       %span &lsaquo;
 
     - if @entry.user == current_user
