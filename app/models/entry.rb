@@ -42,8 +42,12 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
+<<<<<<< HEAD
   before_update :delete_auto_tags  
   after_save :process_all_tags 
+=======
+  before_update :delete_links
+>>>>>>> master
 
   scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
   
@@ -95,6 +99,10 @@ class Entry < ActiveRecord::Base
     sharing_level == self.class::Sharing[:everyone]
   end
 
+  def delete_links
+    Link.delete_all(:owner_id => self.id)
+  end
+
   def delete_auto_tags
     Tag.delete_all(:entry_id => self.id,:kind => 'auto')
   end
@@ -103,8 +111,10 @@ class Entry < ActiveRecord::Base
   def process_all_tags
     Tag.auto_generate_tags(self)
   end 
-       
-  protected #######################
+
+
+
+protected
 
   def set_sharing_level
     sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
