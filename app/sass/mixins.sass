@@ -399,6 +399,10 @@
     +pointer
     color: #fff
     border: 1px solid #4794b5
+  &:active
+    +gradient(#1b485b, #3ba4d1)
+    border: 1px solid #fff
+    color: #fff
 
 =save($offset)
   &:hover
@@ -407,6 +411,10 @@
     +pointer
     color: #fff
     border: 1px solid #54943d
+  &:active
+    +gradient(#235b1b, #70d03b)
+    color: #fff
+    border: 1px solid #fff
 
 =cancel($offset)
   &:hover
@@ -415,6 +423,11 @@
     +pointer
     color: #fff
     border: 1px solid #848484
+  &:active
+    +gradient(#4e4e4e, #979797)
+    +pointer
+    color: #fff
+    border: 1px solid #fff
 
 =delete($offset)
   &:hover
@@ -423,4 +436,9 @@
     +pointer
     color: #fff
     border: 1px solid #c1633c
+  &:active
+    +gradient(#8b2e12, #ee7c44)
+    +pointer
+    color: #fff
+    border: 1px solid #fff
 
