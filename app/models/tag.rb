@@ -1,6 +1,5 @@
 class Tag < ActiveRecord::Base
   belongs_to :entry
-  #acts_as_list :scope => :entry
   
   belongs_to :noun, :polymorphic => true
   validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type], 
@@ -11,7 +10,7 @@ class Tag < ActiveRecord::Base
     Tag.delete_all(:entry_id => entry.id,:kind => 'auto') 
 
     auto_tag_words = "#{entry.body} #{entry.title}".split(/\s+/)
-    auto_scores = self.order_and_score_tag_words(auto_tag_words).first(cloud_size)
+    auto_scores = self.order_and_score_auto_tags(auto_tag_words).first(cloud_size)
 
     # which position to start with?
     custom_tag_count = entry.tags.where(:kind => 'custom',:entry_id => entry.id).count
@@ -26,7 +25,7 @@ class Tag < ActiveRecord::Base
   end
 
   # create hash  name => frequency with no blacklisted words.   
-  def self.order_and_score_tag_words(tag_words)   
+  def self.order_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
       if (BlacklistWord.where(word: tag_word).count < 1)
         what = What.find_or_create_by_name(tag_word)

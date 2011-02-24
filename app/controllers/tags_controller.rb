@@ -26,12 +26,5 @@ class TagsController < ApplicationController
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
   end
-  
-  # take in an ordered comma delimited list of tags, update positions & rescore.
-  def sort_custom_tags        
-    Tag.sort_custom_tags(params[:entry_id],params[:position_list])
-    puts "test: running sort_custom_tags in tags_controller..."
-    render :nothing => true    
-  end  
-  
+    
 end

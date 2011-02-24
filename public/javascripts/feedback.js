@@ -1,3 +1,10 @@
+$(document).ready(function(){
+  $('textarea#detailsForm').autoResize({
+	  animationDuration: 500,
+	  animate: true,
+	  extraSpace: 40
+	})
+})
 
 document.getElementById('type').focus();
 window.onload = function() {
