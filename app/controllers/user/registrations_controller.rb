@@ -1,4 +1,17 @@
 class User::RegistrationsController < ApplicationController
+  def new
+    redirect_to :root and return if current_user
+    
+    render "users/join"
+  end
+
+  def forgot_password
+    redirect_to :root and return if current_user
+    
+    render "users/forgot_password"
+  end
+
+
   
   def create
     # creates a user with an email / password.

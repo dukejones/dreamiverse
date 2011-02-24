@@ -31,7 +31,7 @@
     / LOGIN PANEL
     .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
-        %a.forgot{href: '#'} Forgot password
+        %a.forgot{href: forgot_password_path} Forgot password
         %label.stay
           Stay logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}

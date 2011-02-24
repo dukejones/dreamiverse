@@ -95,17 +95,21 @@
         +font(21)
         top: 90px
         line-height: 21px
+        width: 192px
 
       .tags
         +absolute
         z-index: 20
         bottom: 6px
         padding: 0 16px
+        max-height: 180px
 
 // COLORS
 .light
   #entryField, #home
     .matrix
+      .thumb-2d
+        background-color: #fff !important
       .fadedBack
         background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
       .thumb-2d:hover
@@ -113,6 +117,8 @@
 .dark
   #entryField, #home
     .matrix
+      .thumb-2d
+        background-color: #3a3a3a !important
       .fadedBack
         background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
       .thumb-2d:hover
