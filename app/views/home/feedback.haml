@@ -1,5 +1,7 @@
 - content_for :head do
   = sass_link_tag 'feedback'
+- content_for :foot do
+  = javascript_include_tag 'feedback'
 
 / FEEDBACK PAGE
 #feedbackPage
@@ -28,9 +30,3 @@
       .sendPanel.hidden
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
-
-
-
-
-
-      
