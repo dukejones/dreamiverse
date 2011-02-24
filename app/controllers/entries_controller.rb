@@ -81,7 +81,7 @@ class EntriesController < ApplicationController
       @entries = @entries.scoped.order('updated_at DESC')
     end
     # Type: visions,  dreams,  experiences
-    if params[:type_filter]
+    unless params[:type_filter].blank?
       @entries = @entries.where(type: params[:type_filter])
     end
     # friends, or following
@@ -96,10 +96,11 @@ class EntriesController < ApplicationController
     @entries = @entries.limit(50)
     @entries = @entries.offset(50 * params[:page]) if params[:page]
     
-    
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
+      
+      
       render :text => thumbs_html
     end
   end

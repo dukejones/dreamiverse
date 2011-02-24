@@ -55,7 +55,9 @@ class ShowingTagInput extends TagInput
     switch @buttonMode
       when 'expand'
         @expandInputField()
-      when 'submit' then $.publish 'tags:create', [@value()]
+      when 'submit'
+        # check if field is empty
+        $.publish 'tags:create', [@value()]
   
   expandInputField: ->
     @buttonMode = 'submit'
@@ -182,7 +184,6 @@ class EditingTagView extends TagView
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
   remove: ->
-    alert 'remove from view'
     if $("#sorting").val() is "1"
       @removeFromView()
     
