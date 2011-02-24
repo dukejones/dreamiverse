@@ -35,7 +35,7 @@
     .faq
       +round(16)
       width: 664px
-      padding: 8px
+      padding: 8px 8px 1px
       +transparent-light(50)
       +glow-light(40)
 
@@ -51,9 +51,8 @@
 
         .answer
           +round(12)
+          +cursor
           padding: 16px
-          background: #fff
-          +glow-light(40)
 
           p
             margin: 0 0 10px 0
@@ -68,7 +67,6 @@
             +round(8)
             padding: 8px 16px
             margin: 8px 0
-            background-color: #ddd
 
           .features
             +round(8)
@@ -80,8 +78,9 @@
               list-style: none
               margin: 0 0 0 10px
               li
-                margin: 8px 0
-                font-style: italic
+                +font(12)
+                margin: 12px 0
+                text-transform: uppercase
 
 
 // FAQ PAGE
@@ -105,6 +104,7 @@
 
         .questionWrap
           +bevel-light
+          +button-light
 
           .answer
             background: #fff
@@ -137,16 +137,19 @@
 
         .questionWrap
           +bevel-dark
+          +button-dark
 
           .answer
             background: #222
             +glow-dark(40)
 
             a.link
+              color: #333
               background-color: #ddd
 
             .features
               +border-dark
+              color: #333
               background: #ddd
 
 

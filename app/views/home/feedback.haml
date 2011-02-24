@@ -15,17 +15,17 @@
           %option Report a bug
           %option I have an idea...
 
-        %select.bug
+        %select.bug.hidden
           %option Type of bug
           %option My data didn't save...
           %option My browser crashed when I was...
           %option This feature is confusing...
           %option Other...
 
-        .details
+        .details.hidden
           %textarea
 
-      .sendPanel
+      .sendPanel.hidden
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
 
