@@ -1,13 +1,15 @@
 #loginPage
 
   .navigation
-    .button
+    %a.button{href: login_path}
       login
-    .button.selected
-      signup
-    .button
+    %a.button.selected{href: join_path}
+      join now
+    %a.button{href: forgot_password_path}
       forgot password
     .clear
+
+  %br
 
   .join
     = form_for(User.new, url: user_registration_path) do |f|

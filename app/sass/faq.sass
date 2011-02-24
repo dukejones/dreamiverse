@@ -4,7 +4,8 @@
 // STRUCTURE
 #faqWrap
   +absolute
-  top: 240px
+  top: 100px
+  left: 40px
   width: 680px
 
   img.logo
@@ -26,61 +27,63 @@
       padding: 8px
       +button-light
       +shine-light(16)
+      +user-select
 
-  .wrapper
+  .faq
+    +round(16)
     +clear
     margin: 40px 0 0
+    width: 664px
+    padding: 8px 8px 1px
+    +transparent-light(50)
+    +glow-light(40)
 
-    .faq
-      +round(16)
-      width: 664px
-      padding: 8px
-      +transparent-light(50)
-      +glow-light(40)
+    .wrapper
+      +round(12)
+      margin: 0 0 8px
+      +bevel-light
 
-      .questionWrap
+      .question
+        +bold
+        +pointer
+        +user-select
+        padding: 8px 16px
+
+      .answer
         +round(12)
-        margin: 0 0 8px
-        +bevel-light
+        +cursor
+        padding: 16px
 
-        .question
-          +bold
-          +pointer
+        p
+          margin: 0 0 10px 0
+
+        a.credit
+          +block
+          text-align: right
+          text-decoration: underline
+
+        a.link
+          +button-light
+          +block
+          +round(8)
           padding: 8px 16px
+          margin: 8px 0
 
-        .answer
-          +round(12)
-          padding: 16px
-          background: #fff
-          +glow-light(40)
-
-          p
-            margin: 0 0 10px 0
-
-          a.credit
-            +block
-            text-align: right
-            text-decoration: underline
-
-          a.link
-            +block
-            +round(8)
-            padding: 8px 16px
-            margin: 8px 0
-            background-color: #ddd
-
-          .features
-            +round(8)
-            padding: 8px
-            margin: 2px 0
-            +border-light
-            background: #ddd
-            ul
-              list-style: none
-              margin: 0 0 0 10px
-              li
-                margin: 8px 0
-                font-style: italic
+        .features
+          +round(8)
+          padding: 8px
+          margin: 2px 0
+          +border-light
+          background: #ddd
+          .selected
+            +border-dark
+          ul
+            list-style: none
+            margin: 0 0 0 10px
+            li
+              +font(12)
+              margin: 12px 0
+              text-transform: uppercase
 
 
 // FAQ PAGE
@@ -93,28 +96,30 @@
       +glow-light(40)
 
       .ask
+        +block
         +button-light
         +shine-light(16)
 
-    .wrapper
+    .faq
+      +transparent-light(50)
+      +glow-light(40)
 
-      .faq
-        +transparent-light(50)
-        +glow-light(40)
+      .wrapper
+        +bevel-light
+        +button-light
 
-        .questionWrap
-          +bevel-light
+        .answer
+          background: #fff
+          +glow-light(40)
 
-          .answer
-            background: #fff
-            +glow-light(40)
+          a.link
+            background-color: #ddd
 
-            a.link
-              background-color: #ddd
-
-            .features
-              +border-light
-              background: #ddd
+          .features
+            +border-light
+            background: #ddd
+            &.current
+              +border-dark
 
 
 .dark
@@ -128,24 +133,28 @@
         +button-dark
         +shine-dark(16)
 
-    .wrapper
 
-      .faq
-        +transparent-dark(50)
-        +glow-dark(40)
+    .faq
+      +transparent-dark(50)
+      +glow-dark(40)
 
-        .questionWrap
-          +bevel-dark
+      .wrapper
+        +shine-dark-alpha(12)
+        +button-dark
 
-          .answer
-            background: #222
-            +glow-dark(40)
+        .answer
+          +transparent-dark(50)
+          +glow-dark(40)
 
-            a.link
-              background-color: #ddd
+          a.link
+            color: #333
+            background-color: #ddd
 
-            .features
-              +border-dark
-              background: #ddd
+          .features
+            +border-dark
+            color: #333
+            background: #ddd
+            &.current
+              +border-light
 
 

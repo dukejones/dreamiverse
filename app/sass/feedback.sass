@@ -2,115 +2,127 @@
 
 // FEEDBACK PAGE
 // STRUCTURE
-img.feedbackLogo
+#feedbackPage
   +absolute
-  top: 240px
+  top: 100px
+  left: 40px
   width: 680px
 
-.wrapper
-  +clear
-  margin: 40px 0 0
+  img.feedbackLogo
 
-  #feedbackWrap
-    +round(16)
-    width: 664px
-    padding: 8px
+  .wrapper
+    +clear
+    margin: 40px 0 0
 
-    .feedback
+    #feedbackWrap
       +round(16)
+      width: 664px
       padding: 8px
 
-      select
-        +round(12)
-        +bold
-        +font(21)
-        width: 100%
-        height: 44px
-        padding: 8px 8px 4px
-        margin: 0 0 8px
+      .feedback
+        +round(16)
+        padding: 8px 8px 1px
 
-        option
-          padding: 4px 8px
-
-      .details
-        +round(12)
-        margin: 0 0 8px
-        padding: 12px
-
-        textarea
-          +transparent
-          +overflow
-          border: none
-          height: 100px
-          width: 100%
-
-    .sendPanel
-      +round(16)
-      margin: 8px 0 0
-      padding: 8px
-
-      .sendWrap
-        +round(12)
-        padding: 4px
-
-        input
-          +round(8)
-          +center
-          +pointer
+        select
+          +round(12)
+          +bold
+          +font(21)
           width: 100%
           height: 44px
+          padding: 8px 8px 4px
+          margin: 0 0 8px
+
+          option
+            padding: 4px 8px
+
+        .details
+          +round(12)
+          margin: 0 0 8px
+          padding: 12px
+
+          textarea
+            +transparent
+            +overflow
+            border: none
+            height: 100px
+            width: 100%
+
+      .sendPanel
+        +round(16)
+        margin: 8px 0 0
+        padding: 8px
+
+        .sendWrap
+          +round(12)
+          padding: 4px
+
+          input
+            +round(8)
+            +center
+            +pointer
+            +bold
+            +font(18)
+            width: 100%
+            height: 44px
 
 
 // FEEDBACK PAGE
 // COLORS
 .light
-  .wrapper
+  #feedbackPage
+    .wrapper
 
-    #feedbackWrap
-      +transparent-light(50)
-      +glow-light(40)
+      #feedbackWrap
+        +transparent-light(50)
+        +glow-light(40)
 
-      .feedback
-        +shine-light(20)
+        .feedback
+          +shine-light(20)
 
-        select
-          +input-light(small)
+          select
+            +input-light(small)
 
-        .details
-          +input-light(small)
+          .details
+            +input-light(small)
 
-      .sendPanel
-        +shine-light(20)
+        .sendPanel
+          +shine-light(20)
 
-        .sendWrap
-          +indent-light
+          .sendWrap
+            +indent-light
 
-          input
-            +shine-light(20)
+            input
+              +save(20)
+              +shine-light(20)
 
 
 .dark
-  .wrapper
+  #feedbackPage
+    .wrapper
 
-    #feedbackWrap
-      +transparent-dark(50)
-      +glow-dark(40)
+      #feedbackWrap
+        +transparent-dark(50)
+        +glow-dark(40)
 
-      .feedback
-        +shine-dark(20)
+        .feedback
+          +shine-dark(20)
 
-        select
-          +input-dark(small)
+          select
+            +input-dark(small)
 
-        .details
-          +input-dark(small)
+          .details
+            +input-dark(small)
 
-      .sendPanel
-        +shine-dark(20)
+            textarea
+              color: #ddd
 
-        .sendWrap
-          +indent-dark
+        .sendPanel
+          +shine-dark(20)
 
-          input
-            +shine-dark(20)
+          .sendWrap
+            +indent-dark
+
+            input
+              +save(20)
+              +shine-dark(20)
 

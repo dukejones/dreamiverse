@@ -1,11 +1,11 @@
 #loginPage
 
   .navigation
-    .button.selected
+    %a.button.selected{href: login_path}
       login
-    .button
-      signup
-    .button
+    %a.button{href: join_path}
+      join now
+    %a.button{href: forgot_password_path}
       forgot password
     .clear
 

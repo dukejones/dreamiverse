@@ -30,8 +30,10 @@ class SharingController
       
       if !@firstRun
         @sharingView.expandCurrentView(newSelection)
+      else
+        @setupDefaultSharingLevel()
+        @firstRun = false
       
-      @firstRun = false
       @shareSettings = new Share(newSelection)
     )
     
@@ -39,17 +41,22 @@ class SharingController
     @$dropdown.val(@$container.find('.defaultSharing').data('id'))
     @$dropdown.change()
     @$container.find('.target').hide()
+    
+  setupDefaultSharingLevel: ->
+    @$dropdown.val($('#sharingList').find('option:selected').val())
 
 
 class SharingView
   constructor: (containerSelector, type = 'everyone')->
     @$container = $(containerSelector)
     @type = type
+    
   contractCurrentView: ->
     @isExpanded = false
     
     @$container.find('.target').slideUp()
     $('#bodyClick').remove()
+    
   expandCurrentView: (type) ->
     @isExpanded = true
     @type = type
