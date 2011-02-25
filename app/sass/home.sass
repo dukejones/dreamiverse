@@ -9,6 +9,59 @@ body
 
 #home
 
+  // DREAMCATCHER LOGO
+  a.dcLogo
+    +block
+    +absolute
+    top: 4px
+    left: 75px
+    width: 366px
+    height: 102px
+
+  // WELCOME
+  .welcomeWrap
+    +absolute
+    +clear
+    +round(12)
+    +transparent
+    +glow-blue(40)
+    +border-blue
+    top: 108px
+    left: 158px
+    width: 690px
+    height: 324px
+
+    img.dreamstar
+      +absolute
+      top: -72px
+      left: -72px
+
+    .welcome
+      +absolute
+      +shine-blue-alpha(20)
+      top: 0
+      left: 0
+      width: 690px
+      height: 324px
+
+      p
+        margin: 0 0 10px
+        color: #d1f2ff
+
+      .thankyou
+        +round(8)
+        +right
+        margin: 0 8px 8px 0
+        height: 38px
+        line-height: 38px
+        padding: 0 12px
+        color: #d1f2ff
+        +button-blue
+        +shine-blue-alpha(20)
+
+
+#home
+
   // RIGHT COLUMN
   #rightColumn
     +absolute

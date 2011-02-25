@@ -6,8 +6,23 @@
 
 #home.light
 
-  / META MENU
-  = render "layouts/meta_menu"
+  / DREAMCATCHER LOGO
+  %a.dcLogo{href: '#'}
+    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+
+  / WELCOME
+  .welcomeWrap
+    %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
+
+    .welcome
+      %pDreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, and keep them organized and easy to share.
+      %p Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
+      %p A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
+      %p Start sharing and become part of the digital Dreamsphere.
+
+      .thankyou Thank You
+
+
 
   / RIGHT COLUMN
   #rightColumn
@@ -23,8 +38,6 @@
               .badge
               .rank= index + 1
               .name= user.username
-
-  / WELCOME
 
 
   / PUBLIC STREAM
