@@ -4,7 +4,7 @@
 
 #drop_shadow
 
-#home.light
+#home
 
   / DREAMCATCHER LOGO
   %a.dcLogo{href: '#'}
@@ -30,7 +30,7 @@
   / RIGHT COLUMN
   #rightColumn
 
-    / LOGIN PANEL
+    / LOGIN BUTTON
     .loginPanelWrap
       .login.trigger.slide
         login
@@ -50,19 +50,34 @@
           = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
           %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
 
-    / NEW JOIN
-    #newJoin
-      %h1 New to Dreamcatcher?
-      <p>Easy, free, and instant updates about what people are dreaming.</p>
-      <p>What am I dreaming about?<br />
-      Whose dreams am I in?<br />
-      What is the world dreaming?</p> 
-      <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
+    / JOIN PANEL
+    .joinPanel.wrapper
+      = form_for(User.new, url: user_registration_path) do |f|
+        .intro
+          %h1 New to Dreamcatcher?
+          <p>Easy, free, and instant updates about what people are dreaming.</p>
+          <p>What am I dreaming about?<br />
+          Whose dreams am I in?<br />
+          What is the world dreaming?</p> 
+          <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
-      / JOIN NOW
-      .joinWrap
-        %a.join{href: '/join'}
-          Join now &rsaquo;
+
+        .joinForm
+          = f.text_field :email, :class => 'login-input', :placeholder => "email"
+          = f.password_field :password, :class => 'login-input', :placeholder => "password"
+          = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
+          %span http://dreamcatcher.net/username
+          = f.text_field :username, :class => 'login-input', :placeholder => "username"
+      
+          .haveSeedcode enter a seed code &raquo;
+          .seedcodeExpander.hidden
+            = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
+
+        / JOIN TOGGLE - BUTTON
+        .joinWrap
+          %a.join{href: '/join'}
+            Join now &rsaquo;
+          %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 
 
     / DREAMSTARS MINI
