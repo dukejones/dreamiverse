@@ -26,5 +26,8 @@ class TagsController < ApplicationController
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
   end
-    
+  
+  def sort_custom_tags
+      Tag.sort_custom_tags(params[:entry_id],params[:position_list])
+  end  
 end
