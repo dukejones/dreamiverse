@@ -123,7 +123,7 @@ class ImagesController < ApplicationController
 
     if @image.update_attributes(params[:image].merge(enabled: true))
       respond_to do |format|
-        format.html { render :text => 'Image was successfully updated.') }
+        format.html { render :text => 'Image was successfully updated.' }
         format.json  { render json: {type: 'ok', message: 'Image was successfully updated.'} }
       end
     else

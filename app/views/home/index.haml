@@ -27,11 +27,12 @@
   .loginPanelWrap
     .login.trigger.slide
       login
-    %a.loginItem{href: '/', target: 'blank'} with facebook
-    = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
+    %a.loginItem
+      %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
+      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
     .clear
 
-    
+
     / LOGIN PANEL
     .loginPanel.target.slide.hidden
       = form_for('user', {url: user_session_path}) do |f|

@@ -116,19 +116,6 @@ body
       padding: 8px
       width: 208px
 
-      .loginItem
-        +font(12)
-        +left
-        height: 28px
-        line-height: 28px
-        padding: 0 12px
-        border: 1px solid transparent
-        &:hover
-          +border-light
-          +round(8)
-        .hoverLabel
-          top: 56px !important
-
       .login
         +right
         +center
@@ -140,8 +127,27 @@ body
         color: #ddd
         height: 28px
         line-height: 28px
-        padding: 0 12px
+        padding: 0 60px
         margin: 0 8px 8px 0
+
+      .loginItem
+        +right
+        +center
+        +user-select
+        width: 16px
+        height: 28px
+        line-height: 28px
+        padding: 0 8px
+        margin: 0 8px 8px 0
+        +button-light
+        +flat-light
+        +round(12)
+        &:hover
+          +glow-light(8)
+        .hoverLabel
+          top: 56px !important
+        img
+          margin: 6px 0 0
 
     // LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
     .joinPanel .joinForm .login-input
