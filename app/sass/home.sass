@@ -13,8 +13,8 @@ body
   a.dcLogo
     +block
     +absolute
-    top: 4px
-    left: 75px
+    top: 10px
+    left: 20px
     width: 366px
     height: 102px
 
@@ -26,32 +26,37 @@ body
     +transparent
     +glow-blue(40)
     +border-blue
-    top: 108px
-    left: 158px
+    top: 148px
+    left: 108px
     width: 690px
     height: 324px
 
     img.dreamstar
       +absolute
-      top: -72px
-      left: -72px
+      top: -73px
+      left: -76px
+      z-index: 100
 
     .welcome
+      +round(12)
       +absolute
       +shine-blue-alpha(20)
       top: 0
       left: 0
-      width: 690px
-      height: 324px
+      padding: 40px 0 0 40px
+      width: 650px
+      height: 284px
 
       p
         margin: 0 0 10px
+        width: 585px
         color: #d1f2ff
 
       .thankyou
         +round(8)
-        +right
-        margin: 0 8px 8px 0
+        +absolute
+        bottom: 12px
+        right: 12px
         height: 38px
         line-height: 38px
         padding: 0 12px
@@ -66,7 +71,7 @@ body
   #rightColumn
     +absolute
     top: 145px
-    left: 730px
+    left: 820px
 
     // DREAMSTARS MINI
     .dreamstarsMiniWrap
@@ -184,8 +189,13 @@ body
   // PUBLIC STREAM
   #publicStream
     +absolute
-    top: 86px
-    left: 26px
+    +round(12)
+    +shine-blue-alpha(20)
+    +glow-blue(40)
+    +border-blue
+    top: 490px
+    left: 108px
+    padding: 8px
     width: 682px
 
     .today, .todayFilter, .dreamsFilter, h1.in
@@ -207,9 +217,10 @@ body
       +cursor
       color: #000
     .today
-      +transparent-dark(20)
+      +shine-blue-alpha(20)
+      +border-light
       +round(8)
-      +border-dark
+      color: #fff
       border: 2px solid #555
     .randomDream
       +right
