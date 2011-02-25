@@ -10,7 +10,10 @@
     +bold
     margin: 0px
     padding: 8px
-    
+
+  p.error
+    color: red
+
   .sharing, .savedLocations, .changePassword, .fontSizing
     +clear
     +round(8)
@@ -125,7 +128,7 @@
         max-height: 180px
         overflow-y: auto
 
-        .locations
+        .location
           +clear
           +pointer
           float: none
@@ -147,7 +150,7 @@
             +block
             +alpha(100)
 
-        .locations:hover
+        .location:hover
           .edit
             +block
             +right
@@ -182,8 +185,15 @@
       +bold
       +cursor
       padding: 0 0 2px 4px
+    .autoDetect
+      +right
+      +pointer
+      +round(8)
+      +font(12)
+      padding: 0px 4px
+      margin-top: 1px
     // INPUTS
-    #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+    #user_old_password, #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
       +font(15)
       margin-bottom: 4px
@@ -284,11 +294,13 @@
       .locationList
         +border-light
 
-        .locations
+        .location
           +flat-light
           +border-light
 
       .modifyLocationView
+        .autoDetect
+          +button-light
         #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-light(small)
         .save, .cancel
@@ -301,7 +313,7 @@
           +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation
+      #user_old_password, #user_password, #user_password_confirmation
         +input-light(small)
       .cancel, .confirm
         +button-light
@@ -348,11 +360,13 @@
       .locationList
         +border-dark
 
-        .locations
+        .location
           +flat-dark
           +border-dark
 
       .modifyLocationView
+        .autoDetect
+          +button-dark
         #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-dark(small)
         .save, .cancel
@@ -365,7 +379,7 @@
           +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation
+      #user_old_password, #user_password, #user_password_confirmation
         +input-dark(small)
       .cancel, .confirm
         +button-dark

@@ -1,0 +1,67 @@
+@import mixins
+
+// DREAMCATCHER LOGO
+a.dcLogo
+  +block
+  +absolute
+  top: 4px
+  left: 75px
+  width: 366px
+  height: 102px
+
+#joinWrap
+  +relative
+  top: 108px
+  left: 158px
+
+  img.dreamstar
+    +absolute
+    top: -72px
+    left: -72px
+
+  h1
+    +font(21)
+    +left
+    margin: 0 0 0 70px
+    text-transform: uppercase
+
+  .loginWrap, .forgotWrap
+    +relative
+    +right
+    +round(12)
+    +transparent
+    +glow-blue(20)
+    +border-blue
+    height: 34px
+    a
+      +block
+      +absolute
+      +round(12)
+      +shine-blue(17)
+      height: 34px
+      margin: 0
+
+  .loginWrap
+    width: 60px
+    a.login
+      width: 60px
+
+  .forgotWrap
+    width: 142px
+    a.forgot
+      width: 142px
+
+  .signUpWrap
+    +relative
+    +clear
+    +round(12)
+    +transparent
+    +glow-blue(40)
+    +border-blue
+    width: 690px
+    height: 324px
+    .signUp
+      +absolute
+      +shine-blue-alpha(20)
+      width: 690px
+      height: 324px

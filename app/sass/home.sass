@@ -9,107 +9,193 @@ body
 
 #home
 
+  // DREAMCATCHER LOGO
+  a.dcLogo
+    +block
+    +absolute
+    top: 10px
+    left: 20px
+    width: 366px
+    height: 102px
+
+  // WELCOME
+  .welcomeWrap
+    +absolute
+    +clear
+    +round(12)
+    +transparent
+    +glow-blue(40)
+    +border-blue
+    top: 148px
+    left: 108px
+    width: 690px
+    height: 324px
+
+    img.dreamstar
+      +absolute
+      top: -73px
+      left: -76px
+      z-index: 100
+
+    .welcome
+      +round(12)
+      +absolute
+      +shine-blue-alpha(20)
+      top: 0
+      left: 0
+      padding: 40px 0 0 40px
+      width: 650px
+      height: 284px
+
+      p
+        margin: 0 0 10px
+        width: 585px
+        color: #d1f2ff
+
+      .thankyou
+        +round(8)
+        +absolute
+        bottom: 12px
+        right: 12px
+        height: 38px
+        line-height: 38px
+        padding: 0 12px
+        color: #d1f2ff
+        +button-blue
+        +shine-blue-alpha(20)
+
+
+#home
+
   // RIGHT COLUMN
   #rightColumn
     +absolute
     top: 145px
-    left: 730px
+    left: 820px
 
     // DREAMSTARS MINI
-    .dreamstarsMini
-      +transparent-light(50)
-      border: 2px solid #ccc
-      // +glow-light(40)
+    .dreamstarsMiniWrap
+      +relative
       +round(16)
-      +clear
-      padding: 8px
-      img.logo
+      +transparent
+      +glow-blue(40)
+      width: 226px
+      height: 300px
+
+      .dreamstarsMini
         +absolute
-        top: -18px
-      .dreamstar-1:hover
-        box-shadow: 0px 0px 60px #ff40d9
-        -webkit-box-shadow: 0px 0px 60px #ff40d9
-        -moz-box-shadow: 0px 0px 60px #ff40d9
-      .dreamstar-2:hover
-        box-shadow: 0px 0px 60px #7140ff
-        -webkit-box-shadow: 0px 0px 60px #7140ff
-        -moz-box-shadow: 0px 0px 60px #7140ff
-      .dreamstar-3:hover
-        box-shadow: 0px 0px 60px #4049ff
-        -webkit-box-shadow: 0px 0px 60px #4049ff
-        -moz-box-shadow: 0px 0px 60px #4049ff
-      .dreamstar-4:hover
-        box-shadow: 0px 0px 60px #407aff
-        -webkit-box-shadow: 0px 0px 60px #407aff
-        -moz-box-shadow: 0px 0px 60px #407aff
-      .dreamstar-5:hover
-        box-shadow: 8px 8px 40px #409aff
-        -moz-box-shadow: 0 0 40px #409aff
-        -webkit-box-shadow: 2px 2px 40px #409aff
-      .dreamstar-6:hover
-        box-shadow: 8px 8px 40px #40bfff
-        -moz-box-shadow: 0 0 40px #40bfff
-        -webkit-box-shadow: 2px 2px 40px #40bfff
-      .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
-        +round(32)
-        +transparent-light(50)
-        +pointer
-        margin: 0 0 4px
-        width: 200px
-        height: 32px
-        line-height: 32px
-        .badge, .rank, .name
-          +left
-        .badge
-          width: 56px
-          height: 56px
-          margin: -12px 0 0 -6px
-        .rank
-          margin: 0 8px 0 -8px
-      .dreamstar-1
-        margin: 32px 0 8px
-        border: 4px solid #FF40D9
-        .badge
-          background: url('/images/dreamstars/dreamstars-1-56.png') no-repeat left
-        .rank
-          color: #e7d44d
-      .dreamstar-2
-        border: 4px solid #7140FF
-        .badge
-          background: url('/images/dreamstars/dreamstars-2-56.png') no-repeat left
-        .rank
-          color: #448e09
-      .dreamstar-3
-        border: 4px solid #4049FF
-        .badge
-          background: url('/images/dreamstars/dreamstars-3-56.png') no-repeat left
-        .rank
-          color: #419b69
-      .dreamstar-4
-        border: 4px solid #407AFF
-        .badge
-          background: url('/images/dreamstars/dreamstars-4-56.png') no-repeat left
-        .rank
-          color: #338c9b
-      .dreamstar-5
-        border: 4px solid #409AFF
-        .badge
-          background: url('/images/dreamstars/dreamstars-5-56.png') no-repeat left
-        .rank
-          color: #3375a5
-      .dreamstar-6
-        border: 4px solid #40BFFF
-        .badge
-          background: url('/images/dreamstars/dreamstars-6-56.png') no-repeat left
-        .rank
-          color: #365ba6
+        // +transparent-light(50)
+        +shine-blue(16)
+        +border-blue
+        +round(16)
+        +clear
+        top: 0
+        left: 0
+        padding: 8px
+        img.logo
+          +absolute
+          top: -18px
+        span
+          +absolute
+          +font(14)
+          right: 20px
+          top: 24px
+          color: #b9d6f6
+        .dreamstar-1:hover
+          box-shadow: 0px 0px 60px #ff40d9
+          -webkit-box-shadow: 0px 0px 60px #ff40d9
+          -moz-box-shadow: 0px 0px 60px #ff40d9
+        .dreamstar-2:hover
+          box-shadow: 0px 0px 60px #7140ff
+          -webkit-box-shadow: 0px 0px 60px #7140ff
+          -moz-box-shadow: 0px 0px 60px #7140ff
+        .dreamstar-3:hover
+          box-shadow: 0px 0px 60px #4049ff
+          -webkit-box-shadow: 0px 0px 60px #4049ff
+          -moz-box-shadow: 0px 0px 60px #4049ff
+        .dreamstar-4:hover
+          box-shadow: 0px 0px 60px #407aff
+          -webkit-box-shadow: 0px 0px 60px #407aff
+          -moz-box-shadow: 0px 0px 60px #407aff
+        .dreamstar-5:hover
+          box-shadow: 8px 8px 40px #409aff
+          -moz-box-shadow: 0 0 40px #409aff
+          -webkit-box-shadow: 2px 2px 40px #409aff
+        .dreamstar-6:hover
+          box-shadow: 8px 8px 40px #40bfff
+          -moz-box-shadow: 0 0 40px #40bfff
+          -webkit-box-shadow: 2px 2px 40px #40bfff
+        .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
+          +round(32)
+          // +transparent-light(50)
+          +pointer
+          margin: 0 0 4px
+          width: 200px
+          height: 32px
+          line-height: 32px
+          .badge, .rank, .name
+            +left
+          .badge
+            width: 56px
+            height: 56px
+            margin: -12px 0 0 -6px
+          .rank
+            margin: 0 8px 0 -8px
+        .dreamstar-1
+          margin: 38px 0 8px
+          border: 4px solid #FF40D9
+          +gradient(#fff, #fdfcc4)
+          .badge
+            background: url('/images/dreamstars/dreamstars-1-56.png') no-repeat left
+          .rank
+            color: #e7d44d
+        .dreamstar-2
+          border: 4px solid #7140FF
+          +gradient(#fff, #cce5c5)
+          .badge
+            background: url('/images/dreamstars/dreamstars-2-56.png') no-repeat left
+          .rank
+            color: #448e09
+        .dreamstar-3
+          border: 4px solid #4049FF
+          +gradient(#fff, #afe4ca)
+          .badge
+            background: url('/images/dreamstars/dreamstars-3-56.png') no-repeat left
+          .rank
+            color: #419b69
+        .dreamstar-4
+          border: 4px solid #407AFF
+          +gradient(#fff, #9ddbe6)
+          .badge
+            background: url('/images/dreamstars/dreamstars-4-56.png') no-repeat left
+          .rank
+            color: #338c9b
+        .dreamstar-5
+          border: 4px solid #409AFF
+          +gradient(#fff, #9ccbe7)
+          .badge
+            background: url('/images/dreamstars/dreamstars-5-56.png') no-repeat left
+          .rank
+            color: #3375a5
+        .dreamstar-6
+          border: 4px solid #40BFFF
+          +gradient(#fff, #a8c0e6)
+          .badge
+            background: url('/images/dreamstars/dreamstars-6-56.png') no-repeat left
+          .rank
+            color: #365ba6
 
 
   // PUBLIC STREAM
   #publicStream
     +absolute
-    top: 86px
-    left: 26px
+    +round(12)
+    +shine-blue-alpha(20)
+    +glow-blue(40)
+    +border-blue
+    top: 490px
+    left: 108px
+    padding: 8px
     width: 682px
 
     .today, .todayFilter, .dreamsFilter, h1.in
@@ -131,9 +217,10 @@ body
       +cursor
       color: #000
     .today
-      +transparent-dark(20)
+      +shine-blue-alpha(20)
+      +border-light
       +round(8)
-      +border-dark
+      color: #fff
       border: 2px solid #555
     .randomDream
       +right

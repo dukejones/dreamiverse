@@ -101,13 +101,20 @@ class TagViewList
       @add(tagView)
 
   findByTagId: (tagId)->
-    for tagView in @tagViews
-      log tagView.tag.id
     return tagView for tagView in @tagViews when tagView.tag.id == tagId
 
   add: (tagView)->
-    @tagViews.push(tagView)
-    tagView.fadeIn()
+    if !@tagAlreadyExists(tagView)
+      @tagViews.push(tagView)
+      tagView.fadeIn()
+  
+  tagAlreadyExists: (tagView) ->
+    tagString = tagView.tag.name
+    for tagViewz in @tagViews
+      if tagViewz.tag.name is tagString
+        tagView.removeFromView()
+        return true
+    return false
 
   removeTag: (tagId) ->
     #log tagId

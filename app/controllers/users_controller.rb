@@ -1,27 +1,25 @@
 class UsersController < ApplicationController
-  def index
-    @top_images = [
-      "dreamstars-1-128.png",
-      "dreamstars-2-128.png",
-      "dreamstars-3-128.png",
-      "dreamstars-4-128.png",
-      "dreamstars-5-128.png",
-      "dreamstars-6-128.png"
-    ]
-
-    @users = User.all
-  end
-
   def update
     @user = current_user # User.find params[:id]
-    raise "access denied" unless @user == current_user
-    
-    @user.update_attributes(params[:user])
-    @user.save
-    respond_to do |format|
-      format.html { render :text => "user updated" }
-      format.json { render :json => {:message => 'user updated'}}
+    # raise "access denied" unless @user == current_user
+
+    if @user.update_attributes(params[:user])
+      respond_to do |format|
+        format.html { render :text => "user updated" }
+        format.json { render :json => {type: 'ok', message: 'user updated'}}
+      end
+    else
+      respond_to do |format|
+        format.html { render :text => "user error" }
+        format.json { render :json => {type: 'error', errors: @user.errors}}.to_json
+      end
     end
+  end
+
+  def create_location
+    new_where = Where.create(params[:new_location])
+    current_user.wheres << new_where
+    render :partial => 'layouts/location', :object => new_where
   end
   
   def friends
