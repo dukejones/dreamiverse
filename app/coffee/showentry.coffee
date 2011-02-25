@@ -26,8 +26,7 @@ $(document).ready ->
       data:
         entry_id: entry
         position_list: order
-      success: (data, status, xhr) =>
-        alert "SUCCESS!"
+      #success: (data, status, xhr) => log "success"
     }
     
 	  # $.ajax{
