@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  layout 'home'
+  layout 'home', :only => :index
 
   def index
     if current_user
