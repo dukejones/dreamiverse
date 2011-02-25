@@ -8,16 +8,16 @@ class Tag < ActiveRecord::Base
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry,cloud_size = 16)   
     Tag.delete_all(:entry_id => entry.id,:kind => 'auto') 
-    
-    #existing_custom_names = entry.custom_tags.map(&:name)
-    
+        
     auto_tag_words = "#{entry.body} #{entry.title}".split(/\s+/)
-    auto_scores = self.order_and_score_auto_tags(auto_tag_words).first(cloud_size)
-    #auto_scores.delete_if{|what,score| existing_custom_scores.include(what.name)}
+    auto_scores = self.sort_and_score_auto_tags(auto_tag_words).first(cloud_size)
+    
+    # drJ tests
+    # existing_custom_names = entry.custom_tags.map(&:name)
+    # auto_scores.delete_if{|what,score| existing_custom_scores.include(what.name)}
 
     # which position to start with?
-    custom_tag_count = entry.tags.where(:kind => 'custom',:entry_id => entry.id).count
-    
+    custom_tag_count = entry.tags.where(:kind => 'custom',:entry_id => entry.id).count  
     
     (custom_tag_count...cloud_size).each do |position|
       auto_scores_index = position - custom_tag_count
@@ -25,11 +25,10 @@ class Tag < ActiveRecord::Base
       what, score = auto_scores[auto_scores_index]
       Tag.create(entry: entry, noun: what, position: position, kind: 'auto')     
     end
-
   end
 
   # create hash  name => frequency with no blacklisted words.   
-  def self.order_and_score_auto_tags(tag_words)   
+  def self.sort_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
       if (BlacklistWord.where(word: tag_word).count < 1)
         what = What.find_or_create_by_name(tag_word)
@@ -48,6 +47,7 @@ class Tag < ActiveRecord::Base
   def self.sort_custom_tags(entry_id,position_list)
     
     return false if (entry_id.nil?|position_list.nil?)
+    
     entry = Entry.find_by_id(entry_id)
      
     old_positions = {}
@@ -63,6 +63,7 @@ class Tag < ActiveRecord::Base
         t.save
       end
     end
+    
     return true
   end  
   
