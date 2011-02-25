@@ -8,10 +8,10 @@
     %option.newLocation{value: 'New location'} Add new location
     %option.divider{disabled: 'true'}
     %option.saved{disabled: 'true'} Saved locations
-    %option{value: 'Home'} Home
-    %option{value: 'The Pearl'} The Pearl
-    %option{value: 'Flow Space'} Flow Space
-    %option{value: 'Under I580'} Under I580
+    
+    - current_user.wheres.each do |where|
+      %option{value: "#{where.id}"}= where.name
+      
     %option.noLocation{value: 'No location'} No location
   .spinner-small
 

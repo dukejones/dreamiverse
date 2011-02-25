@@ -177,14 +177,14 @@ class SettingsPanel extends MetaMenu
       #log xhr.target.new_location[name]
     
     $('form#addLocationForm').bind 'ajax:success', (data, xhr, status)->
+      $('#locationList').html(xhr)
       $('p.notice').text('Profile has been updated')
-      alert 'success'
     
     $('form#addLocationForm').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
     
     $('.locationForm input:radio').change( (event) ->
-      $('.locations input:radio').each( (index, value) ->
+      $('.location input:radio').each( (index, value) ->
         $(value).parent().removeClass('selected')
       )
       $(event.currentTarget).parent().addClass('selected')
