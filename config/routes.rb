@@ -71,7 +71,6 @@ Dreamcatcher::Application.routes.draw do
   resources :entries do
     collection do
       post 'bedsheet' 
-      post 'sort_custom_tags'
     end
     resources :comments
   end
