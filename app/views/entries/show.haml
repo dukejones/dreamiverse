@@ -92,7 +92,8 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation= get_city_prov(@entry.location_id)
+          - if !@entry.location_id.nil?
+            .postLocation= get_city_prov(@entry.location_id)
 
 
           #tag-list.tag-list.ui-sortable.target
