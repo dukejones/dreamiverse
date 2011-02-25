@@ -1,103 +1,96 @@
-- content_for :head do
-  = sass_link_tag 'home'
-  = coffeescript_include_tag 'loginpanel', 'dreamplugs', 'cookies'
 
-#drop_shadow
+/ DREAMCATCHER LOGO
+%a.dcLogo{href: '#'}
+  %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
-#home
+.randomDream
+  random dream!
 
-  / DREAMCATCHER LOGO
-  %a.dcLogo{href: '#'}
-    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+/ WELCOME
+.welcomeWrap
+  %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
 
-  .randomDream
-    random dream!
+  .welcome
+    %p Dreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, keeping them organized and easy to share.
+    %p Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
+    %p A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
+    %p Start sharing and become part of the digital Dreamsphere.
 
-  / WELCOME
-  .welcomeWrap
-    %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
-
-    .welcome
-      %p Dreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, keeping them organized and easy to share.
-      %p Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
-      %p A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
-      %p Start sharing and become part of the digital Dreamsphere.
-
-      .thankyou Thank You
+    .thankyou Thank You
 
 
 
-  / RIGHT COLUMN
-  #rightColumn
+/ RIGHT COLUMN
+#rightColumn
 
-    / LOGIN BUTTON
-    .loginPanelWrap
-      .login.trigger.slide
-        login
-      %a.loginItem{href: '/', target: 'blank'} with facebook
-      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
-      .clear
-
-      
-      / LOGIN PANEL
-      .loginPanel.target.slide.hidden
-        = form_for('user', {url: user_session_path}) do |f|
-          %a.forgot{href: forgot_password_path} Forgot password
-          %label.stay
-            Stay logged in
-            %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-          = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
-          = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
-          %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
-
-    / JOIN PANEL
-    .joinPanel.wrapper
-      = form_for(User.new, url: user_registration_path) do |f|
-        .intro
-          %h1 New to Dreamcatcher?
-          <p>Easy, free, and instant updates about what people are dreaming.</p>
-          <p>What am I dreaming about?<br />
-          Whose dreams am I in?<br />
-          What is the world dreaming?</p> 
-          <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
-
-
-        .joinForm
-          = f.text_field :email, :class => 'login-input', :placeholder => "email"
-          = f.password_field :password, :class => 'login-input', :placeholder => "password"
-          = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
-          %span http://dreamcatcher.net/username
-          = f.text_field :username, :class => 'login-input', :placeholder => "username"
-      
-          .haveSeedcode enter a seed code &raquo;
-          .seedcodeExpander.hidden
-            = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
-
-        / JOIN TOGGLE - BUTTON
-        .joinWrap
-          %a.join{href: '/join'}
-            Join now &rsaquo;
-          %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
-
-
-    / DREAMSTARS MINI
-    = render :partial => 'users/dreamstars_mini'
-
-
-  / PUBLIC STREAM
-  #publicStream
-    .today today in dreams
-    / .todayFilter today
-    / %h1.in in
-    / .dreamsFilter dreams
+  / LOGIN BUTTON
+  .loginPanelWrap
+    .login.trigger.slide
+      login
+    %a.loginItem{href: '/', target: 'blank'} with facebook
+    = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
+    .clear
 
     
-    / DREAM MATRIX
-    .matrix
+    / LOGIN PANEL
+    .loginPanel.target.slide.hidden
+      = form_for('user', {url: user_session_path}) do |f|
+        %a.forgot{href: forgot_password_path} Forgot password
+        %label.stay
+          Stay logged in
+          %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+        = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
+        = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
+        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+
+  / JOIN PANEL
+  .joinPanel.wrapper
+    = form_for(User.new, url: user_registration_path) do |f|
+      .intro
+        %h1 New to Dreamcatcher?
+        <p>Easy, free, and instant updates about what people are dreaming.</p>
+        <p>What am I dreaming about?<br />
+        Whose dreams am I in?<br />
+        What is the world dreaming?</p> 
+        <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
 
-      / / DREAM THUMBS 1D
-      - @entries.each do |entry|
-        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
-      - if @entries.blank?
-        .noEntries No dreams yet today.
+      .joinForm
+        = f.text_field :email, :class => 'login-input', :placeholder => "email"
+        = f.password_field :password, :class => 'login-input', :placeholder => "password"
+        = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
+        %span http://dreamcatcher.net/username
+        = f.text_field :username, :class => 'login-input', :placeholder => "username"
+    
+        .haveSeedcode enter a seed code &raquo;
+        .seedcodeExpander.hidden
+          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
+
+      / JOIN TOGGLE - BUTTON
+      .joinWrap
+        %a.join{href: '/join'}
+          Join now &rsaquo;
+        %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+
+
+  / DREAMSTARS MINI
+  = render :partial => 'users/dreamstars_mini'
+
+
+/ PUBLIC STREAM
+#publicStream
+  .today today in dreams
+  / .todayFilter today
+  / %h1.in in
+  / .dreamsFilter dreams
+
+  
+  / DREAM MATRIX
+  .matrix
+
+
+    / / DREAM THUMBS 1D
+    - @entries.each do |entry|
+      = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+    - if @entries.blank?
+      .noEntries No dreams yet today.
