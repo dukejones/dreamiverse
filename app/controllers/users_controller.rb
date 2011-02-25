@@ -19,10 +19,13 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       respond_to do |format|
         format.html { render :text => "user updated" }
-        format.json { render :json => {:message => 'user updated'}}
+        format.json { render :json => {type: 'ok', message: 'user updated'}}
       end
     else
-      
+      respond_to do |format|
+        format.html { render :text => "user error" }
+        format.json { render :json => {type: 'error', errors: @user.errors}}.to_json
+      end
     end
   end
 
