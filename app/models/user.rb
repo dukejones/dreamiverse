@@ -9,52 +9,48 @@ class User < ActiveRecord::Base
   }
 
   has_many :authentications
-
   has_many :entries
-
   has_many :hits
-  
   has_many :entry_accesses
-
   has_one :link, :as => :owner
-  
+  accepts_nested_attributes_for :link, :update_only => true
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
-  
   # follows are the follows this user has
-  # following are the users this user is following
   has_many :follows
+  # following are the users this user is following
   has_many :following, :through => :follows
-  
   # followings are the follows that point to this user
-  # followers are the users that follow this user
   has_many :followings, :class_name => "Follow", :foreign_key => :following_id
+  # followers are the users that follow this user
   has_many :followers, :through => :followings, :source => :user
-  
   belongs_to :default_location, :class_name => "Where"
   has_and_belongs_to_many :wheres
-
   belongs_to :image
-  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   #devise :database_authenticatable, :registerable,
   #       :recoverable, :rememberable, :trackable, :validatable
-
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessor :password, :password_confirmation, :old_password
+  # usernames must be lowercase
+  before_create -> { username.downcase! }
+  before_create :create_view_preference
   after_validation :encrypt_password
-  validate :validate_password_confirmation
+
+  validate :password_confirmation_matches
   validates_presence_of :username
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_uniqueness_of :email, :allow_nil => true
-  validate :validate_at_least_one_authentication
-  # usernames must be lowercase
+  validate :has_at_least_one_authentication
   
-  before_create :create_view_preference
   
+  scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+  scope :dreamstars, order_by_starlight.limit(16)
+
+  attr_accessor :password, :password_confirmation, :old_password
+
   def self.create_from_omniauth(omniauth)
     user = create!(
       :name => omniauth['user_info']['name'],
@@ -123,8 +119,14 @@ class User < ActiveRecord::Base
   end
 
   protected
+
+  def encrypt_password
+    if password
+      self[:encrypted_password] = sha1(password)
+    end
+  end
   
-  def validate_password_confirmation
+  def password_confirmation_matches
     if old_password && (sha1(old_password) != encrypted_password)
       errors.add :old_password, "does not match your current password"
     end
@@ -133,13 +135,7 @@ class User < ActiveRecord::Base
     end
   end
   
-  def encrypt_password
-    if password
-      self[:encrypted_password] = sha1(password)
-    end
-  end
-  
-  def validate_at_least_one_authentication
+  def has_at_least_one_authentication
     if (self.authentications.count == 0) && email.nil?
       errors.add :email, " must be present, or have at least one authentication."
     end

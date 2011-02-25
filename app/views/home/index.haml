@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'home'
-  = coffeescript_include_tag 'loginpanel'
+  = coffeescript_include_tag 'loginpanel', 'dreamplugs'
 
 #drop_shadow
 
@@ -9,6 +9,9 @@
   / DREAMCATCHER LOGO
   %a.dcLogo{href: '#'}
     %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+
+  .randomDream
+    random dream!
 
   / WELCOME
   .welcomeWrap
@@ -27,17 +30,43 @@
   / RIGHT COLUMN
   #rightColumn
 
-    .dreamstarsMiniWrap
-      .dreamstarsMini
-        %a{href: '/dreamstars'}
-          %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
-          %span view all &rsaquo;
-        - @users.each_with_index do |user, index|
-          = if index < 5
-            %div{class: "dreamstar-#{index+1}"}
-              .badge
-              .rank= index + 1
-              .name= user.username
+    / LOGIN PANEL
+    .loginPanelWrap
+      .login.trigger.slide
+        login
+      %a.loginItem{href: '/', target: 'blank'} with facebook
+      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
+      .clear
+
+      
+      / LOGIN PANEL
+      .loginPanel.target.slide.hidden
+        = form_for('user', {url: user_session_path}) do |f|
+          %a.forgot{href: forgot_password_path} Forgot password
+          %label.stay
+            Stay logged in
+            %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+          = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
+          = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
+          %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+
+    / NEW JOIN
+    #newJoin
+      %h1 New to Dreamcatcher?
+      <p>Easy, free, and instant updates about what people are dreaming.</p>
+      <p>What am I dreaming about?<br />
+      Whose dreams am I in?<br />
+      What is the world dreaming?</p> 
+      <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
+
+      / JOIN NOW
+      .joinWrap
+        %a.join{href: '/join'}
+          Join now &rsaquo;
+
+
+    / DREAMSTARS MINI
+    = render :partial => 'users/dreamstars_mini'
 
 
   / PUBLIC STREAM
@@ -46,9 +75,6 @@
     / .todayFilter today
     / %h1.in in
     / .dreamsFilter dreams
-    .randomDream
-      %span random
-      dream!
 
     
     / DREAM MATRIX

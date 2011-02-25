@@ -92,7 +92,9 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation= @entry.wheres.first()
+          
+          - if location = @entry.location
+            .postLocation= "#{location.city}, #{location.province}"
 
 
           #tag-list.tag-list.ui-sortable.target
