@@ -10,6 +10,9 @@
   %a.dcLogo{href: '#'}
     %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
+  .randomDream
+    random dream!
+
   / WELCOME
   .welcomeWrap
     %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
@@ -26,6 +29,23 @@
 
   / RIGHT COLUMN
   #rightColumn
+
+    / NEW JOIN
+    #newJoin
+      %h1 New to Dreamcatcher?
+      <p>Easy, free, and instant updates about what people are dreaming.</p>
+      <p>What am I dreaming about?<br />
+      Whose dreams am I in?<br />
+      What is the world dreaming?</p> 
+      <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
+
+      / JOIN NOW
+      .joinWrap
+        %a.join{href: '#'}
+          Join now &rsaquo;
+
+
+    / DREAMSTARS MINI
     = render :partial => 'users/dreamstars_mini'
 
 
@@ -35,9 +55,6 @@
     / .todayFilter today
     / %h1.in in
     / .dreamsFilter dreams
-    .randomDream
-      %span random
-      dream!
 
     
     / DREAM MATRIX
