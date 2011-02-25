@@ -72,20 +72,21 @@
 
     - if user == current_user
       .edit.hidden
-        = form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
-          = f.text_field :name, :placeholder => 'full name'
-          / = f.fields_for :link_attributes do |l|
-          /   = l.text_field :title, :placeholder => 'site name'
-          /   = l.text_field :url, :placeholder => 'website'
-          = f.text_field :link, :placeholder => 'website'
-          = f.text_field :email, :placeholder => 'email'
-          = f.text_field :phone, :placeholder => 'phone'
-          .skypeWrap
-            = f.text_field :skype, :placeholder => 'skype user name'
-            %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-          .cancel cancel
-          = f.submit :save, :class => 'save'
-          .clear
+        = form_tag :user, :method => :put, :remote => true, :html => {:id => 'update_profile'} do
+          = fields_for current_user do |f|
+            = f.text_field :name, :placeholder => 'full name'
+            = f.fields_for :link_attributes do |l|
+              = l.text_field :title, :placeholder => 'site name'
+              = l.text_field :url, :placeholder => 'website'
+            / = f.text_field :link, :placeholder => 'website'
+            = f.text_field :email, :placeholder => 'email'
+            = f.text_field :phone, :placeholder => 'phone'
+            .skypeWrap
+              = f.text_field :skype, :placeholder => 'skype user name'
+              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+            .cancel cancel
+            = f.submit :save, :class => 'save'
+            .clear
 
 
   / FILTER BY ENTRY TYPE
