@@ -74,7 +74,9 @@ class UsersController < ApplicationController
     @image.save!
     @image.write(request.body.read)
 
-    current_user.update_attribute(:image, @image)
+    current_user.image = @image
+    current_user.save
+    
     render :json => { :avatar_path => @image.url('avatar_main'), :avatar_thumb_path => @image.url(:avatar, :size => 32), :avatar_image => @image }
   end
 end
