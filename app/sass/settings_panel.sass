@@ -183,7 +183,7 @@
       +cursor
       padding: 0 0 2px 4px
     // INPUTS
-    #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+    #user_old_password, #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
       +font(15)
       margin-bottom: 4px
@@ -210,6 +210,8 @@
   .changePassword
     margin: 0
     .changePasswordForm
+      p
+        color: red
       .cancel, .confirm
         +round(4)
       .confirm
@@ -301,7 +303,7 @@
           +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation
+      #user_old_password, #user_password, #user_password_confirmation
         +input-light(small)
       .cancel, .confirm
         +button-light
@@ -365,7 +367,7 @@
           +cancel(12)
 
     .changePasswordForm
-      #user_password, #user_password_confirmation
+      #user_old_password, #user_password, #user_password_confirmation
         +input-dark(small)
       .cancel, .confirm
         +button-dark
