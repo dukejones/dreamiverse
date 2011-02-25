@@ -185,6 +185,13 @@
       +bold
       +cursor
       padding: 0 0 2px 4px
+    .autoDetect
+      +right
+      +pointer
+      +round(8)
+      +font(12)
+      padding: 0px 4px
+      margin-top: 1px
     // INPUTS
     #user_old_password, #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
       +round(4)
@@ -292,6 +299,8 @@
           +border-light
 
       .modifyLocationView
+        .autoDetect
+          +button-light
         #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-light(small)
         .save, .cancel
@@ -356,6 +365,8 @@
           +border-dark
 
       .modifyLocationView
+        .autoDetect
+          +button-dark
         #user_password, #user_password_confirmation, .name, .city, .state, .country
           +input-dark(small)
         .save, .cancel

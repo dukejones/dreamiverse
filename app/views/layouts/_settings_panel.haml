@@ -68,6 +68,7 @@
         -# Fields within wheres table: name, city, province, country
         = fields_for :new_location do |f|
           %span Add a new location
+          .autoDetect Use my current location
           = f.text_field :name, class: 'name', placeholder: 'Location name'
           = f.text_field :city, class: 'city', placeholder: 'City'
           = f.text_field :province, class: 'state', placeholder: 'State / Province'
