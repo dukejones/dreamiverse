@@ -54,7 +54,7 @@
         - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
           - if user.link
-            %a.website{href: user.link.url}= user.link.url
+            %a.website{href: user.link.url}= user.link.title
           - if current_user.relationship_with(user) == :friends || user == current_user
             .email= user.email
             .phone= user.phone
@@ -74,6 +74,9 @@
       .edit.hidden
         = form_for current_user, :remote => true, :html => {:id => 'update_profile'} do |f|
           = f.text_field :name, :placeholder => 'full name'
+          / = f.fields_for :link_attributes do |l|
+          /   = l.text_field :title, :placeholder => 'site name'
+          /   = l.text_field :url, :placeholder => 'website'
           = f.text_field :link, :placeholder => 'website'
           = f.text_field :email, :placeholder => 'email'
           = f.text_field :phone, :placeholder => 'phone'
