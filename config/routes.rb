@@ -24,10 +24,10 @@ Dreamcatcher::Application.routes.draw do
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
   # Universal
-  match 'dreamstars' => 'users#index', :as => :dreamstars
-  match 'dreamstream' => 'entries#stream', :as => :stream
-  match 'faq' => 'application#faq', :as => :faq
-  match 'feedback' => 'application#feedback', :as => :feedback
+  match '/dreamstars' => 'users#index', :as => :dreamstars
+  match '/dreamstream' => 'entries#stream', :as => :stream
+  match '/faq' => 'home#faq', :as => :faq
+  match '/feedback' => 'home#feedback', :as => :feedback
 
   # Resources
 
@@ -35,6 +35,7 @@ Dreamcatcher::Application.routes.draw do
     post 'follow'
     post 'bedsheet'
     post 'avatar'
+    post 'location', :to => 'users#create_location'
   end
 
   # Random path from dreams.js
