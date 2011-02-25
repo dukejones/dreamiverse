@@ -61,7 +61,9 @@ body
       height: 284px
 
       p
-        margin: 0 0 10px
+        +font(18)
+        line-height: 20px
+        margin: 0 0 18px
         width: 585px
         color: #d1f2ff
 
@@ -82,7 +84,7 @@ body
   // RIGHT COLUMN
   #rightColumn
     +absolute
-    top: 45px
+    top: 0
     left: 820px
 
     #newJoin
@@ -102,40 +104,140 @@ body
         +font(14)
         margin: 0 0 10px
 
-      // JOIN - same as meta_menu_public (probably should bring into shared)
-      .joinWrap, .signupWrap
-        +pointer
-        +clear
+    // LOGIN PANEL WRAP - altered from meta_menu_public and renamed from .rightPanel
+    .loginPanelWrap
+      +bevel-light
+      +round(16)
+      +glow-light(20)
+      +flat-top
+      margin: 0 0 10px
+      padding: 8px
+      width: 208px
+
+      .loginItem
+        +font(12)
+        +left
+        height: 28px
+        line-height: 28px
+        padding: 0 12px
+        border: 1px solid transparent
+        &:hover
+          +border-light
+          +round(8)
+        .hoverLabel
+          top: 56px !important
+
+      .login
+        +right
+        +center
+        +user-select
+        +flat-dark
+        +button-light
         +round(12)
-        width: 196px
-        margin: 4px 0 0
-        padding: 2px 0
-        background: #fff
-        background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
-        background: -moz-linear-gradient(top, #dcdcdc, #fff)
-        .join, .signup, .joinToggle
-          +pointer
+        +confirm(12)
+        color: #ddd
+        height: 28px
+        line-height: 28px
+        padding: 0 12px
+        margin: 0 8px 8px 0
+
+      // LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
+      .loginPanel, .signupPanel
+        +clear
+
+        span
+          +font(11)
+          +user-select
+          +cursor
+          margin-left: 4px
+        .login-input, #loginButton
+          +clear
           +block
-          +center
-          +bold
+          +font(14)
           +round(12)
-          margin: 0 auto
-          width: 190px
+          margin: 0 0 2px
+          padding: 0 8px
+          width: 176px
           height: 32px
           line-height: 32px
-          color: #fff
-          background: #ffa614
-          background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
-          background: -moz-linear-gradient(top, #ffe658, #ffa614)
-          border: 1px solid #ffa614
-        .join:hover, .signup:hover, .joinToggle:hover
-          box-shadow: inset 0 18px rgba(255,255,255,0.2)
-          -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-          -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        .join:active, .signup:active, .joinToggle:active
-          background: #ffa614
-          background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
-          background: -moz-linear-gradient(top, #ffa614, #ffe658)
+        .login-input
+          +input-light(small)
+          margin-bottom: 4px
+
+        .haveSeedcode
+          +pointer
+          +clear
+          +block
+          +center
+          +font(14)
+          +button-light
+          +round(4)
+          +user-select
+          margin: 4px 0 6px
+          width: 150px
+          margin: auto
+
+        #loginButton
+          +round(12)
+          +button-light
+          +bevel-light
+          width: 192px
+          +confirm(12)
+
+        .stay, .forgot
+          +button-light
+          +round(4)
+          +center
+          +font(10)
+          +user-select
+          margin: 0 4px 4px
+          padding: 0 4px
+          height: 16px
+          line-height: 16px
+          font-weight: normal
+        .forgot
+          +left
+        .stay
+          +right
+          width: 80px
+          input
+            +right
+            margin: 1px 0 0
+
+    // JOIN - same as meta_menu_public (probably should bring into shared)
+    .joinWrap, .signupWrap
+      +pointer
+      +clear
+      +round(12)
+      width: 196px
+      margin: 4px 0 0
+      padding: 2px 0
+      background: #fff
+      background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
+      background: -moz-linear-gradient(top, #dcdcdc, #fff)
+      .join, .signup, .joinToggle
+        +pointer
+        +block
+        +center
+        +bold
+        +round(12)
+        margin: 0 auto
+        width: 190px
+        height: 32px
+        line-height: 32px
+        color: #fff
+        background: #ffa614
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
+        background: -moz-linear-gradient(top, #ffe658, #ffa614)
+        border: 1px solid #ffa614
+      .join:hover, .signup:hover, .joinToggle:hover
+        box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+      .join:active, .signup:active, .joinToggle:active
+        background: #ffa614
+        background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
+        background: -moz-linear-gradient(top, #ffa614, #ffe658)
 
 
     // DREAMSTARS MINI
