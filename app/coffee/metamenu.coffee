@@ -177,7 +177,7 @@ class SettingsPanel extends MetaMenu
       #log xhr.target.new_location[name]
     
     $('form#addLocationForm').bind 'ajax:success', (data, xhr, status)->
-      $('#locationList').html(xhr)
+      $('#locationList').append(xhr)
       $('p.notice').text('Profile has been updated')
     
     $('form#addLocationForm').bind 'ajax:error', (xhr, status, error)->
@@ -208,10 +208,20 @@ class SettingsPanel extends MetaMenu
       $('.changePassword .target').hide()
     
     $('form#change_password').bind 'ajax:success', (data, xhr, status)->
-      $('p.notice').text('Password has been updated')
+      $('p.notice').text(xhr.message)
+      if xhr.errors
+        for error, message of xhr.errors
+          $('#user_' + error).prev().text(message[0])
+        # open the panel back up
+        $('.changePassword .target').slideDown()
+      else
+        $('#change_password .error').text('')
+        $('#user_old_password, #user_password, #user_password_confirmation').val('')
     
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
-      $('p.alert').text(error)
+      #$('p.alert').text(xhr.error)
+      log xhr.errors
+      
     
     #setup Default Sharing dropdown
     @$defaultSharingSelect.val(@$currentMenuPanel.find('.defaultSharing').data('id'))

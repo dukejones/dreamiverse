@@ -48,7 +48,7 @@
 
           %label.autoLocate
             auto locate
-            %input{name: 'default', value:'auto', type: 'radio'}
+            %input{name: 'auto-locate', value:'1', type: 'radio'}
 
         .newLocation.trigger.toggle
           %img{src: '/images/icons/add-16.png'}
@@ -346,11 +346,11 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :method => :put, :'data-type' => :json, :remote => true do
+      = form_tag :user, :method => :put, :'data-type' => :json, :remote => true, :id => 'change_password' do
         = fields_for current_user do |f|
-          %p.error Error message
+          %p.error
           = f.password_field(:old_password, {placeholder: 'Current password'})
-          %p.error Error message
+          %p.error
           = f.password_field(:password, {placeholder: 'New password'})
           = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
           .cancel cancel

@@ -3,7 +3,7 @@
   .locationHeader.headers
     %img{src: '/images/icons/location-21.png', height: '16', width: '16'}
     location
-  %select#locationList.locations
+  %select#locationList.locations{name: "entry[location_id]"}
     %option.finding Finding your location...
     %option.newLocation{value: 'New location'} Add new location
     %option.divider{disabled: 'true'}
