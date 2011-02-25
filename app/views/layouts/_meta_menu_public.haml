@@ -46,9 +46,9 @@
       %a.join{href: '#'}
         Join now &rsaquo;
 
-    / SIGN UP
+    / JOIN FORM
     = form_for(User.new, url: user_registration_path) do |f|
-      .signupPanel.wrapper.hidden
+      .joinPanel.wrapper.hidden
         = f.text_field :email, :class => 'login-input', :placeholder => "email"
         = f.password_field :password, :class => 'login-input', :placeholder => "password"
         = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
@@ -59,6 +59,6 @@
         .seedcodeExpander.hidden
           = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
-        / SIGN UP BUTTON
-        .signupWrap
-          %input.signup{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+        / JOIN BUTTON
+        .joinButtonWrap
+          %input.joinButton{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}

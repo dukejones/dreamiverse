@@ -90,7 +90,7 @@ body
     top: 0
     left: 820px
 
-    #newJoin
+    .joinPanel
       +glow-blue(40)
       +border-blue
       +flat-light
@@ -144,88 +144,91 @@ body
         padding: 0 12px
         margin: 0 8px 8px 0
 
-      // LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
-      .loginPanel, .signupPanel
+    // LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
+    .joinPanel .joinForm .login-input
+      margin-left: -4px
+
+    .loginPanel, .joinPanel
+      +clear
+
+      span
+        +font(11)
+        +user-select
+        +cursor
+        margin-left: 4px
+      .login-input, #loginButton
         +clear
+        +block
+        +font(14)
+        +round(12)
+        margin: 0 0 2px
+        padding: 0 8px
+        width: 190px
+        height: 32px
+        line-height: 32px
+      .login-input
+        +input-light(small)
+        margin-bottom: 4px
 
-        span
-          +font(11)
-          +user-select
-          +cursor
-          margin-left: 4px
-        .login-input, #loginButton
-          +clear
-          +block
-          +font(14)
-          +round(12)
-          margin: 0 0 2px
-          padding: 0 8px
-          width: 176px
-          height: 32px
-          line-height: 32px
-        .login-input
-          +input-light(small)
-          margin-bottom: 4px
+      .haveSeedcode
+        +pointer
+        +clear
+        +block
+        +center
+        +font(11)
+        +button-light
+        +round(4)
+        +user-select
+        margin: 4px 0 6px
+        width: 150px
+        margin: auto
 
-        .haveSeedcode
-          +pointer
-          +clear
-          +block
-          +center
-          +font(14)
-          +button-light
-          +round(4)
-          +user-select
-          margin: 4px 0 6px
-          width: 150px
-          margin: auto
+      #loginButton
+        +round(12)
+        +border-dark
+        +bevel-light
+        width: 208px
+        +confirm(12)
 
-        #loginButton
-          +round(12)
-          +button-light
-          +bevel-light
-          width: 192px
-          +confirm(12)
-
-        .stay, .forgot
-          +button-light
-          +round(4)
-          +center
-          +font(10)
-          +user-select
-          margin: 0 4px 4px
-          padding: 0 4px
-          height: 16px
-          line-height: 16px
-          font-weight: normal
-        .forgot
-          +left
-        .stay
+      .stay, .forgot
+        +button-light
+        +round(4)
+        +center
+        +font(10)
+        +user-select
+        margin: 0 4px 4px
+        padding: 0 4px
+        height: 16px
+        line-height: 16px
+        font-weight: normal
+      .forgot
+        +left
+      .stay
+        +right
+        width: 80px
+        input
           +right
-          width: 80px
-          input
-            +right
-            margin: 1px 0 0
+          margin: 1px 0 0
 
     // JOIN - same as meta_menu_public (probably should bring into shared)
-    .joinWrap, .signupWrap
+    .joinWrap, .joinButtonWrap
       +pointer
       +clear
       +round(12)
-      width: 196px
-      margin: 4px 0 0
+      width: 208px
+      margin: 4px 0 -4px -4px
       padding: 2px 0
       background: #fff
       background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
       background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join, .signup, .joinToggle
+      .join, .joinToggle
         +pointer
         +block
         +center
         +bold
-        +round(12)
+        +round(10)
         margin: 0 auto
-        width: 190px
+        width: 202px
         height: 32px
         line-height: 32px
         color: #fff
@@ -233,11 +236,11 @@ body
         background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
         background: -moz-linear-gradient(top, #ffe658, #ffa614)
         border: 1px solid #ffa614
-      .join:hover, .signup:hover, .joinToggle:hover
-        box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        -moz-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-      .join:active, .signup:active, .joinToggle:active
+      .join:hover, .joinToggle:hover
+        box-shadow: inset 0 14px rgba(255,255,255,0.2)
+        -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+      .join:active, .joinToggle:active
         background: #ffa614
         background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
         background: -moz-linear-gradient(top, #ffa614, #ffe658)

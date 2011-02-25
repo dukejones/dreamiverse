@@ -35,14 +35,18 @@ class AvatarController
       $('.avatar .uploadAvatarWrap').fadeOut()
 
   setupUploader: ->
-    @avatarParams = ''
+    @avatarParams = 
+      image:
+        section: "Avatar"
     uploader = new qq.AvatarUploader(
       element: document.getElementById('avatarDrop')
-      action: '/user/avatar'
+      action: '/images.json'
       maxConnections: 1
       params: @avatarParams
       debug: true
       onComplete: (id, fileName, response) =>
+        log response
+        log id
         @uploaderDisplayed = false
         @$avatarView.removeUploader(response.avatar_path, response.avatar_thumb_path)
     )

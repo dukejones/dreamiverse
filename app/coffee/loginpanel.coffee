@@ -24,17 +24,17 @@ class LoginView
     @$loginButton = @$container.find('.login')
     @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')
-    @$signupButton = @$container.find('.signupWrap')
+    @$joinButtonWrap = @$container.find('.joinButtonWrap')
     
-    @$signupPanel = @$container.find('.signupPanel') #expands
+    @$joinPanel = @$container.find('.joinPanel') #expands
     @$loginPanel = @$container.find('.loginPanel') #submits
     
     @$loginButton.unbind()
     @$loginButton.click => @showLogin()
     @$joinButton.unbind()
-    @$joinButton.click => @showSignup()
+    @$joinButton.click => @showJoin()
     @$joinToggle.unbind()
-    @$joinToggle.click => @showSignup()
+    @$joinToggle.click => @showJoin()
     
     @bodyClickVisible = false
     
@@ -44,13 +44,13 @@ class LoginView
   
   closePanel: ->
     @bodyClickVisible = false
-    @$signupButton.hide()
+    @$joinButtonWrap.hide()
     @$joinButton.show()
     @$loginButton.show()
     @$joinToggle.hide()
     
     @$loginPanel.slideUp()
-    @$signupPanel.slideUp()
+    @$joinPanel.slideUp()
   
   showLogin: ->
     if !@bodyClickVisible
@@ -60,28 +60,28 @@ class LoginView
     else
       @$loginPanel.show()
     
-    @$signupPanel.hide()
-    @$signupButton.hide()
+    @$joinPanel.hide()
+    @$joinButtonWrap.hide()
     @$joinToggle.show()
     @$joinButton.hide()
     
   
     @$loginButton.hide()
   
-    @$signupButton.unbind()
-    @$signupButton.click => @showSignup()
+    @$joinButtonWrap.unbind()
+    @$joinButtonWrap.click => @showJoin()
   
-  showSignup: ->
+  showJoin: ->
     if !@bodyClickVisible
       @bodyClickVisible = true
       @displayBodyClick()
-      @$signupPanel.slideDown()
+      @$joinPanel.slideDown()
     else
-      @$signupPanel.show()
+      @$joinPanel.show()
     
     @$joinToggle.hide()
     @$loginButton.show()
-    @$signupButton.show()
+    @$joinButtonWrap.show()
   
     @$joinButton.hide()
     @$loginPanel.hide()
