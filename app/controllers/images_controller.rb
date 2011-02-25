@@ -105,10 +105,10 @@ class ImagesController < ApplicationController
     else
       @image.write(request.body.read)
       respond_to do |format|
-        format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
+        format.html { render :text => 'Image was successfully created.' }
         format.json  { 
           thumb_size = '120x120'
-          @image.resize(thumb_size)
+          # @image.resize(thumb_size)
           render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
         }
       end
@@ -116,7 +116,7 @@ class ImagesController < ApplicationController
   rescue => e
     Rails.logger.warn "Error uploading file: #{e.message}"
     respond_to do |format|
-      format.html { render :action => "new", :alert => "Could not upload the file." }
+      format.html { render :text => "Could not upload the file." }
       format.json  { render :json => e.message, :status => :unprocessable_entity }
     end
   end
@@ -126,13 +126,15 @@ class ImagesController < ApplicationController
   def update
     @image = Image.find(params[:id])
 
-    respond_to do |format|
-      if @image.update_attributes(params[:image].merge(enabled: true))
+    if @image.update_attributes(params[:image].merge(enabled: true))
+      respond_to do |format|
         format.html { redirect_to(@image, :notice => 'Image was successfully updated.') }
-        format.json  { head :ok }
-      else
+        format.json  { render json: {type: 'ok'} }
+      end
+    else
+      respond_to do |format|
         format.html { render :action => "edit" }
-        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
+        format.json  { render :json => { type: 'error', errors: @image.errors, status: :unprocessable_entity } }
       end
     end
   end
