@@ -22,7 +22,7 @@ $(document).ready ->
 	  
 	  $.ajax {
       type: 'PUT'
-      url: '/tags/sort_custom_tags'
+      url: '/tags/sort_custom'
       data:
         entry_id: entry
         position_list: order
