@@ -126,7 +126,7 @@ class User < ActiveRecord::Base
   
   def validate_password_confirmation
     if old_password && (sha1(old_password) != encrypted_password)
-      errors.add :old_password, "wrong password"
+      errors.add :old_password, "does not match your current password"
     end
     if password && (password != password_confirmation)
       errors.add :password, "should match password confirmation"

@@ -345,14 +345,13 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :method => :put, :remote => true do
+      = form_tag :user, :method => :put, :'data-type' => :json, :remote => true do
         = fields_for current_user do |f|
           %p.alert Error message
           = f.password_field(:old_password, {placeholder: 'Current password'})
           %p.alert Error message
           = f.password_field(:password, {placeholder: 'New password'})
           = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
-
           .cancel cancel
           = f.submit :'change password', :class => 'confirm'
           .clear
