@@ -16,13 +16,6 @@ class ApplicationController < ActionController::Base
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
 
-  def faq
-    render "home/faq"
-  end
-
-  def feedback
-    render "home/feedback"
-  end
 
 protected
   def set_current_user(user)
