@@ -80,7 +80,7 @@ class Entry < ActiveRecord::Base
   end
   
   def add_what_tag(what)
-    self.whats << what unless self.whats.exists? what
+    self.whats << what unless self.whats.exists? what # wtf?
   end
 
   def sharing
