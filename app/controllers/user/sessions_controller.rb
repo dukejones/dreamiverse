@@ -1,4 +1,6 @@
 class User::SessionsController < ApplicationController
+  layout 'home'
+
   def new
     redirect_to :root and return if current_user
     

@@ -1,8 +1,6 @@
 class ImagesController < ApplicationController
   before_filter :require_user, :only => :manage
 
-  # GET /images
-  # GET /images.json
   def index
     if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
@@ -70,7 +68,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/manage
+
   def manage
     respond_to do |format|
       format.html # manage.html.erb
@@ -78,8 +76,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1
-  # GET /images/1.json
+
   def show
     @image = Image.find(params[:id])
 
@@ -89,8 +86,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # POST /images
-  # POST /images.json
+
   def create
     @image = Image.new(params[:image].merge({
       incoming_filename: params[:qqfile],
@@ -121,15 +117,14 @@ class ImagesController < ApplicationController
     end
   end
 
-  # PUT /images/1
-  # PUT /images/1.json
+
   def update
     @image = Image.find(params[:id])
 
     if @image.update_attributes(params[:image].merge(enabled: true))
       respond_to do |format|
-        format.html { redirect_to(@image, :notice => 'Image was successfully updated.') }
-        format.json  { render json: {type: 'ok'} }
+        format.html { render :text => 'Image was successfully updated.' }
+        format.json  { render json: {type: 'ok', message: 'Image was successfully updated.'} }
       end
     else
       respond_to do |format|
