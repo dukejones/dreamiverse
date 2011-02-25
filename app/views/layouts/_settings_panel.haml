@@ -347,9 +347,9 @@
     .changePasswordForm.target.showhide.hidden
       = form_tag :user, :method => :put, :remote => true do
         = fields_for current_user do |f|
-          %p Error message
+          %p.alert Error message
           = f.password_field(:old_password, {placeholder: 'Current password'})
-          %p Error message
+          %p.alert Error message
           = f.password_field(:password, {placeholder: 'New password'})
           = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 
