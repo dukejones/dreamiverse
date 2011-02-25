@@ -92,7 +92,7 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          .postLocation= @entry.wheres.first()
+          .postLocation= @entry.location_id
 
 
           #tag-list.tag-list.ui-sortable.target
