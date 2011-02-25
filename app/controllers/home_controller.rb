@@ -7,8 +7,6 @@ class HomeController < ApplicationController
       redirect_to stream_path
     end
 
-    @users = User.all
-
     @entries = Entry.where(:created_at > Time.now.yesterday).
       order_by_starlight.limit(8)
   end
