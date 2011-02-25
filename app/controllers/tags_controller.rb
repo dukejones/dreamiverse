@@ -28,6 +28,7 @@ class TagsController < ApplicationController
   end
   
   def sort_custom_tags
-      Tag.sort_custom_tags(params[:entry_id],params[:position_list])
+    Tag.sort_custom_tags(params[:entry_id],params[:position_list])
+    render :nothing => true
   end  
 end

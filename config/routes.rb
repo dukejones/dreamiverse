@@ -62,12 +62,16 @@ Dreamcatcher::Application.routes.draw do
     resources :words
   end
   
-  # Tagging
-  # match '#:tag', :to => 'tags#show'
-  post '/tags', :to => 'tags#create'
-  post '/tags/sort_custom', :to => 'tags#sort_custom_tags'
-  delete '/tags/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
 
+  # Tagging
+  resources :tags do
+    collection do
+      post '/', :to => 'tags#create'
+      put :sort_custom, :to => 'tags#sort_custom_tags'
+      delete '/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
+    end
+  end
+  
   resources :entries do
     collection do
       post 'bedsheet' 

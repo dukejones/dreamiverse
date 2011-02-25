@@ -46,6 +46,8 @@ class Tag < ActiveRecord::Base
 
   # udpate custom tag positions with an ordered, comma-delim list
   def self.sort_custom_tags(entry_id,position_list)
+    
+    return false if (entry_id.nil?|position_list.nil?)
     entry = Entry.find_by_id(entry_id)
      
     old_positions = {}
@@ -61,6 +63,7 @@ class Tag < ActiveRecord::Base
         t.save
       end
     end
+    return true
   end  
   
   def get_next_custom_position(entry_id)
