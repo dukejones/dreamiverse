@@ -44,8 +44,7 @@
       .locationView
         = form_tag :user, {method: :put, remote: true, id: 'locationForm', class: 'locationForm'} do
           #locationList.locationList
-            - current_user.wheres.each do |where|
-              = render :partial => "layouts/location", :locals => {:where => where}
+            = render :partial => "layouts/location", :collection => current_user.wheres
 
           %label.autoLocate
             auto locate
@@ -346,10 +345,10 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :remote => true do
+      = form_tag :user, :method => :put, :remote => true do
         = fields_for current_user do |f|
-          = f.password_field(:password, {placeholder: 'Current password'})
-          = f.password_field(:password_confirmation, {placeholder: 'New password'})
+          = f.password_field(:old_password, {placeholder: 'Current password'})
+          = f.password_field(:password, {placeholder: 'New password'})
           = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
 
           .cancel cancel

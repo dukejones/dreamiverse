@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     # raise "access denied" unless @user == current_user
 
     @user.update_attributes(params[:user])
-    @user.save
+
     respond_to do |format|
       format.html { render :text => "user updated" }
       format.json { render :json => {:message => 'user updated'}}
@@ -27,7 +27,8 @@ class UsersController < ApplicationController
   def create_location
     current_user.wheres << Where.create(params[:new_location])
     
-    
+
+    render :partial => 'layouts/location', :collection => current_user.wheres
   end
   
   def friends
