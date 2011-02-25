@@ -5,21 +5,43 @@ $(document).ready ->
   
   # Setup tag re-ordering
   $("#sorting").val(1)
-  alert "SORTING SET UP"
-  $("#tag-list").sortable ->
-		distance: 10
-		start: (event, ui) ->
-		  $("#sorting").val(1) #// while sorting, change hidden value to 1
-		stop: (event, ui) =>
-		  alert "UPDATE TAGS ORDER"
-		  log "UPDATE TAG"
-		  $("#sorting").val(0)  #// on ending, change the value back to 0
+  $("#tag-list").sortable -> distance: 10
 		
 	$( "#tag-list" ).bind "sortstart", (event, ui) ->
 	  $("#sorting").val(0)
 	  
 	$( "#tag-list" ).bind "sortstop", (event, ui) ->
 	  $("#sorting").val(1)
+	  
+	  tagOrder = []
+	  $('#tag-list > .tag').each (i, el) ->
+	    tagOrder.push($(this).data('id'))
+	    
+	  entry = $('#showEntry').data('id')
+	  order = tagOrder.join()
+	  
+	  $.ajax {
+      type: 'PUT'
+      url: '/tags/sort_custom_tags'
+      data:
+        entry_id: entry
+        position_list: order
+      success: (data, status, xhr) =>
+        alert "SUCCESS!"
+    }
+    
+	  # $.ajax{
+	  #      type: 'PUT'
+	  #       url: '/tags/sort_custom_tags'
+	  #       data:
+	  #         entry_id: entry
+	  #         position_list: order
+	  #       success: (data, status, xhr) =>
+	  #         log data
+	  #         alert "SUCCESS!!"
+	  #    }
+#tags/sort_custom_tags= url, with the params: entry_id and position_list (your ordered list of ids) to it?
+	     
 	
 	# Setup comment expander
 	$('textarea#comment_body').autoResize
