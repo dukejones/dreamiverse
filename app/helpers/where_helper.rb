@@ -1,4 +1,4 @@
-def find_state_prov(id = 1)
+def get_city_prov(id)
   w = Where.find_by_id(1)
   "#{w.city}, #{w.province}"
 end
