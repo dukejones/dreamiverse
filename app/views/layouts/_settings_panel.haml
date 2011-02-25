@@ -68,6 +68,7 @@
         -# Fields within wheres table: name, city, province, country
         = fields_for :new_location do |f|
           %span Add a new location
+          .autoDetect Use my current location
           = f.text_field :name, class: 'name', placeholder: 'Location name'
           = f.text_field :city, class: 'city', placeholder: 'City'
           = f.text_field :province, class: 'state', placeholder: 'State / Province'
@@ -345,14 +346,13 @@
       Change password
 
     .changePasswordForm.target.showhide.hidden
-      = form_tag :user, :method => :put, :remote => true do
+      = form_tag :user, :method => :put, :'data-type' => :json, :remote => true do
         = fields_for current_user do |f|
-          %p Error message
+          %p.error Error message
           = f.password_field(:old_password, {placeholder: 'Current password'})
-          %p Error message
+          %p.error Error message
           = f.password_field(:password, {placeholder: 'New password'})
           = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
-
           .cancel cancel
           = f.submit :'change password', :class => 'confirm'
           .clear
