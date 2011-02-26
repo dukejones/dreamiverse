@@ -26,7 +26,7 @@ a.dcLogo
       letter-spacing: 4px
       color: #fff
 
-    .loginWrap, .forgotWrap
+    .login, .forgot, .join
       +relative
       +right
       +center
@@ -58,15 +58,14 @@ a.dcLogo
           background: #0c2b50
           +gradient(#0c2b50, #5d80ad)
 
-    .loginWrap
+    .login, .login a
       width: 60px
-      a.login
-        width: 60px
 
-    .forgotWrap
+    .forgot, .forgot a
       width: 142px
-      a.forgot
-        width: 142px
+
+    .join, .join a
+      width: 112px
 
   .glowBox
     +relative
@@ -90,8 +89,12 @@ a.dcLogo
       width: 692px
       height: 340px
 
-      #new_user // FORM ID
+
+      #new_user
         margin: 28px auto 0
+      .loginForm
+        margin: 60px auto 0
+      #new_user, .loginForm // FORM ID
         width: 382px
 
         input
@@ -109,36 +112,47 @@ a.dcLogo
           margin: 0 0 0 8px
           color: #fff
 
-        // JOIN BUTTON - same as home and meta_menu_public, except width (probably should bring into shared)
-        .joinWrap
-          +pointer
-          +clear
-          +round(12)
-          +bevel-light
-          width: 394px
-          margin: 4px 0
-          padding: 2px
-          .join
-            +pointer
-            +block
-            +center
-            +bold
-            +round(10)
-            margin: 0 auto
-            width: 390px
-            height: 32px
-            line-height: 32px
-            color: #fff
-            background: #ffa614
-            background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
-            background: -moz-linear-gradient(top, #ffe658, #ffa614)
-            border: 1px solid #ffa614
-            &:hover
-              box-shadow: inset 0 14px rgba(255,255,255,0.2)
-              -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
-              -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
-            &:focus
-              +glow-blue(20)
+  // JOIN BUTTON - same as home and meta_menu_public, except width (probably should bring into shared) - GEOFF: added new functionality for :hover by nesting the form element button inside the div, alpha(0)
+  .buttonWrap
+    +pointer
+    +clear
+    +round(12)
+    +bevel-light
+    +overflow
+    +relative
+    width: 394px
+    margin: 4px 0
+    padding: 2px
+    .button
+      +alpha(00)
+      +absolute
+      top: 0
+      right: 0
+      width: 396px !important
+      +pointer
+      
+    .text
+      +pointer
+      +block
+      +center
+      +bold
+      +round(10)
+      +font(24)
+      margin: 0 auto
+      width: 390px
+      height: 32px
+      line-height: 32px
+      color: #fff
+      background: #ffa614
+      background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
+      background: -moz-linear-gradient(top, #ffe658, #ffa614)
+      border: 1px solid #ffa614
+      &:hover
+        box-shadow: inset 0 14px rgba(255,255,255,0.2)
+        -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+      &:focus
+        +glow-blue(20)
 
 
 #forgotPage

@@ -1,22 +1,20 @@
 - content_for :head do
   = sass_link_tag 'join'
 
-
 / DREAMCATCHER LOGO
 %a.dcLogo{href: '/'}
   %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
-
 
 #joinPage
 
   .joinInfo
     %h1 Join Now
 
-    .forgotWrap
-      %a.forgot{href: '#'} forgot password
+    .forgot
+      %a{href: forgot_password_path} forgot password
 
-    .loginWrap
-      %a.login{href: '#'} login
+    .login
+      %a{href: login_path} login
 
   .glowBox
     %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
@@ -29,26 +27,8 @@
         = f.password_field :password_confirmation, :placeholder => "confirm password"
         .seed have a seed code?
         = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
-        .joinWrap
-          %a.join{href: '/join'}
+        .buttonWrap
+          .text
             Join now &rsaquo;
-          %input.prompt.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
-
-
-/
-  #loginPage
-
-    .navigation
-      %a.button{href: login_path}
-        login
-      %a.button.selected{href: join_path}
-        join now
-      %a.button{href: forgot_password_path}
-        forgot password
-      .clear
-
-    %br
-
-
-
+            %input.button{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 
