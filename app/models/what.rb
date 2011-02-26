@@ -11,8 +11,10 @@ class What < ActiveRecord::Base
   before_create :clean_name
   
   def self.clean(word)
-    word = word.downcase.strip # downcase and remove white space from begin/end
-    return word[/^\S+/] # drop everything after a white space
+    # word = word.downcase.strip # downcase and remove white space from begin/end
+    # downcase and replace all non alpha num chars from begin/end
+    word = word[/^\S+/] # drop everything after a white space to prevent multi words
+    return word.downcase.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )  
   end
   
   def clean_name
