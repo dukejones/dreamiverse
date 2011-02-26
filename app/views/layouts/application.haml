@@ -1,7 +1,9 @@
 !!! 5
 %html
   %head
-    %title Dreamcatcher
+    %title
+      = truncate(@title, length: 72) + ' - ' if @title
+      Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
 
     = sass_link_tag 'shared'

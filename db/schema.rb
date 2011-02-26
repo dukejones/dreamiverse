@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(:version => 20110223163252) do
   add_index "authentications", ["provider", "uid"], :name => "index_authentications_on_provider_and_uid"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
+  create_table "blacklist_words", :force => true do |t|
+    t.string "word"
+    t.string "kind"
+  end
+
+  add_index "blacklist_words", ["word"], :name => "index_black_list_words_on_word"
+
   create_table "comments", :force => true do |t|
     t.text     "body"
     t.integer  "user_id"
@@ -144,6 +151,8 @@ ActiveRecord::Schema.define(:version => 20110223163252) do
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
     t.integer "intensity"
+    t.integer "position",   :default => 0
+    t.string  "kind",       :default => "custom", :null => false
   end
 
   create_table "users", :force => true do |t|

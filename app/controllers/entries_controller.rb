@@ -14,11 +14,12 @@ class EntriesController < ApplicationController
     entry_list
 
     @user.starlight.add( 1 ) if unique_hit?
+
   end
 
   def show
-    entry_list # i don't love having to generate the whole list here.
-    i = @entries.map(&:id).index( params[:id].to_i )
+    entry_list # I don't love having to generate the whole list here.
+    i = @entries.index{|e| e.id == params[:id].to_i }
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
@@ -27,6 +28,7 @@ class EntriesController < ApplicationController
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @comments = @entry.comments.limit(10)
+    @title = @entry.title
     
     if unique_hit?
       @entry.starlight.add( 1 )
@@ -46,6 +48,7 @@ class EntriesController < ApplicationController
 
   def create
     what_names = params[:what_tags] || []
+
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
     new_entry = current_user.entries.create!(params[:entry].merge(
@@ -62,10 +65,11 @@ class EntriesController < ApplicationController
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
+    
+    # XXX: We should be passing view_preference_attributes from the form, not renaming it here!
+    params[:entry].merge!(view_preference_attributes: params[:entry].delete(:view_preference))
 
-    @entry.update_attributes( params[:entry].merge(
-      view_preference_attributes: params[:entry].delete(:view_preference)
-    ) )
+    @entry.update_attributes( params[:entry] )
     redirect_to :action => :show, :id => params[:id]
   end
   
@@ -145,5 +149,5 @@ class EntriesController < ApplicationController
   def deny
     redirect_to :root, :alert => "Access denied to this entry."
   end
-  
+    
 end

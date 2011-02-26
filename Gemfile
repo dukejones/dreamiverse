@@ -13,6 +13,7 @@ gem 'coffee-script'
 gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
+
 # gem 'carmen'
 # Use unicorn as the web server
 # gem 'unicorn'
