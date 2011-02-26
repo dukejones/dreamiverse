@@ -118,7 +118,7 @@
         +absolute
         +overflow
         +center
-        +font(22)
+        +font(25)
         margin: 0 0 0 20px
         top: 164px
         padding: 0 12px
@@ -130,6 +130,9 @@
       .body
         margin: 0
         padding: 18px 36px
+        font-size: 17px
+        p
+          margin-bottom: 22px
 
       // GALLERY
       ul.gallery
@@ -266,13 +269,12 @@
       +round(12)
       margin-bottom: 0
       .commentsHeader
+        font-weight: normal
         margin-bottom: 8px
         +user-select
         img
           margin: 7px 8px 0 0
         .counter
-          +right
-          font-weight: normal
           +font(14)
           margin-top: -2px
 
@@ -336,8 +338,18 @@
           width: 544px
           padding: 8px
           border: 2px solid white
+
           .user
             +round(8)
+
+          .delete
+            +absolute
+            right: 30px
+            +alpha(60)
+            +pointer
+            &:hover
+              +alpha(100)
+
           .user, .postTime
             +left
             +center

@@ -8,6 +8,7 @@
 
 #entryField, #home
   .matrix
+    padding-right: 40px
     /******** PAGINATION ********/
     .dark.pageFirst, .dark.pageFirst:hover
       border: 2px solid transparent
@@ -488,8 +489,10 @@
         padding: 1px 4px
 
 #tagStream, #showEntry
-  #tagsLive, #tag-list
+  #tagsLive
     +clear
+  #tagsLive, #tag-list
+    clear: left
     // WHO, WHERE, WHAT TAG STYLES
     .tagWho, .tagWhat, .tagWhere, .tagNoImage
       +round(8)

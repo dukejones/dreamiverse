@@ -5,8 +5,9 @@
     .user{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
       %p.name= entry.user.username
 
-    .commentCount
-      .counter= entry.comments.count
+    - unless entry.comments.count == 0
+      .commentCount
+        .counter= entry.comments.count
 
     / only for +image
     .image{style: "background: url(#{dream_header_url(entry.images.first)}) no-repeat top left"}
@@ -21,7 +22,7 @@
       / REPOSTED BY
       .rePost.hidden
         reposted by:
-        %span.rePostBy Phong
+        %span.rePostBy username
       / DATE
       .date= time_ago_in_words(entry.created_at)
       / STARLIGHT
@@ -37,7 +38,7 @@
     / TOP ROW - IMAGE THUMBNAILS
     - unless entry.images.blank?
       %tr
-        %td.top
+        %td.top{valign: "top", height: "64"}
           %ul
             - entry.images.limit(5).each do |image|
               %li{style: "background: url(#{image.url(:thumb, :size => 64)}) no-repeat top left"}
@@ -64,7 +65,7 @@
     /         .tag Sonja
     /         .tag Tom
     / 
-    /         .clear    
+    /         .clear
 
 
 
