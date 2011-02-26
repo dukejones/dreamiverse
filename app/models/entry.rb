@@ -23,8 +23,10 @@ class Entry < ActiveRecord::Base
   has_many :custom_tags, 
            :through => :tags, 
            :source => :noun, 
-           :source_type => 'What', :conditions => ['kind = ?', 'custom'],
-           :order => 'position asc'
+           :source_type => 'What', 
+           :conditions => ['kind = ?', 'custom'],
+           :order => 'position asc',
+           :limit => 16
   has_many :custom_whats, :through => :custom_tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
@@ -45,7 +47,7 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
-  before_update :delete_links, :delete_auto_tags
+  before_update :delete_links
   after_save :process_all_tags 
 
 
@@ -110,10 +112,6 @@ class Entry < ActiveRecord::Base
     Link.delete_all(:owner_id => self.id)
   end
 
-  def delete_auto_tags
-    Tag.delete_all(:entry_id => self.id,:kind => 'auto')
-  end
-
   def reorder_tags
     max_tags = 16
     # put all custom tags first
@@ -126,7 +124,7 @@ class Entry < ActiveRecord::Base
       if first_auto_tag_position + index < max_tags
         tag.update_attribute :position, first_auto_tag_position + index
       else
-        self.tags.delete(tag)
+        tag.destroy
       end
     end
   end

@@ -5,7 +5,8 @@ class TagsController < ApplicationController
     what = What.find_or_create_by_name(params[:what_name])
     
     @entry.add_what_tag(what)
-
+    @entry.reorder_tags
+    
     # t = Tag.new
     # next_pos = t.get_next_custom_position(params[:entry_id])
     # Tag.create!(entry: @entry, noun: what, position: next_pos, kind: 'custom')

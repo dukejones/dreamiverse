@@ -1,8 +1,6 @@
 class ImagesController < ApplicationController
   before_filter :require_user, :only => :manage
 
-  # GET /images
-  # GET /images.json
   def index
     if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
@@ -70,7 +68,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/manage
+
   def manage
     respond_to do |format|
       format.html # manage.html.erb
@@ -78,8 +76,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # GET /images/1
-  # GET /images/1.json
+
   def show
     @image = Image.find(params[:id])
 
@@ -89,8 +86,7 @@ class ImagesController < ApplicationController
     end
   end
 
-  # POST /images
-  # POST /images.json
+
   def create
     @image = Image.new(params[:image].merge({
       incoming_filename: params[:qqfile],
@@ -105,10 +101,10 @@ class ImagesController < ApplicationController
     else
       @image.write(request.body.read)
       respond_to do |format|
-        format.html { redirect_to(@image, :notice => 'Image was successfully created.') }
+        format.html { render :text => 'Image was successfully created.' }
         format.json  { 
           thumb_size = '120x120'
-          @image.resize(thumb_size)
+          # @image.resize(thumb_size)
           render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
         }
       end
@@ -116,23 +112,24 @@ class ImagesController < ApplicationController
   rescue => e
     Rails.logger.warn "Error uploading file: #{e.message}"
     respond_to do |format|
-      format.html { render :action => "new", :alert => "Could not upload the file." }
+      format.html { render :text => "Could not upload the file." }
       format.json  { render :json => e.message, :status => :unprocessable_entity }
     end
   end
 
-  # PUT /images/1
-  # PUT /images/1.json
+
   def update
     @image = Image.find(params[:id])
 
-    respond_to do |format|
-      if @image.update_attributes(params[:image].merge(enabled: true))
-        format.html { redirect_to(@image, :notice => 'Image was successfully updated.') }
-        format.json  { head :ok }
-      else
+    if @image.update_attributes(params[:image].merge(enabled: true, uploaded_by: current_user))
+      respond_to do |format|
+        format.html { render :text => 'Image was successfully updated.' }
+        format.json  { render json: {type: 'ok', message: 'Image was successfully updated.'} }
+      end
+    else
+      respond_to do |format|
         format.html { render :action => "edit" }
-        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
+        format.json  { render :json => { type: 'error', errors: @image.errors, status: :unprocessable_entity } }
       end
     end
   end

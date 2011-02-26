@@ -1,6 +1,36 @@
 # Login Panel
 $(document).ready ->
-  login = new LoginController('.rightPanel')
+  # Checks if #rightColumn exits
+  # runs specific code for it, otherwise
+  # starts the loginController for the rest
+  # of the pages
+  
+  if $('#rightColumn').attr('id')
+    $('.joinWrap').click ->
+      $(this).find('.join').hide()
+      $(this).find('.joinButton').show()
+      $(this).parent().find('.intro').slideUp()
+      $(this).parent().find('.joinForm').slideDown()
+      
+      $('.haveSeedcode').click =>
+        $('.haveSeedcode').slideUp('fast')
+        $('.seedcodeExpander').slideDown('fast')
+    
+    # Check for cookie "welcome" if found, do nothing
+    # if not found, display the welcomeWrap
+    if window.getCookie("welcome") is null
+      $('.welcomeWrap').slideDown()
+      # Setup cookies for thank you button
+      $('.thankyou').click ->
+        # fade out welcome
+        $(this).parent().parent().slideUp()
+        # set cookie
+        window.setCookie("welcome", 1, 365)
+    
+    #window.deleteCookie("welcome") #use this to debug (remove your cookie)
+      
+  else
+    login = new LoginController('.rightPanel')
 
 class window.LoginController
   # Handles the logic & interactions
@@ -12,7 +42,6 @@ class window.LoginController
 
 class LoginModel
   # Data Model for logging in
-  
 
 
 class LoginView
@@ -20,21 +49,20 @@ class LoginView
   # login panel
   constructor: (containerSelector)->
     @$container = $(containerSelector)
-    
     @$loginButton = @$container.find('.login')
     @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')
-    @$signupButton = @$container.find('.signupWrap')
+    @$joinButtonWrap = @$container.find('.joinButtonWrap')
     
-    @$signupPanel = @$container.find('.signupPanel') #expands
+    @$joinPanel = @$container.find('.joinPanel') #expands
     @$loginPanel = @$container.find('.loginPanel') #submits
     
     @$loginButton.unbind()
     @$loginButton.click => @showLogin()
     @$joinButton.unbind()
-    @$joinButton.click => @showSignup()
+    @$joinButton.click => @showJoin()
     @$joinToggle.unbind()
-    @$joinToggle.click => @showSignup()
+    @$joinToggle.click => @showJoin()
     
     @bodyClickVisible = false
     
@@ -44,13 +72,13 @@ class LoginView
   
   closePanel: ->
     @bodyClickVisible = false
-    @$signupButton.hide()
+    @$joinButtonWrap.hide()
     @$joinButton.show()
     @$loginButton.show()
     @$joinToggle.hide()
     
     @$loginPanel.slideUp()
-    @$signupPanel.slideUp()
+    @$joinPanel.slideUp()
   
   showLogin: ->
     if !@bodyClickVisible
@@ -60,28 +88,28 @@ class LoginView
     else
       @$loginPanel.show()
     
-    @$signupPanel.hide()
-    @$signupButton.hide()
+    @$joinPanel.hide()
+    @$joinButtonWrap.hide()
     @$joinToggle.show()
     @$joinButton.hide()
     
   
     @$loginButton.hide()
   
-    @$signupButton.unbind()
-    @$signupButton.click => @showSignup()
+    @$joinButtonWrap.unbind()
+    @$joinButtonWrap.click => @showJoin()
   
-  showSignup: ->
+  showJoin: ->
     if !@bodyClickVisible
       @bodyClickVisible = true
       @displayBodyClick()
-      @$signupPanel.slideDown()
+      @$joinPanel.slideDown()
     else
-      @$signupPanel.show()
+      @$joinPanel.show()
     
     @$joinToggle.hide()
     @$loginButton.show()
-    @$signupButton.show()
+    @$joinButtonWrap.show()
   
     @$joinButton.hide()
     @$loginPanel.hide()

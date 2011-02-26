@@ -5,7 +5,7 @@
     /******** 2D ENTRY THUMBS ********/
     /* HOVER */
     .thumb-2d:hover
-      z-index: 81
+      z-index: 84
       .fadedBack
         .detailsTop, .detailsBottom, .title, .comments, .sharing
           +block
@@ -19,20 +19,20 @@
       +overflow
       background-repeat: no-repeat
       margin: 0 10px 10px 0
-      border: 0
       z-index: 80
 
       .link
         +block
         +absolute
-        width: 200px
-        height: 300px
+        width: 198px
+        height: 298px
         z-index: 10000
 
       .fadedBack
-        +round(16)
-        width: 200px
-        height: 300px
+        +round(15)
+        width: 198px
+        height: 298px
+        z-index: 82
 
       .watermark
         +georgia
@@ -40,11 +40,11 @@
         +absolute
         +center
         +font(45)
-        +overflow
-        width: 200px
-        height: 128px
+        width: 198px
+        height: 180px
         line-height: 30px
-        top: 38px
+        top: 8px
+        z-index: -1
 
       .detailsTop, .detailsBottom, .title
         z-index: 84
@@ -61,7 +61,7 @@
       .detailsTop
         +absolute
         +hidden
-        width: 200px
+        width: 198px
         z-index: 100
         table
           border-collapse: separate
@@ -111,6 +111,7 @@
     .matrix
       .thumb-2d
         background-color: #fff !important
+        border: 1px solid #ccc
       .fadedBack
         background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
       .thumb-2d:hover
@@ -120,6 +121,7 @@
     .matrix
       .thumb-2d
         background-color: #3a3a3a !important
+        border: 1px solid #111
       .fadedBack
         background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
       .thumb-2d:hover

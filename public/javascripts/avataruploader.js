@@ -630,9 +630,9 @@ qq.extend(qq.AvatarUploader.prototype, {
         qq.AvatarUploaderBasic.prototype._onComplete.apply(this, arguments);
         
         // Add image
-        var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
+        /*var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;' + result.image_url + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
         $('#currentImages').prepend(newNode);
-        $('#currentImages').slideDown();
+        $('#currentImages').slideDown();*/
         // mark completed
         var item = this._getItemByFileId(id);                
         /*qq.remove(this._find(item, 'cancel'));
