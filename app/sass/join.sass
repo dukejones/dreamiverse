@@ -94,12 +94,16 @@ a.dcLogo
         input
           +input-light(small)
           +round(8)
-          margin-bottom: 4px
+          margin-bottom: 6px
           +font(18)
           padding: 8px
           width: 380px
+          &:focus
+            +glow-blue(20)
 
         .seed
+          +font(14)
+          margin: 0 0 0 8px
           color: #fff
 
         // JOIN BUTTON - same as home and meta_menu_public, except width (probably should bring into shared)
@@ -126,14 +130,12 @@ a.dcLogo
             background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
             background: -moz-linear-gradient(top, #ffe658, #ffa614)
             border: 1px solid #ffa614
-          .join:hover
-            box-shadow: inset 0 14px rgba(255,255,255,0.2)
-            -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
-            -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
-          .join:active
-            background: #ffa614
-            background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
-            background: -moz-linear-gradient(top, #ffa614, #ffe658)
+            &:hover
+              box-shadow: inset 0 14px rgba(255,255,255,0.2)
+              -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+              -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+            &:focus
+              +glow-blue(20)
 
 
 
