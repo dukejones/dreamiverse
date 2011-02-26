@@ -1,6 +1,10 @@
+.homeAlerts
+  .notice= notice
+  .alert= alert
+
 
 / DREAMCATCHER LOGO
-%a.dcLogo{href: '/'}
+%a.dcLogo{href: root_path}
   %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
 .randomDream
@@ -41,6 +45,8 @@
         - if @entries.blank?
           .noEntries No dreams yet today.
 
+  #bottomLinks
+    %a{href: feedback_path} feedback / report a bug
 
 
 / RIGHT COLUMN
@@ -106,4 +112,5 @@
 
   / DREAMSTARS MINI
   = render :partial => 'users/dreamstars_mini'
+
 

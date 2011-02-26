@@ -10,6 +10,13 @@ class Starlight < ActiveRecord::Base
     starlight
   end
   
+  # Starlight.current
+  def self.current_for(entity_type)
+    Starlight.select("max(id) as maxid, entity_id").
+      where(entity_type: entity_type).
+      group(:entity_id, :entity_type)
+  end
+  
   def self.all_entities
     Starlight.group("entity_id,entity_type").select("entity_id,entity_type").map(&:entity)    
   end

@@ -72,7 +72,7 @@ function setupTextareaAutoExpander(){
       animate: true,
       // More extra space:
       extraSpace : 40
-    });
+    }).trigger('change'); // resizes the form initially
   }
 }
 
@@ -305,6 +305,15 @@ function setupEvents(){
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
   
+  $('#linkValue').keypress(function(e) {
+  	if(e.keyCode == 13) {
+  	  e.preventDefault()
+  	  e.stopPropagation()
+  		setTimeout('checkForPastedLink($("#linkValue").val())', 400);
+  		return false;
+  	}
+  });
+  
   // Remove link listener
   $('.removeicon').live("click", function(){
     $(this).parent().fadeOut('fast', function(){
@@ -365,7 +374,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input id="links_title" class="linkTitleValue" name="entry[links_attributes][][title]" value="Link Title" /></div><div class="url"><input id="links_url" class="linkUrlValue" name="entry[links_attributes][][url]" value="' + newText + '" /></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon">x</div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -375,7 +384,7 @@ function addLink(newText){
           context: $(newEle),
           data: dataSent,
           success: function(data) {
-            $(this).find('.linkTitleValue').val(data.title)
+            $(this).find('.title .linkTitleValue').val(data.title)
             $('.linkContainer').fadeIn();
           }
         });
@@ -394,8 +403,8 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
-      $('#newDream-link').append(newElement);
+      var newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
     }
   });

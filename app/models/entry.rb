@@ -51,7 +51,12 @@ class Entry < ActiveRecord::Base
   after_save :process_all_tags 
 
 
-  scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+  scope :order_by_starlight, 
+    select('entries.*').
+    from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
+    joins("JOIN starlights ON starlights.id=maxstars.maxid").
+    joins("JOIN entries ON entries.id=starlights.entity_id").
+    order('starlights.value DESC')
   
   scope :friends_with, -> user { 
     where( 
@@ -84,6 +89,13 @@ class Entry < ActiveRecord::Base
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
   
+  # def set_tags(types)
+  #   
+  #   types[:whats]._?.each do |word|
+  #     add_what_tag( What.find_or_create_by_name(word) )
+  #   end
+  # end
+
   def add_what_tag(what, kind = 'custom')
     # if new custom tag is added
     # insert in front of all auto tags
