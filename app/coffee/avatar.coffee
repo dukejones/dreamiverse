@@ -48,15 +48,15 @@ class AvatarController
         avatar_url = '/images/uploads/' + response.image.id + '-avatar_main.' + response.image.format
         avatar_thumb = '/images/uploads/' + response.image.id + '-32x32.' + response.image.format
         
-        # $.ajax {
-        #           type: 'PUT'
-        #           url: '/user.json'
-        #           dataType: 'json'
-        #           data:
-        #             "user[image_id]": response.image.id
-        #           success: (data, status, xhr) =>
-        #             alert 'updated avatar!  '
-        #         }
+        $.ajax {
+          type: 'PUT'
+          url: '/user.json'
+          dataType: 'json'
+          data:
+            "user[image_id]": response.image.id
+          success: (data, status, xhr) =>
+            alert 'updated avatar!  '
+        }
         
         @uploaderDisplayed = false
         @$avatarView.removeUploader(avatar_url, avatar_thumb)
