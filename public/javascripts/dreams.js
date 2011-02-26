@@ -375,7 +375,7 @@ function addLink(newText){
           context: $(newEle),
           data: dataSent,
           success: function(data) {
-            $(this).find('.linkTitleValue').val(data.title)
+            $(this).find('.title .linkTitleValue').val(data.title)
             $('.linkContainer').fadeIn();
           }
         });
