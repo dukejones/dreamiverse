@@ -43,7 +43,12 @@ class Entry < ActiveRecord::Base
   before_create :create_view_preference
   before_update :delete_links
 
-  scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+  scope :order_by_starlight, 
+    select('entries.*').
+    from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
+    joins("JOIN starlights ON starlights.id=maxstars.maxid").
+    joins("JOIN entries ON entries.id=starlights.entity_id").
+    order('starlights.value DESC')
   
   scope :friends_with, -> user { 
     where( 

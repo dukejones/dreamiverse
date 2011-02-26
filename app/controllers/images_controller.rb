@@ -121,7 +121,7 @@ class ImagesController < ApplicationController
   def update
     @image = Image.find(params[:id])
 
-    if @image.update_attributes(params[:image].merge(enabled: true, uploaded_by: current_user))
+    if @image.update_attributes(params[:image].merge(enabled: true))
       respond_to do |format|
         format.html { render :text => 'Image was successfully updated.' }
         format.json  { render json: {type: 'ok', message: 'Image was successfully updated.'} }
@@ -148,8 +148,7 @@ class ImagesController < ApplicationController
     
   end
   
-  # DELETE /images/1
-  # DELETE /images/1.json
+  
   def destroy
     @image = Image.find(params[:id])
     @image.destroy
@@ -176,7 +175,8 @@ class ImagesController < ApplicationController
   #   render_404
   end
   
-private
+  private
+
   def detect_infinite_redirect
     (session[:resize_queries] ||= {})[request.path] ||= 0
 
