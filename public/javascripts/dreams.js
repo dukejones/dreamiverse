@@ -398,14 +398,11 @@ function showYoutubeData(newText){
   var splitTextArray = newText.split('v=');
   var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
   
-  console.log("AJAX SENT :: " + filePath);
   // Get the data from YOUTUBE
   $.ajax({
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      console.log("SUCCESS ! ")
-      console.log(data)
       var newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
