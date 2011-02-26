@@ -297,11 +297,14 @@
           padding: 8px
           textarea
             +transparent
-            +font(14)
+            +font(16)
             font-family: Calibri, Arial, Helvetica, sans-serif
             height: 60px
             width: 546px
             border: none
+            cursor: text
+            padding-top: 40px
+            margin-top: -40px
           .user
             +round(8)
             +left
@@ -552,7 +555,7 @@
           .avatar
             +border-light
           .newComment
-            +inputTextarea-light
+            +input-light(large)
             .user
               +border-light
               +bevel-light
@@ -698,7 +701,7 @@
           .avatar
             +border-dark
           .newComment
-            +inputTextarea-dark
+            +input-dark(large)
             .user
               +border-dark
               +bevel-dark
