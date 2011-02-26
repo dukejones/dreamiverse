@@ -23,7 +23,7 @@ body
     +block
     +absolute
     top: 10px
-    left: 28px
+    left: 0
     width: 366px
     height: 102px
 
@@ -34,7 +34,7 @@ body
     +button-blue
     +user-select
     top: 36px
-    left: 400px
+    left: 380px
     padding: 0 12px
     height: 32px
     line-height: 32px
@@ -48,7 +48,7 @@ body
     +transparent
     +glow-blue(40)
     +border-blue
-    top: 148px
+    top: 160px
     left: 80px
     width: 690px
     height: 324px
@@ -86,6 +86,11 @@ body
         padding: 0 12px
         +button-blue
         +shine-blue-alpha(20)
+        img
+          +left
+          margin: 4px 8px 0 0
+        span
+          +left
 
 
 #home
@@ -326,7 +331,7 @@ body
           .badge
             width: 56px
             height: 56px
-            margin: -12px 0 0 -6px
+            margin: -12px 0 -4px -6px
           .rank
             margin: 0 8px 0 -8px
         .dreamstar-1
