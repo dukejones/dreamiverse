@@ -151,13 +151,14 @@
         - @entry.links.each do |link|
           .linkContainer
             .title
-              %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]'}
+              %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]', style: "width: 220px"}
             .url
-              %input#links_url.linkTitleValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]'}
+              %input.linkTitleValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
+              .icon
+                %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
+
             .removeicon
               x
-            .icon
-              %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
         /<div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=http://www.dreamcatcher.net"></div></div>
       .clear
 
