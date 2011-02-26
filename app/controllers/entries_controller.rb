@@ -17,8 +17,8 @@ class EntriesController < ApplicationController
   end
 
   def show
-    entry_list # i don't love having to generate the whole list here.
-    i = @entries.map(&:id).index( params[:id].to_i )
+    entry_list # I don't love having to generate the whole list here.
+    i = @entries.index{|e| e.id == params[:id].to_i }
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
@@ -27,6 +27,7 @@ class EntriesController < ApplicationController
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @comments = @entry.comments.limit(10)
+    @title = @entry.title
     
     if unique_hit?
       @entry.starlight.add( 1 )

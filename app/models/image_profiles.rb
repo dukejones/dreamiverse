@@ -140,7 +140,7 @@ module ImageProfiles
       img.quality 40
       img.format options[:format]
     end
-    # img.resize ?
+    img.resize '2048<' # only if both dimensions exceed
     img.write(path(:bedsheet, options))
   end
   
