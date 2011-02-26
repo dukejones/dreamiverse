@@ -72,7 +72,7 @@ function setupTextareaAutoExpander(){
       animate: true,
       // More extra space:
       extraSpace : 40
-    });
+    }).trigger('change'); // resizes the form initially
   }
 }
 
@@ -305,6 +305,15 @@ function setupEvents(){
     setTimeout('checkForPastedLink($("#linkValue").val())', 400);
   });
   
+  $('#linkValue').keypress(function(e) {
+  	if(e.keyCode == 13) {
+  	  e.preventDefault()
+  	  e.stopPropagation()
+  		setTimeout('checkForPastedLink($("#linkValue").val())', 400);
+  		return false;
+  	}
+  });
+  
   // Remove link listener
   $('.removeicon').live("click", function(){
     $(this).parent().fadeOut('fast', function(){
@@ -397,7 +406,7 @@ function showYoutubeData(newText){
     success: function(data) {
       console.log("SUCCESS ! ")
       console.log(data)
-      var newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      var newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
     }
