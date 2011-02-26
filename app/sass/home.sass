@@ -49,7 +49,7 @@ body
     +glow-blue(40)
     +border-blue
     top: 148px
-    left: 108px
+    left: 80px
     width: 690px
     height: 324px
 
@@ -234,14 +234,18 @@ body
       background: #fff
       background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
       background: -moz-linear-gradient(top, #dcdcdc, #fff)
-      .join, .joinToggle
-        +pointer
+      .join
         +block
+        width: 198px
+      .joinButton
+        +font(14)
+        width: 202px
+      .join, .joinButton
+        +pointer
         +center
         +bold
         +round(10)
         margin: 0 auto
-        width: 198px
         height: 32px
         line-height: 32px
         color: #fff
@@ -249,11 +253,11 @@ body
         background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
         background: -moz-linear-gradient(top, #ffe658, #ffa614)
         border: 1px solid #ffa614
-      .join:hover, .joinToggle:hover
+      .join:hover, .joinButton:hover
         box-shadow: inset 0 14px rgba(255,255,255,0.2)
         -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
         -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
-      .join:active, .joinToggle:active
+      .join:active, .joinButton:active
         background: #ffa614
         background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
         background: -moz-linear-gradient(top, #ffa614, #ffe658)
@@ -378,7 +382,7 @@ body
     +glow-blue(40)
     +border-blue
     top: 490px
-    left: 108px
+    left: 80px
     padding: 8px
     width: 682px
 
