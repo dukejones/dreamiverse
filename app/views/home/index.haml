@@ -24,22 +24,22 @@
         %span Thank You
 
   / PUBLIC STREAM
-  #publicStream
-    .today today in dreams
-    / .todayFilter today
-    / %h1.in in
-    / .dreamsFilter dreams
+  #publicStreamGlow
+    #publicStream
+      .today today in dreams
+      / .todayFilter today
+      / %h1.in in
+      / .dreamsFilter dreams
 
-  
-    / DREAM MATRIX
-    .matrix
+      / DREAM MATRIX
+      .matrix
 
 
-      / / DREAM THUMBS 1D
-      - @entries.each do |entry|
-        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
-      - if @entries.blank?
-        .noEntries No dreams yet today.
+        / / DREAM THUMBS 1D
+        - @entries.each do |entry|
+          = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+        - if @entries.blank?
+          .noEntries No dreams yet today.
 
 
 

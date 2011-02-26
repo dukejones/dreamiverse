@@ -114,53 +114,57 @@ body
           +left
 
   // PUBLIC STREAM
-  #publicStream
+  #publicStreamGlow
     +relative
     +round(12)
-    +shine-blue-alpha(20)
     +glow-blue(40)
     +border-blue
     top: 148px
     left: 80px
-    padding: 8px
-    width: 682px
+    width: 698px
 
-    .today, .todayFilter, .dreamsFilter, h1.in
-      +bold
-      +left
-      +font(32)
-      margin: 0 8px 20px 0
-      padding: 0 12px
-      height: 40px
-      line-height: 40px
-    .todayFilter, .dreamsFilter
-      +transparent-dark(30)
-      +round(8)
-      +border-dark
-      border: 2px solid #555
-      color: #fff
-    h1.in, .today
-      +user-select
-      +cursor
-      color: #000
-    .today
+    #publicStream
+      +round(11)
       +shine-blue-alpha(20)
-      +border-light
-      +round(8)
-      color: #fff
+      padding: 8px
+      width: 682px
 
-    .noEntries
-      +round(12)
-      +transparent-dark(60)
-      +border-light
-      +user-select
-      +cursor
-      text-transform: uppercase
-      color: #fff
-      margin: 60px 0 0
-      width: 680px
-      height: 36px
-      line-height: 36px
+      .today, .todayFilter, .dreamsFilter, h1.in
+        +bold
+        +left
+        +font(32)
+        margin: 0 8px 20px 0
+        padding: 0 12px
+        height: 40px
+        line-height: 40px
+      .todayFilter, .dreamsFilter
+        +transparent-dark(30)
+        +round(8)
+        +border-dark
+        border: 2px solid #555
+        color: #fff
+      h1.in, .today
+        +user-select
+        +cursor
+        color: #000
+      .today
+        +shine-blue-alpha(20)
+        +border-light
+        +round(8)
+        color: #fff
+
+      .noEntries
+        +round(12)
+        +transparent-dark(60)
+        +border-light
+        +user-select
+        +cursor
+        text-transform: uppercase
+        color: #fff
+        margin: 60px 0 0
+        width: 680px
+        height: 36px
+        line-height: 36px
 
 
 

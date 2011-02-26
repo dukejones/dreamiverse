@@ -9,7 +9,7 @@ a.dcLogo
   width: 366px
   height: 102px
 
-#joinPage
+#joinPage, #forgotPage
   +relative
   top: 104px
   left: 108px
@@ -141,7 +141,47 @@ a.dcLogo
               +glow-blue(20)
 
 
+#forgotPage
 
+  .forgotForm
+    +user-select
+    +clear
+    padding: 8px
+    width: 400px
+    margin: 30px auto 0
+
+    h1
+      +font(25)
+      color: #fff
+
+    .body
+      +font(16)
+      padding-bottom: 8px
+      color: #fff
+
+      a
+        color: #fff
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+    #user_email
+      +input-light(small)
+      +round(8)
+      +font(16)
+      height: 36px
+      padding: 0 8px
+      width: 280px
+
+    .prompt
+      +round(8)
+      +shine-blue(16)
+      +button-blue
+      +confirm(16)
+      +font(18)
+      height: 36px
+      padding: 0 8px 4px
+      margin: 2px 0 0 6px
 
 
 
