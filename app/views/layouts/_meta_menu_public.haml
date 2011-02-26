@@ -5,15 +5,15 @@
   .notice= notice
   .alert= alert
 
-  .leftPanel
-    %a.item{href: '#'}
-      intro
-    %a.item{href: faq_path}
-      faq
-    %a.item{href: feedback_path}
-      feedback
-    / %form
-    /   %input{type: 'text', name: 'search' }
+  / .leftPanel
+  /   %a.item{href: '#'}
+  /     intro
+  /   %a.item{href: faq_path}
+  /     faq
+  /   %a.item{href: feedback_path}
+  /     feedback
+  /   %form
+  /     %input{type: 'text', name: 'search' }
 
 
   .rightPanel
@@ -43,7 +43,7 @@
 
     / JOIN NOW
     .joinWrap
-      %a.join{href: '#'}
+      .join
         Join now &rsaquo;
 
     / JOIN FORM

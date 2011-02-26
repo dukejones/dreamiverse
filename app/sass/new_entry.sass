@@ -82,7 +82,7 @@
       border: none
       font-family: Calibri, Arial, Helvetica, sans-serif
     #entry_title
-      +font(21)
+      +font(25)
       width: 460px
       height: 26px
       line-height: 26px
@@ -91,6 +91,7 @@
       width: 480px
       margin: 6px 12px
     #entry_body
+      +font(17)
       width: 640px
       min-height: 134px
       height: 134px
@@ -380,7 +381,7 @@
       img
         +left
         margin: 6px 8px
-      .qq-upload-drop-area-active
+      &.qq-upload-drop-area-active
         background: rgba(255,255,255,0.2)
     #currentImages
       margin: 12px 0 0 12px
@@ -521,38 +522,48 @@
       +clear
       +overflow
       margin: 8px 0 0
-      padding: 3px 8px
-      width: 632px
+      padding: 4px
+      width: 646px
       height: 34px
       line-height: 34px
+
+      input
+        +transparent
+
+      .url, .title
+        +round(4)
+        padding: 0 8px
+        height: 34px
+
       .title
         +left
-        +pointer
-        width: 122px
-        margin: 0 0 0 10px
+        width: 220px
+        margin: 0
+
+
       .linkTitleValue
         +font(14)
+        +bold
         border: none
-        background: #fff
+
       .url
         +left
         +overflow
-        +pointer
         text-align: left
-        margin: 0 0 0 102px
-        width: 330px
-        height: 24px
-        #links_url
-          +transparent
+        margin: 0 0 0 8px
+        width: 350px
+
+        .linkTitleValue
+          font-weight: normal
           border: none
-          width: 320px
+
       .icon
         +right
         +center
         width: 32px
         height: 30px
         line-height: 30px
-        margin-top: 4px
+        margin: 5px -4px 0 0
       .removeicon
         +round(8)
         +right
@@ -842,6 +853,12 @@
           +shine-light-alpha(13)
 
       .linkContainer
+        +transparent-light(40)
+
+        .url, .title
+          +transparent-light(40)
+          color: #555
+
         .removeicon
           +transparent-dark(80)
           +button-dark
@@ -996,6 +1013,12 @@
           +shine-dark-alpha(13)
 
       .linkContainer
+        +transparent-dark(20)
+
+        .url, .title
+          +transparent-dark(20)
+          color: #ccc
+
         .removeicon
           +transparent-light(80)
           +button-light

@@ -18,12 +18,18 @@ module ImageProfiles
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
   def profiles
-    [:medium, :header, :stream_header, :dreamfield_header, :thumb, :avatar_main, :avatar_medium, :avatar]
+    [
+      :medium, 
+      :header, :stream_header, :dreamfield_header, 
+      :avatar_main, :avatar_medium, :avatar, 
+      :thumb,
+      :bedsheet, :bedsheet_small
+    ]
   end
 
   def generate_profile(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
-    raise "Ridiculous resize requested" if options[:size].to_i > 12000
+    raise "Ridiculous resize requested" if options[:size].to_i > 15000
 
     self.send(profile.to_sym, options)
   end
@@ -126,4 +132,26 @@ module ImageProfiles
     end
     img.write(path(:avatar, options))
   end
+
+  def bedsheet(options)
+    img = magick_image
+    if options[:format] != self.format
+      # change to specified format - quality: 40%
+      img.quality 40
+      img.format options[:format]
+    end
+    # img.resize ?
+    img.write(path(:bedsheet, options))
+  end
+  
+  def bedsheet_small(options)
+    img = magick_image
+    if options[:format] != self.format
+      img.quality 50
+      img.format options[:format]
+    end
+    img.resize 1024
+    img.write(path(:bedsheet_small, options))
+  end
+
 end
