@@ -78,12 +78,13 @@
 
       / TAG
       .showTags
-        .tagHeader.headers
-          tag
-          %img{src: '/images/icons/tag-20.png'}
-
         .wrapper
+
           - if @entry.user == current_user
+            .tagHeader.headers
+              tag
+              %img{src: '/images/icons/tag-20.png'}
+
             .tagInput.target
               %input#newTag{placeholder: 'who/where/what'}
             .tagThisEntry.trigger
@@ -114,9 +115,9 @@
     .commentsPanel
       .trigger.slide
         .commentsHeader.headers
-          comments -&nbsp; 
+          <b>comments</b>
           %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
-          .counter #{@comments.count}
+          &nbsp; (<span class="counter">#{@comments.count}</span>)
       .clear
       
       .target.slide

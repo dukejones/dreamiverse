@@ -78,7 +78,6 @@
             = f.fields_for :link_attributes do |l|
               = l.text_field :title, :placeholder => 'site name'
               = l.text_field :url, :placeholder => 'website'
-            / = f.text_field :link, :placeholder => 'website'
             = f.text_field :email, :placeholder => 'email'
             = f.text_field :phone, :placeholder => 'phone'
             .skypeWrap
@@ -107,8 +106,10 @@
         %span dreams
       %a.type{href: user_entries_path(user.username)}
         %span visions
-      %a.type.bottom{href: user_entries_path(user.username)}
+      %a.type{href: user_entries_path(user.username)}
         %span experiences
+      %a.type.bottom{href: user_entries_path(user.username)}
+        %span articles
 
 
 

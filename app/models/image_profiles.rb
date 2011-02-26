@@ -34,7 +34,7 @@ module ImageProfiles
     File.exists?(path(profile, options))
   end
   
-  def profile_magick_image(profile, size=nil, opts={})
+  def profile_magick_image(profile, opts={})
     generate_profile(profile, size, opts) unless profile?(profile, :size => size)
     magick_image(profile, size)
   end

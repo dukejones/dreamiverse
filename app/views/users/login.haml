@@ -1,18 +1,32 @@
-#loginPage
+- content_for :head do
+  = sass_link_tag 'join'
 
-  .navigation
-    %a.button.selected{href: login_path}
-      login
-    %a.button{href: join_path}
-      join now
-    %a.button{href: forgot_password_path}
-      forgot password
-    .clear
+/ DREAMCATCHER LOGO
+%a.dcLogo{href: '/'}
+  %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
-  %br
+#joinPage
 
-  .login
-    = form_for('user', {url: user_session_path}) do |f|
-      = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
-      = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
-      %input.prompt{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+  .joinInfo
+    %h1 login
+
+    .forgot
+      %a{href: forgot_password_path} forgot password
+
+    .join
+      %a{href: join_path} join now
+
+  .glowBox
+    %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
+
+    .shineBox
+
+      .loginForm
+        = form_for('user', {url: user_session_path}) do |f|
+          = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
+          = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
+          .buttonWrap
+            .text
+              log in &rsaquo;
+              %input.button{tabindex: '3', type: 'submit', name: 'loginButton', value: 'log in &rsaquo;'}
+

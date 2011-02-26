@@ -6,23 +6,24 @@
 #entryField, #home
   .matrix
 
-    .thumb-1d:hover
+    .thumb-1d:hover, .thumb-1d.noImage:hover
+      z-index: 101
       .left .details .starlight, .left .commentCount
         display: block
 
-    .thumb-1d, .noImage
+    .thumb-1d, .thumb-1d.noImage
       +block
       +round(16)
       +flat-bottom
-      +flat-right
       +relative
       +clear
       +pointer
       +overflow
-      margin: 0 0 20px
+      z-index: 100
+      margin: 0 0 10px
       padding: 4px
-      width: 672px
-      height: 220px
+      width: 670px
+      height: 218px
       border-bottom: 4px solid rgba(0,0,0,0.50)
 
       // LEFT SIDE
@@ -66,9 +67,9 @@
         .image
           width: 352px
           height: 96px
-          border-radius-topleft: 16px
-          -moz-border-radius-topleft: 16px
-          -webkit-border-radius-topleft: 16px
+          +round(14)
+          +flat-right
+          +flat-bottom
 
         // TITLE & TEXT
         h1.title, p.text
@@ -196,22 +197,22 @@
 
     // 1D THUMBS - NO IMAGE
     // STRUCTURE
-    .noImage
+    .thumb-1d.noImage
       height: 164px
       &:hover
         .left
           h1.title
             +block
-            margin: 52px 0 0 8px
 
       .left
         h1.title
           +absolute
           display: none
+          margin: 42px 0 0 8px
         h2.titleWatermark
           +block
           +font(48)
-          +alpha(20)
+          +alpha(10)
           +absolute
           +overflow
           height: 56px
@@ -237,8 +238,9 @@
 .light
   #entryField, #home
     .matrix
-      .thumb-1d, .noImage
+      .thumb-1d, .thumb-1d.noImage
         background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
+        border: 1px solid rgba(127,127,127,0.5)
         &:hover
           +glow-light(40)
 
@@ -247,8 +249,9 @@
 
           // USERNAME + AVATAR
           .user
-            +button-light
-            background-color: #fff !important
+            +border-light
+            +transparent-light(60)
+            // background-color: #fff !important
             .name
               color: #333
           .commentCount
@@ -272,24 +275,25 @@
 .dark
   #entryField, #home
     .matrix
-      .thumb-1d, .noImage
+      .thumb-1d, .thumb-1d.noImage
         background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
+        border: 1px solid rgba(15,15,15,0.8)
         &:hover
           +glow-dark(40)
 
         // LEFT SIDE
         .left
+          color: #ccc
 
           // USERNAME + AVATAR
           .user
-            +button-dark
-            background-color: #000 !important
+            +border-dark
+            +transparent-dark(60)
             .name
               color: #ddd
           .commentCount
             .counter
               +border-dark
-              color: #ccc
 
           // ENTRY THUMB DETAILS
           .details
@@ -300,10 +304,10 @@
             .starlight
               +transparent-light(10)
               +border-dark
-              color: #ccc
 
 
-      .noImage .left .commentCount .counter
+
+      .thumb-1d.noImage .left .commentCount .counter
         +transparent-light(10)
       .thumb-1d .commentCount .counter
         +transparent-dark(50)
