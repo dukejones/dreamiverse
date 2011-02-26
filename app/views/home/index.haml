@@ -59,7 +59,7 @@
         <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
 
-      .joinForm
+      .joinForm.hidden
         %p.error email already in use
         = f.text_field :email, :class => 'login-input', :placeholder => "email"
         %p.error passwords do not match
@@ -76,7 +76,7 @@
 
       / JOIN TOGGLE - BUTTON
       .joinWrap
-        %a.join{href: '/join'}
+        %a.join
           Join now &rsaquo;
         %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 
