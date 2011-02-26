@@ -46,8 +46,17 @@ class User < ActiveRecord::Base
   validate :has_at_least_one_authentication
   
   
-  scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+  scope :order_by_starlight, 
+    select('users.*').
+    from( "( #{Starlight.current_for('User').to_sql} ) as maxstars " ).
+    joins("JOIN starlights ON starlights.id=maxstars.maxid").
+    joins("JOIN users ON users.id=starlights.entity_id").
+    order('starlights.value DESC')
+
   scope :dreamstars, order_by_starlight.limit(16)
+  
+  # scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
+  # scope :dreamstars, order_by_starlight.limit(16)
 
   attr_accessor :password, :password_confirmation, :old_password
 
@@ -65,7 +74,7 @@ class User < ActiveRecord::Base
       .where(["username=? OR email=?", auth_params[:username], auth_params[:username]])
       .first
   end
-  
+    
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     self
