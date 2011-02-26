@@ -9,6 +9,7 @@ $(document).ready ->
     $('.joinWrap').click ->
       $(this).find('.join').hide()
       $(this).find('.joinButton').show()
+      $(this).parent().find('.intro').slideUp()
       $(this).parent().find('.joinForm').slideDown()
       
       $('.haveSeedcode').click =>
