@@ -123,7 +123,7 @@ class Entry < ActiveRecord::Base
       if first_auto_tag_position + index < max_tags
         tag.update_attribute :position, first_auto_tag_position + index
       else
-        self.tags.destroy(tag)
+        tag.destroy
       end
     end
   end
