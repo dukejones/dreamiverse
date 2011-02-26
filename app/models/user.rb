@@ -54,9 +54,6 @@ class User < ActiveRecord::Base
     order('starlights.value DESC')
 
   scope :dreamstars, order_by_starlight.limit(16)
-  
-  # scope :order_by_starlight, joins(:starlights).group('starlights.id').having('max(starlights.id)').order('starlights.value DESC')
-  # scope :dreamstars, order_by_starlight.limit(16)
 
   attr_accessor :password, :password_confirmation, :old_password
 
