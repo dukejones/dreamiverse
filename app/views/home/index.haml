@@ -56,7 +56,7 @@
         <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
 
-      .joinForm
+      .joinForm.hidden
         = f.text_field :email, :class => 'login-input', :placeholder => "email"
         = f.password_field :password, :class => 'login-input', :placeholder => "password"
         = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
@@ -69,7 +69,7 @@
 
       / JOIN TOGGLE - BUTTON
       .joinWrap
-        %a.join{href: '/join'}
+        %a.join
           Join now &rsaquo;
         %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 

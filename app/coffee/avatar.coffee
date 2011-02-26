@@ -45,10 +45,21 @@ class AvatarController
       params: @avatarParams
       debug: true
       onComplete: (id, fileName, response) =>
-        log response
-        log id
+        avatar_url = '/images/uploads/' + response.image.id + '-avatar_main.' + response.image.format
+        avatar_thumb = '/images/uploads/' + response.image.id + '-32x32.' + response.image.format
+        
+        # $.ajax {
+        #           type: 'PUT'
+        #           url: '/user.json'
+        #           dataType: 'json'
+        #           data:
+        #             "user[image_id]": response.image.id
+        #           success: (data, status, xhr) =>
+        #             alert 'updated avatar!  '
+        #         }
+        
         @uploaderDisplayed = false
-        @$avatarView.removeUploader(response.avatar_path, response.avatar_thumb_path)
+        @$avatarView.removeUploader(avatar_url, avatar_thumb)
     )
 
     
@@ -68,9 +79,15 @@ class AvatarView
     $.publish 'uploader:init', [@container]
   
   removeUploader: (avatar_path = 'old', avatar_thumb_path = 'old')->
+    $('#bodyClick').remove()
+    
     $.publish 'uploader:removed', [this]
     
-    if avatar_path is not 'old'
+    log avatar_path
+    log avatar_thumb_path
+    if avatar_path isnt 'old'
+      log @$container
+      log "MADE IT"
       @$container.css('background-image', 'url(' + avatar_path + ')')
       $('.rightPanel .user').css('background-image', 'url(' + avatar_thumb_path + ')')
     
@@ -89,26 +106,3 @@ class AvatarView
       @removeUploader()
       $('#bodyClick').remove()
     )
-
-    
-### REMOVE ME
-var uploader = null;
-var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
-
-function setupUploader(){            
-  if(document.getElementById('imageDropArea')){
-    uploader = new qq.FileUploader({
-      element: document.getElementById('imageDropArea'),
-      action: '/images.json',
-      maxConnections: 1,
-      params: imageMetaParams,
-      debug: true,
-      onSubmit: function(id, fileName){
-     
-      },
-      onComplete: function(id, fileName, responseJSON){
-        resetImageButtons();
-      }
-    });
-  }      
-}###

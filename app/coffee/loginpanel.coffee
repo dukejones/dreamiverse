@@ -1,6 +1,16 @@
 # Login Panel
 $(document).ready ->
-  login = new LoginController('.rightPanel')
+  if $('#rightColumn').attr('id')
+    $('.joinWrap').click ->
+      $(this).find('.join').hide()
+      $(this).find('.joinButton').show()
+      $(this).parent().find('.joinForm').slideDown()
+      
+      $('.haveSeedcode').click =>
+        $('.haveSeedcode').slideUp('fast')
+        $('.seedcodeExpander').slideDown('fast')
+  else
+    login = new LoginController('.rightPanel')
 
 class window.LoginController
   # Handles the logic & interactions
@@ -12,7 +22,6 @@ class window.LoginController
 
 class LoginModel
   # Data Model for logging in
-  
 
 
 class LoginView
@@ -20,7 +29,6 @@ class LoginView
   # login panel
   constructor: (containerSelector)->
     @$container = $(containerSelector)
-    
     @$loginButton = @$container.find('.login')
     @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')
