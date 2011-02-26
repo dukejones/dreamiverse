@@ -29,7 +29,7 @@
       login
     %a.loginItem
       %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
-      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "8"}
+      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "-8"}
     .clear
 
 
@@ -45,6 +45,7 @@
         %p.error username and password do not match
         = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
         %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+        #loginSpacer
 
   / JOIN PANEL
   .joinPanel.wrapper
