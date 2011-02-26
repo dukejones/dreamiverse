@@ -10,15 +10,11 @@ class HomeController < ApplicationController
     @entries = Entry.where(:created_at > Time.now.yesterday).
       order_by_starlight.limit(8)
   end
-  
+
   def parse_url_title
     @url = params[:url]
     @title = ExternalUrl.title(@url)
     render :json => {:title => @title}
-  end
-  
-  def faq
-    render "home/faq"
   end
 
   def feedback

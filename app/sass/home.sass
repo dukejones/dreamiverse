@@ -14,10 +14,11 @@ body
   margin: auto
   width: 1024px
 
-  .alert, .notice
-    padding-left: 400px
-    +alpha(90)
-    margin-right: 30px
+  .homeAlerts
+    .alert, .notice
+      padding-left: 400px
+      +alpha(90)
+      margin-right: 30px
 
   p.error
     +center
@@ -166,7 +167,19 @@ body
         height: 36px
         line-height: 36px
 
-
+  #bottomLinks
+    left: 80px
+    width: 698px
+    +relative
+    top: 160px
+    +center
+    a
+      +round(8)
+      +font(12)
+      padding: 2px 6px
+      color: #ccc
+      +button-dark
+      +transparent-dark(60)
 
 
 
@@ -459,6 +472,7 @@ body
             background: url('/images/dreamstars/dreamstars-6-56.png') no-repeat left
           .rank
             color: #365ba6
+
 
 
 
