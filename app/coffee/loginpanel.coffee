@@ -17,9 +17,7 @@ $(document).ready ->
     
     # Check for cookie "welcome" if found, do nothing
     # if not found, display the welcomeWrap
-    if window.getCookie("welcome") is "1"
-      $('.welcomeWrap').hide()
-    else
+    if window.getCookie("welcome") is null
       $('.welcomeWrap').slideDown()
       # Setup cookies for thank you button
       $('.thankyou').click ->
@@ -28,7 +26,7 @@ $(document).ready ->
         # set cookie
         window.setCookie("welcome", 1, 365)
     
-    #window.deleteCookie("welcome")
+    #window.deleteCookie("welcome") #use this to debug (remove your cookie)
       
   else
     login = new LoginController('.rightPanel')
