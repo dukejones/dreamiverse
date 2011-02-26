@@ -12,7 +12,7 @@ class User::SessionsController < ApplicationController
       set_current_user user
       flash.notice = 'logged in.'
     else
-      flash.alert = "the provided credentials did not match a dreamcatcher user."
+      flash.alert = "incorrect username / password"
     end
     
     redirect_to :root

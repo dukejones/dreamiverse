@@ -7,14 +7,17 @@ body
   height: 100%
 
 #drop_shadow
-  min-width: 1024px
+  min-width: 1050px
 
 #home
   +relative
   margin: auto
   width: 1024px
 
-
+  .alert, .notice
+    padding-left: 400px
+    +alpha(90)
+    margin-right: 30px
 
   p.error
     +center
@@ -27,7 +30,7 @@ body
     +block
     +absolute
     top: 10px
-    left: 5px
+    left: 0
     width: 366px
     height: 102px
 
