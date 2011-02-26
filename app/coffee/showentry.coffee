@@ -29,17 +29,7 @@ $(document).ready ->
       #success: (data, status, xhr) => log "success"
     }
     
-	  # $.ajax{
-	  #      type: 'PUT'
-	  #       url: '/tags/sort_custom_tags'
-	  #       data:
-	  #         entry_id: entry
-	  #         position_list: order
-	  #       success: (data, status, xhr) =>
-	  #         log data
-	  #         alert "SUCCESS!!"
-	  #    }
-#tags/sort_custom_tags= url, with the params: entry_id and position_list (your ordered list of ids) to it?
+#tags/sort_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 	     
 	
 	# Setup comment expander
