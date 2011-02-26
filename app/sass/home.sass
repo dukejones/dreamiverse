@@ -9,14 +9,21 @@ body
 #home
   +relative
   margin: auto
-  width: 1045px
+  width: 1012px
+  left: -25px
+
+  p.error
+    +center
+    color: red
+    +font(12)
+    margin: 0px !important
 
   // DREAMCATCHER LOGO
   a.dcLogo
     +block
     +absolute
     top: 10px
-    left: 24px
+    left: 28px
     width: 366px
     height: 102px
 
@@ -87,7 +94,7 @@ body
   #rightColumn
     +absolute
     top: 0
-    left: 820px
+    left: 790px
 
     .joinPanel
       +glow-blue(40)
@@ -95,7 +102,7 @@ body
       +flat-light
       +round(16)
       padding: 12px
-      width: 200px
+      width: 196px
       margin: 0 0 48px
       h1
         +font(20)
@@ -112,15 +119,15 @@ body
       +round(16)
       +glow-light(20)
       +flat-top
-      margin: 0 0 10px
-      padding: 8px
-      width: 208px
+      margin: -20px 0 10px
+      padding: 28px 8px 0
+      width: 204px
 
       .login
         +right
         +center
         +user-select
-        +flat-dark
+        +shine-dark-alpha(12)
         +button-light
         +round(12)
         +confirm(12)
@@ -128,7 +135,6 @@ body
         height: 28px
         line-height: 28px
         padding: 0 60px
-        margin: 0 8px 8px 0
 
       .loginItem
         +right
@@ -145,7 +151,7 @@ body
         &:hover
           +glow-light(8)
         .hoverLabel
-          top: 56px !important
+          top: 40px !important
         img
           margin: 6px 0 0
 
@@ -168,7 +174,7 @@ body
         +round(12)
         margin: 0 0 2px
         padding: 0 8px
-        width: 190px
+        width: 186px
         height: 32px
         line-height: 32px
       .login-input
@@ -192,8 +198,10 @@ body
         +round(12)
         +border-dark
         +bevel-light
-        width: 208px
+        width: 204px
         +confirm(12)
+      #loginSpacer
+        height: 8px
 
       .stay, .forgot
         +button-light
@@ -220,7 +228,7 @@ body
       +pointer
       +clear
       +round(12)
-      width: 208px
+      width: 204px
       margin: 4px 0 -4px -4px
       padding: 2px 0
       background: #fff
@@ -233,7 +241,7 @@ body
         +bold
         +round(10)
         margin: 0 auto
-        width: 202px
+        width: 198px
         height: 32px
         line-height: 32px
         color: #fff
@@ -257,7 +265,7 @@ body
       +round(16)
       +transparent
       +glow-blue(40)
-      width: 226px
+      width: 220px
       height: 300px
 
       .dreamstarsMini
@@ -280,33 +288,33 @@ body
           top: 24px
           color: #b9d6f6
         .dreamstar-1:hover
-          box-shadow: 0px 0px 60px #ff40d9
-          -webkit-box-shadow: 0px 0px 60px #ff40d9
-          -moz-box-shadow: 0px 0px 60px #ff40d9
+          box-shadow: 0 0 20px #ff40d9
+          -webkit-box-shadow: 0 0 20px #ff40d9
+          -moz-box-shadow: 0 0 20px #ff40d9
         .dreamstar-2:hover
-          box-shadow: 0px 0px 60px #7140ff
-          -webkit-box-shadow: 0px 0px 60px #7140ff
-          -moz-box-shadow: 0px 0px 60px #7140ff
+          box-shadow: 0 0 20px #7140ff
+          -webkit-box-shadow: 0 0 20px #7140ff
+          -moz-box-shadow: 0 0 20px #7140ff
         .dreamstar-3:hover
-          box-shadow: 0px 0px 60px #4049ff
-          -webkit-box-shadow: 0px 0px 60px #4049ff
-          -moz-box-shadow: 0px 0px 60px #4049ff
+          box-shadow: 0 0 20px #4049ff
+          -webkit-box-shadow: 0 0 20px #4049ff
+          -moz-box-shadow: 0 0 20px #4049ff
         .dreamstar-4:hover
-          box-shadow: 0px 0px 60px #407aff
-          -webkit-box-shadow: 0px 0px 60px #407aff
-          -moz-box-shadow: 0px 0px 60px #407aff
+          box-shadow: 0 0 20px #407aff
+          -webkit-box-shadow: 0 0 20px #407aff
+          -moz-box-shadow: 0 0 20px #407aff
         .dreamstar-5:hover
-          box-shadow: 8px 8px 40px #409aff
-          -moz-box-shadow: 0 0 40px #409aff
-          -webkit-box-shadow: 2px 2px 40px #409aff
+          box-shadow: 0 0 20px #409aff
+          -moz-box-shadow: 0 0 20px #409aff
+          -webkit-box-shadow: 0 0 20px #409aff
         .dreamstar-6:hover
-          box-shadow: 8px 8px 40px #40bfff
-          -moz-box-shadow: 0 0 40px #40bfff
-          -webkit-box-shadow: 2px 2px 40px #40bfff
+          box-shadow: 0 0 20px #40bfff
+          -moz-box-shadow: 0 0 20px #40bfff
+          -webkit-box-shadow: 0 0 20px #40bfff
         .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
           +round(32)
           +pointer
-          width: 200px
+          width: 196px
           height: 32px
           line-height: 32px
           .badge, .rank, .name

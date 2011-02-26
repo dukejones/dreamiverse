@@ -121,7 +121,7 @@ class ImagesController < ApplicationController
   def update
     @image = Image.find(params[:id])
 
-    if @image.update_attributes(params[:image].merge(enabled: true))
+    if @image.update_attributes(params[:image].merge(enabled: true, uploaded_by: current_user))
       respond_to do |format|
         format.html { render :text => 'Image was successfully updated.' }
         format.json  { render json: {type: 'ok', message: 'Image was successfully updated.'} }

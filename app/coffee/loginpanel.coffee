@@ -1,6 +1,36 @@
 # Login Panel
 $(document).ready ->
-  login = new LoginController('.rightPanel')
+  # Checks if #rightColumn exits
+  # runs specific code for it, otherwise
+  # starts the loginController for the rest
+  # of the pages
+  
+  if $('#rightColumn').attr('id')
+    $('.joinWrap').click ->
+      $(this).find('.join').hide()
+      $(this).find('.joinButton').show()
+      $(this).parent().find('.intro').slideUp()
+      $(this).parent().find('.joinForm').slideDown()
+      
+      $('.haveSeedcode').click =>
+        $('.haveSeedcode').slideUp('fast')
+        $('.seedcodeExpander').slideDown('fast')
+    
+    # Check for cookie "welcome" if found, do nothing
+    # if not found, display the welcomeWrap
+    if window.getCookie("welcome") is null
+      $('.welcomeWrap').slideDown()
+      # Setup cookies for thank you button
+      $('.thankyou').click ->
+        # fade out welcome
+        $(this).parent().parent().slideUp()
+        # set cookie
+        window.setCookie("welcome", 1, 365)
+    
+    #window.deleteCookie("welcome") #use this to debug (remove your cookie)
+      
+  else
+    login = new LoginController('.rightPanel')
 
 class window.LoginController
   # Handles the logic & interactions
@@ -12,7 +42,6 @@ class window.LoginController
 
 class LoginModel
   # Data Model for logging in
-  
 
 
 class LoginView
@@ -20,7 +49,6 @@ class LoginView
   # login panel
   constructor: (containerSelector)->
     @$container = $(containerSelector)
-    
     @$loginButton = @$container.find('.login')
     @$joinToggle = @$container.find('.joinToggle')
     @$joinButton = @$container.find('.joinWrap')

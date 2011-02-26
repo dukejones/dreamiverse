@@ -1,4 +1,4 @@
-setCookie = (name, value, days) ->
+window.setCookie = (name, value, days) ->
   if days
     date = new Date()
     date.setTime(date.getTime() + (days*24*60*60*1000))
@@ -7,7 +7,7 @@ setCookie = (name, value, days) ->
     expires = ""
   document.cookie = name + '=' + value + expires + '; path=/'
 
-getCookie = (name) ->
+window.getCookie = (name) ->
   nameEQ = name + '='
   ca = document.cookie.split(';')
   for cookie in ca
@@ -17,5 +17,5 @@ getCookie = (name) ->
   
   return null
 
-deleteCookie = (name) ->
+window.deleteCookie = (name) ->
   setCookie(name, '', -1)
