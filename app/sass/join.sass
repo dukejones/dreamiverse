@@ -9,7 +9,7 @@ a.dcLogo
   width: 366px
   height: 102px
 
-#joinPage
+#joinPage, #forgotPage
   +relative
   top: 104px
   left: 108px
@@ -141,7 +141,26 @@ a.dcLogo
               +glow-blue(20)
 
 
+#forgotPage
 
+  .forgotForm
+    +round(12)
+    +shine-light-alpha(16)
+    +user-select
+    +cursor
+    padding: 8px
+    +clear
+    width: 300px
+    margin: auto
+
+    .body
+      +font(12)
+      padding-bottom: 8px
+      a
+        color: #fff
+        text-decoration: none
+        &:hover
+          text-decoration: underline
 
 
 
