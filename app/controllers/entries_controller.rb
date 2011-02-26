@@ -64,7 +64,7 @@ class EntriesController < ApplicationController
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
-
+    
     # XXX: We should be passing view_preference_attributes from the form, not renaming it here!
     params[:entry].merge!(view_preference_attributes: params[:entry].delete(:view_preference))
 

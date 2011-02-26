@@ -89,9 +89,9 @@ class Entry < ActiveRecord::Base
       tag = tags.where(noun: what).first
       tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
     else
-      tags.create(entry: self, noun: what, position: tags.count, kind: kind)
+      tags.create(noun: what, position: tags.count, kind: kind)
     end
-      reorder_tags if kind == 'custom' # run duke's method for re-ordering all tags
+    #reorder_tags if kind == 'custom' # run duke's method for re-ordering all tags   
   end
 
   def sharing
