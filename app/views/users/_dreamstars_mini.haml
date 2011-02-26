@@ -1,8 +1,8 @@
 .dreamstarsMiniWrap
+  %a{href: dreamstars_path}
+    %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
+    %span view all &rsaquo;
   .dreamstarsMini
-    %a{href: dreamstars_path}
-      %img.logo{src: '/images/logos/dreamstars-182.png', width: '182', height: '50'}
-      %span view all &rsaquo;
     - User.dreamstars.limit(5).each_with_index do |user, index|
       - rank = index + 1
       %div{class: "dreamstar-#{rank}"}
