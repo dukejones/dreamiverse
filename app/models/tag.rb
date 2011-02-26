@@ -2,8 +2,11 @@ class Tag < ActiveRecord::Base
   belongs_to :entry
   
   belongs_to :noun, :polymorphic => true
-  validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type, :kind], 
+  validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type], 
     :message => "This entry already has this tag."
+
+  scope :custom, where( kind: 'custom')
+  scope :auto,   where( kind: 'auto')
 
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry,cloud_size = 16)   
@@ -46,10 +49,10 @@ class Tag < ActiveRecord::Base
   # udpate custom tag positions with an ordered, comma-delim list
   def self.sort_custom_tags(entry_id,position_list)
     
-    return false if (entry_id.nil?|position_list.nil?)
+    return false if (entry_id.nil? || position_list.nil?)
     
     entry = Entry.find_by_id(entry_id)
-     
+    
     old_positions = {}
     entry.tags.map{|t| old_positions[t.noun_id] = t.position}
     new_positions = position_list.split(',')   
@@ -68,8 +71,8 @@ class Tag < ActiveRecord::Base
   end  
   
   def get_next_custom_position(entry_id)
-    entry = Entry.find_by_id(entry_id)
-    Tag.where(:entry_id => entry_id, :kind => 'custom').count.to_i
+    # entry = Entry.find_by_id(entry_id)
+    Tag.where(:entry_id => entry_id, :kind => 'custom').count
   end
   
 end

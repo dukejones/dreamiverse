@@ -82,8 +82,15 @@ class Entry < ActiveRecord::Base
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
   
-  def add_what_tag(what)
-    self.whats << what unless self.whats.exists? what # wtf?
+  def add_what_tag(what, kind = 'custom')
+    # if new custom tag is added
+    # insert in front of all auto tags
+    if whats.exists?(what)
+      tag = tags.where(noun: what).first
+      tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
+    else
+      tags.create(noun: what, position: tags.count, kind: kind)
+    end
   end
 
   def sharing
@@ -107,9 +114,29 @@ class Entry < ActiveRecord::Base
     Tag.delete_all(:entry_id => self.id,:kind => 'auto')
   end
 
+  def reorder_tags
+    max_tags = 16
+    # put all custom tags first
+    tags.custom.each_with_index do |tag, index|
+      tag.update_attribute :position, index
+    end
+    # then reorder auto tags - up to 16 total tags
+    first_auto_tag_position = tags.custom.count
+    tags.auto.each_with_index do |tag, index|
+      if first_auto_tag_position + index < max_tags
+        tag.update_attribute :position, first_auto_tag_position + index
+      else
+        self.tags.delete(tag)
+      end
+    end
+  end
+  
   # save auto generated tags + score auto generated & users custom tags 
   def process_all_tags
-    Tag.auto_generate_tags(self)
+    if body_changed?
+      Tag.auto_generate_tags(self)
+    end
+    reorder_tags
   end 
 
 

@@ -7,7 +7,7 @@ class What < ActiveRecord::Base
             :presence => true,
             :uniqueness => true,
             :length => { :minimum => 3, :maximum => 20 }
- 
+
   before_create :clean_name
   
   def self.clean(word)

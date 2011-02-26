@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20110223163252) do
     t.text     "notes"
     t.integer  "uploaded_by_id"
     t.string   "geotag"
-    t.text     "tags"
+    t.text     "tags",                                               :null => false
     t.boolean  "public"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -150,9 +150,10 @@ ActiveRecord::Schema.define(:version => 20110223163252) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-    t.integer "intensity"
+    t.integer "user_id"
     t.integer "position",   :default => 0
-    t.string  "kind",       :default => "custom", :null => false
+    t.string  "kind",       :default => "custom"
+    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|
