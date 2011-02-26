@@ -45,7 +45,7 @@ class Entry < ActiveRecord::Base
   
   before_save :set_sharing_level
   before_create :create_view_preference
-  before_update :delete_links, :delete_auto_tags
+  before_update :delete_links
   after_save :process_all_tags 
 
 
@@ -89,8 +89,9 @@ class Entry < ActiveRecord::Base
       tag = tags.where(noun: what).first
       tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
     else
-      tags.create(noun: what, position: tags.count, kind: kind)
+      tags.create(entry: self, noun: what, position: tags.count, kind: kind)
     end
+      reorder_tags if kind == 'custom' # run duke's method for re-ordering all tags
   end
 
   def sharing
@@ -110,10 +111,6 @@ class Entry < ActiveRecord::Base
     Link.delete_all(:owner_id => self.id)
   end
 
-  def delete_auto_tags
-    Tag.delete_all(:entry_id => self.id,:kind => 'auto')
-  end
-
   def reorder_tags
     max_tags = 16
     # put all custom tags first
@@ -126,7 +123,7 @@ class Entry < ActiveRecord::Base
       if first_auto_tag_position + index < max_tags
         tag.update_attribute :position, first_auto_tag_position + index
       else
-        self.tags.delete(tag)
+        self.tags.destroy(tag)
       end
     end
   end

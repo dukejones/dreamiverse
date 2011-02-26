@@ -66,7 +66,7 @@ class Tag < ActiveRecord::Base
         t.save
       end
     end
-    
+  
     return true
   end  
   
