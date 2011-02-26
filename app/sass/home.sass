@@ -59,6 +59,16 @@ body
       left: -76px
       z-index: 100
 
+    h1
+      +absolute
+      +font(21)
+      letter-spacing: 4px
+      top: -36px
+      left: 46px
+      margin: 0
+      text-transform: uppercase
+      color: #fff
+
     .welcome
       +round(12)
       +absolute
@@ -276,6 +286,17 @@ body
       +glow-blue(40)
       width: 220px
       height: 300px
+      img.logo
+        +absolute
+        top: -18px
+        z-index: 100
+      span
+        +absolute
+        +font(14)
+        right: 20px
+        top: 24px
+        color: #b9d6f6
+        z-index: 100
 
       .dreamstarsMini
         +absolute
@@ -284,18 +305,10 @@ body
         +border-blue
         +round(16)
         +clear
+        +overflow
         top: 0
         left: 0
         padding: 8px
-        img.logo
-          +absolute
-          top: -18px
-        span
-          +absolute
-          +font(14)
-          right: 20px
-          top: 24px
-          color: #b9d6f6
         .dreamstar-1:hover
           box-shadow: 0 0 20px #ff40d9
           -webkit-box-shadow: 0 0 20px #ff40d9
@@ -335,7 +348,7 @@ body
           .rank
             margin: 0 8px 0 -8px
         .dreamstar-1
-          margin: 38px 0 8px
+          margin: 38px 0 0
           border: 4px solid #FF40D9
           +gradient(#fff, #fdfcc4)
           .badge
