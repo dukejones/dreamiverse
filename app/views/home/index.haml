@@ -1,22 +1,43 @@
 
 / DREAMCATCHER LOGO
-%a.dcLogo{href: '#'}
+%a.dcLogo{href: '/'}
   %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
 .randomDream
   random dream!
 
-/ WELCOME
-.welcomeWrap.hidden
-  %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
 
-  .welcome
-    %p Dreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, keeping them organized and easy to share.
-    %p Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
-    %p A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
-    %p Start sharing and become part of the digital Dreamsphere.
+/ LEFT COLUMN
+#leftColumn
+  / WELCOME
+  .welcomeWrap.hidden
+    %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
 
-    .thankyou Thank You
+    .welcome
+      %p Dreamcatcher is a digital journaling and social life-sharing service that lets you 'catch' your dreams and most cherished life experiences, keeping them organized and easy to share.
+      %p Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
+      %p A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
+      %p Start sharing and become part of the digital Dreamsphere.
+
+      .thankyou Thank You
+
+  / PUBLIC STREAM
+  #publicStream
+    .today today in dreams
+    / .todayFilter today
+    / %h1.in in
+    / .dreamsFilter dreams
+
+  
+    / DREAM MATRIX
+    .matrix
+
+
+      / / DREAM THUMBS 1D
+      - @entries.each do |entry|
+        = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
+      - if @entries.blank?
+        .noEntries No dreams yet today.
 
 
 
@@ -84,21 +105,3 @@
   / DREAMSTARS MINI
   = render :partial => 'users/dreamstars_mini'
 
-
-/ PUBLIC STREAM
-#publicStream
-  .today today in dreams
-  / .todayFilter today
-  / %h1.in in
-  / .dreamsFilter dreams
-
-  
-  / DREAM MATRIX
-  .matrix
-
-
-    / / DREAM THUMBS 1D
-    - @entries.each do |entry|
-      = render :partial => 'entries/thumb_1d', :locals => {:entry => entry}
-    - if @entries.blank?
-      .noEntries No dreams yet today.
