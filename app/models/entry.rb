@@ -23,8 +23,10 @@ class Entry < ActiveRecord::Base
   has_many :custom_tags, 
            :through => :tags, 
            :source => :noun, 
-           :source_type => 'What', :conditions => ['kind = ?', 'custom'],
-           :order => 'position asc'
+           :source_type => 'What', 
+           :conditions => ['kind = ?', 'custom'],
+           :order => 'position asc',
+           :limit => 16
   has_many :custom_whats, :through => :custom_tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
