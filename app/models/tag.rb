@@ -11,8 +11,9 @@ class Tag < ActiveRecord::Base
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry,cloud_size = 16)   
     Tag.delete_all(:entry_id => entry.id,:kind => 'auto') 
-        
-    auto_tag_words = "#{entry.body} #{entry.title}".split(/\s+/)
+    
+    # auto words from title/body - title's get entered twice for double score    
+    auto_tag_words = "#{entry.title} #{entry.title} #{entry.body}".split(/\s+/)
     auto_scores = self.sort_and_score_auto_tags(auto_tag_words).first(cloud_size)
     
     # drJ tests

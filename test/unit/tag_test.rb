@@ -71,7 +71,7 @@ class TagTest < ActiveSupport::TestCase
     # and all positions should be unique
   end
 
-=begin  
+=begin
   test "adding a custom tags with 16 total tags drops the last auto tag off the end" do
     # create entry with 16 tags, some combination of custom and auto
     # find the last auto tag - which should drop off
@@ -80,9 +80,13 @@ class TagTest < ActiveSupport::TestCase
     
     entry = Entry.make(body: 'giraffe bridge illuminate visualize controlled visions')  
     
-    custom_tags = ['fell','through','sky','upwards','onwards','raging','river','valley','twilight','eve']
+    last_tag = entry.tags.last
+    
+    custom_tags = ['falling','limitless','sky','upwards','onwards','raging','river','valley','twilight','eve'].map do |name|
+      What.find_or_create_by_name(name)
+    end
     custom_tags.each { |what| entry.add_what_tag(what) }
                   
   end
-=end  
+=end
 end
