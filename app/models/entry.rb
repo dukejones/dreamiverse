@@ -90,12 +90,15 @@ class Entry < ActiveRecord::Base
   end
 
   
-  # def set_tags(types)
-  #   
-  #   types[:whats]._?.each do |word|
-  #     add_what_tag( What.find_or_create_by_name(word) )
-  #   end
-  # end
+  def set_tags(types)
+    new_whats = types[:whats].map {|word| What.find_or_create_by_name(word) }
+    # whats to delete - those in whats but not in new_whats
+    (whats - new_whats).each {|what| whats.delete(what) }
+
+    new_whats.each do |what|
+      add_what_tag( what )
+    end
+  end
 
 
   def add_what_tag(what, kind = 'custom')
