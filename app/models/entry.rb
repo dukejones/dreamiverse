@@ -88,6 +88,7 @@ class Entry < ActiveRecord::Base
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
+
   
   # def set_tags(types)
   #   
@@ -95,6 +96,7 @@ class Entry < ActiveRecord::Base
   #     add_what_tag( What.find_or_create_by_name(word) )
   #   end
   # end
+
 
   def add_what_tag(what, kind = 'custom')
     # if new custom tag is added
@@ -106,7 +108,7 @@ class Entry < ActiveRecord::Base
       tags.create(noun: what, position: tags.count, kind: kind)
     end
   end
-
+ 
   def sharing
     self.class::Sharing.invert[sharing_level]
   end
@@ -141,15 +143,13 @@ class Entry < ActiveRecord::Base
     end
   end
   
-  # save auto generated tags + score auto generated & users custom tags 
+  # save auto generated tags + score auto generated custom tags 
   def process_all_tags
     if body_changed?
       Tag.auto_generate_tags(self)
     end
     reorder_tags
   end 
-
-
 
 protected
 

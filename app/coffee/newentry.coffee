@@ -20,12 +20,3 @@ $(document).ready ->
 	    
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
-	  
-  	  $.ajax {
-        type: 'PUT'
-        url: '/tags/sort_custom'
-        data:
-          entry_id: entry
-          position_list: order
-        #success: (data, status, xhr) => alert "SUCCESS!"
-      }
