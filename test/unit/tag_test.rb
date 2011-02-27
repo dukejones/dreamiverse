@@ -70,11 +70,19 @@ class TagTest < ActiveSupport::TestCase
     # it should be inserted in front of the auto tags
     # and all positions should be unique
   end
-  
+
+=begin  
   test "adding a custom tags with 16 total tags drops the last auto tag off the end" do
     # create entry with 16 tags, some combination of custom and auto
     # find the last auto tag - which should drop off
     # add a custom tag
     # verify that it dropped off
+    
+    entry = Entry.make(body: 'giraffe bridge illuminate visualize controlled visions')  
+    
+    custom_tags = ['fell','through','sky','upwards','onwards','raging','river','valley','twilight','eve']
+    custom_tags.each { |what| entry.add_what_tag(what) }
+                  
   end
+=end  
 end
