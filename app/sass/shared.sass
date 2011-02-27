@@ -393,27 +393,6 @@ abbr, acronym
 
 
 
-// BASIC CSS
-
-/* CONTENT BOXES */
-.text_input-big
-  +font(21)
-  +round(12)
-  background: #fff
-  color: #000
-  border: 1px solid #666
-  margin: 0
-  padding: 5px
-  box-shadow: inset 2px 5px 15px #bbb
-  -moz-box-shadow: inset 2px 5px 15px #bbb
-  -webkit-box-shadow: inset 2px 5px 15px #bbb
-  outline: none
-.text_input-big:focus, .search-bar:focus
-  border: 1px solid #000
-  box-shadow: 0px 0px 10px #06F
-  -moz-box-shadow: 0px 0px 10px #06F
-  -webkit-box-shadow: 0px 0px 10px #06F
-
 
 
 
@@ -421,92 +400,52 @@ abbr, acronym
 /* ********* UNIVERSALS ********* */
 
 /* TAG CLOUDS */
-.TC, .TC A, .sub_tags A
+.tagCloud div
   +left
   +round(8)
   text-decoration: none
   padding: 2px 5px
 
-
-.thumb_TC
-  padding: 5px
-.TC A:hover, .TC A:focus, .sub_tags A:hover, .sub_tags A:focus
-  border: 1px #fff solid
-  padding: 1px 9px
-  color: #fff
-  background: #000
-
-.s-0
-  +font(20)
-.s-1
-  +font(14)
-.s-2
-  +font(15)
-.s-3
-  +font(16)
-.s-4
-  +font(17)
-.s-5
-  +font(18)
-.s-6
-  +font(19)
-.s-7
-  +font(20)
-.s-8
-  +font(21)
-
-
-.water.s-0
-  color: #fff 
-.water.s-1
-  color: #0049a2
-.water.s-2
-  color: #1265c2
-.water.s-3
-  color: #3086cf
-.water.s-4
-  color: #3ea7eb
-.water.s-5
-  color: #3ea7eb
-.water.s-6
-  color: #55ccff
-.water.s-7
-  color: #55ccff
-.water.s-8
-  color: #88e3f7
-.water.s-9
-  color: #88e3f7
-
-/* ALLOWS FOR PROPPER SELECT DROPDOWN SHADOW AND ROUNDED CORNERS */
-SELECT.search-bar
-  border-style: solid
-  +round(8)
+.tagCloud
+  .s0
+    +font(21)
+  .s1
+    +font(20)
+  .s3
+    +font(19)
+  .s4
+    +font(18)
+  .s5
+    +font(17)
+  .s6, .s7
+    +font(16)
+  .s8, .s9, .s10, .s11
+    +font(15)
+  .s12, .s13, .s14, .s15
+    +font(14)
+  
+// TAG CLOUD COLORS
+.light .tagCloud, .dark .tagCloud
+  .s0.white
+    color: #fff 
+  .s0
+    color: #88e3f7
+  .s1, .s2
+    color: #88e3f7
+  .s3, .s4
+    color: #55ccff
+  .s5, .s6
+    color: #55ccff
+  .s7, .s8
+    color: #3ea7eb
+  .s9, .s10
+    color: #3ea7eb
+  .s11, .s12
+    color: #3086cf
+  .s13, .s14
+    color: #1265c2
+  .s14, .s15
+    color: #0049a2
 
 
-// OLD HOME PAGE BUTTONS
-/* COLOR BUTTONS */
-.button-big-blue
-  border: 2px solid #999
-  +pointer
-.button-big-blue:hover, .selected.button-big-blue
-  border: 2px solid #0099ff
-  box-shadow: 0px 0px 40px #0099ff inset
-  -moz-box-shadow: 0px 0px 40px #0099ff inset
-  -webkit-box-shadow: 0px 0px 40px #0099ff inset
-.button-big-green
-  +pointer
-  border: 2px solid #999
-.button-big-green:hover, .selected.button-big-green
-  border: 2px solid #7BBD0D
-  box-shadow: 0px 0px 40px #7BBD0D inset
-  -moz-box-shadow: 0px 0px 40px #7BBD0D inset
-  -webkit-box-shadow: 0px 0px 40px #7BBD0D inset
-.button-big-gray
-  +pointer
-  border: 2px solid #999
-.button-big-gray:hover, .selected.button-big-gray
-  border: 2px solid #CCC
-  box-shadow: 0px 0px 40px #CCC inset
-  -moz-box-shadow: 0px 0px 40px #CCC inset
-  -webkit-box-shadow: 0px 0px 40px #CCC inset
 
