@@ -34,14 +34,14 @@ module ImageProfiles
     self.send(profile.to_sym, options)
   end
 
-  def profile?(profile, options={})
+  def profile_generated?(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile)
 
     File.exists?(path(profile, options))
   end
   
-  def profile_magick_image(profile, opts={})
-    generate_profile(profile, size, opts) unless profile?(profile, :size => size)
+  def profile_magick_image(profile, options={})
+    generate_profile(profile, options) unless profile_generated?(profile, :size => size)
     magick_image(profile, size)
   end
   
@@ -140,7 +140,7 @@ module ImageProfiles
       img.quality 40
       img.format options[:format]
     end
-    # img.resize ?
+    img.resize '2048<' # only if both dimensions exceed
     img.write(path(:bedsheet, options))
   end
   

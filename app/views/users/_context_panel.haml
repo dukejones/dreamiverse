@@ -72,7 +72,7 @@
 
     - if user == current_user
       .edit.hidden
-        = form_tag :user, :method => :put, :remote => true, :html => {:id => 'update_profile'} do
+        = form_tag :user, :method => :put, :remote => true, :id => 'update_profile' do
           = fields_for current_user do |f|
             = f.text_field :name, :placeholder => 'full name'
             = f.fields_for :link_attributes do |l|

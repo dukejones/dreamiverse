@@ -6,7 +6,7 @@ $(document).ready ->
   # Setup tag re-ordering
   $("#sorting").val(1)
   $("#tag-list").sortable -> distance: 10
-		
+  
 	$( "#tag-list" ).bind "sortstart", (event, ui) ->
 	  $("#sorting").val(0)
 	  
@@ -46,6 +46,14 @@ $(document).ready ->
       # Check for favico error
       $(".attachedLink").bind "error", ->
         $(this).attr('src', '/images/icons/link-16.gif')
+
+  # setup remove comment handler
+  $('.deleteComment').live 'click', (event)->
+    tempCount = $('.commentsHeader .counter').html();
+    tempCount--
+    $('.commentsHeader .counter').html(tempCount)
+    $(event.currentTarget).parent().parent().slideUp()
+  
     
 
 # There is a point where using objects is just more obfuscation.

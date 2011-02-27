@@ -88,7 +88,16 @@ class Entry < ActiveRecord::Base
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
- 
+
+  
+  # def set_tags(types)
+  #   
+  #   types[:whats]._?.each do |word|
+  #     add_what_tag( What.find_or_create_by_name(word) )
+  #   end
+  # end
+
+
   def add_what_tag(what, kind = 'custom')
     # if new custom tag is added
     # insert in front of all auto tags

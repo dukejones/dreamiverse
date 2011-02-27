@@ -4,7 +4,7 @@
     %a.user{href: user_entries_path(comment.user.username)}= comment.user.username
     .postTime= time_ago_in_words(comment.created_at)
     - if (@entry.user == current_user) || (comment.user == current_user)
-      = link_to entry_comment_path(@entry, comment), {:method => :delete, :remote => true} do
+      = link_to entry_comment_path(@entry, comment), {:method => :delete, :remote => true, :class => 'deleteComment'} do
         %img.delete{src: "/images/icons/close-22.png"}
     /%ul
     /  %li
