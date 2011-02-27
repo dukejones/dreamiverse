@@ -5,6 +5,9 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type], 
     :message => "This entry already has this tag."
 
+  validates_numericality_of :entry_id, :greater_than => 0
+  validates_numericality_of :noun_id, :greater_than => 0
+
   scope :custom, where( kind: 'custom')
   scope :auto,   where( kind: 'auto')
 
@@ -15,10 +18,6 @@ class Tag < ActiveRecord::Base
     # auto words from title/body - title's get entered twice for double score    
     auto_tag_words = "#{entry.title} #{entry.title} #{entry.body}".split(/\s+/)
     auto_scores = self.sort_and_score_auto_tags(auto_tag_words).first(cloud_size)
-    
-    # drJ tests
-    # existing_custom_names = entry.custom_tags.map(&:name)
-    # auto_scores.delete_if{|what,score| existing_custom_scores.include(what.name)}
 
     # which position to start with?
     custom_tag_count = entry.tags.where(:kind => 'custom',:entry_id => entry.id).count  

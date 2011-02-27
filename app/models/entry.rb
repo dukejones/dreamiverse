@@ -105,7 +105,7 @@ class Entry < ActiveRecord::Base
       tag = tags.where(noun: what).first
       tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
     else
-      tags.create(noun: what, position: tags.count, kind: kind)
+      tags.create(noun: what, position: tags.count, kind: kind)     
     end
   end
  
