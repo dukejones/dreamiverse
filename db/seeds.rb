@@ -6,6 +6,9 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+puts 'Seeding BlacklistWords...'
+require "#{Rails.root}/lib/init_nephele_blacklist_words"
+InitNepheleBlacklistWords.init_first_words 
 
 if Image.where(:title => "Default Avatar").count == 0
   puts "Seeding Default Avatar..."

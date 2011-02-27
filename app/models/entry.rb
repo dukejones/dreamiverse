@@ -13,19 +13,25 @@ class Entry < ActiveRecord::Base
 
   
   belongs_to :user
+  belongs_to :location, :class_name => "Where"  
 
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
-
   has_many :comments
-  
-  has_many :tags
-  has_many :whats,    :through => :tags, :source => :noun, :source_type => 'What'
-  has_many :whos,     :through => :tags, :source => :noun, :source_type => 'Who'
-  has_many :wheres,   :through => :tags, :source => :noun, :source_type => 'Where'
-  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion'
 
-  belongs_to :location, :class_name => "Where"
+  has_many :tags
+  has_many :custom_tags, 
+           :through => :tags, 
+           :source => :noun, 
+           :source_type => 'What', 
+           :conditions => ['kind = ?', 'custom'],
+           :order => 'position asc',
+           :limit => 16
+  has_many :custom_whats, :through => :custom_tags
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
+  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
+  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
+  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion'
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
@@ -42,6 +48,8 @@ class Entry < ActiveRecord::Base
   before_save :set_sharing_level
   before_create :create_view_preference
   before_update :delete_links
+  after_save :process_all_tags 
+
 
   scope :order_by_starlight, 
     select('entries.*').
@@ -80,11 +88,27 @@ class Entry < ActiveRecord::Base
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
-  
-  def add_what_tag(what)
-    self.whats << what unless self.whats.exists? what
-  end
 
+  
+  # def set_tags(types)
+  #   
+  #   types[:whats]._?.each do |word|
+  #     add_what_tag( What.find_or_create_by_name(word) )
+  #   end
+  # end
+
+
+  def add_what_tag(what, kind = 'custom')
+    # if new custom tag is added
+    # insert in front of all auto tags
+    if whats.exists?(what)
+      tag = tags.where(noun: what).first
+      tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
+    else
+      tags.create(noun: what, position: tags.count, kind: kind)
+    end
+  end
+ 
   def sharing
     self.class::Sharing.invert[sharing_level]
   end
@@ -102,7 +126,32 @@ class Entry < ActiveRecord::Base
     Link.delete_all(:owner_id => self.id)
   end
 
-  protected #######################
+  def reorder_tags
+    max_tags = 16
+    # put all custom tags first
+    tags.custom.each_with_index do |tag, index|
+      tag.update_attribute :position, index
+    end
+    # then reorder auto tags - up to 16 total tags
+    first_auto_tag_position = tags.custom.count
+    tags.auto.each_with_index do |tag, index|
+      if first_auto_tag_position + index < max_tags
+        tag.update_attribute :position, first_auto_tag_position + index
+      else
+        tag.destroy
+      end
+    end
+  end
+  
+  # save auto generated tags + score auto generated custom tags 
+  def process_all_tags
+    if body_changed?
+      Tag.auto_generate_tags(self)
+    end
+    reorder_tags
+  end 
+
+protected
 
   def set_sharing_level
     sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]

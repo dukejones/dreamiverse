@@ -62,14 +62,19 @@ Dreamcatcher::Application.routes.draw do
     resources :words
   end
   
-  # Tagging
-  # match '#:tag', :to => 'tags#show'
-  post '/tags', :to => 'tags#create'
-  delete '/tags/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
 
+  # Tagging
+  resources :tags do
+    collection do
+      post '/', :to => 'tags#create'
+      put :sort_custom, :to => 'tags#sort_custom_tags'
+      delete '/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
+    end
+  end
+  
   resources :entries do
     collection do
-      post 'bedsheet'
+      post 'bedsheet' 
     end
     resources :comments
   end
@@ -91,7 +96,6 @@ Dreamcatcher::Application.routes.draw do
     end
   end
   # match ':username', :to => 'dreams#index' #, :constraint => username_constraint
-
 
   #root :to => 'dreams#stream'#, :as => :stream
   root :to => 'home#index'
