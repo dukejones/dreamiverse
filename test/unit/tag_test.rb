@@ -70,11 +70,50 @@ class TagTest < ActiveSupport::TestCase
     # it should be inserted in front of the auto tags
     # and all positions should be unique
   end
-  
-  test "adding a custom tags with 16 total tags drops the last auto tag off the end" do
+
+
+  test "adding a custom tag with 16 total tags drops the last auto tag off the end" do
     # create entry with 16 tags, some combination of custom and auto
     # find the last auto tag - which should drop off
     # add a custom tag
     # verify that it dropped off
+    
+    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled')  
+    
+    last_auto_tag = entry.tags.where(:kind => 'auto').last
+    
+    custom_tags = ['falling','limitless','sky','upwards','onwards',
+                  'raging','river','valley','twilight','eve'].map do |name|
+      What.find_or_create_by_name(name)
+    end
+    
+    custom_tags.each { |what| entry.add_what_tag(what) }
+
+    extra_tag = What.find_or_create_by_name('Jeremiah')
+    entry.add_what_tag(extra_tag)
+    
+    entry.reorder_tags  
+    entry.reload
+    
+    last_auto_tag_exists = Tag.find_by_id(last_auto_tag.id)
+    
+    assert_equal last_auto_tag_exists, nil
+                    
   end
+
+
+  test "verify that tag entries won't allow nil or 0 values for entry_id and noun_id colums" do
+    
+    tag1 = Tag.create(entry_id: nil)
+    tag2 = Tag.find_or_create_by_id(entry_id: 0)
+    tag3 = Tag.create(entry_id: 999, noun_id: nil)
+    tag4 = Tag.create(entry_id: 999, noun_id: 0)
+    
+    assert_equal tag1.id, nil
+    assert_equal tag2.id, nil
+    assert_equal tag3.id, nil
+    assert_equal tag4.id, nil
+      
+  end
+
 end

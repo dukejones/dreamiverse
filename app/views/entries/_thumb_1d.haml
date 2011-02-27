@@ -46,11 +46,10 @@
 
     / MIDDLE ROW - TAG CLOUD
     %tr
-      %td.middle
-        / TAG CLOUD
-        #tagCloud-1075.tagCloud.0.dream_thumb-tags
-          - entry.tags.limit(16).each do |tag|
-            = tag.noun.name + '(' + tag.position.to_s + ')'  
+      %td.middle.tagCloud
+        - entry.tags.limit(16).each do |tag|
+          %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
 
     / BOTTOM ROW - WHO TAGS
     / %tr
