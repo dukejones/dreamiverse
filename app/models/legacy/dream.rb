@@ -1,6 +1,9 @@
 class Legacy::Dream < Legacy::Base
   set_table_name 'dream'
   
+  def corresponding_object
+    find_corresponding_entry
+  end
   def find_corresponding_entry
     Entry.where(created_at: self.created_at, title: self.title).first
   end

@@ -1,6 +1,10 @@
 class Legacy::User < Legacy::Base
   set_table_name 'user'
 
+  def corresponding_object
+    find_corresponding_user
+  end
+  
   def find_corresponding_user
     ::User.find_by_username_and_email self.username, self.email
   end
@@ -49,7 +53,10 @@ class Legacy::User < Legacy::Base
   end
   
   def image_id
-    avatar_image.find_or_create_corresponding_image
+    return nil if avatar_image.nil?
+    new_image = avatar_image.find_corresponding_image
+    raise "Cannot find image: #{avatar_image.fileLocation}" unless new_image
+    new_image.id
   end
   
   def name

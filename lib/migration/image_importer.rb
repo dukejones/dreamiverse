@@ -3,15 +3,16 @@ class Migration::ImageImporter < Migration::Importer
     super(image, Image.new)
   end
   
-  LegacyImageDir = "#{Rails.root}/tmp/images/user"
   def migrate
     image = super
     legacy_image = @entity_to_migrate
     image.incoming_filename = legacy_image.filename
     image.format = nil
     image.save!
-    
-    image.import_from_file("#{LegacyImageDir}/#{legacy_image.path}")
+
+    puts image.title
+
+    image.import_from_file("#{Legacy::Image::Dir}/#{legacy_image.path}")
 
     image
   end

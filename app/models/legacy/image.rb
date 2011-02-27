@@ -1,6 +1,12 @@
 class Legacy::Image < Legacy::Base
+  Dir = "#{Rails.root}/tmp/images/user"
+  
   set_table_name 'image'
 
+  def corresponding_object
+    find_corresponding_image
+  end
+  
   def find_corresponding_image
     Image.where(original_filename: filename, uploaded_by_id: uploaded_by_id).first
   end
@@ -19,8 +25,11 @@ class Legacy::Image < Legacy::Base
   has_many :dreams, {through: :dream_images}
   def self.valid
     images = self.all
-    images.reject!{|i| !i.avatar? && i.dreams.blank?}
-    images.select!{|i| i.filename =~ /^.*\.(png|jpg|gif|jpeg|JPG|PNG)$/}
+    images.reject!{|i| !i.avatar? && i.dreams.blank? }
+    images.reject!{|i| i.avatar? && i.user.blank? }
+    images.select!{|i| i.filename =~ /^.*\.(png|jpg|gif|jpeg|JPG|PNG)$/ }
+    images.reject!{|i| !File.exists? "#{Dir}/#{i.path}" || File.size("#{Dir}/#{i.path}") == 0 }
+    images
   end
   
   def valid?
@@ -58,13 +67,14 @@ class Legacy::Image < Legacy::Base
   end
   def path
     if avatar?
-      "avatar/#{self.user.id}/#{self.filename}/#{self.filename}"
+      "avatar/#{self.user.id}/#{self.filename}"
     else
       "dream-galleries/#{self.dreams.first.id}/original/#{self.filename}"
     end
   end
 
   def uploaded_by_id
-    user.find_or_create_corresponding_user.id
+    # user.find_or_create_corresponding_user.id
+    nil
   end
 end

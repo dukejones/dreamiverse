@@ -73,13 +73,15 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
   def write(binary_data)
-    parse_incoming_parameters
-    delete_all_resized_files!
-    file = File.open(path, 'wb')
-    file.write(binary_data)
+    begin
+      parse_incoming_parameters
+      delete_all_resized_files!
+      file = File.open(path, 'wb')
+      file.write(binary_data)
+    ensure
+      file._?.close
+    end
     set_metadata!
-  ensure
-    file._?.close
   end
 
   def import_from_file(filename)

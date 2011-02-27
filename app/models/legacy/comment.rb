@@ -9,11 +9,17 @@ class Legacy::Comment < Legacy::Base
   end
   
   def user_id
-    user.find_or_create_corresponding_user.id
+    # user.find_or_create_corresponding_user.id
+    new_user = user.find_corresponding_user
+    raise("Could not find user: #{user.username} #{user.email}") unless new_user
+    new_user.id
   end
   
   def entry_id
-    dream.find_or_create_corresponding_entry.id
+    # dream.find_or_create_corresponding_entry.id
+    entry = dream.find_corresponding_entry
+    raise("Could not find entry: '#{dream.title}'") unless entry
+    entry.id
   end
   
   def image_id

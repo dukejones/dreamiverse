@@ -2,7 +2,7 @@ require 'test_helper'
 
 
 class ImageImporterTest < ActiveSupport::TestCase
-  LegacyImageDir = Migration::ImageImporter::LegacyImageDir
+  LegacyImageDir = Legacy::Image::Dir
   
   def setup
     @tmp_upload_dir = 'tmp/uploads'
@@ -24,6 +24,14 @@ class ImageImporterTest < ActiveSupport::TestCase
     
     assert_equal new_image.original_filename, image.filename
     assert_equal new_file.size, old_file.size
+  end
+  
+  test "legacy image 62" do
+    image = Legacy::Image.find 62
+    new_image = Migration::ImageImporter.new(image).migrate
+    new_image.save!
+    debugger
+    1
   end
 
 end
