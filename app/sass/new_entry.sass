@@ -280,57 +280,45 @@
   // ENTRY LOCATION
   .entryLocation
     +hidden
-    height: 35px
-    .locations
-      +round(8)
-      +left
+    height: 70px
+
+    .finding
+      +absolute
+      left: 126px
+      width: 230px
+      padding: 8px 0
       +font(16)
-      +pointer
-      margin-left: 8px
-      height: 34px
-      line-height: 34px
-      margin: 0 0 0 14px
-      padding: 6px 8px
-      width: 268px
-      option
-        padding: 1px 4px
-      .newLocation
-        background: url('/images/icons/add-16.png') no-repeat 25px 8px
-        padding: 6px 0 6px 45px
-      .saved
-        +font(17)
-        padding-bottom: 6px
-      .divider
-        background-color: #777777
-        font-size: 1px
-        margin: 0 0 6px
-        width: 98%
-      .noLocation
-        color: #777777
+
+      left: 112px
+      +round(8)
+      margin: 4px 0 0 8px
+      +font(16)
+      padding: 4px
+      width: 238px
+
+
     .spinner-small
-      +relative
+      +absolute
       width: 32px
       height: 32px
       margin-bottom: -32px
-      left: 312px
-      top: 2px
-    .expander
-      +clear
+      right: 0px
+      top: 3px
+
+    .data
+      +absolute
+      left: 112px
       .name, .city, .state, .country
         +round(8)
-        +right
+        +left
         margin: 4px 0 0 8px
-        input, select
+        input
           +font(16)
           +transparent
           border: none
           padding: 4px
-          width: 258px
-      .country select
-        width: 266px
-        margin-bottom: -1px
-        option
-          width: 224px
+          width: 238px
+
     .cancelLocation
       +round(16)
       +delete(17)
@@ -789,10 +777,7 @@
         +indent-light
         +button-light
 
-      .locations
-        +input-light(small)
-
-      .name, .city, .state, .country
+      .finding, .name, .city, .state, .country
         +input-light(small)
 
       .cancelLocation
@@ -947,10 +932,7 @@
         +indent-dark
         +button-dark
 
-      .locations
-        +input-dark(small)
-
-      .name, .city, .state, .country
+      .finding, .name, .city, .state, .country
         +input-dark(small)
       input, select, option
         color: #ccc

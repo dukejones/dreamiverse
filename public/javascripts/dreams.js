@@ -71,7 +71,7 @@ function setupTextareaAutoExpander(){
       animateDuration : 500,
       animate: true,
       // More extra space:
-      extraSpace : 120
+      extraSpace : 80
     }).trigger('change'); // resizes the form initially
   }
 }
