@@ -7,11 +7,6 @@ class TagsController < ApplicationController
     @entry.add_what_tag(what)
     @entry.reorder_tags
     
-    # t = Tag.new
-    # next_pos = t.get_next_custom_position(params[:entry_id])
-    # Tag.create!(entry: @entry, noun: what, position: next_pos, kind: 'custom')
-    # @entry.whats.create!(params[:what_name]) # :created_by => current_user
-    
     render :json => { :message => "created", :what_id => what.id }
   rescue => e
     render :json => e.message, :status => :unprocessable_entity

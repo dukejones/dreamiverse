@@ -68,10 +68,5 @@ class Tag < ActiveRecord::Base
   
     return true
   end  
-  
-  def get_next_custom_position(entry_id)
-    # entry = Entry.find_by_id(entry_id)
-    Tag.where(:entry_id => entry_id, :kind => 'custom').count
-  end
-  
+
 end
