@@ -54,28 +54,33 @@
         +center
         +absolute
       right: 70px
-      width: 140px
+      width: 160px
       height: 34px
       line-height: 34px
-      img
+      img.typeSelection
         +left
         margin: 1px 0 0 4px
-      #entryType_current
-        background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
         +transparent
         +block
         +font(14)
-        border: 0
-        padding: 0
-        line-height: 34px
-        padding: 7px 2px 6px 35px
         +pointer
         +right
-        margin: 0 4px 0 -40px
-        .dream, .vision, .experience, .article
-          padding-left: 20px
+        border: 0
+        height: 34px
+        line-height: 34px
+        padding: 7px 8px 7px 2px
+        option
+          padding: 8px 4px 8px 38px
           margin-right: -20px
+        option.dream
+          background: url(/images/icons/dream_cloud-16.png) no-repeat 8px center
+        option.vision
+          background: url(/images/icons/dream_cloud-16.png) no-repeat 8px center
+        option.experience
+          background: url(/images/icons/dream_cloud-16.png) no-repeat 8px center
+        option.article
+          background: url(/images/icons/dream_cloud-16.png) no-repeat 8px center
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -124,7 +129,7 @@
           img.listSelection
             +pointer
             +left
-            margin: 10px 0 0 4px
+            margin: 6px 0 0 6px
 
           #entry_sharing_level
             +round(8)
