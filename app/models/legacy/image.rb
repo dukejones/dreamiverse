@@ -34,7 +34,13 @@ class Legacy::Image < Legacy::Base
   
   def valid?
     !(!self.avatar? && self.dreams.blank?) &&
-    (self.filename =~ /^.*\.(png|jpg|gif|jpeg|JPG|PNG)$/)
+    !(self.avatar? && self.user.blank?) &&
+    (self.filename =~ /^.*\.(png|jpg|gif|jpeg|JPG|PNG)$/) &&
+    (File.exists? self.fullpath)
+  end
+
+  def title
+    filename
   end
 
   def avatar?

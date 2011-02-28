@@ -41,8 +41,8 @@ module ImageProfiles
   end
   
   def profile_magick_image(profile, options={})
-    generate_profile(profile, options) unless profile_generated?(profile, :size => size)
-    magick_image(profile, size)
+    generate_profile(profile, options) unless profile_generated?(profile, options)
+    magick_image(profile, options)
   end
   
   def medium(options={})

@@ -6,6 +6,7 @@ namespace :legacy do
       Rake::Task['legacy:data:import:users'].invoke
       Rake::Task['legacy:data:import:images_second_pass'].invoke
       Rake::Task['legacy:data:import:dreams'].invoke
+      Rake::Task['legacy:data:import:dream_images'].invoke
       Rake::Task['legacy:data:import:comments'].invoke
       Rake::Task['legacy:data:import:emotions'].invoke
       Rake::Task['legacy:data:import:environment_series'].invoke
@@ -28,6 +29,20 @@ namespace :legacy do
       end
       task :dreams => [:environment, :images, :users] do
         Migration::DreamImporter.migrate_all
+      end
+      task :dream_images => [:environment] do
+        Legacy::DreamImage.all.each do |dream_image|
+          next unless dream_image.image._?.valid?
+
+          image = dream_image.image._?.corresponding_object
+          puts "Image does not exist!  #{dream_image.image._?.title}  for dream #{dream_image.dream._?.title}" unless image
+
+          entry = dream_image.dream._?.corresponding_object
+          puts "Entry does not exist!  #{dream_image.dream._?.title}" unless entry
+          
+
+          entry.images << image
+        end
       end
       task :comments => [:dreams, :users] do
         Migration::CommentImporter.migrate_all
