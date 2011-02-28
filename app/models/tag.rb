@@ -12,42 +12,36 @@ class Tag < ActiveRecord::Base
   validates_numericality_of :entry_id, :greater_than => 0
   validates_numericality_of :noun_id, :greater_than => 0
 
-  scope :custom, where( kind: 'custom')
-  scope :auto,   where( kind: 'auto')
+  scope :custom, where( kind: 'custom' )
+  scope :auto,   where( kind: 'auto'   )
 
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry,cloud_size = 16)   
-    Tag.delete_all(:entry_id => entry.id,:kind => 'auto') 
+    entry.tags.auto.delete_all
     
-    # auto words from title/body - title's get entered twice for double score    
+    # auto words from title/body - titles get entered twice for double score    
     auto_tag_words = "#{entry.title} #{entry.title} #{entry.body}".split(/\s+/)
-    auto_scores = self.sort_and_score_auto_tags(auto_tag_words).first(cloud_size)
+    auto_scores = self.sort_and_score_auto_tags(auto_tag_words)
 
     # which position to start with?
-    custom_tag_count = entry.tags.where(:kind => 'custom', :entry_id => entry.id).count  
-    
-    (custom_tag_count...cloud_size).each do |position|
-      auto_scores_index = position - custom_tag_count
-      break if auto_scores_index >= auto_scores.size
-      what, score = auto_scores[auto_scores_index]
-      Tag.create(entry: entry, noun: what, position: position, kind: 'auto')     
+    custom_tag_count = entry.tags.custom.count
+    position = custom_tag_count # initial position: after the custom tags
+    auto_scores.first(cloud_size-custom_tag_count).each do |what, score|
+      Tag.create(entry: entry, noun: what, position: position, kind: 'auto')
+      position += 1
     end
   end
 
   # create hash  name => frequency with no blacklisted words.   
   def self.sort_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
-      # if (BlacklistWord.where(word: tag_word).count < 1)
       if (!BlacklistWords[tag_word])
         what = What.find_or_create_by_name(tag_word)
-        if !what.id.nil? 
-          tag_scores[what] ||= 0
-          tag_scores[what] += 1
-        end
+        tag_scores[what] ||= 0
+        tag_scores[what] += 1
       end
     end
 
-    tag_scores.delete_if { |tag_word, tag_score| BlacklistWord.where(word: tag_word).count > 0 }
     tag_scores.sort_by { |tag_word, tag_score| tag_score }.reverse
   end
 

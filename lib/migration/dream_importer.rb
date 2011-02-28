@@ -4,7 +4,7 @@ class Migration::DreamImporter < Migration::Importer
   end
   
   def migrate
-    @migrated_entity.whats = @entity_to_migrate.whats
+    # @migrated_entity.whats = @entity_to_migrate.whats
     super
   end
   

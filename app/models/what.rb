@@ -18,11 +18,18 @@ class What < ActiveRecord::Base
   #   # return word.downcase.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )  
   # end
   
+  scope :duplicates, group('name').having('count(name) > 1')
+  
+  def self.eliminate_duplicates!
+    
+  end
+  
   def clean_name
     # self.name = self.class.clean(self.name)
 
     # Why not just eliminate all non-alphanumerics? Keep the spaces though.
-    self.name.gsub!( /[^ ^[:alnum:]]+/, '')
+    # This can make the name < 2 chars!
+    # self.name.gsub!( /[^ ^[:alnum:]]/, '')
     self.name.downcase!
   end
 end

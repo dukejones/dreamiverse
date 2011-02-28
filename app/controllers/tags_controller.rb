@@ -32,6 +32,6 @@ class TagsController < ApplicationController
   
   def sort_custom_tags
     Tag.sort_custom_tags(params[:entry_id],params[:position_list])
-    render :nothing => true
+    render :json => {:type => 'ok'}
   end  
 end

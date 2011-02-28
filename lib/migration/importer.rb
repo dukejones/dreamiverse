@@ -5,6 +5,8 @@ class Migration::Importer
   end
   
   def migrate
+    puts "Migrating: #{@entity_to_migrate.class} #{@entity_to_migrate.id}"
+
     if @entity_to_migrate.respond_to?(:corresponding_object)
       if obj = @entity_to_migrate.corresponding_object
         puts "Object already imported: #{obj.class} #{obj.id}"
@@ -15,10 +17,10 @@ class Migration::Importer
     # puts "---#{@entity_to_migrate.class.to_s}<<<<<<<Migrating>>>>>>>#{@migrated_entity.class.to_s}---"
     @migrated_entity.attributes.symbolize_keys.keys.each do |attr|
       if @entity_to_migrate.respond_to?(attr)
-        # puts "#{attr} responds"
+        puts "#{attr} responds"
         @migrated_entity.send("#{attr}=", @entity_to_migrate.send(attr))
       else
-        # puts "#{attr} doesn't respond"
+        puts "#{attr} doesn't respond"
       end
     end
     @migrated_entity

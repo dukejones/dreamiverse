@@ -78,16 +78,16 @@ class Legacy::Dream < Legacy::Base
     tag_words.reject!{|w| w.size < 3}
     whats = tag_words.map { |tag_word| What.find_or_create_by_name( tag_word.slice(0...20) ) }
     # Why the F$#^ is it creating duplicates?????????
-    whats.select{|w| !w.valid? }.each do |what|
-      word = what.name
-      whats.delete(what)
-      what.destroy
-      while !(new_what = What.find_by_name(word))._?.valid? && new_what
-        new_what.destroy
-      end
-      new_what = What.find_or_create_by_name(word) if new_what.nil?
-      whats << new_what
-    end
+    # whats.select{|w| !w.valid? }.each do |what|
+    #   word = what.name
+    #   whats.delete(what)
+    #   what.destroy
+    #   while !(new_what = What.find_by_name(word))._?.valid? && new_what
+    #     new_what.destroy
+    #   end
+    #   new_what = What.find_or_create_by_name(word) if new_what.nil?
+    #   whats << new_what
+    # end
     debugger unless whats.all?{|w| w.valid? }
     whats
   end
