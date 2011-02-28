@@ -280,17 +280,17 @@
     height: 70px
 
     .finding
-      +absolute
+      +relative
+      +left
       left: 126px
-      width: 230px
       padding: 8px 0
       +font(16)
-      left: 112px
+      left: -1px
       +round(8)
       margin: 4px 0 0 8px
       +font(16)
       padding: 4px
-      width: 238px
+      width: 240px
 
 
     .spinner-small
@@ -885,7 +885,7 @@
       // SHARING
       .sharing
         +shine-dark(17)
-        +button-dark
+        +border-dark
 
         #entry_sharing_level
           color: #ddd
