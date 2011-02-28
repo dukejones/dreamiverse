@@ -275,22 +275,22 @@
   // ENTRY LOCATION
   .entryLocation
     +hidden
-    height: 35px
+    height: 70px
 
     .finding
       +absolute
       left: 126px
       width: 230px
       padding: 8px 0
-    //   +round(8)
-    //   +left
       +font(16)
-    //   margin-left: 8px
-    //   height: 34px
-    //   line-height: 34px
-    //   margin: 0 0 0 14px
-    //   padding: 6px 8px
-    //   width: 268px
+
+      left: 112px
+      +round(8)
+      margin: 4px 0 0 8px
+      +font(16)
+      padding: 4px
+      width: 238px
+
 
     .spinner-small
       +absolute
@@ -927,10 +927,7 @@
         +indent-dark
         +button-dark
 
-      .finding
-        background-color: #fff
-
-      .name, .city, .state, .country
+      .finding, .name, .city, .state, .country
         +input-dark(small)
       input, select, option
         color: #ccc
