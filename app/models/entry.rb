@@ -13,7 +13,8 @@ class Entry < ActiveRecord::Base
 
   
   belongs_to :user
-  belongs_to :location, :class_name => "Where"  
+  belongs_to :location, :class_name => "Where" 
+  accepts_nested_attributes_for :location, :reject_if => :all_blank 
 
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
