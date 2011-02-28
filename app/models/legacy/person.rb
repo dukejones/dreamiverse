@@ -4,7 +4,7 @@ class Legacy::Person < Legacy::Base
   belongs_to :dream, {foreign_key: "dreamId", class_name: "Legacy::Dream"}
 
   def name
-    title
+    title.strip.gsub(/[ ]+/, ' ')
   end
   
   

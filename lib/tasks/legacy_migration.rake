@@ -41,13 +41,13 @@ namespace :legacy do
       task :environment_series => [:dreams] do
         Migration::EnvironmentSeriesImporter.migrate_all
       end
-      task :user_locations => [:users] do
-        Migration::UserLocationimporter.migrate_all
+      task :user_locations => [:environment, :users] do
+        Migration::UserLocationImporter.migrate_all
       end
-      task :countries do
+      task :countries => :environment do
         Migration::CountryImporter.migrate_all
       end
-      task :people => [:users, :dreams] do
+      task :people => [:environment, :users, :dreams] do
         Migration::PersonImporter.migrate_all
       end
     end

@@ -38,11 +38,10 @@
     won't wonder would would wouldn't yes yet you you'd you'll you're you've your yours yourself yourselves zero
     title dream body}
     
-    w = What.new
     blacklist_words.each do |word|
       if word.length > 2
-        word = w.prep(word)      
-        BlacklistWord.find_or_create_by_word(:word => word,:kind => 'nephele')
+        word = What.clean(word)
+        BlacklistWord.find_or_create_by_word(:word => word, :kind => 'nephele')
       end
     end
   end

@@ -161,7 +161,7 @@ protected
       end
       
       self.original_filename = @incoming_filename
-      self.format = @incoming_filename.split('.').last unless format
+      self.format = @incoming_filename.split('.').last.downcase unless format
       self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize if self.title.blank?
     end
   end
