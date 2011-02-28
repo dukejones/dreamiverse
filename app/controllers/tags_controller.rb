@@ -2,7 +2,7 @@ class TagsController < ApplicationController
   def create
     @entry = Entry.find params[:entry_id]
 
-    what = What.find_or_create_by_name(params[:what_name])
+    what = What.for(params[:what_name])
     
     @entry.add_what_tag(what)
     @entry.reorder_tags

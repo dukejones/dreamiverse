@@ -36,7 +36,7 @@ class Tag < ActiveRecord::Base
   def self.sort_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
       if (!BlacklistWords[tag_word])
-        what = What.find_or_create_by_name(tag_word)
+        what = What.for(tag_word)
         tag_scores[what] ||= 0
         tag_scores[what] += 1
       end

@@ -3,22 +3,22 @@ require 'test_helper'
 
 class DreamImporterTest < ActiveSupport::TestCase
   setup do
-    Image.stubs( :write ).
+    Image.any_instance.stubs( :write ).
       returns(true)
-    Legacy::User.stubs( :image_id).
+    Legacy::User.any_instance.stubs( :image_id).
       returns(1)
     
   end
   
   test 'dream import' do
-    Legacy::Dream.stubs(:user_id).returns(1)
+    Legacy::User.first.find_or_create_corresponding_user
+    Legacy::Dream.any_instance.stubs(:user_id).returns( User.first.id )
     
     Legacy::Dream.offset(rand(1500)).limit(100).each do |dream|
       entry = Migration::DreamImporter.new(dream).migrate
       entry.save!
       assert_equal entry.title, dream.title
       assert_equal entry.body, dream.description
-      assert_equal entry.user.username, dream.user.username
       assert_equal entry.created_at, dream.created_at
       # assert_equal entry.whats.map(&:name), 
       #   dream.customTagsList.split(',').compact.map(&:strip).map(&:downcase).

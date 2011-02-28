@@ -17,12 +17,15 @@ class Migration::Importer
     # puts "---#{@entity_to_migrate.class.to_s}<<<<<<<Migrating>>>>>>>#{@migrated_entity.class.to_s}---"
     @migrated_entity.attributes.symbolize_keys.keys.each do |attr|
       if @entity_to_migrate.respond_to?(attr)
-        puts "#{attr} responds"
+        # puts "#{attr} responds"
         @migrated_entity.send("#{attr}=", @entity_to_migrate.send(attr))
       else
-        puts "#{attr} doesn't respond"
+        # puts "#{attr} doesn't respond"
       end
     end
+
+    debugger unless @migrated_entity.valid?
+    
     @migrated_entity
   end
   
@@ -42,7 +45,6 @@ class Migration::Importer
     
     collection.each do |entity|
       result = self.new(entity).migrate
-      debugger unless result.valid?
       result.save!
     end
   end

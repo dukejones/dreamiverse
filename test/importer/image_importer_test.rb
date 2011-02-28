@@ -33,5 +33,11 @@ class ImageImporterTest < ActiveSupport::TestCase
     debugger
     1
   end
-
+  
+  test "corresponding_object" do
+    image = Legacy::Image.valid[100]
+    im = image.find_or_create_corresponding_image
+    
+    assert_equal im, image.corresponding_object
+  end
 end

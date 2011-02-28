@@ -91,7 +91,7 @@ class Entry < ActiveRecord::Base
 
   
   def set_tags(types)
-    new_whats = types[:whats].map {|word| What.find_or_create_by_name(word) }
+    new_whats = types[:whats].map {|word| What.for(word) }
     # whats to delete - those in whats but not in new_whats
     (whats - new_whats).each {|what| whats.delete(what) }
 

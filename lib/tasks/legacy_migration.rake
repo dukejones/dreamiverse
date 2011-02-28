@@ -20,7 +20,11 @@ namespace :legacy do
         Migration::UserImporter.migrate_all
       end
       task :images_second_pass => [:users, :images] do
-        # set the uploaded by to prevent user infinite recursion.
+        Legacy::Image.valid.each do |legacy_image|
+          image = legacy_image.corresponding_object
+          image.uploaded_by = legacy_image.user.corresponding_object
+          image.save!
+        end
       end
       task :dreams => [:environment, :images, :users] do
         Migration::DreamImporter.migrate_all

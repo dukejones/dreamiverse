@@ -10,7 +10,7 @@ class Legacy::UserEnvironment < Legacy::Base
   end
 
   def noun_id
-    What.find_or_create_by_name(option.title).id
+    What.for(option.title).id
   end
   def noun_type
     'What'

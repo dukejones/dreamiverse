@@ -1,6 +1,10 @@
 class Migration::DreamImporter < Migration::Importer
+  require 'mocha'
+  
   def initialize(dream)
-    super(dream, Entry.new)
+    entry = Entry.new
+    entry.stubs(:process_all_tags).returns(true)
+    super(dream, entry)
   end
   
   def migrate

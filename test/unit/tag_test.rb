@@ -11,7 +11,7 @@ class TagTest < ActiveSupport::TestCase
   # end
   
   test "custom tag same as auto tag" do
-    what = What.find_or_create_by_name('duke')
+    what = What.for('duke')
     entry = Entry.make(body: 'the duke duke duke something dream')
     Tag.auto_generate_tags(entry)
 
@@ -26,7 +26,7 @@ class TagTest < ActiveSupport::TestCase
     # given entry with a bunch of tags
     entry = Entry.make
     whats = ['monkey', 'dolphin', 'lake', 'firestorm', 'dragon', 'palace'].map do |word|
-      What.find_or_create_by_name(word)
+      What.for(word)
     end
     entry.whats = whats
     # change the order of the tags in the database
@@ -44,11 +44,11 @@ class TagTest < ActiveSupport::TestCase
     entry = Entry.make
     # with custom tags and auto tags
     custom_tags = ['monkey', 'dolphin', 'lake', 'firestorm'].map do |name|
-      What.find_or_create_by_name(name)
+      What.for(name)
     end
     # new_tags = ['dragon', 'palace']
     auto_tags = ['monster', 'pigeon', 'didgeridoo'].map do |name|
-      What.find_or_create_by_name(name)
+      What.for(name)
     end
     custom_tags.each {|what| entry.add_what_tag(what) }
     auto_tags.each {|what| entry.add_what_tag(what, 'auto') }
@@ -59,7 +59,7 @@ class TagTest < ActiveSupport::TestCase
     end
 
     num_custom_tags = entry.tags.custom.count
-    dragon = What.find_or_create_by_name('dragon')
+    dragon = What.for('dragon')
     entry.add_what_tag(dragon)
     entry.save
     assert_equal num_custom_tags, entry.tags.where(noun: dragon).first.position
@@ -84,12 +84,12 @@ class TagTest < ActiveSupport::TestCase
     
     custom_tags = ['falling','limitless','sky','upwards','onwards',
                   'raging','river','valley','twilight','eve'].map do |name|
-      What.find_or_create_by_name(name)
+      What.for(name)
     end
     
     custom_tags.each { |what| entry.add_what_tag(what) }
 
-    extra_tag = What.find_or_create_by_name('Jeremiah')
+    extra_tag = What.for('Jeremiah')
     entry.add_what_tag(extra_tag)
     
     entry.reorder_tags  

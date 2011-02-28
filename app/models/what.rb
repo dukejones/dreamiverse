@@ -10,13 +10,16 @@ class What < ActiveRecord::Base
 
   before_create :clean_name
   
-  # def self.clean(word)
-  #   # We actually want multi-word tags.
-  #   # word = word[/^\S+/] # drop everything after a white space to prevent multi words
-  # 
-  #   # downcase and replace all non alpha num chars from begin/end
-  #   # return word.downcase.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )  
-  # end
+  def self.for(word)
+    what = find_or_create_by_name( clean(word) )
+
+    what.valid? ? what : nil
+  end
+
+  # Makes any string suitable to be a what tag.
+  def self.clean(word)
+    word.downcase.strip.slice(0...20).gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )
+  end
   
   scope :duplicates, group('name').having('count(name) > 1')
   
@@ -25,11 +28,6 @@ class What < ActiveRecord::Base
   end
   
   def clean_name
-    # self.name = self.class.clean(self.name)
-
-    # Why not just eliminate all non-alphanumerics? Keep the spaces though.
-    # This can make the name < 2 chars!
-    # self.name.gsub!( /[^ ^[:alnum:]]/, '')
-    self.name.downcase!
+    self.name = self.class.clean(self.name)
   end
 end
