@@ -22,7 +22,7 @@ class TagTest < ActiveSupport::TestCase
     assert_equal 'custom', Tag.where(noun: what, entry: entry).first.kind
   end
   
-  test "sort_custom_tags" do
+  test "order_custom_tags" do
     # given entry with a bunch of tags
     entry = Entry.make
     whats = ['monkey', 'dolphin', 'lake', 'firestorm', 'dragon', 'palace'].map do |word|
@@ -33,7 +33,7 @@ class TagTest < ActiveSupport::TestCase
     whats.shuffle!
     what_ids = whats.map(&:id)
 
-    Tag.sort_custom_tags(entry.id, what_ids.join(','))
+    Tag.order_custom_tags(entry.id, what_ids.join(','))
     
     assert_equal whats.map(&:id), entry.custom_tags.map(&:id)
 

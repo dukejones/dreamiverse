@@ -21,7 +21,7 @@ class Tag < ActiveRecord::Base
     
     # auto words from title/body - titles get entered twice for double score    
     auto_tag_words = "#{entry.title} #{entry.title} #{entry.body}".split(/\s+/)
-    auto_scores = self.sort_and_score_auto_tags(auto_tag_words)
+    auto_scores = self.order_and_score_auto_tags(auto_tag_words)
 
     # which position to start with?
     custom_tag_count = entry.tags.custom.count
@@ -33,7 +33,7 @@ class Tag < ActiveRecord::Base
   end
 
   # create hash  name => frequency with no blacklisted words.   
-  def self.sort_and_score_auto_tags(tag_words)   
+  def self.order_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
       if (!BlacklistWords[tag_word])
         what = What.for(tag_word)
@@ -46,7 +46,7 @@ class Tag < ActiveRecord::Base
   end
 
   # udpate custom tag positions with an ordered, comma-delim list
-  def self.sort_custom_tags(entry_id,position_list)
+  def self.order_custom_tags(entry_id,position_list)
     
     return false if (entry_id.nil? || position_list.nil?)
     
@@ -68,10 +68,5 @@ class Tag < ActiveRecord::Base
   
     return true
   end  
-  
-  def get_next_custom_position(entry_id)
-    # entry = Entry.find_by_id(entry_id)
-    Tag.where(:entry_id => entry_id, :kind => 'custom').count
-  end
-  
+
 end

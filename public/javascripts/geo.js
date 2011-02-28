@@ -10,20 +10,7 @@ function initGeo(){
   $('.addLocation').click(function(){
     if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
-      
-      //$('.entryLocation').slideDown();
-      // Fix for the min-height bug
-      
-      $('.entryLocation').height(0);
-      $('.entryLocation').css('display', 'block');
-      
-      if($('.entryLocation .expander').css('display') == 'none'){
-        $('.entryLocation').animate({height: 35}, "fast");
-      } else {
-        $('.entryLocation').animate({height: 104}, "fast");
-      }
-      
-      
+      $('.entryLocation').slideDown()
       
       if(!geoFetching){
         geoFetching = true;
@@ -41,8 +28,11 @@ function initGeo(){
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
     $('.addLocation').removeClass('selected');
-    $('.entryLocation, .entryLocation .expander').slideUp();
-    $('#locationList').val('No location');
+    $('.entryLocation').slideUp();
+    
+    $('.entryLocation .city .input').val('');
+    $('.entryLocation .state .input').val('');
+    $('.entryLocation .country .input').val('');
   });
   
   $('#locationList').change(function(){
@@ -63,18 +53,16 @@ function initGeo(){
 /* LOCATION DATA */
 var getGeo = function(){
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:15000});
+    navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
   } else {
     alert('This browser does not support geolocation')
   }
 }
 
 function geoError(error){
-  alert("geolocation error : " + error.code + ' / ' + error.message);
-  $('.entryLocation .spinner-small').fadeOut();
-  
-  $('#locationList').val('No location');
-  $('#locationList .finding').remove();
+  //alert("geolocation error : " + error.code + ' / ' + error.message);
+  $('.entryLocation .data').slideDown()
+  $('.entryLocation .finding').remove();
 }
 
 function geoSuccess(position) {
@@ -92,21 +80,19 @@ function getAddress(_lat, _lng){
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
     // Remove finding your location option
-    $('#locationList .finding').remove();
+    $('.entryLocation .data').slideDown()
+    $('.entryLocation .finding').remove();
     
     // Add new location
-    var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
+    /*var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
     $('#locationList').prepend(newElement);
-    $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)
+    $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)*/
     
     var country = data[0].address_components[6].short_name.toLowerCase();
     
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
     $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
-    $('#countrySelector').val(country);
-    
-    // Remove Spinner
-    $('.entryLocation .spinner-small').fadeOut();
+    $('.entryLocation .country .input').val(country);
   })
 }

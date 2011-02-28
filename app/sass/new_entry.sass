@@ -50,32 +50,34 @@
     .entryType
       +round(16)
       +right
-      //
-        +center
-        +absolute
       right: 70px
-      width: 140px
       height: 34px
       line-height: 34px
-      img
+      img.typeSelection
         +left
         margin: 1px 0 0 4px
-      #entryType_current
-        background: url(/images/icons/arrowDark-16-open.png) no-repeat 118px 3px
       #entryType_list
         +transparent
         +block
         +font(14)
-        border: 0
-        padding: 0
-        line-height: 34px
-        padding: 7px 2px 6px 35px
         +pointer
         +right
-        margin: 0 4px 0 -40px
-        .dream, .vision, .experience, .article
-          padding-left: 20px
-          margin-right: -20px
+        +center
+        border: 0
+        height: 34px
+        line-height: 34px
+        padding: 7px 8px 7px 2px
+        option
+          padding: 8px 4px 8px 38px
+          text-align: left
+        option.dream
+          background: url(/images/icons/dream-24.png) no-repeat 8px center
+        option.vision
+          background: url(/images/icons/vision-24.png) no-repeat 8px center
+        option.experience
+          background: url(/images/icons/experience-24.png) no-repeat 8px center
+        option.article
+          background: url(/images/icons/article-24.png) no-repeat 8px center
     #entry_title, #entry_body
       +transparent
       margin: 10px 0 0 10px
@@ -109,13 +111,12 @@
       .sharingWrap
         +right
         +relative
-        width: 206px
+        width: 200px
         margin: 8px 0 0 8px
         .sharing
           +absolute
           +round(8)
           +pointer
-          width: 196px
           min-height: 34px
           line-height: 34px
           margin: 0
@@ -124,7 +125,7 @@
           img.listSelection
             +pointer
             +left
-            margin: 10px 0 0 4px
+            margin: 6px 0 0 6px
 
           #entry_sharing_level
             +round(8)
@@ -132,19 +133,20 @@
             +pointer
             +right
             +transparent
+            +center
             border: none
-            margin-left: 8px
             height: 34px
             line-height: 34px
             padding: 7px 8px
             option
               padding: 8px 4px 8px 38px
+              text-align: left
             option.everyone
               background: url(/images/icons/everyone-16.png) no-repeat 8px center
             option.list
-              background: url(/images/icons/listofUsers-16.png) no-repeat 8px center
+              background: url(/images/icons/friend-16.png) no-repeat 8px center
             option.anon
-              background: url(/images/icons/mask-24.png) no-repeat 8px center
+              background: url(/images/icons/mask-16.png) no-repeat 8px center
             option.private
               background: url(/images/icons/lock-16.png) no-repeat 8px center
 
@@ -168,18 +170,12 @@
                   margin: 9px 8px 0 8px
             .friendsOnly
               label
-                background: url(/images/icons/friend-none-24.png) no-repeat 8px center
-              label.selected
-                background: url(/images/icons/friend-24.png) no-repeat 8px center
+                background: url(/images/icons/friend-16.png) no-repeat 8px center
             .followersOnly
               label
-                background: url(/images/icons/follower-none-24.png) no-repeat 8px center
-              label.selected
-                background: url(/images/icons/friend-follower-24.png) no-repeat 8px center
+                background: url(/images/icons/friend-follower-16.png) no-repeat 8px center
             .url
               label
-                background: url(/images/icons/link-light-22.png) no-repeat 8px center
-              label.selected
                 background: url(/images/icons/link-light-22.png) no-repeat 8px center
 
           .everyone
@@ -248,7 +244,7 @@
       width: 64px
       height: 36px
       line-height: 28px
-      margin-right: 8px
+      margin: 8px 8px 0 0
       +save(14)
 
   // ENTRY DATE / TIME
@@ -281,57 +277,45 @@
   // ENTRY LOCATION
   .entryLocation
     +hidden
-    height: 35px
-    .locations
-      +round(8)
-      +left
-      +font(16)
-      +pointer
-      margin-left: 8px
-      height: 34px
-      line-height: 34px
-      margin: 0 0 0 14px
-      padding: 6px 8px
-      width: 268px
-      option
-        padding: 1px 4px
-      .newLocation
-        background: url('/images/icons/add-16.png') no-repeat 25px 8px
-        padding: 6px 0 6px 45px
-      .saved
-        +font(17)
-        padding-bottom: 6px
-      .divider
-        background-color: #777777
-        font-size: 1px
-        margin: 0 0 6px
-        width: 98%
-      .noLocation
-        color: #777777
-    .spinner-small
+    height: 70px
+
+    .finding
       +relative
+      +left
+      left: 126px
+      padding: 8px 0
+      +font(16)
+      left: -1px
+      +round(8)
+      margin: 4px 0 0 8px
+      +font(16)
+      padding: 4px
+      width: 240px
+
+
+    .spinner-small
+      +absolute
       width: 32px
       height: 32px
       margin-bottom: -32px
-      left: 312px
-      top: 2px
-    .expander
-      +clear
+      right: 4px
+      top: -1px
+
+    .data
+      +absolute
+      left: 112px
+      width: 520px
       .name, .city, .state, .country
         +round(8)
-        +right
+        +left
         margin: 4px 0 0 8px
-        input, select
+        input
           +font(16)
           +transparent
           border: none
           padding: 4px
-          width: 258px
-      .country select
-        width: 266px
-        margin-bottom: -1px
-        option
-          width: 224px
+          width: 238px
+
     .cancelLocation
       +round(16)
       +delete(17)
@@ -438,7 +422,6 @@
         +left
         +center
         padding: 0 8px
-        color: #fff
         height: 28px
         line-height: 28px
         margin: 8px 8px 0 0
@@ -790,10 +773,7 @@
         +indent-light
         +button-light
 
-      .locations
-        +input-light(small)
-
-      .name, .city, .state, .country
+      .finding, .name, .city, .state, .country
         +input-light(small)
 
       .cancelLocation
@@ -837,6 +817,11 @@
             +shine-light-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRightLight-40.png) no-repeat right
+      .tag_box
+        +button-light
+        +flat-light-medium
+
+
 
     // NEW ENTRY LINK
     .entryLinks
@@ -905,7 +890,7 @@
       // SHARING
       .sharing
         +shine-dark(17)
-        +button-dark
+        +border-dark
 
         #entry_sharing_level
           color: #ddd
@@ -948,10 +933,7 @@
         +indent-dark
         +button-dark
 
-      .locations
-        +input-dark(small)
-
-      .name, .city, .state, .country
+      .finding, .name, .city, .state, .country
         +input-dark(small)
       input, select, option
         color: #ccc
@@ -997,6 +979,9 @@
             +shine-dark-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
+      .tag_box
+        +button-dark
+        +flat-dark-medium
 
     // NEW ENTRY LINK
     .entryLinks
