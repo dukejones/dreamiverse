@@ -11,9 +11,6 @@ function initGeo(){
     if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
       
-      //$('.entryLocation').slideDown();
-      // Fix for the min-height bug
-      
       $('.entryLocation').height(0);
       $('.entryLocation').css('display', 'block');
       
@@ -104,7 +101,7 @@ function getAddress(_lat, _lng){
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
     $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
-    $('#countrySelector').val(country);
+    $('.entryLocation .country .input').val(country);
     
     // Remove Spinner
     $('.entryLocation .spinner-small').fadeOut();

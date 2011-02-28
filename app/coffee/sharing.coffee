@@ -37,6 +37,14 @@ class SharingController
       @shareSettings = new Share(newSelection)
     )
     
+    $('.listOfUsers').find("input[type='radio']").change( (event)=>
+      newText = $(event.currentTarget).next().text()
+      newIcon = $(event.currentTarget).parent().css('background-image')
+      newIconPath = newIcon.slice(5, newIcon.length - 2)
+      $('.listSelection').attr('src', newIconPath)
+      @$dropdown.find('.list').text(newText)
+    )
+    
     #setup Default Sharing dropdown
     @$dropdown.val(@$container.find('.defaultSharing').data('id'))
     @$dropdown.change()
