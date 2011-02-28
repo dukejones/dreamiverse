@@ -22,14 +22,14 @@ $(document).ready ->
 	  
 	  $.ajax {
       type: 'PUT'
-      url: '/tags/sort_custom'
+      url: '/tags/order_custom'
       data:
         entry_id: entry
         position_list: order
       #success: (data, status, xhr) => log "success"
     }
     
-#tags/sort_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
+#tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 	     
 	
 	# Setup comment expander

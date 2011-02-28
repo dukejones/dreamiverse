@@ -67,7 +67,7 @@ Dreamcatcher::Application.routes.draw do
   resources :tags do
     collection do
       post '/', :to => 'tags#create'
-      put :sort_custom, :to => 'tags#sort_custom_tags'
+      put :order_custom, :to => 'tags#order_custom_tags'
       delete '/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
     end
   end
