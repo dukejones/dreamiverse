@@ -20,3 +20,13 @@ $(document).ready ->
 	    
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
+  
+  # Setup Geolocation
+  $('.addLocation').unbind();
+  $('.addLocation').click( ->
+    # Check if auto-locate is selected
+    # and auto-locate if so
+    
+    # otherwise just show the dropdown
+    # with the current location_id selected
+  )
