@@ -31,8 +31,7 @@
           = render :partial => "mood_icon"
 
       .entryType
-        %img{src: '/images/icons/dream-32.png'}
-        %span#entryType_current.hidden{value: 'Dream'}
+        %img.typeSelection{src: '/images/icons/dream-32.png'}
         %select#entryType_list{name: 'entry[type]'}
           %option.dream{value: 'dream'} dream
           %option.vision{value: 'vision'} vision
@@ -56,7 +55,7 @@
         // SHARING PANEL
         .sharingWrap
           .sharing
-            %img.listSelection{src: '/images/icons/share-16.png'}
+            %img.listSelection{src: '/images/icons/share-24.png'}
             %select#entry_sharing_level{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
               %option.list{value: 'list'} friends only
