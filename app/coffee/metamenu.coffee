@@ -109,8 +109,8 @@ class AppearancePanel extends MetaMenu
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
       @newTheme = $(event.currentTarget).attr('id')
-      if $('#view_preference_theme').attr('id')?
-        $('#view_preference_theme').val(newTheme)
+      if $('#entry_view_preference_theme').attr('id')?
+        $('#entry_view_preference_theme').val(@newTheme)
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])
@@ -138,7 +138,6 @@ class AppearancePanel extends MetaMenu
     )
   
   updateUserBedsheet: (@bedsheet_id)->
-    #alert "update user bedsheet api call :: " + bedsheet_id
     $.ajax {
       type: 'POST'
       url: '/user/bedsheet'
@@ -149,7 +148,7 @@ class AppearancePanel extends MetaMenu
     }
   
   updateEntryBedsheet: (bedsheet_id)->
-    $('#view_preference_image_id').val(bedsheet_id)
+    $('#entry_view_preference_image_id').val(bedsheet_id)
   
 
 # Settings Model Subclass
