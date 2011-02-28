@@ -6,4 +6,6 @@ class Legacy::Person < Legacy::Base
   def name
     title
   end
+  
+  
 end

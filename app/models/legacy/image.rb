@@ -8,7 +8,7 @@ class Legacy::Image < Legacy::Base
   end
   
   def find_corresponding_image
-    Image.where(original_filename: filename, uploaded_by_id: uploaded_by_id).first
+    ::Image.where(original_filename: filename, uploaded_by_id: uploaded_by_id).first
   end
   def find_or_create_corresponding_image
     image = find_corresponding_image

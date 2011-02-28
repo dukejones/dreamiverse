@@ -7,7 +7,7 @@ class Migration::Importer
   def migrate
     if @entity_to_migrate.respond_to?(:corresponding_object)
       if obj = @entity_to_migrate.corresponding_object
-        puts "Object already imported: #{obj.inspect}"
+        puts "Object already imported: #{obj.class} #{obj.id}"
         return obj
       end
     end
@@ -30,9 +30,17 @@ class Migration::Importer
   
   def self.migrate_all_from_collection(collection, entity_name=nil)
     entity_name ||= collection.first.class.to_s.pluralize
-    puts entity_name
+    puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
+    puts "Migrating all: #{entity_name}"
+
+    if collection.first.respond_to?(:corresponding_object)
+      collection.reject! {|obj| obj.corresponding_object }
+    end
+    puts "Already Migrated." if collection.empty?
+    
     collection.each do |entity|
       result = self.new(entity).migrate
+      debugger unless result.valid?
       result.save!
     end
   end

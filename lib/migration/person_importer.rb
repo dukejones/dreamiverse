@@ -4,11 +4,13 @@ class Migration::PersonImporter < Migration::Importer
   end
   
   def migrate
-    super
+    super.save!
     
-    entry = @entity_to_migrate.dream.corresponding_object
+    entry = @entity_to_migrate.dream.find_or_create_corresponding_entry
+    
     Tag.create!(noun: @migrated_entity, entry: entry)
-    
+
+    @migrated_entity
   end
   
   def self.migrate_all

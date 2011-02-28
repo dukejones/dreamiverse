@@ -1,4 +1,8 @@
 class Tag < ActiveRecord::Base
+  BlacklistWords = BlacklistWord.all.each_with_object( {} ) do |blacklist_word, hash|
+    hash[blacklist_word.word] = true
+  end
+
   belongs_to :entry
   
   belongs_to :noun, :polymorphic => true
@@ -20,7 +24,7 @@ class Tag < ActiveRecord::Base
     auto_scores = self.sort_and_score_auto_tags(auto_tag_words).first(cloud_size)
 
     # which position to start with?
-    custom_tag_count = entry.tags.where(:kind => 'custom',:entry_id => entry.id).count  
+    custom_tag_count = entry.tags.where(:kind => 'custom', :entry_id => entry.id).count  
     
     (custom_tag_count...cloud_size).each do |position|
       auto_scores_index = position - custom_tag_count
@@ -33,7 +37,8 @@ class Tag < ActiveRecord::Base
   # create hash  name => frequency with no blacklisted words.   
   def self.sort_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
-      if (BlacklistWord.where(word: tag_word).count < 1)
+      # if (BlacklistWord.where(word: tag_word).count < 1)
+      if (!BlacklistWords[tag_word])
         what = What.find_or_create_by_name(tag_word)
         if !what.id.nil? 
           tag_scores[what] ||= 0

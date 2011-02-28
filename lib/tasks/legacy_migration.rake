@@ -22,7 +22,7 @@ namespace :legacy do
       task :images_second_pass => [:users, :images] do
         # set the uploaded by to prevent user infinite recursion.
       end
-      task :dreams => [:users, :images] do
+      task :dreams => [:environment, :images, :users] do
         Migration::DreamImporter.migrate_all
       end
       task :comments => [:dreams, :users] do
