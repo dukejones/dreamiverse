@@ -1,3 +1,34 @@
+#geoHeader
+  +round(16)
+  +flat-top
+  box-shadow: 0 0 40px #f0e207
+  -moz-box-shadow: 0 0 40px #f0e207
+  -webkit-box-shadow: 0 0 40px #f0e207
+  +font(22)
+  padding: 0 50px
+  text-align: center
+  position: fixed
+  top: 0px
+  right: 8px
+  height: 50px
+  line-height: 50px
+  width: 460px
+  z-index: 1600
+  color: #ddd
+  background: #313131
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(49,49,49,1.0)), to(rgba(0,0,0,1.0)))
+  background: -moz-linear-gradient(top, rgba(49,49,49,1.0), rgba(0,0,0,1.0))
+  border: 4px solid #fff
+  border-top: none
+  .geoArrow
+    +right
+    width: 32px
+    height: 50px
+    margin: 0 0 0 12px
+    background: url(/images/icons/arrow_up-32.png) no-repeat center
+  p
+    +left
+
 #entryField
 
   /*********** NEW ENTRY ***********/
@@ -232,12 +263,12 @@
     .date img
       margin: 9px 0 0
     .addLocation .img
-      background: url('/images/icons/location-21.png') center center no-repeat
+      background: url('/images/icons/location-21-off.png') center center no-repeat
       width: 21px
       height: 21px
       margin: 7px 11px
     .addLocation.selected .img
-      background: url('/images/icons/location-21-selected.png') center center no-repeat
+      background: url('/images/icons/location-21.png') center center no-repeat
     #entry_submit
       +bold
       +font(12)
@@ -384,25 +415,39 @@
         width: 120px
         background: #fff
         .entryImage
+          +relative
+          +round(7)
           +left
           +overflow
           +pointer
           width: 120px
           height: 120px
-          .imageRemoveButton
+          label.radio
+            +round(6)
+            +flat-top
+            +absolute
+            +block
             +pointer
-            +font(12)
-            +bold
-            +center
-            +round(4)
+            bottom: 0
+            width: 100%
+            height: 28px
+            line-height: 28px
+            color: #333
+            background: rgba(255,255,255,0.5)
+            span
+              +left
+              margin-left: 8px
+            input
+              margin: 8px 8px 0 0
+              +right
+              +pointer
+          .imageRemoveButton
+            +round(12)
             margin: 8px
-            padding: 8px
-            width: 12px
-            height: 12px
-            line-height: 12px
-            display: inline-block
-            +transparent-dark(70)
+            width: 22px
+            height: 22px
             +button-dark
+            background: #fff url(/images/icons/close-22.png) no-repeat center
             color: #ff1e00 !important
         .entryImageCaption
           +absolute
@@ -424,14 +469,11 @@
       .emptyTag, .tag
         +relative
         +round(8)
-        +button-light
         +left
         margin: 4px 8px 0 0
         padding: 0 0 0 8px
         height: 32px
         line-height: 32px
-        background-color: #fff
-        color: #333
         .close
           +block
           +round(7)
@@ -484,17 +526,6 @@
         +right
         width: 14px
         height: 40px
-
-    .tag-who, .tag-where, .tag-what
-      +center
-      +round(8)
-      +relative
-      height: 34px
-      line-height: 34px
-      background: #fff
-    .tag-who
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
-      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
 
   // NEW ENTRY LINKS
   .entryLinks
@@ -841,9 +872,10 @@
             +shine-light-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRightLight-40.png) no-repeat right
-      .tag_box
-        +button-light
+      .emptyTag, .tag
         +flat-light-medium
+        +button-light
+        color: #333
 
 
 
@@ -1003,9 +1035,10 @@
             +shine-dark-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
-      .tag_box
+      .emptyTag, .tag
         +button-dark
         +flat-dark-medium
+        color: #ddd
 
     // NEW ENTRY LINK
     .entryLinks
