@@ -610,7 +610,7 @@
         margin: 0
 
 
-      .linkTitleValue
+      .linkTitleValue, .linkUrlValue
         +font(14)
         +bold
         border: none
@@ -622,7 +622,7 @@
         margin: 0 0 0 8px
         width: 350px
 
-        .linkTitleValue
+        .linkTitleValue, .linkUrlValue
           font-weight: normal
           border: none
 
@@ -930,7 +930,8 @@
 
         .url, .title
           +transparent-light(40)
-          color: #555
+          input
+            color: #555
 
         .removeicon
           +transparent-dark(80)
@@ -1091,7 +1092,8 @@
 
         .url, .title
           +transparent-dark(20)
-          color: #ccc
+          input
+            color: #ccc
 
         .removeicon
           +transparent-light(80)

@@ -29,7 +29,7 @@ $(document).ready ->
       #success: (data, status, xhr) => log "success"
     }
     
-#tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
+  #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 	     
 	
 	# Setup comment expander
@@ -55,7 +55,11 @@ $(document).ready ->
     $(event.currentTarget).parent().parent().slideUp()
   
     
-
+  # Hide the elements in the browsers they cant be seen in
+  if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
+    # for show entry
+    $('.tagInput').css('width', '250px')
+    
 # There is a point where using objects is just more obfuscation.
 
 # If abstraction doesn't simplify, it's not worth it.
