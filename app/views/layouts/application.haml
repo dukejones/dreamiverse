@@ -2,7 +2,7 @@
 %html
   %head
     %title
-      = truncate(@title, length: 72) + ' - ' if @title
+      = truncate(@page_title, length: 72) + ' - ' if @page_title
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
 

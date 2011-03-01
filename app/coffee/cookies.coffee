@@ -11,7 +11,7 @@ window.getCookie = (name) ->
   nameEQ = name + '='
   ca = document.cookie.split(';')
   for cookie in ca
-    cookie.substring(1,c.length) while cookie.charAt(0) is ' '
+    cookie.substring(1,ca.length) while cookie.charAt(0) is ' '
     if cookie.indexOf(nameEQ) is 0
       return cookie.substring(nameEQ.length, cookie.length)
   

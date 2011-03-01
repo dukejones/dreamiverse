@@ -6,7 +6,7 @@ $(document).ready ->
   # of the pages
   
   if $('#rightColumn').attr('id')
-    $('.loginPanelWrap a').click (event) ->
+    $('.loginPanelWrap a.login').click (event) ->
       event.preventDefault()
       
       if $(this).parent().find('.loginPanel').css('display') == 'none'
