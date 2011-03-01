@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
 
   def show
     entry_list # I don't love having to generate the whole list here.
-    i = @entries.index{|e| e.id == params[:id].to_i }
+    i = @entries.index{|e| e.id == params[:id].to_i } || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
