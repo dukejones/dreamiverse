@@ -17,17 +17,17 @@
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
-    .type Dream
+    .type dream
 
     %a.next.cancel{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
-    .stream.cancel stream
+    / .stream.cancel stream
     %a.prev.cancel{href: user_entry_path(@previous.user.username, @previous)}
       %span &lsaquo;
 
     - if @entry.user == current_user
       %a.editEntry{href: edit_entry_path(@entry)} edit
-      = link_to 'delete', entry_path, :confirm => "Really?", :method => 'DELETE', :class => "deleteEntry"
+      = link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 
     / 
       XXX
