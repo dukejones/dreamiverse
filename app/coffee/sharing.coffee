@@ -23,10 +23,15 @@ class SharingController
     )
     
     @$dropdown.change( (event) =>
+      # get the new icon path
       newSelection = @$dropdown.val()
       newSelectionImage = $(event.currentTarget).find('option:selected').css('background-image')
       newSelectionImage = newSelectionImage.slice(5, newSelectionImage.length - 2)
-      $(event.currentTarget).parent().find('.listSelection').attr('src', newSelectionImage)
+      
+      # get the larger icon path
+      largeSelectionImage = newSelectionImage.slice(0, newSelectionImage.length-6) + '24.png'
+      
+      $(event.currentTarget).parent().find('.listSelection').attr('src', largeSelectionImage)
       
       if !@firstRun
         @sharingView.expandCurrentView(newSelection)
@@ -38,10 +43,15 @@ class SharingController
     )
     
     $('.listOfUsers').find("input[type='radio']").change( (event)=>
+      # get the new icon path
       newText = $(event.currentTarget).next().text()
       newIcon = $(event.currentTarget).parent().css('background-image')
       newIconPath = newIcon.slice(5, newIcon.length - 2)
-      $('.listSelection').attr('src', newIconPath)
+      
+      # get the larger icon path
+      largeSelectionImage = newIconPath.slice(0, newIconPath.length-6) + '24.png'
+      
+      $('.listSelection').attr('src', largeSelectionImage)
       @$dropdown.find('.list').text(newText)
     )
     

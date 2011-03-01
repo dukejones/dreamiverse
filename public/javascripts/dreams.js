@@ -114,61 +114,60 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
   var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
   var tagID = 'tagID_' + randomNumber ; // Define ID for New Region
   var tagID_element = '#' + tagID ; // Create variable to handle the ID
-  
+
   if (tag_selected != ''){ // if it's not empty
     //$('#empty-tag').clone().attr('id', tagID ).appendTo('#tag-list').end; // clone tempty tag box
-    
+
     var newElement = $('#empty-tag').clone().attr('id', tagID );
     $('#tag-list br').before(newElement);
     $(tagID_element).removeClass('hidden') ; // and unhide the new one
     $(tagID_element).addClass('current-tags');
     $(tagID_element).find('.tagContent').html( tag_selected ); // populate with tag text
-    
-    $(tagID_element).css('background-color', '#ccc');
+
     setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
-    
-    /*var elementHeight = $('#tag-list').height(); 
+
+    /*var elementHeight = $('#tag-list').height();
     //$('#tag-list').css('height', elementHeight + 'px');
-    
+
     var combinedHeight = elementHeight;
     $('#newDream-tag').animate({height: combinedHeight}, "fast", function(){
-      var elementHeight = $('#tag-list').height(); 
+      var elementHeight = $('#tag-list').height();
     });*/
-    
+
   }
-  
-  
+
+
   $(tagInputBoxIdd).val(''); // Clear textbox
   $(tagInputBoxIdd).focus(); // Focus text input
-  
+
   //$(tagInputBoxIdd).autocomplete( 'close' );
-  
+
   activateRemoveDreamTag('.tag_box');
-  
+
   // Update on server
   if(tagInputBoxIdd == "#IB_tagText"){
     //updateCurrentImageTags();
   }
-  
+
   //$(tagID_element).addClass('tag_box_pop', 1000);
-  
+
   return false;
-    
-            
+
+
  };
 
 
-//*********** REMOVING TAGS ***********//  
+//*********** REMOVING TAGS ***********//
 
 function activateRemoveDreamTag (context) {
-  
+
 }
 
 
-// REMOVES DATA FROM TAG LIST          
+// REMOVES DATA FROM TAG LIST
 function removeTagFromDreamList (idd){
   /*$(idd).addClass('kill_tag');
-  
+
   setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
   setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
   setTimeout(function() { $(idd).remove(); }, 400);*/

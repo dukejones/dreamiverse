@@ -22,7 +22,7 @@ class DreamImporterTest < ActiveSupport::TestCase
       assert_equal entry.created_at, dream.created_at
       # assert_equal entry.whats.map(&:name), 
       #   dream.customTagsList.split(',').compact.map(&:strip).map(&:downcase).
-      #     map{|t| t.slice(0...20)}.reject{|t| t.size < 3}.reject{|t| Tag::BlacklistWords[t]}.uniq
+      #     map{|t| t.slice(0...30)}.reject{|t| t.size < 3}.reject{|t| Tag::BlacklistWords[t]}.uniq
       assert_equal entry.book_list.split(','), dream.user_series.map(&:option).map(&:title)
     end
     debugger

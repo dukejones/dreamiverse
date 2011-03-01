@@ -21,12 +21,12 @@ $(document).ready ->
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
   
-  # Setup Geolocation
-  $('.addLocation').unbind();
-  $('.addLocation').click( ->
-    # Check if auto-locate is selected
-    # and auto-locate if so
-    
-    # otherwise just show the dropdown
-    # with the current location_id selected
+  # Setup icon type changing
+  $('#entryType_list').unbind();
+  $('#entryType_list').change( ->
+    newIcon = $(this).find('option:selected').css('background-image')
+    newIconSrc = newIcon.slice(5, newIcon.length - 2)
+    $(this).prev().attr('src', newIconSrc)
   )
+  
+  

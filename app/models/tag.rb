@@ -9,8 +9,8 @@ class Tag < ActiveRecord::Base
   validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type], 
     :message => "This entry already has this tag."
 
-  validates_numericality_of :entry_id, :greater_than => 0
-  validates_numericality_of :noun_id, :greater_than => 0
+  validates_presence_of :entry_id
+  validates_presence_of :noun_id
 
   scope :custom, where( kind: 'custom' )
   scope :auto,   where( kind: 'auto'   )

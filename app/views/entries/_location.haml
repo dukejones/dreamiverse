@@ -13,6 +13,9 @@
       %input.input{placeholder: 'State / province', name: 'location_attributes[province]'}
     .country
       %input.input{placeholder: "Country", name: 'location_attributes[country]'}
+    .more.hidden
+      = hidden_field_tag 'location_attributes[longitude]', 'location_attributes_longitude'
+      = hidden_field_tag 'location_attributes[latitude]', 'location_attributes_latitude'
     .clear
 
 
