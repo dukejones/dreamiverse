@@ -40,9 +40,17 @@
           padding: 0 12px 0 0
           height: 30px
           line-height: 30px
+          .avatar
+            +round(8)
+            +flat-right
+            +overflow
+            +left
+            width: 30px
+            height: 30px
           .name
             +bold
-            margin: 0 0 0 42px
+            +right
+            margin: 0 0 0 12px
             font-size: 16px
 
         // COMMENT COUNT
@@ -249,9 +257,7 @@
 
           // USERNAME + AVATAR
           .user
-            +border-light
-            +transparent-light(60)
-            // background-color: #fff !important
+            +gradient(#fff, #e4e4e4)
             .name
               color: #333
           .commentCount
@@ -290,8 +296,7 @@
 
           // USERNAME + AVATAR
           .user
-            +border-dark
-            +transparent-dark(60)
+            +gradient(#1d1d1d, #000)
             .name
               color: #ddd
           .commentCount
@@ -329,6 +334,8 @@
 
         // LEFT SIDE
         .left
+          .user
+            +border-dark
           .commentCount
             .counter
               +transparent-dark(40)
@@ -342,6 +349,8 @@
 
         // LEFT SIDE
         .left
+          .user
+            +border-dark
           .commentCount
             .counter
               +transparent-light(10)
