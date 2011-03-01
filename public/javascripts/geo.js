@@ -61,7 +61,7 @@ var getGeo = function(){
 }
 
 function showGeoHeader(){
-  var newElement = '<div id="geoHeader" style="padding: 20px; text-align: right; position: fixed; top: 0px; width: 100%; z-index: 1200; background-color: #333; color: #fff;"><p style="margin-right: 35px;">Allow your browser to check for your location.</p></div>';
+  var newElement = '<div id="geoHeader"><p>Allow your browser to check for your location.</p><div class="geoArrow"></div></div>';
   $('body').prepend(newElement);
   $('#geoHeader').click(function(){
     $(this).remove()
