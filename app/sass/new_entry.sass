@@ -401,7 +401,7 @@
       img
         +left
         margin: 6px 8px
-      &.qq-upload-drop-area-active
+      .qq-upload-drop-area-active
         background: rgba(255,255,255,0.2)
     #currentImages
       margin: 12px 0 0 12px
@@ -470,14 +470,13 @@
           .imageRemoveButton
             +absolute
             +alpha(50)
-            +round(12)
             +pointer
+            +round(12)
             top: 8px
             right: 8px
-            width: 22px
-            height: 22px
-            background: #fff url(/images/icons/close-22.png) no-repeat center
-            color: #ff1e00 !important
+            width: 24px
+            height: 24px
+            background: url(/images/icons/close-22.png) no-repeat center #fff
             &:hover
               +alpha(100)
         .entryImageCaption
