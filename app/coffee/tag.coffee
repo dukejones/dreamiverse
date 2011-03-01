@@ -89,6 +89,9 @@ class TagViewList
     
     $.subscribe 'tags:removed', (id) =>
       @findByTagId(id).removeFromView()
+    
+    # set up array functionality
+    Array::remove = (e) -> @[t..t] = [] if (t = @.indexOf(e)) > -1
   
   addAllCurrentTags: ->
     # Fill up @tagViews with tags for each currently displayed tags
@@ -121,6 +124,7 @@ class TagViewList
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
     tagViewToRemove.remove()
+    @tagViews.remove(tagViewToRemove)
 
 class EditingTagViewList extends TagViewList
   constructor: (tagViewClass)->
