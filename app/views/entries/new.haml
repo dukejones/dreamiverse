@@ -132,7 +132,12 @@
         - @entry.custom_tags.each do |what|
           .tag_box.tag_what.tag
             %span.tagContent= what.name
-          
+            .close X
+
+        .tag_box.hidden
+          %span.tagContent mock tag
+          .close X
+
         .clear
       #sorting.clear
 
