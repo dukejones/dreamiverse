@@ -95,9 +95,7 @@ class User < ActiveRecord::Base
     (self.following?(user) && self.followed_by?(user)) || (self == user)
   end
   def relationship_with(other)
-    if self == other
-      :self
-    elsif self.friends_with? other
+    if self.friends_with? other
       :friends
     elsif self.following? other
       :following

@@ -53,8 +53,9 @@
 #rightColumn
 
   / LOGIN BUTTON
-  .loginPanelWrap
-    .login
+
+  .loginPanelWrap.wrapper
+    %a.login{href: login_path}
       login
     %a.loginItem
       %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
@@ -69,9 +70,9 @@
         %label.stay
           Stay logged in
           %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        %p.error incorrect username
+        %p.error.hidden incorrect username
         = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
-        %p.error username and password do not match
+        %p.error.hidden username and password do not match
         = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
         %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
         #loginSpacer
@@ -89,23 +90,23 @@
 
 
       .joinForm.hidden
-        %p.error email already in use
+        %p.error.hidden email already in use
         = f.text_field :email, :class => 'login-input', :placeholder => "email"
-        %p.error passwords do not match
+        %p.error.hidden passwords do not match
         = f.password_field :password, :class => 'login-input', :placeholder => "password"
         = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
         %span http://dreamcatcher.net/username
-        %p.error that username is taken
+        %p.error.hidden that username is taken
         = f.text_field :username, :class => 'login-input', :placeholder => "username"
     
         .haveSeedcode enter a seed code &raquo;
         .seedcodeExpander.hidden
-          %p.error incorrect seed code
+          %p.error.hidden incorrect seed code
           = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
 
       / JOIN TOGGLE - BUTTON
       .joinWrap
-        %a.join
+        %a.join{href: join_path}
           Join now &rsaquo;
         %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 

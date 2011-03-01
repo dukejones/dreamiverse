@@ -35,12 +35,13 @@
     .context
       = user.username
 
-      - unless current_user.relationship_with(user) == :none
+      - if current_user && current_user.relationship_with(user) != :none
         .icon
           = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
 
     / FOLLOW
-    = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
+    - if current_user
+      = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
   .divider
 
@@ -51,10 +52,11 @@
       .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
       .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
+        - if current_user._?.friends_with?(user)
+        -# if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
           - if user.link
-            %a.website{href: user.link.url}= user.link.title
+            %a.website{href: user.link.url, target: "_blank"}= user.link.url
           - if current_user.relationship_with(user) == :friends || user == current_user
             .email= user.email
             .phone= user.phone
@@ -96,7 +98,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
       .image
-        %img.dream{src: '/images/icons/dream-32-selected.png', width: '32', height: '32'}
+        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '32'}
       .detail
         = user.entries.count
       .clear

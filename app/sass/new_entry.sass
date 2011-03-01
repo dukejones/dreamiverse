@@ -117,6 +117,7 @@
           +absolute
           +round(8)
           +pointer
+          width: 200px
           min-height: 34px
           line-height: 34px
           margin: 0
@@ -418,6 +419,7 @@
     #tag-list
       width: 660px
       #empty-tag, .tag_box
+        +relative
         +round(8)
         +left
         +center
@@ -425,26 +427,15 @@
         height: 28px
         line-height: 28px
         margin: 8px 8px 0 0
-      .tag_box
-        +relative
-        +center
-        +round(8)
-        +relative
-        height: 34px
-        line-height: 34px
-        color: #333
-        background: #fff
         .close
           +hidden
           +round(12)
           +absolute
-          right: 5px
-          top: 5px
-          width: 22px
-          height: 22px
-          line-height: 22px
-          color: #fff
-          background: red
+          right: 2px
+          top: 2px
+          width: 16px
+          height: 16px
+          background: #fff url(/images/icons/close-16.png) no-repeat center
           +button-dark
         &:hover
           .close

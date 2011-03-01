@@ -488,13 +488,14 @@
         top: -4px
         padding: 1px 4px
 
-#tagStream, #showEntry
+#tagStream, #showEntry, #newEntry
   #tagsLive
     +clear
   #tagsLive, #tag-list
     clear: left
     // WHO, WHERE, WHAT TAG STYLES
     .tagWho, .tagWhat, .tagWhere, .tagNoImage
+      +relative
       +round(8)
       +button-light
       +left
@@ -503,6 +504,19 @@
       line-height: 32px
       background-color: #fff
       color: #333
+      .close
+        +hidden
+        +round(12)
+        +absolute
+        right: 2px
+        top: 2px
+        width: 16px
+        height: 16px
+        background: #fff url(/images/icons/close-16.png) no-repeat center
+        +button-dark
+      &:hover
+        .close
+          +block
       .avatar, .whereIcon, .tagImage
         +round(8)
         +flat-right

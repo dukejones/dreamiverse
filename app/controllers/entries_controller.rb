@@ -1,11 +1,11 @@
 class EntriesController < ApplicationController
-  before_filter :require_user, :except => [:stream, :show]
+  before_filter :require_user, :only => [:new, :edit]
   before_filter :query_username, :except => [:stream]
 
   def entry_list
     @entries = @user.entries.order('created_at DESC')
     @entries = @entries.where(type: session[:filter_entry_type]) if session[:filter_entry_type]
-    @entries = @entries.select {|e| current_user.can_access?(e) } # TODO: Write a custom finder for this SLOW method!
+    @entries = @entries.select {|e| current_user._?.can_access?(e) || e.everyone? } # TODO: Write a custom finder for this SLOW method!
   end
   
   def index
@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
 
   def show
     entry_list # I don't love having to generate the whole list here.
-    i = @entries.index{|e| e.id == params[:id].to_i }
+    i = @entries.index{|e| e.id == params[:id].to_i } || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
