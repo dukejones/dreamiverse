@@ -101,11 +101,11 @@
 
             .emptyTag.hidden
               %span.tagContent
-              .close
+              .close X
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
-                .close
+                .close X
 
             / .clear
           #sorting
