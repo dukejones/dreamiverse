@@ -60,7 +60,7 @@
           - if current_user.relationship_with(user) == :friends || user == current_user
             .email= user.email
             .phone= user.phone
-            - if user.skype
+            - unless user.skype.blank
               .skype
                 %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
                 %span= user.skype
