@@ -53,8 +53,9 @@
 #rightColumn
 
   / LOGIN BUTTON
+
   .loginPanelWrap.wrapper
-    %a.login.trigger.slide{href: login_path}
+    %a.login{href: login_path}
       login
     %a.loginItem
       %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
@@ -63,7 +64,7 @@
 
 
     / LOGIN PANEL
-    .loginPanel.target.slide.hidden
+    .loginPanel.hidden
       = form_for('user', {url: user_session_path}) do |f|
         %a.forgot{href: forgot_password_path} Forgot password
         %label.stay

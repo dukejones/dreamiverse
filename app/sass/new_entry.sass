@@ -418,28 +418,33 @@
   .entryTags
     #tag-list
       width: 660px
-      #empty-tag, .tag_box
+      .emptyTag, .tag
         +relative
         +round(8)
+        +button-light
         +left
-        +center
-        padding: 0 8px
-        height: 28px
-        line-height: 28px
-        margin: 8px 8px 0 0
+        margin: 4px 8px 0 0
+        padding: 0 0 0 8px
+        height: 32px
+        line-height: 32px
+        background-color: #fff
+        color: #333
         .close
-          +hidden
-          +round(12)
-          +absolute
-          right: 2px
-          top: 2px
-          width: 16px
-          height: 16px
-          background: #fff url(/images/icons/close-16.png) no-repeat center
-          +button-dark
-        &:hover
-          .close
-            +block
+          +block
+          +round(7)
+          +flat-left
+          +right
+          +bold
+          +center
+          margin-left: 8px
+          width: 32px
+          height: 32px
+          line-height: 32px
+          color: #fff
+          background: rgba(179,59,48,0.3)
+          &:hover
+            background: rgba(179,59,48,1.0)
+          // background: #fff url(/images/icons/close-16.png) no-repeat center
     .tagInputWrap
       +left
       height: 40px

@@ -33,10 +33,10 @@
       .entryType
         %img.typeSelection{src: '/images/icons/dream-32.png'}
         %select#entryType_list{name: 'entry[type]'}
-          %option.dream{value: 'dream'} dream
-          %option.vision{value: 'vision'} vision
-          %option.experience{value: 'experience'} experience
-          %option.article{value: 'article'} article
+          %option.dream{:value => 'dream', :selected => @entry.type == 'dream'} dream
+          %option.vision{:value => 'vision', :selected => @entry.type == 'vision'} vision
+          %option.experience{:value => 'experience', :selected => @entry.type == 'experience'} experience
+          %option.article{:value => 'article', :selected => @entry.type == 'article'} article
 
 
       = f.text_field :title, :maxlength => '72', :placeholder => "title"
@@ -127,13 +127,13 @@
         .tagInputRight
 
       #tag-list.tag-list.ui-sortable
-        #empty-tag.tag.tag_box.tag_what.hidden
+        .emptyTag.tag.tag_what.hidden
           %span.tagContent
-          .close
+          .close X
         - @entry.custom_tags.each do |what|
-          .tag_box.tag_what.tag
+          .tag_what.tag
             %span.tagContent= what.name
-            .close
+            .close X
 
         .clear
       #sorting.clear
