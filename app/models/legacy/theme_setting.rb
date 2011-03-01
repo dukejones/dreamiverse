@@ -3,6 +3,10 @@ class Legacy::ThemeSetting < Legacy::Base
   has_many :dreams, {foreign_key: 'themeSettingId', class_name: 'Legacy::Dream'}
   has_many :users, {foreign_key: 'defaultThemeSettingId', class_name: 'Legacy::User'}
 
+  def self.bedsheet(name)
+    where("bedsheetPath LIKE '%#{name}'")
+  end
+  
   def theme
     case self.themeColorOptionId
     when '1' then "light"
@@ -12,10 +16,16 @@ class Legacy::ThemeSetting < Legacy::Base
   end
   
   def image_id
-    
+    image = ::Image.where("original_filename LIKE '%#{bedsheet_filename}-hi.png'")
+    puts "Image not in system: #{bedsheet_filename}" if image.blank?
+    image.first._?.id
+  end
+
+  def bedsheet_filename
+    bedsheetPath.split('/').last
   end
   
-  def viewable_id
-    # the dream. or user.
+  def bedsheet_attachment
+    scroll
   end
 end
