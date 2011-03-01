@@ -17,7 +17,7 @@
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
-    .type dream
+    .type= @entry.type
 
     %a.next.cancel{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
