@@ -26,7 +26,11 @@ $(document).ready ->
   $('#entryType_list').change( ->
     newIcon = $(this).find('option:selected').css('background-image')
     newIconSrc = newIcon.slice(5, newIcon.length - 2)
-    $(this).prev().attr('src', newIconSrc)
+    
+    # get the larger icon path
+    largeSelectionImage = newIconSrc.slice(0, newIconSrc.length-6) + '32.png'
+    
+    $(this).prev().attr('src', largeSelectionImage)
   )
   
   
