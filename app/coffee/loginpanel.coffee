@@ -6,11 +6,21 @@ $(document).ready ->
   # of the pages
   
   if $('#rightColumn').attr('id')
-    $('.joinWrap').click ->
-      $(this).find('.join').hide()
-      $(this).find('.joinButton').show()
-      $(this).parent().find('.intro').slideUp()
-      $(this).parent().find('.joinForm').slideDown()
+    $('.loginPanelWrap a').click (event) ->
+      event.preventDefault()
+      
+      if $(this).parent().find('.loginPanel').css('display') == 'none'
+        $(this).parent().find('.loginPanel').slideDown()
+      else
+        $(this).parent().find('.loginPanel').slideUp()
+    
+    $('.joinWrap a').click (event) ->
+      event.preventDefault()
+      
+      $(this).parent().find('.join').hide()
+      $(this).parent().find('.joinButton').show()
+      $(this).parent().parent().find('.intro').slideUp()
+      $(this).parent().parent().find('.joinForm').slideDown()
       
       $('.haveSeedcode').click =>
         $('.haveSeedcode').slideUp('fast')
