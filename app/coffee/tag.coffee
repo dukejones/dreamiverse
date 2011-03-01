@@ -78,8 +78,8 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag').live "click", (event)=>
-      @removeTag($(event.currentTarget).data('id'))
+    @$container.find('.tag .close').live "click", (event)=>
+      @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
     #  @removeTag($(event.currentTarget).data('id'))
