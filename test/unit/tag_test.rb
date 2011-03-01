@@ -116,4 +116,26 @@ class TagTest < ActiveSupport::TestCase
       
   end
 
+=begin
+  test "verify that we have 16 total tags for an entry after the auto tag generator runs, assuming 16 auto tags exist" do
+
+    entry = Entry.make(body: 'test1 test2 test3 test4 test5 test6 test7 test8 tes9 tes10 tes11 tes12 tes13 tes14 tes15 tes16')
+
+    orig_tags = entry.tags.count
+
+    Tag.auto_generate_tags(entry)
+    entry.reorder_tags      
+    entry.reload 
+
+    num_tags = entry.tags.count
+
+    debugger
+    1
+
+    assert_equal num_tags, 16
+
+  end
+=end
+
+
 end
