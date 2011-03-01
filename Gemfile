@@ -14,6 +14,7 @@ gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
 
+gem 'mocha' # Needed for Legacy Migration.  Remove later.
 # gem 'carmen'
 # Use unicorn as the web server
 # gem 'unicorn'
