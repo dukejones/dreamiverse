@@ -12,6 +12,7 @@ namespace :legacy do
       Rake::Task['legacy:data:import:environment_series'].invoke
       Rake::Task['legacy:data:import:user_locations'].invoke
       Rake::Task['legacy:data:import:countries'].invoke
+      Rake::Task['legacy:data:import:people'].invoke
     end
     namespace :import do
       task :images do
