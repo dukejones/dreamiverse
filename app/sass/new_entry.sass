@@ -421,14 +421,11 @@
       .emptyTag, .tag
         +relative
         +round(8)
-        +button-light
         +left
         margin: 4px 8px 0 0
         padding: 0 0 0 8px
         height: 32px
         line-height: 32px
-        background-color: #fff
-        color: #333
         .close
           +block
           +round(7)
@@ -481,17 +478,6 @@
         +right
         width: 14px
         height: 40px
-
-    .tag-who, .tag-where, .tag-what
-      +center
-      +round(8)
-      +relative
-      height: 34px
-      line-height: 34px
-      background: #fff
-    .tag-who
-      background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#C2C2C2))
-      background: -moz-linear-gradient(top, #fff, #C2C2C2) /* gradient-0-30*/
 
   // NEW ENTRY LINKS
   .entryLinks
@@ -838,9 +824,10 @@
             +shine-light-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRightLight-40.png) no-repeat right
-      .tag_box
-        +button-light
+      .emptyTag, .tag
         +flat-light-medium
+        +button-light
+        color: #333
 
 
 
@@ -1000,9 +987,10 @@
             +shine-dark-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
-      .tag_box
+      .emptyTag, .tag
         +button-dark
         +flat-dark-medium
+        color: #ddd
 
     // NEW ENTRY LINK
     .entryLinks
