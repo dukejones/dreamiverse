@@ -102,6 +102,7 @@
 
             #empty-tag.hidden
               %span.tagContent
+              .close
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name

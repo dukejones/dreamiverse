@@ -4,7 +4,7 @@ $(document).ready ->
   
   # Setup tag re-ordering
   $("#sorting").val(1)
-  $("#tag-list").sortable -> distance: 10
+  $("#tag-list").sortable -> distance: 30
 		
 	$( "#tag-list" ).bind "sortstart", (event, ui) ->
 	  $("#sorting").val(0)
