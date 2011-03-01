@@ -54,7 +54,7 @@
 
   / LOGIN BUTTON
   .loginPanelWrap.wrapper
-    .login.trigger.slide
+    %a.login.trigger.slide{href: login_path}
       login
     %a.loginItem
       %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
@@ -105,7 +105,7 @@
 
       / JOIN TOGGLE - BUTTON
       .joinWrap
-        %a.join
+        %a.join{href: join_path}
           Join now &rsaquo;
         %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 
