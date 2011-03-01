@@ -4,30 +4,31 @@ $(document).ready ->
   $('.gallery li a').lightBox();
   
   # Setup tag re-ordering
-  $("#sorting").val(1)
-  $("#tag-list").sortable -> distance: 30
+  if $('#entryField').data('owner')
+    $("#sorting").val(1)
+    $("#tag-list").sortable -> distance: 30
   
-	$( "#tag-list" ).bind "sortstart", (event, ui) ->
-	  $("#sorting").val(0)
+  	$( "#tag-list" ).bind "sortstart", (event, ui) ->
+  	  $("#sorting").val(0)
 	  
-	$( "#tag-list" ).bind "sortstop", (event, ui) ->
-	  $("#sorting").val(1)
+  	$( "#tag-list" ).bind "sortstop", (event, ui) ->
+  	  $("#sorting").val(1)
 	  
-	  tagOrder = []
-	  $('#tag-list > .tag').each (i, el) ->
-	    tagOrder.push($(this).data('id'))
+  	  tagOrder = []
+  	  $('#tag-list > .tag').each (i, el) ->
+  	    tagOrder.push($(this).data('id'))
 	    
-	  entry = $('#showEntry').data('id')
-	  order = tagOrder.join()
+  	  entry = $('#showEntry').data('id')
+  	  order = tagOrder.join()
 	  
-	  $.ajax {
-      type: 'PUT'
-      url: '/tags/order_custom'
-      data:
-        entry_id: entry
-        position_list: order
-      #success: (data, status, xhr) => log "success"
-    }
+  	  $.ajax {
+        type: 'PUT'
+        url: '/tags/order_custom'
+        data:
+          entry_id: entry
+          position_list: order
+        #success: (data, status, xhr) => log "success"
+      }
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 	     
