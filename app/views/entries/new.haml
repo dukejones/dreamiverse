@@ -129,11 +129,11 @@
       #tag-list.tag-list.ui-sortable
         .emptyTag.tag.tag_what.hidden
           %span.tagContent
-          .close
+          .close X
         - @entry.custom_tags.each do |what|
           .tag_what.tag
             %span.tagContent= what.name
-            .close
+            .close X
 
         .clear
       #sorting.clear
