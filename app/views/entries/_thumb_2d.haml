@@ -1,4 +1,4 @@
-.thumb-2d{style: "background-image: url('#{dreamfield_header_url(entry.images.first)}')"}
+.thumb-2d
 
   / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
   .watermark= entry.title
@@ -8,12 +8,15 @@
 
   .fadedBack
 
+    .image{style: "background-image: url('#{dreamfield_header_url(entry.images.first)}')"}
+
     / DETAILS (DATE + LOCATION)
     .detailsTop
       %table{width: "100%"}
         %tr
           %td.date= time_ago_in_words(entry.created_at)
           %td.location dream location
+
     .detailsBottom
       - unless entry.comments.count == 0
         .comments
