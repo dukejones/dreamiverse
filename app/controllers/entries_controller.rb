@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
   def entry_list
     @entries = @user.entries.order('created_at DESC')
     @entries = @entries.where(type: session[:filter_entry_type]) if session[:filter_entry_type]
-    @entries = @entries.select {|e| current_user.can_access?(e) } # TODO: Write a custom finder for this SLOW method!
+    @entries = @entries.select {|e| current_user._?.can_access?(e) || e.everyone? } # TODO: Write a custom finder for this SLOW method!
   end
   
   def index
