@@ -63,6 +63,9 @@ var getGeo = function(){
 function showGeoHeader(){
   var newElement = '<div id="geoHeader"><p>Allow your browser to check for your location.</p><div class="geoArrow"></div></div>';
   $('body').prepend(newElement);
+  
+  $('#geoHeader').animate({top: 0}, 1000);
+  
   $('#geoHeader').click(function(){
     $(this).remove()
   })
@@ -77,6 +80,7 @@ function geoError(error){
 function geoSuccess(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
+  $('#geoHeader').slideUp();
   getAddress(lat, lng);
 }
 
