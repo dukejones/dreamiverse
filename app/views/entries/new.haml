@@ -127,11 +127,11 @@
         .tagInputRight
 
       #tag-list.tag-list.ui-sortable
-        #empty-tag.tag.tag_box.tag_what.hidden
+        .emptyTag.tag.tag_what.hidden
           %span.tagContent
           .close
         - @entry.custom_tags.each do |what|
-          .tag_box.tag_what.tag
+          .tag_what.tag
             %span.tagContent= what.name
             .close
 
