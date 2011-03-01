@@ -81,9 +81,29 @@ function geoError(error){
 }
 
 function geoSuccess(position) {
+
+  var city = position.address.city;
+  var region = position.address.region;
+  var country = position.address.country;
+  
+  $('.entryLocation .data').slideDown()
+  $('.entryLocation .finding').remove();
+  
+  // Set geo data
+  $('.entryLocation .city .input').val(city);
+  $('.entryLocation .state .input').val(region);
+  $('.entryLocation .country .input').val(country);
+  
+  
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
+  
+  // Set hidden input fields
+  $('#location_attributes_longitude').val(lng)
+  $('#location_attributes_latitude').val(lat)
+  
   $('#geoHeader').slideUp();
+  
   getAddress(lat, lng);
 }
 

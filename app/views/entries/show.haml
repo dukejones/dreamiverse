@@ -12,7 +12,7 @@
 
 
 
-#entryField
+#entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
 
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
