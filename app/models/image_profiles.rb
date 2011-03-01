@@ -134,6 +134,8 @@ module ImageProfiles
   end
 
   def bedsheet(options)
+    options[:format] = 'jpg' unless options[:format]
+    
     img = magick_image
     if options[:format] != self.format
       # change to specified format - quality: 40%
@@ -145,6 +147,8 @@ module ImageProfiles
   end
   
   def bedsheet_small(options)
+    options[:format] = 'jpg' unless options[:format]
+
     img = magick_image
     if options[:format] != self.format
       img.quality 50
