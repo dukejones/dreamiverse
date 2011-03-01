@@ -32,5 +32,6 @@ $(document).ready ->
     
     $(this).prev().attr('src', largeSelectionImage)
   )
+  $('#entryType_list').change()
   
   

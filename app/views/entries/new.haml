@@ -33,10 +33,10 @@
       .entryType
         %img.typeSelection{src: '/images/icons/dream-32.png'}
         %select#entryType_list{name: 'entry[type]'}
-          %option.dream{value: 'dream'} dream
-          %option.vision{value: 'vision'} vision
-          %option.experience{value: 'experience'} experience
-          %option.article{value: 'article'} article
+          %option.dream{:value => 'dream', :selected => @entry.type == 'dream'} dream
+          %option.vision{:value => 'vision', :selected => @entry.type == 'vision'} vision
+          %option.experience{:value => 'experience', :selected => @entry.type == 'experience'} experience
+          %option.article{:value => 'article', :selected => @entry.type == 'article'} article
 
 
       = f.text_field :title, :maxlength => '72', :placeholder => "title"
