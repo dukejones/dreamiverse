@@ -105,7 +105,8 @@
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
-                .close X
+                - if @entry.user == current_user
+                  .close X
 
             / .clear
           #sorting
