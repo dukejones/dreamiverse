@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :require_user, :except => [:stream, :show]
+  before_filter :require_user, :only => [:new, :edit]
   before_filter :query_username, :except => [:stream]
 
   def entry_list
