@@ -4,8 +4,7 @@
     date &amp; time
 
   .date
-    = select_minute(Time.current, options = {}) 
-    = select_month(Date.current, options, :class => 'month', :name => 'dateMonth')
+    = select_month(Date.current, options = {}, :class => 'month', :name => 'dateMonth')
     = select_day(Date.current, options, :class => 'day', :name => 'dateDay' )
     = select_year(Date.current,  options, :class => 'year', :name => 'dateYear', :start_year => 1900, :end_year => 2013 )
   

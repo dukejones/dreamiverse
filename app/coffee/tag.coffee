@@ -160,7 +160,8 @@ class TagView
   linkElement: (element)->
     @$element = element
   createElement: ->
-    @$element = $('#empty-tag').clone().attr('id', '').show()
+    @$element = $('.emptyTag').clone().show()
+    @$element.removeClass('emptyTag')
     @$element.addClass('tag')
     @$element.addClass('tagWhat')
     @setValue(@tag.name)

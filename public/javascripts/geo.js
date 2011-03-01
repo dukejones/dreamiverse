@@ -57,7 +57,7 @@ var getGeo = function(){
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
     
     // Inject the google geo api
-    // window.injectJs('http://maps.google.com/maps/api/js?sensor=false')
+    //window.injectJs('http://maps.google.com/maps/api/js?sensor=false')
   } else {
     alert('This browser does not support geolocation')
   }
