@@ -16,7 +16,7 @@ class Tag < ActiveRecord::Base
   scope :auto,   where( kind: 'auto'   )
 
   # tag the entry with the top x auto tags, inserted after the custom tags
-  def self.auto_generate_tags(entry,cloud_size = 16)   
+  def self.auto_generate_tags(entry, cloud_size = 16)   
     entry.tags.auto.delete_all
     
     # auto words from title/body - titles get entered twice for double score    
@@ -26,7 +26,7 @@ class Tag < ActiveRecord::Base
     # which position to start with?
     custom_tag_count = entry.tags.custom.count
     position = custom_tag_count # initial position: after the custom tags
-    auto_scores.first(cloud_size-custom_tag_count).each do |what, score|
+    auto_scores.first(cloud_size-custom_tag_count+1).each do |what, score|
       Tag.create(entry: entry, noun: what, position: position, kind: 'auto')
       position += 1
     end
