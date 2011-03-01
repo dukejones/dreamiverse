@@ -6,7 +6,17 @@ $(document).ready ->
   # of the pages
   
   if $('#rightColumn').attr('id')
-    $('.joinWrap').click ->
+    $('.loginPanelWrap a').click (event) ->
+      event.preventDefault()
+      
+      if $(this).parent().find('.loginPanel').css('display') == 'none'
+        $(this).parent().find('.loginPanel').slideDown()
+      else
+        $(this).parent().find('.loginPanel').slideUp()
+    
+    $('.joinWrap a').click (event) ->
+      event.preventDefault()
+      
       $(this).find('.join').hide()
       $(this).find('.joinButton').show()
       $(this).parent().find('.intro').slideUp()
