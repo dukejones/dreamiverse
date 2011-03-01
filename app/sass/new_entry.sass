@@ -381,12 +381,32 @@
         width: 120px
         background: #fff
         .entryImage
+          +relative
           +round(7)
           +left
           +overflow
           +pointer
           width: 120px
           height: 120px
+          label.radio
+            +round(6)
+            +flat-top
+            +absolute
+            +block
+            +pointer
+            bottom: 0
+            width: 100%
+            height: 28px
+            line-height: 28px
+            color: #333
+            background: rgba(255,255,255,0.5)
+            span
+              +left
+              margin-left: 8px
+            input
+              margin: 8px 8px 0 0
+              +right
+              +pointer
           .imageRemoveButton
             +round(12)
             margin: 8px
