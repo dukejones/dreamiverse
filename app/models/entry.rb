@@ -116,6 +116,9 @@ class Entry < ActiveRecord::Base
   def sharing
     self.class::Sharing.invert[sharing_level]
   end
+  def everyone?
+    (sharing_level == self.class::Sharing[:everyone])
+  end
 
   def create_view_preference
     return if view_preference
