@@ -37,7 +37,6 @@
 
       / HEADER IMAGE & TITLE
       .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
-        .fade
 
       / MOOD ICON
       .moodIcon.hidden
@@ -102,12 +101,12 @@
 
             .emptyTag.hidden
               %span.tagContent
-              .close
+              .close X
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
                 - if @entry.user == current_user
-                  .close
+                  .close X
 
             / .clear
           #sorting

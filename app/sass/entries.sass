@@ -494,7 +494,7 @@
   #tagsLive, #tag-list
     clear: left
     // WHO, WHERE, WHAT TAG STYLES
-    .tagWho, .tagWhat, .tagWhere, .tagNoImage
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag
       +relative
       +round(8)
       +button-light
@@ -505,18 +505,20 @@
       background-color: #fff
       color: #333
       .close
-        +hidden
-        +round(12)
-        +absolute
-        right: 2px
-        top: 2px
-        width: 16px
-        height: 16px
-        background: #fff url(/images/icons/close-16.png) no-repeat center
-        +button-dark
-      &:hover
-        .close
-          +block
+        +block
+        +round(7)
+        +flat-left
+        +right
+        +bold
+        +center
+        width: 32px
+        height: 32px
+        line-height: 32px
+        color: #fff
+        background: rgba(179,59,48,0.3)
+        &:hover
+          background: rgba(179,59,48,1.0)
+        // background: #fff url(/images/icons/close-16.png) no-repeat center
       .avatar, .whereIcon, .tagImage
         +round(8)
         +flat-right
