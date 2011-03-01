@@ -24,11 +24,11 @@ class EntriesController < ApplicationController
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
     # @entry = Entry.find params[:id]
-    deny and return unless user_can_access?
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
+    deny and return unless user_can_access?
 
-    @comments = @entry.comments.limit(10)
-    @title = @entry.title
+    @comments = @entry.comments # .limit(10)
+    @page_title = @entry.title
     
     if unique_hit?
       @entry.starlight.add( 1 )
@@ -143,7 +143,11 @@ class EntriesController < ApplicationController
   end
 
   def deny
-    redirect_to :root, :alert => "Access denied to this entry."
+    if params[:username]
+      redirect_to user_entries_path(params[:username]), :alert => "Access denied to this entry."
+    else
+      redirect_to :root, :alert => "Access denied to this entry."
+    end
   end
     
 end
