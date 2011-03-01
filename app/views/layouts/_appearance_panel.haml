@@ -8,16 +8,6 @@
     .options.hidden{onclick: 'dc.modal()'}
       options
     %ul
-      %li
-        %img{src: '/images/art/IB_artistImages/artistImage120-1.jpg'}
-      %li
-        %img{src: '/images/art/IB_artistImages/artistImage120-2.jpg'}
-      %li
-        %img{src: '/images/art/IB_artistImages/artistImage120-3.jpg'}
-      %li
-        %img{src: '/images/art/IB_artistImages/artistImage120-4.jpg'}
-      %li
-        %img{src: '/images/art/IB_artistImages/artistImage120-5.jpg'}
 
     .attachment
       = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'

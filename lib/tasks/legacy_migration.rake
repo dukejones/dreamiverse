@@ -47,12 +47,11 @@ namespace :legacy do
         end
       end
       task :theme_settings => [:environment] do
-        debugger
         Dir['tmp/png-sheets/*'].each do |filepath|
           filename = filepath.split('/').last
           next unless Image.where(original_filename: filename).blank?
           puts "Importing bedsheet: #{filename}"
-          bedsheet = Image.create(section: 'Bedsheets', album: 'auto-imported')
+          bedsheet = Image.create(section: 'Bedsheets', album: 'auto-imported', enabled: true)
           bedsheet.import_from_file(filepath)
         end
         Migration::ThemeSettingImporter.migrate_all

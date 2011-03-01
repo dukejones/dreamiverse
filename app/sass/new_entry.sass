@@ -280,7 +280,7 @@
       +save(14)
 
 
-#entryField .edit_entry
+#entryField .edit_entry, #entryField .new_entry
 
   // ENTRY DATE / TIME
   .entryDateTime
@@ -446,6 +446,7 @@
             line-height: 28px
             color: #333
             background: rgba(255,255,255,0.0)
+            z-index: 100
             span
               +hidden
               +right
@@ -457,14 +458,28 @@
               +pointer
             &:hover
               background: rgba(255,255,255,0.8)
-          .imageRemoveButton
+          .radioWrap
+            +absolute
             +round(12)
-            margin: 8px
+            right: 4px
+            bottom: 4px
+            width: 10px
+            height: 10px
+            padding: 5px
+            background: rgba(255,255,255,0.5)
+          .imageRemoveButton
+            +absolute
+            +alpha(50)
+            +round(12)
+            +pointer
+            top: 8px
+            right: 8px
             width: 22px
             height: 22px
-            +button-dark
             background: #fff url(/images/icons/close-22.png) no-repeat center
             color: #ff1e00 !important
+            &:hover
+              +alpha(100)
         .entryImageCaption
           +absolute
           +font(16)
@@ -595,7 +610,7 @@
         margin: 0
 
 
-      .linkTitleValue
+      .linkTitleValue, .linkUrlValue
         +font(14)
         +bold
         border: none
@@ -607,7 +622,7 @@
         margin: 0 0 0 8px
         width: 350px
 
-        .linkTitleValue
+        .linkTitleValue, .linkUrlValue
           font-weight: normal
           border: none
 
@@ -915,7 +930,8 @@
 
         .url, .title
           +transparent-light(40)
-          color: #555
+          input
+            color: #555
 
         .removeicon
           +transparent-dark(80)
@@ -1076,7 +1092,8 @@
 
         .url, .title
           +transparent-dark(20)
-          color: #ccc
+          input
+            color: #ccc
 
         .removeicon
           +transparent-light(80)
