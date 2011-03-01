@@ -4,8 +4,8 @@
 - content_for :foot do
 
   = javascript_include_tag 'autoresize.jquery.min', 'userfileuploader', 'dreams', 'geo', 'browserdetect'
-  = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
-  = coffeescript_include_tag 'tag', 'newentry', 'sharing'
+  /= javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
+  = coffeescript_include_tag 'tag', 'newentry', 'sharing', 'inject'
 
 / CONTEXT BAR
 = render :partial => "users/context_panel", :locals => {:user => current_user}
