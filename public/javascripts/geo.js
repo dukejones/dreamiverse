@@ -53,10 +53,19 @@ function initGeo(){
 /* LOCATION DATA */
 var getGeo = function(){
   if(navigator.geolocation){
+    showGeoHeader();
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
   } else {
     alert('This browser does not support geolocation')
   }
+}
+
+function showGeoHeader(){
+  var newElement = '<div id="geoHeader" style="padding: 20px; text-align: right; position: fixed; top: 0px; width: 100%; z-index: 1200; background-color: #333; color: #fff;"><p style="margin-right: 35px;">Allow your browser to check for your location.</p></div>';
+  $('body').prepend(newElement);
+  $('#geoHeader').click(function(){
+    $(this).remove()
+  })
 }
 
 function geoError(error){
