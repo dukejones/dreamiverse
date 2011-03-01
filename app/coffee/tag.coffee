@@ -160,7 +160,8 @@ class TagView
   linkElement: (element)->
     @$element = element
   createElement: ->
-    @$element = $('#empty-tag').clone().attr('id', '').show()
+    @$element = $('.emptyTag').clone().show()
+    @$element.removeClass('emptyTag')
     @$element.addClass('tag')
     @$element.addClass('tagWhat')
     @setValue(@tag.name)
@@ -172,9 +173,9 @@ class TagView
     @$element.attr('data-id', id)
   fadeIn: ->
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
-    currentBackground = @$element.css('backgroundColor');
-    @$element.css('backgroundColor', '#777');
-    setTimeout (=> @$element.animate {backgroundColor: currentBackground}, 'slow'), 200
+    #currentBackground = @$element.css('backgroundColor');
+    #@$element.css('backgroundColor', '#777');
+    #setTimeout (=> @$element.animate {backgroundColor: currentBackground}, 'slow'), 200
   startRemoveFromView: ->
     @$element.css('backgroundColor', '#ff0000')
   removeFromView: ->

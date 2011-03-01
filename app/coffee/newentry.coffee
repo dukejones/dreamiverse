@@ -2,6 +2,7 @@
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
+  
   # Setup tag re-ordering
   $("#sorting").val(1)
   $("#tag-list").sortable -> distance: 30
@@ -21,6 +22,10 @@ $(document).ready ->
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
   
+  
+  
+  
+  
   # Setup icon type changing
   $('#entryType_list').unbind();
   $('#entryType_list').change( ->
@@ -34,8 +39,28 @@ $(document).ready ->
   )
   $('#entryType_list').change()
   
+  
+  
+  
+  
+  
+  
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.typeSelection, .listSelection').hide()
     $('.entryType').css('border', 'none')
-    
+  
+  
+  
+  
+  
+  
+  
+  # If there are tags or images, expand them!
+  if $('#currentImages').children().length > 1
+    $('.entryAttach .images').hide()
+    $('.entryImages').slideDown()
+  
+  if $('#tag-list').children().length > 2
+    $('.entryAttach .tag').hide()
+    $('.entryTags').slideDown()

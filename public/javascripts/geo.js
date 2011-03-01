@@ -57,7 +57,7 @@ var getGeo = function(){
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
     
     // Inject the google geo api
-    // window.injectJs('http://maps.google.com/maps/api/js?sensor=false')
+    //window.injectJs('http://maps.google.com/maps/api/js?sensor=false')
   } else {
     alert('This browser does not support geolocation')
   }
@@ -81,9 +81,26 @@ function geoError(error){
 }
 
 function geoSuccess(position) {
+
+  /*// Dont think we can use this, only works in FF
+  var city = position.address.city;
+  var region = position.address.region;
+  var country = position.address.country;
+  
+  $('.entryLocation .data').slideDown()
+  $('.entryLocation .finding').remove();
+  
+  // Set geo data
+  $('.entryLocation .city .input').val(city);
+  $('.entryLocation .state .input').val(region);
+  $('.entryLocation .country .input').val(country);*/
+  
+  
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
+  
   $('#geoHeader').slideUp();
+  
   getAddress(lat, lng);
 }
 
