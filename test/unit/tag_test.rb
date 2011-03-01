@@ -102,21 +102,17 @@ class TagTest < ActiveSupport::TestCase
   end
 
 
-  test "verify that tag entries won't allow nil or 0 values for entry_id and noun_id colums" do
+  test "verify that tag entries won't allow nil values for entry_id and noun_id colums" do
     
     tag1 = Tag.create(entry_id: nil)
-    tag2 = Tag.find_or_create_by_id(entry_id: 0)
-    tag3 = Tag.create(entry_id: 999, noun_id: nil)
-    tag4 = Tag.create(entry_id: 999, noun_id: 0)
+    tag2 = Tag.create(entry_id: 999, noun_id: nil)
     
     assert_equal tag1.id, nil
     assert_equal tag2.id, nil
-    assert_equal tag3.id, nil
-    assert_equal tag4.id, nil
       
   end
 
-=begin
+
   test "verify that we have 16 total tags for an entry after the auto tag generator runs, assuming 16 auto tags exist" do
 
     entry = Entry.make(body: 'test1 test2 test3 test4 test5 test6 test7 test8 tes9 tes10 tes11 tes12 tes13 tes14 tes15 tes16')
@@ -129,13 +125,8 @@ class TagTest < ActiveSupport::TestCase
 
     num_tags = entry.tags.count
 
-    debugger
-    1
-
     assert_equal num_tags, 16
 
   end
-=end
-
 
 end
