@@ -114,15 +114,16 @@
 
       // TITLE
       .title
-        +round(16)
+        +round(8)
         +flat-bottom
         +absolute
         +overflow
         +center
-        +font(25)
+        +font(21)
+        +bold
         margin: 0 0 0 20px
         top: 164px
-        padding: 0 12px
+        padding: 4px 12px 0
         height: 36px
         line-height: 32px
         max-width: 550px
@@ -130,22 +131,21 @@
       // BODY
       .body
         margin: 0
-        padding: 18px 36px 0
+        padding: 34px 34px 16px
         font-size: 17px
         p
-          margin-bottom: 22px
+          margin-bottom: 18px
 
       // GALLERY
       ul.gallery
-        margin: 0 0 0 20px
-        padding: 4px
+        margin-left: 2px
         list-style: none
         li
           +round(8)
           +left
           margin: 0 2px 2px 0
-          height: 120px
-          width: 120px
+          height: 128px
+          width: 128px
           background: #ababab
           a
             height: 120px
@@ -157,11 +157,11 @@
       .entryLinks
         +round(12)
         +clear
-        margin: 8px 8px 0
+        margin: 6px 3px 0
         padding: 8px 8px 0
         .link
           +overflow
-          +round(8)
+          +round(16)
           +left
           +center
           margin: 0 8px 8px 0
@@ -175,8 +175,7 @@
 
       // TAG
       .showTags
-        padding: 8px
-        margin: 0 0 8px
+        padding: 8px 12px
 
         .tagHeader
           +flat-right
@@ -187,6 +186,7 @@
             +left
             +overflow
             padding: 0
+            width: 0px
             height: 34px
             line-height: 34px
             input
@@ -206,7 +206,7 @@
             +center
             +bold
             +user-select
-            margin: 0 0 8px
+            margin: 0 0 16px
             padding: 0 12px
             height: 34px
             line-height: 34px
@@ -425,7 +425,6 @@
       // BODY
       .body
         +clear
-        padding: 12px 36px 12px
 
       // GALLERY
       ul.gallery
@@ -492,9 +491,7 @@
 
         // TITLE
         .title
-          background: #f2f2f2
-          background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.9)), to(#f2f2f2))
-          background: -moz-linear-gradient(top, rgba(255,255,255,0.9), #f2f2f2)
+          +flat-light
 
         // IMAGE GALLERY
         ul.gallery
@@ -503,6 +500,7 @@
 
         // ENTRY LINKS
         .entryLinks
+          background: #eee
           .link
             +button-light
             +bevel-light
@@ -630,9 +628,7 @@
 
         // TITLE
         .title
-          background: #0F0F0F
-          background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.5)), to(#0F0F0F))
-          background: -moz-linear-gradient(top, rgba(0,0,0,0.5), #0F0F0F)
+          +flat-dark
 
         // IMAGE GALLERY
         ul.gallery
@@ -641,9 +637,10 @@
 
         // ENTRY LINKS
         .entryLinks
+          +flat-dark-medium
           .link
             +button-dark
-            +shine-dark-alpha(12)
+            +bevel-dark
             a
               color: #ccc
 

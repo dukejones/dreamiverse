@@ -15,7 +15,6 @@
     = yield :head
 
   %body{id: 'body', class: "#{theme} scroll", style: bedsheet_style}
-    = render "shared/facebook_sdk"
 
     #drop_shadow
 
@@ -31,6 +30,7 @@
 
     = yield :foot
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    = render "shared/facebook_sdk"
     = javascript_include_tag "jquery-ui.min", 'chat'
     = render "layouts/placeholder"
     

@@ -51,8 +51,7 @@ class EntriesController < ApplicationController
     whats = what_names.map {|name| What.find_or_create_by_name name }
 
     new_entry = current_user.entries.create!(params[:entry].merge(
-      whats: whats,
-      view_preference_attributes: params[:entry].delete(:view_preference)
+      whats: whats
     ))
     redirect_to user_entry_path(current_user.username, new_entry)
   end
@@ -65,10 +64,6 @@ class EntriesController < ApplicationController
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
     
-    
-    # XXX: We should be passing view_preference_attributes from the form, not renaming it here!
-    params[:entry].merge!(view_preference_attributes: params[:entry].delete(:view_preference))
-
     @entry.update_attributes( params[:entry] )
     redirect_to :action => :show, :id => params[:id]
   end

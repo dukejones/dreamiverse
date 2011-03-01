@@ -2,9 +2,10 @@
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'IB_manager'
 - content_for :foot do
-  = javascript_include_tag 'autoresize.jquery.min', 'geo', 'userfileuploader', 'dreams'
+
+  = javascript_include_tag 'autoresize.jquery.min', 'userfileuploader', 'dreams', 'geo', 'browserdetect'
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
-  = coffeescript_include_tag 'tag', 'newentry', 'sharing'
+  = coffeescript_include_tag 'tag', 'newentry', 'sharing', 'inject'
 
 / CONTEXT BAR
 = render :partial => "users/context_panel", :locals => {:user => current_user}
@@ -15,7 +16,7 @@
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
     
-    = f.fields_for (@entry.view_preference||current_user.view_preference) do |v|
+    = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
 
@@ -26,9 +27,8 @@
     #newEntry
 
       .wrapper
-        / 
-          MOOD ICON
-          = render :partial => "mood_icon"
+        / MOOD ICON
+        /= render :partial => "mood_icon"
 
       .entryType
         %img.typeSelection{src: '/images/icons/dream-32.png'}

@@ -55,14 +55,20 @@ var getGeo = function(){
   if(navigator.geolocation){
     showGeoHeader();
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
+    
+    // Inject the google geo api
+    // window.injectJs('http://maps.google.com/maps/api/js?sensor=false')
   } else {
     alert('This browser does not support geolocation')
   }
 }
 
 function showGeoHeader(){
-  var newElement = '<div id="geoHeader" style="padding: 20px; text-align: right; position: fixed; top: 0px; width: 100%; z-index: 1200; background-color: #333; color: #fff;"><p style="margin-right: 35px;">Allow your browser to check for your location.</p></div>';
+  var newElement = '<div id="geoHeader"><p>Allow your browser to check for your location.</p><div class="geoArrow"></div></div>';
   $('body').prepend(newElement);
+  
+  $('#geoHeader').animate({top: 0}, 1000);
+  
   $('#geoHeader').click(function(){
     $(this).remove()
   })
@@ -77,6 +83,7 @@ function geoError(error){
 function geoSuccess(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
+  $('#geoHeader').slideUp();
   getAddress(lat, lng);
 }
 
