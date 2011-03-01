@@ -34,10 +34,12 @@
         height: 300px
         z-index: 82
         .image
-          z-index: 83
           +absolute
+          +round(15)
+          +flat-bottom
           top: 0px
           width: 200px
+          height: 100px
 
       .watermark
         +georgia
@@ -99,9 +101,11 @@
         +absolute
         +center
         +font(17)
+        line-height: 16px
         +bold
-        top: 96px
-        width: 200px
+        top: 106px
+        width: 195px
+        margin-left: 5px
 
       .tagCloud
         +absolute
