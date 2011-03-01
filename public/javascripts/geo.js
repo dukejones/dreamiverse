@@ -75,6 +75,11 @@ function getAddress(_lat, _lng){
   // Get location data from google
   var lat = parseFloat(_lat);
   var lng = parseFloat(_lng);
+  
+  // Set hidden input fields
+  $('#location_attributes_longitude').val(lng)
+  $('#location_attributes_latitude').val(lat)
+  
   var latlng = new google.maps.LatLng(lat, lng);
   
   var geocoder = new google.maps.Geocoder();

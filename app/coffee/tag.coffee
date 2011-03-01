@@ -50,7 +50,7 @@ class ShowingTagInput extends TagInput
     $('.tagInput').css('width', '0px')
     $('.tagThisEntry').click => @addExpandSubmitHandler()
     $('.tagHeader').click => @contractInputField()
-    $('#newTag').blur => @contractInputField()
+    #$('#newTag').blur => @contractInputField()
 
   addExpandSubmitHandler: ->
     switch @buttonMode
@@ -78,8 +78,8 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag').live "click", (event)=>
-      @removeTag($(event.currentTarget).data('id'))
+    @$container.find('.tag .close').live "click", (event)=>
+      @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
     #  @removeTag($(event.currentTarget).data('id'))

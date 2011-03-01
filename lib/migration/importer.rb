@@ -5,7 +5,7 @@ class Migration::Importer
   end
   
   def migrate
-    puts "Migrating: #{@entity_to_migrate.class} #{@entity_to_migrate.title || @entity_to_migrate.inspect.slice(0..100)}"
+    puts "Migrating: #{@entity_to_migrate.class} #{@entity_to_migrate.inspect.slice(0..100)}"
 
     # if @entity_to_migrate.respond_to?(:corresponding_object)
     #   if obj = @entity_to_migrate.corresponding_object
