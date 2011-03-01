@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  before_filter :require_user, :only => [:new, :edit]
+  before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream]
 
   def entry_list
@@ -83,6 +83,7 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
+    # @entries = Entry.scoped
     @entries = Entry.accessible_by(current_user)
     
     # starlight: low, medium, high, off
@@ -106,7 +107,7 @@ class EntriesController < ApplicationController
     # not my own dreams
     # @entries = @entries.where(:user_id ^ current_user.id)
     @entries = @entries.limit(50)
-    @entries = @entries.offset(50 * params[:page]) if params[:page]
+    @entries = @entries.offset(50 * params[:page].to_i) if params[:page]
     
     if request.xhr?
       thumbs_html = ""

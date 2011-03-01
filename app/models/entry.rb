@@ -42,7 +42,7 @@ class Entry < ActiveRecord::Base
   
   has_and_belongs_to_many :images
   belongs_to :main_image, :class_name => "Image"
-  
+
   validates_presence_of :user
   validates_presence_of :body
   
@@ -52,6 +52,13 @@ class Entry < ActiveRecord::Base
   after_save :process_all_tags 
 
 
+  scope :everyone, where(sharing_level: Entry::Sharing[:everyone])
+  scope :friends, where(sharing_level: Entry::Sharing[:friends])
+  scope :private, where(sharing_level: Entry::Sharing[:private])
+  scope :followers, where(sharing_level: Entry::Sharing[:followers])
+  scope :anonymous, where(sharing_level: Entry::Sharing[:anonymous])
+  
+  
   scope :order_by_starlight, 
     select('entries.*').
     from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
