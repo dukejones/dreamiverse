@@ -8,7 +8,8 @@
     %img{:src => "http://www.dreamcatcher.net/basic/inc/images/logos/header-dreamstars.png", :alt => "Dreamstars"}
     .date
       %span global:
-      TODO ADD MONTH, DAY, YEAR
+      - time = Time.new
+      = "#{time.strftime('%B %d %Y')}"
     .clear
 
   / COLUMNS PANEL
