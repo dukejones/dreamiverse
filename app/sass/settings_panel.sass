@@ -98,73 +98,6 @@
       border: 1px solid #ccc
 
 
-  .savedLocations
-    .locationView, .modifyLocationView
-
-      .newLocation, .autoLocate
-        margin-top: 8px
-
-      .newLocation
-        +center
-        +left
-        +round(4)
-        width: 186px
-        padding: 2px 4px
-        +confirm(12)
-        img
-          float: none
-          margin: -3px 3px
-
-      .autoLocate
-        +block
-        +right
-        +round(4)
-        padding: 2px 4px
-        +cancel(12)
-
-      .locationList
-        +clear
-        width: 100%
-        max-height: 180px
-        overflow-y: auto
-
-        .location
-          +clear
-          +pointer
-          float: none
-          margin: 0
-          padding: 6px 8px
-          .edit, label
-            display: none
-          label
-            +alpha(50)
-            +pointer
-            +font(11)
-            +right
-            border: 1px solid transparent
-            padding: 2px 4px
-            input
-              +pointer
-              margin: -5px 0
-          label.selected
-            +block
-            +alpha(100)
-
-        .location:hover
-          .edit
-            +block
-            +right
-            width: 16px
-            height: 16px
-            padding: 3px
-            margin-right: 8px
-            background: url(/images/icons/edit-16.png) no-repeat center center
-            border: 1px solid transparent
-          .edit:hover, label:hover
-            +round(4)
-            border: 1px solid #ccc
-          label
-            +block
 
   .cancel, .confirm, .save
     +center
@@ -180,7 +113,9 @@
     width: 180px
 
 
-  .modifyLocationView, .changePasswordForm
+
+
+  .changePasswordForm
     span
       +bold
       +cursor
@@ -193,16 +128,12 @@
       padding: 0px 4px
       margin-top: 1px
     // INPUTS
-    #user_old_password, #user_password, #user_password_confirmation, .save, .cancel, .name, .city, .state, .country
+    #user_old_password, #user_password, #user_password_confirmation, .save, .cancel
       +round(4)
       +font(15)
       margin-bottom: 4px
       padding: 4px
       width: 306px
-    .country
-      width: 316px
-      option, optgroup
-        width: 280px
     .save, .cancel
       +round(4)
       padding: 0
@@ -279,38 +210,8 @@
         +bevel-light
 
 
-    .savedLocations, .changePassword
+    .changePassword
       +button-light
-
-    .savedLocations
-      .newLocation
-        +bevel-light
-        +button-light
-
-      .autoLocate
-        +bevel-light
-        +button-light
-
-      .locationList
-        +border-light
-
-        .location
-          +flat-light
-          +border-light
-
-      .modifyLocationView
-        .autoDetect
-          +button-light
-        #user_password, #user_password_confirmation, .name, .city, .state, .country
-          +input-light(small)
-        .save, .cancel
-          +button-light
-          +bevel-light
-          color: #333
-        .save
-          +confirm(12)
-        .cancel
-          +cancel(12)
 
     .changePasswordForm
       #user_old_password, #user_password, #user_password_confirmation
@@ -345,38 +246,8 @@
         +button-dark
         +bevel-dark
 
-    .savedLocations:hover, .changePassword:hover
+    .changePassword:hover
       +border-light
-
-    .savedLocations
-      .newLocation
-        +bevel-dark
-        +button-dark
-
-      .autoLocate
-        +bevel-dark
-        +button-dark
-
-      .locationList
-        +border-dark
-
-        .location
-          +flat-dark
-          +border-dark
-
-      .modifyLocationView
-        .autoDetect
-          +button-dark
-        #user_password, #user_password_confirmation, .name, .city, .state, .country
-          +input-dark(small)
-        .save, .cancel
-          +button-dark
-          +bevel-dark
-          color: #ddd
-        .save
-          +confirm(12)
-        .cancel
-          +cancel(12)
 
     .changePasswordForm
       #user_old_password, #user_password, #user_password_confirmation
