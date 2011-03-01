@@ -53,8 +53,8 @@
       .details.hidden
         - if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
-          - if user.link
-            %a.website{href: user.link.url}= user.link.title
+          - if user.link.url
+            %a.website{href: user.link.url, target: "_blank"}= user.link.url
           - if current_user.relationship_with(user) == :friends || user == current_user
             .email= user.email
             .phone= user.phone
@@ -96,7 +96,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
       .image
-        %img.dream{src: '/images/icons/dream-32-selected.png', width: '32', height: '32'}
+        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '32'}
       .detail
         = user.entries.count
       .clear
