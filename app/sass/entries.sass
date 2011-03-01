@@ -489,21 +489,20 @@
         padding: 1px 4px
 
 #tagStream, #showEntry, #newEntry
+
   #tagsLive
     +clear
   #tagsLive, #tag-list
     clear: left
     // WHO, WHERE, WHAT TAG STYLES
+    // TAG STRUCTURE
     .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
       +relative
       +round(8)
-      +button-light
       +left
       margin: 0 8px 4px 0
       height: 32px
       line-height: 32px
-      background-color: #fff
-      color: #333
       .close
         +block
         +round(7)
@@ -514,11 +513,9 @@
         width: 32px
         height: 32px
         line-height: 32px
-        color: #fff
         background: rgba(179,59,48,0.3)
         &:hover
           background: rgba(179,59,48,1.0)
-        // background: #fff url(/images/icons/close-16.png) no-repeat center
       .avatar, .whereIcon, .tagImage
         +round(8)
         +flat-right
@@ -544,6 +541,24 @@
 
     // WHERE TAG STYLES
     .tagWhere
+
+
+// TAG COLORS
+.light
+  #tagStream, #showEntry, #newEntry
+    #tagsLive, #tag-list
+      .tag
+        +button-light
+        +flat-light-medium
+        color: #333
+
+.dark
+  #tagStream, #showEntry, #newEntry
+    #tagsLive, #tag-list
+      .tag
+        +button-dark
+        +flat-dark-medium
+        color: #ddd
 
 
 
