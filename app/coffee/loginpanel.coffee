@@ -17,10 +17,10 @@ $(document).ready ->
     $('.joinWrap a').click (event) ->
       event.preventDefault()
       
-      $(this).find('.join').hide()
-      $(this).find('.joinButton').show()
-      $(this).parent().find('.intro').slideUp()
-      $(this).parent().find('.joinForm').slideDown()
+      $(this).parent().find('.join').hide()
+      $(this).parent().find('.joinButton').show()
+      $(this).parent().parent().find('.intro').slideUp()
+      $(this).parent().parent().find('.joinForm').slideDown()
       
       $('.haveSeedcode').click =>
         $('.haveSeedcode').slideUp('fast')
