@@ -85,8 +85,10 @@ class Image < ActiveRecord::Base
   end
 
   def import_from_file(filename)
+    self.incoming_filename = filename.split('/').last
     file = open(filename, 'rb')
     self.write( file.read )
+    self.save
   end
 
   # Generates the crops and resizes necessary for the requested profile.

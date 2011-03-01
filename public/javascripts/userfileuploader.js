@@ -523,8 +523,8 @@ qq.FileUploader = function(o){
             list: 'qq-upload-list',
             */
             button: 'dropboxBrowse',
-            drop: 'qq-upload-drop-area',/*
-            dropActive: 'qq-upload-drop-area-active',
+            drop: 'qq-upload-drop-area',
+            dropActive: 'qq-upload-drop-area-active'/*,
             list: 'dropBoxImages',
             
             progress: 'progress-meter',

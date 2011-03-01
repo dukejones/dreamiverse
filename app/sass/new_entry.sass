@@ -356,8 +356,9 @@
       +delete(17)
       +right
       +center
+      +bold
       height: 34px
-      padding: 0 14px
+      padding: 0 12px
       line-height: 34px
       margin: 0
 
@@ -404,6 +405,7 @@
         background: rgba(255,255,255,0.2)
     #currentImages
       margin: 12px 0 0 12px
+      +user-select
       .entryImageContainer, .entryImage
         +round(8)
       .entryImageContainer
@@ -416,12 +418,22 @@
         background: #fff
         .entryImage
           +relative
+          +user-select
           +round(7)
           +left
           +overflow
           +pointer
           width: 120px
           height: 120px
+          &:hover
+            label.radio
+              background: rgba(255,255,255,0.5)
+              span
+                +block
+          label.radio.selected
+            background: rgba(255,255,255,1.0)
+            span
+              +block
           label.radio
             +round(6)
             +flat-top
@@ -433,14 +445,18 @@
             height: 28px
             line-height: 28px
             color: #333
-            background: rgba(255,255,255,0.5)
+            background: rgba(255,255,255,0.0)
             span
-              +left
+              +hidden
+              +right
+              +bold
               margin-left: 8px
             input
-              margin: 8px 8px 0 0
+              margin: 8px 8px 0
               +right
               +pointer
+            &:hover
+              background: rgba(255,255,255,0.8)
           .imageRemoveButton
             +round(12)
             margin: 8px
