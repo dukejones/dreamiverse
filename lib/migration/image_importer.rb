@@ -8,6 +8,7 @@ class Migration::ImageImporter < Migration::Importer
     legacy_image = @entity_to_migrate
     image.incoming_filename = legacy_image.filename
     image.format = nil
+    image.enabled = true
     image.save!
 
     puts image.title
