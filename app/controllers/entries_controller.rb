@@ -61,7 +61,7 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-
+    
     what_names = params[:what_tags] || []
     whats = what_names.map {|name| What.find_or_create_by_name name }
     whats.each { |what| @entry.add_what_tag(what) }
