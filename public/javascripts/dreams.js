@@ -1,9 +1,11 @@
 $(document).ready(function() {
   setupEvents();
   setupImagebank();
-  setupTextareaAutoExpander();
   setupUploader();
   setupSharingImages()
+  // setupTextareaAutoExpander stuff replaced with fitToContent 
+  // by dr.J - as per duke's instructions (march 1) - sorry Scott!
+  //setupTextareaAutoExpander();  
 });
 
 function setupSharingImages(){
@@ -465,3 +467,29 @@ function setupImageButtons(){
      }
    });*/
 }
+
+
+// Fit to content - originally from alpha site for text area expansion
+function fitToContent(id, maxHeight)
+{
+  var text = id && id.style ? id : document.getElementById(id);
+  if ( !text )
+    return;
+  var adjustedHeight = text.clientHeight;
+  if ( !maxHeight || maxHeight > adjustedHeight  )
+  {
+  	adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
+    if ( maxHeight )
+      adjustedHeight = Math.min(maxHeight, adjustedHeight);
+    if ( adjustedHeight > text.clientHeight )
+      text.style.height = adjustedHeight + 80 + "px";
+  }
+}
+
+
+$('#entry_body').keyup(function() 
+{
+  fitToContent(this, 0)
+});
+
+
