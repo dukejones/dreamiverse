@@ -30,14 +30,19 @@ class Image < ActiveRecord::Base
   #
   # Scopes
   #
-  scope :enabled, where(enabled: true)
-  scope :by, -> artist { where(artist: artist) }
+  def self.enabled
+    where(enabled: true)
+  end
+  def self.by(artist)
+    where(artist: artist)
+  end
 
-  # TIDY: where({}) causes unnecessary clone, possible performance hit?
-  scope :sectioned, -> section { where(section ? {section: section} : {}) }
+  def self.sectioned(section)
+    where(section ? {section: section} : {})
+  end
 
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
-  scope :search, -> params {
+  def self.search(params)
     # search term
     results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
             params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q]])
@@ -50,7 +55,7 @@ class Image < ActiveRecord::Base
     # genres
     results = results.where(genre: params[:genres].split(',')) if params[:genres]
     results
-  }
+  end
 
   #
   # Class Methods

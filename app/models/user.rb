@@ -46,14 +46,16 @@ class User < ActiveRecord::Base
   validate :has_at_least_one_authentication
   
   
-  scope :order_by_starlight, 
+  def self.order_by_starlight
     select('users.*').
     from( "( #{Starlight.current_for('User').to_sql} ) as maxstars " ).
     joins("JOIN starlights ON starlights.id=maxstars.maxid").
     joins("JOIN users ON users.id=starlights.entity_id").
     order('starlights.value DESC')
-
-  scope :dreamstars, order_by_starlight.limit(16)
+  end
+  def self.dreamstars
+    order_by_starlight.limit(16)
+  end
 
   attr_accessor :password, :password_confirmation, :old_password
 

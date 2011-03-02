@@ -39,6 +39,9 @@ class Entry < ActiveRecord::Base
   
   has_many :links, :as => :owner
   accepts_nested_attributes_for :links
+  def youtube_links
+    []
+  end
   
   has_and_belongs_to_many :images
   belongs_to :main_image, :class_name => "Image"
@@ -53,34 +56,45 @@ class Entry < ActiveRecord::Base
   after_save :process_all_tags 
 
 
-  scope :everyone, where(sharing_level: Entry::Sharing[:everyone])
-  scope :friends, where(sharing_level: Entry::Sharing[:friends])
-  scope :private, where(sharing_level: Entry::Sharing[:private])
-  scope :followers, where(sharing_level: Entry::Sharing[:followers])
-  scope :anonymous, where(sharing_level: Entry::Sharing[:anonymous])
+
+
+  def self.everyone
+    where(sharing_level: Entry::Sharing[:everyone])
+  end
+  def self.friends
+    where(sharing_level: Entry::Sharing[:friends])
+  end
+  def self.private 
+    where(sharing_level: Entry::Sharing[:private])
+  end
+  def self.followers 
+    where(sharing_level: Entry::Sharing[:followers])
+  end
+  def self.anonymous
+    where(sharing_level: Entry::Sharing[:anonymous])
+  end
   
-  
-  scope :order_by_starlight, 
+  def self.order_by_starlight
     select('entries.*').
     from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
     joins("JOIN starlights ON starlights.id=maxstars.maxid").
     joins("JOIN entries ON entries.id=starlights.entity_id").
     order('starlights.value DESC')
-  
-  scope :friends_with, -> user { 
+  end
+  def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 
     ).joins(:user => [:following, :followers])
-  }
+  end
   
-  scope :followed_by, -> user { 
+  def self.followed_by(user)
     where( 
       user: { followers: user } 
     ).joins(:user => [:followers])
-  }
+  end
   
   # where dream is public or i am friends with entry.user
-  scope :accessible_by, -> user { 
+  def self.accessible_by(user)
     where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
@@ -90,12 +104,8 @@ class Entry < ActiveRecord::Base
         ) 
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
-  }
-
-
-  def self.youtube_links
-    []
   end
+
 
   # This method smells bad.
   def self.list(viewer, viewed, lens, filters)
