@@ -37,7 +37,7 @@
 
       .wrapper
         / HEADER IMAGE & TITLE
-        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
+        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
 
         / TAG CLOUD
         .tagCloud
@@ -45,7 +45,8 @@
           - @entry.tags.limit(16).shuffle.each do |tag|
             %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 
-        .tagToggle.trigger.fade tag cloud
+        - if @entry.main_image
+          .tagToggle.trigger.fade tag cloud
 
       / MOOD ICON
       .moodIcon.hidden
