@@ -38,6 +38,14 @@
       / HEADER IMAGE & TITLE
       .imageHeader{style: "background: url(#{dream_header_url(@entry.images.first)}) no-repeat top left"}
 
+      / TAG CLOUD
+      .tagCloud
+        .toggleWrap
+        - @entry.tags.limit(16).shuffle.each do |tag|
+          %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+      .tagToggle toggle tags
+
       / MOOD ICON
       .moodIcon.hidden
         %img{src: '/images/moods/plants/Fungi.png'}

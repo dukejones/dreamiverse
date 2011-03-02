@@ -65,6 +65,31 @@
         height: 200px
         width: 662px
 
+      .tagCloud
+        +round(16)
+        +flat-bottom
+        +absolute
+        top: 0
+        margin: 0
+        padding: 12px
+        height: 176px
+        width: 638px
+        // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
+        .toggleWrap
+          +left
+          margin: 12px
+          height: 28px
+          width: 100px
+
+      .tagToggle
+        +absolute
+        +round(8)
+        +center
+        top: 12px
+        left: 12px
+        height: 28px
+        line-height: 28px
+        width: 100px
 
       // MOOD ICON
       .moodIcon
@@ -477,6 +502,10 @@
       .content
         +flat-light
 
+        .tagToggle
+          +shine-light-alpha(16)
+          +button-light
+
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
           +transparent-light(70)
@@ -613,6 +642,10 @@
       // CONTENT
       .content
         +flat-dark
+
+        .tagToggle
+          +shine-dark-alpha(16)
+          +button-dark
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
