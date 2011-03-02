@@ -370,6 +370,52 @@ abbr, acronym
 
 
 
+/*********** STARLIGHT BURST ***********/
+#starlightBurstGlow
+  +glow-blue(80)
+  +transparent
+  +round12
+  width: 360px
+  height: 214px
+
+  img.starlight
+
+  .shadow
+    +transparent
+    +round(11)
+    width: 360px
+    height: 214px
+
+  #starlightBurst
+    +shine-blue(12)
+    +round(11)
+    width: 360px
+    height: 214px
+
+    .burstInfo
+      +round(8)
+      +bevel-light
+      +border-light
+      padding: 4px
+      height: 28px
+      line-height: 28px
+      p
+        margin: 0
+        +left
+      // will use shared tag styles
+      .tagWho
+        +left
+
+    .myStarlight
+      +round(8)
+      .count
+        +round(4)
+      h1
+
+
+
+
+
 /*********** FIELDS ***********/
 #entryField, #friendField
   +absolute
