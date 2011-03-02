@@ -38,13 +38,6 @@
   %table.right
 
     / TOP ROW - IMAGE THUMBNAILS
-    - unless entry.links.blank?
-      %tr
-        %td
-          %ul
-            - entry.links.each do |link|
-              %li
-                %p= link.title
     - unless entry.images.blank?
       %tr
         %td.top{valign: "top", height: "64"}
