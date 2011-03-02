@@ -3,29 +3,29 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream]
 
   def entry_list
+    @entries = Entry.list(current_user, @user, session[:lens], session[:filters])
   end
   
   def index
     redirect_to(user_entries_path(@user.username)) unless params[:username]
-    
+    # debugger
     session[:lens] = :field
-    session[:filters] = params[:filters].merge({user: @user})
+    session[:filters] = params[:filters]
 
-    # entry_list
-    @entries = Entry.list(current_user, session[:lens], session[:filters])
+    entry_list
     
     @user.starlight.add( 1 ) if unique_hit?
 
   end
 
   def show
-    entry_list # I don't love having to generate the whole list here.
-    i = @entries.index{|e| e.id == params[:id].to_i } || 0
+    redirect_to(user_entry_path(Entry.find(params[:id]).user.username, @entry)) unless params[:username]
+
+    entry_list
+    i = @entries.index {|e| e.id == params[:id].to_i } || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     @entry = @entries[i]
-    # @entry = Entry.find params[:id]
-    redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
     deny and return unless user_can_access?
 
     @comments = @entry.comments.order('created_at DESC') # .limit(10)
@@ -84,9 +84,6 @@ class EntriesController < ApplicationController
     @user = current_user
 
     @entries = Entry.list(current_user, session[:lens], session[:filters])
-    
-    # not my own dreams
-    # @entries = @entries.where(:user_id ^ current_user.id)
     
     if request.xhr?
       thumbs_html = ""

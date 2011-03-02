@@ -47,6 +47,7 @@ class Entry < ActiveRecord::Base
   validates_presence_of :body
   
   before_save :set_sharing_level
+  before_save :set_main_image
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
@@ -92,7 +93,7 @@ class Entry < ActiveRecord::Base
   }
 
   # This method smells bad.
-  def self.list(viewer, lens, filters)
+  def self.list(viewer, viewed, lens, filters)
     filters ||= {}
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
@@ -100,7 +101,7 @@ class Entry < ActiveRecord::Base
     if lens == :field
       # TODO: Make this a scope instead of looping over the array.
       if viewer
-        entries = entry_scope.where(user: filters[:user]).select {|e| viewer.can_access?(e) }
+        entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
       else
         entries = entry_scope.select{|e| e.everyone? } 
       end
@@ -115,7 +116,7 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date & starlight
     end
 
-    debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
+    # debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
     entries
   end
 
@@ -219,4 +220,7 @@ protected
     sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
   end
 
+  def set_main_image
+    self.main_image = self.images.first unless self.main_image_id?
+  end
 end
