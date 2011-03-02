@@ -3,16 +3,17 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream]
 
   def entry_list
-    @entries = @user.entries.order('created_at DESC')
-    @entries = @entries.where(type: session[:filter_entry_type]) if session[:filter_entry_type]
-    @entries = @entries.select {|e| current_user._?.can_access?(e) || e.everyone? } # TODO: Write a custom finder for this SLOW method!
   end
   
   def index
     redirect_to(user_entries_path(@user.username)) unless params[:username]
-    session[:filter_entry_type] = params[:type] ? params[:type] : nil
-    entry_list
+    
+    session[:lens] = :field
+    session[:filters] = params[:filters].merge({user: @user})
 
+    # entry_list
+    @entries = Entry.list(current_user, session[:lens], session[:filters])
+    
     @user.starlight.add( 1 ) if unique_hit?
 
   end
@@ -27,7 +28,7 @@ class EntriesController < ApplicationController
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
     deny and return unless user_can_access?
 
-    @comments = @entry.comments # .limit(10)
+    @comments = @entry.comments.order('created_at DESC') # .limit(10)
     @page_title = @entry.title
     
     if unique_hit?
@@ -77,32 +78,15 @@ class EntriesController < ApplicationController
   end
 
   def stream
+    session[:lens] = :stream
+    session[:filters] = params[:filters]
+
     @user = current_user
-    # @entries = Entry.scoped
-    @entries = Entry.accessible_by(current_user)
-    
-    # starlight: low, medium, high, off
-    # for now just high
-    if params[:starlight_filter] == 'high'
-      @entries = @entries.order_by_starlight
-    else
-      @entries = @entries.scoped.order('updated_at DESC')
-    end
-    # Type: visions,  dreams,  experiences
-    unless params[:type_filter].blank?
-      @entries = @entries.where(type: params[:type_filter])
-    end
-    # friends, or following
-    if params[:friend_filter] == 'friends'
-      @entries = @entries.friends_with(current_user)
-    elsif params[:friend_filter] == 'following'
-      @entries = @entries.followed_by(current_user)
-    end
+
+    @entries = Entry.list(current_user, session[:lens], session[:filters])
     
     # not my own dreams
     # @entries = @entries.where(:user_id ^ current_user.id)
-    @entries = @entries.limit(50)
-    @entries = @entries.offset(50 * params[:page].to_i) if params[:page]
     
     if request.xhr?
       thumbs_html = ""

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class EntryTest < ActiveSupport::TestCase
   test "accessible_by scope" do
-    users = [:duke, :geoff, :phong, :leopi].each_with_object({}) {|name, hash| hash[name] = User.make(username: name.to_s) }
+    users = [:duke, :geoff, :phong, :leopi, :layne].each_with_object({}) {|name, hash| hash[name] = User.make(username: name.to_s) }
     users.each do |name, user|
       Entry.make(user: user, sharing_level: Entry::Sharing[:private])
       Entry.make(user: user, sharing_level: Entry::Sharing[:friends])
@@ -12,13 +12,14 @@ class EntryTest < ActiveSupport::TestCase
     users[:geoff].following = [users[:duke], users[:phong]]
     users[:leopi].following = [users[:duke], users[:phong]]
     users[:phong].following = [users[:duke], users[:geoff]]
+    users[:layne].following = [users[:geoff], users[:phong]]
 
     accessible = Entry.accessible_by(users[:duke])
     # where dream is public or i am friends with entry.user
     assert Entry.everyone.all?{|e| accessible.include?(e) }, "all public dreams are accessible"
     assert Entry.private.none?{|e| accessible.include?(e) }, "no private dreams are accessible"
-    debugger
-    1
+
+    assert accessible.all?{|e| users[:duke].can_access?(e) }, "not all accessible_by entries are actually accessible by the user."
   end
 
   test "followed_by scope" do

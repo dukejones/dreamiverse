@@ -60,53 +60,7 @@ $(document).ready ->
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     # for show entry
-    $('.tagInput').css('width', '250px')
-  
-  
-  
-  
-  # Setup youtube links to show thumbnails
-  $('.entryLinks .link').each( (i, val) ->
-    url = $(this).find('a').attr('href')
-    domain = url.substring(0, url.indexOf('/', 14))
-    
-    if domain is "http://www.youtube.com" or domain is "www.youtube.com"
-      splitTextArray = url.split('v=');
-      filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
-  
-      # Get the data from YOUTUBE
-      $.ajax({
-        url: filePath
-        dataType: 'jsonp'
-        success: (data) ->
-          console.log data
-          newElement = '<li class="youtube" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[0].url + ') center center no-repeat;"><img src="/images/icons/youtube-video-112.png"><a target="_blank" href="' + url + '"></a></li>'
-          #newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
-          $('.content .gallery').append(newElement);
-      });
-    
-  )
-# function getBaseURL() {
-#     var url = location.href;  // entire url including querystring - also: window.location.href;
-#     var baseURL = url.substring(0, url.indexOf('/', 14));
-# 
-# 
-#     if (baseURL.indexOf('http://localhost') != -1) {
-#         // Base Url for localhost
-#         var url = location.href;  // window.location.href;
-#         var pathname = location.pathname;  // window.location.pathname;
-#         var index1 = url.indexOf(pathname);
-#         var index2 = url.indexOf("/", index1 + 1);
-#         var baseLocalUrl = url.substr(0, index2);
-# 
-#         return baseLocalUrl + "/";
-#     }
-#     else {
-#         // Root Url for domain name
-#         return baseURL + "/";
-#     }
-# 
-# }  
+    $('.tagInput').css('width', '250px') 
   
   
   

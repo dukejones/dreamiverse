@@ -78,26 +78,27 @@ Dreamcatcher::Application.routes.draw do
     end
     resources :comments
   end
-  match "(:username)/dreams", to: 'entries#index', type: 'Dream', :as => 'dreams'
+
 
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
     # Entries
-    match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
-    match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
-    resources :entries, :as => 'user_entries'
+    match "/dreams", :to => 'entries#index', :'filters[type]' => 'Dream', :as => 'dreams'
+    match "/:id", :to => 'entries#show', :constraints => {id: /\d+/}
     match '/' => 'entries#index'
+    resources :entries, :as => 'user_entries'
     # match '/' => redirect("/%{username}/dreams"), :defaults => { :username => ''}
 
-    # Friends
+    # Friends & Following
+    match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
+    match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
+
     ['friends', 'following', 'followers'].each do |mode|
       match mode => 'users#friends', :mode => mode, :as => mode
     end
   end
-  # match ':username', :to => 'dreams#index' #, :constraint => username_constraint
 
-  #root :to => 'dreams#stream'#, :as => :stream
   root :to => 'home#index'
 
   # Sample resource route with options:
