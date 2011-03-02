@@ -83,7 +83,7 @@ class EntriesController < ApplicationController
 
     @user = current_user
 
-    @entries = Entry.list(current_user, session[:lens], session[:filters])
+    entry_list
     
     if request.xhr?
       thumbs_html = ""
