@@ -1,5 +1,6 @@
 / ENTRY THUMB 1D - GENERAL
-%a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
+/ %a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
+.thumb-1d{class: entry.images.blank? ? "noImage" : ""}
   / LEFT SIDE
   .left
     .user
@@ -42,8 +43,7 @@
         %td.top{valign: "top", height: "64"}
           %ul
             - entry.images.limit(5).each do |image|
-              / = gallery_1d_thumb(image)
-              %li{style: "background: url(#{image.url(:thumb, :size => 64)}) no-repeat top left"}
+              = gallery_1d_thumb(image)
 
     / MIDDLE ROW - TAG CLOUD
     %tr
