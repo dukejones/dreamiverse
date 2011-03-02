@@ -85,9 +85,16 @@ Dreamcatcher::Application.routes.draw do
   scope ':username' do
     # Entries
     match "/dreams", :to => 'entries#index', :'filters[type]' => 'Dream', :as => 'dreams'
-    match "/:id", :to => 'entries#show', :constraints => {id: /\d+/}
-    match '/' => 'entries#index'
-    resources :entries, :as => 'user_entries'
+    
+    get "/new", :to => 'entries#new', :as => 'new_user_entry'
+    get "/:id", :to => 'entries#show', :constraints => {id: /\d+/}, :as => 'user_entry'
+    get "/:id/edit", :to => 'entries#edit', :constraints => {id: /\d+/}, :as => 'edit_user_entry'
+    put "/:id", :to => 'entries#update', :constraints => {id: /\d+/}, :as => 'user_entry'
+    delete "/:id", :to => 'entries#delete', :constraints => {id: /\d+/}, :as => 'user_entry'
+    get '/' => 'entries#index', :as => 'user_entries'
+    post '/' => 'entries#create', :as => 'user_entries'
+    
+    # resources :entries, :as => 'user_entries'
     # match '/' => redirect("/%{username}/dreams"), :defaults => { :username => ''}
 
     # Friends & Following
