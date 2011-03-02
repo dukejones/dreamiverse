@@ -72,7 +72,7 @@
             padding: 1px 10px
 
         // IMAGE
-        .image, .fade
+        .image
           width: 352px
           height: 96px
           +round(14)
@@ -170,6 +170,10 @@
               background: #ccc
               height: 60px
               width: 60px
+            li a
+              height: 60px
+              width: 60px
+              +block
 
         // MIDDLE
         td.middle
@@ -265,9 +269,6 @@
               +transparent-dark(60)
               color: #ccc
 
-          .image .fade
-            background: url('/images/gradients/header-fade-light.png') repeat-x bottom
-
           // ENTRY THUMB DETAILS
           .details
             // REPOSTED BY
@@ -302,9 +303,6 @@
           .commentCount
             .counter
               +border-dark
-
-          .image .fade
-            background: url('/images/gradients/header-fade-dark.png') repeat-x bottom
 
           // ENTRY THUMB DETAILS
           .details

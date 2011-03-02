@@ -12,7 +12,6 @@
 
     / only for +image
     .image{style: "background: url(#{dream_header_url(entry.images.first)}) no-repeat top left"}
-      .fade
 
     %h1.title= entry.title
     / only for noimage
@@ -43,6 +42,7 @@
         %td.top{valign: "top", height: "64"}
           %ul
             - entry.images.limit(5).each do |image|
+              / = gallery_1d_thumb(image)
               %li{style: "background: url(#{image.url(:thumb, :size => 64)}) no-repeat top left"}
 
     / MIDDLE ROW - TAG CLOUD
