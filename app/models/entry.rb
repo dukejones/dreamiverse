@@ -91,6 +91,9 @@ class Entry < ActiveRecord::Base
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   }
 
+  def self.youtube_links
+    []
+  end
   
   def nouns
     whos + wheres + whats

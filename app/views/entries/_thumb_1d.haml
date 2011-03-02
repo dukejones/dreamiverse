@@ -41,7 +41,7 @@
     - unless entry.images.blank?
       %tr
         %td.top{valign: "top", height: "64"}
-          %ul
+          %ul.gallery
             - entry.images.limit(5).each do |image|
               = gallery_1d_thumb(image)
 
