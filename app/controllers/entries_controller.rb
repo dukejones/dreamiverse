@@ -19,13 +19,14 @@ class EntriesController < ApplicationController
   end
 
   def show
-    redirect_to(user_entry_path(Entry.find(params[:id]).user.username, @entry)) unless params[:username]
+    @entry = Entry.find params[:id]
+    redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     entry_list
-    i = @entries.index {|e| e.id == params[:id].to_i } || 0
+    i = @entries.index {|e| e == @entry } || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
-    @entry = @entries[i]
+    # @entry = @entries[i]
     deny and return unless user_can_access?
 
     @comments = @entry.comments.order('created_at DESC') # .limit(10)
