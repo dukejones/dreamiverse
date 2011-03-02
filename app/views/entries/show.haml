@@ -96,8 +96,7 @@
             .tagInput.target
               %input#newTag{placeholder: 'who/where/what'}
             .tagThisEntry.trigger
-              %span +
-              add
+              + add
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
