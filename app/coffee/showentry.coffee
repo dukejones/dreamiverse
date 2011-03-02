@@ -32,22 +32,6 @@ $(document).ready ->
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 	 
-	
-	# Setup tagToggle
-  $('.tagToggle').click( ->
-    console.log $('.imageHeader').css('opacity')
-    if $('.imageHeader').css('opacity') is '1'
-      $('.imageHeader').animate({opacity: 0}, 400)
-    else
-      $('.imageHeader').animate({opacity: 1}, 400)
-  )
-  
-  # Setup show toggle button
-  $('.content').hover( ->
-    $('.tagToggle').fadeIn()
-  , ->
-    $('.tagToggle').fadeOut()
-  )
       
 	
 	# Setup comment expander
