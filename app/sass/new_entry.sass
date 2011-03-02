@@ -639,15 +639,19 @@
         height: 30px
         line-height: 30px
         margin: 5px -4px 0 0
+
       .removeicon
-        +round(8)
+        +block
+        +round(12)
         +right
-        +center
+        +alpha(30)
         +pointer
-        width: 30px
-        height: 30px
-        line-height: 30px
-        color: red
+        margin: 5px 4px 0 0
+        width: 24px
+        height: 24px
+        background: #fff url(/images/icons/close-22.png) no-repeat center
+        &:hover
+          +alpha(100)
        
   // NEW ENTRY MOOD
   .entryMood
@@ -938,10 +942,6 @@
           input
             color: #555
 
-        .removeicon
-          +transparent-dark(80)
-          +button-dark
-
     // NEW ENTRY MOOD
     .entryMood
       +shine-light-alpha(24)
@@ -1099,10 +1099,6 @@
           +transparent-dark(20)
           input
             color: #ccc
-
-        .removeicon
-          +transparent-light(80)
-          +button-light
 
     // NEW ENTRY MOOD
     .entryMood
