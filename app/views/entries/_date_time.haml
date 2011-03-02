@@ -10,7 +10,7 @@
   
   .time
     = select_hour(Time.now, options, :class => 'hour', :name => 'timeHour' )
-    %select.timeMinute{name: "timeMinute"}
+    %select.minute{name: "timeMinute"}
       %option{value: "00"} 00
       %option{value: "30"} 30
     %select.amPm{name: "timeAmPm"}

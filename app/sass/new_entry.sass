@@ -501,36 +501,11 @@
 
   // NEW ENTRY TAGS
   .entryTags
-    #tag-list
-      width: 660px
-      .emptyTag, .tag
-        +relative
-        +round(8)
-        +left
-        +overflow
-        margin: 4px 8px 0 0
-        padding: 0
-        height: 32px
-        line-height: 32px
-        .close
-          +block
-          +round(12)
-          +right
-          +alpha(30)
-          margin: 4px 4px 0 0
-          width: 24px
-          height: 24px
-          background: #fff url(/images/icons/close-22.png) no-repeat center
-          &:hover
-            +alpha(100)
-        span
-          +left
-          margin: 0 8px
 
     .tagInputWrap
       +left
       height: 40px
-      margin: 0 0 0 8px
+      margin: 0 0 8px 8px
       img
         +left
         margin: 0
@@ -912,10 +887,6 @@
             +shine-light-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRightLight-40.png) no-repeat right
-      .emptyTag, .tag
-        +flat-light-medium
-        +button-light
-        color: #333
 
 
 
@@ -1072,10 +1043,6 @@
             +shine-dark-alpha(13)
         .tagInputRight
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
-      .emptyTag, .tag
-        +button-dark
-        +flat-dark-medium
-        color: #ddd
 
     // NEW ENTRY LINK
     .entryLinks.entryAssets

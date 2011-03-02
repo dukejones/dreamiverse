@@ -92,6 +92,11 @@ class Entry < ActiveRecord::Base
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   }
 
+
+  def self.youtube_links
+    []
+  end
+
   # This method smells bad.
   def self.list(viewer, viewed, lens, filters)
     filters ||= {}

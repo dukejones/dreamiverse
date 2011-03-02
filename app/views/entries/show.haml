@@ -73,6 +73,9 @@
       %ul.gallery
         - @entry.images.each do |image|
           = gallery_list_item(image)
+        - @entry.youtube_links.each do |link|
+          = youtube_link(link)
+
       .clear
 
 

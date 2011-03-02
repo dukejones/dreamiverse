@@ -2,7 +2,7 @@
 / %a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
 .thumb-1d{class: entry.images.blank? ? "noImage" : ""}
   / LEFT SIDE
-  .left
+  %a.left{href: user_entry_path(entry.user.username, entry)}
     .user
       .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
       %p.name= entry.user.username
@@ -41,6 +41,7 @@
     - unless entry.images.blank?
       %tr
         %td.top{valign: "top", height: "64"}
+
           %ul.entryImages
             - entry.images.limit(5).each do |image|
               = gallery_1d_thumb(image)
