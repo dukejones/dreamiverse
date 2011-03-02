@@ -12,6 +12,9 @@ class StreamController
     
     @streamModel = new StreamModel()
     @streamView = new StreamView()
+    
+    # Setup youtube images for each entry
+    
 
 
 

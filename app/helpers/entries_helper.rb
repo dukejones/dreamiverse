@@ -3,7 +3,7 @@ module EntriesHelper
     small_image_url = image.url(:thumb, :size => 122)
     large_image_url = image.url(:medium)
     raw(%{
-      <li style="background: #ababab url(#{small_image_url}) no-repeat">
+      <li class="lightbox" style="background: #ababab url(#{small_image_url}) no-repeat">
         <a href="#{large_image_url}"></a>
       </li>
     })
