@@ -150,7 +150,7 @@
           add
       #linkHolder
         - @entry.links.each do |link|
-          .linkContainer
+          .linkContainer{class: link.url.match(/http:\/\/(?:www\.)?youtube.*/) ? 'youtube' : ''}
             .title
               %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]', style: "width: 220px"}
             .url
