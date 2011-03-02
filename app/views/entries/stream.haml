@@ -2,10 +2,15 @@
   = sass_link_tag 'entries'
   = coffeescript_include_tag 'modal', 'stream'
   = javascript_include_tag 'tag_stream', 'friendslist', 'dreams', 'geo'
+  = stylesheet_link_tag 'jquery.lightbox-0.5.css'
+- content_for :foot do
+  = javascript_include_tag 'jquery.lightbox-0.5.pack.js'
 
 
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
+
+
 
 / ENTRY FIELD
 #entryField

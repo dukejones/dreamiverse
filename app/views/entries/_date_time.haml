@@ -6,11 +6,13 @@
   .date
     = select_month(Date.current, options = {}, :class => 'month', :name => 'dateMonth')
     = select_day(Date.current, options, :class => 'day', :name => 'dateDay' )
-    = select_year(Date.current,  options, :class => 'year', :name => 'dateYear', :start_year => 1900, :end_year => 2013 )
+    = select_year(Date.current, options, :class => 'year', :name => 'dateYear', :start_year => 1900, :end_year => 2013)
   
   .time
     = select_hour(Time.now, options, :class => 'hour', :name => 'timeHour' )
-    = select_minute(Time.now, options, :class => 'minute', :name => 'timeMinute' )
+    %select.timeMinute{name: "timeMinute"}
+      %option{value: "00"} 00
+      %option{value: "30"} 30
     %select.amPm{name: "timeAmPm"}
       %option{value: "am"} am
       %option{value: "pm"} pm

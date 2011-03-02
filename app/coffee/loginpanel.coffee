@@ -6,7 +6,7 @@ $(document).ready ->
   # of the pages
   
   if $('#rightColumn').attr('id')
-    $('.loginPanelWrap a').click (event) ->
+    $('.loginPanelWrap a.login').click (event) ->
       event.preventDefault()
       
       if $(this).parent().find('.loginPanel').css('display') == 'none'
@@ -14,17 +14,17 @@ $(document).ready ->
       else
         $(this).parent().find('.loginPanel').slideUp()
     
-    $('.joinWrap a').click (event) ->
-      event.preventDefault()
-      
-      $(this).parent().find('.join').hide()
-      $(this).parent().find('.joinButton').show()
-      $(this).parent().parent().find('.intro').slideUp()
-      $(this).parent().parent().find('.joinForm').slideDown()
-      
-      $('.haveSeedcode').click =>
-        $('.haveSeedcode').slideUp('fast')
-        $('.seedcodeExpander').slideDown('fast')
+    # $('.joinWrap a').click (event) ->
+    #       event.preventDefault()
+    #       
+    #       $(this).parent().find('.join').hide()
+    #       $(this).parent().find('.joinButton').show()
+    #       $(this).parent().parent().find('.intro').slideUp()
+    #       $(this).parent().parent().find('.joinForm').slideDown()
+    #       
+    #       $('.haveSeedcode').click =>
+    #         $('.haveSeedcode').slideUp('fast')
+    #         $('.seedcodeExpander').slideDown('fast')
     
     # Check for cookie "welcome" if found, do nothing
     # if not found, display the welcomeWrap

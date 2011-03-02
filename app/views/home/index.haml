@@ -78,7 +78,7 @@
         #loginSpacer
 
   / JOIN PANEL
-  .joinPanel.wrapper
+  .joinPanel
     = form_for(User.new, url: user_registration_path) do |f|
       .intro
         %h1 New to Dreamcatcher?
@@ -88,27 +88,9 @@
         What is the world dreaming?</p> 
         <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
-
-      .joinForm.hidden
-        %p.error.hidden email already in use
-        = f.text_field :email, :class => 'login-input', :placeholder => "email"
-        %p.error.hidden passwords do not match
-        = f.password_field :password, :class => 'login-input', :placeholder => "password"
-        = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
-        %span http://dreamcatcher.net/username
-        %p.error.hidden that username is taken
-        = f.text_field :username, :class => 'login-input', :placeholder => "username"
-    
-        .haveSeedcode enter a seed code &raquo;
-        .seedcodeExpander.hidden
-          %p.error.hidden incorrect seed code
-          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
-
       / JOIN TOGGLE - BUTTON
       .joinWrap
-        %a.join{href: join_path}
-          Join now &rsaquo;
-        %input.joinButton.hidden{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+        %a.join{href: join_path} Join now &rsaquo;
 
 
   / DREAMSTARS MINI

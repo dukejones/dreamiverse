@@ -54,8 +54,7 @@ class AvatarController
           dataType: 'json'
           data:
             "user[image_id]": response.image.id
-          success: (data, status, xhr) =>
-            alert 'updated avatar!  '
+          success: (data, status, xhr) => log "updated avatar"
         }
         
         @uploaderDisplayed = false
