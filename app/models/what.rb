@@ -23,10 +23,8 @@ class What < ActiveRecord::Base
     word.downcase.strip.slice(0...MaxLength).gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )
   end
   
-  scope :duplicates, group('name').having('count(name) > 1')
-  
-  def self.eliminate_duplicates!
-    
+  def duplicates
+    group('name').having('count(name) > 1')
   end
   
   def clean_name
