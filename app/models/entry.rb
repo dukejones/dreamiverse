@@ -39,6 +39,9 @@ class Entry < ActiveRecord::Base
   
   has_many :links, :as => :owner
   accepts_nested_attributes_for :links
+  def youtube_links
+    []
+  end
   
   has_and_belongs_to_many :images
   belongs_to :main_image, :class_name => "Image"
@@ -47,39 +50,51 @@ class Entry < ActiveRecord::Base
   validates_presence_of :body
   
   before_save :set_sharing_level
+  before_save :set_main_image
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
 
 
-  scope :everyone, where(sharing_level: Entry::Sharing[:everyone])
-  scope :friends, where(sharing_level: Entry::Sharing[:friends])
-  scope :private, where(sharing_level: Entry::Sharing[:private])
-  scope :followers, where(sharing_level: Entry::Sharing[:followers])
-  scope :anonymous, where(sharing_level: Entry::Sharing[:anonymous])
+
+
+  def self.everyone
+    where(sharing_level: Entry::Sharing[:everyone])
+  end
+  def self.friends
+    where(sharing_level: Entry::Sharing[:friends])
+  end
+  def self.private 
+    where(sharing_level: Entry::Sharing[:private])
+  end
+  def self.followers 
+    where(sharing_level: Entry::Sharing[:followers])
+  end
+  def self.anonymous
+    where(sharing_level: Entry::Sharing[:anonymous])
+  end
   
-  
-  scope :order_by_starlight, 
+  def self.order_by_starlight
     select('entries.*').
     from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
     joins("JOIN starlights ON starlights.id=maxstars.maxid").
     joins("JOIN entries ON entries.id=starlights.entity_id").
     order('starlights.value DESC')
-  
-  scope :friends_with, -> user { 
+  end
+  def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 
     ).joins(:user => [:following, :followers])
-  }
+  end
   
-  scope :followed_by, -> user { 
+  def self.followed_by(user)
     where( 
       user: { followers: user } 
     ).joins(:user => [:followers])
-  }
+  end
   
   # where dream is public or i am friends with entry.user
-  scope :accessible_by, -> user { 
+  def self.accessible_by(user)
     where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
@@ -89,15 +104,11 @@ class Entry < ActiveRecord::Base
         ) 
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
-  }
-
-
-  def self.youtube_links
-    []
   end
 
+
   # This method smells bad.
-  def self.list(viewer, lens, filters)
+  def self.list(viewer, viewed, lens, filters)
     filters ||= {}
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
@@ -105,7 +116,7 @@ class Entry < ActiveRecord::Base
     if lens == :field
       # TODO: Make this a scope instead of looping over the array.
       if viewer
-        entries = entry_scope.where(user: filters[:user]).select {|e| viewer.can_access?(e) }
+        entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
       else
         entries = entry_scope.select{|e| e.everyone? } 
       end
@@ -120,7 +131,7 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date & starlight
     end
 
-    debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
+    # debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
     entries
   end
 
@@ -224,4 +235,7 @@ protected
     sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
   end
 
+  def set_main_image
+    self.main_image = self.images.first unless self.main_image_id?
+  end
 end
