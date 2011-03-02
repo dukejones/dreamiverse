@@ -33,21 +33,6 @@ class StreamModel
     (data) =>
       log data
     )
-    # $.ajax {
-    #       type: 'GET'
-    #       dataType: 'json'
-    #       url: '/stream'
-    #       data:
-    #         type_filter: @filters[0]
-    #         friend_filter: @filters[1]
-    #         starlight_filter: @filters[2]
-    #       complete: (data, status, xhr) =>
-    #         log data
-    #         log status
-    #       success: (data, status, xhr) =>
-    #         log data
-    #         $.publish('stream:update', [data])
-    #     }
     
   updateFilters: () ->
     @filters = []

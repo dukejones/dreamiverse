@@ -31,7 +31,8 @@ $(document).ready ->
       }
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
-	     
+	 
+      
 	
 	# Setup comment expander
 	$('textarea#comment_body').autoResize

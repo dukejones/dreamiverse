@@ -61,10 +61,41 @@
       .imageHeader
         +round(16)
         +flat-bottom
+        +absolute
         margin: 0
         height: 200px
         width: 662px
 
+      .tagCloud
+        +round(16)
+        +flat-bottom
+        top: 0
+        margin: 0
+        padding: 12px
+        height: 176px
+        width: 638px
+        // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
+        .toggleWrap
+          +right
+          margin: 0 0 12px 12px
+          height: 40px
+          width: 90px
+
+      .tagToggle
+        +absolute
+        +user-select
+        +round(16)
+        +flat-bottom
+        +flat-left
+        +center
+        +alpha(70)
+        top: 0px
+        right: 0px
+        height: 32px
+        line-height: 32px
+        width: 90px
+        &:hover
+          +alpha(90)
 
       // MOOD ICON
       .moodIcon
@@ -390,47 +421,6 @@
             margin: 12px 0 0
 
 
-  // SHOW ENTRY - NO IMAGE
-  #showEntry.noImage
-    .content
-
-      // HEADER IMAGE & TITLE
-      .imageHeader
-        +hidden
-
-      // MOOD ICON
-      .moodIcon
-        +relative
-        +right
-
-      // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        +relative
-        +right
-        top: 0
-        right: 0
-        margin: 16px 12px 8px 8px
-
-      // TITLE
-      .title
-        +left
-        +clear
-        text-align: left
-        height: auto
-        position: relative
-        top: 0
-        margin: -20px 0 0 20px
-        max-width: 540px
-
-      // BODY
-      .body
-        +clear
-
-      // GALLERY
-      ul.gallery
-        +hidden
-
-
 
 // LIGHTBOX
 
@@ -476,6 +466,10 @@
       // CONTENT
       .content
         +flat-light
+
+        .tagToggle
+          +shine-light-alpha(16)
+          +button-light
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
@@ -614,6 +608,10 @@
       .content
         +flat-dark
 
+        .tagToggle
+          +shine-dark-alpha(16)
+          +button-dark
+
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
           +transparent-dark(50)
@@ -721,43 +719,3 @@
               +bevel-dark
               +button-dark
 
-
-
-// SHOW ENTRY - NO IMAGE
-// COLORS
-.light
-  #entryField
-    #showEntry.noImage
-
-      // MOOD ICON
-      .moodIcon
-        +glow-light(10)
-        &:hover
-          +cursor
-          border: 1px solid #bbb
-
-      // TITLE
-      .title
-        background: none
-
-
-.dark
-  #entryField
-    #showEntry.noImage
-
-      // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        +transparent-light(30)
-        +border-dark
-
-      // MOOD ICON
-      .moodIcon
-        +glow-dark(10)
-        &:hover
-          +glow-dark(10)
-          +cursor
-          border: 1px solid #555
-
-      // TITLE
-      .title
-        background: none
