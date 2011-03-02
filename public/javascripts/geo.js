@@ -53,7 +53,13 @@ function initGeo(){
 /* LOCATION DATA */
 var getGeo = function(){
   if(navigator.geolocation){
-    showGeoHeader();
+    // Check for cookie "geoaccept" if found, do nothing
+    // if not found, display the geoHeader & set cookie
+    // so user doesnt see it after this time
+    if(window.getCookie("geoaccept") == null){
+      showGeoHeader();
+    }
+    
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
     
     // Inject the google geo api
@@ -64,18 +70,21 @@ var getGeo = function(){
 }
 
 function showGeoHeader(){
-  var newElement = '<div id="geoHeader"><p>Allow your browser to check for your location.</p><div class="geoArrow"></div></div>';
-  $('body').prepend(newElement);
+  // Only show header for Firefox Browser
+  if(window.BrowserDetect.browser == "Firefox" || window.BrowserDetect.browser == "Chrome"){
+    var newElement = '<div id="geoHeader"><p>Allow your browser to check for your location.</p><div class="geoArrow"></div></div>';
+    $('body').prepend(newElement);
   
-  $('#geoHeader').animate({top: 0}, 1000);
+    $('#geoHeader').animate({top: 0}, 1000);
   
-  $('#geoHeader').click(function(){
-    $(this).remove()
-  })
+    $('#geoHeader').click(function(){
+      window.setCookie("geoaccept", 1, 365)
+      $(this).remove()
+    })
+  }
 }
 
 function geoError(error){
-  //alert("geolocation error : " + error.code + ' / ' + error.message);
   $('.entryLocation .data').slideDown()
   $('.entryLocation .finding').remove();
 }
@@ -99,7 +108,9 @@ function geoSuccess(position) {
   var lat = position.coords.latitude;
   var lng = position.coords.longitude;
   
+  // Slide up geoHeader & set cookie to not show geoHeader again
   $('#geoHeader').slideUp();
+  window.setCookie("geoaccept", 1, 365)
   
   getAddress(lat, lng);
 }

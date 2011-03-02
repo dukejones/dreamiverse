@@ -103,7 +103,8 @@ class ImagesController < ApplicationController
       respond_to do |format|
         format.html { render :text => 'Image was successfully created.' }
         format.json  { 
-          thumb_size = '120x120'
+          #thumb_size = '120x120'
+          thumb_size = :thumb
           # @image.resize(thumb_size)
           render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
         }
