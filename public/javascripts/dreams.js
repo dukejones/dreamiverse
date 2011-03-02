@@ -41,6 +41,14 @@ var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_drea
 
 function setupUploader(){      
   if(document.getElementById('imageDropArea')){
+    // Setup radio button events
+    
+    $('.entryImageContainer input[type=radio]').change(function(){
+      //alert($(this).find("input[type='radio']:checked").val());
+      $('.entryImageContainer .radio').removeClass('selected')
+      $(this).parent().addClass('selected')
+    })
+    
     uploader = new qq.FileUploader({
       element: document.getElementById('imageDropArea'),
       action: '/images.json',
