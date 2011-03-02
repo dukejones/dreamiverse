@@ -110,12 +110,12 @@
 
             .emptyTag.hidden
               %span.tagContent
-              .close X
+              .close
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
                 - if @entry.user == current_user
-                  .close X
+                  .close
 
             / .clear
           #sorting
