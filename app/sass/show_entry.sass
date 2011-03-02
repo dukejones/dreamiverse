@@ -61,6 +61,7 @@
       .imageHeader
         +round(16)
         +flat-bottom
+        +absolute
         margin: 0
         height: 200px
         width: 662px
@@ -68,7 +69,6 @@
       .tagCloud
         +round(16)
         +flat-bottom
-        +absolute
         top: 0
         margin: 0
         padding: 12px
@@ -76,22 +76,25 @@
         width: 638px
         // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
         .toggleWrap
-          +left
-          margin: 12px
-          height: 28px
-          width: 100px
+          +right
+          margin: 0 0 12px 12px
+          height: 40px
+          width: 90px
 
       .tagToggle
         +absolute
-        +round(8)
+        +round(16)
+        +flat-bottom
+        +flat-left
         +center
-        +pointer
-        z-index: 100
-        top: 12px
-        left: 12px
-        height: 28px
-        line-height: 28px
-        width: 100px
+        +alpha(70)
+        top: 0px
+        right: 0px
+        height: 32px
+        line-height: 32px
+        width: 90px
+        &:hover
+          +alpha(90)
 
       // MOOD ICON
       .moodIcon
