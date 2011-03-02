@@ -17,7 +17,11 @@ class window.TagsController
     @tagInput = new @tagInputClass(@$container.find('#newTag'))
     @tagViews = new @tagViewListClass(@tagViewClass)
 
-    $.subscribe 'tags:create', (tagName)=> @createTag(tagName)
+    $.subscribe 'tags:create', (tagName)=> 
+      # Check for empty tag
+      log @tagInput.$input.val()
+      if @tagInput.$input.val() isnt ""
+        @createTag(tagName)
     
     
   createTag: (tagName)->
