@@ -5,12 +5,12 @@
 
   - datetime = @entry.dreamed_at || Time.now
   .date
-    = select_month(datetime, :prefix => :dreamed_at, :class => 'month')
-    = select_day(datetime, :prefix => :dreamed_at, :class => 'day')
-    = select_year(datetime, :prefix => :dreamed_at, :class => 'year', :start_year => 1980)
+    = select_month(datetime, {:prefix => :dreamed_at}, :class => 'month')
+    = select_day(datetime, {:prefix => :dreamed_at},   :class => 'day')
+    = select_year(datetime, {:prefix => :dreamed_at},  :class => 'year', :start_year => 1980)
   
   .time
-    = select_hour(datetime, :prefix => :dreamed_at, :class => 'hour' )
+    = select_hour(datetime, {:prefix => :dreamed_at}, :class => 'hour' )
     -# Note: Use select_tag here.
     %select.amPm{name: "dreamed_at[ampm]"}
       %option{value: "am"} am
