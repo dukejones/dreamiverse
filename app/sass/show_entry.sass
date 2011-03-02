@@ -421,47 +421,6 @@
             margin: 12px 0 0
 
 
-  // SHOW ENTRY - NO IMAGE
-  #showEntry.noImage
-    .content
-
-      // HEADER IMAGE & TITLE
-      .imageHeader
-        +hidden
-
-      // MOOD ICON
-      .moodIcon
-        +relative
-        +right
-
-      // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        +relative
-        +right
-        top: 0
-        right: 0
-        margin: 16px 12px 8px 8px
-
-      // TITLE
-      .title
-        +left
-        +clear
-        text-align: left
-        height: auto
-        position: relative
-        top: 0
-        margin: -20px 0 0 20px
-        max-width: 540px
-
-      // BODY
-      .body
-        +clear
-
-      // GALLERY
-      ul.gallery
-        +hidden
-
-
 
 // LIGHTBOX
 
@@ -760,43 +719,3 @@
               +bevel-dark
               +button-dark
 
-
-
-// SHOW ENTRY - NO IMAGE
-// COLORS
-.light
-  #entryField
-    #showEntry.noImage
-
-      // MOOD ICON
-      .moodIcon
-        +glow-light(10)
-        &:hover
-          +cursor
-          border: 1px solid #bbb
-
-      // TITLE
-      .title
-        background: none
-
-
-.dark
-  #entryField
-    #showEntry.noImage
-
-      // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        +transparent-light(30)
-        +border-dark
-
-      // MOOD ICON
-      .moodIcon
-        +glow-dark(10)
-        &:hover
-          +glow-dark(10)
-          +cursor
-          border: 1px solid #555
-
-      // TITLE
-      .title
-        background: none
