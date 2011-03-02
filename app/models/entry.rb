@@ -58,43 +58,43 @@ class Entry < ActiveRecord::Base
 
 
 
-  def everyone
+  def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
   end
-  def friends
+  def self.friends
     where(sharing_level: Entry::Sharing[:friends])
   end
-  def private 
+  def self.private 
     where(sharing_level: Entry::Sharing[:private])
   end
-  def followers 
+  def self.followers 
     where(sharing_level: Entry::Sharing[:followers])
   end
-  def anonymous
+  def self.anonymous
     where(sharing_level: Entry::Sharing[:anonymous])
   end
   
-  def order_by_starlight
+  def self.order_by_starlight
     select('entries.*').
     from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
     joins("JOIN starlights ON starlights.id=maxstars.maxid").
     joins("JOIN entries ON entries.id=starlights.entity_id").
     order('starlights.value DESC')
   end
-  def friends_with(user)
+  def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 
     ).joins(:user => [:following, :followers])
   end
   
-  def followed_by(user)
+  def self.followed_by(user)
     where( 
       user: { followers: user } 
     ).joins(:user => [:followers])
   end
   
   # where dream is public or i am friends with entry.user
-  def accessible_by(user)
+  def self.accessible_by(user)
     where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
