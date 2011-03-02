@@ -1,11 +1,10 @@
 // STARLIGHT BURST
-#starlightBurstGlow
-  %img.starlight{src: '/images/logos/starlight-logo.png', width: '', height: ''}
-
-  .shadow
+#starlightBurstGlow.hidden
+  %img.starlight{src: '/images/icons/starlightBurst-65.png', width: '65', height: '65'}
 
   #starlightBurst
-    %h2 Bursting will give your starlight to the selected entry:
+    %h2 starlight burst
+    %h3 Bursting will give your starlight to the selected entry:
 
     .burstInfo
       %p The Divine Enlightenment!!!!!!
@@ -14,13 +13,14 @@
         %span xavi
 
     .myStarlight
-      .count 45, 253
+      %input.count{type: 'text', value: '45,253'}
       %h1 My Starlight
 
-    .burst
+    .burstWrap
       %span +
       .count 45, 253
-      %h1 Burst
+      .burstGlow
+        %input.burst{type: 'submit', value: 'burst'}
 
 
 
