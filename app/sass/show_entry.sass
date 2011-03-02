@@ -77,7 +77,6 @@
         // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
         .toggleWrap
           +right
-          margin: 0 0 12px 12px
           height: 40px
           width: 90px
 
@@ -248,8 +247,6 @@
             height: 34px
             line-height: 34px
             +save(17)
-            span
-              color: green
 
           // POST TIME & LOCATION
           .postTime, .postLocation
@@ -258,7 +255,7 @@
             +center
             +user-select
             +cursor
-            margin: 0 8px 4px 0
+            margin: 0 0 4px 8px
             height: 34px
             line-height: 34px
             padding: 0 8px
@@ -519,6 +516,10 @@
           .tagThisEntry
             +button-light
             +shine-light(17)
+          .tagThisEntry.selected
+            +button-dark
+            +shine-dark(17)
+            color: #ddd
 
           .tagInput
             +input-light(small)
@@ -662,6 +663,10 @@
           .tagThisEntry
             +button-dark
             +shine-dark(17)
+          .tagThisEntry.selected
+            +button-light
+            +shine-light(17)
+            color: #333
 
           .tagInput
             +input-dark(small)
