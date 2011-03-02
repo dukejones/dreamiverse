@@ -91,6 +91,54 @@ class Entry < ActiveRecord::Base
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   }
 
+  # This method smells bad.
+  def self.list(viewer, lens, filters)
+    filters ||= {}
+    entry_scope = Entry.order('created_at DESC')
+    entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
+    
+    if lens == :field
+      # TODO: Make this a scope instead of looping over the array.
+      if viewer
+        entries = entry_scope.where(user: filters[:user]).select {|e| viewer.can_access?(e) }
+      else
+        entries = entry_scope.select{|e| e.everyone? } 
+      end
+    elsif lens == :stream
+      page_size = filters[:page_size] || 30
+      # only entries within 10 days
+      # top page_size of each
+      entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
+      entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+
+      entries = entry_scope.where(:user => viewer.following)
+      # each should be sorted according to date & starlight
+    end
+
+    debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
+    entries
+  end
+
+  # def stream_list_scoped
+  #   entries = Entry.accessible_by(viewer)
+  # 
+  #   entries = entries.order('created_at DESC')
+  #   
+  #   # starlight: low, medium, high, off - for now just high
+  #   entries = entries.order_by_starlight if filters[:starlight] == 'high'
+  # 
+  #   # friends, or following
+  #   if filters[:friend] == 'friends'
+  #     entries = entries.friends_with(viewer)
+  #   elsif filters[:friend] == 'following'
+  #     entries = entries.followed_by(current_user)
+  #   end
+  # 
+  #   page_size = filters[:page_size] || 30
+  #   entries = entries.limit(page_size)
+  #   entries = entries.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+  #   
+  # end
   
   def nouns
     whos + wheres + whats

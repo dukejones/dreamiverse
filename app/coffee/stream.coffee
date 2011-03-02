@@ -26,10 +26,12 @@ class StreamView
 
 class StreamModel
   updateData: ->
-    $.getJSON("/stream.json",
-      type_filter: @filters[0]
-      friend_filter: @filters[1]
-      starlight_filter: @filters[2],
+    $.getJSON("/stream.json", {
+      filters:
+        type: @filters[0]
+        friend: @filters[1]
+        starlight: @filters[2]
+    },
     (data) =>
       log data
     )
