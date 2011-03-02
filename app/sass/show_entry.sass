@@ -77,7 +77,6 @@
         // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
         .toggleWrap
           +right
-          margin: 0 0 12px 12px
           height: 40px
           width: 90px
 
@@ -169,18 +168,24 @@
 
       // GALLERY
       ul.gallery
-        margin-left: 2px
+        margin-left: 12px
         list-style: none
         li
           +round(8)
           +left
-          margin: 0 2px 2px 0
-          height: 128px
-          width: 128px
+          margin: 0 4px 4px 0
+          height: 122px
+          width: 122px
           background: #ababab
+          &.youtube
+            img
+              +absolute
+              top: 5px
+            a
+              +round(8)
           a
-            height: 120px
-            width: 120px
+            height: 122px
+            width: 122px
             +block
           
 
@@ -188,7 +193,7 @@
       .entryLinks
         +round(12)
         +clear
-        margin: 6px 3px 0
+        margin: 4px 12px 0
         padding: 8px 8px 0
         .link
           +overflow
@@ -242,8 +247,6 @@
             height: 34px
             line-height: 34px
             +save(17)
-            span
-              color: green
 
           // POST TIME & LOCATION
           .postTime, .postLocation
@@ -252,7 +255,7 @@
             +center
             +user-select
             +cursor
-            margin: 0 8px 4px 0
+            margin: 0 0 4px 8px
             height: 34px
             line-height: 34px
             padding: 0 8px
@@ -513,6 +516,10 @@
           .tagThisEntry
             +button-light
             +shine-light(17)
+          .tagThisEntry.selected
+            +button-dark
+            +shine-dark(17)
+            color: #ddd
 
           .tagInput
             +input-light(small)
@@ -635,7 +642,7 @@
 
         // ENTRY LINKS
         .entryLinks
-          +flat-dark-medium
+          background: #222
           .link
             +button-dark
             +bevel-dark
@@ -656,6 +663,10 @@
           .tagThisEntry
             +button-dark
             +shine-dark(17)
+          .tagThisEntry.selected
+            +button-light
+            +shine-light(17)
+            color: #333
 
           .tagInput
             +input-dark(small)
