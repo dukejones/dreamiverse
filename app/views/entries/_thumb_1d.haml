@@ -1,7 +1,8 @@
 / ENTRY THUMB 1D - GENERAL
-%a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
+/ %a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
+.thumb-1d{class: entry.images.blank? ? "noImage" : ""}
   / LEFT SIDE
-  .left
+  %a.left{href: user_entry_path(entry.user.username, entry)}
     .user
       .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
       %p.name= entry.user.username
@@ -40,10 +41,10 @@
     - unless entry.images.blank?
       %tr
         %td.top{valign: "top", height: "64"}
-          %ul
+
+          %ul.entryImages
             - entry.images.limit(5).each do |image|
-              / = gallery_1d_thumb(image)
-              %li{style: "background: url(#{image.url(:thumb, :size => 64)}) no-repeat top left"}
+              = gallery_1d_thumb(image)
 
     / MIDDLE ROW - TAG CLOUD
     %tr

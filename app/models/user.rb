@@ -84,6 +84,10 @@ class User < ActiveRecord::Base
   def friends
     following & followers
   end
+  def following_only  # following but not friends
+    following - followers
+  end
+  
   def following?(user)
     self.following.exists?(user.id)
   end

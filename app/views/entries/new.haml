@@ -129,11 +129,11 @@
       #tag-list.tag-list.ui-sortable
         .emptyTag.tag.tag_what.hidden
           %span.tagContent
-          .close X
+          .close
         - @entry.custom_tags.each do |what|
           .tag_what.tag
             %span.tagContent= what.name
-            .close X
+            .close
 
         .clear
       #sorting.clear
@@ -157,10 +157,9 @@
               %input.linkUrlValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
               .icon
                 %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
-
             .removeicon
-              x
-        /<div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=http://www.dreamcatcher.net"></div></div>
+
+        /<div class="removeicon"></div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=http://www.dreamcatcher.net"></div></div>
       .clear
 
     / NEW ENTRY MOOD

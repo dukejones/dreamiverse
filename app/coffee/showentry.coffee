@@ -1,7 +1,7 @@
 
 $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
-  $('.gallery li a').lightBox();
+  $('.gallery .lightbox a').lightBox();
   
   # Setup tag re-ordering
   if $('#entryField').data('owner')
@@ -60,7 +60,10 @@ $(document).ready ->
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     # for show entry
-    $('.tagInput').css('width', '250px')
+    $('.tagInput').css('width', '250px') 
+  
+  
+  
     
 # There is a point where using objects is just more obfuscation.
 

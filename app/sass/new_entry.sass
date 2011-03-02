@@ -509,24 +509,24 @@
         +left
         +overflow
         margin: 4px 8px 0 0
-        padding: 0 0 0 8px
+        padding: 0
         height: 32px
         line-height: 32px
         .close
           +block
-          +round(7)
-          +flat-left
+          +round(12)
           +right
-          +bold
-          +center
-          margin-left: 8px
-          width: 32px
-          height: 32px
-          line-height: 32px
-          color: #fff
-          background: rgba(179,59,48,0.3)
+          +alpha(30)
+          margin: 4px 4px 0 0
+          width: 24px
+          height: 24px
+          background: #fff url(/images/icons/close-22.png) no-repeat center
           &:hover
-            background: rgba(179,59,48,1.0)
+            +alpha(100)
+        span
+          +left
+          margin: 0 8px
+
     .tagInputWrap
       +left
       height: 40px
@@ -536,14 +536,14 @@
         margin: 0
       .tagInput
         +left
-        width: 530px
+        // width: 530px
         height: 40px
         margin: 0 0 0 26px
         input
           +left
           +font(18)
           +transparent
-          width: 460px
+          width: 450px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -639,15 +639,19 @@
         height: 30px
         line-height: 30px
         margin: 5px -4px 0 0
+
       .removeicon
-        +round(8)
+        +block
+        +round(12)
         +right
-        +center
+        +alpha(30)
         +pointer
-        width: 30px
-        height: 30px
-        line-height: 30px
-        color: red
+        margin: 5px 4px 0 0
+        width: 24px
+        height: 24px
+        background: #fff url(/images/icons/close-22.png) no-repeat center
+        &:hover
+          +alpha(100)
        
   // NEW ENTRY MOOD
   .entryMood
@@ -938,10 +942,6 @@
           input
             color: #555
 
-        .removeicon
-          +transparent-dark(80)
-          +button-dark
-
     // NEW ENTRY MOOD
     .entryMood
       +shine-light-alpha(24)
@@ -1099,10 +1099,6 @@
           +transparent-dark(20)
           input
             color: #ccc
-
-        .removeicon
-          +transparent-light(80)
-          +button-light
 
     // NEW ENTRY MOOD
     .entryMood

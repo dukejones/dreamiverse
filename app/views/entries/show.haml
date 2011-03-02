@@ -73,6 +73,9 @@
       %ul.gallery
         - @entry.images.each do |image|
           = gallery_list_item(image)
+        - @entry.youtube_links.each do |link|
+          = youtube_link(link)
+
       .clear
 
 
@@ -97,8 +100,7 @@
             .tagInput.target
               %input#newTag{placeholder: 'who/where/what'}
             .tagThisEntry.trigger
-              %span +
-              add
+              + add
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
@@ -111,12 +113,12 @@
 
             .emptyTag.hidden
               %span.tagContent
-              .close X
+              .close
             - @entry.custom_tags.each do |what|
               .tagWhat.tag{:'data-id' => what.id }
                 %span.tagContent= what.name
                 - if @entry.user == current_user
-                  .close X
+                  .close
 
             / .clear
           #sorting
