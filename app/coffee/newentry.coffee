@@ -75,7 +75,7 @@ $(document).ready ->
     $('.entryTags').slideDown()
   
   if $('#linkHolder').children().length > 0
-    $('.entryAttach .tag').hide()
+    $('.entryAttach .links').hide()
     $('.entryLinks').slideDown()
   
   

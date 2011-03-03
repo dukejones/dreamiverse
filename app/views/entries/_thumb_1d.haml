@@ -73,6 +73,7 @@
   .thumbBack
 
     / VIDEO PANEL
-    = render :partial => "entries/video"
+    - entry.links.youtube.each do |link|
+      = render :partial => "entries/video", :locals => {:link => link}
 
 
