@@ -56,9 +56,10 @@ var getGeo = function(){
     // Check for cookie "geoaccept" if found, do nothing
     // if not found, display the geoHeader & set cookie
     // so user doesnt see it after this time
-    if(window.getCookie("geoaccept") == null){
+    /*if(window.getCookie("geoaccept") == null){
       showGeoHeader();
-    }
+    }*/
+    showGeoHeader();
     
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
     
@@ -78,7 +79,7 @@ function showGeoHeader(){
     $('#geoHeader').animate({top: 0}, 1000);
   
     $('#geoHeader').click(function(){
-      window.setCookie("geoaccept", 1, 365)
+      //window.setCookie("geoaccept", 1, 365)
       $(this).remove()
     })
   }
@@ -110,7 +111,7 @@ function geoSuccess(position) {
   
   // Slide up geoHeader & set cookie to not show geoHeader again
   $('#geoHeader').slideUp();
-  window.setCookie("geoaccept", 1, 365)
+  //window.setCookie("geoaccept", 1, 365)
   
   getAddress(lat, lng);
 }
@@ -124,6 +125,16 @@ function getAddress(_lat, _lng){
   $('#location_attributes_longitude').val(lng)
   $('#location_attributes_latitude').val(lat)
   
+  var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + _lat + ',' + _lng + '&sensor=true';
+  console.log(url)
+  
+  // NEW WAY (still under construction ;D)
+  /*$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854466,-122.695003&sensor=true', function(data) {
+    console.log(data)
+  });*/
+
+  
+  // OLD WAY
   var latlng = new google.maps.LatLng(lat, lng);
   
   var geocoder = new google.maps.Geocoder();
@@ -131,11 +142,6 @@ function getAddress(_lat, _lng){
     // Remove finding your location option
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
-    
-    // Add new location
-    /*var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
-    $('#locationList').prepend(newElement);
-    $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)*/
     
     var country = data[0].address_components[6].short_name.toLowerCase();
     

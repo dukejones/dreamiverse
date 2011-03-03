@@ -23,7 +23,7 @@ Dreamcatcher::Application.routes.draw do
 
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
-  # Universal
+  # Universal 
   match '/dreamstars' => 'users#index', :as => :dreamstars
   match '/stream' => 'entries#stream', :as => :stream
   match '/feedback' => 'home#feedback', :as => :feedback
@@ -79,10 +79,10 @@ Dreamcatcher::Application.routes.draw do
     resources :comments
   end
 
-
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
+       
     # Entries
     match "/dreams", :to => 'entries#index', :'filters[type]' => 'Dream', :as => 'dreams'
     
@@ -104,6 +104,11 @@ Dreamcatcher::Application.routes.draw do
     ['friends', 'following', 'followers'].each do |mode|
       match mode => 'users#friends', :mode => mode, :as => mode
     end
+    
+    # route alpha legacy view urls to /username 
+    match '/view/:id' => redirect("/%{username}")
+    match '/profile' => redirect("/%{username}")
+    
   end
 
   root :to => 'home#index'
