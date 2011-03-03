@@ -12,7 +12,6 @@
 
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
-
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
@@ -78,14 +77,14 @@
       %ul.gallery
         - @entry.images.each do |image|
           = gallery_list_item(image)
-        / - @entry.links.youtube.each do |link|
-        /   = youtube_link(link)
+        - @entry.links.youtube.each do |link|
+          = youtube_link(link)
       .clear
 
 
 
       / ENTRY LINKS
-      - if @entry.links.count >= 1
+      - if (@entry.links - @entry.links.youtube).count >= 1
         .entryLinks
           - (@entry.links - @entry.links.youtube).each do |link|
             .link
