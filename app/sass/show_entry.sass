@@ -52,95 +52,95 @@
       +font(14)
       margin-right: 12px
 
+    // HEADER IMAGE & TITLE
+    .imageHeader
+      +round(16)
+      +flat-bottom
+      +absolute
+      margin: 0
+      height: 200px
+      width: 662px
+      top: 50px
+
+    .tagCloud
+      +clear
+      +round(16)
+      +flat-bottom
+      +transparent-dark(60)
+      +user-select
+      top: 0
+      margin: 0
+      padding: 12px
+      height: 176px
+      width: 638px
+      // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
+      .toggleWrap
+        +right
+        height: 40px
+        width: 90px
+
+    .tagToggle
+      +absolute
+      +user-select
+      +pointer
+      top: 50px
+      height: 200px
+      width: 662px
+      &:hover
+        +alpha(90)
+
+    // MOOD ICON
+    .moodIcon
+      +absolute
+      top: 0
+      right: 0
+
+    // STARLIGHT COUNT & SHARE OPTIONS
+    .starlight_share
+      +round(16)
+      +absolute
+      top: 210px
+      right: 20px
+      height: 32px
+      line-height: 32px
+      padding: 0 8px
+      img.starlight
+        +left
+        margin: 6px 4px 0 0
+      span
+        +left
+      hr
+        +left
+        +alpha(20)
+        height: 28px
+        width: 1px
+        margin: 2px 0 0 8px
+      .love, .share, .repost
+        +left
+        +pointer
+        width: 28px
+        height: 32px
+      .love
+        background: url(/images/icons/love-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/love-16-selected.png) no-repeat center
+      .love.selected
+        background: url(/images/icons/love-16-selected.png) no-repeat center
+      .share
+        background: url(/images/icons/share-16.png) no-repeat center
+      .share.selected
+        background: url(/images/icons/share-16-selected.png) no-repeat center
+      .repost
+        background: url(/images/icons/repost-24.png) no-repeat center
+      .repost.selected
+        background: url(/images/icons/repost-24-selected.png) no-repeat center
+
+
     .content
       +round(16)
       +relative
+      +flat-top
       +clear
-
-      // HEADER IMAGE & TITLE
-      .imageHeader
-        +round(16)
-        +flat-bottom
-        +absolute
-        margin: 0
-        height: 200px
-        width: 662px
-
-      .tagCloud
-        +round(16)
-        +flat-bottom
-        top: 0
-        margin: 0
-        padding: 12px
-        height: 176px
-        width: 638px
-        // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
-        .toggleWrap
-          +right
-          height: 40px
-          width: 90px
-
-      .tagToggle
-        +absolute
-        +user-select
-        +round(16)
-        +flat-bottom
-        +flat-left
-        +center
-        +alpha(70)
-        top: 0px
-        right: 0px
-        height: 32px
-        line-height: 32px
-        width: 90px
-        &:hover
-          +alpha(90)
-
-      // MOOD ICON
-      .moodIcon
-        +absolute
-        top: 0
-        right: 0
-
-      // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        +round(16)
-        +absolute
-        top: 156px
-        right: 12px
-        height: 32px
-        line-height: 32px
-        padding: 0 8px
-        img.starlight
-          +left
-          margin: 6px 4px 0 0
-        span
-          +left
-        hr
-          +left
-          +alpha(20)
-          height: 28px
-          width: 1px
-          margin: 2px 0 0 8px
-        .love, .share, .repost
-          +left
-          +pointer
-          width: 28px
-          height: 32px
-        .love
-          background: url(/images/icons/love-16.png) no-repeat center
-          &:hover
-            background: url(/images/icons/love-16-selected.png) no-repeat center
-        .love.selected
-          background: url(/images/icons/love-16-selected.png) no-repeat center
-        .share
-          background: url(/images/icons/share-16.png) no-repeat center
-        .share.selected
-          background: url(/images/icons/share-16-selected.png) no-repeat center
-        .repost
-          background: url(/images/icons/repost-24.png) no-repeat center
-        .repost.selected
-          background: url(/images/icons/repost-24-selected.png) no-repeat center
 
       // TITLE
       .title
@@ -152,7 +152,7 @@
         +font(21)
         +bold
         margin: 0 0 0 20px
-        top: 164px
+        top: -40px
         padding: 4px 12px 0
         height: 36px
         line-height: 32px
@@ -194,7 +194,7 @@
         +round(12)
         +clear
         margin: 4px 12px 0
-        padding: 8px 8px 0
+        padding: 8px 4px 0
         .link
           +overflow
           +round(16)
@@ -468,25 +468,22 @@
       .books
         +button-light
 
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight_share
+        +transparent-light(70)
+        +border-light
+
+      // MOOD ICON
+      .moodIcon
+        +glow-light(10)
+        &:hover
+          +cursor
+          border: 1px solid #bbb
+
+
       // CONTENT
       .content
         +flat-light
-
-        .tagToggle
-          +shine-light-alpha(16)
-          +button-light
-
-        // STARLIGHT COUNT & SHARE OPTIONS
-        .starlight_share
-          +transparent-light(70)
-          +border-light
-
-        // MOOD ICON
-        .moodIcon
-          +glow-light(10)
-          &:hover
-            +cursor
-            border: 1px solid #bbb
 
         // TITLE
         .title
@@ -616,10 +613,6 @@
       // CONTENT
       .content
         +flat-dark
-
-        .tagToggle
-          +shine-dark-alpha(16)
-          +button-dark
 
         // STARLIGHT COUNT & SHARE OPTIONS
         .starlight_share
