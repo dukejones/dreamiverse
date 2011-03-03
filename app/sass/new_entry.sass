@@ -267,13 +267,17 @@
       margin: 0
     .date img
       margin: 9px 0 0
+    .addLocation .img, .addTheme .img, .date .img
+      width: 42px
+      height: 34px
     .addLocation .img
-      background: url('/images/icons/location-21-off.png') center center no-repeat
-      width: 21px
-      height: 21px
-      margin: 7px 11px
+      background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addTheme .img
+      background: url('/images/icons/appearance-24-off.png') center center no-repeat
+    .date .img
+      background: url('/images/icons/date-19.png') center center no-repeat
     .addLocation.selected .img
-      background: url('/images/icons/location-21.png') center center no-repeat
+      background: url('/images/icons/location-24-off.png') center center no-repeat
     #entry_submit
       +bold
       +font(12)
@@ -578,7 +582,7 @@
       margin: 8px 0 0
       padding: 4px
       width: 644px
-      height: 38px
+      height: 32px
       line-height: 38px
       &.youtube
         height: 120px
@@ -595,8 +599,6 @@
           width: 500px
           line-height: 16px
           margin-top: 10px
-        .icon
-          margin: -28px 36px 0 0
 
       input
         +transparent
