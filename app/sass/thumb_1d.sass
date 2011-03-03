@@ -6,13 +6,6 @@
 #entryField, #home
   .matrix
 
-    // THUMB 1D VIDEO
-    .thumb-1d.videoExpand, .thumb-1d.noImage.videoExpand
-      height: auto
-      .videoWrap
-        .video
-          +block
-
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
       .left .details .starlight, .left .commentCount
@@ -32,6 +25,8 @@
       width: 670px
       height: 226px
       border-bottom: 4px solid rgba(0,0,0,0.50)
+      .thumbBack
+        +hidden
 
       // LEFT SIDE
       .left
@@ -244,6 +239,17 @@
           +absolute
           top: 138px
 
+
+// THUMB 1D VIDEO EXPAND
+#entryField, #home
+  .matrix
+
+    .thumb-1d.videoExpand, .thumb-1d.noImage.videoExpand
+      height: auto
+      .thumbBack
+        +block
+        .video
+          +block
 
 
 // 1D ENTRY THUMBS
