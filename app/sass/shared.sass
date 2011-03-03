@@ -372,6 +372,7 @@ abbr, acronym
 
 
 /*********** VIDEO PANEL ***********/
+
 .video
   +round(12)
   margin: 12px
@@ -380,7 +381,7 @@ abbr, acronym
   z-index: 1400
 
   .player
-    width: 612px
+    // width: 612px
     height: 390px
     background: #444 // TEMP
 
@@ -401,23 +402,46 @@ abbr, acronym
       +font(16)
       +bold
 
+// THUMB 1D VIDEO
+.thumb-1d.videoExpand
+  .videoWrap
+    .video
+      margin: 230px 12px 0
+.thumb-1d.noImage.videoExpand
+  .videoWrap
+    .video
+      margin: 176px 12px 0
+
+.thumb-1d, .thumb-1d.noImage
+  .videoWrap
+    margin: 0
+    padding: 0 0 12px
+    .video
+      +flat-bottom
+      .player
+        // width: 626px
+
 
 // VIDEO PANEL COLORS
 .light
-  .video
-    +bevel-light
+  .videoWrap
+    background: #f3f3f3
+    .video
+      +bevel-light
 
-    .info
-      +indent-light
-      +border-light
+      .info
+        +indent-light
+        +border-light
 
 .dark
-  .video
-    +bevel-dark
+  .videoWrap
+    background: #0f0f0f
+    .video
+      +gradient(#000, #0f0f0f)
 
-    .info
-      +indent-dark
-      +border-dark
+      .info
+        +indent-dark
+        +border-dark
 
 
 
