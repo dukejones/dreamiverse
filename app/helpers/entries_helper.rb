@@ -9,13 +9,11 @@ module EntriesHelper
     })
   end
 
-  def youtube_link(image)
-    small_image_url = @entry.links.url(:thumb, :size => 122)
-    youtube_link = image.url(:medium)
+  def youtube_link(link)
     raw(%{
       <li class="youtube">
         <img src="/images/icons/youtube-video-112.png">
-        <a target="_blank" style="background: url(IMAGE_URL) no-repeat center center" href="(#{youtube_link}"></a>
+        <a target="_blank" style="background: url( + data.feed.entry[0].media$group.media$thumbnail[1].url + ) no-repeat center center" href="#{link.url}"></a>
       </li>
     })
   end
