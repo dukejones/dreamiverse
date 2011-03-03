@@ -6,6 +6,13 @@
 #entryField, #home
   .matrix
 
+    // THUMB 1D VIDEO
+    .thumb-1d.videoExpand, .thumb-1d.noImage.videoExpand
+      height: auto
+      .videoWrap
+        .video
+          +block
+
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
       .left .details .starlight, .left .commentCount
@@ -21,9 +28,9 @@
       +overflow
       z-index: 100
       margin: 0 0 10px
-      padding: 4px
+      padding: 0
       width: 670px
-      height: 218px
+      height: 226px
       border-bottom: 4px solid rgba(0,0,0,0.50)
 
       // LEFT SIDE
@@ -35,8 +42,8 @@
         .user
           +round(8)
           +absolute
-          top: 4px
-          left: 4px
+          top: 8px
+          left: 8px
           padding: 0 12px 0 0
           height: 30px
           line-height: 30px
@@ -96,8 +103,8 @@
         // POST DETAILS
         .details
           +absolute
-          top: 190px
-          left: 4px
+          top: 198px
+          left: 8px
           height: 26px
           width: 340px
           .rePost, .date, .starlight
@@ -204,7 +211,7 @@
     // 1D THUMBS - NO IMAGE
     // STRUCTURE
     .thumb-1d.noImage
-      height: 164px
+      height: 172px
       &:hover
         .left
           h1.title
