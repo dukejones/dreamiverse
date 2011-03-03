@@ -31,14 +31,16 @@ $(document).ready ->
       }
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
-	 
-      
-	
+
+  $('#comment_body').keyup ->
+    fitToContent(this, 0)
+    
 	# Setup comment expander
-	$('textarea#comment_body').autoResize
-	  animationDuration: 500
-	  animate: true
-	  extraSpace: 40
+	# $('textarea#comment_body').autoResize
+	#  animationDuration: 500
+	#  animate: true
+	#  extraSpace: 40
+
 	  
   # setup links favico
   $('.link a').each ->
