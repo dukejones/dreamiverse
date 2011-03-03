@@ -49,8 +49,7 @@ class EntriesController < ApplicationController
   end
 
   def create
-    what_names = params[:what_tags] || []
-    whats = what_names.map {|name| What.find_or_create_by_name name }
+    whats = (params[:what_tags] || []).map {|word| What.for word }
 
     new_entry = current_user.entries.create!(params[:entry].merge(
       whats: whats
@@ -62,9 +61,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
     
-    what_names = params[:what_tags] || []
-    whats = what_names.map {|name| What.find_or_create_by_name name }
-    whats.each { |what| @entry.add_what_tag(what) }
+    @entry.set_whats(params[:what_tags])
     
     @entry.update_attributes( params[:entry] )
     redirect_to :action => :show, :id => params[:id]
