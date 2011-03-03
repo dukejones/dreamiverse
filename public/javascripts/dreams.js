@@ -454,44 +454,6 @@ function setupImageButtons(){
     });
     
   })
-  
-  // Click to expand/contract image
-  /*$('.entryImage').unbind();
-   $('.entryImage').click(function(){
-     if($(this).hasClass('round-8')){
-       // Expand me
-       
-       // Close all other dream images that are open
-      $('.entryImageContainer').each(function(){
-        if(!$(this).find('.entryImage').hasClass('round-8')){
-          $(this).animate({width: '120px'}, 400, function(){
-            // Complete
-            $(this).find('.entryImage').removeClass('round-8-left');
-            $(this).find('.entryImage').addClass('round-8');
-          });
-          $(this).find('.entryImage').animate({width: '120px'});
-        }
-      });
-      
-      $this = $(this);
-      $(this).parent().animate({width: '375px'}, 400, function(){
-        // Complete
-        $this.removeClass('round-8');
-        $this.addClass('round-8-left');
-      });
-      $(this).animate({width: '145px'});
-    
-     } else {
-      // Contract me
-      $this = $(this);
-      $(this).parent().animate({width: '120px'}, 400, function(){
-        // Complete
-        $this.removeClass('round-8-left');
-        $this.addClass('round-8');
-      });
-      $(this).animate({width: '120px'});
-     }
-   });*/
 }
 
 
