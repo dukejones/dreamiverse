@@ -170,6 +170,8 @@
           +block
           +font(14)
           padding: 0 8px 2px
+        .website:hover
+          text-decoration: underline
         .email, .phone, .skype
           +cursor
         .skype
@@ -246,15 +248,17 @@
     +clear
     +user-select
     margin-bottom: 4px
+
     .relation
       +round(12)
       +flat-top
+
     .label
       +round(12)
       +flat-right
       +center
-      +font(17)
-      width: 100px
+      +font(14)
+      width: 80px
       height: 24px
       line-height: 24px
       padding: 6px 0
@@ -279,7 +283,7 @@
       +bold
       +center
       +overflow
-      width: 60px
+      width: 80px
       height: 26px
       padding: 6px 0
       line-height: 26px
@@ -373,10 +377,11 @@
       .value
         font-weight: normal
       img.arrow
-        +right
-        margin: 4px 4px 0 -6px
+        +left
+        margin: 4px 4px 0 6px
     .filterList
-      width: 100px
+      +font(14)
+      width: 80px
 
 
 // CONTEXT PANEL
@@ -391,7 +396,7 @@
     .context
       +shine-light-alpha(16)
     .label
-      +bevel-light
+      +shine-light-alpha(16)
 
     .relation
       +button-light
