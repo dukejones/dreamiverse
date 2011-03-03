@@ -339,15 +339,15 @@ function setupEvents(){
   })
   
   // Listen for paste in DREAM field
-  /*$("#entry_body").bind('paste', function(e) {
+  $("#entry_body").bind('paste', function(e) {
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
-      //var text = el.val();
+      console.log(e)
       //#checkForPastedLink(text)
-    }, 100);
+    }, 10);
     
-  });*/
+  });
   
   // Listen for paste in LINK field
   $('.linkAdd').click(function() {
