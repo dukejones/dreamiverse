@@ -18,10 +18,10 @@
 
     .type= @entry.type
 
-    %a.next.cancel{href: user_entry_path(@next.user.username, @next)}
+    %a.next{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
     / .stream.cancel stream
-    %a.prev.cancel{href: user_entry_path(@previous.user.username, @previous)}
+    %a.prev{href: user_entry_path(@previous.user.username, @previous)}
       %span &lsaquo;
 
     - if @entry.user == current_user
@@ -30,43 +30,48 @@
 
     / 
       XXX
-      .books.button.round-8 My Book of Dreams
+      .books My Book of Dreams
+
+
+    .wrapper
+      / HEADER IMAGE & TITLE
+      .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
+
+
+      / TAG CLOUD
+      .tagCloud
+        .toggleWrap
+        - @entry.tags.limit(16).shuffle.each do |tag|
+          %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+      - if @entry.main_image
+        .tagToggle.trigger.fade
+
+
+    / MOOD ICON
+    .moodIcon.hidden
+      %img{src: '/images/moods/plants/Fungi.png'}
+
+
+    / STARLIGHT COUNT & SHARE OPTIONS
+    .starlight_share
+      %img.starlight{src: '/images/icons/starlight-22.png'}
+      %span= @entry.starlight._?.value
+
+      /
+        SAVE FOR LATER
+        %hr
+        .option.love
+        .option.share
+        .option.repost.selected
+
+
 
     .content
-
-      .wrapper
-        / HEADER IMAGE & TITLE
-        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
-
-        / TAG CLOUD
-        .tagCloud
-          .toggleWrap
-          - @entry.tags.limit(16).shuffle.each do |tag|
-            %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
-
-        - if @entry.main_image
-          .tagToggle.trigger.fade tag cloud
-
-      / MOOD ICON
-      .moodIcon.hidden
-        %img{src: '/images/moods/plants/Fungi.png'}
-
-      / STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
-        %img.starlight{src: '/images/icons/starlight-22.png'}
-        %span= @entry.starlight._?.value
-
-        /
-          SAVE FOR LATER
-          %hr
-          .option.love
-          .option.share
-          .option.repost.selected
-        
       .title= @entry.title
-
-      / BODY
       .body= simple_format(@entry.body)
+
+
 
       / IMAGE GALLERY
       %ul.gallery
@@ -74,8 +79,8 @@
           = gallery_list_item(image)
         - @entry.youtube_links.each do |link|
           = youtube_link(link)
-
       .clear
+
 
 
       / ENTRY LINKS
@@ -86,6 +91,8 @@
               %span
                 %a{href: "#{link.url}", target: "_blank"}= link.title
           .clear
+
+
 
       / TAG
       .showTags
@@ -103,7 +110,7 @@
 
           / POST TIME & LOCATION
           .postTime= time_ago_in_words(@entry.created_at)
-          
+        
           - if location = @entry.location
             .postLocation= "#{location.city}, #{location.province}"
 

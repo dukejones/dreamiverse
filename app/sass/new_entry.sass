@@ -657,11 +657,13 @@
       +clear
       padding: 8px
       margin: 8px 0
+      color: #333
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         +clear
         margin: 0 0 4px
         height: 32px
         .one, .two, .three, .four, .five
+          +relative
           +pointer
           +left
           +center
@@ -674,12 +676,17 @@
           -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
           input
             +pointer
-            
+
+        .two.selected, .three.selected, .four.selected, .five.selected
+          background-image: url(/images/icons/radioWrap-31.png)
+          background-repeat: no-repeat
+          background-position: center
+
         .one
           +round(16)
           +flat-right
           width: 200px
-          background-color: rgba(255, 255, 255, 0.5)
+          +flat-light
           span
             margin-right: 44px
             width: 80px
@@ -823,8 +830,6 @@
 
       // SHARING
       .sharing
-        +shine-light(17)
-        +button-light
 
         .listOfUsers, .everyone
           .friendsOnly, .followersOnly, .url, .facebook, .twitter
@@ -839,7 +844,7 @@
         +shine-dark(16)
         color: #fff
 
-      .myBooks, .addTheme, .addLocation, .date
+      .sharing, .myBooks, .addTheme, .addLocation, .date
         +indent-light
         +button-light
 
@@ -939,11 +944,6 @@
         +indent-light
         +button-light
 
-      // MOOD PICKER
-      .moodPicker
-        .one
-          +transparent-light(50)
-
     // NEW ENTRY ATTACHMENTS
     .entryAttach
       +shine-light-alpha(24)
@@ -972,8 +972,6 @@
 
       // SHARING
       .sharing
-        +shine-dark(17)
-        +border-dark
 
         #entry_sharing_level
           color: #ddd
@@ -994,7 +992,7 @@
         color: #000
         +save(16)
 
-      .myBooks, .addTheme, .sharing, .addLocation, .date
+      .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
         +button-dark
 
@@ -1093,13 +1091,6 @@
       .moodHeader
         +indent-dark
         +button-dark
-
-      // MOOD PICKER
-      .moodPicker
-        color: #444
-        .one
-          +transparent-light(50)
-        .one, .two, .three, .four, .five
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
