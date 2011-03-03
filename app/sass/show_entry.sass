@@ -22,7 +22,7 @@
       +flat-left
       +font(24)
     .prev:hover, .next:hover
-      +cancel(12)
+      +cancel(16)
     .stream
       +flat-all
     a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
@@ -217,6 +217,9 @@
       // TAG
       .showTags
         padding: 8px 12px
+
+        .hover_label
+          width: 140px
 
         .tagHeader
           +flat-right
@@ -458,7 +461,7 @@
         color: #555
       a.next, .stream, a.prev
         +button-light
-        +shine-light(18)
+        +shine-light(16)
 
       a.editEntry
         +button-light
@@ -509,7 +512,7 @@
         // POST TIME & LOCATION
         .postTime, .postLocation
           +indent-light
-          +border-light
+          border: 1px solid #f1f1f1
 
         // TAG
         .showTags
@@ -600,7 +603,7 @@
 
       a.next, .stream, a.prev
         +button-dark
-        +shine-dark(18)
+        +shine-dark(15)
 
       a.editEntry
         +button-dark
@@ -652,7 +655,7 @@
         // POST TIME & LOCATION
         .postTime, .postLocation
           +indent-dark
-          +border-dark
+          border: 1px solid #333
 
         // TAG
         .showTags

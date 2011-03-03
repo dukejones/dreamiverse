@@ -3,6 +3,7 @@ $(document).ready ->
   
   $('#entry_body').keyup ->
     window.fitToContent(this, 0)  
+  $('#entry_body').css('overflow','hidden')
   
   # Setup tag re-ordering
   $("#sorting").val(1)

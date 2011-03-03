@@ -71,13 +71,14 @@
       .title= @entry.title
       .body= simple_format(@entry.body)
 
-
+      / VIDEO PANEL
+      = render :partial => "users/video"
 
       / IMAGE GALLERY
       %ul.gallery
         - @entry.images.each do |image|
           = gallery_list_item(image)
-        - @entry.youtube_links.each do |link|
+        - @entry.links.youtube.each do |link|
           = youtube_link(link)
       .clear
 
@@ -86,7 +87,7 @@
       / ENTRY LINKS
       - if @entry.links.count >= 1
         .entryLinks
-          - @entry.links.each do |link|
+          - (@entry.links - @entry.links.youtube).each do |link|
             .link
               %span
                 %a{href: "#{link.url}", target: "_blank"}= link.title
@@ -109,7 +110,11 @@
               + add
 
           / POST TIME & LOCATION
-          .postTime= time_ago_in_words(@entry.created_at)
+          .postTime
+            - time = (@entry.dreamed_at || @entry.created_at)
+            = time_ago_in_words(time)
+            = render partial: "shared/hover_label", locals: {message: "#{time.strftime('%B %d, %Y')}", x: "40", y: "-18"}
+
         
           - if location = @entry.location
             .postLocation= "#{location.city}, #{location.province}"

@@ -108,7 +108,7 @@ abbr, acronym
 
 
 // HOVER LABEL
-.hoverLabel
+.hover_label
   +hidden
   +absolute
   .offset-left
@@ -133,21 +133,21 @@ abbr, acronym
       padding: 0 8px
       overflow: visible
 
-.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem
+.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .postTime
   &:hover
-    .hoverLabel
+    .hover_label
       +block
       z-index: 1401
 
 // COLORS
-.light .hoverLabel
+.light .hover_label
   .arrow
     background: url('/images/icons/arrow-up-16-light.png') no-repeat 0 0 transparent
   .text
     color: #000
     +flat-light
     +glow-light(20)
-.dark .hoverLabel
+.dark .hover_label
   .arrow
     background: url('/images/icons/arrow-up-16-dark.png') no-repeat 0 0 transparent
   .text
@@ -367,6 +367,57 @@ abbr, acronym
         +cancel(16)
         color: #fff
 
+
+
+
+
+/*********** VIDEO PANEL ***********/
+.video
+  +round(12)
+  margin: 12px
+  padding: 12px
+  // width: 640px
+  z-index: 1400
+
+  .player
+    width: 612px
+    height: 390px
+    background: #444 // TEMP
+
+  .info
+    +round(12)
+    margin: 12px 0 0
+    padding: 8px
+    height: 30px
+    line-height: 30px
+
+    .logo
+      +left
+      width: 30px
+      height: 30px
+
+    span.videoTitle
+      +left
+      +font(16)
+      +bold
+
+
+// VIDEO PANEL COLORS
+.light
+  .video
+    +bevel-light
+
+    .info
+      +indent-light
+      +border-light
+
+.dark
+  .video
+    +bevel-dark
+
+    .info
+      +indent-dark
+      +border-dark
 
 
 
