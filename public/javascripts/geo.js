@@ -124,7 +124,32 @@ function getAddress(_lat, _lng){
   $('#location_attributes_longitude').val(lng)
   $('#location_attributes_latitude').val(lat)
   
-  var latlng = new google.maps.LatLng(lat, lng);
+  var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + _lat + ',' + _lng + '&sensor=true';
+  console.log(url)
+  
+  // NEW WAY
+  $.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854466,-122.695003&sensor=true', function(data) {
+    console.log(data)
+  });
+  
+  /*$.ajax({
+    url: url,
+    dataType: 'jsonp',
+    complete: function(jqXHR, textStatus){
+      console.log(jqXHR)
+      console.log(textStatus)
+      alert("complete!")
+    },
+    success: function(data, status, xhr){
+      console.log(data)
+      console.log(xhr)
+      alert('SUCCESS!! ' + data)
+    }
+  });*/
+
+  
+  // OLD WAY
+  /*var latlng = new google.maps.LatLng(lat, lng);
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
@@ -132,16 +157,11 @@ function getAddress(_lat, _lng){
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
-    // Add new location
-    /*var newElement = '<option value="' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '">' + data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name + '</option>';
-    $('#locationList').prepend(newElement);
-    $('#locationList').val(data[0].address_components[2].long_name + ', ' + data[0].address_components[5].short_name)*/
-    
     var country = data[0].address_components[6].short_name.toLowerCase();
     
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
     $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
     $('.entryLocation .country .input').val(country);
-  })
+  })*/
 }
