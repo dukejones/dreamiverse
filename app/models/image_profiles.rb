@@ -97,18 +97,15 @@ module ImageProfiles
     img.write(path('thumb', options))
   end
   
+  # 200x266 - CROPPED FROM MIDDLE OF IMAGE
   def avatar_main(options)
     img = magick_image
 
-    if width > height
-      img.resize "x266"
-      offset = (img[:width] - 200) / 2   # crop the center 200px
-      img.crop "200x+#{offset}+0"
-    else
-      img.resize "200"
-      offset = (img[:height] - 266) / 2
-      img.crop "x266+0+#{offset}"  # crop to the center 266px
-    end
+    img.resize "200x266^" # minimum dimensions
+
+    x_offset = (img[:width] - 200) / 2
+    y_offset = (img[:height] - 266) / 2
+    img.crop "200x266+#{x_offset}+#{y_offset}"
     
     img.write(path(:avatar_main))
   end
