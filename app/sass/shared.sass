@@ -404,28 +404,26 @@ abbr, acronym
 
 // THUMB 1D VIDEO
 .thumb-1d.videoExpand
-  .thumbBack
-    .video
-      margin: 230px 12px 0
+  .video
+    margin: 230px 12px 12px
 .thumb-1d.noImage.videoExpand
-  .thumbBack
-    .video
-      margin: 176px 12px 0
+  .video
+    margin: 176px 12px 12px
 
 .thumb-1d, .thumb-1d.noImage
-  .thumbBack
-    margin: 0
-    padding: 0 0 12px
-    .video
-      +flat-bottom
-      .player
-        // width: 626px
+  //
+    .thumbBack
+      margin: 0
+      padding: 0 0 12px
+  .video
+    +flat-bottom
 
 
 // VIDEO PANEL COLORS
 .light
-  .thumbBack
-    background: #f3f3f3
+  //
+    .thumbBack
+      background: #f3f3f3
   .video
     +bevel-light
 
@@ -434,8 +432,9 @@ abbr, acronym
       +border-light
 
 .dark
-  .thumbBack
-    background: #0f0f0f
+  //
+    .thumbBack
+      background: #0f0f0f
   .video
     +gradient(#000, #0f0f0f)
 

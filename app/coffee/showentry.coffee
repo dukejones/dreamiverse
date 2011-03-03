@@ -105,6 +105,7 @@ $(document).ready ->
   $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
     # Set BG Image
     $element.css('background-image', 'url(' + thumbnail + ')')
+    $element.css('background-position', 'center center')
     
     # Drop in video embed
     link_id = $element.data('id')
