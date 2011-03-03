@@ -318,9 +318,13 @@ function setupEvents(){
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
-      console.log(e)
-      //#checkForPastedLink(text)
-    }, 10);
+      var text = $('textarea#entry_body').val()
+      var length = text.length;
+      var index = text.search(/http:(?!.*http:)/);
+      var url = text.slice(index, length);
+      console.log(url)
+      checkForPastedLink(url)
+    }, 100);
     
   });
   
@@ -358,16 +362,16 @@ function checkForPastedLink(newText){
 }
 
 function addLink(newText){
-  if($('#newDream-link').css('display') == 'none'){
-    $('#newDream-link').slideDown();
+  if($('.entryLinks').css('display') == 'none'){
+    $('.entryLinks').slideDown();
     $('.entryAttach .links').hide();
     
     // Set newly displayed header click
-    $('#newDream-link .headers').unbind();
-    $('#newDream-link .headers').click(function(){
+    $('.entryLinks .headers').unbind();
+    $('.entryLinks .headers').click(function(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
-        $('#newDream-link').slideUp();
+        $('.entryLinks').slideUp();
         $('.entryAttach .links').show();
       } else {
         // tags added only minimize
