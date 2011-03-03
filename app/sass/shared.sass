@@ -370,6 +370,57 @@ abbr, acronym
 
 
 
+
+/*********** VIDEO PANEL ***********/
+.video
+  +round(12)
+  margin: 12px
+  padding: 12px
+  // width: 640px
+  z-index: 1400
+
+  .player
+    width: 612px
+    height: 390px
+    background: #444 // TEMP
+
+  .info
+    +round(12)
+    margin: 12px 0 0
+    padding: 8px
+    height: 30px
+    line-height: 30px
+
+    .logo
+      +left
+      width: 30px
+      height: 30px
+
+    span.videoTitle
+      +left
+      +font(16)
+      +bold
+
+
+// VIDEO PANEL COLORS
+.light
+  .video
+    +bevel-light
+
+    .info
+      +indent-light
+      +border-light
+
+.dark
+  .video
+    +bevel-dark
+
+    .info
+      +indent-dark
+      +border-dark
+
+
+
 /*********** STARLIGHT BURST ***********/
 #starlightBurstGlow
   +relative
