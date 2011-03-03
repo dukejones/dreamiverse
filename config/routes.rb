@@ -82,10 +82,7 @@ Dreamcatcher::Application.routes.draw do
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
-   
-    # route old alpha view urls to /username 
-    match '/view/:id' => redirect("/%{username}")
-    
+       
     # Entries
     match "/dreams", :to => 'entries#index', :'filters[type]' => 'Dream', :as => 'dreams'
     
@@ -107,6 +104,11 @@ Dreamcatcher::Application.routes.draw do
     ['friends', 'following', 'followers'].each do |mode|
       match mode => 'users#friends', :mode => mode, :as => mode
     end
+    
+    # route alpha legacy view urls to /username 
+    match '/view/:id' => redirect("/%{username}")
+    match '/profile' => redirect("/%{username}")
+    
   end
 
   root :to => 'home#index'
