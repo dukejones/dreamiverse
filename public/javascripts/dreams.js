@@ -3,9 +3,6 @@ $(document).ready(function() {
   setupImagebank();
   setupUploader();
   setupSharingImages()
-  // setupTextareaAutoExpander stuff replaced with fitToContent 
-  // by dr.J - as per duke's instructions (march 1) - sorry Scott!
-  //setupTextareaAutoExpander();  
 });
 
 function setupSharingImages(){
@@ -63,28 +60,6 @@ function setupUploader(){
     });
   }      
 }
-
-function setupTextareaAutoExpander(){
-  // Setup entry_body input expander
-  if($('textarea#entry_body').attr('id') == 'entry_body'){
-    $('textarea#entry_body').autoResize({
-      // On resize:
-      onResize : function() {
-          $(this).css({opacity:0.8});
-      },
-      // After resize:
-      animateCallback : function() {
-          $(this).css({opacity:1});
-      },
-      // Quite slow animation:
-      animateDuration : 500,
-      animate: true,
-      // More extra space:
-      extraSpace : 80
-    }).trigger('change'); // resizes the form initially
-  }
-}
-
 
 
 function setupImagebank(){

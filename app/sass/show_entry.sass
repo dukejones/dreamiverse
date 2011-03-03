@@ -21,6 +21,8 @@
       +round(16)
       +flat-left
       +font(24)
+    .prev:hover, .next:hover
+      +cancel(12)
     .stream
       +flat-all
     a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
@@ -45,12 +47,15 @@
       +alpha(60)
       +round(16)
       +font(14)
+      +flat-left
       margin-right: 12px
     a.deleteEntry
       +alpha(60)
       +round(16)
       +font(14)
-      margin-right: 12px
+      +flat-right
+    .editEntry:hover, .deleteEntry:hover
+      +alpha(100)
 
     // HEADER IMAGE & TITLE
     .imageHeader
