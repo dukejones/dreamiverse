@@ -71,7 +71,8 @@
       .body= simple_format(@entry.body)
 
       / VIDEO PANEL
-      = render :partial => "video"
+      - @entry.links.youtube.each do |link|
+        = render :partial => "video", :locals => {:link => link}
 
       / IMAGE GALLERY
       %ul.gallery

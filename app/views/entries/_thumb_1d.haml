@@ -71,6 +71,7 @@
 
 
   / VIDEO PANEL
-  = render :partial => "video"
+  - entry.links.youtube.each do |link|
+    = render :partial => "video", :locals => {:link => link}
 
 
