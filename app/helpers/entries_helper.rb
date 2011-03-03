@@ -35,6 +35,16 @@ module EntriesHelper
     })
   end
 
+  def gallery_1d_youtube(link)
+    raw(%{
+      <li class="youtube" data-id="#{link.id}">
+        <a target="_blank" style="background: url() no-repeat center center" href="#{link.url}">
+          <img src="/images/icons/youtube-video-48.png" border="0">
+        </a>
+      </li>
+    })
+  end
+
   
   def dream_header_url(image)
     image._?.url(:header)
