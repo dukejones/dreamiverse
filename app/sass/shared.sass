@@ -166,7 +166,7 @@ abbr, acronym
 @import meta_menu_user
 @import settings_panel
 @import appearance_panel
-
+@import tag
 
 
 
@@ -495,14 +495,14 @@ abbr, acronym
       +border-light
       padding: 4px 4px 4px 8px
       margin: 0 8px 12px
-      height: 28px
-      line-height: 28px
+      height: 32px
+      line-height: 32px
       p
         margin: 0
         +left
-      // will use shared tag styles
+      // Using tag.sass
       .tagWho
-        +left
+        +right
 
     .myStarlight
       +round(8)
