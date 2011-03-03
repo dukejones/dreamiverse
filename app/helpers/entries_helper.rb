@@ -12,8 +12,9 @@ module EntriesHelper
   def youtube_link(link)
     raw(%{
       <li class="youtube">
-        <img src="/images/icons/youtube-video-112.png">
-        <a target="_blank" style="background: url( + data.feed.entry[0].media$group.media$thumbnail[1].url + ) no-repeat center center" href="#{link.url}"></a>
+        <a target="_blank" style="background: url( + data.feed.entry[0].media$group.media$thumbnail[1].url + ) no-repeat center center" href="#{link.url}">
+          <img src="/images/icons/youtube-video-112.png" border="0">
+        </a>
       </li>
     })
   end
