@@ -72,47 +72,6 @@
   -moz-border-radius: $radius + px
   -webkit-border-radius: $radius + px
 
-
-=round-flat($radius, $side)
-  @if $side == top
-    border-top-left-radius: 0px
-    -moz-border-radius-topleft: 0px
-    -webkit-border-radius-topleft: 0px
-    border-top-right-radius: 0px
-    -moz-border-radius-topright: 0px
-    -webkit-border-radius-topright: 0px
-
-  @else if $side == right
-    border-top-right-radius: 0px
-    -moz-border-radius-topright: 0px
-    -webkit-border-radius-topright: 0px
-    border-bottom-right-radius: 0px
-    -moz-border-radius-bottomright: 0px
-    -webkit-border-radius-bottomright: 0px
-
-  @else if $side == bottom
-    border-bottom-left-radius: 0px
-    -moz-border-radius-bottomleft: 0px
-    -webkit-border-radius-bottomleft: 0px
-    border-bottom-right-radius: 0px
-    -moz-border-radius-bottomright: 0px
-    -webkit-border-radius-bottomright: 0px
-
-  @else if $side == left
-    border-top-left-radius: 0px
-    -moz-border-radius-topleft: 0px
-    -webkit-border-radius-topleft: 0px
-    border-bottom-left-radius: 0px
-    -moz-border-radius-bottomleft: 0px
-    -webkit-border-radius-bottomleft: 0px
-
-
-
-
-
-
-
-
 // ROUND OVERRIDES
 // FLAT SIDES
 =flat-top
