@@ -569,7 +569,7 @@
         span
           color: #009933
     .linkContainer
-      +round(8)
+      +round(12)
       +clear
       +overflow
       margin: 8px 0 0
@@ -578,27 +578,30 @@
       height: 38px
       line-height: 38px
       &.youtube
-        height: 128px
+        height: 120px
         .thumb
+          +round(8)
           +left
-          margin: 10px
+          margin: 10px 10px 6px 6px
+          width: 94px
+          height: 72px
         .description
           +left
           height: 64px
           +overflow
-          width: 480px
+          width: 500px
           line-height: 16px
           margin-top: 10px
         .icon
-          margin: -30px 36px 0 0
+          margin: -28px 36px 0 0
 
       input
         +transparent
 
       .url, .title
-        +round(4)
+        +round(8)
         padding: 0 8px
-        height: 34px
+        height: 32px
 
       .title
         +left
