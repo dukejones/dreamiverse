@@ -361,14 +361,8 @@
           width: 238px
 
     .cancelLocation
-      +round(16)
-      +delete(17)
+      +close-22
       +right
-      +center
-      +bold
-      height: 34px
-      padding: 0 12px
-      line-height: 34px
       margin: 0
 
 
@@ -483,17 +477,11 @@
             padding: 5px
             background: rgba(255,255,255,0.3)
           .imageRemoveButton
+            +close-22
             +absolute
-            +alpha(50)
             +pointer
-            +round(12)
             top: 8px
             right: 8px
-            width: 24px
-            height: 24px
-            background: url(/images/icons/close-22.png) no-repeat center #fff
-            &:hover
-              +alpha(100)
         .entryImageCaption
           +absolute
           +font(16)
@@ -876,11 +864,6 @@
       .finding, .name, .city, .state, .country
         +input-light(small)
 
-      .cancelLocation
-        +bevel-light
-        +button-light
-        +delete(16)
-
     // ENTRY IMAGES
     .entryImages
       +shine-light-alpha(24)
@@ -1025,11 +1008,6 @@
         +input-dark(small)
       input, select, option
         color: #ccc
-
-      .cancelLocation
-        +bevel-dark
-        +button-dark
-        +delete(16)
 
     // ENTRY IMAGES
     .entryImages
