@@ -38,4 +38,23 @@ module EntriesHelper
   def dreamfield_header_url(image)
     image._?.url(:dreamfield_header)
   end
+  
+  def dc_select_hour(datetime, options={}, html_options={})
+    name = options[:field_name] || 'hour'
+    name = "#{options[:prefix]}[#{name}]" if options[:prefix]
+    hour = datetime.hour
+    hour -= 12 if hour > 12
+    raw(
+      select_tag(name, options_for_select((1..12).map{|h| [h, h] }, hour), html_options )
+    )
+  end
+  
+  def dc_select_ampm(datetime, options={}, html_options={})
+    name = options[:field_name] || 'ampm'
+    name = "#{options[:prefix]}[#{name}]" if options[:prefix]
+    hour = datetime.hour
+    raw(
+      select_tag(name, options_for_select(%w(am pm).map{|v| [v, v] }, (hour < 12) ? 'am' : 'pm'), html_options)
+    )
+  end
 end
