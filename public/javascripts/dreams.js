@@ -41,6 +41,13 @@ var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_drea
 
 function setupUploader(){      
   if(document.getElementById('imageDropArea')){
+    // Setup radio button events
+    
+    $('.entryImageContainer input[type=radio]').change(function(){
+      $('.entryImageContainer .radio').removeClass('selected')
+      $(this).parent().addClass('selected')
+    })
+    
     uploader = new qq.FileUploader({
       element: document.getElementById('imageDropArea'),
       action: '/images.json',
@@ -375,7 +382,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon">x</div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -404,7 +411,8 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      var newElement = '<div class="linkContainer"><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      console.log(data)
+      var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon"></div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div><div class="thumb"><img src="' + data.feed.entry[0].media$group.media$thumbnail[1].url + '" /></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
     }

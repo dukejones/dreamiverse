@@ -98,7 +98,8 @@
         border: 0
         height: 34px
         line-height: 34px
-        padding: 7px 8px 7px 2px
+        padding: 7px 8px 7px 38px
+        margin-left: -36px
         option
           padding: 8px 4px 8px 38px
           text-align: left
@@ -573,9 +574,23 @@
       +overflow
       margin: 8px 0 0
       padding: 4px
-      width: 646px
-      height: 34px
-      line-height: 34px
+      width: 644px
+      height: 38px
+      line-height: 38px
+      &.youtube
+        height: 128px
+        .thumb
+          +left
+          margin: 10px
+        .description
+          +left
+          height: 64px
+          +overflow
+          width: 480px
+          line-height: 16px
+          margin-top: 10px
+        .icon
+          margin: -30px 36px 0 0
 
       input
         +transparent
@@ -601,7 +616,7 @@
         +overflow
         text-align: left
         margin: 0 0 0 8px
-        width: 350px
+        width: 348px
 
         .linkTitleValue, .linkUrlValue
           font-weight: normal
@@ -906,6 +921,7 @@
           +shine-light-alpha(13)
 
       .linkContainer
+        +border-light
         +transparent-light(40)
 
         .url, .title
@@ -1060,6 +1076,7 @@
           +shine-dark-alpha(13)
 
       .linkContainer
+        +border-dark
         +transparent-dark(20)
 
         .url, .title
