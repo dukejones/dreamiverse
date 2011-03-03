@@ -278,10 +278,14 @@ function setupEvents(){
     $('.entryMood').slideDown();
     $(this).hide();
     
+    $('.entryMood .headers').unbind()
     $('.entryMood .headers').click(function(){
       var radioSelected = false;
       $('.moodPicker input[type="radio"]:checked').each(function(i, el){
-        radioSelected = true
+        // only mark as selected if its a value other than 1
+        if($(el).val() != '1'){
+          radioSelected = true
+        }
       })
       
       if(radioSelected){
@@ -335,15 +339,15 @@ function setupEvents(){
   })
   
   // Listen for paste in DREAM field
-  /*$("#entry_body").bind('paste', function(e) {
+  $("#entry_body").bind('paste', function(e) {
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
-      //var text = el.val();
+      console.log(e)
       //#checkForPastedLink(text)
-    }, 100);
+    }, 10);
     
-  });*/
+  });
   
   // Listen for paste in LINK field
   $('.linkAdd').click(function() {
