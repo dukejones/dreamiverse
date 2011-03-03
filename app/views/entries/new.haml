@@ -167,13 +167,14 @@
       .moodHeader.headers
         mood
         %img{src: '/images/icons/mood-19.png'}
+      .clear
 
       / MOOD PICKER
       .moodPicker
         .love
           %label.one
             %span Love
-            = radio_button_tag 'love', 1
+            = radio_button_tag 'love', 1, true
           %label.two
             = radio_button_tag 'love', 2
           %label.three
@@ -185,7 +186,7 @@
         .joy
           %label.one
             %span Joy
-            = radio_button_tag 'joy', 1
+            = radio_button_tag 'joy', 1, true
           %label.two
             = radio_button_tag 'joy', 2
           %label.three
@@ -197,7 +198,7 @@
         .surprise
           %label.one
             %span Surprise
-            = radio_button_tag 'surprise', 1
+            = radio_button_tag 'surprise', 1, true
           %label.two
             = radio_button_tag 'surprise', 2
           %label.three
@@ -209,7 +210,7 @@
         .anger
           %label.one
             %span Anger
-            = radio_button_tag 'anger', 1
+            = radio_button_tag 'anger', 1, true
           %label.two
             = radio_button_tag 'anger', 2
           %label.three
@@ -221,7 +222,7 @@
         .mystical
           %label.one
             %span Mystical
-            = radio_button_tag 'mystical', 1
+            = radio_button_tag 'mystical', 1, true
           %label.two
             = radio_button_tag 'mystical', 2
           %label.three
@@ -233,7 +234,7 @@
         .wonder
           %label.one
             %span Wonder
-            = radio_button_tag 'wonder', 1
+            = radio_button_tag 'wonder', 1, true
           %label.two
             = radio_button_tag 'wonder', 2
           %label.three
@@ -245,7 +246,7 @@
         .sadness
           %label.one
             %span Sadness
-            = radio_button_tag 'sadness', 1
+            = radio_button_tag 'sadness', 1, true
           %label.two
             = radio_button_tag 'sadness', 2
           %label.three
@@ -257,7 +258,7 @@
         .stress
           %label.one
             %span Stress
-            = radio_button_tag 'stress', 1
+            = radio_button_tag 'stress', 1, true
           %label.two
             = radio_button_tag 'stress', 2
           %label.three
@@ -269,7 +270,7 @@
         .fear
           %label.one
             %span Fear
-            = radio_button_tag 'fear', 1
+            = radio_button_tag 'fear', 1, true
           %label.two
             = radio_button_tag 'fear', 2
           %label.three
