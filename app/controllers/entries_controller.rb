@@ -49,9 +49,10 @@ class EntriesController < ApplicationController
   end
 
   def create
-    what_names = params[:what_tags] || []
-    whats = what_names.map {|name| What.find_or_create_by_name name }
-
+    whats = (params[:what_tags] || []).map {|word| What.for word }
+    
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
+    
     new_entry = current_user.entries.create!(params[:entry].merge(
       whats: whats
     ))
@@ -59,12 +60,12 @@ class EntriesController < ApplicationController
   end
   
   def update
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
+
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
-    what_names = params[:what_tags] || []
-    whats = what_names.map {|name| What.find_or_create_by_name name }
-    whats.each { |what| @entry.add_what_tag(what) }
+
+    @entry.set_whats(params[:what_tags])
     
     @entry.update_attributes( params[:entry] )
     redirect_to :action => :show, :id => params[:id]
@@ -106,13 +107,17 @@ class EntriesController < ApplicationController
 
   protected
 
+  def parse_time(time)
+    # {"month"=>"10", "day"=>"26", "year"=>"2010", "hour"=>"8", "ampm"=>"am"}
+    Time.zone.parse("#{time[:year]}-#{time[:month]}-#{time[:day]} #{time[:hour]}#{time[:ampm]}")
+  end
+  
   # sets @user to be either params[:username]'s user or current_user
   # Redirect to / if neither param nor current_user.
   def query_username
     @user = params[:username] ? User.find_by_username( params[:username] ) : current_user
     redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
   end
-  
   
   # requires @entry be set
   def user_can_access?

@@ -34,7 +34,8 @@ $(document).ready ->
 
   $('#comment_body').keyup ->
     fitToContent(this, 0)
-    
+  $('#comment_body').css('overflow','hidden')
+  
 	# Setup comment expander
 	# $('textarea#comment_body').autoResize
 	#  animationDuration: 500

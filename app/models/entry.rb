@@ -29,21 +29,18 @@ class Entry < ActiveRecord::Base
            :order => 'position asc',
            :limit => 16
   has_many :custom_whats, :through => :custom_tags
-  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What'
-  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who'
-  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where'
-  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion'
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
+  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
+  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
+  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   
   has_many :links, :as => :owner
   accepts_nested_attributes_for :links
-  def youtube_links
-    []
-  end
-  
-  has_and_belongs_to_many :images
+
+  has_and_belongs_to_many :images, :uniq => true
   belongs_to :main_image, :class_name => "Image"
 
   validates_presence_of :user
@@ -54,8 +51,6 @@ class Entry < ActiveRecord::Base
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
-
-
 
 
   def self.everyone
@@ -107,14 +102,12 @@ class Entry < ActiveRecord::Base
   end
 
 
-  # This method smells bad.
   def self.list(viewer, viewed, lens, filters)
     filters ||= {}
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
     
     if lens == :field
-      # TODO: Make this a scope instead of looping over the array.
       if viewer
         entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
       else
@@ -131,53 +124,32 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date & starlight
     end
 
-    # debugger if entries.any?{|e| !viewer.can_access?(e) } # !!!! Comment this before release
+    # debugger if entries.any?{|e| !viewer.can_access?(e) }
     entries
   end
 
-  # def stream_list_scoped
-  #   entries = Entry.accessible_by(viewer)
-  # 
-  #   entries = entries.order('created_at DESC')
-  #   
-  #   # starlight: low, medium, high, off - for now just high
-  #   entries = entries.order_by_starlight if filters[:starlight] == 'high'
-  # 
-  #   # friends, or following
-  #   if filters[:friend] == 'friends'
-  #     entries = entries.friends_with(viewer)
-  #   elsif filters[:friend] == 'following'
-  #     entries = entries.followed_by(current_user)
-  #   end
-  # 
-  #   page_size = filters[:page_size] || 30
-  #   entries = entries.limit(page_size)
-  #   entries = entries.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
-  #   
-  # end
-  
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
 
   
-  def set_tags(types)
-    new_whats = types[:whats].map {|word| What.for(word) }
-    # whats to delete - those in whats but not in new_whats
-    (whats - new_whats).each {|what| whats.delete(what) }
+  # Create / find a What for each tag word.
+  # Remove the what tags that are on this entry but not in the tag words.
+  # Add all the tag words to this entry.
+  def set_whats(tag_words)
+    return unless tag_words
 
-    new_whats.each do |what|
-      add_what_tag( what )
-    end
+    new_whats = tag_words.map {|word| What.for word }
+    (self.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
+    new_whats.each { |what| @entry.add_what_tag(what) }
+
   end
 
 
   def add_what_tag(what, kind = 'custom')
-    # if new custom tag is added
-    # insert in front of all auto tags
-    if whats.exists?(what)
-      tag = tags.where(noun: what).first
+    if self.whats.exists?(what)
+      tag = self.tags.where(noun: what).first
       tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
     else
       tags.create(noun: what, position: tags.count, kind: kind)     
