@@ -2,7 +2,7 @@ $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
   $('#entry_body').keyup ->
-    fitToContent(this, 0)  
+    window.fitToContent(this, 0)  
   
   # Setup tag re-ordering
   $("#sorting").val(1)
