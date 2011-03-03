@@ -3,9 +3,6 @@ $(document).ready(function() {
   setupImagebank();
   setupUploader();
   setupSharingImages()
-  // setupTextareaAutoExpander stuff replaced with fitToContent 
-  // by dr.J - as per duke's instructions (march 1) - sorry Scott!
-  //setupTextareaAutoExpander();  
 });
 
 function setupSharingImages(){
@@ -63,28 +60,6 @@ function setupUploader(){
     });
   }      
 }
-
-function setupTextareaAutoExpander(){
-  // Setup entry_body input expander
-  if($('textarea#entry_body').attr('id') == 'entry_body'){
-    $('textarea#entry_body').autoResize({
-      // On resize:
-      onResize : function() {
-          $(this).css({opacity:0.8});
-      },
-      // After resize:
-      animateCallback : function() {
-          $(this).css({opacity:1});
-      },
-      // Quite slow animation:
-      animateDuration : 500,
-      animate: true,
-      // More extra space:
-      extraSpace : 80
-    }).trigger('change'); // resizes the form initially
-  }
-}
-
 
 
 function setupImagebank(){
@@ -343,9 +318,13 @@ function setupEvents(){
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
-      console.log(e)
-      //#checkForPastedLink(text)
-    }, 10);
+      var text = $('textarea#entry_body').val()
+      var length = text.length;
+      var index = text.search(/http:(?!.*http:)/);
+      var url = text.slice(index, length);
+      console.log(url)
+      checkForPastedLink(url)
+    }, 100);
     
   });
   
@@ -383,16 +362,16 @@ function checkForPastedLink(newText){
 }
 
 function addLink(newText){
-  if($('#newDream-link').css('display') == 'none'){
-    $('#newDream-link').slideDown();
+  if($('.entryLinks').css('display') == 'none'){
+    $('.entryLinks').slideDown();
     $('.entryAttach .links').hide();
     
     // Set newly displayed header click
-    $('#newDream-link .headers').unbind();
-    $('#newDream-link .headers').click(function(){
+    $('.entryLinks .headers').unbind();
+    $('.entryLinks .headers').click(function(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
-        $('#newDream-link').slideUp();
+        $('.entryLinks').slideUp();
         $('.entryAttach .links').show();
       } else {
         // tags added only minimize

@@ -111,6 +111,7 @@ class AppearancePanel extends MetaMenu
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_theme').attr('id')?
         $('#entry_view_preference_theme').val(@newTheme)
+        
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
     # $.publish('follow/changing', [node])
