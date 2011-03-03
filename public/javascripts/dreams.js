@@ -189,6 +189,22 @@ function removeTagFromDreamList (idd){
 
 var tagHeight;
 
+function checkAttachButtons(){
+  var buttonVisible = false;
+  $('.entryAttach .attach').each(function(i, el){
+    // Go thru each button and see if they are all hidden
+    if($(this).css('display') != 'none'){
+      buttonVisible = true
+    }
+  })
+  
+  if(!buttonVisible){
+    $('.entryAttach').fadeOut();
+  } else {
+    $('.entryAttach').fadeIn()
+  }
+}
+
 function setupEvents(){
   // Listen for attach toggles
   $('.entryAttach .images').unbind();
@@ -211,8 +227,9 @@ function setupEvents(){
           $('#currentImages').slideDown();
         }
       }
+      checkAttachButtons();
     })
-    
+    checkAttachButtons();
   })
   
   $('.entryAttach .tag').unbind();
@@ -251,7 +268,9 @@ function setupEvents(){
           $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
         }
       }
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('.entryAttach .mood').unbind();
@@ -260,9 +279,25 @@ function setupEvents(){
     $(this).hide();
     
     $('.entryMood .headers').click(function(){
-      $('.entryMood').slideUp();
-      $('.entryAttach .mood').show();
+      var radioSelected = false;
+      $('.moodPicker input[type="radio"]:checked').each(function(i, el){
+        radioSelected = true
+      })
+      
+      if(radioSelected){
+        if($('.moodPicker').css('display') == 'none'){
+          $('.moodPicker').slideDown()
+        } else {
+          $('.moodPicker').slideUp()
+        }
+      } else {
+        $('.entryMood').slideUp();
+        $('.entryAttach .mood').show();
+      }
+      
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('.entryAttach .links').unbind();
@@ -285,7 +320,9 @@ function setupEvents(){
           $('#linkHolder').slideDown();
         }
       }
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('#entryOptions .date').unbind();
@@ -382,7 +419,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon">x</div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -412,7 +449,7 @@ function showYoutubeData(newText){
     dataType: 'jsonp',
     success: function(data) {
       console.log(data)
-      var newElement = '<div class="linkContainer"><div class="description">' + data.feed.entry[0].content.$t + '</div><div class="thumb"><img width="120" height="90" src="' + data.feed.entry[0].media$group.media$thumbnail[0].url + '" /></div><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
+      var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon"></div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div><div class="thumb"><img src="' + data.feed.entry[0].media$group.media$thumbnail[1].url + '" /></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
     }
