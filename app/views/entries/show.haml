@@ -70,14 +70,15 @@
       .title= @entry.title
       .body= simple_format(@entry.body)
 
-
+      / VIDEO PANEL
+      = render :partial => "users/video"
 
       / IMAGE GALLERY
       %ul.gallery
         - @entry.images.each do |image|
           = gallery_list_item(image)
-        / - @entry.links.youtube.each do |link|
-        /   = youtube_link(link)
+        - @entry.links.youtube.each do |link|
+          = youtube_link(link)
       .clear
 
 
