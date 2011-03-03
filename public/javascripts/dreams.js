@@ -3,9 +3,6 @@ $(document).ready(function() {
   setupImagebank();
   setupUploader();
   setupSharingImages()
-  // setupTextareaAutoExpander stuff replaced with fitToContent 
-  // by dr.J - as per duke's instructions (march 1) - sorry Scott!
-  //setupTextareaAutoExpander();  
 });
 
 function setupSharingImages(){
@@ -63,28 +60,6 @@ function setupUploader(){
     });
   }      
 }
-
-function setupTextareaAutoExpander(){
-  // Setup entry_body input expander
-  if($('textarea#entry_body').attr('id') == 'entry_body'){
-    $('textarea#entry_body').autoResize({
-      // On resize:
-      onResize : function() {
-          $(this).css({opacity:0.8});
-      },
-      // After resize:
-      animateCallback : function() {
-          $(this).css({opacity:1});
-      },
-      // Quite slow animation:
-      animateDuration : 500,
-      animate: true,
-      // More extra space:
-      extraSpace : 80
-    }).trigger('change'); // resizes the form initially
-  }
-}
-
 
 
 function setupImagebank(){
@@ -343,9 +318,12 @@ function setupEvents(){
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
-      console.log(e)
-      //#checkForPastedLink(text)
-    }, 10);
+      var text = $('textarea#entry_body').val()
+      var length = text.length;
+      var index = text.search(/http:(?!.*http:)/);
+      var url = text.slice(index, length);
+      checkForPastedLink(url)
+    }, 100);
     
   });
   
@@ -383,16 +361,16 @@ function checkForPastedLink(newText){
 }
 
 function addLink(newText){
-  if($('#newDream-link').css('display') == 'none'){
-    $('#newDream-link').slideDown();
+  if($('.entryLinks').css('display') == 'none'){
+    $('.entryLinks').slideDown();
     $('.entryAttach .links').hide();
     
     // Set newly displayed header click
-    $('#newDream-link .headers').unbind();
-    $('#newDream-link .headers').click(function(){
+    $('.entryLinks .headers').unbind();
+    $('.entryLinks .headers').click(function(){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
-        $('#newDream-link').slideUp();
+        $('.entryLinks').slideUp();
         $('.entryAttach .links').show();
       } else {
         // tags added only minimize
@@ -452,7 +430,6 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      console.log(data)
       var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon"></div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
@@ -477,44 +454,6 @@ function setupImageButtons(){
     });
     
   })
-  
-  // Click to expand/contract image
-  /*$('.entryImage').unbind();
-   $('.entryImage').click(function(){
-     if($(this).hasClass('round-8')){
-       // Expand me
-       
-       // Close all other dream images that are open
-      $('.entryImageContainer').each(function(){
-        if(!$(this).find('.entryImage').hasClass('round-8')){
-          $(this).animate({width: '120px'}, 400, function(){
-            // Complete
-            $(this).find('.entryImage').removeClass('round-8-left');
-            $(this).find('.entryImage').addClass('round-8');
-          });
-          $(this).find('.entryImage').animate({width: '120px'});
-        }
-      });
-      
-      $this = $(this);
-      $(this).parent().animate({width: '375px'}, 400, function(){
-        // Complete
-        $this.removeClass('round-8');
-        $this.addClass('round-8-left');
-      });
-      $(this).animate({width: '145px'});
-    
-     } else {
-      // Contract me
-      $this = $(this);
-      $(this).parent().animate({width: '120px'}, 400, function(){
-        // Complete
-        $this.removeClass('round-8-left');
-        $this.addClass('round-8');
-      });
-      $(this).animate({width: '120px'});
-     }
-   });*/
 }
 
 
