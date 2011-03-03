@@ -347,7 +347,6 @@ function setupEvents(){
       var length = text.length;
       var index = text.search(/http:(?!.*http:)/);
       var url = text.slice(index, length);
-      console.log(url)
       checkForPastedLink(url)
     }, 100);
     
@@ -456,7 +455,6 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      console.log(data)
       var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"></div><div class="removeicon"></div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
       $('.linkContainer').fadeIn();
