@@ -85,7 +85,7 @@
 
 
       / ENTRY LINKS
-      - if @entry.links.count >= 1
+      - if (@entry.links - @entry.links.youtube).count >= 1
         .entryLinks
           - (@entry.links - @entry.links.youtube).each do |link|
             .link
