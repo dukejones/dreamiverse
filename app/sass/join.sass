@@ -13,7 +13,7 @@ a.dcLogo
   width: 1000px
   margin: auto
 
-#joinPage, #forgotPage
+#joinPage, #forgotPage, #errorPage
   +relative
   top: 104px
   left: 108px
@@ -205,6 +205,32 @@ a.dcLogo
       height: 36px
       padding: 0 8px 4px
       margin: 2px 0 0 6px
+
+
+#errorPage
+  +cursor
+  +user-select
+  h2
+    +absolute
+    top: 120px
+    left: 40px
+    +font(30)
+    color: #fff
+  a
+    +absolute
+    top: 180px
+    left: 120px
+    +font(24)
+    color: #fff
+    &:hover
+      text-decoration: underline
+
+
+
+
+
+
+
 
 
 
