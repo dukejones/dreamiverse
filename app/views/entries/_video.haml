@@ -1,8 +1,8 @@
 
 // VIDEO PANEL
-.video.traget.slide.hidden
+.video.hidden
   .player
-
+    =youtube_embed(link)
   .info
     .logo{style: "background: url(/) no-repeat center"}
-    %span.videoTitle Illuminated - Full Length Trailer
+    %span.videoTitle= link.title

@@ -130,7 +130,7 @@ class AppearancePanel extends MetaMenu
         bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
         $('#body').css('background-image', bedsheetUrl)
         
-        if $('#entry_view_preference_image_id').attr('name')?
+        if $('#entry_view_preference_attributes_image_id').attr('name')?
           @updateEntryBedsheet($(event.currentTarget).data('id'))
         else
           @updateUserBedsheet($(event.currentTarget).data('id'))
@@ -149,7 +149,7 @@ class AppearancePanel extends MetaMenu
     }
   
   updateEntryBedsheet: (bedsheet_id)->
-    $('#entry_view_preference_image_id').val(bedsheet_id)
+    $('#entry_view_preference_attributes_image_id').val(bedsheet_id)
   
 
 # Settings Model Subclass
