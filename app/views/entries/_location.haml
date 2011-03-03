@@ -1,7 +1,7 @@
 / ENTRY LOCATION
 .entryLocation.entryAssets
   .locationHeader.headers
-    %img{src: '/images/icons/location-24-off.png', height: '24', width: '24'}
+    %img{src: '/images/icons/location-16-off.png', height: '16', width: '16'}
     location
 
   .data.hidden
@@ -18,9 +18,10 @@
       = hidden_field_tag 'location_attributes[latitude]', 'location_attributes_latitude'
     .clear
 
-
   .finding
     Finding your location...
     .spinner-small
 
-  .cancelLocation X
+  .cancelLocation
+
+  .clear
