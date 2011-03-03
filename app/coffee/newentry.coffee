@@ -1,7 +1,8 @@
-
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
+  $('#entry_body').keyup ->
+    fitToContent(this, 0)  
   
   # Setup tag re-ordering
   $("#sorting").val(1)
@@ -22,9 +23,7 @@ $(document).ready ->
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
   
-  
-  
-  
+
   
   # Setup icon type changing
   $('#entryType_list').unbind();
@@ -39,20 +38,13 @@ $(document).ready ->
   )
   $('#entryType_list').change()
   
-  
-  
-  
-  
-  
+
+
   
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.typeSelection, .listSelection').hide()
     $('.entryType').css('border', 'none')
-  
-  
-  
-  
   
   
   

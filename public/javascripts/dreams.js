@@ -189,6 +189,22 @@ function removeTagFromDreamList (idd){
 
 var tagHeight;
 
+function checkAttachButtons(){
+  var buttonVisible = false;
+  $('.entryAttach .attach').each(function(i, el){
+    // Go thru each button and see if they are all hidden
+    if($(this).css('display') != 'none'){
+      buttonVisible = true
+    }
+  })
+  
+  if(!buttonVisible){
+    $('.entryAttach').fadeOut();
+  } else {
+    $('.entryAttach').fadeIn()
+  }
+}
+
 function setupEvents(){
   // Listen for attach toggles
   $('.entryAttach .images').unbind();
@@ -211,8 +227,9 @@ function setupEvents(){
           $('#currentImages').slideDown();
         }
       }
+      checkAttachButtons();
     })
-    
+    checkAttachButtons();
   })
   
   $('.entryAttach .tag').unbind();
@@ -251,7 +268,9 @@ function setupEvents(){
           $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
         }
       }
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('.entryAttach .mood').unbind();
@@ -260,9 +279,25 @@ function setupEvents(){
     $(this).hide();
     
     $('.entryMood .headers').click(function(){
-      $('.entryMood').slideUp();
-      $('.entryAttach .mood').show();
+      var radioSelected = false;
+      $('.moodPicker input[type="radio"]:checked').each(function(i, el){
+        radioSelected = true
+      })
+      
+      if(radioSelected){
+        if($('.moodPicker').css('display') == 'none'){
+          $('.moodPicker').slideDown()
+        } else {
+          $('.moodPicker').slideUp()
+        }
+      } else {
+        $('.entryMood').slideUp();
+        $('.entryAttach .mood').show();
+      }
+      
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('.entryAttach .links').unbind();
@@ -285,7 +320,9 @@ function setupEvents(){
           $('#linkHolder').slideDown();
         }
       }
+      checkAttachButtons();
     })
+    checkAttachButtons();
   })
   
   $('#entryOptions .date').unbind();
@@ -476,28 +513,5 @@ function setupImageButtons(){
    });*/
 }
 
-
-// Fit to content - originally from alpha site for text area expansion
-function fitToContent(id, maxHeight)
-{
-  var text = id && id.style ? id : document.getElementById(id);
-  if ( !text )
-    return;
-  var adjustedHeight = text.clientHeight;
-  if ( !maxHeight || maxHeight > adjustedHeight  )
-  {
-  	adjustedHeight = Math.max(text.scrollHeight, adjustedHeight);
-    if ( maxHeight )
-      adjustedHeight = Math.min(maxHeight, adjustedHeight);
-    if ( adjustedHeight > text.clientHeight )
-      text.style.height = adjustedHeight + 80 + "px";
-  }
-}
-
-
-$('#entry_body').keyup(function() 
-{
-  fitToContent(this, 0)
-});
 
 
