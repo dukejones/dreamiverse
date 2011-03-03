@@ -19,8 +19,7 @@ class window.TagsController
 
     $.subscribe 'tags:create', (tagName)=> 
       # Check for empty tag
-      log @tagInput.$input.val()
-      if @tagInput.$input.val() isnt ""
+      if tagName isnt "" and tagName isnt "who/where/what"
         @createTag(tagName)
     
     
