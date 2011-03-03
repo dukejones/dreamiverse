@@ -21,7 +21,7 @@ module EntriesHelper
   
   def youtube_embed(link)
     raw(%{
-      <div id="#{link.id}"></div>
+      <div id="#{link.id}" class="youtubeEmbed"></div>
     })
   end
 
@@ -31,6 +31,16 @@ module EntriesHelper
     raw(%{
       <li style="background: url(#{small_image_url}) no-repeat top left">
         <a class="lightbox" href="#{large_image_url}"></a>
+      </li>
+    })
+  end
+
+  def gallery_1d_youtube(link)
+    raw(%{
+      <li class="youtube" data-id="#{link.id}">
+        <a target="_blank" style="background: url() no-repeat center center" href="#{link.url}">
+          <img src="/images/icons/youtube-video-48.png" border="0">
+        </a>
       </li>
     })
   end
