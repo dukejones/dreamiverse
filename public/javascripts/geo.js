@@ -56,9 +56,10 @@ var getGeo = function(){
     // Check for cookie "geoaccept" if found, do nothing
     // if not found, display the geoHeader & set cookie
     // so user doesnt see it after this time
-    if(window.getCookie("geoaccept") == null){
+    /*if(window.getCookie("geoaccept") == null){
       showGeoHeader();
-    }
+    }*/
+    showGeoHeader();
     
     navigator.geolocation.getCurrentPosition(geoSuccess, geoError, {timeout:5000});
     
@@ -78,7 +79,7 @@ function showGeoHeader(){
     $('#geoHeader').animate({top: 0}, 1000);
   
     $('#geoHeader').click(function(){
-      window.setCookie("geoaccept", 1, 365)
+      //window.setCookie("geoaccept", 1, 365)
       $(this).remove()
     })
   }
@@ -110,7 +111,7 @@ function geoSuccess(position) {
   
   // Slide up geoHeader & set cookie to not show geoHeader again
   $('#geoHeader').slideUp();
-  window.setCookie("geoaccept", 1, 365)
+  //window.setCookie("geoaccept", 1, 365)
   
   getAddress(lat, lng);
 }
