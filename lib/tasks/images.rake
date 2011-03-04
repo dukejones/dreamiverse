@@ -3,8 +3,9 @@ namespace :image do
   namespace :main do
     desc 'for each entry main image, generate header, stream_header and dreamfield_header'   
     task :all => :environment do      
-      Entry.where(:main_image_id ^ nil).map do |entry|
+      Entry.where(:main_image_id ^ nil).each do |entry|
         image = Image.find_by_id(entry.main_image.id)
+        #image = entry.main_image
         puts "processing main images for (id: #{image.id}) #{image.title}.."
         
         puts 'header'
@@ -32,7 +33,7 @@ namespace :image do
   namespace :avatar do
     desc 'for each avatar image, generate avatar_main, avatar_medium and most popular sizes (32/64)'  
     task :all => :environment do      
-      Image.where(:title ^ 'Default Avatar',:section => 'Avatar').map do |image|
+      Image.where(:title ^ 'Default Avatar',:section => 'Avatar').each do |image|
         puts "processing avatar images for (id: #{image.id}) #{image.title}.."
         
         puts 'avatar'
@@ -42,11 +43,12 @@ namespace :image do
         puts 'avatar medium'
         image.generate_profile(:avatar_medium)
         
-        custom_sizes = %w(32x32 64x64)
+        extra_sizes = %w(32x32 64x64)
         puts "Resizing #{image.title}:"
-        custom_sizes.each do |size|
+        extra_sizes.each do |size|
           puts size
-          image.resize size
+          # image.resize size
+          image.generate_profile(:avatar, :size => size)
         end               
       end
       puts 'Done avatar images.'
@@ -56,7 +58,7 @@ namespace :image do
   namespace :bedsheet do
     desc 'for each bedsheet generate a jpg'
     task :all => :environment do
-      Image.where(:section => 'Bedsheets').map do |image|
+      Image.where(:section => 'Bedsheets').each do |image|
         puts "processing bedsheet jpg (id: #{image.id}) #{image.title}.."
         image.generate_profile(:bedsheet, :format => 'jpg')
       end
@@ -64,4 +66,5 @@ namespace :image do
   end
   
   task :generate_all => ['image:main:all','image:avatar:all','image:bedsheet:all'] 
+  
 end
