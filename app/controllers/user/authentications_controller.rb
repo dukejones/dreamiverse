@@ -1,4 +1,4 @@
-class User::AuthenticationsController
+class User::AuthenticationsController < ApplicationController
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.where(:provider => omniauth['provider'], :uid => omniauth['uid']).first
@@ -7,20 +7,23 @@ class User::AuthenticationsController
         # if the auth is already known, do nothing...
       else
         # if it's not known, create the auth & associate it with the current user.
-        flash.notice = "user already logged in. associating the new authorization."
+        flash.notice = "successfully linked the #{omniauth['provider']} authorization to your account"
         current_user.apply_omniauth(omniauth).save!
       end
     else
       if authentication
-        set_current_user authentication.user
-        flash.notice = "user #{user.name} logged in."
-      else
-        user = User.create_from_omniauth(omniauth)
+        user = authentication.user
         set_current_user user
-        flash.notice = "created new user: #{user.name}."
+        flash.notice = "user #{user.username} logged in."
+      else
+        # user = User.create_from_omniauth(omniauth)
+        # set_current_user user
+        # flash.notice = "created new user: #{user.name}."
+        # Go to the join now page.
+        # This should associate the new account with the newly authorized authorization.
+        redirect_to join_path and return
       end
     end
-    
     redirect_to root_path
   end
 end
