@@ -1,7 +1,5 @@
 @import mixins
 
-
-/* body */
 body
   font-family: Calibri, Arial, Helvetica, sans-serif
   margin: 0
@@ -14,7 +12,6 @@ body.fixed
   background-attachment: fixed !important
 body.scroll
   background-attachment: scroll !important
-
 .clear
   clear: both
 .hidden
@@ -23,15 +20,16 @@ body.scroll
 /******** LIGHT AND DARK ********/
 .light
   color: #000
-
 .dark
   color: #eee
 
 .light, .dark
+
   .button
     +pointer
     text-decoration: none
     outline: none
+
   .spinner-small
     width: 32px
     height: 32px
@@ -42,9 +40,6 @@ body.scroll
 .dark
   .spinner-small
     background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
-
-
-
 
 
 
@@ -80,6 +75,7 @@ html[xmlns] .clearfix
   height: 1%
 
 
+
 // CSS RESET
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td
   margin: 0
@@ -107,486 +103,6 @@ abbr, acronym
 
 
 
-// HOVER LABEL
-.hover_label
-  +hidden
-  +absolute
-  .offset-left
-    +relative
-    .offset-right
-      +relative
-      +user-select
-      +right
-      font-weight: normal
-      left: -50%
-
-    .arrow
-      +relative
-      z-index: 1402
-      width: 16px
-      height: 11px
-      margin: auto
-    .text
-      +relative
-      +round(4)
-      +center
-      padding: 0 8px
-      overflow: visible
-
-.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .postTime
-  &:hover
-    .hover_label
-      +block
-      z-index: 1401
-
-// COLORS
-.light .hover_label
-  .arrow
-    background: url('/images/icons/arrow-up-16-light.png') no-repeat 0 0 transparent
-  .text
-    color: #000
-    +flat-light
-    +glow-light(20)
-.dark .hover_label
-  .arrow
-    background: url('/images/icons/arrow-up-16-dark.png') no-repeat 0 0 transparent
-  .text
-    color: #fff
-    +flat-dark
-    +glow-dark(20)
-
-
-
-
-
-
-
-@import meta_menu
-@import meta_menu_public
-@import meta_menu_user
-@import settings_panel
-@import appearance_panel
-
-
-
-
-
-
-
-
-
-
-
-
-
-/******* MODAL WINDOW *******/
-.light
-  .ui-widget-overlay
-    background-color: rgba(255,255,255,0.5)
-  .ui-dialog
-    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d6d6d6))
-    background: -moz-linear-gradient(top, #fff, #d6d6d6)
-  .ui-dialog-titlebar
-    background: -webkit-gradient(linear, left top, left bottom, from(#f3f3f3), to(#c6c6c6))
-    background: -moz-linear-gradient(top, #f3f3f3, #c6c6c6)
-  .ui-dialog-buttonpane
-    .ui-dialog-buttonset
-      margin-bottom: 6px
-      .ui-button
-        background-color: #fff
-        border-color: #a6a6a6
-      .ui-button:hover, .ui-button:focus, .ui-state-focus
-        border-color: #000
-        color: #fff
-        background: -webkit-gradient(linear, left top, left bottom, from(#808080), to(#2d2d2d))
-        background: -moz-linear-gradient(top, #808080, #2d2d2d)
-
-.dark
-  .ui-widget-overlay
-    background-color: rgba(0,0,0,0.5)
-  .ui-dialog
-    color: #999
-    background: -webkit-gradient(linear, left top, left bottom, from(#292929), to(#000))
-    background: -moz-linear-gradient(top, #292929, #000)
-  .ui-dialog-titlebar
-    color: #fff
-    background: -webkit-gradient(linear, left top, left bottom, from(#505050), to(#272727))
-    background: -moz-linear-gradient(top, #505050, #272727)
-  .ui-dialog-buttonpane
-    .ui-dialog-buttonset
-      margin-bottom: 6px
-      .ui-button
-        background-color: #000
-        color: #fff
-        border-color: #333
-      .ui-button:hover, .ui-button:focus, .ui-state-focus
-        border-color: #fff
-        color: #000
-        background: -webkit-gradient(linear, left top, left bottom, from(#f7f7f7), to(#7c7c7c))
-        background: -moz-linear-gradient(top, #f7f7f7, #7c7c7c)
-
-
-
-
-
-.ui-dialog
-  background: -webkit-gradient(linear, left top, left bottom, from(#242424), to(#000))
-  background: -moz-linear-gradient(top, #242424, #000)
-  border: 4px solid #fff
-  border-radius: 12px
-  -moz-border-radius: 12px
-  -webkit-border-radius: 12px
-  text-align: center
-  cursor: default
-  .ui-dialog-titlebar
-    height: 34px
-    line-height: 34px
-    font-weight: bold
-    font-size: 21px
-    margin-bottom: 2px
-    /* rounded corners */
-    border-radius-topleft: 8px
-    -moz-border-radius-topleft: 8px
-    -webkit-border-radius-topleft: 8px
-    border-radius-topright: 8px
-    -moz-border-radius-topright: 8px
-    -webkit-border-radius-topright: 8px
-
-    .ui-dialog-titlebar-close
-      background: url('/images/icons/close-22.png') top center no-repeat
-      position: absolute
-      left: 6px
-      top: 6px
-      width: 22px
-      height: 22px
-      -moz-opacity: 0.6
-      -khtml-opacity: 0.6
-      -webkit-opacity: 0.6
-      opacity: 0.6
-    .ui-dialog-titlebar-close.ui-state-hover
-      -moz-opacity: 1
-      -khtml-opacity: 1
-      -webkit-opacity: 1
-      opacity: 1
-
-  .ui-dialog-content
-    font-size: 17px
-    padding: 0 6px 10px
-
-  .ui-dialog-buttonpane
-    .ui-dialog-buttonset
-      margin-bottom: 6px
-      padding: 0 3px
-      height: 30px
-      .ui-button
-        float: right
-        font-size: 17px
-        font-weight: normal
-        cursor: pointer
-        width: 170px
-        height: 30px
-        margin: 0 3px
-        padding-bottom: 4px
-        border: 2px solid
-        border-radius: 4px
-        -moz-border-radius: 4px
-        -webkit-border-radius: 4px
-      .ui-button:hover, .ui-button:focus, .ui-state-focus
-        font-weight: bold
-        outline: none
-
-.ui-widget-overlay
-  +absolute
-  top: 0
-/******* END MODAL WINDOW *******/
-
-
-
-
-
-
-// SINGLE LOGIN PAGE
-#loginPage
-  +absolute
-  +font(18)
-  top: 120px
-  width: 100%
-
-  .login, .forgot
-    +round(12)
-    +shine-light-alpha(16)
-    +user-select
-    +cursor
-    padding: 8px
-    +clear
-    width: 300px
-    margin: auto
-
-    input
-      +input-light(small)
-      +round(8)
-      margin-bottom: 4px
-      +font(18)
-      padding: 8px
-      width: 280px
-
-    h1
-      +font(19)
-
-    .body
-      +font(12)
-      padding-bottom: 8px
-      a
-        color: #fff
-        text-decoration: none
-        &:hover
-          text-decoration: underline
-
-
-  .navigation
-    +round(12)
-    +shine-dark-alpha(24)
-    +border-dark
-    +user-select
-    padding: 8px
-    width: 304px
-    margin: auto
-    .button
-      +button-dark
-      +transparent-light(10)
-      +round(6)
-      +cancel(16)
-      +left
-      +bold
-      color: #ccc
-      padding: 4px 8px
-      margin: 4px
-      &.selected
-        +shine-dark-alpha(12)
-        +button-dark
-        +cancel(16)
-        color: #fff
-
-
-
-
-
-/*********** VIDEO PANEL ***********/
-
-.video
-  +round(12)
-  margin: 12px
-  padding: 12px
-  // width: 640px
-  z-index: 1400
-
-  .player
-    // width: 612px
-    height: 390px
-    background: #444 // TEMP
-
-  .info
-    +round(12)
-    margin: 12px 0 0
-    padding: 8px
-    height: 30px
-    line-height: 30px
-
-    .logo
-      +left
-      width: 30px
-      height: 30px
-
-    span.videoTitle
-      +left
-      +font(16)
-      +bold
-
-// THUMB 1D VIDEO
-.thumb-1d.videoExpand
-  .thumbBack
-    .video
-      margin: 230px 12px 0
-.thumb-1d.noImage.videoExpand
-  .thumbBack
-    .video
-      margin: 176px 12px 0
-
-.thumb-1d, .thumb-1d.noImage
-  .thumbBack
-    margin: 0
-    padding: 0 0 12px
-    .video
-      +flat-bottom
-      .player
-        // width: 626px
-
-
-// VIDEO PANEL COLORS
-.light
-  .thumbBack
-    background: #f3f3f3
-  .video
-    +bevel-light
-
-    .info
-      +indent-light
-      +border-light
-
-.dark
-  .thumbBack
-    background: #0f0f0f
-  .video
-    +gradient(#000, #0f0f0f)
-
-    .info
-      +indent-dark
-      +border-dark
-
-
-
-/*********** STARLIGHT BURST ***********/
-#starlightBurstGlow
-  +relative
-  +glow-blue(80)
-  +border-blue
-  +transparent
-  +round(12)
-  margin: 200px auto
-  width: 360px
-  height: 214px
-  z-index: 1800
-
-  img.starlight
-    +absolute
-    top: -22px
-    left: -18px
-    z-index: 1801
-
-  #starlightBurst
-    +absolute
-    +round(11)
-    +user-select
-    top: 0
-    left: 0
-    width: 360px
-    height: 214px
-    box-shadow: inset 0 12px rgba(161,201,255,0.33)
-    -moz-box-shadow: inset 0 12px rgba(161,201,255,0.33)
-    -webkit-box-shadow: inset 0 12px rgba(161,201,255,0.33)
-    background: #004296
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1.0)), to(rgba(0,66,150,0.67)))
-    background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,66,150,0.67))
-
-    h2
-      +font(16)
-      +bold
-      color: #fff
-      margin: 0 0 0 56px
-    h3
-      +font(14)
-      color: #fff
-      margin: 14px 0 12px 44px
-      
-
-
-    .burstInfo
-      +round(8)
-      +bevel-light
-      +border-light
-      padding: 4px 4px 4px 8px
-      margin: 0 8px 12px
-      height: 28px
-      line-height: 28px
-      p
-        margin: 0
-        +left
-      // will use shared tag styles
-      .tagWho
-        +left
-
-    .myStarlight
-      +round(8)
-      +left
-      +shine-blue(12)
-      +center
-      border: 1px solid #285278
-      padding: 6px
-      margin: 0 6px
-      height: 80px
-      color: #fff
-      input.count
-        +transparent
-        +round(4)
-        +font(21)
-        +bold
-        +center
-        +indent-blue
-        color: #fff
-        width: 144px
-        height: 42px
-        line-height: 42px
-      h1
-        +font(14)
-        +bold
-        margin: 12px 0
-        text-transform: uppercase
-
-    .burstWrap
-      +relative
-      +right
-      +input-light(large)
-      +round(8)
-      border: 2px solid #fff
-      +center
-      margin: 0 6px
-      height: 88px
-      width: 162px
-      span
-        +absolute
-        +font(48)
-        color: #9fd53d
-        top: -8px
-        left: 6px
-      .count
-        +glow-dark(40)
-        +round(7)
-        +font(25)
-        color: #333
-        height: 50px
-        line-height: 50px
-        width: 100%
-        color: #333
-      .burstGlow
-        height: 38px
-        line-height: 38px
-        width: 100%
-        box-shadow: 0 0 40px #acff16
-        -moz-box-shadow: 0 0 40px #acff16
-        -webkit-box-shadow: 0 0 40px #acff16
-        input.burst
-          +transparent
-          +round(7)
-          +flat-top
-          +block
-          +bold
-          +pointer
-          color: #fff
-          height: 38px
-          width: 100%
-          border: 1px solid #fff
-          +gradient(#baff00, #66ac54)
-          +bg-shine(19)
-          +font(14)
-          text-transform: uppercase
-          &:hover
-            +bg-shine(0)
-          &:active
-            +gradient(#66ac54, #baff00)
-
-
-
-
 
 /*********** FIELDS ***********/
 #entryField, #friendField
@@ -602,6 +118,17 @@ abbr, acronym
 
 
 
+@import hover_label
+@import meta_menu
+@import meta_menu_public
+@import meta_menu_user
+@import settings_panel
+@import appearance_panel
+@import tag
+@import tag_cloud
+@import modal_window
+@import video
+@import starlight
 
 
 
@@ -612,61 +139,6 @@ abbr, acronym
 
 
 
-
-
-
-
-/* ********* UNIVERSALS ********* */
-
-/* TAG CLOUDS */
-.tagCloud div
-  +left
-  +round(8)
-  text-decoration: none
-  padding: 1px 4px
-
-.tagCloud
-  .s0
-    +font(23)
-    line-height: 21px
-  .s1
-    +font(21)
-    line-height: 19px
-  .s3
-    +font(19)
-    line-height: 17px
-  .s4
-    +font(18)
-    line-height: 16px
-  .s5
-    +font(17)
-    line-height: 15px
-  .s6, .s7
-    +font(16)
-    line-height: 14px
-  .s8, .s9, .s10, .s11
-    +font(15)
-    line-height: 13px
-  .s12, .s13, .s14, .s15
-    +font(14)
-    line-height: 12px
-  
-// TAG CLOUD COLORS
-.light .tagCloud, .dark .tagCloud
-  .s0.white
-    color: #fff 
-  .s0
-    color: #88e3f7
-  .s1
-    color: #55ccff
-  .s2
-    color: #3ea7eb
-  .s3, .s4, .s5
-    color: #3086cf
-  .s6, .s7, .s8, .s9, .s10
-    color: #1265c2
-  .s11, .s12, .s13, .s14, .s15
-    color: #0049a2
 
 
 

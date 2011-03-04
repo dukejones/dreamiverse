@@ -38,11 +38,13 @@
   %table.right
 
     / TOP ROW - IMAGE THUMBNAILS
-    - unless entry.images.blank?
+    - unless (entry.images.blank? && entry.links.youtube.blank?)
       %tr
         %td.top{valign: "top", height: "64"}
 
           %ul.entryImages
+            - entry.links.youtube.limit(5).each do |link|
+              = gallery_1d_youtube(link)
             - entry.images.limit(5).each do |image|
               = gallery_1d_thumb(image)
 
@@ -70,9 +72,8 @@
     /         .clear
 
 
-  .thumbBack
-
-    / VIDEO PANEL
-    = render :partial => "entries/video"
+  / VIDEO PANEL
+  - entry.links.youtube.each do |link|
+    = render :partial => "entries/video", :locals => {:link => link}
 
 

@@ -9,7 +9,7 @@ function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
     if($('.entryLocation').css('display') == 'none'){
-      $(this).addClass('selected');
+      //$(this).addClass('selected');
       $('.entryLocation').slideDown()
       
       if(!geoFetching){
@@ -27,7 +27,7 @@ function initGeo(){
   
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
-    $('.addLocation').removeClass('selected');
+    //$('.addLocation').removeClass('selected');
     $('.entryLocation').slideUp();
     
     $('.entryLocation .city .input').val('');
@@ -139,6 +139,8 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
+    alert('GEOCODING COMPLETE')
+    console.log(data)
     // Remove finding your location option
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();

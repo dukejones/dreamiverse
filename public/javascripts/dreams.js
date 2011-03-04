@@ -248,6 +248,12 @@ function setupEvents(){
     checkAttachButtons();
   })
   
+  // Setup mood picker
+  $('.moodPicker input').change(function(event){
+    $(this).parent().parent().find('label').removeClass('selected')
+    $(this).parent().addClass('selected')
+  })
+  
   $('.entryAttach .mood').unbind();
   $('.entryAttach .mood').click(function(){
     $('.entryMood').slideDown();
