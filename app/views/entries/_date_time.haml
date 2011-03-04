@@ -3,7 +3,7 @@
     %img{src: '/images/icons/date-19.png', height: '16', width: '16'}
     date &amp; time
 
-  - datetime = @entry.dreamed_at || Time.now
+  - datetime = @entry.dreamed_at
   .date
     = select_month(datetime, {:prefix => :dreamed_at}, :class => 'month')
     = select_day(datetime, {:prefix => :dreamed_at},   :class => 'day')

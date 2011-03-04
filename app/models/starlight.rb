@@ -6,7 +6,7 @@ class Starlight < ActiveRecord::Base
   def self.for(entity)
     starlight = all_for(entity).last
     starlight = self.create!(entity: entity) unless starlight
-    starlight = starlight.clone! unless (starlight.updated_at.to_date == Time.now.to_date)
+    starlight = starlight.clone! unless (starlight.updated_at.to_date == Time.zone.now.to_date)
     starlight
   end
   

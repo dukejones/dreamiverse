@@ -84,7 +84,10 @@ Dreamcatcher::Application.routes.draw do
   scope ':username' do
        
     # Entries
-    match "/dreams", :to => 'entries#index', :'filters[type]' => 'Dream', :as => 'dreams'
+    match "/dreams", :to => 'entries#index', :'filters[type]' => 'dream', :as => 'dreams'
+    match "/visions", :to => 'entries#index', :'filters[type]' => 'vision', :as => 'visions'
+    match "/experiences", :to => 'entries#index', :'filters[type]' => 'experience', :as => 'experiences'
+    match "/articles", :to => 'entries#index', :'filters[type]' => 'article', :as => 'articles'
     
     get '/' => 'entries#index', :as => 'user_entries'
     post '/' => 'entries#create'

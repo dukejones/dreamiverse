@@ -1,6 +1,6 @@
-- content_for :foot do
-  = coffeescript_include_tag 'avatar', 'context_panel'
-  = javascript_include_tag 'avataruploader'
+- content_for :head do
+  :coffeescript
+    require(requireConfig, ['avatar', 'context_panel', 'js/avataruploader'])
   
 / CONTEXT PANEL
 #contextPanel
@@ -55,15 +55,13 @@
       .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
       .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        - if current_user._?.friends_with?(user)
-        -# if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
-          %hr
+        %hr
         - if user.link
           %a.website{href: user.link.url, target: "_blank"}= user.link.url
-        - if current_user.relationship_with(user) == :friends || user == current_user
+        - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
-          - if user.skype
+          - unless user.skype.blank?
             .skype
               %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
               %span= user.skype
@@ -126,7 +124,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value friends
       .image
-        %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+        %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
       .detail
         = user.friends.count
       .clear
