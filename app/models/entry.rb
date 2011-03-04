@@ -119,9 +119,10 @@ class Entry < ActiveRecord::Base
       page_size = filters[:page_size] || 30
       # only entries within 10 days
       # top page_size of each
-      entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
+      entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
       entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
+      # based on friends filter: 
       entries = entry_scope.where(:user_id => viewer.following.map(&:id))
       # each should be sorted according to date & starlight
     end
