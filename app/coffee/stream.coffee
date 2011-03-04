@@ -1,4 +1,3 @@
-streamController = null
 
 $(document).ready ->
   streamController = new StreamController()
@@ -8,7 +7,7 @@ class StreamController
     # listen for filter:change update
     $.subscribe 'filter:change', => @streamModel.updateFilters()
     
-    $.subscribe 'stream:update', (elements) => @streamView.update(elements)
+    $.subscribe 'stream:update', (html) => @streamView.update(html)
     
     @streamModel = new StreamModel()
     @streamView = new StreamView()
@@ -25,8 +24,13 @@ class StreamView
   constructor: () ->
     @$container = $('#entryField .matrix')
     
-  update: (elements) ->
-    @$container.html(elements)
+  update: (html) ->
+    if html == ''
+      $('.noEntrys').show()
+    else
+      $('.noEntrys').hide()
+      
+    @$container.html(html)
 
 
 
@@ -39,12 +43,13 @@ class StreamModel
         starlight: @filters[2]
     },
     (data) =>
-      log data
+      $.publish 'stream:update', [data.html]
     )
     
   updateFilters: () ->
     @filters = []
     # get new filter values (will be .filter .value to target the span)
     $.each $('.trigger .value'), (key, value) =>
-      @filters.push($(value).text())
+      @filters.push($(value).text())  # data tightly coupled to display.
     @updateData()
+    
