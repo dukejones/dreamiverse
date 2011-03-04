@@ -1,6 +1,6 @@
-- content_for :foot do
-  = coffeescript_include_tag 'avatar', 'context_panel'
-  = javascript_include_tag 'avataruploader'
+- content_for :head do
+  :coffeescript
+    require(requireConfig, ['avatar', 'context_panel', 'js/avataruploader'])
   
 / CONTEXT PANEL
 #contextPanel

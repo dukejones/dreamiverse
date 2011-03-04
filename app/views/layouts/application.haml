@@ -25,7 +25,8 @@
     = yield
 
     - if Rails.env == 'production' || Rails.env == 'theta'
-      = javascript_include_tag "google_analytics"
+      :coffeescript
+        require(requireConfig, 'js/google_analytics')
 
 
     = yield :foot
