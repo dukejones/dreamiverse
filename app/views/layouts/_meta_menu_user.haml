@@ -3,13 +3,19 @@
   .notice= notice
   .alert= alert
 
+
+
   / INTRO MENU
   .leftPanel
+
+
     %a.item{href: '/dreamstars'}
-      %img{src: '/images/icons/starlight-17.png'}
+      %img{src: '/images/icons/starlight-32.png'}
       dreamstars
+
     %a.item{href: stream_path}
       stream
+
 
 
   / LOG OUT
@@ -17,11 +23,15 @@
     .img
 
 
+
+
   / SETTINGS MENU
   .rightPanel
     %a.item.user.selected{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
       %span
         = current_user.username
+
+
 
 
     / NOTIFICATIONS PANEL
@@ -51,6 +61,8 @@
         %span Username has commented on your dream
 
 
+
+
     .settingsPanel.wrapper
       .item.settings.trigger
         %img{src: "/images/icons/settings-24-off.png", width: '24', height: '24', alt: "account settings"}
@@ -58,6 +70,8 @@
 
       / SETTINGS PANEL
       = render partial: "layouts/settings_panel"
+
+
 
     .appearancePanel.wrapper
       .item.appearance.trigger
@@ -67,9 +81,13 @@
       / APPEARANCE PANEL
       = render partial: "layouts/appearance_panel"
 
+
+
   / ADMIN LINK
   %a.adminLink{href: '/admin'}
     .img
+
+
 
   / NEW ENTRY LINK
   %a.newEntry{href: new_entry_path}

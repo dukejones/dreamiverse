@@ -22,7 +22,7 @@
     %h1.title= entry.title
     / only for noimage
     %h2.titleWatermark= entry.title
-    %p.text= entry.body
+    %p.text= truncate(entry.body, :length => 100)
  
     / ENTRY THUMB DETAILS
     .details
