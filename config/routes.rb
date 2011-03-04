@@ -1,12 +1,3 @@
-class UsernameConstraint
-  def initialize
-    @usernames = User.select('username').all.map(&:username)
-  end
-  
-  def matches?(request)
-    request.url
-  end
-end
 
 Dreamcatcher::Application.routes.draw do
   # Authorization Routes

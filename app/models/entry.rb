@@ -45,11 +45,10 @@ class Entry < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :body
-  validates_presence_of :main_image
   validates_presence_of :dreamed_at
   
-  after_initialize :init_sharing_level
   after_initialize :init_dreamed_at
+  before_save :set_sharing_level
   before_save :set_main_image
   before_create :create_view_preference
   before_update :delete_links
@@ -216,8 +215,8 @@ protected
     self.main_image ||= self.images.first
   end
 
-  def init_sharing_level
-    self.sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
+  def set_sharing_level
+    self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
   end
 
   def init_dreamed_at
