@@ -26,7 +26,7 @@
 
   // COLUMNS PANEL
   .columnsPanel
-    +shine-dark-alpha(24)
+    +shine-dark(24)
     +round(16)
     +relative
     +user-select
@@ -34,19 +34,20 @@
     padding: 8px
     height: 40px
     margin: 10px 0 20px 80px
+
+
     .rankColumn, .nameColumn, .starlightColumn
-      +input-dark(small)
+      +indent-dark
       +round(8)
       +absolute
       +center
-      +bold
       +font(17)
       +cursor
-      color: #ccc
+      color: #999
       width: 80px
       height: 36px
       line-height: 36px
-      border: 1px solid #555
+      border: 1px solid #222
     .rankColumn
       left: 10px
     .nameColumn
