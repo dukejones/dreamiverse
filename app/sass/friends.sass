@@ -101,6 +101,7 @@
         .shadow
           +relative
           +inner-shadow(10)
+          +alpha(60)
           top: 62px
           height: 130px
           margin-bottom: -132px
@@ -120,9 +121,10 @@
             +round(12)
             +flat-right
             +center
-            width: 64px
+            +font(14)
+            width: 80px
             height: 24px
-            padding: 6px 8px
+            padding: 6px 0
             margin-left: 6px
 
           .image
@@ -144,9 +146,10 @@
             +round(12)
             +flat-left
             +inner-shadow(10)
-            width: 64px
+            +center
+            width: 80px
             height: 24px
-            padding: 6px 8px
+            padding: 6px 0
             line-height: 26px
             border: 0
 
@@ -203,13 +206,13 @@
         +shine-dark(32)
 
       .panel
-        +transparent-dark(60)
+        background: #010101
 
       .panel .expanded .item
         .label
           +shine-dark-alpha(16)
         .detail
-          +transparent-dark(80)
+          +indent-dark
 
 
 
