@@ -85,13 +85,13 @@ class EntriesController < ApplicationController
 
     @user = current_user
 
+    # debugger
+    
     entry_list
     
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
-      
-      
       render :text => thumbs_html
     end
   end

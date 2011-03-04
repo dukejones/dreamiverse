@@ -4,9 +4,8 @@
 
   = javascript_include_tag 'browserdetect'
   :coffeescript
-    require(requireConfig,
-      [ 'js/jquery.lightbox-0.5.pack', 'js/autoresize.jquery.min',
-      'tag', 'showentry', 'entries' ] )
+    require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack', 'autoresize.jquery.min' ])
+    require([ 'tag', 'showentry', 'entries' ] )
 
 
 / CONTEXT PANEL
@@ -57,7 +56,6 @@
     .moodIcon.hidden
       %img{src: '/images/moods/plants/Fungi.png'}
 
-
     / STARLIGHT COUNT & SHARE OPTIONS
     .starlight_share
       %img.starlight{src: '/images/icons/starlight-22.png'}
@@ -73,7 +71,18 @@
 
 
     .content
+
       .title= @entry.title
+
+      /EMOTIONS DETAILS & THUMBS
+      .emotionsWrap
+        / EMOTIONS DETAILS
+        .emotions-details.hidden
+          = render :partial => "emotions"
+        / EMOTIONS THUMB
+        .emotions-thumb
+          = render :partial => "emotions"
+
       .body= simple_format(@entry.body)
 
       / VIDEO PANEL

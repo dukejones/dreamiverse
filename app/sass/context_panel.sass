@@ -338,16 +338,16 @@
         top: -23px      
 
 
-    .changeRelation.follow.hidden, .changeRelation.unfollow.hidden
+    .changeRelation.follow.hidden, .changeRelation.unfollow.hidden, .changeRelation.unfriend.hidden, .changeRelation.befriend.hidden
       +hidden
 
-    .changeRelation.follow, .changeRelation.unfollow
+    .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
       +block
       +round(12)
       +flat-top
       color: #fff
 
-    .changeRelation.follow
+    .changeRelation.follow, .changeRelation.befriend
       +bg-shine(16)
       +gradient(#70d03b, #235b1b)
       +pointer
@@ -355,7 +355,7 @@
       border: 1px solid #54943d
       &:active
         +gradient(#235b1b, #70d03b)
-    .changeRelation.unfollow
+    .changeRelation.unfollow, .changeRelation.unfriend
       +bg-shine(16)
       +gradient(#ee7c44, #8b2e12)
       +pointer

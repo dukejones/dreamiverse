@@ -122,12 +122,18 @@ class Entry < ActiveRecord::Base
       entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
       entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
-      # based on friends filter: 
-      entries = entry_scope.where(:user_id => viewer.following.map(&:id))
-      # each should be sorted according to date & starlight
+      # based on friend filter: 
+      user_list = 
+        if filters[:friend] == "friends"
+          viewer.friends
+        else
+          viewer.following
+        end
+      entries = entry_scope.where(:user_id => user_list.map(&:id))
+      # each should be sorted according to date or starlight
     end
 
-    # debugger if entries.any?{|e| !viewer.can_access?(e) }
+    entries.select!{|e| viewer.can_access?(e) } # this is very, very slow.
     entries
   end
 

@@ -1,6 +1,7 @@
 - content_for :head do
   :coffeescript
-    require(requireConfig, ['avatar', 'context_panel', 'js/avataruploader'])
+    require({baseUrl: "/javascripts"}, ['avataruploader'])
+    require(['avatar', 'context_panel'])
   
 / CONTEXT PANEL
 #contextPanel
@@ -38,6 +39,9 @@
       - if current_user && current_user.relationship_with(user) != :none
         .icon
           = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
+      - else
+        .icon
+          %img
 
     / FOLLOW
     - if current_user

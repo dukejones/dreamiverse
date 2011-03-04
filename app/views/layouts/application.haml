@@ -9,8 +9,9 @@
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
-    = javascript_include_tag 'jquery.min'
-    %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
+    = javascript_include_tag 'jquery.min', 'require', 'compiled/application'
+    / %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
+    
 
     = yield :head
 
@@ -26,7 +27,7 @@
 
     - if Rails.env == 'production' || Rails.env == 'theta'
       :coffeescript
-        require(requireConfig, 'js/google_analytics')
+        require({baseUrl: "/javascripts"}, 'google_analytics')
 
 
     = yield :foot
