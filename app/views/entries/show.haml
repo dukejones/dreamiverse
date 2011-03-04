@@ -78,9 +78,14 @@
 
       /EMOTIONS DETAILS & THUMBS
       .emotionsWrap.wrapper
+
         / EMOTIONS DETAILS
         .emotions-details.target.showhide.hidden
+          .moodHeader
+            emotions
+            %img{src: '/images/icons/mood-19.png'}
           = render :partial => "emotions"
+
         / EMOTIONS THUMB
         .emotions-thumb.trigger.showhide
           = render :partial => "emotions"
