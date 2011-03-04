@@ -52,15 +52,13 @@
       .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
       .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        / - if current_user._?.friends_with?(user)
-        -# if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
-          %hr
+        %hr
         - if user.link
           %a.website{href: user.link.url, target: "_blank"}= user.link.url
-        - if current_user.relationship_with(user) == :friends || user == current_user
+        - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
-          - if user.skype
+          - unless user.skype.blank?
             .skype
               %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
               %span= user.skype
