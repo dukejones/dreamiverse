@@ -4,39 +4,53 @@
 
   / SHARING
   .sharing
+
+
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
-      %img.sharingIcon{src: '/images/icons/everyone-16.png'}
-      %h2 default sharing
+
+      %img.sharing-icon{src: '/images/icons/everyone-16.png'}
+      %h2.sharing-label default sharing
+
+
       %select#sharingList.sharingList
         %option.everyone{  value: Entry::Sharing[:everyone]  } Everyone
         %option.friends{   value: Entry::Sharing[:friends]   } Friends only
         %option.anonymous{ value: Entry::Sharing[:anonymous] } Anonymous
         %option.private{   value: Entry::Sharing[:private]   } Private
+
+
     %label.hidden
       I must authorize all follow requests
       %input.authFollow{type: 'checkbox'}
     .clear
 
+
     %hr.alpha-20
 
-    .network.wrapper
-      %img{src: '/images/icons/facebook-16.png'}
-      %h2 Facebook login
-      .linkAccount.trigger.showhide
+
+    .network
+
+      %img.facebook-icon{src: '/images/icons/facebook-16.png'}
+      %h2.facebook-label facebook login
+
+
+      .linkAccount
         link account
-      %label.target.showhide.hidden
-        by default, share on Facebook
-        %input.fbShare{type: 'checkbox'}
+
+
+
     .clear
 
 
 
 
   / CHANGE PASSWORD
-  .changePassword.wrapper.showhide
-    %h2.trigger.showhide
-      %img{src: '/images/icons/key-16.png'}
-      change password
+
+  .changePassword.trigger.wrapper.showhide
+
+    %img.password-icon{src: '/images/icons/key-16.png'}
+    %h2.password-label change password
+
 
     .changePasswordForm.target.showhide.hidden
       = form_tag :user, :method => :put, :'data-type' => :json, :remote => true, :id => 'change_password' do
@@ -49,6 +63,13 @@
           .cancel cancel
           = f.submit :'change password', :class => 'confirm'
           .clear
+
+
+    .clear
+
+
+
+
 
 
   /
