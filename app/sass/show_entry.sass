@@ -1,13 +1,15 @@
+@import mixins
 
 #entryField
 
-  /*********** SHOW ENTRY SHARED STYLES***********/
+
   #showEntry
     .content, .tagEntry, .entryAnalysis
       margin: 0 0 8px
 
-  /*********** SHOW ENTRY ***********/
+
   // STRUCTURE
+
   #showEntry, #showEntry.noImage
     +round(16)
     width: 662px 
@@ -100,6 +102,7 @@
       top: 0
       right: 0
 
+
     // STARLIGHT COUNT & SHARE OPTIONS
     .starlight_share
       +round(16)
@@ -147,6 +150,139 @@
       +flat-top
       +clear
 
+
+
+      .emotionsWrap
+        +right
+        +relative
+        +transparent
+        overflow: visible
+        margin: 17px 17px 0 0
+        width: 70px
+        height: 70px
+
+
+
+        // EMOTIONS DETAILS & THUMBS
+        .emotions-details, .emotions-thumb
+          +absolute
+          +round(12)
+          +bevel-light
+          +glow-light(10)
+
+          img.arrow
+            +absolute
+            top: 20px
+            right: -11px
+
+          table.container
+            border-collapse: separate
+            // width: 60px
+            // height: 60px
+            border: 0
+
+            tr
+              height: auto
+
+              td
+                padding: 0
+
+              td.name
+                +bold
+                text-align: right
+                padding: 0 12px 0 0
+
+              td.value
+                +round(16)
+                padding: 1px
+                height: auto
+                +indent-light
+                border: none
+
+                .amount
+                  +round(15)
+                  height: 100%
+
+            tr.love
+              .amount
+                +gradient(#cbfe72, #97e414)
+            tr.joy
+              .amount
+                +gradient(#faf55d, #e3db0e)
+            tr.surprise
+              .amount
+                +gradient(#f3e85c, #e2ad0e)
+            tr.anger
+              .amount
+                +gradient(#eebb6d, #e24a0e)
+            tr.mystical
+              .amount
+                +gradient(#a16be6, #6421bb)
+            tr.wonder
+              .amount
+                +gradient(#62bceb, #0e99e2)
+            tr.sadness
+              .amount
+                +gradient(#8fbfc3, #53979d)
+            tr.stress
+              .amount
+                +gradient(#c86855, #9d5e52)
+            tr.confusion
+              .amount
+                +gradient(#c7c792, #8b8b65)
+            tr.fear
+              .amount
+                +gradient(#ababab, #787878)
+
+        // EMOTIONS DETAILS ONLY
+        .emotions-details
+          padding: 12px
+          // width: 262px
+          top: 4px
+          right: 80px
+          +gradient(#fff, #e5e5e5)
+
+
+          table.container
+            border-collapse: separate
+            border-spacing: 4px
+            height: 300px
+            width: 262px
+
+            td.value
+              width: 178px
+
+
+        // EMOTIONS THUMB ONLY
+        .emotions-thumb
+          +pointer
+          +round(4)
+          padding: 1px
+          // width: 62px
+          // height: 62px
+          z-index: 1100
+          background: #fff
+          +gradient(#fff, #D7D7D7)
+
+          img.arrow
+            +hidden
+
+          table.container
+            +flat-all
+            height: 60px
+            width: 60px
+            td.name
+              +hidden
+            td.value
+              +flat-all
+              +transparent
+              width: 100%
+              padding: 0
+
+              table.amount
+                +flat-all
+
+
       // TITLE
       .title
         +round(8)
@@ -170,6 +306,7 @@
         font-size: 17px
         p
           margin-bottom: 18px
+
 
       // GALLERY
       ul.gallery
