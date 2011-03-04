@@ -169,7 +169,8 @@
         .emotions-details, .emotions-thumb
           +absolute
           +round(12)
-          z-index: 1100
+          +user-select
+          z-index: 200
 
           .arrow
             +absolute
@@ -645,7 +646,7 @@
 
         // EMOTIONS DETAILS ONLY
         .emotions-details
-          +gradient(#fff, #e5e5e5)
+          +bevel-light
           color: #555
 
         // TITLE
@@ -789,7 +790,7 @@
 
         // EMOTIONS DETAILS & THUMBS
         .emotions-details, .emotions-thumb
-          +gradient(#242424, #000)
+          +bevel-dark
 
           .arrow
             background: url(/images/icons/arrow-right-16-light.png) no-repeat center
