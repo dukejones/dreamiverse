@@ -7,7 +7,6 @@ getYoutubeData = (video_url, linked_element) ->
     url: filePath
     dataType: 'jsonp'
     success: (data) ->
-      log data
       videoPath = data.feed.entry[0].media$group.media$content[0].url
       videoArray = data.feed.entry[0].id.$t.split('/')
       video_id = videoArray[videoArray.length - 1]

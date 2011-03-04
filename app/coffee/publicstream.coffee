@@ -20,11 +20,7 @@ getYoutubeData = (video_url, linked_element) ->
       $.publish 'youtube:data', [linked_element, thumbnail_url, embedPlayer]
   })
 
-
-streamController = null
-
 $(document).ready ->
-  streamController = new StreamController()
   
   # loop thru the youtube attachments
   $('.entryImages .youtube').each (i, el) =>
@@ -57,49 +53,3 @@ $(document).ready ->
     # Drop in video embed
     link_id = $element.data('id')
     $('#' + link_id).append(videoEmbed)
-
-class StreamController
-  constructor: ->
-    # listen for filter:change update
-    $.subscribe 'filter:change', => @streamModel.updateFilters()
-    
-    $.subscribe 'stream:update', (elements) => @streamView.update(elements)
-    
-    @streamModel = new StreamModel()
-    @streamView = new StreamView()
-    
-    # Setup youtube images for each entry
-    
-    # Setup lightbox for stream
-    $('a.lightbox').lightBox({containerResizeSpeed: 100});
-    
-
-
-
-class StreamView
-  constructor: () ->
-    @$container = $('#entryField .matrix')
-    
-  update: (elements) ->
-    @$container.html(elements)
-
-
-
-class StreamModel
-  updateData: ->
-    $.getJSON("/stream.json", {
-      filters:
-        type: @filters[0]
-        friend: @filters[1]
-        starlight: @filters[2]
-    },
-    (data) =>
-      log data
-    )
-    
-  updateFilters: () ->
-    @filters = []
-    # get new filter values (will be .filter .value to target the span)
-    $.each $('.trigger .value'), (key, value) =>
-      @filters.push($(value).text())
-    @updateData()
