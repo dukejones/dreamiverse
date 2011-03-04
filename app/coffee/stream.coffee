@@ -16,7 +16,6 @@ class StreamController
     
     # Setup lightbox for stream
     $('a.lightbox').lightBox({containerResizeSpeed: 100});
-    
 
 
 
@@ -31,6 +30,8 @@ class StreamView
       $('.noEntrys').hide()
       
     @$container.html(html)
+    
+    # Run the youtube hooker upper
 
 
 
