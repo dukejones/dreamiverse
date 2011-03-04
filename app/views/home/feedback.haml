@@ -1,6 +1,8 @@
 - content_for :head do
   = sass_link_tag 'feedback'
-
+  :coffeescript
+    require(requireConfig, ['js/feedback', 'js/autoresize.jquery.min.js'])
+    
 = render :partial => "layouts/meta_menu", :locals => {:user => @user}
 
 / FEEDBACK PAGE
@@ -32,4 +34,3 @@
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
 
-= javascript_include_tag 'feedback', 'autoresize.jquery.min.js'

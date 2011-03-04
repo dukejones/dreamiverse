@@ -106,7 +106,7 @@ class Entry < ActiveRecord::Base
     filters ||= {}
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
-    
+
     if lens == :field
       if viewer
         entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
