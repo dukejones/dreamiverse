@@ -13,22 +13,23 @@
     width: 662px 
     padding: 8px
 
-    a.prev
+    .prev
       +round(16)
       +flat-right
       +font(24)
-    a.next
+    .next
       +round(16)
       +flat-left
       +font(24)
-    .prev:hover, .next:hover
+    .prev:hover, .stream:hover, .next:hover
       +cancel(16)
     .stream
       +flat-all
-    a.next, .stream, a.prev, .books, .type, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .type, .editEntry, .deleteEntry
       +block
       +center
       +bold
+      +user-select
       margin: 0 0 8px
       padding: 0 18px
       height: 32px
@@ -38,18 +39,18 @@
       +left
       +cursor
       +user-select
-    a.next, .stream, a.prev, .books, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .editEntry, .deleteEntry
       +right
     .books
       +round(8)
       margin-right: 8px
-    a.editEntry
+    .editEntry
       +alpha(60)
       +round(16)
       +font(14)
       +flat-left
       margin-right: 12px
-    a.deleteEntry
+    .deleteEntry
       +alpha(60)
       +round(16)
       +font(14)
@@ -457,13 +458,12 @@
         +bevel-light
         +border-light
 
-      a.next, a.prev
+      .next, .stream, .prev
         color: #555
-      a.next, .stream, a.prev
         +button-light
         +shine-light(16)
 
-      a.editEntry
+      .editEntry
         +button-light
         +bevel-light
         +confirm(15)
@@ -598,19 +598,17 @@
         +bevel-dark
         +border-dark
 
-      a.next, a.prev
+      .next, .stream, .prev
         color: #ddd
-
-      a.next, .stream, a.prev
         +button-dark
         +shine-dark(15)
 
-      a.editEntry
+      .editEntry
         +button-dark
         +bevel-dark
         +confirm(15)
 
-      a.deleteEntry
+      .deleteEntry
         +button-dark
         +bevel-dark
         +delete(15)
