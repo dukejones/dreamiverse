@@ -163,34 +163,12 @@
 
 
 
+
+
+
 //  ***  *****  ***  ****  *** 
 //  ***  LIGHT  and  DARK  ***
 //  ***  *****  ***  ****  ***
-
-=button-light
-  +pointer
-  border: 1px solid #bbb
-  &:hover
-    +pointer
-    border: 1px solid #464646
-=button-dark
-  +pointer
-  border: 1px solid #444
-  &:hover
-    +pointer
-    border: 1px solid #ddd
-  &:active
-    box-shadow:         inset 0 0 20px #fff
-    -moz-box-shadow:    inset 0 0 20px #fff
-    -webkit-box-shadow: inset 0 0 20px #fff
-=button-blue
-  +pointer
-  border: 1px solid #9ae4fd
-  color: #d1f2ff
-  &:hover
-    +pointer
-    border: 1px solid #fff
-    color: #fff
 
 
 =border-light
@@ -199,6 +177,8 @@
   border: 1px solid #444
 =border-blue
   border: 1px solid #9ae4fd
+
+
 
 
 =infoTab-light
@@ -250,9 +230,9 @@
 
 
 =shine-dark-alpha($px)
-  box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
-  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.06)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.06)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.06)
 
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))
@@ -448,7 +428,45 @@
 
 
 
+
+
+
+
+
 // BUTTONS
+
+
+
+=button-light
+  +pointer
+  border: 1px solid #aaa
+  &:hover
+    +pointer
+    border: 1px solid #464646
+
+
+=button-dark
+  +pointer
+  border: 1px solid #333
+  &:hover
+    +pointer
+    border: 1px solid #777
+  &:active
+    +gradient(#222, #555)
+
+
+=button-blue
+  +pointer
+  border: 1px solid #9ae4fd
+  color: #d1f2ff
+  &:hover
+    +pointer
+    border: 1px solid #fff
+    color: #fff
+
+
+
+
 =confirm($offset)
   &:hover
     +bg-shine($offset)

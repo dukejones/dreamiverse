@@ -7,7 +7,7 @@
     =# javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
     :coffeescript
-      require(['/javascripts/home.js', 'loginpanel', 'dreamplugs', 'cookies'])
+      require(['loginpanel', 'dreamplugs', 'cookies'])
 
     = csrf_meta_tag
     = yield :head
@@ -22,5 +22,5 @@
 
     - if Rails.env == 'production'
       :coffeescript
-        require(requireConfig, 'js/google_analytics')
+        require({baseUrl: "/javascripts"}, 'google_analytics')
 

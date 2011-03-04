@@ -1,12 +1,7 @@
 window.log = (msg)-> console.log(msg) if console?
 
-window.requireConfig = {
-  paths:
-    'js' : '..'
-}
-
-require(requireConfig,
-  ['js/pubsub', 'js/rails', 'js/jquery.hoverIntent.minified', 'js/jquery-ui.min', "js/jquery.placeholder"],
+require({baseUrl: "/javascripts"},
+  ['pubsub', 'rails', 'jquery.hoverIntent.minified', 'jquery-ui.min', "jquery.placeholder"],
   -> 
     $('input[placeholder],textarea[placeholder]').placeholder()
 )

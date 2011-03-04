@@ -15,7 +15,11 @@ class User::SessionsController < ApplicationController
       flash.alert = "incorrect username / password"
     end
     
-    redirect_to :root
+    begin
+      redirect_to :back
+    rescue RedirectBackError
+      redirect_to :root
+    end
   end
 
   def destroy

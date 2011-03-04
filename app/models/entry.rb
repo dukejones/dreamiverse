@@ -45,13 +45,15 @@ class Entry < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :body
+  validates_presence_of :main_image
+  validates_presence_of :dreamed_at
   
-  before_save :set_sharing_level
+  after_initialize :init_sharing_level
+  after_initialize :init_dreamed_at
   before_save :set_main_image
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
-
 
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
@@ -117,14 +119,21 @@ class Entry < ActiveRecord::Base
       page_size = filters[:page_size] || 30
       # only entries within 10 days
       # top page_size of each
-      entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
+      entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
       entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
-      entries = entry_scope.where(:user_id => viewer.following.map(&:id))
-      # each should be sorted according to date & starlight
+      # based on friend filter: 
+      user_list = 
+        if filters[:friend] == "friends"
+          viewer.friends
+        else
+          viewer.following
+        end
+      entries = entry_scope.where(:user_id => user_list.map(&:id))
+      # each should be sorted according to date or starlight
     end
 
-    # debugger if entries.any?{|e| !viewer.can_access?(e) }
+    entries.select!{|e| viewer.can_access?(e) } # this is very, very slow.
     entries
   end
 
@@ -203,11 +212,15 @@ class Entry < ActiveRecord::Base
 
 protected
 
-  def set_sharing_level
-    sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
+  def set_main_image
+    self.main_image ||= self.images.first
   end
 
-  def set_main_image
-    self.main_image = self.images.first unless self.main_image_id?
+  def init_sharing_level
+    self.sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
+  end
+
+  def init_dreamed_at
+    self.dreamed_at ||= Time.zone.now
   end
 end

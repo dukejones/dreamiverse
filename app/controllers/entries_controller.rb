@@ -3,6 +3,8 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream]
 
   def entry_list
+    # This is an example of a hack due to tightly coupling Display to Data.
+    session[:filters].delete(:type) if session[:filters]._?[:type] == "all entries"
     @entries = Entry.list(current_user, @user, session[:lens], session[:filters])
   end
   
@@ -84,15 +86,13 @@ class EntriesController < ApplicationController
     session[:filters] = params[:filters]
 
     @user = current_user
-
+    
     entry_list
     
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
-      
-      
-      render :text => thumbs_html
+      render :json => {type: 'ok', html: thumbs_html}
     end
   end
 

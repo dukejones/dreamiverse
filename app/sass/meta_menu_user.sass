@@ -4,8 +4,8 @@
 #appearancePanel, #settingsPanel
   +absolute
   +clear
-  +round(8)
-  right: -35px
+  +round(16)
+  right: 0px
   top: 80px
   width: 334px
   z-index: 1400
@@ -113,6 +113,10 @@
       border: 1px solid #ccc
 
 
+
+
+
+
     // NOTIFICATIONS PANEL
     .notificationsPanel
       +round(16)
@@ -187,4 +191,68 @@
       img
         margin: 1px
         border: 0px
+
+
+
+
+
+
+
+
+// FLOATING BUTTONS
+
+
+
+#metaMenu
+
+  .adminLink, .newEntry, .logOut
+    +transparent-dark(50)
+    +round(24)
+    +button-light
+    +right
+    +block
+    +user-select
+    color: #fff
+    text-decoration: none
+    border: 1px solid #777
+
+  .adminLink, .logOut
+    width: 28px
+    height: 28px
+    +alpha(60)
+    .img
+      width: 100%
+      height: 100%
+      background-position: center center
+      background-repeat: no-repeat
+
+  .adminLink:hover, .logOut:hover
+    +alpha(100)
+    +glow-dark(8)
+    border: 1px solid transparent
+
+  .adminLink
+    margin: 8px
+    .img
+      background-image: url('/images/icons/admin-16.png')
+  .logOut
+    margin: 10px 14px 0 12px
+    .img
+      background-image: url('/images/icons/logout-24.png')
+
+
+  .newEntry
+    +glow-dark(40)
+    +bold
+    padding: 4px 8px
+    font-size: 17px
+    margin: 8px 12px 0 0
+    border: 2px solid transparent
+    span
+      color: #093
+  .newEntry:hover
+    +inner-glow(20)
+    border: 2px solid transparent
+
+
 

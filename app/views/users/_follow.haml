@@ -2,11 +2,51 @@
 / FOLLOW
 :coffeescript
   $(document).ready ->
+    # Setup the following/friends interactions
+  
+    # Listen for follow/unfollow events
+    $('a.follow').bind 'ajax:success', (data, xhr, status)->
+      newIcon = $('.relationship .follow').find('.icon img').attr('src')
+      $('.context .icon').find('img').attr('src', newIcon)
+      $('.relation').html('following')
+      $('.relation').data('state', 'following')
+
+    $('a.unfollow').bind 'ajax:success', (data, xhr, status)->
+      newIcon = $('.relationship .follow').find('.icon img').attr('src')
+      $('.context .icon').find('img').attr('src', '')
+      $('.relation').html('follow')
+      $('.relation').data('state', 'none')
+      $('.context .icon').find('img').attr('alt', '')
+      
+    $('a.befriend').bind 'ajax:success', (data, xhr, status)->
+      newIcon = $('.relationship .follow').find('.icon img').attr('src')
+      $('.context .icon').find('img').attr('src', newIcon)
+      $('.relation').html('friends')
+      $('.relation').data('state', 'friends')
+
+    $('a.unfriend').bind 'ajax:success', (data, xhr, status)->
+      newIcon = $('.relationship .follow').find('.icon img').attr('src')
+      $('.context .icon').find('img').attr('src', newIcon)
+      $('.relation').html('following you')
+      $('.relation').data('state', 'followed by')
+      
+      
     $('#contextPanel .item.relationship')
       .hover( ->
+        status = $('.relation').data('state')
+        
+        switch status
+          when "none"
+            $('.follow').removeClass('hidden')
+          when "following"
+            $('.unfollow').removeClass('hidden')
+          when "followed by"
+            $('.befriend').removeClass('hidden')
+          when "friends"
+            $('.unfriend').removeClass('hidden')
+        
         $('.relation').addClass('hidden')
         $('.context .icon').addClass('hidden')
-        $('.changeRelation').removeClass('hidden')
       , ->
         $('.relation').removeClass('hidden')
         $('.context .icon').removeClass('hidden')
@@ -16,7 +56,7 @@
 
 
 .item.relationship
-  .relation
+  .relation{:'data-state' => "#{relationship.to_s.humanize.downcase}"}
     - if relationship == :none
       follow
     - elsif relationship == :followed_by
@@ -25,31 +65,24 @@
       = relationship.to_s.humanize.downcase
 
 
-
-  - if relationship == :none || relationship == :followed_by
-    %a.changeRelation.follow.hidden{href: follow_path(user.username)}
-      - if relationship == :none
-        .icon
-          = friend_icon_tag( :following, 24, {class: 'follow'} )
-        follow
-
-      - elsif relationship == :followed_by
-        .icon
-          = friend_icon_tag( :friends, 24, {class: 'follow'} )
-        befriend
+  = link_to follow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :none) ? 'changeRelation follow hidden' : 'changeRelation follow hidden' do
+    .icon
+      = friend_icon_tag( :following, 24, {class: 'follow'} )
+    follow
 
 
-
-  - if relationship == :friends || relationship == :following
-    %a.changeRelation.unfollow.hidden{href: unfollow_path(user.username)}
-
-      - if relationship == :friends
-        .icon
-          = friend_icon_tag( :following, 24, {class: 'unfollow'} )
-        unfriend
-
-      - elsif relationship == :following
-        .icon
-          = friend_icon_tag( :none, 24, {class: 'unfollow'} )
-        unfollow
-
+  = link_to follow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :followed_by) ? 'changeRelation befriend hidden' : 'changeRelation befriend hidden' do
+    .icon
+      = friend_icon_tag( :friends, 24, {class: 'follow'} )
+    befriend
+    
+  = link_to unfollow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :friends) ? 'changeRelation unfriend hidden' : 'changeRelation unfriend hidden' do
+    .icon
+      = friend_icon_tag( :following, 24, {class: 'unfollow'} )
+    unfriend
+  
+  = link_to unfollow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :following) ? 'changeRelation unfollow hidden' : 'changeRelation unfollow hidden' do
+    .icon
+      = friend_icon_tag( :none, 24, {class: 'unfollow'} )
+    unfollow
+    
