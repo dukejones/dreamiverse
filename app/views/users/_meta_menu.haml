@@ -1,0 +1,18 @@
+:coffeescript
+  require(['metamenu', 'dreamplugs'])
+
+
+#report_box= VERSION
+
+%a#logo{href: root_path}
+  %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
+
+
+
+- if current_user.blank?
+  / META MENU - PUBLIC
+  = render :partial => "users/meta_menu_public"
+
+- else
+  / META MENU - USER
+  = render :partial => "users/meta_menu_user"

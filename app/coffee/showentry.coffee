@@ -97,12 +97,19 @@ $(document).ready ->
     $(el).find('a').click( (event) =>
       event.preventDefault()
       
+      $('.video').hide()
+      $('.gallery .youtube').show()
+      
+      # remove li
+      $(event.currentTarget).parent().hide()
+      
       new_id = $(event.currentTarget).parent().data('id')
       $container = $("#" + new_id).parent().parent()
-      if $container.css('display') == 'none'
-        $container.slideDown()
-      else
-        $container.slideUp()
+      $container.find('.minimize').click( (event) =>
+        $('.video').hide()
+        $('.gallery .youtube').show()
+      )
+      $container.show()
     )
   
   $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 

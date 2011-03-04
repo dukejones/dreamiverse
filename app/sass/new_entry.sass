@@ -49,7 +49,7 @@
   .linksHeader
     img
       margin: 7px 8px 0 0
-  .emotionsHeader, .tagHeader, .locationHeader, .dateTimeHeader
+  .moodHeader, .tagHeader, .locationHeader, .dateTimeHeader
     img
       margin: 9px 8px 0 0
   .tagHeader
@@ -638,10 +638,10 @@
         background: #fff url(/images/icons/close-22.png) no-repeat center
         &:hover
           +alpha(100)
-
+       
   // NEW ENTRY MOOD
-  .entryEmotions
-    .emotionsHeader
+  .entryMood
+    .moodHeader
       margin-bottom: 8px
 
     // MOOD PICKER
@@ -927,9 +927,9 @@
             color: #555
 
     // NEW ENTRY MOOD
-    .entryEmotions
+    .entryMood
       +shine-light-alpha(24)
-      .emotionsHeader
+      .moodHeader
         +indent-light
         +button-light
 
@@ -1071,9 +1071,9 @@
             color: #ccc
 
     // NEW ENTRY MOOD
-    .entryEmotions
+    .entryMood
       +shine-dark-alpha(24)
-      .emotionsHeader
+      .moodHeader
         +indent-dark
         +button-dark
 

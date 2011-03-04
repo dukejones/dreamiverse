@@ -39,8 +39,9 @@
 
     .wrapper
       / HEADER IMAGE & TITLE
-      .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
-
+      - if @entry.main_image
+        .tagToggle.trigger.fade
+        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
 
       / TAG CLOUD
       .tagCloud
@@ -48,18 +49,17 @@
         - @entry.tags.limit(16).shuffle.each do |tag|
           %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 
-      - if @entry.main_image
-        .tagToggle.trigger.fade
-
 
     / MOOD ICON
     .moodIcon.hidden
       %img{src: '/images/moods/plants/Fungi.png'}
 
+
     / STARLIGHT COUNT & SHARE OPTIONS
     .starlight_share
       %img.starlight{src: '/images/icons/starlight-22.png'}
       %span= @entry.starlight._?.value
+
 
       /
         SAVE FOR LATER
@@ -137,8 +137,6 @@
           .postTime
             - time = (@entry.dreamed_at || @entry.created_at)
             = time_ago_in_words(time)
-            = render partial: "shared/hover_label", locals: {message: "#{time.strftime('%B %d, %Y')}", x: "40", y: "-18"}
-
         
           - if location = @entry.location
             .postLocation= "#{location.city}, #{location.province}"
