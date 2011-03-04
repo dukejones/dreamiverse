@@ -31,18 +31,17 @@ $(document).ready ->
     link_id = $(el).data('id')
     $(el).find('a').click( (event) =>
       event.preventDefault()
-      $('.youtubeEmbed').slideUp('300', ->
-        $("#" + new_id).show()
-      )
-      $(event.currentTarget).parent().parent().parent().parent().parent().parent().parent().addClass('videoExpand')
       
+      $('.thumb-1d .video').hide()
+      $('.thumb-1d').removeClass('videoExpand')
+      
+      #$('.video').hide()
+      $parent = $(event.currentTarget).parent().parent().parent().parent().parent().parent().parent()
+      $parent.addClass('videoExpand')
       
       new_id = $(event.currentTarget).parent().data('id')
       $container = $("#" + new_id).parent().parent()
-      if $container.css('display') == 'none'
-        $container.show()
-      
-      $("#" + new_id).show()
+      $container.show()
     )
   
   $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
