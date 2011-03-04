@@ -241,6 +241,9 @@
           // width: 262px
           top: 4px
           right: 82px
+          box-shadow:         4px 4px 10px #555
+          -moz-box-shadow:    4px 4px 10px #555
+          -webkit-box-shadow: 4px 4px 10px #555
 
           table.container
             border-collapse: separate
@@ -259,6 +262,9 @@
           padding: 1px
           // width: 62px
           // height: 62px
+          box-shadow:         0px 0px 10px #555
+          -moz-box-shadow:    0px 0px 10px #555
+          -webkit-box-shadow: 0px 0px 10px #555
 
           .arrow
             +hidden
@@ -628,8 +634,6 @@
 
         // EMOTIONS DETAILS & THUMBS
         .emotions-details, .emotions-thumb
-          +bevel-light
-          +glow-light(10)
 
           .arrow
             background: url(/images/icons/arrow-right-16-dark.png) no-repeat center
@@ -642,10 +646,6 @@
         .emotions-details
           +gradient(#fff, #e5e5e5)
           color: #555
-
-        // EMOTIONS THUMB ONLY
-        .emotions-thumb
-          +gradient(#fff, #D7D7D7)
 
         // TITLE
         .title
@@ -788,8 +788,7 @@
 
         // EMOTIONS DETAILS & THUMBS
         .emotions-details, .emotions-thumb
-          +bevel-dark
-          +glow-dark(10)
+          +gradient(#242424, #000)
 
           .arrow
             background: url(/images/icons/arrow-right-16-light.png) no-repeat center
@@ -797,14 +796,6 @@
           table.container
             td.value
               +indent-dark
-
-        // EMOTIONS DETAILS ONLY
-        .emotions-details
-          +gradient(#242424, #000)
-
-        // EMOTIONS THUMB ONLY
-        .emotions-thumb
-          +gradient(#fff, #303030)
 
         // TITLE
         .title
