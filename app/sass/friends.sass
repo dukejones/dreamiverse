@@ -68,10 +68,8 @@
         margin: 0
       p
         +font(10)
-        color: #5C5C5C
         margin: 0
       p.mutual
-        color: #262626 /* 90% Black */
         background-position: 0 100%
 
     .backdrop
@@ -157,10 +155,9 @@
         +button-light
 
       .backdrop
-        +bevel-light
 
       .panel
-        background-color: #adadad
+        +shine-light(32)
         .expanded
           .item
             .label
@@ -185,10 +182,9 @@
         +button-dark
 
       .backdrop
-        +bevel-dark
 
       .panel
-        background-color: #222
+        +shine-dark(32)
         .expanded
           .item
             .label

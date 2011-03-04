@@ -33,37 +33,40 @@
           +hidden
 
 
+      // USERNAME + AVATAR
+
+      .user
+        +round(8)
+        +absolute
+        top: 8px
+        left: 8px
+        padding: 0 12px 0 0
+        height: 30px
+        line-height: 30px
+        z-index: 100
+
+        .avatar
+          +round(7)
+          +flat-right
+          +overflow
+          +left
+          width: 30px
+          height: 30px
+
+        .name
+          +bold
+          +right
+          margin: 0 0 0 12px
+          font-size: 16px
+
+
       // LEFT SIDE
       .left
         +absolute
         width: 352px
-
-
-        // USERNAME + AVATAR
-        .user
-          +round(8)
-          +absolute
-          top: 8px
-          left: 8px
-          padding: 0 12px 0 0
-          height: 30px
-          line-height: 30px
-
-          .avatar
-            +round(7)
-            +flat-right
-            +overflow
-            +left
-            width: 30px
-            height: 30px
-
-          .name
-            +bold
-            +right
-            margin: 0 0 0 12px
-            font-size: 16px
-
-
+        
+        .image
+          z-index: 0
 
 
         // COMMENT COUNT
@@ -321,14 +324,16 @@
           +glow-light(40)
 
 
+        // USERNAME + AVATAR
+        .user
+          +button-light
+          +gradient(#fff, #e4e4e4)
+          .name
+            color: #333
+
         // LEFT SIDE
         .left
 
-          // USERNAME + AVATAR
-          .user
-            +gradient(#fff, #e4e4e4)
-            .name
-              color: #333
           .commentCount
             .counter
               +transparent-dark(60)
@@ -362,15 +367,18 @@
         &:hover
           +glow-dark(40)
 
+
+        // USERNAME + AVATAR
+        .user
+          +button-dark
+          +gradient(#1d1d1d, #000)
+          .name
+            color: #ddd
+
         // LEFT SIDE
         .left
           color: #ccc
 
-          // USERNAME + AVATAR
-          .user
-            +gradient(#1d1d1d, #000)
-            .name
-              color: #ddd
           .commentCount
             .counter
               +border-dark
