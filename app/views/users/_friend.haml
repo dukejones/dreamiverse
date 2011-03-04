@@ -5,7 +5,9 @@
   .statusHover.hidden
     %span unfollow
 
+
   %a.avatar.button{href: dreams_path(friend.username), style: "background-image: url('#{avatar_image(friend, 64)}')"}
+
 
   .userInfo
     %h3= friend.username
@@ -15,27 +17,38 @@
       - mutual_followers = (user.followers & friend.followers).count
       = pluralize(mutual_followers, "mutual follower")
 
+
   .backdrop
 
+
   .panel
+
     .expanded.hidden
+
       .shadow
+
       .item.top
         .label dreams
         .image
           %img.dream{src: '/images/icons/dream-32-selected.png', width: '32', height: '32'}
         .detail= friend.entries.count
         .clear
+
       .item
         .label friends
         .image
-          %img.follow{src: '/images/icons/friend-32.png', width: '32', height: '32'}
+          %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
         .detail= friend.friends.count
         .clear
+
       .item
         .label starlight
         .image
           %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
         .detail= friend.starlight._?.value || 0
         .clear
+
+
+
+
 
