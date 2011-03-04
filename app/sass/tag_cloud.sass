@@ -1,12 +1,14 @@
 .tagCloud div
+  +user-select
   +left
   +round(8)
   text-decoration: none
-  padding: 1px 4px
+  padding: 1px 5px
 
 .tagCloud
   .s0
     +font(23)
+    +bold
     line-height: 21px
   .s1
     +font(21)
@@ -29,7 +31,44 @@
   .s12, .s13, .s14, .s15
     +font(14)
     line-height: 12px
-  
+
+#showEntry .tagCloud
+  .s0
+    +font(68)
+    line-height: 48px
+  .s1
+    +font(62)
+    +bold
+    line-height: 42px
+  .s3
+    +font(58)
+    line-height: 36px
+  .s4
+    +font(50)
+    line-height: 34px
+  .s5
+    +font(44)
+    line-height: 20px
+  .s6, .s7
+    +font(18)
+    line-height: 16px
+  .s8, .s9, .s10, .s11
+    +font(15)
+    line-height: 15px
+  .s12, .s13, .s14, .s15
+    +font(14)
+    line-height: 12px
+
+
+#showEntry .tagCloud div
+  text-decoration: none
+  padding: 0 16px
+
+
+
+
+
+
 // COLORS
 .light .tagCloud, .dark .tagCloud
   .s0.white
