@@ -13,10 +13,10 @@
 
 
       %select#sharingList.sharingList
-        %option.everyone{  value: Entry::Sharing[:everyone]  } Everyone
-        %option.friends{   value: Entry::Sharing[:friends]   } Friends only
-        %option.anonymous{ value: Entry::Sharing[:anonymous] } Anonymous
-        %option.private{   value: Entry::Sharing[:private]   } Private
+        %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
+        %option.friends{   value: Entry::Sharing[:friends]   } friends only
+        %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
+        %option.private{   value: Entry::Sharing[:private]   } private
 
 
     %label.hidden
@@ -33,15 +33,9 @@
       %img.facebook-icon{src: '/images/icons/facebook-16.png'}
       %h2.facebook-label facebook login
 
-
-      .linkAccount
+      %a.linkAccount{href: ''}
         link account
-
-
-
     .clear
-
-
 
 
   / CHANGE PASSWORD
