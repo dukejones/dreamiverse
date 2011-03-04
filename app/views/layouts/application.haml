@@ -9,8 +9,8 @@
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
-    = coffeescript_include_tag 'application'
-    = javascript_include_tag 'jquery.min', 'rails', 'application', 'pubsub', "jquery.hoverIntent.minified", "functions.core"
+    = javascript_include_tag 'jquery.min'
+    %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
 
     = yield :head
 
@@ -30,6 +30,4 @@
 
     = yield :foot
     = render "shared/facebook_sdk"
-    = javascript_include_tag "jquery-ui.min", 'chat'
-    = render "layouts/placeholder"
     
