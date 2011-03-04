@@ -13,11 +13,17 @@
   width: 200px
   padding: 4px 4px 0
   border: 1px solid #000
+
+
+
+
+
   #avatarDrop
     +round(12)
     width: 200px
     height: 266px
     z-index: 1200
+
     #avatarDropContainer
       +round(12)
       +transparent-dark(80)
@@ -25,18 +31,23 @@
       height: 266px
       color: #fff
       z-index: 1200
+
+
       &.qq-upload-drop-area-active
         background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.6)
+
       .text
         +font(21)
         +center
         padding-top: 20px
         z-index: 1200
+
       .browse
         +font(14)
         +center
         top: 180px
         z-index: 1200
+
         .cancel, .dropboxBrowse
           +absolute
           +round(4)
@@ -54,6 +65,8 @@
           width: 100px
           +confirm(12)
           +pointer
+
+
   .avatar
     +round(12)
     +block
@@ -86,6 +99,7 @@
         +alpha(100)
         +inner-glow(20)
         border: 1px solid transparent
+
     .uploader
       +round(12)
       +transparent-dark(80)
@@ -111,6 +125,10 @@
           cursor: pointer
       .dropboxBrowse
         color: #fff
+
+
+
+  // USERNAME and CONTEXT
 
   .context
     +round(12)
@@ -139,6 +157,11 @@
 
   .divider
     height: 2px
+
+
+
+
+
 
   // PROFILE
   .profile
@@ -199,6 +222,8 @@
           height: 22px
           line-height: 22px
 
+
+
     // EDIT PROFILE
     .edit
       +round(8)
@@ -243,6 +268,9 @@
         height: 24px
         padding: 0 36px 4px
 
+
+
+  // GENERAL ITEM
 
   .item
     +clear
@@ -294,6 +322,11 @@
         +font(15)
         font-weight: normal
 
+
+
+
+    // FRIEND AND FOLLOWING
+
     .relation, .changeRelation
       +bold
       +center
@@ -320,15 +353,23 @@
       +pointer
       color: #fff
       border: 1px solid #54943d
+      &:active
+        +gradient(#235b1b, #70d03b)
     .changeRelation.unfollow
       +bg-shine(16)
       +gradient(#ee7c44, #8b2e12)
       +pointer
       color: #fff
       border: 1px solid #c1633c
+      &:active
+        +gradient(#8b2e12, #ee7c44)
 
     &.relationship
       margin-bottom: 2px
+
+
+
+
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters

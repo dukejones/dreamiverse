@@ -45,11 +45,11 @@
 
       - if relationship == :friends
         .icon
-          = friend_icon_tag( :following, 24, {class: 'unfollow'} )
+          = friend_icon_tag( :following, 24, {class: 'none'} )
         unfriend
 
       - elsif relationship == :following
         .icon
-          = friend_icon_tag( :none, 24, {class: 'unfollow'} )
+          = friend_icon_tag( :none, 24, {class: 'none'} )
         unfollow
 

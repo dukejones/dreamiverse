@@ -1,15 +1,18 @@
 @import mixins
 
 
-/******** 1D ENTRY THUMBS - GENERAL & NO IMAGE ********/
+
 // STRUCTURE
 #entryField, #home
   .matrix
 
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
+
       .left .details .starlight, .left .commentCount
         display: block
+
+
 
     .thumb-1d, .thumb-1d.noImage
       +block
@@ -29,10 +32,12 @@
         .thumbBack
           +hidden
 
+
       // LEFT SIDE
       .left
         +absolute
         width: 352px
+
 
         // USERNAME + AVATAR
         .user
@@ -43,6 +48,7 @@
           padding: 0 12px 0 0
           height: 30px
           line-height: 30px
+
           .avatar
             +round(7)
             +flat-right
@@ -50,11 +56,15 @@
             +left
             width: 30px
             height: 30px
+
           .name
             +bold
             +right
             margin: 0 0 0 12px
             font-size: 16px
+
+
+
 
         // COMMENT COUNT
         .commentCount
@@ -63,6 +73,7 @@
           top: 8px
           right: 8px
           background: url(/images/icons/comments-16.png) no-repeat right
+
           .counter
             +round(12)
             +right
@@ -74,6 +85,8 @@
             line-height: 16px
             padding: 1px 10px
 
+
+
         // IMAGE
         .image
           width: 352px
@@ -81,6 +94,8 @@
           +round(14)
           +flat-right
           +flat-bottom
+
+
 
         // TITLE & TEXT
         h1.title, p.text
@@ -95,6 +110,8 @@
         p.text
           margin: 4px 8px 0 8px
           height: 40px
+
+
 
         // POST DETAILS
         .details
@@ -139,6 +156,7 @@
               height: 24px
               line-height: 24px
 
+
         .divider
           +absolute
           top: 0
@@ -149,39 +167,48 @@
           background: -webkit-gradient(linear, left top, left bottom, from(rgba(122,122,122,1.0)), to(rgba(122,122,122,0.0)))
           background: -moz-linear-gradient(top, rgba(122,122,122,1.0), rgba(122,122,122,0.0))
 
+
+
       // RIGHT SIDE
       table.right
         +absolute
         +overflow
         left: 358px
         height: 164px
+
         td
           border-spacing: 0
           padding: 0
+          
+          .tagCloud
+            +block
+            height: 400px
+
 
         // TOP
         td.top
           max-height: 62px
+
+          // ENTRY IMAGES AND YOUTUBE LINKS
+
           ul
             list-style: none
             margin: 0
             padding: 0
             width: 320px
+
             li
               +left
-              margin: 0 2px 0 0
+              margin: 6px 2px 0 0
               height: 60px
               width: 60px
               &.youtube a img
                 margin: 6px
+
             li a
               height: 60px
               width: 60px
               +block
-
-        // MIDDLE
-        .tagCloud
-          +user-select
 
 
         // BOTTOM
@@ -202,6 +229,12 @@
             padding: 0 8px
             color: #fff
             background: #7a7a7a
+
+
+
+
+
+
 
 
 
@@ -236,10 +269,17 @@
         .image
           +hidden
 
+        .divider
+          +hidden
+
         // POST DETAILS
         .details
           +absolute
           top: 138px
+
+
+
+
 
 
 // THUMB 1D VIDEO EXPAND
@@ -255,10 +295,22 @@
         +block
 
 
+
+
+
+
+
+
+
+
+
+
 // 1D ENTRY THUMBS
 // COLORS
 .light
+
   #entryField, #home
+
     .matrix
       .thumb-1d, .thumb-1d.noImage
         background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 100px, rgba(243,243,243,1.0))
@@ -267,6 +319,7 @@
         // border: 1px solid rgba(127,127,127,0.5)
         &:hover
           +glow-light(40)
+
 
         // LEFT SIDE
         .left
@@ -291,6 +344,10 @@
               +transparent-dark(30)
               +border-dark
               color: #ddd
+
+        // GALLERY
+        table.right td.top ul li
+          +button-light
 
 
 
@@ -328,12 +385,25 @@
               +transparent-light(10)
               +border-dark
 
-
+        // GALLERY
+        table.right td.top ul li
+          +button-dark
 
       .thumb-1d.noImage .left .commentCount .counter
         +transparent-light(10)
       .thumb-1d .commentCount .counter
         +transparent-dark(50)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -367,3 +437,9 @@
             .counter
               +transparent-light(10)
               color: #ccc
+
+
+
+
+
+

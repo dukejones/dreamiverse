@@ -170,37 +170,6 @@
 //  ***  LIGHT  and  DARK  ***
 //  ***  *****  ***  ****  ***
 
-=button-light
-  +pointer
-  border: 1px solid #bbb
-  &:hover
-    +pointer
-    border: 1px solid #464646
-
-
-=button-dark
-  +pointer
-  border: 1px solid #333
-  &:hover
-    +pointer
-    border: 1px solid #777
-  &:active
-    box-shadow:         inset 0 16px 10px rgba(255,255,255,0.05)
-    -moz-box-shadow:    inset 0 16px 10px rgba(255,255,255,0.05)
-    -webkit-box-shadow: inset 0 16px 10px rgba(255,255,255,0.05)
-
-
-=button-blue
-  +pointer
-  border: 1px solid #9ae4fd
-  color: #d1f2ff
-  &:hover
-    +pointer
-    border: 1px solid #fff
-    color: #fff
-
-
-
 
 =border-light
   border: 1px solid #bbb
@@ -459,7 +428,45 @@
 
 
 
+
+
+
+
+
 // BUTTONS
+
+
+
+=button-light
+  +pointer
+  border: 1px solid #bbb
+  &:hover
+    +pointer
+    border: 1px solid #464646
+
+
+=button-dark
+  +pointer
+  border: 1px solid #333
+  &:hover
+    +pointer
+    border: 1px solid #777
+  &:active
+    +gradient(#222, #555)
+
+
+=button-blue
+  +pointer
+  border: 1px solid #9ae4fd
+  color: #d1f2ff
+  &:hover
+    +pointer
+    border: 1px solid #fff
+    color: #fff
+
+
+
+
 =confirm($offset)
   &:hover
     +bg-shine($offset)
