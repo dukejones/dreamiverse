@@ -19,7 +19,7 @@
       %img.dream{src: '/images/icons/dream-32.png'}
       <span class="green">+</span> add your first dream
 
-    .button{onclick: "toggleAppearance()"}
+    .button{onclick: "$.publish('toggleAppearance', [this])"}
       %img.appearance{src: '/images/icons/appearance-24.png'}
       set your default theme
 
