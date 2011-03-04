@@ -1,8 +1,20 @@
 
 
+
+.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .postTime
+  &:hover
+    .hover_label
+      +block
+
+
+
+
 .hover_label
   +hidden
   +absolute
+  +right
+  z-index: 1401
+
   .offset-left
     +relative
     .offset-right
@@ -25,11 +37,7 @@
       padding: 0 8px
       overflow: visible
 
-.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .postTime
-  &:hover
-    .hover_label
-      +block
-      z-index: 1401
+
 
 // COLORS
 .light .hover_label
@@ -39,6 +47,7 @@
     color: #000
     +flat-light
     +glow-light(20)
+
 .dark .hover_label
   .arrow
     background: url('/images/icons/arrow-up-16-dark.png') no-repeat 0 0 transparent

@@ -6,7 +6,7 @@
   .sharing
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
       %img.sharingIcon{src: '/images/icons/everyone-16.png'}
-      %h2 Default sharing
+      %h2 default sharing
       %select#sharingList.sharingList
         %option.everyone{  value: Entry::Sharing[:everyone]  } Everyone
         %option.friends{   value: Entry::Sharing[:friends]   } Friends only
@@ -23,9 +23,9 @@
       %img{src: '/images/icons/facebook-16.png'}
       %h2 Facebook login
       .linkAccount.trigger.showhide
-        Link account
+        link account
       %label.target.showhide.hidden
-        By default, share on Facebook
+        by default, share on Facebook
         %input.fbShare{type: 'checkbox'}
     .clear
 
@@ -36,7 +36,7 @@
   .changePassword.wrapper.showhide
     %h2.trigger.showhide
       %img{src: '/images/icons/key-16.png'}
-      Change password
+      change password
 
     .changePasswordForm.target.showhide.hidden
       = form_tag :user, :method => :put, :'data-type' => :json, :remote => true, :id => 'change_password' do

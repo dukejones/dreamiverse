@@ -8,15 +8,13 @@
     %a.item{href: '/dreamstars'}
       %img{src: '/images/icons/starlight-17.png'}
       dreamstars
-    %a.item{href: user_entries_path(current_user.username)}
-      my dreams
     %a.item{href: stream_path}
       stream
 
 
   / LOG OUT
   %a.logOut{href: '/logout'}
-    log out
+    .img
 
 
   / SETTINGS MENU
@@ -71,7 +69,7 @@
 
   / ADMIN LINK
   %a.adminLink{href: '/admin'}
-    %img{src: '/images/icons/admin-16.png', border: '0'}
+    .img
 
   / NEW ENTRY LINK
   %a.newEntry{href: new_entry_path}

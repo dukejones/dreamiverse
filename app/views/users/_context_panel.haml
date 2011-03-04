@@ -52,7 +52,7 @@
       .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
       .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        - if current_user._?.friends_with?(user)
+        / - if current_user._?.friends_with?(user)
         -# if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
         - if user.link
