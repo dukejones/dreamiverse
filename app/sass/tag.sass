@@ -1,0 +1,55 @@
+
+// SHARED TAG STYLES
+#tagStream, #showEntry, #entryField
+
+  // WHO, WHERE, WHAT TAG STYLES
+  // TAG STRUCTURE
+  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+    +relative
+    +round(8)
+    +left
+    +overflow
+    margin: 0 8px 4px 0
+    height: 32px
+    line-height: 32px
+    .close
+      +close-16
+      +right
+      margin: 8px 4px 0 0
+    .avatar, .whereIcon, .tagImage
+      +round(8)
+      +flat-right
+      +left
+      +overflow
+      width: 32px
+      height: 32px
+    span
+      +left
+      margin: 0 8px
+    .analysisIcon, .followStatus
+      +right
+      width: 32px
+      height: 32px
+
+  // TAG NO IMAGE
+  .tagNoImage
+    +center
+    padding: 0 8px
+
+
+// SHARED TAG COLORS
+.light
+  #tagStream, #showEntry, #entryField
+    #tagsLive, #tag-list, .burstInfo
+      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+        +button-light
+        +flat-light-medium
+        color: #333
+
+.dark
+  #tagStream, #showEntry, #entryField
+    #tagsLive, #tag-list, .burstInfo
+      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+        +button-dark
+        +flat-dark-medium
+        color: #ddd

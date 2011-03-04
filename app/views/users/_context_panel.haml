@@ -55,16 +55,16 @@
         - if current_user._?.friends_with?(user)
         -# if user.link || ((user.email || user.phone || user.skype) && (current_user.relationship_with(user) == :friends || user == current_user))
           %hr
-          - if user.link
-            %a.website{href: user.link.url, target: "_blank"}= user.link.url
-          - if current_user.relationship_with(user) == :friends || user == current_user
-            .email= user.email
-            .phone= user.phone
-            - unless user.skype.blank
-              .skype
-                %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-                %span= user.skype
-              .clear
+        - if user.link
+          %a.website{href: user.link.url, target: "_blank"}= user.link.url
+        - if current_user.relationship_with(user) == :friends || user == current_user
+          .email= user.email
+          .phone= user.phone
+          - if user.skype
+            .skype
+              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+              %span= user.skype
+            .clear
         / .facebook facebook
         / .twitter twitter
         .clear
@@ -78,7 +78,7 @@
           = fields_for current_user do |f|
             = f.text_field :name, :placeholder => 'full name'
             = f.fields_for :link_attributes do |l|
-              = l.text_field :title, :placeholder => 'site name'
+              / = l.text_field :title, :placeholder => 'site name'
               = l.text_field :url, :placeholder => 'website'
             = f.text_field :email, :placeholder => 'email'
             = f.text_field :phone, :placeholder => 'phone'
@@ -137,26 +137,16 @@
         %span followers
 
 
-  / FILTER BY starlight
-  .wrapper
+  / STARLIGHT
+  .item
+    .label.starlight
+      %span.value starlight
+    .image
+      %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+    .detail
+      = user.starlight._?.value || 0
+    .clear
 
-    .item.entryFilter.trigger.slideArrow
-      .label
-        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value starlight
-      .image
-        %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-      .detail
-        = user.starlight._?.value || 0
-      .clear
-
-    .filterList.target.slideArrow.hidden
-      %a.type.top{href: ""}
-        %span high
-      %a.type{href: ""}
-        %span medium
-      %a.type.bottom{href: ""}
-        %span no filter
 
   / VIEW FILTERS - FAVORITES, REPOST, TAG
   / .viewFilters

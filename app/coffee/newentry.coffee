@@ -1,3 +1,19 @@
+getYoutubeEditData = (video_url, $linked_element) ->
+  splitTextArray = video_url.split('v=');
+  filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
+  
+  # Get the data from YOUTUBE
+  $.ajax({
+    url: filePath
+    dataType: 'jsonp'
+    success: (data) ->
+      description = data.feed.entry[0].content.$t
+      thumbnail_url = data.feed.entry[0].media$group.media$thumbnail[1].url
+      
+      $linked_element.find('.thumb').css('background-image', 'url(' + thumbnail_url + ')')
+      $linked_element.find('.description').html(description)
+  })
+
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
@@ -57,3 +73,13 @@ $(document).ready ->
   if $('#tag-list').children().length > 2
     $('.entryAttach .tag').hide()
     $('.entryTags').slideDown()
+  
+  if $('#linkHolder').children().length > 0
+    $('.entryAttach .links').hide()
+    $('.entryLinks').slideDown()
+  
+  
+  # Check for youtube videos & get thumb/desc
+  $('#linkHolder .youtube').each (i, el) =>
+    # Pass the url and the element it came from
+    getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))

@@ -22,10 +22,10 @@ body.scroll
 
 /******** LIGHT AND DARK ********/
 .light
-  color: #333
+  color: #000
 
 .dark
-  color: #ddd
+  color: #eee
 
 .light, .dark
   .button
@@ -166,7 +166,7 @@ abbr, acronym
 @import meta_menu_user
 @import settings_panel
 @import appearance_panel
-
+@import tag
 
 
 
@@ -372,6 +372,7 @@ abbr, acronym
 
 
 /*********** VIDEO PANEL ***********/
+
 .video
   +round(12)
   margin: 12px
@@ -380,7 +381,7 @@ abbr, acronym
   z-index: 1400
 
   .player
-    width: 612px
+    // width: 612px
     height: 390px
     background: #444 // TEMP
 
@@ -401,9 +402,28 @@ abbr, acronym
       +font(16)
       +bold
 
+// THUMB 1D VIDEO
+.thumb-1d.videoExpand
+  .video
+    margin: 230px 12px 12px
+.thumb-1d.noImage.videoExpand
+  .video
+    margin: 176px 12px 12px
+
+.thumb-1d, .thumb-1d.noImage
+  //
+    .thumbBack
+      margin: 0
+      padding: 0 0 12px
+  .video
+    +flat-bottom
+
 
 // VIDEO PANEL COLORS
 .light
+  //
+    .thumbBack
+      background: #f3f3f3
   .video
     +bevel-light
 
@@ -412,8 +432,11 @@ abbr, acronym
       +border-light
 
 .dark
+  //
+    .thumbBack
+      background: #0f0f0f
   .video
-    +bevel-dark
+    +gradient(#000, #0f0f0f)
 
     .info
       +indent-dark
@@ -472,14 +495,14 @@ abbr, acronym
       +border-light
       padding: 4px 4px 4px 8px
       margin: 0 8px 12px
-      height: 28px
-      line-height: 28px
+      height: 32px
+      line-height: 32px
       p
         margin: 0
         +left
-      // will use shared tag styles
+      // Using tag.sass
       .tagWho
-        +left
+        +right
 
     .myStarlight
       +round(8)

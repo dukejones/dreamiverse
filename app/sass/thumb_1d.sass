@@ -21,10 +21,13 @@
       +overflow
       z-index: 100
       margin: 0 0 10px
-      padding: 4px
+      padding: 0
       width: 670px
-      height: 218px
+      height: 226px
       border-bottom: 4px solid rgba(0,0,0,0.50)
+      //
+        .thumbBack
+          +hidden
 
       // LEFT SIDE
       .left
@@ -35,8 +38,8 @@
         .user
           +round(8)
           +absolute
-          top: 4px
-          left: 4px
+          top: 8px
+          left: 8px
           padding: 0 12px 0 0
           height: 30px
           line-height: 30px
@@ -96,8 +99,8 @@
         // POST DETAILS
         .details
           +absolute
-          top: 190px
-          left: 4px
+          top: 198px
+          left: 8px
           height: 26px
           width: 340px
           .rePost, .date, .starlight
@@ -167,9 +170,10 @@
             li
               +left
               margin: 0 2px 0 0
-              background: #ccc
               height: 60px
               width: 60px
+              &.youtube a img
+                margin: 6px
             li a
               height: 60px
               width: 60px
@@ -204,7 +208,7 @@
     // 1D THUMBS - NO IMAGE
     // STRUCTURE
     .thumb-1d.noImage
-      height: 164px
+      height: 172px
       &:hover
         .left
           h1.title
@@ -238,6 +242,18 @@
           top: 138px
 
 
+// THUMB 1D VIDEO EXPAND
+#entryField, #home
+  .matrix
+
+    .thumb-1d.videoExpand, .thumb-1d.noImage.videoExpand
+      height: auto
+      //
+        .thumbBack
+          +block
+      .video
+        +block
+
 
 // 1D ENTRY THUMBS
 // COLORS
@@ -245,8 +261,10 @@
   #entryField, #home
     .matrix
       .thumb-1d, .thumb-1d.noImage
-        background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
-        border: 1px solid rgba(127,127,127,0.5)
+        background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 100px, rgba(243,243,243,1.0))
+        background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.35,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
+        // background: transparent url(/images/slices/gradient-light-230.png) repeat-x top left
+        // border: 1px solid rgba(127,127,127,0.5)
         &:hover
           +glow-light(40)
 
@@ -280,8 +298,10 @@
   #entryField, #home
     .matrix
       .thumb-1d, .thumb-1d.noImage
-        background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
-        border: 1px solid rgba(15,15,15,0.8)
+        background: -moz-linear-gradient(top, rgba(15,15,15,0.3), rgba(15,15,15,1.0) 100px, rgba(15,15,15,1.0))
+        background: -webkit-gradient(linear, center top, center bottom, from(rgba(15,15,15,0.3)), color-stop(.35,rgba(15,15,15,1.0)), to(rgba(15,15,15,1.0)))
+        // background: transparent url(/images/slices/gradient-dark-230.png) repeat-x top left
+        // border: 1px solid rgba(15,15,15,0.8)
         &:hover
           +glow-dark(40)
 
