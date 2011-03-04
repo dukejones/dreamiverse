@@ -74,14 +74,18 @@
 
       .title= @entry.title
 
+
+
       /EMOTIONS DETAILS & THUMBS
-      .emotionsWrap
+      .emotionsWrap.wrapper
         / EMOTIONS DETAILS
-        .emotions-details.hidden
+        .emotions-details.target.showhide.hidden
           = render :partial => "emotions"
         / EMOTIONS THUMB
-        .emotions-thumb
+        .emotions-thumb.trigger.showhide
           = render :partial => "emotions"
+
+
 
       .body= simple_format(@entry.body)
 
