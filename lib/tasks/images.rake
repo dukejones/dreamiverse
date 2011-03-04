@@ -14,7 +14,6 @@ namespace :image do
   end
 end
 
-
 =begin
 namespace :image do
   namespace :resize do
