@@ -38,11 +38,7 @@ class UsersController < ApplicationController
   end
   
   def follow
-    if request.xhr?
-      user = User.find_by_username(params[:username])
-    else
-      user = User.find_by_username(params[:username])
-    end
+    user = User.find_by_username(params[:username])
 
     case params[:verb]
       when 'follow' then current_user.following << user unless current_user.following?(user)
@@ -50,8 +46,7 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      #format.html { redirect_to entries_path(user.username) }
-      format.html { render :json => {message: 'success'} }
+      format.html { redirect_to :back }
       format.json { render :json => {message: 'success'} }
     end
   end

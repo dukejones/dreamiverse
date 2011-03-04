@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       redirect_to stream_path
     end
 
-    @entries = Entry.where(:created_at > 48.hours.ago).
+    @entries = Entry.where(:created_at > 1.week.ago).
       order_by_starlight.limit(8)
   end
 
