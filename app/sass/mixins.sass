@@ -66,56 +66,76 @@
 =cursor
   cursor: default
 
-// ROUND CORNERS
-=round($radius)
-  border-radius: $radius + px
-  -moz-border-radius: $radius + px
-  -webkit-border-radius: $radius + px
 
-// ROUND OVERRIDES
-// FLAT SIDES
+// ROUND
+
+=round($radius)
+  border-radius:            $radius + px
+  -moz-border-radius:       $radius + px
+  -webkit-border-radius:    $radius + px
+
+
+
+// FLAT
+
 =flat-top
-  border-top-left-radius: 0px
-  -moz-border-radius-topleft: 0px
-  -webkit-border-radius-topleft: 0px
-  border-top-right-radius: 0px
-  -moz-border-radius-topright: 0px
-  -webkit-border-radius-topright: 0px
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+
 =flat-right
-  border-top-right-radius: 0px
-  -moz-border-radius-topright: 0px
-  -webkit-border-radius-topright: 0px
-  border-bottom-right-radius: 0px
-  -moz-border-radius-bottomright: 0px
-  -webkit-border-radius-bottomright: 0px
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+
 =flat-bottom
-  border-bottom-left-radius: 0px
-  -moz-border-radius-bottomleft: 0px
-  -webkit-border-radius-bottomleft: 0px
-  border-bottom-right-radius: 0px
-  -moz-border-radius-bottomright: 0px
-  -webkit-border-radius-bottomright: 0px
+  border-bottom-left-radius:          0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+
 =flat-left
-  border-top-left-radius: 0px
-  -moz-border-radius-topleft: 0px
-  -webkit-border-radius-topleft: 0px
-  border-bottom-left-radius: 0px
-  -moz-border-radius-bottomleft: 0px
-  -webkit-border-radius-bottomleft: 0px
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-bottom-left-radius:          0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
 
 =flat-all
-  border-radius-topright: 0px
-  -moz-border-radius-topright: 0px
-  -webkit-border-radius-topright: 0px
-  border-radius-bottomright: 0px
-  -moz-border-radius-bottomright: 0px
-  -webkit-border-radius-bottomright: 0px
-  border-radius-topleft: 0px
-  -moz-border-radius-topleft: 0px
-  -webkit-border-radius-topleft: 0px
-  border-radius-bottomleft: 0px
-  -moz-border-radius-bottomleft: 0px
-  -webkit-border-radius-bottomleft: 0px
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+  border-botom-left-radius:           0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
+
 
 
 
@@ -160,8 +180,8 @@
     +pointer
     border: 1px solid #ddd
   &:active
-    box-shadow: inset 0 0 20px #fff
-    -moz-box-shadow: inset 0 0 20px #fff
+    box-shadow:         inset 0 0 20px #fff
+    -moz-box-shadow:    inset 0 0 20px #fff
     -webkit-box-shadow: inset 0 0 20px #fff
 =button-blue
   +pointer
@@ -190,46 +210,60 @@
 
 
 =shine-light($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.3)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.3)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
   background: -moz-linear-gradient(top, #fff, #ccc)
+
+
 =shine-dark($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+
   background: #aaa
   background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
   background: -moz-linear-gradient(top, #aaa, #222)
+
+
 =shine-blue($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.3)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.3)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
+
   background: #0c2b50
   background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad))
   background: -moz-linear-gradient(top, #0c2b50, #5d80ad)
 
 
 =shine-light-alpha($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
+
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(120,120,120,0.75)))
   background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(120,120,120,0.75))
+
+
 =shine-dark-alpha($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))
   background: -moz-linear-gradient(top, rgba(96,96,96,0.75), rgba(0,0,0,0.75))
+
+
 =shine-blue-alpha($px)
-  box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
-  -moz-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(10,31,78,1.0)), to(rgba(14,66,132,0.65)))
   background: -moz-linear-gradient(top, rgba(10,31,78,1.0), rgba(14,66,132,0.65))
@@ -239,6 +273,7 @@
   background: #fff
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
   background: -moz-linear-gradient(top, #fff, #adadad)
+
 =bevel-dark
   background: #aaa
   background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#444))
@@ -250,11 +285,13 @@
   background: #e6e6e6
   background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
   background: -moz-linear-gradient(top, #e6e6e6, #fff)
+
 =indent-dark
   border: 1px solid #000
   background: #222
   background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#444))
   background: -moz-linear-gradient(top, #222, #444)
+
 =indent-blue
   border: 1px solid #6183a1
   background: #09233f
@@ -268,6 +305,7 @@
   background: #ececec
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6))
   background: -moz-linear-gradient(top, #fff, #e6e6e6)
+
 =panel-dark
   padding: 8px
   border: 1px solid #222
@@ -280,39 +318,46 @@
   color: #000
   outline: none
   background-color: #fff
+
   @if $size == small
     border: 1px solid #666
-    box-shadow: inset 0 2px 5px #ccc
-    -moz-box-shadow: inset 0 2px 5px #ccc
+    box-shadow:         inset 0 2px 5px #ccc
+    -moz-box-shadow:    inset 0 2px 5px #ccc
     -webkit-box-shadow: inset 0 2px 5px #ccc
+
   @else if $size == large
     border: 1px solid #fff
-    box-shadow: inset 0 8px 5px #ccc
-    -moz-box-shadow: inset 0 8px 5px #ccc
+    box-shadow:         inset 0 8px 5px #ccc
+    -moz-box-shadow:    inset 0 8px 5px #ccc
     -webkit-box-shadow: inset 0 2px 5px #ccc
+
   &:focus
     border: 1px solid #000
     +glow-light(20)
 
+
 =input-dark($size)
-  color: #ddd
-  border: 1px solid #444
+  color:      #ddd
+  border:     1px solid #444
   background: #222
-  outline: none
+  outline:    none
+
   @if $size == small
-    box-shadow: inset 0 0px 10px #000
-    -moz-box-shadow: inset 0 0px 10px #000
+    box-shadow:         inset 0 0px 10px #000
+    -moz-box-shadow:    inset 0 0px 10px #000
     -webkit-box-shadow: inset 0 0px 10px #000
+
   @else if $size == large
-    box-shadow: inset 0 8px 10px #000
-    -moz-box-shadow: inset 0 8px 10px #000
+    box-shadow:         inset 0 8px 10px #000
+    -moz-box-shadow:    inset 0 8px 10px #000
     -webkit-box-shadow: inset 0 8px 10px #000
+
   &:focus
     color: #fff
     border: 1px solid #fff
     background: #000
-    box-shadow: 0 0 20px #fff
-    -moz-box-shadow: 0 0 20px #fff
+    box-shadow:         0 0 20px #fff
+    -moz-box-shadow:    0 0 20px #fff
     -webkit-box-shadow: 0 0 20px #fff
 
 
@@ -350,39 +395,42 @@
 // GLOWS AND SHADOWS
 
 =glow-light($depth)
-  box-shadow: 0 0 $depth + px #000
-  -moz-box-shadow: 0 0 $depth + px #000
+  box-shadow:         0 0 $depth + px #000
+  -moz-box-shadow:    0 0 $depth + px #000
   -webkit-box-shadow: 0 0 $depth + px #000
+
 =glow-dark($depth)
-  box-shadow: 0 0 $depth + px #fff
-  -moz-box-shadow: 0 0 $depth + px #fff
+  box-shadow:         0 0 $depth + px #fff
+  -moz-box-shadow:    0 0 $depth + px #fff
   -webkit-box-shadow: 0 0 $depth + px #fff
+
 =glow-blue($depth)
-  box-shadow: 0 0 $depth + px #1188c0
-  -moz-box-shadow: 0 0 $depth + px #1188c0
+  box-shadow:         0 0 $depth + px #1188c0
+  -moz-box-shadow:    0 0 $depth + px #1188c0
   -webkit-box-shadow: 0 0 $depth + px #1188c0
 
 
 =inner-glow($depth)
-  box-shadow: inset 0 0 $depth + px #fff
-  -moz-box-shadow: inset 0 0 $depth + px #fff
+  box-shadow:         inset 0 0 $depth + px #fff
+  -moz-box-shadow:    inset 0 0 $depth + px #fff
   -webkit-box-shadow: inset 0 0 $depth + px #fff
 
 
 =inner-shadow($depth)
-  box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
-  -moz-box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
+  box-shadow:         inset 0 10px $depth + px rgba(0,0,0,0.4)
+  -moz-box-shadow:    inset 0 10px $depth + px rgba(0,0,0,0.4)
   -webkit-box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
 
 
 
 =gradient($color1, $color2)
-  background: $color1
-  background: -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
-  background: -moz-linear-gradient(top, $color1, $color2)
+  background:     $color1
+  background:     -webkit-gradient(linear, left top, left bottom, from($color1), to($color2))
+  background:     -moz-linear-gradient(top, $color1, $color2)
+
 =bg-shine($offset)
-  box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
-  -moz-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+  box-shadow:         inset 0px $offset + px rgba(255,255,255,0.1)
+  -moz-box-shadow:    inset 0px $offset + px rgba(255,255,255,0.1)
   -webkit-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
 
 
@@ -391,10 +439,10 @@
 // ALPHA
 =alpha($percent)
   filter: alpha(opacity=$percent)
-  -moz-opacity: $percent / 100
-  -khtml-opacity: $percent / 100
-  -webkit-opacity: $percent / 100
-  opacity: $percent / 100
+  -moz-opacity:     $percent / 100
+  -khtml-opacity:   $percent / 100
+  -webkit-opacity:  $percent / 100
+  opacity:          $percent / 100
 
 
 
