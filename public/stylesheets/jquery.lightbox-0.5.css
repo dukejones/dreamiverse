@@ -15,18 +15,20 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	z-index: 80;
+	z-index: 200;
 	width: 100%;
 	height: 500px;
+	cursor: pointer;
 }
 #jquery-lightbox {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 100;
+	z-index: 220;
 	text-align: center;
 	line-height: 0;
+	cursor: pointer;
 }
 #jquery-lightbox a img { border: none; }
 #lightbox-container-image-box {
