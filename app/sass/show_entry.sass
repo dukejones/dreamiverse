@@ -168,13 +168,14 @@
         .emotions-details, .emotions-thumb
           +absolute
           +round(12)
-          +bevel-light
-          +glow-light(10)
+          z-index: 1100
 
-          img.arrow
+          .arrow
             +absolute
+            width: 16px
+            height: 16px
             top: 20px
-            right: -11px
+            right: -12px
 
           table.container
             border-collapse: separate
@@ -197,7 +198,6 @@
                 +round(16)
                 padding: 1px
                 height: auto
-                +indent-light
                 border: none
 
                 .amount
@@ -240,8 +240,7 @@
           padding: 12px
           // width: 262px
           top: 4px
-          right: 80px
-          +gradient(#fff, #e5e5e5)
+          right: 82px
 
           table.container
             border-collapse: separate
@@ -260,11 +259,8 @@
           padding: 1px
           // width: 62px
           // height: 62px
-          z-index: 1100
-          background: #fff
-          +gradient(#fff, #D7D7D7)
 
-          img.arrow
+          .arrow
             +hidden
 
           table.container
@@ -330,7 +326,7 @@
             height: 122px
             width: 122px
             +block
-          
+
 
       // LINKS
       .entryLinks
@@ -630,6 +626,27 @@
       .content
         +flat-light
 
+        // EMOTIONS DETAILS & THUMBS
+        .emotions-details, .emotions-thumb
+          +bevel-light
+          +glow-light(10)
+
+          .arrow
+            background: url(/images/icons/arrow-right-16-dark.png) no-repeat center
+
+          table.container
+            td.value
+              +indent-light
+
+        // EMOTIONS DETAILS ONLY
+        .emotions-details
+          +gradient(#fff, #e5e5e5)
+          color: #555
+
+        // EMOTIONS THUMB ONLY
+        .emotions-thumb
+          +gradient(#fff, #D7D7D7)
+
         // TITLE
         .title
           +flat-light
@@ -768,6 +785,26 @@
       // CONTENT
       .content
         +flat-dark
+
+        // EMOTIONS DETAILS & THUMBS
+        .emotions-details, .emotions-thumb
+          +bevel-dark
+          +glow-dark(10)
+
+          .arrow
+            background: url(/images/icons/arrow-right-16-light.png) no-repeat center
+
+          table.container
+            td.value
+              +indent-dark
+
+        // EMOTIONS DETAILS ONLY
+        .emotions-details
+          +gradient(#242424, #000)
+
+        // EMOTIONS THUMB ONLY
+        .emotions-thumb
+          +gradient(#fff, #303030)
 
         // TITLE
         .title
