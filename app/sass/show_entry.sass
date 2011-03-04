@@ -180,6 +180,7 @@
             right: -12px
 
           table.container
+            +clear
             border-collapse: separate
             // width: 60px
             // height: 60px
@@ -246,6 +247,21 @@
           box-shadow:         4px 4px 10px #555
           -moz-box-shadow:    4px 4px 10px #555
           -webkit-box-shadow: 4px 4px 10px #555
+
+          .emotionsHeader
+            +user-select
+            +round(16)
+            +center
+            +left
+            +cursor
+            +bold
+            margin: 0 0 4px
+            padding: 0 12px
+            height: 34px
+            line-height: 34px
+            img
+              +left
+              margin: 9px 8px 0 0
 
           table.container
             border-collapse: separate
@@ -649,6 +665,9 @@
           +bevel-light
           color: #555
 
+          .moodHeader
+            +indent-light
+
         // TITLE
         .title
           +flat-light
@@ -791,6 +810,9 @@
         // EMOTIONS DETAILS & THUMBS
         .emotions-details, .emotions-thumb
           +bevel-dark
+
+          .moodHeader
+            +indent-dark
 
           .arrow
             background: url(/images/icons/arrow-right-16-light.png) no-repeat center
