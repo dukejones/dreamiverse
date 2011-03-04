@@ -45,6 +45,8 @@ class Entry < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :body
+  validates_presence_of :main_image
+  validates_presence_of :dreamed_at
   
   before_save :set_sharing_level
   before_save :set_main_image
