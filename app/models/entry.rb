@@ -48,12 +48,12 @@ class Entry < ActiveRecord::Base
   validates_presence_of :main_image
   validates_presence_of :dreamed_at
   
-  before_save :set_sharing_level
+  after_initialize :init_sharing_level
+  after_initialize :init_dreamed_at
   before_save :set_main_image
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
-
 
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
@@ -205,11 +205,15 @@ class Entry < ActiveRecord::Base
 
 protected
 
-  def set_sharing_level
-    sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
+  def set_main_image
+    self.main_image ||= self.images.first
   end
 
-  def set_main_image
-    self.main_image = self.images.first unless self.main_image_id?
+  def init_sharing_level
+    self.sharing_level ||= user.default_sharing_level || self.class::Sharing[:friends]
+  end
+
+  def init_dreamed_at
+    self.dreamed_at ||= Time.zone.now
   end
 end
