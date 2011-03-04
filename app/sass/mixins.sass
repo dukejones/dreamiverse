@@ -194,9 +194,9 @@
   -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.3)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.3)
 
-  background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc))
-  background: -moz-linear-gradient(top, #fff, #ccc)
+  background: #fff
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc))
+  background: -moz-linear-gradient(top, #fff, #dcdcdc)
 
 
 =shine-dark($px)
@@ -204,9 +204,9 @@
   -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
 
-  background: #aaa
-  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#222))
-  background: -moz-linear-gradient(top, #aaa, #222)
+  background: #222
+  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#010101))
+  background: -moz-linear-gradient(top, #222, #010101)
 
 
 =shine-blue($px)
@@ -235,8 +235,8 @@
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.06)
 
   background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))
-  background: -moz-linear-gradient(top, rgba(96,96,96,0.75), rgba(0,0,0,0.75))
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(34,34,34,0.75)), to(rgba(0,0,0,0.75)))
+  background: -moz-linear-gradient(top, rgba(34,34,34,0.75), rgba(0,0,0,0.75))
 
 
 =shine-blue-alpha($px)
@@ -251,13 +251,13 @@
 
 =bevel-light
   background: #fff
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#adadad))
-  background: -moz-linear-gradient(top, #fff, #adadad)
+  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc))
+  background: -moz-linear-gradient(top, #fff, #dcdcdc)
 
 =bevel-dark
-  background: #aaa
-  background: -webkit-gradient(linear, left top, left bottom, from(#aaa), to(#444))
-  background: -moz-linear-gradient(top, #aaa, #444)
+  background: #222
+  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#010101))
+  background: -moz-linear-gradient(top, #222, #010101)
 
 
 =indent-light
@@ -282,13 +282,11 @@
 =panel-light
   padding: 8px
   border: 1px solid #bbb
-  background: #ececec
   +gradient(#fff, #dcdcdc)
 
 =panel-dark
   padding: 8px
   border: 1px solid #222
-  background: #aaa
   +gradient(#222, #010101)
 
 
@@ -441,6 +439,8 @@
   &:hover
     +pointer
     border: 1px solid #464646
+  &:active
+    +gradient(#aaa, #eee)
 
 
 =button-dark
