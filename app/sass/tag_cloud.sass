@@ -1,68 +1,76 @@
 .tagCloud div
   +user-select
-  +left
+  +right
   +round(8)
   text-decoration: none
   padding: 1px 5px
+  line-height: 80%
 
 .tagCloud
   .s0
     +font(23)
     +bold
-    line-height: 21px
+    z-index: 200
   .s1
     +font(21)
-    line-height: 19px
+    z-index: 190
   .s3
     +font(19)
-    line-height: 17px
+    z-index: 180
   .s4
     +font(18)
-    line-height: 16px
+    z-index: 170
   .s5
     +font(17)
-    line-height: 15px
+    z-index: 160
   .s6, .s7
     +font(16)
-    line-height: 14px
+    z-index: 150
   .s8, .s9, .s10, .s11
     +font(15)
-    line-height: 13px
+    z-index: 140
   .s12, .s13, .s14, .s15
     +font(14)
-    line-height: 12px
+    z-index: 130
 
-#showEntry .tagCloud
-  .s0
-    +font(68)
-    line-height: 48px
-  .s1
-    +font(62)
-    +bold
-    line-height: 42px
-  .s3
-    +font(58)
-    line-height: 36px
-  .s4
-    +font(50)
-    line-height: 34px
-  .s5
-    +font(44)
-    line-height: 20px
-  .s6, .s7
-    +font(18)
-    line-height: 16px
-  .s8, .s9, .s10, .s11
-    +font(15)
-    line-height: 15px
-  .s12, .s13, .s14, .s15
-    +font(14)
-    line-height: 12px
 
+
+
+// SHOW ENTRY MODE
 
 #showEntry .tagCloud div
   text-decoration: none
   padding: 0 16px
+
+
+#showEntry .tagCloud
+  .s0
+    +font(68)
+    text-shadow: rgba(0,0,0,0.7) 0 0 40px
+  .s1
+    +font(62)
+    +bold
+    text-shadow: rgba(0,0,0,0.6) 0 0 40px
+  .s3
+    +font(58)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s4
+    +font(50)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s5
+    +font(44)
+    line-height: 20px
+    text-shadow: rgba(0,0,0,0.5) 0 0 30px
+  .s6, .s7
+    +font(32)
+    line-height: 16px
+    text-shadow: rgba(0,0,0,0.4) 0 0 30px
+  .s8, .s9, .s10, .s11
+    +font(18)
+
+  .s12, .s13, .s14, .s15
+    +font(14)
+
 
 
 
