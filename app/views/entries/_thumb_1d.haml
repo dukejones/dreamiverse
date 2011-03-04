@@ -1,11 +1,16 @@
 / ENTRY THUMB 1D - GENERAL
 / %a.thumb-1d{href: user_entry_path(entry.user.username, entry), class: entry.images.blank? ? "noImage" : ""}
 .thumb-1d{class: entry.images.blank? ? "noImage" : ""}
+
+
+
   / LEFT SIDE
+  %a.user{href: user_entries_path(entry.user.username)}
+    .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
+    %p.name= entry.user.username
+
   %a.left{href: user_entry_path(entry.user.username, entry)}
-    .user
-      .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
-      %p.name= entry.user.username
+
 
     - unless entry.comments.count == 0
       .commentCount
