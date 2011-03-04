@@ -19,7 +19,7 @@ class HitTest < ActiveSupport::TestCase
   test "a non-unique hit should make updated_at to be the current time." do
     hit1 = Hit.make(updated_at: 12.hours.ago)
     assert !Hit.unique?(hit1.url_path, hit1.ip_address), "recent hit on same page by same ip shouldn't be unique"
-    assert (hit1.reload.updated_at - Time.now).abs < 5.minutes, "updated_at of non-unique hit should be current time"
+    assert (hit1.reload.updated_at - Time.zone.now).abs < 5.minutes, "updated_at of non-unique hit should be current time"
   end
   
   test "a unique hit should create a new Hit" do

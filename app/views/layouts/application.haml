@@ -9,8 +9,9 @@
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
-    = coffeescript_include_tag 'application'
-    = javascript_include_tag 'jquery.min', 'rails', 'application', 'pubsub', "jquery.hoverIntent.minified", "functions.core"
+    = javascript_include_tag 'jquery.min', 'require', 'compiled/application'
+    / %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
+    
 
     = yield :head
 
@@ -25,11 +26,10 @@
     = yield
 
     - if Rails.env == 'production' || Rails.env == 'theta'
-      = javascript_include_tag "google_analytics"
+      :coffeescript
+        require({baseUrl: "/javascripts"}, 'google_analytics')
 
 
     = yield :foot
     = render "shared/facebook_sdk"
-    = javascript_include_tag "jquery-ui.min", 'chat'
-    = render "layouts/placeholder"
     

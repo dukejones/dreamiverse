@@ -22,6 +22,7 @@ $.subscribe('follow/changing', (userNode) ->
   followButton.loadingState()
 )
 
+
 # For adding hoverIntent:
 # http://rndnext.blogspot.com/2009/02/jquery-live-and-plugins.html
 

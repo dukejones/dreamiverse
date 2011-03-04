@@ -1,0 +1,98 @@
+.tagCloud div
+  +user-select
+  +right
+  +round(8)
+  text-decoration: none
+  padding: 1px 5px
+  line-height: 80%
+
+.tagCloud
+  .s0
+    +font(23)
+    +bold
+    z-index: 200
+  .s1
+    +font(21)
+    z-index: 190
+  .s3
+    +font(19)
+    z-index: 180
+  .s4
+    +font(18)
+    z-index: 170
+  .s5
+    +font(17)
+    z-index: 160
+  .s6, .s7
+    +font(16)
+    z-index: 150
+  .s8, .s9, .s10, .s11
+    +font(15)
+    z-index: 140
+  .s12, .s13, .s14, .s15
+    +font(14)
+    z-index: 130
+
+
+
+
+// SHOW ENTRY MODE
+
+#showEntry .tagCloud div
+  text-decoration: none
+  padding: 0 16px
+
+
+#showEntry .tagCloud
+  .s0
+    +font(68)
+    text-shadow: rgba(0,0,0,0.7) 0 0 40px
+  .s1
+    +font(62)
+    +bold
+    text-shadow: rgba(0,0,0,0.6) 0 0 40px
+  .s3
+    +font(58)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s4
+    +font(50)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s5
+    +font(44)
+    line-height: 20px
+    text-shadow: rgba(0,0,0,0.5) 0 0 30px
+  .s6, .s7
+    +font(32)
+    line-height: 16px
+    text-shadow: rgba(0,0,0,0.4) 0 0 30px
+  .s8, .s9, .s10, .s11
+    +font(18)
+
+  .s12, .s13, .s14, .s15
+    +font(14)
+
+
+
+
+
+
+
+// COLORS
+.light .tagCloud, .dark .tagCloud
+  .s0.white
+    color: #fff 
+  .s0
+    color: #88e3f7
+  .s1
+    color: #55ccff
+  .s2
+    color: #3ea7eb
+  .s3, .s4, .s5
+    color: #3086cf
+  .s6, .s7, .s8, .s9, .s10
+    color: #1265c2
+  .s11, .s12, .s13, .s14, .s15
+    color: #0049a2
+
+
+

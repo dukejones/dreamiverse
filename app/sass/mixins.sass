@@ -163,6 +163,9 @@
 
 
 
+
+
+
 //  ***  *****  ***  ****  *** 
 //  ***  LIGHT  and  DARK  ***
 //  ***  *****  ***  ****  ***
@@ -173,16 +176,20 @@
   &:hover
     +pointer
     border: 1px solid #464646
+
+
 =button-dark
   +pointer
-  border: 1px solid #444
+  border: 1px solid #333
   &:hover
     +pointer
-    border: 1px solid #ddd
+    border: 1px solid #777
   &:active
-    box-shadow:         inset 0 0 20px #fff
-    -moz-box-shadow:    inset 0 0 20px #fff
-    -webkit-box-shadow: inset 0 0 20px #fff
+    box-shadow:         inset 0 16px 10px rgba(255,255,255,0.05)
+    -moz-box-shadow:    inset 0 16px 10px rgba(255,255,255,0.05)
+    -webkit-box-shadow: inset 0 16px 10px rgba(255,255,255,0.05)
+
+
 =button-blue
   +pointer
   border: 1px solid #9ae4fd
@@ -193,12 +200,16 @@
     color: #fff
 
 
+
+
 =border-light
   border: 1px solid #bbb
 =border-dark
   border: 1px solid #444
 =border-blue
   border: 1px solid #9ae4fd
+
+
 
 
 =infoTab-light
@@ -250,9 +261,9 @@
 
 
 =shine-dark-alpha($px)
-  box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
-  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.06)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.06)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.06)
 
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(96,96,96,0.75)), to(rgba(0,0,0,0.75)))

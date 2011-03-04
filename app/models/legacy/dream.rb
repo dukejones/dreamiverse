@@ -32,7 +32,7 @@ class Legacy::Dream < Legacy::Base
   has_many :user_series, {foreign_key: 'dreamId', class_name: 'UserSeries'}
   
   def main_image_id
-    # default_image.find_or_create_corresponding_image.id
+    default_image.find_or_create_corresponding_image.id
   end
   
   def book_list

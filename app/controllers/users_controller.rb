@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   
   def follow
     if request.xhr?
-      user = User.find(params[:user_id])
+      user = User.find_by_username(params[:username])
     else
       user = User.find_by_username(params[:username])
     end
@@ -50,7 +50,8 @@ class UsersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to entries_path(user.username) }
+      #format.html { redirect_to entries_path(user.username) }
+      format.html { render :json => {message: 'success'} }
       format.json { render :json => {message: 'success'} }
     end
   end

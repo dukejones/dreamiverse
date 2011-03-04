@@ -1,9 +1,11 @@
 - content_for :head do
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
-- content_for :foot do
-  = javascript_include_tag 'jquery.lightbox-0.5.pack.js', 'autoresize.jquery.min', 'browserdetect'
-  = coffeescript_include_tag 'tag', 'showentry', 'entries'
+
+  = javascript_include_tag 'browserdetect'
+  :coffeescript
+    require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack', 'autoresize.jquery.min' ])
+    require([ 'tag', 'showentry', 'entries' ] )
 
 
 / CONTEXT PANEL
@@ -18,7 +20,11 @@
 
     %a.next{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
-    / .stream.cancel stream
+    - if session[:lens] == :stream
+      %a.stream{href: stream_path} stream
+    - else
+      %a.stream{href: user_entries_path(@user.username)} entries
+
     %a.prev{href: user_entry_path(@previous.user.username, @previous)}
       %span &lsaquo;
 

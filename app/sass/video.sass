@@ -1,0 +1,74 @@
+
+
+
+.video
+  +round(12)
+  margin: 12px
+  padding: 12px
+  // width: 640px
+  z-index: 1400
+
+  .player
+    // width: 612px
+    height: 390px
+    background: #444 // TEMP
+
+  .info
+    +round(12)
+    margin: 12px 0 0
+    padding: 8px
+    height: 30px
+    line-height: 30px
+
+    .logo
+      +left
+      width: 30px
+      height: 30px
+
+    span.videoTitle
+      +left
+      +font(16)
+      +bold
+
+// THUMB 1D VIDEO
+.thumb-1d.videoExpand
+  .video
+    margin: 230px 12px 12px
+.thumb-1d.noImage.videoExpand
+  .video
+    margin: 176px 12px 12px
+
+.thumb-1d, .thumb-1d.noImage
+  //
+    .thumbBack
+      margin: 0
+      padding: 0 0 12px
+  .video
+    +flat-bottom
+
+
+// VIDEO PANEL COLORS
+.light
+  //
+    .thumbBack
+      background: #f3f3f3
+  .video
+    +bevel-light
+
+    .info
+      +indent-light
+      +border-light
+
+.dark
+  //
+    .thumbBack
+      background: #0f0f0f
+  .video
+    +gradient(#000, #0f0f0f)
+
+    .info
+      +indent-dark
+      +border-dark
+
+
+
