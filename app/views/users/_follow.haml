@@ -86,32 +86,3 @@
       = friend_icon_tag( :none, 24, {class: 'unfollow'} )
     unfollow
     
-  /OLD STUFF
-  / - if relationship == :none || relationship == :followed_by
-  /     /%a.changeRelation.follow.hidden{href: follow_path(user.username), remote: true}
-  /     = link_to follow_path(user.username), :method => :put, :remote => true, :class => 'changeRelation follow hidden' do
-  /       - if relationship == :none
-  /         .icon
-  /           = friend_icon_tag( :following, 24, {class: 'follow'} )
-  /         follow
-  / 
-  /       - elsif relationship == :followed_by
-  /         .icon
-  /           = friend_icon_tag( :friends, 24, {class: 'follow'} )
-  /         befriend
-  / 
-  / 
-  / 
-  /   - if relationship == :friends || relationship == :following
-  /     = link_to unfollow_path(user.username), :method => :put, :remote => true, :class => 'changeRelation unfollow hidden' do
-  /       - if relationship == :friends
-  /         .icon
-  /           = friend_icon_tag( :following, 24, {class: 'unfollow'} )
-  /         unfriend
-  / 
-  /       - elsif relationship == :following
-  /         .icon
-  /           = friend_icon_tag( :none, 24, {class: 'unfollow'} )
-  /         unfollow
-
-
