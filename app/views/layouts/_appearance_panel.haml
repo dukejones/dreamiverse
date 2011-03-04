@@ -4,7 +4,7 @@
 
   / BEDSHEETS
   .bedsheets
-    %h2 Bedsheets
+    %h2 bedsheets
     .options.hidden{onclick: 'dc.modal()'}
       options
     %ul
@@ -19,7 +19,7 @@
   / COLOR PICKER
   .colorPicker
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
-    %h2 Color
+    %h2 color
     .buttons
       = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
         sun

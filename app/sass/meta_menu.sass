@@ -69,10 +69,6 @@
 /* FLOATING BUTTONS */
 #metaMenu
 
-  .adminLink, .logOut
-    padding: 5px 8px
-    +alpha(60)
-
   .adminLink, .newEntry, .logOut
     +transparent-dark(50)
     +round(24)
@@ -84,6 +80,16 @@
     text-decoration: none
     border: 1px solid #777
 
+  .adminLink, .logOut
+    width: 28px
+    height: 28px
+    +alpha(60)
+    .img
+      width: 100%
+      height: 100%
+      background-position: center center
+      background-repeat: no-repeat
+
   .adminLink:hover, .logOut:hover
     +alpha(100)
     +glow-dark(8)
@@ -91,9 +97,13 @@
 
   .adminLink
     margin: 8px
-    height: 21px
-    img
-      padding-top: 2px
+    .img
+      background-image: url('/images/icons/admin-16.png')
+  .logOut
+    margin: 10px 8px 0 0
+    .img
+      background-image: url('/images/icons/logout-24.png')
+
 
   .newEntry
     +glow-dark(40)
@@ -108,5 +118,5 @@
     +inner-glow(20)
     border: 2px solid transparent
 
-  .logOut
-    margin: 10px 8px 0 0
+
+
