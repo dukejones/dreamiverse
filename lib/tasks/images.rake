@@ -1,16 +1,19 @@
 namespace :image do
   namespace :main do
-    task :default => :generate_header
-    desc "for each entries main image generate header/stream_header and dreamfield_header"
-    task :generate_header => :environment do
-      # for each entries main image generate header, stream_header and dreamfield_header      
+    desc "for each entry with a main image set, generate header, stream_header and dreamfield_header"   
+    task :generate_header => :environment do      
       Entry.where(:main_image_id ^ nil).map do |entry|
-        puts "generating header image for main_image.id #{entry.main_image.id}"
-        # image.generate_profile(:main_image)
+        image = Image.find_by_id(entry.main_image.id)
+        puts "generating header image for main_image.id #{image.id}..."
+        image.generate_profile(:header)
+        puts "generating stream header image for main_image.id #{image.id}..."
+        image.generate_profile(:stream_header)
+        puts "generating dream field header image for main_image.id #{image.id}..."
+        image.generate_profile(:dreamfield_header)
       end
-      puts "Done."
-    end  
-    task :all => ["image:main:generate_header"]   
+      puts 'Done.'
+    end
+    task :popular => ["image:main:generate_header"] 
   end
 end
 
