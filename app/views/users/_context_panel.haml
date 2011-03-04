@@ -1,6 +1,7 @@
 - content_for :head do
   :coffeescript
-    require(requireConfig, ['avatar', 'context_panel', 'js/avataruploader'])
+    require({baseUrl: "/javascripts"}, ['avataruploader'])
+    require(['avatar', 'context_panel'])
   
 / CONTEXT PANEL
 #contextPanel

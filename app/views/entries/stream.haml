@@ -1,9 +1,9 @@
 - content_for :head do
   = sass_link_tag 'entries'
   :coffeescript
-    require(requireConfig, ['modal', 'stream', 'js/tag_stream', 'js/dreams', 'js/geo', 
-      'js/jquery.lightbox-0.5.pack' ])
-  -# 'js/friendslist', 
+    require(['modal', 'stream'])
+    require({baseUrl: "/javascripts"}, [ 'tag_stream', 'dreams', 'geo', 'jquery.lightbox-0.5.pack' ])
+  -# 'friendslist', 
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
 
