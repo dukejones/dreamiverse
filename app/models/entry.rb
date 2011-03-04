@@ -106,7 +106,7 @@ class Entry < ActiveRecord::Base
     filters ||= {}
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
-    
+
     if lens == :field
       if viewer
         entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
@@ -120,7 +120,7 @@ class Entry < ActiveRecord::Base
       entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
       entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
-      entries = entry_scope.where(:user => viewer.following)
+      entries = entry_scope.where(:user_id => viewer.following.map(&:id))
       # each should be sorted according to date & starlight
     end
 

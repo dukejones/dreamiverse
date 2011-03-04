@@ -1,5 +1,6 @@
 - content_for :head do
-  = coffeescript_include_tag 'publicstream'
+  :coffeescript
+    require(['publicstream'])
 
 .homeAlerts
   .notice= notice

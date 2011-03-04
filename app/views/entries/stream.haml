@@ -1,10 +1,10 @@
 - content_for :head do
   = sass_link_tag 'entries'
-  = coffeescript_include_tag 'modal', 'stream'
-  = javascript_include_tag 'tag_stream', 'friendslist', 'dreams', 'geo'
+  :coffeescript
+    require(requireConfig, ['modal', 'stream', 'js/tag_stream', 'js/dreams', 'js/geo', 
+      'js/jquery.lightbox-0.5.pack' ])
+  -# 'js/friendslist', 
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
-- content_for :foot do
-  = javascript_include_tag 'jquery.lightbox-0.5.pack.js'
 
 
 / CONTEXT PANEL
