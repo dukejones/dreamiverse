@@ -8,7 +8,6 @@ class User::SessionsController < ApplicationController
   end
 
   def create
-    debugger
     if user = User.authenticate(params[:user])
       set_current_user user
       flash.notice = 'logged in.'
