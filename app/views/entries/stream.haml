@@ -26,11 +26,11 @@
       = render :partial => 'thumb_1d', :locals => {:entry => entry}
 
 
-    - if (@user == current_user) && @entries.empty?
+    - if @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 
-    - elsif @entries.empty?
-      / NO ENTRIES TO DISPLAY
-      .noEntrys there are no public entries to display
 
+  / NO ENTRIES TO DISPLAY
+  .noEntrys.hidden there are no entries to display
+  
