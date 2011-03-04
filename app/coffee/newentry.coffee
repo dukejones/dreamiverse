@@ -1,10 +1,16 @@
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
-  $('#entry_body').keyup ->
-    window.fitToContent(this, 0)  
-  $('#entry_body').css('overflow','hidden')
+  $('#entry_body').css('overflow','hidden')  
   
+  # doing the focus stuff to make sure fitToContent gets called once on load 
+  $('#entry_body').focus ->
+    window.fitToContent(this, 0)
+  $('#entry_body').focus()
+  
+  $('#entry_body').keyup ->
+    window.fitToContent(this, 0)
+
   # Setup tag re-ordering
   $("#sorting").val(1)
   $("#tag-list").sortable -> distance: 30
