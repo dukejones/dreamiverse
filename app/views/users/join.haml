@@ -28,7 +28,7 @@
         = f.password_field :password_confirmation, :placeholder => "confirm password"
         .seed have a seed code?
         = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
-        = raw recaptcha_tags
+        = raw recaptcha_tags :ajax => true
         .buttonWrap
           .text
             Join now &rsaquo;
