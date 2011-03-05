@@ -121,7 +121,7 @@ class AppearancePanel extends MetaMenu
       
       # Add elements for each bedsheet returned
       for node in data
-        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-120x120.' + node.format + '"></li>'
+        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.' + node.format + '"></li>'
         @$currentMenuPanel.find('.bedsheets ul').append(newElement)
       
       @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
