@@ -108,7 +108,7 @@ class Entry < ActiveRecord::Base
     entry_scope = Entry.order('created_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
 
-    if lens == :field
+    if (lens == :field) || viewer.nil?
       if viewer
         entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
       else
@@ -132,7 +132,7 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date or starlight
     end
 
-    entries.select!{|e| viewer.can_access?(e) } if entries.kind_of? Array # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if viewer # this is very, very slow.
     entries
   end
 
