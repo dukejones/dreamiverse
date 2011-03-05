@@ -1,0 +1,17 @@
+!!! 5
+%html
+  %head
+    %meta(content="text/html charset=UTF-8" http-equiv="Content-Type")
+
+  %body
+    %h3 
+      Welcome to Dreamcatcher,
+      = @user.name
+    %p
+      Click this link to verify your email:
+      = link_to @confirmation_url, @confirmation_url
+      
+    %p Sincerely,
+      
+    %p The Dreamcatcher Team
+    
