@@ -80,19 +80,22 @@ module ImageProfiles
   
   def thumb(options)
     # img.thumbnail # => Faster but no pixel averaging.
-    size = options[:size] || 128
+    size = (options[:size] || 128).to_i
     img = magick_image
     # img.combine_options do |i|
-    img.resize (width > height) ? "x#{size}" : size
+    img.resize "#{size}x#{size}^"
+    # img.resize (width > height) ? "x#{size}" : size
     
-    offset = if (width > height)
-      pix = (img[:width] - size.to_i) / 2
-      "+#{pix}+0" 
-    else
-      pix = (img[:height] - size.to_i) / 2
-      "+0+#{pix}"
-    end
-    img.crop "#{size}x#{size}#{offset}"
+    # offset = if (width > height)
+    #   pix = (img[:width] - size.to_i) / 2
+    #   "+#{pix}+0" 
+    # else
+    #   pix = (img[:height] - size.to_i) / 2
+    #   "+0+#{pix}"
+    # end
+    x_offset = (img[:width] - size) / 2
+    y_offset = (img[:height] - size) / 2
+    img.crop "#{size}x#{size}+#{x_offset}+#{y_offset}"
     # img.repage
     img.write(path('thumb', options))
   end
