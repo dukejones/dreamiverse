@@ -219,8 +219,7 @@ class Entry < ActiveRecord::Base
   end 
 
   def self.random
-    random_entry = Entry.where(:sharing_level ^ 0).first(:order => 'rand()')
-    return random_entry
+    Entry.where(:sharing_level ^ 0).first(:order => 'rand()')
   end
   
 protected
