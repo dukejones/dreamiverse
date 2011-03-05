@@ -132,7 +132,7 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date or starlight
     end
 
-    entries.select!{|e| viewer.can_access?(e) } # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if entries.kind_of? Array # this is very, very slow.
     entries
   end
 
@@ -218,6 +218,11 @@ class Entry < ActiveRecord::Base
     reorder_tags
   end 
 
+  def self.random
+    random_entry = Entry.where(:sharing_level ^ 0).first(:order => 'rand()')
+    return random_entry
+  end
+  
 protected
 
   def set_main_image

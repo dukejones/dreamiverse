@@ -34,7 +34,7 @@ class User::RegistrationsController < ApplicationController
       end
     else
       # TODO: display these on the join page
-      flash[:user_registration_errors] = @user.errors
+      flash[:user_errors] = @user.errors
       redirect_to join_path(user: params[:user]), :alert => "could not create the user."
     end
   end

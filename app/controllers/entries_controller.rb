@@ -105,6 +105,11 @@ class EntriesController < ApplicationController
     render :json => e.message, :status => :unprocessable_entity
   end
 
+  def random
+    random_entry = Entry.random
+    redirect_to "/#{random_entry.user.username}/#{random_entry.id}"
+  end
+
   protected
 
   def parse_time(time)

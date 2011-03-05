@@ -20,6 +20,10 @@ Dreamcatcher::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
+  # Mailtrap
+  config.action_mailer.smtp_settings = { port: 2525 }
+  # Gmail
+  # config.action_mailer.smtp_settings = gmail_smtp_settings
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
