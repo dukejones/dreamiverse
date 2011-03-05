@@ -555,8 +555,11 @@
     .context, .label
       +shine-dark-alpha(16)
       border: 1px solid #090909
-    .context:hover, .entryFilter .label:hover
-      +button-dark
+
+    .context, .entryFilter .label
+      border: 1px solid #333
+      &:hover
+        +button-dark
 
 
     .relation
