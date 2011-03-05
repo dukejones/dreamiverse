@@ -78,13 +78,18 @@
       .edit.hidden
         = form_tag :user, :method => :put, :remote => true, :id => 'update_profile' do
           = fields_for current_user do |f|
+            %span full name
             = f.text_field :name, :placeholder => 'full name'
+            %span website url
             = f.fields_for :link_attributes do |l|
-              = l.text_field :url, :placeholder => 'website'
-            = f.text_field :email, :placeholder => 'email'
-            = f.text_field :phone, :placeholder => 'phone'
+              = l.text_field :url, :placeholder => 'http://yoursite.com'
+            %span email address
+            = f.text_field :email, :placeholder => 'email@address.com'
+            %span phone number
+            = f.text_field :phone, :placeholder => '(123) 456-7890'
+            %span skype username
             .skypeWrap
-              = f.text_field :skype, :placeholder => 'skype user name'
+              = f.text_field :skype, :placeholder => 'skype.username'
               %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
             .cancel cancel
             = f.submit :save, :class => 'save'
