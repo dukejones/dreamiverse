@@ -2,6 +2,14 @@
 // SHARED TAG STYLES
 #tagStream, #showEntry, #entryField
 
+  .tagHeader
+    width: 56px // For Chrome
+
+  #tagsLive
+    +clear
+  #tag-list
+    clear: left
+
   // WHO, WHERE, WHAT TAG STYLES
   // TAG STRUCTURE
   .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
@@ -47,6 +55,7 @@
         border: 1px solid #8c8c8c
         color: #333
         &:hover
+          color: #000
           border: 1px solid #464646
 
 .dark
@@ -58,4 +67,5 @@
         color: #ddd
         border: 1px solid #777
         &:hover
+          color: #fff
           border: 1px solid #ddd
