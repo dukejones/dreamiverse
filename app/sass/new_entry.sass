@@ -264,8 +264,7 @@
       +font(12)
       +round(12)
       width: 64px
-      height: 36px
-      line-height: 28px
+      height: 38px
       margin: 8px 8px 0 8px
       +save(14)
 
@@ -492,7 +491,7 @@
           +left
           +font(18)
           +transparent
-          width: 420px
+          width: 400px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -545,7 +544,7 @@
       +clear
       +overflow
       margin: 8px 0 0
-      padding: 4px
+      padding: 8px
       width: 644px
       height: 32px
       line-height: 38px
@@ -791,11 +790,12 @@
       +glow-light(40)
 
       .entryType
+        +indent-light
         +button-light
 
     // SHARED PANEL STYLES
     .entryPanels
-      +shine-light-alpha(24)
+      +shine-light-alpha(27)
 
     // NEW ENTRY OPTIONS
     #entryOptions
@@ -814,9 +814,12 @@
             +shine-light(16)
 
       #entry_submit
-        +button-dark
-        +shine-dark(16)
+        +button-light
+        +shine-light(16)
+        +gradient(#b9b9b9, #1a1a1a)
+        +save(16)
         color: #fff
+        border: 1px solid #a9a9a9
 
       .sharing, .myBooks, .addTheme, .addLocation, .date
         +indent-light
@@ -880,7 +883,7 @@
         +transparent-light(40)
 
         .url, .title
-          +transparent-light(40)
+          +input-light(small)
           input
             color: #555
 
@@ -907,7 +910,7 @@
 
     // SHARED PANEL STYLES
     .entryPanels
-      +shine-dark(24)
+      +shine-dark(27)
 
     #newEntry
       +flat-dark
@@ -915,13 +918,16 @@
 
       .entryType
         +button-dark
+        +indent-dark
+        border: 1px solid #222
+
         #entryType_list
           color: #ddd
 
     // NEW ENTRY OPTIONS
     #entryOptions
       +shine-dark-alpha(24)
-      +border-dark
+      border: 1px solid rgba(0, 0, 0, 0.75)
 
       // SHARING
       .sharing
@@ -940,10 +946,14 @@
             +shine-dark(16)
 
       #entry_submit
-        +button-light
-        +shine-light-alpha(16)
-        color: #000
+        +button-dark
+        color: #fff
         +save(16)
+        box-shadow:         inset 0 16px rgba(255,255,255,0.2)
+        -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
+        background: #222
+        +gradient(#222, #1a1a1a)
 
       .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
@@ -1006,7 +1016,7 @@
         +transparent-dark(20)
 
         .url, .title
-          +transparent-dark(20)
+          +input-dark(small)
           input
             color: #ccc
 

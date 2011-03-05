@@ -1,0 +1,16 @@
+!!! 5
+%html
+  %head
+    = csrf_meta_tag
+  %body
+    %h3 
+      Welcome to Dreamcatcher,
+      = @user.name
+    %p
+      Click this link to verify your email:
+      = link_to @confirmation_url, @confirmation_url
+      
+    %p Sincerely,
+      
+    %p The Dreamcatcher Team
+    
