@@ -25,6 +25,8 @@
   clear: both
 =transparent
   background: transparent
+=outline
+  outline:  none
 
 
 // FONTS
@@ -294,6 +296,7 @@
   color: #000
   outline: none
   background-color: #fff
+  outline: none
 
   @if $size == small
     border: 1px solid #666
@@ -506,13 +509,23 @@
 =delete($offset)
   &:hover
     +bg-shine($offset)
-    +gradient(#ee7c44, #8b2e12)
+    +gradient(#ee6844, #8b1812)
     +pointer
     color: #fff
-    border: 1px solid #c1633c
+    border: 1px solid #b22626
   &:active
-    +gradient(#8b2e12, #ee7c44)
+    +gradient(#8b1812, #ee6844)
     +pointer
     color: #fff
     border: 1px solid #fff
-
+=unfollow($offset)
+  +bg-shine($offset)
+  +gradient(#ee6844, #8b1812)
+  +pointer
+  color: #fff
+  border: 1px solid #b22626
+  &:active
+    +gradient(#8b1812, #ee6844)
+    +pointer
+    color: #fff
+    border: 1px solid #fff

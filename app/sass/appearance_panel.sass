@@ -62,6 +62,7 @@
         +cancel(8)
         input
           +pointer
+          +outline
       .fixed
         +left
       .scroll
@@ -118,17 +119,16 @@
           margin: -8px -8px -8px 4px
 
       .sun
-        +bevel-light
+        +shine-light(14)
         +button-light
-        color: #555
+        color: #111
         &:hover
           color: #000
       .moon
-        +shine-dark(12)
+        +shine-dark(14)
         +button-dark
         color: #ccc
         &:hover
-          +shine-dark(12)
           color: #fff
 
 
@@ -137,6 +137,42 @@
 
 
 
+
+// COLORS
+.light
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 300px
+    .bedsheets, .colorPicker
+      +panel-light
+      .options
+        +button-light
+      .attachment
+        .fixed, .scroll
+          +button-light
+          +bevel-light
+          +cancel(12)
+          border: 1px solid #bbb
+      .more
+        +button-light
+
+
+.dark
+  #appearancePanel
+    .arrow
+      background: url(/images/icons/arrow-up-27.png) no-repeat 300px
+    .bedsheets, .colorPicker
+      +panel-dark
+      .options
+        +button-dark
+      .attachment
+        .fixed, .scroll
+          +button-dark
+          +bevel-dark
+          +cancel(12)
+          border: 1px solid #222
+      .more
+        +button-dark
 
 
 

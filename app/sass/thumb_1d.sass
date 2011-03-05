@@ -104,12 +104,14 @@
         h1.title, p.text
           +overflow
           width: 330px
+
         h1.title
           +font(24)
           margin: 8px 8px 0 8px
           height: 30px
         h2.titleWatermark
           display: none
+
         p.text
           margin: 4px 8px 0 8px
           height: 40px
@@ -142,7 +144,7 @@
           .date
             +bold
             +font(11)
-            margin: 6px 0
+            margin: 0
 
           // STARLIGHT
           .starlight
@@ -151,7 +153,8 @@
             +right
             +font(12)
             height: 24px
-            line-height: 24px
+            line-height: 26px
+            margin-top: -12px
             img
               margin: 4px 4px 0 0
             span
@@ -244,7 +247,7 @@
     // 1D THUMBS - NO IMAGE
     // STRUCTURE
     .thumb-1d.noImage
-      height: 172px
+      height: 158px
       &:hover
         .left
           h1.title
@@ -254,7 +257,8 @@
         h1.title
           +absolute
           display: none
-          margin: 42px 0 0 8px
+          top: 42px
+
         h2.titleWatermark
           +block
           +font(48)
@@ -262,8 +266,10 @@
           +absolute
           +overflow
           height: 56px
-          margin: 32px 0 0 8px
+          top: 26px
+          left: 8px
           font-weight: normal
+
         p.text
           +absolute
           margin: 4px 8px 0 8px
@@ -345,7 +351,9 @@
             .starlight
               +transparent-dark(30)
               +border-dark
-              color: #ddd
+              color: #fff
+              +bold
+
 
         // GALLERY
         table.right td.top ul li
