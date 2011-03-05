@@ -37,11 +37,12 @@
   // see entries.sass
   .headers
 
-  .entryAssets
-    +round(8)
+  // SHARED PANEL STYLES
+  .entryPanels
+    +hidden
+    +round(12)
     width: 662px
     padding: 8px
-    border: 1px solid #464646 /* 80% Black */ 
 
   // NEW ENTRY INPUT PANEL
   #newEntry
@@ -271,7 +272,6 @@
 
   // ENTRY DATE / TIME
   .entryDateTime
-    +hidden
     .date, .time
       +left
       margin: 0 0 0 8px
@@ -298,7 +298,6 @@
 
   // ENTRY LOCATION
   .entryLocation
-    +hidden
     height: 70px
 
     .finding
@@ -346,8 +345,6 @@
 
   // ENTRY IMAGES
   .entryImages
-    border: 1px solid #333
-    +hidden
     .dropboxBrowse
       +overflow
       +center
@@ -618,15 +615,13 @@
        
   // NEW ENTRY MOOD
   .entryEmotions
-    .emotionsHeader
-      margin-bottom: 8px
 
     // MOOD PICKER
     .moodPicker
       +round(8)
       +clear
       padding: 8px
-      margin: 8px 0
+      margin: 8px 0 0
       color: #333
       .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
         +clear
@@ -751,9 +746,9 @@
 
   // NEW ENTRY ATTACH
   .entryAttach
+    +block
     height: 38px
     line-height: 38px
-    margin-bottom: 80px
 
     p
       +user-select
@@ -794,6 +789,10 @@
       .entryType
         +button-light
 
+    // SHARED PANEL STYLES
+    .entryPanels
+      +shine-light-alpha(24)
+
     // NEW ENTRY OPTIONS
     #entryOptions
       +shine-light(24)
@@ -822,7 +821,6 @@
 
     // ENTRY DATE & TIME
     .entryDateTime
-      +shine-light-alpha(24)
 
       .hour, .month, .day, .year, .minute, .amPm
         +input-light(small)
@@ -830,14 +828,12 @@
 
     // ENTRY LOCATION
     .entryLocation
-      +shine-light-alpha(24)
 
       .finding, .name, .city, .state, .country
         +input-light(small)
 
     // ENTRY IMAGES
     .entryImages
-      +shine-light-alpha(24)
 
       #addFromImageBank
         +bevel-light
@@ -853,7 +849,6 @@
 
     // NEW ENTRY TAG
     .entryTags
-      +shine-light-alpha(24)
 
       .tagInputWrap
         background: url(/images/slices/inputLeftLight-40.png) no-repeat left
@@ -870,8 +865,7 @@
 
 
     // NEW ENTRY LINK
-    .entryLinks.entryAssets
-      +shine-light-alpha(24)
+    .entryLinks
 
       #linkInputWrap
         +input-light(large)
@@ -892,11 +886,10 @@
 
     // NEW ENTRY EMOTIONS
     .entryEmotions
-      +shine-light-alpha(24)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
-      +shine-light-alpha(24)
+
       .images, .tag, .links, .mood
         +bevel-light
         +button-light
@@ -907,6 +900,11 @@
 
     #entry_body, #entry_title
       color: #ddd
+
+    // SHARED PANEL STYLES
+    .entryPanels
+      +shine-dark(24)
+
     #newEntry
       +flat-dark
       +glow-dark(40)
@@ -950,7 +948,6 @@
 
     // ENTRY DATE & TIME
     .entryDateTime
-      +shine-dark-alpha(24)
 
       .hour, .month, .day, .year, .minute, .amPm
         +input-dark(small)
@@ -958,7 +955,6 @@
 
     // ENTRY LOCATION
     .entryLocation
-      +shine-dark-alpha(24)
 
       .finding, .name, .city, .state, .country
         +input-dark(small)
@@ -967,7 +963,6 @@
 
     // ENTRY IMAGES
     .entryImages
-      +shine-dark-alpha(24)
 
       .dropboxBrowse
         +bevel-dark
@@ -982,7 +977,6 @@
 
     // NEW ENTRY TAG
     .entryTags
-      +shine-dark-alpha(24)
 
       .tagInputWrap
         background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
@@ -997,8 +991,7 @@
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
     // NEW ENTRY LINK
-    .entryLinks.entryAssets
-      +shine-dark-alpha(24)
+    .entryLinks
 
       #linkInputWrap
         +input-dark(large)
@@ -1019,11 +1012,9 @@
 
     // NEW ENTRY MOOD
     .entryEmotions
-      +shine-dark-alpha(24)
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
-      +shine-dark-alpha(24)
       .images, .tag, .links, .mood
         +bevel-dark
         +button-dark
