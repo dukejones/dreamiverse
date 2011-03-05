@@ -26,6 +26,7 @@ Dreamcatcher::Application.routes.draw do
     post 'bedsheet'
     post 'avatar'
     post 'location', :to => 'users#create_location'
+    get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
   end
 
   # Random path from dreams.js

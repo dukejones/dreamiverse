@@ -14,32 +14,28 @@ class User::RegistrationsController < ApplicationController
     
     render "users/forgot_password"
   end
-
-
   
   def create
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
+
+    redirect_to join_path(user: params[:user]), :alert => "captcha did not match." and return unless verify_recaptcha
     
-    if !verify_recaptcha
-      flash[:user_registration_errors] = 'ReCaptcha was invalid'
-      redirect_to :root, :alert => "ReCaptcha was invalid" 
-      return
-    end
-    
-    # TODO: must detect duplicate users!
     @user = User.create(params[:user])
     if @user.valid?
       set_current_user @user
       
+      UserMailer.welcome_email(@user).deliver
+      
       if auth_provider = session.delete(:registration_auth_provider)
         redirect_to "/auth/#{auth_provider}"
       else
-        redirect_to :root
+        redirect_to :root, :notice => "welcome, dreamer."
       end
     else
+      # TODO: display these on the join page
       flash[:user_registration_errors] = @user.errors
-      redirect_to :root, :alert => "Could not create the user"
+      redirect_to join_path(user: params[:user]), :alert => "could not create the user."
     end
   end
   

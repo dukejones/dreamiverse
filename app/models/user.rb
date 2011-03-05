@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   validate :password_confirmation_matches
   validates_presence_of :username
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
+  validates_uniqueness_of :username
   validates_uniqueness_of :email, :allow_nil => true
   validate :has_at_least_one_authentication
   
@@ -129,6 +130,10 @@ class User < ActiveRecord::Base
     self.view_preference = ViewPreference.create(theme: "light")
   end
 
+  def confirmation_code
+    sha1("#{self.id}-#{self.username}-#{self.created_at.to_s}")
+  end
+  
   protected
 
   def encrypt_password
