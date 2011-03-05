@@ -144,6 +144,7 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    recaptcha (0.3.1)
     rest-client (1.6.1)
       mime-types (>= 1.16)
     ruby-debug-base19 (0.11.24)
@@ -188,5 +189,6 @@ DEPENDENCIES
   mysql2
   omniauth
   rails (= 3.0.3)
+  recaptcha
   ruby-debug19
   webrat
