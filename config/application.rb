@@ -35,7 +35,7 @@ module Dreamcatcher
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    config.action_view.javascript_expansions[:defaults] = %w(jquery rails application)
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails application)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -44,5 +44,16 @@ module Dreamcatcher
     config.filter_parameters += [:password, :password_confirmation]
     
     config.autoload_paths += %W(#{config.root}/lib)
+    
+    gmail_smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: "dreamcatcher.net",
+      user_name: "mailer@dreamcatcher.net",
+      password: "G9%Ln8(qtmZ3N3FZ5aTr",
+      authentication: "plain",
+      enable_starttls_auto: true
+    }
+    
   end
 end
