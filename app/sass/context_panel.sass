@@ -133,6 +133,8 @@
   .context
     +round(12)
     +flat-bottom
+    +overflow
+    +relative
     +center
     +bold
     +block
@@ -140,6 +142,7 @@
     margin: 4px 0 2px
     padding: 4px 8px
     .icon
+      +absolute
       right: 20px
       top: 18px
 
@@ -245,7 +248,7 @@
         width: 180px
         height: 24px
         line-height: 24px
-        margin: 0 0 4px
+        margin: 0
         padding: 0 0 0 8px
       .skypeWrap
         +relative
@@ -664,15 +667,26 @@
 
     .infoRight
       +right
+      +overflow
+      +absolute
+      left: 58px
       margin-right: 4px
       height: 64px
+      width: 138px
 
       .userName
         h3
-          margin: 4px 0 8px 8px
+          margin: 8px 0 0px 8px
+          +font(21)
+
+      .following
+        left: 0
+      .followers
+        left: 68px
+
 
       .following, .followers
-        +left
+        +absolute
         +font(12)
         +center
         +block

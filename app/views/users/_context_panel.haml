@@ -34,14 +34,19 @@
   - else
     / LABEL
     .context
-      = user.username
-
       - if current_user && current_user.relationship_with(user) != :none
         .icon
           = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
       - else
         .icon
           %img
+      = user.username
+
+
+
+
+
+
 
     / FOLLOW
     - if current_user
