@@ -36,7 +36,7 @@
   // STRUCTURE
   .headers
     +user-select
-    +round(16)
+    +round(20)
     +center
     +left
     +cursor
@@ -49,7 +49,7 @@
   .linksHeader
     img
       margin: 7px 8px 0 0
-  .emotionsHeader, .tagHeader, .locationHeader, .dateTimeHeader
+  .moodHeader, .tagHeader, .locationHeader, .dateTimeHeader
     img
       margin: 9px 8px 0 0
   .tagHeader
@@ -151,7 +151,7 @@
         margin: 8px 0 0 8px
         .sharing
           +absolute
-          +round(8)
+          +round(20)
           +pointer
           width: 200px
           min-height: 34px
@@ -246,7 +246,7 @@
                   text-transform: uppercase
 
     .myBooks, .addTheme, .date, .addLocation, #entry_submit
-      +round(16)
+      +round(20)
       +center
       +pointer
       +right
@@ -281,7 +281,7 @@
     #entry_submit
       +bold
       +font(12)
-      +round(8)
+      +round(12)
       width: 64px
       height: 36px
       line-height: 28px
@@ -638,10 +638,10 @@
         background: #fff url(/images/icons/close-22.png) no-repeat center
         &:hover
           +alpha(100)
-
+       
   // NEW ENTRY MOOD
-  .entryEmotions
-    .emotionsHeader
+  .entryMood
+    .moodHeader
       margin-bottom: 8px
 
     // MOOD PICKER
@@ -789,7 +789,7 @@
       +center
       +left
       +pointer
-      +round(16)
+      +round(20)
       +user-select
       height: 34px
       line-height: 32px
@@ -840,6 +840,7 @@
       .sharing, .myBooks, .addTheme, .addLocation, .date
         +indent-light
         +button-light
+        border: 1px solid #fff
 
     // ENTRY DATE & TIME
     .entryDateTime
@@ -926,9 +927,9 @@
             color: #555
 
     // NEW ENTRY MOOD
-    .entryEmotions
+    .entryMood
       +shine-light-alpha(24)
-      .emotionsHeader
+      .moodHeader
         +indent-light
         +button-light
 
@@ -983,6 +984,7 @@
       .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
         +button-dark
+        border: 1px solid #000
 
     // ENTRY DATE & TIME
     .entryDateTime
@@ -1069,9 +1071,9 @@
             color: #ccc
 
     // NEW ENTRY MOOD
-    .entryEmotions
+    .entryMood
       +shine-dark-alpha(24)
-      .emotionsHeader
+      .moodHeader
         +indent-dark
         +button-dark
 

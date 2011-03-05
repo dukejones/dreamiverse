@@ -16,7 +16,11 @@ class User::SessionsController < ApplicationController
     end
     
     begin
-      redirect_to :back
+      if auth_provider = session.delete(:registration_auth_provider)
+        redirect_to "/auth/#{auth_provider}"
+      else
+        redirect_to :back
+      end
     rescue RedirectBackError
       redirect_to :root
     end

@@ -20,7 +20,7 @@
     %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
 
     .shineBox
-      = form_for(User.new, url: user_registration_path) do |f|
+      = form_for(@user, url: user_registration_path) do |f|
         = f.text_field :email, :placeholder => "email"
         = f.text_field :username, :placeholder => "username"
         = f.password_field :password, :placeholder => "password"

@@ -19,9 +19,12 @@ class User::AuthenticationsController < ApplicationController
         # user = User.create_from_omniauth(omniauth)
         # set_current_user user
         # flash.notice = "created new user: #{user.name}."
-        # Go to the join now page.
+
         # This should associate the new account with the newly authorized authorization.
-        redirect_to join_path and return
+        session[:registration_auth_provider] = omniauth['provider']
+        username = omniauth['user_info']['nickname']
+        email = omniauth['extra']['user_hash']['email']
+        redirect_to join_path(user: {username: username, email: email}) and return
       end
     end
     redirect_to root_path

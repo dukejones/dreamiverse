@@ -42,14 +42,20 @@
   #tagStream, #showEntry, #entryField
     #tagsLive, #tag-list, .burstInfo
       .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
-        +button-light
         +flat-light-medium
+        +button-light
+        border: 1px solid #8c8c8c
         color: #333
+        &:hover
+          border: 1px solid #464646
 
 .dark
   #tagStream, #showEntry, #entryField
     #tagsLive, #tag-list, .burstInfo
       .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
-        +button-dark
         +flat-dark-medium
+        +button-dark
         color: #ddd
+        border: 1px solid #777
+        &:hover
+          border: 1px solid #ddd

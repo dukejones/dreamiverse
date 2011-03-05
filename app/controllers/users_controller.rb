@@ -47,7 +47,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render :json => {message: 'success'} }
+      format.json { render :json => {type: 'ok', message: 'success'} }
     end
   end
   

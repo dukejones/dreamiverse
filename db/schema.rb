@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110223163252) do
+ActiveRecord::Schema.define(:version => 20110305011130) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(:version => 20110223163252) do
 
   create_table "links", :force => true do |t|
     t.string   "url",        :null => false
-    t.string   "title",      :null => false
+    t.string   "title"
     t.integer  "owner_id"
     t.string   "owner_type"
     t.datetime "created_at"
