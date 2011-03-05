@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_uniqueness_of :username
+  validates_length_of :username, maximum: 26, minimum: 3
   validates_uniqueness_of :email, :allow_nil => true
   validate :has_at_least_one_authentication
   

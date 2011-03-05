@@ -132,7 +132,7 @@ class Entry < ActiveRecord::Base
       # each should be sorted according to date or starlight
     end
 
-    entries.select!{|e| viewer.can_access?(e) } # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if entries.kind_of? Array # this is very, very slow.
     entries
   end
 

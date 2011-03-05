@@ -16,6 +16,15 @@ namespace :app do
       log("Total time: #{Time.now - begin_time}")
     end
   end
+  
+  task :sanitize_emails => :environment do
+    raise "Don't do this!!!" if Rails.env == 'production'
+    
+    User.all.each do |u|
+      u.email = u.email.gsub('@','-') + '@dreamcatcher.net' unless u.email =~ /@dreamcatcher.net$/
+      u.save!
+    end
+  end
 end
 
 def log(msg)
