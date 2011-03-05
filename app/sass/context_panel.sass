@@ -189,14 +189,18 @@
         margin: 0 4px
         hr
           +alpha(30)
+
         .website, .email, .phone, .skype
           +block
           +font(14)
-          padding: 0 8px 2px
+          margin-bottom: 6px
+
         .website:hover
           text-decoration: underline
+
         .email, .phone, .skype
           +cursor
+
         .skype
           img, span
             +left
@@ -213,12 +217,14 @@
           +left
         .twitter
           +right
+
+
         .change
           +user-select
           +clear
           +center
           +round(4)
-          margin-top: 4px
+          margin-top: 14px
           height: 22px
           line-height: 22px
 
@@ -441,17 +447,26 @@
     +glow-light(40)
 
     .context, .label
-      +button-light
+      border: 1px solid #8a8a8a
+    .context:hover, .entryFilter .label:hover
+      border: 1px solid #111
+      +pointer
     .context
       +shine-light-alpha(16)
     .label
       +shine-light-alpha(16)
 
+
+
     .relation
       +button-light
 
+
+
+
     // PROFILE
     .profile
+
 
       // VIEW PROFILE
       .view, .edit
@@ -518,9 +533,15 @@
     +transparent-dark(50)
     +glow-dark(40)
 
+
+
     .context, .label
-      +button-dark
       +shine-dark-alpha(16)
+      border: 1px solid #090909
+    .context:hover, .entryFilter .label:hover
+      +button-dark
+
+
     .relation
       +button-dark
 

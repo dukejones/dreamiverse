@@ -1,7 +1,12 @@
 @import mixins
 @import thumb_1d
 
-body
+body.home
+  background-image: url('/images/bedsheets/today-in-dreams-med.jpg')
+  background-attachment: scroll
+  background-repeat: no-repeat
+  background-position: top center
+  background-color: #05204b !important
   margin: 0
   padding: 0
   height: 100%
@@ -84,7 +89,7 @@ body
       color: #fff
 
     .welcome
-      +round(12)
+      +round(11)
       +absolute
       +shine-blue-alpha(20)
       top: 0
