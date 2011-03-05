@@ -21,6 +21,12 @@ class User::RegistrationsController < ApplicationController
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
+    if !verify_recaptcha
+      flash[:user_registration_errors] = 'ReCaptcha was invalid'
+      redirect_to :root, :alert => "ReCaptcha was invalid" 
+      return
+    end
+    
     # TODO: must detect duplicate users!
     @user = User.create(params[:user])
     if @user.valid?
