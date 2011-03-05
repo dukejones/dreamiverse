@@ -11,6 +11,66 @@
     padding-right: 40px
 
 
+  // SHARED HEADER STYLES
+  .headers
+    +user-select
+    +round(20)
+    +center
+    +left
+    +cursor
+    +bold
+    padding: 0 12px 0 4px
+    height: 34px
+    line-height: 34px
+    .img
+      +left
+      width: 34px
+      height: 34px
+  .dateTimeHeader
+    .img
+      background: url(/images/icons/date-19.png) no-repeat center
+  .locationHeader
+    .img
+      background: url(/images/icons/location-16-off.png) no-repeat center
+  .imagesHeader
+    .img
+      background: url(/images/icons/eye-images-16.png) no-repeat center
+  .tagHeader
+    .img
+      background: url(/images/icons/tag-16-off.png) no-repeat center
+  .analysisHeader
+    .img
+  .linksHeader
+    .img
+      background: url(/images/icons/links-19.png) no-repeat center
+  .emotionsHeader
+    .img
+      background: url(/images/icons/mood-19.png) no-repeat center
+  .dateTimeHeader
+    .img
+      background: url(/images/icons/location-16-off.png) no-repeat center
+  .commentsHeader
+    .img
+      background: url(/images/icons/comments-16.png) no-repeat center
+
+// SHARED HEADER STYLES
+// COLORS
+.light
+  #entryField
+
+    .headers
+      +indent-light
+      +button-light
+
+.dark
+  #entryField
+
+    .headers
+      +indent-dark
+      +button-dark
+
+
+
 
 /* ENTRY BAR */
 .light, .dark

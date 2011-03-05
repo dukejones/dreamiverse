@@ -81,9 +81,9 @@
 
         / EMOTIONS DETAILS
         .emotions-details.target.showhide.hidden
-          .emotionsHeader
+          .emotionsHeader.headers
+            .img
             emotions
-            %img{src: '/images/icons/mood-19.png'}
           = render :partial => "emotions"
 
         / EMOTIONS THUMB
@@ -125,8 +125,8 @@
 
           - if @entry.user == current_user
             .tagHeader.headers
+              .img
               tag
-              %img{src: '/images/icons/tag-20.png'}
 
             .tagInput.target
               %input#newTag{placeholder: 'who/where/what'}
@@ -162,8 +162,8 @@
     .commentsPanel
       .trigger.slide
         .commentsHeader.headers
+          .img
           <b>comments</b>
-          %img{src: '/images/icons/comments-16.png', width: '16', height: '16'}
           &nbsp; (<span class="counter">#{@comments.count}</span>)
       .clear
       

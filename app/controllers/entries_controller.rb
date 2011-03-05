@@ -78,7 +78,7 @@ class EntriesController < ApplicationController
     deny and return unless user_can_write?
     
     @entry.destroy
-    redirect_to :entries_path
+    redirect_to user_entries_path(current_user.username)
   end
 
   def stream

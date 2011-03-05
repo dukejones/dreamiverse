@@ -256,11 +256,11 @@ function setupEvents(){
   
   $('.entryAttach .mood').unbind();
   $('.entryAttach .mood').click(function(){
-    $('.entryMood').slideDown();
+    $('.entryEmotions').slideDown();
     $(this).hide();
     
-    $('.entryMood .headers').unbind()
-    $('.entryMood .headers').click(function(){
+    $('.entryEmotions .headers').unbind()
+    $('.entryEmotions .headers').click(function(){
       var radioSelected = false;
       $('.moodPicker input[type="radio"]:checked').each(function(i, el){
         // only mark as selected if its a value other than 1
@@ -276,7 +276,7 @@ function setupEvents(){
           $('.moodPicker').slideUp()
         }
       } else {
-        $('.entryMood').slideUp();
+        $('.entryEmotions').slideUp();
         $('.entryAttach .mood').show();
       }
       
