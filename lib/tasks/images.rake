@@ -61,6 +61,10 @@ namespace :image do
       Image.where(:section => 'Bedsheets').each do |image|
         puts "processing bedsheet jpg (id: #{image.id}) #{image.title}.."
         image.generate_profile(:bedsheet, :format => 'jpg')
+        puts 'default thumb' 
+        image.generate_profile(:thumb)
+        puts 'thumb 120' 
+        image.generate_profile(:thumb, :size => 120)
       end
     end
   end
