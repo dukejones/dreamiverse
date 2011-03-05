@@ -443,6 +443,13 @@
       width: 80px
 
 
+
+
+
+
+
+
+
 // CONTEXT PANEL
 // COLORS
 .light
@@ -507,6 +514,12 @@
           border: 1px solid #848484
       .detail
         background: rgba(255,255,255,0.8)
+
+
+
+
+
+
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
@@ -722,7 +735,7 @@
 #streamContextPanel
   .wrapper
     .entryFilter, .followFilter, .starlightTab
-      +round(8)
+      +round(12)
       +relative
       +bold
       +center
@@ -754,7 +767,7 @@
         margin: 7px 8px 0 0
 
       .starlightFilter
-        +round(8)
+        +round(12)
         +right
         +relative
         +center
@@ -777,13 +790,13 @@
   .wrapper
     +relative
     .filterList
-      +round(8)
+      +round(12)
       +absolute
       +pointer
       top: 0
       z-index: 1200
       &:hover
-        +round(8)
+        +round(12)
       .type
         +center
         +bold
@@ -791,10 +804,10 @@
         line-height: 30px
         +block
         &.top:hover
-          +round(6)
+          +round(10)
           +flat-bottom
         &.bottom:hover
-          +round(6)
+          +round(10)
           +flat-top
 
 
@@ -830,6 +843,10 @@
       .entryFilter, .followFilter, .starlightTab
         +flat-light
         +button-light
+        border: 1px solid #777
+        &:hover
+          +glow-light(10)
+
 
 .dark
   #streamContextPanel
@@ -860,6 +877,7 @@
       .entryFilter, .followFilter, .starlightTab
         +flat-dark
         +button-dark
+        border: 1px solid #555
 
 
 
