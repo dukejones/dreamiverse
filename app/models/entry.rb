@@ -218,6 +218,11 @@ class Entry < ActiveRecord::Base
     reorder_tags
   end 
 
+  def self.random
+    random_entry = Entry.where(:sharing_level ^ 0).first(:order => 'rand()')
+    return random_entry
+  end
+  
 protected
 
   def set_main_image
