@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
   validate :password_confirmation_matches
   validates_presence_of :username
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
+  validates_uniqueness_of :username
   validates_uniqueness_of :email, :allow_nil => true
   validate :has_at_least_one_authentication
   
