@@ -1,4 +1,6 @@
 #geoHeader
+  +user-select
+  +pointer
   +round(16)
   +flat-top
   box-shadow: 0 0 40px #f0e207
@@ -345,17 +347,6 @@
 
   // ENTRY IMAGES
   .entryImages
-    .dropboxBrowse
-      +overflow
-      +center
-      +pointer
-      width: 100px
-      left: -120px
-      +round(8)
-      direction: ltr
-      height: 34px
-      line-height: 34px
-      margin: 0 0 -34px
 
     #addFromImageBank
       +round(8)
@@ -369,21 +360,33 @@
         +left
         margin: 6px 8px 6px 0
     #imageDropArea
-      +right
+      +relative
       +bold
       +font(13)
+      +right
       +round(8)
-      width: 380px
-      height: 34px
-      line-height: 34px
+      width: 504px
+      height: 38px
+      line-height: 38px
       img
         +left
-        margin: 7px 8px
+        margin: 10px 8px 0 200px
+      .dropboxBrowse
+        +overflow
+        +center
+        +pointer
+        +alpha(0)
+        width: 100%
+        +round(8)
+        direction: ltr
+        height: 34px
+        margin: 0 0 -34px
+        input
+          background: transparent
+          border: none
       .qq-upload-drop-area
         +cursor
         +user-select
-        position: relative
-        top: -2px
         height: 34px
         +round(7)
       .qq-upload-drop-area-active
@@ -489,7 +492,7 @@
           +left
           +font(18)
           +transparent
-          width: 450px
+          width: 420px
           height: 32px
           line-height: 32px
           margin: 4px 0
@@ -522,7 +525,7 @@
         +left
         +font(16)
         +transparent
-        width: 470px
+        width: 420px
         height: 28px
         margin: 6px 0 4px 8px
         border: 0
@@ -756,7 +759,8 @@
       +cursor
       height: 34px
       line-height: 32px
-      margin: 0 30px
+      +font(20)
+      margin: 0 40px
     .tag, .images, .mood, .links, .analysis
       +center
       +left
@@ -840,11 +844,7 @@
         +button-light
 
       #imageDropArea
-        +input-light(small)
-
-      .dropboxBrowse
-        +bevel-light
-        +button-light
+        +input-light(large)
 
 
     // NEW ENTRY TAG
@@ -889,6 +889,10 @@
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
+      +shine-light-alpha(24)
+      p
+        color: #090909
+
 
       .images, .tag, .links, .mood
         +bevel-light
@@ -903,7 +907,7 @@
 
     // SHARED PANEL STYLES
     .entryPanels
-      +shine-light-alpha(24)
+      +shine-dark(24)
 
     #newEntry
       +flat-dark
@@ -964,16 +968,12 @@
     // ENTRY IMAGES
     .entryImages
 
-      .dropboxBrowse
-        +bevel-dark
-        +button-dark
-
       #addFromImageBank
         +bevel-dark
         +button-dark
 
       #imageDropArea
-        +input-dark(small)
+        +input-dark(large)
 
     // NEW ENTRY TAG
     .entryTags
@@ -991,7 +991,7 @@
           background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
     // NEW ENTRY LINK
-    .entryLinksentryItems
+    .entryLinks
 
       #linkInputWrap
         +input-dark(large)
@@ -1015,6 +1015,10 @@
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
+      +shine-dark-alpha(24)
+      p
+        color: #8a8a8a
+
       .images, .tag, .links, .mood
         +bevel-dark
         +button-dark

@@ -13,6 +13,7 @@ gem 'coffee-script'
 gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
+gem 'recaptcha', :require => 'recaptcha/rails'
 
 gem 'mocha' # Needed for Legacy Migration.  Remove later.
 # gem 'carmen'

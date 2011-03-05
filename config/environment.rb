@@ -1,4 +1,4 @@
-VERSION = "theta v.1.0 (a)"
+VERSION = "theta v.1.1 (b)"
 
 require 'digest/sha1'
 def sha1(string)
@@ -18,3 +18,6 @@ Dreamcatcher::Application.initialize!
 
 ActiveRecord::Base.include_root_in_json = false
 
+# Recaptcha stuff
+ENV['RECAPTCHA_PUBLIC_KEY']  = '6LcfLMISAAAAAFSBbUqJIT18uqIQdlqXnb1feFN5'
+ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcfLMISAAAAANIq7MjfmzqNWZH_KS52xFfoXgui'

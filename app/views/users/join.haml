@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'join'
+  = javascript_include_tag "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"
 
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
@@ -27,6 +28,7 @@
         = f.password_field :password_confirmation, :placeholder => "confirm password"
         .seed have a seed code?
         = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
+        = raw recaptcha_tags :ajax => true
         .buttonWrap
           .text
             Join now &rsaquo;
