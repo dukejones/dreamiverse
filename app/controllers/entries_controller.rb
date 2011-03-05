@@ -107,7 +107,7 @@ class EntriesController < ApplicationController
 
   def random
     random_entry = Entry.random
-    redirect_to "/#{random_entry.user.username}/#{random_entry.id}"
+    redirect_to user_entry_path(random_entry.user.username, random_entry.id)
   end
 
   protected

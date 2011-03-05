@@ -45,15 +45,5 @@ module Dreamcatcher
     
     config.autoload_paths += %W(#{config.root}/lib)
     
-    gmail_smtp_settings = {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "dreamcatcher.net",
-      user_name: "mailer@dreamcatcher.net",
-      password: "G9%Ln8(qtmZ3N3FZ5aTr",
-      authentication: "plain",
-      enable_starttls_auto: true
-    }
-    
   end
 end
