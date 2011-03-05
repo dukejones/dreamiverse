@@ -249,19 +249,7 @@
           -webkit-box-shadow: 4px 4px 10px #555
 
           .emotionsHeader
-            +user-select
-            +round(16)
-            +center
-            +left
-            +cursor
-            +bold
             margin: 0 0 4px
-            padding: 0 12px
-            height: 34px
-            line-height: 34px
-            img
-              +left
-              margin: 9px 8px 0 0
 
           table.container
             border-collapse: separate
@@ -435,8 +423,6 @@
         padding: 8px
         .analysisHeader
           margin-bottom: 8px
-          img
-            margin: 7px 8px 0 0
 
         .analysisTags
           +round(12)
@@ -476,8 +462,6 @@
         font-weight: normal
         margin-bottom: 8px
         +user-select
-        img
-          margin: 7px 8px 0 0
         .counter
           +font(14)
           margin-top: -2px
@@ -665,9 +649,6 @@
           +bevel-light
           color: #555
 
-          .emotionsHeader
-            +indent-light
-
         // TITLE
         .title
           +flat-light
@@ -691,9 +672,6 @@
 
         // TAG
         .showTags
-          .tagHeader
-            +indent-light
-            +button-light
 
           .tagThisEntry
             +button-light
@@ -708,9 +686,6 @@
 
         // ANALYSIS
         .entryAnalysis
-          .analysisHeader
-            +indent-light
-            +button-light
 
           // ANALYSIS TAGS
           .analysisTags
@@ -726,10 +701,6 @@
       .commentsPanel
         +panel-light
         +shine-light-alpha(28)
-
-        .commentsHeader
-          +indent-light
-          +button-light
 
         .newCommentWrap
           .avatar
@@ -811,9 +782,6 @@
         .emotions-details, .emotions-thumb
           +bevel-dark
 
-          .emotionsHeader
-            +indent-dark
-
           .arrow
             background: url(/images/icons/arrow-right-16-light.png) no-repeat center
 
@@ -846,9 +814,6 @@
 
         // TAG
         .showTags
-          .tagHeader
-            +indent-dark
-            +button-dark
 
           .tagThisEntry
             +button-dark
@@ -865,9 +830,6 @@
 
       // ANALYSIS
       .entryAnalysis
-        .analysisHeader
-          +indent-dark
-          +button-dark
 
         // ANALYSIS TAGS
         .analysisTags
@@ -883,10 +845,6 @@
       .commentsPanel
         +panel-dark
         +shine-dark-alpha(28)
-
-        .commentsHeader
-          +indent-dark
-          +button-dark
 
         .newCommentWrap
           .avatar
