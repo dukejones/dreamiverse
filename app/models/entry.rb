@@ -163,6 +163,15 @@ class Entry < ActiveRecord::Base
       tags.create(noun: what, position: tags.count, kind: kind)     
     end
   end
+  
+  def add_where_tag(where, kind = 'custom')
+    if self.wheres.exists?(where)
+      tag = self.tags.where(noun: where).first
+      tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
+    else
+      tags.create(noun: where, position: tags.count, kind: kind)     
+    end
+  end
  
   def sharing
     self.class::Sharing.invert[sharing_level]
