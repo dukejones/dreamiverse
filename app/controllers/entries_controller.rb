@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
-  before_filter :query_username, :except => [:stream]
+  before_filter :query_username, :except => [:stream, :random]
 
   def entry_list
     # This is an example of a hack due to tightly coupling Display to Data.
