@@ -129,6 +129,10 @@ class User < ActiveRecord::Base
     self.view_preference = ViewPreference.create(theme: "light")
   end
 
+  def confirmation_code
+    sha1("#{self.id}-#{self.username}-#{self.created_at.to_s}")
+  end
+  
   protected
 
   def encrypt_password

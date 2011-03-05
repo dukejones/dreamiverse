@@ -23,7 +23,7 @@ class User::RegistrationsController < ApplicationController
     
     # TODO: must detect duplicate users!
     
-    redirect_to :root, :alert => "ReCaptcha was invalid" and return unless verify_recaptcha
+    redirect_to join_path(user: params[:user]), :alert => "captcha was invalid" and return unless verify_recaptcha
     
     @user = User.create(params[:user])
     if @user.valid?
