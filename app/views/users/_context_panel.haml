@@ -80,7 +80,6 @@
           = fields_for current_user do |f|
             = f.text_field :name, :placeholder => 'full name'
             = f.fields_for :link_attributes do |l|
-              / = l.text_field :title, :placeholder => 'site name'
               = l.text_field :url, :placeholder => 'website'
             = f.text_field :email, :placeholder => 'email'
             = f.text_field :phone, :placeholder => 'phone'
