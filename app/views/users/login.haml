@@ -25,10 +25,13 @@
 
       .loginForm
         = form_for('user', {url: user_session_path}) do |f|
-          = f.text_field(:username, {tabindex: '1', placeholder: 'username'})
-          = f.password_field(:password, {tabindex: '2', placeholder: 'password'})
+          %span username
+          = f.text_field(:username, {tabindex: '1'})
+          %span password
+          = f.password_field(:password, {tabindex: '2'})
+
           .buttonWrap
             .text
-              log in &rsaquo;
+              login &rsaquo;
               %input.button{tabindex: '3', type: 'submit', name: 'loginButton', value: 'log in &rsaquo;'}
 
