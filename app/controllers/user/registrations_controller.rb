@@ -24,8 +24,7 @@ class User::RegistrationsController < ApplicationController
     # TODO: must detect duplicate users!
     
     if !verify_recaptcha
-      flash[:user_registration_errors] = 'ReCaptcha was invalid'
-      redirect_to :root :alert => "ReCaptcha was invalid" 
+      redirect_to :root, :alert => "ReCaptcha was invalid" 
       return
     end
     
