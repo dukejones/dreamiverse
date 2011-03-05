@@ -227,46 +227,52 @@
     // EDIT PROFILE
     .edit
       +round(8)
-      padding: 8px
+      padding: 4px
+
+      span
+        +font(11)
+        margin-left: 11px
 
       #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
         +round(8)
         +font(12)
-        width: 176px
+        width: 180px
         height: 24px
         line-height: 24px
         margin: 0 0 4px
         padding: 0 0 0 8px
       .skypeWrap
         +relative
-        width: 176px
+        width: 180px
         margin: 0 0 4px
         img
           +absolute
           left: 8px
           top: 5px
         #user_skype
-          width: 156px
+          width: 160px
           padding-left: 28px
           margin: 0
 
       .cancel, .save
         +round(4)
         +user-select
+        +center
         width: auto
-        height: 22px
-        line-height: 22px
         margin: 4px 0 0
       .cancel
         +left
         +delete(14)
-        padding: 0 12px
+        width: 75px
+        height: 26px
+        line-height: 26px
       .save
+        +bold
         +right
         +save(14)
         +font(14)
-        height: 24px
-        padding: 0 36px 4px
+        height: 28px
+        width: 110px
 
 
 

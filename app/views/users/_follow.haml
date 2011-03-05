@@ -65,23 +65,23 @@
       = relationship.to_s.humanize.downcase
 
 
-  = link_to follow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :none) ? 'changeRelation follow hidden' : 'changeRelation follow hidden' do
+  = link_to follow_path(user.username, 'json'), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :none) ? 'changeRelation follow hidden' : 'changeRelation follow hidden' do
     .icon
       = friend_icon_tag( :following, 24, {class: 'follow'} )
     follow
 
 
-  = link_to follow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :followed_by) ? 'changeRelation befriend hidden' : 'changeRelation befriend hidden' do
+  = link_to follow_path(user.username, 'json'), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :followed_by) ? 'changeRelation befriend hidden' : 'changeRelation befriend hidden' do
     .icon
       = friend_icon_tag( :friends, 24, {class: 'follow'} )
     befriend
     
-  = link_to unfollow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :friends) ? 'changeRelation unfriend hidden' : 'changeRelation unfriend hidden' do
+  = link_to unfollow_path(user.username, 'json'), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :friends) ? 'changeRelation unfriend hidden' : 'changeRelation unfriend hidden' do
     .icon
       = friend_icon_tag( :following, 24, {class: 'unfollow'} )
     unfriend
   
-  = link_to unfollow_path(user.username), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :following) ? 'changeRelation unfollow hidden' : 'changeRelation unfollow hidden' do
+  = link_to unfollow_path(user.username, 'json'), :method => :put, :remote => true, :class => (user.relationship_with(current_user) == :following) ? 'changeRelation unfollow hidden' : 'changeRelation unfollow hidden' do
     .icon
       = friend_icon_tag( :none, 24, {class: 'unfollow'} )
     unfollow
