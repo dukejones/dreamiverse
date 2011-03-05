@@ -1,4 +1,6 @@
 #geoHeader
+  +user-select
+  +pointer
   +round(16)
   +flat-top
   box-shadow: 0 0 40px #f0e207
@@ -757,7 +759,8 @@
       +cursor
       height: 34px
       line-height: 32px
-      margin: 0 30px
+      +font(20)
+      margin: 0 40px
     .tag, .images, .mood, .links, .analysis
       +center
       +left
@@ -886,6 +889,10 @@
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
+      +shine-light-alpha(24)
+      p
+        color: #090909
+
 
       .images, .tag, .links, .mood
         +bevel-light
@@ -1008,6 +1015,10 @@
 
     // NEW ENTRY ATTACHMENTS
     .entryAttach
+      +shine-dark-alpha(24)
+      p
+        color: #8a8a8a
+
       .images, .tag, .links, .mood
         +bevel-dark
         +button-dark
