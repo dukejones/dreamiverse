@@ -7,7 +7,7 @@ class User::AuthenticationsController < ApplicationController
         # if the auth is already known, do nothing...
       else
         # if it's not known, create the auth & associate it with the current user.
-        flash.notice = "successfully linked the #{omniauth['provider']} authorization to your account"
+        flash.notice = "linked #{omniauth['provider']} authorization"
         current_user.apply_omniauth(omniauth).save!
       end
     else
