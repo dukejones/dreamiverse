@@ -137,7 +137,7 @@ class AppearancePanel extends MetaMenu
           
         
     )
-  
+
   updateUserBedsheet: (@bedsheet_id)->
     $.ajax {
       type: 'POST'

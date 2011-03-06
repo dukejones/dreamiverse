@@ -51,10 +51,10 @@
     #tagsLive, #tag-list, .burstInfo
       .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
         +flat-light-medium
-        +button-light
         border: 1px solid #8c8c8c
         color: #333
-        &:hover
+        &.user:hover
+          +button-light
           color: #000
           border: 1px solid #464646
 
@@ -63,9 +63,9 @@
     #tagsLive, #tag-list, .burstInfo
       .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
         background: rgba(0,0,0,0.8)
-        +button-dark
         color: #ddd
         border: 1px solid #777
-        &:hover
+        &.user:hover
+          +button-dark
           color: #fff
           border: 1px solid #ddd

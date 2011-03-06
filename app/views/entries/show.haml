@@ -3,9 +3,10 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
   = javascript_include_tag 'browserdetect'
-  :coffeescript
-    require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack', 'autoresize.jquery.min' ])
-    require([ 'tag', 'showentry', 'entries' ] )
+
+:coffeescript
+  require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack', 'autoresize.jquery.min' ])
+  require({baseUrl: "/javascripts/compiled"}, [ 'tag', 'showentry', 'entries' ] )
 
 
 / CONTEXT PANEL

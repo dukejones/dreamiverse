@@ -1,10 +1,10 @@
 - content_for :head do
   = sass_link_tag 'entries'
-  :coffeescript
-    require(['modal', 'stream'])
-    require({baseUrl: "/javascripts"}, [ 'stream', 'publicstream', 'dreams', 'geo', 'jquery.lightbox-0.5.pack' ])
-  -# 'friendslist', 
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
+
+:coffeescript
+  require({baseUrl: "/javascripts/compiled"}, ['modal', 'stream'])
+  require({baseUrl: "/javascripts"}, [ 'stream', 'publicstream', 'dreams', 'geo', 'jquery.lightbox-0.5.pack' ])
 
 
 / CONTEXT PANEL
