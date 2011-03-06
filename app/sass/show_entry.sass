@@ -487,20 +487,24 @@
           +relative
           +right
 
+          .avatar
+            margin: 8px
+
           textarea
             +round(12)
             +transparent
             +font(16)
             +outline
-            +absolute
+            +relative
             top: 0
-            left: 0
+            right: 0
             font-family: Calibri, Arial, Helvetica, sans-serif
-            height: 60px
-            width: 546px
+            height: 40px
+            width: 506px
             border: none
             cursor: text
             padding: 28px 28px 8px 28px
+            margin-top: 8px
 
           .user
             +round(8)
@@ -530,6 +534,7 @@
             +absolute
             +round(8)
             +bold
+            +font(17)
             right: 10px
             bottom: 10px
 
@@ -546,11 +551,15 @@
             +round(8)
 
           .delete
+            background: url("/images/icons/close-22-off.png") no-repeat center center transparent
             +absolute
+            width: 22px
+            height: 22px
             right: 30px
             +alpha(40)
             +pointer
             &:hover
+              background: url("/images/icons/close-22.png") no-repeat center center transparent
               +alpha(100)
 
           .user, .postTime
@@ -560,6 +569,8 @@
             line-height: 32px
             padding: 0 16px
             margin: 0 0 12px
+          .postTime
+            +alpha(80)
           ul
             +right
             max-width: 270px
@@ -717,8 +728,8 @@
         .newCommentWrap
           .avatar
             +border-light
+
           .newComment
-            +input-light(large)
             .user
               +border-light
               +bevel-light
@@ -728,6 +739,7 @@
               +save(16)
             textarea
               color: #333
+              +input-light(large)
 
         .prevCommentWrap
           .avatar
