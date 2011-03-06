@@ -9,7 +9,7 @@ class SharingController
   constructor: (containerSelector)->
     @firstRun = true;
     @$container = $(containerSelector)
-    @$dropdown = @$container.find('#entry_sharing_level')
+    @$dropdown = @$container.find('#sharing_select')
     
     @sharingView = new SharingView(containerSelector)
     @shareSettings = new Share()
