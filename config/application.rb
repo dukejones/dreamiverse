@@ -9,6 +9,15 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 FB_PERMS = "publish_stream, publish_checkins, user_location, user_photos, user_checkins, email"
 
+GmailSmtpSettings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "dreamcatcher.net",
+  user_name: "mailer@dreamcatcher.net",
+  password: "G9%Ln8(qtmZ3N3FZ5aTr",
+  authentication: "plain",
+  enable_starttls_auto: true
+}
 
 module Dreamcatcher
   class Application < Rails::Application

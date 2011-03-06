@@ -137,11 +137,11 @@
       #tag-list.tag-list.ui-sortable
         .emptyTag.tag.tag_what.hidden
           %span.tagContent
-          .close
+          .close-16
         - @entry.custom_tags.each do |what|
           .tag_what.tag
             %span.tagContent= what.name
-            .close
+            .close-16
 
         .clear
       #sorting.clear
@@ -168,7 +168,7 @@
               %input.linkUrlValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
               .icon
                 %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
-            .removeicon
+            .close-22
             - if link.youtube?
               .thumb{style: "background: url('') no-repeat center center transparent"}
               .description

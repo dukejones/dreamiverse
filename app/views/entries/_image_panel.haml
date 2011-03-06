@@ -15,7 +15,7 @@
     - images.each do |image|
       .entryImageContainer{:'data-id' => image.id}
         .entryImage{style: "background: url(#{image.url(:thumb, :size => 120)}) no-repeat scroll center center transparent"}
-          .imageRemoveButton
+          .close-22
           %label.radio{class: (@entry.main_image==image) ? 'selected' : ''}
             %input{type: 'radio', name: "entry[main_image_id]", value: image.id, checked: (@entry.main_image==image)}
             %span default

@@ -344,11 +344,6 @@
           padding: 4px
           width: 238px
 
-    .cancelLocation
-      +close-22
-      +right
-      margin: 0
-
 
   // ENTRY IMAGES
   .entryImages
@@ -462,10 +457,8 @@
             height: 10px
             padding: 5px
             background: rgba(255,255,255,0.3)
-          .imageRemoveButton
-            +close-22
+          .close-22
             +absolute
-            +pointer
             top: 8px
             right: 8px
         .entryImageCaption
@@ -612,18 +605,9 @@
         line-height: 30px
         margin: 5px -4px 0 0
 
-      .removeicon
-        +block
-        +round(12)
+      .close-22
         +right
-        +alpha(30)
-        +pointer
         margin: 5px 4px 0 0
-        width: 24px
-        height: 24px
-        background: #fff url(/images/icons/close-22.png) no-repeat center
-        &:hover
-          +alpha(100)
        
   // NEW ENTRY MOOD
   .entryEmotions
