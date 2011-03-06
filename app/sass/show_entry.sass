@@ -459,6 +459,7 @@
     .commentsPanel
       +round(12)
       margin-bottom: 0
+
       .commentsHeader
         font-weight: normal
         margin-bottom: 8px
@@ -467,13 +468,14 @@
           +font(14)
           margin-top: -2px
 
-      .newCommentWrap, .prevCommentWrap
+
+      .prevCommentWrap
         margin-top: 8px
-        +clear
-        p
-          margin-bottom: 18px
 
+      .newCommentWrap
+        margin-top: 16px
 
+      .newCommentWrap, .prevCommentWrap
         .avatar
           +round(12)
           +left
@@ -501,7 +503,6 @@
             border: none
             cursor: text
             padding: 28px 28px 8px 28px
-            margin-top: 8px
 
           .user
             +round(8)
@@ -870,8 +871,9 @@
         .newCommentWrap
           .avatar
             +border-dark
+
           .newComment
-            +input-dark(large)
+
             .user
               +border-dark
               +bevel-dark
@@ -882,6 +884,7 @@
               color: #fff
             textarea
               color: #ddd
+              +input-dark(large)
 
         .prevCommentWrap
           .avatar
@@ -898,4 +901,8 @@
             .rePost
               +bevel-dark
               +button-dark
+
+
+
+
 
