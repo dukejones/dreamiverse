@@ -211,7 +211,7 @@
 
 #metaMenu
 
-  .adminLink, .newEntry, .logOut
+  .adminLink, .newEntry, .logOut, .randomDream
     +transparent-dark(50)
     +round(24)
     +button-light
@@ -247,7 +247,7 @@
       background-image: url('/images/icons/logout-24.png')
 
 
-  .newEntry
+  .newEntry, .randomDream
     +glow-dark(40)
     +bold
     padding: 4px 8px
@@ -256,10 +256,19 @@
     border: 2px solid transparent
     span
       color: #093
-  .newEntry:hover
-    +inner-glow(20)
-    border: 2px solid transparent
+    &:hover
+      +inner-glow(20)
+      border: 2px solid transparent
 
+  .randomDream
+    +absolute
+    left: 460px
+    +alpha(80)
+    &:hover
+      +alpha(100)
+    a
+      color: #fff
+      font-weight: normal
 
 
 
