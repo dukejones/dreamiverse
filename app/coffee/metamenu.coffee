@@ -1,5 +1,6 @@
 
 $(document).ready ->
+  alert "META"
   setupMetaDropdowns()
   
 # init
@@ -111,8 +112,6 @@ class AppearancePanel extends MetaMenu
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_theme').attr('id')?
         $('#entry_view_preference_theme').val(@newTheme)
-      else
-        updateUserTheme(@newTheme)
         
   displayBedsheets: -> 
     # code to display bedsheets here. Need JSON call
@@ -139,17 +138,7 @@ class AppearancePanel extends MetaMenu
           
         
     )
-  
-  updateUserTheme: (@theme)->
-    $.ajax {
-      type: 'POST'
-      url: '/user/bedsheet'
-      data:
-        theme: @theme
-      success: (data, status, xhr) =>
-        success = true
-    }
-  
+
   updateUserBedsheet: (@bedsheet_id)->
     $.ajax {
       type: 'POST'
