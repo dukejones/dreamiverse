@@ -391,7 +391,7 @@
               border: none
 
           .tagThisEntry
-            +round(12)
+            +round(20)
             +flat-left
             +left
             +center
@@ -484,22 +484,23 @@
           background: url(/images/avatars/default-avatar-tiny.jpg) top left
 
         .newComment
-          +round(12)
           +relative
           +right
-          width: 546px
-          padding: 8px
 
           textarea
+            +round(12)
             +transparent
             +font(16)
             +outline
+            +absolute
+            top: 0
+            left: 0
             font-family: Calibri, Arial, Helvetica, sans-serif
             height: 60px
-            width: 526px
+            width: 546px
             border: none
             cursor: text
-            padding: 20px 0 0 20px
+            padding: 28px 28px 8px 28px
 
           .user
             +round(8)
