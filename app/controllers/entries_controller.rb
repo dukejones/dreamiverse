@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
     # @entry = @entries[i]
     deny and return unless user_can_access?
 
-    @comments = @entry.comments.order('created_at DESC') # .limit(10)
+    @comments = @entry.comments.order('created_at') # .limit(10)
     @page_title = @entry.title
     
     if unique_hit?
