@@ -18,7 +18,7 @@ class User::RegistrationsController < ApplicationController
   def send_password_reset
     @user = User.where(email: params[:email]).first
     if @user
-      UserMailer.password_reset( @user ).deliver
+      UserMailer.password_reset_email( @user ).deliver
       flash.notice = "password reset sent to #{params[:email]}."
       redirect_to root_path
     else
