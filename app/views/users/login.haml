@@ -7,7 +7,7 @@
 
 
 
-#joinPage
+#loginPage
 
   .joinInfo
     %h1 login
@@ -25,9 +25,9 @@
 
       .loginForm
         = form_for('user', {url: user_session_path}) do |f|
-          %span username
+          %span.label username
           = f.text_field(:username, {tabindex: '1'})
-          %span password
+          %span.label password
           = f.password_field(:password, {tabindex: '2'})
 
           .buttonWrap
