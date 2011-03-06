@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   
   def password_reset_email(user)
     @user = user
-    @reset_url = reset_password_url(user.username, sha1('randomness'))
+    @reset_url = reset_password_url(user.username, user.password_reset_code)
     mail(to: "#{user.name} <#{user.email}>", subject: "password reset request")
   end
 end
