@@ -58,6 +58,7 @@
         z-index: 84
         .date, .location, .comments, .sharing
           +transparent-dark(50)
+          +glow-dark(4)
           +round(12)
           +center
           +font(11)
@@ -121,8 +122,8 @@
       .thumb-2d
         background-color: #ddd !important
       .fadedBack
-        background: -moz-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0) 100px, rgba(255,255,255,1.0))
-        background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0.0)), color-stop(.33,rgba(255,255,255,1.0)), to(rgba(255,255,255,1.0)))
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0) 100px, rgba(209,209,209,1.0))
+        background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0.0)), color-stop(.33,rgba(255,255,255,1.0)), to(rgba(209,209,209,1.0)))
         // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
       .thumb-2d:hover
         +glow-light(40)
