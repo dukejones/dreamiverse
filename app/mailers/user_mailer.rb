@@ -9,7 +9,8 @@ class UserMailer < ActionMailer::Base
   end
   
   def password_reset(email)
-    @reset_url = reset_password_url()
+    # @reset_url = reset_password_url(email, sha1('randomness'))
+    @reset_url = "http://nowhere.com"
     mail(to: email, subject: "dreamcatcher :: password reset request")
   end
 end

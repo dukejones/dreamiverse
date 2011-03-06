@@ -27,7 +27,8 @@ class User::RegistrationsController < ApplicationController
   end
   
   def reset_password
-    
+    code = params[:reset_code]
+    render :text => "Resetting password... todo."
   end
   
   def create

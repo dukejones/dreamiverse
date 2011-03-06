@@ -11,7 +11,7 @@ Dreamcatcher::Application.routes.draw do
   match 'join' => 'user/registrations#new', :as => :join
   get 'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
   post 'forgot' => 'user/registrations#send_password_reset'
-
+  get 'reset-password/:email/:reset_code' => 'user/registrations#reset_password', :as => :reset_password
 
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
