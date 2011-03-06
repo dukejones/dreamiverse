@@ -176,6 +176,7 @@ class TagView
     @$element.removeClass('emptyTag')
     @$element.addClass('tag')
     @$element.addClass('tagWhat')
+    @$element.addClass('user')
     @setValue(@tag.name)
     
     return @$element
