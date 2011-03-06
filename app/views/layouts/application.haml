@@ -10,7 +10,7 @@
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
 
     = javascript_include_tag 'jquery.min', 'require', 'compiled/application'
-    / %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
+    /%script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
     
 
     = yield :head
@@ -31,5 +31,5 @@
 
 
     = yield :foot
-    = render "shared/facebook_sdk"
+    -# render "shared/facebook_sdk"
     

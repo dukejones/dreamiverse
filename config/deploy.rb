@@ -19,7 +19,7 @@ server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
 set :deploy_to, "/var/www/#{application}"
 
 
-after "deploy", "deploy:cleanup"
+# after "deploy", "deploy:cleanup"
 after "deploy", "barista:brew"
 after "deploy", "uploads:symlink"
 

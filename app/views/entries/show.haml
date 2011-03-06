@@ -5,7 +5,7 @@
   = javascript_include_tag 'browserdetect'
   :coffeescript
     require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack', 'autoresize.jquery.min' ])
-    require([ 'tag', 'showentry', 'entries' ] )
+    require({baseUrl: "/javascripts/compiled"}, [ 'tag', 'showentry', 'entries' ] )
 
 
 / CONTEXT PANEL
