@@ -1,6 +1,6 @@
 - content_for :head do
   :coffeescript
-    require(['publicstream'])
+    require({baseUrl: "/javascripts/compiled"}, ['publicstream'])
 
 .homeAlerts
   .notice= notice

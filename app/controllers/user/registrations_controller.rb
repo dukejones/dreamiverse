@@ -15,6 +15,19 @@ class User::RegistrationsController < ApplicationController
     render "users/forgot_password"
   end
   
+  def send_password_reset
+    if (User.where(email: params[:email]).count > 0)
+      UserMailer.password_reset( params[:email] ).deliver
+      flash.notice = "password reset sent to #{params[:email]}."
+    else
+      flash.alert = "email #{params[:email]} is unknown."
+    end
+  end
+  
+  def reset_password
+    
+  end
+  
   def create
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
