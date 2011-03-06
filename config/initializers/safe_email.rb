@@ -8,8 +8,6 @@ class SafeEmailInterceptor
       message.to = "MailTest <mail-test@dreamcatcher.net>"
     end
   end
-  
 end
-
 
 ActionMailer::Base.register_interceptor(SafeEmailInterceptor) unless Rails.env.production?

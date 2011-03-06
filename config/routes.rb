@@ -5,14 +5,14 @@ Dreamcatcher::Application.routes.draw do
     resource :session
     resource :registration
   end
-  post 'login' => 'user/sessions#create', :as => :login
-  get  'login' => 'user/sessions#new', :as => :login
+  post  'login'  => 'user/sessions#create', :as => :login
+  get   'login'  => 'user/sessions#new', :as => :login
   match 'logout' => 'user/sessions#destroy', :as => :logout
-  match 'join' => 'user/registrations#new', :as => :join
-  get 'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
-  post 'forgot' => 'user/registrations#send_password_reset'
-  get 'reset-password/:email/:reset_code' => 'user/registrations#reset_password', :as => :reset_password
-
+  match 'join'   => 'user/registrations#new', :as => :join
+  get   'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
+  post  'forgot' => 'user/registrations#send_password_reset'
+  get   'reset-password/:username/:reset_code', :to => 'user/registrations#reset_password', :as => :reset_password
+  post  'reset-password', :to => 'user/registrations#do_password_reset'
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
   # Universal 
