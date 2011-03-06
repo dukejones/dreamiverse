@@ -211,7 +211,7 @@
 
 #metaMenu
 
-  .adminLink, .newEntry, .logOut, .randomDream
+  .adminLink, .newEntry, .logOut
     +transparent-dark(50)
     +round(24)
     +button-light
@@ -242,12 +242,21 @@
     .img
       background-image: url('/images/icons/admin-16.png')
   .logOut
+    +round(30)
     margin: 10px 14px 0 12px
-    .img
+    width: 30px
+    height: 30px
+    background-position: 5px 3px
+    background-image: url('/images/icons/logout-24-off.png')
+    background-repeat: no-repeat
+    &:hover
       background-image: url('/images/icons/logout-24.png')
+    &:active
+      background-position: 5px 3px
+      background-image: url('/images/icons/logout-24-off.png')
+      background-repeat: no-repeat
 
-
-  .newEntry, .randomDream
+  .newEntry
     +glow-dark(40)
     +bold
     padding: 4px 8px
@@ -260,15 +269,6 @@
       +inner-glow(20)
       border: 2px solid transparent
 
-  .randomDream
-    +absolute
-    left: 460px
-    +alpha(80)
-    &:hover
-      +alpha(100)
-    a
-      color: #fff
-      font-weight: normal
 
 
 
