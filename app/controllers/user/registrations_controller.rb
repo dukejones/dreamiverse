@@ -19,8 +19,10 @@ class User::RegistrationsController < ApplicationController
     if (User.where(email: params[:email]).count > 0)
       UserMailer.password_reset( params[:email] ).deliver
       flash.notice = "password reset sent to #{params[:email]}."
+      redirect_to root_path
     else
       flash.alert = "email #{params[:email]} is unknown."
+      redirect_to forgot_password_path
     end
   end
   

@@ -13,10 +13,13 @@
     = yield :head
 
   %body.home.light
-    = render "shared/facebook_sdk"
+    -# render "shared/facebook_sdk"
 
     #drop_shadow
     #home
+      .homeAlerts
+        .notice= flash.notice
+        .alert= flash.alert
 
       = yield
 
