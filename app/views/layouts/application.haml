@@ -8,10 +8,14 @@
 
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-
-    = javascript_include_tag 'jquery.min', 'require', 'compiled/application'
-    /%script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
     
+    /= javascript_include_tag 'require'
+    /= javascript_include_tag 'jquery.min', 'require', 'compiled/application'
+    %script{type: "text/javascript", :'data-main' => "public/javascripts/", src: "/javascripts/require.js"}
+    %script
+      require(["/javascripts/jquery.min.js"])  
+      require(['/javascripts/pubsub.js', '/javascripts/rails.js', '/javascripts/jquery.hoverIntent.minified.js', '/javascripts/jquery-ui.min.js', "/javascripts/jquery.placeholder.js"])
+  
 
     = yield :head
 
