@@ -2,6 +2,7 @@
 $(document).ready ->
   setupDreamplugs()
   
+  
 # init
 window.setupDreamplugs = ->
   # Setup slide triggers to work
@@ -42,7 +43,8 @@ window.setupDreamplugs = ->
         newIcon = $(event.currentTarget).find('img').attr('src')
         $toggleIcon.attr('src', newIcon)
         
-        newText = $(event.currentTarget).find('span').text()
+        #newText = $(event.currentTarget).find('span').text()
+        newText = $(event.currentTarget).data('filter')
         $toggleText.text(newText)
         
         # Publish event for the Stream (or wherever its used) to listen to

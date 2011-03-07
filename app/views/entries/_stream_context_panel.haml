@@ -29,19 +29,19 @@
       %img.arrow{src: '/images/icons/arrow-down-16.png'}
       %span.value all entries
     .filterList.target.slideArrow.hidden
-      .type.top
+      .type.top{'data-filter' => 'all entries'}
         %img{src: '/images/icons/allEntries-16.png', width: '16', height: '16'}
         %span all entries
-      .type
+      .type{'data-filter' => 'dream'}
         %img{src: '/images/icons/dream-16.png', width: '16', height: '16'}
         %span dream
-      .type
+      .type{'data-filter' => 'vision'}
         %img{src: '/images/icons/vision-16.png', width: '16', height: '16'}
         %span vision
-      .type
+      .type{'data-filter' => 'experience'}
         %img{src: '/images/icons/experience-16.png', width: '16', height: '16'}
         %span experience
-      .type.bottom
+      .type.bottom{'data-filter' => 'article'}
         %img{src: '/images/icons/article-16.png', width: '16', height: '16'}
         %span article
 
