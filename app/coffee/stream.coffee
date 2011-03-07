@@ -15,7 +15,9 @@ class StreamController
     # Setup youtube images for each entry
     
     # Setup lightbox for stream
-    $('a.lightbox').lightBox({containerResizeSpeed: 100});
+    $('a.lightbox').each((i, el) ->
+      $(this).lightBox({containerResizeSpeed: 0});
+    )
 
 
 

@@ -21,7 +21,6 @@ getYoutubeData = (video_url, linked_element) ->
   })
 
 $(document).ready ->
-  
   # loop thru the youtube attachments
   $('.entryImages .youtube').each (i, el) =>
     # Pass the url and the element it came from
@@ -52,3 +51,9 @@ $(document).ready ->
     # Drop in video embed
     link_id = $element.data('id')
     $('#' + link_id).append(videoEmbed)
+  
+  # Setup lightbox for stream
+  $('a.lightbox').each( (i, el) ->
+    $(el).lightbox({containerResizeSpeed: 0})
+  )
+  $('a.lightbox').lightbox({containerResizeSpeed: 0})
