@@ -33,10 +33,11 @@
 #jquery-lightbox a img { border: none; }
 #lightbox-container-image-box {
 	position: relative;
-	background-color: #fff;
+	background-color: rgba(0,0,0,0.9);
 	width: 250px;
 	height: 250px;
 	margin: 0 auto;
+	padding: 2px;
 }
 #lightbox-container-image { padding: 10px; }
 #lightbox-loading {

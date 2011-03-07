@@ -20,16 +20,27 @@
     %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
 
     .shineBox
-      = form_for(@user, url: user_registration_path) do |f|
-        = f.text_field :email, :placeholder => "email"
-        = f.text_field :username, :placeholder => "username"
-        = f.password_field :password, :placeholder => "password"
-        = f.password_field :password_confirmation, :placeholder => "confirm password"
-        .seed have a seed code?
-        = f.text_field :seed_code, :value => session[:seed_code] || 'theta'
-        = raw recaptcha_tags
-        .buttonWrap
-          .text
-            Join now &rsaquo;
-            %input.button{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+
+      .joinForm.wrapper
+        = form_for(@user, url: user_registration_path) do |f|
+          %span.label email
+          = f.text_field :email, :placeholder => "email"
+          %span.label username
+          = f.text_field :username, :placeholder => "username"
+          %span.label password
+          = f.password_field :password, :placeholder => "password"
+          %span.label confirm password
+          = f.password_field :password_confirmation, :placeholder => "confirm password"
+
+          %span.label.seed.trigger.fade have a seed code?
+          = f.text_field :seed_code, class: 'target hidden fade',  :value => session[:seed_code] || 'theta'
+
+          .clear
+
+          = raw recaptcha_tags
+
+          .buttonWrap
+            .text
+              Join now &rsaquo;
+              %input.button{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 

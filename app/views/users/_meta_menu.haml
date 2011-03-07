@@ -4,8 +4,8 @@
 
 #report_box= VERSION
 
-%a#logo{href: root_path}
-  %img{src: 'http://www.dreamcatcher.net/basic/inc/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
+%a#logo{:href => (current_user ? user_entries_path(current_user.username) : root_path) }
+  %img{src: '/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
 
 
 

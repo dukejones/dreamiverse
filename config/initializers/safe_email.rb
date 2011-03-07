@@ -4,12 +4,10 @@
 class SafeEmailInterceptor
   def self.delivering_email(message)
     message.subject = "[#{Rails.env}] #{message.subject}"
-    if !(message.to =~ /@dreamcatcher.net$/)
-      message.to = "Email Test <mail-test@dreamcathcer.net>"
+    unless (message.to.all?{|to| to['dreamcatcher.net']})
+      message.to = "MailTest <mail-test@dreamcatcher.net>"
     end
   end
-  
 end
-
 
 ActionMailer::Base.register_interceptor(SafeEmailInterceptor) unless Rails.env.production?
