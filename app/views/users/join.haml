@@ -36,19 +36,22 @@
           = f.password_field :password_confirmation, class: 'inputField'
           .clear
 
-          %span.label.seed.trigger.fade have a seed code?
-          = f.text_field :seed_code, class: 'inputField target hidden fade',  :value => session[:seed_code] || 'theta'
+          .label.seed.trigger.showhide have a seed code?
+          .target.hidden.showhide
+            %span.label enter seed code
+            = f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || 'theta'
 
           .clear
 
-          .recaptchaWrap
+          .relative
+            .recaptchaWrap
 
-            = raw recaptcha_tags(:display => {:theme => 'clean'})
+              = raw recaptcha_tags(:display => {:theme => 'clean'})
 
-          %span.label.recaptcha enter text as shown
+            %span.label.recaptcha enter text as shown
 
-          .buttonWrap
-            .text
-              Join now &rsaquo;
-              %input.button{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+            .buttonWrap
+              .text
+                Join now &rsaquo;
+                %input.button{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
 

@@ -7,87 +7,34 @@
   z-index: 1111
 
 
-
-
   .loginPanelWrap
+    +absolute
+    right: 20px
 
-    .loginItem
-      +button-light
-      +flat-light
-      +round(12)
-      &:hover
-        +glow-light(8)
-      .hover_label
-        top: 56px !important
-      &.facebook
-        background: url('/images/icons/facebook-16.png') no-repeat center center transparent
-
-    .loginItem, .login
-      +right
-      +center
-      +user-select
-      width: 16px
-      height: 28px
-      line-height: 28px
-      margin: 0 8px 0 0
-      img
-        margin: 6px 0 0
-    .login
-      +button-light
-      +bevel-light
-      +round(12)
-      // width: auto
-      width: 120px
-      padding: 0 12px
-      +confirm(12)
-
-    .loginPanel
-      +clear
-
-      span
-        +font(11)
-        +user-select
-        +cursor
-        margin-left: 4px
-      .login-input, #loginButton
-        +clear
-        +block
-        +font(14)
-        +round(12)
-        margin: 0 0 2px
-        padding: 0 8px
-        width: 176px
-        height: 32px
-        line-height: 32px
-      .login-input
-        +input-light(small)
-        margin-bottom: 4px
-
-      #loginButton
-        +round(12)
-        +button-light
-        +bevel-light
-        width: 192px
-        +confirm(12)
-
-      .stay, .forgot
-        +button-light
-        +round(4)
-        +center
-        +font(10)
-        +user-select
-        margin: 0 4px 4px
-        padding: 0 4px
-        height: 16px
-        line-height: 16px
-        font-weight: normal
-      .forgot
-        +left
-      .stay
-        +right
-        width: 80px
-        input
-          +right
-          margin: 1px 0 0
+  .facebook .hover_label
+    top: 63px !important
 
 
+  .joinNow
+    +absolute
+    right: 260px
+
+  .randomDream
+    +absolute
+    right: 400px
+    top: 9px
+    padding: 0 6px 0 42px
+    height: 30px
+    line-height: 26px
+    background-position: 6px 5px !important
+    background-repeat: no-repeat !important
+    background-image: url('/images/icons/shuffle-26-off.png') !important
+
+    &:hover
+      background-position: 6px 5px !important
+      background-repeat: no-repeat !important
+      background-image: url('/images/icons/shuffle-26.png') !important
+    &:active
+      background-position: 6px 5px !important
+      background-repeat: no-repeat
+      background-image: url('/images/icons/shuffle-26-off.png') !important

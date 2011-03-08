@@ -151,6 +151,10 @@ abbr, acronym
 
 
 
+
+
+
+
 // LOGIN ITEMS
 .loginPanelWrap
   +bevel-light
@@ -166,83 +170,58 @@ abbr, acronym
     +center
     +user-select
     +shine-dark-alpha(12)
-    +button-light
+    +button-dark
     +round(12)
     +confirm(12)
     +bold
-    color: #ddd !important
+    color: #fff !important
     height: 28px
     line-height: 28px
     padding: 0 60px
 
-  .loginItem
+
+  .facebook
     +right
     +center
     +user-select
+    +pointer
+    +round(12)
+    border: 1px solid #aaa
     width: 16px
     height: 28px
     line-height: 28px
     padding: 0 8px
     margin: 0 8px 8px 0
-    .hover_label
-      top: 40px !important
-    &.facebook
-      background: url('/images/icons/facebook-16.png') no-repeat center center transparent
-
-
-
-    .loginItem
-      +button-light
-      +flat-light
-      +round(12)
-      &:hover
-        +glow-light(8)
-      .hover_label
-        top: 56px !important
+    background: url('/images/icons/facebook-16.png') no-repeat center center transparent
+    &:hover
+      +glow-light(8)
+      border: 1px solid transparent
 
 
 
 
 
-
-// LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
-.joinPanel .joinForm .login-input
-  margin-left: -4px
-
-.loginPanel, .joinPanel
+.loginPanel
   +clear
 
   span
     +font(11)
     +user-select
     +cursor
-    margin-left: 4px
+    margin-left: 8px
+
   .login-input, #loginButton
     +clear
     +block
     +font(14)
     +round(12)
-    margin: 0 0 2px
     padding: 0 8px
     width: 186px
     height: 32px
     line-height: 32px
+
   .login-input
     +input-light(small)
-    margin-bottom: 4px
-
-  .haveSeedcode
-    +pointer
-    +clear
-    +block
-    +center
-    +font(11)
-    +button-light
-    +round(4)
-    +user-select
-    margin: 4px 0 6px
-    width: 150px
-    margin: auto
 
   #loginButton
     +round(12)
@@ -250,7 +229,7 @@ abbr, acronym
     +bevel-light
     width: 204px
     +confirm(12)
-    margin: 8px 0 0
+    margin: 10px 0 0
   #loginSpacer
     height: 8px
 
@@ -260,25 +239,28 @@ abbr, acronym
     +center
     +font(10)
     +user-select
+    +right
     margin: 0 4px 4px
     padding: 0 4px
     height: 16px
     line-height: 16px
     font-weight: normal
-  .forgot
-    +left
+
   .stay
-    +right
     width: 80px
     input
       +outline
       +right
       margin: 1px 0 0
 
+  .forgot
+    +relative
+    right: 0
+    margin-top: 2px
 
 
 
-// JOIN - same as meta_menu_public (probably should bring into shared)
+// JOIN
 .joinWrap, .joinButtonWrap
   +pointer
   +clear
