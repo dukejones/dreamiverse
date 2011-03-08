@@ -8,13 +8,13 @@
   / INTRO MENU
   .leftPanel
 
-    %a.item{href: user_entries_path(current_user.username)}
+    %a.item.home{href: user_entries_path(current_user.username)}
       home
 
-    %a.item{href: stream_path}
+    %a.item.stream{href: stream_path}
       stream
 
-    %a.item{href: '/dreamstars'}
+    %a.item.dreamstars{href: '/dreamstars'}
       %img{src: '/images/icons/starlight-32.png'}
       dreamstars
 
