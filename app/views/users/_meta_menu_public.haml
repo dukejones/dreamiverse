@@ -11,8 +11,7 @@
   .loginPanelWrap.wrapper
     %a.login{href: login_path}
       login
-    %a.loginItem{href: '/auth/facebook'}
-      %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
+    %a.loginItem.facebook{href: '/auth/facebook'}
       = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "-8"}
     .clear
 
