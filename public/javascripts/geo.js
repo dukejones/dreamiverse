@@ -139,7 +139,6 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
-    alert('GEOCODING COMPLETE')
     console.log(data)
     // Remove finding your location option
     $('.entryLocation .data').slideDown()

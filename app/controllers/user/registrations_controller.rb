@@ -16,8 +16,9 @@ class User::RegistrationsController < ApplicationController
   end
   
   def send_password_reset
-    if (User.where(email: params[:email]).count > 0)
-      UserMailer.password_reset( params[:email] ).deliver
+    @user = User.where(email: params[:email]).first
+    if @user
+      UserMailer.password_reset_email( @user ).deliver
       flash.notice = "password reset sent to #{params[:email]}."
       redirect_to root_path
     else
@@ -27,8 +28,17 @@ class User::RegistrationsController < ApplicationController
   end
   
   def reset_password
-    code = params[:reset_code]
-    render :text => "Resetting password... todo."
+    @user = User.where(username: params[:username]).first
+    @code = params[:reset_code]
+
+    if @user.password_reset_code != @code
+      redirect_to forgot_password_path, alert: 'that reset code is no longer valid.' and return
+    end
+    render "users/reset_password"
+  end
+  
+  def do_password_reset
+    # do it!
   end
   
   def create

@@ -135,6 +135,11 @@ class User < ActiveRecord::Base
     sha1("#{self.id}-#{self.username}-#{self.created_at.to_s}")
   end
   
+  # This depends on the current password, so if they change their password, the code will no longer be valid.
+  def password_reset_code
+    sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
+  end
+  
   protected
 
   def encrypt_password
