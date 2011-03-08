@@ -1,54 +1,36 @@
 = coffeescript_include_tag 'loginpanel'
-  
+
 #metaMenu.public
 
   .notice= flash.notice
   .alert= flash.alert
 
+  %a.randomDream{href: '/random'} random dream...
 
   .rightPanel
     .prompt
       .login
         login
-      .joinToggle.hidden
-        Join now &rsaquo;
       / %a.loginItem
       /    %img{src: '/images/icons/google-16.png', alt: 'Log in with Google', border: '0'}
       /  %a.loginItem
       /    %img{src: '/images/icons/twitter-16.png', alt: 'Log in with Twitter', border: '0'}
+
       %a.loginItem{href: '/auth/facebook'}
-        %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
         = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "16"}
 
-    / LOGIN PANEL
-    .loginPanel.hidden
-      = form_for('user', {url: user_session_path}) do |f|
-        %a.forgot{href: forgot_password_path} Forgot password
-        %label.stay
-          Stay logged in
-          %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
-        = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
-        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+    / 
+      LOGIN PANEL
+      .loginPanel.hidden
+        = form_for('user', {url: user_session_path}) do |f|
+          %a.forgot{href: forgot_password_path} Forgot password
+          %label.stay
+            Stay logged in
+            %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+          = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
+          = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
+          %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
 
-    / JOIN NOW
-    .joinWrap
-      .join
-        Join now &rsaquo;
 
-    / JOIN FORM
-    = form_for(User.new, url: user_registration_path) do |f|
-      .joinPanel.wrapper.hidden
-        = f.text_field :email, :class => 'login-input', :placeholder => "email"
-        = f.password_field :password, :class => 'login-input', :placeholder => "password"
-        = f.password_field :password_confirmation, :class => 'login-input', :placeholder => "confirm password"
-        %span http://dreamcatcher.net/username
-        = f.text_field :username, :class => 'login-input', :placeholder => "username"
-        
-        .haveSeedcode enter a seed code &raquo;
-        .seedcodeExpander.hidden
-          = f.text_field :seed_code, :value => session[:seed_code] || 'theta', :class => 'login-input target slide seedcode', :onClick => "this.select()"
-
-        / JOIN BUTTON
-        .joinButtonWrap
-          %input.joinButton{type: 'submit', name: 'signup', value: 'Join now &rsaquo;'}
+  .join
+    Join now &rsaquo;

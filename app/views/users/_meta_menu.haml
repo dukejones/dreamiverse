@@ -4,8 +4,14 @@
 
 #report_box= VERSION
 
-%a#logo{:href => root_path }
-  %img{src: '/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
+- if home
+  / DREAMCATCHER LOGO
+  %a.dcLogo{href: root_path}
+    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+
+- else
+  %a#logo{href: root_path }
+    %img{src: '/images/logos/dreamcatcher_logo-THETA.png', alt: 'Dreamcatcher', border: '0'}
 
 
 

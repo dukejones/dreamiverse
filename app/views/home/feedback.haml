@@ -3,8 +3,8 @@
 
 :coffeescript
   require({baseUrl: "/javascripts"}, ['feedback', 'autoresize.jquery.min.js'])
-    
-= render :partial => "users/meta_menu", :locals => {:user => @user}
+
+= render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
 
 / FEEDBACK PAGE
 #feedbackPage

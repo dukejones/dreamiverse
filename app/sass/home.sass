@@ -41,6 +41,7 @@ body.home
     height: 102px
 
   .randomDream
+    +block
     +absolute
     +flat-dark
     +round(8)
@@ -51,12 +52,18 @@ body.home
     padding: 0 12px
     height: 32px
     line-height: 32px
+    color: #9ae4fd !important
+    &:hover
+      color: #fff !important
 
 
 
   // LEFT COLUMN
-  .left-column
-    width: 740px
+  #leftColumn
+    width: 730px
+    top: 160px
+    left: 50px
+    +absolute
 
   // WELCOME
   .welcomeWrap
@@ -66,9 +73,7 @@ body.home
     +transparent
     +glow-blue(40)
     +border-blue
-    top: 160px
-    left: 40px
-    width: 698px
+    width: 688px
     height: 324px
     margin-bottom: 20px
 
@@ -95,7 +100,7 @@ body.home
       top: 0
       left: 0
       padding: 40px 0 0 40px
-      width: 658px
+      width: 648px
       height: 284px
 
       p
@@ -127,15 +132,13 @@ body.home
     +round(12)
     +glow-blue(40)
     +border-blue
-    top: 148px
-    left: 40px
-    width: 698px
+    width: 688px
 
     #publicStream
       +round(11)
       +shine-blue-alpha(20)
       padding: 8px
-      width: 682px
+      width: 672px
 
       .today, .todayFilter, .dreamsFilter, h1.in
         +bold
@@ -175,13 +178,12 @@ body.home
         line-height: 36px
 
   #bottomLinks
-    left: 40px
+    top: 40px
     width: 700px
     +relative
-    top: 160px
     +center
     +user-select
-    padding-bottom: 80px
+    padding-bottom: 200px
     a
       +round(8)
       +font(12)
