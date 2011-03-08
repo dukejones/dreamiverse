@@ -8,9 +8,8 @@
 
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-    
-    %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
-
+    = javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.pack', 'jquery.hoverIntent.minified', 'pubsub', 'rails'
+    = coffeescript_include_tag 'dreamplugs', 'metamenu'
     = yield :head
 
   %body{id: 'body', class: "#{theme} scroll", style: bedsheet_style}

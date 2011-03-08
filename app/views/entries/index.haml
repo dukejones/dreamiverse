@@ -1,8 +1,10 @@
 - content_for :head do
   = sass_link_tag 'entries'
-:coffeescript
-  require({baseUrl: "/javascripts"}, [ 'tag_stream', 'dreams', 'geo' ])
-  require({baseUrl: "/javascripts/compiled"}, ['modal', 'follow_hover'])
+  = coffeescript_include_tag 'modal', 'follow_hover'
+  = javascript_include_tag 'tag_stream', 'dreams', 'geo'
+/ :coffeescript
+/   require({baseUrl: "/javascripts"}, [ 'tag_stream', 'dreams', 'geo' ])
+/   require({baseUrl: "/javascripts/compiled"}, ['modal', 'follow_hover'])
 
 
 / CONTEXT PANEL
@@ -29,9 +31,6 @@
       / NO DREAMS TO DISPLAY
       .noEntrys there are no public entries to display
 
-
     - if @user == current_user
       :coffeescript
-
-        # add current page highlight
-        $find('.item.home').addClass('selected')
+        $('.item.home').addClass('selected')

@@ -1,9 +1,6 @@
 - content_for :head do
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
-:coffeescript
-  require({baseUrl: "/javascripts"}, [ 'jquery.lightbox-0.5.pack' ])
-  require({baseUrl: "/javascripts/compiled"}, ['publicstream'])
 
 
 = render :partial => "users/meta_menu", :locals => {:home => true}
