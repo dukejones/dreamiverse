@@ -21,7 +21,7 @@
           %option{value: "bug"} Report a bug
           %option{value: "idea"} I have an idea...
 
-        #bugType.hidden
+        #bugType
           %select#bugOptions
             %option{value: "none"} Type of bug
             %option{value: "data not saving"} My data didn't save...
@@ -29,10 +29,10 @@
             %option{value: "confusing feature"} This feature is confusing...
             %option{value: "other"} Other...
 
-        #details.hidden
+        #details
           %textarea#detailsForm
 
-      #submitButton.hidden
+      #submitButton
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
 
