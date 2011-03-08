@@ -117,25 +117,24 @@ class AppearancePanel extends MetaMenu
     # $.publish('follow/changing', [node])
     $.getJSON("/images.json?section=Bedsheets", (data) =>
       
-      @$currentMenuPanel.find('.bedsheets ul').html('');
+    @$currentMenuPanel.find('.bedsheets ul').html('');
+    
+    # Add elements for each bedsheet returned
+    for node in data
+      newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.' + node.format + '"></li>'
+      @$currentMenuPanel.find('.bedsheets ul').append(newElement)
+    
+    @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
+      # SUPER TEMP
+              
+      bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
+      $('#body').css('background-image', bedsheetUrl)
       
-      # Add elements for each bedsheet returned
-      for node in data
-        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.' + node.format + '"></li>'
-        @$currentMenuPanel.find('.bedsheets ul').append(newElement)
-      
-      @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
-        # SUPER TEMP
-        
-        bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
-        $('#body').css('background-image', bedsheetUrl)
-        
-        if $('#entry_view_preference_attributes_image_id').attr('name')?
-          @updateEntryBedsheet($(event.currentTarget).data('id'))
-        else
-          @updateUserBedsheet($(event.currentTarget).data('id'))
-          
-        
+      if $('#entry_view_preference_attributes_image_id').attr('name')?
+        @updateEntryBedsheet($(event.currentTarget).data('id'))
+      else
+        @updateUserBedsheet($(event.currentTarget).data('id'))
+                
     )
 
   updateUserBedsheet: (@bedsheet_id)->

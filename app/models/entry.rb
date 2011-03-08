@@ -219,7 +219,7 @@ class Entry < ActiveRecord::Base
   end 
 
   def self.random
-    random_id = Entry.where(:sharing_level ^ 0,:type ^ 'article').map{|e| e.id}.sample 
+    random_id = Entry.where(:type ^ 'article',:sharing_level => 500).map{|e| e.id}.sample 
     return Entry.find_by_id(random_id)  
   end
   
