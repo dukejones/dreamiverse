@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   end
 
   def terms
-    render "home/terms"
+    render "terms"
   end
 
 end
