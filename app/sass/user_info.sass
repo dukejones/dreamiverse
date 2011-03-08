@@ -115,7 +115,7 @@ a.dcLogo
 
       input.inputField, input#recaptcha_response_field
         +outline
-        +input-light(small)
+        +input-light(large)
         +round(8)
         +right
         margin: 4px 0 6px
@@ -123,7 +123,8 @@ a.dcLogo
         padding: 8px
         width: 320px
         &:focus
-          +glow-blue(20)
+          +glow-blue(30)
+          +border-blue
 
 
 
@@ -195,15 +196,23 @@ a.dcLogo
     margin: 60px auto 0
 
     .seed
+      +user-select
       +pointer
+      +round(8)
+      +right
+      margin: 4px 0 6px
+      +font(18)
+      padding: 8px
+      width: 320px
+      border: 1px solid #fff
       &:hover
         color: #9ae4fd
+        +border-blue
 
-    #user_seed_code
-      +hidden
 
     // Container for absolutely positioned items in flow
     .relative
+      +user-select
       +relative
       height: 220px
       margin: 0
