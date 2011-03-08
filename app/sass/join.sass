@@ -103,12 +103,13 @@ a.dcLogo
         +user-select
         +left
         +font(21)
+        text-align: right
         color: #fff
-        width: 200px
+        width: 190px
         padding: 8px 0 8px 8px
         margin: 0 0 8px
 
-      input.inputField
+      input.inputField, input#recaptcha_response_field
         +outline
         +input-light(small)
         +round(8)
@@ -189,9 +190,9 @@ a.dcLogo
 #joinPage
 
   .glowBox
-    height: 540px
+    height: 560px
     .shineBox
-      height: 540px
+      height: 560px
 
       .joinForm
         width: 560px
@@ -206,9 +207,52 @@ a.dcLogo
           +hidden
 
 
-        #recaptcha_widget_div
-          +right
-          margin: 12px 8px 0
+        // RECAPTCHA WIDGET
+        .recaptchaWrap
+          +absolute
+          +round(8)
+          right: 66px
+          border: 1px solid #666
+          background: #fff
+
+          #recaptcha_widget_div
+            +right
+            margin: 0
+            width: 338px
+
+            table#recaptcha_table, .recaptchatable
+              border: none !important
+
+              td
+                padding: 0 !important
+
+              .recaptcha_image_cell
+                +transparent
+
+                #recaptcha_image
+                  border: none !important
+                  margin: 0 4px
+
+              img#recaptcha_logo, img#recaptcha_tagline
+                +hidden
+
+              .recaptcha_input_area
+                padding: 0 !important
+
+                input#recaptcha_response_field
+                  +absolute
+                  left: -1px
+                  width: 322px !important
+                  margin: 8px 0 0
+
+        span.label.recaptcha
+          +absolute
+          margin: 80px 0 0
+
+        .buttonWrap
+          +absolute
+          right: 66px
+          margin: 138px 0 0
 
 
 // FORGOT PAGE ONLY
@@ -302,7 +346,7 @@ a.dcLogo
           +pointer
           +clear
           +round(12)
-          +shine-light-alpha(16)
+          +shine-light(16)
           +right
           +border-light
           +font(25)
@@ -310,7 +354,7 @@ a.dcLogo
           width: 336px
           margin: 16px 0
           padding: 4px 0
-          color: #333
+          color: #222
           +confirm(16)
 
         p.error

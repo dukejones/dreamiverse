@@ -14,18 +14,6 @@ $(document).ready ->
       else
         $(this).parent().find('.loginPanel').slideUp()
     
-    # $('.joinWrap a').click (event) ->
-    #       event.preventDefault()
-    #       
-    #       $(this).parent().find('.join').hide()
-    #       $(this).parent().find('.joinButton').show()
-    #       $(this).parent().parent().find('.intro').slideUp()
-    #       $(this).parent().parent().find('.joinForm').slideDown()
-    #       
-    #       $('.haveSeedcode').click =>
-    #         $('.haveSeedcode').slideUp('fast')
-    #         $('.seedcodeExpander').slideDown('fast')
-    
     # Check for cookie "welcome" if found, do nothing
     # if not found, display the welcomeWrap
     #if window.getCookie("welcome") is null
@@ -60,19 +48,11 @@ class LoginView
   constructor: (containerSelector)->
     @$container = $(containerSelector)
     @$loginButton = @$container.find('.login')
-    @$joinToggle = @$container.find('.joinToggle')
-    @$joinButton = @$container.find('.joinWrap')
-    @$joinButtonWrap = @$container.find('.joinButtonWrap')
-    
-    @$joinPanel = @$container.find('.joinPanel') #expands
+
     @$loginPanel = @$container.find('.loginPanel') #submits
     
     @$loginButton.unbind()
     @$loginButton.click => @showLogin()
-    @$joinButton.unbind()
-    @$joinButton.click => @showJoin()
-    @$joinToggle.unbind()
-    @$joinToggle.click => @showJoin()
     
     @bodyClickVisible = false
     
@@ -82,13 +62,9 @@ class LoginView
   
   closePanel: ->
     @bodyClickVisible = false
-    @$joinButtonWrap.hide()
-    @$joinButton.show()
     @$loginButton.show()
-    @$joinToggle.hide()
     
     @$loginPanel.slideUp()
-    @$joinPanel.slideUp()
   
   showLogin: ->
     if !@bodyClickVisible
@@ -96,34 +72,10 @@ class LoginView
       @displayBodyClick()
       @$loginPanel.slideDown()
     else
-      @$loginPanel.show()
-    
-    @$joinPanel.hide()
-    @$joinButtonWrap.hide()
-    @$joinToggle.show()
-    @$joinButton.hide()
-    
+      @$loginPanel.show()  
   
     @$loginButton.hide()
-  
-    @$joinButtonWrap.unbind()
-    @$joinButtonWrap.click => @showJoin()
-  
-  showJoin: ->
-    if !@bodyClickVisible
-      @bodyClickVisible = true
-      @displayBodyClick()
-      @$joinPanel.slideDown()
-    else
-      @$joinPanel.show()
     
-    @$joinToggle.hide()
-    @$loginButton.show()
-    @$joinButtonWrap.show()
-  
-    @$joinButton.hide()
-    @$loginPanel.hide()
-  
   displayBodyClick: ->
     @bodyClickVisible = true
     $('#bodyClick').remove()

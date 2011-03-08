@@ -8,6 +8,8 @@ $(document).ready ->
     link_id = $(el).data('id')
     $(el).find('a').click( (event) =>
       event.preventDefault()
+      
+      $(event.currentTarget).parent().hide()
   
       $('.thumb-1d .video').hide()
       $('.thumb-1d').removeClass('videoExpand')
