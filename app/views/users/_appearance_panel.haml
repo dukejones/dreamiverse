@@ -9,9 +9,13 @@
       options
     %ul
 
-    .attachment
-      = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
-      = link_to 'scroll', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'
+    .attachment 
+      - if @entry_mode == 'show' # update entry theme
+        = link_to 'fixed', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
+        = link_to 'scroll', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'     
+      - else # update user theme
+        = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
+        = link_to 'scroll', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'
       .clear
     /
       .more + browse more...
@@ -20,10 +24,20 @@
   .colorPicker
     %img.colorSwatch{src: '/images/icons/color_swatch_16.png'}
     %h2 color
+    - @entry_mode = 'other' if @entry_mode.nil?
     .buttons
-      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
-        sun
-        %img{src: '/images/icons/sun-24.png'}
-      = link_to user_path(:user => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
-        moon
-        %img{src: '/images/icons/moon-24.png'}
+      - if @entry_mode == 'show' # update entry theme
+        = link_to entry_path(:entry => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
+          sun
+          %img{src: '/images/icons/sun-24.png'}
+        = link_to entry_path(:entry => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
+          moon
+          %img{src: '/images/icons/moon-24.png'}
+      - else # update user theme
+        = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
+          sun
+          %img{src: '/images/icons/sun-24.png'}
+        = link_to user_path(:user => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
+          moon
+          %img{src: '/images/icons/moon-24.png'}       
+        
