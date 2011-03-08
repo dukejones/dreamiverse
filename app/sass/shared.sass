@@ -267,6 +267,47 @@ abbr, acronym
 
 
 
+// JOIN - same as meta_menu_public (probably should bring into shared)
+.joinWrap, .joinButtonWrap
+  +pointer
+  +clear
+  +round(12)
+  width: 204px
+  margin: 4px 0 -4px -4px
+  padding: 2px 0
+  background: #fff
+  background: -webkit-gradient(linear, left top, left bottom, from(#dcdcdc), to(#fff))
+  background: -moz-linear-gradient(top, #dcdcdc, #fff)
+  .join
+    +block
+    width: 198px
+  .joinButton
+    +font(14)
+    width: 202px
+  .join, .joinButton
+    +pointer
+    +center
+    +bold
+    +round(10)
+    margin: 0 auto
+    height: 32px
+    line-height: 32px
+    color: #fff !important
+    background: #ffa614
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
+    background: -moz-linear-gradient(top, #ffe658, #ffa614)
+    border: 1px solid #ffa614
+  .join:hover, .joinButton:hover
+    box-shadow: inset 0 14px rgba(255,255,255,0.2)
+    -moz-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+    -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+  .join:active, .joinButton:active
+    background: #ffa614
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffa614), to(#ffe658))
+    background: -moz-linear-gradient(top, #ffa614, #ffe658)
+
+
+
 @import hover_label
 @import meta_menu
 @import meta_menu_public
