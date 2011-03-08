@@ -1,9 +1,10 @@
+= coffeescript_include_tag 'loginpanel'
 
 .loginPanelWrap.wrapper
   %a.login{href: login_path}
     login
   %a.loginItem.facebook{href: '/auth/facebook'}
-    = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "-8"}
+    = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "0"}
   .clear
 
 
