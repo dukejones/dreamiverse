@@ -25,4 +25,12 @@ class Legacy::Comment < Legacy::Base
   def image_id
     nil
   end
+  
+  def created_at
+    commentDate
+  end
+  
+  def updated_at
+    commentDate
+  end
 end

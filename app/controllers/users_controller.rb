@@ -61,6 +61,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def wrong_email
+    # here we will disable the user / delete it / etc
+    raise "Not yet implemented."
+  end
+  
   # XHR only
   def bedsheet
     @user = current_user
