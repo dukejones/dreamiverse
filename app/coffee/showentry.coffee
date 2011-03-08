@@ -66,6 +66,7 @@ $(document).ready ->
     
     # Drop in video embed
     link_id = $element.data('id')
+    $('#' + link_id).data({'id': "videoEmbed"})
     $('#' + link_id).append(videoEmbed)
   
   # Setup tag re-ordering

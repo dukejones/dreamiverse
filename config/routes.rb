@@ -20,6 +20,7 @@ Dreamcatcher::Application.routes.draw do
   match '/stream' => 'entries#stream', :as => :stream
   match '/feedback' => 'home#feedback', :as => :feedback
   match '/random' => 'entries#random', :as => :random
+  match '/terms' => 'home#terms', :as => :terms
 
   # Resources
 
@@ -29,6 +30,7 @@ Dreamcatcher::Application.routes.draw do
     post 'avatar'
     post 'location', :to => 'users#create_location'
     get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
+    get  'not-my-email/:id/:confirmation', as: 'wrong', to: 'users#wrong_email', constraints: {id: /\d+/}
   end
 
   # Random path from dreams.js

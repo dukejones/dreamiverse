@@ -1,5 +1,5 @@
 - content_for :head do
-  = sass_link_tag 'join'
+  = sass_link_tag 'user_info'
 
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
@@ -41,7 +41,11 @@
 
           .clear
 
-          = raw recaptcha_tags(:display => {:theme => 'clean'}) 
+          .recaptchaWrap
+
+            = raw recaptcha_tags(:display => {:theme => 'clean'})
+
+          %span.label.recaptcha enter text as shown
 
           .buttonWrap
             .text

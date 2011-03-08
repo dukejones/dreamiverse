@@ -7,9 +7,6 @@
 %a.dcLogo{href: root_path}
   %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
-.randomDream
-  %a{href: '/random'} random dream...
-
 
 / LEFT COLUMN
 #leftColumn
@@ -58,7 +55,7 @@
     %a.login{href: login_path}
       login
     %a.loginItem{href: '/auth/facebook'}
-      %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
+      .facebook
       = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "-8"}
     .clear
 

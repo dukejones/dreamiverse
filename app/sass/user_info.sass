@@ -1,5 +1,8 @@
 @import mixins
 
+//// USER INFO PAGES SHARED
+// JOIN, FORGOT, ERROR, RESET PASS, TERMS
+
 // DREAMCATCHER LOGO
 a.dcLogo
   +block
@@ -14,7 +17,6 @@ a.dcLogo
   margin: auto
 
 
-// JOIN, FORGOT, ERROR PAGES SHARED
 #loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword, #terms
   +relative
   top: 104px
@@ -377,6 +379,8 @@ a.dcLogo
         margin: 60px auto 0
 
         p
+          +font(14)
+          color: #D1F2FF
           line-height: 18px
         ul
           list-style: none
