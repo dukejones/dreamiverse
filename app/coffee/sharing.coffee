@@ -57,8 +57,10 @@ class SharingController
     )
     
     #setup Default Sharing dropdown
-    @$dropdown.val(@$container.find('.defaultSharing').data('id'))
-    @$dropdown.change()
+    if window.BrowserDetect.browser isnt "Safari" and window.BrowserDetect.browser isnt "Chrome"
+      @$dropdown.val(@$container.data('id'))
+      @$dropdown.change()
+      
     @$container.find('.target').hide()
     
   setupDefaultSharingLevel: ->
