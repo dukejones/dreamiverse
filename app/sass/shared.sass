@@ -184,15 +184,28 @@ abbr, acronym
     line-height: 28px
     padding: 0 8px
     margin: 0 8px 8px 0
-    +button-light
-    +flat-light
-    +round(12)
-    &:hover
-      +glow-light(8)
     .hover_label
       top: 40px !important
-    img
-      margin: 6px 0 0
+    &.facebook
+      background: url('/images/icons/facebook-16.png') no-repeat center center transparent
+
+
+
+    .loginItem
+      +button-light
+      +flat-light
+      +round(12)
+      &:hover
+        +glow-light(8)
+      .hover_label
+        top: 56px !important
+
+
+
+
+
+
+
 
 // LOGIN PANEL  - same as meta_menu_public (need to clean thru and probably bring into shared)
 .joinPanel .joinForm .login-input
