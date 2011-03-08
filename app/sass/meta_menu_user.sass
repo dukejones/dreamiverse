@@ -266,12 +266,11 @@
     +user-select
     color: #fff
     text-decoration: none
-    border: 1px solid #777
+    border: 1px solid rgba(255,255,255,0.4)
 
   .adminLink, .logOut
     width: 28px
     height: 28px
-    +alpha(60)
     .img
       width: 100%
       height: 100%
@@ -280,7 +279,6 @@
 
   .randomDream, .adminLink, .logOut
     &:hover
-      +alpha(100)
       +glow-dark(8)
       border: 1px solid transparent
 
