@@ -47,31 +47,6 @@
 / RIGHT COLUMN
 #rightColumn
 
-  / LOGIN BUTTON
-
-  .loginPanelWrap.wrapper
-    %a.login{href: login_path}
-      login
-    %a.loginItem{href: '/auth/facebook'}
-      %img{src: '/images/icons/facebook-16.png', alt: 'Log in with Facebook', border: '0'}
-      = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "-8"}
-    .clear
-
-
-    / LOGIN PANEL
-    .loginPanel.hidden
-      = form_for('user', {url: user_session_path}) do |f|
-        %a.forgot{href: forgot_password_path} Forgot password
-        %label.stay
-          Stay logged in
-          %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-        %p.error.hidden incorrect username
-        = f.text_field(:username, {class: 'login-input', tabindex: '1', placeholder: 'username'})
-        %p.error.hidden username and password do not match
-        = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
-        %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
-        #loginSpacer
-
   / JOIN PANEL
   .joinPanel
     = form_for(User.new, url: user_registration_path) do |f|
