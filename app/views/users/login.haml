@@ -27,6 +27,7 @@
         = form_for('user', {url: user_session_path}) do |f|
           %span.label username
           = f.text_field :username, tabindex: '1', class: 'inputField'
+          .clear
           %span.label password
           = f.password_field :password, tabindex: '2', class: 'inputField'
 
