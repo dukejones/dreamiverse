@@ -3,9 +3,8 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
 :coffeescript
-  require(['/javascripts/compiled/modal.js', '/javascripts/compiled/stream.js'])
-  require(['/javascripts/compiled/stream.js', '/javascripts/compiled/publicstream.js', '/javascripts/dreams.js', '/javascripts/geo.js'])
-
+  require(['stream', 'publicstream'], (StreamController)-> new StreamController())
+  require({baseUrl: '/javascripts'}, ['dreams', 'geo'])
 
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}

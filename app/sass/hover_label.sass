@@ -1,7 +1,7 @@
 
 
 
-.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .item.user
+.settingsPanel .settings, .appearancePanel .appearance, .addLocation, .date, .addTheme, .favoritesWrap, .tagWrap, .loginItem, .item.user, .randomDream
   &:hover
     .hover_label
       +block
@@ -34,29 +34,32 @@
       +relative
       +round(12)
       +center
-      +font(17)
+      +font(14)
+      +bold
       height: 22px
       line-height: 20px
       padding: 0 8px
-      overflow: visible
+      white-space: nowrap
 
 
 
 // COLORS
 .light .hover_label
   .arrow
+    +alpha(80)
     background: url('/images/icons/arrow-up-16-light.png') no-repeat 0 0 transparent
   .text
     color: #000
-    +flat-light
+    +transparent-light(80)
     +glow-light(10)
 
 .dark .hover_label
   .arrow
+    +alpha(80)
     background: url('/images/icons/arrow-up-16-dark.png') no-repeat 0 0 transparent
   .text
     color: #fff
-    +flat-dark
+    +transparent-dark(80)
     +glow-dark(10)
 
 
