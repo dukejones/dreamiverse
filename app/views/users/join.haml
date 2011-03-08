@@ -41,7 +41,11 @@
 
           .clear
 
-          = raw recaptcha_tags(:display => {:theme => 'clean'}) 
+          .recaptchaWrap
+
+            = raw recaptcha_tags(:display => {:theme => 'clean'})
+
+          %span.label.recaptcha enter text as shown
 
           .buttonWrap
             .text

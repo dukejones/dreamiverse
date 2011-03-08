@@ -21,4 +21,8 @@ class HomeController < ApplicationController
     render "feedback"
   end
 
+  def terms
+    render "home/terms"
+  end
+
 end
