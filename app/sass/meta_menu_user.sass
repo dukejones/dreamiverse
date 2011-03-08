@@ -46,7 +46,7 @@
     padding: 28px 6px 8px
     top: -20px
 
-    .item, .randomDream
+    .item
       +block
       +left
       +font(16)
@@ -67,21 +67,6 @@
         color: #4b93d9
 
 
-    .randomDream
-      width: 20px
-      background-position: 6px 5px
-      background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-26-off.png')
-
-      &:hover
-        background-position: 6px 5px
-        background-repeat: no-repeat
-        background-image: url('/images/icons/shuffle-26.png')
-      &:active
-        background-position: 6px 5px
-        background-repeat: no-repeat
-        background-image: url('/images/icons/shuffle-26-off.png')
-      
 
   .leftPanel
     +absolute
@@ -231,6 +216,22 @@
 
 #metaMenu
 
+  .randomDream
+    +absolute
+    left: 520px
+    width: 26px
+    height: 26px
+    background-repeat: no-repeat
+    background-image: url('/images/icons/shuffle-26-off.png')
+
+    &:hover
+      background-repeat: no-repeat
+      background-image: url('/images/icons/shuffle-26.png')
+    &:active
+      background-repeat: no-repeat
+      background-image: url('/images/icons/shuffle-26-off.png')
+
+
   .adminLink, .newEntry, .logOut
     +transparent-dark(50)
     +round(24)
@@ -283,8 +284,12 @@
     font-size: 17px
     margin: 8px 12px 0 0
     border: 2px solid transparent
-    span
-      color: #093
+    .img
+      +left
+      width: 15px
+      height: 15px
+      margin: 3px 7px 0 0
+      background: url("/images/icons/add-15.png") no-repeat center center transparent
     &:hover
       +inner-glow(20)
       border: 2px solid transparent
