@@ -22,6 +22,7 @@
 
 
   %a.randomDream{href: '/random'}
+    = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "10", y: "-34"}
 
 
 
@@ -73,7 +74,7 @@
 
     .settingsPanel.wrapper
       .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "13", y: "-30"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
 
       / SETTINGS PANEL
       = render partial: "users/settings_panel"
@@ -82,7 +83,7 @@
 
     .appearancePanel.wrapper
       .item.appearance.trigger
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "13", y: "-30"}
+        = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
 
       / APPEARANCE PANEL
       = render partial: "users/appearance_panel"
