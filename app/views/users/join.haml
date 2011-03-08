@@ -25,19 +25,23 @@
         = form_for(@user, url: user_registration_path) do |f|
           %span.label email
           = f.text_field :email, class: 'inputField'
+          .clear
           %span.label username
           = f.text_field :username, class: 'inputField'
+          .clear
           %span.label password
           = f.password_field :password, class: 'inputField'
+          .clear
           %span.label confirm password
           = f.password_field :password_confirmation, class: 'inputField'
+          .clear
 
           %span.label.seed.trigger.fade have a seed code?
           = f.text_field :seed_code, class: 'inputField target hidden fade',  :value => session[:seed_code] || 'theta'
 
           .clear
 
-          = raw recaptcha_tags(:display => {:theme => 'white'}) 
+          = raw recaptcha_tags(:display => {:theme => 'clean'}) 
 
           .buttonWrap
             .text

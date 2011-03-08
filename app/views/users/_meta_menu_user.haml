@@ -38,7 +38,24 @@
     %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
       %span
         = current_user.username
-        = render partial: "shared/hover_label", locals: {message: "my dreams", x: "8", y: "-30"}
+
+
+    .settingsPanel.wrapper
+      .item.settings.trigger
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
+
+      / SETTINGS PANEL
+      = render partial: "users/settings_panel"
+
+
+    .appearancePanel.wrapper
+      .item.appearance.trigger
+        = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
+
+      / APPEARANCE PANEL
+      = render partial: "users/appearance_panel"
+
+
 
 
 
@@ -70,23 +87,6 @@
         %span Username has commented on your dream
 
 
-
-
-    .settingsPanel.wrapper
-      .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
-
-      / SETTINGS PANEL
-      = render partial: "users/settings_panel"
-
-
-
-    .appearancePanel.wrapper
-      .item.appearance.trigger
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
-
-      / APPEARANCE PANEL
-      = render partial: "users/appearance_panel"
 
 
 
