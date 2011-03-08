@@ -8,12 +8,8 @@
 
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-    / = javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.pack', 'jquery.hoverIntent.minified'
     
-    /= javascript_include_tag 'require'
-    /= javascript_include_tag 'jquery.min', 'require', 'compiled/application'
     %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
-  
 
     = yield :head
 
