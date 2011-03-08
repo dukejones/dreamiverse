@@ -29,6 +29,7 @@ Dreamcatcher::Application.routes.draw do
     post 'avatar'
     post 'location', :to => 'users#create_location'
     get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
+    get  'not-my-email/:id/:confirmation', as: 'wrong', to: 'users#wrong_email', constraints: {id: /\d+/}
   end
 
   # Random path from dreams.js
@@ -109,7 +110,7 @@ Dreamcatcher::Application.routes.draw do
     
   end
 
-  root :to => 'home#index'
+  root :to => 'entries#index'
 
   # Sample resource route with options:
   #   resources :products do

@@ -65,7 +65,7 @@ class Legacy::Dream < Legacy::Base
   end
   
   def type
-    category.title.capitalize
+    category.title
   end
   
   def user_id

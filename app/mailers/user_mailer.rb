@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
   def welcome_email(user)
     @user = user
     #"http://#{HOST}/user/confirm/#{user.confirmation_code}"
-    @confirmation_url = confirm_user_url(@user.id, @user.confirmation_code, host: 'localhost:3000')
+    @confirmation_url = confirm_user_url(@user.id, @user.confirmation_code)
     mail(to: "#{@user.name} <#{@user.email}>", subject: "welcome to dreamcatcher")
   end
   

@@ -28,7 +28,6 @@ $.subscribe('follow/changing', (userNode) ->
 
 $('.backdrop, .userInfo').live('click', (event) ->
   expandNode = $(this).parent().find('.expanded')
-  log expandNode
   if expandNode.css('display') is 'none' 
     expandNode.slideDown('fast')
   else

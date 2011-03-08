@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def feedback
-    render "home/feedback"
+    render "feedback"
   end
 
   def terms
