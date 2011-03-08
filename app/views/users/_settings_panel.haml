@@ -32,17 +32,12 @@
 
       %img.facebook-icon{src: '/images/icons/facebook-16.png'}
       %h2.facebook-label facebook login
-
-      %a#fbLink.linkAccount{href: '/auth/facebook'}
-        link account
-      / :coffeescript
-      /   $('#fbLink').click ->
-      /     window.open(
-      /       this.href, 
-      /       "Dreamcatcher :: Facebook Authorization", 
-      /       'width=1024, height=768, toolbar=no, location=no, directories=no, menubar=no, scrollbars=yes'
-      /     )
-      /     false
+      - if current_user._?.authentications._?.facebook?
+        %a#fbLink.linkAccount{href: '/auth/facebook'}
+          un-link
+      - else  
+        %a#fbLink.linkAccount{href: '/auth/facebook'}
+          link account
 
         
     .clear

@@ -5,12 +5,24 @@ $(document).ready ->
   # starts the loginController for the rest
   # of the pages
   
-  if $('#rightColumn').attr('id')
+  if $('.loginPanelWrap').attr('class')
+    $('.loginPanelWrap a.login').unbind()
     $('.loginPanelWrap a.login').click (event) ->
       event.preventDefault()
       
       if $(this).parent().find('.loginPanel').css('display') == 'none'
-        $(this).parent().find('.loginPanel').slideDown()
+        $(this).parent().find('.loginPanel').slideDown('400', (event) ->
+          $('#user_username').focus()
+        )
+        
+        
+        bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+        $('body').prepend(bodyClick)
+  
+        $('#bodyClick').click( (event) =>
+          $('.loginPanel').slideUp()
+          $('#bodyClick').remove()
+        )
       else
         $(this).parent().find('.loginPanel').slideUp()
     
