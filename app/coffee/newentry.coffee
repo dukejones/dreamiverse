@@ -47,7 +47,6 @@ $(document).ready ->
   	  order = tagOrder.join()
   
 
-  
   # Setup icon type changing
   $('#entryType_list').unbind();
   $('#entryType_list').change( ->

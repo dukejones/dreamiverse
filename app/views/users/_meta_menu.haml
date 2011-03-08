@@ -1,6 +1,5 @@
-:coffeescript
-  require(['/javascripts/compiled/dreamplugs.js', '/javascripts/compiled/metamenu.js'])
-
+- content_for :head do
+  = coffeescript_include_tag 'dreamplugs', 'metamenu'
 
 #report_box= VERSION
 

@@ -18,6 +18,11 @@ $(document).ready ->
   
       new_id = $(event.currentTarget).parent().data('id')
       $container = $("#" + new_id).parent().parent()
+      $container.find('.minimize').click( (event) =>
+        $('.thumb-1d .video').hide()
+        $('.thumb-1d').removeClass('videoExpand')
+        $('.gallery .youtube').show()
+      )
       $container.show()
     )
 
