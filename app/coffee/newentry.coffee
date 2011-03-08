@@ -17,6 +17,38 @@ getYoutubeEditData = (video_url, $linked_element) ->
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
+  # Setup icon type changing
+  $('#entryType_list').unbind();
+  $('#entryType_list').change( ->
+    newIcon = $(this).find('option:selected').css('background-image')
+    newIconSrc = newIcon.slice(5, newIcon.length - 2)
+    
+    # get the larger icon path
+    largeSelectionImage = newIconSrc.slice(0, newIconSrc.length-6) + '32.png'
+    
+    $(this).prev().attr('src', largeSelectionImage)
+  )
+  $('#entryType_list').change()
+  
+  # If there are tags or images, expand them!
+  if $('#currentImages').children().length > 1
+    $('.entryAttach .images').hide()
+    $('.entryImages').slideDown()
+  
+  if $('#tag-list').children().length > 2
+    $('.entryAttach .tag').hide()
+    $('.entryTags').slideDown()
+  
+  if $('#linkHolder').children().length > 0
+    $('.entryAttach .links').hide()
+    $('.entryLinks').slideDown()
+  
+  
+  # Check for youtube videos & get thumb/desc
+  $('#linkHolder .youtube').each (i, el) =>
+    # Pass the url and the element it came from
+    getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))
+  
   $('#entry_body').css('overflow','hidden')  
   
   # doing the focus stuff to make sure fitToContent gets called once on load 
@@ -47,44 +79,7 @@ $(document).ready ->
   	  order = tagOrder.join()
   
 
-  # Setup icon type changing
-  $('#entryType_list').unbind();
-  $('#entryType_list').change( ->
-    newIcon = $(this).find('option:selected').css('background-image')
-    newIconSrc = newIcon.slice(5, newIcon.length - 2)
-    
-    # get the larger icon path
-    largeSelectionImage = newIconSrc.slice(0, newIconSrc.length-6) + '32.png'
-    
-    $(this).prev().attr('src', largeSelectionImage)
-  )
-  $('#entryType_list').change()
-  
-
-
-  
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.typeSelection, .listSelection').hide()
     $('.entryType').css('border', 'none')
-  
-  
-  
-  # If there are tags or images, expand them!
-  if $('#currentImages').children().length > 1
-    $('.entryAttach .images').hide()
-    $('.entryImages').slideDown()
-  
-  if $('#tag-list').children().length > 2
-    $('.entryAttach .tag').hide()
-    $('.entryTags').slideDown()
-  
-  if $('#linkHolder').children().length > 0
-    $('.entryAttach .links').hide()
-    $('.entryLinks').slideDown()
-  
-  
-  # Check for youtube videos & get thumb/desc
-  $('#linkHolder .youtube').each (i, el) =>
-    # Pass the url and the element it came from
-    getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))

@@ -25,7 +25,6 @@ $(document).ready ->
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
   $('.gallery .youtube').each (i, el) =>
-    alert("youtube")
     # Pass the url and the element it came from
     getYoutubeData($(el).find('a').attr('href'), $(el))
     
