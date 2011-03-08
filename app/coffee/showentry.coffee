@@ -22,7 +22,51 @@ getYoutubeData = (video_url, linked_element) ->
   
 $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
-  $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0});
+  $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
+  
+  $('.gallery .youtube').each (i, el) =>
+    # Pass the url and the element it came from
+    getYoutubeData($(el).find('a').attr('href'), $(el))
+    
+    # Setup video expander
+    link_id = $(el).data('id')
+    $(el).find('a').click( (event) =>
+      event.preventDefault()
+      
+      $('.video').hide()
+      $('.gallery .youtube').show()
+      
+      # remove li
+      $(event.currentTarget).parent().hide()
+      
+      new_id = $(event.currentTarget).parent().data('id')
+      $container = $("#" + new_id).parent().parent()
+      $container.find('.minimize').click( (event) =>
+        $('.video').hide()
+        $('.gallery .youtube').show()
+      )
+      $container.show()
+    )
+  
+  commentsPanel = $('#showEntry .commentsPanel')
+
+  $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
+    $('textarea', this).val('')
+  
+    # Update comment count
+    newVal = parseInt($('.commentsHeader .counter').text()) + 1
+    $('.commentsHeader .counter').text(newVal)
+  
+    commentsPanel.find('.target').children().last().prev().before(xhr).prev().hide().slideDown()
+  
+  $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
+    # Set BG Image
+    $element.css('background-image', 'url(' + thumbnail + ')')
+    $element.css('background-position', 'center center')
+    
+    # Drop in video embed
+    link_id = $element.data('id')
+    $('#' + link_id).append(videoEmbed)
   
   # Setup tag re-ordering
   if $('#entryField').data('owner')
@@ -88,59 +132,6 @@ $(document).ready ->
       $(".attachedLink").bind "error", ->
         $(this).attr('src', '/images/icons/link-16.gif')
 
-  $('.gallery .youtube').each (i, el) =>
-    alert("youtube")
-    # Pass the url and the element it came from
-    getYoutubeData($(el).find('a').attr('href'), $(el))
-    
-    # Setup video expander
-    link_id = $(el).data('id')
-    $(el).find('a').click( (event) =>
-      event.preventDefault()
-      
-      $('.video').hide()
-      $('.gallery .youtube').show()
-      
-      # remove li
-      $(event.currentTarget).parent().hide()
-      
-      new_id = $(event.currentTarget).parent().data('id')
-      $container = $("#" + new_id).parent().parent()
-      $container.find('.minimize').click( (event) =>
-        $('.video').hide()
-        $('.gallery .youtube').show()
-      )
-      $container.show()
-    )
-  
-  $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
-    # Set BG Image
-    $element.css('background-image', 'url(' + thumbnail + ')')
-    $element.css('background-position', 'center center')
-    
-    # Drop in video embed
-    link_id = $element.data('id')
-    $('#' + link_id).append(videoEmbed)
-  
-    
-    
-    
-    
-    
-    
-  
-    
-commentsPanel = $('#showEntry .commentsPanel')
-
-$('form#new_comment').bind 'ajax:success', (event, xhr, status)->
-  log xhr
-  $('textarea', this).val('')
-  
-  # Update comment count
-  newVal = parseInt($('.commentsHeader .counter').text()) + 1
-  $('.commentsHeader .counter').text(newVal)
-  
-  commentsPanel.find('.target').children().last().prev().before(xhr).prev().hide().slideDown()
 
 
 # TODO

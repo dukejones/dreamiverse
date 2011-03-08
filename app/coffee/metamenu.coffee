@@ -1,6 +1,5 @@
 
 $(document).ready ->
-  alert "META"
   setupMetaDropdowns()
   
 # init
