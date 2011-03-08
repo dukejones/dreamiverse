@@ -20,6 +20,7 @@ Dreamcatcher::Application.routes.draw do
   match '/stream' => 'entries#stream', :as => :stream
   match '/feedback' => 'home#feedback', :as => :feedback
   match '/random' => 'entries#random', :as => :random
+  match '/terms' => 'home#terms', :as => :terms
 
   # Resources
 
