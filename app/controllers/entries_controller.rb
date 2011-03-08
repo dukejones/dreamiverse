@@ -22,6 +22,7 @@ class EntriesController < ApplicationController
 
   def show
     @entry = Entry.find params[:id]
+    @entry_mode = 'show'
     redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     entry_list
@@ -62,15 +63,23 @@ class EntriesController < ApplicationController
   end
   
   def update
-    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
 
-    @entry.set_whats(params[:what_tags])
-    
-    @entry.update_attributes( params[:entry] )
-    redirect_to :action => :show, :id => params[:id]
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:entry][:dreamed_at]
+
+    @entry.set_whats(params[:what_tags]) if params[:entry][:what_tags]
+
+    if @entry.update_attributes(params[:entry])
+      respond_to do |format|
+        format.html { redirect_to :action => :show, :id => params[:id] }
+        format.json { render :json => {type: 'ok', message: 'entry updated'}}
+      end
+    else
+      respond_to do |format|
+        format.json { render :json => {type: 'error', errors: @entry.errors}}.to_json
+      end
+    end
   end
   
   def destroy
