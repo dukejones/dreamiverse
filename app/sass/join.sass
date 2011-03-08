@@ -15,7 +15,7 @@ a.dcLogo
 
 
 // JOIN, FORGOT, ERROR PAGES SHARED
-#loginPage, #joinPage, #forgotPage, #errorPage
+#loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword
   +relative
   top: 104px
   left: 108px
@@ -99,29 +99,26 @@ a.dcLogo
       #new_user
         margin: 28px auto 0
 
-      .loginForm, .joinForm
-        margin: 60px auto 0
+      span.label
+        +user-select
+        +left
+        +font(21)
+        color: #fff
+        width: 200px
+        padding: 8px 0 8px 8px
+        margin: 0 0 8px
 
-        span.label
-          +user-select
-          +left
-          +font(21)
-          color: #fff
-          width: 200px
-          padding: 8px 0 8px 8px
-          margin: 0 0 8px
-
-        input
-          +outline
-          +input-light(small)
-          +round(8)
-          +right
-          margin: 4px 0 6px
-          +font(18)
-          padding: 8px
-          width: 320px
-          &:focus
-            +glow-blue(20)
+      input.inputField
+        +outline
+        +input-light(small)
+        +round(8)
+        +right
+        margin: 4px 0 6px
+        +font(18)
+        padding: 8px
+        width: 320px
+        &:focus
+          +glow-blue(20)
 
 
 
@@ -183,6 +180,7 @@ a.dcLogo
 
       .loginForm
         width: 470px
+        margin: 90px auto 0
 
         span.label
           width: 100px
@@ -197,6 +195,7 @@ a.dcLogo
 
       .joinForm
         width: 560px
+        margin: 60px auto 0
 
         .seed
           +pointer
@@ -283,9 +282,39 @@ a.dcLogo
       text-decoration: underline
 
 
+// RESET PASSWORD PAGE ONLY
+#resetPassword
 
+  .glowBox
+    height: 340px
+    .shineBox
+      height: 340px
 
+      .resetForm
+        width: 580px
+        margin: 90px auto 0
 
+        span.label
+          width: 200px
+
+        input.resetButton
+          +user-select
+          +pointer
+          +clear
+          +round(12)
+          +shine-light-alpha(16)
+          +right
+          +border-light
+          +font(25)
+          +bold
+          width: 336px
+          margin: 16px 0
+          padding: 4px 0
+          color: #333
+          +confirm(16)
+
+        p.error
+          color: red
 
 
 

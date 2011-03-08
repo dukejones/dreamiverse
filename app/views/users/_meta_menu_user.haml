@@ -8,13 +8,13 @@
   / INTRO MENU
   .leftPanel
 
-    %a.item{href: user_entries_path(current_user.username)}
+    %a.item.home{href: user_entries_path(current_user.username)}
       home
 
-    %a.item{href: stream_path}
+    %a.item.stream{href: stream_path}
       stream
 
-    %a.item{href: '/dreamstars'}
+    %a.item.dreamstars{href: '/dreamstars'}
       %img{src: '/images/icons/starlight-32.png'}
       dreamstars
 
@@ -22,6 +22,7 @@
 
 
   %a.randomDream{href: '/random'}
+    = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "20", y: "-34"}
 
 
 
@@ -73,7 +74,7 @@
 
     .settingsPanel.wrapper
       .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "13", y: "-30"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
 
       / SETTINGS PANEL
       = render partial: "users/settings_panel"
@@ -82,7 +83,7 @@
 
     .appearancePanel.wrapper
       .item.appearance.trigger
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "13", y: "-30"}
+        = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
 
       / APPEARANCE PANEL
       = render partial: "users/appearance_panel"

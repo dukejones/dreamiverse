@@ -65,6 +65,13 @@
       &:hover, &.user
         +button-light
         color: #4b93d9
+      &.selected
+        color: #fff !important
+        +button-dark
+        +flat-dark
+        &:hover
+          color: #4b93d9 !important
+          
 
 
 
@@ -233,21 +240,24 @@
   .randomDream
     +absolute
     left: 520px
-    top: 14px
-    width: 26px
-    height: 26px
-    background-repeat: no-repeat
-    background-image: url('/images/icons/shuffle-26-off.png')
+    top: 9px
+    width: 38px
+    height: 30px
+    background-position: center 5px !important
+    background-repeat: no-repeat !important
+    background-image: url('/images/icons/shuffle-26-off.png') !important
 
     &:hover
-      background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-26.png')
+      background-position: center 5px !important
+      background-repeat: no-repeat !important
+      background-image: url('/images/icons/shuffle-26.png') !important
     &:active
+      background-position: center 5px !important
       background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-26-off.png')
+      background-image: url('/images/icons/shuffle-26-off.png') !important
 
 
-  .adminLink, .newEntry, .logOut
+  .adminLink, .newEntry, .logOut, .randomDream
     +transparent-dark(50)
     +round(24)
     +button-light
@@ -256,22 +266,21 @@
     +user-select
     color: #fff
     text-decoration: none
-    border: 1px solid #777
+    border: 1px solid rgba(255,255,255,0.4)
 
   .adminLink, .logOut
     width: 28px
     height: 28px
-    +alpha(60)
     .img
       width: 100%
       height: 100%
       background-position: center center
       background-repeat: no-repeat
 
-  .adminLink:hover, .logOut:hover
-    +alpha(100)
-    +glow-dark(8)
-    border: 1px solid transparent
+  .randomDream, .adminLink, .logOut
+    &:hover
+      +glow-dark(8)
+      border: 1px solid transparent
 
   .adminLink
     margin: 8px
