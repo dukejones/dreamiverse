@@ -7,39 +7,9 @@
   z-index: 1111
 
 
-
-
   .loginPanelWrap
-
-    .loginItem
-      +button-light
-      +flat-light
-      +round(12)
-      &:hover
-        +glow-light(8)
-      .hover_label
-        top: 56px !important
-      &.facebook
-        background: url('/images/icons/facebook-16.png') no-repeat center center transparent
-
-    .loginItem, .login
-      +right
-      +center
-      +user-select
-      width: 16px
-      height: 28px
-      line-height: 28px
-      margin: 0 8px 0 0
-      img
-        margin: 6px 0 0
-    .login
-      +button-light
-      +bevel-light
-      +round(12)
-      // width: auto
-      width: 120px
-      padding: 0 12px
-      +confirm(12)
+    +absolute
+    right: 20px
 
     .loginPanel
       +clear
