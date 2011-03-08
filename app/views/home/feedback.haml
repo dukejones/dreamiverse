@@ -1,9 +1,10 @@
 - content_for :head do
   = sass_link_tag 'feedback'
+  = javascript_include_tag 'feedback', 'autoresize.jquery.min'
 
 :coffeescript
-  require({baseUrl: "/javascripts"}, ['feedback', 'autoresize.jquery.min.js'])
-    
+  # require({baseUrl: "/javascripts"}, ['feedback', 'autoresize.jquery.min.js'])
+
 = render :partial => "users/meta_menu", :locals => {:user => @user}
 
 / FEEDBACK PAGE
@@ -20,7 +21,7 @@
           %option{value: "bug"} Report a bug
           %option{value: "idea"} I have an idea...
 
-        #bugType.hidden
+        #bugType
           %select#bugOptions
             %option{value: "none"} Type of bug
             %option{value: "data not saving"} My data didn't save...
@@ -28,10 +29,10 @@
             %option{value: "confusing feature"} This feature is confusing...
             %option{value: "other"} Other...
 
-        #details.hidden
+        #details
           %textarea#detailsForm
 
-      #submitButton.hidden
+      #submitButton
         .sendWrap
           %input{type: 'submit', name: 'save', class: 'save', value: 'send'}
 

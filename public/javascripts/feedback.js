@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  $('#submitButton, #details, #bugType').hide()
   $('textarea#detailsForm').autoResize({
 	  animationDuration: 500,
 	  animate: true,
@@ -6,7 +7,7 @@ $(document).ready(function(){
 	})
 })
 
-document.getElementById('type').focus();
+$('#type').focus();
 window.onload = function() {
   var feedbackType = document.getElementById('type');
   var bugOptions = document.getElementById('bugOptions');

@@ -2,6 +2,7 @@ sharingController = null
 
 $(document).ready ->
   sharingController = new SharingController('.sharing')
+  
 
 
 

@@ -21,7 +21,7 @@ module EntriesHelper
   
   def youtube_embed(link)
     raw(%{
-      <div id="#{link.id}" class="youtubeEmbed"></div>
+      <div id="#{link.id}" data-id="" class="youtubeEmbed"></div>
     })
   end
 

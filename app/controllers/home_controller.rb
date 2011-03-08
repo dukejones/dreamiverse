@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     if current_user
       flash.keep
-      redirect_to stream_path
+      redirect_to entries_path
     end
 
     @entries = Entry.where(:created_at > 1.week.ago).
@@ -18,7 +18,7 @@ class HomeController < ApplicationController
   end
 
   def feedback
-    render "home/feedback"
+    render "feedback"
   end
 
 end

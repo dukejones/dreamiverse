@@ -12,7 +12,7 @@ Dreamcatcher::Application.routes.draw do
   get   'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
   post  'forgot' => 'user/registrations#send_password_reset'
   get   'reset-password/:username/:reset_code', :to => 'user/registrations#reset_password', :as => :reset_password
-  post  'reset-password', :to => 'user/registrations#do_password_reset'
+  post  'reset-password', :to => 'user/registrations#do_password_reset', :as => :do_password_reset
   match 'auth/:provider/callback', :to => 'user/authentications#create'
 
   # Universal 
@@ -29,6 +29,7 @@ Dreamcatcher::Application.routes.draw do
     post 'avatar'
     post 'location', :to => 'users#create_location'
     get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
+    get  'not-my-email/:id/:confirmation', as: 'wrong', to: 'users#wrong_email', constraints: {id: /\d+/}
   end
 
   # Random path from dreams.js
