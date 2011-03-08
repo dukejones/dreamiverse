@@ -91,10 +91,11 @@ a.dcLogo
       z-index: 100
 
     .shineBox
-      +absolute
+      +relative
       +round(11)
       +shine-blue-alpha(20)
       width: 692px
+      padding: 10px 0 40px
 
 
       // FORM ID #new_user
@@ -177,12 +178,8 @@ a.dcLogo
 
 // LOGIN PAGE ONLY
 #loginPage
-
   .glowBox
-    height: 340px
     .shineBox
-      height: 340px
-
       .loginForm
         width: 470px
         margin: 90px auto 0
@@ -193,79 +190,74 @@ a.dcLogo
 // JOIN PAGE ONLY
 #joinPage
 
-  .glowBox
-    height: 560px
-    .shineBox
-      height: 560px
+  .joinForm
+    width: 560px
+    margin: 60px auto 0
 
-      .joinForm
-        width: 560px
-        margin: 60px auto 0
+    .seed
+      +pointer
+      &:hover
+        color: #9ae4fd
 
-        .seed
-          +pointer
-          &:hover
-            color: #9ae4fd
+    #user_seed_code
+      +hidden
 
-        #user_seed_code
-          +hidden
+    // Container for absolutely positioned items in flow
+    .relative
+      +relative
+      height: 220px
+      margin: 0
 
+      // RECAPTCHA WIDGET
+      .recaptchaWrap
+        +absolute
+        +round(8)
+        right: 0
+        margin-top: 4px
+        border: 1px solid #666
+        background: #fff
 
-        // RECAPTCHA WIDGET
-        .recaptchaWrap
-          +absolute
-          +round(8)
-          right: 66px
-          margin-top: 4px
-          border: 1px solid #666
-          background: #fff
+        #recaptcha_widget_div
+          margin: 0
+          width: 337px
 
-          #recaptcha_widget_div
-            margin: 0
-            width: 337px
+          table#recaptcha_table, .recaptchatable
+            border: none !important
 
-            table#recaptcha_table, .recaptchatable
-              border: none !important
+            td
+              padding: 0 !important
 
-              td
-                padding: 0 !important
+            .recaptcha_image_cell
+              +transparent
 
-              .recaptcha_image_cell
-                +transparent
+              #recaptcha_image
+                border: none !important
+                margin: 0
 
-                #recaptcha_image
-                  border: none !important
-                  margin: 0
+            img#recaptcha_logo, img#recaptcha_tagline
+              +hidden
 
-              img#recaptcha_logo, img#recaptcha_tagline
-                +hidden
+            .recaptcha_input_area
+              padding: 0 !important
 
-              .recaptcha_input_area
-                padding: 0 !important
+              input#recaptcha_response_field
+                +absolute
+                left: -1px
+                width: 322px !important
+                margin: 10px 0 0
 
-                input#recaptcha_response_field
-                  +absolute
-                  left: -1px
-                  width: 322px !important
-                  margin: 10px 0 0
+      span.label.recaptcha
+        +absolute
+        margin: 84px 0 0
 
-        span.label.recaptcha
-          +absolute
-          margin: 84px 0 0
-
-        .buttonWrap
-          +absolute
-          right: 66px
-          margin: 146px 0 0
+      .buttonWrap
+        +absolute
+        right: 0
+        margin: 146px 0 0
 
 
 // FORGOT PAGE ONLY
 #forgotPage
-
-  .glowBox
-    height: 340px
-    .shineBox
-      height: 340px
 
   .forgotForm
     +user-select
@@ -315,6 +307,7 @@ a.dcLogo
 #errorPage
   +cursor
   +user-select
+
   h2
     +absolute
     top: 120px
@@ -335,13 +328,11 @@ a.dcLogo
 #resetPassword
 
   .glowBox
-    height: 340px
     .shineBox
-      height: 340px
 
       .resetForm
         width: 580px
-        margin: 90px auto 0
+        margin: 70px auto 0
 
         span.label
           width: 200px
@@ -370,23 +361,27 @@ a.dcLogo
 #terms
 
   .glowBox
-    height: 840px
     .shineBox
-      height: 840px
 
       .termsContent
         width: 600px
         margin: 60px auto 0
 
+        h2
+          margin: 12px 0 8px
+          +font(18)
+          +bold
+
         p
           +font(14)
           color: #D1F2FF
-          line-height: 18px
+          line-height: 20px
         ul
           list-style: none
-          margin: 0 0 0 10px
+          margin: 16px 20px
 
           li
-            margin: 8px 0
+            +font(13)
+            margin: 4px 0
 
 
