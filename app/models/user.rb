@@ -75,7 +75,7 @@ class User < ActiveRecord::Base
       .where(["username=? OR email=?", auth_params[:username], auth_params[:username]])
       .first
   end
-    
+
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     self
