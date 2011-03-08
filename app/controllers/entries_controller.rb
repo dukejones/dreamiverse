@@ -86,6 +86,7 @@ class EntriesController < ApplicationController
     session[:filters] = params[:filters]
 
     @user = current_user
+    @filters = 'test'
     
     entry_list
     

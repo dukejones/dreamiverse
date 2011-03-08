@@ -1,6 +1,9 @@
-:coffeescript
-  require(['/javascripts/avataruploader.js'])
-  require(['/javascripts/compiled/avatar.js', '/javascripts/compiled/context_panel.js'])
+- content_for :head do
+  = coffeescript_include_tag 'avatar', 'context_panel'
+  = javascript_include_tag 'avataruploader', 'dreams'
+/ :coffeescript
+/   require(['/javascripts/avataruploader.js'])
+/   require(['/javascripts/compiled/avatar.js', '/javascripts/compiled/context_panel.js'])
   
 / CONTEXT PANEL
 #contextPanel

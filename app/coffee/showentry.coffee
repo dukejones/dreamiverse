@@ -87,8 +87,9 @@ $(document).ready ->
       # Check for favico error
       $(".attachedLink").bind "error", ->
         $(this).attr('src', '/images/icons/link-16.gif')
- 
+
   $('.gallery .youtube').each (i, el) =>
+    alert("youtube")
     # Pass the url and the element it came from
     getYoutubeData($(el).find('a').attr('href'), $(el))
     
@@ -132,6 +133,7 @@ $(document).ready ->
 commentsPanel = $('#showEntry .commentsPanel')
 
 $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
+  log xhr
   $('textarea', this).val('')
   
   # Update comment count
