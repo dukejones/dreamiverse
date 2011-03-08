@@ -14,6 +14,7 @@ Dreamcatcher::Application.routes.draw do
   get   'reset-password/:username/:reset_code', :to => 'user/registrations#reset_password', :as => :reset_password
   post  'reset-password', :to => 'user/registrations#do_password_reset', :as => :do_password_reset
   match 'auth/:provider/callback', :to => 'user/authentications#create'
+  delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
 
   # Universal 
   match '/dreamstars' => 'users#index', :as => :dreamstars
