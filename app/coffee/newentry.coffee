@@ -80,6 +80,6 @@ $(document).ready ->
   
 
   # Hide the elements in the browsers they cant be seen in
-  #if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
-    #$('.typeSelection, .listSelection').hide()
-    #$('.entryType').css('border', 'none')
+  if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
+    $('.typeSelection, .listSelection').hide()
+    $('.entryType').css('border', 'none')
