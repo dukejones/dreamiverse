@@ -125,8 +125,6 @@ class AppearancePanel extends MetaMenu
         @$currentMenuPanel.find('.bedsheets ul').append(newElement)
     
       @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
-        # SUPER TEMP
-              
         bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
         $('#body').css('background-image', bedsheetUrl)
       

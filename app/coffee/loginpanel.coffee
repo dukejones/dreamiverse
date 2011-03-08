@@ -1,6 +1,6 @@
 # Login Panel
 $(document).ready ->
-  # Checks if #rightColumn exits
+  # Checks if .loginPanelWrap exits
   # runs specific code for it, otherwise
   # starts the loginController for the rest
   # of the pages
@@ -38,9 +38,6 @@ $(document).ready ->
       #window.setCookie("welcome", 1, 365)
     
     #window.deleteCookie("welcome") #use this to debug (remove your cookie)
-      
-  else
-    login = new LoginController('.rightPanel')
 
 class window.LoginController
   # Handles the logic & interactions

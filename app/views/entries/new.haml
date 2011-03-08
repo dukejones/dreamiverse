@@ -60,7 +60,7 @@
 
         // SHARING PANEL
         .sharingWrap
-          .sharing
+          .sharing{'data-id' => "#{@entry.sharing_level}"}
             %img.listSelection{src: '/images/icons/share-24.png'}
             %select#sharing_select{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
