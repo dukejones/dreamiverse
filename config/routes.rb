@@ -110,7 +110,7 @@ Dreamcatcher::Application.routes.draw do
     
   end
 
-  root :to => 'entries#index'
+  root :to => 'home#index'
 
   # Sample resource route with options:
   #   resources :products do
