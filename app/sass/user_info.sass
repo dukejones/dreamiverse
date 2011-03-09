@@ -127,53 +127,55 @@ a.dcLogo
           +border-blue
 
 
-
-  // JOIN BUTTON - same as home and meta_menu_public, except width. - GEOFF: added new functionality for :hover by nesting the form element button inside the div, alpha(0)
-  .buttonWrap
-    +pointer
-    +clear
-    +round(12)
-    +bevel-light
-    +overflow
-    +relative
-    +right
-    width: 334px
-    margin: 16px 0
-    padding: 2px
-
-    input.button
-      +alpha(00)
-      +absolute
-      top: 0
-      right: 0
-      width: 336px !important
-      +pointer
-
-    .text
-      +overflow
-      +pointer
-      +user-select
-      +block
-      +center
-      +bold
-      +round(10)
-      +font(34)
-      text-shadow: rgba(0,0,0,0.4) 0 0 30px
-      margin: 0 auto
-      width: 332px
-      height: 48px
-      line-height: 48px
-      color: #fff
-      background: #ffa614
-      background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614))
-      background: -moz-linear-gradient(top, #ffe658, #ffa614)
-      border: 1px solid #ffa614
-      &:hover
-        box-shadow: inset 0 24px rgba(255,255,255,0.2)
-        -moz-box-shadow: inset 0 24px rgba(255,255,255,0.2)
-        -webkit-box-shadow: inset 0 24px rgba(255,255,255,0.2)
-      &:focus
+      // SUBMIT - LOGIN & JOIN BLUE BUTTON
+      .submit
+        +pointer
+        +clear
+        +round(12)
+        +relative
+        +right
+        width: 334px
+        height: 48px
+        line-height: 48px
+        margin: 16px 0
+        +transparent
         +glow-blue(20)
+        border: 2px solid #9ae4fd
+        &:hover
+          border: 2px solid #fff
+          +glow-dark(20)
+        &:active
+          +glow-dark(0)
+
+        .text
+          +round(11)
+          +overflow
+          +pointer
+          +user-select
+          +center
+          +bold
+          top: 0
+          left: 0
+          color: #fff
+          +font(25)
+          +shine-blue(24)
+          &:hover
+            background: #0c2b50
+            +gradient(#5d80ad, #0c2b50)
+          &:active
+            +shine-blue(0)
+            background: #0c2b50
+            +gradient(#0c2b50, #5d80ad)
+
+          input.button
+            +absolute
+            top: 0
+            left: 0
+            width: 334px
+            height: 48px
+            +alpha(00)
+
+
 
 
 
