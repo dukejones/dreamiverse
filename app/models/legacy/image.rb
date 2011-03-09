@@ -14,7 +14,11 @@ class Legacy::Image < Legacy::Base
     image = find_corresponding_image
     if image.blank?
       image = Migration::ImageImporter.new(self).migrate
-      image.save!
+      if image.valid?
+        image.save!
+      else
+        image = nil
+      end
     end
     image
   end
