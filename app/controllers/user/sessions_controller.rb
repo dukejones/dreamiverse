@@ -18,6 +18,8 @@ class User::SessionsController < ApplicationController
     begin
       if auth_provider = session.delete(:registration_auth_provider)
         redirect_to "/auth/#{auth_provider}"
+      elsif request.path == '/'
+        redirect_to entries_path
       else
         redirect_to :back
       end

@@ -31,4 +31,16 @@ class EntryTest < ActiveSupport::TestCase
     new_whats = ['dragon', 'stove', 'martha'].map {|word| What.create(name: word) }
     Entry.make(:whats => whats)
   end
+
+  test "random" do
+    100.times do
+      share = Entry::Sharing.values.sample
+      Entry.make(sharing_level: share)
+    end
+    
+    100.times do
+      e = Entry.random
+      assert e.everyone?
+    end
+  end
 end
