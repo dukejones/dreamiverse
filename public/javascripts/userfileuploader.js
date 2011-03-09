@@ -497,7 +497,7 @@ qq.FileUploader = function(o){
       '<ul id="IB_dropboxImages" class="dropBoxImages">'+  
       '</ul>'+
     '</div>',*/
-        template: '<div class="dropboxBrowse qq-upload-drop-area">browse</div><div class=""><img src="/images/icons/green-plus-20.png">click, or drag files here</div>',
+        template: '<div class="dropboxBrowse qq-upload-drop-area"></div><div class=""><img src="/images/icons/green-plus-20.png">click, or drag files here</div>',
 
     /*template: '<div class="qq-uploader">' + 
                 '<div class="qq-upload-drop-area"><span>DROP FILES HERE TO UPLOAD</span></div>' +
