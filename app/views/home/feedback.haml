@@ -13,7 +13,7 @@
 
   .wrapper
 
-    %form{action: feedback_path}#feedbackWrap
+    = form_tag feedback_path, id: 'feedbackWrap' do
       .feedback
 
         %select#type{name: 'feedback[type]'}
