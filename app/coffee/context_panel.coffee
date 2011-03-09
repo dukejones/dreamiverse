@@ -57,6 +57,39 @@ class ContextView
     @$namePanel = @$container.find('.name')
     @$detailsPanel = @$container.find('.details')
   displayFilterState: (filter_state) ->
+    # Change the icon (Want to reduce duplication here if poss - from scott)
+    switch filter_state
+      when 'dreams'
+        iconFileSource = 'dream-32-select.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
+      when 'visions'
+        iconFileSource = 'vision-32-select.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
+      when 'experiences'
+        iconFileSource = 'experience-32-select.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
+      when 'articles'
+        iconFileSource = 'article-32-select.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
+      when 'friends'
+        iconFileSource = 'friend-24.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
+      when 'following'
+        iconFileSource = 'friend-follow-24.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
+      when 'followers'
+        iconFileSource = 'friend-follower-24.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
+        
+    
+    
     # Change the current filter state to whatever is passed
     switch filter_state
       when 'visions', 'experiences', 'articles'

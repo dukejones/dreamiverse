@@ -20,13 +20,21 @@ $(document).ready ->
   # Setup icon type changing
   $('#entryType_list').unbind();
   $('#entryType_list').change( ->
-    newIcon = $(this).find('option:selected').css('background-image')
-    newIconSrc = newIcon.slice(5, newIcon.length - 2)
+    newSelection = $('#entryType_list').val()
     
-    # get the larger icon path
-    largeSelectionImage = newIconSrc.slice(0, newIconSrc.length-6) + '32.png'
+    switch newSelection
+      when "dream"
+        iconFileSource = 'dream-32-select.png'
+      when "vision"
+        iconFileSource = 'vision-32-select.png'
+      when "experience"
+        iconFileSource = 'experience-32-select.png'
+      when "article"
+        iconFileSource = 'article-32-select.png'
+        
+    iconSource = '/images/icons/' + iconFileSource
     
-    $(this).prev().attr('src', largeSelectionImage)
+    $(this).prev().attr('src', iconSource)
   )
   $('#entryType_list').change()
   
