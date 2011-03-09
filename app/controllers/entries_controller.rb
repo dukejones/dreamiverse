@@ -9,8 +9,8 @@ class EntriesController < ApplicationController
   end
   
   def index
-    redirect_to(user_entries_path(@user.username)) unless params[:username]
-    # debugger
+    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
+
     session[:lens] = :field
     session[:filters] = params[:filters]
 
@@ -23,7 +23,7 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
-    redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
+    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     entry_list
     i = @entries.index {|e| e == @entry } || 0
