@@ -47,12 +47,13 @@
       = render partial: "users/settings_panel"
 
 
-    .appearancePanel.wrapper
-      .item.appearance.trigger
-        = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
+    - if page_is_mine?
+      .appearancePanel.wrapper
+        .item.appearance.trigger
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
 
-      / APPEARANCE PANEL
-      = render partial: "users/appearance_panel"
+        / APPEARANCE PANEL
+        = render partial: "users/appearance_panel"
 
 
 
