@@ -106,7 +106,7 @@
   / FILTER BY ENTRY TYPE
   .wrapper
 
-    .item.entryFilter.trigger.slideArrow
+    .item.entryFilter.entries.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
@@ -116,14 +116,14 @@
         = user.entries.count
       .clear
 
-    .filterList.target.slideArrow.hidden
+    .filterList.entries.target.slideArrow.hidden
       %a.type.top{href: dreams_path(user.username)}
         %span dreams
-      %a.type{href: user_entries_path(user.username)}
+      %a.type{href: visions_path(user.username)}
         %span visions
-      %a.type{href: user_entries_path(user.username)}
+      %a.type{href: experiences_path(user.username)}
         %span experiences
-      %a.type.bottom{href: user_entries_path(user.username)}
+      %a.type.bottom{href: articles_path(user.username)}
         %span articles
 
 
@@ -131,7 +131,7 @@
   / FILTER BY FRIENDS
   .wrapper
 
-    .item.entryFilter.trigger.slideArrow
+    .item.entryFilter.friends.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value friends
@@ -141,7 +141,7 @@
         = user.friends.count
       .clear
 
-    .filterList.target.slideArrow.hidden
+    .filterList.friends.target.slideArrow.hidden
       %a.type.top{href: friends_path(user.username)}
         %span friends
       %a.type{href: following_path(user.username)}

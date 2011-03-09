@@ -464,6 +464,9 @@
       +shine-light-alpha(16)
     .label
       +shine-light-alpha(16)
+      &.selected
+        +shine-dark-alpha(16)
+        color: #fff
 
 
 
@@ -553,7 +556,9 @@
     .context, .label
       +shine-dark-alpha(16)
       border: 1px solid #090909
-
+    .label.selected
+      +shine-light-alpha(16)
+      color: #000
     .context, .entryFilter .label
       border: 1px solid #333
       &:hover

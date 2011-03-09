@@ -103,7 +103,7 @@ class Entry < ActiveRecord::Base
   end
 
   def self.random
-    self.everyone.where(:type ^ 'article').order("rand()").limit(1)
+    self.everyone.where(:type ^ 'article').order("rand()").limit(1).first
   end
 
   def self.list(viewer, viewed, lens, filters)
@@ -179,6 +179,7 @@ class Entry < ActiveRecord::Base
   def sharing
     self.class::Sharing.invert[sharing_level]
   end
+
   def everyone?
     (sharing_level == self.class::Sharing[:everyone])
   end
@@ -188,10 +189,6 @@ class Entry < ActiveRecord::Base
     self.view_preference = user.view_preference.clone!
   end
   
-  def everyone?
-    sharing_level == self.class::Sharing[:everyone]
-  end
-
   def delete_links
     Link.delete_all(:owner_id => self.id)
   end

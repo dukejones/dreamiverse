@@ -206,6 +206,10 @@ body.home
     top: 0
     left: 750px
 
+    .topPadding
+      width: 20px
+      height: 160px
+
     .facebook .hover_label
       top: 43px !important
 
@@ -292,12 +296,20 @@ body.home
           line-height: 32px
           .badge, .rank, .name
             +left
+            +bold
+          .name
+            +overflow
+            width: 130px
           .badge
             width: 56px
             height: 56px
             margin: -12px 0 -4px -6px
           .rank
             margin: 0 8px 0 -8px
+          &:hover
+            border: 4px solid #fff
+            color: #fff
+            +transparent-dark(10)
         .dreamstar-1
           margin: 38px 0 0
           border: 4px solid #FF40D9

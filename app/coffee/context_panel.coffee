@@ -9,6 +9,11 @@ class ContextController
     
     @contextView = new ContextView(containerSelector)
     
+    currentLocation = document.URL
+    locationArray = currentLocation.split('/')
+    currentFilter = locationArray[locationArray.length - 1]
+    @contextView.displayFilterState(currentFilter)
+    
     @$container.find('.change').click (event) =>
       @contextView.showEditProfile()
     
@@ -51,6 +56,15 @@ class ContextView
     @$editPanel = @$container.find('.edit')
     @$namePanel = @$container.find('.name')
     @$detailsPanel = @$container.find('.details')
+  displayFilterState: (filter_state) ->
+    # Change the current filter state to whatever is passed
+    switch filter_state
+      when 'visions', 'experiences', 'articles'
+        $('.entryFilter.entries').find('.value').text(filter_state)
+        $('.entryFilter.entries').find('.label').addClass('selected')
+      when 'friends', 'following', 'followers'
+        $('.entryFilter.friends').find('.value').text(filter_state)
+        $('.entryFilter.friends').find('.label').addClass('selected')
   profileState: ->
     @$namePanel.css('display')
   showEditProfile: ->
