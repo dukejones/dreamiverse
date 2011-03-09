@@ -29,13 +29,13 @@
     +left
 
     &.sharing-icon
-      margin: 12px 16px 0 8px
+      margin: 8px 16px 0 8px
 
     &.facebook-icon
       margin: 8px 16px 0 8px
 
     &.password-icon
-      margin: 8px 16px 0 8px
+      margin: 4px 16px 0 8px
 
 
   h2
@@ -179,12 +179,14 @@
       padding-top: 4px
       margin: -4px -4px 0
       +pointer
-
+    span
+      +font(12)
+      margin: 0 0 0 4px
     #user_old_password, #user_password, #user_password_confirmation
       +outline
       +round(4)
       +font(15)
-      margin-top: 6px
+      margin-bottom: 4px
       padding: 4px
       width: 306px
 
@@ -252,7 +254,7 @@
 
     .cancel, .confirm
       +button-light
-      +bevel-light
+      +shine-light(16)
       color: #111
 
     .cancel
@@ -279,8 +281,8 @@
 
 
 
-    .changePassword
-      +button-light
+    .changePassword:hover
+      border: 1px solid #090909
 
     .changePasswordForm
       #user_old_password, #user_password, #user_password_confirmation
@@ -339,7 +341,7 @@
         +shine-dark-alpha(16)
 
     .changePassword:hover
-      +border-light
+      border: 1px solid #ccc
 
     .changePasswordForm
       #user_old_password, #user_password, #user_password_confirmation

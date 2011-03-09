@@ -8,7 +8,7 @@
 
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
 
-      %img.sharing-icon{src: '/images/icons/everyone-16.png'}
+      %img.sharing-icon{src: '/images/icons/share-24.png'}
       %h2.sharing-label default sharing
 
 
@@ -48,7 +48,7 @@
   .changePassword.wrapper
 
     .trigger.showhide
-      %img.password-icon{src: '/images/icons/key-16.png'}
+      %img.password-icon{src: '/images/icons/admin-24-select.png'}
       %h2.password-label change password
       .clear
 
@@ -57,10 +57,13 @@
       = form_tag :user, :method => :put, :'data-type' => :json, :remote => true, :id => 'change_password' do
         = fields_for current_user do |f|
           %p.error
-          = f.password_field(:old_password, {placeholder: 'Current password'})
+          %span current password
+          = f.password_field :old_password
           %p.error
-          = f.password_field(:password, {placeholder: 'New password'})
-          = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
+          %span new password
+          = f.password_field :password
+          %span confirm new password
+          = f.password_field :password_confirmation
           .cancel cancel
           = f.submit :'change password', :class => 'confirm'
           .clear
