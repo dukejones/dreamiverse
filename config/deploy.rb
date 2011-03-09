@@ -4,7 +4,6 @@ set :stages, %w(theta production)
 set :default_stage, "theta"
 require "capistrano/ext/multistage"
 
-set :application, "theta.dreamcatcher.net"
 
 set :scm, :git
 set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
@@ -15,7 +14,6 @@ set :scm_verbose, true
 set :user, "www-data"
 set :use_sudo, false
 
-server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
 set :deploy_to, "/var/www/#{application}"
 
 
