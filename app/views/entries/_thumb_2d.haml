@@ -20,11 +20,11 @@
     .detailsBottom
       - unless entry.comments.count == 0
         .comments
-          = image_tag("icons/comments-16.png")
+          = image_tag("icons/comment-16-off.png")
           = entry.comments.count
       - unless entry.sharing == "everyone"
         .sharing
-          / %img
+          %img
           %span= entry.sharing
 
     / TITLE

@@ -200,10 +200,10 @@ class SettingsPanel extends MetaMenu
     # setup default sharing dropdown change
     $('#sharingList').change( (event) =>
       switch $(event.currentTarget).find('option:selected').text()
-        when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
+        when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/sharing-16-select.png')
         when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
-        when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/mask-16.png')
-        when "Private" then $('.sharingIcon').attr('src', '/images/icons/lock-16.png')
+        when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/anon-16-select.png')
+        when "Private" then $('.sharingIcon').attr('src', '/images/icons/private-16-select.png')
       
       if !@firstRun
         @updateDefaultSharing($(event.currentTarget).find('option:selected').text())
