@@ -449,7 +449,7 @@ function showYoutubeData(newText){
 
 function setupImageButtons(){
   // Click to remove Image
-  $('.imageRemoveButton').live('click', function(event){
+  $('.close-22').live('click', function(event){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     

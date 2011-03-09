@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   def page_is_mine?
     (current_user && (params[:username] == current_user._?.username)) ||
     request.path == stream_path ||
-    request.path =~ entries_path
+    request.path == entries_path
   end
   
   # TODO: deprecate

@@ -47,6 +47,7 @@
     top: -20px
 
     .item
+      +relative
       +block
       +left
       +font(16)
@@ -71,7 +72,50 @@
         +shine-dark(12)
         &:hover
           color: #4b93d9 !important
-          
+
+    .item
+      .img
+        +absolute
+        left: 4px
+        width: 26px
+        height: 26px
+
+    // HOME ICON STATES
+    .item.home
+      padding-left: 32px
+      .img
+        background: url(/images/icons/home-24-off.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/home-24-hover.png) no-repeat left center transparent
+      &:active .img
+        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+    .item.home.selected
+      padding-left: 32px
+      color: #fff !important
+      +cursor
+      .img
+        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+
+    // STARLIGHT ICON STATES
+    .item.dreamstars
+      padding-left: 32px
+      .img
+        background: url(/images/icons/starlight-24-off.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/starlight-24-hover.png) no-repeat left center transparent
+      &:active .img
+        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+    .item.dreamstars.selected
+      padding-left: 32px
+      color: #fff !important
+      +cursor
+      .img
+        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+
 
 
 
@@ -229,7 +273,7 @@
 // FLOATING BUTTONS
 
 #metaMenu.user .randomDream
-  left: 520px
+  left: 540px
   width: 38px
 
 

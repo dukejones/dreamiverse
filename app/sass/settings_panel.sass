@@ -171,11 +171,15 @@
 
 
   // CHANGE PASSWORD FORM
+  .changePassword
+    +cursor
 
-  .trigger
-    +pointer
+    .trigger
+      width: 318px
+      padding-top: 4px
+      margin: -4px -4px 0
+      +pointer
 
-    // INPUTS
     #user_old_password, #user_password, #user_password_confirmation
       +outline
       +round(4)

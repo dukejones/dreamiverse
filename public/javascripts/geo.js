@@ -9,7 +9,7 @@ function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
     if($('.entryLocation').css('display') == 'none'){
-      //$(this).addClass('selected');
+      $(this).addClass('selected');
       $('.entryLocation').slideDown()
       
       if(!geoFetching){
@@ -27,7 +27,7 @@ function initGeo(){
   
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
-    //$('.addLocation').removeClass('selected');
+    $('.addLocation').removeClass('selected');
     $('.entryLocation').slideUp();
     
     $('.entryLocation .city .input').val('');
@@ -144,7 +144,7 @@ function getAddress(_lat, _lng){
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
-    var country = data[0].address_components[6].short_name.toLowerCase();
+    var country = data[0].address_components[6].long_name;
     
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
