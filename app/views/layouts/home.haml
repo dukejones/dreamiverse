@@ -15,6 +15,11 @@
   %body.home.light
     -# render "shared/facebook_sdk"
 
+
+    - unless current_user.blank?
+      / META MENU - USER
+      = render :partial => "users/meta_menu_user"
+
     #drop_shadow
     #home
       .homeAlerts

@@ -8,6 +8,7 @@
     %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
 
+
 / LEFT COLUMN
 #leftColumn
   / WELCOME
@@ -51,8 +52,8 @@
 / RIGHT COLUMN
 #rightColumn
 
-
   - if current_user.blank?
+    / IF PUBLIC USER SHOW LOGIN and JOIN
 
     = render :partial => "users/login_panel"
 
@@ -72,8 +73,8 @@
           %a.join{href: join_path} Join now &rsaquo;
 
   - else
-    / META MENU - USER
-    = render :partial => "users/meta_menu_user"
+    / DREAMSTARS PADDING
+    .topPadding
 
 
 
