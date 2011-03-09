@@ -15,16 +15,27 @@
   %body.home.light
     -# render "shared/facebook_sdk"
 
-
     - unless current_user.blank?
       / META MENU - USER
       = render :partial => "users/meta_menu_user"
 
+
+    - unless flash.notice.blank? && flash.alert.blank?
+      :coffeescript
+        $(document).ready ->
+          $('#geoHeader').click ->
+            $(this).remove()        
+
+      / ALERT PANEL 
+      #geoHeader
+        %p= flash.notice
+        %p= flash.alert
+        .close-22
+
+
     #drop_shadow
     #home
-      .homeAlerts
-        .notice= flash.notice
-        .alert= flash.alert
+
 
       = yield
 
