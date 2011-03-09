@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %meta(content="text/html charset=UTF-8" http-equiv="Content-Type")
+
+  %body
+    %h4 Hello Dreamcatcher Team,
+    
+    %p
+      User 
+      = "#{@user.username} (#{@user.name})"
+      has sent us some feedback.
+    %p
+      Here is what they wrote:
+    %hr
+    %p
+      = simple_format(@feedback)
+      
