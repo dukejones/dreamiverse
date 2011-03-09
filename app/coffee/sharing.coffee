@@ -75,7 +75,7 @@ class SharingView
   contractCurrentView: ->
     @isExpanded = false
     
-    @$container.find('.target').slideUp()
+    @$container.find('.target').slideUp(250)
     $('#bodyClick').remove()
     
   expandCurrentView: (type) ->
@@ -100,9 +100,9 @@ class SharingView
     # logic to update the visual display
     switch @type
       when "500" # Everyone
-        @$container.find('.everyone').slideDown()
+        @$container.find('.everyone').slideDown(250)
       when "list"
-        @$container.find('.listOfUsers').slideDown()
+        @$container.find('.listOfUsers').slideDown(250)
 
 # Sharing Model
 class Share

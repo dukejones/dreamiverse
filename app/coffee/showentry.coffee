@@ -114,7 +114,7 @@ $(document).ready ->
     tempCount = $('.commentsHeader .counter').html();
     tempCount--
     $('.commentsHeader .counter').html(tempCount)
-    $(event.currentTarget).parent().parent().slideUp()
+    $(event.currentTarget).parent().parent().slideUp(250)
   
     
   # Hide the elements in the browsers they cant be seen in
