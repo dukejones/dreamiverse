@@ -200,10 +200,10 @@ class SettingsPanel extends MetaMenu
     # setup default sharing dropdown change
     $('#sharingList').change( (event) =>
       switch $(event.currentTarget).find('option:selected').text()
-        when "everyone" then $('.sharingIcon').attr('src', '/images/icons/sharing-16-select.png')
-        when "friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
-        when "anonymous" then $('.sharingIcon').attr('src', '/images/icons/anon-16-select.png')
-        when "private" then $('.sharingIcon').attr('src', '/images/icons/private-16-select.png')
+        when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/sharing-16-select.png')
+        when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
+        when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/anon-16-select.png')
+        when "Private" then $('.sharingIcon').attr('src', '/images/icons/private-16-select.png')
       
       if !@firstRun
         @updateDefaultSharing($(event.currentTarget).find('option:selected').text())
@@ -247,10 +247,10 @@ class SettingsPanel extends MetaMenu
   updateDefaultSharing: (newSharingLevel) ->
     
     switch newSharingLevel
-        when "everyone" then sharingLevel = 500
-        when "friends only" then sharingLevel = 200
-        when "anonymous" then sharingLevel = 50
-        when "private" then sharingLevel = 0
+        when "Everyone" then sharingLevel = 500
+        when "Friends only" then sharingLevel = 200
+        when "Anonymous" then sharingLevel = 50
+        when "Private" then sharingLevel = 0
     
     $.ajax {
       type: 'PUT'
@@ -259,5 +259,5 @@ class SettingsPanel extends MetaMenu
       data:
         "user[default_sharing_level]": parseInt(sharingLevel)
       success: (data, status, xhr) =>
-        alert 'updated default sharing level.'
+        alert 'updated default sharing level!'
     }

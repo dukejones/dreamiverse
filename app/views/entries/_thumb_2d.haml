@@ -24,7 +24,7 @@
           = entry.comments.count
       - unless entry.sharing == "everyone"
         .sharing
-          = image_tag("icons/#{entry.sharing}-16-off.png")
+          %img
           %span= entry.sharing
 
     / TITLE

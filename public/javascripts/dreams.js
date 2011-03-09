@@ -9,10 +9,10 @@ function setupSharingImages(){
   $('.detailsBottom .sharing span').each(function(){
     switch($(this).text()){
       case 'private':
-          $(this).prev().attr('src', '/images/icons/lock-16.png')
+          $(this).prev().attr('src', '/images/icons/private-16-off.png')
         break;
       case 'anonymous':
-          $(this).prev().attr('src', '/images/icons/mask-16.png')
+          $(this).prev().attr('src', '/images/icons/anon-16-off.png')
         break;
       case 'users':
           $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
@@ -21,13 +21,13 @@ function setupSharingImages(){
           $(this).prev().attr('src', '/images/icons/friend-follower-16')
         break;
       case 'friends':
-          $(this).prev().attr('src', '/images/icons/friend-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'friends of friends':
-          $(this).prev().attr('src', '/images/icons/friend-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'everyone':
-          $(this).prev().attr('src', '/images/icons/everyone-grey-16.png')
+          $(this).prev().attr('src', '/images/icons/sharing-16-off.png')
         break;
     }
   })
