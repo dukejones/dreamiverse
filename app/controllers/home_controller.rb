@@ -18,17 +18,15 @@ class HomeController < ApplicationController
   end
 
   def feedback
-    render "feedback"
   end
 
   def submit_feedback
-    AdminMailer.feedback_email( current_user, params[:feedback] ).deliver
+    # AdminMailer.feedback_email( current_user, params[:feedback] ).deliver
     
     redirect_to root_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you~"
   end
   
   def terms
-    render "terms"
   end
 
 end
