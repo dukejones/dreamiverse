@@ -199,14 +199,15 @@ class SettingsPanel extends MetaMenu
     
     # setup default sharing dropdown change
     $('#sharingList').change( (event) =>
-      switch $(event.currentTarget).find('option:selected').text()
-        when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/sharing-16-select.png')
-        when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
-        when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/anon-16-select.png')
-        when "Private" then $('.sharingIcon').attr('src', '/images/icons/private-16-select.png')
+      switch $(event.currentTarget).find('option:selected')[0].value
+        when "500" then $('.sharingIcon').css('background', 'url(/images/icons/sharing-24-select.png) no-repeat center transparent')
+        when "200" then $('.sharingIcon').css('background', 'url(/images/icons/friend-24.png) no-repeat center transparent')
+        when "150" then $('.sharingIcon').css('background', 'url(/images/icons/friend-follower-24.png) no-repeat center transparent')
+        when "50" then $('.sharingIcon').css('background', 'url(/images/icons/anon-24-select.png) no-repeat center transparent')
+        when "0" then $('.sharingIcon').css('background', 'url(/images/icons/private-24-select.png) no-repeat center transparent')
       
       if !@firstRun
-        @updateDefaultSharing($(event.currentTarget).find('option:selected').text())
+        @updateDefaultSharing($(event.currentTarget).find('option:selected')[0].value)
       @firstRun = false
     )
     
@@ -244,13 +245,7 @@ class SettingsPanel extends MetaMenu
     @$defaultSharingSelect.val(@$currentMenuPanel.find('.defaultSharing').data('id'))
     $('#sharingList').change()
     
-  updateDefaultSharing: (newSharingLevel) ->
-    
-    switch newSharingLevel
-        when "Everyone" then sharingLevel = 500
-        when "Friends only" then sharingLevel = 200
-        when "Anonymous" then sharingLevel = 50
-        when "Private" then sharingLevel = 0
+  updateDefaultSharing: (sharingLevel) ->
     
     $.ajax {
       type: 'PUT'
@@ -259,5 +254,4 @@ class SettingsPanel extends MetaMenu
       data:
         "user[default_sharing_level]": parseInt(sharingLevel)
       success: (data, status, xhr) =>
-        alert 'updated default sharing level!'
     }

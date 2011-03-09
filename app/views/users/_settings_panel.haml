@@ -16,6 +16,7 @@
       %select#sharingList.sharingList
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
         %option.friends{   value: Entry::Sharing[:friends]   } friends only
+        %option.followers{ value: Entry::Sharing[:followers] } followers only
         %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
         %option.private{   value: Entry::Sharing[:private]   } private
 
