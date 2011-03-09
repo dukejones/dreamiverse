@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    if current_user
-      flash.keep
-      redirect_to entries_path
-    end
+    # if current_user
+    #   flash.keep
+    #   redirect_to entries_path
+    # end
 
     @entries = Entry.where(:created_at > 1.week.ago).
       order_by_starlight.limit(8)
@@ -18,17 +18,15 @@ class HomeController < ApplicationController
   end
 
   def feedback
-    render "feedback"
   end
 
   def submit_feedback
     AdminMailer.feedback_email( current_user, params[:feedback] ).deliver
-    
-    redirect_to root_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you~"
+
+    redirect_to feedback_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you."
   end
   
   def terms
-    render "terms"
   end
 
 end

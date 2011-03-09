@@ -2,10 +2,10 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
 
-
-/ DREAMCATCHER LOGO
-%a.dcLogo{href: root_path}
-  %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+- if current_user.blank?
+  / DREAMCATCHER LOGO
+  %a.dcLogo{href: root_path}
+    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
 
 / LEFT COLUMN
@@ -52,24 +52,29 @@
 #rightColumn
 
 
+  - if current_user.blank?
 
-  = render :partial => "users/login_panel"
+    = render :partial => "users/login_panel"
 
+    / JOIN PANEL
+    .joinPanel
+      = form_for(User.new, url: user_registration_path) do |f|
+        .intro
+          %h1 New to Dreamcatcher?
+          <p>Easy, free, and instant updates about what people are dreaming.</p>
+          <p>What am I dreaming about?<br />
+          Whose dreams am I in?<br />
+          What is the world dreaming?</p> 
+          <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
 
-  / JOIN PANEL
-  .joinPanel
-    = form_for(User.new, url: user_registration_path) do |f|
-      .intro
-        %h1 New to Dreamcatcher?
-        <p>Easy, free, and instant updates about what people are dreaming.</p>
-        <p>What am I dreaming about?<br />
-        Whose dreams am I in?<br />
-        What is the world dreaming?</p> 
-        <p>Start sharing now and find out... with the most advanced dream journal ever.</p>
+        / JOIN TOGGLE - BUTTON
+        .joinWrap
+          %a.join{href: join_path} Join now &rsaquo;
 
-      / JOIN TOGGLE - BUTTON
-      .joinWrap
-        %a.join{href: join_path} Join now &rsaquo;
+  - else
+    / META MENU - USER
+    = render :partial => "users/meta_menu_user"
+
 
 
   / DREAMSTARS MINI
