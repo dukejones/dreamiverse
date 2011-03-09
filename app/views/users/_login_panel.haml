@@ -24,6 +24,10 @@
       %a.forgot{href: forgot_password_path} Forgot password
       = f.password_field(:password, {class: 'login-input', tabindex: '2', placeholder: 'password'})
 
-      %input#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+      .submit
+        .text
+          login &rsaquo;
+          %input.button#loginButton{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+
       #loginSpacer
 

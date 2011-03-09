@@ -236,7 +236,7 @@ abbr, acronym
     line-height: 28px
     padding: 0 8px
     margin: 0 8px 8px 0
-    background: url('/images/icons/facebook-16.png') no-repeat center center transparent
+    background: url('/images/icons/facebook-16-select.png') no-repeat center center transparent
     &:hover
       +glow-light(8)
       border: 1px solid transparent
@@ -267,13 +267,59 @@ abbr, acronym
   .login-input
     +input-light(small)
 
-  #loginButton
+
+  .submit
+    +relative
+    +pointer
+    +clear
     +round(12)
-    +border-dark
-    +bevel-light
-    width: 204px
-    +confirm(12)
-    margin: 10px 0 0
+    +overflow
+    +transparent
+    +glow-blue(20)
+    width: 186px
+    height: 32px
+    line-height: 32px
+    padding: 0 8px
+    margin: 12px 0 0
+    border: 1px solid #9ae4fd
+    &:hover
+      border: 1px solid #fff
+      +glow-dark(20)
+    &:active
+      +glow-dark(0)
+
+    .text
+      +absolute
+      +round(11)
+      +pointer
+      +user-select
+      +center
+      +bold
+      top: 0
+      left: 0
+      color: #fff
+      width: 202px
+      +font(21)
+      +shine-blue(20)
+      &:hover
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+
+      input.button#loginButton
+        +absolute
+        top: 0
+        left: 0
+        border-width: 20px
+        +font(100)
+        +alpha(00)
+        color: #fff
+        width: 204px
+
+
   #loginSpacer
     height: 8px
 
