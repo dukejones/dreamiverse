@@ -9,7 +9,7 @@ function initGeo(){
   $('.addLocation').unbind();
   $('.addLocation').click(function(){
     if($('.entryLocation').css('display') == 'none'){
-      //$(this).addClass('selected');
+      $(this).addClass('selected');
       $('.entryLocation').slideDown()
       
       if(!geoFetching){
@@ -27,7 +27,7 @@ function initGeo(){
   
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
-    //$('.addLocation').removeClass('selected');
+    $('.addLocation').removeClass('selected');
     $('.entryLocation').slideUp();
     
     $('.entryLocation .city .input').val('');
