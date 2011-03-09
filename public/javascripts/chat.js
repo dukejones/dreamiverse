@@ -19,7 +19,7 @@ function initChatElements(){
       // Put chat in
       var newChat = '<div class="userComment hidden"><img src="/images/avatars/xavitar.jpg" class="avatar"><div class="name">' + 'USER' + '</div><div class="comment">' + $(this).prev().val() + '</div></div>'
       $(this).parent().before(newChat);
-      $('.userComment').slideDown();
+      $('.userComment').slideDown(250);
       $(this).prev().val('');
     }
   })
@@ -30,7 +30,7 @@ function initChatElements(){
       // Put chat in
       var newChat = '<div class="userComment hidden"><img src="/images/avatars/xavitar.jpg" class="avatar"><div class="name">' + 'USER' + '</div><div class="comment">' + $(this).find('input').val() + '</div></div>'
       $(this).before(newChat);
-      $('.userComment').slideDown();
+      $('.userComment').slideDown(250);
       $(this).find('input').val('');
     }
   });

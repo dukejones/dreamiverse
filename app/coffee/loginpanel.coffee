@@ -11,7 +11,7 @@ $(document).ready ->
       event.preventDefault()
       
       if $(this).parent().find('.loginPanel').css('display') == 'none'
-        $(this).parent().find('.loginPanel').slideDown('400', (event) ->
+        $(this).parent().find('.loginPanel').slideDown(250, (event) ->
           $('#user_username').focus()
         )
         
@@ -20,11 +20,11 @@ $(document).ready ->
         $('body').prepend(bodyClick)
   
         $('#bodyClick').click( (event) =>
-          $('.loginPanel').slideUp()
+          $('.loginPanel').slideUp(250)
           $('#bodyClick').remove()
         )
       else
-        $(this).parent().find('.loginPanel').slideUp()
+        $(this).parent().find('.loginPanel').slideUp(250)
     
     # Check for cookie "welcome" if found, do nothing
     # if not found, display the welcomeWrap
@@ -33,7 +33,7 @@ $(document).ready ->
     # Setup cookies for thank you button
     $('.thankyou').click ->
       # fade out welcome
-      $(this).parent().parent().slideUp()
+      $(this).parent().parent().slideUp(250)
       # set cookie
       #window.setCookie("welcome", 1, 365)
     
@@ -66,20 +66,20 @@ class LoginView
     @bodyClickVisible = false
     
     $('.haveSeedcode').click =>
-      $('.haveSeedcode').slideUp('fast')
-      $('.seedcodeExpander').slideDown('fast')
+      $('.haveSeedcode').slideUp(250)
+      $('.seedcodeExpander').slideDown(250)
   
   closePanel: ->
     @bodyClickVisible = false
     @$loginButton.show()
     
-    @$loginPanel.slideUp()
+    @$loginPanel.slideUp(250)
   
   showLogin: ->
     if !@bodyClickVisible
       @bodyClickVisible = true
       @displayBodyClick()
-      @$loginPanel.slideDown()
+      @$loginPanel.slideDown(250)
     else
       @$loginPanel.show()  
   

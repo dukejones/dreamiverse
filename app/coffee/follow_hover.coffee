@@ -29,17 +29,17 @@ $.subscribe('follow/changing', (userNode) ->
 $('.backdrop, .userInfo').live('click', (event) ->
   expandNode = $(this).parent().find('.expanded')
   if expandNode.css('display') is 'none' 
-    expandNode.slideDown('fast')
+    expandNode.slideDown(250)
   else
-    expandNode.slideUp('fast')
+    expandNode.slideUp(250)
 )
 
 $('.userNode').live('mouseenter mouseleave', (event) ->
   switch event.type
     when 'mouseenter'
-      $(this).find('.statusHover').fadeIn('fast')
+      $(this).find('.statusHover').fadeIn(250)
     when 'mouseleave'
-      $(this).find('.statusHover').fadeOut('fast')
+      $(this).find('.statusHover').fadeOut(250)
 )
 
 $('.userNode .statusHover, .userNode .status').live('click', (event)->
