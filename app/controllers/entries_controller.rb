@@ -52,6 +52,7 @@ class EntriesController < ApplicationController
   end
 
   def create
+
     whats = (params[:what_tags] || []).map {|word| What.for word }
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])

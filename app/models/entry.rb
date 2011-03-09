@@ -48,8 +48,7 @@ class Entry < ActiveRecord::Base
   validates_presence_of :dreamed_at
   
   after_initialize :init_dreamed_at
-  before_save :set_sharing_level
-  before_save :set_main_image
+  before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
   before_update :delete_links
   after_save :process_all_tags 
@@ -216,7 +215,11 @@ class Entry < ActiveRecord::Base
       Tag.auto_generate_tags(self)
     end
     reorder_tags
-  end 
+  end
+   
+  def replace_blank_titles
+    self.title = self.body.split(' ')[0..7].join(' ') if self.title.blank?
+  end
   
 protected
 
