@@ -21,6 +21,10 @@ class HomeController < ApplicationController
     render "feedback"
   end
 
+  def submit_feedback
+    AdminMailer.feedback_email( current_user, params[:feedback] ).deliver
+  end
+  
   def terms
     render "terms"
   end
