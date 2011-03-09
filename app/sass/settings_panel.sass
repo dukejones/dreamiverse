@@ -17,6 +17,12 @@
   .changePassword
     +round(8)
 
+    .img
+      +left
+      width: 40px
+      height: 36px
+      margin-right: 8px
+      background: url(/images/icons/admin-24-select.png) no-repeat center transparent
 
 
   hr
@@ -115,8 +121,19 @@
 
   .sharing
     padding: 8px
-    .defaultSharing, .network
+
+    .defaultSharing, .network, .changePassword
       margin: 0 0 4px
+
+      .img
+        +left
+        width: 40px
+        height: 36px
+        margin-right: 8px
+
+    .defaultSharing
+      .img
+        background: url(/images/icons/sharing-24-select.png) no-repeat center transparent
 
       select
         +round(8)
@@ -137,13 +154,13 @@
       option
         padding: 6px 0 6px 24px
       option.everyone
-        background: url(/images/icons/everyone-16.png) no-repeat 4px
+        background: url(/images/icons/sharing-16-select.png) no-repeat 4px
       option.friends
         background: url(/images/icons/friend-16.png) no-repeat 4px
       option.anonymous
-        background: url(/images/icons/mask-16.png) no-repeat 4px
+        background: url(/images/icons/anon-16-select.png) no-repeat 4px
       option.private
-        background: url(/images/icons/lock-16.png) no-repeat 4px
+        background: url(/images/icons/private-16-select.png) no-repeat 4px
 
 
 

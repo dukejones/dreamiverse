@@ -61,7 +61,7 @@
         // SHARING PANEL
         .sharingWrap
           .sharing{'data-id' => "#{@entry.sharing_level}"}
-            %img.listSelection{src: '/images/icons/share-24.png'}
+            %img.listSelection{src: '/images/icons/sharing-24-select.png', width: '24', height: '24'}
             %select#sharing_select{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
               %option.list{value: 'list'} friends only
@@ -303,7 +303,7 @@
     .entryAttach.entryPanels
       %p attach:
       .attach.images
-        %img{src: '/images/icons/eye-images-16.png', width: '19', height: '13'}
+        %img{src: '/images/icons/images-16-off.png', width: '16', height: '16'}
         images
       .attach.tag
         %img{src: '/images/icons/tag-20.png', width: '20', height: '20'}
