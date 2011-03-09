@@ -64,7 +64,9 @@
             %img.listSelection{src: '/images/icons/sharing-24-select.png', width: '24', height: '24'}
             %select#sharing_select{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
-              %option.list{value: 'list'} friends only
+              %option.list{value: '200'} friends only
+              %option.followers{value: '150'} followers only
+              / %option.list{value: 'list'} friends only
               %option.anon{value: '50'} anonymous
               %option.private{value: '0'} private
 
