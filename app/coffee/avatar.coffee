@@ -82,11 +82,7 @@ class AvatarView
     
     $.publish 'uploader:removed', [this]
     
-    log avatar_path
-    log avatar_thumb_path
     if avatar_path isnt 'old'
-      log @$container
-      log "MADE IT"
       @$container.css('background-image', 'url(' + avatar_path + ')')
       $('.rightPanel .user').css('background-image', 'url(' + avatar_thumb_path + ')')
     
