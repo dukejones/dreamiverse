@@ -10,9 +10,9 @@ window.setupDreamplugs = ->
     $newTargetSlide = $(event.currentTarget).parent().find('.target.slide')
     
     if $newTargetSlide.css('display') is 'none'
-      $newTargetSlide.slideDown()
+      $newTargetSlide.slideDown(250)
     else
-      $newTargetSlide.slideUp()
+      $newTargetSlide.slideUp(250)
   )
   
   # Setup slide w/ arrows to work
@@ -25,7 +25,7 @@ window.setupDreamplugs = ->
     offsetSize = 30
     
     if $newTargetSlideArrow.css('display') is 'none'
-      $newTargetSlideArrow.fadeIn()
+      $newTargetSlideArrow.fadeIn(250)
       
       # Create bodyclick
       bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
@@ -59,7 +59,7 @@ window.setupDreamplugs = ->
       )
       
     else
-      $newTargetSlideArrow.fadeOut()
+      $newTargetSlideArrow.fadeOut(250)
       
   )
   
@@ -73,14 +73,24 @@ window.setupDreamplugs = ->
       $newTargetShowHide.hide()
   )
   
+  # Setup showhide triggers REMOVES CLICKED ELEMENT
+  $('.trigger.showhideremove').click( (event) ->
+    $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhideremove')
+    $(event.currentTarget).hide()
+    if $newTargetShowHide.css('display') is 'none'
+      $newTargetShowHide.show()
+    else
+      $newTargetShowHide.hide()
+  )
+  
   # Setup fade triggers to work
   $('.trigger.fade').click( (event) ->
     $newTargetFade = $(event.currentTarget).parent().find('.target.fade')
     
     if $newTargetFade.css('display') is 'none'
-      $newTargetFade.fadeIn()
+      $newTargetFade.fadeIn(250)
     else
-      $newTargetFade.fadeOut()
+      $newTargetFade.fadeOut(250)
   )
   
   # Setup fade w/ bodyclick triggers to work
@@ -99,9 +109,9 @@ window.setupDreamplugs = ->
         $('#bodyClick').remove()
       )
       
-      $newTargetFade.fadeIn()
+      $newTargetFade.fadeIn(250)
     else
-      $newTargetFade.fadeOut()
+      $newTargetFade.fadeOut(250)
       $('body').remove()
   )
   

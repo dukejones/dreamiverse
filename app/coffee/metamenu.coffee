@@ -69,7 +69,7 @@ class MetaMenu
     
   contract: ->
     # code to contract menu item
-    @$currentMenuPanel.fadeOut('fast')
+    @$currentMenuPanel.fadeOut(250)
     $('#bodyClick').remove()
     
 
@@ -230,7 +230,7 @@ class SettingsPanel extends MetaMenu
         for error, message of xhr.errors
           $('#user_' + error).prev().text(message[0])
         # open the panel back up
-        $('.changePassword .target').slideDown()
+        $('.changePassword .target').slideDown(250)
       else
         $('#change_password .error').text('')
         $('#user_old_password, #user_password, #user_password_confirmation').val('')

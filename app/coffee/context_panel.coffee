@@ -74,8 +74,8 @@ class ContextView
     @$viewPanel.show()
     @$editPanel.hide()
   expandProfile: ->
-    @$namePanel.slideDown()
-    @$detailsPanel.slideDown()
+    @$namePanel.slideDown(250)
+    @$detailsPanel.slideDown(250)
   contractProfile: ->
-    @$namePanel.slideUp()
-    @$detailsPanel.slideUp()
+    @$namePanel.slideUp(250)
+    @$detailsPanel.slideUp(250)
