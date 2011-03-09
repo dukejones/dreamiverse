@@ -144,7 +144,7 @@ function getAddress(_lat, _lng){
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
-    var country = data[0].address_components[6].short_name.toLowerCase();
+    var country = data[0].address_components[6].long_name;
     
     // Set geo data
     $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
