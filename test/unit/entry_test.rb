@@ -41,6 +41,7 @@ class EntryTest < ActiveSupport::TestCase
     100.times do
       e = Entry.random
       assert e.everyone?
+      assert e.type != 'article'
     end
   end
 end

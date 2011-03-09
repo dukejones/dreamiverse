@@ -25,6 +25,22 @@ namespace :app do
       u.save!
     end
   end
+ 
+  namespace :tagcloud do
+    desc "Generate all tags"
+    task :generate => :environment do
+      begin_time = Time.now
+      log("---Generating all tag clouds---")
+      Entry.all.map do |e| 
+        pre_tags = e.tags.count
+        Tag.auto_generate_tags(e) 
+        e.reorder_tags 
+        log("id: #{e.id} pre:#{pre_tags} post:#{e.tags.count}")
+      end    
+      log("Total time: #{Time.now - begin_time}")
+    end
+  end
+
 end
 
 def log(msg)
