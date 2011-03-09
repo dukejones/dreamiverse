@@ -116,7 +116,7 @@
         = user.entries.count
       .clear
 
-    .filterList.target.slideArrow.hidden
+    .filterList.entries.target.slideArrow.hidden
       %a.type.top{href: dreams_path(user.username)}
         %span dreams
       %a.type{href: visions_path(user.username)}
@@ -141,7 +141,7 @@
         = user.friends.count
       .clear
 
-    .filterList.target.slideArrow.hidden
+    .filterList.friends.target.slideArrow.hidden
       %a.type.top{href: friends_path(user.username)}
         %span friends
       %a.type{href: following_path(user.username)}
