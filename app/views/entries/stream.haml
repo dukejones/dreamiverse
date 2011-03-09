@@ -32,6 +32,11 @@
       = render :partial => "new_login", :locals => {:user => @user}
 
 
+    / APPLIES SELECTED CLASS TO META MENU
+    :coffeescript
+      $('.item.stream').addClass('selected')
+
+
   / NO ENTRIES TO DISPLAY
   .noEntrys.hidden there are no entries to display
   
