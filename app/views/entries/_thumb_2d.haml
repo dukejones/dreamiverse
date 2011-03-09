@@ -15,7 +15,7 @@
       %table{width: "100%"}
         %tr
           %td.date= time_ago_in_words(entry.created_at)
-          %td.location dream location
+          / %td.location dream location
 
     .detailsBottom
       - unless entry.comments.count == 0

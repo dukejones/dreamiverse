@@ -48,19 +48,23 @@
 
   .changePassword.wrapper
 
-    .img
-
-    %h2.password-label change password
+    .trigger.showhide
+      .img
+      %h2.password-label change password
+      .clear
 
 
     .changePasswordForm.target.showhide.hidden
       = form_tag :user, :method => :put, :'data-type' => :json, :remote => true, :id => 'change_password' do
         = fields_for current_user do |f|
           %p.error
-          = f.password_field(:old_password, {placeholder: 'Current password'})
+          %span current password
+          = f.password_field :old_password
           %p.error
-          = f.password_field(:password, {placeholder: 'New password'})
-          = f.password_field(:password_confirmation, {placeholder: 'Confirm new password'})
+          %span new password
+          = f.password_field :password
+          %span confirm new password
+          = f.password_field :password_confirmation
           .cancel cancel
           = f.submit :'change password', :class => 'confirm'
           .clear

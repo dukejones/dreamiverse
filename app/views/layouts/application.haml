@@ -14,7 +14,16 @@
 
   %body{id: 'body', class: "#{theme} scroll", style: bedsheet_style}
 
+
     #drop_shadow
+
+
+
+    - unless flash.notice.blank? && flash.alert.blank?
+      / ALERT PANEL 
+      #geoHeader
+        %p= flash.notice
+        %p= flash.alert
 
 
     = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}

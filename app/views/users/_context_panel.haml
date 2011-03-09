@@ -56,12 +56,16 @@
 
   .divider
 
+
+
+
+
   / PROFILE
   .profile
 
     .view
       .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
-      .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
+      / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
         %hr
         - if user.link
@@ -101,6 +105,10 @@
             .cancel cancel
             = f.submit :save, :class => 'save'
             .clear
+
+
+
+
 
 
   / FILTER BY ENTRY TYPE
