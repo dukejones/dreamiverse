@@ -74,6 +74,7 @@
 	float: right;
 }
 #lightbox-container-image-data-box {
+  display: none;
 	font: 10px Verdana, Helvetica, sans-serif;
 	background-color: #fff;
 	margin: 0 auto;

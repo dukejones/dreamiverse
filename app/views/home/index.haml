@@ -2,11 +2,12 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
 
-- if current_user.blank?
-  / DREAMCATCHER LOGO
-  %a.dcLogo{href: root_path}
-    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
+/ DREAMCATCHER LOGO
+%a.dcLogo{href: root_path}
+  %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+
+%a.randomDream{href: '/random'} random dream...
 
 
 / LEFT COLUMN

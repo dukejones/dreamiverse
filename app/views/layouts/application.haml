@@ -20,10 +20,16 @@
 
 
     - unless flash.notice.blank? && flash.alert.blank?
+      :coffeescript
+        $(document).ready ->
+          $('#geoHeader').click ->
+            $(this).remove()        
+
       / ALERT PANEL 
       #geoHeader
         %p= flash.notice
         %p= flash.alert
+        .close-22
 
 
     = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}

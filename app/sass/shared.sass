@@ -144,7 +144,9 @@ abbr, acronym
 // LIGHTBOX
 #lightbox-container-image-box
   +glow-light(20)
-
+  +round(16)
+#lightbox-container-image-data-box
+  display: none !important
 
 
 
@@ -163,10 +165,10 @@ abbr, acronym
   text-align: center
   position: fixed
   top: 0px
-  right: 8px
+  right: 20px
   height: 50px
+  max-width: 550px
   line-height: 50px
-
   z-index: 1600
   color: #ddd
   background: #313131
@@ -182,6 +184,10 @@ abbr, acronym
     background: url(/images/icons/arrow_up-32.png) no-repeat center
   p
     +left
+  .close-22
+    +absolute
+    right: 12px
+    top: 14px
 
 
 
