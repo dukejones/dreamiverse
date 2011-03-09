@@ -29,4 +29,17 @@ class User::AuthenticationsController < ApplicationController
     end
     redirect_to root_path
   end
+  
+  def destroy
+    auth = Authentication.find params[:id]
+    redirect_to root_path, alert: "This is not your authorization to delete." and return unless current_user == auth.user
+    
+    flash.notice = "#{auth.provider} account unlinked."
+    auth.destroy
+    begin
+      redirect_to :back
+    rescue RedirectBackError
+      redirect_to root_path
+    end
+  end
 end

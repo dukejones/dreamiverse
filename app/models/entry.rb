@@ -102,6 +102,9 @@ class Entry < ActiveRecord::Base
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   end
 
+  def self.random
+    self.everyone.where(:type ^ 'article').order("rand()").limit(1)
+  end
 
   def self.list(viewer, viewed, lens, filters)
     filters ||= {}
@@ -217,11 +220,6 @@ class Entry < ActiveRecord::Base
     end
     reorder_tags
   end 
-
-  def self.random
-    random_id = Entry.where(:type ^ 'article',:sharing_level => 500).map{|e| e.id}.sample 
-    return Entry.find_by_id(random_id)  
-  end
   
 protected
 
