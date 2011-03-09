@@ -1,4 +1,6 @@
 
-# set :application, "dreamcatcher.net"
-# server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
+
+set :application, "rails.dreamcatcher.net"
+server "dreamcatcher.net", :web, :app, :db, :primary => true
+
 
