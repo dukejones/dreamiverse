@@ -1,12 +1,17 @@
 class ApplicationController < ActionController::Base
   before_filter :set_seed_code
-  helper_method :current_user, :add_starlight
+  helper_method :current_user, :add_starlight, :page_is_mine?
   protect_from_forgery
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def page_is_mine?
+    (current_user && (params[:username] == current_user._?.username)) ||
+    request.path == stream_path
+  end
+  
   # TODO: deprecate
   def add_starlight(entity, amt)
     Starlight.add(entity, amt)

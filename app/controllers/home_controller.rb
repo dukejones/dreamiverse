@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    # if current_user
-    #   flash.keep
-    #   redirect_to entries_path
-    # end
+    if current_user
+      flash.keep
+      redirect_to entries_path
+    end
 
     @entries = Entry.where(:created_at > 1.week.ago).
       order_by_starlight.limit(8)
