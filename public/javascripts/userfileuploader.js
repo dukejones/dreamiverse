@@ -645,7 +645,7 @@ qq.extend(qq.FileUploader.prototype, {
     _onComplete: function(id, fileName, result){
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
         // Add image      
-        var newNode = '<div class="entryImageContainer" data-id=":image_id"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="imageRemoveButton"></div><label class="radio"><input type="radio" value=":image_id" name="default"><span>default</span></label><div class="radioWrap"></div></div></div>'
+        var newNode = '<div class="entryImageContainer" data-id=":image_id"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="close-22"></div><label class="radio"><input type="radio" value=":image_id" name="default"><span>default</span></label><div class="radioWrap"></div></div></div>'
         
         newNode = newNode.replace(/:image_id/g, result.image.id)
         newNode = newNode.replace(/:image_url/, result.image_url)
