@@ -69,7 +69,7 @@ class EntriesController < ApplicationController
 
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:entry][:dreamed_at]
 
-    @entry.set_whats(params[:what_tags]) if params[:entry][:what_tags]
+    @entry.set_whats(params[:what_tags])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|

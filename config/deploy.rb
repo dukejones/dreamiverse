@@ -14,7 +14,6 @@ set :scm_verbose, true
 set :user, "www-data"
 set :use_sudo, false
 
-set :deploy_to, "/var/www/#{application}"
 
 
 # after "deploy", "deploy:cleanup"
