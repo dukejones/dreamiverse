@@ -129,10 +129,10 @@ class AppearancePanel extends MetaMenu
         $('#body').css('background-image', bedsheetUrl)
       
         if $('#entry_view_preference_attributes_image_id').attr('name')?
-          @updateEntryBedsheet($(event.currentTarget).data('id'))
-        else
-          @updateUserBedsheet($(event.currentTarget).data('id'))
-                
+          @updateEntryBedsheetHiddenImageId($(event.currentTarget).data('id'))  
+          
+        if $('#show_entry_mode').attr('name')?
+          @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        
       )
 
   updateUserBedsheet: (@bedsheet_id)->
@@ -145,7 +145,17 @@ class AppearancePanel extends MetaMenu
         success = true
     }
   
-  updateEntryBedsheet: (bedsheet_id)->
+  updateEntryBedsheet: (@entry_id,@bedsheet_id)->
+    $.ajax {
+      type: 'POST'
+      url: "/entries/#{@entry_id}/bedsheet"
+      data:
+        bedsheet_id: @bedsheet_id
+        success: (data, status, xhr) =>
+          success = true
+     }  
+  
+  updateEntryBedsheetHiddenImageId: (bedsheet_id)->
     $('#entry_view_preference_attributes_image_id').val(bedsheet_id)
   
 

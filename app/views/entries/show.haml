@@ -158,7 +158,10 @@
             / .clear
           #sorting
           .clear
-
+    
+    / HIDDEN FIELD FOR SHOW ENTRY MODE 
+    = form_tag do 
+      = hidden_field_tag(:show_entry_mode, 1) 
 
     / COMMENTS
     .commentsPanel
@@ -178,7 +181,7 @@
             .newComment
               / .user= current_user.username
               = form_for [@entry, Comment.new], :remote => true do |f|
-                = f.hidden_field :user_id, :value => current_user.id
+                = f.hidden_field :user_id, :value => current_user.id      
                 = f.text_area :body, :placeholder => "add comment..."
                 = f.submit 'post', :class => 'save'
                 .links.hidden

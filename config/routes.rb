@@ -70,7 +70,7 @@ Dreamcatcher::Application.routes.draw do
   
   resources :entries do
     collection do
-      post 'bedsheet'
+      post '/:id/bedsheet', :to => 'entries#bedsheet'
       get 'random' 
     end
     resources :comments
