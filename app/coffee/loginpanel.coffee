@@ -1,6 +1,6 @@
 # Login Panel
 $(document).ready ->
-  # Checks if #rightColumn exits
+  # Checks if .loginPanelWrap exits
   # runs specific code for it, otherwise
   # starts the loginController for the rest
   # of the pages

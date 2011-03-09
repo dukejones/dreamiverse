@@ -9,7 +9,7 @@
 
   .loginPanelWrap
     +absolute
-    right: 20px
+    right: 35px
 
   .facebook .hover_label
     top: 63px !important
@@ -17,24 +17,57 @@
 
   .joinNow
     +absolute
-    right: 260px
+    right: 275px
+    top: 8px
+    +relative
+    +right
+    +center
+    +round(12)
+    +transparent
+    +glow-blue(20)
+    +button-blue
+    height: 30px
+    &:hover
+      +glow-dark(20)
+    &:active
+      +glow-dark(0)
+
+    a
+      +bold
+      +block
+      +round(11)
+      +shine-blue(15)
+      color: #fff
+      height: 30px
+      line-height: 30px
+      padding: 0 8px
+      whitespace: nowrap
+      &:hover
+        +shine-blue(15)
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+
 
   .randomDream
     +absolute
-    right: 400px
+    right: 380px
     top: 9px
     padding: 0 6px 0 42px
     height: 30px
     line-height: 26px
-    background-position: 6px 5px !important
+    background-position: 10px 5px !important
     background-repeat: no-repeat !important
     background-image: url('/images/icons/shuffle-26-off.png') !important
 
     &:hover
-      background-position: 6px 5px !important
+      background-position: 10px 5px !important
       background-repeat: no-repeat !important
       background-image: url('/images/icons/shuffle-26.png') !important
     &:active
-      background-position: 6px 5px !important
+      background-position: 10px 5px !important
       background-repeat: no-repeat
       background-image: url('/images/icons/shuffle-26-off.png') !important

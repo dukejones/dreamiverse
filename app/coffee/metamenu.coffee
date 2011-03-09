@@ -210,6 +210,16 @@ class SettingsPanel extends MetaMenu
       @firstRun = false
     )
     
+    # setup fb unlink UI update
+    $('#fbLink').bind 'ajax:success', (event, xhr, status)->
+      newElement = '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'
+      
+      #remove old link
+      $('#fbLink').remove()
+      
+      #display new link
+      $('.network').append(newElement)
+    
     # setup change password fields
     $('form#change_password').bind 'ajax:beforeSend', (xhr, settings)->
       $('.changePassword .target').hide()

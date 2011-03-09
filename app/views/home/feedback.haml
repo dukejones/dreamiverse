@@ -13,16 +13,16 @@
 
   .wrapper
 
-    #feedbackWrap
+    = form_tag feedback_path, id: 'feedbackWrap' do
       .feedback
 
-        %select#type
+        %select#type{name: 'feedback[type]'}
           %option{value: "none"} Type of feedback...
-          %option{value: "bug"} Report a bug
+          %option{value: "bug" } Report a bug
           %option{value: "idea"} I have an idea...
 
         #bugType
-          %select#bugOptions
+          %select#bugOptions{name: 'feedback[bug_type]'}
             %option{value: "none"} Type of bug
             %option{value: "data not saving"} My data didn't save...
             %option{value: "browser crash"} My browser crashed when I was...
@@ -30,7 +30,7 @@
             %option{value: "other"} Other...
 
         #details
-          %textarea#detailsForm
+          %textarea#detailsForm{name: 'feedback[body]'}
 
       #submitButton
         .sendWrap
