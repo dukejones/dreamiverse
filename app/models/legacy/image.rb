@@ -8,6 +8,7 @@ class Legacy::Image < Legacy::Base
   end
   
   def find_corresponding_image
+    return nil unless File.exists?(self.fullpath)
     ::Image.where(original_filename: filename, size: File.size(self.fullpath)).first
   end
   def find_or_create_corresponding_image
