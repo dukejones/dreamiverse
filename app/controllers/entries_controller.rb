@@ -54,11 +54,14 @@ class EntriesController < ApplicationController
   end
 
   def create
-    
+ 
     whats = (params[:what_tags] || []).map {|word| What.for word }
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-    
+
+    # replace this with a redirect/alert later
+    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
+        
     new_entry = current_user.entries.create!(params[:entry].merge(
       whats: whats
     ))
