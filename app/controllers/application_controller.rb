@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   def page_is_mine?
     (current_user && (params[:username] == current_user._?.username)) ||
     request.path == stream_path ||
-    request.path['/entries'] == 0
+    request.path == '/entries' ||       # there's got to be a better way.
+    request.path =~ /\/entries\/\d+\/edit/ ||
+    request.path == '/entries/new'
   end
   
   # TODO: deprecate
