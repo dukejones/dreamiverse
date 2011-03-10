@@ -10,6 +10,27 @@
 /   require({baseUrl: "/javascripts/compiled"}, [ 'tag', 'showentry', 'entries' ] )
 
 
+/ PRELOAD - SHOW ENTRY
+.hidden
+  / STARLIGHT
+  %img{src: '/images/icons/starlight-22.png'}
+  / HEADER ICONS
+  %img{src: '/images/icons/date-16-off.png'}
+  %img{src: '/images/icons/location-16-off.png'}
+  %img{src: '/images/icons/images-16-off.png'}
+  %img{src: '/images/icons/tag-16-off.png'}
+  %img{src: '/images/icons/links-19.png'}
+  %img{src: '/images/icons/mood-19.png'}
+  %img{src: '/images/icons/comment-16-off.png'}
+  / CLOSE
+  %img{src: '/images/icons/close-22-off.png'}
+  %img{src: '/images/icons/close-22.png'}
+  %img{src: '/images/icons/close-16.png'}
+  / ARROWS
+  %img{src: '/images/icons/arrow-right-16-dark.png'}
+  %img{src: '/images/icons/arrow-right-16-light.png'}
+
+
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @entry.user}
 
