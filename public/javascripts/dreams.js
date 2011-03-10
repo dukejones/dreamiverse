@@ -19,7 +19,7 @@ function setupSharingImages(){
           $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
         break;
       case 'followers':
-          $(this).prev().attr('src', '/images/icons/friend-follower-16')
+          $(this).prev().attr('src', '/images/icons/friend-follower-16.png')
         break;
       case 'friends':
           $(this).prev().attr('src', '/images/icons/friend-none-16.png')
@@ -445,6 +445,7 @@ function showYoutubeData(newText){
       
       var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
+      $('#linkHolder').slideDown()
       $('.linkContainer').fadeIn();
     }
   });

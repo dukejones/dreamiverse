@@ -18,9 +18,13 @@ class window.TagsController
     @tagViews = new @tagViewListClass(@tagViewClass)
 
     $.subscribe 'tags:create', (tagName)=> 
-      # Check for empty tag
-      if tagName isnt "" and tagName isnt "who/where/what"
-        @createTag(tagName)
+      # Check for empty tag & less than 3 char tag & default tag
+      # Don't let them post unless they meet all the criteria
+      if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 2
+        
+        # Check for max tags
+        if @tagViews.tagViews.length < 17
+          @createTag(tagName)
     
     
   createTag: (tagName)->
@@ -90,7 +94,7 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag .close').live "click", (event)=>
+    @$container.find('.tag .close-16').live "click", (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
@@ -235,7 +239,7 @@ class Tag
   entryId: -> $('#showEntry').data('id')
   setId: (id)-> @id = id
   create: ->
-    deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
+    deferred = $.post "/tags", { entryIdntry_id: @entryId(), what_name: @name }, (data)->
       @id = data.what_id
     return deferred.promise()
      

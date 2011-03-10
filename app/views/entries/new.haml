@@ -78,7 +78,7 @@
         /= render :partial => "mood_icon"
 
       .entryType
-        %img.typeSelection{src: '/images/icons/dream-32-select.png'}
+        .typeSelection{style: "background: url(/images/icons/dream-24-select.png) no-repeat center"}
         %select#entryType_list{name: 'entry[type]'}
           %option.dream{:value => 'dream', :selected => @entry.type == 'dream'} dream
           %option.vision{:value => 'vision', :selected => @entry.type == 'vision'} vision
@@ -104,7 +104,7 @@
         // SHARING PANEL
         .sharingWrap
           .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
-            %img.listSelection{src: '/images/icons/sharing-24-select.png', width: '24', height: '24'}
+            .listSelection{style: "background: url(/images/icons/sharing-24-select.png) no-repeat center"}
             %select#sharing_select{name: "entry[sharing_level]"}
               %option.everyone{value: '500'} everyone
               %option.list{value: '200'} friends only
