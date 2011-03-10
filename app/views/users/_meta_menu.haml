@@ -1,6 +1,28 @@
 - content_for :head do
   = coffeescript_include_tag 'metamenu'
 
+
+/ PRELOAD - METAMENU USER & PUBLIC
+.hidden
+  / DROP SHADOW
+  %img{src: '/images/gradients/top_shadow-100px.png'}
+  / LOGO THETA
+  %img{src: '/images/logos/dreamcatcher_logo-THETA.png'}
+  / SHUFFLE
+  %img{src: '/images/icons/shuffle-26-off.png'}
+  %img{src: '/images/icons/shuffle-26.png'}
+  / ADMIN
+  %img{src: '/images/icons/admin-16-select.png'}
+  / LOGOUT
+  %img{src: '/images/icons/logout-24-off.png'}
+  %img{src: '/images/icons/logout-24.png'}
+  / FACEBOOK
+  %img{src: '/images/icons/facebook-16-select.png'}
+  / ADD
+  %img{src: '/images/icons/add-15.png'}
+
+
+
 #report_box= VERSION
 
 %a#logo{href: root_path }
