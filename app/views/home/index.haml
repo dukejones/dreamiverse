@@ -45,7 +45,8 @@
           .noEntries No dreams yet today.
 
   #bottomLinks
-    %a{href: feedback_path} feedback / report a bug
+    - unless current_user.blank?
+      %a{href: feedback_path} feedback / report a bug
     %a{href: terms_path} terms of agreement
     %a{href: forgot_path} forgot password
 

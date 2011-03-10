@@ -26,14 +26,15 @@
           %span.label email
           = f.text_field :email, class: 'inputField'
           .clear
-          %span.label username
-          = f.text_field :username, class: 'inputField'
-          .clear
           %span.label password
           = f.password_field :password, class: 'inputField'
           .clear
           %span.label confirm password
           = f.password_field :password_confirmation, class: 'inputField'
+          .clear
+          %span.username username
+          %span.label.url http://dreamcatcher.net/
+          = f.text_field :username, class: 'inputField'
           .clear
 
           .label.seed.trigger.showhideremove have a seed code?
