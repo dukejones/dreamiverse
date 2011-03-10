@@ -236,16 +236,27 @@
     .addLocation .img, .addTheme .img, .date .img
       width: 42px
       height: 34px
-    .addLocation .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-select.png') center center no-repeat !important
-    .addTheme .img
-      background: url('/images/icons/appearance-24-off.png') center center no-repeat
-    .date .img
-      background: url('/images/icons/date-24-off.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addLocation
+      .img
+        background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addLocation.selected
+      .img
+        background: url('/images/icons/location-24-select.png') center center no-repeat !important
+    .addTheme
+      .img
+        background: url('/images/icons/appearance-24-off.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/appearance-24-select.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    .date 
+      .img
+        background: url('/images/icons/date-24-off.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/date-24-select.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/date-24-off.png') center center no-repeat
+
     #entry_submit
       +bold
       +font(12)
