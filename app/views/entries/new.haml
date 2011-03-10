@@ -216,7 +216,7 @@
           add
       #linkHolder
         - @entry.links.each do |link|
-          .linkContainer{class: link.youtube? ? 'youtube' : ''}
+          .linkContainer{class: link.youtube? ? 'youtube' : '', id: link.id}
             .title
               %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]', style: "width: 220px"}
             .url

@@ -2,7 +2,8 @@ $(document).ready(function() {
   setupEvents();
   setupImagebank();
   setupUploader();
-  setupSharingImages()
+  setupSharingImages();
+  setupLinkButtons();
 });
 
 function setupSharingImages(){
@@ -407,7 +408,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-22"></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -449,7 +450,7 @@ function showYoutubeData(newText){
 
 function setupImageButtons(){
   // Click to remove Image
-  $('.close-22').live('click', function(event){
+  $('#currentImages .close-22').live('click', function(event){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     
@@ -463,6 +464,16 @@ function setupImageButtons(){
       $(this).remove();
     });
     
+  })
+}
+
+function setupLinkButtons(){
+  // Click to remove link
+  $('#linkHolder .close-22').live('click', function(event){
+    // Remove from list of used link  
+    $(event.currentTarget).parent().slideUp(250, function(){
+      $(this).remove()
+    })
   })
 }
 
