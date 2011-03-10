@@ -62,8 +62,10 @@
       display: inline-block
       text-decoration: none
       padding: 2px 8px 2px 4px
+      &:active
+        +gradient(#ddd, #fff)
       &:hover, &.user
-        +button-light
+        border: 1px solid #8c8c8c
         color: #4b93d9
       &.selected, &.selected:hover, &.selected:active
         color: #fff !important
@@ -83,9 +85,9 @@
       .img
         background: url(/images/icons/home-24-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/home-24-hover.png) no-repeat center transparent
-      &:active .img
         background: url(/images/icons/home-24-select.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/home-24-hover.png) no-repeat center transparent
     .item.home.selected
       .img
         background: url(/images/icons/home-24-off.png) no-repeat center transparent
@@ -98,9 +100,9 @@
         margin: 0 6px 0 2px
         background: url(/images/icons/stream-24-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
-      &:active .img
         background: url(/images/icons/stream-24-select.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
     .item.stream.selected
       .img
         background: url(/images/icons/stream-24-off.png) no-repeat center transparent
