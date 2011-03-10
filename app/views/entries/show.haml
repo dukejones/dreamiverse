@@ -142,7 +142,10 @@
             .tagThisEntry.trigger
               + add
 
-          / POST TIME & LOCATION
+          / POST TIME, LOCATION & SHARE LEVEL
+          .shareLevel
+            .img{style: "background: url(/images/icons/sharing-16-off.png) no-repeat center"}
+            = @entry.sharing
           .postTime
             - time = (@entry.dreamed_at || @entry.created_at)
             = time_ago_in_words(time)

@@ -404,8 +404,8 @@
           .tagThisEntry.selected
             +save(17)
 
-          // POST TIME & LOCATION
-          .postTime, .postLocation
+          // POST TIME, LOCATION & SHARE LEVEL
+          .postTime, .postLocation, .shareLevel
             +round(20)
             +right
             +center
@@ -413,8 +413,15 @@
             +cursor
             margin: 0 0 4px 8px
             height: 34px
-            line-height: 34px
+            line-height: 32px
             padding: 0 8px
+          .shareLevel
+            .img
+              +left
+              margin-right: 6px
+              width: 16px
+              height: 34px
+
 
           #tag-list // SEE ENTRIES.SASS
 
@@ -689,8 +696,8 @@
             +button-light
             +bevel-light
 
-        // POST TIME & LOCATION
-        .postTime, .postLocation
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postTime, .postLocation, .shareLevel
           +indent-light
           border: 1px solid #f1f1f1
 
@@ -840,8 +847,8 @@
             a
               color: #ccc
 
-        // POST TIME & LOCATION
-        .postTime, .postLocation
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postTime, .postLocation, .shareLevel
           +indent-dark
           border: 1px solid #333
 
