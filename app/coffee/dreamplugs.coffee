@@ -78,10 +78,7 @@ window.setupDreamplugs = ->
   $('.trigger.showhideremove').click( (event) ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhideremove')
     $(event.currentTarget).hide()
-    $newTargetShowHide.find('.label').click( (event) ->
-      $(event.currentTarget).parent().parent().find('.target.showhideremove').hide()
-      $(event.currentTarget).parent().parent().find('.trigger.showhideremove').show()
-    )
+   
     if $newTargetShowHide.css('display') is 'none'
       $newTargetShowHide.show()
     else
