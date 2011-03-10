@@ -24,6 +24,9 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
+  $('#comment_body').keyup ->
+    fitToContent(this, 0)
+  
   $('.gallery .youtube').each (i, el) =>
     # Pass the url and the element it came from
     getYoutubeData($(el).find('a').attr('href'), $(el))
@@ -98,9 +101,9 @@ $(document).ready ->
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 
-  $('#comment_body').keyup ->
-    fitToContent(this, 0)
   $('#comment_body').css('overflow','hidden')
+  
+  
   
 	# Setup comment expander
 	# $('textarea#comment_body').autoResize
