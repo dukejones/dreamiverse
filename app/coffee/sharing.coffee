@@ -33,9 +33,10 @@ class SharingController
     @sharingChangeHandler() 
     @$container.find('.target').hide()
   
-  sharingChangeHandler: () ->
+  sharingChangeHandler: ->
     # get the new icon path
     newSelection = @$dropdown.val()
+    
     switch newSelection
       when "0"
         iconFileSource = 'private-24-select.png'
@@ -48,8 +49,8 @@ class SharingController
       when "500"
         iconFileSource = 'sharing-24-select.png'
     
-    iconSource = '/images/icons/' + iconFileSource
-    $('.listSelection').attr('src', iconSource)
+    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
+    $('.listSelection').css('background', iconSource)
     
     if !@firstRun
       @sharingView.expandCurrentView(newSelection)
