@@ -187,24 +187,26 @@ function setupEvents(){
   $('.entryAttach .images').click(function(){
     $('.entryImages').slideDown();
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.imagesHeader').click(function(){
-      // if no images added, remove panel 
-      // and show button
-      if($('#currentImages').children().length == 1){
-        $('.entryImages').slideUp();
-        $('.entryAttach .images').show();
+
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.imagesHeader').unbind()
+  $('.imagesHeader').click(function(){
+    // if no images added, remove panel 
+    // and show button
+    if($('#currentImages').children().length == 1){
+      $('.entryImages').slideUp();
+      $('.entryAttach .images').show();
+    } else {
+      // if content added, minimize panel
+      if($('#currentImages').css('display') != 'none'){
+        $('#currentImages').slideUp();
       } else {
-        // if content added, minimize panel
-        if($('#currentImages').css('display') != 'none'){
-          $('#currentImages').slideUp();
-        } else {
-          $('#currentImages').slideDown();
-        }
+        $('#currentImages').slideDown();
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
@@ -216,36 +218,36 @@ function setupEvents(){
     //$('#newDream-tag').animate({height: 42}, "slow");
     
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.entryTags .headers').unbind();
-    $('.entryTags .headers').click(function(){
-      if($('#tag-list').children().length == 2){
-        // No tags added hide it all
-        $('.entryTags').slideUp();
-        $('.entryAttach .tag').show();
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.entryTags .headers').unbind();
+  $('.entryTags .headers').click(function(){
+    if($('#tag-list').children().length == 2){
+      // No tags added hide it all
+      $('.entryTags').slideUp();
+      $('.entryAttach .tag').show();
+    } else {
+      // tags added only minimize
+      if($('#tag-list').css('display') != 'none'){
+        var elementHeight = $('#tag-list').height(); 
+        $('#tag-list').css('height', elementHeight + 'px');
+        $('#tag-list').slideUp('fast');
+        
+        /*var combinedHeight = elementHeight;
+        $('#newDream-tag').height(combinedHeight);
+        $('#newDream-tag').animate({height: 42}, "fast");*/
       } else {
-        // tags added only minimize
-        if($('#tag-list').css('display') != 'none'){
-          var elementHeight = $('#tag-list').height(); 
-          $('#tag-list').css('height', elementHeight + 'px');
-          $('#tag-list').slideUp('fast');
-          
-          /*var combinedHeight = elementHeight;
-          $('#newDream-tag').height(combinedHeight);
-          $('#newDream-tag').animate({height: 42}, "fast");*/
-        } else {
-          var elementHeight = $('#tag-list').height(); 
-          $('#tag-list').css('height', elementHeight + 'px');
-          $('#tag-list').slideDown('fast');
-          
-          /*var combinedHeight = 50 + elementHeight;
-          $('#newDream-tag').height(42);
-          $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
-        }
+        var elementHeight = $('#tag-list').height(); 
+        $('#tag-list').css('height', elementHeight + 'px');
+        $('#tag-list').slideDown('fast');
+        
+        /*var combinedHeight = 50 + elementHeight;
+        $('#newDream-tag').height(42);
+        $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
@@ -259,30 +261,30 @@ function setupEvents(){
   $('.entryAttach .mood').click(function(){
     $('.entryEmotions').slideDown();
     $(this).hide();
-    
-    $('.entryEmotions .headers').unbind()
-    $('.entryEmotions .headers').click(function(){
-      var radioSelected = false;
-      $('.moodPicker input[type="radio"]:checked').each(function(i, el){
-        // only mark as selected if its a value other than 1
-        if($(el).val() != '1'){
-          radioSelected = true
-        }
-      })
-      
-      if(radioSelected){
-        if($('.moodPicker').css('display') == 'none'){
-          $('.moodPicker').slideDown()
-        } else {
-          $('.moodPicker').slideUp()
-        }
-      } else {
-        $('.entryEmotions').slideUp();
-        $('.entryAttach .mood').show();
+    checkAttachButtons();
+  })
+  
+  $('.entryEmotions .headers').unbind()
+  $('.entryEmotions .headers').click(function(){
+    var radioSelected = false;
+    $('.moodPicker input[type="radio"]:checked').each(function(i, el){
+      // only mark as selected if its a value other than 1
+      if($(el).val() != '1'){
+        radioSelected = true
       }
-      
-      checkAttachButtons();
     })
+    
+    if(radioSelected){
+      if($('.moodPicker').css('display') == 'none'){
+        $('.moodPicker').slideDown()
+      } else {
+        $('.moodPicker').slideUp()
+      }
+    } else {
+      $('.entryEmotions').slideUp();
+      $('.entryAttach .mood').show();
+    }
+    
     checkAttachButtons();
   })
   
@@ -290,24 +292,24 @@ function setupEvents(){
   $('.entryAttach .links').click(function(){
     $('.entryLinks').slideDown();
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.entryLinks .headers').unbind();
-    $('.entryLinks .headers').click(function(){
-      if($('#linkHolder').children().length < 1){
-        // No tags added hide it all
-        $('.entryLinks').slideUp();
-        $('.entryAttach .links').show();
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.entryLinks .headers').unbind();
+  $('.entryLinks .headers').click(function(){
+    if($('#linkHolder').children().length < 1){
+      // No tags added hide it all
+      $('.entryLinks').slideUp();
+      $('.entryAttach .links').show();
+    } else {
+      // tags added only minimize
+      if($('#linkHolder').css('display') != 'none'){
+        $('#linkHolder').slideUp();
       } else {
-        // tags added only minimize
-        if($('#linkHolder').css('display') != 'none'){
-          $('#linkHolder').slideUp();
-        } else {
-          $('#linkHolder').slideDown();
-        }
+        $('#linkHolder').slideDown();
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
