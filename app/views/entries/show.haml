@@ -184,34 +184,35 @@
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
 
-    / COMMENTS
-    .commentsPanel
-      .trigger.slide
-        .commentsHeader.headers
-          .img
-          <b>comments</b>
-          &nbsp; (<span class="counter">#{@comments.count}</span>)
-      .clear
-      
-      .target.slide
-        - @comments.each do |comment|
-          = render :partial => "entries/comment", :object => comment
-        - if current_user
-          .newCommentWrap
-            .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
-            .newComment
-              / .user= current_user.username
-              = form_for [@entry, Comment.new], :remote => true do |f|
-                = f.hidden_field :user_id, :value => current_user.id      
-                = f.text_area :body, :placeholder => "add comment..."
-                = f.submit 'post', :class => 'save'
-                .links.hidden
-                  %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
-                  links
-                .images.hidden
-                  %img{src: '/images/icons/images-16-off.png', width: '16', height: '16'}
-                  image
-                .clear
-        
+    / COMMENTS - unless entry.comments.count == 0    - unless current_user.blank?
+    - unless @comments.count == 0 and current_user.blank?
+      .commentsPanel
+        .trigger.slide
+          .commentsHeader.headers
+            .img
+            <b>comments</b>
+            &nbsp; (<span class="counter">#{@comments.count}</span>)
         .clear
+      
+        .target.slide
+          - @comments.each do |comment|
+            = render :partial => "entries/comment", :object => comment
+          - if current_user
+            .newCommentWrap
+              .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
+              .newComment
+                / .user= current_user.username
+                = form_for [@entry, Comment.new], :remote => true do |f|
+                  = f.hidden_field :user_id, :value => current_user.id      
+                  = f.text_area :body, :placeholder => "add comment..."
+                  = f.submit 'post', :class => 'save'
+                  .links.hidden
+                    %img{src: '/images/icons/link-16.gif', width: '16', height: '16'}
+                    links
+                  .images.hidden
+                    %img{src: '/images/icons/images-16-off.png', width: '16', height: '16'}
+                    image
+                  .clear
+        
+          .clear
 
