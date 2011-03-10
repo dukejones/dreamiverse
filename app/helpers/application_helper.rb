@@ -53,8 +53,6 @@ module ApplicationHelper
     bedsheet_attachment ||= 'scroll'
 
     # TODO: these should be an imagebank url.
-    # if frontpage, use frontpage bedsheet
-    bedsheet_url = "/images/bedsheets/air-04.jpg" if request.path == '/'
     # if dreamstars, use dreamstars bedsheet
     bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == '/dreamstars'
     # if user has ubiquity mode, use user's bedsheet no matter what
@@ -63,7 +61,8 @@ module ApplicationHelper
     bedsheet_url ||= @entry._?.view_preference._?.image._?.url(:bedsheet)
     # if user has a view preference, use user's bedsheet
     bedsheet_url ||= current_user._?.view_preference._?.image._?.url(:bedsheet)
-    bedsheet_url ||= "/images/bedsheets/dreamstars-aurora-hi.jpg"
+    # global default bedsheet
+    bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
 
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
   end
