@@ -85,12 +85,6 @@ class AppearancePanel extends MetaMenu
       $('body').removeClass('fixed, scroll')
       $('body').css('background-attachment', $(event.currentTarget).val())
     
-    # setup theme colorPicker
-    
-    # first bind is for remove/addClass for new/edit entry (same link classes/ids but no ajax)
-    #$('.colorPicker a').bind =>
-    #  $('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
-    
     $('.colorPicker a').bind 'ajax:beforeSend', (xhr, settings)=>
       $('#body').removeClass('dark light').addClass($(xhr.target).attr('id'))
     
@@ -113,8 +107,11 @@ class AppearancePanel extends MetaMenu
     
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
+      #$('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
+      
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_attributes_theme').attr('id')?
+        console.log(@newTheme)
         $('#entry_view_preference_attributes_theme').val(@newTheme)
 
         
