@@ -8,6 +8,27 @@
 /   require(['stream', 'publicstream'], (StreamController)-> new StreamController())
 /   require({baseUrl: '/javascripts'}, ['dreams', 'geo'])
 
+
+/ PRELOAD - STREAM CONTEXT PANEL
+.hidden
+  / FILTER - ENTRY TYPE
+  %img{src: '/images/icons/allEntries-16.png'}
+  %img{src: '/images/icons/arrow-down-16.png'}
+  %img{src: '/images/icons/dream-16-select.png'}
+  %img{src: '/images/icons/vision-16-select.png'}
+  %img{src: '/images/icons/experience-16-select.png'}
+  %img{src: '/images/icons/article-16-select.png'}
+  / FILTER - FOLLOW TYPE
+  %img{src: '/images/icons/friend-follow-16.png'}
+  %img{src: '/images/icons/friend-16.png'}
+  / ARROW
+  %img{src: '/images/icons/arrow-down-16.png'}
+  / STARLIGHT
+  %img{src: '/images/icons/starlight-17.png'}
+  / 1D THUMBS
+  %img{src: '/images/icons/comment-16-off.png'}
+
+
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
 
