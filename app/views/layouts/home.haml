@@ -21,16 +21,7 @@
 
 
     - unless flash.notice.blank? && flash.alert.blank?
-      :coffeescript
-        $(document).ready ->
-          $('#geoHeader').click ->
-            $(this).remove()        
-
-      / ALERT PANEL 
-      #geoHeader
-        %p= flash.notice
-        %p= flash.alert
-        .close-22
+      = render :partial => "layouts/alert"
 
 
     #drop_shadow

@@ -1,0 +1,10 @@
+:coffeescript
+  $(document).ready ->
+    $('#globalAlert').click ->
+      $(this).remove()
+
+/ ALERT PANEL 
+#globalAlert
+  %p= flash.notice
+  %p= flash.alert
+  .close-22
