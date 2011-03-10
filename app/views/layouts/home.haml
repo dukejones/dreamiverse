@@ -15,9 +15,9 @@
   %body.home.light
     -# render "shared/facebook_sdk"
 
-    - unless current_user.blank?
-      / META MENU - USER
-      = render :partial => "users/meta_menu_user"
+    / - unless current_user.blank?
+    /   / META MENU - USER
+    /   = render :partial => "users/meta_menu_user"
 
 
     - unless flash.notice.blank? && flash.alert.blank?
