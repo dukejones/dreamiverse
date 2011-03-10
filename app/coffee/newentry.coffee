@@ -85,15 +85,6 @@ $(document).ready ->
 	    
   	  entry = $('#showEntry').data('id')
   	  order = tagOrder.join()
-  	  
-  	  $.ajax {
-        type: 'PUT'
-        url: '/tags/order_custom'
-        data:
-          entry_id: entry
-          position_list: order
-        #success: (data, status, xhr) => log "success"
-      }
   
 
   # Hide the elements in the browsers they cant be seen in

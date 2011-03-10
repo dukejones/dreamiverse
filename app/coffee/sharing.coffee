@@ -24,41 +24,39 @@ class SharingController
     )
     
     @$dropdown.change( (event) =>
-      # get the new icon path
-      newSelection = @$dropdown.val()
-      switch newSelection
-        when "0"
-          iconFileSource = 'private-24-select.png'
-        when "50"
-          iconFileSource = 'anon-24-select.png'
-        when "150"
-          iconFileSource = 'friend-follower-24.png'
-        when "200"
-          iconFileSource = 'friend-24.png'
-        when "500"
-          iconFileSource = 'sharing-24-select.png'
-      
-      iconSource = '/images/icons/' + iconFileSource
-      $(event.currentTarget).parent().find('.listSelection').attr('src', iconSource)
-      
-      if !@firstRun
-        @sharingView.expandCurrentView(newSelection)
-      else
-        @setupDefaultSharingLevel()
-        @firstRun = false
-      
-      @shareSettings = new Share(newSelection)
+      @sharingChangeHandler(event)
     )
     
     #setup Default Sharing dropdown
-    if window.BrowserDetect.browser isnt "Safari" and window.BrowserDetect.browser isnt "Chrome"
-      @$dropdown.val(@$container.data('id'))
-      @$dropdown.change()
-      
+    @$dropdown.val($('.sharingWrap .sharing').data('id'))
+    #@$dropdown.change()
+    @sharingChangeHandler() 
     @$container.find('.target').hide()
+  
+  sharingChangeHandler: () ->
+    # get the new icon path
+    newSelection = @$dropdown.val()
+    switch newSelection
+      when "0"
+        iconFileSource = 'private-24-select.png'
+      when "50"
+        iconFileSource = 'anon-24-select.png'
+      when "150"
+        iconFileSource = 'friend-follower-24.png'
+      when "200"
+        iconFileSource = 'friend-24.png'
+      when "500"
+        iconFileSource = 'sharing-24-select.png'
     
-  setupDefaultSharingLevel: ->
-    @$dropdown.val($('#sharingList').find('option:selected').val())
+    iconSource = '/images/icons/' + iconFileSource
+    $('.listSelection').attr('src', iconSource)
+    
+    if !@firstRun
+      @sharingView.expandCurrentView(newSelection)
+    else
+      @firstRun = false
+    
+    @shareSettings = new Share(newSelection)
 
 
 class SharingView
