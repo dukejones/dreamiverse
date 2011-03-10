@@ -3,9 +3,6 @@
 #appearancePanel
   +user-select
 
-  img.appearanceIcon
-    margin: 4px 0 0
-
   .bedsheets, .colorPicker
     +round(8)
     +cursor
@@ -14,6 +11,12 @@
     +clear
     padding: 8px
     margin: 0 0 8px
+    .img
+      +left
+      width: 24px
+      height: 36px
+      margin: 0 8px 0 2px
+      background: url(/images/icons/bedsheets-24-select.png) no-repeat center transparent
     h2
       +block
       +bold
@@ -90,8 +93,9 @@
       +left
 
     .img
-      width: 28px
+      width: 24px
       height: 36px
+      margin: 0 4px 0 2px
       background: url(/images/icons/color-24-off.png) no-repeat center transparent
 
     h2

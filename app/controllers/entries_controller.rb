@@ -43,10 +43,12 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+    @entry_mode = 'new'
   end
   
   def edit
     @entry = Entry.find params[:id]
+    @entry_mode = 'edit'
     deny and return unless user_can_write?
     render :new
   end

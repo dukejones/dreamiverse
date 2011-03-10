@@ -42,9 +42,11 @@
       height: 34px
       width: 178px // For Chrome
       line-height: 34px
-      img.typeSelection
+      .typeSelection
         +left
-        margin: 1px 0 0 4px
+        width: 24px
+        height: 34px
+        margin: 0 0 0 8px
       select#entryType_list
         +outline
         +transparent
@@ -59,16 +61,16 @@
         padding: 7px 8px 7px 38px
         margin-left: -36px
         option
-          padding: 8px 4px 8px 38px
+          padding: 6px 4px 6px 38px
           text-align: left
         option.dream
-          background: url(/images/icons/dream-24-select.png) no-repeat 8px center
+          background: url(/images/icons/dream-16-select.png) no-repeat 8px center
         option.vision
-          background: url(/images/icons/vision-24-select.png) no-repeat 8px center
+          background: url(/images/icons/vision-16-select.png) no-repeat 8px center
         option.experience
-          background: url(/images/icons/experience-24-select.png) no-repeat 8px center
+          background: url(/images/icons/experience-16-select.png) no-repeat 8px center
         option.article
-          background: url(/images/icons/article-24-select.png) no-repeat 8px center
+          background: url(/images/icons/article-16-select.png) no-repeat 8px center
     #entry_title, #entry_body
       +outline
       +transparent
@@ -115,10 +117,12 @@
           margin: 0
           padding: 0 4px
           z-index: 1101
-          img.listSelection
+          .listSelection
             +pointer
             +left
-            margin: 6px 0 0 6px
+            width: 24px
+            height: 34px
+            margin: 0 0 0 6px
 
           select#sharing_select
             +outline
@@ -763,9 +767,9 @@
       .img
         background: url(/images/icons/tag-16-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/tag-16-hover.png) no-repeat left center transparent
+        background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
       &:active .img
-        background: url(/images/icons/tag-16-select.png) no-repeat left center transparent
+        background: url(/images/icons/tag-16-select.png) no-repeat center transparent
 
     .attach.links
       .img

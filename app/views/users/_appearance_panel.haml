@@ -4,13 +4,19 @@
 
   / BEDSHEETS
   .bedsheets
+    .img
     %h2 bedsheets
     .options.hidden{onclick: 'dc.modal()'}
       options
     %ul
 
     .attachment 
-      - if @entry_mode == 'show' # update entry theme
+      - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
+        %a#fixed.fixed{href: "#"}
+          fixed
+        %a#scroll.scroll{href: "#"}
+          scroll  
+      - elsif @entry_mode == 'show' # ajax update entry theme
         = link_to 'fixed', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
         = link_to 'scroll', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'     
       - else # update user theme
@@ -24,20 +30,27 @@
   .colorPicker
     .img
     %h2 color
-    - @entry_mode = 'other' if @entry_mode.nil?
     .buttons
-      - if @entry_mode == 'show' # update entry theme
+
+      - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
+        %a#light.sun{href: "#"}
+          sun
+          %img{src: '/images/icons/sun-24.png'}
+        %a#light.moon{href: "#"}        
+          moon
+          %img{src: '/images/icons/moon-24.png'}  
+      - elsif @entry_mode == 'show' # ajax update entry theme
         = link_to entry_path(:entry => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
           sun
           %img{src: '/images/icons/sun-24.png'}
         = link_to entry_path(:entry => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
           moon
-          %img{src: '/images/icons/moon-24.png'}
-      - else # update user theme
+          %img{src: '/images/icons/moon-24.png'}                  
+      - else # ajax update user theme  
         = link_to user_path(:user => {:view_preference_attributes => {:theme => 'light'}}), :method => :put, :remote => true, :id => 'light', :class => 'sun' do
           sun
           %img{src: '/images/icons/sun-24.png'}
         = link_to user_path(:user => {:view_preference_attributes => {:theme => 'dark'}}), :method => :put, :remote => true, :id => 'dark', :class => 'moon' do
           moon
-          %img{src: '/images/icons/moon-24.png'}       
+          %img{src: '/images/icons/moon-24.png'}
         
