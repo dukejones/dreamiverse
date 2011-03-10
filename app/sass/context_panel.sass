@@ -287,6 +287,8 @@
 
 
 
+
+
   // GENERAL ITEM
 
   .item
@@ -301,12 +303,19 @@
     .label
       +round(12)
       +flat-right
-      +center
       +font(14)
+      +relative
+      text-align: right
       width: 80px
       height: 24px
       line-height: 24px
       padding: 6px 0
+      img.arrow
+        +left
+        margin: 4px 4px 0 6px
+      .value
+        +absolute
+        right: 4px
 
     .image
       +center
@@ -335,12 +344,13 @@
       padding: 6px 0
       line-height: 26px
       border: 0
-      &.location
-        +font(15)
-        font-weight: normal
 
 
 
+
+  .filterList
+    +font(14)
+    width: 80px
 
 
 
@@ -428,18 +438,7 @@
 
 
 
-// FILTERS
-#contextPanel
-  .wrapper
-    .entryFilter
-      .value
-        font-weight: normal
-      img.arrow
-        +left
-        margin: 4px 4px 0 6px
-    .filterList
-      +font(14)
-      width: 80px
+
 
 
 
