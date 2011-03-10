@@ -107,7 +107,7 @@ class Entry < ActiveRecord::Base
 
   def self.list(viewer, viewed, lens, filters)
     filters ||= {}
-    entry_scope = Entry.order('created_at DESC')
+    entry_scope = Entry.order('dreamed_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
 
     if (lens == :field) || viewer.nil?
@@ -130,7 +130,7 @@ class Entry < ActiveRecord::Base
         else
           viewer.following
         end
-      entries = entry_scope.where(:user_id => user_list.map(&:id))
+      #entries = entry_scope.where(:user_id => user_list.map(&:id))
       # each should be sorted according to date or starlight
     end
 

@@ -133,7 +133,7 @@
       .image
         %img.dream{src: '/images/icons/dream-32-select.png', width: '32', height: '32'}
       .detail
-        = user.entries.count
+        = @entries._?.count ? @entries.count : user.entries.count
       .clear
 
     .filterList.entries.target.slideArrow.hidden
@@ -158,7 +158,7 @@
       .image
         %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
       .detail
-        = user.friends.count
+        = user.followers.count
       .clear
 
     .filterList.friends.target.slideArrow.hidden
