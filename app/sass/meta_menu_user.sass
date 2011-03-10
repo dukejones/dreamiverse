@@ -47,7 +47,6 @@
     top: -20px
 
     .item
-      +relative
       +block
       +left
       +font(16)
@@ -62,7 +61,7 @@
       border: #ccc 1px solid
       display: inline-block
       text-decoration: none
-      padding: 2px 8px
+      padding: 2px 8px 2px 4px
       &:hover, &.user
         +button-light
         color: #4b93d9
@@ -74,42 +73,38 @@
 
     .item
       .img
-        +absolute
-        left: 4px
-        width: 26px
+        +left
+        margin-right: 4px
+        width: 24px
         height: 26px
 
     // HOME ICON STATES
     .item.home
-      padding-left: 32px
       .img
-        background: url(/images/icons/home-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/home-24-hover.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-hover.png) no-repeat center transparent
       &:active .img
-        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-select.png) no-repeat center transparent
     .item.home.selected
-      padding-left: 32px
       .img
-        background: url(/images/icons/home-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/home-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-off.png) no-repeat center transparent
 
     // STARLIGHT ICON STATES
     .item.dreamstars
-      padding-left: 32px
       .img
-        background: url(/images/icons/starlight-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-off.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/starlight-24-hover.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-hover.png) no-repeat center transparent
       &:active .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-select.png) no-repeat center transparent
     .item.dreamstars.selected
-      padding-left: 32px
       .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-select.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-select.png) no-repeat center transparent
 
 
 
