@@ -34,39 +34,6 @@
 #metaMenu
   min-width: 1000px
 
-#metaMenu.user
-  .notice, .alert
-    +absolute
-    +center
-    +round(8)
-    top: 30px
-    right: 74px
-    min-width: 128px
-    padding: 16px 4px 0
-
-#metaMenu.public
-  .notice, .alert
-    +absolute
-    +center
-    +round(8)
-    top: -16px
-    left: 450px
-    width: 260px
-    padding: 16px 24px 0
-
-.notice, .alert
-  +cursor
-  color: #000
-
-.notice
-  background: lightgreen
-
-.alert
-  background: lightcoral
-
-
-
-
 
 
 
@@ -127,16 +94,16 @@
   .logOut
     +round(30)
     margin: 10px 14px 0
-    width: 30px
-    height: 30px
-    background-position: 5px 3px
+    width: 29px
+    height: 29px
+    background-position: 4px 2px
     background-image: url('/images/icons/logout-24-off.png')
     background-repeat: no-repeat
     &:hover
-      background-image: url('/images/icons/logout-24.png')
+      background-image: url('/images/icons/logout-24-hover.png')
     &:active
-      background-position: 5px 3px
-      background-image: url('/images/icons/logout-24-off.png')
+      background-position: 4px 2px
+      background-image: url('/images/icons/logout-24-select.png')
       background-repeat: no-repeat
 
   .newEntry
