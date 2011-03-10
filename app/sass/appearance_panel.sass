@@ -145,7 +145,7 @@
 .light
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 302px
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 304px
     .bedsheets, .colorPicker
       +panel-light
       .options
@@ -156,16 +156,19 @@
           +bevel-light
           +cancel(12)
           border: 1px solid #bbb
-          &.selected
-            border: 1px solid #111
       .more
         +button-light
+
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.light.fixed .fixed, .light.scroll .scroll
+  border: 1px solid #111 !important
+
 
 
 .dark
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 302px
+      background: url(/images/icons/arrow-up-27.png) no-repeat 304px
     .bedsheets, .colorPicker
       +panel-dark
       .options
@@ -176,10 +179,12 @@
           +bevel-dark
           +cancel(12)
           border: 1px solid #222
-          &.selected
-            border: 1px solid #777
       .more
         +button-dark
+
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.dark.fixed .fixed, .dark.scroll .scroll
+  border: 1px solid #777 !important
 
 
 

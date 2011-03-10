@@ -10,7 +10,7 @@
     %img{src: '/images/icons/starlight-24-off.png'}
     %img{src: '/images/icons/starlight-24-hover.png'}
     %img{src: '/images/icons/starlight-24-select.png'}
-    /SETTINGS
+    / SETTINGS
     %img{src: '/images/icons/settings-24-hover.png'}
     %img{src: '/images/icons/settings-24-select.png'}
     / APPEARANCE
@@ -74,7 +74,7 @@
 
     .settingsPanel.wrapper
       .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-40"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "12", y: "-30"}
 
       / SETTINGS PANEL
       = render partial: "users/settings_panel"
@@ -83,7 +83,7 @@
     - if page_is_mine?
       .appearancePanel.wrapper
         .item.appearance.trigger
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-40"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "12", y: "-30"}
 
         / APPEARANCE PANEL
         = render partial: "users/appearance_panel"
