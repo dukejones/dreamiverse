@@ -90,7 +90,7 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag .close').live "click", (event)=>
+    @$container.find('.tag .close-16').live "click", (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
@@ -235,7 +235,7 @@ class Tag
   entryId: -> $('#showEntry').data('id')
   setId: (id)-> @id = id
   create: ->
-    deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
+    deferred = $.post "/tags", { entryIdntry_id: @entryId(), what_name: @name }, (data)->
       @id = data.what_id
     return deferred.promise()
      
