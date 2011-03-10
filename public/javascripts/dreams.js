@@ -41,7 +41,7 @@ function setupUploader(){
   if(document.getElementById('imageDropArea')){
     // Setup radio button events
     
-    $('.entryImageContainer input[type=radio]').change(function(){
+    $('.entryImageContainer input[type=radio]').live('change', function(){
       $('.entryImageContainer .radio').removeClass('selected')
       $(this).parent().addClass('selected')
     })
