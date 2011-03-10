@@ -130,7 +130,7 @@ class Entry < ActiveRecord::Base
         else
           viewer.following
         end
-      #entries = entry_scope.where(:user_id => user_list.map(&:id))
+      entries = entry_scope.where(:user_id => user_list.map(&:id))
       # each should be sorted according to date or starlight
     end
 
