@@ -39,8 +39,12 @@ class ContextController
       @contextView.showProfile()
       
       # Is this the best way to do this? Or should we use data coming back?
+
       $profileDetails = $('.profile .details')
-      $profileDetails.find('.website').text($('#user_link_attributes_url').val())
+      $website = $profileDetails.find('.website')
+      
+      $website.text($('#user_link_attributes_url').val()) # update link text
+      $website.attr('href',$('#user_link_attributes_url').val()) # update link url
       $profileDetails.find('.email').text($('#user_email').val())
       $profileDetails.find('.phone').text($('#user_phone').val())
       $profileDetails.find('.skype span').text($('#user_skype').val())
