@@ -9,8 +9,13 @@ class EntriesController < ApplicationController
   end
   
   def index
-    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
+    if params[:entry_type]
+      # TODO: Make this work without setting it
+      params[:filters] ||= {}
+      params[:filters][:type] = params[:entry_type]  
+    end
 
+    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
 
