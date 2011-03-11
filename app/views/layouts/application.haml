@@ -8,11 +8,11 @@
 
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-    = javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.pack', 'jquery.hoverIntent.minified', 'pubsub', 'rails', 'modal'
+    = javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.min', 'jquery.hoverIntent.minified', 'pubsub', 'rails', 'modal'
     = coffeescript_include_tag 'dreamplugs', 'metamenu'
     = yield :head
 
-  %body{id: 'body', class: "#{theme} #{bedsheet_style}", style: bedsheet_style}
+  %body{id: 'body', class: "#{theme}", style: bedsheet_style}
 
 
     #drop_shadow
