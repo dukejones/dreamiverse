@@ -92,16 +92,18 @@ class Follow
         log "changing: invalid state! #{@state()}"
   follow: ->
     node = @$userNode[0]
+    user = @$userNode.find('.userInfo h3').text()
     $.publish('follow/changing', [node])
-    $.post('/user/follow', {user_id: @id(), verb: 'follow'}, (data) =>
+    $.post('/' + user + '/follow.json', {user_id: @id(), verb: 'follow'}, (data) =>
       if @state() is 'none' then @setState('following') else @setState('friends')
 
       $.publish('follow/changed', [node])
     )
   unfollow: ->
     node = @$userNode[0]
+    user = @$userNode.find('.userInfo h3').text()
     $.publish('follow/changing', [node])
-    $.post('/user/follow', {user_id: @id(), verb: 'unfollow'}, (data) =>
+    $.post('/' + user + '/unfollow.json', {user_id: @id(), verb: 'unfollow'}, (data) =>
       if @state() is 'following' then @setState('none') else @setState('followed_by')
 
       $.publish('follow/changed', [node])

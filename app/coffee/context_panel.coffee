@@ -10,9 +10,17 @@ class ContextController
     @contextView = new ContextView(containerSelector)
     
     currentLocation = document.URL
-    locationArray = currentLocation.split('/')
-    currentFilter = locationArray[locationArray.length - 1]
+    locationArray = currentLocation.split('=')
+
+    # Check length of locationArray. If > 1 try looking for friends/follow filter
+    if locationArray.length > 1
+      currentFilter = locationArray[locationArray.length - 1]
+    else
+      locationArray = currentLocation.split('/')
+      currentFilter = locationArray[locationArray.length - 1]
+    
     @contextView.displayFilterState(currentFilter)
+    
     
     @$container.find('.change').click (event) =>
       @contextView.showEditProfile()
@@ -32,7 +40,7 @@ class ContextController
       
       # Is this the best way to do this? Or should we use data coming back?
       $profileDetails = $('.profile .details')
-      $profileDetails.find('.website').text($('#user_link').val())
+      $profileDetails.find('.website').text($('#user_link_attributes_url').val())
       $profileDetails.find('.email').text($('#user_email').val())
       $profileDetails.find('.phone').text($('#user_phone').val())
       $profileDetails.find('.skype span').text($('#user_skype').val())
@@ -59,19 +67,19 @@ class ContextView
   displayFilterState: (filter_state) ->
     # Change the icon (Want to reduce duplication here if poss - from scott)
     switch filter_state
-      when 'dreams'
+      when 'dream'
         iconFileSource = 'dream-32-select.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'visions'
+      when 'vision'
         iconFileSource = 'vision-32-select.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'experiences'
+      when 'experience'
         iconFileSource = 'experience-32-select.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'articles'
+      when 'article'
         iconFileSource = 'article-32-select.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
@@ -92,7 +100,7 @@ class ContextView
     
     # Change the current filter state to whatever is passed
     switch filter_state
-      when 'visions', 'experiences', 'articles'
+      when 'vision', 'experience', 'article', 'dream'
         $('.entryFilter.entries').find('.value').text(filter_state)
         $('.entryFilter.entries').find('.label').addClass('selected')
       when 'friends', 'following', 'followers'
