@@ -24,17 +24,17 @@ $(document).ready ->
     
     switch newSelection
       when "dream"
-        iconFileSource = 'dream-32-off.png'
+        iconFileSource = 'dream-16-off.png'
       when "vision"
-        iconFileSource = 'vision-32-off.png'
+        iconFileSource = 'vision-16-off.png'
       when "experience"
-        iconFileSource = 'experience-32-off.png'
+        iconFileSource = 'experience-16-off.png'
       when "article"
-        iconFileSource = 'article-32-off.png'
+        iconFileSource = 'article-16-off.png'
         
-    iconSource = '/images/icons/' + iconFileSource
+    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
     
-    $(this).prev().attr('src', iconSource)
+    $(this).prev().css('background', iconSource)
   )
   $('#entryType_list').change()
   
