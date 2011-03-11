@@ -236,16 +236,27 @@
     .addLocation .img, .addTheme .img, .date .img
       width: 42px
       height: 34px
-    .addLocation .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-select.png') center center no-repeat !important
-    .addTheme .img
-      background: url('/images/icons/appearance-24-off.png') center center no-repeat
-    .date .img
-      background: url('/images/icons/date-24-off.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addLocation
+      .img
+        background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addLocation.selected
+      .img
+        background: url('/images/icons/location-24-select.png') center center no-repeat !important
+    .addTheme
+      .img
+        background: url('/images/icons/appearance-24-off.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/appearance-24-select.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    .date 
+      .img
+        background: url('/images/icons/date-24-off.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/date-24-select.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/date-24-off.png') center center no-repeat
+
     #entry_submit
       +bold
       +font(12)
@@ -751,7 +762,7 @@
       padding: 0 12px
       .img
         +left
-        width: 24px
+        width: 16px
         height: 34px
         margin-right: 8px
 
@@ -773,11 +784,11 @@
 
     .attach.links
       .img
-        background: url(/images/icons/link-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/link-16-off.png) no-repeat left center transparent
       &:hover .img
-        background: url(/images/icons/link-24-hover.png) no-repeat left center transparent
+        background: url(/images/icons/link-16-hover.png) no-repeat left center transparent
       &:active .img
-        background: url(/images/icons/link-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/link-16-select.png) no-repeat left center transparent
 
 
 

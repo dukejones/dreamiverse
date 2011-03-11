@@ -103,11 +103,18 @@ class AppearancePanel extends MetaMenu
     
     $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
+    
+    if $('#entry_view_preference_attributes_bedsheet_attachment').attr('id')?
+      $('.attachment .fixed, .attachment .scroll').click( (event)->
+        $('#entry_view_preference_attributes_bedsheet_attachment').val($(event.currentTarget).attr('id'))
+        $('#body').removeClass('fixed scroll')
+        $('#body').addClass($(event.currentTarget).attr('id'))
+      )
           
     
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
-      #$('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
+      $('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
       
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_attributes_theme').attr('id')?
@@ -115,9 +122,8 @@ class AppearancePanel extends MetaMenu
         $('#entry_view_preference_attributes_theme').val(@newTheme)
 
         
-  displayBedsheets: -> 
+  displayBedsheets: => 
     # code to display bedsheets here. Need JSON call
-    # $.publish('follow/changing', [node])
     $.getJSON("/images.json?section=Bedsheets", (data) =>
       
       @$currentMenuPanel.find('.bedsheets ul').html('');
@@ -132,7 +138,7 @@ class AppearancePanel extends MetaMenu
         $('#body').css('background-image', bedsheetUrl)
       
         if $('#entry_view_preference_attributes_image_id').attr('name')?
-          @updateEntryBedsheetHiddenImageId($(event.currentTarget).data('id'))  
+          $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
           
         if $('#show_entry_mode').attr('name')?
           @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        

@@ -10,6 +10,7 @@ before 'uploads:symlink', 'uploads:create_shared'
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
+    # these run's don't seem to be working well for us, need fixing
     run "rm -rf #{current_path}/public/images/uploads"
     run "ln -fs #{shared_path}/images/uploads #{current_path}/public/images/"
   end
