@@ -7,7 +7,7 @@
 
     <table width="639" border="0" cellspacing="0" cellpadding="0">
     <tr>
-    <td><img src="http://dreamcatcher.net/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
+    <td><img src="http://theta.dreamcatcher.net/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
     </tr>
     <tr>
 
@@ -19,10 +19,10 @@
 
     <div style="margin:20px 0;">
     <p style="display:inline;">You have created a new username:</p>
-    <div id="username" style="display:inline; background-color:#d0d9e3; padding:4px;">
-    <strong> = @user.name</strong>
+    <div id="username" style="display:inline; background-color:#d0d9e3; padding:4px;"><strong> <%= @user.name %></strong></div>
     </div>
-    </div>
+
+    <p>Follow this link to verify your email: <a href="<%= @confirmation_url %>" target="_blank"> <%= @confirmation_url %> </a>
 
     <h1 style="font-size:18px; font-weight:bold;">Get Started on Dreamcatcher</h1>
 
@@ -39,7 +39,7 @@
     </tr>
 
     <tr>
-    <td><img src="http://dreamcatcher.net/images/logos/emailFooter.jpg" width="639" height="44" alt="footer image" style="border-top:8px solid #0b3f6f"/></td>
+    <td><img src="http://theta.dreamcatcher.net/images/logos/emailFooter.jpg" width="639" height="44" alt="footer image" style="border-top:8px solid #0b3f6f"/></td>
     </tr>
     </table>
 
@@ -47,4 +47,3 @@
 
 
 
-    
