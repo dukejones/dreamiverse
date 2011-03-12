@@ -1,7 +1,7 @@
 - content_for :head do
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'IB_manager'
-  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'autoresize.jquery.min', 'userfileuploader', 'dreams', 'geo'
+  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'autoresize.jquery.min', 'userfileuploader', 'dreams', 'geo', 'detect_timezone'
   = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'entries', 'newentry'
 
 - content_for :foot do
@@ -359,4 +359,3 @@
       /   %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
       /   emotions
       .clear
-
