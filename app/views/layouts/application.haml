@@ -14,11 +14,6 @@
 
   %body{id: 'body', class: "#{theme}", style: bedsheet_style}
 
-
-    #drop_shadow
-
-
-
     - unless flash.notice.blank? && flash.alert.blank?
       = render :partial => "layouts/alert"
 
