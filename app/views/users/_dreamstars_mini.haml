@@ -5,7 +5,7 @@
   .dreamstarsMini
     - User.dreamstars.limit(6).each_with_index do |user, index|
       - rank = index + 1
-      %div{class: "dreamstar-#{rank}"}
+      %a{class: "dreamstar-#{rank}", href: user_entries_path(user.username)}
         .badge
         .rank= rank
         .name= user.username
