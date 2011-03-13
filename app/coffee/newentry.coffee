@@ -16,45 +16,6 @@ getYoutubeEditData = (video_url, $linked_element) ->
 
 $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
-
-  # CLIENT TIMEZONE ADJUSTMENTS FOR NEW ENTRY  
-  if $('#new_entry_mode').attr('name')?
-
-    # detect users timezone + offset in minutes using detect_timezone.js
-    timezone = determine_timezone().timezone  
-    timezone_offset = timezone.utc_offset
-    timezone_text = timezone.olson_tz
-  
-    # parse the timezone results into usable variables
-    $plus_neg = timezone_offset.substr(0,1)
-    $timezone_offset_hour = timezone_offset.split(':')[0] # first convert -08:00 format to -08
-    $timezone_offset_hour = $timezone_offset_hour.substring(1, $timezone_offset_hour.length) # remove +/-
-    if $timezone_offset_hour < 10 
-      $timezone_offset_hour = $timezone_offset_hour.substring(1,$timezone_offset_hour.length) # remove 0 padding (08 - 8)
-  
-    # adjust date hour pulldown for new entries       
-    $utc_hour = $('select#dreamed_at_hour').val()
-    $utc_ampm = $('select#dreamed_at_ampm').val()
-    
-    # convert to military time 
-    $utc_hour = $utc_hour + 12 if $utc_ampm == 'pm'
-    $utc_hour = 0 if $utc_ampm == 'am' && $utc_hour == 12
-    $utc_hour = 12 if $utc_hour == 24 
-    
-    # synch utc hour with client's offset hour
-    $utc_hour = parseInt($utc_hour) - parseInt($timezone_offset_hour) if $plus_neg == '-' 
-    $utc_hour = parseInt($utc_hour) + parseInt($timezone_offset_hour) if $plus_neg == '+'
-    
-    # convert back to 12 hr time and update the pulldown values (hour/ampm)
-    if $utc_hour > 12
-      $utc_hour = $utc_hour - 12
-      $('select#dreamed_at_ampm').val('am') 
-    if $utc_hour < 1  
-      $utc_hour = $utc_hour + 12 
-      $('select#dreamed_at_ampm').val('pm')
-    
-    $('select#dreamed_at_hour').val($utc_hour) 
-
   
   # Setup icon type changing
   $('#entryType_list').unbind();
