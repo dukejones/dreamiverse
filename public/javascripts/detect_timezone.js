@@ -322,8 +322,10 @@ function show_timezone_info() {
 		response_text = tz_info.timezone.display(); 
 	}
 	
+	/*
 	document.getElementById('tz_info').innerHTML = response_text
 	
 	$('#tz_info').fadeIn(3000);
+	*/
 }
 onload = show_timezone_info;
