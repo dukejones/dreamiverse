@@ -19,10 +19,16 @@
 
     <div style="margin:20px 0;">
     <p style="color:#0b3f6f; display:inline;">You have created a new username:</p>
-    <div id="username" style="color:#0b3f6f; display:inline; background-color:#d0d9e3; padding:4px;"><strong> <%= @user.name %></strong></div>
+    <div id="username" style="color:#0b3f6f; display:inline; background-color:#d0d9e3; padding:4px;"><strong>
+    = @user.name
+    </strong></div>
     </div>
 
-    <p style="color:#0b3f6f;">Follow this link to verify your email: <a href="<%= @confirmation_url %>" target="_blank"> <%= @confirmation_url %> </a>
+    <p style="color:#0b3f6f;">Follow this link to verify your email: <a href="
+    = @confirmation_url
+    " target="_blank">
+    = @confirmation_url
+    </a>
 
     <h1 style="color:#0b3f6f; font-size:18px; font-weight:bold;">Get Started on Dreamcatcher</h1>
 
