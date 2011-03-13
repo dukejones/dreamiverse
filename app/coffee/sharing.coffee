@@ -39,15 +39,15 @@ class SharingController
     
     switch newSelection
       when "0"
-        iconFileSource = 'private-16-select.png'
+        iconFileSource = 'private-24-select.png'
       when "50"
-        iconFileSource = 'anon-16-select.png'
+        iconFileSource = 'anon-24-select.png'
       when "150"
-        iconFileSource = 'friend-follower-16.png'
+        iconFileSource = 'friend-follower-24.png'
       when "200"
-        iconFileSource = 'friend-16.png'
+        iconFileSource = 'friend-24.png'
       when "500"
-        iconFileSource = 'sharing-16-select.png'
+        iconFileSource = 'sharing-24-select.png'
     
     iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
     $('.listSelection').css('background', iconSource)
