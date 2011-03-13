@@ -35,6 +35,12 @@
   width: 100%
   z-index: 1111
 
+  .leftPanelWrap
+    +absolute
+    left: 248px
+
+    .randomDream
+      width: 40px
 
   .leftPanel .item:hover
     color: #4b93d9
@@ -43,8 +49,6 @@
     +round(16)
     +flat-top
     background-color: #fff
-    padding: 28px 6px 8px
-    top: -20px
 
     .item
       +block
@@ -127,8 +131,8 @@
 
 
   .leftPanel
-    +absolute
-    left: 248px
+    +left
+    padding: 8px 6px 8px
 
     .input
       +block
@@ -144,6 +148,8 @@
   .rightPanel
     +relative
     +right
+    padding: 28px 6px 8px
+    top: -20px
 
     .user
       +flat-left
@@ -264,12 +270,6 @@
 
 
 
-
-// FLOATING BUTTONS
-
-#metaMenu.user .randomDream
-  left: 568px
-  width: 40px
 
 
 
