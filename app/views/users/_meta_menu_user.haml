@@ -21,25 +21,23 @@
 
 
   / INTRO MENU
-  .leftPanel
+  .leftPanelWrap
+    .leftPanel
 
-    %a.item.home{href: user_entries_path(current_user.username)}
-      .img
-      home
+      %a.item.home{href: user_entries_path(current_user.username)}
+        .img
+        home
 
-    %a.item.stream{href: stream_path}
-      .img
-      stream
+      %a.item.stream{href: stream_path}
+        .img
+        stream
 
-    %a.item.dreamstars{href: '/dreamstars'}
-      .img
-      dreamstars
+      %a.item.dreamstars{href: '/dreamstars'}
+        .img
+        dreamstars
 
-
-
-
-  %a.randomDream{href: '/random'}
-    = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-34"}
+    %a.randomDream{href: '/random'}
+      = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-34"}
 
 
 
