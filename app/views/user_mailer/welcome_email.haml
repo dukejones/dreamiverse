@@ -17,14 +17,12 @@
 
     <p style="color:#0b3f6f; margin:0;">Get ready to discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.</p>
 
-    <div style="margin:20px 0;">
-    <p style="color:#0b3f6f; display:inline;">You have created a new username:</p>
-    <div id="username" style="color:#0b3f6f; display:inline; background-color:#d0d9e3; padding:4px;"><strong>
-    = @user.name
-    </strong></div>
-    </div>
+    <p style="color:#0b3f6f; display:inline; margin:20px 0;">You have created a new username: <strong>
+    = @user.username
+    </strong></p>
 
-    <p style="color:#0b3f6f;">Follow this link to verify your email: <a href="
+    <p style="color:#0b3f6f;">Follow this link to verify your email:<br>
+    <a href="
     = @confirmation_url
     " target="_blank">
     = @confirmation_url
