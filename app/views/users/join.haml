@@ -24,17 +24,17 @@
       .joinForm.wrapper
         = form_for(@user, url: user_registration_path) do |f|
           %span.label email
-          = f.text_field :email, class: 'inputField'
+          = f.text_field :email, class: 'inputField', tabindex: '1'
           .clear
           %span.label password
-          = f.password_field :password, class: 'inputField'
+          = f.password_field :password, class: 'inputField', tabindex: '2'
           .clear
           %span.label confirm password
-          = f.password_field :password_confirmation, class: 'inputField'
+          = f.password_field :password_confirmation, class: 'inputField', tabindex: '3'
           .clear
           %span.username username
           %span.label.url http://dreamcatcher.net/
-          = f.text_field :username, class: 'inputField'
+          = f.text_field :username, class: 'inputField', tabindex: '4'
           .clear
 
           .label.seed.trigger.showhideremove have a seed code?
@@ -47,12 +47,12 @@
           .relative
             .recaptchaWrap
 
-              = raw recaptcha_tags(:display => {:theme => 'clean'})
+              = raw recaptcha_tags(:display => {:theme => 'clean', :tabindex => '5'})
 
             %span.label.recaptcha enter text as shown
 
             .submit
               .text
                 Join Now &rsaquo;
-                %input.button{tabindex: '3', type: 'submit', name: 'loginButton', value: 'Join Now &rsaquo;'}
+                %input.button{tabindex: '6', type: 'submit', name: 'loginButton', value: 'Join Now &rsaquo;'}
 
