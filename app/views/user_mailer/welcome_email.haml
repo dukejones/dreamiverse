@@ -7,7 +7,7 @@
 
     <table width="639" border="0" cellspacing="0" cellpadding="0">
     <tr>
-    <td height="100"><img src="http://localhost:3000/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
+    <td height="100" valign="bottom"><img src="http://localhost:3000/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
     </tr>
     <tr>
 
@@ -22,12 +22,13 @@
     = @user.username
     </strong></p>
 
-    <p style="color:#0b3f6f;">If you did not sign up for a Dreamcatcher account, please follow this link to remove this email from the system:<br>
+    <p style="color:#0b3f6f;">If you did not sign up for Dreamcatcher, follow this link to remove your email from the system:</p>
     <a href="
     = @confirmation_url
     " target="_blank">
     = @confirmation_url
     </a>
+    <br>
     <br>
 
     <h1 style="color:#0b3f6f; font-size:18px; font-weight:bold;">Get Started on Dreamcatcher</h1>
