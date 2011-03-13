@@ -63,13 +63,13 @@ $(document).ready ->
     
     switch newSelection
       when "dream"
-        iconFileSource = 'dream-24-off.png'
+        iconFileSource = 'dream-24-active.png'
       when "vision"
-        iconFileSource = 'vision-24-off.png'
+        iconFileSource = 'vision-24-active.png'
       when "experience"
-        iconFileSource = 'experience-24-off.png'
+        iconFileSource = 'experience-24-active.png'
       when "article"
-        iconFileSource = 'article-24-off.png'
+        iconFileSource = 'article-24-active.png'
         
     iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
     

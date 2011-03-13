@@ -72,19 +72,19 @@ class ContextView
     # Change the icon (Want to reduce duplication here if poss - from scott)
     switch filter_state
       when 'dream'
-        iconFileSource = 'dream-32-select.png'
+        iconFileSource = 'dream-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'vision'
-        iconFileSource = 'vision-32-select.png'
+        iconFileSource = 'vision-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'experience'
-        iconFileSource = 'experience-32-select.png'
+        iconFileSource = 'experience-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'article'
-        iconFileSource = 'article-32-select.png'
+        iconFileSource = 'article-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'friends'

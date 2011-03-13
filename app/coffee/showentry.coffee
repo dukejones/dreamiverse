@@ -152,7 +152,7 @@ $(document).ready ->
       
       # Check for favico error
       $(".attachedLink").bind "error", ->
-        $(this).attr('src', '/images/icons/link-16.gif')
+        $(this).attr('src', '/images/icons/link-16.png')
 
 
 # TODO
