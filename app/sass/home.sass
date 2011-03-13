@@ -11,9 +11,6 @@ body.home
   padding: 0
   height: 100%
 
-#drop_shadow
-  min-width: 1000px
-
 #home
   +relative
   margin: auto
@@ -47,15 +44,30 @@ body.home
     +round(8)
     +button-blue
     +user-select
+    +glow-blue(20)
     top: 36px
     left: 380px
     padding: 0 12px
     height: 32px
     line-height: 32px
-    color: #9ae4fd !important
+    color: #9ae4fd
+    .img
+      +left
+      width: 24px
+      height: 32px
+      margin: 0 8px 0 0
+      background: url(/images/icons/shuffle-24-hover.png) no-repeat center
     &:hover
-      color: #fff !important
-
+      +glow-dark(20)
+      color: #fff
+      .img
+        background: url(/images/icons/shuffle-24-select.png) no-repeat center
+    &:active
+      color: #ddd
+      border: 1px solid #ddd
+      +glow-light(0)
+      .img
+        background: url(/images/icons/shuffle-24-hover.png) no-repeat center
 
 
   // LEFT COLUMN
