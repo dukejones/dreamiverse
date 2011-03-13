@@ -119,11 +119,14 @@ $(document).ready ->
   # ONLY update tag sorting if editing an entry
   if $('#entryField > form').hasClass('edit_entry')
     tagOrder = []
+    tagsExist = false
 	  $('#tag-list > .tag').each (i, el) ->
 	    tagOrder.push($(this).data('id'))
+	    tagsExist = true
     
-	  entry = $('#showEntry').data('id')
-	  order = tagOrder.join()
+    if tagsExist
+	    entry = $('#showEntry').data('id')
+	    order = tagOrder.join()
 
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"

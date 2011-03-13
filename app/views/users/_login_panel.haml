@@ -14,9 +14,9 @@
 
       %p.error.hidden incorrect username
       %span username
-      %label.stay
-        Stay logged in
-        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+      / %label.stay
+      /   Stay logged in
+      /   %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
       = f.text_field(:username, {class: 'login-input', tabindex: '1'})
 
       %p.error.hidden username and password do not match

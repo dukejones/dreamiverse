@@ -239,7 +239,7 @@ class Tag
   entryId: -> $('#showEntry').data('id')
   setId: (id)-> @id = id
   create: ->
-    deferred = $.post "/tags", { entryIdntry_id: @entryId(), what_name: @name }, (data)->
+    deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
       @id = data.what_id
     return deferred.promise()
      
