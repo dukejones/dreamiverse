@@ -7,26 +7,19 @@
 
     <table width="639" border="0" cellspacing="0" cellpadding="0">
     <tr>
-    <td height="100"><img src="http://localhost:3000/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
+    <td height="100" valign="bottom"><img src="http://localhost:3000/images/logos/emailHeader.jpg" width="639" height="92" alt="header logo" style="border-bottom:8px solid #0b3f6f" /></td>
     </tr>
     <tr>
 
     <td bgcolor="#e6ebf0" style="color:#0b3f6f; padding:18px; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px;">
 
-    <h1 style="color:#0b3f6f; font-size:18px; font-weight:bold; margin:0;">Welcome to Dreamcatcher!</h1>
+    <h1 style="color:#0b3f6f; font-size:24px; font-weight:bold; margin:0;">Welcome to Dreamcatcher!</h1>
 
     <p style="color:#0b3f6f; margin:0;">Get ready to discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.</p>
     <br>
     <p style="color:#0b3f6f; display:inline;">You have created a new username: <strong>
     = @user.username
     </strong></p>
-
-    <p style="color:#0b3f6f;">If you did not sign up for a Dreamcatcher account, please follow this link to remove this email from the system:<br>
-    <a href="
-    = @confirmation_url
-    " target="_blank">
-    = @confirmation_url
-    </a>
     <br>
 
     <h1 style="color:#0b3f6f; font-size:18px; font-weight:bold;">Get Started on Dreamcatcher</h1>
@@ -40,6 +33,7 @@
 
     <p style="color:#0b3f6f;">Thanks for dreaming with us!<br /> The Dream Team<br />
     <a href="http://dreamcatcher.net" target="_blank" style="color:#0b3f6f;"><em>http://dreamcatcher.net</em></a></p>
+
     </td>
     </tr>
 
@@ -48,7 +42,13 @@
     </tr>
     </table>
 
-
+    <br>
+    <p style="color:#0b3f6f; font-size: 11px; text-align: center;">If you did not sign up for Dreamcatcher, follow this link to remove your email from the system:<br>
+    <a style="font-size: 11px; text-align: center;" href="
+    = @confirmation_url
+    " target="_blank">
+    = @confirmation_url
+    </a></p>
 
 
 
