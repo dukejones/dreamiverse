@@ -43,7 +43,7 @@ $(document).ready ->
       when 'friends of friends'
         $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
       when 'everyone'
-        $(this).prev().css('background', 'url(/images/icons/sharing-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/sharing-16.png) no-repeat center')
   )
   
   $('.gallery .youtube').each (i, el) =>
