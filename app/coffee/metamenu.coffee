@@ -181,30 +181,6 @@ class SettingsPanel extends MetaMenu
     @$authorizeAllFollows = @$currentMenuPanel.find('.authFollow').is(':checked')
     @$facebookSharing =  @$currentMenuPanel.find('.fbShare').is(':checked')
     
-    # setup saved locations
-    $('.modifyLocationView .cancel').click( (event) ->
-      $(event.currentTarget).parent().prev().show()
-      $(event.currentTarget).parent().hide()
-    )
-    
-    $('form#addLocationForm').bind 'ajax:beforeSend', (xhr, settings)=>
-      $('#addLocationForm').hide()
-      $('.locationView').show()
-      #log xhr.target.new_location[name]
-    
-    $('form#addLocationForm').bind 'ajax:success', (data, xhr, status)->
-      $('#locationList').append(xhr)
-      $('p.notice').text('Profile has been updated')
-    
-    $('form#addLocationForm').bind 'ajax:error', (xhr, status, error)->
-      $('p.alert').text(error)
-    
-    $('.locationForm input:radio').change( (event) ->
-      $('.location input:radio').each( (index, value) ->
-        $(value).parent().removeClass('selected')
-      )
-      $(event.currentTarget).parent().addClass('selected')
-    )
     
     # setup default sharing dropdown change
     $('#sharingList').change( (event) =>
@@ -244,6 +220,7 @@ class SettingsPanel extends MetaMenu
       else
         $('#change_password .error').text('')
         $('#user_old_password, #user_password, #user_password_confirmation').val('')
+        
     
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
       #$('p.alert').text(xhr.error)
