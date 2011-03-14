@@ -54,7 +54,12 @@ class AvatarController
           dataType: 'json'
           data:
             "user[image_id]": response.image.id
-          #success: (data, status, xhr) => log "updated avatar"
+          complete: (data, status, xhr) =>
+            log "updated avatar"
+            
+            # Refresh if IE
+            if window.BrowserDetect.browser is "MSIE"
+              location.reload(true)
         }
         
         @uploaderDisplayed = false
