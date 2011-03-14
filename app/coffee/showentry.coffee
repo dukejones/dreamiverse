@@ -24,6 +24,10 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
+  $('#comment_submit').hide()
+  $('#comment_body').focus ->
+    $('#comment_submit').fadeIn(250)
+  
   $('#comment_body').keyup ->
     fitToContent(this, 0)
   
