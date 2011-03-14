@@ -1,8 +1,8 @@
 - content_for :head do
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'IB_manager'
-  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'autoresize.jquery.min', 'userfileuploader', 'dreams', 'geo', 'detect_timezone'
-  = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'entries', 'newentry'
+  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'userfileuploader', 'dreams', 'geo', 'detect_timezone'
+  = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'fit_to_content', 'newentry'
 
 - content_for :foot do
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'

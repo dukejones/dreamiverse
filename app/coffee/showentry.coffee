@@ -121,14 +121,6 @@ $(document).ready ->
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 
   $('#comment_body').css('overflow','hidden')
-  
-  
-	# Setup comment expander
-	# $('textarea#comment_body').autoResize
-	#  animationDuration: 500
-	#  animate: true
-	#  extraSpace: 40
-
 	  
   # setup remove comment handler
   $('.deleteComment').live 'click', (event)->
