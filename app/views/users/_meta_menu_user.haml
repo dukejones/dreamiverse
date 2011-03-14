@@ -28,18 +28,18 @@
 
       %a.item.home{href: user_entries_path(current_user.username)}
         .img
-        home
+        = render partial: "shared/hover_label", locals: {message: "home", x: "12", y: "-30"}
 
       %a.item.stream{href: stream_path}
         .img
-        stream
+        = render partial: "shared/hover_label", locals: {message: "stream", x: "12", y: "-30"}
 
       %a.item.dreamstars{href: '/dreamstars'}
         .img
-        dreamstars
+        = render partial: "shared/hover_label", locals: {message: "dreamstars", x: "12", y: "-30"}
 
     %a.randomDream{href: '/random'}
-      = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-34"}
+      = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-30"}
 
 
 
