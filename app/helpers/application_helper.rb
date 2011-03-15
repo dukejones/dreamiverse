@@ -46,7 +46,7 @@ module ApplicationHelper
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
 
-  # Note: this depends on a "global" variable @entry being set to use @entry's preferences.
+  # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
     bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
@@ -54,7 +54,7 @@ module ApplicationHelper
 
     # TODO: these should be an imagebank url.
     # if dreamstars, use dreamstars bedsheet
-    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == '/dreamstars'
+    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == dreamstars_path
     # if user has ubiquity mode, use user's bedsheet no matter what
     # Not yet implemented.
     # if entry has a view preference, use entry's bedsheet
