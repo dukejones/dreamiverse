@@ -22,6 +22,12 @@ window.setupMetaDropdowns = ->
     $.publish('toggleSettings', [this])
   )
   
+  # ipad doubleclick remover for left panel
+  $('.leftPanel a').bind( clickEvent, (event)->
+    $(event.currentTarget).preventDefault()
+    window.location = $(event.currentTarget).attr('href')
+  )
+  
   appearancePanel = new AppearancePanel('.appearancePanel')
   appearancePanel.displayBedsheets()
     
