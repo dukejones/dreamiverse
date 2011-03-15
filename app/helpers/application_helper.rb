@@ -46,22 +46,20 @@ module ApplicationHelper
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
 
-  # Note: this depends on a "global" variable @entry being set to use @entry's preferences.
+  # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
     bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= @user._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= 'scroll'
 
-    # TODO: these should be an imagebank url.
     # if dreamstars, use dreamstars bedsheet
-    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == '/dreamstars'
+    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == dreamstars_path
     # if user has ubiquity mode, use user's bedsheet no matter what
     # Not yet implemented.
-    # if entry has a view preference, use entry's bedsheet
-    bedsheet_url ||= @entry._?.view_preference._?.image._?.url(:bedsheet)
-    # if user has a view preference, use user's bedsheet
-    bedsheet_url ||= current_user._?.view_preference._?.image._?.url(:bedsheet)
-    # global default bedsheet
+    bedsheet_url ||= @entry._?.view_preference._?.image._?.url(:bedsheet, :format => 'jpg')
+    bedsheet_url ||= @user._?.view_preference._?.image._?.url(:bedsheet, :format => 'jpg')
+    bedsheet_url ||= current_user._?.view_preference._?.image._?.url(:bedsheet, :format => 'jpg')
     bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
 
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
@@ -69,6 +67,7 @@ module ApplicationHelper
   
   def theme
     theme ||= @entry._?.view_preference._?.theme
+    theme ||= @user._?.view_preference._?.theme
     theme ||= current_user._?.view_preference._?.theme
     theme ||= "light"
     theme

@@ -44,6 +44,7 @@ protected
   def set_seed_code
     return if request.xhr?
     session[:seed_code] = params[:seed] if params[:seed]
+    session[:seed_code] = params[:s] if params[:s]
     session[:seed_code] ||= params[:username] if params[:username]
   end
 end

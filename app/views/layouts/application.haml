@@ -12,7 +12,7 @@
     = coffeescript_include_tag 'dreamplugs', 'metamenu'
     = yield :head
 
-  %body{id: 'body', class: "#{theme}", style: bedsheet_style}
+  %body{id: 'body', class: theme, style: bedsheet_style}
 
     - unless flash.notice.blank? && flash.alert.blank?
       = render :partial => "layouts/alert"
