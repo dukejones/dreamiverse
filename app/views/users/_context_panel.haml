@@ -47,10 +47,6 @@
 
 
 
-
-
-
-
     / FOLLOW
     - if current_user
       = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
@@ -65,10 +61,13 @@
   .profile
 
     .view
-      .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
+      .name.hidden{onclick: "window.contextController.toggleProfile()"}
+        = user.name
+        - if user.name
+          %hr
+
       / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        %hr
         - if user.link
           %a.website{href: user.link.url, target: "_blank"}= user.link.url
         - if user.friends_with?(current_user)

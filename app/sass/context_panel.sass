@@ -176,12 +176,13 @@
       +round(8)
       padding: 4px 0
 
+      hr
+        +alpha(30)
+
       .name
         +font(21)
         +center
         +pointer
-        margin: 0 4px 4px
-        padding: 2px 8px
 
       .location
         +font(12)
@@ -192,8 +193,6 @@
       .details
         +overflow
         margin: 0 4px
-        hr
-          +alpha(30)
 
         .website, .email, .phone, .skype
           +block
@@ -553,6 +552,7 @@
 
     .context, .label
       +shine-dark-alpha(16)
+    .label
       border: 1px solid #090909
     .label.selected
       +shine-light-alpha(16)
@@ -565,6 +565,7 @@
 
     .relation
       +button-dark
+      border: 1px solid #333 !important
 
     // PROFILE
     .profile
