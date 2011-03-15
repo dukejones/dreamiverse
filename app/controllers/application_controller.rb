@@ -1,6 +1,4 @@
 class ApplicationController < ActionController::Base
-  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo", "ipad"]
-
   before_filter :set_seed_code, :set_client_timezone
   helper_method :current_user, :add_starlight, :page_is_mine?, :is_mobile?
   protect_from_forgery
@@ -26,6 +24,7 @@ class ApplicationController < ActionController::Base
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
 
+  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo", "ipad"]
   def is_mobile?
     agent = request.user_agent.downcase
     MOBILE_BROWSERS.each do |m|
