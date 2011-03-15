@@ -16,6 +16,7 @@ class EntriesController < ApplicationController
   end
   
   def index
+    Rails.logger.warn client_browser
     if params[:entry_type]
       # TODO: Make this work without setting it
       params[:filters] ||= {}
