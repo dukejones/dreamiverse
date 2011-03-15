@@ -67,6 +67,7 @@ $(document).ready ->
   $('#entry_body').keyup ->
     window.fitToContent(this, 0)
 
+  ### disabled until update entry ordering is working again
   # Setup tag re-ordering
   $("#sorting").val(1)
   $("#tag-list").sortable -> distance: 30
@@ -88,7 +89,8 @@ $(document).ready ->
     if tagsExist
 	    entry = $('#showEntry').data('id')
 	    order = tagOrder.join()
-
+  ###
+  
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.typeSelection, .listSelection').hide()
