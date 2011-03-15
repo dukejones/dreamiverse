@@ -6,8 +6,9 @@ class Legacy::User < Legacy::Base
   end
   
   def find_corresponding_user
-    ::User.find_by_username_and_email self.username, self.email
+    ::User.find_by_username_and_email(self.username, self.email) || log("user not created for #{self.username}")
   end
+  
   def find_or_create_corresponding_user
     new_user = find_corresponding_user
     if new_user.nil?
@@ -56,7 +57,7 @@ class Legacy::User < Legacy::Base
     return nil if avatar_image.nil?
     # new_image = avatar_image.find_or_create_corresponding_image
     new_image = avatar_image.find_corresponding_image
-    # raise "Cannot find image: #{avatar_image.fileLocation}" unless new_image
+    log "Cannot find avatar image: #{avatar_image.fileLocation} for user: #{self.username}" unless new_image
     new_image._?.id
   end
   
@@ -82,6 +83,7 @@ class Legacy::User < Legacy::Base
   def created_at
     signUpDate
   end
+
   def updated_at
     lastLoggedIn
   end

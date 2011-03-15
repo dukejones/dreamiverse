@@ -24,7 +24,7 @@ window.setupMetaDropdowns = ->
   
   # ipad doubleclick remover for left panel
   $('.leftPanel a').bind( clickEvent, (event)->
-    $(event.currentTarget).preventDefault()
+    event.preventDefault()
     window.location = $(event.currentTarget).attr('href')
   )
   
