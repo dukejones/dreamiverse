@@ -119,18 +119,18 @@ body.home
         line-height: 20px
         margin: 0 0 18px
         color: #fff
-      p.one
-        line-height: 22px
-      p.two
-        +font(20)
-        margin-left: 40px
-      p.three
-        margin-left: 80px
-        font-style: italic
-        color: #d1f2ff
-      p.four
-        +font(18)
-        margin-left: 120px
+      // p.one
+      //   line-height: 22px
+      // p.two
+      //   +font(20)
+      //   margin-left: 40px
+      // p.three
+      //   margin-left: 80px
+      //   font-style: italic
+      //   color: #d1f2ff
+      // p.four
+      //   +font(18)
+      //   margin-left: 120px
 
       .cap
         +font(44)
@@ -151,6 +151,12 @@ body.home
           margin: 4px 8px 0 0
         span
           +left
+        &:hover
+          +shine-blue(20)
+        &:active
+          +gradient(#0c2b50, #5d80ad)
+          +shine-blue(0)
+          +border-blue
 
   // PUBLIC STREAM
   #publicStreamGlow
