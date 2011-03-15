@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :set_seed_code
+  before_filter :set_seed_code, :set_client_timezone
   helper_method :current_user, :add_starlight, :page_is_mine?
   protect_from_forgery
 
@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
 
-
+  def set_client_timezone
+    min = cookies[:timezone].to_i
+    Time.zone = ActiveSupport::TimeZone[-min.minutes]  
+  end
+  
 protected
   def set_current_user(user)
     session[:user_id] = user ? user.id : nil
