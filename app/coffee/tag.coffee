@@ -23,7 +23,7 @@ class window.TagsController
       if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 2
         
         # Check for max tags
-        if @tagViews.tagViews.length < 17
+        if @tagViews.tagViews.length < 16
           @createTag(tagName)
     
     
@@ -94,7 +94,13 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag .close-16').live "click", (event)=>
+    # New way
+    ua = navigator.userAgent
+    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+    
+      # OLD WAY
+    #@$container.find('.tag .close-16').live "click", (event)=>
+    @$container.find('.tag .close-16').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
@@ -255,6 +261,3 @@ class Tag
       success: (data, status, xhr) =>
         $.publish 'tags:removed', [@id]
     }
-    
-
-    
