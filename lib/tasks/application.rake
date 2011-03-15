@@ -24,6 +24,7 @@ namespace :app do
       begin_time = Time.now
       log("---Generating all tag clouds---")
       Entry.all.map do |e| 
+        next if e.whats.count >= 15
         pre_tags = e.tags.count
         Tag.auto_generate_tags(e) 
         e.reorder_tags 
