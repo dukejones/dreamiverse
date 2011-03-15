@@ -11,6 +11,10 @@
   // see entries.sass
   .headers
 
+  // FIX FOR SAFARI and CHROME SELECT BUBBLES
+  select
+    -webkit-appearance: none
+
   // SHARED PANEL STYLES
   .entryPanels
     +hidden
@@ -23,6 +27,8 @@
     +round(16)
     width: 662px 
     padding: 8px
+
+
 
     // MOOD ICON
     .wrapper
