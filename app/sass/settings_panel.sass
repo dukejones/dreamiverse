@@ -14,16 +14,9 @@
     +clear
     +round(8)
     margin: 0 0 8px
+
   .changePassword
     +round(8)
-
-    .img
-      +left
-      width: 40px
-      height: 36px
-      margin-right: 8px
-      background: url(/images/icons/admin-24-hover.png) no-repeat center transparent
-
 
   hr
     +alpha(30)
@@ -31,17 +24,18 @@
   p.error
     color: red
 
-  img
+  .img
     +left
+    width: 26px
+    height: 36px
+    margin-right: 8px
 
     &.sharing-icon
-      margin: 8px 16px 0 4px
-
+      background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
     &.facebook-icon
-      margin: 8px 16px 0 4px
-
+      background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
     &.password-icon
-      margin: 4px 16px 0 4px
+      background: url(/images/icons/admin-24-hover.png) no-repeat center transparent
 
 
   h2
@@ -58,9 +52,6 @@
 
     &.facebook-label
       margin-top: 3px
-
-    &.sharing-label
-      margin-top: 5px
 
     &.password-label
       +pointer
@@ -125,29 +116,14 @@
   .sharing
     padding: 8px
 
-    .defaultSharing, .network, .changePassword
+    .defaultSharing, .network
       margin: 0 0 4px
-
-      .img
-        +left
-        width: 40px
-        height: 36px
-        margin-right: 8px
-
-    .defaultSharing
-      .img
-        background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
-
-    .network
-      .img
-        background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
 
       select
         +round(8)
 
       p
         +left
-
 
     .sharingList
       +right
@@ -157,7 +133,6 @@
       +font(14)
       height: 36px
       width: 138px
-      margin-top: 4px
       padding: 6px 8px
       option
         padding: 6px 0 6px 24px
@@ -203,7 +178,7 @@
 
     .trigger
       width: 318px
-      padding-top: 4px
+      padding: 4px 0 0 4px
       margin: -4px -4px 0
       +pointer
     span
@@ -271,7 +246,7 @@
 
   #settingsPanel
     .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 266px
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 306px
 
   #settingsPanel, #appearancePanel
     +panel-light
@@ -333,7 +308,7 @@
 
   #settingsPanel
     .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 266px
+      background: url(/images/icons/arrow-up-27.png) no-repeat 306px
 
 
   #settingsPanel, #appearancePanel

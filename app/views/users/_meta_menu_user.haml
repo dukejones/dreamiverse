@@ -57,14 +57,6 @@
         = current_user.username
 
 
-    .settingsPanel.wrapper
-      .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
-
-      / SETTINGS PANEL
-      = render partial: "users/settings_panel"
-
-
     - if page_is_mine?
       .appearancePanel.wrapper
         .item.appearance.trigger
@@ -72,6 +64,14 @@
 
         / APPEARANCE PANEL
         = render partial: "users/appearance_panel"
+
+
+    .settingsPanel.wrapper
+      .item.settings.trigger
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
+
+      / SETTINGS PANEL
+      = render partial: "users/settings_panel"
 
 
 
