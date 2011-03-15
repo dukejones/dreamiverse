@@ -58,7 +58,7 @@
         /= render :partial => "mood_icon"
 
       .entryType
-        .typeSelection{style: "background: url('/images/icons/dream-24-off.png') no-repeat center"}
+        .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
         %select#entryType_list{name: 'entry[type]'}
           %option.dream{:value => 'dream', :selected => @entry.type == 'dream'} dream
           %option.vision{:value => 'vision', :selected => @entry.type == 'vision'} vision

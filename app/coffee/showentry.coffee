@@ -35,9 +35,9 @@ $(document).ready ->
   $('.shareLevel').find('span').each( (i, el)->
     switch $(this).text()
       when 'private'
-        $(this).prev().css('background', 'url(/images/icons/private-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/private-16.png) no-repeat center')
       when 'anonymous'
-        $(this).prev().css('background', 'url(/images/icons/anon-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/anon-16.png) no-repeat center')
       when 'users'
         $(this).prev().css('background', 'url(/images/icons/listofUsers-16.png) no-repeat center')
       when 'followers'
