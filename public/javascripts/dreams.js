@@ -10,10 +10,10 @@ function setupSharingImages(){
   $('.detailsBottom .sharing span').each(function(){
     switch($(this).text()){
       case 'private':
-          $(this).prev().attr('src', '/images/icons/private-16-off.png')
+          $(this).prev().attr('src', '/images/icons/private-16.png')
         break;
       case 'anonymous':
-          $(this).prev().attr('src', '/images/icons/anon-16-off.png')
+          $(this).prev().attr('src', '/images/icons/anon-16.png')
         break;
       case 'users':
           $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
@@ -28,7 +28,7 @@ function setupSharingImages(){
           $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'everyone':
-          $(this).prev().attr('src', '/images/icons/sharing-16-off.png')
+          $(this).prev().attr('src', '/images/icons/sharing-16.png')
         break;
     }
   })

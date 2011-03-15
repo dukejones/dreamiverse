@@ -59,12 +59,11 @@
       background: #fff
       margin: 0 2px
       height: 26px
-      line-height: 24px
       color: #333
       border: #ccc 1px solid
       display: inline-block
       text-decoration: none
-      padding: 2px 8px 2px 4px
+      padding: 2px 4px 2px 4px
       &:active
         +gradient(#ddd, #fff)
         color: #333 !important
@@ -80,7 +79,6 @@
     .item
       .img
         +left
-        margin-right: 4px
         width: 24px
         height: 26px
 
@@ -101,7 +99,6 @@
     // STREAM ICON STATES
     .item.stream
       .img
-        margin: 0 6px 0 2px
         background: url(/images/icons/stream-24.png) no-repeat center transparent
       &:hover .img
         background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
@@ -150,6 +147,7 @@
     +right
     padding: 28px 6px 8px
     top: -20px
+    z-index: 1200
 
     .user
       +flat-left

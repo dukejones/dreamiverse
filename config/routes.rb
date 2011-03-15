@@ -17,12 +17,13 @@ Dreamcatcher::Application.routes.draw do
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
 
   # Universal 
-  match '/dreamstars' => 'users#index', :as => :dreamstars
-  match '/stream' => 'entries#stream', :as => :stream
+  match 'thank_you' => 'home#thank_you', :as => :thank_you
   get  '/feedback' => 'home#feedback', :as => :feedback
   post '/feedback' => 'home#submit_feedback'
-  match '/random' => 'entries#random', :as => :random
   match '/terms' => 'home#terms', :as => :terms
+  match '/dreamstars' => 'users#index', :as => :dreamstars
+  match '/stream' => 'entries#stream', :as => :stream
+  match '/random' => 'entries#random', :as => :random
 
   # Resources
 

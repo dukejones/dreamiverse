@@ -17,14 +17,6 @@ namespace :app do
     end
   end
   
-  task :sanitize_emails => :environment do
-    raise "Don't do this!!!" if Rails.env == 'production'
-    
-    User.all.each do |u|
-      u.email = u.email.gsub('@','-') + '@dreamcatcher.net' unless u.email =~ /@dreamcatcher.net$/
-      u.save!
-    end
-  end
  
   namespace :tagcloud do
     desc "Generate all tags"

@@ -5,7 +5,14 @@ class EntriesController < ApplicationController
   def entry_list
     # This is an example of a hack due to tightly coupling Display to Data.
     session[:filters].delete(:type) if session[:filters]._?[:type] == "all entries"
-    @entries = Entry.list(current_user, @user, session[:lens], session[:filters])
+    @entries = case session[:lens]
+      when :field
+        Entry.dreamfield(current_user, @user, session[:filters])
+      when :stream
+        Entry.dreamstream(current_user, session[:filters])
+      else
+        raise "invalid lens: #{session[:lens]}"
+    end
   end
   
   def index

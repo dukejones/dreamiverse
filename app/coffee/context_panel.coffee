@@ -111,7 +111,7 @@ class ContextView
         $('.entryFilter.friends').find('.value').text(filter_state)
         $('.entryFilter.friends').find('.label').addClass('selected')
   profileState: ->
-    @$namePanel.css('display')
+    @$detailsPanel.css('display')
   showEditProfile: ->
     @$viewPanel.hide()
     @$editPanel.show()

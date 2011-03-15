@@ -147,7 +147,8 @@ abbr, acronym
   +round(16)
 #lightbox-container-image-data-box
   display: none !important
-
+#lightbox-loading
+  background: url(/images/icons/spinner-dark-32.gif) no-repeat center center transparent
 
 
 
@@ -213,7 +214,7 @@ abbr, acronym
     +right
     +center
     +user-select
-    +shine-dark-alpha(12)
+    +shine-dark-alpha(14)
     +button-dark
     +round(12)
     +confirm(12)
@@ -221,7 +222,7 @@ abbr, acronym
     color: #fff !important
     height: 28px
     line-height: 28px
-    padding: 0 60px
+    width: 154px
 
 
   .facebook
@@ -254,7 +255,7 @@ abbr, acronym
     +cursor
     margin-left: 8px
 
-  .login-input, #loginButton
+  .login-input
     +clear
     +block
     +font(14)
@@ -262,25 +263,20 @@ abbr, acronym
     padding: 0 8px
     width: 186px
     height: 32px
-    line-height: 32px
-
-  .login-input
     +input-light(small)
 
 
   .submit
-    +relative
+    +absolute
     +pointer
-    +clear
     +round(12)
     +overflow
     +transparent
-    +glow-blue(20)
-    width: 186px
-    height: 32px
-    line-height: 32px
-    padding: 0 8px
-    margin: 12px 0 0
+    +glow-blue(14)
+    top: 27px
+    right: 7px
+    width: 156px
+    height: 30px
     border: 1px solid #9ae4fd
     &:hover
       border: 1px solid #fff
@@ -298,9 +294,11 @@ abbr, acronym
       top: 0
       left: 0
       color: #fff
-      width: 202px
-      +font(21)
-      +shine-blue(20)
+      width: 156px
+      line-height: 30px
+      +font(18)
+      +shine-blue(15)
+
       &:hover
         background: #0c2b50
         +gradient(#5d80ad, #0c2b50)
@@ -309,7 +307,7 @@ abbr, acronym
         background: #0c2b50
         +gradient(#0c2b50, #5d80ad)
 
-      input.button#loginButton
+      input#loginButton.button
         +absolute
         top: 0
         left: 0
@@ -317,7 +315,7 @@ abbr, acronym
         +font(100)
         +alpha(00)
         color: #fff
-        width: 204px
+        width: 154px
 
 
   #loginSpacer
@@ -330,6 +328,7 @@ abbr, acronym
     +font(10)
     +user-select
     +right
+    color: #333 !important
     margin: 0 4px 4px
     padding: 0 4px
     height: 16px
@@ -346,7 +345,7 @@ abbr, acronym
   .forgot
     +relative
     right: 0
-    margin-top: 2px
+
 
 
 

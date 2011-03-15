@@ -24,6 +24,10 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
+  $('#comment_submit').hide()
+  $('#comment_body').focus ->
+    $('#comment_submit').fadeIn(250)
+  
   $('#comment_body').keyup ->
     fitToContent(this, 0)
   
@@ -31,9 +35,9 @@ $(document).ready ->
   $('.shareLevel').find('span').each( (i, el)->
     switch $(this).text()
       when 'private'
-        $(this).prev().css('background', 'url(/images/icons/private-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/private-16.png) no-repeat center')
       when 'anonymous'
-        $(this).prev().css('background', 'url(/images/icons/anon-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/anon-16.png) no-repeat center')
       when 'users'
         $(this).prev().css('background', 'url(/images/icons/listofUsers-16.png) no-repeat center')
       when 'followers'
@@ -43,7 +47,7 @@ $(document).ready ->
       when 'friends of friends'
         $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
       when 'everyone'
-        $(this).prev().css('background', 'url(/images/icons/sharing-16-off.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/sharing-16.png) no-repeat center')
   )
   
   $('.gallery .youtube').each (i, el) =>

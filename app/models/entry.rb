@@ -105,33 +105,41 @@ class Entry < ActiveRecord::Base
     self.everyone.where(:type ^ 'article').order("rand()").limit(1).first
   end
 
-  def self.list(viewer, viewed, lens, filters)
+  def self.dreamstream(viewer, filters)
     filters ||= {}
     entry_scope = Entry.order('dreamed_at DESC')
     entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
 
-    if (lens == :field) || viewer.nil?
-      if viewer
-        entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
-      else
-        entries = entry_scope.select{|e| e.everyone? } 
-      end
-    elsif lens == :stream
-      page_size = filters[:page_size] || 30
-      # only entries within 10 days
-      # top page_size of each
-      entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
-      entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+    page_size = filters[:page_size] || 30
+    # only entries within 10 days
+    # top page_size of each
+    entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
+    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
-      # based on friend filter: 
-      user_list = 
-        if filters[:friend] == "friends"
-          viewer.friends
-        else
-          viewer.following
-        end
-      entries = entry_scope.where(:user_id => user_list.map(&:id))
-      # each should be sorted according to date or starlight
+    users_to_view =  # based on friend filter: 
+      if filters[:friend] == "friends"
+        viewer.friends
+      else
+        viewer.following
+      end
+    entries = entry_scope.where(:user_id => users_to_view.map(&:id))
+    # each should be sorted according to date or starlight
+
+    entries.select!{|e| viewer.can_access?(e) } if viewer && entries # this is very, very slow.
+    entries
+  end
+
+  def self.dreamfield(viewer, viewed, filters)
+    filters ||= {}
+    entry_scope = Entry.order('dreamed_at DESC')
+    entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
+
+    entry_scope = entry_scope.where(user_id: viewed.id)
+    if viewer
+      entries = entry_scope.select {|e| viewer.can_access?(e) }
+    else
+      # entries = entry_scope.select{|e| e.everyone? } 
+      entries = entry_scope.where(sharing_level: self::Sharing[:everyone])
     end
 
     entries.select!{|e| viewer.can_access?(e) } if viewer && entries # this is very, very slow.

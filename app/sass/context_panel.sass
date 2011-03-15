@@ -45,7 +45,9 @@
       .browse
         +font(14)
         +center
+        +relative
         top: 180px
+        left: 0
         z-index: 1200
 
         .cancel, .dropboxBrowse
@@ -56,13 +58,14 @@
           padding: 4px 8px
           z-index: 1200
         .cancel
-          top: 220px
-          left: 18px
+          top: 0px
+          left: 8px
           +cancel(12)
         .dropboxBrowse
-          top: 170px
-          left: 78px
+          top: 0px
+          right: 8px
           width: 90px
+          position: absolute !important
           +confirm(12)
           +pointer
 
@@ -176,12 +179,13 @@
       +round(8)
       padding: 4px 0
 
+      hr
+        +alpha(30)
+
       .name
         +font(21)
         +center
         +pointer
-        margin: 0 4px 4px
-        padding: 2px 8px
 
       .location
         +font(12)
@@ -192,8 +196,6 @@
       .details
         +overflow
         margin: 0 4px
-        hr
-          +alpha(30)
 
         .website, .email, .phone, .skype
           +block
@@ -553,6 +555,7 @@
 
     .context, .label
       +shine-dark-alpha(16)
+    .label
       border: 1px solid #090909
     .label.selected
       +shine-light-alpha(16)
@@ -565,6 +568,7 @@
 
     .relation
       +button-dark
+      border: 1px solid #333 !important
 
     // PROFILE
     .profile
@@ -643,291 +647,9 @@
 
 
 
+@import stream_context_panel
 
 
 
 
 
-
-// STREAM CONTEXT PANEL
-// STRUCTURE
-
-
-
-#streamContextPanel
-  +round(16)
-  +absolute
-  +cursor
-  +user-select
-  top: 82px
-  left: 12px
-  width: 200px
-  padding: 4px
-  border: 1px solid #000
-
-
-  // USER INFO
-  .userInfo
-    +round(12)
-    +relative
-    height: 66px
-
-
-    .avatar-64
-      +round(11)
-      +flat-right
-      +absolute
-      width: 50px
-      height: 64px
-      margin: 0 8px 0 0
-      display: inline-block
-      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
-
-    .infoRight
-      +right
-      +overflow
-      +absolute
-      left: 58px
-      margin-right: 4px
-      height: 64px
-      width: 138px
-
-      .userName
-        h3
-          margin: 8px 0 0px 8px
-          +font(21)
-
-      .following
-        left: 0
-      .followers
-        left: 68px
-
-
-      .following, .followers
-        +absolute
-        +font(12)
-        +center
-        +block
-        margin: 0 4px 0 0
-        width: 64px
-        .count
-          +round(4)
-          +center
-          width: 64px
-          height: 14px
-          line-height: 14px
-          color: #fff
-          background: #7a7a7a
-
-  .myStream
-    +round(12)
-    +flat-bottom
-    +block
-    +bold
-    +center
-    +font(21)
-    margin: 4px 0 2px
-    padding: 0
-    height: 26px
-    line-height: 26px
-    padding: 4px 8px
-
-
-
-
-// STREAM CONTEXT PANEL FILTERS
-#streamContextPanel
-  .wrapper
-    .entryFilter, .followFilter, .starlightTab
-      +round(12)
-      +relative
-      +bold
-      +center
-      width: 182px
-      padding: 0 8px
-      margin: 4px 0 1px
-      height: 30px
-      line-height: 30px
-      span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      img.arrow
-        +right
-        margin: 8px 0 0
-
-    .filterList
-      width: 198px
-      span, img
-        +left
-      img
-        margin: 8px 12px 0 8px
-
-
-
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-
-      .starlightFilter
-        +round(12)
-        +right
-        +relative
-        +center
-        width: 70px
-        margin: 5px 0 0
-        height: 18px
-        line-height: 18px
-        padding: 0
-        span
-          float: none
-
-        .filterList
-          width: 70px
-          top: 0
-          left: 0
-
-
-// SHARED BETWEEN BOTH
-#contextPanel, #streamContextPanel
-  .wrapper
-    +relative
-    .filterList
-      +round(12)
-      +absolute
-      +pointer
-      top: 0
-      z-index: 1200
-      &:hover
-        +round(12)
-      .type
-        +center
-        +bold
-        height: 30px
-        line-height: 30px
-        +block
-        &.top:hover
-          +round(10)
-          +flat-bottom
-        &.bottom:hover
-          +round(10)
-          +flat-top
-
-
-
-
-
-// STREAM CONTEXT PANEL
-// COLORS
-.light
-  #streamContextPanel
-    +transparent-light(50)
-    +glow-light(40)
-
-    // USER INFO
-    .userInfo
-      +flat-light
-      +border-light
-
-      a.avatar-64
-        +button-light
-
-      .infoRight
-        .following, .followers
-          .count
-
-    // LABEL
-    .myStream
-      +shine-dark-alpha(16)
-      color: #fff
-
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-light
-        +button-light
-        border: 1px solid #777
-        &:hover
-          +glow-light(10)
-
-
-.dark
-  #streamContextPanel
-    +transparent-dark(50)
-    +glow-dark(40)
-
-    // USER INFO
-    .userInfo
-      +flat-dark
-      +border-dark
-
-      a.avatar-64
-        +button-dark
-
-      .infoRight
-        .following, .followers
-          .count
-            +flat-light
-            color: #000
-
-    // LABEL
-    .myStream
-      +shine-light-alpha(16)
-      color: #000
-
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-dark
-        +button-dark
-        border: 1px solid #555
-        &:hover
-          +glow-dark(10)
-
-
-
-
-
-
-// STREAM CONTEXT PANEL FILTERS
-// COLORS
-.light
-  #contextPanel, #streamContextPanel
-
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .filterList
-        +glow-light(40)
-        +border-light
-        +flat-light
-
-        .type
-          &:hover
-            background: #000
-            color: #fff
-
-      .starlightTab
-        .starlightFilter
-          +button-light
-          +flat-light
-
-.dark
-  #contextPanel, #streamContextPanel
-
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .filterList
-        +glow-dark(40)
-        +border-dark
-        +flat-dark
-
-        .type
-          &:hover
-            background: #fff
-            color: #000
-
-      .starlightTab
-        .starlightFilter
-          +button-dark
-          +flat-dark
