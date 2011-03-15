@@ -45,7 +45,9 @@
       .browse
         +font(14)
         +center
+        +relative
         top: 180px
+        left: 0
         z-index: 1200
 
         .cancel, .dropboxBrowse
@@ -56,13 +58,14 @@
           padding: 4px 8px
           z-index: 1200
         .cancel
-          top: 220px
-          left: 18px
+          top: 0px
+          left: 8px
           +cancel(12)
         .dropboxBrowse
-          top: 170px
-          left: 78px
+          top: 0px
+          right: 8px
           width: 90px
+          position: absolute !important
           +confirm(12)
           +pointer
 

@@ -19,19 +19,20 @@
 / LEFT COLUMN
 #leftColumn
   / WELCOME
-  .welcomeWrap.hidden
-    %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
-    %h1 Welcome
-    .welcome
-      %p.one <span class="cap">D</span>reamcatcher is a digital journaling and social life-sharing service that lets you <i>'catch'</i> your dreams and most cherished life experiences, keeping them organized and easy to share.
-      %p.two Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
-      %p.three A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
-      %p.four Start sharing and become part of the digital Dreamsphere.
-      %br
+  - unless session[:thank_you]
+    .welcomeWrap.hidden
+      %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
+      %h1 Welcome
+      .welcome
+        %p.one <span class="cap">D</span>reamcatcher is a digital journaling and social life-sharing service that lets you <i>'catch'</i> your dreams and most cherished life experiences, keeping them organized and easy to share.
+        %p.two Discover a deeper part of yourself, explore your subconscious mind, and share your creative journey with the world.
+        %p.three A global social experiment to map the collective unconscious, Dreamcatcher is your space to chart the mysteries of the mind, explore global dream trends, and inspire greater synchronicity in your life.
+        %p.four Start sharing and become part of the digital Dreamsphere.
+        %br
 
-      .thankyou
-        %img{src: '/images/icons/check-31.png', width: '31', height: '31'}
-        %span Thank You
+        = link_to thank_you_path, remote: true, class: 'thankyou' do
+          %img{src: '/images/icons/check-31.png', width: '31', height: '31'}
+          %span ok
 
   / PUBLIC STREAM
   #publicStreamGlow

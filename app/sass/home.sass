@@ -119,26 +119,24 @@ body.home
         line-height: 20px
         margin: 0 0 18px
         color: #fff
-      p.one
-        line-height: 22px
-      p.two
-        +font(20)
-        margin-left: 40px
-      p.three
-        margin-left: 80px
-        font-style: italic
-        color: #d1f2ff
-      p.four
-        +font(18)
-        margin-left: 120px
-
-      .cap
-        +font(44)
-        +garamond
+      // p.one
+      //   line-height: 22px
+      // p.two
+      //   +font(20)
+      //   margin-left: 40px
+      // p.three
+      //   margin-left: 80px
+      //   font-style: italic
+      //   color: #d1f2ff
+      // p.four
+      //   +font(18)
+      //   margin-left: 120px
 
       .thankyou
         +round(8)
         +absolute
+        +font(22)
+        +bold
         bottom: 12px
         right: 12px
         height: 38px
@@ -151,6 +149,13 @@ body.home
           margin: 4px 8px 0 0
         span
           +left
+          padding: 0 8px
+        &:hover
+          +shine-blue(20)
+        &:active
+          +gradient(#0c2b50, #5d80ad)
+          +shine-blue(0)
+          +border-blue
 
   // PUBLIC STREAM
   #publicStreamGlow
@@ -169,7 +174,7 @@ body.home
       .today, .todayFilter, .dreamsFilter, h1.in
         +bold
         +left
-        +font(32)
+        +font(28)
         margin: 0 8px 20px 0
         padding: 0 12px
         height: 40px
@@ -350,6 +355,8 @@ body.home
             border: 4px solid #fff
             color: #fff
             +transparent-dark(10)
+          &:hover .rank
+            color: #fff
         .dreamstar-1
           margin: 38px 0 0
           border: 4px solid #FF40D9

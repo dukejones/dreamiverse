@@ -29,4 +29,13 @@ class HomeController < ApplicationController
   def terms
   end
 
+  def thank_you
+    session[:thank_you] = true
+    
+    if request.xhr?
+      render :json => {type: 'ok'}
+    else
+      redirect_to root_path
+    end
+  end
 end
