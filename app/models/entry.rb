@@ -116,7 +116,7 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
-    users_to_view =  # based on friend filter: 
+    users_to_view =  # based on friend filter
       if filters[:friend] == "friends"
         viewer.friends
       else
@@ -125,7 +125,7 @@ class Entry < ActiveRecord::Base
     entries = entry_scope.where(:user_id => users_to_view.map(&:id))
     # each should be sorted according to date or starlight
 
-    entries.select!{|e| viewer.can_access?(e) } if viewer && entries # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
     entries
   end
 
@@ -138,11 +138,9 @@ class Entry < ActiveRecord::Base
     if viewer
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
-      # entries = entry_scope.select{|e| e.everyone? } 
       entries = entry_scope.where(sharing_level: self::Sharing[:everyone])
     end
 
-    entries.select!{|e| viewer.can_access?(e) } if viewer && entries # this is very, very slow.
     entries
   end
 
