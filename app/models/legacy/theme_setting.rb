@@ -16,9 +16,10 @@ class Legacy::ThemeSetting < Legacy::Base
   end
   
   def image_id
-    image = ::Image.where("original_filename LIKE '%#{bedsheet_filename}-hi.png'")
-    puts "Image not in system: #{bedsheet_filename}" if image.blank?
-    image.first._?.id
+    image = ::Image.where("original_filename LIKE '%#{bedsheet_filename}-hi.png'").first
+    
+    log "Image not in system: #{bedsheet_filename}" unless image
+    image._?.id
   end
 
   def bedsheet_filename
