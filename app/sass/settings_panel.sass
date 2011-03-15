@@ -17,6 +17,12 @@
   .changePassword
     +round(8)
 
+    .img
+      +left
+      width: 40px
+      height: 36px
+      margin-right: 8px
+      background: url(/images/icons/admin-24-hover.png) no-repeat center transparent
 
 
   hr
@@ -29,13 +35,13 @@
     +left
 
     &.sharing-icon
-      margin: 8px 16px 0 8px
+      margin: 8px 16px 0 4px
 
     &.facebook-icon
-      margin: 8px 16px 0 8px
+      margin: 8px 16px 0 4px
 
     &.password-icon
-      margin: 4px 16px 0 8px
+      margin: 4px 16px 0 4px
 
 
   h2
@@ -49,6 +55,9 @@
     line-height: 32px
     margin: 0
     padding: 0
+
+    &.facebook-label
+      margin-top: 3px
 
     &.sharing-label
       margin-top: 5px
@@ -115,8 +124,23 @@
 
   .sharing
     padding: 8px
-    .defaultSharing, .network
+
+    .defaultSharing, .network, .changePassword
       margin: 0 0 4px
+
+      .img
+        +left
+        width: 40px
+        height: 36px
+        margin-right: 8px
+
+    .defaultSharing
+      .img
+        background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
+
+    .network
+      .img
+        background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
 
       select
         +round(8)
@@ -125,25 +149,28 @@
         +left
 
 
-    select
+    .sharingList
       +right
       +font(16)
       +pointer
       +round(8)
+      +font(14)
       height: 36px
       width: 138px
       margin-top: 4px
       padding: 6px 8px
       option
         padding: 6px 0 6px 24px
-      option.everyone
-        background: url(/images/icons/everyone-16.png) no-repeat 4px
-      option.friends
-        background: url(/images/icons/friend-16.png) no-repeat 4px
-      option.anonymous
-        background: url(/images/icons/mask-16.png) no-repeat 4px
-      option.private
-        background: url(/images/icons/lock-16.png) no-repeat 4px
+        &.everyone
+          background: url(/images/icons/sharing-16-hover.png) no-repeat 4px
+        &.friends
+          background: url(/images/icons/friend-16.png) no-repeat 4px
+        &.followers
+          background: url(/images/icons/friend-follower-16.png) no-repeat 4px
+        &.anonymous
+          background: url(/images/icons/anon-16-hover.png) no-repeat 4px
+        &.private
+          background: url(/images/icons/private-16-hover.png) no-repeat 4px
 
 
 
@@ -244,7 +271,7 @@
 
   #settingsPanel
     .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 260px
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 266px
 
   #settingsPanel, #appearancePanel
     +panel-light
@@ -306,7 +333,7 @@
 
   #settingsPanel
     .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 260px
+      background: url(/images/icons/arrow-up-27.png) no-repeat 266px
 
 
   #settingsPanel, #appearancePanel

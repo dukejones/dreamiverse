@@ -24,6 +24,32 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
+  $('#comment_submit').hide()
+  $('#comment_body').focus ->
+    $('#comment_submit').fadeIn(250)
+  
+  $('#comment_body').keyup ->
+    fitToContent(this, 0)
+  
+  # Setup sharing level icon change
+  $('.shareLevel').find('span').each( (i, el)->
+    switch $(this).text()
+      when 'private'
+        $(this).prev().css('background', 'url(/images/icons/private-16.png) no-repeat center')
+      when 'anonymous'
+        $(this).prev().css('background', 'url(/images/icons/anon-16.png) no-repeat center')
+      when 'users'
+        $(this).prev().css('background', 'url(/images/icons/listofUsers-16.png) no-repeat center')
+      when 'followers'
+        $(this).prev().css('background', 'url(/images/icons/friend-follower-16.png) no-repeat center')
+      when 'friends'
+        $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
+      when 'friends of friends'
+        $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
+      when 'everyone'
+        $(this).prev().css('background', 'url(/images/icons/sharing-16.png) no-repeat center')
+  )
+  
   $('.gallery .youtube').each (i, el) =>
     # Pass the url and the element it came from
     getYoutubeData($(el).find('a').attr('href'), $(el))
@@ -98,16 +124,7 @@ $(document).ready ->
     
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 
-  $('#comment_body').keyup ->
-    fitToContent(this, 0)
   $('#comment_body').css('overflow','hidden')
-  
-	# Setup comment expander
-	# $('textarea#comment_body').autoResize
-	#  animationDuration: 500
-	#  animate: true
-	#  extraSpace: 40
-
 	  
   # setup remove comment handler
   $('.deleteComment').live 'click', (event)->
@@ -131,7 +148,7 @@ $(document).ready ->
       
       # Check for favico error
       $(".attachedLink").bind "error", ->
-        $(this).attr('src', '/images/icons/link-16.gif')
+        $(this).attr('src', '/images/icons/link-16.png')
 
 
 # TODO

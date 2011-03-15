@@ -132,17 +132,17 @@
       .love
         background: url(/images/icons/love-16.png) no-repeat center
         &:hover
-          background: url(/images/icons/love-16-selected.png) no-repeat center
+          background: url(/images/icons/love-16-hover.png) no-repeat center
       .love.selected
-        background: url(/images/icons/love-16-selected.png) no-repeat center
+        background: url(/images/icons/love-16-hover.png) no-repeat center
       .share
         background: url(/images/icons/share-16.png) no-repeat center
       .share.selected
-        background: url(/images/icons/share-16-selected.png) no-repeat center
+        background: url(/images/icons/share-16-hover.png) no-repeat center
       .repost
         background: url(/images/icons/repost-24.png) no-repeat center
       .repost.selected
-        background: url(/images/icons/repost-24-selected.png) no-repeat center
+        background: url(/images/icons/repost-24-hover.png) no-repeat center
 
 
     .content
@@ -385,7 +385,6 @@
               width: 230px
               margin: 0 0 0 8px
               height: 26px
-              line-height: 26px
               background: transparent
               border: none
 
@@ -404,8 +403,8 @@
           .tagThisEntry.selected
             +save(17)
 
-          // POST TIME & LOCATION
-          .postTime, .postLocation
+          // POST TIME, LOCATION & SHARE LEVEL
+          .postTime, .postLocation, .shareLevel
             +round(20)
             +right
             +center
@@ -413,8 +412,15 @@
             +cursor
             margin: 0 0 4px 8px
             height: 34px
-            line-height: 34px
+            line-height: 32px
             padding: 0 8px
+          .shareLevel
+            .img
+              +left
+              margin-right: 6px
+              width: 16px
+              height: 34px
+
 
           #tag-list // SEE ENTRIES.SASS
 
@@ -518,9 +524,9 @@
             +right
             +center
             height: 32px
+          .images, .links
             line-height: 32px
             padding: 0 16px
-          .images, .links
             img
               +left
               margin: 11px 8px 0 0
@@ -531,9 +537,10 @@
             +absolute
             +round(8)
             +bold
-            +font(17)
+            +font(16)
             right: 10px
             bottom: 10px
+            padding: 0 16px 4px
 
 
       .prevCommentWrap
@@ -586,6 +593,8 @@
           .comment
             +clear
             padding: 0 8px 8px 16px
+            p
+              margin-bottom: 18px
           .rePost
             +round(16)
             +left
@@ -597,12 +606,6 @@
 
 
 
-// LIGHTBOX
-
-#lightbox-container-image-box
-  +round(16)
-#lightbox-container-image-data-box
-  display: none !important
 
 
 
@@ -693,8 +696,8 @@
             +button-light
             +bevel-light
 
-        // POST TIME & LOCATION
-        .postTime, .postLocation
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postTime, .postLocation, .shareLevel
           +indent-light
           border: 1px solid #f1f1f1
 
@@ -742,6 +745,7 @@
               +shine-light(16)
               +button-light
               +save(16)
+              color: #111
             textarea
               color: #333
               +input-light(large)
@@ -844,8 +848,8 @@
             a
               color: #ccc
 
-        // POST TIME & LOCATION
-        .postTime, .postLocation
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postTime, .postLocation, .shareLevel
           +indent-dark
           border: 1px solid #333
 

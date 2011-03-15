@@ -33,8 +33,13 @@
   +absolute
   top: 0
   width: 100%
-  z-index: 1111
 
+  .leftPanelWrap
+    +absolute
+    left: 248px
+
+    .randomDream
+      width: 40px
 
   .leftPanel .item:hover
     color: #4b93d9
@@ -43,11 +48,8 @@
     +round(16)
     +flat-top
     background-color: #fff
-    padding: 28px 6px 8px
-    top: -20px
 
     .item
-      +relative
       +block
       +left
       +font(16)
@@ -57,75 +59,77 @@
       background: #fff
       margin: 0 2px
       height: 26px
-      line-height: 24px
       color: #333
       border: #ccc 1px solid
       display: inline-block
       text-decoration: none
-      padding: 2px 8px
+      padding: 2px 4px 2px 4px
+      &:active
+        +gradient(#ddd, #fff)
+        color: #333 !important
       &:hover, &.user
-        +button-light
+        border: 1px solid #8c8c8c
         color: #4b93d9
-      &.selected
+      &.selected, &.selected:hover, &.selected:active
         color: #fff !important
-        +button-dark
+        +cursor
+        +border-dark
         +shine-dark(12)
-        &:hover
-          color: #4b93d9 !important
 
     .item
       .img
-        +absolute
-        left: 4px
-        width: 26px
+        +left
+        width: 24px
         height: 26px
 
     // HOME ICON STATES
     .item.home
-      padding-left: 32px
       .img
-        background: url(/images/icons/home-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/home-24.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/home-24-hover.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-hover.png) no-repeat center transparent
       &:active .img
-        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-active.png) no-repeat center transparent
     .item.home.selected
-      padding-left: 32px
-      color: #fff !important
-      +cursor
       .img
-        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-active.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/home-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/home-24-active.png) no-repeat center transparent
+
+    // STREAM ICON STATES
+    .item.stream
+      .img
+        background: url(/images/icons/stream-24.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/stream-24-active.png) no-repeat center transparent
+    .item.stream.selected
+      .img
+        background: url(/images/icons/stream-24-active.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/stream-24-active.png) no-repeat center transparent
 
     // STARLIGHT ICON STATES
     .item.dreamstars
-      padding-left: 32px
       .img
-        background: url(/images/icons/starlight-24-off.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/starlight-24-hover.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-hover.png) no-repeat center transparent
       &:active .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-active.png) no-repeat center transparent
     .item.dreamstars.selected
-      padding-left: 32px
-      color: #fff !important
-      +cursor
       .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-hover.png) no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/starlight-24-select.png) no-repeat left center transparent
+        background: url(/images/icons/starlight-24-hover.png) no-repeat center transparent
 
 
 
 
   .leftPanel
-    +absolute
-    left: 248px
-
-
-    a img
-      margin: -11px -2px -11px -11px
+    +left
+    padding: 8px 6px 8px
 
     .input
       +block
@@ -141,6 +145,8 @@
   .rightPanel
     +relative
     +right
+    padding: 28px 6px 8px
+    top: -20px
 
     .user
       +flat-left
@@ -171,17 +177,17 @@
     .item.settings, .item.appearance
       width: 20px
     .item.settings
-      background: url(/images/icons/settings-24-off.png) no-repeat center
+      background: url(/images/icons/settings-24.png) no-repeat center
       &:hover
         background: url(/images/icons/settings-24-hover.png) no-repeat center
       &:active
-        background: url(/images/icons/settings-24-select.png) no-repeat center
+        background: url(/images/icons/settings-24-active.png) no-repeat center
     .item.appearance
-      background: url(/images/icons/appearance-24-off.png) no-repeat center
+      background: url(/images/icons/appearance-24.png) no-repeat center
       &:hover
         background: url(/images/icons/appearance-24-hover.png) no-repeat center
       &:active
-        background: url(/images/icons/appearance-24-selected.png) no-repeat center
+        background: url(/images/icons/appearance-24-active.png) no-repeat center
 
 
 
@@ -223,24 +229,16 @@
         .close
           +hidden
           +absolute
-          +round(16)
-          +font(12)
           +center
           top: 2px
           right: 2px
           width: 18px
           height: 18px
-          line-height: 18px
-          +flat-light
-          +button-light
         &:hover
           +transparent-light(90)
           color: #000
           .close
             +block
-            &:hover
-              background: #f15f29
-              color: #fff
       .alert
         .icon
           +left
@@ -269,12 +267,6 @@
 
 
 
-
-// FLOATING BUTTONS
-
-#metaMenu.user .randomDream
-  left: 540px
-  width: 38px
 
 
 

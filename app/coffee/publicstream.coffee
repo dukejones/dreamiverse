@@ -24,6 +24,7 @@ $(document).ready ->
         $('.thumb-1d .video').hide()
         $('.thumb-1d').removeClass('videoExpand')
         $('.gallery .youtube').show()
+        $('.entryImages .youtube').show()
       )
       $container.show()
     )

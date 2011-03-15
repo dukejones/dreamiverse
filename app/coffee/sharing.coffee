@@ -24,47 +24,40 @@ class SharingController
     )
     
     @$dropdown.change( (event) =>
-      # get the new icon path
-      newSelection = @$dropdown.val()
-      newSelectionImage = $(event.currentTarget).find('option:selected').css('background-image')
-      newSelectionImage = newSelectionImage.slice(5, newSelectionImage.length - 2)
-      
-      # get the larger icon path
-      largeSelectionImage = newSelectionImage.slice(0, newSelectionImage.length-6) + '24.png'
-      
-      $(event.currentTarget).parent().find('.listSelection').attr('src', largeSelectionImage)
-      
-      if !@firstRun
-        @sharingView.expandCurrentView(newSelection)
-      else
-        @setupDefaultSharingLevel()
-        @firstRun = false
-      
-      @shareSettings = new Share(newSelection)
-    )
-    
-    $('.listOfUsers').find("input[type='radio']").change( (event)=>
-      # get the new icon path
-      newText = $(event.currentTarget).next().text()
-      newIcon = $(event.currentTarget).parent().css('background-image')
-      newIconPath = newIcon.slice(5, newIcon.length - 2)
-      
-      # get the larger icon path
-      largeSelectionImage = newIconPath.slice(0, newIconPath.length-6) + '24.png'
-      
-      $('.listSelection').attr('src', largeSelectionImage)
-      @$dropdown.find('.list').text(newText)
+      @sharingChangeHandler(event)
     )
     
     #setup Default Sharing dropdown
-    if window.BrowserDetect.browser isnt "Safari" and window.BrowserDetect.browser isnt "Chrome"
-      @$dropdown.val(@$container.data('id'))
-      @$dropdown.change()
-      
+    @$dropdown.val($('.sharingWrap .sharing').data('id'))
+    #@$dropdown.change()
+    @sharingChangeHandler() 
     @$container.find('.target').hide()
+  
+  sharingChangeHandler: ->
+    # get the new icon path
+    newSelection = @$dropdown.val()
     
-  setupDefaultSharingLevel: ->
-    @$dropdown.val($('#sharingList').find('option:selected').val())
+    switch newSelection
+      when "0"
+        iconFileSource = 'private-24-hover.png'
+      when "50"
+        iconFileSource = 'anon-24-hover.png'
+      when "150"
+        iconFileSource = 'friend-follower-24.png'
+      when "200"
+        iconFileSource = 'friend-24.png'
+      when "500"
+        iconFileSource = 'sharing-24-hover.png'
+    
+    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
+    $('.listSelection').css('background', iconSource)
+    
+    if !@firstRun
+      @sharingView.expandCurrentView(newSelection)
+    else
+      @firstRun = false
+    
+    @shareSettings = new Share(newSelection)
 
 
 class SharingView

@@ -14,17 +14,17 @@
     .detailsTop
       %table{width: "100%"}
         %tr
-          %td.date= time_ago_in_words(entry.created_at)
+          %td.date= time_ago_in_words(entry.dreamed_at)
           / %td.location dream location
 
     .detailsBottom
       - unless entry.comments.count == 0
         .comments
-          = image_tag("icons/comments-16.png")
+          = image_tag("icons/comment-16.png")
           = entry.comments.count
       - unless entry.sharing == "everyone"
         .sharing
-          / %img
+          %img
           %span= entry.sharing
 
     / TITLE

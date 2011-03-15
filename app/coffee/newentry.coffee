@@ -20,13 +20,21 @@ $(document).ready ->
   # Setup icon type changing
   $('#entryType_list').unbind();
   $('#entryType_list').change( ->
-    newIcon = $(this).find('option:selected').css('background-image')
-    newIconSrc = newIcon.slice(5, newIcon.length - 2)
+    newSelection = $('#entryType_list').val()
     
-    # get the larger icon path
-    largeSelectionImage = newIconSrc.slice(0, newIconSrc.length-6) + '32.png'
+    switch newSelection
+      when "dream"
+        iconFileSource = 'dream-24-active.png'
+      when "vision"
+        iconFileSource = 'vision-24-active.png'
+      when "experience"
+        iconFileSource = 'experience-24-active.png'
+      when "article"
+        iconFileSource = 'article-24-active.png'
+        
+    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
     
-    $(this).prev().attr('src', largeSelectionImage)
+    $(this).prev().css('background', iconSource)
   )
   $('#entryType_list').change()
   
@@ -69,17 +77,20 @@ $(document).ready ->
 	$( "#tag-list" ).bind "sortstop", (event, ui) ->
 	  $("#sorting").val(1)
 	  
-	  # ONLY update tag sorting if editing an entry
-	  if $('#entryField > form').hasClass('edit_entry')
-	    tagOrder = []
-  	  $('#tag-list > .tag').each (i, el) ->
-  	    tagOrder.push($(this).data('id'))
-	    
-  	  entry = $('#showEntry').data('id')
-  	  order = tagOrder.join()
-  
+  # ONLY update tag sorting if editing an entry
+  if $('#entryField > form').hasClass('edit_entry')
+    tagOrder = []
+    tagsExist = false
+	  $('#tag-list > .tag').each (i, el) ->
+	    tagOrder.push($(this).data('id'))
+	    tagsExist = true
+    
+    if tagsExist
+	    entry = $('#showEntry').data('id')
+	    order = tagOrder.join()
 
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.typeSelection, .listSelection').hide()
     $('.entryType').css('border', 'none')
+    

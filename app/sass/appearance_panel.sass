@@ -3,9 +3,6 @@
 #appearancePanel
   +user-select
 
-  img.appearanceIcon
-    margin: 4px 0 0
-
   .bedsheets, .colorPicker
     +round(8)
     +cursor
@@ -14,6 +11,12 @@
     +clear
     padding: 8px
     margin: 0 0 8px
+    .img
+      +left
+      width: 24px
+      height: 36px
+      margin: 0 8px 0 2px
+      background: url(/images/icons/bedsheets-24-hover.png) no-repeat center transparent
     h2
       +block
       +bold
@@ -86,16 +89,20 @@
     margin: 4px 0 2px
     height: 36px
 
-    img.colorSwatch, #sun, #moon
+    .img, #sun, #moon
       +left
 
-    img.colorSwatch
-      margin: 12px 0 0
+    .img
+      width: 24px
+      height: 36px
+      margin: 0
+      background: url(/images/icons/color-24-active.png) no-repeat center transparent
+
     h2
       +left
       +bold
       +font(18)
-      margin: 0 8px
+      margin: 0 0 0 8px
       line-height: 36px
 
     .buttons
@@ -142,7 +149,7 @@
 .light
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 302px
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 304px
     .bedsheets, .colorPicker
       +panel-light
       .options
@@ -156,11 +163,16 @@
       .more
         +button-light
 
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.light.fixed .fixed, .light.scroll .scroll
+  border: 1px solid #111 !important
+
+
 
 .dark
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 302px
+      background: url(/images/icons/arrow-up-27.png) no-repeat 304px
     .bedsheets, .colorPicker
       +panel-dark
       .options
@@ -173,6 +185,10 @@
           border: 1px solid #222
       .more
         +button-dark
+
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.dark.fixed .fixed, .dark.scroll .scroll
+  border: 1px solid #777 !important
 
 
 

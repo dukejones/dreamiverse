@@ -1,4 +1,5 @@
 @import mixins
+@import hover_label
 
 //// USER INFO PAGES SHARED
 // JOIN, FORGOT, ERROR, RESET PASS, TERMS
@@ -18,6 +19,7 @@ a.dcLogo
 
 
 #loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword, #terms
+  +user-select
   +relative
   top: 104px
   left: 108px
@@ -110,8 +112,8 @@ a.dcLogo
         +cursor
         text-align: right
         color: #fff
-        width: 190px
-        padding: 8px 0 8px 8px
+        width: 210px
+        padding: 8px 0
         margin: 0 0 8px
 
       input.inputField, input#recaptcha_response_field
@@ -143,7 +145,7 @@ a.dcLogo
         +transparent
         +glow-blue(20)
         border: 2px solid #9ae4fd
-        &:hover
+        &:hover, &:focus
           border: 2px solid #fff
           +glow-dark(20)
         &:active
@@ -169,6 +171,8 @@ a.dcLogo
             +gradient(#0c2b50, #5d80ad)
 
           input.button
+            border: none
+            +transparent
             +absolute
             top: 0
             left: 0
@@ -187,17 +191,40 @@ a.dcLogo
     .shineBox
       .loginForm
         width: 470px
-        margin: 90px auto 0
+        margin: 70px auto 0
 
         span.label
           width: 100px
+
+        a.fb_login
+          +user-select
+          +pointer
+          +round(12)
+          +glow-blue(20)
+          border: 2px solid #9ae4fd
+          display: inline-block
+          width: 48px
+          height: 48px
+          padding: 0
+          margin: 16px 0 16px 50px
+          background: url('/images/icons/facebook-64.png') no-repeat top right transparent
+          &:hover
+            +glow-dark(20)
+            border: 2px solid #fff
+
 
 // JOIN PAGE ONLY
 #joinPage
 
   .joinForm
-    width: 560px
+    width: 570px
     margin: 60px auto 0
+
+    span.username
+      margin-left: 28px
+
+    span.label.url
+      margin: 24px 0 0
 
     .seed
       +user-select
@@ -221,6 +248,7 @@ a.dcLogo
       +relative
       height: 220px
       margin: 0
+
 
       // RECAPTCHA WIDGET
       .recaptchaWrap
@@ -278,7 +306,7 @@ a.dcLogo
     +clear
     +cursor
     width: 390px
-    margin: 70px auto 0
+    margin: 60px auto 0
 
     h1
       +font(25)
@@ -351,22 +379,6 @@ a.dcLogo
         span.label
           width: 200px
 
-        input.resetButton
-          +user-select
-          +pointer
-          +clear
-          +round(12)
-          +shine-light(16)
-          +right
-          +border-light
-          +font(25)
-          +bold
-          width: 336px
-          margin: 16px 0
-          padding: 4px 0
-          color: #222
-          +confirm(16)
-
         p.error
           color: red
 
@@ -390,6 +402,7 @@ a.dcLogo
           +font(14)
           color: #D1F2FF
           line-height: 20px
+          margin: 0 0 12px
         ul
           list-style: none
           margin: 16px 20px

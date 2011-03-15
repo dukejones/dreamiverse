@@ -11,9 +11,6 @@ body.home
   padding: 0
   height: 100%
 
-#drop_shadow
-  min-width: 1000px
-
 #home
   +relative
   margin: auto
@@ -47,15 +44,30 @@ body.home
     +round(8)
     +button-blue
     +user-select
+    +glow-blue(20)
     top: 36px
     left: 380px
     padding: 0 12px
     height: 32px
     line-height: 32px
-    color: #9ae4fd !important
+    color: #9ae4fd
+    .img
+      +left
+      width: 24px
+      height: 32px
+      margin: 0 8px 0 0
+      background: url(/images/icons/shuffle-24-hover.png) no-repeat center
     &:hover
-      color: #fff !important
-
+      +glow-dark(20)
+      color: #fff
+      .img
+        background: url(/images/icons/shuffle-24-hover.png) no-repeat center
+    &:active
+      color: #ddd
+      border: 1px solid #ddd
+      +glow-light(0)
+      .img
+        background: url(/images/icons/shuffle-24-active.png) no-repeat center
 
 
   // LEFT COLUMN
@@ -76,7 +88,6 @@ body.home
     +user-select
     +cursor
     width: 688px
-    height: 324px
     margin-bottom: 20px
 
     img.dreamstar
@@ -97,24 +108,35 @@ body.home
 
     .welcome
       +round(11)
-      +absolute
       +shine-blue-alpha(20)
       top: 0
       left: 0
-      padding: 40px 0 0 40px
-      width: 648px
-      height: 284px
+      padding: 30px 40px
+      width: 608px
 
       p
-        +font(18)
+        +font(16)
         line-height: 20px
         margin: 0 0 18px
-        width: 585px
-        color: #d1f2ff
+        color: #fff
+      // p.one
+      //   line-height: 22px
+      // p.two
+      //   +font(20)
+      //   margin-left: 40px
+      // p.three
+      //   margin-left: 80px
+      //   font-style: italic
+      //   color: #d1f2ff
+      // p.four
+      //   +font(18)
+      //   margin-left: 120px
 
       .thankyou
         +round(8)
         +absolute
+        +font(22)
+        +bold
         bottom: 12px
         right: 12px
         height: 38px
@@ -127,6 +149,13 @@ body.home
           margin: 4px 8px 0 0
         span
           +left
+          padding: 0 8px
+        &:hover
+          +shine-blue(20)
+        &:active
+          +gradient(#0c2b50, #5d80ad)
+          +shine-blue(0)
+          +border-blue
 
   // PUBLIC STREAM
   #publicStreamGlow
@@ -145,7 +174,7 @@ body.home
       .today, .todayFilter, .dreamsFilter, h1.in
         +bold
         +left
-        +font(32)
+        +font(28)
         margin: 0 8px 20px 0
         padding: 0 12px
         height: 40px
@@ -236,7 +265,7 @@ body.home
 
       .joinWrap
         width: 204px
-        margin: 4px 0 -4px -4px
+        margin: 18px 0 -4px -4px
         padding: 2px 0
         a
           width: 198px
@@ -276,6 +305,10 @@ body.home
         +overflow
         margin: 0
         padding: 8px
+
+        a
+          +block
+
         .dreamstar-1:hover
           box-shadow: 0 0 30px #ff40d9
           -webkit-box-shadow: 0 0 30px #ff40d9
@@ -322,6 +355,8 @@ body.home
             border: 4px solid #fff
             color: #fff
             +transparent-dark(10)
+          &:hover .rank
+            color: #fff
         .dreamstar-1
           margin: 38px 0 0
           border: 4px solid #FF40D9

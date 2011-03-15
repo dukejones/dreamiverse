@@ -1,7 +1,7 @@
 / FRIEND'S LIST
-.userNode{:userId => friend.id, :relationshipWith => current_user.relationship_with(friend)}
+.userNode{:userId => friend.id, :relationshipWith => current_user._?.relationship_with(friend)}
 
-  .status{:class => current_user.relationship_with(friend)}
+  .status{:class => current_user._?.relationship_with(friend)}
   .statusHover.hidden
     %span unfollow
 
@@ -30,7 +30,7 @@
       .item.top
         .label dreams
         .image
-          %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '32'}
+          %img.dream{src: '/images/icons/dream-32-hover.png', width: '32', height: '32'}
         .detail= friend.entries.count
         .clear
 

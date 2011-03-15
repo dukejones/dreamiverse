@@ -4,7 +4,8 @@
 / :coffeescript
 /   require(['/javascripts/avataruploader.js'])
 /   require(['/javascripts/compiled/avatar.js', '/javascripts/compiled/context_panel.js'])
-  
+
+
 / CONTEXT PANEL
 #contextPanel
 
@@ -21,7 +22,7 @@
           .text drag new image here
           .browse
             .cancel cancel
-            .dropboxBrowse{style: "position: relative; overflow: hidden; direction: ltr;"}
+            .dropboxBrowse{style: "overflow: hidden; direction: ltr;"}
               browse
               %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
 
@@ -41,12 +42,8 @@
           = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
       - else
         .icon
-          %img
+          %img{src: "/images/colors/clear.png"}
       = user.username
-
-
-
-
 
 
 
@@ -64,10 +61,13 @@
   .profile
 
     .view
-      .name.hidden{onclick: "window.contextController.toggleProfile()"}= user.name
+      .name.hidden{onclick: "window.contextController.toggleProfile()"}
+        = user.name
+        - if user.name
+          %hr
+
       / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        %hr
         - if user.link
           %a.website{href: user.link.url, target: "_blank"}= user.link.url
         - if user.friends_with?(current_user)
@@ -119,9 +119,10 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value dreams
       .image
-        %img.dream{src: '/images/icons/dream-32.png', width: '32', height: '32'}
+        %img.dream{src: '/images/icons/dream-32-hover.png', width: '32', height: '32'}
       .detail
-        = user.entries.count
+        = user._?.entries.count ? user.entries.count : @entries.count
+        /= @entries._?.count ? @entries.count : user.entries.count
       .clear
 
     .filterList.entries.target.slideArrow.hidden
@@ -146,7 +147,7 @@
       .image
         %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
       .detail
-        = user.friends.count
+        = user.followers.count
       .clear
 
     .filterList.friends.target.slideArrow.hidden

@@ -1,28 +1,45 @@
 #metaMenu.user
-  .notice= flash.notice
-  .alert= flash.alert
+
+  #drop_shadow
+
+  / PRELOAD - METAMENU USER
+  .hidden
+    / HOME
+    %img{src: '/images/icons/home-24-hover.png'}
+    %img{src: '/images/icons/home-24-active.png'}
+    / STREAM
+    %img{src: '/images/icons/stream-24-hover.png'}
+    %img{src: '/images/icons/stream-24-active.png'}
+    / STARLIGHT
+    %img{src: '/images/icons/starlight-24-hover.png'}
+    %img{src: '/images/icons/starlight-24-active.png'}
+    / SETTINGS
+    %img{src: '/images/icons/settings-24-hover.png'}
+    %img{src: '/images/icons/settings-24-active.png'}
+    / APPEARANCE
+    %img{src: '/images/icons/appearance-24-hover.png'}
+    %img{src: '/images/icons/appearance-24-active.png'}
 
 
 
   / INTRO MENU
-  .leftPanel
+  .leftPanelWrap
+    .leftPanel
 
-    %a.item.home{href: user_entries_path(current_user.username)}
-      .img
-      home
+      %a.item.home{href: user_entries_path(current_user.username)}
+        .img
+        = render partial: "shared/hover_label", locals: {message: "home", x: "12", y: "-30"}
 
-    %a.item.stream{href: stream_path}
-      stream
+      %a.item.stream{href: stream_path}
+        .img
+        = render partial: "shared/hover_label", locals: {message: "stream", x: "12", y: "-30"}
 
-    %a.item.dreamstars{href: '/dreamstars'}
-      .img
-      dreamstars
+      %a.item.dreamstars{href: '/dreamstars'}
+        .img
+        = render partial: "shared/hover_label", locals: {message: "dreamstars", x: "12", y: "-30"}
 
-
-
-
-  %a.randomDream{href: '/random'}
-    = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-34"}
+    %a.randomDream{href: '/random'}
+      = render partial: "shared/hover_label", locals: {message: "ramdom dream!", x: "19", y: "-30"}
 
 
 
@@ -42,7 +59,7 @@
 
     .settingsPanel.wrapper
       .item.settings.trigger
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-40"}
+        = render partial: "shared/hover_label", locals: {message: "settings", x: "10", y: "-30"}
 
       / SETTINGS PANEL
       = render partial: "users/settings_panel"
@@ -51,7 +68,7 @@
     - if page_is_mine?
       .appearancePanel.wrapper
         .item.appearance.trigger
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-40"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "10", y: "-30"}
 
         / APPEARANCE PANEL
         = render partial: "users/appearance_panel"
@@ -61,32 +78,31 @@
 
 
 
-    / 
-      NOTIFICATIONS PANEL
-      .notificationsPanel.hidden
-        .notifyIcon 5
-
-        / NOTICE - SUCCESS
-        .notice
-          .close
-          %span You have successfully logged in
-
-        / ALERT - FAIL, WARING
-        .alert
-          .close
-          %span You're password and/or username did not match our records
-
-        / ALERT - FAIL, WARING
-        .alert
-          .close
-          .icon{style: 'background: url(/images/icons/info-24-selected.png) no-repeat left'}
-          %span The system will be down at 3pm PST
-
-        / NOTIFICATION - NEW COMMENT, TAG
-        .notification
-          .close
-          .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat left'}
-          %span Username has commented on your dream
+      / NOTIFICATIONS PANEL
+      / .notificationsPanel.hidden
+      /   .notifyIcon 5
+      / 
+      /   / NOTICE - SUCCESS
+      /   .notice
+      /     .close
+      /     %span You have successfully logged in
+      / 
+      /   / ALERT - FAIL, WARING
+      /   .alert
+      /     .close
+      /     %span You're password and/or username did not match our records
+      / 
+      /   / ALERT - FAIL, WARING
+      /   .alert
+      /     .close
+      /     .icon{style: 'background: url(/images/icons/info-24-selected.png) no-repeat left'}
+      /     %span The system will be down at 3pm PST
+      / 
+      /   / NOTIFICATION - NEW COMMENT, TAG
+      /   .notification
+      /     .close
+      /     .avatar{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat left'}
+      /     %span Username has commented on your dream
 
 
 

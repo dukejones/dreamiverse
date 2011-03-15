@@ -7,7 +7,7 @@ body
 body.light
   background-color: #ccc !important
 body.dark
-  background-color: #000 !important
+  background-color: #202020 !important
 body.fixed
   background-attachment: fixed !important
 body.scroll
@@ -143,8 +143,51 @@ abbr, acronym
 
 // LIGHTBOX
 #lightbox-container-image-box
-  +glow-light(40)
+  +glow-light(20)
+  +round(16)
+#lightbox-container-image-data-box
+  display: none !important
 
+
+
+
+// ALERTS
+#globalAlert
+  +user-select
+  +pointer
+  +round(16)
+  +flat-top
+  box-shadow: 0 0 40px #f0e207
+  -moz-box-shadow: 0 0 40px #f0e207
+  -webkit-box-shadow: 0 0 40px #f0e207
+  +font(22)
+  padding: 0 50px
+  text-align: center
+  position: fixed
+  top: 0px
+  right: 20px
+  min-height: 50px
+  max-width: 550px
+  z-index: 1600
+  color: #ddd
+  background: #313131
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(49,49,49,1.0)), to(rgba(0,0,0,1.0)))
+  background: -moz-linear-gradient(top, rgba(49,49,49,1.0), rgba(0,0,0,1.0))
+  border: 4px solid #fff
+  border-top: none
+  .geoArrow
+    +right
+    width: 32px
+    height: 50px
+    margin: 0 0 0 12px
+    background: url(/images/icons/arrow_up-32.png) no-repeat center
+  p
+    +left
+    margin: 12px 0
+  .close-22
+    +absolute
+    right: 12px
+    top: 14px
 
 
 
@@ -170,7 +213,7 @@ abbr, acronym
     +right
     +center
     +user-select
-    +shine-dark-alpha(12)
+    +shine-dark-alpha(14)
     +button-dark
     +round(12)
     +confirm(12)
@@ -178,7 +221,7 @@ abbr, acronym
     color: #fff !important
     height: 28px
     line-height: 28px
-    padding: 0 60px
+    width: 154px
 
 
   .facebook
@@ -193,7 +236,7 @@ abbr, acronym
     line-height: 28px
     padding: 0 8px
     margin: 0 8px 8px 0
-    background: url('/images/icons/facebook-16.png') no-repeat center center transparent
+    background: url('/images/icons/facebook-16-hover.png') no-repeat center center transparent
     &:hover
       +glow-light(8)
       border: 1px solid transparent
@@ -211,7 +254,7 @@ abbr, acronym
     +cursor
     margin-left: 8px
 
-  .login-input, #loginButton
+  .login-input
     +clear
     +block
     +font(14)
@@ -219,18 +262,61 @@ abbr, acronym
     padding: 0 8px
     width: 186px
     height: 32px
-    line-height: 32px
-
-  .login-input
     +input-light(small)
 
-  #loginButton
+
+  .submit
+    +absolute
+    +pointer
     +round(12)
-    +border-dark
-    +bevel-light
-    width: 204px
-    +confirm(12)
-    margin: 10px 0 0
+    +overflow
+    +transparent
+    +glow-blue(14)
+    top: 27px
+    right: 7px
+    width: 156px
+    height: 30px
+    border: 1px solid #9ae4fd
+    &:hover
+      border: 1px solid #fff
+      +glow-dark(20)
+    &:active
+      +glow-dark(0)
+
+    .text
+      +absolute
+      +round(11)
+      +pointer
+      +user-select
+      +center
+      +bold
+      top: 0
+      left: 0
+      color: #fff
+      width: 156px
+      line-height: 30px
+      +font(18)
+      +shine-blue(15)
+
+      &:hover
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+
+      input#loginButton.button
+        +absolute
+        top: 0
+        left: 0
+        border-width: 20px
+        +font(100)
+        +alpha(00)
+        color: #fff
+        width: 154px
+
+
   #loginSpacer
     height: 8px
 
@@ -241,6 +327,7 @@ abbr, acronym
     +font(10)
     +user-select
     +right
+    color: #333 !important
     margin: 0 4px 4px
     padding: 0 4px
     height: 16px
@@ -257,7 +344,7 @@ abbr, acronym
   .forgot
     +relative
     right: 0
-    margin-top: 2px
+
 
 
 

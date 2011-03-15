@@ -9,8 +9,13 @@ class EntriesController < ApplicationController
   end
   
   def index
-    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
+    if params[:entry_type]
+      # TODO: Make this work without setting it
+      params[:filters] ||= {}
+      params[:filters][:type] = params[:entry_type]  
+    end
 
+    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
 
@@ -43,20 +48,25 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+    @entry_mode = 'new'
   end
   
   def edit
     @entry = Entry.find params[:id]
+    @entry_mode = 'edit'
     deny and return unless user_can_write?
     render :new
   end
 
   def create
-
+ 
     whats = (params[:what_tags] || []).map {|word| What.for word }
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-    
+
+    # replace this with a redirect/alert later
+    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
+        
     new_entry = current_user.entries.create!(params[:entry].merge(
       whats: whats
     ))
@@ -66,10 +76,13 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-
+   
+    # replace this with a redirect/alert later
+    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
+    
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:entry][:dreamed_at]
 
-    @entry.set_whats(params[:what_tags]) if params[:entry][:what_tags]
+    @entry.set_whats(params[:what_tags])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|

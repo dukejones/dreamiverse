@@ -85,7 +85,6 @@ class AppearancePanel extends MetaMenu
       $('body').removeClass('fixed, scroll')
       $('body').css('background-attachment', $(event.currentTarget).val())
     
-    # setup theme colorPicker
     $('.colorPicker a').bind 'ajax:beforeSend', (xhr, settings)=>
       $('#body').removeClass('dark light').addClass($(xhr.target).attr('id'))
     
@@ -104,17 +103,27 @@ class AppearancePanel extends MetaMenu
     
     $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
+    
+    if $('#entry_view_preference_attributes_bedsheet_attachment').attr('id')?
+      $('.attachment .fixed, .attachment .scroll').click( (event)->
+        $('#entry_view_preference_attributes_bedsheet_attachment').val($(event.currentTarget).attr('id'))
+        $('#body').removeClass('fixed scroll')
+        $('#body').addClass($(event.currentTarget).attr('id'))
+      )
           
     
   setupThemeSelector: ->
     @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
+      $('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
+      
       @newTheme = $(event.currentTarget).attr('id')
-      if $('#entry_view_preference_theme').attr('id')?
-        $('#entry_view_preference_theme').val(@newTheme)
+      if $('#entry_view_preference_attributes_theme').attr('id')?
+        console.log(@newTheme)
+        $('#entry_view_preference_attributes_theme').val(@newTheme)
+
         
-  displayBedsheets: -> 
+  displayBedsheets: => 
     # code to display bedsheets here. Need JSON call
-    # $.publish('follow/changing', [node])
     $.getJSON("/images.json?section=Bedsheets", (data) =>
       
       @$currentMenuPanel.find('.bedsheets ul').html('');
@@ -129,7 +138,7 @@ class AppearancePanel extends MetaMenu
         $('#body').css('background-image', bedsheetUrl)
       
         if $('#entry_view_preference_attributes_image_id').attr('name')?
-          @updateEntryBedsheetHiddenImageId($(event.currentTarget).data('id'))  
+          $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
           
         if $('#show_entry_mode').attr('name')?
           @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        
@@ -172,41 +181,18 @@ class SettingsPanel extends MetaMenu
     @$authorizeAllFollows = @$currentMenuPanel.find('.authFollow').is(':checked')
     @$facebookSharing =  @$currentMenuPanel.find('.fbShare').is(':checked')
     
-    # setup saved locations
-    $('.modifyLocationView .cancel').click( (event) ->
-      $(event.currentTarget).parent().prev().show()
-      $(event.currentTarget).parent().hide()
-    )
-    
-    $('form#addLocationForm').bind 'ajax:beforeSend', (xhr, settings)=>
-      $('#addLocationForm').hide()
-      $('.locationView').show()
-      #log xhr.target.new_location[name]
-    
-    $('form#addLocationForm').bind 'ajax:success', (data, xhr, status)->
-      $('#locationList').append(xhr)
-      $('p.notice').text('Profile has been updated')
-    
-    $('form#addLocationForm').bind 'ajax:error', (xhr, status, error)->
-      $('p.alert').text(error)
-    
-    $('.locationForm input:radio').change( (event) ->
-      $('.location input:radio').each( (index, value) ->
-        $(value).parent().removeClass('selected')
-      )
-      $(event.currentTarget).parent().addClass('selected')
-    )
     
     # setup default sharing dropdown change
     $('#sharingList').change( (event) =>
-      switch $(event.currentTarget).find('option:selected').text()
-        when "Everyone" then $('.sharingIcon').attr('src', '/images/icons/everyone-16.png')
-        when "Friends only" then $('.sharingIcon').attr('src', '/images/icons/friend-16.png')
-        when "Anonymous" then $('.sharingIcon').attr('src', '/images/icons/mask-16.png')
-        when "Private" then $('.sharingIcon').attr('src', '/images/icons/lock-16.png')
+      switch $(event.currentTarget).find('option:selected')[0].value
+        when "500" then $('.sharingIcon').css('background', 'url(/images/icons/sharing-24-hover.png) no-repeat center transparent')
+        when "200" then $('.sharingIcon').css('background', 'url(/images/icons/friend-24.png) no-repeat center transparent')
+        when "150" then $('.sharingIcon').css('background', 'url(/images/icons/friend-follower-24.png) no-repeat center transparent')
+        when "50" then $('.sharingIcon').css('background', 'url(/images/icons/anon-24-hover.png) no-repeat center transparent')
+        when "0" then $('.sharingIcon').css('background', 'url(/images/icons/private-24-hover.png) no-repeat center transparent')
       
       if !@firstRun
-        @updateDefaultSharing($(event.currentTarget).find('option:selected').text())
+        @updateDefaultSharing($(event.currentTarget).find('option:selected')[0].value)
       @firstRun = false
     )
     
@@ -234,6 +220,7 @@ class SettingsPanel extends MetaMenu
       else
         $('#change_password .error').text('')
         $('#user_old_password, #user_password, #user_password_confirmation').val('')
+        
     
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
       #$('p.alert').text(xhr.error)
@@ -244,13 +231,7 @@ class SettingsPanel extends MetaMenu
     @$defaultSharingSelect.val(@$currentMenuPanel.find('.defaultSharing').data('id'))
     $('#sharingList').change()
     
-  updateDefaultSharing: (newSharingLevel) ->
-    
-    switch newSharingLevel
-        when "Everyone" then sharingLevel = 500
-        when "Friends only" then sharingLevel = 200
-        when "Anonymous" then sharingLevel = 50
-        when "Private" then sharingLevel = 0
+  updateDefaultSharing: (sharingLevel) ->
     
     $.ajax {
       type: 'PUT'
@@ -259,5 +240,4 @@ class SettingsPanel extends MetaMenu
       data:
         "user[default_sharing_level]": parseInt(sharingLevel)
       success: (data, status, xhr) =>
-        alert 'updated default sharing level!'
     }

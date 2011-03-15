@@ -42,9 +42,10 @@ window.setupDreamplugs = ->
         
         newIcon = $(event.currentTarget).find('img').attr('src')
         $toggleIcon.attr('src', newIcon)
-        
+        console.log($toggleIcon)
+        console.log(newIcon)
         #newText = $(event.currentTarget).find('span').text()
-        newText = $(event.currentTarget).data('filter')
+        newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
         
         # Publish event for the Stream (or wherever its used) to listen to
@@ -77,6 +78,7 @@ window.setupDreamplugs = ->
   $('.trigger.showhideremove').click( (event) ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhideremove')
     $(event.currentTarget).hide()
+   
     if $newTargetShowHide.css('display') is 'none'
       $newTargetShowHide.show()
     else

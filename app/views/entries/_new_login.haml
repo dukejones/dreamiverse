@@ -16,11 +16,11 @@
   .getStartedButtons
 
     %a.button{href: new_entry_path}
-      %img.dream{src: '/images/icons/dream-32.png'}
-      <span class="green">+</span> add your first dream
+      %img.dream{src: '/images/icons/dream-32-hover.png'}
+      <span class="green">+</span> add a dream
 
     .button{onclick: "$.publish('toggleAppearance', [this])"}
-      %img.appearance{src: '/images/icons/appearance-24.png'}
+      %img.appearance{src: '/images/icons/appearance-24-hover.png'}
       set your default theme
 
     .button.profile{onclick: "window.contextController.toggleProfile()"}
@@ -28,7 +28,7 @@
       customize your profile
 
     %a.button.dreamButton{href: user_entries_path(@user.username)}
-      %img.dreamfield{src: '/images/icons/dream-32-off.png'}
+      %img.dreamfield{src: '/images/icons/dream-32-active.png'}
       view your dream field
 
     %a.button{href: "/dreamstars"}

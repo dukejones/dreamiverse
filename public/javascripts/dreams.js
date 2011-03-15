@@ -2,32 +2,33 @@ $(document).ready(function() {
   setupEvents();
   setupImagebank();
   setupUploader();
-  setupSharingImages()
+  setupSharingImages();
+  setupLinkButtons();
 });
 
 function setupSharingImages(){
   $('.detailsBottom .sharing span').each(function(){
     switch($(this).text()){
       case 'private':
-          $(this).prev().attr('src', '/images/icons/lock-16.png')
+          $(this).prev().attr('src', '/images/icons/private-16.png')
         break;
       case 'anonymous':
-          $(this).prev().attr('src', '/images/icons/mask-16.png')
+          $(this).prev().attr('src', '/images/icons/anon-16.png')
         break;
       case 'users':
           $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
         break;
       case 'followers':
-          $(this).prev().attr('src', '/images/icons/friend-follower-16')
+          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'friends':
-          $(this).prev().attr('src', '/images/icons/friend-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'friends of friends':
-          $(this).prev().attr('src', '/images/icons/friend-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
         break;
       case 'everyone':
-          $(this).prev().attr('src', '/images/icons/everyone-grey-16.png')
+          $(this).prev().attr('src', '/images/icons/sharing-16.png')
         break;
     }
   })
@@ -40,7 +41,7 @@ function setupUploader(){
   if(document.getElementById('imageDropArea')){
     // Setup radio button events
     
-    $('.entryImageContainer input[type=radio]').change(function(){
+    $('.entryImageContainer input[type=radio]').live('change', function(){
       $('.entryImageContainer .radio').removeClass('selected')
       $(this).parent().addClass('selected')
     })
@@ -186,24 +187,26 @@ function setupEvents(){
   $('.entryAttach .images').click(function(){
     $('.entryImages').slideDown();
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.imagesHeader').click(function(){
-      // if no images added, remove panel 
-      // and show button
-      if($('#currentImages').children().length == 1){
-        $('.entryImages').slideUp();
-        $('.entryAttach .images').show();
+
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.imagesHeader').unbind()
+  $('.imagesHeader').click(function(){
+    // if no images added, remove panel 
+    // and show button
+    if($('#currentImages').children().length == 1){
+      $('.entryImages').slideUp();
+      $('.entryAttach .images').show();
+    } else {
+      // if content added, minimize panel
+      if($('#currentImages').css('display') != 'none'){
+        $('#currentImages').slideUp();
       } else {
-        // if content added, minimize panel
-        if($('#currentImages').css('display') != 'none'){
-          $('#currentImages').slideUp();
-        } else {
-          $('#currentImages').slideDown();
-        }
+        $('#currentImages').slideDown();
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
@@ -215,36 +218,36 @@ function setupEvents(){
     //$('#newDream-tag').animate({height: 42}, "slow");
     
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.entryTags .headers').unbind();
-    $('.entryTags .headers').click(function(){
-      if($('#tag-list').children().length == 2){
-        // No tags added hide it all
-        $('.entryTags').slideUp();
-        $('.entryAttach .tag').show();
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.entryTags .headers').unbind();
+  $('.entryTags .headers').click(function(){
+    if($('#tag-list').children().length == 2){
+      // No tags added hide it all
+      $('.entryTags').slideUp();
+      $('.entryAttach .tag').show();
+    } else {
+      // tags added only minimize
+      if($('#tag-list').css('display') != 'none'){
+        var elementHeight = $('#tag-list').height(); 
+        $('#tag-list').css('height', elementHeight + 'px');
+        $('#tag-list').slideUp('fast');
+        
+        /*var combinedHeight = elementHeight;
+        $('#newDream-tag').height(combinedHeight);
+        $('#newDream-tag').animate({height: 42}, "fast");*/
       } else {
-        // tags added only minimize
-        if($('#tag-list').css('display') != 'none'){
-          var elementHeight = $('#tag-list').height(); 
-          $('#tag-list').css('height', elementHeight + 'px');
-          $('#tag-list').slideUp('fast');
-          
-          /*var combinedHeight = elementHeight;
-          $('#newDream-tag').height(combinedHeight);
-          $('#newDream-tag').animate({height: 42}, "fast");*/
-        } else {
-          var elementHeight = $('#tag-list').height(); 
-          $('#tag-list').css('height', elementHeight + 'px');
-          $('#tag-list').slideDown('fast');
-          
-          /*var combinedHeight = 50 + elementHeight;
-          $('#newDream-tag').height(42);
-          $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
-        }
+        var elementHeight = $('#tag-list').height(); 
+        $('#tag-list').css('height', elementHeight + 'px');
+        $('#tag-list').slideDown('fast');
+        
+        /*var combinedHeight = 50 + elementHeight;
+        $('#newDream-tag').height(42);
+        $('#newDream-tag').animate({height: combinedHeight}, "fast");*/
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
@@ -258,30 +261,30 @@ function setupEvents(){
   $('.entryAttach .mood').click(function(){
     $('.entryEmotions').slideDown();
     $(this).hide();
-    
-    $('.entryEmotions .headers').unbind()
-    $('.entryEmotions .headers').click(function(){
-      var radioSelected = false;
-      $('.moodPicker input[type="radio"]:checked').each(function(i, el){
-        // only mark as selected if its a value other than 1
-        if($(el).val() != '1'){
-          radioSelected = true
-        }
-      })
-      
-      if(radioSelected){
-        if($('.moodPicker').css('display') == 'none'){
-          $('.moodPicker').slideDown()
-        } else {
-          $('.moodPicker').slideUp()
-        }
-      } else {
-        $('.entryEmotions').slideUp();
-        $('.entryAttach .mood').show();
+    checkAttachButtons();
+  })
+  
+  $('.entryEmotions .headers').unbind()
+  $('.entryEmotions .headers').click(function(){
+    var radioSelected = false;
+    $('.moodPicker input[type="radio"]:checked').each(function(i, el){
+      // only mark as selected if its a value other than 1
+      if($(el).val() != '1'){
+        radioSelected = true
       }
-      
-      checkAttachButtons();
     })
+    
+    if(radioSelected){
+      if($('.moodPicker').css('display') == 'none'){
+        $('.moodPicker').slideDown()
+      } else {
+        $('.moodPicker').slideUp()
+      }
+    } else {
+      $('.entryEmotions').slideUp();
+      $('.entryAttach .mood').show();
+    }
+    
     checkAttachButtons();
   })
   
@@ -289,24 +292,24 @@ function setupEvents(){
   $('.entryAttach .links').click(function(){
     $('.entryLinks').slideDown();
     $(this).hide();
-    
-    // Set newly displayed header click
-    $('.entryLinks .headers').unbind();
-    $('.entryLinks .headers').click(function(){
-      if($('#linkHolder').children().length < 1){
-        // No tags added hide it all
-        $('.entryLinks').slideUp();
-        $('.entryAttach .links').show();
+    checkAttachButtons();
+  })
+  
+  // Set newly displayed header click
+  $('.entryLinks .headers').unbind();
+  $('.entryLinks .headers').click(function(){
+    if($('#linkHolder').children().length < 1){
+      // No tags added hide it all
+      $('.entryLinks').slideUp();
+      $('.entryAttach .links').show();
+    } else {
+      // tags added only minimize
+      if($('#linkHolder').css('display') != 'none'){
+        $('#linkHolder').slideUp();
       } else {
-        // tags added only minimize
-        if($('#linkHolder').css('display') != 'none'){
-          $('#linkHolder').slideUp();
-        } else {
-          $('#linkHolder').slideDown();
-        }
+        $('#linkHolder').slideDown();
       }
-      checkAttachButtons();
-    })
+    }
     checkAttachButtons();
   })
   
@@ -407,7 +410,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-22"></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -442,6 +445,7 @@ function showYoutubeData(newText){
       
       var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
+      $('#linkHolder').slideDown()
       $('.linkContainer').fadeIn();
     }
   });
@@ -449,7 +453,7 @@ function showYoutubeData(newText){
 
 function setupImageButtons(){
   // Click to remove Image
-  $('.close-22').live('click', function(event){
+  $('#currentImages .close-22').live('click', function(event){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     
@@ -463,6 +467,16 @@ function setupImageButtons(){
       $(this).remove();
     });
     
+  })
+}
+
+function setupLinkButtons(){
+  // Click to remove link
+  $('#linkHolder .close-22').live('click', function(event){
+    // Remove from list of used link  
+    $(event.currentTarget).parent().slideUp(250, function(){
+      $(this).remove()
+    })
   })
 }
 

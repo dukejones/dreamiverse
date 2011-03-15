@@ -1,10 +1,8 @@
 $(document).ready(function(){
   $('#submitButton, #details, #bugType').hide()
-  $('textarea#detailsForm').autoResize({
-	  animationDuration: 500,
-	  animate: true,
-	  extraSpace: 40
-	})
+  $('textarea#detailsForm').keyup(function() {
+    return fitToContent(this, 0);
+  }); 
 })
 
 $('#type').focus();

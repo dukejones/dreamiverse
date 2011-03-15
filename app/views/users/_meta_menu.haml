@@ -1,6 +1,18 @@
 - content_for :head do
   = coffeescript_include_tag 'metamenu'
 
+
+/ PRELOAD - METAMENU USER & PUBLIC
+.hidden
+  / SHUFFLE
+  %img{src: '/images/icons/shuffle-24-hover.png'}
+  %img{src: '/images/icons/shuffle-24-active.png'}
+  / LOGOUT
+  %img{src: '/images/icons/logout-24-hover.png'}
+  %img{src: '/images/icons/logout-24-active.png'}
+
+
+
 #report_box= VERSION
 
 %a#logo{href: root_path }

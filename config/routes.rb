@@ -17,12 +17,13 @@ Dreamcatcher::Application.routes.draw do
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
 
   # Universal 
-  match '/dreamstars' => 'users#index', :as => :dreamstars
-  match '/stream' => 'entries#stream', :as => :stream
+  match 'thank_you' => 'home#thank_you', :as => :thank_you
   get  '/feedback' => 'home#feedback', :as => :feedback
   post '/feedback' => 'home#submit_feedback'
-  match '/random' => 'entries#random', :as => :random
   match '/terms' => 'home#terms', :as => :terms
+  match '/dreamstars' => 'users#index', :as => :dreamstars
+  match '/stream' => 'entries#stream', :as => :stream
+  match '/random' => 'entries#random', :as => :random
 
   # Resources
 
@@ -85,10 +86,10 @@ Dreamcatcher::Application.routes.draw do
   scope ':username' do
        
     # Entries
-    match "/dreams", :to => 'entries#index', :'filters[type]' => 'dream', :as => 'dreams'
-    match "/visions", :to => 'entries#index', :'filters[type]' => 'vision', :as => 'visions'
-    match "/experiences", :to => 'entries#index', :'filters[type]' => 'experience', :as => 'experiences'
-    match "/articles", :to => 'entries#index', :'filters[type]' => 'article', :as => 'articles'
+    match "/dreams", :to => 'entries#index', 'entry_type' => 'dream', :as => 'dreams'
+    match "/visions", :to => 'entries#index', 'entry_type' => 'vision', :as => 'visions'
+    match "/experiences", :to => 'entries#index', 'entry_type' => 'experience', :as => 'experiences'
+    match "/articles", :to => 'entries#index', 'entry_type' => 'article', :as => 'articles'
     
     get '/' => 'entries#index', :as => 'user_entries'
     post '/' => 'entries#create'

@@ -1,39 +1,11 @@
-#geoHeader
-  +user-select
-  +pointer
-  +round(16)
-  +flat-top
-  box-shadow: 0 0 40px #f0e207
-  -moz-box-shadow: 0 0 40px #f0e207
-  -webkit-box-shadow: 0 0 40px #f0e207
-  +font(22)
-  padding: 0 50px
-  text-align: center
-  position: fixed
-  top: 0px
-  right: 8px
-  height: 50px
-  line-height: 50px
-  width: 470px
-  z-index: 1600
-  color: #ddd
-  background: #313131
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(49,49,49,1.0)), to(rgba(0,0,0,1.0)))
-  background: -moz-linear-gradient(top, rgba(49,49,49,1.0), rgba(0,0,0,1.0))
-  border: 4px solid #fff
-  border-top: none
-  .geoArrow
-    +right
-    width: 32px
-    height: 50px
-    margin: 0 0 0 12px
-    background: url(/images/icons/arrow_up-32.png) no-repeat center
-  p
-    +left
 
 
-/*********** NEW ENTRY ***********/
+
+// NEW ENTRY
+
 // STRUCTURE
+
+
 #entryField
 
   // see entries.sass
@@ -64,15 +36,17 @@
         top: -8px
 
     .entryType
-      +round(16)
+      +round(20)
       +right
       right: 70px
       height: 34px
       width: 178px // For Chrome
       line-height: 34px
-      img.typeSelection
+      .typeSelection
         +left
-        margin: 1px 0 0 4px
+        width: 24px
+        height: 34px
+        margin: 0 0 0 8px
       select#entryType_list
         +outline
         +transparent
@@ -87,16 +61,16 @@
         padding: 7px 8px 7px 38px
         margin-left: -36px
         option
-          padding: 8px 4px 8px 38px
+          padding: 6px 4px 6px 38px
           text-align: left
         option.dream
-          background: url(/images/icons/dream-24.png) no-repeat 8px center
+          background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
         option.vision
-          background: url(/images/icons/vision-24.png) no-repeat 8px center
+          background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
         option.experience
-          background: url(/images/icons/experience-24.png) no-repeat 8px center
+          background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
         option.article
-          background: url(/images/icons/article-24.png) no-repeat 8px center
+          background: url(/images/icons/article-16-hover.png) no-repeat 8px center
     #entry_title, #entry_body
       +outline
       +transparent
@@ -143,10 +117,12 @@
           margin: 0
           padding: 0 4px
           z-index: 1101
-          img.listSelection
+          .listSelection
             +pointer
             +left
-            margin: 6px 0 0 6px
+            width: 24px
+            height: 34px
+            margin: 0 0 0 6px
 
           select#sharing_select
             +outline
@@ -159,18 +135,21 @@
             border: none
             height: 34px
             line-height: 34px
-            padding: 7px 8px
+            padding: 7px 8px 7px 32px
+            margin-left: -32px
             option
               padding: 8px 4px 8px 38px
               text-align: left
             option.everyone
-              background: url(/images/icons/share-16.png) no-repeat 8px center
+              background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
             option.list
               background: url(/images/icons/friend-16.png) no-repeat 8px center
+            option.followers
+              background: url(/images/icons/friend-follower-16.png) no-repeat 8px center
             option.anon
-              background: url(/images/icons/mask-16.png) no-repeat 8px center
+              background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
             option.private
-              background: url(/images/icons/lock-16.png) no-repeat 8px center
+              background: url(/images/icons/private-16-hover.png) no-repeat 8px center
 
           .listOfUsers
             +relative
@@ -250,23 +229,30 @@
 
     .addTheme, .date, .addLocation
       width: 42px
-    .addTheme img
-      margin: 0
-    .date img
-      margin: 9px 0 0
     .addLocation .img, .addTheme .img, .date .img
       width: 42px
       height: 34px
-    .addLocation .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-select.png') center center no-repeat !important
-    .addTheme .img
-      background: url('/images/icons/appearance-24-off.png') center center no-repeat
-    .date .img
-      background: url('/images/icons/date-19.png') center center no-repeat
-    .addLocation.selected .img
-      background: url('/images/icons/location-24-off.png') center center no-repeat
+    .addLocation
+      .img
+        background: url('/images/icons/location-24.png') center center no-repeat
+    .addLocation.selected
+      .img
+        background: url('/images/icons/location-24-hover.png') center center no-repeat !important
+    .addTheme
+      .img
+        background: url('/images/icons/appearance-24.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/appearance-24-active.png') center center no-repeat
+    .date 
+      .img
+        background: url('/images/icons/date-24.png') center center no-repeat
+      &:hover .img
+        background: url('/images/icons/date-24-hover.png') center center no-repeat
+      &:active .img
+        background: url('/images/icons/date-24-active.png') center center no-repeat
+
     #entry_submit
       +bold
       +font(12)
@@ -409,7 +395,6 @@
         margin: 0px 8px 8px 0px
         height: 120px
         width: 120px
-        background: #fff
         .entryImage
           +relative
           +user-select
@@ -759,7 +744,8 @@
       line-height: 32px
       +font(20)
       margin: 0 40px
-    .tag, .images, .mood, .links, .analysis
+
+    .attach
       +center
       +left
       +pointer
@@ -769,12 +755,35 @@
       line-height: 32px
       margin: 0 0 0 8px
       padding: 0 12px
-      img
+      .img
         +left
-        margin: 7px 8px 0 0
-    .images
-      img
-        margin-top: 11px
+        width: 16px
+        height: 34px
+        margin-right: 8px
+
+    .attach.images
+      .img
+        background: url(/images/icons/images-16.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/images-16-hover.png) no-repeat left center transparent
+      &:active .img
+        background: url(/images/icons/images-16-active.png) no-repeat left center transparent
+
+    .attach.tag
+      .img
+        background: url(/images/icons/tag-16.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+
+    .attach.links
+      .img
+        background: url(/images/icons/link-16.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/link-16-hover.png) no-repeat left center transparent
+      &:active .img
+        background: url(/images/icons/link-16-active.png) no-repeat left center transparent
 
 
 
@@ -951,8 +960,8 @@
         box-shadow:         inset 0 16px rgba(255,255,255,0.2)
         -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
         -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
-        background: #222
-        +gradient(#222, #1a1a1a)
+        background: #aaa
+        +gradient(#222, #aaa)
 
       .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark

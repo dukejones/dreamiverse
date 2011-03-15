@@ -4,7 +4,6 @@ set :stages, %w(theta production)
 set :default_stage, "theta"
 require "capistrano/ext/multistage"
 
-set :application, "theta.dreamcatcher.net"
 
 set :scm, :git
 set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
@@ -15,8 +14,6 @@ set :scm_verbose, true
 set :user, "www-data"
 set :use_sudo, false
 
-server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
-set :deploy_to, "/var/www/#{application}"
 
 
 # after "deploy", "deploy:cleanup"
@@ -38,20 +35,6 @@ namespace :deploy do
   end
 end
 
-# before 'uploads:symlink', 'uploads:create_shared'
-namespace :uploads do
-  desc "Symlink the uploads directory to the shared uploads directory."
-  task :symlink do
-    run "rm -rf #{current_path}/public/images/uploads"
-    # run "ln -fs #{shared_path}/images/uploads #{current_path}/public/images/"
-    run "ln -fs /mnt/imagebank #{current_path}/public/images/uploads"
-  end
-  
-  # desc "Create the shared image uploads directory if it doesn't exist, and set the correct permissions."
-  # task :create_shared do
-  #   run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 777 #{shared_path}/images/uploads"
-  # end
-end
 
 namespace :barista do
   task :brew do
