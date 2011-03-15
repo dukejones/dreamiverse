@@ -4,5 +4,4 @@ window.log = (msg)-> console.log(msg) if console?
 # application_controller set_client_timezone method
 if !$.cookie('timezone') 
   current_time = new Date()
-  alert('setting time zone: '+ current_time.getTimezoneOffset())
   $.cookie('timezone', current_time.getTimezoneOffset(), { path: '/', expires: 10 } )
