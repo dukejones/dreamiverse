@@ -11,8 +11,6 @@ class Migration::ImageImporter < Migration::Importer
     image.enabled = true
     image.save!
 
-    puts image.title
-
     image.import_from_file("#{Legacy::Image::Dir}/#{legacy_image.path}")
 
     image

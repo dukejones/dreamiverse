@@ -34,15 +34,17 @@ namespace :legacy do
       end
       task :dream_images => [:environment] do
         Legacy::DreamImage.all.each do |dream_image|
-          next unless dream_image.image._?.valid?
-
+          unless dream_image.image._?.valid?
+            log("dream image not valid! dream: #{dream_image.dream.id} #{dream_image.dream.title[0..10]} image: #{dream_image.image._?.id} #{dream_image.image._?.fullpath}")
+            next
+          end
+          
           image = dream_image.image._?.corresponding_object
-          puts "Image does not exist!  #{dream_image.image._?.title}  for dream #{dream_image.dream._?.title}" unless image
+          log "Image does not exist!  #{dream_image.image._?.title}  for dream #{dream_image.dream._?.title}" unless image
 
           entry = dream_image.dream._?.corresponding_object
-          puts "Entry does not exist!  #{dream_image.dream._?.title}" unless entry
+          log "Entry does not exist!  #{dream_image.dream._?.title}" unless entry
           
-
           entry.images << image
         end
       end
