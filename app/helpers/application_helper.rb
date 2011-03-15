@@ -61,11 +61,11 @@ module ApplicationHelper
       bedsheet_image ||= @entry._?.view_preference._?.image
       bedsheet_image ||= @user._?.view_preference._?.image
       bedsheet_image ||= current_user._?.view_preference._?.image
-      
+
       if is_mobile?
-        bedsheet_url = bedsheet_image._?.url(:bedsheet, :format => 'jpg')
-      else
         bedsheet_url = bedsheet_image._?.url(:bedsheet_small, :format => 'jpg')
+      else
+        bedsheet_url = bedsheet_image._?.url(:bedsheet, :format => 'jpg')
       end
       bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
     end
