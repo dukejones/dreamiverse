@@ -95,6 +95,7 @@ $(document).ready ->
     $('#' + link_id).data({'id': "videoEmbed"})
     $('#' + link_id).append(videoEmbed)
   
+  ### disabled until update entry ordering is working again
   # Setup tag re-ordering
   if $('#entryField').data('owner')
     $("#sorting").val(1)
@@ -121,7 +122,8 @@ $(document).ready ->
           position_list: order
         #success: (data, status, xhr) => log "success"
       }
-    
+  ### 
+  
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 
   $('#comment_body').css('overflow','hidden')
