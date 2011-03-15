@@ -1,4 +1,13 @@
 class Migration::Importer
+  @@import_logger = Logger.new( File.open("#{Rails.root}/log/import.log", 'a') )
+  def self.log(msg)
+    @@import_logger.warn(msg)
+    puts msg
+  end
+  def log(msg)
+    self.log(msg)
+  end
+
   def initialize(_entity_to_migrate, _migrated_entity)
     @entity_to_migrate = _entity_to_migrate
     @migrated_entity = _migrated_entity
@@ -33,7 +42,7 @@ class Migration::Importer
     entity_name ||= collection.first.class.to_s.pluralize
     puts '-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-'
     puts "Migrating all: #{entity_name}"
-
+    log("-=-=-=-=-=-=-=-=-=   migrate all #{entity_name}   =-=-=-=-=-=-=-=-=-=-")
     # if collection.first.respond_to?(:corresponding_object)
     #   collection.reject! {|obj| obj.corresponding_object }
     # end
