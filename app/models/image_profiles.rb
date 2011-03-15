@@ -148,7 +148,7 @@ module ImageProfiles
   end
   
   def bedsheet_small(options)
-    options[:format] = 'jpg' unless options[:format]
+    # options[:format] = 'jpg' unless options[:format]
 
     img = magick_image
     if options[:format] != self.format
