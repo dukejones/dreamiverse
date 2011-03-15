@@ -7,7 +7,7 @@ class Migration::EnvironmentSeriesImporter < Migration::Importer
     if tag = Tag.where(noun_id: @entity_to_migrate.noun_id, noun_type: 'What', 
       entry_id: @entity_to_migrate.entry_id).first
       
-      puts "duplicate tag: #{tag.inspect}"
+      log "duplicate tag: #{tag.inspect}"
       tag
     else
       super
