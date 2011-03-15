@@ -1,7 +1,7 @@
 / FRIEND'S LIST
-.userNode{:userId => friend.id, :relationshipWith => current_user.relationship_with(friend)}
+.userNode{:userId => friend.id, :relationshipWith => current_user._?.relationship_with(friend)}
 
-  .status{:class => current_user.relationship_with(friend)}
+  .status{:class => current_user._?.relationship_with(friend)}
   .statusHover.hidden
     %span unfollow
 
