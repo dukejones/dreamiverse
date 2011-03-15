@@ -145,6 +145,7 @@ class TagViewList
   removeTag: (tagId) ->
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
+    console.log(tagViewToRemove)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
 
@@ -218,22 +219,23 @@ class EditingTagView extends TagView
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
   remove: ->
-    if $("#sorting").val() is "1"
-      @removeFromView()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
     
 class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+    console.log("SharingTagView Init")
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)
       @tag.setId(response.what_id)
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
-    if $("#sorting").val() is "1"
-      @removeFromView()
-      @tag.destroy()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
+    @tag.destroy()
 
 
 # MAKE THIS STORE THE ID OF THE TAG ALSO
