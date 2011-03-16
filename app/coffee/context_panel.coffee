@@ -105,7 +105,7 @@ class ContextView
     # Change the current filter state to whatever is passed
     switch filter_state
       when 'vision', 'experience', 'article', 'dream'
-        $('.entryFilter.entries').find('.value').text(filter_state)
+        $('.entryFilter.entries').find('.value').text(filter_state + 's')
         $('.entryFilter.entries').find('.label').addClass('selected')
       when 'friends', 'following', 'followers'
         $('.entryFilter.friends').find('.value').text(filter_state)
