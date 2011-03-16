@@ -57,7 +57,6 @@ class User::RegistrationsController < ApplicationController
   def create
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
-
     redirect_to join_path(user: params[:user]), :alert => "captcha did not match." and return unless verify_recaptcha
     
     @user = User.create(params[:user])
