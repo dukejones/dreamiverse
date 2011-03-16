@@ -1,18 +1,14 @@
 / iPAD SCROLLER
-- if request.user_agent.match(/iPad/)
+- if is_ipad?
   - content_for :head do
-    = javascript_include_tag 'iscroll-lite-min'
+    = javascript_include_tag 'iscroll'
 
 
 / APPEARANCE PANEL
 #appearancePanel.hidden.target
   .arrow
 
-  / iPAD SCROLLER
-  - if request.user_agent.match(/iPad/)
-    <script type="text/javascript">
-    var myScroll = new iScroll('bedsheetScroller');
-    </script>
+
 
   / BEDSHEETS
   .bedsheets
@@ -22,6 +18,12 @@
       options
     #bedsheetScroller
       %ul
+
+    / iPAD SCROLLER
+    - if is_ipad?
+      <script type="text/javascript">
+      var myScroll = new iScroll('bedsheetScroller');
+      </script>
 
     .attachment 
       - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 

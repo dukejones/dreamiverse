@@ -38,6 +38,10 @@ module ApplicationHelper
     end
   end
   
+  def is_ipad?
+    request.user_agent.match(/iPad/)
+  end
+  
   def coffeescript_include_tag(*sources)
     javascript_include_tag(*(sources.map { |js| "compiled/#{js}" }))
   end

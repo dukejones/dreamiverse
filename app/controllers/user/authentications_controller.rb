@@ -18,12 +18,12 @@ class User::AuthenticationsController < ApplicationController
       else
         # user = User.create_from_omniauth(omniauth)
         # set_current_user user
-        # flash.notice = "created new user: #{user.name}."
 
         # This should associate the new account with the newly authorized authorization.
         session[:registration_auth_provider] = omniauth['provider']
         username = omniauth['user_info']['nickname']
         email = omniauth['extra']['user_hash']['email']
+        flash.notice = "We could not find #{username} within Dreamcatcher."
         redirect_to join_path(user: {username: username, email: email}) and return
       end
     end
