@@ -169,6 +169,15 @@
         padding: 6px 4px 8px
 
 
+
+    .settingsPanel, .appearancePanel
+      +left
+
+    .settings, .appearance
+      img
+        margin: 1px
+        border: 0px
+
     .item.settings, .item.appearance
       width: 20px
     .item.settings
@@ -186,78 +195,140 @@
 
 
 
+  .newEntry, .logOut, .adminLink
+    +transparent-dark(50)
+    +round(30)
+    +button-light
+    +block
+    +user-select
+    color: #fff
+    text-decoration: none
+    border: 1px solid rgba(255,255,255,0.4)
 
+  .logOut, .adminLink
+    +right
+    width: 29px
+    height: 29px
+    .img
+      width: 100%
+      height: 100%
+      background-position: center center
+      background-repeat: no-repeat
 
+  .logOut, .adminLink
+    &:hover
+      +glow-dark(8)
+      border: 1px solid transparent
 
+  .adminLink
+    margin: 8px
+    .img
+      background-image: url('/images/icons/admin-16-hover.png')
 
+  .logOut
+    margin: 10px 15px 0
+    background-position: 4px 2px
+    background-repeat: no-repeat
+    background-image: url('/images/icons/logout-24.png')
+    &:hover
+      background-position: 4px 2px
+      background-repeat: no-repeat
+      background-image: url('/images/icons/logout-24-hover.png')
+    &:active
+      background-position: 4px 2px
+      background-repeat: no-repeat
+      background-image: url('/images/icons/logout-24-active.png')
+    .hover_label
+      +relative
+      margin: 0 2px 0 0
+      .offset-right
+        right: 0
+        .arrow
+          margin: 0 0 0 32px
 
-
-    // NOTIFICATIONS PANEL
-    .notificationsPanel
-      +round(16)
-      +absolute
-      left: -40px
-      width: 214px
-      padding: 8px
-      +transparent-light(50)
-      +border-light
-
-      .notifyIcon
-        +round(16)
-        +relative
-        height: 12px
-        line-height: 12px
-        width: 12px
-        padding: 4px
-        margin: 0 0 40px
-        background: #f15f29
-        color: #fff
-
-      .notice, .alert, .notification
-        +round(12)
-        +clear
-        +relative
-        min-height: 24px
-        margin: 4px 0 0
-        +transparent-light(50)
-        +button-light
-        .close
-          +hidden
-          +absolute
-          +center
-          top: 2px
-          right: 2px
-          width: 18px
-          height: 18px
-        &:hover
-          +transparent-light(90)
-          color: #000
-          .close
-            +block
-      .alert
-        .icon
-          +left
-          height: 24px
-          width: 24px
-
-      .notification
-        .avatar
-          +round(16)
-          +flat-right
-          +overflow
-          +left
-          width: 24px
-          height: 24px
-          margin: 0 12px 0 0
-
-
-    .settingsPanel, .appearancePanel
+  .newEntry
+    +right
+    +glow-dark(40)
+    +bold
+    padding: 6px 10px
+    font-size: 17px
+    margin: 8px 12px 0 0
+    border: none
+    .img
       +left
+      width: 15px
+      height: 15px
+      margin: 3px 7px 0 0
+      background: url("/images/icons/add-15.png") no-repeat center center transparent
+    &:hover
+      +round(24)
+      +inner-glow(20)
+      border: none
 
-    .settings, .appearance
-      img
-        margin: 1px
-        border: 0px
+
+
+
+
+
+
+  // NOTIFICATIONS PANEL
+  .notificationsPanel
+    +round(16)
+    +absolute
+    left: -40px
+    width: 214px
+    padding: 8px
+    +transparent-light(50)
+    +border-light
+
+    .notifyIcon
+      +round(16)
+      +relative
+      height: 12px
+      line-height: 12px
+      width: 12px
+      padding: 4px
+      margin: 0 0 40px
+      background: #f15f29
+      color: #fff
+
+    .notice, .alert, .notification
+      +round(12)
+      +clear
+      +relative
+      min-height: 24px
+      margin: 4px 0 0
+      +transparent-light(50)
+      +button-light
+      .close
+        +hidden
+        +absolute
+        +center
+        top: 2px
+        right: 2px
+        width: 18px
+        height: 18px
+      &:hover
+        +transparent-light(90)
+        color: #000
+        .close
+          +block
+    .alert
+      .icon
+        +left
+        height: 24px
+        width: 24px
+
+    .notification
+      .avatar
+        +round(16)
+        +flat-right
+        +overflow
+        +left
+        width: 24px
+        height: 24px
+        margin: 0 12px 0 0
+
 
 
 

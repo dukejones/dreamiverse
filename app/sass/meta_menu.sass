@@ -35,33 +35,8 @@
   min-width: 940px
 
 
-
-
-
-
-
-
-#metaMenu
-
   .randomDream
     +left
-    margin: 8px 0 0 12px
-    height: 33px
-    background-position: center 4px !important
-    background-repeat: no-repeat !important
-    background-image: url('/images/icons/shuffle-24.png') !important
-
-    &:hover
-      background-position: center 4px !important
-      background-repeat: no-repeat !important
-      background-image: url('/images/icons/shuffle-24-hover.png') !important
-    &:active
-      background-position: center 4px !important
-      background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-24-active.png') !important
-
-
-  .adminLink, .newEntry, .logOut, .randomDream
     +transparent-dark(50)
     +round(30)
     +button-light
@@ -69,58 +44,21 @@
     +user-select
     color: #fff
     text-decoration: none
+    margin: 8px 0 0 12px
+    height: 33px
     border: 1px solid rgba(255,255,255,0.4)
+    background-position: center 4px !important
+    background-repeat: no-repeat !important
+    background-image: url('/images/icons/shuffle-24.png') !important
 
-  .adminLink, .logOut
-    +right
-    width: 29px
-    height: 29px
-    .img
-      width: 100%
-      height: 100%
-      background-position: center center
-      background-repeat: no-repeat
-
-  .randomDream, .adminLink, .logOut
     &:hover
       +glow-dark(8)
       border: 1px solid transparent
-
-  .adminLink
-    margin: 8px
-    .img
-      background-image: url('/images/icons/admin-16-hover.png')
-
-  .logOut
-    margin: 10px 15px 0
-    background-position: 4px 2px
-    background-repeat: no-repeat
-    background-image: url('/images/icons/logout-24.png')
-    &:hover
-      background-position: 4px 2px
-      background-repeat: no-repeat
-      background-image: url('/images/icons/logout-24-hover.png')
+      background-position: center 4px !important
+      background-repeat: no-repeat !important
+      background-image: url('/images/icons/shuffle-24-hover.png') !important
     &:active
-      background-position: 4px 2px
+      background-position: center 4px !important
       background-repeat: no-repeat
-      background-image: url('/images/icons/logout-24-active.png')
-
-  .newEntry
-    +right
-    +glow-dark(40)
-    +bold
-    padding: 6px 10px
-    font-size: 17px
-    margin: 8px 12px 0 0
-    border: none
-    .img
-      +left
-      width: 15px
-      height: 15px
-      margin: 3px 7px 0 0
-      background: url("/images/icons/add-15.png") no-repeat center center transparent
-    &:hover
-      +round(24)
-      +inner-glow(20)
-      border: none
+      background-image: url('/images/icons/shuffle-24-active.png') !important
 
