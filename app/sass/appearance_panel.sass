@@ -24,21 +24,15 @@
       height: 32px
       line-height: 32px
       margin: 0 8px
-    .options
-      +round(12)
-      +alpha(60)
-      +absolute
-      padding: 2px 4px
-      right: 20px
-      top: 20px
     #bedsheetScroller
-      +clear
       +relative
+      +overflow
+      +clear
       height: 346px
     ul
       +absolute
-      margin: 12px 0
-      height: 346px
+      top: 12px
+      bottom: 12px
       padding: 4px
       list-style: none
       overflow-y: scroll
@@ -154,7 +148,7 @@
 .light
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-white-27.png) no-repeat 272px
+      background: url(/images/icons/arrow-up-white-27.png) no-repeat 306px
     .bedsheets, .colorPicker
       +panel-light
       .options
@@ -177,7 +171,7 @@
 .dark
   #appearancePanel
     .arrow
-      background: url(/images/icons/arrow-up-27.png) no-repeat 272px
+      background: url(/images/icons/arrow-up-27.png) no-repeat 306px
     .bedsheets, .colorPicker
       +panel-dark
       .options

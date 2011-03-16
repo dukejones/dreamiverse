@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :set_seed_code, :set_client_timezone
-  helper_method :current_user, :add_starlight, :page_is_mine?, :is_mobile?
+  helper_method :current_user, :page_is_mine?, :is_mobile?
   protect_from_forgery
 
   def current_user
@@ -15,11 +15,6 @@ class ApplicationController < ActionController::Base
     request.path == '/entries/new'
   end
   
-  # TODO: deprecate
-  def add_starlight(entity, amt)
-    Starlight.add(entity, amt)
-  end
-
   def unique_hit?
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end

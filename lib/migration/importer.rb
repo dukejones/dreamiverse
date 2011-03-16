@@ -5,7 +5,7 @@ class Migration::Importer
     puts msg
   end
   def log(msg)
-    self.log(msg)
+    self.class.log(msg)
   end
 
   def initialize(_entity_to_migrate, _migrated_entity)
