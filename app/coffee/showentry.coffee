@@ -56,7 +56,11 @@ $(document).ready ->
     
     # Setup video expander
     link_id = $(el).data('id')
-    $(el).find('a').click( (event) =>
+    # make iPad 1 click work on thumbs
+    ua = navigator.userAgent
+    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+
+    $(el).find('a').bind(clickEvent, (event) =>
       event.preventDefault()
       
       $('.video').hide()
