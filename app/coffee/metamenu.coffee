@@ -130,25 +130,26 @@ class AppearancePanel extends MetaMenu
         
   displayBedsheets: => 
     # code to display bedsheets here. Need JSON call
-    $.getJSON("/images.json?section=Bedsheets", (data) =>
+    if $('#appearancePanel').attr('id')
+      $.getJSON("/images.json?section=Bedsheets", (data) =>
       
-      @$currentMenuPanel.find('.bedsheets ul').html('');
+        @$currentMenuPanel.find('.bedsheets ul').html('');
     
-      # Add elements for each bedsheet returned
-      for node in data
-        newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.jpg"></li>'
-        @$currentMenuPanel.find('.bedsheets ul').append(newElement)
+        # Add elements for each bedsheet returned
+        for node in data
+          newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.' + node.format + '"></li>'
+          @$currentMenuPanel.find('.bedsheets ul').append(newElement)
     
-      @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
-        bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
-        $('#body').css('background-image', bedsheetUrl)
+        @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
+          bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
+          $('#body').css('background-image', bedsheetUrl)
       
-        if $('#entry_view_preference_attributes_image_id').attr('name')?
-          $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
+          if $('#entry_view_preference_attributes_image_id').attr('name')?
+            $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
           
-        if $('#show_entry_mode').attr('name')?
-          @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        
-      )
+          if $('#show_entry_mode').attr('name')?
+            @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        
+        )
 
   updateUserBedsheet: (@bedsheet_id)->
     $.ajax {

@@ -7,16 +7,6 @@ $(document).ready ->
     event.preventDefault()
     window.location = $(event.currentTarget).attr('href')
   )
-  # $('.thumb-1d a.user').bind( clickEvent, (event)->
-  #     event.preventDefault()
-  #     console.log('clicked')
-  #     #window.location = $(event.currentTarget).attr('href')
-  #   )
-  #   $('a.tagCloud').bind( clickEvent, (event)->
-  #     event.preventDefault()
-  #     console.log('clicked')
-  #     #window.location = $(event.currentTarget).attr('href')
-  #   )
   
   # loop thru the youtube attachments
   $('.entryImages .youtube').each (i, el) =>

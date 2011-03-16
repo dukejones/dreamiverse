@@ -94,7 +94,4 @@ $(document).ready ->
   # Hide the elements in the browsers they cant be seen in
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.entryType').css('border', 'none')
-  else if window.BrowserDetect.browser is "MSIE"
-    # change 
-    $('.clickToBrowse span').text('click to browse')
     
