@@ -179,7 +179,9 @@ class ImagesController < ApplicationController
   private
 
   def detect_infinite_redirect
+    session[:resize_queries] = {} if session[:resize_queries].keys.size > 10
     (session[:resize_queries] ||= {})[request.path] ||= 0
+
 
     if (session[:resize_queries][request.path] += 1) > 5
       render :text => "Error in Realtime Resize."
