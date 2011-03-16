@@ -23,7 +23,7 @@ class window.TagsController
       if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 2
         
         # Check for max tags
-        if @tagViews.tagViews.length < 17
+        if @tagViews.tagViews.length < 16
           @createTag(tagName)
     
     
@@ -94,7 +94,13 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag .close-16').live "click", (event)=>
+    # New way
+    ua = navigator.userAgent
+    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+    
+      # OLD WAY
+    #@$container.find('.tag .close-16').live "click", (event)=>
+    @$container.find('.tag .close-16').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
@@ -139,6 +145,7 @@ class TagViewList
   removeTag: (tagId) ->
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
+    console.log(tagViewToRemove)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
 
@@ -212,22 +219,23 @@ class EditingTagView extends TagView
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
   remove: ->
-    if $("#sorting").val() is "1"
-      @removeFromView()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
     
 class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+    console.log("SharingTagView Init")
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)
       @tag.setId(response.what_id)
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
-    if $("#sorting").val() is "1"
-      @removeFromView()
-      @tag.destroy()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
+    @tag.destroy()
 
 
 # MAKE THIS STORE THE ID OF THE TAG ALSO
@@ -255,6 +263,3 @@ class Tag
       success: (data, status, xhr) =>
         $.publish 'tags:removed', [@id]
     }
-    
-
-    
