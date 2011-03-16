@@ -87,7 +87,7 @@ class EntriesController < ApplicationController
     # replace this with a redirect/alert later
     params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
-    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:entry][:dreamed_at]
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     @entry.set_whats(params[:what_tags])
 

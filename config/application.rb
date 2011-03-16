@@ -54,5 +54,7 @@ module Dreamcatcher
     
     config.autoload_paths += %W(#{config.root}/lib)
     
+    config.time_zone = "Pacific Time (US & Canada)"
+    
   end
 end

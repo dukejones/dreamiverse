@@ -121,7 +121,8 @@
       .image
         %img.dream{src: '/images/icons/dream-32-hover.png', width: '32', height: '32'}
       .detail
-        = user._?.entries.count ? user.entries.count : @entries.count
+        /= user._?.entries.count ? user.entries.count : @entries.count
+        = @entries.size
         /= @entries._?.count ? @entries.count : user.entries.count
       .clear
 
