@@ -143,7 +143,8 @@
     =# render :partial => "location"
 
     / NEW ENTRY IMAGES
-    = render :partial => "image_panel", locals: {images: @entry.images}
+    - if is_ipad?
+      = render :partial => "image_panel", locals: {images: @entry.images}
 
 
 
@@ -327,9 +328,10 @@
     / NEW ENTRY ATTACHMENTS
     .entryAttach.entryPanels
       %p attach:
-      .attach.images
-        .img
-        images
+      - if is_ipad?
+        .attach.images
+          .img
+          images
       .attach.tag
         .img
         tag
