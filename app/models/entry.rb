@@ -11,6 +11,7 @@ class Entry < ActiveRecord::Base
     everyone:           500
   }
 
+  include Starlit
   
   belongs_to :user
   belongs_to :location, :class_name => "Where" 
@@ -69,13 +70,13 @@ class Entry < ActiveRecord::Base
     where(sharing_level: Entry::Sharing[:anonymous])
   end
   
-  def self.order_by_starlight
-    select('entries.*').
-    from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
-    joins("JOIN starlights ON starlights.id=maxstars.maxid").
-    joins("JOIN entries ON entries.id=starlights.entity_id").
-    order('starlights.value DESC')
-  end
+  # def self.order_by_starlight
+  #   select('entries.*').
+  #   from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
+  #   joins("JOIN starlights ON starlights.id=maxstars.maxid").
+  #   joins("JOIN entries ON entries.id=starlights.entity_id").
+  #   order('starlights.value DESC')
+  # end
   def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 

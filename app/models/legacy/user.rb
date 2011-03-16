@@ -57,7 +57,7 @@ class Legacy::User < Legacy::Base
     return nil if avatar_image.nil?
     # new_image = avatar_image.find_or_create_corresponding_image
     new_image = avatar_image.find_corresponding_image
-    log "Cannot find avatar image: #{avatar_image.fileLocation} for user: #{self.username}" unless new_image
+    log "Cannot find avatar image: #{avatar_image.fileLocation} for user: #{self.id} #{self.username}" unless new_image
     new_image._?.id
   end
   

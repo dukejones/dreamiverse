@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
   def unique_hit?
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
+  
+  def hit(starlit_entity)
+    starlit_entity.hit! if unique_hit?
+  end
 
   MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo", "ipad"]
   def is_mobile?

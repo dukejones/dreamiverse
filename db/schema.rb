@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110308052424) do
+ActiveRecord::Schema.define(:version => 20110316214626) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -66,12 +66,15 @@ ActiveRecord::Schema.define(:version => 20110308052424) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type",          :default => "dream"
+    t.string   "type",                 :default => "dream"
     t.integer  "sharing_level"
     t.datetime "dreamed_at"
     t.integer  "main_image_id"
     t.integer  "location_id"
     t.string   "book_list"
+    t.integer  "starlight",            :default => 0
+    t.integer  "cumulative_starlight", :default => 0
+    t.integer  "uniques",              :default => 0
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -171,6 +174,8 @@ ActiveRecord::Schema.define(:version => 20110308052424) do
     t.boolean  "follow_authorization",  :default => false
     t.boolean  "ubiquity",              :default => false, :null => false
     t.integer  "auth_level",            :default => 10
+    t.integer  "starlight",             :default => 0
+    t.integer  "cumulative_starlight",  :default => 0
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
@@ -196,7 +201,9 @@ ActiveRecord::Schema.define(:version => 20110308052424) do
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"
 
   create_table "whats", :force => true do |t|
-    t.string "name"
+    t.string  "name"
+    t.integer "starlight",            :default => 0
+    t.integer "cumulative_starlight", :default => 0
   end
 
   create_table "wheres", :force => true do |t|

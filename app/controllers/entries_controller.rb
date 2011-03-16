@@ -28,8 +28,7 @@ class EntriesController < ApplicationController
 
     entry_list
     
-    @user.starlight.add( 1 ) if unique_hit?
-
+    hit( @user )
   end
 
   def show
@@ -47,10 +46,8 @@ class EntriesController < ApplicationController
     @comments = @entry.comments.order('created_at') # .limit(10)
     @page_title = @entry.title
     
-    if unique_hit?
-      @entry.starlight.add( 1 )
-      @entry.user.starlight.add( 1 )
-    end
+    hit( @entry )
+    hit( @entry.user )
   end
   
   def new
