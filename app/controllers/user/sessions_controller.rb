@@ -12,19 +12,16 @@ class User::SessionsController < ApplicationController
       set_current_user user
       flash.notice = 'logged in.'
     else
-      flash.alert = "incorrect username / password"
+      flash.alert = "unrecognized username / password"
+      redirect_to login_path and return
     end
     
-    begin
-      if auth_provider = session.delete(:registration_auth_provider)
-        redirect_to "/auth/#{auth_provider}"
-      elsif request.path == '/' # XXX: this does not work
-        redirect_to entries_path
-      else
-        redirect_to :back
-      end
-    rescue RedirectBackError
-      redirect_to :root
+    if auth_provider = session.delete(:registration_auth_provider)
+      redirect_to "/auth/#{auth_provider}"
+    elsif request.path == root_path || request.path == login_path
+      redirect_to entries_path
+    else
+      redirect_to :back
     end
   end
 
