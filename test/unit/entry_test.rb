@@ -27,13 +27,18 @@ class EntryTest < ActiveSupport::TestCase
   end
 
   test "set_whats removes tags no longer in the set" do
-    whats = ['dragon','hound','stove','carruthers'].map {|word| What.create(name: word) }
-    new_whats = ['dragon', 'stove', 'martha'].map {|word| What.create(name: word) }
-    entry = Entry.make(:whats => whats)
-    #entry.set_whats(new_whats)
+    whats = ['spoon','hound','stove','feh'].map {|word| What.create(name: word) }
+    new_whats = ['spoon', 'stove', 'martha'].map {|word| What.create(name: word) }
+    
+    entry = Entry.make(:whats => whats, :title => 'visions', body: 'bridge')
+    entry.set_whats(new_whats.map(&:name))  
+    entry.save
+    entry.reload
+    
+    fresh_what_names = entry.whats.map(&:name)
+    assert_equal fresh_what_names.include?('feh'), false
   end
 
-=begin
   test "random" do
     100.times do
       share = Entry::Sharing.values.sample
@@ -46,5 +51,5 @@ class EntryTest < ActiveSupport::TestCase
       assert e.type != 'article'
     end
   end
-=end
+
 end
