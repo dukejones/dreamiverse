@@ -128,7 +128,8 @@ class TagViewList
 
   findByTagId: (tagId)->
     return tagView for tagView in @tagViews when tagView.tag.id == tagId
-
+  findByName: (tagName)->
+    return tagView for tagView in @tagViews when tagView.tag.name == tagName
   add: (tagView)->
     if !@tagAlreadyExists(tagView)
       @tagViews.push(tagView)
@@ -171,6 +172,17 @@ class EditingTagViewList extends TagViewList
       @findByTagId(id).removeFromView()
       
   removeTag: ($tag) ->
+    tagName = $tag.find('.tagContent').text()
+    console.log(tagName)
+    
+    
+    new_tags = (tag for tag in @tagViews when tag.tag.name != tagName)  
+    console.log(new_tags.length)
+    console.log(@tagViews.length)
+    console.log(@tagViews)
+    console.log(new_tags)
+    #@tagViews.remove(tagViewToRemove)
+    @tagViews = new_tags
     $tag.css('backgroundColor', '#ff0000')
     $tag.fadeOut('fast', =>
       $tag.remove()
