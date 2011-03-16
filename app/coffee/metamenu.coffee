@@ -18,14 +18,14 @@ window.setupMetaDropdowns = ->
   ua = navigator.userAgent
   clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
   
-  $('.settingsPanel .trigger').first().bind( clickEvent, (event)->
-    $.publish('toggleSettings', [this])
-  )
-  
   # ipad doubleclick remover for left panel
   $('.leftPanel a').bind( clickEvent, (event)->
     event.preventDefault()
     window.location = $(event.currentTarget).attr('href')
+  )
+
+  $('.settingsPanel .trigger').first().bind( clickEvent, (event)->
+    $.publish('toggleSettings', [this])
   )
   
   appearancePanel = new AppearancePanel('.appearancePanel')
