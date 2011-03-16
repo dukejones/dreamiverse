@@ -31,7 +31,7 @@ $(document).ready ->
     clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
   
     
-    $(el).find('a').bund(clickevent, (event) =>
+    $(el).find('a').bind(clickEvent, (event) =>
       event.preventDefault()
       
       $(event.currentTarget).parent().hide()
