@@ -4,7 +4,24 @@ $(document).ready(function() {
   setupUploader();
   setupSharingImages();
   setupLinkButtons();
+  setup2dThumbIPadClick();
 });
+
+function setup2dThumbIPadClick(){
+  // make iPad 1 click work on thumbs
+  var ua = navigator.userAgent;
+  var clickEvent;
+  if (ua.match(/iPad/i)){
+    clickEvent = "touchstart";
+  } else {
+    clickEvent = "click";
+  } 
+  
+  $('.thumb-2d a.link').bind( clickEvent, function(event){
+    event.preventDefault();
+    window.location = $(event.currentTarget).attr('href');
+  })
+}
 
 function setupSharingImages(){
   $('.detailsBottom .sharing span').each(function(){
