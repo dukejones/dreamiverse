@@ -139,207 +139,209 @@
     / NEW ENTRY DATE TIME
     = render :partial => "date_time"
 
-    / NEW ENTRY LOCATION
-    =# render :partial => "location"
 
-    / NEW ENTRY IMAGES
+    / REMOVES ALL ATTACHMENTS FOR IPAD
     - unless is_ipad?
+
+      / NEW ENTRY LOCATION
+      =# render :partial => "location"
+
+      / NEW ENTRY IMAGES
       = render :partial => "image_panel", locals: {images: @entry.images}
 
 
 
-    / NEW ENTRY TAG
-    .entryTags.entryPanels.hidden
-      .tagHeader.headers
-        .img
-        tag
-      .tagInputWrap
-        .tagInput
-          %input#newTag{:placeholder => "who / what / where"}
-          .tagAdd
+      / NEW ENTRY TAG
+      .entryTags.entryPanels.hidden
+        .tagHeader.headers
+          .img
+          tag
+        .tagInputWrap
+          .tagInput
+            %input#newTag{:placeholder => "who / what / where"}
+            .tagAdd
+              %span +
+              add
+          .tagInputRight
+
+        #tag-list.tag-list.ui-sortable
+          .emptyTag.tag.tag_what.hidden
+            %span.tagContent
+            .close-16
+          - @entry.custom_tags.each do |what|
+            .tag_what.tag
+              %span.tagContent= what.name
+              .close-16
+
+          .clear
+        #sorting.clear
+
+
+
+
+      / NEW ENTRY LINK
+      .entryLinks.entryPanels.hidden
+        .linksHeader.headers
+          .img
+          links
+        #linkInputWrap
+          %input#linkValue{:placeholder => "http://yourlink.com"}
+          .linkAdd
             %span +
             add
-        .tagInputRight
-
-      #tag-list.tag-list.ui-sortable
-        .emptyTag.tag.tag_what.hidden
-          %span.tagContent
-          .close-16
-        - @entry.custom_tags.each do |what|
-          .tag_what.tag
-            %span.tagContent= what.name
-            .close-16
-
+        #linkHolder
+          - @entry.links.each do |link|
+            .linkContainer{class: link.youtube? ? 'youtube' : '', id: link.id}
+              .title
+                %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]', style: "width: 220px"}
+              .url
+                %input.linkUrlValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
+                .icon
+                  %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
+              .close-22
+              - if link.youtube?
+                .thumb{style: "background: url('') no-repeat center center transparent"}
+                .description
         .clear
-      #sorting.clear
 
 
 
 
-    / NEW ENTRY LINK
-    .entryLinks.entryPanels.hidden
-      .linksHeader.headers
-        .img
-        links
-      #linkInputWrap
-        %input#linkValue{:placeholder => "http://yourlink.com"}
-        .linkAdd
-          %span +
-          add
-      #linkHolder
-        - @entry.links.each do |link|
-          .linkContainer{class: link.youtube? ? 'youtube' : '', id: link.id}
-            .title
-              %input.linkTitleValue{:value => "#{link.title}", name: 'entry[links_attributes][][title]', style: "width: 220px"}
-            .url
-              %input.linkUrlValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
-              .icon
-                %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
-            .close-22
-            - if link.youtube?
-              .thumb{style: "background: url('') no-repeat center center transparent"}
-              .description
-      .clear
+      / NEW ENTRY EMOTIONS
+      / .entryEmotions.entryPanels.hidden
+      /   .emotionsHeader.headers
+      /     .img
+      /     emotions
+      / 
+      /   / MOOD PICKER
+      /   .moodPicker
+      /     .love
+      /       %label.one
+      /         %span love
+      /         = radio_button_tag 'love', 1, true
+      /       %label.two
+      /         = radio_button_tag 'love', 2
+      /       %label.three
+      /         = radio_button_tag 'love', 3
+      /       %label.four
+      /         = radio_button_tag 'love', 4
+      /       %label.five
+      /         = radio_button_tag 'love', 5
+      /     .joy
+      /       %label.one
+      /         %span joy
+      /         = radio_button_tag 'joy', 1, true
+      /       %label.two
+      /         = radio_button_tag 'joy', 2
+      /       %label.three
+      /         = radio_button_tag 'joy', 3
+      /       %label.four
+      /         = radio_button_tag 'joy', 4
+      /       %label.five
+      /         = radio_button_tag 'joy', 5
+      /     .surprise
+      /       %label.one
+      /         %span surprise
+      /         = radio_button_tag 'surprise', 1, true
+      /       %label.two
+      /         = radio_button_tag 'surprise', 2
+      /       %label.three
+      /         = radio_button_tag 'surprise', 3
+      /       %label.four
+      /         = radio_button_tag 'surprise', 4
+      /       %label.five
+      /         = radio_button_tag 'surprise', 5
+      /     .anger
+      /       %label.one
+      /         %span anger
+      /         = radio_button_tag 'anger', 1, true
+      /       %label.two
+      /         = radio_button_tag 'anger', 2
+      /       %label.three
+      /         = radio_button_tag 'anger', 3
+      /       %label.four
+      /         = radio_button_tag 'anger', 4
+      /       %label.five
+      /         = radio_button_tag 'anger', 5
+      /     .mystical
+      /       %label.one
+      /         %span mystical
+      /         = radio_button_tag 'mystical', 1, true
+      /       %label.two
+      /         = radio_button_tag 'mystical', 2
+      /       %label.three
+      /         = radio_button_tag 'mystical', 3
+      /       %label.four
+      /         = radio_button_tag 'mystical', 4
+      /       %label.five
+      /         = radio_button_tag 'mystical', 5
+      /     .wonder
+      /       %label.one
+      /         %span wonder
+      /         = radio_button_tag 'wonder', 1, true
+      /       %label.two
+      /         = radio_button_tag 'wonder', 2
+      /       %label.three
+      /         = radio_button_tag 'wonder', 3
+      /       %label.four
+      /         = radio_button_tag 'wonder', 4
+      /       %label.five
+      /         = radio_button_tag 'wonder', 5
+      /     .sadness
+      /       %label.one
+      /         %span sadness
+      /         = radio_button_tag 'sadness', 1, true
+      /       %label.two
+      /         = radio_button_tag 'sadness', 2
+      /       %label.three
+      /         = radio_button_tag 'sadness', 3
+      /       %label.four
+      /         = radio_button_tag 'sadness', 4
+      /       %label.five
+      /         = radio_button_tag 'sadness', 5
+      /     .stress
+      /       %label.one
+      /         %span stress
+      /         = radio_button_tag 'stress', 1, true
+      /       %label.two
+      /         = radio_button_tag 'stress', 2
+      /       %label.three
+      /         = radio_button_tag 'stress', 3
+      /       %label.four
+      /         = radio_button_tag 'stress', 4
+      /       %label.five
+      /         = radio_button_tag 'stress', 5
+      /     .fear
+      /       %label.one
+      /         %span fear
+      /         = radio_button_tag 'fear', 1, true
+      /       %label.two
+      /         = radio_button_tag 'fear', 2
+      /       %label.three
+      /         = radio_button_tag 'fear', 3
+      /       %label.four
+      /         = radio_button_tag 'fear', 4
+      /       %label.five
+      /         = radio_button_tag 'fear', 5
+      /   .clear
 
 
 
 
-    / NEW ENTRY EMOTIONS
-    / .entryEmotions.entryPanels.hidden
-    /   .emotionsHeader.headers
-    /     .img
-    /     emotions
-    / 
-    /   / MOOD PICKER
-    /   .moodPicker
-    /     .love
-    /       %label.one
-    /         %span love
-    /         = radio_button_tag 'love', 1, true
-    /       %label.two
-    /         = radio_button_tag 'love', 2
-    /       %label.three
-    /         = radio_button_tag 'love', 3
-    /       %label.four
-    /         = radio_button_tag 'love', 4
-    /       %label.five
-    /         = radio_button_tag 'love', 5
-    /     .joy
-    /       %label.one
-    /         %span joy
-    /         = radio_button_tag 'joy', 1, true
-    /       %label.two
-    /         = radio_button_tag 'joy', 2
-    /       %label.three
-    /         = radio_button_tag 'joy', 3
-    /       %label.four
-    /         = radio_button_tag 'joy', 4
-    /       %label.five
-    /         = radio_button_tag 'joy', 5
-    /     .surprise
-    /       %label.one
-    /         %span surprise
-    /         = radio_button_tag 'surprise', 1, true
-    /       %label.two
-    /         = radio_button_tag 'surprise', 2
-    /       %label.three
-    /         = radio_button_tag 'surprise', 3
-    /       %label.four
-    /         = radio_button_tag 'surprise', 4
-    /       %label.five
-    /         = radio_button_tag 'surprise', 5
-    /     .anger
-    /       %label.one
-    /         %span anger
-    /         = radio_button_tag 'anger', 1, true
-    /       %label.two
-    /         = radio_button_tag 'anger', 2
-    /       %label.three
-    /         = radio_button_tag 'anger', 3
-    /       %label.four
-    /         = radio_button_tag 'anger', 4
-    /       %label.five
-    /         = radio_button_tag 'anger', 5
-    /     .mystical
-    /       %label.one
-    /         %span mystical
-    /         = radio_button_tag 'mystical', 1, true
-    /       %label.two
-    /         = radio_button_tag 'mystical', 2
-    /       %label.three
-    /         = radio_button_tag 'mystical', 3
-    /       %label.four
-    /         = radio_button_tag 'mystical', 4
-    /       %label.five
-    /         = radio_button_tag 'mystical', 5
-    /     .wonder
-    /       %label.one
-    /         %span wonder
-    /         = radio_button_tag 'wonder', 1, true
-    /       %label.two
-    /         = radio_button_tag 'wonder', 2
-    /       %label.three
-    /         = radio_button_tag 'wonder', 3
-    /       %label.four
-    /         = radio_button_tag 'wonder', 4
-    /       %label.five
-    /         = radio_button_tag 'wonder', 5
-    /     .sadness
-    /       %label.one
-    /         %span sadness
-    /         = radio_button_tag 'sadness', 1, true
-    /       %label.two
-    /         = radio_button_tag 'sadness', 2
-    /       %label.three
-    /         = radio_button_tag 'sadness', 3
-    /       %label.four
-    /         = radio_button_tag 'sadness', 4
-    /       %label.five
-    /         = radio_button_tag 'sadness', 5
-    /     .stress
-    /       %label.one
-    /         %span stress
-    /         = radio_button_tag 'stress', 1, true
-    /       %label.two
-    /         = radio_button_tag 'stress', 2
-    /       %label.three
-    /         = radio_button_tag 'stress', 3
-    /       %label.four
-    /         = radio_button_tag 'stress', 4
-    /       %label.five
-    /         = radio_button_tag 'stress', 5
-    /     .fear
-    /       %label.one
-    /         %span fear
-    /         = radio_button_tag 'fear', 1, true
-    /       %label.two
-    /         = radio_button_tag 'fear', 2
-    /       %label.three
-    /         = radio_button_tag 'fear', 3
-    /       %label.four
-    /         = radio_button_tag 'fear', 4
-    /       %label.five
-    /         = radio_button_tag 'fear', 5
-    /   .clear
-
-
-
-
-    / NEW ENTRY ATTACHMENTS
-    .entryAttach.entryPanels
-      %p attach:
-      - unless is_ipad?
+      / NEW ENTRY ATTACHMENTS
+      .entryAttach.entryPanels
+        %p attach:
         .attach.images
           .img
           images
-      .attach.tag
-        .img
-        tag
-      .attach.links
-        .img
-        links
+        .attach.tag
+          .img
+          tag
+        .attach.links
+          .img
+          links
 
-      / .attach.mood
-      /   %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
-      /   emotions
-      .clear
+        / .attach.mood
+        /   %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
+        /   emotions
+        .clear
