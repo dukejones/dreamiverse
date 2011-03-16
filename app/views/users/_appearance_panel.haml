@@ -1,5 +1,5 @@
 / iPAD SCROLLER
-- if request.user_agent.match(/iPad/)
+- if is_ipad?
   - content_for :head do
     = javascript_include_tag 'iscroll-lite-min'
 
@@ -9,7 +9,7 @@
   .arrow
 
   / iPAD SCROLLER
-  - if request.user_agent.match(/iPad/)
+  - if is_ipad?
     <script type="text/javascript">
     var myScroll = new iScroll('bedsheetScroller');
     </script>

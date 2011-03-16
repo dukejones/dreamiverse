@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
     Rails.logger.warn("not mobile #{request.user_agent}")
     return false
   end
-  
+
   protected
 
   def set_client_timezone

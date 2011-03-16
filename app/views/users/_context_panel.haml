@@ -11,7 +11,7 @@
 
   / IMAGE
   %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
-    - if user == current_user
+    - if (user == current_user) && !is_ipad?
 
 
       .uploadAvatarWrap.hidden
