@@ -23,7 +23,7 @@ class window.TagsController
       if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 2
         
         # Check for max tags
-        if @tagViews.tagViews.length < 16
+        if @tagViews.tagViews.length < 17
           @createTag(tagName)
     
     
@@ -146,6 +146,7 @@ class TagViewList
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
     console.log(tagViewToRemove)
+    console.log(@tagViews.length)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
 
