@@ -1,9 +1,3 @@
-/ iPAD SCROLLER
-- if is_ipad?
-  - content_for :head do
-    = javascript_include_tag 'iscroll'
-
-
 / APPEARANCE PANEL
 #appearancePanel.hidden.target
   .arrow
@@ -20,10 +14,9 @@
       %ul
 
     / iPAD SCROLLER
-    - if is_ipad?
-      <script type="text/javascript">
-      var myScroll = new iScroll('bedsheetScroller');
-      </script>
+    <script type="text/javascript">
+    var myScroll = new iScroll('bedsheetScroller');
+    </script>
 
     .attachment 
       - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
