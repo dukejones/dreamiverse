@@ -10,6 +10,6 @@
     $('#globalAlert').fadeOut('500', => $(this).remove())
 / ALERT PANEL 
 #globalAlert
-  %p= flash.notice
-  %p= flash.alert
-  .close-24
+  %p= raw(flash.notice)
+  %p= raw(flash.alert)
+  .checkmark

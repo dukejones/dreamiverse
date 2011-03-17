@@ -16,7 +16,7 @@ class Tag < ActiveRecord::Base
   scope :auto,   where( kind: 'auto'   )
 
   def self.whats
-    where(noun_type: 'What').map(&:noun)
+    where(noun_type: 'What').includes(:noun).map(&:noun)
   end
 
   # tag the entry with the top x auto tags, inserted after the custom tags

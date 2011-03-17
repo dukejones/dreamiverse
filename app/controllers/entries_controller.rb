@@ -6,12 +6,10 @@ class EntriesController < ApplicationController
     # This is an example of a hack due to tightly coupling Display to Data.
     session[:filters].delete(:type) if session[:filters]._?[:type] == "all entries"
     @entries = case session[:lens]
-      when :field
-        Entry.dreamfield(current_user, @user, session[:filters])
       when :stream
         Entry.dreamstream(current_user, session[:filters])
-      else
-        raise "invalid lens: #{session[:lens]}"
+      else # when :field
+        Entry.dreamfield(current_user, @user, session[:filters])
     end
   end
   
@@ -41,6 +39,9 @@ class EntriesController < ApplicationController
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     # @entry = @entries[i]
+    # TODO: Remove this.
+    @next = @entry unless @next
+    @previous = @entry unless @previous
     deny and return unless user_can_access?
 
     @comments = @entry.comments.order('created_at') # .limit(10)
