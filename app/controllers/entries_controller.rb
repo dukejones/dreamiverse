@@ -39,6 +39,9 @@ class EntriesController < ApplicationController
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     # @entry = @entries[i]
+    # TODO: Remove this.
+    @next = @entry unless @next
+    @previous = @entry unless @previous
     deny and return unless user_can_access?
 
     @comments = @entry.comments.order('created_at') # .limit(10)
