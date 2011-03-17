@@ -12,9 +12,8 @@
       %ul#navScroller
 
     / iPAD SCROLLER
-    <script type="text/javascript">
-    var myScroll = new iScroll('bedsheetScroller');
-    </script>
+    :coffeescript
+      myScroll = new iScroll('bedsheetScroller')
 
     .attachment 
       - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
