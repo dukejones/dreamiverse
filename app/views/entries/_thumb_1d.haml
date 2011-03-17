@@ -17,7 +17,7 @@
         .counter= entry.comments.count
 
     / only for +image
-    .image{style: "background: url(#{dream_header_url(entry.main_image)}) no-repeat top left"}
+    .image{style: "background: url(#{entry.main_image._?.url(:stream_header)}) no-repeat top left"}
 
     %h1.title= entry.title
     / only for noimage
