@@ -80,7 +80,7 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-   
+    
     # replace this with a redirect/alert later
     params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     

@@ -7,7 +7,7 @@ class HomeController < ApplicationController
       redirect_to entries_path
     end
 
-    @entries = Entry.where(:created_at > 1.week.ago).order(:starlight).limit(8)
+    @entries = Entry.where(:created_at > 1.week.ago).order("starlight DESC").limit(8)
   end
 
   def parse_url_title

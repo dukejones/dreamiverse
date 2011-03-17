@@ -195,6 +195,11 @@
 
 
 
+
+
+
+  // FLOATING BUTTONS
+
   .newEntry, .logOut, .adminLink
     +transparent-dark(50)
     +round(30)
@@ -204,6 +209,7 @@
     color: #fff
     text-decoration: none
     border: 1px solid rgba(255,255,255,0.4)
+
 
   .logOut, .adminLink
     +right
@@ -215,18 +221,21 @@
       background-position: center center
       background-repeat: no-repeat
 
+
   .logOut, .adminLink
     &:hover
       +glow-dark(8)
       border: 1px solid transparent
+
 
   .adminLink
     margin: 8px
     .img
       background-image: url('/images/icons/admin-16-hover.png')
 
+
   .logOut
-    margin: 10px 15px 0
+    margin: 10px 16px 0
     background-position: 4px 2px
     background-repeat: no-repeat
     background-image: url('/images/icons/logout-24.png')
@@ -245,6 +254,7 @@
         right: 0
         .arrow
           margin: 0 0 0 32px
+
 
   .newEntry
     +right
