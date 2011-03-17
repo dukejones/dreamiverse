@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   #   order('starlights.value DESC')
   # end
   def self.dreamstars
-    order(:starlight).limit(16)
+    order("starlight DESC").limit(16)
   end
 
   attr_accessor :password, :password_confirmation, :old_password
