@@ -156,7 +156,7 @@ class Entry < ActiveRecord::Base
   def set_whats(tag_words)
     return unless tag_words
     new_whats = tag_words.map {|word| What.for word }
-    # (self.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
+    (self.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
     new_whats.each { |what| self.add_what_tag(what) }
     
     reorder_tags
