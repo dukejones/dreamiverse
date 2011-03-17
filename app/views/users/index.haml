@@ -32,7 +32,7 @@
       .badge= dreamstar_image_tag(rank)
       .rank= rank
       .name= user.username
-      .starlight= user.starlight.value || 0
+      .starlight= user.starlight
       .clear
 
   / ALL DREAMSTARS
@@ -42,4 +42,4 @@
       %a.dreamstar{href: user_entries_path(user.username)}
         .rank= rank
         .name= user.username
-        .starlight= user.starlight.value || 0
+        .starlight= user.starlight
