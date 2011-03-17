@@ -122,25 +122,27 @@ abbr, acronym
 #entryField, #friendField
   .pageHeader
     +relative
-    +left
-    border-radius:            30px
-    -moz-border-radius:       30px
-    -webkit-border-radius:    30px
+    +left  
+    border-radius:            16px 48px 0 0
+    -moz-border-radius:       16px 48px 0 0
+    -webkit-border-radius:    16px 48px 0 0
     background: #000
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.75)), to(rgba(0,0,0,0.0)))
     background: -moz-linear-gradient(top, rgba(0,0,0,0.75), rgba(0,0,0,0.0))
     // +transparent-dark(80)
-    height: 70px
-    line-height: 70px
-    margin: 0 0 20px 12px
-    padding-right: 24px
+    height: 74px
+    line-height: 78px
+    margin: 0 0 20px
+    padding-right: 36px
     .img
       +left
       width: 64px
-      height: 64px
-      margin: 0 12px
+      height: 74px
+      margin: 0 20px 0 12px
     h1
+      +left
       +font(32)
+      letter-spacing: 3px
       color: #bbb
 
   .dreamHeader
@@ -162,6 +164,9 @@ abbr, acronym
     .img
       background: url(/images/icons/friend-follow-64.png) no-repeat center transparent
   .followerHeader
+    .img
+      background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
+  .streamHeader
     .img
       background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
 
