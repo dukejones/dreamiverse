@@ -3,6 +3,10 @@ class Starlight < ActiveRecord::Base
   
   scope :all_for, -> e { where(entity_id: e.id, entity_type: e.class.to_s) }
   
+  def self.snapshot( entity )
+    self.create!(entity: entity, value: entity.starlight)
+  end
+
   # def self.for(entity)
   #   starlight = all_for(entity).last
   #   starlight = self.create!(entity: entity) unless starlight

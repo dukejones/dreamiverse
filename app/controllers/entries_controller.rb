@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
   
   def index
     if params[:entry_type]
-      # TODO: Make this work without setting it
+      # TODO: Make this work without setting it manually.
       params[:filters] ||= {}
       params[:filters][:type] = params[:entry_type]  
     end
@@ -63,17 +63,17 @@ class EntriesController < ApplicationController
   end
 
   def create
- 
     whats = (params[:what_tags] || []).map {|word| What.for word }
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     # replace this with a redirect/alert later
     params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
-        
+    
     new_entry = current_user.entries.create!(params[:entry].merge(
       whats: whats
     ))
+
     redirect_to user_entry_path(current_user.username, new_entry)
   end
   

@@ -1,4 +1,6 @@
 module Starlit
+  Entropy = 6.18
+  
   def hit
     add_starlight( 1 )
     self.uniques += 1 if self[:uniques]
@@ -19,6 +21,8 @@ module Starlit
     save!
   end
   
-  # entropize!
-  
+  def entropize!
+    self.starlight *= (100 - Entropy) / 100
+    save!
+  end
 end
