@@ -109,12 +109,11 @@ class Entry < ActiveRecord::Base
   def self.dreamstream(viewer, filters)
     filters ||= {}
     entry_scope = Entry.order('dreamed_at DESC')
-    entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
+    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     page_size = filters[:page_size] || 30
-    # only entries within 10 days
-    # top page_size of each
-    entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
+    # entry_scope = entry_scope.where(:updated_at > 50.days.ago)
+    entry_scope = entry_scope.limit(page_size)
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
 
     users_to_view =  # based on friend filter
@@ -133,7 +132,7 @@ class Entry < ActiveRecord::Base
   def self.dreamfield(viewer, viewed, filters)
     filters ||= {}
     entry_scope = Entry.order('dreamed_at DESC')
-    entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
+    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     entry_scope = entry_scope.where(user_id: viewed.id)
     if viewer

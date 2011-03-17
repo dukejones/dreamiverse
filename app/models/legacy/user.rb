@@ -72,7 +72,7 @@ class Legacy::User < Legacy::Base
       sum += dream.views.count
     end
     
-    (sum * ((100 - 6.18) / 100 * 5)).to_i # 5 days old
+    sum
   end
 
   def cumulative_starlight
