@@ -143,11 +143,11 @@
     .item.entryFilter.friends.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value friends
+        %span.value @mode
       .image
         %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
       .detail
-        = user.followers.count
+        = user.send(@mode).count
       .clear
 
     .filterList.friends.target.slideArrow.hidden
