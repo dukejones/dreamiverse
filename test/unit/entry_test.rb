@@ -34,10 +34,15 @@ class EntryTest < ActiveSupport::TestCase
     entry.set_whats(new_whats.map(&:name))  
     entry.save
     entry.reload
-    
+      
     fresh_what_names = entry.whats.map(&:name)
-    assert_equal fresh_what_names.include?('feh'), false
+    
+    assert_equal fresh_what_names.include?('hound'), false # make sure we delete old whats
+    assert_equal fresh_what_names.include?('feh'), false # again
+    assert_equal fresh_what_names.include?('visions'), true # also make sure we're not deleting the auto tags
+    
   end
+
 
   test "random" do
     100.times do
