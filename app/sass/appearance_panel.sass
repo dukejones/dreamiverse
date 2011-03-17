@@ -8,11 +8,9 @@
     +cursor
 
   .bedsheets
+    +clear
     padding: 8px
     margin: 0 0 8px
-    +relative
-    height: 400px
-
     .img
       +left
       width: 24px
@@ -26,43 +24,37 @@
       height: 32px
       line-height: 32px
       margin: 0 8px
-
     #bedsheetScroller
+      +relative
+      +overflow
+      +clear
+      height: 346px
+    ul
       +absolute
-      top: 50px
-      bottom: 40px
-      left: 8px
-      right: 8px
-      overflow: auto
-
-      ul
-        padding: 4px
-        list-style: none
-        overflow-y: scroll
-        li
-          +left
-          +pointer
-          margin: 0 10px 10px 0
-          height: 128px
-          width: 128px
-          -moz-box-shadow: 2px 5px 10px #111
-          border: 4px solid #CCCCCC
-          img
-            border: 4px solid #333
-          img:hover
-            border: 4px solid #fff
-        li.selected
-          +round(4)
-          border: 4px solid #427ee8
-          img
-            border: 4px solid #fff
-
+      top: 12px
+      bottom: 12px
+      padding: 4px
+      list-style: none
+      overflow-y: scroll
+      li
+        +left
+        +pointer
+        +overflow
+        margin: 0 10px 10px 0
+        height: 128px
+        width: 128px
+        -moz-box-shadow: 2px 5px 10px #111
+        border: 4px solid #CCCCCC
+        img
+          border: 4px solid #333
+        img:hover
+          border: 4px solid #fff
+      li.selected
+        +round(4)
+        border: 4px solid #427ee8
+        img
+          border: 4px solid #fff
     .attachment
-      +absolute
-      top: 382px
-      left: 8px
-      right: 8px
-
       .fixed, .scroll
         +round(4)
         +block
