@@ -119,49 +119,51 @@ abbr, acronym
 
 
 
-// #entryField, #friendField
-//   .pageHeader
-//     +relative
-//     +left
-//     border-radius:            30px
-//     -moz-border-radius:       30px
-//     -webkit-border-radius:    30px
-//     +transparent-dark(80)
-//     height: 46px
-//     line-height: 44px
-//     margin: 0 0 24px 12px
-//     padding-right: 24px
-//     .img
-//       +absolute
-//       width: 64px
-//       height: 54px
-//       margin: 0 12px 0 -8px
-//     h1
-//       +font(32)
-//       color: #bbb
-//       margin-left: 72px
-// 
-//   .dreamHeader
-//     .img
-//       background: url(/images/icons/dream-64-hover.png) no-repeat center transparent
-//   .visionHeader
-//     .img
-//       background: url(/images/icons/vision-64-hover.png) no-repeat center transparent
-//   .experienceHeader
-//     .img
-//       background: url(/images/icons/experience-64-hover.png) no-repeat center transparent
-//   .articleHeader
-//     .img
-//       background: url(/images/icons/article-64-hover.png) no-repeat center transparent
-//   .friendHeader
-//     .img
-//       background: url(/images/icons/friend-64.png) no-repeat center transparent
-//   .followHeader
-//     .img
-//       background: url(/images/icons/friend-follow-64.png) no-repeat center transparent
-//   .followerHeader
-//     .img
-//       background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
+#entryField, #friendField
+  .pageHeader
+    +relative
+    +left
+    border-radius:            30px
+    -moz-border-radius:       30px
+    -webkit-border-radius:    30px
+    background: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.75)), to(rgba(0,0,0,0.0)))
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.75), rgba(0,0,0,0.0))
+    // +transparent-dark(80)
+    height: 70px
+    line-height: 70px
+    margin: 0 0 20px 12px
+    padding-right: 24px
+    .img
+      +left
+      width: 64px
+      height: 64px
+      margin: 0 12px
+    h1
+      +font(32)
+      color: #bbb
+
+  .dreamHeader
+    .img
+      background: url(/images/icons/dream-64-hover.png) no-repeat center transparent
+  .visionHeader
+    .img
+      background: url(/images/icons/vision-64-hover.png) no-repeat center transparent
+  .experienceHeader
+    .img
+      background: url(/images/icons/experience-64-hover.png) no-repeat center transparent
+  .articleHeader
+    .img
+      background: url(/images/icons/article-64-hover.png) no-repeat center transparent
+  .friendHeader
+    .img
+      background: url(/images/icons/friend-64.png) no-repeat center transparent
+  .followHeader
+    .img
+      background: url(/images/icons/friend-follow-64.png) no-repeat center transparent
+  .followerHeader
+    .img
+      background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
 
 
 // CLOSE ICONS
