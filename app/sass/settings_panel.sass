@@ -18,6 +18,23 @@
   .changePassword
     +round(8)
 
+  .feedback
+    +alpha(60)
+    +round(12)
+    +center
+    +font(10)
+    +user-select
+    +right
+    margin: 4px 0 -3px
+    padding: 0 8px
+    height: 16px
+    line-height: 16px
+    font-weight: normal
+    width: 316px
+    &:hover
+      +alpha(100)
+
+
   hr
     +alpha(30)
 
@@ -267,7 +284,8 @@
     .confirm
       +confirm(16)
 
-
+    .feedback
+      +button-light
 
 
     .sharing, .savedLocations, .changePassword, .fontSizing
@@ -331,6 +349,9 @@
 
     .confirm
       +confirm(16)
+
+    .feedback
+      +button-dark
 
     .sharing, .savedLocations, .changePassword, .fontSizing
       +panel-dark
