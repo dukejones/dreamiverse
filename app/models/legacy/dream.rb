@@ -19,6 +19,7 @@ class Legacy::Dream < Legacy::Base
   has_many :comments, {foreign_key: 'dreamId', class_name: "Legacy::Comment"}
   has_many :emotions, {foreign_key: 'dreamId', class_name: "Legacy::Emotion"}
   has_many :dream_links, {foreign_key: 'dreamId', class_name: "Legacy::DreamLink"}
+  has_many :views, {foreign_key: 'dreamId', class_name: "Legacy::DreamView"}
 
   has_many :dream_images, {foreign_key: 'dreamId', class_name: 'Legacy::DreamImage'}
   has_many :images, {through: :dream_images}
@@ -71,6 +72,18 @@ class Legacy::Dream < Legacy::Base
   
   def user_id
     legacy_user.find_or_create_corresponding_user.id
+  end
+  
+  def uniques
+    self.views.count
+  end
+  
+  def starlight
+    (self.views.count * ((100 - 6.18) / 100 * 5)).to_i # 5 days old
+  end
+  
+  def cumulative_starlight
+    self.views.count
   end
   
   def whats

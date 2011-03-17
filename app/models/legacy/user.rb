@@ -22,8 +22,9 @@ class Legacy::User < Legacy::Base
   belongs_to :image, {foreign_key: "avatarImageId", class_name: "Legacy::Image"}
   belongs_to :seed_code_option, {foreign_key: "seedCodeId", class_name: "Legacy::SeedCode"}
   belongs_to :avatar_image, {foreign_key: 'avatarImageId', class_name: 'Legacy::Image'}
-  has_many :location_options, {foreign_key: 'userId', class_name: 'UserLocationOption'}
-  
+  has_many :location_options, {foreign_key: 'userId', class_name: 'Legacy::UserLocationOption'}
+  has_many :dreams, {foreign_key: 'userId', class_name: 'Legacy::Dream'}
+
   # abandoned "class" attribute in the legacy model conflicts with Ruby's "class" method
   def class
     super
@@ -63,6 +64,23 @@ class Legacy::User < Legacy::Base
   
   def name
     fullName
+  end
+  
+  def starlight
+    sum = 0
+    self.dreams.each do |dream|
+      sum += dream.views.count
+    end
+    
+    (sum * ((100 - 6.18) / 100 * 5)).to_i # 5 days old
+  end
+
+  def cumulative_starlight
+    sum = 0
+    self.dreams.each do |dream|
+      sum += dream.views.count
+    end
+    sum
   end
   
   def seed_code
