@@ -7,7 +7,7 @@
 = render :partial => "context_panel", :locals => {:user => @user}
 
 / USER FIELD
-#friendField
+#friendField{"data-id" => 100}
 
   / USER LIST
   = render :partial => 'friend', :collection => @friends, :locals => {user: @user}
