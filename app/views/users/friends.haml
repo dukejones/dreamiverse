@@ -9,5 +9,12 @@
 / USER FIELD
 #friendField
 
+  / PAGE HEADER
+  .pageHeader.friendHeader
+    /.followHeader.followerHeader
+    .img
+    %h1 friends
+  .clear
+
   / USER LIST
   = render :partial => 'friend', :collection => @friends, :locals => {user: @user}
