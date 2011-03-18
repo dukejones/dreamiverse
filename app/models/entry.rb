@@ -230,7 +230,9 @@ class Entry < ActiveRecord::Base
 protected
 
   def set_main_image
-    self.main_image ||= self.images.first
+    unless self.images.include?(self.main_image)
+      self.main_image = self.images.first
+    end
   end
 
   def set_sharing_level
