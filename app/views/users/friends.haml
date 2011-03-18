@@ -9,5 +9,10 @@
 / USER FIELD
 #friendField{"data-id" => 100}
 
+  .header{"style" => "color: #fff; font-size: 32px;"}
+    %img{"src" => "/images/icons/friend-32.png", "style" => "float: left;"}
+    %span{"style" => "margin-left: 4px; float: left;"} Friends
+  .clear{"style" => "margin-bottom: 5px;"}
+  
   / USER LIST
   = render :partial => 'friend', :collection => @friends, :locals => {user: @user}
