@@ -86,7 +86,8 @@ class EntriesController < ApplicationController
     params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-
+    params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
+    
     @entry.set_whats(params[:what_tags])
 
     if @entry.update_attributes(params[:entry])
