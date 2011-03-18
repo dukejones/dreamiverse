@@ -8,13 +8,13 @@ namespace :image do
       puts "processing main images for (id: #{image.id}) #{image.title}.."
       
       puts 'header'
-      image.generate_profile(:header)
+      image.generate_profile(:header, :format => 'jpg')
       puts 'stream'
-      image.generate_profile(:stream_header)
+      image.generate_profile(:stream_header, :format => 'jpg')
       puts 'dream field header'
-      image.generate_profile(:dreamfield_header)
+      image.generate_profile(:dreamfield_header, :format => 'jpg')
       puts 'default thumb' 
-      image.generate_profile(:thumb)
+      image.generate_profile(:thumb, :format => 'jpg')
           
       thumb_sizes = %w(64 120 122)
       puts 'extra thumbs:'
@@ -22,6 +22,7 @@ namespace :image do
       thumb_sizes.each do |size|
         puts size
         options[:size] = size
+        options[:format] = 'jpg'
         image.generate_profile(:thumb,options)
       end
     end
@@ -34,18 +35,18 @@ namespace :image do
       puts "processing avatar images for (id: #{image.id}) #{image.title}.."
       
       puts 'avatar'
-      image.generate_profile(:avatar)        
+      image.generate_profile(:avatar, :format => 'jpg')        
       puts 'avatar main'
-      image.generate_profile(:avatar_main)
+      image.generate_profile(:avatar_main, :format => 'jpg')
       puts 'avatar medium'
-      image.generate_profile(:avatar_medium)
+      image.generate_profile(:avatar_medium, :format => 'jpg')
       
       extra_sizes = %w(32x32 64x64)
       puts "Resizing #{image.title}:"
       extra_sizes.each do |size|
         puts size
         # image.resize size
-        image.generate_profile(:avatar, :size => size)
+        image.generate_profile(:avatar, :size => size, :format => 'jpg')
       end               
     end
     puts 'Done avatar images.'
@@ -57,9 +58,9 @@ namespace :image do
       puts "processing bedsheet jpg (id: #{image.id}) #{image.title}.."
       image.generate_profile(:bedsheet, :format => 'jpg')
       puts 'default thumb' 
-      image.generate_profile(:thumb)
+      image.generate_profile(:thumb, :format => 'jpg')
       puts 'thumb 120' 
-      image.generate_profile(:thumb, :size => 120)
+      image.generate_profile(:thumb, :size => 120, :format => 'jpg')
     end
   end
   
