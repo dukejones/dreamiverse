@@ -22,7 +22,8 @@ namespace :image do
       thumb_sizes.each do |size|
         puts size
         options[:size] = size
-        image.generate_profile(:thumb,options, :format => 'jpg')
+        options[:format] = 'jpg'
+        image.generate_profile(:thumb,options)
       end
     end
     puts 'Done main images.'
