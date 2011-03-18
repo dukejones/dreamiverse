@@ -1,0 +1,461 @@
+a.dcLogo {
+  display: block;
+  position: absolute;
+  top: 10px;
+  left: 24px;
+  width: 366px;
+  height: 102px; }
+
+#home {
+  width: 1000px;
+  margin: auto; }
+
+#loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword, #terms {
+  position: relative;
+  top: 104px;
+  left: 108px;
+  width: 694px;
+  color: white; }
+  #loginPage .joinInfo, #joinPage .joinInfo, #forgotPage .joinInfo, #errorPage .joinInfo, #resetPassword .joinInfo, #terms .joinInfo {
+    height: 44px; }
+    #loginPage .joinInfo h1, #joinPage .joinInfo h1, #forgotPage .joinInfo h1, #errorPage .joinInfo h1, #resetPassword .joinInfo h1, #terms .joinInfo h1 {
+      font-size: 21px;
+      float: left;
+      margin: 12px 0 0 50px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: white; }
+    #loginPage .joinInfo .login, #loginPage .joinInfo .forgot, #loginPage .joinInfo .join, #joinPage .joinInfo .login, #joinPage .joinInfo .forgot, #joinPage .joinInfo .join, #forgotPage .joinInfo .login, #forgotPage .joinInfo .forgot, #forgotPage .joinInfo .join, #errorPage .joinInfo .login, #errorPage .joinInfo .forgot, #errorPage .joinInfo .join, #resetPassword .joinInfo .login, #resetPassword .joinInfo .forgot, #resetPassword .joinInfo .join, #terms .joinInfo .login, #terms .joinInfo .forgot, #terms .joinInfo .join {
+      position: relative;
+      float: right;
+      text-align: center;
+      border-radius: 12px;
+      -moz-border-radius: 12px;
+      -webkit-border-radius: 12px;
+      background: transparent;
+      box-shadow: 0 0 20px #1188c0;
+      -moz-box-shadow: 0 0 20px #1188c0;
+      -webkit-box-shadow: 0 0 20px #1188c0;
+      cursor: pointer;
+      border: 1px solid #9ae4fd;
+      color: #d1f2ff;
+      height: 34px;
+      margin: 0 0 0 8px; }
+      #loginPage .joinInfo .login:hover, #loginPage .joinInfo .forgot:hover, #loginPage .joinInfo .join:hover, #joinPage .joinInfo .login:hover, #joinPage .joinInfo .forgot:hover, #joinPage .joinInfo .join:hover, #forgotPage .joinInfo .login:hover, #forgotPage .joinInfo .forgot:hover, #forgotPage .joinInfo .join:hover, #errorPage .joinInfo .login:hover, #errorPage .joinInfo .forgot:hover, #errorPage .joinInfo .join:hover, #resetPassword .joinInfo .login:hover, #resetPassword .joinInfo .forgot:hover, #resetPassword .joinInfo .join:hover, #terms .joinInfo .login:hover, #terms .joinInfo .forgot:hover, #terms .joinInfo .join:hover {
+        cursor: pointer;
+        border: 1px solid white;
+        color: white; }
+      #loginPage .joinInfo .login:hover, #loginPage .joinInfo .forgot:hover, #loginPage .joinInfo .join:hover, #joinPage .joinInfo .login:hover, #joinPage .joinInfo .forgot:hover, #joinPage .joinInfo .join:hover, #forgotPage .joinInfo .login:hover, #forgotPage .joinInfo .forgot:hover, #forgotPage .joinInfo .join:hover, #errorPage .joinInfo .login:hover, #errorPage .joinInfo .forgot:hover, #errorPage .joinInfo .join:hover, #resetPassword .joinInfo .login:hover, #resetPassword .joinInfo .forgot:hover, #resetPassword .joinInfo .join:hover, #terms .joinInfo .login:hover, #terms .joinInfo .forgot:hover, #terms .joinInfo .join:hover {
+        box-shadow: 0 0 20px white;
+        -moz-box-shadow: 0 0 20px white;
+        -webkit-box-shadow: 0 0 20px white; }
+      #loginPage .joinInfo .login:active, #loginPage .joinInfo .forgot:active, #loginPage .joinInfo .join:active, #joinPage .joinInfo .login:active, #joinPage .joinInfo .forgot:active, #joinPage .joinInfo .join:active, #forgotPage .joinInfo .login:active, #forgotPage .joinInfo .forgot:active, #forgotPage .joinInfo .join:active, #errorPage .joinInfo .login:active, #errorPage .joinInfo .forgot:active, #errorPage .joinInfo .join:active, #resetPassword .joinInfo .login:active, #resetPassword .joinInfo .forgot:active, #resetPassword .joinInfo .join:active, #terms .joinInfo .login:active, #terms .joinInfo .forgot:active, #terms .joinInfo .join:active {
+        box-shadow: 0 0 0px white;
+        -moz-box-shadow: 0 0 0px white;
+        -webkit-box-shadow: 0 0 0px white; }
+      #loginPage .joinInfo .login a, #loginPage .joinInfo .forgot a, #loginPage .joinInfo .join a, #joinPage .joinInfo .login a, #joinPage .joinInfo .forgot a, #joinPage .joinInfo .join a, #forgotPage .joinInfo .login a, #forgotPage .joinInfo .forgot a, #forgotPage .joinInfo .join a, #errorPage .joinInfo .login a, #errorPage .joinInfo .forgot a, #errorPage .joinInfo .join a, #resetPassword .joinInfo .login a, #resetPassword .joinInfo .forgot a, #resetPassword .joinInfo .join a, #terms .joinInfo .login a, #terms .joinInfo .forgot a, #terms .joinInfo .join a {
+        display: block;
+        position: absolute;
+        border-radius: 11px;
+        -moz-border-radius: 11px;
+        -webkit-border-radius: 11px;
+        box-shadow: inset 0 17px rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: inset 0 17px rgba(255, 255, 255, 0.2);
+        -webkit-box-shadow: inset 0 17px rgba(255, 255, 255, 0.2);
+        background: #0c2b50;
+        background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+        background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+        color: white;
+        height: 34px;
+        line-height: 34px;
+        margin: 0; }
+        #loginPage .joinInfo .login a:hover, #loginPage .joinInfo .forgot a:hover, #loginPage .joinInfo .join a:hover, #joinPage .joinInfo .login a:hover, #joinPage .joinInfo .forgot a:hover, #joinPage .joinInfo .join a:hover, #forgotPage .joinInfo .login a:hover, #forgotPage .joinInfo .forgot a:hover, #forgotPage .joinInfo .join a:hover, #errorPage .joinInfo .login a:hover, #errorPage .joinInfo .forgot a:hover, #errorPage .joinInfo .join a:hover, #resetPassword .joinInfo .login a:hover, #resetPassword .joinInfo .forgot a:hover, #resetPassword .joinInfo .join a:hover, #terms .joinInfo .login a:hover, #terms .joinInfo .forgot a:hover, #terms .joinInfo .join a:hover {
+          box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          -moz-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          -webkit-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          background: #0c2b50;
+          background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+          background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+          background: #0c2b50;
+          background: #5d80ad;
+          background: -webkit-gradient(linear, left top, left bottom, from(#5d80ad), to(#0c2b50));
+          background: -moz-linear-gradient(top, #5d80ad, #0c2b50); }
+        #loginPage .joinInfo .login a:active, #loginPage .joinInfo .forgot a:active, #loginPage .joinInfo .join a:active, #joinPage .joinInfo .login a:active, #joinPage .joinInfo .forgot a:active, #joinPage .joinInfo .join a:active, #forgotPage .joinInfo .login a:active, #forgotPage .joinInfo .forgot a:active, #forgotPage .joinInfo .join a:active, #errorPage .joinInfo .login a:active, #errorPage .joinInfo .forgot a:active, #errorPage .joinInfo .join a:active, #resetPassword .joinInfo .login a:active, #resetPassword .joinInfo .forgot a:active, #resetPassword .joinInfo .join a:active, #terms .joinInfo .login a:active, #terms .joinInfo .forgot a:active, #terms .joinInfo .join a:active {
+          box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          -moz-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          -webkit-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+          background: #0c2b50;
+          background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+          background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+          background: #0c2b50;
+          background: #0c2b50;
+          background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+          background: -moz-linear-gradient(top, #0c2b50, #5d80ad); }
+    #loginPage .joinInfo .login, #loginPage .joinInfo .login a, #joinPage .joinInfo .login, #joinPage .joinInfo .login a, #forgotPage .joinInfo .login, #forgotPage .joinInfo .login a, #errorPage .joinInfo .login, #errorPage .joinInfo .login a, #resetPassword .joinInfo .login, #resetPassword .joinInfo .login a, #terms .joinInfo .login, #terms .joinInfo .login a {
+      width: 60px; }
+    #loginPage .joinInfo .forgot, #loginPage .joinInfo .forgot a, #joinPage .joinInfo .forgot, #joinPage .joinInfo .forgot a, #forgotPage .joinInfo .forgot, #forgotPage .joinInfo .forgot a, #errorPage .joinInfo .forgot, #errorPage .joinInfo .forgot a, #resetPassword .joinInfo .forgot, #resetPassword .joinInfo .forgot a, #terms .joinInfo .forgot, #terms .joinInfo .forgot a {
+      width: 142px; }
+    #loginPage .joinInfo .join, #loginPage .joinInfo .join a, #joinPage .joinInfo .join, #joinPage .joinInfo .join a, #forgotPage .joinInfo .join, #forgotPage .joinInfo .join a, #errorPage .joinInfo .join, #errorPage .joinInfo .join a, #resetPassword .joinInfo .join, #resetPassword .joinInfo .join a, #terms .joinInfo .join, #terms .joinInfo .join a {
+      width: 112px; }
+  #loginPage .glowBox, #joinPage .glowBox, #forgotPage .glowBox, #errorPage .glowBox, #resetPassword .glowBox, #terms .glowBox {
+    position: relative;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    background: transparent;
+    box-shadow: 0 0 20px #1188c0;
+    -moz-box-shadow: 0 0 20px #1188c0;
+    -webkit-box-shadow: 0 0 20px #1188c0;
+    border: 1px solid #9ae4fd;
+    width: 692px; }
+    #loginPage .glowBox img.dreamstar, #joinPage .glowBox img.dreamstar, #forgotPage .glowBox img.dreamstar, #errorPage .glowBox img.dreamstar, #resetPassword .glowBox img.dreamstar, #terms .glowBox img.dreamstar {
+      position: absolute;
+      top: -73px;
+      left: -76px;
+      z-index: 100; }
+    #loginPage .glowBox .shineBox, #joinPage .glowBox .shineBox, #forgotPage .glowBox .shineBox, #errorPage .glowBox .shineBox, #resetPassword .glowBox .shineBox, #terms .glowBox .shineBox {
+      position: absolute;
+      border-radius: 11px;
+      -moz-border-radius: 11px;
+      -webkit-border-radius: 11px;
+      box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+      -moz-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+      -webkit-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+      background: #f0f0f0;
+      background: -webkit-gradient(linear, left top, left bottom, from(#0a1f4e), to(rgba(14, 66, 132, 0.65)));
+      background: -moz-linear-gradient(top, #0a1f4e, rgba(14, 66, 132, 0.65));
+      width: 692px; }
+      #loginPage .glowBox .shineBox #new_user, #joinPage .glowBox .shineBox #new_user, #forgotPage .glowBox .shineBox #new_user, #errorPage .glowBox .shineBox #new_user, #resetPassword .glowBox .shineBox #new_user, #terms .glowBox .shineBox #new_user {
+        margin: 28px auto 0; }
+      #loginPage .glowBox .shineBox span.label, #joinPage .glowBox .shineBox span.label, #forgotPage .glowBox .shineBox span.label, #errorPage .glowBox .shineBox span.label, #resetPassword .glowBox .shineBox span.label, #terms .glowBox .shineBox span.label {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        float: left;
+        font-size: 21px;
+        cursor: default;
+        text-align: right;
+        color: white;
+        width: 190px;
+        padding: 8px 0 8px 8px;
+        margin: 0 0 8px; }
+      #loginPage .glowBox .shineBox input.inputField, #loginPage .glowBox .shineBox input#recaptcha_response_field, #joinPage .glowBox .shineBox input.inputField, #joinPage .glowBox .shineBox input#recaptcha_response_field, #forgotPage .glowBox .shineBox input.inputField, #forgotPage .glowBox .shineBox input#recaptcha_response_field, #errorPage .glowBox .shineBox input.inputField, #errorPage .glowBox .shineBox input#recaptcha_response_field, #resetPassword .glowBox .shineBox input.inputField, #resetPassword .glowBox .shineBox input#recaptcha_response_field, #terms .glowBox .shineBox input.inputField, #terms .glowBox .shineBox input#recaptcha_response_field {
+        outline: none;
+        color: black;
+        outline: none;
+        background-color: white;
+        outline: none;
+        border: 1px solid #666666;
+        box-shadow: inset 0 2px 5px #cccccc;
+        -moz-box-shadow: inset 0 2px 5px #cccccc;
+        -webkit-box-shadow: inset 0 2px 5px #cccccc;
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        float: right;
+        margin: 4px 0 6px;
+        font-size: 18px;
+        padding: 8px;
+        width: 320px; }
+        #loginPage .glowBox .shineBox input.inputField:focus, #loginPage .glowBox .shineBox input#recaptcha_response_field:focus, #joinPage .glowBox .shineBox input.inputField:focus, #joinPage .glowBox .shineBox input#recaptcha_response_field:focus, #forgotPage .glowBox .shineBox input.inputField:focus, #forgotPage .glowBox .shineBox input#recaptcha_response_field:focus, #errorPage .glowBox .shineBox input.inputField:focus, #errorPage .glowBox .shineBox input#recaptcha_response_field:focus, #resetPassword .glowBox .shineBox input.inputField:focus, #resetPassword .glowBox .shineBox input#recaptcha_response_field:focus, #terms .glowBox .shineBox input.inputField:focus, #terms .glowBox .shineBox input#recaptcha_response_field:focus {
+          border: 1px solid black;
+          box-shadow: 0 0 20px black;
+          -moz-box-shadow: 0 0 20px black;
+          -webkit-box-shadow: 0 0 20px black; }
+        #loginPage .glowBox .shineBox input.inputField:focus, #loginPage .glowBox .shineBox input#recaptcha_response_field:focus, #joinPage .glowBox .shineBox input.inputField:focus, #joinPage .glowBox .shineBox input#recaptcha_response_field:focus, #forgotPage .glowBox .shineBox input.inputField:focus, #forgotPage .glowBox .shineBox input#recaptcha_response_field:focus, #errorPage .glowBox .shineBox input.inputField:focus, #errorPage .glowBox .shineBox input#recaptcha_response_field:focus, #resetPassword .glowBox .shineBox input.inputField:focus, #resetPassword .glowBox .shineBox input#recaptcha_response_field:focus, #terms .glowBox .shineBox input.inputField:focus, #terms .glowBox .shineBox input#recaptcha_response_field:focus {
+          box-shadow: 0 0 20px #1188c0;
+          -moz-box-shadow: 0 0 20px #1188c0;
+          -webkit-box-shadow: 0 0 20px #1188c0; }
+  #loginPage .buttonWrap, #joinPage .buttonWrap, #forgotPage .buttonWrap, #errorPage .buttonWrap, #resetPassword .buttonWrap, #terms .buttonWrap {
+    cursor: pointer;
+    clear: both;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    background: white;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(#dcdcdc));
+    background: -moz-linear-gradient(top, white, #dcdcdc);
+    overflow: hidden;
+    position: relative;
+    float: right;
+    width: 334px;
+    margin: 16px 0;
+    padding: 2px; }
+    #loginPage .buttonWrap input.button, #joinPage .buttonWrap input.button, #forgotPage .buttonWrap input.button, #errorPage .buttonWrap input.button, #resetPassword .buttonWrap input.button, #terms .buttonWrap input.button {
+      filter: alpha(opacity=0);
+      -moz-opacity: 0;
+      -khtml-opacity: 0;
+      -webkit-opacity: 0;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 336px !important;
+      cursor: pointer; }
+    #loginPage .buttonWrap .text, #joinPage .buttonWrap .text, #forgotPage .buttonWrap .text, #errorPage .buttonWrap .text, #resetPassword .buttonWrap .text, #terms .buttonWrap .text {
+      overflow: hidden;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      display: block;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 10px;
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      font-size: 34px;
+      text-shadow: rgba(0, 0, 0, 0.4) 0 0 30px;
+      margin: 0 auto;
+      width: 332px;
+      height: 48px;
+      line-height: 48px;
+      color: white;
+      background: #ffa614;
+      background: -webkit-gradient(linear, left top, left bottom, from(#ffe658), to(#ffa614));
+      background: -moz-linear-gradient(top, #ffe658, #ffa614);
+      border: 1px solid #ffa614; }
+      #loginPage .buttonWrap .text:hover, #joinPage .buttonWrap .text:hover, #forgotPage .buttonWrap .text:hover, #errorPage .buttonWrap .text:hover, #resetPassword .buttonWrap .text:hover, #terms .buttonWrap .text:hover {
+        box-shadow: inset 0 24px rgba(255, 255, 255, 0.2);
+        -moz-box-shadow: inset 0 24px rgba(255, 255, 255, 0.2);
+        -webkit-box-shadow: inset 0 24px rgba(255, 255, 255, 0.2); }
+      #loginPage .buttonWrap .text:focus, #joinPage .buttonWrap .text:focus, #forgotPage .buttonWrap .text:focus, #errorPage .buttonWrap .text:focus, #resetPassword .buttonWrap .text:focus, #terms .buttonWrap .text:focus {
+        box-shadow: 0 0 20px #1188c0;
+        -moz-box-shadow: 0 0 20px #1188c0;
+        -webkit-box-shadow: 0 0 20px #1188c0; }
+
+#loginPage .glowBox {
+  height: 340px; }
+  #loginPage .glowBox .shineBox {
+    height: 340px; }
+    #loginPage .glowBox .shineBox .loginForm {
+      width: 470px;
+      margin: 90px auto 0; }
+      #loginPage .glowBox .shineBox .loginForm span.label {
+        width: 100px; }
+
+#joinPage .glowBox {
+  height: 560px; }
+  #joinPage .glowBox .shineBox {
+    height: 560px; }
+    #joinPage .glowBox .shineBox .joinForm {
+      width: 560px;
+      margin: 60px auto 0; }
+      #joinPage .glowBox .shineBox .joinForm .seed {
+        cursor: pointer; }
+        #joinPage .glowBox .shineBox .joinForm .seed:hover {
+          color: #9ae4fd; }
+      #joinPage .glowBox .shineBox .joinForm #user_seed_code {
+        display: none; }
+      #joinPage .glowBox .shineBox .joinForm .recaptchaWrap {
+        position: absolute;
+        border-radius: 8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        right: 66px;
+        margin-top: 4px;
+        border: 1px solid #666666;
+        background: white; }
+        #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div {
+          margin: 0;
+          width: 337px; }
+          #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable {
+            border: none !important; }
+            #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table td, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable td {
+              padding: 0 !important; }
+            #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table .recaptcha_image_cell, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable .recaptcha_image_cell {
+              background: transparent; }
+              #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table .recaptcha_image_cell #recaptcha_image, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable .recaptcha_image_cell #recaptcha_image {
+                border: none !important;
+                margin: 0; }
+            #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table img#recaptcha_logo, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table img#recaptcha_tagline, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable img#recaptcha_logo, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable img#recaptcha_tagline {
+              display: none; }
+            #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table .recaptcha_input_area, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable .recaptcha_input_area {
+              padding: 0 !important; }
+              #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div table#recaptcha_table .recaptcha_input_area input#recaptcha_response_field, #joinPage .glowBox .shineBox .joinForm .recaptchaWrap #recaptcha_widget_div .recaptchatable .recaptcha_input_area input#recaptcha_response_field {
+                position: absolute;
+                left: -1px;
+                width: 322px !important;
+                margin: 10px 0 0; }
+      #joinPage .glowBox .shineBox .joinForm span.label.recaptcha {
+        position: absolute;
+        margin: 84px 0 0; }
+      #joinPage .glowBox .shineBox .joinForm .buttonWrap {
+        position: absolute;
+        right: 66px;
+        margin: 146px 0 0; }
+
+#forgotPage .glowBox {
+  height: 340px; }
+  #forgotPage .glowBox .shineBox {
+    height: 340px; }
+#forgotPage .forgotForm {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  clear: both;
+  cursor: default;
+  width: 390px;
+  margin: 70px auto 0; }
+  #forgotPage .forgotForm h1 {
+    font-size: 25px;
+    color: white; }
+  #forgotPage .forgotForm .body {
+    font-size: 16px;
+    line-height: 26px;
+    margin-bottom: 16px;
+    color: white; }
+    #forgotPage .forgotForm .body a {
+      color: white;
+      text-decoration: none; }
+      #forgotPage .forgotForm .body a:hover {
+        text-decoration: underline; }
+  #forgotPage .forgotForm #user_email {
+    color: black;
+    outline: none;
+    background-color: white;
+    outline: none;
+    border: 1px solid #666666;
+    box-shadow: inset 0 2px 5px #cccccc;
+    -moz-box-shadow: inset 0 2px 5px #cccccc;
+    -webkit-box-shadow: inset 0 2px 5px #cccccc;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    font-size: 18px;
+    margin-bottom: 6px;
+    padding: 8px;
+    width: 280px; }
+    #forgotPage .forgotForm #user_email:focus {
+      border: 1px solid black;
+      box-shadow: 0 0 20px black;
+      -moz-box-shadow: 0 0 20px black;
+      -webkit-box-shadow: 0 0 20px black; }
+    #forgotPage .forgotForm #user_email:focus {
+      box-shadow: 0 0 20px #1188c0;
+      -moz-box-shadow: 0 0 20px #1188c0;
+      -webkit-box-shadow: 0 0 20px #1188c0; }
+  #forgotPage .forgotForm .prompt {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    box-shadow: inset 0 16px rgba(255, 255, 255, 0.2);
+    -moz-box-shadow: inset 0 16px rgba(255, 255, 255, 0.2);
+    -webkit-box-shadow: inset 0 16px rgba(255, 255, 255, 0.2);
+    background: #0c2b50;
+    background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+    background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+    cursor: pointer;
+    border: 1px solid #9ae4fd;
+    color: #d1f2ff;
+    font-size: 18px;
+    height: 40px;
+    padding: 0 8px 4px;
+    margin: 2px 0 0 6px; }
+    #forgotPage .forgotForm .prompt:hover {
+      cursor: pointer;
+      border: 1px solid white;
+      color: white; }
+    #forgotPage .forgotForm .prompt:hover {
+      box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+      -moz-box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+      -webkit-box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+      background: #3ba4d1;
+      background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b));
+      background: -moz-linear-gradient(top, #3ba4d1, #1b485b);
+      cursor: pointer;
+      color: white;
+      border: 1px solid #4794b5; }
+    #forgotPage .forgotForm .prompt:active {
+      background: #1b485b;
+      background: -webkit-gradient(linear, left top, left bottom, from(#1b485b), to(#3ba4d1));
+      background: -moz-linear-gradient(top, #1b485b, #3ba4d1);
+      border: 1px solid white;
+      color: white; }
+
+#errorPage {
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none; }
+  #errorPage h2 {
+    position: absolute;
+    top: 120px;
+    left: 40px;
+    font-size: 30px;
+    color: white; }
+  #errorPage a {
+    position: absolute;
+    top: 230px;
+    left: 250px;
+    width: 370px;
+    font-size: 24px;
+    color: white; }
+    #errorPage a:hover {
+      text-decoration: none; }
+
+#resetPassword .glowBox {
+  height: 340px; }
+  #resetPassword .glowBox .shineBox {
+    height: 340px; }
+    #resetPassword .glowBox .shineBox .resetForm {
+      width: 580px;
+      margin: 90px auto 0; }
+      #resetPassword .glowBox .shineBox .resetForm span.label {
+        width: 200px; }
+      #resetPassword .glowBox .shineBox .resetForm input.resetButton {
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        cursor: pointer;
+        clear: both;
+        border-radius: 12px;
+        -moz-border-radius: 12px;
+        -webkit-border-radius: 12px;
+        box-shadow: inset 0 16px rgba(255, 255, 255, 0.1);
+        -moz-box-shadow: inset 0 16px rgba(255, 255, 255, 0.1);
+        -webkit-box-shadow: inset 0 16px rgba(255, 255, 255, 0.1);
+        background: white;
+        background: -webkit-gradient(linear, left top, left bottom, from(white), to(#aaaaaa));
+        background: -moz-linear-gradient(top, white, #aaaaaa);
+        float: right;
+        border: 1px solid #bbbbbb;
+        font-size: 25px;
+        font-weight: bold;
+        width: 336px;
+        margin: 16px 0;
+        padding: 4px 0;
+        color: #222222; }
+        #resetPassword .glowBox .shineBox .resetForm input.resetButton:hover {
+          box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+          -moz-box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+          -webkit-box-shadow: inset 0px 16px rgba(255, 255, 255, 0.1);
+          background: #3ba4d1;
+          background: -webkit-gradient(linear, left top, left bottom, from(#3ba4d1), to(#1b485b));
+          background: -moz-linear-gradient(top, #3ba4d1, #1b485b);
+          cursor: pointer;
+          color: white;
+          border: 1px solid #4794b5; }
+        #resetPassword .glowBox .shineBox .resetForm input.resetButton:active {
+          background: #1b485b;
+          background: -webkit-gradient(linear, left top, left bottom, from(#1b485b), to(#3ba4d1));
+          background: -moz-linear-gradient(top, #1b485b, #3ba4d1);
+          border: 1px solid white;
+          color: white; }
+      #resetPassword .glowBox .shineBox .resetForm p.error {
+        color: red; }
+
+#terms .glowBox {
+  height: 840px; }
+  #terms .glowBox .shineBox {
+    height: 840px; }
+    #terms .glowBox .shineBox .termsContent {
+      width: 600px;
+      margin: 60px auto 0; }
+      #terms .glowBox .shineBox .termsContent p {
+        line-height: 18px; }
+      #terms .glowBox .shineBox .termsContent ul {
+        list-style: none;
+        margin: 0 0 0 10px; }
+        #terms .glowBox .shineBox .termsContent ul li {
+          margin: 8px 0; }

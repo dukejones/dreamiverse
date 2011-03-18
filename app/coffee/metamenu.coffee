@@ -137,7 +137,7 @@ class AppearancePanel extends MetaMenu
     
         # Add elements for each bedsheet returned
         for node in data
-          newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.' + node.format + '"></li>'
+          newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.jpg"></li>'
           @$currentMenuPanel.find('.bedsheets ul').append(newElement)
     
         @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
@@ -146,9 +146,10 @@ class AppearancePanel extends MetaMenu
       
           if $('#entry_view_preference_attributes_image_id').attr('name')?
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
-          
-          if $('#show_entry_mode').attr('name')?
-            @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))                        
+          else if $('#show_entry_mode').attr('name')?
+            @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+          else
+            @updateUserBedsheet($(event.currentTarget).data('id'))
         )
 
   updateUserBedsheet: (@bedsheet_id)->

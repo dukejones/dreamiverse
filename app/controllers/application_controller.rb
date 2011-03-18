@@ -27,9 +27,8 @@ class ApplicationController < ActionController::Base
   def is_mobile?
     agent = request.user_agent.downcase
     MOBILE_BROWSERS.each do |m|
-      Rails.logger.warn("mobile! #{request.user_agent}") and return true if agent.match(m)
+      return true if agent.match(m)
     end
-    Rails.logger.warn("not mobile #{request.user_agent}")
     return false
   end
 

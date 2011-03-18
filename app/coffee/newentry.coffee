@@ -38,6 +38,7 @@ $(document).ready ->
   )
   $('#entryType_list').change()
   
+  
   # If there are tags or images, expand them!
   if $('#currentImages').children().length > 1
     $('.entryAttach .images').hide()

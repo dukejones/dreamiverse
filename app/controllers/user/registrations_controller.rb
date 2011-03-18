@@ -57,14 +57,9 @@ class User::RegistrationsController < ApplicationController
   def create
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
-    unless verify_recaptcha
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
-      redirect_to join_path(user: params[:user]), :alert => "captcha did not match." and return 
-    end
     
     @user = User.create(params[:user])
-    if @user.valid?
+    if @user.valid? && verify_recaptcha
       set_current_user @user
       
       UserMailer.welcome_email(@user).deliver
@@ -76,8 +71,13 @@ class User::RegistrationsController < ApplicationController
       end
     else
       # TODO: display these on the join page
-      flash[:user_errors] = @user.errors
-      redirect_to join_path(user: params[:user]), :alert => "could not create the user."
+      # params[:user].delete(:password)
+      # params[:user].delete(:password_confirmation)
+      # flash[:user_errors] = @user.errors || []
+      # flash[:user_errors] << "" unless verify_recaptcha
+      # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
+      flash.now[:alert] = "We could not create this user.<br>" + @user.errors.full_messages.join('<br>')
+      render "users/join"
     end
   end
   

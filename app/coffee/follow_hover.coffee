@@ -28,8 +28,13 @@ $.subscribe('follow/changing', (userNode) ->
 
 $('.backdrop, .userInfo').live('click', (event) ->
   expandNode = $(this).parent().find('.expanded')
+  node = $(this).parent()
   if expandNode.css('display') is 'none' 
     expandNode.slideDown(250)
+    zIndex = $('#friendField').data('id')
+    zIndex++
+    node.css('z-index', zIndex)
+    $('#friendField').data('id', zIndex)
   else
     expandNode.slideUp(250)
 )
