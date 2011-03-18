@@ -474,6 +474,9 @@ function setupImageButtons(){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     
+    if($(this).parent().find("input:radio:checked").val()){
+      $('.entryImage').find('input:radio').first().attr('checked', true);
+    }
     $('.image_upload').each(function(i, element){
       if($(this).val() == currentImageId){
         $(this).remove()
