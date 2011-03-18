@@ -27,7 +27,7 @@ namespace :image do
     end
     puts 'Done main images.'
   end
-   
+  
   desc 'for each avatar image, generate avatar_main, avatar_medium and most popular sizes (32/64)'  
   task :avatar => :environment do      
     Image.where(:title ^ 'Default Avatar',:section => 'Avatar').each do |image|
