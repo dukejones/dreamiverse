@@ -10,7 +10,7 @@
 
   / LOGIN PANEL
   .loginPanel.hidden
-    = form_for('user', {url: user_session_path}) do |f|
+    = form_for(User.new, {url: user_session_path}) do |f|
 
       %p.error.hidden incorrect username
       %span username

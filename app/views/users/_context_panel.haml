@@ -1,6 +1,6 @@
 - content_for :head do
   = coffeescript_include_tag 'avatar', 'context_panel'
-  = javascript_include_tag 'avataruploader', 'dreams'
+  = javascript_include_tag 'avataruploader', 'browserdetect', 'dreams'
 / :coffeescript
 /   require(['/javascripts/avataruploader.js'])
 /   require(['/javascripts/compiled/avatar.js', '/javascripts/compiled/context_panel.js'])
@@ -11,7 +11,7 @@
 
   / IMAGE
   %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
-    - if user == current_user
+    - if (user == current_user) && !is_ipad?
 
 
       .uploadAvatarWrap.hidden
@@ -19,7 +19,7 @@
           <span>+</span> upload new avatar
       #avatarDrop.uploader.hidden
         #avatarDropContainer.qq-upload-drop-area
-          .text drag new image here
+          .text drag image here
           .browse
             .cancel cancel
             .dropboxBrowse{style: "overflow: hidden; direction: ltr;"}
@@ -121,8 +121,8 @@
       .image
         %img.dream{src: '/images/icons/dream-32-hover.png', width: '32', height: '32'}
       .detail
-        = user._?.entries.count ? user.entries.count : @entries.count
-        /= @entries._?.count ? @entries.count : user.entries.count
+        /= user._?.entries.count ? user.entries.count : @entries.count
+        = @entries._?.size || user.entries.count
       .clear
 
     .filterList.entries.target.slideArrow.hidden
@@ -143,11 +143,11 @@
     .item.entryFilter.friends.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value friends
+        %span.value= (@mode || 'friends')
       .image
         %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
       .detail
-        = user.followers.count
+        = @mode ? user.send(@mode).count : user.friends.count
       .clear
 
     .filterList.friends.target.slideArrow.hidden
@@ -166,7 +166,7 @@
     .image
       %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
     .detail
-      = user.starlight._?.value || 0
+      = user.starlight
     .clear
 
 

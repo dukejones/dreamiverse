@@ -119,6 +119,62 @@ abbr, acronym
 
 
 
+#entryField, #friendField
+  .pageHeader
+    +relative
+    +left  
+    border-radius:            16px 48px 0 0
+    -moz-border-radius:       16px 48px 0 0
+    -webkit-border-radius:    16px 48px 0 0
+    background: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.75)), to(rgba(0,0,0,0.0)))
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.75), rgba(0,0,0,0.0))
+    // +transparent-dark(80)
+    height: 74px
+    line-height: 78px
+    margin: 0 0 20px
+    padding-right: 36px
+    .img
+      +left
+      width: 64px
+      height: 74px
+      margin: 0 20px 0 12px
+    h1
+      +left
+      +font(32)
+      letter-spacing: 3px
+      color: #bbb
+
+  .dreamHeader
+    .img
+      background: url(/images/icons/dream-64-hover.png) no-repeat center transparent
+  .visionHeader
+    .img
+      background: url(/images/icons/vision-64-hover.png) no-repeat center transparent
+  .experienceHeader
+    .img
+      background: url(/images/icons/experience-64-hover.png) no-repeat center transparent
+  .articleHeader
+    .img
+      background: url(/images/icons/article-64-hover.png) no-repeat center transparent
+  .friendHeader
+    .img
+      background: url(/images/icons/friend-64.png) no-repeat center transparent
+  .followHeader
+    .img
+      background: url(/images/icons/friend-follow-64.png) no-repeat center transparent
+  .followerHeader
+    .img
+      background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
+  .nofriendsHeader
+    .img
+      background: url(/images/icons/friend-none-64.png) no-repeat center transparent
+  .streamHeader
+    width: 634px
+    .img
+      background: url(/images/icons/stream-64-hover.png) no-repeat center transparent
+
+
 // CLOSE ICONS
 
 .close-16
@@ -127,16 +183,16 @@ abbr, acronym
   +alpha(30)
   width: 16px
   height: 16px
-  background: #fff url(/images/icons/close-16.png) no-repeat center
+  background: url(/images/icons/close-16-hover.png) no-repeat center
   &:hover
     +alpha(100)
-.close-22
+.close-24
   +pointer
   +alpha(50)
   +round(12)
   width: 24px
   height: 24px
-  background: #fff url(/images/icons/close-22.png) no-repeat center
+  background: url(/images/icons/close-24-hover.png) no-repeat center
   &:hover
     +alpha(100)
 
@@ -147,8 +203,10 @@ abbr, acronym
   +round(16)
 #lightbox-container-image-data-box
   display: none !important
-
-
+#lightbox-loading
+  background: url(/images/icons/spinner-dark-32.gif) no-repeat center center transparent
+#jquery-overlay
+  opacity: 0.6 !important
 
 
 // ALERTS
@@ -183,11 +241,14 @@ abbr, acronym
     background: url(/images/icons/arrow_up-32.png) no-repeat center
   p
     +left
-    margin: 12px 0
-  .close-22
+    margin: 12px 12px 12px 0
+  .checkmark
+    width: 31px
+    height: 31px
+    background: url(/images/icons/check-31.png) no-repeat center
     +absolute
     right: 12px
-    top: 14px
+    top: 12px
 
 
 

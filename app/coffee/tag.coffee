@@ -94,7 +94,13 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    @$container.find('.tag .close-16').live "click", (event)=>
+    # New way
+    ua = navigator.userAgent
+    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+    
+      # OLD WAY
+    #@$container.find('.tag .close-16').live "click", (event)=>
+    @$container.find('.tag .close-16').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>
@@ -122,7 +128,8 @@ class TagViewList
 
   findByTagId: (tagId)->
     return tagView for tagView in @tagViews when tagView.tag.id == tagId
-
+  findByName: (tagName)->
+    return tagView for tagView in @tagViews when tagView.tag.name == tagName
   add: (tagView)->
     if !@tagAlreadyExists(tagView)
       @tagViews.push(tagView)
@@ -139,6 +146,8 @@ class TagViewList
   removeTag: (tagId) ->
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
+    console.log(tagViewToRemove)
+    console.log(@tagViews.length)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
 
@@ -163,6 +172,17 @@ class EditingTagViewList extends TagViewList
       @findByTagId(id).removeFromView()
       
   removeTag: ($tag) ->
+    tagName = $tag.find('.tagContent').text()
+    console.log(tagName)
+    
+    
+    new_tags = (tag for tag in @tagViews when tag.tag.name != tagName)  
+    console.log(new_tags.length)
+    console.log(@tagViews.length)
+    console.log(@tagViews)
+    console.log(new_tags)
+    #@tagViews.remove(tagViewToRemove)
+    @tagViews = new_tags
     $tag.css('backgroundColor', '#ff0000')
     $tag.fadeOut('fast', =>
       $tag.remove()
@@ -212,22 +232,23 @@ class EditingTagView extends TagView
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
   remove: ->
-    if $("#sorting").val() is "1"
-      @removeFromView()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
     
 class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
+    console.log("SharingTagView Init")
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)
       @tag.setId(response.what_id)
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
-    if $("#sorting").val() is "1"
-      @removeFromView()
-      @tag.destroy()
+    #if $("#sorting").val() is "1"
+    @removeFromView()
+    @tag.destroy()
 
 
 # MAKE THIS STORE THE ID OF THE TAG ALSO
@@ -255,6 +276,3 @@ class Tag
       success: (data, status, xhr) =>
         $.publish 'tags:removed', [@id]
     }
-    
-
-    

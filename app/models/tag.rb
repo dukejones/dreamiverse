@@ -15,6 +15,10 @@ class Tag < ActiveRecord::Base
   scope :custom, where( kind: 'custom' )
   scope :auto,   where( kind: 'auto'   )
 
+  def self.whats
+    where(noun_type: 'What').includes(:noun).map(&:noun)
+  end
+
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry, cloud_size = 16)   
     entry.tags.auto.delete_all

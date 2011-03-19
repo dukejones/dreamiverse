@@ -11,6 +11,10 @@
   // see entries.sass
   .headers
 
+  // FIX FOR SAFARI and CHROME SELECT BUBBLES
+  select
+    -webkit-appearance: none
+
   // SHARED PANEL STYLES
   .entryPanels
     +hidden
@@ -23,6 +27,8 @@
     +round(16)
     width: 662px 
     padding: 8px
+
+
 
     // MOOD ICON
     .wrapper
@@ -40,13 +46,13 @@
       +right
       right: 70px
       height: 34px
-      width: 178px // For Chrome
+      width: 158px // For Chrome
       line-height: 34px
       .typeSelection
         +left
         width: 24px
         height: 34px
-        margin: 0 0 0 8px
+        margin: 0 -36px 0 8px
       select#entryType_list
         +outline
         +transparent
@@ -57,9 +63,7 @@
         +center
         border: 0
         height: 34px
-        line-height: 34px
-        padding: 7px 8px 7px 38px
-        margin-left: -36px
+        padding: 7px 8px
         option
           padding: 6px 4px 6px 38px
           text-align: left
@@ -79,12 +83,12 @@
       font-family: Calibri, Arial, Helvetica, sans-serif
     #entry_title
       +font(25)
-      width: 460px
+      width: 480px
       height: 26px
       line-height: 26px
     hr
       +alpha(20)
-      width: 460px
+      width: 480px
       margin: 6px 12px
     #entry_body
       +font(17)
@@ -105,7 +109,7 @@
       .sharingWrap
         +right
         +relative
-        width: 208px
+        width: 180px
         margin: 8px 0 0 8px
         .sharing
           +absolute
@@ -113,16 +117,15 @@
           +pointer
           min-height: 34px
           line-height: 34px
-          width: 190px // For Chrome
+          width: 170px
           margin: 0
-          padding: 0 4px
           z-index: 1101
           .listSelection
             +pointer
             +left
             width: 24px
             height: 34px
-            margin: 0 0 0 6px
+            margin: 0 -36px 0 6px
 
           select#sharing_select
             +outline
@@ -134,11 +137,9 @@
             +center
             border: none
             height: 34px
-            line-height: 34px
-            padding: 7px 8px 7px 32px
-            margin-left: -32px
+            padding: 7px 8px
             option
-              padding: 8px 4px 8px 38px
+              padding: 8px 0 8px 30px
               text-align: left
             option.everyone
               background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
@@ -276,6 +277,7 @@
       +transparent
       border: none
       padding: 7px 12px
+      height: 36px
     .hour, .month
       margin-left: 8px
     .day, .year, .minute, .amPm
@@ -333,7 +335,7 @@
           padding: 4px
           width: 238px
 
-    .close-22
+    .close-24
       +right
 
   // ENTRY IMAGES
@@ -446,7 +448,7 @@
             height: 10px
             padding: 5px
             background: rgba(255,255,255,0.3)
-          .close-22
+          .close-24
             +absolute
             top: 8px
             right: 8px
@@ -483,7 +485,6 @@
           +outline
           width: 400px
           height: 32px
-          line-height: 32px
           margin: 4px 0
           border: 0
       .tagAdd
@@ -594,7 +595,7 @@
         line-height: 30px
         margin: 5px -4px 0 0
 
-      .close-22
+      .close-24
         +right
         margin: 5px 4px 0 0
        

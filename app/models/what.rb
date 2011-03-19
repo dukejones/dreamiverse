@@ -4,6 +4,8 @@ class What < ActiveRecord::Base
   has_many :blacklist_words
   
   MaxLength = 30
+
+  include Starlit
   
   validates :name,
             :presence => true,

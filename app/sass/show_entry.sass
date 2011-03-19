@@ -11,6 +11,7 @@
   // STRUCTURE
 
   #showEntry, #showEntry.noImage
+    +relative
     +round(16)
     width: 662px 
     padding: 8px
@@ -369,6 +370,8 @@
         .tagHeader
           +flat-right
           +user-select
+          border: none
+          height: 36px
 
         .wrapper
           .tagInput
@@ -397,11 +400,17 @@
             +user-select
             margin: 0 0 16px
             padding: 0 12px
-            height: 34px
-            line-height: 34px
+            height: 36px
+            line-height: 36px
             +save(17)
+            border: none
+            &:hover
+              border: none
           .tagThisEntry.selected
             +save(17)
+            border: none
+            &:hover
+              border: none
 
           // POST TIME, LOCATION & SHARE LEVEL
           .postTime, .postLocation, .shareLevel
@@ -707,10 +716,16 @@
           .tagThisEntry
             +button-light
             +shine-light(17)
+            border: none
+            &:hover
+              border: none
           .tagThisEntry.selected
             +button-dark
             +shine-dark(17)
             color: #ddd
+            border: none
+            &:hover
+              border: none
 
           .tagInput
             +input-light(small)
@@ -859,10 +874,16 @@
           .tagThisEntry
             +button-dark
             +shine-dark(17)
+            border: none
+            &:hover
+              border: none
           .tagThisEntry.selected
             +button-light
             +shine-light(17)
             color: #333
+            border: none
+            &:hover
+              border: none
 
           .tagInput
             +input-dark(small)

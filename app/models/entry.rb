@@ -11,6 +11,7 @@ class Entry < ActiveRecord::Base
     everyone:           500
   }
 
+  include Starlit
   
   belongs_to :user
   belongs_to :location, :class_name => "Where" 
@@ -69,13 +70,13 @@ class Entry < ActiveRecord::Base
     where(sharing_level: Entry::Sharing[:anonymous])
   end
   
-  def self.order_by_starlight
-    select('entries.*').
-    from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
-    joins("JOIN starlights ON starlights.id=maxstars.maxid").
-    joins("JOIN entries ON entries.id=starlights.entity_id").
-    order('starlights.value DESC')
-  end
+  # def self.order_by_starlight
+  #   select('entries.*').
+  #   from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
+  #   joins("JOIN starlights ON starlights.id=maxstars.maxid").
+  #   joins("JOIN entries ON entries.id=starlights.entity_id").
+  #   order('starlights.value DESC')
+  # end
   def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 
@@ -105,36 +106,41 @@ class Entry < ActiveRecord::Base
     self.everyone.where(:type ^ 'article').order("rand()").limit(1).first
   end
 
-  def self.list(viewer, viewed, lens, filters)
+  def self.dreamstream(viewer, filters)
     filters ||= {}
     entry_scope = Entry.order('dreamed_at DESC')
-    entry_scope = entry_scope.where(type: filters[:type]) if filters[:type] # Type: visions,  dreams,  experiences
+    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
-    if (lens == :field) || viewer.nil?
-      if viewer
-        entries = entry_scope.where(user_id: viewed.id).select {|e| viewer.can_access?(e) }
+    page_size = filters[:page_size] || 30
+    # entry_scope = entry_scope.where(:updated_at > 50.days.ago)
+    entry_scope = entry_scope.limit(page_size)
+    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+
+    users_to_view =  # based on friend filter
+      if filters[:friend] == "friends"
+        viewer.friends
       else
-        entries = entry_scope.select{|e| e.everyone? } 
+        viewer.following
       end
-    elsif lens == :stream
-      page_size = filters[:page_size] || 30
-      # only entries within 10 days
-      # top page_size of each
-      entry_scope = entry_scope.where(:updated_at > 10.days.ago).limit(page_size)
-      entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+    entries = entry_scope.where(:user_id => users_to_view.map(&:id))
+    # each should be sorted according to date or starlight
 
-      # based on friend filter: 
-      user_list = 
-        if filters[:friend] == "friends"
-          viewer.friends
-        else
-          viewer.following
-        end
-      entries = entry_scope.where(:user_id => user_list.map(&:id))
-      # each should be sorted according to date or starlight
+    entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
+    entries
+  end
+
+  def self.dreamfield(viewer, viewed, filters)
+    filters ||= {}
+    entry_scope = Entry.order('dreamed_at DESC')
+    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
+
+    entry_scope = entry_scope.where(user_id: viewed.id)
+    if viewer
+      entries = entry_scope.select {|e| viewer.can_access?(e) }
+    else
+      entries = entry_scope.where(sharing_level: self::Sharing[:everyone])
     end
 
-    entries.select!{|e| viewer.can_access?(e) } if viewer && entries # this is very, very slow.
     entries
   end
 
@@ -150,7 +156,7 @@ class Entry < ActiveRecord::Base
   def set_whats(tag_words)
     return unless tag_words
     new_whats = tag_words.map {|word| What.for word }
-    # (self.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
+    (self.tags.custom.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
     new_whats.each { |what| self.add_what_tag(what) }
     
     reorder_tags
@@ -224,7 +230,9 @@ class Entry < ActiveRecord::Base
 protected
 
   def set_main_image
-    self.main_image ||= self.images.first
+    unless self.images.include?(self.main_image)
+      self.main_image = self.images.first
+    end
   end
 
   def set_sharing_level

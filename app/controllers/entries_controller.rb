@@ -5,24 +5,29 @@ class EntriesController < ApplicationController
   def entry_list
     # This is an example of a hack due to tightly coupling Display to Data.
     session[:filters].delete(:type) if session[:filters]._?[:type] == "all entries"
-    @entries = Entry.list(current_user, @user, session[:lens], session[:filters])
+    @entries = case session[:lens]
+      when :stream
+        Entry.dreamstream(current_user, session[:filters])
+      else # when :field
+        Entry.dreamfield(current_user, @user, session[:filters])
+    end
   end
   
   def index
     if params[:entry_type]
-      # TODO: Make this work without setting it
+      # TODO: Make this work without setting it manually.
       params[:filters] ||= {}
       params[:filters][:type] = params[:entry_type]  
     end
-
+    @type_filter = params[:filters]._?[:type]
+    
     flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
 
     entry_list
     
-    @user.starlight.add( 1 ) if unique_hit?
-
+    hit( @user )
   end
 
   def show
@@ -35,15 +40,16 @@ class EntriesController < ApplicationController
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
     # @entry = @entries[i]
+    # TODO: Remove this.
+    @next = @entry unless @next
+    @previous = @entry unless @previous
     deny and return unless user_can_access?
 
     @comments = @entry.comments.order('created_at') # .limit(10)
     @page_title = @entry.title
     
-    if unique_hit?
-      @entry.starlight.add( 1 )
-      @entry.user.starlight.add( 1 )
-    end
+    hit( @entry )
+    hit( @entry.user )
   end
   
   def new
@@ -59,29 +65,30 @@ class EntriesController < ApplicationController
   end
 
   def create
- 
     whats = (params[:what_tags] || []).map {|word| What.for word }
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    # replace this with a redirect/alert later
-    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
-        
-    new_entry = current_user.entries.create!(params[:entry].merge(
-      whats: whats
-    ))
-    redirect_to user_entry_path(current_user.username, new_entry)
+    @entry = current_user.entries.create(params[:entry].merge(whats: whats))
+    if @entry.valid?
+      redirect_to user_entry_path(current_user.username, @entry)
+    else
+      @entry_mode = 'new'
+      flash.now[:alert] = @entry.errors.full_messages.first
+      render :new
+    end
   end
   
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-   
-    # replace this with a redirect/alert later
-    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
-    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:entry][:dreamed_at]
-
+    # replace this with a redirect/alert later
+    # params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
+    
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
+    params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
+    
     @entry.set_whats(params[:what_tags])
 
     if @entry.update_attributes(params[:entry])
@@ -91,6 +98,7 @@ class EntriesController < ApplicationController
       end
     else
       respond_to do |format|
+        format.html { redirect_to edit_entry_path(params[:id]), alert: @entry.errors.full_messages.first }
         format.json { render :json => {type: 'error', errors: @entry.errors}}.to_json
       end
     end

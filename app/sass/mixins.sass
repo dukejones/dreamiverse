@@ -5,6 +5,8 @@
   user-select: none
   -webkit-user-select: none
   -moz-user-select: none
+  -khtml-user-select: none
+  -o-user-select: none
 
 // DISPLAY
 =block
@@ -133,7 +135,7 @@
   -moz-border-radius-bottomright:     0px
   -webkit-border-radius-bottomright:  0px
 
-  border-botom-left-radius:           0px
+  border-bottom-left-radius:           0px
   -moz-border-radius-bottomleft:      0px
   -webkit-border-radius-bottomleft:   0px
 
@@ -168,9 +170,9 @@
 
 
 =shine-light($px)
-  box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
-  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.1)
-  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
 
   background: #fff
   background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#aaa))
@@ -246,9 +248,9 @@
 
 =indent-dark
   border: 1px solid #000
-  background: #111
-  background: -webkit-gradient(linear, left top, left bottom, from(#090909), to(#111))
-  background: -moz-linear-gradient(top, #090909, #111)
+  background: #1a1a1a
+  background: -webkit-gradient(linear, left top, left bottom, from(#090909), to(#1a1a1a))
+  background: -moz-linear-gradient(top, #090909, #1a1a1a)
 
 =indent-blue
   border: 1px solid #6183a1

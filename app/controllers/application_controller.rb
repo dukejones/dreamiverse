@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_filter :set_seed_code
-  helper_method :current_user, :add_starlight, :page_is_mine?
+  before_filter :set_seed_code, :set_client_timezone
+  helper_method :current_user, :page_is_mine?, :is_mobile?
   protect_from_forgery
 
   def current_user
@@ -15,17 +15,30 @@ class ApplicationController < ActionController::Base
     request.path == '/entries/new'
   end
   
-  # TODO: deprecate
-  def add_starlight(entity, amt)
-    Starlight.add(entity, amt)
-  end
-
   def unique_hit?
     Hit.unique? request.fullpath, request.remote_ip, current_user
   end
+  
+  def hit(starlit_entity)
+    starlit_entity.hit! if unique_hit?
+  end
 
+  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo", "ipad"]
+  def is_mobile?
+    agent = request.user_agent.downcase
+    MOBILE_BROWSERS.each do |m|
+      return true if agent.match(m)
+    end
+    return false
+  end
 
-protected
+  protected
+
+  def set_client_timezone
+    min = cookies[:timezone].to_i
+    Time.zone = ActiveSupport::TimeZone[-min.minutes]  
+  end
+
   def set_current_user(user)
     session[:user_id] = user ? user.id : nil
     @current_user = user
@@ -44,6 +57,7 @@ protected
   def set_seed_code
     return if request.xhr?
     session[:seed_code] = params[:seed] if params[:seed]
+    session[:seed_code] = params[:s] if params[:s]
     session[:seed_code] ||= params[:username] if params[:username]
   end
 end

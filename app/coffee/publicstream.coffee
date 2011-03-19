@@ -1,4 +1,13 @@
 $(document).ready ->
+  # make iPad 1 click work on thumbs
+  ua = navigator.userAgent
+  clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+  
+  $('.thumb-1d a.left, .thumb-1d a.user, a.tagCloud').bind( clickEvent, (event)->
+    event.preventDefault()
+    window.location = $(event.currentTarget).attr('href')
+  )
+  
   # loop thru the youtube attachments
   $('.entryImages .youtube').each (i, el) =>
     # Pass the url and the element it came from
@@ -6,7 +15,13 @@ $(document).ready ->
 
     # Setup video expander
     link_id = $(el).data('id')
-    $(el).find('a').click( (event) =>
+    
+    # make iPad 1 click work on thumbs
+    ua = navigator.userAgent
+    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+  
+    
+    $(el).find('a').bind(clickEvent, (event) =>
       event.preventDefault()
       
       $(event.currentTarget).parent().hide()

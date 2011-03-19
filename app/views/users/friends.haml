@@ -7,7 +7,14 @@
 = render :partial => "context_panel", :locals => {:user => @user}
 
 / USER FIELD
-#friendField
+#friendField{"data-id" => 100}
+
+  / PAGE HEADER
+  / .pageHeader.friendHeader
+  /   /.followHeader.followerHeader
+  /   .img.hidden
+  /   %h1= @mode
+  / .clear
 
   / USER LIST
   = render :partial => 'friend', :collection => @friends, :locals => {user: @user}

@@ -1,7 +1,7 @@
 - content_for :head do
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'IB_manager'
-  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'userfileuploader', 'dreams', 'geo', 'detect_timezone'
+  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'userfileuploader', 'dreams', 'geo'
   = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'fit_to_content', 'newentry'
 
 - content_for :foot do
@@ -36,6 +36,7 @@
 
 / ENTRY
 #entryField
+
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
@@ -143,7 +144,8 @@
     =# render :partial => "location"
 
     / NEW ENTRY IMAGES
-    = render :partial => "image_panel", locals: {images: @entry.images}
+    - unless is_ipad?
+      = render :partial => "image_panel", locals: {images: @entry.images}
 
 
 
@@ -168,8 +170,9 @@
           .tag_what.tag
             %span.tagContent= what.name
             .close-16
-
-        .clear
+            %input{type: 'hidden', name: 'what_tags[]', value: what.name}
+          
+        /.clear
       #sorting.clear
 
 
@@ -194,7 +197,7 @@
               %input.linkUrlValue{:value => "#{link.url}", name: 'entry[links_attributes][][url]', style: "width: 320px"}
               .icon
                 %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
-            .close-22
+            .close-24
             - if link.youtube?
               .thumb{style: "background: url('') no-repeat center center transparent"}
               .description
@@ -327,9 +330,10 @@
     / NEW ENTRY ATTACHMENTS
     .entryAttach.entryPanels
       %p attach:
-      .attach.images
-        .img
-        images
+      - unless is_ipad?
+        .attach.images
+          .img
+          images
       .attach.tag
         .img
         tag

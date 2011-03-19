@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
     developer: 40,
     admin:     50 
   }
+  
+  include Starlit
 
   has_many :authentications
   has_many :entries
@@ -48,15 +50,15 @@ class User < ActiveRecord::Base
   validate :has_at_least_one_authentication
   
   
-  def self.order_by_starlight
-    select('users.*').
-    from( "( #{Starlight.current_for('User').to_sql} ) as maxstars " ).
-    joins("JOIN starlights ON starlights.id=maxstars.maxid").
-    joins("JOIN users ON users.id=starlights.entity_id").
-    order('starlights.value DESC')
-  end
+  # def self.order_by_starlight
+  #   select('users.*').
+  #   from( "( #{Starlight.current_for('User').to_sql} ) as maxstars " ).
+  #   joins("JOIN starlights ON starlights.id=maxstars.maxid").
+  #   joins("JOIN users ON users.id=starlights.entity_id").
+  #   order('starlights.value DESC')
+  # end
   def self.dreamstars
-    order_by_starlight.limit(16)
+    order("starlight DESC").where("starlight > 20")
   end
 
   attr_accessor :password, :password_confirmation, :old_password

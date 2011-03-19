@@ -1,9 +1,10 @@
 / FRIEND'S LIST
 .userNode{:userId => friend.id, :relationshipWith => current_user._?.relationship_with(friend)}
 
-  .status{:class => current_user._?.relationship_with(friend)}
-  .statusHover.hidden
-    %span unfollow
+  - unless current_user.blank?
+    .status{:class => current_user._?.relationship_with(friend)}
+    .statusHover.hidden
+      %span unfollow
 
 
   %a.avatar.button{href: dreams_path(friend.username), style: "background-image: url('#{avatar_image(friend, 64)}')"}
@@ -13,16 +14,14 @@
     %h3= friend.username
     %p= friend.default_location_id
 
-    %p.mutual
-      - mutual_followers = (user.followers & friend.followers).count
-      = pluralize(mutual_followers, "mutual follower")
-
+    - unless current_user.blank?
+      %p.mutual
+        - mutual_followers = (user.followers & friend.followers).count
+        = pluralize(mutual_followers, "mutual follower")
 
   .backdrop
 
-
   .panel
-
     .expanded.hidden
 
       .shadow
@@ -45,7 +44,7 @@
         .label starlight
         .image
           %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-        .detail= friend.starlight._?.value || 0
+        .detail= friend.starlight
         .clear
 
 

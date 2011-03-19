@@ -46,6 +46,7 @@
   / LOG OUT
   %a.logOut{href: '/logout'}
     .img
+    = render partial: "shared/hover_label", locals: {message: "log out", x: "0", y: "-4"}
 
 
 
@@ -65,6 +66,7 @@
       = render partial: "users/settings_panel"
 
 
+
     - if page_is_mine?
       .appearancePanel.wrapper
         .item.appearance.trigger
@@ -72,7 +74,6 @@
 
         / APPEARANCE PANEL
         = render partial: "users/appearance_panel"
-
 
 
 

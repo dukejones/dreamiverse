@@ -26,11 +26,23 @@ class EntryTest < ActiveSupport::TestCase
     
   end
 
-  test "set_tags removes tags no longer in the set" do
-    whats = ['dragon','hound','stove','carruthers'].map {|word| What.create(name: word) }
-    new_whats = ['dragon', 'stove', 'martha'].map {|word| What.create(name: word) }
-    Entry.make(:whats => whats)
+  test "set_whats removes tags no longer in the set" do
+    whats = ['spoon','hound','stove','feh'].map {|word| What.create(name: word) }
+    new_whats = ['spoon', 'stove', 'martha'].map {|word| What.create(name: word) }
+    
+    entry = Entry.make(:whats => whats, :title => 'visions', body: 'bridge')
+    entry.set_whats(new_whats.map(&:name))  
+    entry.save
+    entry.reload
+      
+    fresh_what_names = entry.whats.map(&:name)
+    
+    assert_equal fresh_what_names.include?('hound'), false # make sure we delete old whats
+    assert_equal fresh_what_names.include?('feh'), false # again
+    assert_equal fresh_what_names.include?('visions'), true # also make sure we're not deleting the auto tags
+    
   end
+
 
   test "random" do
     100.times do
@@ -44,4 +56,5 @@ class EntryTest < ActiveSupport::TestCase
       assert e.type != 'article'
     end
   end
+
 end

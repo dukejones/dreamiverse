@@ -19,7 +19,6 @@ a.dcLogo
 
 
 #loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword, #terms
-  +user-select
   +relative
   top: 104px
   left: 108px
@@ -30,6 +29,7 @@ a.dcLogo
     height: 44px
 
     h1
+      +user-select
       +font(21)
       +left
       margin: 12px 0 0 50px
@@ -53,6 +53,7 @@ a.dcLogo
       &:active
         +glow-dark(0)
       a
+        +user-select
         +block
         +absolute
         +round(11)
@@ -132,6 +133,7 @@ a.dcLogo
 
       // SUBMIT - LOGIN & JOIN BLUE BUTTON
       .submit
+        +user-select
         +pointer
         +clear
         +round(12)

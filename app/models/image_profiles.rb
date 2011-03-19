@@ -82,6 +82,7 @@ module ImageProfiles
     # img.thumbnail # => Faster but no pixel averaging.
     size = (options[:size] || 128).to_i
     img = magick_image
+    img.format options[:format] if options[:format]
     # img.combine_options do |i|
     img.resize "#{size}x#{size}^"
     # img.resize (width > height) ? "x#{size}" : size
@@ -134,7 +135,8 @@ module ImageProfiles
   end
 
   def bedsheet(options)
-    options[:format] = 'jpg' unless options[:format]
+    # this apparently doesn't work.  For now, we'll just specify each time.
+    options[:format] = 'jpg'
     
     img = magick_image
     if options[:format] != self.format
@@ -147,7 +149,7 @@ module ImageProfiles
   end
   
   def bedsheet_small(options)
-    options[:format] = 'jpg' unless options[:format]
+    options[:format] = 'jpg'
 
     img = magick_image
     if options[:format] != self.format

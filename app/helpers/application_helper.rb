@@ -38,6 +38,10 @@ module ApplicationHelper
     end
   end
   
+  def is_ipad?
+    request.user_agent.match(/iPad/)
+  end
+  
   def coffeescript_include_tag(*sources)
     javascript_include_tag(*(sources.map { |js| "compiled/#{js}" }))
   end
@@ -46,29 +50,35 @@ module ApplicationHelper
     stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
   end
 
-  # Note: this depends on a "global" variable @entry being set to use @entry's preferences.
+  # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
     bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= @user._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= 'scroll'
 
-    # TODO: these should be an imagebank url.
-    # if dreamstars, use dreamstars bedsheet
-    bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" if request.path == '/dreamstars'
-    # if user has ubiquity mode, use user's bedsheet no matter what
-    # Not yet implemented.
-    # if entry has a view preference, use entry's bedsheet
-    bedsheet_url ||= @entry._?.view_preference._?.image._?.url(:bedsheet)
-    # if user has a view preference, use user's bedsheet
-    bedsheet_url ||= current_user._?.view_preference._?.image._?.url(:bedsheet)
-    # global default bedsheet
-    bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
+    if request.path == dreamstars_path
+      bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" 
+    else
+      # if user has ubiquity mode, use user's bedsheet no matter what
+      # Not yet implemented.
+      bedsheet_image ||= @entry._?.view_preference._?.image
+      bedsheet_image ||= @user._?.view_preference._?.image
+      bedsheet_image ||= current_user._?.view_preference._?.image
 
+      if is_mobile?
+        bedsheet_url = bedsheet_image._?.url(:bedsheet_small, :format => 'jpg')
+      else
+        bedsheet_url = bedsheet_image._?.url(:bedsheet, :format => 'jpg')
+      end
+      bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
+    end
     "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
   end
   
   def theme
     theme ||= @entry._?.view_preference._?.theme
+    theme ||= @user._?.view_preference._?.theme
     theme ||= current_user._?.view_preference._?.theme
     theme ||= "light"
     theme

@@ -2,27 +2,30 @@
 #appearancePanel.hidden.target
   .arrow
 
+
+
   / BEDSHEETS
   .bedsheets
     .img
     %h2 bedsheets
-    .options.hidden{onclick: 'dc.modal()'}
-      options
-    %ul
+    #bedsheetScroller
+      %ul
 
-    .attachment 
-      - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
-        %a#fixed.fixed{href: "#"}
-          fixed
-        %a#scroll.scroll{href: "#"}
-          scroll  
-      - elsif @entry_mode == 'show' # ajax update entry theme
-        = link_to 'fixed', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
-        = link_to 'scroll', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'     
-      - else # update user theme
-        = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
-        = link_to 'scroll', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'
-      .clear
+
+    - unless is_ipad?
+      .attachment 
+        - if @entry_mode == 'new' || @entry_mode == 'edit' # don't ajax update anything, just render linked buttons with class/id 
+          %a#fixed.fixed{href: "#"}
+            fixed
+          %a#scroll.scroll{href: "#"}
+            scroll  
+        - elsif @entry_mode == 'show' # ajax update entry theme
+          = link_to 'fixed', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
+          = link_to 'scroll', entry_path(:entry => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'     
+        - else # update user theme
+          = link_to 'fixed', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'fixed'}}), :method => :put, :remote => true, :id => 'fixed', :class => 'fixed'
+          = link_to 'scroll', user_path(:user => {:view_preference_attributes => {:bedsheet_attachment => 'scroll'}}), :method => :put, :remote => true, :id => 'scroll', :class => 'scroll'
+        .clear
     /
       .more + browse more...
 

@@ -47,7 +47,9 @@ class AvatarController
       onComplete: (id, fileName, response) =>
         avatar_url = '/images/uploads/' + response.image.id + '-avatar_main.' + response.image.format
         avatar_thumb = '/images/uploads/' + response.image.id + '-32x32.' + response.image.format
-        
+        #alert("RESPONSE :: " + response)
+        #alert("RESPONSE.image :: " + response.image)
+
         $.ajax {
           type: 'PUT'
           url: '/user.json'

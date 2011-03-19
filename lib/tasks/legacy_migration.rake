@@ -14,6 +14,7 @@ namespace :legacy do
       Rake::Task['legacy:data:import:user_locations'].invoke
       Rake::Task['legacy:data:import:countries'].invoke
       Rake::Task['legacy:data:import:people'].invoke
+      Rake::Task['legacy:data:import:links'].invoke
     end
     namespace :import do
       task :images => :environment do
@@ -29,20 +30,22 @@ namespace :legacy do
           image.save!
         end
       end
-      task :dreams => [:environment, :images, :users] do
+      task :dreams => [:environment] do
         Migration::DreamImporter.migrate_all
       end
       task :dream_images => [:environment] do
         Legacy::DreamImage.all.each do |dream_image|
-          next unless dream_image.image._?.valid?
-
+          unless dream_image.image._?.valid?
+            log("dream image not valid! dream: #{dream_image.dream._?.id} image: #{dream_image.image._?.id}")
+            next
+          end
+          
           image = dream_image.image._?.corresponding_object
-          puts "Image does not exist!  #{dream_image.image._?.title}  for dream #{dream_image.dream._?.title}" unless image
+          log "Image does not exist!  #{dream_image.image._?.title}  for dream #{dream_image.dream._?.title}" unless image
 
           entry = dream_image.dream._?.corresponding_object
-          puts "Entry does not exist!  #{dream_image.dream._?.title}" unless entry
+          log "Entry does not exist!  #{dream_image.dream._?.title}" unless entry
           
-
           entry.images << image
         end
       end
@@ -56,7 +59,7 @@ namespace :legacy do
         end
         Migration::ThemeSettingImporter.migrate_all
       end
-      task :comments => [:dreams, :users] do
+      task :comments => [:environment] do
         Migration::CommentImporter.migrate_all
       end
       task :emotions => [:environment] do
@@ -76,6 +79,9 @@ namespace :legacy do
       end
       task :people => [:environment] do
         Migration::PersonImporter.migrate_all
+      end
+      task :links => [:environment] do
+        Migration::LinkImporter.migrate_all
       end
     end
   end

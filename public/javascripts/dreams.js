@@ -4,7 +4,24 @@ $(document).ready(function() {
   setupUploader();
   setupSharingImages();
   setupLinkButtons();
+  setup2dThumbIPadClick();
 });
+
+function setup2dThumbIPadClick(){
+  // make iPad 1 click work on thumbs
+  var ua = navigator.userAgent;
+  var clickEvent;
+  if (ua.match(/iPad/i)){
+    clickEvent = "touchstart";
+  } else {
+    clickEvent = "click";
+  } 
+  
+  $('.thumb-2d a.link').bind( clickEvent, function(event){
+    event.preventDefault();
+    window.location = $(event.currentTarget).attr('href');
+  })
+}
 
 function setupSharingImages(){
   $('.detailsBottom .sharing span').each(function(){
@@ -453,7 +470,7 @@ function showYoutubeData(newText){
 
 function setupImageButtons(){
   // Click to remove Image
-  $('#currentImages .close-22').live('click', function(event){
+  $('#currentImages .close-24').live('click', function(event){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     
@@ -472,7 +489,7 @@ function setupImageButtons(){
 
 function setupLinkButtons(){
   // Click to remove link
-  $('#linkHolder .close-22').live('click', function(event){
+  $('#linkHolder .close-24').live('click', function(event){
     // Remove from list of used link  
     $(event.currentTarget).parent().slideUp(250, function(){
       $(this).remove()
