@@ -14,11 +14,13 @@
 #entryField
 
   / PAGE HEADER
-  .pageHeader.dreamHeader
-    /.visionHeader.experienceHeader.articleHeader
-    .img
-    %h1 dreams
-  .clear
+
+  / .pageHeader.dreamHeader
+  /   /.visionHeader.experienceHeader.articleHeader
+  /   = dreamfield_header_image
+  /   / .img.hidden
+  /   %h1= @type_filter || "all entries"
+  / .clear
 
   / NEW ENTRY BAR
   / TAG ENTRY & STREAM
