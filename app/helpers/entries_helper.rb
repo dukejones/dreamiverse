@@ -1,4 +1,21 @@
 module EntriesHelper
+  def dreamfield_header_image
+    img_url = case @type_filter
+    when "dream"
+      "/images/icons/experience-64-hover.png"
+    when "vision"
+      "/images/icons/experience-64-hover.png"
+    when "experience"
+      "/images/icons/experience-64-hover.png"
+    when "article"
+      "/images/icons/experience-64-hover.png"
+    else
+      "/images/icons/experience-64-hover.png"
+    end
+    
+    raw( image_tag(img_url) )
+  end
+
   def gallery_list_item(image)
     small_image_url = image.url(:thumb, :size => 122)
     large_image_url = image.url(:medium)

@@ -16,8 +16,9 @@
   / PAGE HEADER
   .pageHeader.dreamHeader
     /.visionHeader.experienceHeader.articleHeader
-    .img.hidden
-    %h1 dreams
+    = dreamfield_header_image
+    / .img.hidden
+    %h1= @type_filter || "all entries"
   .clear
 
   / NEW ENTRY BAR

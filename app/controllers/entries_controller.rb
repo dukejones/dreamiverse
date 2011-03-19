@@ -19,7 +19,8 @@ class EntriesController < ApplicationController
       params[:filters] ||= {}
       params[:filters][:type] = params[:entry_type]  
     end
-
+    @type_filter = params[:filters]._?[:type]
+    
     flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
@@ -68,14 +69,14 @@ class EntriesController < ApplicationController
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    # replace this with a redirect/alert later
-    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
-    
-    new_entry = current_user.entries.create!(params[:entry].merge(
-      whats: whats
-    ))
-
-    redirect_to user_entry_path(current_user.username, new_entry)
+    @entry = current_user.entries.create(params[:entry].merge(whats: whats))
+    if @entry.valid?
+      redirect_to user_entry_path(current_user.username, @entry)
+    else
+      @entry_mode = 'new'
+      flash.now[:alert] = @entry.errors.full_messages.first
+      render :new
+    end
   end
   
   def update
@@ -83,7 +84,7 @@ class EntriesController < ApplicationController
     deny and return unless user_can_write?
     
     # replace this with a redirect/alert later
-    params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
+    # params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
@@ -97,6 +98,7 @@ class EntriesController < ApplicationController
       end
     else
       respond_to do |format|
+        format.html { redirect_to edit_entry_path(params[:id]), alert: @entry.errors.full_messages.first }
         format.json { render :json => {type: 'error', errors: @entry.errors}}.to_json
       end
     end
