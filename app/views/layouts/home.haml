@@ -2,14 +2,14 @@
 %html
   %head
     %title Dreamcatcher ( Life is a dream. )
+    = csrf_meta_tag
+    %link{ref: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
     = sass_link_tag 'shared', 'home'
     = javascript_include_tag 'jquery.min', 'rails', 'pubsub', 'jquery.lightbox-0.5.min'
     = coffeescript_include_tag 'dreamplugs', 'cookies', 'publicstream'
     =# javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     / %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
 
-
-    = csrf_meta_tag
     = yield :head
 
   %body.home.light
