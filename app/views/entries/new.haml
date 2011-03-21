@@ -127,13 +127,13 @@
 
         .addLocation
           .img
-            = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38"}
-            .date
-            .img
-            = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
-            .addTheme
-              .img{onclick: "$.publish('toggleAppearance', [this])"}
-              = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
+          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38"}
+        .date
+          .img
+          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
+        .addTheme
+          .img{onclick: "$.publish('toggleAppearance', [this])"}
+          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
 
 
 
