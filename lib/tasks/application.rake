@@ -41,7 +41,7 @@ namespace :app do
         Tag.auto_generate_tags(e) 
         e.reorder_tags 
         log("id: #{e.id} pre:#{pre_tags} post:#{e.tags.count}")
-      end
+      end    
       log("Total time: #{Time.now - begin_time}")
     end
   end
