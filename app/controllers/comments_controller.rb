@@ -11,8 +11,14 @@ class CommentsController < ApplicationController
   
   def destroy
     comment = Comment.where(id: params[:id], entry_id: params[:entry_id]).first
-    comment.destroy
+
+    if comment
+      comment.destroy
     
-    render :json => { type: 'ok', message: "Comment #{comment.id} destroyed."}
+      render :json => { type: 'ok', message: "Comment #{comment.id} destroyed."}
+    else
+      # Mail error here
+      render :json => {type 'error', message: "Delete failed: could not find comment #{params[:id]}."}
+    end
   end
 end
