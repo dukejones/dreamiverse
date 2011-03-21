@@ -5,6 +5,7 @@
       = truncate(@page_title, length: 72) + ' - ' if @page_title
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
+    %link{ref: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = sass_link_tag 'shared'
     /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
