@@ -2,17 +2,12 @@
   = sass_link_tag 'entries'
   = coffeescript_include_tag 'modal', 'follow_hover'
   = javascript_include_tag 'tag_stream', 'dreams', 'geo'
-/ :coffeescript
-/   require({baseUrl: "/javascripts"}, [ 'tag_stream', 'dreams', 'geo' ])
-/   require({baseUrl: "/javascripts/compiled"}, ['modal', 'follow_hover'])
-
 
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
 / DREAM FIELD
 #entryField
-
   / PAGE HEADER
 
   .pageHeader.dreamHeader
