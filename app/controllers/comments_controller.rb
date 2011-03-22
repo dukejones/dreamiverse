@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       render :json => { type: 'ok', message: "Comment #{comment.id} destroyed."}
     else
       # Mail error here
-      render :json => {type 'error', message: "Delete failed: could not find comment #{params[:id]}."}
+      render :json => { type: 'error', message: "Delete failed: could not find comment #{params[:id]}."}
     end
   end
 end
