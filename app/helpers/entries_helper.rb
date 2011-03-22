@@ -10,7 +10,7 @@ module EntriesHelper
     when "article"
       "/images/icons/article-64-hover.png"
     else
-      "/images/icons/dream-32-hover.png"
+      "/images/icons/dream-64-hover.png"
     end
     
     raw( img_url )
