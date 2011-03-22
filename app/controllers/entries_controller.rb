@@ -69,8 +69,12 @@ class EntriesController < ApplicationController
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
+    links = params[:entry].delete(:links_attributes)
+
     @entry = current_user.entries.create(params[:entry].merge(whats: whats))
+
     if @entry.valid?
+      @entry.update_attributes(links_attributes: links)
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
