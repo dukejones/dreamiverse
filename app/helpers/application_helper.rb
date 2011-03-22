@@ -57,7 +57,7 @@ module ApplicationHelper
     bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
     bedsheet_attachment ||= 'scroll'
 
-    if request.path == dreamstars_path
+    if request.path == dreamstars_path || request.path == search_user_path
       bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" 
     else
       # if user has ubiquity mode, use user's bedsheet no matter what

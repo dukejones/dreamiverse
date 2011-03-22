@@ -21,7 +21,9 @@ Dreamcatcher::Application.routes.draw do
   get  '/feedback' => 'home#feedback', :as => :feedback
   post '/feedback' => 'home#submit_feedback'
   match '/terms' => 'home#terms', :as => :terms
+
   match '/dreamstars' => 'users#index', :as => :dreamstars
+  
   match '/stream' => 'entries#stream', :as => :stream
   match '/random' => 'entries#random', :as => :random
 
@@ -32,6 +34,7 @@ Dreamcatcher::Application.routes.draw do
     post 'bedsheet'
     post 'avatar'
     post 'location', :to => 'users#create_location'
+    match 'search', :as => :search
     get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
     get  'not-my-email/:id/:confirmation', as: 'wrong', to: 'users#wrong_email', constraints: {id: /\d+/}
   end

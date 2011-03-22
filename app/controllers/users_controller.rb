@@ -61,6 +61,11 @@ class UsersController < ApplicationController
     end
   end
   
+  def search
+    search_string = "%#{params[:search_string]}%"
+    @users = User.where(["username LIKE ? OR email LIKE ? OR name LIKE ?", search_string, search_string, search_string]).limit(50)
+  end
+  
   def wrong_email
     # here we will disable the user / delete it / etc
     raise "Not yet implemented."
