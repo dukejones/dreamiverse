@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
       format.html { render :partial => 'entries/comment', :object => created_comment }
       format.json { render :json => { :comment => created_comment } }
     end
+    @entry.add_starlight!(1)
   end
   
   def destroy
