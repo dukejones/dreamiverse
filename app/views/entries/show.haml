@@ -6,7 +6,7 @@
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
   
   - if @entry._?.main_image
-    %link{rel: 'image_src', href: "#{@entry.main_image.url(256)}"}
+    %link{rel: 'image_src', href: "http://dreamcatcher.net#{@entry.main_image.url(256)}"}
 
 / :coffeescript
 /   require({baseUrl: "/javascripts"}, [ 'autoresize.jquery.min' ])
