@@ -149,6 +149,20 @@ class Entry < ActiveRecord::Base
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
 
+#  def set_where(location_attributes)
+#    Where.for location_attributes
+#  end
+
+  # Add a new where (location) record and a where tag
+  # delete outdated where tags (if any)
+  def set_where(location_attributes)
+    return unless(location_attributes)
+    new_where = Where.for location_attributes
+    #(self.wheres - new_where).map{|extra_where| self.wheres.delete(extra_where) }
+    add_where_tag(new_where)  
+
+    return new_where
+  end  
   
   # Create / find a What for each tag word.
   # Remove the what tags that are on this entry but not in the tag words.
@@ -161,7 +175,7 @@ class Entry < ActiveRecord::Base
     
     reorder_tags
   end
-
+  
 
   def add_what_tag(what, kind = 'custom')
     if self.whats.exists?(what)

@@ -144,11 +144,21 @@ function getAddress(_lat, _lng){
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
-    var country = data[0].address_components[6].long_name;
+    // parse geo data
+    var country = data[0].address_components[5].long_name;
+    var city = data[0].address_components[2].long_name
+    var state = data[0].address_components[4].short_name
+    var latitude = data[0].geometry.location.Aa;    
+    var longitude = data[0].geometry.location.Ca;
+    
+    console.log(data[0].geometry.location);
+    console.log('longitude: '+ longitude + ' latitude: ' + latitude);
     
     // Set geo data
-    $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
-    $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
+    $('.entryLocation .city .input').val(city);
+    $('.entryLocation .state .input').val(state);
     $('.entryLocation .country .input').val(country);
+    $('.entryLocation .latitude .input').val(latitude);
+    $('.entryLocation .longitude .input').val(longitude);
   })
 }
