@@ -204,18 +204,24 @@ a.dcLogo
           +right
           +round(4)
           +font(16)
+          +block
+          +alpha(70)
           padding: 4px 8px
           margin: 0
-          color: #ddd
+          color: #fff
           border: 1px solid transparent
           &:hover
-            color: #fff
             border: 1px solid #fff
+            +alpha(100)
+          .fbText
+            +right
+            height: 22px
+            line-height: 22px
+            margin: 0 8px 0 0
           .img
             +right
             width: 16px
             height: 22px
-            margin: 0 0 0 8px
             background: url(/images/icons/facebook-16.png) no-repeat center
           &:hover .img
             background: url(/images/icons/facebook-16-hover.png) no-repeat center
