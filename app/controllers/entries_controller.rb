@@ -73,7 +73,7 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.create(params[:entry].merge(whats: whats))
 
     if @entry.valid?
-      @entry.update_attributes(links_attributes: links)
+      @entry.update_attributes(links_attributes: links) if links
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
