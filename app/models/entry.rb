@@ -149,10 +149,6 @@ class Entry < ActiveRecord::Base
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
 
-#  def set_where(location_attributes)
-#    Where.for location_attributes
-#  end
-
   # Add a new where (location) record and a where tag
   # delete outdated where tags (if any)
   def set_where(location_attributes)
