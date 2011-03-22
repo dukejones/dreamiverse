@@ -1,11 +1,13 @@
 $(document).ready(function() {
+  checkForLinksShowEntry();
+  
   setupEvents();
   setupImagebank();
   setupUploader();
   setupSharingImages();
   setupLinkButtons();
   setup2dThumbIPadClick();
-  checkForLinksShowEntry();
+  
 });
 
 function checkForLinksShowEntry(){
@@ -14,21 +16,96 @@ function checkForLinksShowEntry(){
   var newCode = linkify(oldCode);
   $('.content .body').html(newCode);
   
-  //embedYoutubeLinks()
+  var oldComments = $('.commentsPanel').html()
+  var newComments = linkify(oldComments);
+  $('.commentsPanel').html(newComments);
+  
+  
+  embedYoutubeLinks();
 }
 
 // Turns all links in the body of an entry
 // into embedded youtube links
 function embedYoutubeLinks(){
-  $('.content .body').find('a').each(function(i, ele){
+
+  $('.content .body, .commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+      hostname = "dreamcatcher.net";
+    }
     
-    alert(hostname)
+    if(hostname == "youtube.com" || hostname == "www.youtube.com"){
+      // Create new Element & make it work
+      var dataId = String("youtube-" + i);
+      $(ele).data('id', i);
+      
+      $(ele).addClass('youtube');
+      
+      // Get & set youtube data
+      var splitTextArray = String($(ele).attr('href')).split('v=');
+      var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
+  
+      // Get the data from YOUTUBE
+      $.ajax({
+        url: filePath,
+        dataType: 'jsonp',
+        success: function(data) {
+          var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+          var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+      
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          $('.content .body').after(newElement)
+          
+          //var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
+          //$('#linkHolder').append(newElement);
+          //$('#linkHolder').slideDown()
+          //$('.linkContainer').fadeIn();
+        }
+      });
+    }
+    
   })
+  // Set click event to close youtube links
+  $('.content .video').find('.close-24').live("click", function(event){
+    $(event.currentTarget).parent().hide()
+  })
+  
+  // Add youtube icon after each youtube link
+  $('.content .body, .commentsPanel').find('a.youtube').filter(function(){
+    return this.hostname && this.hostname !== location.hostname;
+  }).after('<img class="youtube" src="/images/icons/youtube-16.png" />')
+  
+  // Set click event for youtube links
+  $('.content .body, .commentsPanel').find('a.youtube').click(function(event){
+    event.preventDefault()
+    // Hide others
+    $('.video').hide()
+    
+    var embedVideo = String("#youtube-" + $(event.currentTarget).data('id'));
+    $(embedVideo).show()
+    
+    //var newY = getOffset($(embedVideo).get(0)).top
+    
+    // Scroll to video
+    //$('html, body').animate({scrollTop:newY}, 'slow');
+  })
+    
 }
+
+function getOffset( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
+
 
 function linkify(text)
 	{

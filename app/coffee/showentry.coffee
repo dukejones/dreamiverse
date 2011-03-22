@@ -38,13 +38,9 @@ $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
-  
-  
-  # Check entry for youtube links and embed a youtube video for it
-  
-  
   $('#comment_submit').hide()
-  $('#comment_body').focus ->
+  $('#comment_body').live "focus", ->
+    console.log('show comment_submit')
     $('#comment_submit').fadeIn(250)
   
   $('#comment_body').keyup ->
