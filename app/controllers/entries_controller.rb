@@ -36,10 +36,9 @@ class EntriesController < ApplicationController
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     entry_list
-    i = @entries.index {|e| e == @entry } || 0
+    i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
-    # @entry = @entries[i]
     # TODO: Remove this.
     @next = @entry unless @next
     @previous = @entry unless @previous
