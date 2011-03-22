@@ -136,7 +136,7 @@ module ImageProfiles
 
   def bedsheet(options)
     # this apparently doesn't work.  For now, we'll just specify each time.
-    options[:format] = 'jpg'
+    # options[:format] = 'jpg'
     
     img = magick_image
     if options[:format] != self.format
@@ -149,7 +149,7 @@ module ImageProfiles
   end
   
   def bedsheet_small(options)
-    options[:format] = 'jpg'
+    # options[:format] = 'jpg'
 
     img = magick_image
     if options[:format] != self.format

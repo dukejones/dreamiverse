@@ -5,7 +5,50 @@ $(document).ready(function() {
   setupSharingImages();
   setupLinkButtons();
   setup2dThumbIPadClick();
+  checkForLinksShowEntry();
 });
+
+function checkForLinksShowEntry(){
+  // Check entry for links and convert to hyperlinks
+  var oldCode = $('.content .body').html();
+  var newCode = linkify(oldCode);
+  $('.content .body').html(newCode);
+  
+  //embedYoutubeLinks()
+}
+
+// Turns all links in the body of an entry
+// into embedded youtube links
+function embedYoutubeLinks(){
+  $('.content .body').find('a').each(function(i, ele){
+    var current_url = $(ele).attr('href');
+    var tempAnchor = $("<a />");
+    tempAnchor.attr('href', current_url)
+    var hostname = tempAnchor.attr('hostname');
+    
+    alert(hostname)
+  })
+}
+
+function linkify(text)
+	{
+		if( !text ) return text;
+		
+		text = text.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,function(url){
+			nice = url;
+			if( url.match('^https?:\/\/') )
+			{
+				nice = nice.replace(/^https?:\/\//i,'')
+			}
+			else
+				url = 'http://'+url;
+			
+			
+			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ nice.replace(/^www./i,'') +'</a>';
+		});
+		
+		return text;
+	}
 
 function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
@@ -380,8 +423,16 @@ function setupEvents(){
 
 function checkForPastedLink(newText){
   $('#linkValue').val('');
-  var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+  //var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+  var regexp = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
   if(regexp.test(newText)){
+    // Check for http at start (add if not there)
+    var tempURL = newText.substring(0,4);
+    if(tempURL != 'http'){
+      newText = "http://" + newText;
+    }
+    
+    // Post link
     addLink(newText)
   }
 }
@@ -412,6 +463,11 @@ function addLink(newText){
   var tempAnchor = $("<a />");
   tempAnchor.attr('href', newText)
   var hostname = tempAnchor.attr('hostname'); // http://example.com
+  
+  // Check if it a non video youtube link (no v=)
+  if((newText.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+    hostname = "dreamcatcher.net"
+  }
   
   switch(hostname){
     case "youtube.com":

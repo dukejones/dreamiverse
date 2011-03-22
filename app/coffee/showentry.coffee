@@ -18,11 +18,30 @@ getYoutubeData = (video_url, linked_element) ->
       #var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>'
       $.publish 'youtube:data', [linked_element, thumbnail_url, embedPlayer]
   })
-
+#Working on coffeescripting out the linkifyer
+# linkify = (text) ->
+#   if !text
+#     return text;
+#     
+#   text = text.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi, (url) ->
+#     nice = url;
+#     if url.match('^https?:\/\/')
+#       nice = nice.replace(/^https?:\/\//i,'')
+#     else
+#       url = 'http://'+url
+#       
+#     return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ nice.replace(/^www./i,'') +'</a>';
+#   
+#   return text;
   
 $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
+  
+  
+  
+  # Check entry for youtube links and embed a youtube video for it
+  
   
   $('#comment_submit').hide()
   $('#comment_body').focus ->
@@ -79,7 +98,7 @@ $(document).ready ->
     )
   
   commentsPanel = $('#showEntry .commentsPanel')
-
+  
   $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
     $('textarea', this).val('')
   

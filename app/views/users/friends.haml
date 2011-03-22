@@ -11,11 +11,10 @@
 
   / PAGE HEADER
 
-  / .pageHeader.friendHeader
-  /   /.followHeader.followerHeader
-  /   .img.hidden
-  /   %h1= @mode
-  / .clear
+  .pageHeader.friendHeader
+    .img{"style" => "background-image: url(#{friends_header_image})"}
+    %h1= @mode
+  .clear
 
 
   / USER LIST
