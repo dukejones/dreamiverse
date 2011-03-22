@@ -120,8 +120,8 @@ function linkify(text)
 			else
 				url = 'http://'+url;
 			
-			
-			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ nice.replace(/^www./i,'') +'</a>';
+			var urlTitle = nice.replace(/^www./i,'');
+			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
 		});
 		
 		return text;
