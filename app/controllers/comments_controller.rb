@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @entry = Entry.find params[:entry_id]
     created_comment = Comment.create!(params[:comment].merge(entry_id: params[:entry_id]))
     respond_to do |format|
-      format.html { render :partial => 'entries/comment', :object => created_comment }
+      format.html { redirect_to(user_entry_path(@entry.user.username, @entry) + '#bottom') }
       format.json { render :json => { :comment => created_comment } }
     end
     @entry.add_starlight!(1)
