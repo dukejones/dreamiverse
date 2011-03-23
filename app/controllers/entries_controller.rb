@@ -66,10 +66,13 @@ class EntriesController < ApplicationController
 
   def create
     whats = (params[:what_tags] || []).map {|word| What.for word }
+    where = Where.for params[:location_attributes]
     
+    params[:entry][:location_id] = where.id if !where.nil?    
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     @entry = current_user.entries.create(params[:entry].merge(whats: whats))
+    
     if @entry.valid?
       redirect_to user_entry_path(current_user.username, @entry)
     else

@@ -154,8 +154,8 @@ class Entry < ActiveRecord::Base
   def set_where(location_attributes)
     return unless(location_attributes)
     new_where = Where.for location_attributes
-    #(self.wheres - new_where).map{|extra_where| self.wheres.delete(extra_where) }
-    add_where_tag(new_where)  
+    self.wheres.each{|extra_where| self.wheres.delete(extra_where) }
+    self.wheres << new_where 
 
     return new_where
   end  
