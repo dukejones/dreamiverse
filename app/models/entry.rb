@@ -151,14 +151,14 @@ class Entry < ActiveRecord::Base
 
   # Add a new where (location) record and a where tag
   # delete outdated where tags (if any)
-  def set_where(location_attributes)
-    return unless(location_attributes)
-    new_where = Where.for location_attributes
-    self.wheres.each{|extra_where| self.wheres.delete(extra_where) }
-    self.wheres << new_where 
-
-    return new_where
-  end  
+  # def set_where(location_attributes)
+  #   return unless(location_attributes)
+  #   new_where = Where.for location_attributes
+  #   self.wheres.each{|extra_where| self.wheres.delete(extra_where) }
+  #   self.wheres << new_where 
+  # 
+  #   return new_where
+  # end  
   
   # Create / find a What for each tag word.
   # Remove the what tags that are on this entry but not in the tag words.

@@ -93,12 +93,9 @@ class EntriesController < ApplicationController
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
-    where = @entry.set_where(params[:location_attributes])
-    params[:entry][:location_id] = where.id if !where.nil?
-      
     @entry.set_whats(params[:what_tags])
     #@entry.add_where_tag(where)
-    
+
     if @entry.update_attributes(params[:entry])
       respond_to do |format|
         format.html { redirect_to :action => :show, :id => params[:id] }

@@ -139,26 +139,37 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
-    console.log(data)
+    log(data)
     // Remove finding your location option
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
     // parse geo data
-    var country = data[0].address_components[5].long_name;
-    var city = data[0].address_components[2].long_name
-    var state = data[0].address_components[4].short_name
+    var country; 
+    var province; 
+    var city; 
+    $.each(data[0].address_components, function(i, datum) {
+      if (datum.types[0] == 'country') {
+        country = datum.long_name;
+      }
+      if (datum.types[0] == 'administrative_area_level_1') {
+        province = datum.short_name;
+      }
+      if (datum.types[0] == 'administrative_area_level_2') {
+        city = datum.long_name;
+      }
+    });
     var latitude = data[0].geometry.location.Aa;    
     var longitude = data[0].geometry.location.Ca;
     
-    console.log(data[0].geometry.location);
-    console.log('longitude: '+ longitude + ' latitude: ' + latitude);
+    log(data[0].geometry.location);
+    log('longitude: '+ longitude + ' latitude: ' + latitude);
     
     // Set geo data
     $('.entryLocation .city .input').val(city);
-    $('.entryLocation .state .input').val(state);
+    $('.entryLocation .state .input').val(province);
     $('.entryLocation .country .input').val(country);
-    $('.entryLocation .latitude .input').val(latitude);
-    $('.entryLocation .longitude .input').val(longitude);
+    $('#location_latitude').val(latitude);
+    $('#location_longitude').val(longitude);
   })
 }

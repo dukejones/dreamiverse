@@ -6,16 +6,16 @@
 
   .data.hidden
     .name
-      %input.input{placeholder: 'Location name', name: 'location_attributes[name]'}
+      %input.input{placeholder: 'Location name', name: 'entry[location_attributes][name]'}
     .city
-      %input.input{placeholder: 'City', name: 'location_attributes[city]'}
+      %input.input{placeholder: 'City', name: 'entry[location_attributes][city]'}
     .state
-      %input.input{placeholder: 'State / province', name: 'location_attributes[province]'}
+      %input.input{placeholder: 'State / province', name: 'entry[location_attributes][province]'}
     .country
-      %input.input{placeholder: "Country", name: 'location_attributes[country]'}
+      %input.input{placeholder: "Country", name: 'entry[location_attributes][country]'}
     .more.hidden
-      = hidden_field_tag 'location_attributes[longitude]', 'location_attributes_longitude'
-      = hidden_field_tag 'location_attributes[latitude]', 'location_attributes_latitude'
+      = hidden_field_tag 'entry[location_attributes][longitude]', 'location_attributes_longitude', id: 'location_longitude'
+      = hidden_field_tag 'entry[location_attributes][latitude]', 'location_attributes_latitude', id: 'location_latitude'
     .clear
 
   .finding
