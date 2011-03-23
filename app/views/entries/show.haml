@@ -179,7 +179,7 @@
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
 
-    / COMMENTS - unless entry.comments.count == 0    - unless current_user.blank?
+    / COMMENTS
     - unless @comments.count == 0 and current_user.blank?
       .commentsPanel
         .trigger.slide
@@ -192,12 +192,15 @@
         .target.slide
           - @comments.each do |comment|
             = render :partial => "entries/comment", :object => comment
+
+          %a{name: "bottom"}  
+
           - if current_user
             .newCommentWrap
               .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
               .newComment
                 / .user= current_user.username
-                = form_for [@entry, Comment.new], :remote => true do |f|
+                = form_for [@entry, Comment.new] do |f|
                   = f.hidden_field :user_id, :value => current_user.id      
                   = f.text_area :body, :placeholder => "add comment..."
                   = f.submit 'post', :class => 'save'
@@ -210,4 +213,3 @@
                   .clear
         
           .clear
-

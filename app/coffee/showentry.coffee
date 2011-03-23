@@ -94,15 +94,15 @@ $(document).ready ->
   
   commentsPanel = $('#showEntry .commentsPanel')
 
-  $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
-    $('textarea', this).val('')
-    console.log('COMMENT SUCCESS')
-  
-    # Update comment count
-    newVal = parseInt($('.commentsHeader .counter').text()) + 1
-    $('.commentsHeader .counter').text(newVal)
-  
-    commentsPanel.find('.target').children().last().prev().before(xhr).prev().hide().slideDown()
+  # $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
+  #   $('textarea', this).val('')
+  #   console.log('COMMENT SUCCESS')
+  # 
+  #   # Update comment count
+  #   newVal = parseInt($('.commentsHeader .counter').text()) + 1
+  #   $('.commentsHeader .counter').text(newVal)
+  # 
+  #   commentsPanel.find('.target').children().last().prev().before(xhr).prev().hide().slideDown()
   
   $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
     # Set BG Image
