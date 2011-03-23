@@ -1,11 +1,135 @@
 $(document).ready(function() {
+  checkForLinksShowEntry();
+  
   setupEvents();
   setupImagebank();
   setupUploader();
   setupSharingImages();
   setupLinkButtons();
   setup2dThumbIPadClick();
+  
 });
+
+function checkForLinksShowEntry(){
+  // Check entry for links and convert to hyperlinks
+  var oldCode = $('.content .body').html();
+  var newCode = linkify(oldCode);
+  $('.content .body').html(newCode);
+  
+  var oldComments = $('.commentsPanel').html()
+  var newComments = linkify(oldComments);
+  $('.commentsPanel').html(newComments);
+  
+  
+  embedYoutubeLinks();
+}
+
+// Turns all links in the body of an entry
+// into embedded youtube links
+function embedYoutubeLinks(){
+
+  $('.content .body, .commentsPanel').find('a').each(function(i, ele){
+    var current_url = $(ele).attr('href');
+    var tempAnchor = $("<a />");
+    tempAnchor.attr('href', current_url)
+    var hostname = tempAnchor.attr('hostname');
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+      hostname = "dreamcatcher.net";
+    }
+    
+    if(hostname == "youtube.com" || hostname == "www.youtube.com"){
+      // Create new Element & make it work
+      var dataId = String("youtube-" + i);
+      $(ele).data('id', i);
+      
+      $(ele).addClass('youtube');
+      
+      // Get & set youtube data
+      var splitTextArray = String($(ele).attr('href')).split('v=');
+      var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
+  
+      // Get the data from YOUTUBE
+      $.ajax({
+        url: filePath,
+        dataType: 'jsonp',
+        success: function(data) {
+          var ua = navigator.userAgent
+          if(ua.match(/iPad/i)){
+            // IPAD Server HTML5 player
+            var videoArray = data.feed.entry[0].id.$t.split('/')
+            var video_id = videoArray[videoArray.length - 1]
+            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="614" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+          } else {
+            // Normal flash w/ autoplay
+            var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+            var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+          }
+    
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          $('.content .body').after(newElement)
+        }
+      });
+    }
+    
+  })
+  // Set click event to close youtube links
+  $('.content .video').find('.close-24').live("click", function(event){
+    $(event.currentTarget).parent().hide()
+  })
+  
+  // Add youtube icon after each youtube link
+  $('.content .body, .commentsPanel').find('a.youtube').filter(function(){
+    return this.hostname && this.hostname !== location.hostname;
+  }).after('<img class="youtube" src="/images/icons/youtube-16.png" />')
+  
+  // Set click event for youtube links
+  $('.content .body, .commentsPanel').find('a.youtube').click(function(event){
+    event.preventDefault()
+    // Hide others
+    $('.video').hide()
+    
+    var embedVideo = String("#youtube-" + $(event.currentTarget).data('id'));
+    $(embedVideo).show()
+    
+    //var newY = getOffset($(embedVideo).get(0)).top
+    
+    // Scroll to video
+    //$('html, body').animate({scrollTop:newY}, 'slow');
+  })
+    
+}
+
+function getOffset( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+}
+
+
+function linkify(text)
+	{
+		if( !text ) return text;
+		
+		text = text.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,function(url){
+			nice = url;
+			if( url.match('^https?:\/\/') )
+			{
+				nice = nice.replace(/^https?:\/\//i,'')
+			}
+			else
+				url = 'http://'+url;
+			
+			var urlTitle = nice.replace(/^www./i,'');
+			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
+		});
+		
+		return text;
+	}
 
 function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
@@ -340,7 +464,7 @@ function setupEvents(){
   })
   
   // Listen for paste in DREAM field
-  $("#entry_body").bind('paste', function(e) {
+  /*$("#entry_body").bind('paste', function(e) {
     // Get pasted link
     // THIS NEEDS WORK!
     setTimeout(function() {
@@ -351,7 +475,7 @@ function setupEvents(){
       checkForPastedLink(url)
     }, 100);
     
-  });
+  });*/
   
   // Listen for paste in LINK field
   $('.linkAdd').click(function() {
@@ -380,8 +504,16 @@ function setupEvents(){
 
 function checkForPastedLink(newText){
   $('#linkValue').val('');
-  var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+  //var regexp = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+  var regexp = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
   if(regexp.test(newText)){
+    // Check for http at start (add if not there)
+    var tempURL = newText.substring(0,4);
+    if(tempURL != 'http'){
+      newText = "http://" + newText;
+    }
+    
+    // Post link
     addLink(newText)
   }
 }
@@ -413,6 +545,11 @@ function addLink(newText){
   tempAnchor.attr('href', newText)
   var hostname = tempAnchor.attr('hostname'); // http://example.com
   
+  // Check if it a non video youtube link (no v=)
+  if((newText.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+    hostname = "dreamcatcher.net"
+  }
+  
   switch(hostname){
     case "youtube.com":
         showYoutubeData(newText);
@@ -427,7 +564,7 @@ function addLink(newText){
         var newID = 'link-' + randomNumber;
         var newEle = '#' + newID;
         var newDOM = $(newEle);
-        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-22"></div></div>';
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="link title" style="width: 220px;" name="entry[links_attributes][][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div></div>';
         $('#linkHolder').append(newElement);
         var dataSent = {url: newText};
         // Get the title from server
@@ -456,11 +593,20 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      console.log(data)
-      var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+      var ua = navigator.userAgent
+      if(ua.match(/iPad/i)){
+        // IPAD Server HTML5 player
+        var videoArray = data.feed.entry[0].id.$t.split('/')
+        var video_id = videoArray[videoArray.length - 1]
+        var embedPlayer = '<iframe class="youtube-player" type="text/html" width="614" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+      } else {
+        // Normal flash w/ autoplay
+        var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+        var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+      }
+      //var videoPath = data.feed.entry[0].media$group.media$content[0].url;
       //var embedPlayer = '<object width="425" height="350"><param name="movie" value="' + videoPath + '"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>';
-      
-      var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="removeicon"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
+      var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="entry[links_attributes][][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="entry[links_attributes][][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
       $('#linkHolder').append(newElement);
       $('#linkHolder').slideDown()
       $('.linkContainer').fadeIn();

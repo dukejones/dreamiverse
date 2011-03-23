@@ -32,12 +32,13 @@
           = f.password_field :password, tabindex: '2', class: 'inputField'
           .clear
 
-          %a.fb_login{href: '/auth/facebook'}
-            = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "24", y: "24"}
-
           .submit
             .text
               login &rsaquo;
               %input.button{tabindex: '3', type: 'submit', name: 'loginButton', value: 'log in &rsaquo;'}
+
+          %a.fb_login{href: '/auth/facebook'}
+            .img
+            .fbText login with your facebook account
 
       .clear

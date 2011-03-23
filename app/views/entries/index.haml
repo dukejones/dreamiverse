@@ -2,26 +2,20 @@
   = sass_link_tag 'entries'
   = coffeescript_include_tag 'modal', 'follow_hover'
   = javascript_include_tag 'tag_stream', 'dreams', 'geo'
-/ :coffeescript
-/   require({baseUrl: "/javascripts"}, [ 'tag_stream', 'dreams', 'geo' ])
-/   require({baseUrl: "/javascripts/compiled"}, ['modal', 'follow_hover'])
-
 
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
 / DREAM FIELD
 #entryField
-
   / PAGE HEADER
-
-  / .pageHeader.dreamHeader
-  /   /.visionHeader.experienceHeader.articleHeader
-  /   = dreamfield_header_image
-  /   / .img.hidden
-  /   %h1= @type_filter || "all entries"
-  / .clear
-
+  - if @type_filter
+    .pageHeader.dreamHeader
+      .img{"style" => "background-image: url(#{dreamfield_header_image})"}
+      - plural_filter = @type_filter.insert @type_filter.length, "s"
+      %h1= plural_filter || "all entries"
+    .clear
+  
   / NEW ENTRY BAR
   / TAG ENTRY & STREAM
 

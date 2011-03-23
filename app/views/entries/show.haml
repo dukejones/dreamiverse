@@ -4,6 +4,12 @@
 
   = javascript_include_tag 'browserdetect', 'jquery-ui.min'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
+  
+  - if !@entry.body.blank?
+    %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
+    
+  - if @entry._?.main_image
+    %meta{name:"og:image", content:"http://theta.dreamcatcher.net#{@entry.main_image.url(:thumb, :size=> 256)}"}
 
 / :coffeescript
 /   require({baseUrl: "/javascripts"}, [ 'autoresize.jquery.min' ])
@@ -22,7 +28,6 @@
 
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
-
 
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
@@ -104,7 +109,6 @@
 
 
       .body= simple_format(@entry.body)
-
       / VIDEO PANEL
       - @entry.links.youtube.each do |link|
         = render :partial => "video", :locals => {:link => link}
@@ -175,7 +179,7 @@
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
 
-    / COMMENTS - unless entry.comments.count == 0    - unless current_user.blank?
+    / COMMENTS
     - unless @comments.count == 0 and current_user.blank?
       .commentsPanel
         .trigger.slide
@@ -188,12 +192,15 @@
         .target.slide
           - @comments.each do |comment|
             = render :partial => "entries/comment", :object => comment
+
+          %a{name: "bottom"}  
+
           - if current_user
             .newCommentWrap
               .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
               .newComment
                 / .user= current_user.username
-                = form_for [@entry, Comment.new], :remote => true do |f|
+                = form_for [@entry, Comment.new] do |f|
                   = f.hidden_field :user_id, :value => current_user.id      
                   = f.text_area :body, :placeholder => "add comment..."
                   = f.submit 'post', :class => 'save'
@@ -206,4 +213,3 @@
                   .clear
         
           .clear
-

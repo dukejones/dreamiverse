@@ -201,18 +201,30 @@ a.dcLogo
         a.fb_login
           +user-select
           +pointer
-          +round(12)
-          +glow-blue(20)
-          border: 2px solid #9ae4fd
-          display: inline-block
-          width: 48px
-          height: 48px
-          padding: 0
-          margin: 16px 0 16px 50px
-          background: url('/images/icons/facebook-64.png') no-repeat top right transparent
+          +right
+          +round(4)
+          +font(16)
+          +block
+          +alpha(70)
+          padding: 4px 8px
+          margin: 0
+          color: #fff
+          border: 1px solid transparent
           &:hover
-            +glow-dark(20)
-            border: 2px solid #fff
+            border: 1px solid #fff
+            +alpha(100)
+          .fbText
+            +right
+            height: 22px
+            line-height: 22px
+            margin: 0 8px 0 0
+          .img
+            +right
+            width: 16px
+            height: 22px
+            background: url(/images/icons/facebook-16.png) no-repeat center
+          &:hover .img
+            background: url(/images/icons/facebook-16-hover.png) no-repeat center
 
 
 // JOIN PAGE ONLY

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @entry = Entry.find params[:entry_id]
     created_comment = Comment.create!(params[:comment].merge(entry_id: params[:entry_id]))
     respond_to do |format|
-      format.html { render :partial => 'entries/comment', :object => created_comment }
+      format.html { redirect_to(user_entry_path(@entry.user.username, @entry) + '#bottom') }
       format.json { render :json => { :comment => created_comment } }
     end
     @entry.add_starlight!(1)
@@ -12,8 +12,14 @@ class CommentsController < ApplicationController
   
   def destroy
     comment = Comment.where(id: params[:id], entry_id: params[:entry_id]).first
-    comment.destroy
+
+    if comment
+      comment.destroy
     
-    render :json => { type: 'ok', message: "Comment #{comment.id} destroyed."}
+      render :json => { type: 'ok', message: "Comment #{comment.id} destroyed."}
+    else
+      # Mail error here
+      render :json => { type: 'error', message: "Delete failed: could not find comment #{params[:id]}."}
+    end
   end
 end

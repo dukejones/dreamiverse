@@ -36,10 +36,9 @@ class EntriesController < ApplicationController
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     entry_list
-    i = @entries.index {|e| e == @entry } || 0
+    i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
-    # @entry = @entries[i]
     # TODO: Remove this.
     @next = @entry unless @next
     @previous = @entry unless @previous
@@ -71,9 +70,12 @@ class EntriesController < ApplicationController
     params[:entry][:location_id] = where.id if !where.nil?    
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
+    links = params[:entry].delete(:links_attributes)
+
     @entry = current_user.entries.create(params[:entry].merge(whats: whats))
-    
+
     if @entry.valid?
+      @entry.update_attributes(links_attributes: links) if links
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
@@ -85,7 +87,6 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
     # replace this with a redirect/alert later
     # params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     

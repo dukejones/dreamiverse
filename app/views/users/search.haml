@@ -1,0 +1,33 @@
+- content_for :head do
+  = sass_link_tag 'dreamstars'
+  
+#dreamstars.dark
+
+
+  / HEADER
+  .header
+    %img{:src => "/images/logos/header-dreamstars.png", :alt => "Dreamstars"}
+    .date
+      %span global:
+      - time = Time.new
+      = "#{time.strftime('%B %d, %Y')}"
+    .clear
+    
+  / COLUMNS PANEL
+  .columnsPanel
+    .rankColumn &#35;
+    .nameColumn username
+    .starlightColumn starlight
+    .clear
+
+  / ALL DREAMSTARS
+  .dreamstarsAll
+    - if @users.blank?
+      No users match that search.
+    - else
+      - @users.each_with_index do |user, index|
+        - rank = index + 1
+        %a.dreamstar{href: user_entries_path(user.username)}
+          .rank= rank
+          .name= user.username
+          .starlight= user.starlight

@@ -2,18 +2,18 @@ module EntriesHelper
   def dreamfield_header_image
     img_url = case @type_filter
     when "dream"
-      "/images/icons/experience-64-hover.png"
+      "/images/icons/dream-32-hover.png"
     when "vision"
-      "/images/icons/experience-64-hover.png"
+      "/images/icons/vision-32-hover.png"
     when "experience"
-      "/images/icons/experience-64-hover.png"
+      "/images/icons/experience-32-hover.png"
     when "article"
-      "/images/icons/experience-64-hover.png"
+      "/images/icons/article-32-hover.png"
     else
-      "/images/icons/experience-64-hover.png"
+      "/images/icons/dream-32-hover.png"
     end
     
-    raw( image_tag(img_url) )
+    raw( img_url )
   end
 
   def gallery_list_item(image)

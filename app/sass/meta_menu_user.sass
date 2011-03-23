@@ -125,14 +125,21 @@
     +left
     padding: 8px 6px 8px
 
-    .input
-      +block
-      +font(12)
-      width: 144px
-      background: url('/images/icons/search-18.png') no-repeat 134px center
-      margin: 0 2px
-      height: 22px
+    // SEARCH FIELD
+    .searchForm
+      +left
 
+      input.searchField
+        +round(8)
+        +font(14)
+        width: 120px
+        margin: 0 2px
+        height: 30px
+        padding: 0 24px 0 8px
+        background: url('/images/icons/search-18.png') no-repeat 130px center
+        +input-light(small)
+        color: #777
+        border: 1px solid #CCC
 
 
 
