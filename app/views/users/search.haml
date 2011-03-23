@@ -12,10 +12,6 @@
       - time = Time.new
       = "#{time.strftime('%B %d, %Y')}"
     .clear
-
-  = form_tag search_user_path do
-    = text_field_tag :search_string
-    = submit_tag :search
     
   / COLUMNS PANEL
   .columnsPanel

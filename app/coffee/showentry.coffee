@@ -40,7 +40,6 @@ $(document).ready ->
   
   $('#comment_submit').hide()
   $('#comment_body').live "focus", ->
-    console.log('show comment_submit')
     $('#comment_submit').fadeIn(250)
   
   $('#comment_body').keyup ->
@@ -94,9 +93,10 @@ $(document).ready ->
     )
   
   commentsPanel = $('#showEntry .commentsPanel')
-  
+
   $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
     $('textarea', this).val('')
+    console.log('COMMENT SUCCESS')
   
     # Update comment count
     newVal = parseInt($('.commentsHeader .counter').text()) + 1
