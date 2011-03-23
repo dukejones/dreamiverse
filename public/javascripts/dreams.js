@@ -67,7 +67,7 @@ function embedYoutubeLinks(){
           }
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.after(newElement)
+          $current_element.next().after(newElement)
           //$('.content .body').after(newElement)
         }
       });
@@ -116,7 +116,7 @@ function embedYoutubeLinks(){
           }
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.after(newElement)
+          $current_element.next().after(newElement)
           //$('.content .body').after(newElement)
         }
       });
