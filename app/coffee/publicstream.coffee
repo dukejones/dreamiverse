@@ -69,10 +69,17 @@ getYoutubeData = (video_url, linked_element) ->
     url: filePath
     dataType: 'jsonp'
     success: (data) ->
-      videoArray = data.feed.entry[0].id.$t.split('/')
-      video_id = videoArray[videoArray.length - 1]
-      embedPlayer = '<iframe class="youtube-player" type="text/html" width="622" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
-    
+      ua = navigator.userAgent
+      if ua.match(/iPad/i)
+        # IPAD Server HTML5 player
+        videoArray = data.feed.entry[0].id.$t.split('/')
+        video_id = videoArray[videoArray.length - 1]
+        embedPlayer = '<iframe class="youtube-player" type="text/html" width="622" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+      else
+        # Normal flash w/ autoplay
+        videoPath = data.feed.entry[0].media$group.media$content[0].url;
+        embedPlayer = '<object width="622" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="622" height="390"></embed></object>';
+
       videoPath = data.feed.entry[0].media$group.media$content[0].url
       #embedPlayer = '<object width="622" height="390"><param name="movie" value="' + videoPath + '"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '" type="application/x-shockwave-flash" wmode="transparent" width="622" height="390"></embed></object>'
     
