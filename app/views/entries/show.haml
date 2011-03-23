@@ -193,7 +193,7 @@
           - @comments.each do |comment|
             = render :partial => "entries/comment", :object => comment
 
-          %a{name: "bottom"}  
+          %a{name: "bottom", href: "#"}  
 
           - if current_user
             .newCommentWrap
