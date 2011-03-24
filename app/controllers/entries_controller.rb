@@ -64,16 +64,12 @@ class EntriesController < ApplicationController
   end
 
   def create
-    whats = (params[:what_tags] || []).map {|word| What.for word }
-    
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    links = params[:entry].delete(:links_attributes)
-
-    @entry = current_user.entries.create(params[:entry].merge(whats: whats))
-
+    @entry = current_user.entries.create(params[:entry].merge(whats: whats, links: links))
+    @entry.set_whats(params[:what_tags])
+    @entry.set_links(params[:links])
     if @entry.valid?
-      @entry.update_attributes(links_attributes: links) if links
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
@@ -85,13 +81,12 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    # replace this with a redirect/alert later
-    # params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
     @entry.set_whats(params[:what_tags])
+    @entry.set_links(params[:links])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|

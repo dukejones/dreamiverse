@@ -43,6 +43,37 @@ class EntryTest < ActiveSupport::TestCase
     
   end
 
+  test "set_links sets links" do
+    e = Entry.make
+    
+    # Adds a single link
+    links_attrs = [{url: "http://www.basementshaman.com/", title: "The Basement Shaman"}]
+    e.set_links(links_attrs)
+    assert_equal e.links.first.url, links_attrs.first[:url]
+    
+    # Gets rid of links not passed in.
+    links_attrs2 = [{url: "http://www.youtube.com/watch?v=8z32JTnRrHc&feature=related", title: "Nacy Holt, Boomerang"}]
+    e.set_links(links_attrs2)
+    assert !e.links.map(&:url).include?(links_attrs.first[:url])
+    assert e.links.map(&:url).include?(links_attrs2.first[:url])
+    
+    # Doesn't re-create the same link.
+    links_attrs3 = links_attrs + links_attrs2
+    previous_link_id = e.links.first.id
+    e.set_links(links_attrs3)
+    assert e.links.map(&:id).include?(previous_link_id), "The same link should not be created again."
+    
+    # Sets a new title of an existing link without recreating the link.
+    shaman_link = e.links.where(url: links_attrs.first[:url]).first
+    previous_link_id = shaman_link.id
+    links_attrs.first[:title] = "Basement Medicino"
+    e.set_links(links_attrs)
+    new_shaman_link = e.links.where(url: links_attrs.first[:url]).first
+    assert_equal previous_link_id, new_shaman_link.id, "The same link should not be created again."
+    assert_equal links_attrs.first[:url], new_shaman_link.url
+    assert_equal links_attrs.first[:title], new_shaman_link.title
+  end
+
 
   test "random" do
     100.times do
