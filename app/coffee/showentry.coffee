@@ -50,7 +50,6 @@ $(document).ready ->
     $('#comment_submit').fadeIn(250)
   
   $('#comment_body').bind("keyup", ->
-    console.log('keyup')
     fitToContent(this, 0)
   )
   
