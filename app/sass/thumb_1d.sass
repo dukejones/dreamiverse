@@ -9,7 +9,7 @@
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
 
-      .left .details .starlight, .left .commentCount
+      .left .details .commentCount, .left .starlight
         display: block
 
 
@@ -68,26 +68,22 @@
         .image
           z-index: 0
 
-
-        // COMMENT COUNT
-        .commentCount
+        // STARLIGHT
+        .starlight
           +hidden
-          +absolute
-          top: 8px
-          right: 8px
-          background: url(/images/icons/comment-16.png) no-repeat right
-
-          .counter
-            +round(12)
-            +right
-            +center
-            +bold
-            +font(14)
-            margin: 0 20px 0 0
-            height: 16px
-            line-height: 16px
-            padding: 1px 10px
-
+          +right
+          +round(16)
+          +font(12)
+          margin: 8px 8px 0 0
+          padding: 0 4px
+          height: 24px
+          line-height: 24px
+          .img
+            +left
+            background: url(/images/icons/starlight-17.png) no-repeat center transparent
+            width: 17px
+            height: 24px
+            margin: 0 4px 0 0
 
 
         // IMAGE
@@ -146,22 +142,23 @@
             +font(11)
             margin: 0
 
-          // STARLIGHT
-          .starlight
-            +hidden
-            +round(16)
-            +right
-            +font(12)
-            height: 24px
-            line-height: 26px
-            margin-top: -12px
-            img
-              margin: 4px 4px 0 0
-            span
-              +right
-              height: 24px
-              line-height: 24px
 
+          // COMMENT COUNT
+          .commentCount
+            +hidden
+            +right
+            background: url(/images/icons/comment-16.png) no-repeat right
+
+            .counter
+              +round(12)
+              +right
+              +center
+              +bold
+              +font(14)
+              margin: 0 20px 0 0
+              height: 16px
+              line-height: 16px
+              padding: 1px 10px
 
         .divider
           +absolute
@@ -337,23 +334,24 @@
         // LEFT SIDE
         .left
 
-          .commentCount
-            .counter
-              +transparent-dark(60)
-              color: #ccc
+
+          // STARLIGHT
+          .starlight
+            +transparent-dark(30)
+            +border-dark
+            color: #fff
+            +bold
 
           // ENTRY THUMB DETAILS
           .details
             // REPOSTED BY
             .rePost
               +border-light
-            // STARLIGHT
-            .starlight
-              +transparent-dark(30)
-              +border-dark
-              color: #fff
-              +bold
-
+            //COMMENT COUNT
+            .commentCount
+              .counter
+                +transparent-dark(60)
+                color: #ccc
 
         // GALLERY
         table.right td.top ul li
@@ -383,20 +381,21 @@
         .left
           color: #ccc
 
-          .commentCount
-            .counter
-              +border-dark
+          // STARLIGHT
+          .starlight
+            +transparent-light(10)
+            +border-dark
+            background: #000
 
           // ENTRY THUMB DETAILS
           .details
             // REPOSTED BY
             .rePost
               +border-dark
-            // STARLIGHT
-            .starlight
-              +transparent-light(10)
-              +border-dark
-              background: black
+            // COMMENT COUNT
+            .commentCount
+              .counter
+                +border-dark
 
         // GALLERY
         table.right td.top ul li
