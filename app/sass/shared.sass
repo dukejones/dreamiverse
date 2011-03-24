@@ -129,8 +129,8 @@ abbr, acronym
     -moz-border-radius:       16px 48px 0 0
     -webkit-border-radius:    16px 48px 0 0
     background: #000
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.75)), to(rgba(0,0,0,0.0)))
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.75), rgba(0,0,0,0.0))
+    background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
     height: 54px
     line-height: 56px
     margin: 0 0 20px
@@ -144,7 +144,7 @@ abbr, acronym
       +left
       +font(24)
       letter-spacing: 2px
-      color: #bbb
+      color: #fff
 
   .dreamHeader
     .img
