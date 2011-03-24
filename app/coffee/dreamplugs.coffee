@@ -42,8 +42,7 @@ window.setupDreamplugs = ->
         
         newIcon = $(event.currentTarget).find('img').attr('src')
         $toggleIcon.attr('src', newIcon)
-        console.log($toggleIcon)
-        console.log(newIcon)
+
         #newText = $(event.currentTarget).find('span').text()
         newText = $(event.currentTarget).find('span').text()
         $toggleText.text(newText)
@@ -54,13 +53,13 @@ window.setupDreamplugs = ->
         index = $(event.currentTarget).index()
         newPosition = index * offsetSize
         newPositionString = -newPosition + 'px'
-        $newTargetSlideArrow.fadeOut(500, (event) ->
+        $newTargetSlideArrow.fadeOut(0, (event) ->
           $newTargetSlideArrow.css('top', newPositionString)
         )
       )
       
     else
-      $newTargetSlideArrow.fadeOut(250)
+      $newTargetSlideArrow.hide()
       
   )
   

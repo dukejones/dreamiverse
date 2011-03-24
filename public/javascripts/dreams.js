@@ -18,7 +18,7 @@ function checkForLinksShowEntry(){
   
   var oldComments = $('.commentsPanel').html()
   var newComments = linkify(oldComments);
-  $('.commentsPanel').html(newComments);
+  //$('.commentsPanel').html(newComments);
   
   
   embedYoutubeLinks();
@@ -27,9 +27,10 @@ function checkForLinksShowEntry(){
 // Turns all links in the body of an entry
 // into embedded youtube links
 function embedYoutubeLinks(){
-
-  $('.content .body, .commentsPanel').find('a').each(function(i, ele){
+  // One for Comments
+  /*$('.commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
+    var $current_element = $(ele);
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
@@ -58,15 +59,65 @@ function embedYoutubeLinks(){
             // IPAD Server HTML5 player
             var videoArray = data.feed.entry[0].id.$t.split('/')
             var video_id = videoArray[videoArray.length - 1]
-            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="614" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="472" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
           } else {
             // Normal flash w/ autoplay
             var videoPath = data.feed.entry[0].media$group.media$content[0].url;
-            var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+            var embedPlayer = '<object width="472" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="472" height="390"></embed></object>';
           }
     
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $('.content .body').after(newElement)
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          $current_element.next().after(newElement)
+          //$('.content .body').after(newElement)
+        }
+      });
+    }
+    
+  })*/
+  
+  
+  // One for content body
+  $('.content .body').find('a').each(function(i, ele){
+    var current_url = $(ele).attr('href');
+    var $current_element = $(ele);
+    var tempAnchor = $("<a />");
+    tempAnchor.attr('href', current_url)
+    var hostname = tempAnchor.attr('hostname');
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+      hostname = "dreamcatcher.net";
+    }
+    
+    if(hostname == "youtube.com" || hostname == "www.youtube.com"){
+      // Create new Element & make it work
+      var dataId = String("youtube-" + i);
+      $(ele).data('id', i);
+      
+      $(ele).addClass('youtube');
+      
+      // Get & set youtube data
+      var splitTextArray = String($(ele).attr('href')).split('v=');
+      var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
+  
+      // Get the data from YOUTUBE
+      $.ajax({
+        url: filePath,
+        dataType: 'jsonp',
+        success: function(data) {
+          var ua = navigator.userAgent
+          if(ua.match(/iPad/i)){
+            // IPAD Server HTML5 player
+            var videoArray = data.feed.entry[0].id.$t.split('/')
+            var video_id = videoArray[videoArray.length - 1]
+            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="546" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+          } else {
+            // Normal flash w/ autoplay
+            var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+            var embedPlayer = '<object width="546" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="546" height="390"></embed></object>';
+          }
+    
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          $current_element.next().after(newElement)
+          //$('.content .body').after(newElement)
         }
       });
     }
@@ -80,13 +131,13 @@ function embedYoutubeLinks(){
   // Add youtube icon after each youtube link
   $('.content .body, .commentsPanel').find('a.youtube').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).after('<img class="youtube" src="/images/icons/youtube-16.png" />')
+  }).after('<img class="youtube" src="/images/icons/play-16-hover.png" />')
   
   // Set click event for youtube links
   $('.content .body, .commentsPanel').find('a.youtube').click(function(event){
     event.preventDefault()
     // Hide others
-    $('.video').hide()
+    //$('.video').hide()
     
     var embedVideo = String("#youtube-" + $(event.currentTarget).data('id'));
     $(embedVideo).show()
@@ -119,10 +170,10 @@ function linkify(text)
 			nice = url;
 			if( url.match('^https?:\/\/') )
 			{
-				nice = nice.replace(/^https?:\/\//i,'')
+			  nice = nice.replace(/^https?:\/\//i,'')
 			}
 			else
-				url = 'http://'+url;
+			  url = 'http://'+url;
 			
 			var urlTitle = nice.replace(/^www./i,'');
 			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
