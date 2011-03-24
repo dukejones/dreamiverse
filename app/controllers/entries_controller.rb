@@ -94,8 +94,10 @@ class EntriesController < ApplicationController
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
     @entry.set_whats(params[:what_tags])
-    #@entry.add_where_tag(where)
-
+    
+    @entry.location = Where.for params[:entry][:location_attributes]
+    params[:entry].delete(:location_attributes) # set location with line above instead
+    
     if @entry.update_attributes(params[:entry])
       respond_to do |format|
         format.html { redirect_to :action => :show, :id => params[:id] }
