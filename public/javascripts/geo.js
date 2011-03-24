@@ -12,9 +12,12 @@ function initGeo(){
       $(this).addClass('selected');
       $('.entryLocation').slideDown()
       
-      if(!geoFetching){
+      if(!geoFetching && !$('.entryLocation').data('id')){
         geoFetching = true;
         getGeo();
+      } else {
+        $('.finding').hide()
+        $('.entryLocation').find('.data').show()
       }
     } else {
       $('.entryLocation').slideUp();
@@ -126,7 +129,7 @@ function getAddress(_lat, _lng){
   $('#location_attributes_latitude').val(lat)
   
   var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + _lat + ',' + _lng + '&sensor=true';
-  console.log(url)
+  log(url)
   
   // NEW WAY (still under construction ;D)
   /*$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854466,-122.695003&sensor=true', function(data) {
