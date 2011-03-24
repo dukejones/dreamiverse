@@ -131,7 +131,7 @@ function embedYoutubeLinks(){
   // Add youtube icon after each youtube link
   $('.content .body, .commentsPanel').find('a.youtube').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).after('<img class="youtube" src="/images/icons/youtube-16.png" />')
+  }).after('<img class="youtube" src="/images/icons/play-16-hover.png" />')
   
   // Set click event for youtube links
   $('.content .body, .commentsPanel').find('a.youtube').click(function(event){
@@ -170,13 +170,11 @@ function linkify(text)
 			nice = url;
 			if( url.match('^https?:\/\/') )
 			{
-			  console.log('NICE :: ' + nice.replace(/^https?:\/\//i,''))
-				nice = nice.replace(/^https?:\/\//i,'')
+			  nice = nice.replace(/^https?:\/\//i,'')
 				url = nice.replace(/^https?:\/\//i,'')
 			}
 			else
-			  console.log('URL :: ' + 'http://' + url)
-				url = 'http://'+url;
+			  url = 'http://'+url;
 			
 			var urlTitle = nice.replace(/^www./i,'');
 			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
