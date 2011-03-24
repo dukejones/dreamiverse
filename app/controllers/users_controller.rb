@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   
   def search
     search_string = "%#{params[:search_string]}%"
-    @users = User.where(["username LIKE ? OR email LIKE ? OR name LIKE ?", search_string, search_string, search_string]).limit(50)
+    @users = User.where("username LIKE :search OR email LIKE :search OR name LIKE :search", {search: search_string}).limit(50)
   end
   
   def wrong_email
