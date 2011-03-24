@@ -64,12 +64,16 @@ class EntriesController < ApplicationController
   end
 
   def create
+    whats = (params[:what_tags] || []).map {|word| What.for word }
+    
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    @entry = current_user.entries.create(params[:entry].merge(whats: whats, links: links))
-    @entry.set_whats(params[:what_tags])
-    @entry.set_links(params[:links])
+    links = params[:entry].delete(:links_attributes)
+
+    @entry = current_user.entries.create(params[:entry].merge(whats: whats))
+
     if @entry.valid?
+      @entry.update_attributes(links_attributes: links) if links
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
@@ -86,7 +90,6 @@ class EntriesController < ApplicationController
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
     @entry.set_whats(params[:what_tags])
-    @entry.set_links(params[:links])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|
