@@ -126,13 +126,13 @@
       .clear
 
     .filterList.entries.target.slideArrow.hidden
-      %a.type.top{href: dreams_path(user.username)}
+      %a.type.top{href: user_entries_filter_path(user.username, 'dreams')}
         %span dreams
-      %a.type{href: visions_path(user.username)}
+      %a.type{href: user_entries_filter_path(user.username, 'visions')}
         %span visions
-      %a.type{href: experiences_path(user.username)}
+      %a.type{href: user_entries_filter_path(user.username, 'experiences')}
         %span experiences
-      %a.type.bottom{href: articles_path(user.username)}
+      %a.type.bottom{href: user_entries_filter_path(user.username, 'articles')}
         %span articles
 
 

@@ -49,8 +49,16 @@ $(document).ready ->
   $('#comment_body').live "focus", ->
     $('#comment_submit').fadeIn(250)
   
-  $('#comment_body').keyup ->
+  $('#comment_body').bind("keyup", ->
     fitToContent(this, 0)
+  )
+  
+  # setup keyboard navigation
+  $(document).keypress (e) ->
+    if e.which == 37 || e.keyCode == 37
+      window.location = $('#showEntry').find('a.prev').attr('href')
+    else if e.which == 39 || e.keyCode == 39
+      window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change
   $('.shareLevel').find('span').each( (i, el)->
