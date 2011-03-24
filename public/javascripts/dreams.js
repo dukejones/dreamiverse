@@ -18,7 +18,7 @@ function checkForLinksShowEntry(){
   
   var oldComments = $('.commentsPanel').html()
   var newComments = linkify(oldComments);
-  $('.commentsPanel').html(newComments);
+  //$('.commentsPanel').html(newComments);
   
   
   embedYoutubeLinks();
@@ -28,7 +28,7 @@ function checkForLinksShowEntry(){
 // into embedded youtube links
 function embedYoutubeLinks(){
   // One for Comments
-  $('.commentsPanel').find('a').each(function(i, ele){
+  /*$('.commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
     var $current_element = $(ele);
     var tempAnchor = $("<a />");
@@ -73,7 +73,7 @@ function embedYoutubeLinks(){
       });
     }
     
-  })
+  })*/
   
   
   // One for content body
@@ -171,7 +171,6 @@ function linkify(text)
 			if( url.match('^https?:\/\/') )
 			{
 			  nice = nice.replace(/^https?:\/\//i,'')
-				url = nice.replace(/^https?:\/\//i,'')
 			}
 			else
 			  url = 'http://'+url;
