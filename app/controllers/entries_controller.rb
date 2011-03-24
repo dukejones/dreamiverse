@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
     if params[:entry_type]
       # TODO: Make this work without setting it manually.
       params[:filters] ||= {}
-      params[:filters][:type] = params[:entry_type]  
+      params[:filters][:type] = params[:entry_type].singularize
     end
     @type_filter = params[:filters]._?[:type]
     
