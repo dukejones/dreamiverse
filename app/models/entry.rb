@@ -39,7 +39,7 @@ class Entry < ActiveRecord::Base
   accepts_nested_attributes_for :view_preference, :update_only => true
   
   has_many :links, :as => :owner
-  accepts_nested_attributes_for :links
+  # accepts_nested_attributes_for :links
 
   has_and_belongs_to_many :images, :uniq => true
   belongs_to :main_image, :class_name => "Image"
@@ -51,7 +51,6 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
-  before_update :delete_links
   after_save :process_all_tags 
 
   def self.everyone
@@ -149,6 +148,20 @@ class Entry < ActiveRecord::Base
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.
   end
 
+  def set_links(links_attrs)
+    return unless links_attrs.kind_of? Array
+    new_links = links_attrs.map do |attrs| 
+      if link = self.links.where(url: attrs[:url]).first
+        link.update_attribute(:title, attrs[:title]) unless attrs[:title] == link.title
+
+      else
+        link = Link.new(attrs)
+      end
+      link
+    end
+    self.links = new_links
+  end
+
   # Create / find a What for each tag word.
   # Remove the what tags that are on this entry but not in the tag words.
   # Add all the tag words to this entry.
@@ -193,10 +206,6 @@ class Entry < ActiveRecord::Base
     self.view_preference = user.view_preference.clone!
   end
   
-  def delete_links
-    Link.delete_all(:owner_id => self.id)
-  end
-
   def reorder_tags
     max_tags = 16
     # put all custom tags first

@@ -22,7 +22,7 @@ class HomeController < ApplicationController
   def submit_feedback
     AdminMailer.feedback_email( current_user, params[:feedback] ).deliver
 
-    redirect_to feedback_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you."
+    redirect_to entries_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you."
   end
   
   def terms

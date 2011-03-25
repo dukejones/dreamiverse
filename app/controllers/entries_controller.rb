@@ -17,7 +17,7 @@ class EntriesController < ApplicationController
     if params[:entry_type]
       # TODO: Make this work without setting it manually.
       params[:filters] ||= {}
-      params[:filters][:type] = params[:entry_type]  
+      params[:filters][:type] = params[:entry_type].singularize
     end
     @type_filter = params[:filters]._?[:type]
     
@@ -64,18 +64,14 @@ class EntriesController < ApplicationController
   end
 
   def create
-    whats = (params[:what_tags] || []).map {|word| What.for word }
     where = Where.for params[:entry].delete(:location_attributes)
-    
     params[:entry][:location_id] = where.id if where
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    links = params[:entry].delete(:links_attributes)
-
-    @entry = current_user.entries.create(params[:entry].merge(whats: whats))
-
+    @entry = current_user.entries.create(params[:entry])
+    @entry.set_whats(params[:what_tags])
+    @entry.set_links(params[:links])
     if @entry.valid?
-      @entry.update_attributes(links_attributes: links) if links
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
@@ -87,16 +83,14 @@ class EntriesController < ApplicationController
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    # replace this with a redirect/alert later
-    # params[:entry][:body] = 'My Dream...' if params[:entry][:body].blank?
     
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
     @entry.set_whats(params[:what_tags])
-    
     @entry.location = Where.for params[:entry].delete(:location_attributes)
-    
+    @entry.set_links(params[:links])
+
     if @entry.update_attributes(params[:entry])
       respond_to do |format|
         format.html { redirect_to :action => :show, :id => params[:id] }
