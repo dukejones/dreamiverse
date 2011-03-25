@@ -39,7 +39,7 @@ class Tag < ActiveRecord::Base
   # create hash  name => frequency with no blacklisted words.   
   def self.order_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
-      if (!BlacklistWords[tag_word])
+      if (!BlacklistWords[tag_word]) && (!tag_word.starts_with?('http://'))
         what = What.for(tag_word)
         tag_scores[what] ||= 0
         tag_scores[what] += 1
