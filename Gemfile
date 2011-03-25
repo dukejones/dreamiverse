@@ -19,7 +19,7 @@ gem 'mocha' # Needed for Legacy Migration.  Remove later.
 
 # Bundle the extra gems:
 # gem 'bj'
-# gem 'nokogiri'
+gem 'nokogiri'
 # gem 'aws-s3', :require => 'aws/s3'
 
 group :development do
