@@ -166,7 +166,7 @@ function linkify(text)
 	{
 		if( !text ) return text;
 		
-		text = text.replace(/((https?\:\/\/|ftp\:\/\/)|(www\.))(\S+)(\w{2,4})(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/gi,function(url){
+		text = text.replace(/^(https?\:\/\/|ftp\:\/\/|www\.)\S+(:[0-9]+)?\/?([\w#!:.\?\+=&%@!\-\/])?/gi, function(url){
 			nice = url;
 			if( url.match('^https?:\/\/') )
 			{
