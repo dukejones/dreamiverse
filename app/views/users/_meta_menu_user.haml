@@ -41,6 +41,7 @@
       .searchWrap.wrapper
         .searchIcon.trigger.showhide
           .img
+          = render partial: "shared/hover_label", locals: {message: "search users", x: "12", y: "-39"}
 
         = form_tag search_user_path, class: 'searchForm target showhide hidden' do
           = text_field_tag :search_string, nil, class: 'searchField', placeholder: 'search users'
