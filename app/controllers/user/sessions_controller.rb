@@ -27,6 +27,7 @@ class User::SessionsController < ApplicationController
 
   def destroy
     set_current_user(nil)
+    cookies.delete :dreamcatcher_remember_me
     redirect_to :root
   end
 end

@@ -142,6 +142,12 @@ class User < ActiveRecord::Base
     sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
   end
   
+  # from http://m.onkey.org/signed-and-permanent-cookies-in-rails-3
+  def self.authenticated_with_token(id, stored_salt)
+    u = find_by_id(user_id)
+    u && u.salt == stored_salt ? u : nil
+  end
+  
   protected
 
   def encrypt_password
