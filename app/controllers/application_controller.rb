@@ -7,8 +7,7 @@ class ApplicationController < ActionController::Base
     if session[:user_id] 
       @current_user ||= User.find(session[:user_id]) 
     elsif cookies[:dreamcatcher_remember_me]
-      @current_user ||= User.find(cookies[:dreamcatcher_remember_me])
-      # @current_user = User.authenticated_with_token(*cookies.signed[:dreamcatcher_remember_me])
+      @current_user ||= User.authenticate_from_remember_me_cookie(cookies[:dreamcatcher_remember_me])
     end
   end
 
@@ -46,7 +45,6 @@ class ApplicationController < ActionController::Base
 
   def set_current_user(user)
     session[:user_id] = user ? user.id : nil
-    cookies[:dreamcatcher_remember_me] = { :value => user.id, :expires => 2.weeks.from_now } unless user.nil? 
     # cookies.permanent.signed[:dreamcatcher_remember_me] = [user.id, user.salt] unless user.nil?
     @current_user = user
   end

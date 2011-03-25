@@ -26,6 +26,8 @@ gem 'mocha' # Needed for Legacy Migration.  Remove later.
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'aws-s3', :require => 'aws/s3'
 
+# gem 'rgeo' - when we get into doing lots of geocoding / calculations.
+
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
