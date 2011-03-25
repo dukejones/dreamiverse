@@ -7,7 +7,6 @@ $(document).ready(function() {
   setupSharingImages();
   setupLinkButtons();
   setup2dThumbIPadClick();
-  
 });
 
 function checkForLinksShowEntry(){
@@ -28,7 +27,7 @@ function checkForLinksShowEntry(){
 // into embedded youtube links
 function embedYoutubeLinks(){
   // One for Comments
-  /*$('.commentsPanel').find('a').each(function(i, ele){
+  $('.commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
     var $current_element = $(ele);
     var tempAnchor = $("<a />");
@@ -73,18 +72,22 @@ function embedYoutubeLinks(){
       });
     }
     
-  })*/
+  })
   
   
   // One for content body
   $('.content .body').find('a').each(function(i, ele){
-    var current_url = $(ele).attr('href');
+    
     var $current_element = $(ele);
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
-      hostname = "dreamcatcher.net";
+    // if href doesnt exist
+    if($(ele).attr('href')){
+      var current_url = $(ele).attr('href');
+      if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+        hostname = "dreamcatcher.net";
+      }
     }
     
     if(hostname == "youtube.com" || hostname == "www.youtube.com"){
