@@ -12,8 +12,7 @@
   - if @type_filter
     .pageHeader.dreamHeader
       .img{"style" => "background-image: url(#{dreamfield_header_image})"}
-      - plural_filter = @type_filter.insert @type_filter.length, "s"
-      %h1= plural_filter || "all entries"
+      %h1= @type_filter._?.pluralize || "all entries"
     .clear
   
   / NEW ENTRY BAR

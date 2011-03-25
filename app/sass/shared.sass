@@ -109,7 +109,7 @@ abbr, acronym
 #entryField, #friendField
   +absolute
   top: 82px
-  left: 232px
+  left: 242px
   padding-bottom: 280px
 
 .matrix
@@ -129,51 +129,51 @@ abbr, acronym
     -moz-border-radius:       16px 48px 0 0
     -webkit-border-radius:    16px 48px 0 0
     background: #000
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.75)), to(rgba(0,0,0,0.0)))
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.75), rgba(0,0,0,0.0))
-    height: 74px
-    line-height: 78px
+    background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
+    height: 54px
+    line-height: 56px
     margin: 0 0 20px
     padding-right: 36px
     .img
       +left
-      width: 64px
-      height: 74px
-      margin: 0 20px 0 12px
+      width: 32px
+      height: 54px
+      margin: 0 12px
     h1
       +left
-      +font(32)
-      letter-spacing: 3px
-      color: #bbb
+      +font(24)
+      letter-spacing: 2px
+      color: #fff
 
   .dreamHeader
     .img
-      background: url(/images/icons/dream-64-hover.png) no-repeat center transparent
+      background: url(/images/icons/dream-32-hover.png) no-repeat center transparent
   .visionHeader
     .img
-      background: url(/images/icons/vision-64-hover.png) no-repeat center transparent
+      background: url(/images/icons/vision-32-hover.png) no-repeat center transparent
   .experienceHeader
     .img
-      background: url(/images/icons/experience-64-hover.png) no-repeat center transparent
+      background: url(/images/icons/experience-32-hover.png) no-repeat center transparent
   .articleHeader
     .img
-      background: url(/images/icons/article-64-hover.png) no-repeat center transparent
+      background: url(/images/icons/article-32-hover.png) no-repeat center transparent
   .friendHeader
     .img
-      background: url(/images/icons/friend-64.png) no-repeat center transparent
+      background: url(/images/icons/friend-32.png) no-repeat center transparent
   .followHeader
     .img
-      background: url(/images/icons/friend-follow-64.png) no-repeat center transparent
+      background: url(/images/icons/friend-follow-32.png) no-repeat center transparent
   .followerHeader
     .img
-      background: url(/images/icons/friend-follower-64.png) no-repeat center transparent
+      background: url(/images/icons/friend-follower-32.png) no-repeat center transparent
   .nofriendsHeader
     .img
-      background: url(/images/icons/friend-none-64.png) no-repeat center transparent
+      background: url(/images/icons/friend-none-32.png) no-repeat center transparent
   .streamHeader
     width: 634px
     .img
-      background: url(/images/icons/stream-64-hover.png) no-repeat center transparent
+      background: url(/images/icons/stream-32-hover.png) no-repeat center transparent
 
 
 // CLOSE ICONS
@@ -181,21 +181,23 @@ abbr, acronym
 .close-16
   +pointer
   +round(12)
-  +alpha(30)
+  +alpha(50)
   width: 16px
   height: 16px
-  background: url(/images/icons/close-16-hover.png) no-repeat center
+  background: url(/images/icons/close-16.png) no-repeat center
   &:hover
     +alpha(100)
+    background: url(/images/icons/close-16-hover.png) no-repeat center
 .close-24
   +pointer
-  +alpha(50)
   +round(12)
+  +alpha(50)
   width: 24px
   height: 24px
-  background: url(/images/icons/close-24-hover.png) no-repeat center
+  background: url(/images/icons/close-24.png) no-repeat center
   &:hover
     +alpha(100)
+    background: url(/images/icons/close-24-hover.png) no-repeat center
 
 
 // LIGHTBOX
@@ -224,7 +226,7 @@ abbr, acronym
   text-align: center
   position: fixed
   top: 0px
-  left: 450px
+  left: 600px
   min-height: 50px
   max-width: 550px
   z-index: 1600
@@ -243,13 +245,16 @@ abbr, acronym
   p
     +left
     margin: 12px 12px 12px 0
-  .checkmark
+  .checkmark, .close-24
     width: 31px
     height: 31px
-    background: url(/images/icons/check-31.png) no-repeat center
     +absolute
     right: 12px
     top: 12px
+  .checkmark
+    background: url(/images/icons/check-31.png) no-repeat center
+  .close-24
+    background: url(/images/icons/close-24-hover.png) no-repeat center
 
 
 

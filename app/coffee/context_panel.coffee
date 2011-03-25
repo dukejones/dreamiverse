@@ -71,19 +71,19 @@ class ContextView
   displayFilterState: (filter_state) ->
     # Change the icon (Want to reduce duplication here if poss - from scott)
     switch filter_state
-      when 'dream'
+      when 'dreams'
         iconFileSource = 'dream-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'vision'
+      when 'visions'
         iconFileSource = 'vision-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'experience'
+      when 'experiences'
         iconFileSource = 'experience-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
-      when 'article'
+      when 'articles'
         iconFileSource = 'article-32-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
@@ -99,17 +99,25 @@ class ContextView
         iconFileSource = 'friend-follower-24.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
-        
+      else
+        iconFileSource = 'allEntries-32-hover.png'
+        iconSource = '/images/icons/' + iconFileSource
+        $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
+      
     
     
     # Change the current filter state to whatever is passed
     switch filter_state
-      when 'vision', 'experience', 'article', 'dream'
-        $('.entryFilter.entries').find('.value').text(filter_state + 's')
+      when 'visions', 'experiences', 'articles', 'dreams'
+        $('.entryFilter.entries').find('.value').text(filter_state)
         $('.entryFilter.entries').find('.label').addClass('selected')
       when 'friends', 'following', 'followers'
         $('.entryFilter.friends').find('.value').text(filter_state)
         $('.entryFilter.friends').find('.label').addClass('selected')
+      else
+        $('.entryFilter.entries').find('.value').text('entries')
+        $('.entryFilter.entries').find('.label').addClass('selected')
+        
   profileState: ->
     @$detailsPanel.css('display')
   showEditProfile: ->

@@ -74,10 +74,20 @@ class User < ActiveRecord::Base
 
   def self.authenticate(auth_params)
     self.where(:encrypted_password => sha1(auth_params[:password]))
-      .where(["username=? OR email=?", auth_params[:username], auth_params[:username]])
+      .where("username=:username OR email=:username", {username: auth_params[:username]})
       .first
   end
 
+  def self.authenticate_from_remember_me_cookie(cookie_value)
+    user_id, password_hash = cookie_value.split('::')
+    u = find_by_id(user_id)
+    u && password_hash == u.encrypted_password ? u : nil
+  end
+  
+  def remember_me_cookie_value
+    [self.id, self.encrypted_password].join('::')
+  end
+  
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     self
@@ -140,12 +150,6 @@ class User < ActiveRecord::Base
   # This depends on the current password, so if they change their password, the code will no longer be valid.
   def password_reset_code
     sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
-  end
-  
-  # from http://m.onkey.org/signed-and-permanent-cookies-in-rails-3
-  def self.authenticated_with_token(id, stored_salt)
-    u = find_by_id(user_id)
-    u && u.salt == stored_salt ? u : nil
   end
   
   protected

@@ -12,9 +12,10 @@
   %a.left{href: user_entry_path(entry.user.username, entry)}
 
 
-    - unless entry.comments.count == 0
-      .commentCount
-        .counter= entry.comments.count
+    / STARLIGHT
+    .starlight
+      .img
+      %span= entry.starlight
 
     / only for +image
     .image{style: "background: url(#{entry.main_image._?.url(:stream_header)}) no-repeat top left"}
@@ -32,10 +33,10 @@
         %span.rePostBy username
       / DATE
       .date= time_ago_in_words(entry.created_at)
-      / STARLIGHT
-      .starlight
-        %img{src: '/images/icons/starlight-17.png', width: '17', height: '17'}
-        %span= entry.starlight
+
+      - unless entry.comments.count == 0
+        .commentCount
+          .counter= entry.comments.count
 
     .divider
 
