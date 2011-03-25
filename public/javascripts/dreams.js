@@ -166,24 +166,24 @@ function getOffset( el ) {
 
 
 function linkify(text)
-	{
-		if( !text ) return text;
-		
-		text = text.replace(/(https?\:\/\/|ftp\:\/\/|www\.)\S+(:[0-9]+)?\/?([\w#!:.\?\+=&%@!\-\/])?/gi, function(url){
-			nice = url;
-			if( url.match('^https?:\/\/') )
-			{
-			  nice = nice.replace(/^https?:\/\//i,'')
-			}
-			else
-			  url = 'http://'+url;
-			
-			var urlTitle = nice.replace(/^www./i,'');
-			return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
-		});
-		
-		return text;
-	}
+  {
+    if( !text ) return text;
+    
+    text = text.replace(/(https?\:\/\/|ftp\:\/\/|www\.)\S+(:[0-9]+)?\/?([\w#!:.\?\+=&%@!\-\/])?/gi, function(url){
+      nice = url;
+      if( url.match('^https?:\/\/') )
+      {
+        nice = nice.replace(/^https?:\/\//i,'')
+      }
+      else
+        url = 'http://'+url;
+      
+      var urlTitle = nice.replace(/^www./i,'');
+      return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
+    });
+    
+    return text;
+  }
 
 function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
@@ -537,12 +537,12 @@ function setupEvents(){
   });
   
   $('#linkValue').keypress(function(e) {
-  	if(e.keyCode == 13) {
-  	  e.preventDefault()
-  	  e.stopPropagation()
-  		setTimeout('checkForPastedLink($("#linkValue").val())', 400);
-  		return false;
-  	}
+    if(e.keyCode == 13) {
+      e.preventDefault()
+      e.stopPropagation()
+      setTimeout('checkForPastedLink($("#linkValue").val())', 400);
+      return false;
+    }
   });
   
   // Remove link listener
