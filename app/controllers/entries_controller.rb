@@ -66,7 +66,7 @@ class EntriesController < ApplicationController
   def create
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
-    @entry = current_user.entries.create(params[:entry].merge(whats: whats, links: links))
+    @entry = current_user.entries.create(params[:entry])
     @entry.set_whats(params[:what_tags])
     @entry.set_links(params[:links])
     if @entry.valid?
