@@ -17,7 +17,7 @@ function checkForLinksShowEntry(){
   
   var oldComments = $('.commentsPanel').html()
   var newComments = linkify(oldComments);
-  //$('.commentsPanel').html(newComments);
+  $('.commentsPanel').html(newComments);
   
   
   embedYoutubeLinks();
@@ -33,11 +33,32 @@ function embedYoutubeLinks(){
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
       hostname = "dreamcatcher.net";
     }
-    
-    if(hostname == "youtube.com" || hostname == "www.youtube.com"){
+    log("hostname after :: " + hostname)
+    if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
+      var dataId = String("soundcloud-" + i);
+      // Create new SOUNDCLOUD element
+      var flashvars = {
+        enable_api: true, 
+        object_id: "dcPlayer",
+        url: current_url
+      };
+      var params = {
+        allowscriptaccess: "always"
+      };
+      var attributes = {
+        id: dataId,
+        name: dataId
+      };
+      
+      var newElement = '<div class="soundcloud" id="' + dataId + '"></div>';
+      //var newElement = '<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB" type="application/x-shockwave-flash" width="100%"></embed> </object>   <span><a href="http://soundcloud.com/sporeganic/first-sun-emancipator-first">First Sun (Emancipator - First Snow REMIX)</a> by <a href="http://soundcloud.com/sporeganic">sporeganic</a></span>'
+      $current_element.after(newElement)
+      swfobject.embedSWF("http://player.soundcloud.com/player.swf", dataId, "81", "100%", "9.0.0","expressInstall.swf", flashvars, params, attributes);
+      
+    } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Element & make it work
       var dataId = String("youtube-" + i);
       $(ele).data('id', i);
@@ -67,31 +88,48 @@ function embedYoutubeLinks(){
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
           $current_element.next().after(newElement)
-          //$('.content .body').after(newElement)
         }
       });
     }
     
   })
   
-  
   // One for content body
   $('.content .body').find('a').each(function(i, ele){
     
+    var current_url = $(ele).attr('href');
     var $current_element = $(ele);
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-    // if href doesnt exist
-    if($(ele).attr('href')){
-      var current_url = $(ele).attr('href');
-      if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
-        hostname = "dreamcatcher.net";
-      }
+
+    // Check to be sure that youtube or soundcloud (or any future embeds) do not
+    // appear in the hostname, so it can skip all of this
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
+      hostname = "dreamcatcher.net";
     }
-    
-    if(hostname == "youtube.com" || hostname == "www.youtube.com"){
-      // Create new Element & make it work
+    if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
+      var dataId = String("soundcloud-" + i);
+      // Create new SOUNDCLOUD element
+      var flashvars = {
+        enable_api: true, 
+        object_id: "dcPlayer",
+        url: current_url
+      };
+      var params = {
+        allowscriptaccess: "always"
+      };
+      var attributes = {
+        id: dataId,
+        name: dataId
+      };
+      var newElement = '<div class="soundcloud" id="' + dataId + '"></div>';
+      //var newElement = '<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB" type="application/x-shockwave-flash" width="100%"></embed> </object>   <span><a href="http://soundcloud.com/sporeganic/first-sun-emancipator-first">First Sun (Emancipator - First Snow REMIX)</a> by <a href="http://soundcloud.com/sporeganic">sporeganic</a></span>'
+      $current_element.after(newElement)
+      swfobject.embedSWF("http://player.soundcloud.com/player.swf", dataId, "81", "100%", "9.0.0","expressInstall.swf", flashvars, params, attributes);
+
+    } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
+      // Create new Youtube Element & make it work
       var dataId = String("youtube-" + i);
       $(ele).data('id', i);
       
@@ -100,7 +138,7 @@ function embedYoutubeLinks(){
       // Get & set youtube data
       var splitTextArray = String($(ele).attr('href')).split('v=');
       var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
-  
+
       // Get the data from YOUTUBE
       $.ajax({
         url: filePath,
@@ -120,7 +158,6 @@ function embedYoutubeLinks(){
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
           $current_element.next().after(newElement)
-          //$('.content .body').after(newElement)
         }
       });
     }
