@@ -2,7 +2,7 @@
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
-  = javascript_include_tag 'browserdetect', 'jquery-ui.min'
+  = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
   
   - if !@entry.body.blank?
