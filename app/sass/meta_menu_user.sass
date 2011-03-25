@@ -118,30 +118,74 @@
       .img, &:hover .img, &:active .img
         background: url(/images/icons/starlight-24-hover.png) no-repeat center transparent
 
+    // SEARCH
+    .searchWrap
+      +relative
+      +left
+      width: 32px
+      margin: 0 6px 0 0
 
+      .searchIcon
+        +absolute
+        +font(16)
+        +pointer
+        +round(8)
+        +user-select
+        top: 0
+        left: 0
+        background: #fff
+        margin: 0 2px
+        height: 26px
+        width: 24px
+        color: #333
+        border: #ccc 1px solid
+        display: inline-block
+        text-decoration: none
+        padding: 2px 4px
+        .img
+          +left
+          width: 24px
+          height: 26px
+          background: url(/images/icons/search-18.png) no-repeat center transparent
+        &:hover .img
+          background: url(/images/icons/search-18.png) no-repeat center transparent
+        &:active .img
+          background: url(/images/icons/search-18.png) no-repeat center transparent
+
+      // SEARCH FIELD
+      .searchForm
+        +absolute
+        top: 0
+        left: 0
+        width: 162px  // webkit breaks without width
+
+        input.searchField
+          +round(8)
+          +font(14)
+          width: 120px
+          margin: 0 2px
+          height: 30px
+          padding: 0 24px 0 8px
+          +input-light(small)
+          color: #ccc
+          border: 1px solid #CCC
+          &:focus
+            color: #777
+
+        input.search
+          +absolute
+          +transparent
+          +pointer
+          right: 8px
+          border: none
+          height: 30px
+          width: 24px
+          background: url(/images/icons/search-18.png) no-repeat center transparent
 
 
   .leftPanel
     +left
     padding: 8px 6px 8px
-
-    // SEARCH FIELD
-    .searchForm
-      +left
-
-      input.searchField
-        +round(8)
-        +font(14)
-        width: 120px
-        margin: 0 2px
-        height: 30px
-        padding: 0 24px 0 8px
-        background: url('/images/icons/search-18.png') no-repeat 130px center
-        +input-light(small)
-        color: #ccc
-        border: 1px solid #CCC
-        &:focus
-          color: #777
 
   .rightPanel
     +relative
