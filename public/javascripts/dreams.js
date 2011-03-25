@@ -102,7 +102,7 @@ function embedYoutubeLinks(){
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-    log("hostname before :: " + hostname)
+
     // Check to be sure that youtube or soundcloud (or any future embeds) do not
     // appear in the hostname, so it can skip all of this
     if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
@@ -138,7 +138,7 @@ function embedYoutubeLinks(){
       // Get & set youtube data
       var splitTextArray = String($(ele).attr('href')).split('v=');
       var filePath = 'http://gdata.youtube.com/feeds/api/videos?q=' + splitTextArray[splitTextArray.length - 1] + '&alt=json&max-results=30&format=5';
-      log("YOUTUBE DATA SENT OUT")
+
       // Get the data from YOUTUBE
       $.ajax({
         url: filePath,
@@ -155,8 +155,6 @@ function embedYoutubeLinks(){
             var videoPath = data.feed.entry[0].media$group.media$content[0].url;
             var embedPlayer = '<object width="546" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="546" height="390"></embed></object>';
           }
-          
-          log("YOUTUBE DATA CAME BACK!")
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
           $current_element.next().after(newElement)
