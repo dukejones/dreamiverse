@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   AuthLevel = {
     none:      0,
-    basic:     10,
-    moderator: 20,
-    designer:  30,
-    developer: 40,
-    admin:     50 
+    basic:     1,
+    moderator: 2,
+    designer:  3,
+    developer: 4,
+    admin:     5 
   }
   
   include Starlit
