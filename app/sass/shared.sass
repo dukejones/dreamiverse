@@ -191,7 +191,7 @@ abbr, acronym
 .close-24
   +pointer
   +round(12)
-  +alpha(50)
+  +alpha(60)
   width: 24px
   height: 24px
   background: url(/images/icons/close-24.png) no-repeat center
@@ -226,7 +226,7 @@ abbr, acronym
   text-align: center
   position: fixed
   top: 0px
-  left: 600px
+  left: 592px
   min-height: 50px
   max-width: 550px
   z-index: 1600
@@ -250,9 +250,12 @@ abbr, acronym
     height: 31px
     +absolute
     right: 12px
-    top: 12px
+    top: 11px
   .checkmark
     background: url(/images/icons/check-31.png) no-repeat center
+    +alpha(60)
+    &:hover
+      +alpha(100)
   .close-24
     background: url(/images/icons/close-24-hover.png) no-repeat center
 
