@@ -33,10 +33,13 @@ function embedYoutubeLinks(){
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
+    
+    // This checks if a youtube link is attached that IS NOT a video
+    // Makes it pass as a normal link
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
       hostname = "dreamcatcher.net";
     }
-    log("hostname after :: " + hostname)
+    
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
       var dataId = String("soundcloud-" + i);
       // Create new SOUNDCLOUD element
@@ -52,11 +55,18 @@ function embedYoutubeLinks(){
         id: dataId,
         name: dataId
       };
-      
-      var newElement = '<div class="soundcloud" id="' + dataId + '"></div>';
-      //var newElement = '<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB" type="application/x-shockwave-flash" width="100%"></embed> </object>   <span><a href="http://soundcloud.com/sporeganic/first-sun-emancipator-first">First Sun (Emancipator - First Snow REMIX)</a> by <a href="http://soundcloud.com/sporeganic">sporeganic</a></span>'
-      $current_element.after(newElement)
-      swfobject.embedSWF("http://player.soundcloud.com/player.swf", dataId, "81", "100%", "9.0.0","expressInstall.swf", flashvars, params, attributes);
+      log("SOUNDCLOUD REQEUST SENT")
+      var filePath = 'http://soundcloud.com/oembed?url=' + current_url;
+      $.ajax({
+        url: filePath,
+        dataType: 'xml',
+        success: function(data) {
+          console.log('SOUNDCLOUD :: ')
+          console.log(data)
+          //var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          //$current_element.next().after(newElement)
+        }
+      });
       
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Element & make it work
@@ -102,7 +112,7 @@ function embedYoutubeLinks(){
     var tempAnchor = $("<a />");
     tempAnchor.attr('href', current_url)
     var hostname = tempAnchor.attr('hostname');
-
+    
     // Check to be sure that youtube or soundcloud (or any future embeds) do not
     // appear in the hostname, so it can skip all of this
     if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
