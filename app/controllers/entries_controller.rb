@@ -65,9 +65,9 @@ class EntriesController < ApplicationController
 
   def create
     whats = (params[:what_tags] || []).map {|word| What.for word }
-    where = Where.for params[:location_attributes]
+    where = Where.for params[:entry].delete(:location_attributes)
     
-    params[:entry][:location_id] = where.id if !where.nil?    
+    params[:entry][:location_id] = where.id if where
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     links = params[:entry].delete(:links_attributes)
@@ -95,8 +95,7 @@ class EntriesController < ApplicationController
     
     @entry.set_whats(params[:what_tags])
     
-    @entry.location = Where.for params[:entry][:location_attributes]
-    params[:entry].delete(:location_attributes) # set location with line above instead
+    @entry.location = Where.for params[:entry].delete(:location_attributes)
     
     if @entry.update_attributes(params[:entry])
       respond_to do |format|
