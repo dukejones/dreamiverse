@@ -117,16 +117,18 @@
     .item.entryFilter.entries.trigger.slideArrow
       .label
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value dreams
+        %span.value entries
       .image
-        %img.dream{src: '/images/icons/dream-32-hover.png', width: '32', height: '32'}
+        %img.dream{src: '/images/icons/allEntries-32-hover.png', width: '32', height: '32'}
       .detail
         /= user._?.entries.count ? user.entries.count : @entries.count
         = @entries._?.size || user.entries.count
       .clear
 
     .filterList.entries.target.slideArrow.hidden
-      %a.type.top{href: user_entries_filter_path(user.username, 'dreams')}
+      %a.type.top{href: user_entries_path(user.username)}
+        %span all entries
+      %a.type{href: user_entries_filter_path(user.username, 'dreams')}
         %span dreams
       %a.type{href: user_entries_filter_path(user.username, 'visions')}
         %span visions
