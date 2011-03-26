@@ -71,6 +71,8 @@ class EntriesController < ApplicationController
     @entry = current_user.entries.create(params[:entry])
     @entry.set_whats(params[:what_tags])
     @entry.set_links(params[:links])
+    @entry.set_emotions(params[:emotions])
+
     if @entry.valid?
       redirect_to user_entry_path(current_user.username, @entry)
     else
