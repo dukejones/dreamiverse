@@ -16,6 +16,6 @@ class Migration::EmotionTagImporter < Migration::Importer
   end
   
   def self.migrate_all
-    migrate_all_from_collection(Legacy::Emotion.all)
+    migrate_all_from_collection(Legacy::Emotion.where(:setting > 0).all)
   end
 end
