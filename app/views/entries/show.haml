@@ -92,18 +92,19 @@
 
 
       /EMOTIONS DETAILS & THUMBS
-      .emotionsWrap.wrapper
+      - if @entry.tags.emotion.first
+        .emotionsWrap.wrapper
       
-        / EMOTIONS DETAILS
-        .emotions-details.target.emotionshowhide.hidden
-          .emotionsHeader.headers
-            .img
-            emotions
-          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
+          / EMOTIONS DETAILS
+          .emotions-details.target.emotionshowhide.hidden
+            .emotionsHeader.headers
+              .img
+              emotions
+            = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
       
-        / EMOTIONS THUMB
-        .emotions-thumb.trigger.emotionshowhide
-          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
+          / EMOTIONS THUMB
+          .emotions-thumb.trigger.emotionshowhide
+            = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
 
 
 
