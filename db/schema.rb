@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325055938) do
+ActiveRecord::Schema.define(:version => 20110325192501) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(:version => 20110325055938) do
     t.integer  "default_sharing_level", :default => 200
     t.boolean  "follow_authorization",  :default => false
     t.boolean  "ubiquity",              :default => false, :null => false
-    t.integer  "auth_level",            :default => 10
+    t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
   end

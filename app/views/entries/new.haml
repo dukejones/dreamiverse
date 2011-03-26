@@ -40,7 +40,6 @@
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
-    
     = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
@@ -205,125 +204,30 @@
 
 
 
-
     / NEW ENTRY EMOTIONS
-    / .entryEmotions.entryPanels.hidden
-    /   .emotionsHeader.headers
-    /     .img
-    /     emotions
-    / 
-    /   / MOOD PICKER
-    /   .moodPicker
-    /     .love
-    /       %label.one
-    /         %span love
-    /         = radio_button_tag 'love', 1, true
-    /       %label.two
-    /         = radio_button_tag 'love', 2
-    /       %label.three
-    /         = radio_button_tag 'love', 3
-    /       %label.four
-    /         = radio_button_tag 'love', 4
-    /       %label.five
-    /         = radio_button_tag 'love', 5
-    /     .joy
-    /       %label.one
-    /         %span joy
-    /         = radio_button_tag 'joy', 1, true
-    /       %label.two
-    /         = radio_button_tag 'joy', 2
-    /       %label.three
-    /         = radio_button_tag 'joy', 3
-    /       %label.four
-    /         = radio_button_tag 'joy', 4
-    /       %label.five
-    /         = radio_button_tag 'joy', 5
-    /     .surprise
-    /       %label.one
-    /         %span surprise
-    /         = radio_button_tag 'surprise', 1, true
-    /       %label.two
-    /         = radio_button_tag 'surprise', 2
-    /       %label.three
-    /         = radio_button_tag 'surprise', 3
-    /       %label.four
-    /         = radio_button_tag 'surprise', 4
-    /       %label.five
-    /         = radio_button_tag 'surprise', 5
-    /     .anger
-    /       %label.one
-    /         %span anger
-    /         = radio_button_tag 'anger', 1, true
-    /       %label.two
-    /         = radio_button_tag 'anger', 2
-    /       %label.three
-    /         = radio_button_tag 'anger', 3
-    /       %label.four
-    /         = radio_button_tag 'anger', 4
-    /       %label.five
-    /         = radio_button_tag 'anger', 5
-    /     .mystical
-    /       %label.one
-    /         %span mystical
-    /         = radio_button_tag 'mystical', 1, true
-    /       %label.two
-    /         = radio_button_tag 'mystical', 2
-    /       %label.three
-    /         = radio_button_tag 'mystical', 3
-    /       %label.four
-    /         = radio_button_tag 'mystical', 4
-    /       %label.five
-    /         = radio_button_tag 'mystical', 5
-    /     .wonder
-    /       %label.one
-    /         %span wonder
-    /         = radio_button_tag 'wonder', 1, true
-    /       %label.two
-    /         = radio_button_tag 'wonder', 2
-    /       %label.three
-    /         = radio_button_tag 'wonder', 3
-    /       %label.four
-    /         = radio_button_tag 'wonder', 4
-    /       %label.five
-    /         = radio_button_tag 'wonder', 5
-    /     .sadness
-    /       %label.one
-    /         %span sadness
-    /         = radio_button_tag 'sadness', 1, true
-    /       %label.two
-    /         = radio_button_tag 'sadness', 2
-    /       %label.three
-    /         = radio_button_tag 'sadness', 3
-    /       %label.four
-    /         = radio_button_tag 'sadness', 4
-    /       %label.five
-    /         = radio_button_tag 'sadness', 5
-    /     .stress
-    /       %label.one
-    /         %span stress
-    /         = radio_button_tag 'stress', 1, true
-    /       %label.two
-    /         = radio_button_tag 'stress', 2
-    /       %label.three
-    /         = radio_button_tag 'stress', 3
-    /       %label.four
-    /         = radio_button_tag 'stress', 4
-    /       %label.five
-    /         = radio_button_tag 'stress', 5
-    /     .fear
-    /       %label.one
-    /         %span fear
-    /         = radio_button_tag 'fear', 1, true
-    /       %label.two
-    /         = radio_button_tag 'fear', 2
-    /       %label.three
-    /         = radio_button_tag 'fear', 3
-    /       %label.four
-    /         = radio_button_tag 'fear', 4
-    /       %label.five
-    /         = radio_button_tag 'fear', 5
-    /   .clear
-
+    .entryEmotions.entryPanels.hidden
+      .emotionsHeader.headers
+        .img
+        emotions
+    
+      / MOOD PICKER
+      .moodPicker
+        - Emotion.all.each do |emotion|
+          %div{class: emotion.name}
+            - default = @entry.tags.where(noun: emotion).first._?.intensity || 0
+            - (0..4).each do |i|
+              - number_word = case i
+                - when 0 then 'zero'
+                - when 1 then 'one'
+                - when 2 then 'two'
+                - when 3 then 'three'
+                - when 4 then 'four'
+              
+              %label{class: number_word}
+                - if i == 0
+                  %span= emotion.name
+                = radio_button_tag "emotions[#{emotion.name}]", i, (i == default)
+      .clear
 
 
 
@@ -341,7 +245,7 @@
         .img
         links
 
-      / .attach.mood
-      /   %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
-      /   emotions
+      .attach.mood
+        %img{src: '/images/icons/mood-19.png', width: '19', height: '19'}
+        emotions
       .clear

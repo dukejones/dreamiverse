@@ -2,7 +2,7 @@
   = sass_link_tag 'entries'
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
-  = javascript_include_tag 'browserdetect', 'jquery-ui.min'
+  = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
   
   - if !@entry.body.blank?
@@ -61,7 +61,7 @@
       / TAG CLOUD
       .tagCloud
         .toggleWrap
-        - @entry.tags.limit(16).shuffle.each do |tag|
+        - @entry.tags.what.limit(16).shuffle.each do |tag|
           %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 
 
@@ -92,18 +92,18 @@
 
 
       /EMOTIONS DETAILS & THUMBS
-      / .emotionsWrap.wrapper
-      / 
-      /   / EMOTIONS DETAILS
-      /   .emotions-details.target.showhide.hidden
-      /     .emotionsHeader.headers
-      /       .img
-      /       emotions
-      /     = render :partial => "emotions"
-      / 
-      /   / EMOTIONS THUMB
-      /   .emotions-thumb.trigger.showhide
-      /     = render :partial => "emotions"
+      .emotionsWrap.wrapper
+      
+        / EMOTIONS DETAILS
+        .emotions-details.target.showhide.hidden
+          .emotionsHeader.headers
+            .img
+            emotions
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
+      
+        / EMOTIONS THUMB
+        .emotions-thumb.trigger.showhide
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
 
 
 
@@ -173,7 +173,44 @@
             / .clear
           #sorting
           .clear
-    
+ 
+      / ANALYSIS
+      / .entryAnalysis.wrapper
+      /   .trigger.slide
+      /     .analysisHeader.headers
+      /       analysis
+      /       %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
+      /     .clear
+      / 
+      /   .target.slide
+      /     / ANALYSIS TAGS
+      /     .analysisTags.wrapper
+      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+      /         dolphin
+      /         .arrow
+      /       .description.target.slide.hidden
+      /         %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+      /         .source Dream Moods
+      / 
+      /     .analysisTags.wrapper
+      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+      /         tsunami
+      /         .arrow
+      / 
+      /     .analysisTags.wrapper
+      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+      /         flying
+      /         .arrow
+      /       .description.target.slide.hidden
+      /         %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+      /         .source Dream Moods
+      / 
+      /     .analysisTags.wrapper
+      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+      /         telepathy
+      /         .arrow
+
+   
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
