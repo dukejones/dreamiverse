@@ -72,19 +72,19 @@ class ContextView
     # Change the icon (Want to reduce duplication here if poss - from scott)
     switch filter_state
       when 'dreams'
-        iconFileSource = 'dream-32-hover.png'
+        iconFileSource = 'dream-24-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'visions'
-        iconFileSource = 'vision-32-hover.png'
+        iconFileSource = 'vision-24-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'experiences'
-        iconFileSource = 'experience-32-hover.png'
+        iconFileSource = 'experience-24-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'articles'
-        iconFileSource = 'article-32-hover.png'
+        iconFileSource = 'article-24-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       when 'friends'
@@ -100,7 +100,7 @@ class ContextView
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
       else
-        iconFileSource = 'allEntries-32-hover.png'
+        iconFileSource = 'allEntries-24-hover.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       
