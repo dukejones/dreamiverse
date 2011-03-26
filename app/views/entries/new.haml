@@ -126,7 +126,7 @@
 
         .addLocation
           .img
-          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38"}
+          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38",f: f}
         .date
           .img
           = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
@@ -140,7 +140,7 @@
     = render :partial => "date_time"
 
     / NEW ENTRY LOCATION
-    = render :partial => "location"
+    = render :partial => "location",locals: {f: f}
 
     / NEW ENTRY IMAGES
     - unless is_ipad?
