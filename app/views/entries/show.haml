@@ -99,11 +99,11 @@
           .emotionsHeader.headers
             .img
             emotions
-          = render :partial => "emotions", :locals => {emotion_tags: @entry.emotion_tags}
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
       
         / EMOTIONS THUMB
         .emotions-thumb.trigger.showhide
-          = render :partial => "emotions", :locals => {emotion_tags: @entry.emotion_tags}
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
 
 
 
