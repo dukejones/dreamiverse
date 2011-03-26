@@ -26,11 +26,11 @@ class Tag < ActiveRecord::Base
   end
 
   def self.emotion
-    joins(:noun.type(Emotion))
+    joins(:noun.type(Emotion)).includes(:noun)
   end
-  def self.emotions
-    emotion.includes(:noun).map(&:noun)
-  end
+  # def self.emotions
+  #   emotion.includes(:noun).map(&:noun)
+  # end
   
   # Must join the noun_type class first
   def self.named(name)
@@ -38,7 +38,7 @@ class Tag < ActiveRecord::Base
   end
   
   def self.what
-    joins(:noun.type(What))
+    joins(:noun.type(What)).includes(:noun)
   end
   def self.whats
     what.includes(:noun).map(&:noun)

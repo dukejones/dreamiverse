@@ -86,12 +86,20 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal 3, e.tags.emotion.named('surprise').first.intensity
     assert_equal 4, e.tags.emotion.named('anger').first.intensity
     
-    # It changes the emotion
+    # It changes the emotion and doesn't make a new tag
     emotion_params = {"love"=>"4"}
+    old_love_tag = e.tags.emotion.named('love').first
     e.set_emotions(emotion_params)
     assert_equal 4, e.emotions.count
     assert_equal 4, e.tags.emotion.named('love').first.intensity
-    assert_equal 3, e.tags.emotion.named('surprise').first.intensity
+    assert_equal 3, e.tags.emotion.named('surprise').first.intensity # sanity check
+    assert_equal old_love_tag.id, e.tags.emotion.named('love').first.id
+  end
+  
+  test "set_emotions works on new entry" do
+    # e = Entry.new(body: 'stuff', user: User.make)
+    # emotion_params = {"love"=>"1", "joy"=>"2", "surprise"=>"3", "anger"=>"4"}
+    # e.set_emotions
   end
 
   test "random" do

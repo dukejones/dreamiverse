@@ -214,6 +214,7 @@
       .moodPicker
         - Emotion.all.each do |emotion|
           %div{class: emotion.name}
+            - default = @entry.tags.where(noun: emotion).first._?.intensity || 0
             - (0..4).each do |i|
               - number_word = case i
                 - when 0 then 'zero'
@@ -223,9 +224,9 @@
                 - when 4 then 'four'
               
               %label{class: number_word}
-                - if i == 1
+                - if i == 0
                   %span= emotion.name
-                = radio_button_tag "emotions[#{emotion.name}]", i
+                = radio_button_tag "emotions[#{emotion.name}]", i, (i == default)
       .clear
 
 
