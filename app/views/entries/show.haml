@@ -173,7 +173,44 @@
             / .clear
           #sorting
           .clear
-    
+ 
+      / ANALYSIS
+      .entryAnalysis.wrapper
+        .trigger.slide
+          .analysisHeader.headers
+            analysis
+            %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
+          .clear
+
+        .target.slide
+          / ANALYSIS TAGS
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              dolphin
+              .arrow
+            .description.target.slide.hidden
+              %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              tsunami
+              .arrow
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              flying
+              .arrow
+            .description.target.slide.hidden
+              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+              .source Dream Moods
+
+          .analysisTags.wrapper
+            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
+              telepathy
+              .arrow
+
+   
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
