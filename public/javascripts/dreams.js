@@ -550,13 +550,13 @@ function setupEvents(){
   })
   
   // Setup mood picker
-  $('.moodPicker input').change(function(event){
+  $('.emotionPanel input').change(function(event){
     $(this).parent().parent().find('label').removeClass('selected')
     $(this).parent().addClass('selected')
   })
   
-  $('.entryAttach .mood').unbind();
-  $('.entryAttach .mood').click(function(){
+  $('.entryAttach .emotions').unbind();
+  $('.entryAttach .emotions').click(function(){
     $('.entryEmotions').slideDown();
     $(this).hide();
     checkAttachButtons();
@@ -565,7 +565,7 @@ function setupEvents(){
   $('.entryEmotions .headers').unbind()
   $('.entryEmotions .headers').click(function(){
     var radioSelected = false;
-    $('.moodPicker input[type="radio"]:checked').each(function(i, el){
+    $('.emotionPanel input[type="radio"]:checked').each(function(i, el){
       // only mark as selected if its a value other than 1
       if($(el).val() != '1'){
         radioSelected = true
@@ -573,10 +573,10 @@ function setupEvents(){
     })
     
     if(radioSelected){
-      if($('.moodPicker').css('display') == 'none'){
-        $('.moodPicker').slideDown()
+      if($('.emotionPanel').css('display') == 'none'){
+        $('.emotionPanel').slideDown()
       } else {
-        $('.moodPicker').slideUp()
+        $('.emotionPanel').slideUp()
       }
     } else {
       $('.entryEmotions').slideUp();

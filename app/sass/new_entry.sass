@@ -604,7 +604,7 @@
   .entryEmotions
 
     // MOOD PICKER
-    .moodPicker
+    .emotionPanel
       +round(8)
       +clear
       padding: 8px
@@ -787,6 +787,14 @@
       &:active .img
         background: url(/images/icons/link-16-active.png) no-repeat left center transparent
 
+    .attach.emotions
+      .img
+        width: 19px
+        background: url(/images/icons/mood-19.png) no-repeat left center transparent
+      &:hover .img
+        background: url(/images/icons/mood-19.png) no-repeat left center transparent
+      &:active .img
+        background: url(/images/icons/mood-19.png) no-repeat left center transparent
 
 
 
@@ -907,7 +915,7 @@
         color: #090909
 
 
-      .images, .tag, .links, .mood
+      .images, .tag, .links, .emotions
         +bevel-light
         +button-light
 
@@ -1039,6 +1047,6 @@
       p
         color: #8a8a8a
 
-      .images, .tag, .links, .mood
+      .images, .tag, .links, .emotions
         +bevel-dark
         +button-dark
