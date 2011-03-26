@@ -210,8 +210,8 @@
         .img
         emotions
     
-      / MOOD PICKER
-      .moodPicker
+      / EMOTION PANEL
+      .emotionPanel
         - Emotion.all.each do |emotion|
           %div{class: emotion.name}
             - default = @entry.tags.where(noun: emotion).first._?.intensity || 0
@@ -245,7 +245,7 @@
         .img
         links
 
-      .attach.mood
+      .attach.emotions
         .img
         emotions
       .clear
