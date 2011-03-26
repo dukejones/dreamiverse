@@ -1,0 +1,105 @@
+@import mixins
+
+.panel
+  +shine-dark-alpha(32)
+  +round(16)
+  color: #ddd
+  padding: 8px
+  margin-bottom: 28px
+  width: 744px
+
+
+.module
+  +indent-dark
+  +round(12)
+
+
+h1
+  +left
+  +font(21)
+  color: #fff
+h2
+  +left
+  +font(18)
+  color: #ccc
+
+.img
+  +left
+  width: 48px
+  height: 24px
+  background-repeat: no-repeat
+  background-position: center center
+
+
+h1, h2, .img
+  +user-select
+  +cursor
+
+
+.total
+  +round(12)
+  +left
+  +indent-light
+  color: #111
+  padding: 2px 8px
+  margin-left: 32px
+
+
+
+
+
+
+
+.user.panel
+  .img
+    background-image: url('/images/icons/dream-24-hover.png')
+
+  .newUsers
+    +clear
+    padding: 8px 0 0 8px
+
+    .userNode
+      +block
+      +left
+      +button-dark
+      +flat-dark
+      +relative
+      width: 148px
+      height: 33px
+      line-height: 33px
+      padding: 0px 8px
+      margin: 0 8px 8px 0
+      +round(16)
+      color: #fff
+      border: 1px solid #333
+      whitespace: nowrap
+      +overflow
+
+      .postCount
+        +flat-dark
+        +round(8)
+        color: #ccc
+        +absolute
+        right: 8px
+        top: 0px
+      
+      
+
+  .allUsers
+    +clear
+    .img
+
+
+.entries.panel
+  .img
+    background-image: url('/images/icons/dream-24-hover.png')
+
+
+
+
+
+
+
+
+
+

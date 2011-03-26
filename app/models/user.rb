@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   before_create -> { username.downcase! }
   before_create :create_view_preference
   after_validation :encrypt_password
+  before_save :set_auth_level
 
   validate :password_confirmation_matches
   validates_presence_of :username
@@ -173,6 +174,10 @@ class User < ActiveRecord::Base
     if (self.authentications.count == 0) && email.nil?
       errors.add :email, " must be present, or have at least one authentication."
     end
+  end
+  
+  def set_auth_level
+    self.auth_level ||= 1
   end
   
 end
