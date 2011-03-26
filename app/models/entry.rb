@@ -29,6 +29,7 @@ class Entry < ActiveRecord::Base
            :conditions => ['kind = ?', 'custom'],
            :order => 'position asc',
            :limit => 16
+  has_many :emotion_tags, :conditions => {noun_type: 'Emotion'}, :class_name => "Tag"
   has_many :custom_whats, :through => :custom_tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
@@ -162,6 +163,14 @@ class Entry < ActiveRecord::Base
     self.links = new_links
   end
 
+  def set_emotions(emotion_params)
+    emotion_params.each do |emotion_name, intensity|
+      emotion = Emotion.where(name: emotion_name).first
+      # debugger
+      self.emotion_tags.create(noun: emotion, intensity: intensity)
+    end
+  end
+  
   # Create / find a What for each tag word.
   # Remove the what tags that are on this entry but not in the tag words.
   # Add all the tag words to this entry.

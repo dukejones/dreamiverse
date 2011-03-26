@@ -90,6 +90,7 @@ class EntriesController < ApplicationController
     @entry.set_whats(params[:what_tags])
     @entry.location = Where.for params[:entry].delete(:location_attributes)
     @entry.set_links(params[:links])
+    @entry.set_emotions(params[:emotions])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|

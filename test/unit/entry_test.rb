@@ -74,6 +74,13 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal links_attrs.first[:title], new_shaman_link.title
   end
 
+  test "set_emotions sets the emotions" do
+    e = Entry.make
+    
+    emotion_params = {"love"=>"1", "joy"=>"2", "surprise"=>"3", "anger"=>"4"}
+    e.set_emotions(emotion_params)
+    assert_equal 4, e.emotions.count
+  end
 
   test "random" do
     100.times do

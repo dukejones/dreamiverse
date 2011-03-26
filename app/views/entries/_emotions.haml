@@ -7,92 +7,12 @@
 .arrow
 
 %table.container
+  - emotion_tags.each do |tag|
+    - emotion = tag.noun
+    %tr{class: emotion.name}
+      %td.name= emotion.name
+      %td.value
+        %table.amount{width: "#{tag.intensity * 25}%"}
+          %tr
+            %td
 
-  %tr.love
-    %td.name love
-    %td.value
-
-      %table.amount{width: "100%"}
-        %tr
-          %td
-
-
-  %tr.joy
-    %td.name joy
-    %td.value
-
-      %table.amount{width: "90%"}
-        %tr
-          %td
-
-
-  %tr.surprise
-    %td.name surprise
-    %td.value
-
-      %table.amount{width: "40%"}
-        %tr
-          %td
-
-
-  %tr.anger
-    %td.name anger
-    %td.value
-
-      %table.amount{width: "18%"}
-        %tr
-          %td
-
-
-  %tr.mystical
-    %td.name mystical
-    %td.value
-
-      %table.amount{width: "95%"}
-        %tr
-          %td
-
-
-  %tr.wonder
-    %td.name wonder
-    %td.value
-
-      %table.amount{width: "78%"}
-        %tr
-          %td
-
-
-  %tr.sadness
-    %td.name sadness
-    %td.value
-
-      %table.amount{width: "22%"}
-        %tr
-          %td
-
-
-  %tr.stress
-    %td.name stress
-    %td.value
-
-      %table.amount{width: "8%"}
-        %tr
-          %td
-
-
-  %tr.confusion
-    %td.name confusion
-    %td.value
-
-      %table.amount{width: "33%"}
-        %tr
-          %td
-
-
-  %tr.fear
-    %td.name fear
-    %td.value
-
-      %table.amount{width: "42%"}
-        %tr
-          %td
