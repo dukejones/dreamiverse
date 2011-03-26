@@ -13,6 +13,8 @@ class Entry < ActiveRecord::Base
 
   include Starlit
   
+  attr_accessor :skip_auto_tags
+  
   belongs_to :user
   belongs_to :location, :class_name => "Where" 
   accepts_nested_attributes_for :location, :reject_if => :all_blank 
@@ -29,7 +31,6 @@ class Entry < ActiveRecord::Base
            :conditions => ['kind = ?', 'custom'],
            :order => 'position asc',
            :limit => 16
-  has_many :emotion_tags, :conditions => {noun_type: 'Emotion'}, :class_name => "Tag"
   has_many :custom_whats, :through => :custom_tags
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
@@ -40,7 +41,6 @@ class Entry < ActiveRecord::Base
   accepts_nested_attributes_for :view_preference, :update_only => true
   
   has_many :links, :as => :owner
-  # accepts_nested_attributes_for :links
 
   has_and_belongs_to_many :images, :uniq => true
   belongs_to :main_image, :class_name => "Image"
@@ -165,9 +165,11 @@ class Entry < ActiveRecord::Base
 
   def set_emotions(emotion_params)
     emotion_params.each do |emotion_name, intensity|
-      emotion = Emotion.where(name: emotion_name).first
-      # debugger
-      self.emotion_tags.create(noun: emotion, intensity: intensity)
+      if emotion_tag = self.tags.emotion.named(emotion_name).first
+        emotion_tag.update_attribute(:intensity, intensity)
+      else
+        self.tags.emotion.create(noun: Emotion.find_by_name(emotion_name), intensity: intensity)
+      end
     end
   end
   
@@ -234,6 +236,7 @@ class Entry < ActiveRecord::Base
   
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
+    return if @skip_auto_tags
     if body_changed?
       Tag.auto_generate_tags(self)
     end

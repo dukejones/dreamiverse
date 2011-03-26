@@ -30,7 +30,7 @@ class EntryTest < ActiveSupport::TestCase
     whats = ['spoon','hound','stove','feh'].map {|word| What.create(name: word) }
     new_whats = ['spoon', 'stove', 'martha'].map {|word| What.create(name: word) }
     
-    entry = Entry.make(:whats => whats, :title => 'visions', body: 'bridge')
+    entry = Entry.make(whats: whats, title: 'visions', body: 'bridge', skip_auto_tags: false)
     entry.set_whats(new_whats.map(&:name))  
     entry.save
     entry.reload
@@ -77,19 +77,32 @@ class EntryTest < ActiveSupport::TestCase
   test "set_emotions sets the emotions" do
     e = Entry.make
     
+    # It sets the emotions' and their intensities.
     emotion_params = {"love"=>"1", "joy"=>"2", "surprise"=>"3", "anger"=>"4"}
     e.set_emotions(emotion_params)
     assert_equal 4, e.emotions.count
+    assert_equal 1, e.tags.emotion.named('love').first.intensity
+    assert_equal 2, e.tags.emotion.named('joy').first.intensity
+    assert_equal 3, e.tags.emotion.named('surprise').first.intensity
+    assert_equal 4, e.tags.emotion.named('anger').first.intensity
+    
+    # It changes the emotion
+    emotion_params = {"love"=>"4"}
+    e.set_emotions(emotion_params)
+    assert_equal 4, e.emotions.count
+    assert_equal 4, e.tags.emotion.named('love').first.intensity
+    assert_equal 3, e.tags.emotion.named('surprise').first.intensity
   end
 
   test "random" do
-    100.times do
+    20.times do
       share = Entry::Sharing.values.sample
       Entry.make(sharing_level: share)
     end
     
-    100.times do
+    30.times do
       e = Entry.random
+      # this returned nil once!  why??
       assert e.everyone?
       assert e.type != 'article'
     end

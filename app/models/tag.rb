@@ -6,17 +6,42 @@ class Tag < ActiveRecord::Base
   belongs_to :entry
   
   belongs_to :noun, :polymorphic => true
+  
   validates_uniqueness_of :entry_id, :scope => [:noun_id, :noun_type], 
     :message => "This entry already has this tag."
 
   validates_presence_of :entry_id
   validates_presence_of :noun_id
 
-  scope :custom, where( kind: 'custom' )
-  scope :auto,   where( kind: 'auto'   )
+  # Scopes
+  def self.custom
+    where( kind: 'custom' )
+  end
+  def self.auto
+    where( kind: 'auto' )
+  end
+  
+  def self.all_nouns(type)
+    joins(:noun.type(type)).includes(:noun).map(&:noun)
+  end
 
+  def self.emotion
+    joins(:noun.type(Emotion))
+  end
+  def self.emotions
+    emotion.includes(:noun).map(&:noun)
+  end
+  
+  # Must join the noun_type class first
+  def self.named(name)
+    where(:noun => {:name => name})
+  end
+  
+  def self.what
+    joins(:noun.type(What))
+  end
   def self.whats
-    where(noun_type: 'What').includes(:noun).map(&:noun)
+    what.includes(:noun).map(&:noun)
   end
 
   # tag the entry with the top x auto tags, inserted after the custom tags
