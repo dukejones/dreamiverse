@@ -7,28 +7,15 @@
   .user.panel
     .img
     %h1 users
-    .total
-      8,514,987
+    .total= User.count
 
     .module.newUsers
       %h2 new users
 
-      %a.userNode{href: "/admin"}
-        kneewalker_supreme-commander-of-space-time
-        .postCount
-          54
-      %a.userNode{href: "/admin"}
-        phong
-        .postCount
-          154
-      %a.userNode{href: "/admin"}
-        iotus
-        .postCount
-          110
-      %a.userNode{href: "/admin"}
-        placebo
-        .postCount
-          98
+      - User.all.each do |user|
+        %a.userNode{href: user_entries_path(user.username)}
+          = user.username
+          .postCount= user.entries.count
 
       .clear
 
