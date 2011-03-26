@@ -26,6 +26,14 @@ function checkForLinksShowEntry(){
 // Turns all links in the body of an entry
 // into embedded youtube links
 function embedYoutubeLinks(){
+  
+  // THIS HAS TWO MAIN FUNCTIONS, ONE GETS EVERYTHING IN THE COMMENTS PANEL
+  // ONE GETS ALL OF THE BODY LINKS. WE MAY BE ABLE TO CLEAN THIS UP TO BE ONE
+  // NEED TO THINK ABOUT IT FOR A BIT
+  
+  
+  
+  
   // One for Comments
   $('.commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
@@ -40,33 +48,45 @@ function embedYoutubeLinks(){
       hostname = "dreamcatcher.net";
     }
     
+    
+    
+    // Checks for SOUNDCLOUD LINK
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
-      var dataId = String("soundcloud-" + i);
-      // Create new SOUNDCLOUD element
-      var flashvars = {
-        enable_api: true, 
-        object_id: "dcPlayer",
-        url: current_url
-      };
-      var params = {
-        allowscriptaccess: "always"
-      };
-      var attributes = {
-        id: dataId,
-        name: dataId
-      };
-      log("SOUNDCLOUD REQEUST SENT")
-      var filePath = 'http://soundcloud.com/oembed?url=' + current_url;
+      /*var dataId = String("soundcloud-" + i);
+      $(ele).data('id', i);
+      $(ele).addClass('soundcloud');
+      
+      var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
       $.ajax({
         url: filePath,
-        dataType: 'xml',
+        dataType: 'jsonp',
         success: function(data) {
-          console.log('SOUNDCLOUD :: ')
-          console.log(data)
-          //var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          //$current_element.next().after(newElement)
+          var newElement = '<div class="audio hidden" id="' + dataId + '"> ' + data.html + '</div>';
+          $current_element.after(newElement)
+          $current_element.next().find('object').attr('width', '100%')
+          $current_element.next().find('object').find('embed').attr('width', '100%')
         }
-      });
+      });*/
+      
+    } else if(hostname == "vimeo.com" || hostname == "www.vimeo.com"){
+      /*//http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
+      var dataId = String("vimeo-" + i);
+      $(ele).data('id', i);
+      $(ele).addClass('vimeo');
+      
+      var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
+      $.ajax({
+        url: filePath,
+        dataType: 'jsonp',
+        success: function(data) {
+          console.log(data)
+          var embedPlayer = data.html;
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
+          $current_element.after(newElement)
+          $current_element.next().find('iframe').attr('width', '472')
+          $current_element.next().find('iframe').attr('height', '390')
+        }
+      });*/
       
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Element & make it work
@@ -97,12 +117,17 @@ function embedYoutubeLinks(){
           }
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.next().after(newElement)
+          $current_element.after(newElement)
         }
       });
     }
     
   })
+  
+  
+  
+  
+  
   
   // One for content body
   $('.content .body').find('a').each(function(i, ele){
@@ -115,29 +140,49 @@ function embedYoutubeLinks(){
     
     // Check to be sure that youtube or soundcloud (or any future embeds) do not
     // appear in the hostname, so it can skip all of this
-    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1) && (hostname.indexOf("soundcloud.com") != -1)){
+    if((current_url.indexOf("v=") == -1) && (hostname.indexOf("youtube.com") != -1)){
       hostname = "dreamcatcher.net";
     }
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
+      /*// If soundcloud, embed element
       var dataId = String("soundcloud-" + i);
-      // Create new SOUNDCLOUD element
-      var flashvars = {
-        enable_api: true, 
-        object_id: "dcPlayer",
-        url: current_url
-      };
-      var params = {
-        allowscriptaccess: "always"
-      };
-      var attributes = {
-        id: dataId,
-        name: dataId
-      };
-      var newElement = '<div class="soundcloud" id="' + dataId + '"></div>';
-      //var newElement = '<object height="81" width="100%"> <param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB"></param> <param name="allowscriptaccess" value="always"></param> <embed allowscriptaccess="always" height="81" src="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F10533209&amp;show_comments=true&amp;auto_play=false&amp;color=3EA7EB" type="application/x-shockwave-flash" width="100%"></embed> </object>   <span><a href="http://soundcloud.com/sporeganic/first-sun-emancipator-first">First Sun (Emancipator - First Snow REMIX)</a> by <a href="http://soundcloud.com/sporeganic">sporeganic</a></span>'
-      $current_element.after(newElement)
-      swfobject.embedSWF("http://player.soundcloud.com/player.swf", dataId, "81", "100%", "9.0.0","expressInstall.swf", flashvars, params, attributes);
-
+        $(ele).data('id', i);
+        $(ele).addClass('soundcloud');
+      
+        var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
+        $.ajax({
+          url: filePath,
+          dataType: 'jsonp',
+          success: function(data) {
+            var newElement = '<div class="audio hidden" id="' + dataId + '"> ' + data.html + '</div>';
+            $current_element.after(newElement)
+            $current_element.next().find('object').attr('width', '100%')
+            $current_element.next().find('object').find('embed').attr('width', '100%')
+          }
+        });*/
+        
+        
+    } else if(hostname == "vimeo.com" || hostname == "www.vimeo.com"){
+     /* //http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
+      var dataId = String("vimeo-" + i);
+      $(ele).data('id', i);
+      $(ele).addClass('vimeo');
+      
+      var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
+      $.ajax({
+        url: filePath,
+        dataType: 'jsonp',
+        success: function(data) {
+          console.log(data)
+          var embedPlayer = data.html;
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
+          $current_element.after(newElement)
+          $current_element.next().find('iframe').attr('width', '546')
+          $current_element.next().find('iframe').attr('height', '390')
+        }
+      });*/
+         
+    
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Youtube Element & make it work
       var dataId = String("youtube-" + i);
@@ -167,36 +212,47 @@ function embedYoutubeLinks(){
           }
     
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.next().after(newElement)
+          $current_element.after(newElement)
         }
       });
     }
     
   })
-  // Set click event to close youtube links
-  $('.content .video').find('.close-24').live("click", function(event){
-    $(event.currentTarget).parent().hide()
-  })
+
+
+
   
-  // Add youtube icon after each youtube link
-  $('.content .body, .commentsPanel').find('a.youtube').filter(function(){
+  // Add youtube icon after each youtube, soundcloud & vimeo link
+  $('.content .body, .commentsPanel').find('a.youtube, a.soundcloud, a.vimeo').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).after('<img class="youtube" src="/images/icons/play-16-hover.png" />')
+  }).append('<img class="youtube" src="/images/icons/play-16-hover.png" />')
+  
+  
+  
+  // WILL NEED TO FIGURE OUT A WAY TO COMBINE ALL OF THESE
+  // AND MAKE THEM WORK EASILY W ALL NEW EMBED TYPES!
+  
   
   // Set click event for youtube links
   $('.content .body, .commentsPanel').find('a.youtube').click(function(event){
     event.preventDefault()
-    // Hide others
-    //$('.video').hide()
-    
     var embedVideo = String("#youtube-" + $(event.currentTarget).data('id'));
     $(embedVideo).show()
-    
-    //var newY = getOffset($(embedVideo).get(0)).top
-    
-    // Scroll to video
-    //$('html, body').animate({scrollTop:newY}, 'slow');
   })
+  /* Turning this off until we get current features launched
+  // Set click event for soundcloud links
+  $('.content .body, .commentsPanel').find('a.soundcloud').click(function(event){
+    event.preventDefault()
+    var embedVideo = String("#soundcloud-" + $(event.currentTarget).data('id'));
+    $(embedVideo).show()
+  })
+  
+  // Set click event for vimeo links
+  $('.content .body, .commentsPanel').find('a.vimeo').click(function(event){
+    event.preventDefault()
+    var embedVideo = String("#vimeo-" + $(event.currentTarget).data('id'));
+    $(embedVideo).show()
+  })*/
     
 }
 
