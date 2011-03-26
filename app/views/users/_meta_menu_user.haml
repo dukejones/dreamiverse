@@ -38,8 +38,14 @@
         .img
         = render partial: "shared/hover_label", locals: {message: "dreamstars", x: "12", y: "-30"}
 
-      = form_tag search_user_path, class: 'searchForm' do
-        = text_field_tag :search_string, nil, class: 'searchField', placeholder: 'search users'
+      .searchWrap.wrapper
+        .searchIcon.trigger.showhide
+          .img
+          = render partial: "shared/hover_label", locals: {message: "search users", x: "12", y: "-39"}
+
+        = form_tag search_user_path, class: 'searchForm target showhide hidden' do
+          = text_field_tag :search_string, nil, class: 'searchField', placeholder: 'search users'
+          = submit_tag 'search', :class => 'search', :value => ''
 
     %a.randomDream{href: '/random'}
       = render partial: "shared/hover_label", locals: {message: "random dream!", x: "19", y: "-30"}
