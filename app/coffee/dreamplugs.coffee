@@ -73,6 +73,24 @@ window.setupDreamplugs = ->
       $newTargetShowHide.hide()
   )
   
+  # Setup showhide triggers FOR EMOTIONS PANEL
+  $('.trigger.emotionshowhide').click( (event) ->
+    $newTargetShowHide = $(event.currentTarget).parent().find('.target.emotionshowhide')
+    
+    if $newTargetShowHide.css('display') is 'none'
+      $newTargetShowHide.show()
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetShowHide.hide()
+        $('#bodyClick').remove()
+      )
+    else
+      $newTargetShowHide.hide()
+      $('#bodyClick').remove()
+  )
+  
   # Setup showhide triggers REMOVES CLICKED ELEMENT
   $('.trigger.showhideremove').click( (event) ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhideremove')

@@ -52,6 +52,16 @@ $(document).ready ->
     $('.entryAttach .links').hide()
     $('.entryLinks').slideDown(250)
   
+  radioSelected = false
+  $('.emotionPanel input[type="radio"]:checked').each (i, el) ->
+    # only mark as selected if its a value other than 1
+    if $(el).val() isnt '0'
+      radioSelected = true
+      $(el).parent().addClass('selected')
+
+  if radioSelected
+    $('.entryAttach .emotions').hide()
+    $('.entryEmotions').slideDown(250)
   
   # Check for youtube videos & get thumb/desc
   $('#linkHolder .youtube').each (i, el) =>
