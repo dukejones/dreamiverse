@@ -118,7 +118,8 @@ abbr, acronym
 
 
 
-
+// PAGE HEADERS
+// STRUCTURE
 #entryField, #friendField
   .pageHeader
     +user-select
@@ -174,6 +175,33 @@ abbr, acronym
     width: 634px
     .img
       background: url(/images/icons/stream-32-hover.png) no-repeat center transparent
+
+
+// PAGE HEADERS
+// COLOR
+.light
+  #entryField, #friendField
+    .pageHeader
+      background: #fff
+      background: -moz-linear-gradient(top, rgba(255,255,255,1.0), rgba(255,255,255,1.0) 4px, rgba(255,255,255,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,1.0)), color-stop(.1,rgba(255,255,255,1.0)), to(rgba(255,255,255,0.0)))
+
+    h1
+      color: #000
+
+
+.dark
+  #entryField, #friendField
+    .pageHeader
+      background: #000
+      background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
+
+    h1
+      color: #fff
+
+
+
 
 
 // CLOSE ICONS
