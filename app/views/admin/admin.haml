@@ -1,6 +1,7 @@
 - content_for :head do
   = sass_link_tag 'admin'
 
+
 #entryField
 
 
@@ -9,8 +10,16 @@
     %h1 users
     .total= User.count
 
-    .module.newUsers
-      %h2 new users
+    / .module.newUsers
+    /   %h2 new users
+    /   .clear
+    / .clear
+
+
+    .module.allUsers
+      .img
+      %h2 user list
+      .clear
 
       - User.all.each do |user|
         %a.userNode{href: user_entries_path(user.username)}
@@ -21,27 +30,20 @@
 
 
 
-
-
-
-    .module.allUsers
-      .img
-      %h2 user list
-
-
-
-
   .entries.panel
     .img
     %h1 entries
-    .total
-      32,514,987
+    .total= Entry.count
+    .clear
 
-    .module.activeUsers
-      %h2 most active users
-
-    .module.seedCodes
-      %h2 seed codes
-
-    .module.sharing
-      %h2 sharing
+    / .module.activeUsers
+    /   %h2 most active users
+    / .clear
+    / 
+    / .module.seedCodes
+    /   %h2 seed codes
+    / .clear
+    / 
+    / .module.sharing
+    /   %h2 sharing
+    / .clear
