@@ -1,7 +1,7 @@
 - content_for :head do
   = sass_link_tag 'admin'
 
-- unless current_user.blank?
+- unless current_user.auth_level == 5
 
   #entryField
 
