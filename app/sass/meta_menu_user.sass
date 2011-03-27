@@ -158,6 +158,7 @@
         top: 0
         left: 0
         width: 162px  // webkit breaks without width
+        z-index: 1200
 
         input.searchField
           +round(8)
@@ -171,6 +172,9 @@
           border: 1px solid #CCC
           &:focus
             color: #777
+            box-shadow:         5px 5px 10px #333
+            -moz-box-shadow:    5px 5px 10px #333
+            -webkit-box-shadow: 5px 5px 10px #333
 
         input.search
           +absolute

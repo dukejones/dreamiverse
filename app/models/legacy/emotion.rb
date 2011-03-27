@@ -5,10 +5,10 @@ class Legacy::Emotion < Legacy::Base
   belongs_to 'option', {foreign_key: 'dreamEmotionOptionId', class_name: "Legacy::EmotionOption"}
 
   def intensity
-    setting / 10
+    setting / 25
   end
   def noun_id
-    emotion = Emotion.find_by_name option.title
+    emotion = ::Emotion.find_by_name option.title
     if emotion.nil?
       emotion = Migration::EmotionImporter.new(option).migrate
       emotion.save!

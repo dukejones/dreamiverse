@@ -14,6 +14,7 @@ Entry.blueprint do
   body { Faker::Lorem.paragraphs(6) }
   title { Faker::Lorem.words(5).join(' ').titleize }
   user { User.make }
+  skip_auto_tags { true }
 end
 
 Hit.blueprint do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110316214626) do
+ActiveRecord::Schema.define(:version => 20110325192501) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -153,9 +153,9 @@ ActiveRecord::Schema.define(:version => 20110316214626) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-    t.integer "intensity"
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
+    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|
@@ -173,7 +173,7 @@ ActiveRecord::Schema.define(:version => 20110316214626) do
     t.integer  "default_sharing_level", :default => 200
     t.boolean  "follow_authorization",  :default => false
     t.boolean  "ubiquity",              :default => false, :null => false
-    t.integer  "auth_level",            :default => 10
+    t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
   end
@@ -211,8 +211,8 @@ ActiveRecord::Schema.define(:version => 20110316214626) do
     t.string  "city"
     t.string  "province"
     t.string  "country"
-    t.decimal "latitude",  :precision => 6, :scale => 0
-    t.decimal "longitude", :precision => 6, :scale => 0
+    t.decimal "latitude",  :precision => 10, :scale => 6
+    t.decimal "longitude", :precision => 10, :scale => 6
   end
 
   create_table "whos", :force => true do |t|

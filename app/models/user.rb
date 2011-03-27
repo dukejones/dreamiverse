@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
   AuthLevel = {
     none:      0,
-    basic:     10,
-    moderator: 20,
-    designer:  30,
-    developer: 40,
-    admin:     50 
+    basic:     1,
+    moderator: 2,
+    designer:  3,
+    developer: 4,
+    admin:     5 
   }
   
   include Starlit
@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
   before_create -> { username.downcase! }
   before_create :create_view_preference
   after_validation :encrypt_password
+  before_save :set_auth_level
 
   validate :password_confirmation_matches
   validates_presence_of :username
@@ -74,10 +75,20 @@ class User < ActiveRecord::Base
 
   def self.authenticate(auth_params)
     self.where(:encrypted_password => sha1(auth_params[:password]))
-      .where(["username=? OR email=?", auth_params[:username], auth_params[:username]])
+      .where("username=:username OR email=:username", {username: auth_params[:username]})
       .first
   end
 
+  def self.authenticate_from_remember_me_cookie(cookie_value)
+    user_id, password_hash = cookie_value.split('::')
+    u = find_by_id(user_id)
+    u && password_hash == u.encrypted_password ? u : nil
+  end
+  
+  def remember_me_cookie_value
+    [self.id, self.encrypted_password].join('::')
+  end
+  
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     self
@@ -163,6 +174,10 @@ class User < ActiveRecord::Base
     if (self.authentications.count == 0) && email.nil?
       errors.add :email, " must be present, or have at least one authentication."
     end
+  end
+  
+  def set_auth_level
+    self.auth_level ||= 1
   end
   
 end

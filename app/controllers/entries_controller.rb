@@ -64,11 +64,15 @@ class EntriesController < ApplicationController
   end
 
   def create
+    where = Where.for params[:entry].delete(:location_attributes)
+    params[:entry][:location_id] = where.id if where
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     @entry = current_user.entries.create(params[:entry])
     @entry.set_whats(params[:what_tags])
     @entry.set_links(params[:links])
+    @entry.set_emotions(params[:emotions])
+
     if @entry.valid?
       redirect_to user_entry_path(current_user.username, @entry)
     else
@@ -86,7 +90,9 @@ class EntriesController < ApplicationController
     params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
     @entry.set_whats(params[:what_tags])
+    @entry.location = Where.for params[:entry].delete(:location_attributes)
     @entry.set_links(params[:links])
+    @entry.set_emotions(params[:emotions])
 
     if @entry.update_attributes(params[:entry])
       respond_to do |format|

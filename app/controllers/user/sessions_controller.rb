@@ -10,6 +10,9 @@ class User::SessionsController < ApplicationController
   def create
     if user = User.authenticate(params[:user])
       set_current_user user
+      if params[:remember_me]
+        cookies[:dreamcatcher_remember_me] = { value: user.remember_me_cookie_value, expires: 2.weeks.from_now }
+      end
       flash.notice = 'logged in.'
     else
       flash.alert = "unrecognized username / password"
@@ -27,6 +30,7 @@ class User::SessionsController < ApplicationController
 
   def destroy
     set_current_user(nil)
+    cookies.delete :dreamcatcher_remember_me
     redirect_to :root
   end
 end

@@ -12,9 +12,12 @@ function initGeo(){
       $(this).addClass('selected');
       $('.entryLocation').slideDown()
       
-      if(!geoFetching){
+      if(!geoFetching && !$('.entryLocation').data('id')){
         geoFetching = true;
         getGeo();
+      } else {
+        $('.finding').hide()
+        $('.entryLocation').find('.data').show()
       }
     } else {
       $('.entryLocation').slideUp();
@@ -126,7 +129,7 @@ function getAddress(_lat, _lng){
   $('#location_attributes_latitude').val(lat)
   
   var url = 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + _lat + ',' + _lng + '&sensor=true';
-  console.log(url)
+  log(url)
   
   // NEW WAY (still under construction ;D)
   /*$.getJSON('http://maps.googleapis.com/maps/api/geocode/json?latlng=45.5854466,-122.695003&sensor=true', function(data) {
@@ -139,16 +142,37 @@ function getAddress(_lat, _lng){
   
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'latLng': latlng }, function(data, status){
-    console.log(data)
+    log(data)
     // Remove finding your location option
     $('.entryLocation .data').slideDown()
     $('.entryLocation .finding').remove();
     
-    var country = data[0].address_components[6].long_name;
+    // parse geo data
+    var country; 
+    var province; 
+    var city; 
+    $.each(data[0].address_components, function(i, datum) {
+      if (datum.types[0] == 'country') {
+        country = datum.long_name;
+      }
+      if (datum.types[0] == 'administrative_area_level_1') {
+        province = datum.short_name;
+      }
+      if (datum.types[0] == 'administrative_area_level_2') {
+        city = datum.long_name;
+      }
+    });
+    var latitude = data[0].geometry.location.Aa;    
+    var longitude = data[0].geometry.location.Ca;
+    
+    log(data[0].geometry.location);
+    log('longitude: '+ longitude + ' latitude: ' + latitude);
     
     // Set geo data
-    $('.entryLocation .city .input').val(data[0].address_components[2].long_name);
-    $('.entryLocation .state .input').val(data[0].address_components[5].short_name);
+    $('.entryLocation .city .input').val(city);
+    $('.entryLocation .state .input').val(province);
     $('.entryLocation .country .input').val(country);
+    $('#location_latitude').val(latitude);
+    $('#location_longitude').val(longitude);
   })
 }

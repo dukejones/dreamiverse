@@ -12,17 +12,14 @@
   .loginPanel.hidden
     = form_for(User.new, {url: user_session_path}) do |f|
 
-      %p.error.hidden incorrect username
       %span username
-      / %label.stay
-      /   Stay logged in
-      /   %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-      %a.forgot{href: forgot_password_path} Forgot password
-
+      %label.stay
+        Stay logged in
+        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
       = f.text_field(:username, {class: 'login-input', tabindex: '1'})
 
-      %p.error.hidden username and password do not match
       %span password
+      %a.forgot{href: forgot_password_path} Forgot password
       = f.password_field(:password, {class: 'login-input', tabindex: '2'})
 
       .submit

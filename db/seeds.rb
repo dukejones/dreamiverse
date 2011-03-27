@@ -21,3 +21,8 @@ if Image.where(:title => "Default Avatar").count == 0
   })
   default_avatar_image.import_from_file "#{Rails.root}/db/#{avatar_filename}"
 end
+
+puts "Seeding Emotions..."
+%w(love joy surprise anger mystical wonder sadness stress fear).each do |emotion_name|
+  Emotion.create(name: emotion_name) unless Emotion.where(name: emotion_name).count > 0
+end
