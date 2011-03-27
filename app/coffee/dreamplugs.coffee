@@ -73,6 +73,25 @@ window.setupDreamplugs = ->
       $newTargetShowHide.hide()
   )
   
+  # Setup showhide SEARCH triggers
+  $('.trigger.showhidesearch').click( (event) ->
+    $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhidesearch')
+    
+    if $newTargetShowHide.css('display') is 'none'
+      $newTargetShowHide.show()
+      $('#search_string').focus()
+      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
+      $('body').prepend(bodyClick)
+    
+      $('#bodyClick').click( (event) =>
+        $newTargetShowHide.fadeOut(250)
+        $('#bodyClick').remove()
+      )
+    else
+      $newTargetShowHide.fadeOut(250)
+      $('#bodyClick').remove()
+  )
+  
   # Setup showhide triggers FOR EMOTIONS PANEL
   $('.trigger.emotionshowhide').click( (event) ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.emotionshowhide')

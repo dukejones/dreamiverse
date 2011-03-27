@@ -52,6 +52,12 @@ $(document).ready ->
     $('.entryAttach .links').hide()
     $('.entryLinks').slideDown(250)
   
+  # Check if location has been set and expand if so
+  if $('.entryLocation').data('id')
+    $('.entryLocation').slideDown(250)
+    $('.entryLocation .data').show()
+  
+  # Check if emotions have been chosen, if so expand
   radioSelected = false
   $('.emotionPanel input[type="radio"]:checked').each (i, el) ->
     # only mark as selected if its a value other than 1
