@@ -323,7 +323,18 @@ abbr, acronym
     height: 28px
     line-height: 28px
     width: 154px
-
+    span
+      margin: 0 0 0 16px
+    .img
+      +right
+      height: 28px
+      width: 24px
+      margin: 0 8px 0 8px
+      background: url(/images/icons/login-24.png) no-repeat center transparent
+    &:hover .img
+      background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+    &:active .img
+      background: url(/images/icons/login-24-active.png) no-repeat center transparent
 
   .facebook
     +right
@@ -396,7 +407,6 @@ abbr, acronym
       color: #fff
       width: 156px
       line-height: 30px
-      +font(18)
       +shine-blue(15)
 
       &:hover
@@ -406,6 +416,20 @@ abbr, acronym
         +shine-blue(0)
         background: #0c2b50
         +gradient(#0c2b50, #5d80ad)
+
+      span
+        +font(18)
+        margin: 0 0 0 16px
+      .img
+        +right
+        height: 28px
+        width: 24px
+        margin: 0 8px 0 8px
+        background: url(/images/icons/login-24.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/login-24-active.png) no-repeat center transparent
 
       input#loginButton.button
         +absolute
