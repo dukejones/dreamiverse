@@ -2,7 +2,8 @@
 
 .loginPanelWrap.wrapper
   %a.login{href: login_path}
-    login
+    .img
+    %span login
   %a.loginItem.facebook{href: '/auth/facebook'}
     = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "0"}
   .clear
@@ -24,7 +25,8 @@
 
       .submit
         .text
-          login &rsaquo;
+          .img
+          %span login
           %input#loginButton.button{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
 
       #loginSpacer
