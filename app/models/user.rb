@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   # usernames must be lowercase
   before_create -> { username.downcase! }
   before_create :create_view_preference
+  before_validation(:on => :create) do
+    username.strip! 
+    email.strip!
+  end  
   after_validation :encrypt_password
   before_save :set_auth_level
 
