@@ -3,6 +3,7 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
   = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
+  = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=true'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
   
   - if !@entry.body.blank?
@@ -161,6 +162,8 @@
         
           - if location = @entry.location
             .postLocation= "#{location.city}, #{location.province}"
+            
+            /#entryLocationMap{style: "height: 200px", 'data-lng'=> "#{location.longitude}", 'data-lat'=> "#{location.latitude}"}
 
 
           #tag-list.tag-list.ui-sortable.target
