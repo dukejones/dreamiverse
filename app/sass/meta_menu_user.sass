@@ -79,6 +79,7 @@
     .item
       .img
         +left
+        +pointer
         width: 24px
         height: 26px
 
@@ -144,6 +145,7 @@
         padding: 2px 4px
         .img
           +left
+          +pointer
           width: 24px
           height: 26px
           background: url(/images/icons/search-18.png) no-repeat center transparent
@@ -172,9 +174,9 @@
           border: 1px solid #CCC
           &:focus
             color: #777
-            box-shadow:         5px 5px 10px #333
-            -moz-box-shadow:    5px 5px 10px #333
-            -webkit-box-shadow: 5px 5px 10px #333
+            box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
+            -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
+            -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
 
         input.search
           +absolute
