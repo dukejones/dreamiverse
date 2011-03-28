@@ -42,12 +42,15 @@ class User < ActiveRecord::Base
   after_validation :encrypt_password
   before_save :set_auth_level
 
+  validates_uniqueness_of :email, :allow_nil => true
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
+  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
   validates_presence_of :username
-  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_uniqueness_of :username
-  validates_length_of :username, maximum: 26, minimum: 3
-  validates_uniqueness_of :email, :allow_nil => true
+  validates_length_of :username, maximum: 26, minimum: 3  
+  validates_format_of :username, :without => /[^a-zA-Z\d*_-]/, 
+    :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"  
   validate :has_at_least_one_authentication
   
   
