@@ -52,7 +52,7 @@ function embedYoutubeLinks(){
     
     // Checks for SOUNDCLOUD LINK
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
-      /*var dataId = String("soundcloud-" + i);
+      var dataId = String("soundcloud-" + i);
       $(ele).data('id', i);
       $(ele).addClass('soundcloud');
       
@@ -66,10 +66,10 @@ function embedYoutubeLinks(){
           $current_element.next().find('object').attr('width', '100%')
           $current_element.next().find('object').find('embed').attr('width', '100%')
         }
-      });*/
+      });
       
     } else if(hostname == "vimeo.com" || hostname == "www.vimeo.com"){
-      /*//http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
+      //http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
       var dataId = String("vimeo-" + i);
       $(ele).data('id', i);
       $(ele).addClass('vimeo');
@@ -86,7 +86,7 @@ function embedYoutubeLinks(){
           $current_element.next().find('iframe').attr('width', '472')
           $current_element.next().find('iframe').attr('height', '390')
         }
-      });*/
+      });
       
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Element & make it work
@@ -144,7 +144,7 @@ function embedYoutubeLinks(){
       hostname = "dreamcatcher.net";
     }
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
-      /*// If soundcloud, embed element
+      // If soundcloud, embed element
       var dataId = String("soundcloud-" + i);
         $(ele).data('id', i);
         $(ele).addClass('soundcloud');
@@ -159,11 +159,11 @@ function embedYoutubeLinks(){
             $current_element.next().find('object').attr('width', '100%')
             $current_element.next().find('object').find('embed').attr('width', '100%')
           }
-        });*/
+        });
         
         
     } else if(hostname == "vimeo.com" || hostname == "www.vimeo.com"){
-     /* //http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
+      //http://api.embed.ly/1/oembed?url=http%3A%2F%2Fvimeo.com%2F6775209&maxwidth=600&format=xml
       var dataId = String("vimeo-" + i);
       $(ele).data('id', i);
       $(ele).addClass('vimeo');
@@ -180,7 +180,7 @@ function embedYoutubeLinks(){
           $current_element.next().find('iframe').attr('width', '546')
           $current_element.next().find('iframe').attr('height', '390')
         }
-      });*/
+      });
          
     
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
@@ -239,7 +239,7 @@ function embedYoutubeLinks(){
     var embedVideo = String("#youtube-" + $(event.currentTarget).data('id'));
     $(embedVideo).show()
   })
-  /* Turning this off until we get current features launched
+
   // Set click event for soundcloud links
   $('.content .body, .commentsPanel').find('a.soundcloud').click(function(event){
     event.preventDefault()
@@ -252,7 +252,7 @@ function embedYoutubeLinks(){
     event.preventDefault()
     var embedVideo = String("#vimeo-" + $(event.currentTarget).data('id'));
     $(embedVideo).show()
-  })*/
+  })
     
 }
 
