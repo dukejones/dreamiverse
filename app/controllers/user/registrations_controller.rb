@@ -58,9 +58,9 @@ class User::RegistrationsController < ApplicationController
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
-    if verify_recaptcha
+    if verify_recaptcha()
       @user = User.create(params[:user])
-      if @user.valid? # && verify_recaptcha
+      if @user.valid? #&& verify_recaptcha()
         set_current_user @user
       
         UserMailer.welcome_email(@user).deliver

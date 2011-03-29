@@ -95,4 +95,18 @@ class UserTest < ActiveSupport::TestCase
       }
     }
   end
+
+  test "valid username" do
+    user = User.make  
+
+    user.username = 'phong@feh'
+    assert_equal false, user.valid?
+    user.username = 'spaced phong'
+    assert_equal false, user.valid?
+    user.username = 'phong.ness'
+    assert_equal false, user.valid?  
+    user.username = '***_-phongness-_***'
+    assert_equal true, user.valid?
+  end  
+  
 end
