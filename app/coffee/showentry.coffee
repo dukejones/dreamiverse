@@ -55,9 +55,9 @@ $(document).ready ->
   
   # setup keyboard navigation
   $(document).keypress (e) ->
-    if e.which == 37 || e.keyCode == 37
+    if e.keyCode == 37
       window.location = $('#showEntry').find('a.prev').attr('href')
-    else if e.which == 39 || e.keyCode == 39
+    else if e.keyCode == 39
       window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change

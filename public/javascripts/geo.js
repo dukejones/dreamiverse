@@ -148,9 +148,10 @@ function getAddress(_lat, _lng){
     $('.entryLocation .finding').remove();
     
     // parse geo data
-    var country; 
-    var province; 
-    var city; 
+    var country;
+    var province;
+    var city;
+    
     $.each(data[0].address_components, function(i, datum) {
       if (datum.types[0] == 'country') {
         country = datum.long_name;
@@ -162,11 +163,8 @@ function getAddress(_lat, _lng){
         city = datum.long_name;
       }
     });
-    var latitude = data[0].geometry.location.Aa;    
+    var latitude = data[0].geometry.location.Ea;  
     var longitude = data[0].geometry.location.Ca;
-    
-    log(data[0].geometry.location);
-    log('longitude: '+ longitude + ' latitude: ' + latitude);
     
     // Set geo data
     $('.entryLocation .city .input').val(city);

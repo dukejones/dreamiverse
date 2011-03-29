@@ -223,9 +223,9 @@ function embedYoutubeLinks(){
 
   
   // Add youtube icon after each youtube, soundcloud & vimeo link
-  /*$('.content .body, .commentsPanel').find('a.youtube, a.soundcloud, a.vimeo').filter(function(){
+  $('.content .body, .commentsPanel').find('a.youtube, a.soundcloud, a.vimeo').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).prepend('<img class="youtube" src="/images/icons/play-16-hover.png" />')*/
+  }).prepend('<img class="youtube" src="/images/icons/play-16-hover.png" />')
   
   
   // WILL NEED TO FIGURE OUT A WAY TO COMBINE ALL OF THESE
@@ -281,7 +281,7 @@ function linkify(text)
         url = 'http://'+url;
       
       var urlTitle = nice.replace(/^www./i,'');
-      return '<a target="_blank" rel="nofollow" href="'+ url +'"><img class="media" src="/images/icons/play-16-hover.png" />'+ url +'</a>';
+      return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
     });
     
     return text;
