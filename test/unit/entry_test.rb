@@ -99,7 +99,7 @@ class EntryTest < ActiveSupport::TestCase
   test "set_emotions doesn't set emotions with 0 intensity" do
     e = Entry.make
     
-    emotion_params = {"love" => "3", "anger" => 0}
+    emotion_params = {"love" => "3", "anger" => "0"}
     e.set_emotions(emotion_params)
     assert_equal 3, e.tags.emotion.named('love').first.intensity
     assert_equal nil, e.tags.emotion.named('anger').first
@@ -111,15 +111,16 @@ class EntryTest < ActiveSupport::TestCase
     # e.set_emotions
   end
 
-  test "random" do
+  test "random entry method selects only everyone entries." do
     20.times do
       share = Entry::Sharing.values.sample
       Entry.make(sharing_level: share)
     end
+    Entry.make(sharing_level: Entry::Sharing[:everyone]) # so there's at least one
     
     30.times do
       e = Entry.random
-      # this returned nil once!  why??
+      assert !e.nil?
       assert e.everyone?
       assert e.type != 'article'
     end

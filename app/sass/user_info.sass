@@ -172,6 +172,20 @@ a.dcLogo
             background: #0c2b50
             +gradient(#0c2b50, #5d80ad)
 
+          span
+            +font(25)
+            margin: 0 0 0 32px
+          .img
+            +right
+            height: 48px
+            width: 32px
+            margin: 0 16px 0 0
+            background: url(/images/icons/login-32.png) no-repeat center transparent
+          &:hover .img
+            background: url(/images/icons/login-32-hover.png) no-repeat center transparent
+          &:active .img
+            background: url(/images/icons/login-32-active.png) no-repeat center transparent
+
           input.button
             border: none
             +transparent

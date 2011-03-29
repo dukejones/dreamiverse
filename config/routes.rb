@@ -24,7 +24,7 @@ Dreamcatcher::Application.routes.draw do
 
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
-  match '/admin' => 'users#admin', :as => :admin
+  match '/admin' => 'admin#admin', :as => :admin
 
   match '/stream' => 'entries#stream', :as => :stream
   match '/random' => 'entries#random', :as => :random

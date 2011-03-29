@@ -1,6 +1,12 @@
 - content_for :head do
   = sass_link_tag 'user_info'
 
+/ PRELOAD
+.hidden
+  %img{src: '/images/icons/login-32-hover.png'}
+  %img{src: '/images/icons/login-32-active.png'}
+
+
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
   %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
@@ -34,7 +40,8 @@
 
           .submit
             .text
-              login &rsaquo;
+              .img
+              %span login
               %input.button{tabindex: '3', type: 'submit', name: 'loginButton', value: 'log in &rsaquo;'}
 
           %a.fb_login{href: '/auth/facebook'}

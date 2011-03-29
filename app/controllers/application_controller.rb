@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless current_user
-      redirect_to :root and return
+      redirect_to :root, {alert: 'You must be logged in to see this page.'} and return
     end
   end
   

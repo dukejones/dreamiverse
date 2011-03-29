@@ -118,7 +118,8 @@ abbr, acronym
 
 
 
-
+// PAGE HEADERS
+// STRUCTURE
 #entryField, #friendField
   .pageHeader
     +user-select
@@ -132,7 +133,7 @@ abbr, acronym
     background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
     background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
     height: 54px
-    line-height: 56px
+    line-height: 50px
     margin: 0 0 20px
     padding-right: 36px
     .img
@@ -174,6 +175,36 @@ abbr, acronym
     width: 634px
     .img
       background: url(/images/icons/stream-32-hover.png) no-repeat center transparent
+
+
+// PAGE HEADERS
+// COLOR
+.light
+  #entryField, #friendField
+    .pageHeader
+      background: #fff
+      background: -moz-linear-gradient(top, rgba(255,255,255,1.0), rgba(255,255,255,1.0) 4px, rgba(255,255,255,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,1.0)), color-stop(.1,rgba(255,255,255,1.0)), to(rgba(255,255,255,0.0)))
+
+      h1
+        color: #000
+        text-shadow: #fff 0 0 15px
+
+
+
+.dark
+  #entryField, #friendField
+    .pageHeader
+      background: #000
+      background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
+
+      h1
+        color: #fff
+        text-shadow: #000 0 0 15px
+
+
+
 
 
 // CLOSE ICONS
@@ -292,7 +323,18 @@ abbr, acronym
     height: 28px
     line-height: 28px
     width: 154px
-
+    span
+      margin: 0 0 0 16px
+    .img
+      +right
+      height: 28px
+      width: 24px
+      margin: 0 8px 0 8px
+      background: url(/images/icons/login-24.png) no-repeat center transparent
+    &:hover .img
+      background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+    &:active .img
+      background: url(/images/icons/login-24-active.png) no-repeat center transparent
 
   .facebook
     +right
@@ -365,7 +407,6 @@ abbr, acronym
       color: #fff
       width: 156px
       line-height: 30px
-      +font(18)
       +shine-blue(15)
 
       &:hover
@@ -375,6 +416,20 @@ abbr, acronym
         +shine-blue(0)
         background: #0c2b50
         +gradient(#0c2b50, #5d80ad)
+
+      span
+        +font(18)
+        margin: 0 0 0 16px
+      .img
+        +right
+        height: 28px
+        width: 24px
+        margin: 0 8px 0 8px
+        background: url(/images/icons/login-24.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/login-24-active.png) no-repeat center transparent
 
       input#loginButton.button
         +absolute
