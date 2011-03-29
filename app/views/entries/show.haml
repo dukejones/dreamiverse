@@ -3,7 +3,7 @@
   = stylesheet_link_tag 'jquery.lightbox-0.5.css'
 
   = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
-  = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=true'
+  /= javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=true'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content', 'maps'
   
   - if !@entry.body.blank?
@@ -62,7 +62,7 @@
         .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
         .tagToggle.trigger.fade
       - if location = @entry.location
-        #entryLocationMap{style: "position: absolute; top: -1000px; height: 200px;-moz-user-select: none; border-radius: 16px 16px 0 0; clear: both; height: 176px; margin: 0; overflow: hidden; padding: 12px; width: 638px;", 'data-lng'=> "#{location.longitude}", 'data-lat'=> "#{location.latitude}"}
+        #entryLocationMap{style: "position: absolute; display: none; top: 50px; height: 200px;-moz-user-select: none; border-radius: 16px 16px 0 0; clear: both; height: 200px; margin: 0; overflow: hidden; padding: 0px; width: 662px;", 'data-lng'=> "#{location.longitude}", 'data-lat'=> "#{location.latitude}", 'data-city'=> "#{location.city}", 'data-province'=> "#{location.province}"}
 
 
       / TAG CLOUD
