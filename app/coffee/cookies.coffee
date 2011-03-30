@@ -1,5 +1,5 @@
 window.setCookie = (name, value, days) ->
-  console.log("setCookie")
+  log("setCookie")
   ###if days
     date = new Date()
     date.setTime(date.getTime() + (days*24*60*60*1000))
@@ -9,7 +9,7 @@ window.setCookie = (name, value, days) ->
   document.cookie = name + '=' + value + expires + '; path=/'###
 
 window.getCookie = (name) ->
-  console.log("getCookie")
+  log("getCookie")
   ###nameEQ = name + '='
   ca = document.cookie.split(';')
   for cookie in ca
@@ -20,5 +20,5 @@ window.getCookie = (name) ->
   return null
 
 window.deleteCookie = (name) ->
-  console.log("deleteCookie")
+  log("deleteCookie")
   #setCookie(name, '', -1)

@@ -124,7 +124,7 @@ class AppearancePanel extends MetaMenu
       
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_attributes_theme').attr('id')?
-        console.log(@newTheme)
+        log(@newTheme)
         $('#entry_view_preference_attributes_theme').val(@newTheme)
 
         

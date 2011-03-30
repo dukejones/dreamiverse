@@ -117,7 +117,7 @@ $(document).ready ->
 
   # $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
   #   $('textarea', this).val('')
-  #   console.log('COMMENT SUCCESS')
+  #   log('COMMENT SUCCESS')
   # 
   #   # Update comment count
   #   newVal = parseInt($('.commentsHeader .counter').text()) + 1

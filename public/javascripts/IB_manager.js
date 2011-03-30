@@ -172,7 +172,7 @@ $(document).ready(function() {
         
       /*$.post("/images/" + selectedImages[u] + "/disable.json",
         function(data) {
-          console.log(data)
+          log(data)
           alert('image removed');
       });*/
     }

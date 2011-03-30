@@ -9,10 +9,10 @@ dc.modal = ->
     closeText: ''
     buttons: {
       "Ok": ->
-        # console.log('ok')
+        # log('ok')
         $(this).dialog("close")
       "Cancel": ->
-        # console.log('no way')
+        # log('no way')
         $(this).dialog("close")
     }
   })

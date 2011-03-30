@@ -79,7 +79,7 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          console.log(data)
+          log(data)
           var embedPlayer = data.html;
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
@@ -173,7 +173,7 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          console.log(data)
+          log(data)
           var embedPlayer = data.html;
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
