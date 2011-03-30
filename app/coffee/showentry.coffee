@@ -54,11 +54,12 @@ $(document).ready ->
   )
   
   # setup keyboard navigation
-  $(document).keypress (e) ->
-    if e.keyCode == 37
-      window.location = $('#showEntry').find('a.prev').attr('href')
-    else if e.keyCode == 39
-      window.location = $('#showEntry').find('a.next').attr('href')
+  # Need to find a new shortcut because comments are interfering with this one
+  # $(document).keypress (e) ->
+  #     if e.keyCode == 37
+  #       window.location = $('#showEntry').find('a.prev').attr('href')
+  #     else if e.keyCode == 39
+  #       window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change
   $('.shareLevel').find('span').each( (i, el)->

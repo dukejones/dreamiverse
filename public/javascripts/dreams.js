@@ -564,7 +564,7 @@ function setupEvents(){
   $('.entryEmotions .headers').unbind()
   $('.entryEmotions .headers').click(function(){
     var radioSelected = false;
-    $('.emotionPanel input[type="radio"]:checked').each(function(i, el){
+    $('.entryEmotions input[type="radio"]:checked').each(function(i, el){
       // only mark as selected if its a value other than 1
       if($(el).val() != '0'){
         radioSelected = true
@@ -573,9 +573,9 @@ function setupEvents(){
     
     if(radioSelected){
       if($('.emotionPanel').css('display') == 'none'){
-        $('.entryEmotions').slideDown()
+        $('.emotionPanel').slideDown()
       } else {
-        $('.entryEmotions').slideUp()
+        $('.emotionPanel').slideUp()
       }
     } else {
       $('.entryEmotions').slideUp();

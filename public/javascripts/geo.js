@@ -10,7 +10,8 @@ function initGeo(){
   $('.addLocation').click(function(){
     if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
-      $('.entryLocation').slideDown()
+      //$('.entryLocation').slideDown()
+      slideToggle('.entryLocation', true)
       
       if(!geoFetching && !$('.entryLocation').data('id')){
         geoFetching = true;
@@ -20,18 +21,21 @@ function initGeo(){
         $('.entryLocation').find('.data').show()
       }
     } else {
-      $('.entryLocation').slideUp();
+      //$('.entryLocation').slideUp();
+      slideToggle('.entryLocation', false)
     }
   });
   
   $('.entryLocation .locationHeader').click(function(){
-    $('.entryLocation').slideUp();
+    //$('.entryLocation').slideUp();
+    slideToggle('.entryLocation', false)
   })
   
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
     $('.addLocation').removeClass('selected');
-    $('.entryLocation').slideUp();
+    //$('.entryLocation').slideUp();
+    slideToggle('.entryLocation', false)
     
     $('.entryLocation .city .input').val('');
     $('.entryLocation .state .input').val('');
@@ -45,12 +49,40 @@ function initGeo(){
       }
       
       $('.entryLocation .expander').slideDown();
-      $('.entryLocation').animate({height: 104}, "fast");
     } else {
       $('.entryLocation .expander').slideUp();
-      $('.entryLocation').animate({height: 35}, "fast");
     }
   })
+}
+
+function slideToggle(el, bShow){
+  var $el = $(el), height = $el.data("originalHeight"), visible = $el.is(":visible");
+  
+  // if the bShow isn't present, get the current visibility and reverse it
+  if( arguments.length == 1 ) bShow = !visible;
+  
+  // if the current visiblilty is the same as the requested state, cancel
+  if( bShow == visible ) return false;
+  
+  // get the original height
+  if( !height ){
+    // get original height
+    height = $el.show().height();
+    // update the height
+    $el.data("originalHeight", height);
+    // if the element was hidden, hide it again
+    if( !visible ) $el.hide().css({height: 0});
+  }
+
+  // expand the knowledge (instead of slideDown/Up, use custom animation which applies fix)
+  if( bShow ){
+    $el.show().animate({height: height}, {duration: 250});
+  } else {
+    $el.animate({height: 0}, {duration: 250, complete:function (){
+        $el.hide();
+      }
+    });
+  }
 }
 
 /* LOCATION DATA */
