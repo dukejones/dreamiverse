@@ -46,20 +46,25 @@ $(document).ready ->
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
   $('#comment_submit').hide()
-  $('#comment_body').live "focus", ->
+  $('#comment_body').live "focus", =>
+    @commentsFocused = true
     $('#comment_submit').fadeIn(250)
+  
+  $('#comment_body').live "blur", =>
+    @commentsFocused = false
   
   $('#comment_body').bind("keyup", ->
     fitToContent(this, 0)
   )
   
-  # setup keyboard navigation
-  # Need to find a new shortcut because comments are interfering with this one
-  # $(document).keypress (e) ->
-  #     if e.keyCode == 37
-  #       window.location = $('#showEntry').find('a.prev').attr('href')
-  #     else if e.keyCode == 39
-  #       window.location = $('#showEntry').find('a.next').attr('href')
+  # Keyboard navigation between entries
+  # Check if comment field is focused
+  commentsFocused = false
+  $(document).keypress (e) =>
+    if e.keyCode == 37 and !@commentsFocused
+      window.location = $('#showEntry').find('a.prev').attr('href')
+    else if e.keyCode == 39 and !@commentsFocused
+      window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change
   $('.shareLevel').find('span').each( (i, el)->
