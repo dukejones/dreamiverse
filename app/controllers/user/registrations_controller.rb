@@ -77,6 +77,7 @@ class User::RegistrationsController < ApplicationController
       # flash[:user_errors] << "" unless verify_recaptcha
       # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
       flash.now[:alert] = "We could not create this user.<br>" + @user.errors.full_messages.join('<br>')
+      # Captcha verification & error adding would be cleaner in the model.
       flash.now[:alert] += "<br>Captcha error.  Please try again." unless verify_recaptcha
       render "users/join"
     end
