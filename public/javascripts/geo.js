@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  initGeo();
+  //initGeo();
 })
 
 var geoFetching = false;
