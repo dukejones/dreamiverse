@@ -27,8 +27,17 @@
 
 
     // IN PAGE YOUTUBE LINKS
-    img.youtube
-      margin: 2px 0 -5px 7px
+    .youtube
+      .img
+        +left
+        width: 16px
+        height: 22px
+        margin: 0 4px 0 0
+        background: url(/images/icons/play-16.png) no-repeat center
+      &:hover .img
+        background: url(/images/icons/play-16-hover.png) no-repeat center
+      &:active .img
+        background: url(/images/icons/play-16-active.png) no-repeat center
 
     .prev
       +round(16)

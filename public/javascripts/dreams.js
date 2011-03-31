@@ -225,7 +225,7 @@ function embedYoutubeLinks(){
   // Add youtube icon after each youtube, soundcloud & vimeo link
   $('.content .body, .commentsPanel').find('a.youtube, a.soundcloud, a.vimeo').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).prepend('<img class="youtube" src="/images/icons/play-16-hover.png" />')
+  }).prepend('<div class="img"></div>')
   
   
   // WILL NEED TO FIGURE OUT A WAY TO COMBINE ALL OF THESE
