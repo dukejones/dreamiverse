@@ -21,6 +21,7 @@ Dreamcatcher::Application.routes.draw do
   get  '/feedback' => 'home#feedback', :as => :feedback
   post '/feedback' => 'home#submit_feedback'
   match '/terms' => 'home#terms', :as => :terms
+  match '/error' => 'home#error'
 
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
@@ -28,7 +29,6 @@ Dreamcatcher::Application.routes.draw do
 
   match '/stream' => 'entries#stream', :as => :stream
   match '/random' => 'entries#random', :as => :random
-
   # Resources
 
   resource :user do
