@@ -59,7 +59,7 @@ class User::RegistrationsController < ApplicationController
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
     @user = User.new(params[:user])
-    if verify_recaptcha && @user.save
+    if (@captcha = verify_recaptcha) && @user.save
       set_current_user @user
       
       UserMailer.welcome_email(@user).deliver
@@ -78,7 +78,7 @@ class User::RegistrationsController < ApplicationController
       # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
       flash.now[:alert] = "We could not create this user.<br>" + @user.errors.full_messages.join('<br>')
       # Captcha verification & error adding would be cleaner in the model.
-      flash.now[:alert] += "<br>Captcha error.  Please try again." unless verify_recaptcha
+      flash.now[:alert] += "<br>Captcha error.  Please try again." unless @captcha
       render "users/join"
     end
   end
