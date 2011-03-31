@@ -1,6 +1,6 @@
 # displaying maps on entries
-$(document).ready ->
-  initShowEntryMap()
+#$(document).ready ->
+#  initShowEntryMap()
 
 initShowEntryMap = ->
   if $('#entryLocationMap').data('lng') isnt '' and $('#entryLocationMap').data('lat') isnt ''

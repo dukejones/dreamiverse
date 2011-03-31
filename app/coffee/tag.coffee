@@ -146,8 +146,6 @@ class TagViewList
   removeTag: (tagId) ->
     #log tagId
     tagViewToRemove = @findByTagId(tagId)
-    console.log(tagViewToRemove)
-    console.log(@tagViews.length)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
 
@@ -173,15 +171,10 @@ class EditingTagViewList extends TagViewList
       
   removeTag: ($tag) ->
     tagName = $tag.find('.tagContent').text()
-    console.log(tagName)
     
     
     new_tags = (tag for tag in @tagViews when tag.tag.name != tagName)  
-    console.log(new_tags.length)
-    console.log(@tagViews.length)
-    console.log(@tagViews)
-    console.log(new_tags)
-    #@tagViews.remove(tagViewToRemove)
+    
     @tagViews = new_tags
     $tag.css('backgroundColor', '#ff0000')
     $tag.fadeOut('fast', =>
@@ -239,7 +232,6 @@ class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
-    console.log("SharingTagView Init")
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)

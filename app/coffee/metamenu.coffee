@@ -124,7 +124,7 @@ class AppearancePanel extends MetaMenu
       
       @newTheme = $(event.currentTarget).attr('id')
       if $('#entry_view_preference_attributes_theme').attr('id')?
-        console.log(@newTheme)
+        log(@newTheme)
         $('#entry_view_preference_attributes_theme').val(@newTheme)
 
         
@@ -228,7 +228,12 @@ class SettingsPanel extends MetaMenu
       else
         $('#change_password .error').text('')
         $('#user_old_password, #user_password, #user_password_confirmation').val('')
-        
+    
+    # Setup cancel button on change password
+    @$currentMenuPanel.find('.cancel').click =>
+      @$currentMenuPanel.find('.changePasswordForm').hide()
+      $('#user_password').val('')
+      $('#user_password_confirmation').val('')
     
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
       #$('p.alert').text(xhr.error)

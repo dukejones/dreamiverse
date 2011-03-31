@@ -4,7 +4,7 @@ class User::RegistrationsController < ApplicationController
   def new
     redirect_to :root and return if current_user
     
-    @user = User.new(params[:user])
+    @user = User.new
     
     render "users/join"
   end
@@ -58,31 +58,28 @@ class User::RegistrationsController < ApplicationController
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
-    if verify_recaptcha()
-      @user = User.create(params[:user])
-      if @user.valid? #&& verify_recaptcha()
-        set_current_user @user
+    @user = User.new(params[:user])
+    if verify_recaptcha && @user.save
+      set_current_user @user
       
-        UserMailer.welcome_email(@user).deliver
+      UserMailer.welcome_email(@user).deliver
       
-        if auth_provider = session.delete(:registration_auth_provider)
-          redirect_to "/auth/#{auth_provider}"
-        else
-          redirect_to :root, :notice => "welcome, dreamer."
-        end
+      if auth_provider = session.delete(:registration_auth_provider)
+        redirect_to "/auth/#{auth_provider}"
       else
-        # TODO: display these on the join page
-        # params[:user].delete(:password)
-        # params[:user].delete(:password_confirmation)
-        # flash[:user_errors] = @user.errors || []
-        # flash[:user_errors] << "" unless verify_recaptcha
-        # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
-        flash.now[:alert] = "We could not create this user.<br>" + @user.errors.full_messages.join('<br>')
-        render "users/join"
+        redirect_to :root, :notice => "welcome, dreamer."
       end
     else
-      flash.now[:alert] = "Invalid Captcha text"
-      render "users/join"    
+      # TODO: display these on the join page
+      # params[:user].delete(:password)
+      # params[:user].delete(:password_confirmation)
+      # flash[:user_errors] = @user.errors || []
+      # flash[:user_errors] << "" unless verify_recaptcha
+      # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
+      flash.now[:alert] = "We could not create this user.<br>" + @user.errors.full_messages.join('<br>')
+      # Captcha verification & error adding would be cleaner in the model.
+      flash.now[:alert] += "<br>Captcha error.  Please try again." unless verify_recaptcha
+      render "users/join"
     end
   end
   

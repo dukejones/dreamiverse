@@ -16,6 +16,15 @@
     width: 662px 
     padding: 8px
 
+    // SHARED LINK STYLES
+    .body, .comment
+      a:link, a:visited
+        color: #0049A2
+        text-decoration: none
+      a:hover
+        color: #3EA7EB
+        text-decoration: underline
+
 
     // IN PAGE YOUTUBE LINKS
     img.youtube
@@ -245,8 +254,7 @@
 
         // EMOTIONS DETAILS ONLY
         .emotions-details
-          padding: 12px
-          // width: 262px
+          padding: 8px
           top: 4px
           right: 82px
           box-shadow:         4px 4px 10px #555
@@ -254,7 +262,21 @@
           -webkit-box-shadow: 4px 4px 10px #555
 
           .emotionsHeader
+            +user-select
+            +round(20)
+            +center
+            +left
+            +cursor
+            +bold
             margin: 0 0 4px
+            padding: 0 12px 0 4px
+            height: 34px
+            line-height: 34px
+            .img
+              +left
+              width: 34px
+              height: 34px
+              background: url(/images/icons/mood-19.png) no-repeat center
 
           table.container
             border-collapse: separate
@@ -263,7 +285,7 @@
             width: 262px
 
             tr
-              height: 30px
+              height: 24px
 
               td.value
                 width: 178px
@@ -324,16 +346,6 @@
         font-size: 17px
         p
           margin-bottom: 18px
-        a:link, a:visited
-          color: #3EA7EB
-          text-decoration: underline
-        a:hover
-          color: #0049A2
-          text-decoration: none
-        a:hover
-          color: #0049A2
-          text-decoration: underline
-
 
 
       // GALLERY
@@ -626,14 +638,6 @@
             padding: 0 8px 8px 16px
             p
               margin-bottom: 18px
-
-            a:link, a:visited
-              color: #3EA7EB
-              text-decoration: underline
-            a:hover
-              color: #0049A2
-              text-decoration: none
-
           .rePost
             +round(16)
             +left
@@ -718,6 +722,9 @@
         .emotions-details
           +bevel-light
           color: #555
+          .emotionsHeader
+            +indent-light
+            border: 1px solid #e6e6e6
 
         // TITLE
         .title
@@ -874,6 +881,10 @@
           table.container
             td.value
               +indent-dark
+
+          .emotionsHeader
+            +indent-dark
+            border: 1px solid #090909
 
         // TITLE
         .title

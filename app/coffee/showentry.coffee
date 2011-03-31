@@ -46,18 +46,24 @@ $(document).ready ->
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
   $('#comment_submit').hide()
-  $('#comment_body').live "focus", ->
+  $('#comment_body').live "focus", =>
+    @commentsFocused = true
     $('#comment_submit').fadeIn(250)
+  
+  $('#comment_body').live "blur", =>
+    @commentsFocused = false
   
   $('#comment_body').bind("keyup", ->
     fitToContent(this, 0)
   )
   
-  # setup keyboard navigation
-  $(document).keypress (e) ->
-    if e.keyCode == 37
+  # Keyboard navigation between entries
+  # Check if comment field is focused
+  commentsFocused = false
+  $(document).keypress (e) =>
+    if e.keyCode == 37 and !@commentsFocused
       window.location = $('#showEntry').find('a.prev').attr('href')
-    else if e.keyCode == 39
+    else if e.keyCode == 39 and !@commentsFocused
       window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change
@@ -111,7 +117,7 @@ $(document).ready ->
 
   # $('form#new_comment').bind 'ajax:success', (event, xhr, status)->
   #   $('textarea', this).val('')
-  #   console.log('COMMENT SUCCESS')
+  #   log('COMMENT SUCCESS')
   # 
   #   # Update comment count
   #   newVal = parseInt($('.commentsHeader .counter').text()) + 1

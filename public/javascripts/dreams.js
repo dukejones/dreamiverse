@@ -79,7 +79,7 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          console.log(data)
+          log(data)
           var embedPlayer = data.html;
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
@@ -173,7 +173,7 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          console.log(data)
+          log(data)
           var embedPlayer = data.html;
           var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
@@ -564,7 +564,7 @@ function setupEvents(){
   $('.entryEmotions .headers').unbind()
   $('.entryEmotions .headers').click(function(){
     var radioSelected = false;
-    $('.emotionPanel input[type="radio"]:checked').each(function(i, el){
+    $('.entryEmotions input[type="radio"]:checked').each(function(i, el){
       // only mark as selected if its a value other than 1
       if($(el).val() != '0'){
         radioSelected = true
@@ -573,9 +573,9 @@ function setupEvents(){
     
     if(radioSelected){
       if($('.emotionPanel').css('display') == 'none'){
-        $('.entryEmotions').slideDown()
+        $('.emotionPanel').slideDown()
       } else {
-        $('.entryEmotions').slideUp()
+        $('.emotionPanel').slideUp()
       }
     } else {
       $('.entryEmotions').slideUp();
