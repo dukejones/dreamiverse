@@ -38,17 +38,19 @@ class User < ActiveRecord::Base
 
   # usernames must be lowercase
   before_create -> { username.downcase! }
+  before_create -> { email.downcase! }
   before_create :create_view_preference
   after_validation :encrypt_password
   before_save :set_auth_level
 
   validate :password_confirmation_matches
   validates_presence_of :username
-  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
-  validates_uniqueness_of :email, :allow_nil => true
-  validate :has_at_least_one_authentication
+  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
+  validates_presence_of :email
+  validates_uniqueness_of :email
+  # validate :has_at_least_one_authentication
   
   
   # def self.order_by_starlight
@@ -170,11 +172,11 @@ class User < ActiveRecord::Base
     end
   end
   
-  def has_at_least_one_authentication
-    if (self.authentications.count == 0) && email.nil?
-      errors.add :email, " must be present, or have at least one authentication."
-    end
-  end
+  # def has_at_least_one_authentication
+  #   if (self.authentications.count == 0) && email.nil?
+  #     errors.add :email, " must be present, or have at least one authentication."
+  #   end
+  # end
   
   def set_auth_level
     self.auth_level ||= 1
