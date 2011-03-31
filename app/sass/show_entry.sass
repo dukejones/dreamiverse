@@ -464,44 +464,44 @@
 
           #tag-list // SEE ENTRIES.SASS
 
-      // ANALYSIS
-      .entryAnalysis
-        padding: 8px
-        .analysisHeader
-          margin-bottom: 8px
+          // ANALYSIS
+          .tagAnalysis
+            height: auto
+            .tagContent
 
-        .analysis
-          +round(12)
-          +overflow
-          +clear
-          line-height: 32px
-          margin: 0 0 8px
-          padding: 0 12px 0 0
-          .img
-            +left
-            width: 32px
-            height: 32px
-          .analysis-tag
-            +bold
-            height: 32px
-            padding-left: 42px
-            .arrow
-              +right
-              height: 32px
-              width: 16px
-              background: url(/images/icons/arrow-down-16.png) no-repeat center
-          .description
-            +clear
-            margin: 20px 8px 20px 20px
-            line-height: 20px
-            .source
-              +round(12)
-              +left
-              +center
-              margin: 0 0 12px 12px
-              padding: 0 12px
-              height: 24px
-              line-height: 24px
+            .analysis
+              width: 100%
+              line-height: 32px
+              margin: 0
+              // .img
+              //   +left
+              //   width: 32px
+              //   height: 32px
+              //   margin: 0 0 12px
+              // .analysis-tag
+              //   +left
+              //   +bold
+              //   height: 32px
+              //   margin: 0 0 12px 16px
+              .arrow
+                +absolute
+                top: 0
+                right: 28px
+                height: 32px
+                width: 16px
+                margin: 0 0 12px
+                background: url(/images/icons/arrow-up-16.png) no-repeat center
+              .description
+                margin: 40px 8px 20px 20px
+                line-height: 20px
+              .source
+                +round(12)
+                +left
+                +center
+                margin: 0 0 12px 12px
+                padding: 0 12px
+                height: 24px
+                line-height: 24px
 
 
     // COMMENTS
@@ -771,15 +771,9 @@
           .tagInput
             +input-light(small)
 
-        // ANALYSIS
-        .entryAnalysis
-
-          // ANALYSIS TAGS
-          .analysisTags
-            +bevel-light
-            +button-light
-
-            .description
+          // ANALYSIS
+          .tagAnalysis
+            .analysis
               .source
                 +button-light
                 +bevel-light
@@ -935,18 +929,12 @@
             input
               color: #ddd
 
-      // ANALYSIS
-      .entryAnalysis
-
-        // ANALYSIS TAGS
-        .analysisTags
-          +bevel-dark
-          +button-dark
-
-          .description
-            .source
-              +button-dark
-              +bevel-dark
+          // ANALYSIS
+          .tagAnalysis
+            .analysis
+              .source
+                +button-dark
+                +bevel-dark
 
       // COMMENTS
       .commentsPanel

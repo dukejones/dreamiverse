@@ -178,43 +178,23 @@
                 - if @entry.user == current_user
                   .close-16
 
+            / ANALYSIS TAGS
+            .tag.tagAnalysis.trigger.slide
+              %span.tagContent analysis
+              .close-16
+              .analysisIcon
+
+              .analysis.hidden.target.slide
+                .arrow
+                .description
+                  %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+                .source Dream Moods
+
             / .clear
           #sorting
           .clear
- 
-      / ANALYSIS
-      .entryAnalysis.wrapper
-      
-        .target.slide
-          / ANALYSIS TAGS
-          .analysis.wrapper
-            .img{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat center'}
-            .analysis-tag.trigger.slide
-              dolphin
-              .arrow
-            .description.target.slide.hidden
-              %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-              .source Dream Moods
-      
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              tsunami
-              .arrow
-      
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              flying
-              .arrow
-            .description.target.slide.hidden
-              %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-              .source Dream Moods
-      
-          .analysisTags.wrapper
-            .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-              telepathy
-              .arrow
 
-   
+
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 

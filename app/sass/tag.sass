@@ -9,7 +9,7 @@
 
   // WHO, WHERE, WHAT TAG STYLES
   // TAG STRUCTURE
-  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
     +relative
     +round(8)
     +left
@@ -32,10 +32,16 @@
     span
       +left
       margin: 0 8px
-    .analysisIcon, .followStatus
+    .followStatus
       +right
       width: 32px
       height: 32px
+    .analysisIcon
+      +right
+      width: 16px
+      height: 32px
+      margin: 0 8px 0 0
+      background: url(/images/icons/analysis-16.png) no-repeat center
 
   // TAG NO IMAGE
   .tagNoImage
@@ -47,7 +53,7 @@
 .light
   #tagStream, #showEntry, #entryField
     #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
         +flat-light-medium
         border: 1px solid #8c8c8c
         color: #333
@@ -59,7 +65,7 @@
 .dark
   #tagStream, #showEntry, #entryField
     #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
         background: #121212
         color: #ddd
         border: 1px solid #777
