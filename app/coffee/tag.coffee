@@ -20,7 +20,7 @@ class window.TagsController
     $.subscribe 'tags:create', (tagName)=> 
       # Check for empty tag & less than 3 char tag & default tag
       # Don't let them post unless they meet all the criteria
-      if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 2
+      if tagName isnt "" and tagName isnt "who/where/what" and tagName.length > 1
         
         # Check for max tags
         if @tagViews.tagViews.length < 17

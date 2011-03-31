@@ -158,9 +158,11 @@
               + add
 
           / POST TIME, LOCATION & SHARE LEVEL
-          .shareLevel
-            .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
-            %span= @entry.sharing
+          - if !@entry.everyone?
+            .shareLevel
+              .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+              %span= @entry.sharing
+          
           .postTime
             - time = (@entry.dreamed_at || @entry.created_at)
             = time_ago_in_words(time)
