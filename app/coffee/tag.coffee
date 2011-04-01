@@ -77,7 +77,7 @@ class ShowingTagInput extends TagInput
   expandInputField: ->
     @buttonMode = 'submit'
     $('.tagThisEntry').addClass('selected')
-    $('.tagInput').animate({width: '250px'})
+    $('.tagInput').animate({width: '200px'})
   contractInputField: ->
     @buttonMode = 'expand'
     $('.tagThisEntry').removeClass('selected')
