@@ -23,12 +23,11 @@ class UsersController < ApplicationController
   end
   
   def friends
-    @user = 
-      if params[:username]
-        User.find_by_username(params[:username]) # || raise "User #{params[:username]} does not exist."
-      else
-        current_user
-      end
+    @user = User.find_by_username(params[:username])
+
+    redirect_to(root_path, {alert: "User #{params[:username]} does not exist."}) and return unless @user
+      
+    
     @mode = params[:mode] 
     @friends = case @mode
       when 'friends'   then @user.friends
