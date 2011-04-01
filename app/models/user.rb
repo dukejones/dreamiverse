@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :hits
   has_many :entry_accesses
   has_one :link, :as => :owner
-  accepts_nested_attributes_for :link, :update_only => true
+  accepts_nested_attributes_for :link, :update_only => true, :reject_if => :all_blank
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   # follows are the follows this user has
