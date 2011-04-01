@@ -14,6 +14,7 @@ gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'exception_notification'
 
 gem 'mocha' # Needed for Legacy Migration.  Remove later.
 

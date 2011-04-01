@@ -32,8 +32,6 @@ function embedYoutubeLinks(){
   // NEED TO THINK ABOUT IT FOR A BIT
   
   
-  
-  
   // One for Comments
   $('.commentsPanel').find('a').each(function(i, ele){
     var current_url = $(ele).attr('href');
@@ -81,7 +79,7 @@ function embedYoutubeLinks(){
         success: function(data) {
           log(data)
           var embedPlayer = data.html;
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/vimeo-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
           $current_element.next().find('iframe').attr('width', '472')
           $current_element.next().find('iframe').attr('height', '390')
@@ -116,7 +114,7 @@ function embedYoutubeLinks(){
             var embedPlayer = '<object width="472" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="472" height="390"></embed></object>';
           }
     
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
           $current_element.after(newElement)
         }
       });
@@ -175,7 +173,7 @@ function embedYoutubeLinks(){
         success: function(data) {
           log(data)
           var embedPlayer = data.html;
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/vimeo-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.title + '</span></div></div>';
           $current_element.after(newElement)
           $current_element.next().find('iframe').attr('width', '546')
           $current_element.next().find('iframe').attr('height', '390')
@@ -211,7 +209,7 @@ function embedYoutubeLinks(){
             var embedPlayer = '<object width="546" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="546" height="390"></embed></object>';
           }
     
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
           $current_element.after(newElement)
         }
       });
@@ -225,12 +223,10 @@ function embedYoutubeLinks(){
   // Add youtube icon after each youtube, soundcloud & vimeo link
   $('.content .body, .commentsPanel').find('a.youtube, a.soundcloud, a.vimeo').filter(function(){
     return this.hostname && this.hostname !== location.hostname;
-  }).prepend('<img class="youtube" src="/images/icons/play-16-hover.png" />')
-  
+  }).prepend('<div class="img"></div>')
   
   // WILL NEED TO FIGURE OUT A WAY TO COMBINE ALL OF THESE
   // AND MAKE THEM WORK EASILY W ALL NEW EMBED TYPES!
-  
   
   // Set click event for youtube links
   $('.content .body, .commentsPanel').find('a.youtube').click(function(event){

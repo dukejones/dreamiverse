@@ -37,4 +37,8 @@ class HomeController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def error
+    raise "This is a test! This is only a test!"
+  end
 end

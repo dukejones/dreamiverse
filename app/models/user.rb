@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :hits
   has_many :entry_accesses
   has_one :link, :as => :owner
-  accepts_nested_attributes_for :link, :update_only => true
+  accepts_nested_attributes_for :link, :update_only => true, :reject_if => :all_blank
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   # follows are the follows this user has
@@ -40,18 +40,25 @@ class User < ActiveRecord::Base
   before_create -> { username.downcase! }
   before_create -> { email.downcase! }
   before_create :create_view_preference
+  before_validation(:on => :create) do
+    username.strip! 
+    email.strip!
+  end  
   after_validation :encrypt_password
   before_save :set_auth_level
 
+  validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
+  validates_format_of :username, :without => /[^a-zA-Z\d*_-]/, 
+    :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"  
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_presence_of :email
   validates_uniqueness_of :email
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create  
   # validate :has_at_least_one_authentication
-  
   
   # def self.order_by_starlight
   #   select('users.*').

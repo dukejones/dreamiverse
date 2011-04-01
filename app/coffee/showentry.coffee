@@ -53,9 +53,8 @@ $(document).ready ->
   $('#comment_body').live "blur", =>
     @commentsFocused = false
   
-  $('#comment_body').bind("keyup", ->
+  $('#comment_body').live "keyup", ->
     fitToContent(this, 0)
-  )
   
   # Keyboard navigation between entries
   # Check if comment field is focused

@@ -148,11 +148,11 @@
           +pointer
           width: 24px
           height: 26px
-          background: url(/images/icons/search-18.png) no-repeat center transparent
+          background: url(/images/icons/search-24.png) no-repeat center transparent
         &:hover .img
-          background: url(/images/icons/search-18.png) no-repeat center transparent
+          background: url(/images/icons/search-24-hover.png) no-repeat center transparent
         &:active .img
-          background: url(/images/icons/search-18.png) no-repeat center transparent
+          background: url(/images/icons/search-24-active.png) no-repeat center transparent
 
       // SEARCH FIELD
       .searchForm
@@ -165,10 +165,10 @@
         input.searchField
           +round(8)
           +font(14)
-          width: 118px
+          width: 114px
           margin: 0 2px
           height: 30px
-          padding: 0 8px 0 26px
+          padding: 0 8px 0 30px
           +input-light(small)
           color: #ccc
           border: 1px solid #CCC
@@ -182,11 +182,12 @@
           +absolute
           +transparent
           +pointer
+          +alpha(30)
           left: 8px
           border: none
           height: 30px
           width: 24px
-          background: url(/images/icons/search-18.png) no-repeat center transparent
+          background: url(/images/icons/search-24-active.png) no-repeat 0px 4px transparent
 
 
   .leftPanel

@@ -19,7 +19,7 @@
     // SHARED LINK STYLES
     .body, .comment
       a:link, a:visited
-        color: #0049A2
+        color: #3086CF
         text-decoration: none
       a:hover
         color: #3EA7EB
@@ -27,8 +27,18 @@
 
 
     // IN PAGE YOUTUBE LINKS
-    img.youtube
-      margin: 2px 0 -5px 7px
+    .youtube, .vimeo, .soundcloud
+      .img
+        +left
+        display: inline-block
+        width: 16px
+        height: 21px
+        margin: 0 4px 0 0
+        background: url(/images/icons/play-16.png) no-repeat center
+      &:hover .img
+        background: url(/images/icons/play-16-hover.png) no-repeat center
+      &:active .img
+        background: url(/images/icons/play-16-active.png) no-repeat center
 
     .prev
       +round(16)
@@ -708,17 +718,16 @@
           .arrow
             background: url(/images/icons/arrow-right-16-dark.png) no-repeat center
 
-          table.container
-            td.value
-              +indent-light
-
         // EMOTIONS DETAILS ONLY
         .emotions-details
           +bevel-light
-          color: #555
           .emotionsHeader
             +indent-light
             border: 1px solid #e6e6e6
+
+          table.container
+            td.value
+              +indent-light
 
         // TITLE
         .title
@@ -861,18 +870,20 @@
 
         // EMOTIONS DETAILS & THUMBS
         .emotions-details, .emotions-thumb
-          +bevel-dark
 
           .arrow
             background: url(/images/icons/arrow-right-16-light.png) no-repeat center
 
-          table.container
-            td.value
-              +indent-dark
-
+        // EMOTIONS DETAILS ONLY
+        .emotions-details
+          +bevel-dark
           .emotionsHeader
             +indent-dark
             border: 1px solid #090909
+
+          table.container
+            td.value
+              +indent-dark
 
         // TITLE
         .title
