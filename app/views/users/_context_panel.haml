@@ -87,7 +87,7 @@
 
     - if user == current_user
       .edit.hidden
-        = form_tag :user, :method => :put, :remote => true, :id => 'update_profile' do
+        = form_tag :user, :method => :put, :remote => true, :'data-type' => 'json', :id => 'update_profile' do
           = fields_for current_user do |f|
             %span full name
             = f.text_field :name, :placeholder => 'full name'
