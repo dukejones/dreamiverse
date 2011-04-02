@@ -33,31 +33,44 @@
           +hidden
 
 
-      // USERNAME + AVATAR
-
-      .user
-        +round(8)
+      // DETAILS TOP
+      .detailsTop
         +absolute
         top: 8px
         left: 8px
-        padding: 0 12px 0 0
-        height: 30px
-        line-height: 30px
-        z-index: 100
 
-        .avatar
-          +round(7)
-          +flat-right
-          +overflow
+        // USERNAME + AVATAR
+        .user
+          +round(8)
           +left
-          width: 30px
+          margin: 0 8px 0 0
+          padding: 0 12px 0 0
           height: 30px
+          line-height: 30px
+          z-index: 100
 
-        .name
-          +bold
-          +right
-          margin: 0 0 0 12px
-          font-size: 16px
+          .avatar
+            +round(7)
+            +flat-right
+            +overflow
+            +left
+            width: 30px
+            height: 30px
+
+          .name
+            +bold
+            +right
+            margin: 0 0 0 12px
+            font-size: 16px
+
+        // ENTRY TYPE
+        .entryType
+          +hidden
+          +round(8)
+          +left
+          width: 32px
+          height: 32px
+          margin: 4px 0 0 4px
 
 
       // LEFT SIDE
@@ -251,6 +264,9 @@
           h1.title
             +block
 
+        .entryType
+          +block
+
       .left
         h1.title
           +absolute
@@ -324,13 +340,16 @@
         &:hover
           +glow-light(40)
 
+        .detailsTop
+          // USERNAME + AVATAR
+          .user
+            +button-light
+            +gradient(#fff, #e4e4e4)
+            .name
+              color: #333
 
-        // USERNAME + AVATAR
-        .user
-          +button-light
-          +gradient(#fff, #e4e4e4)
-          .name
-            color: #333
+          .entryType
+            +transparent-dark(70)
 
         // LEFT SIDE
         .left
@@ -370,13 +389,16 @@
         &:hover
           +glow-dark(40)
 
+        .detailsTop
+          // USERNAME + AVATAR
+          .user
+            +button-dark
+            +gradient(#1d1d1d, #000)
+            .name
+              color: #ddd
 
-        // USERNAME + AVATAR
-        .user
-          +button-dark
-          +gradient(#1d1d1d, #000)
-          .name
-            color: #ddd
+          .entryType
+            +transparent-light(70)
 
         // LEFT SIDE
         .left

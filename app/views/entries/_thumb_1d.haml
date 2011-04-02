@@ -5,9 +5,13 @@
 
 
   / LEFT SIDE
-  %a.user{href: user_entries_path(entry.user.username)}
-    .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
-    %p.name= entry.user.username
+  .detailsTop
+    %a.user{href: user_entries_path(entry.user.username)}
+      .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
+      %p.name= entry.user.username
+
+    .entryType{style: "background-image: url('/images/icons/article-24.png'); background-repeat: no-repeat; background-position: center;"}
+
 
   %a.left{href: user_entry_path(entry.user.username, entry)}
 
