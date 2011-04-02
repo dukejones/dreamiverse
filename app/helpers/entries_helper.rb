@@ -1,4 +1,10 @@
 module EntriesHelper
+  def entry_type_icon(type, size, modifier=nil) # modifier can be active, hover
+    raw(
+      "/images/icons/#{type}-#{size}#{modifier ? '-' + modifier : ''}.png"
+    )
+  end
+  
   def dreamfield_header_image
     img_url = case @type_filter
     when "dream"
