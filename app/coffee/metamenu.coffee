@@ -149,14 +149,14 @@ class AppearancePanel extends MetaMenu
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
           else if $('#show_entry_mode').attr('name')?
             # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
-             #@updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
+            # @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
           else
             # @updateUserBedsheet($(event.currentTarget).data('id'))
-             #@updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
+            # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
         )
         
   
-    # set scrolling
+    # trigger scrolling changes
     $('#scroll,#fixed').click (event) ->
       @scrollClickHandler((event) =>
         entry_id = $('#showEntry').data('id')
@@ -168,9 +168,8 @@ class AppearancePanel extends MetaMenu
           @updateUserViewPreferences(null,scrolling,null)  
       )
     
-
-    
-    # set theme
+   
+    # trigger theme changes
     $('#light, #dark').click (event) ->
       @themeClickHandler((event) =>
         entry_id = $('#showEntry').data('id')
@@ -181,7 +180,7 @@ class AppearancePanel extends MetaMenu
         else
           @updateUserViewPreferences(null,null,theme)
       )
-
+  
   updateUserViewPreferences: (@bedsheet_id,@scrolling,@theme)->
     $.ajax {
       type: 'POST'
@@ -207,8 +206,6 @@ class AppearancePanel extends MetaMenu
      }
 
 
-
-  
   updateEntryBedsheetHiddenImageId: (bedsheet_id)->
     $('#entry_view_preference_attributes_image_id').val(bedsheet_id)
   
