@@ -14,14 +14,18 @@
     = form_for(User.new, {url: user_session_path}) do |f|
 
       %span username
-      %label.stay
-        Stay logged in
-        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
       = f.text_field(:username, {class: 'login-input', tabindex: '1'})
 
       %span password
-      %a.forgot{href: forgot_password_path} Forgot password
       = f.password_field(:password, {class: 'login-input', tabindex: '2'})
+
+      %label.stay
+        Stay logged in
+        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+
+      %a.forgot{href: forgot_password_path} Forgot password
+
+      .clear
 
       .submit
         .text
