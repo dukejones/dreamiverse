@@ -139,38 +139,75 @@ class AppearancePanel extends MetaMenu
         for node in data
           newElement = '<li data-id="' + node.id + '"><img src="/images/uploads/' + node.id + '-thumb-120.jpg"></li>'
           @$currentMenuPanel.find('.bedsheets ul').append(newElement)
-    
+        
+        # set bedsheet
         @$currentMenuPanel.find('.bedsheets ul').find('li').click (event) =>
           bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
           $('#body').css('background-image', bedsheetUrl)
       
-          if $('#entry_view_preference_attributes_image_id').attr('name')?
+         if $('#entry_view_preference_attributes_image_id').attr('name')?
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
           else if $('#show_entry_mode').attr('name')?
-            @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+            # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+             #@updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
           else
-            @updateUserBedsheet($(event.currentTarget).data('id'))
+            # @updateUserBedsheet($(event.currentTarget).data('id'))
+             #@updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
         )
-
-  updateUserBedsheet: (@bedsheet_id)->
-    $.ajax {
-      type: 'POST'
-      url: '/user/bedsheet'
-      data:
-        bedsheet_id: @bedsheet_id
-      success: (data, status, xhr) =>
-        success = true
-    }
+        
   
-  updateEntryBedsheet: (@entry_id,@bedsheet_id)->
+    # set scrolling
+    $('#scroll,#fixed').click (event) ->
+      @scrollClickHandler((event) =>
+        entry_id = $('#showEntry').data('id')
+        scrolling = $(event.currentTarget).attr('id')
+        console.log('scrolling:' + scrolling)
+        if $('#show_entry_mode').attr('name')?
+          @updateEntryViewPreferences(entry_id,null,scrolling,null)   
+        else
+          @updateUserViewPreferences(null,scrolling,null)  
+      )
+    
+
+    
+    # set theme
+    $('#light, #dark').click (event) ->
+      @themeClickHandler((event) =>
+        entry_id = $('#showEntry').data('id')
+        theme = $(event.currentTarget).data('id') 
+        console.log('theme:' + theme)
+        if $('#show_entry_mode').attr('name')?
+          @updateEntryViewPreferences(entry_id,null,null,theme)   
+        else
+          @updateUserViewPreferences(null,null,theme)
+      )
+
+  updateUserViewPreferences: (@bedsheet_id,@scrolling,@theme)->
     $.ajax {
       type: 'POST'
-      url: "/entries/#{@entry_id}/bedsheet"
+      url: "/user/set_view_preferences"
       data:
-        bedsheet_id: @bedsheet_id
+        bedsheet_id: @bedsheet_id if @bedsheet_id?
+        scrolling: @scrolling if @scrolling?
+        theme: @theme if @theme?
         success: (data, status, xhr) =>
           success = true
-     }  
+     }
+
+  updateEntryViewPreferences: (@entry_id,@bedsheet_id,@scrolling,@theme)->
+    $.ajax {
+      type: 'POST'
+      url: "/entries/#{@entry_id}/set_view_preferences"
+      data:
+        bedsheet_id: @bedsheet_id if @bedsheet_id?
+        scrolling: @scrolling if @scrolling
+        theme: @theme if @theme
+        success: (data, status, xhr) =>
+          success = true
+     }
+
+
+
   
   updateEntryBedsheetHiddenImageId: (bedsheet_id)->
     $('#entry_view_preference_attributes_image_id').val(bedsheet_id)

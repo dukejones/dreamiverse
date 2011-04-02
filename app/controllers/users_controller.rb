@@ -80,6 +80,17 @@ class UsersController < ApplicationController
     render :json => e.message, :status => :unprocessable_entity
   end
   
+  # XHR only
+  def set_view_preferences
+    @user = current_user
+    @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id])) unless params[:bedsheet_id].nil?
+    @user.view_preference.update_attribute(:bedsheet_attachment, params[:scrolling])) unless params[:scrolling].nil?
+    @user.view_preference.update_attribute(:theme, params[:theme])) unless params[:theme].nil?
+    render :json => "user view preferences updated"
+  rescue => e
+    render :json => e.message, :status => :unprocessable_entity
+  end
+  
   # XHR only.
   def avatar
     @image = Image.new({
