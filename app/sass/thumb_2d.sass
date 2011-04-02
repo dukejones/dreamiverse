@@ -70,11 +70,19 @@
         width: 200px
         z-index: 100
         table
+          +right
+          width: 164px
           border-collapse: separate
           border-spacing: 4px
         .date
           +overflow
           white-space: nowrap
+        .entryType
+          +round(8)
+          +left
+          width: 32px
+          height: 32px
+          margin: 4px 0 0 4px
 
       .detailsBottom
         +absolute
@@ -121,8 +129,10 @@
 
         .detailsTop, .detailsBottom, .title
           .date, .location, .comments, .sharing
-            +transparent-dark(50)
+            +transparent-dark(70)
             color: #fff
+          .entryType
+            +transparent-dark(70)
 
       .fadedBack
         background: -moz-linear-gradient(top, rgba(255,255,255,0.0), rgba(255,255,255,1.0) 100px, rgba(209,209,209,1.0))
@@ -138,8 +148,10 @@
 
         .detailsTop, .detailsBottom, .title
           .date, .location, .comments, .sharing
-            +transparent-light(50)
+            +transparent-light(70)
             color: #000
+          .entryType
+            +transparent-light(70)
 
       .fadedBack
         background: -moz-linear-gradient(top, rgba(0,0,0,0.0), rgba(0,0,0,1.0) 100px, rgba(0,0,0,1.0))
