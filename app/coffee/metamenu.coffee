@@ -157,17 +157,15 @@ class AppearancePanel extends MetaMenu
         
   
     # trigger scrolling changes
-    $('#scroll,#fixed').click (event) ->
-      @scrollClickHandler((event) =>
-        entry_id = $('#showEntry').data('id')
-        scrolling = $(event.currentTarget).attr('id')
-        console.log('scrolling:' + scrolling)
-        if $('#show_entry_mode').attr('name')?
-          @updateEntryViewPreferences(entry_id,null,scrolling,null)   
-        else
-          @updateUserViewPreferences(null,scrolling,null)  
-      )
-    
+    $('#scroll,#fixed').click (event) =>
+      entry_id = $('#showEntry').data('id')
+      scrolling = $(event.currentTarget).attr('id')
+      console.log('scrolling:' + scrolling)
+      if $('#show_entry_mode').attr('name')?
+        @updateEntryViewPreferences(entry_id,null,scrolling,null)   
+      else
+        @updateUserViewPreferences(null,scrolling,null)  
+  
    
     # trigger theme changes
     $('#light, #dark').click (event) ->
