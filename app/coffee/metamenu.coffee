@@ -160,7 +160,6 @@ class AppearancePanel extends MetaMenu
     $('#scroll,#fixed').click (event) =>
       entry_id = $('#showEntry').data('id')
       scrolling = $(event.currentTarget).attr('id')
-      console.log('scrolling:' + scrolling)
       if $('#show_entry_mode').attr('name')?
         @updateEntryViewPreferences(entry_id,null,scrolling,null)   
       else
@@ -170,8 +169,7 @@ class AppearancePanel extends MetaMenu
     # trigger theme changes
     $('#light, #dark').click (event) ->
       entry_id = $('#showEntry').data('id')
-      theme = $(event.currentTarget).data('id') 
-      #console.log('theme:' + theme)
+      theme = $(event.currentTarget).attr('id') 
       if $('#show_entry_mode').attr('name')?
         @updateEntryViewPreferences(entry_id,null,null,theme)   
       else

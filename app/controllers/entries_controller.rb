@@ -143,8 +143,8 @@ class EntriesController < ApplicationController
   def set_view_preferences
     @entry = Entry.find(params[:id])
     @entry.view_preference.image = Image.find(params[:bedsheet_id]) unless params[:bedsheet_id].nil?
-    @entry.view_preference.bedsheet_attachment = Entry.find(params[:scrolling]) unless params[:scrolling].nil?
-    @entry.view_preference.theme = Entry.find(params[:theme]) unless params[:theme].nil?
+    @entry.view_preference.bedsheet_attachment = params[:scrolling] unless params[:scrolling].nil?
+    @entry.view_preference.theme = params[:theme] unless params[:theme].nil?
     @entry.save!
     render :json => "entry view preferences updated"
   rescue => e
