@@ -237,12 +237,12 @@
             <b>comments</b>
             &nbsp; (<span class="counter">#{@comments.count}</span>)
         .clear
-      
+
         .target.slide
           - @comments.each do |comment|
             = render :partial => "entries/comment", :object => comment
 
-          %a{name: "bottom", href: "#"}  
+          %a{name: "bottom", href: "#"}
 
           - if current_user
             .newCommentWrap
@@ -250,7 +250,7 @@
               .newComment
                 / .user= current_user.username
                 = form_for [@entry, Comment.new] do |f|
-                  = f.hidden_field :user_id, :value => current_user.id      
+                  = f.hidden_field :user_id, :value => current_user.id
                   = f.text_area :body, :placeholder => "add comment..."
                   = f.submit 'post', :class => 'save'
                   .links.hidden
@@ -260,5 +260,5 @@
                     %img{src: '/images/icons/images-16.png', width: '16', height: '16'}
                     image
                   .clear
-        
+
           .clear
