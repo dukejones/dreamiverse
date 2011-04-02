@@ -169,15 +169,25 @@ class AppearancePanel extends MetaMenu
    
     # trigger theme changes
     $('#light, #dark').click (event) ->
-      @themeClickHandler((event) =>
-        entry_id = $('#showEntry').data('id')
-        theme = $(event.currentTarget).data('id') 
-        console.log('theme:' + theme)
-        if $('#show_entry_mode').attr('name')?
-          @updateEntryViewPreferences(entry_id,null,null,theme)   
-        else
-          @updateUserViewPreferences(null,null,theme)
-      )
+      entry_id = $('#showEntry').data('id')
+      theme = $(event.currentTarget).data('id') 
+      #console.log('theme:' + theme)
+      if $('#show_entry_mode').attr('name')?
+        @updateEntryViewPreferences(entry_id,null,null,theme)   
+      else
+        @updateUserViewPreferences(null,null,theme)
+  
+  updateEntryViewPreferences: (@entry_id,@bedsheet_id,@scrolling,@theme)->
+    $.ajax {
+      type: 'POST'
+      url: "/entries/#{@entry_id}/set_view_preferences"
+      data:
+        bedsheet_id: @bedsheet_id if @bedsheet_id?
+        scrolling: @scrolling if @scrolling
+        theme: @theme if @theme
+        success: (data, status, xhr) =>
+          success = true
+     }
   
   updateUserViewPreferences: (@bedsheet_id,@scrolling,@theme)->
     $.ajax {
@@ -190,20 +200,8 @@ class AppearancePanel extends MetaMenu
         success: (data, status, xhr) =>
           success = true
      }
-
-  updateEntryViewPreferences: (@entry_id,@bedsheet_id,@scrolling,@theme)->
-    $.ajax {
-      type: 'POST'
-      url: "/entries/#{@entry_id}/set_view_preferences"
-      data:
-        bedsheet_id: @bedsheet_id if @bedsheet_id?
-        scrolling: @scrolling if @scrolling
-        theme: @theme if @theme
-        success: (data, status, xhr) =>
-          success = true
-     }
-
-
+  
+  
   updateEntryBedsheetHiddenImageId: (bedsheet_id)->
     $('#entry_view_preference_attributes_image_id').val(bedsheet_id)
   
