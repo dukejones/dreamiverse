@@ -540,62 +540,6 @@
           margin: 0 8px
           background: url(/images/avatars/default-avatar-tiny.jpg) top left
 
-        .newComment
-          +relative
-          +right
-
-          textarea
-            +round(12)
-            +transparent
-            +font(16)
-            +outline
-            +relative
-            top: 0
-            right: 0
-            font-family: Calibri, Arial, Helvetica, sans-serif
-            height: 40px
-            min-height: 40px
-            width: 500px
-            min-width: 500px
-            max-width: 500px
-            border: none
-            cursor: text
-            padding: 28px 28px 44px
-
-          .user
-            +round(8)
-            +left
-            +center
-            +cursor
-            +user-select
-            height: 32px
-            line-height: 32px
-            padding: 0 16px
-            margin: 0 0 12px
-
-          .images, .links, .save
-            +right
-            +center
-            height: 32px
-          .images, .links
-            line-height: 32px
-            padding: 0 16px
-            img
-              +left
-              margin: 11px 8px 0 0
-          .links
-            img
-              margin-top: 9px
-          .save
-            +absolute
-            +round(8)
-            +bold
-            +font(16)
-            right: 10px
-            bottom: 8px
-            padding: 0 16px 4px
-
-
       .prevCommentWrap
         .prevComment
           +round(12)
@@ -656,6 +600,63 @@
             line-height: 32px
             padding: 0 12px
             margin: 12px 0 0
+
+
+      .newCommentWrap
+        .newComment
+          +relative
+          +right
+
+          textarea
+            +round(12)
+            +transparent
+            +font(16)
+            +outline
+            +relative
+            top: 0
+            right: 0
+            font-family: Calibri, Arial, Helvetica, sans-serif
+            height: 40px
+            min-height: 40px
+            width: 506px
+            min-width: 506px
+            max-width: 506px
+            border: none
+            cursor: text
+            padding: 28px 28px 44px
+
+          .user
+            +round(8)
+            +left
+            +center
+            +cursor
+            +user-select
+            height: 32px
+            line-height: 32px
+            padding: 0 16px
+            margin: 0 0 12px
+
+          .images, .links, .save
+            +right
+            +center
+            height: 32px
+          .images, .links
+            line-height: 32px
+            padding: 0 16px
+            img
+              +left
+              margin: 11px 8px 0 0
+          .links
+            img
+              margin-top: 9px
+          .save
+            +absolute
+            +round(8)
+            +bold
+            +font(16)
+            right: 28px
+            bottom: 8px
+            padding: 0 16px 4px
 
 
 
