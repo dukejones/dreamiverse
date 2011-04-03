@@ -87,8 +87,7 @@ class AppearancePanel extends MetaMenu
     @initScrolling()
     @initTheme()
     
-    @$attachment = @$currentMenuPanel.find('.attachment')
-    
+    @$attachment = @$currentMenuPanel.find('.attachment')    
     @$attachment.find('input').change (event) =>
       $('body').removeClass('fixed, scroll')
       $('body').css('background-attachment', $(event.currentTarget).val())
@@ -166,7 +165,7 @@ class AppearancePanel extends MetaMenu
   initTheme: =>        
     # for new/edit entry    
     if $('#entry_view_preference_attributes_theme').attr('id')?  
-      $('#light, #dark').click (event) =>
+      $('#light, #dark').click (event) ->
         @newTheme = $(event.currentTarget).attr('id')
         log(@newTheme)
         $('#body').removeClass('dark light').addClass(@newTheme)        
@@ -193,7 +192,7 @@ class AppearancePanel extends MetaMenu
         bedsheet_id: @bedsheetId if @bedsheetId?
         scrolling: @scrolling if @scrolling?
         theme: @theme if @theme?
-        success: (data, status, xhr) =>
+        success: (data, status, xhr) ->
           success = true
      }
   
@@ -206,7 +205,7 @@ class AppearancePanel extends MetaMenu
           bedsheet_id: @bedsheetId if @bedsheetId?
           scrolling: @scrolling if @scrolling?
           theme: @theme if @theme?
-          success: (data, status, xhr) =>
+          success: (data, status, xhr) ->
             success = true
        }
 
