@@ -145,14 +145,14 @@ class AppearancePanel extends MetaMenu
           bedsheetUrl = 'url("/images/uploads/' + $(event.currentTarget).data('id') + '-bedsheet.jpg")'
           $('#body').css('background-image', bedsheetUrl)
       
-         if $('#entry_view_preference_attributes_image_id').attr('name')?
+          if $('#entry_view_preference_attributes_image_id').attr('name')?
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
-        else if $('#show_entry_mode').attr('name')?
-          # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
-          # @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
-        else
-          # @updateUserBedsheet($(event.currentTarget).data('id'))
-          # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
+          else if $('#show_entry_mode').attr('name')?
+            # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+            @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
+          else
+            # @updateUserBedsheet($(event.currentTarget).data('id'))
+            # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
         )
         
   
@@ -167,7 +167,7 @@ class AppearancePanel extends MetaMenu
   
    
     # trigger theme changes
-    $('#light, #dark').click (event) ->
+    $('#light, #dark').click (event) =>
       entry_id = $('#showEntry').data('id')
       theme = $(event.currentTarget).attr('id') 
       if $('#show_entry_mode').attr('name')?
