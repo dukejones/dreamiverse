@@ -29,7 +29,6 @@ window.setupMetaDropdowns = ->
   )
   
   appearancePanel = new AppearancePanel('.appearancePanel')
-  #appearancePanel.displayBedsheets()
     
   $.subscribe('toggleAppearance', (event) ->
     appearancePanel.contract()
