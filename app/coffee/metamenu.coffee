@@ -147,12 +147,12 @@ class AppearancePanel extends MetaMenu
       
          if $('#entry_view_preference_attributes_image_id').attr('name')?
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
-          else if $('#show_entry_mode').attr('name')?
-            # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
-            # @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
-          else
-            # @updateUserBedsheet($(event.currentTarget).data('id'))
-            # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
+        else if $('#show_entry_mode').attr('name')?
+          # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+          # @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
+        else
+          # @updateUserBedsheet($(event.currentTarget).data('id'))
+          # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
         )
         
   
