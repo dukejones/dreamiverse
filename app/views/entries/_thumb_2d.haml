@@ -12,7 +12,8 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      %table{width: "100%"}
+      .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 24)}'); background-repeat: no-repeat; background-position: center;"}
+      %table
         %tr
           %td.date= time_ago_in_words(entry.dreamed_at)
           / %td.location dream location
