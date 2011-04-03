@@ -9,8 +9,8 @@
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
 
-      .left .details .commentCount, .left .starlight
-        display: block
+      .detailsTop .entryType, .left .details .commentCount, .left .starlight
+        +block
 
 
 
@@ -38,6 +38,7 @@
         +absolute
         top: 8px
         left: 8px
+        z-index: 100
 
         // USERNAME + AVATAR
         .user
@@ -70,14 +71,13 @@
           +left
           width: 32px
           height: 32px
-          margin: 4px 0 0 4px
 
 
       // LEFT SIDE
       .left
         +absolute
         width: 352px
-        
+
         .image
           z-index: 0
 
@@ -349,7 +349,7 @@
               color: #333
 
           .entryType
-            +transparent-dark(70)
+            +transparent-dark(50)
 
         // LEFT SIDE
         .left
@@ -398,7 +398,7 @@
               color: #ddd
 
           .entryType
-            +transparent-light(70)
+            +transparent-dark(70)
 
         // LEFT SIDE
         .left
