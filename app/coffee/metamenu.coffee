@@ -29,7 +29,7 @@ window.setupMetaDropdowns = ->
   )
   
   appearancePanel = new AppearancePanel('.appearancePanel')
-  appearancePanel.displayBedsheets()
+  #appearancePanel.displayBedsheets()
     
   $.subscribe('toggleAppearance', (event) ->
     appearancePanel.contract()
@@ -83,7 +83,10 @@ class MetaMenu
 class AppearancePanel extends MetaMenu
   constructor: (@name) ->
     super(@name)
-    @setupThemeSelector()
+
+    @initBedsheets()
+    @initScrolling()
+    @initTheme()
     
     @$attachment = @$currentMenuPanel.find('.attachment')
     
@@ -109,30 +112,14 @@ class AppearancePanel extends MetaMenu
     
     $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
-    
-    if $('#entry_view_preference_attributes_bedsheet_attachment').attr('id')?
-      $('.attachment .fixed, .attachment .scroll').click( (event)->
-        $('#entry_view_preference_attributes_bedsheet_attachment').val($(event.currentTarget).attr('id'))
-        $('#body').removeClass('fixed scroll')
-        $('#body').addClass($(event.currentTarget).attr('id'))
-      )
-          
-    
-  setupThemeSelector: ->
-    @$currentMenuPanel.find('.buttons .sun, .buttons .moon').click (event) =>
-      $('#body').removeClass('dark light').addClass($(event.currentTarget).attr('id'))
-      
-      @newTheme = $(event.currentTarget).attr('id')
-      if $('#entry_view_preference_attributes_theme').attr('id')?
-        log(@newTheme)
-        $('#entry_view_preference_attributes_theme').val(@newTheme)
 
-        
-  displayBedsheets: => 
-    # code to display bedsheets here. Need JSON call
+  # code to display and trigger bedsheet updates                   
+  initBedsheets: => 
     if $('#appearancePanel').attr('id')
-      $.getJSON("/images.json?section=Bedsheets", (data) =>
       
+      # display bedsheets here. Need JSON call
+      $.getJSON("/images.json?section=Bedsheets", (data) =>     
+       
         @$currentMenuPanel.find('.bedsheets ul').html('');
     
         # Add elements for each bedsheet returned
@@ -147,62 +134,83 @@ class AppearancePanel extends MetaMenu
       
           if $('#entry_view_preference_attributes_image_id').attr('name')?
             $('#entry_view_preference_attributes_image_id').val($(event.currentTarget).data('id'))
-          else if $('#show_entry_mode').attr('name')?
-            # @updateEntryBedsheet($('#showEntry').data('id'),$(event.currentTarget).data('id'))   
+          else if $('#show_entry_mode').attr('name')? 
             @updateEntryViewPreferences($('#showEntry').data('id'),$(event.currentTarget).data('id'),null,null)  
           else
-            # @updateUserBedsheet($(event.currentTarget).data('id'))
-            # @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)
-        )
-        
-  
-    # trigger scrolling changes
-    $('#scroll,#fixed').click (event) =>
-      entry_id = $('#showEntry').data('id')
-      scrolling = $(event.currentTarget).attr('id')
-      if $('#show_entry_mode').attr('name')?
-        @updateEntryViewPreferences(entry_id,null,scrolling,null)   
-      else
-        @updateUserViewPreferences(null,scrolling,null)  
-  
-   
-    # trigger theme changes
-    $('#light, #dark').click (event) =>
-      entry_id = $('#showEntry').data('id')
-      theme = $(event.currentTarget).attr('id') 
-      if $('#show_entry_mode').attr('name')?
-        @updateEntryViewPreferences(entry_id,null,null,theme)   
-      else
-        @updateUserViewPreferences(null,null,theme)
-  
-  updateEntryViewPreferences: (@entry_id,@bedsheet_id,@scrolling,@theme)->
+            @updateUserViewPreferences($(event.currentTarget).data('id'),null,null)           
+      ) # ends $.getJSON
+      
+    
+  # code to display and trigger scrolling updates  
+  initScrolling: =>       
+    # for new/edit entry 
+    if $('#entry_view_preference_attributes_bedsheet_attachment').attr('id')?        
+      $('#scroll,#fixed').click (event) ->
+        @scrolling = $(event.currentTarget).attr('id')
+        log(@scrolling)
+        $('#body').removeClass('fixed scroll').addClass(@scrolling) 
+        $('#entry_view_preference_attributes_bedsheet_attachment').val(@scrolling)   
+    
+    else # for show entry and elsewhere        
+      $('#scroll,#fixed').click (event) =>
+        @entryId = $('#showEntry').data('id')
+        @scrolling = $(event.currentTarget).attr('id')
+        log(@scrolling)
+        $('#body').removeClass('fixed scroll').addClass(@scrolling) 
+        if $('#show_entry_mode').attr('name')?
+          @updateEntryViewPreferences(@entryId,null,@scrolling,null)   
+        else
+          @updateUserViewPreferences(null,@scrolling,null)
+    
+       
+  # code to display and trigger theme updates       
+  initTheme: =>        
+    # for new/edit entry    
+    if $('#entry_view_preference_attributes_theme').attr('id')?  
+      $('#light, #dark').click (event) =>
+        @newTheme = $(event.currentTarget).attr('id')
+        log(@newTheme)
+        $('#body').removeClass('dark light').addClass(@newTheme)        
+        $('#entry_view_preference_attributes_theme').val(@newTheme)      
+           
+    else # for show entry and elsewhere
+      $('#light, #dark').click (event) =>
+        @entryId = $('#showEntry').data('id')
+        @newTheme = $(event.currentTarget).attr('id')
+        log(@newTheme) 
+        $('#body').removeClass('dark light').addClass(@newTheme) 
+        if $('#show_entry_mode').attr('name')?
+          @updateEntryViewPreferences(@entryId,null,null,@newTheme)   
+        else
+          @updateUserViewPreferences(null,null,@newTheme)            
+
+
+
+  updateEntryViewPreferences: (@entryId,@bedsheetId,@scrolling,@theme)->
     $.ajax {
       type: 'POST'
-      url: "/entries/#{@entry_id}/set_view_preferences"
+      url: "/entries/#{@entryId}/set_view_preferences"
       data:
-        bedsheet_id: @bedsheet_id if @bedsheet_id?
-        scrolling: @scrolling if @scrolling
-        theme: @theme if @theme
-        success: (data, status, xhr) =>
-          success = true
-     }
-  
-  updateUserViewPreferences: (@bedsheet_id,@scrolling,@theme)->
-    $.ajax {
-      type: 'POST'
-      url: "/user/set_view_preferences"
-      data:
-        bedsheet_id: @bedsheet_id if @bedsheet_id?
+        bedsheet_id: @bedsheetId if @bedsheetId?
         scrolling: @scrolling if @scrolling?
         theme: @theme if @theme?
         success: (data, status, xhr) =>
           success = true
      }
   
-  
-  updateEntryBedsheetHiddenImageId: (bedsheet_id)->
-    $('#entry_view_preference_attributes_image_id').val(bedsheet_id)
-  
+
+    updateUserViewPreferences: (@bedsheetId,@scrolling,@theme)->
+      $.ajax {
+        type: 'POST'
+        url: "/user/set_view_preferences"
+        data:
+          bedsheet_id: @bedsheetId if @bedsheetId?
+          scrolling: @scrolling if @scrolling?
+          theme: @theme if @theme?
+          success: (data, status, xhr) =>
+            success = true
+       }
+
 
 # Settings Model Subclass
 class SettingsPanel extends MetaMenu
