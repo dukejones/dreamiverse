@@ -51,9 +51,11 @@ class ContextController
       $('.profile .view .name').text($('#user_name').val())
     
     $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
+      console.log('profile updated')
       $('p.notice').text('Profile has been updated')
     
     $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
+      console.log('profile ERROR ' + error)
       $('p.alert').text(error)
   toggleProfile:  ->
     if @contextView.profileState() is 'none'
