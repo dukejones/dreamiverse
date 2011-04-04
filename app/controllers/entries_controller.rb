@@ -140,6 +140,17 @@ class EntriesController < ApplicationController
     render :json => e.message, :status => :unprocessable_entity
   end
 
+  def set_view_preferences
+    @entry = Entry.find(params[:id])
+    @entry.view_preference.image = Image.find(params[:bedsheet_id]) unless params[:bedsheet_id].nil?
+    @entry.view_preference.bedsheet_attachment = params[:scrolling] unless params[:scrolling].nil?
+    @entry.view_preference.theme = params[:theme] unless params[:theme].nil?
+    @entry.save!
+    render :json => "entry view preferences updated"
+  rescue => e
+    render :json => e.message, :status => :unprocessable_entity
+  end
+
   def random
     random_entry = Entry.random
     redirect_to user_entry_path(random_entry.user.username, random_entry.id)

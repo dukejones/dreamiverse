@@ -35,6 +35,7 @@ Dreamcatcher::Application.routes.draw do
   resource :user do
     post 'follow'
     post 'bedsheet'
+    post 'set_view_preferences'
     post 'avatar'
     post 'location', :to => 'users#create_location'
     match 'search', :as => :search
@@ -83,6 +84,7 @@ Dreamcatcher::Application.routes.draw do
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
+      post 'set_view_preferences', :to => 'entries#set_view_preferences'
     end
     resources :comments
   end
