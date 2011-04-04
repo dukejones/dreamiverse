@@ -42,9 +42,12 @@ class ContextController
 
       $profileDetails = $('.profile .details')
       $website = $profileDetails.find('.website')
-      
-      $website.text($('#user_link_attributes_url').val()) # update link text
-      $website.attr('href',$('#user_link_attributes_url').val()) # update link url
+      $user_url = $('#user_link_attributes_url').val()
+      $user_url_href = $user_url.replace(/^www./, "http://www.")
+      log('new $user_url_href: ' + $user_url_href)
+
+      $website.text($user_url) # update link text
+      $website.attr('href',$user_url_href) # update link url
       $profileDetails.find('.email').text($('#user_email').val())
       $profileDetails.find('.phone').text($('#user_phone').val())
       $profileDetails.find('.skype span').text($('#user_skype').val())
@@ -117,7 +120,8 @@ class ContextView
       else
         $('.entryFilter.entries').find('.value').text('entries')
         $('.entryFilter.entries').find('.label').addClass('selected')
-        
+  
+
   profileState: ->
     @$detailsPanel.css('display')
   showEditProfile: ->

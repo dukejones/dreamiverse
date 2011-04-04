@@ -69,7 +69,9 @@
       / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
         - if user.link
-          %a.website{href: user.link.url, target: "_blank"}= user.link.url
+          - proper_url = assure_http(user.link.url)
+          %a.website{href: proper_url, target: "_blank"}= user.link.url
+          
         - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
