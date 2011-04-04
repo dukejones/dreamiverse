@@ -9,8 +9,8 @@
     .thumb-1d:hover, .thumb-1d.noImage:hover
       z-index: 101
 
-      .left .details .commentCount, .left .starlight
-        display: block
+      .detailsTop .entryType, .left .details .commentCount, .left .starlight
+        +block
 
 
 
@@ -33,38 +33,51 @@
           +hidden
 
 
-      // USERNAME + AVATAR
-
-      .user
-        +round(8)
+      // DETAILS TOP
+      .detailsTop
         +absolute
         top: 8px
         left: 8px
-        padding: 0 12px 0 0
-        height: 30px
-        line-height: 30px
         z-index: 100
 
-        .avatar
-          +round(7)
-          +flat-right
-          +overflow
+        // USERNAME + AVATAR
+        .user
+          +round(8)
           +left
-          width: 30px
+          margin: 0 8px 0 0
+          padding: 0 12px 0 0
           height: 30px
+          line-height: 30px
+          z-index: 100
 
-        .name
-          +bold
-          +right
-          margin: 0 0 0 12px
-          font-size: 16px
+          .avatar
+            +round(7)
+            +flat-right
+            +overflow
+            +left
+            width: 30px
+            height: 30px
+
+          .name
+            +bold
+            +right
+            margin: 0 0 0 12px
+            font-size: 16px
+
+        // ENTRY TYPE
+        .entryType
+          +hidden
+          +round(8)
+          +left
+          width: 32px
+          height: 32px
 
 
       // LEFT SIDE
       .left
         +absolute
         width: 352px
-        
+
         .image
           z-index: 0
 
@@ -74,10 +87,11 @@
           +right
           +round(16)
           +font(12)
+          +bold
           margin: 8px 8px 0 0
-          padding: 0 4px
+          padding: 0 8px 0 4px
           height: 24px
-          line-height: 24px
+          line-height: 26px
           .img
             +left
             background: url(/images/icons/starlight-17.png) no-repeat center transparent
@@ -173,66 +187,41 @@
 
 
       // RIGHT SIDE
-      table.right
+      .right
         +absolute
         +overflow
-        left: 358px
+        left: 356px
         height: 164px
+        width: 314px
 
-        td
-          border-spacing: 0
+        // TAG CLOUD
+        .tagCloud
+          +block
+          height: 400px
+          width: 300px
+
+        // ENTRY IMAGES AND YOUTUBE LINKS
+        ul
+          +absolute
+          top: 0
+          left: 0
+          list-style: none
+          margin: 4px 0 0
           padding: 0
-          
-          .tagCloud
-            +block
-            height: 400px
-            width: 300px
+          width: 314px
 
-
-        // TOP
-        td.top
-          max-height: 62px
-
-          // ENTRY IMAGES AND YOUTUBE LINKS
-
-          ul
-            list-style: none
-            margin: 0
-            padding: 0
-            width: 320px
-
-            li
-              +left
-              margin: 6px 2px 0 0
-              height: 60px
-              width: 60px
-              &.youtube a img
-                margin: 6px
-
-            li a
-              height: 60px
-              width: 60px
-              +block
-
-
-        // BOTTOM
-        td.entryTagList
-          +overflow
-          width: 308px
-          border: none
-          margin-left: 4px
-          padding: 0
-          vertical-align: bottom
-          .tag
-            +round(8)
+          li
             +left
-            +center
-            height: 24px
-            line-height: 24px
-            margin: 6px 6px 0 0
-            padding: 0 8px
-            color: #fff
-            background: #7a7a7a
+            margin: 0px 2px 2px 0
+            height: 58px
+            width: 58px
+            &.youtube a img
+              margin: 6px
+
+          li a
+            height: 58px
+            width: 58px
+            +block
 
 
 
@@ -250,6 +239,9 @@
         .left
           h1.title
             +block
+
+        .entryType
+          +block
 
       .left
         h1.title
@@ -295,9 +287,6 @@
 
     .thumb-1d.videoExpand, .thumb-1d.noImage.videoExpand
       height: auto
-      //
-        .thumbBack
-          +block
 
 
 
@@ -324,24 +313,19 @@
         &:hover
           +glow-light(40)
 
-
-        // USERNAME + AVATAR
-        .user
-          +button-light
-          +gradient(#fff, #e4e4e4)
-          .name
-            color: #333
+        .detailsTop
+          // USERNAME + AVATAR
+          .user
+            +button-light
+            +gradient(#fff, #e4e4e4)
+            .name
+              color: #333
 
         // LEFT SIDE
         .left
 
-
           // STARLIGHT
           .starlight
-            +transparent-dark(30)
-            +border-dark
-            color: #fff
-            +bold
 
           // ENTRY THUMB DETAILS
           .details
@@ -351,13 +335,19 @@
             //COMMENT COUNT
             .commentCount
               .counter
-                +transparent-dark(60)
-                color: #ccc
+                +transparent-dark(50)
+                color: #ddd
 
         // GALLERY
-        table.right td.top ul li
+        .right ul li
           +button-light
 
+
+      // + IMAGE ONLY
+      .thumb-1d
+        .detailsTop .entryType, .left .starlight
+          +flat-light
+          color: #222
 
 
 .dark
@@ -370,23 +360,23 @@
         &:hover
           +glow-dark(40)
 
+        .detailsTop
+          // USERNAME + AVATAR
+          .user
+            +button-dark
+            +gradient(#1d1d1d, #000)
+            .name
+              color: #ddd
 
-        // USERNAME + AVATAR
-        .user
-          +button-dark
-          +gradient(#1d1d1d, #000)
-          .name
-            color: #ddd
+          .entryType
+            +transparent-light(80)
 
         // LEFT SIDE
         .left
-          color: #ccc
 
           // STARLIGHT
           .starlight
-            +transparent-light(10)
-            +border-dark
-            background: #000
+            color: #222
 
           // ENTRY THUMB DETAILS
           .details
@@ -396,16 +386,19 @@
             // COMMENT COUNT
             .commentCount
               .counter
-                +border-dark
+                +transparent-light(50)
+                color: #222
 
         // GALLERY
-        table.right td.top ul li
+        .right ul li
           +button-dark
 
-      .thumb-1d.noImage .left .commentCount .counter
-        +transparent-light(10)
-      .thumb-1d .commentCount .counter
-        +transparent-dark(50)
+
+      // + IMAGE ONLY
+      .thumb-1d
+        .detailsTop .entryType, .left .starlight
+          +flat-dark
+          color: #ddd
 
 
 
@@ -427,6 +420,10 @@
     .matrix
       .noImage
 
+        .detailsTop .entryType, .left .starlight
+          +transparent-dark(50)
+          color: #ddd
+
         // LEFT SIDE
         .left
           .user
@@ -434,13 +431,16 @@
           .commentCount
             .counter
               +transparent-dark(40)
-              color: #fff
 
 
 .dark
   #entryField, #home
     .matrix
       .noImage
+
+        .detailsTop .entryType, .left .starlight
+          +transparent-light(50)
+          color: #222
 
         // LEFT SIDE
         .left
@@ -449,7 +449,6 @@
           .commentCount
             .counter
               +transparent-light(10)
-              color: #ccc
 
 
 

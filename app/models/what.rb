@@ -22,7 +22,7 @@ class What < ActiveRecord::Base
 
   # Makes any string suitable to be a what tag.
   def self.clean(word)
-    word.downcase.strip.slice(0...MaxLength).gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' )
+    word.downcase.strip.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' ).slice(0...MaxLength)
   end
   
   def duplicates
