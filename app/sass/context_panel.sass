@@ -190,7 +190,8 @@
         bottom: 4px
         width: 192px
         height: 24px
-        border: none
+        border-spacing: 0
+        border-collapse: separate
 
         tr
           td.message
@@ -237,11 +238,15 @@
         .email, .phone, .skype
           +cursor
 
-        .skype
-          img, span
-            +left
-          img
-            margin: 2px 4px 0 0
+        table.skype
+          border-spacing: 0
+          border-collapse: separate
+          tr
+            td
+              img, span
+                +left
+              img
+                margin: 2px 4px 0 0
 
         .facebook, .twitter
           +round(4)
