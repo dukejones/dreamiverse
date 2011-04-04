@@ -61,6 +61,15 @@
   .profile
 
     .view
+
+      %table.alert.hidden
+        %tr
+          %td.message
+            update message
+          %td.icon
+            .checkmark.hidden
+            .close-16
+
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
         = user.name
         - if user.name
