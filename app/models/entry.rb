@@ -180,7 +180,7 @@ class Entry < ActiveRecord::Base
   # Add all the tag words to this entry.
   def set_whats(tag_words)
     return unless tag_words
-    new_whats = tag_words.map {|word| What.for word }
+    new_whats = tag_words.map {|word| What.for word }.compact
     (self.tags.custom.whats - new_whats).each {|extraneous_what| self.whats.delete(extraneous_what) }
     new_whats.each { |what| self.add_what_tag(what) }
     
@@ -193,7 +193,7 @@ class Entry < ActiveRecord::Base
       tag = self.tags.where(noun: what).first
       tag.update_attribute(:kind, 'custom') unless tag.kind == 'custom'
     else
-      tags.create(noun: what, position: tags.count, kind: kind)     
+      self.tags.create(noun: what, position: tags.count, kind: kind)     
     end
   end
   
