@@ -50,13 +50,18 @@ class ContextController
       $profileDetails.find('.skype span').text($('#user_skype').val())
       $('.profile .view .name').text($('#user_name').val())
     
-    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
-      console.log('profile updated')
-      $('p.notice').text('Profile has been updated')
+    # listen for close event
+    $('.profile .alert').find('.close-16').click ->
+      $('.profile .alert').hide()
     
+    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
+      $('.profile .alert').find('.message').html('Profile has been updated')
+      $('.profile .alert').show();
+      
     $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
-      console.log('profile ERROR ' + error)
-      $('p.alert').text(error)
+      $('.profile .alert').find('.message').html(error)
+      $('.profile .alert').show();
+      
   toggleProfile:  ->
     if @contextView.profileState() is 'none'
       @contextView.expandProfile()
