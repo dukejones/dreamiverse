@@ -83,12 +83,9 @@
           .email= user.email
           .phone= user.phone
           - unless user.skype.blank?
-            %table.skype
-              %tr
-                %td
-                  %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-                %td
-                  %span= user.skype
+            .skype
+              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+              %span= user.skype
             .clear
         / .facebook facebook
         / .twitter twitter
