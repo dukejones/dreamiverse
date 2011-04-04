@@ -42,21 +42,29 @@ class ContextController
 
       $profileDetails = $('.profile .details')
       $website = $profileDetails.find('.website')
-      
-      $website.text($('#user_link_attributes_url').val()) # update link text
-      $website.attr('href',$('#user_link_attributes_url').val()) # update link url
+      $user_url = $('#user_link_attributes_url').val()
+      $user_url_href = $user_url.replace(/^www./, "http://www.")
+      log('new $user_url_href: ' + $user_url_href)
+
+      $website.text($user_url) # update link text
+      $website.attr('href',$user_url_href) # update link url
       $profileDetails.find('.email').text($('#user_email').val())
       $profileDetails.find('.phone').text($('#user_phone').val())
       $profileDetails.find('.skype span').text($('#user_skype').val())
       $('.profile .view .name').text($('#user_name').val())
     
-    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
-      console.log('profile updated')
-      $('p.notice').text('Profile has been updated')
+    # listen for close event
+    $('.profile .alert').find('.close-16').click ->
+      $('.profile .alert').hide()
     
+    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
+      $('.profile .alert').find('.message').html('Profile has been updated')
+      $('.profile .alert').show();
+      
     $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
-      console.log('profile ERROR ' + error)
-      $('p.alert').text(error)
+      $('.profile .alert').find('.message').html(error)
+      $('.profile .alert').show();
+      
   toggleProfile:  ->
     if @contextView.profileState() is 'none'
       @contextView.expandProfile()
@@ -119,7 +127,8 @@ class ContextView
       else
         $('.entryFilter.entries').find('.value').text('entries')
         $('.entryFilter.entries').find('.label').addClass('selected')
-        
+  
+
   profileState: ->
     @$detailsPanel.css('display')
   showEditProfile: ->
