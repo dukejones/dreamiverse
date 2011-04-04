@@ -62,7 +62,7 @@
 
     .view
 
-      %table.alert
+      %table.alert.hidden
         %tr
           %td.message
             update message
@@ -83,9 +83,12 @@
           .email= user.email
           .phone= user.phone
           - unless user.skype.blank?
-            .skype
-              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-              %span= user.skype
+            %table.skype
+              %tr
+                %td
+                  %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+                %td
+                  %span= user.skype
             .clear
         / .facebook facebook
         / .twitter twitter
