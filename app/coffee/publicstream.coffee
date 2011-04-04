@@ -30,7 +30,7 @@ $(document).ready ->
       $('.thumb-1d').removeClass('videoExpand')
   
       #$('.video').hide()
-      $parent = $(event.currentTarget).parent().parent().parent().parent().parent().parent().parent()
+      $parent = $(event.currentTarget).parent().parent().parent().parent()
       $parent.addClass('videoExpand')
   
       new_id = $(event.currentTarget).parent().data('id')

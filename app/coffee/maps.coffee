@@ -24,7 +24,7 @@ initShowEntryMap = ->
     province = $('#entryLocationMap').data('province')
     
     mapLocation = city + ',' + province
-    log(mapLocation)
+    
     mapElement = '<img src="http://maps.google.com/maps/api/staticmap?center=' + mapLocation + '&zoom=6&size=662x200&maptype=hybrid&markers=color:blue&sensor=false" style="width: 662px;" />'
     $('#entryLocationMap').html(mapElement)
     
