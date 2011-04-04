@@ -40,8 +40,8 @@ class UsersController < ApplicationController
     user = User.find_by_username(params[:username])
 
     case params[:verb]
-      when 'follow' then current_user.following << user unless current_user.following?(user)
-      when 'unfollow' then current_user.following.delete user if current_user.following?(user)
+      when 'follow' then current_user.following << user unless !current_user || current_user.following?(user)
+      when 'unfollow' then current_user.following.delete user if current_user._?.following?(user)
     end
     
     respond_to do |format|
@@ -76,6 +76,17 @@ class UsersController < ApplicationController
     @user = current_user
     @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id]))
     render :json => "user bedsheet updated"
+  rescue => e
+    render :json => e.message, :status => :unprocessable_entity
+  end
+  
+  # XHR only
+  def set_view_preferences
+    @user = current_user
+    @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id])) unless params[:bedsheet_id].nil?
+    @user.view_preference.update_attribute(:bedsheet_attachment, params[:scrolling]) unless params[:scrolling].nil?
+    @user.view_preference.update_attribute(:theme, params[:theme]) unless params[:theme].nil?
+    render :json => "user view preferences updated"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity
   end

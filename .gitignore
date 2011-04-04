@@ -2,6 +2,7 @@
 vendor/bundle
 db/*.sqlite3
 log/*.log
+tmp/*
 tmp/**/*
 .DS_Store
 public/images/uploads/*
