@@ -8,7 +8,7 @@ require 'rails/all'
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 
-FB_PERMS = "publish_stream, publish_checkins, user_location, user_photos, user_checkins, email"
+FB_PERMS = "publish_stream, publish_checkins, user_photos" # user_location, user_checkins, email
 
 GmailSmtpSettings = {
   address: "smtp.gmail.com",

@@ -271,16 +271,16 @@
 
 
 =input-light($size)
-  color: #333
+  color: #888
   outline: none
   background-color: #fff
   outline: none
 
   @if $size == small
     border: 1px solid #666
-    box-shadow:         inset 0 2px 5px #ccc
-    -moz-box-shadow:    inset 0 2px 5px #ccc
-    -webkit-box-shadow: inset 0 2px 5px #ccc
+    box-shadow:         inset 2px 2px 5px #ccc
+    -moz-box-shadow:    inset 2px 2px 5px #ccc
+    -webkit-box-shadow: inset 2px 2px 5px #ccc
 
   @else if $size == large
     border: 1px solid #fff
@@ -289,20 +289,21 @@
     -webkit-box-shadow: inset 0 8px 5px #ccc
 
   &:focus
+    color: #333
     border: 1px solid #000
     +glow-light(20)
 
 
 =input-dark($size)
-  color:      #ddd
+  color:      #999
   border:     1px solid #444
   background: #121212
   outline:    none
 
   @if $size == small
-    box-shadow:         inset 0 0px 10px #000
-    -moz-box-shadow:    inset 0 0px 10px #000
-    -webkit-box-shadow: inset 0 0px 10px #000
+    box-shadow:         inset 2px 2px 5px #000
+    -moz-box-shadow:    inset 2px 2px 5px #000
+    -webkit-box-shadow: inset 2px 2px 5px #000
 
   @else if $size == large
     box-shadow:         inset 0 8px 10px #000
@@ -337,10 +338,10 @@
 
 =transparent-light($percent)
   +flat-light
-  background: rgba(255,255,255, $percent / 100 )
+  background-color: rgba(255,255,255, $percent / 100 )
 =transparent-dark($percent)
   +flat-dark
-  background: rgba(0,0,0, $percent / 100 )
+  background-color: rgba(0,0,0, $percent / 100 )
 
 
 

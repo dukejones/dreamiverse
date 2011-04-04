@@ -176,15 +176,45 @@
 
     // VIEW PROFILE
     .view
+      +relative
+      +center
       +round(8)
       padding: 4px 0
+
+      // PROFILE UPDATE ALERT
+      table.alert
+        +absolute
+        +round(4)
+        +pointer
+        left: 4px
+        bottom: 4px
+        width: 192px
+        height: 24px
+        border-spacing: 0
+        border-collapse: separate
+
+        tr
+          td.message
+            +font(14)
+            +bold
+
+          td.icon
+            padding: 0 0 0 8px
+            .checkmark, .close-16
+              width: 16px
+              height: 22px
+            .checkmark
+              background: url(/images/icons/check-16.png) no-repeat center
+            .close-16
+              +alpha(100)
+              background: url(/images/icons/close-16-hover.png) no-repeat center
+
 
       hr
         +alpha(30)
 
       .name
         +font(21)
-        +center
         +pointer
 
       .location
@@ -209,10 +239,8 @@
           +cursor
 
         .skype
-          img, span
-            +left
           img
-            margin: 2px 4px 0 0
+            margin: 0px 2px -4px 0
 
         .facebook, .twitter
           +round(4)
@@ -483,6 +511,12 @@
       .view, .edit
         +transparent-light(40)
 
+        table.alert
+          +flat-dark
+          tr
+            td.message
+              color: #ddd
+
         .details
           .website, .email, .phone, .skype
 
@@ -575,6 +609,12 @@
       .view, .edit
         +transparent-dark(40)
         border: 1px solid #222
+
+        table.alert
+          +flat-light
+          tr
+            td.message
+              color: #333
 
         .details
           .website, .email, .phone, .skype

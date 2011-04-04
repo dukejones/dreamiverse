@@ -52,8 +52,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
-  validates_format_of :username, :without => /[^a-zA-Z\d*_-]/, 
-    :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"  
+  validates_format_of :username, :without => /[^a-zA-Z\d*_\-\.]/, 
+    :message => "contains invalid characters (only letters, numbers, underscores, periods, dashes and asterix's allowed in usernames)"
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_presence_of :email
   validates_uniqueness_of :email

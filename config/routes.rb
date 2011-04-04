@@ -14,6 +14,7 @@ Dreamcatcher::Application.routes.draw do
   get   'reset-password/:username/:reset_code', :to => 'user/registrations#reset_password', :as => :reset_password
   post  'reset-password', :to => 'user/registrations#do_password_reset', :as => :do_password_reset
   match 'auth/:provider/callback', :to => 'user/authentications#create'
+  match 'auth/failure', :to => 'user/authentications#failure'
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
   
   # Universal 
@@ -34,6 +35,7 @@ Dreamcatcher::Application.routes.draw do
   resource :user do
     post 'follow'
     post 'bedsheet'
+    post 'set_view_preferences'
     post 'avatar'
     post 'location', :to => 'users#create_location'
     match 'search', :as => :search
@@ -82,6 +84,7 @@ Dreamcatcher::Application.routes.draw do
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
+      post 'set_view_preferences', :to => 'entries#set_view_preferences'
     end
     resources :comments
   end

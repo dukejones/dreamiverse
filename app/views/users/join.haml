@@ -1,5 +1,6 @@
 - content_for :head do
   = sass_link_tag 'user_info'
+  = coffeescript_include_tag 'seedcode'
 
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
@@ -40,8 +41,8 @@
           .label.seed.trigger.showhideremove have a seed code?
           .target.hidden.showhideremove
             %span.label enter seed code
-            = f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || 'theta'
-
+            /= f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || 'theta'
+            = f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || ''
           .clear
 
           .relative
@@ -56,3 +57,4 @@
                 Join Now &rsaquo;
                 %input.button{tabindex: '6', type: 'submit', name: 'loginButton', value: 'Join Now &rsaquo;'}
 
+          %a.forgot{href: forgot_password_path} have an account and need to reset your password?

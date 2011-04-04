@@ -19,6 +19,14 @@
       %span password
       = f.password_field(:password, {class: 'login-input', tabindex: '2'})
 
+      %label.stay
+        Stay logged in
+        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+
+      %a.forgot{href: forgot_password_path} Forgot password
+
+      .clear
+
       %a.forgot{href: forgot_password_path} Forgot password
 
       %label.stay

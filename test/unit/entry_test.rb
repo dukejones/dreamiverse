@@ -126,4 +126,31 @@ class EntryTest < ActiveSupport::TestCase
     end
   end
 
+  test "add_what_tag adds a tag" do
+    entry = Entry.make
+    what = What.for('unicorn')
+    what2 = What.for('klingon')
+    assert_equal 0, entry.tags.count
+    entry.add_what_tag(what)
+    assert_equal 1, entry.whats.count
+    assert_equal what, entry.whats.first
+    # can add another tag
+    entry.add_what_tag(what2)
+    assert_equal 2, entry.whats.count
+    assert_equal what2, entry.whats.last
+    # if there's an auto tag, and you add it as a custom tag, it'll make the tag custom and not create a new tag.
+    unicorn_tag = entry.tags.what.named('unicorn').first
+    unicorn_tag.update_attribute(:kind, 'auto')
+    entry.add_what_tag(what)
+    new_unicorn_tag = entry.tags.what.named('unicorn').first
+    assert_equal unicorn_tag, new_unicorn_tag
+    assert_equal 'custom', new_unicorn_tag.kind
+  end
+
+  test "what happens when adding a tag with an invalid tag name" do
+    entry = Entry.make
+    entry.set_whats(['unicorn', 'Ka-'])
+    debugger
+    1
+  end
 end

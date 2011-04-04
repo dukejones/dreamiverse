@@ -42,4 +42,10 @@ class User::AuthenticationsController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def failure
+    @message = params[:message]
+    Rails.logger.warn "Authorization refused or failed!"
+    redirect_to root_path, {alert: "Authorization failed."}
+  end
 end
