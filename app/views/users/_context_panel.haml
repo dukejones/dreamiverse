@@ -62,13 +62,11 @@
 
     .view
 
-      %table.alert.hidden
-        %tr
-          %td.message
-            update message
-          %td.icon
-            .checkmark.hidden
-            .close-16
+      .alert.hidden
+        %span.message
+          update message
+        %img.checkmark.hidden{src: '/images/icons/check-16.png'}
+        %img.close-16{src: '/images/icons/close-16-hover.png'}
 
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
         = user.name
