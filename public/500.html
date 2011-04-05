@@ -5,6 +5,55 @@
   <link href="/stylesheets/compiled/shared.css?1299142673" media="screen" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/compiled/home.css?1299142672" media="screen" rel="stylesheet" type="text/css" />
   <link href="/stylesheets/error_page.css" media="screen" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+<!--
+#goButton {
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  position: absolute;
+  font-size: 22px;
+  font-weight: bold;
+  bottom: 12px;
+  right: 12px;
+  height: 38px;
+  line-height: 38px;
+  padding: 0 12px;
+  cursor: pointer;
+  border: 1px solid #9ae4fd;
+  color: #d1f2ff;
+  box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  background: #5b71a4;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0a1f4e), to(rgba(14, 66, 132, 0.65)));
+  background: -moz-linear-gradient(top, #0a1f4e, rgba(14, 66, 132, 0.65)); }
+#goButton:hover {
+  cursor: pointer;
+  border: 1px solid white;
+  color: white; }
+  box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 20px rgba(255, 255, 255, 0.2);
+  background: #0c2b50;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+  background: -moz-linear-gradient(top, #0c2b50, #5d80ad); }
+#goButton:active {
+  background: #0c2b50;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+  background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+  box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+  -moz-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+  -webkit-box-shadow: inset 0 0px rgba(255, 255, 255, 0.2);
+  background: #0c2b50;
+  background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad));
+  background: -moz-linear-gradient(top, #0c2b50, #5d80ad);
+  border: 1px solid #9ae4fd; }
+-->
+</style>
+
+
 </head>
 
 <body class='light' style="background: url('/images/bedsheets/today-in-dreams-med.jpg') scroll top center #022e5e">
@@ -21,7 +70,7 @@
         <img alt='dreamstar' class='dreamstar' height='148' src='/images/icons/dreamstar-148.png' width='148'>
         <div class='shineBox' style='height: 320px'>
           <h2>Sorry, we were not expecting that!</h2>
-          <a href='/'>meanwhile, this week in dreams...</a>
+          <a id="goButton" href='/'>meanwhile, this week in dreams...</a>
         </div>
       </div>
     </div>
