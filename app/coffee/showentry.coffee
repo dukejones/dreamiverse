@@ -40,13 +40,16 @@ getYoutubeData = (video_url, linked_element) ->
 #     return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ nice.replace(/^www./i,'') +'</a>';
 #   
 #   return text;
-  
+
 $(document).ready ->
   tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
   $('#comment_submit').hide()
   $('#comment_body').live "focus", =>
+    if !@commentsFocused
+      #$('#comment_body').css('height', '40px')
+      $('#comment_body').animate({height: '40px'}, 'fast')
     @commentsFocused = true
     $('#comment_submit').fadeIn(250)
   
