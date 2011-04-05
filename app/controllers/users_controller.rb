@@ -3,6 +3,12 @@ class UsersController < ApplicationController
     @user = current_user # User.find params[:id]
     # raise "access denied" unless @user == current_user
 
+    if @user.link && params[:user][:link_attributes]._?[:url].blank?
+      @user.link.destroy
+      @user.link = nil
+      params[:user].delete(:link_attributes)
+    end
+    
     if @user.update_attributes(params[:user])
       respond_to do |format|
         format.html { render :text => "user updated" }

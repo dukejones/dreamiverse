@@ -102,7 +102,7 @@
             %span full name
             = f.text_field :name, :placeholder => 'full name'
             %span website url
-            = f.fields_for :link, current_user.link do |l|
+            = f.fields_for :link, current_user.link || Link.new do |l|
               = l.text_field :url, :placeholder => 'http://yoursite.com'
             %span email address
             = f.text_field :email, :placeholder => 'email@address.com'
