@@ -45,11 +45,23 @@ class Tag < ActiveRecord::Base
   end
 
   # tag the entry with the top x auto tags, inserted after the custom tags
-  def self.auto_generate_tags(entry, cloud_size = 16)   
+  def self.auto_generate_tags(entry, cloud_size = 16)
     entry.tags.auto.delete_all
     
-    # auto words from title/body - titles get entered twice for double score    
-    auto_tag_words = "#{entry.title} #{entry.title} #{entry.body}".split(/\s+/)
+    # titles get entered twice for double score
+    tag_text = "#{entry.title} #{entry.title} #{entry.body}"
+    
+    # remove all html tags accidentally pasted in
+    tag_text.gsub! %r{</?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)/?>}, ''
+    # remove references to url's of any sort
+    tag_text.gsub! %r{(https?://|www\.)([-\w\.]+)+(:\d+)?(/([\w/_\.]*(\?\S+)?)?)?}, ''
+    # make spaces for ., --, and / for dream-typing -- e.g. done...but i ; kitchen--but no fridge ; airport/spaceport
+    tag_text.gsub!(/\.+|\-\-+|\/|,/, ' ')
+    # also get rid of possessives -- ruby's => ruby
+    tag_text.gsub!(/'s/, '')
+    
+    auto_tag_words = tag_text.split(/\s+/)
+    
     auto_scores = self.order_and_score_auto_tags(auto_tag_words)
 
     # which position to start with?
@@ -64,8 +76,7 @@ class Tag < ActiveRecord::Base
   # create hash  name => frequency with no blacklisted words.   
   def self.order_and_score_auto_tags(tag_words)   
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
-      if (!BlacklistWords[tag_word]) && (!tag_word.starts_with?('http://') && !tag_word.starts_with?('www.'))
-        what = What.for(tag_word)
+      if acceptable_tag?(tag_word) && what = What.for(tag_word)
         tag_scores[what] ||= 0
         tag_scores[what] += 1
       end
@@ -74,6 +85,12 @@ class Tag < ActiveRecord::Base
     tag_scores.sort_by { |tag_word, tag_score| tag_score }.reverse
   end
 
+  def self.acceptable_tag?(tag_word)
+    !BlacklistWords[tag_word] && 
+    !tag_word.starts_with?('http://') && 
+    !tag_word.starts_with?('www.')
+  end
+  
   # udpate custom tag positions with an ordered, comma-delim list
   def self.order_custom_tags(entry_id,position_list)
     

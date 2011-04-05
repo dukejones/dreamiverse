@@ -129,4 +129,14 @@ class TagTest < ActiveSupport::TestCase
 
   end
 
+  test "autotagging doesn't autotag html tags or url's in the body of the entry" do
+    entry = Entry.make(body: "From the macrocosm of human civilization, to the microcosm of a single human being, we are beginning to harness the power of Sol.\r\n\r\nHere Comes the Sun\r\nUplifting 48 min documentary on the migration to solar power:\r\nhttp://www.youtube.com/watch?v=mLHBFyfvK8A&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/mLHBFyfvK8A\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nThe Sun\r\nVisually appealing BBC documentary on solar weather, spots and flares\r\n30 min\r\nhttp://www.youtube.com/watch?v=cPWFv4f00xw&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/cPWFv4f00xw\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nEat the Sun! - Sungazing film trailer\r\nhttp://www.youtube.com/watch?v=ZM9iDdkKZ7M&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"640\" height=\"390\" src=\"http://www.youtube.com/embed/ZM9iDdkKZ7M\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nPranasynthesis - 4 min, amazing\r\nhttp://www.youtube.com/watch?v=ewoDVPCLnt0\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/ewoDVPCLnt0\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nScroll down for video of Hira Ratan Manek (HRM), who has been examined by universities and NASA for the potential of sungazing-assisted space travel.")
+    
+    Tag.auto_generate_tags(entry)
+    
+    tag_words = entry.tags.auto.whats.map(&:name)
+    assert tag_words.none?{|tag_word| tag_word['<iframe'] }
+    assert tag_words.none?{|tag_word| tag_word['http://'] }
+    assert tag_words.none?{|tag_word| tag_word['youtube'] }
+  end
 end
