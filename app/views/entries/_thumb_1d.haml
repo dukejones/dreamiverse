@@ -71,11 +71,11 @@
         .emotionsHeader
           .img
           emotions
-        = render :partial => "entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
+        = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
 
       / EMOTIONS THUMB
       .emotions-thumb.trigger.emotionshowhide
-        = render :partial => "entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
+        = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
 
 
   / VIDEO PANEL
