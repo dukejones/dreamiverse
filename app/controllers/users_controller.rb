@@ -37,11 +37,13 @@ class UsersController < ApplicationController
   end
   
   def follow
+    redirect_to :root and return unless current_user
+    
     user = User.find_by_username(params[:username])
 
     case params[:verb]
-      when 'follow' then current_user.following << user unless !current_user || current_user.following?(user)
-      when 'unfollow' then current_user.following.delete user if current_user._?.following?(user)
+      when 'follow' then current_user.following << user unless current_user.following?(user)
+      when 'unfollow' then current_user.following.delete user if current_user.following?(user)
     end
     
     respond_to do |format|

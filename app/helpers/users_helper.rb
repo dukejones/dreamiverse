@@ -7,6 +7,7 @@ module UsersHelper
     "dreamstars-5-128.png",
     "dreamstars-6-128.png"
   ]
+  
   def dreamstar_image_tag(rank)
     raw( image_tag("dreamstars/#{DreamstarImages[rank-1]}", :size => '128x128') )
   end
@@ -23,5 +24,10 @@ module UsersHelper
     end
     
     raw( img_url )
+  end
+  def assure_http(url)
+    url.gsub(/^www./, 'http://www.')
+    url = "http://#{url}" if url !~ /^http:\/\//i 
+    return url
   end
 end
