@@ -41,7 +41,7 @@ class Tag < ActiveRecord::Base
     joins(:noun.type(What)).includes(:noun)
   end
   def self.whats
-    what.includes(:noun).map(&:noun)
+    what.map(&:noun)
   end
 
   # tag the entry with the top x auto tags, inserted after the custom tags
