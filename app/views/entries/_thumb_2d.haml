@@ -23,10 +23,9 @@
         .comments
           = image_tag("icons/comment-16.png")
           = entry.comments.count
-      - unless entry.sharing == "everyone"
-        .sharing
-          %img
-          %span= entry.sharing
+      .sharing
+        %img
+        %span= entry.sharing
 
     / TITLE
     .title= entry.title
