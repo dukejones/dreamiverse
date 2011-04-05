@@ -83,9 +83,8 @@
         - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
-          .skype
-            %span= user.skype
-          .clear
+          .skype= user.skype
+
         / .facebook facebook
         / .twitter twitter
         .clear
