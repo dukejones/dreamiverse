@@ -27,6 +27,7 @@ module UsersHelper
   end
   def assure_http(url)
     url.gsub(/^www./, 'http://www.')
-    url = "http://#{url}" if url !~ /http:\/\//i 
+    url = "http://#{url}" if url !~ /^http:\/\//i 
+    return url
   end
 end
