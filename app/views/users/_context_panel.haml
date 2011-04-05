@@ -78,7 +78,8 @@
         .website
           - if user.link
             - proper_url = assure_http(user.link.url)
-            %a{href: proper_url, target: "_blank"}= user.link.url
+          %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
+            = "#{(user.link.blank?) ? ' ' : user.link.url}" 
 
         - if user.friends_with?(current_user)
           .email= user.email
