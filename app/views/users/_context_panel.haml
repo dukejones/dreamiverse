@@ -68,30 +68,30 @@
         %img.checkmark.hidden{src: '/images/icons/check-16.png'}
         %img.close-16{src: '/images/icons/close-16-hover.png'}
 
+
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
         = user.name
-        - if user.name
-          %hr
 
       / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        - if user.link
-          - proper_url = assure_http(user.link.url)
-          %a.website{href: proper_url, target: "_blank"}= user.link.url
-          
+
+        .website
+          - if user.link
+            - proper_url = assure_http(user.link.url)
+            %a{href: proper_url, target: "_blank"}= user.link.url
+
         - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
-          - unless user.skype.blank?
-            .skype
-              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-              %span= user.skype
-            .clear
+          .skype= user.skype
+
         / .facebook facebook
         / .twitter twitter
         .clear
+
         - if user == current_user
           .change edit profile
+
         .clear
 
     - if user == current_user
