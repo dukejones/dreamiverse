@@ -50,17 +50,34 @@ class ContextController
       $profileDetails.find('.skype span').text($('#user_skype').val())
       $('.profile .view .name').text($('#user_name').val())
     
-    # listen for close event
-    $('.profile .alert').find('.close-16').click ->
-      $('.profile .alert').hide()
-    
-    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
-      $('.profile .alert').find('.message').html('Profile has been updated')
-      $('.profile .alert').show();
+    $('form#update_profile').bind 'ajax:success', (data, xhr, status)=>
+      $('.profile .alert').find('.checkmark').show()
+      $('.profile .alert').find('.close-16').hide()
       
-    $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
+      setTimeout("$('.profile .alert').hide();", 5000)
+      
+      # listen for close event
+      $('.profile .alert').click ->
+        $('.profile .alert').unbind()
+        $('.profile .alert').hide()
+        
+      $('.profile .alert').find('.message').html('Profile has been updated')
+      $('.profile .alert').show()
+      
+      
+    $('form#update_profile').bind 'ajax:error', (xhr, status, error)=>
+      $('.profile .alert').find('.checkmark').hide()
+      $('.profile .alert').find('.close-16').show()
+      
+      setTimeout("$('.profile .alert').hide();", 5000)
+      
+      # listen for close event
+      $('.profile .alert').click ->
+        $('.profile .alert').unbind()
+        $('.profile .alert').hide()
+        
       $('.profile .alert').find('.message').html(error)
-      $('.profile .alert').show();
+      $('.profile .alert').show()
       
   toggleProfile:  ->
     if @contextView.profileState() is 'none'
