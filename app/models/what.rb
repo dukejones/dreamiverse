@@ -10,7 +10,7 @@ class What < ActiveRecord::Base
   validates :name,
             :presence => true,
             :uniqueness => true,
-            :length => { :minimum => 2, :maximum => MaxLength }
+            :length => { :minimum => 3, :maximum => MaxLength }
 
   before_create :clean_name
   
