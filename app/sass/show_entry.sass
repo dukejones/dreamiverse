@@ -257,7 +257,7 @@
         .hover_label
           width: 140px
 
-        .tagInputWrap
+        .tagInputWrap, .tagInputWrap.selected
           +round(19)
           +transparent
           +absolute
@@ -335,7 +335,7 @@
 
 
         #tag-list // SEE ENTRIES.SASS
-          margin: 36px 0 0
+          margin: 40px 0 0
 
       // ANALYSIS
       .entryAnalysis
@@ -599,10 +599,12 @@
         // TAG
         .showTags
 
-          .tagInputWrap
-            box-shadow:         8px 8px 20px #000
-            -moz-box-shadow:    8px 8px 20px #000
-            -webkit-box-shadow: 8px 8px 20px #000
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(0,0,0,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(0,0,0,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(0,0,0,0.8)
+
+          .tagInputWrap, .tagInputWrap.selected
 
             .tagThisEntry
               +button-light
@@ -750,10 +752,12 @@
         // TAG
         .showTags
 
-          .tagInputWrap
-            box-shadow:         8px 8px 20px #fff
-            -moz-box-shadow:    8px 8px 20px #fff
-            -webkit-box-shadow: 8px 8px 20px #fff
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(250,250,250,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(250,250,250,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(250,250,250,0.8)
+
+          .tagInputWrap, .tagInputWrap.selected
 
             .tagThisEntry
               +button-dark
