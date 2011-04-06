@@ -13,6 +13,8 @@ class Tag < ActiveRecord::Base
   validates_presence_of :entry_id
   validates_presence_of :noun_id
 
+  # before_create :set_kind
+  
   # Scopes
   # Custom vs. Auto : custom (default) is user-entered, auto is auto-generated
   def self.custom
@@ -42,7 +44,7 @@ class Tag < ActiveRecord::Base
     join_to(Emotion)
   end
   def self.what
-    joins_to(What)
+    join_to(What)
   end
 
   def self.emotions
@@ -128,4 +130,15 @@ class Tag < ActiveRecord::Base
     return true
   end  
 
+  protected
+  
+  # def set_kind
+  #   if self.kind.nil?
+  #     if self.noun_type == 'What'
+  #       self.kind = 'custom'
+  #     else
+  #       self.kind = self.noun_type.downcase
+  #     end
+  #   end
+  # end
 end

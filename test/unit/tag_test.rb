@@ -35,7 +35,7 @@ class TagTest < ActiveSupport::TestCase
 
     Tag.order_custom_tags(entry.id, what_ids.join(','))
     
-    assert_equal whats.map(&:id), entry.custom_tags.map(&:id)
+    assert_equal whats.map(&:id), entry.tags.custom.whats.map(&:id)
 
   end
 

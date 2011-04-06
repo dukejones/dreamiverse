@@ -24,14 +24,14 @@ class Entry < ActiveRecord::Base
   has_many :comments
 
   has_many :tags
-  has_many :custom_tags, 
-           :through => :tags, 
-           :source => :noun, 
-           :source_type => 'What', 
-           :conditions => ['kind = ?', 'custom'],
-           :order => 'position asc',
-           :limit => 16
-  has_many :custom_whats, :through => :custom_tags
+  # has_many :custom_tags, 
+  #          :through => :tags, 
+  #          :source => :noun, 
+  #          :source_type => 'What', 
+  #          :conditions => ['kind = ?', 'custom'],
+  #          :order => 'position asc',
+  #          :limit => 16
+  has_many :what_tags, 
   has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true

@@ -177,7 +177,7 @@
             .emptyTag.hidden
               %span.tagContent
               .close-16
-            - @entry.custom_tags.each do |what|
+            - @entry.tags.custom.whats.each do |what|
               .tagWhat.tag{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
                 %span.tagContent= what.name
                 - if @entry.user == current_user
