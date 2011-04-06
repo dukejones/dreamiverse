@@ -23,16 +23,19 @@ class Entry < ActiveRecord::Base
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   has_many :comments
 
+  # Tag associations
   has_many :tags
-  has_many :custom_tags, 
-           :through => :tags, 
-           :source => :noun, 
-           :source_type => 'What', 
-           :conditions => ['kind = ?', 'custom'],
-           :order => 'position asc',
-           :limit => 16
-  has_many :custom_whats, :through => :custom_tags
-  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
+  # has_many :custom_tags, 
+  #          :through => :tags, 
+  #          :source => :noun, 
+  #          :source_type => 'What', 
+  #          :conditions => ['kind = ?', 'custom'],
+  #          :order => 'position asc',
+  #          :limit => 16
+  def what_tags
+    self.tags.of_type(What)
+  end
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :order => 'position asc', :uniq => true
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
   has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
@@ -54,6 +57,7 @@ class Entry < ActiveRecord::Base
   before_create :create_view_preference
   after_save :process_all_tags 
 
+  # Sharing scopes
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
   end
@@ -70,13 +74,7 @@ class Entry < ActiveRecord::Base
     where(sharing_level: Entry::Sharing[:anonymous])
   end
   
-  # def self.order_by_starlight
-  #   select('entries.*').
-  #   from( "( #{Starlight.current_for('Entry').to_sql} ) as maxstars " ).
-  #   joins("JOIN starlights ON starlights.id=maxstars.maxid").
-  #   joins("JOIN entries ON entries.id=starlights.entity_id").
-  #   order('starlights.value DESC')
-  # end
+  # Friends and Following scopes
   def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 
@@ -220,29 +218,24 @@ class Entry < ActiveRecord::Base
   end
   
   def reorder_tags
-    max_tags = 16
     # put all custom tags first
-    tags.custom.each_with_index do |tag, index|
+    self.what_tags.custom.each_with_index do |tag, index|
       tag.update_attribute :position, index
     end
     # then reorder auto tags - up to 16 total tags
-    first_auto_tag_position = tags.custom.count
-    tags.auto.each_with_index do |tag, index|
-      if first_auto_tag_position + index < max_tags
-        tag.update_attribute :position, first_auto_tag_position + index
-      else
-        tag.destroy
-      end
+    first_auto_tag_position = self.what_tags.custom.count
+    self.what_tags.auto.each_with_index do |tag, index|
+      tag.update_attribute :position, first_auto_tag_position + index
     end
   end
   
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
     return if @skip_auto_tags
-    if body_changed?
+    if body_changed? || title_changed?
       Tag.auto_generate_tags(self)
+      reorder_tags
     end
-    reorder_tags
   end
    
   def replace_blank_titles

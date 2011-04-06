@@ -177,12 +177,11 @@
             .emptyTag.hidden
               %span.tagContent
               .close-16
-            - @entry.tags.custom.each do |what|
-              .wrapper
-                .tagWhat.tag{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
-                  %span.tagContent= what.name
-                  - if @entry.user == current_user
-                    .close-16
+            - @entry.what_tags.custom.whats.each do |what|
+              .tagWhat.tag{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
+                %span.tagContent= what.name
+                - if @entry.user == current_user
+                  .close-16
 
             / ANALYSIS TAGS
             - @entry.tags.auto
@@ -209,7 +208,6 @@
                   .description
                     %p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit justo vel quam sagittis rhoncus. Integer eu est odio. Ut elementum felis felis. Mauris sodales pellentesque massa eu iaculis. Morbi nunc nisi, eleifend vitae tristique non, luctus vel purus. Duis sit amet ipsum in sem malesuada imperdiet quis et nisl. Sed eu adipiscing urna. Quisque libero massa, dapibus ut feugiat et, vulputate sit amet lacus. Vivamus pulvinar augue ac urna laoreet ut elementum risus mollis. Nulla ornare tempus suscipit. Aenean convallis odio ac massa gravida gravida quis quis nisi. Maecenas rutrum, lacus ut adipiscing condimentum, neque mi laoreet libero, eu fermentum augue augue vitae augue. Pellentesque commodo tincidunt ligula in hendrerit. Maecenas non ligula tortor.
                   %a.source{href: '#', target: '_blank'} Link to source
-
 
             / .clear
           #sorting

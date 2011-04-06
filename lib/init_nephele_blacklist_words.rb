@@ -39,10 +39,8 @@
     title dream body}
     
     blacklist_words.each do |word|
-      if word.length > 2
-        word = What.clean(word)
-        BlacklistWord.find_or_create_by_word(:word => word, :kind => 'nephele')
-      end
+      word = What.clean(word)
+      BlacklistWord.find_or_create_by_word(:word => word, :kind => 'nephele')
     end
   end
 end

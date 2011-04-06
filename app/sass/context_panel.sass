@@ -182,36 +182,31 @@
       padding: 4px 0
 
       // PROFILE UPDATE ALERT
-      table.alert
+      .alert
         +absolute
         +round(4)
         +pointer
+        +center
         left: 4px
         bottom: 4px
         width: 192px
         height: 24px
+        line-height: 24px
         border-spacing: 0
         border-collapse: separate
 
-        tr
-          td.message
-            +font(14)
-            +bold
+        span.message
+          +font(14)
+          +bold
 
-          td.icon
-            padding: 0 0 0 8px
-            .checkmark, .close-16
-              width: 16px
-              height: 22px
-            .checkmark
-              background: url(/images/icons/check-16.png) no-repeat center
-            .close-16
-              +alpha(100)
-              background: url(/images/icons/close-16-hover.png) no-repeat center
+        .checkmark, .close-16
+          margin: 0px 0 -2px 4px
+        //.checkmark
+          background: url(/images/icons/check-16.png) no-repeat center
+        .close-16
+          +alpha(100)
+          //background: url(/images/icons/close-16-hover.png) no-repeat center
 
-
-      hr
-        +alpha(30)
 
       .name
         +font(21)
@@ -239,8 +234,9 @@
           +cursor
 
         .skype
-          img
-            margin: 0px 2px -4px 0
+          background: url('/images/icons/skype-16.png') no-repeat 0 2px transparent
+          padding: 0 0 2px 20px
+          display: inline-block
 
         .facebook, .twitter
           +round(4)
@@ -511,11 +507,10 @@
       .view, .edit
         +transparent-light(40)
 
-        table.alert
+        .alert
           +flat-dark
-          tr
-            td.message
-              color: #ddd
+          .message
+            color: #ddd
 
         .details
           .website, .email, .phone, .skype
@@ -610,11 +605,10 @@
         +transparent-dark(40)
         border: 1px solid #222
 
-        table.alert
+        .alert
           +flat-light
-          tr
-            td.message
-              color: #333
+          .message
+            color: #333
 
         .details
           .website, .email, .phone, .skype

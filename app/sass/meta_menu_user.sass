@@ -41,8 +41,8 @@
     .randomDream
       width: 40px
 
-  .leftPanel .item:hover
-    color: #4b93d9
+
+
 
   .leftPanel, .rightPanel
     +round(16)
@@ -82,6 +82,11 @@
         +pointer
         width: 24px
         height: 26px
+
+
+  .leftPanel
+    +left
+    padding: 8px 6px 8px
 
     // HOME ICON STATES
     .item.home
@@ -149,8 +154,10 @@
           width: 24px
           height: 26px
           background: url(/images/icons/search-24.png) no-repeat center transparent
-        &:hover .img
-          background: url(/images/icons/search-24-hover.png) no-repeat center transparent
+        &:hover
+          border: #8c8c8c 1px solid
+          .img
+            background: url(/images/icons/search-24-hover.png) no-repeat center transparent
         &:active .img
           background: url(/images/icons/search-24-active.png) no-repeat center transparent
 
@@ -190,9 +197,6 @@
           background: url(/images/icons/search-24-active.png) no-repeat 0px 4px transparent
 
 
-  .leftPanel
-    +left
-    padding: 8px 6px 8px
 
   .rightPanel
     +relative
@@ -213,6 +217,7 @@
       margin: 0 2px -2px
       line-height: 28px
       height: 26px
+      border: 1px solid #000 !important
 
       &:hover
         +glow-light(5)

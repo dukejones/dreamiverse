@@ -10,7 +10,7 @@ class TagTest < ActiveSupport::TestCase
   #   assert_equal @entry.tags.order(:position).map{|t| t.noun.name }, ['word', 'juniper', 'banana']
   # end
   
-  test "custom tag same as auto tag" do
+  test "Inserting a new custom tag with the same name as an auto tag" do
     what = What.for('duke')
     entry = Entry.make(body: 'the duke duke duke something dream')
     Tag.auto_generate_tags(entry)
@@ -35,7 +35,7 @@ class TagTest < ActiveSupport::TestCase
 
     Tag.order_custom_tags(entry.id, what_ids.join(','))
     
-    assert_equal whats.map(&:id), entry.custom_tags.map(&:id)
+    assert_equal whats.map(&:id), entry.tags.custom.whats.map(&:id)
 
   end
 
@@ -58,10 +58,12 @@ class TagTest < ActiveSupport::TestCase
       assert_equal index, tag.position
     end
 
+    # Add a new custom tag. Verify that its position is at the end of the custom tags, before the auto tags.
     num_custom_tags = entry.tags.custom.count
     dragon = What.for('dragon')
     entry.add_what_tag(dragon)
     entry.save
+    entry.reorder_tags
     assert_equal num_custom_tags, entry.tags.where(noun: dragon).first.position
     all_positions = entry.tags.map(&:position)
     assert_equal all_positions, all_positions.uniq
@@ -78,14 +80,12 @@ class TagTest < ActiveSupport::TestCase
     # add a custom tag
     # verify that it dropped off
     
-    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled')  
+    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled', skip_auto_tags: false)
     
-    last_auto_tag = entry.tags.where(:kind => 'auto').last
+    last_auto_tag = entry.tags.auto.last
     
-    custom_tags = ['falling','limitless','sky','upwards','onwards',
-                  'raging','river','valley','twilight','eve'].map do |name|
-      What.for(name)
-    end
+    custom_tags = ['falling','limitless','sky','upwards','onwards','raging','river','valley','twilight','eve']
+    custom_tags.map! { |name| What.for(name) }
     
     custom_tags.each { |what| entry.add_what_tag(what) }
 
@@ -94,11 +94,10 @@ class TagTest < ActiveSupport::TestCase
     
     entry.reorder_tags  
     entry.reload
-    
+
     last_auto_tag_exists = Tag.find_by_id(last_auto_tag.id)
     
     assert_equal last_auto_tag_exists, nil
-                    
   end
 
 
@@ -129,4 +128,28 @@ class TagTest < ActiveSupport::TestCase
 
   end
 
+  test "autotagging doesn't autotag html tags or url's in the body of the entry" do
+    entry = Entry.make(body: "From the macrocosm of human civilization, to the microcosm of a single human being, we are beginning to harness the power of Sol.\r\n\r\nHere Comes the Sun\r\nUplifting 48 min documentary on the migration to solar power:\r\nhttp://www.youtube.com/watch?v=mLHBFyfvK8A&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/mLHBFyfvK8A\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nThe Sun\r\nVisually appealing BBC documentary on solar weather, spots and flares\r\n30 min\r\nhttp://www.youtube.com/watch?v=cPWFv4f00xw&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/cPWFv4f00xw\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nEat the Sun! - Sungazing film trailer\r\nhttp://www.youtube.com/watch?v=ZM9iDdkKZ7M&feature=player_embedded\r\n<iframe title=\"YouTube video player\" width=\"640\" height=\"390\" src=\"http://www.youtube.com/embed/ZM9iDdkKZ7M\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nPranasynthesis - 4 min, amazing\r\nhttp://www.youtube.com/watch?v=ewoDVPCLnt0\r\n<iframe title=\"YouTube video player\" width=\"480\" height=\"390\" src=\"http://www.youtube.com/embed/ewoDVPCLnt0\" frameborder=\"0\" allowfullscreen></iframe>\r\n\r\nScroll down for video of Hira Ratan Manek (HRM), who has been examined by universities and NASA for the potential of sungazing-assisted space travel.")
+    
+    Tag.auto_generate_tags(entry)
+    
+    tag_words = entry.tags.auto.whats.map(&:name)
+    assert tag_words.none?{|tag_word| tag_word['<iframe'] }
+    assert tag_words.none?{|tag_word| tag_word['http://'] }
+    assert tag_words.none?{|tag_word| tag_word['youtube'] }
+  end
+  
+  test "autotagging an entry with emotions still creates 16 tags" do
+    entry = Entry.make
+    entry.set_whats(['dragonfly', 'lioness', 'curious', 'venus', 'flytrap'])
+    entry.set_emotions({'fear' => 3, 'surprise' => 4, 'joy' => 5})
+
+    Tag.auto_generate_tags(entry, 16) 
+    
+    # Sanity check: 16 total tags
+    assert_equal 16, entry.what_tags.count
+    # If there are 5 custom whats, there should be 11 auto whats
+
+    assert_equal (16 - entry.what_tags.custom.count), entry.tags.auto.count
+  end
 end

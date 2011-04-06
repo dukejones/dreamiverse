@@ -41,29 +41,46 @@ class ContextController
       # Is this the best way to do this? Or should we use data coming back?
 
       $profileDetails = $('.profile .details')
-      $website = $profileDetails.find('.website')
       $user_url = $('#user_link_attributes_url').val()
-      $user_url_href = $user_url.replace(/^www./, "http://www.")
+      $user_url_href = $user_url.replace(/^www./, "http://www.") # needed for www. urls
+      $user_url_href = 'http://' + $user_url unless ($user_url_href.match("^http")) # needed for domain.com urls
       log('new $user_url_href: ' + $user_url_href)
 
-      $website.text($user_url) # update link text
-      $website.attr('href',$user_url_href) # update link url
+      $profileDetails.find('.website .href').text($user_url) # update link text
+      $profileDetails.find('.website .href').attr('href',$user_url_href) # update link url
       $profileDetails.find('.email').text($('#user_email').val())
       $profileDetails.find('.phone').text($('#user_phone').val())
-      $profileDetails.find('.skype span').text($('#user_skype').val())
+      $profileDetails.find('.skype').text($('#user_skype').val())
       $('.profile .view .name').text($('#user_name').val())
     
-    # listen for close event
-    $('.profile .alert').find('.close-16').click ->
-      $('.profile .alert').hide()
-    
-    $('form#update_profile').bind 'ajax:success', (data, xhr, status)->
-      $('.profile .alert').find('.message').html('Profile has been updated')
-      $('.profile .alert').show();
+    $('form#update_profile').bind 'ajax:success', (data, xhr, status)=>
+      $('.profile .alert').find('.checkmark').show()
+      $('.profile .alert').find('.close-16').hide()
       
-    $('form#update_profile').bind 'ajax:error', (xhr, status, error)->
+      setTimeout("$('.profile .alert').hide();", 5000)
+      
+      # listen for close event
+      $('.profile .alert').click ->
+        $('.profile .alert').unbind()
+        $('.profile .alert').hide()
+        
+      $('.profile .alert').find('.message').html('Profile has been updated')
+      $('.profile .alert').show()
+      
+      
+    $('form#update_profile').bind 'ajax:error', (xhr, status, error)=>
+      $('.profile .alert').find('.checkmark').hide()
+      $('.profile .alert').find('.close-16').show()
+      
+      setTimeout("$('.profile .alert').hide();", 5000)
+      
+      # listen for close event
+      $('.profile .alert').click ->
+        $('.profile .alert').unbind()
+        $('.profile .alert').hide()
+        
       $('.profile .alert').find('.message').html(error)
-      $('.profile .alert').show();
+      $('.profile .alert').show()
       
   toggleProfile:  ->
     if @contextView.profileState() is 'none'

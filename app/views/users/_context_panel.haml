@@ -62,38 +62,37 @@
 
     .view
 
-      %table.alert.hidden
-        %tr
-          %td.message
-            update message
-          %td.icon
-            .checkmark.hidden
-            .close-16
+      .alert.hidden
+        %span.message
+          update message
+        %img.checkmark.hidden{src: '/images/icons/check-16.png'}
+        %img.close-16{src: '/images/icons/close-16-hover.png'}
+
 
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
         = user.name
-        - if user.name
-          %hr
 
       / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
       .details.hidden
-        - if user.link
-          - proper_url = assure_http(user.link.url)
-          %a.website{href: proper_url, target: "_blank"}= user.link.url
-          
+
+        .website
+          - if user.link
+            - proper_url = assure_http(user.link.url)
+          %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
+            = "#{(user.link.blank?) ? ' ' : user.link.url}" 
+
         - if user.friends_with?(current_user)
           .email= user.email
           .phone= user.phone
-          - unless user.skype.blank?
-            .skype
-              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-              %span= user.skype
-            .clear
+          .skype= user.skype
+
         / .facebook facebook
         / .twitter twitter
         .clear
+
         - if user == current_user
           .change edit profile
+
         .clear
 
     - if user == current_user
@@ -103,7 +102,7 @@
             %span full name
             = f.text_field :name, :placeholder => 'full name'
             %span website url
-            = f.fields_for :link_attributes do |l|
+            = f.fields_for :link, current_user.link || Link.new do |l|
               = l.text_field :url, :placeholder => 'http://yoursite.com'
             %span email address
             = f.text_field :email, :placeholder => 'email@address.com'

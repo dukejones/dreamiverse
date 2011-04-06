@@ -13,6 +13,12 @@
   .loginPanel.hidden
     = form_for(User.new, {url: user_session_path}) do |f|
 
+      .submit
+        .text
+          .img
+          %span login
+          %input#loginButton.button{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
+
       %span username
       = f.text_field(:username, {class: 'login-input', tabindex: '1'})
 
@@ -26,20 +32,3 @@
       %a.forgot{href: forgot_password_path} Forgot password
 
       .clear
-
-      %a.forgot{href: forgot_password_path} Forgot password
-
-      %label.stay
-        Stay logged in
-        %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
-
-      .clear
-
-      .submit
-        .text
-          .img
-          %span login
-          %input#loginButton.button{tabindex: '3', name: 'loginButton', type: 'submit', value: 'log in &rsaquo;'}
-
-      #loginSpacer
-

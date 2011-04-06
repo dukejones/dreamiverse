@@ -1,7 +1,8 @@
 .thumb-2d
 
   / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
-  .watermark= entry.title
+  - unless entry.main_image
+    .watermark= entry.title
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
@@ -23,7 +24,7 @@
         .comments
           = image_tag("icons/comment-16.png")
           = entry.comments.count
-      - unless entry.sharing == "everyone"
+      - unless entry.everyone?
         .sharing
           %img
           %span= entry.sharing
@@ -33,5 +34,5 @@
 
     / TAG CLOUD
     .tagCloud
-      - entry.tags.limit(16).shuffle.each do |tag|
+      - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
         %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
