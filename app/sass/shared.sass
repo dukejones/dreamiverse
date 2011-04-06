@@ -322,10 +322,8 @@ abbr, acronym
     +bold
     color: #fff !important
     height: 28px
-    line-height: 28px
+    line-height: 27px
     width: 154px
-    span
-      margin: 0 0 0 16px
     .img
       +right
       height: 28px
@@ -356,10 +354,15 @@ abbr, acronym
 
 
 
-
+  .login, .submit
+    span
+      +font(18)
+      margin: 0 0 0 34px
 
 .loginPanel
   +clear
+  +relative
+  top: -10px
 
   span
     +font(11)
@@ -384,15 +387,14 @@ abbr, acronym
     +round(12)
     +overflow
     +transparent
-    +glow-blue(14)
-    top: 27px
-    right: 7px
+    top: -29px
+    right: -1px
     width: 156px
     height: 30px
-    border: 1px solid #9ae4fd
+    border: 1px solid #fff
     &:hover
-      border: 1px solid #fff
-      +glow-dark(20)
+      border: 1px solid #9ae4fd
+      +glow-blue(14)
     &:active
       +glow-dark(0)
 
@@ -407,7 +409,7 @@ abbr, acronym
       left: 0
       color: #fff
       width: 156px
-      line-height: 30px
+      line-height: 29px
       +shine-blue(15)
 
       &:hover
@@ -418,14 +420,11 @@ abbr, acronym
         background: #0c2b50
         +gradient(#0c2b50, #5d80ad)
 
-      span
-        +font(18)
-        margin: 0 0 0 16px
       .img
         +right
         height: 28px
         width: 24px
-        margin: 0 8px 0 8px
+        margin: 1px 9px 0 8px
         background: url(/images/icons/login-24.png) no-repeat center transparent
       &:hover .img
         background: url(/images/icons/login-24-hover.png) no-repeat center transparent
@@ -443,9 +442,6 @@ abbr, acronym
         width: 154px
 
 
-  #loginSpacer
-    height: 8px
-
   .stay, .forgot
     +button-light
     +round(4)
@@ -453,14 +449,17 @@ abbr, acronym
     +font(10)
     +user-select
     +right
+    border: 1px solid transparent
     color: #333 !important
-    margin: 8px 4px 2px
+    margin-top: 2px
+    margin-bottom: -8px
     padding: 0 4px
     height: 16px
     line-height: 16px
     font-weight: normal
 
   .stay
+    margin-right: 10px
     width: 80px
     input
       +outline
@@ -468,6 +467,7 @@ abbr, acronym
       margin: 2px 0 0
 
   .forgot
+    margin-left: 10px
     +left
     +relative
 
@@ -501,6 +501,8 @@ abbr, acronym
       +shine-blue(0)
       background: #0c2b50
       +gradient(#0c2b50, #5d80ad)
+
+
 
 
 
@@ -602,9 +604,9 @@ abbr, acronym
       padding: 8px
       top: 4px
       right: 82px
-      box-shadow:         4px 4px 10px #555
-      -moz-box-shadow:    4px 4px 10px #555
-      -webkit-box-shadow: 4px 4px 10px #555
+      box-shadow:         4px 4px 10px rgba(0,0,0,0.8)
+      -moz-box-shadow:    4px 4px 10px rgba(0,0,0,0.8)
+      -webkit-box-shadow: 4px 4px 10px rgba(0,0,0,0.8)
 
       .emotionsHeader
         +user-select
@@ -642,9 +644,9 @@ abbr, acronym
       +pointer
       +round(4)
       padding: 1px
-      box-shadow:         0px 0px 10px #555
-      -moz-box-shadow:    0px 0px 10px #555
-      -webkit-box-shadow: 0px 0px 10px #555
+      box-shadow:         0px 0px 10px rgba(0,0,0,0.8)
+      -moz-box-shadow:    0px 0px 10px rgba(0,0,0,0.8)
+      -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.8)
 
       .arrow
         +hidden
