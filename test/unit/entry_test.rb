@@ -147,10 +147,19 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal 'custom', new_unicorn_tag.kind
   end
 
-  test "what happens when adding a tag with an invalid tag name" do
-    entry = Entry.make
-    entry.set_whats(['unicorn', 'Ka-'])
-    debugger
-    1
+  # test "what happens when adding a tag with an invalid tag name" do
+  #   entry = Entry.make
+  #   entry.set_whats(['unicorn', 'Ka-'])
+  # end
+
+  test "reorder tags doesn't create positions for emotion tags" do
+    entry = Entry.make(skip_auto_tags: false)
+    entry.set_whats(['dragon', 'flower', 'volcano', 'hummingbird'])
+    entry.set_emotions({'fear' => '3', 'love' => '5', 'joy' => '5'})
+    entry.body += ' '
+    entry.save
+
+    assert_equal 16, entry.what_tags.count
+    assert_equal (0..15).to_a, entry.what_tags.map(&:position).sort
   end
 end

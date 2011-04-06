@@ -3,6 +3,8 @@ class Tag < ActiveRecord::Base
     hash[blacklist_word.word] = true
   end
 
+  default_scope order('position')
+  
   belongs_to :entry
   
   belongs_to :noun, :polymorphic => true

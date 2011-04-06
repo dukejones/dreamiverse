@@ -218,29 +218,24 @@ class Entry < ActiveRecord::Base
   end
   
   def reorder_tags
-    max_tags = 16
     # put all custom tags first
-    tags.custom.each_with_index do |tag, index|
+    self.what_tags.custom.each_with_index do |tag, index|
       tag.update_attribute :position, index
     end
     # then reorder auto tags - up to 16 total tags
-    first_auto_tag_position = tags.custom.count
-    tags.auto.each_with_index do |tag, index|
-      if first_auto_tag_position + index < max_tags
-        tag.update_attribute :position, first_auto_tag_position + index
-      else
-        tag.destroy
-      end
+    first_auto_tag_position = self.what_tags.custom.count
+    self.what_tags.auto.each_with_index do |tag, index|
+      tag.update_attribute :position, first_auto_tag_position + index
     end
   end
   
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
     return if @skip_auto_tags
-    if body_changed?
+    if body_changed? || title_changed?
       Tag.auto_generate_tags(self)
+      reorder_tags
     end
-    reorder_tags
   end
    
   def replace_blank_titles

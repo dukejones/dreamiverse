@@ -143,13 +143,13 @@ class TagTest < ActiveSupport::TestCase
     entry = Entry.make
     entry.set_whats(['dragonfly', 'lioness', 'curious', 'venus', 'flytrap'])
     entry.set_emotions({'fear' => 3, 'surprise' => 4, 'joy' => 5})
-    
+
     Tag.auto_generate_tags(entry, 16) 
     
     # Sanity check: 16 total tags
     assert_equal 16, entry.what_tags.count
     # If there are 5 custom whats, there should be 11 auto whats
-    debugger
+
     assert_equal (16 - entry.what_tags.custom.count), entry.tags.auto.count
   end
 end
