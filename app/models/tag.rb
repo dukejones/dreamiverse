@@ -14,6 +14,7 @@ class Tag < ActiveRecord::Base
   validates_presence_of :noun_id
 
   # Scopes
+  # Custom vs. Auto : custom (default) is user-entered, auto is auto-generated
   def self.custom
     where( kind: 'custom' )
   end
@@ -21,27 +22,39 @@ class Tag < ActiveRecord::Base
     where( kind: 'auto' )
   end
   
-  def self.all_nouns(type)
-    joins(:noun.type(type)).includes(:noun).map(&:noun)
+  # Pass it the class name of the model that you want the nouns of.
+  def self.of_type(type)
+    where(noun_type: type.to_s)
+  end
+  # Joins to a specific type. Acts like of_type but does a join and eager load.
+  def self.join_to(type)
+    joins(:noun.type(type)).includes(:noun)
+  end
+  # Runs the join query and returns an array of nouns. 
+  # entry.tags.nouns_of_type(Emotion)  will return all Emotion objects tagged.
+  def self.nouns_of_type(type)
+    join_to(type).map(&:noun)
   end
 
+  # Convenience methods for the above scopes
+  # TODO : Change the naming for these to something clearer?
   def self.emotion
-    joins(:noun.type(Emotion)).includes(:noun)
+    join_to(Emotion)
   end
-  # def self.emotions
-  #   emotion.includes(:noun).map(&:noun)
-  # end
-  
-  # Must join the noun_type class first
-  def self.named(name)
-    where(:noun => {:name => name})
-  end
-  
   def self.what
-    joins(:noun.type(What)).includes(:noun)
+    joins_to(What)
+  end
+
+  def self.emotions
+    nouns_of_type(Emotion)
   end
   def self.whats
-    what.includes(:noun).map(&:noun)
+    nouns_of_type(What)
+  end
+
+  # Must join_to a noun_type before calling this method.
+  def self.named(name)
+    where(:noun => {:name => name})
   end
 
   # tag the entry with the top x auto tags, inserted after the custom tags
@@ -65,7 +78,7 @@ class Tag < ActiveRecord::Base
     auto_scores = self.order_and_score_auto_tags(auto_tag_words)
 
     # which position to start with?
-    custom_tag_count = entry.tags.custom.count
+    custom_tag_count = entry.tags.of_type(What).custom.count
     position = custom_tag_count # initial position: after the custom tags
     auto_scores.first(cloud_size-custom_tag_count+1).each do |what, score|
       Tag.create(entry: entry, noun: what, position: position, kind: 'auto')
@@ -74,7 +87,7 @@ class Tag < ActiveRecord::Base
   end
 
   # create hash  name => frequency with no blacklisted words.   
-  def self.order_and_score_auto_tags(tag_words)   
+  def self.order_and_score_auto_tags(tag_words)
     tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
       if acceptable_tag?(tag_word) && what = What.for(tag_word)
         tag_scores[what] ||= 0

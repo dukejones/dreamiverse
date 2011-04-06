@@ -10,7 +10,7 @@ class TagTest < ActiveSupport::TestCase
   #   assert_equal @entry.tags.order(:position).map{|t| t.noun.name }, ['word', 'juniper', 'banana']
   # end
   
-  test "custom tag same as auto tag" do
+  test "Inserting a new custom tag with the same name as an auto tag" do
     what = What.for('duke')
     entry = Entry.make(body: 'the duke duke duke something dream')
     Tag.auto_generate_tags(entry)
@@ -58,10 +58,12 @@ class TagTest < ActiveSupport::TestCase
       assert_equal index, tag.position
     end
 
+    # Add a new custom tag. Verify that its position is at the end of the custom tags, before the auto tags.
     num_custom_tags = entry.tags.custom.count
     dragon = What.for('dragon')
     entry.add_what_tag(dragon)
     entry.save
+    entry.reorder_tags
     assert_equal num_custom_tags, entry.tags.where(noun: dragon).first.position
     all_positions = entry.tags.map(&:position)
     assert_equal all_positions, all_positions.uniq
@@ -78,14 +80,12 @@ class TagTest < ActiveSupport::TestCase
     # add a custom tag
     # verify that it dropped off
     
-    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled')  
+    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled', skip_auto_tags: false)
     
-    last_auto_tag = entry.tags.where(:kind => 'auto').last
+    last_auto_tag = entry.tags.auto.last
     
-    custom_tags = ['falling','limitless','sky','upwards','onwards',
-                  'raging','river','valley','twilight','eve'].map do |name|
-      What.for(name)
-    end
+    custom_tags = ['falling','limitless','sky','upwards','onwards','raging','river','valley','twilight','eve']
+    custom_tags.map! { |name| What.for(name) }
     
     custom_tags.each { |what| entry.add_what_tag(what) }
 
@@ -94,11 +94,10 @@ class TagTest < ActiveSupport::TestCase
     
     entry.reorder_tags  
     entry.reload
-    
+
     last_auto_tag_exists = Tag.find_by_id(last_auto_tag.id)
     
     assert_equal last_auto_tag_exists, nil
-                    
   end
 
 
