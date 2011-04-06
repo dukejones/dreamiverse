@@ -23,6 +23,7 @@ class Entry < ActiveRecord::Base
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   has_many :comments
 
+  # Tag associations
   has_many :tags
   # has_many :custom_tags, 
   #          :through => :tags, 
@@ -31,7 +32,10 @@ class Entry < ActiveRecord::Base
   #          :conditions => ['kind = ?', 'custom'],
   #          :order => 'position asc',
   #          :limit => 16
-  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :uniq => true
+  def what_tags
+    self.tags.of_type(What)
+  end
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :order => 'position asc', :uniq => true
   has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
   has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
@@ -53,6 +57,7 @@ class Entry < ActiveRecord::Base
   before_create :create_view_preference
   after_save :process_all_tags 
 
+  # Sharing scopes
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
   end
@@ -69,6 +74,7 @@ class Entry < ActiveRecord::Base
     where(sharing_level: Entry::Sharing[:anonymous])
   end
   
+  # Friends and Following scopes
   def self.friends_with(user)
     where( 
       user: { following: user, followers: user } 

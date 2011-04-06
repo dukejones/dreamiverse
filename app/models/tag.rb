@@ -13,8 +13,6 @@ class Tag < ActiveRecord::Base
   validates_presence_of :entry_id
   validates_presence_of :noun_id
 
-  # before_create :set_kind
-  
   # Scopes
   # Custom vs. Auto : custom (default) is user-entered, auto is auto-generated
   def self.custom
@@ -82,7 +80,7 @@ class Tag < ActiveRecord::Base
     # which position to start with?
     custom_tag_count = entry.tags.of_type(What).custom.count
     position = custom_tag_count # initial position: after the custom tags
-    auto_scores.first(cloud_size-custom_tag_count+1).each do |what, score|
+    auto_scores.first(cloud_size-custom_tag_count).each do |what, score|
       Tag.create(entry: entry, noun: what, position: position, kind: 'auto')
       position += 1
     end
@@ -130,15 +128,4 @@ class Tag < ActiveRecord::Base
     return true
   end  
 
-  protected
-  
-  # def set_kind
-  #   if self.kind.nil?
-  #     if self.noun_type == 'What'
-  #       self.kind = 'custom'
-  #     else
-  #       self.kind = self.noun_type.downcase
-  #     end
-  #   end
-  # end
 end
