@@ -1,7 +1,8 @@
 .thumb-2d
 
   / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
-  .watermark= entry.title
+  - unless entry.main_image
+    .watermark= entry.title
 
   / LINK
   %a.link{:href => user_entry_path(entry.user.username, entry)}
