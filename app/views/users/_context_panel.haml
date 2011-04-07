@@ -10,7 +10,7 @@
 #contextPanel
 
   / IMAGE
-  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) top left"}
+  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) no-repeat top left"}
     - if (user == current_user) && !is_ipad?
 
 

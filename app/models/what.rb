@@ -11,7 +11,7 @@ class What < ActiveRecord::Base
   validates :name,
             :presence => true,
             :uniqueness => true,
-            :length => { :minimum => 3, :maximum => MaxLength }
+            :length => { :minimum => 2, :maximum => MaxLength }
 
   before_create :clean_name
   
@@ -26,7 +26,7 @@ class What < ActiveRecord::Base
     word.downcase.strip.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' ).slice(0...MaxLength)
   end
   
-  def duplicates
+  def self.duplicates
     group('name').having('count(name) > 1')
   end
   
