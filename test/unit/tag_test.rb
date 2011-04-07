@@ -138,7 +138,7 @@ class TagTest < ActiveSupport::TestCase
   test "autotagging an entry with emotions still creates 16 tags" do
     entry = Entry.make
     entry.set_whats(['dragonfly', 'lioness', 'curious', 'venus', 'flytrap'])
-    entry.set_emotions({'fear' => 3, 'surprise' => 4, 'joy' => 5})
+    entry.set_emotions({'fear' => '3', 'surprise' => '4', 'joy' => '5'})
 
     Tag.auto_generate_tags(entry, 16) 
     
@@ -147,5 +147,24 @@ class TagTest < ActiveSupport::TestCase
     # If there are 5 custom whats, there should be 11 auto whats
 
     assert_equal (16 - entry.what_tags.custom.count), entry.tags.auto.count
+  end
+  
+  test "with_dictionary_words returns only tags associated with whats that have dictionary words" do
+    entry = Entry.make
+    tag_words = ['munge', 'cookie', 'robot', 'simple']
+    entry.set_whats(tag_words)
+
+    # Does the scope work if none of the tags have definitions?
+    dict_tags = entry.what_tags.with_dictionary_words.all
+    assert dict_tags.empty?
+    
+    # Make two Words for two of the Entry's Whats.
+    tag_words.sample(2).each {|name| Word.make(name: name) }
+    
+    dict_tags = entry.what_tags.with_dictionary_words.all
+
+    assert_equal 2, dict_tags.size
+    assert dict_tags.none? {|tag| tag.noun.dictionary_words.empty? }
+    assert (entry.what_tags - dict_tags).all? {|tag| tag.noun.dictionary_words.empty? }
   end
 end
