@@ -8,7 +8,10 @@
     
     %p
       User 
-      = "#{@user.username} (#{@user.name}) <#{@user.email}>"
+      - if @user
+        = "#{@user.username} (#{@user.name}) <#{@user.email}>"
+      - else
+        (No logged in user)
       has sent us some feedback.
     %p
       Here is what they wrote:

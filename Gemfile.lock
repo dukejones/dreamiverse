@@ -36,14 +36,11 @@ GEM
     builder (2.1.2)
     capistrano (2.5.21)
       highline
-<<<<<<< HEAD
-      net-scp (>= 1.0.0)
-=======
       highline
+      net-scp (>= 1.0.0)
       net-scp (>= 1.0.0)
       net-scp
       net-sftp
->>>>>>> d42b78565b28abddfa09243276c36544cccf7abd
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.0.0)
