@@ -24,7 +24,7 @@ class Entry < ActiveRecord::Base
   has_many :comments
 
   # Tag associations
-  has_many :tags
+  has_many :tags, :dependent => :delete_all
   # has_many :custom_tags, 
   #          :through => :tags, 
   #          :source => :noun, 

@@ -48,6 +48,37 @@ namespace :app do
 
 end
 
+namespace :fix do
+  desc "Eliminate duplicate What tags"
+  task :duplicate_whats => :environment do
+    dupe_names = What.group('name').having('count(name) > 1').count.keys
+    log("Resolving #{dupe_names.count} duplicates.")
+    dupe_names.each do |name|
+      whats = What.where(name: name)
+      # move all tags associated with the other whats to the last what.
+      # then delete the empty whats.
+      last_what = whats.pop
+      whats.each do |what|
+        what.tags.each do |tag|
+          if tag.entry.nil?
+            log "tag associated with deleted entry."
+            tag.destroy
+          else
+            log "#{what.name} - #{tag.entry.title}"
+            tag.update_attribute(:noun_id, last_what.id)
+          end
+        end
+        what.destroy
+      end
+
+      # if none of the whats had any tags at all, just delete them all.
+      if last_what.tags.empty?
+        last_what.destroy
+      end
+    end
+  end
+end
+
 def log(msg)
   Rails.logger.info(msg)
   puts msg
