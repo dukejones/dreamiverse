@@ -73,32 +73,28 @@ class TagTest < ActiveSupport::TestCase
     # and all positions should be unique
   end
 
-
-  test "adding a custom tag with 16 total tags drops the last auto tag off the end" do
-    # create entry with 16 tags, some combination of custom and auto
-    # find the last auto tag - which should drop off
-    # add a custom tag
-    # verify that it dropped off
-    
-    entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled', skip_auto_tags: false)
-    
-    last_auto_tag = entry.tags.auto.last
-    
-    custom_tags = ['falling','limitless','sky','upwards','onwards','raging','river','valley','twilight','eve']
-    custom_tags.map! { |name| What.for(name) }
-    
-    custom_tags.each { |what| entry.add_what_tag(what) }
-
-    extra_tag = What.for('Jeremiah')
-    entry.add_what_tag(extra_tag)
-    
-    entry.reorder_tags  
-    entry.reload
-
-    last_auto_tag_exists = Tag.find_by_id(last_auto_tag.id)
-    
-    assert_equal last_auto_tag_exists, nil
-  end
+  # entry#reorder_tags doesn't delete extra auto tags now.
+  # test "adding a custom tag with 16 total tags drops the last auto tag off the end" do
+  #   
+  #   # create entry with 16 tags, some combination of custom and auto
+  #   entry = Entry.make(title: 'visions', body: 'giraffe bridge illuminate visualize controlled', skip_auto_tags: false)
+  #   entry.set_whats(['falling','limitless','sky','upwards','onwards','raging','river','valley','twilight','eve'])
+  #   
+  #   # find the last auto tag - which should drop off
+  #   last_auto_tag = entry.tags.auto.last
+  #   
+  # 
+  #   # extra_tag = What.for('Jeremiah')
+  #   # entry.add_what_tag(extra_tag)
+  #   
+  #   entry.reorder_tags  
+  #   entry.reload
+  # 
+  #   # verify that it dropped off (was destroyed)
+  #   last_auto_tag_exists = Tag.find_by_id(last_auto_tag.id)
+  #   
+  #   assert_equal nil, last_auto_tag_exists
+  # end
 
 
   test "verify that tag entries won't allow nil values for entry_id and noun_id colums" do
