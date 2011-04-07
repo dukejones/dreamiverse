@@ -147,28 +147,31 @@
       .showTags
         .wrapper
 
-          - if @entry.user == current_user
-            .tagHeader.headers
-              .img
-              tag
+          .tagInputWrap
+            - if @entry.user == current_user
+              .tagHeader.headers
+                .img
+                tag
 
-            .tagInput.target
-              %input#newTag{placeholder: 'who/where/what'}
-            .tagThisEntry.trigger
-              + add
+              .tagInput.target
+                %input#newTag{placeholder: 'who/where/what'}
+              .tagThisEntry.trigger
+                + add
 
-          / POST TIME, LOCATION & SHARE LEVEL
-          - if !@entry.everyone?
-            .shareLevel
-              .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
-              %span= @entry.sharing
+          / POST INFO - TIME, LOCATION & SHARE LEVEL
+          .postInfo
+
+            - if !@entry.everyone?
+              .shareLevel
+                .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+                %span= @entry.sharing
           
-          .postTime
-            - time = (@entry.dreamed_at || @entry.created_at)
-            = time_ago_in_words(time)
+            .postTime
+              - time = (@entry.dreamed_at || @entry.created_at)
+              = time_ago_in_words(time)
         
-          - if location = @entry.location
-            .postLocation= "#{location.city}, #{location.province}"
+            - if location = @entry.location
+              .postLocation= "#{location.city}, #{location.province}"
 
 
 
