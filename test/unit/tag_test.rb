@@ -173,4 +173,15 @@ class TagTest < ActiveSupport::TestCase
     dict_tags = entry.what_tags.eager_load_dictionary_words.all
     assert_equal 4, dict_tags.size
   end
+  
+  test "dictionary_words scopes working with auto scope and custom scope" do
+    entry = Entry.make(skip_auto_tags: false)
+    tag_words = ['dragon', 'zeppelin', 'fumigate']
+    entry.set_whats(tag_words)
+    
+    entry.what_tags.auto.with_dictionary_words.whats
+    
+    # This works here, but not in entries/show.haml.
+    entry.what_tags.custom.with_dictionary_words.whats
+  end
 end
