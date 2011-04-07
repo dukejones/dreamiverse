@@ -60,6 +60,9 @@ class Tag < ActiveRecord::Base
   end
 
   # Scopes for Dictionaries; eager loading & joining
+  def self.eager_load_dictionary_words
+    joins(:noun.type(What) => :dictionary_words.outer).includes(:noun => :dictionary_words)
+  end
   def self.with_dictionary_words
     joins(:noun.type(What) => :dictionary_words).includes(:noun => :dictionary_words)
   end
