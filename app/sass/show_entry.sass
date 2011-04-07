@@ -341,6 +341,10 @@
           // ANALYSIS
           .tagAnalysis
             height: auto
+            &.expanded
+              .close-16
+                +hidden
+
             .tagContent
 
             .analysis
@@ -350,7 +354,7 @@
               .arrow
                 +absolute
                 top: 0
-                right: 28px
+                right: 12px
                 height: 32px
                 width: 16px
                 margin: 0 0 12px
@@ -361,14 +365,9 @@
               p
                 margin-bottom: 18px
               a.source
-                +block
-                +round(12)
-                +left
-                +center
-                margin: 0 0 12px 12px
-                padding: 0 12px
-                height: 24px
-                line-height: 24px
+                +alpha(60)
+                &:hover
+                +alpha(100)
 
 
     // COMMENTS
@@ -629,10 +628,8 @@
 
           // ANALYSIS
           .tagAnalysis
-            .analysis
-              .source
-                +button-light
-                +bevel-light
+            &.expanded
+              +bevel-light
 
       // COMMENTS
       .commentsPanel
@@ -778,10 +775,8 @@
 
           // ANALYSIS
           .tagAnalysis
-            .analysis
-              .source
-                +button-dark
-                +bevel-dark
+            &.expanded
+              +bevel-dark
 
       // COMMENTS
       .commentsPanel

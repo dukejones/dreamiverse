@@ -103,14 +103,14 @@
       /EMOTIONS DETAILS & THUMBS
       - if @entry.tags.emotion.first
         .emotionsWrap.wrapper
-      
+
           / EMOTIONS DETAILS
           .emotions-details.target.emotionshowhide.hidden
             .emotionsHeader
               .img
               emotions
             = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
-      
+
           / EMOTIONS THUMB
           .emotions-thumb.trigger.emotionshowhide
             = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
@@ -165,11 +165,11 @@
               .shareLevel
                 .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
                 %span= @entry.sharing
-          
+
             .postTime
               - time = (@entry.dreamed_at || @entry.created_at)
               = time_ago_in_words(time)
-        
+
             - if location = @entry.location
               .postLocation= "#{location.city}, #{location.province}"
 
@@ -187,32 +187,32 @@
               /   - if @entry.user == current_user
               /     .close-16
               .wrapper
-                .tag.tagAnalysis.trigger.slide
+                .tag.tagAnalysis.trigger.showhide
                   %span.tagContent= what.name
                   - if @entry.user == current_user
                     .close-16
                   - unless what.dictionary_words.empty?
                     .analysisIcon
 
-                    .analysis.hidden.target.slide
+                    .analysis.hidden.target.showhide
                       .arrow
                       .description
                         %p= simple_format(what.dictionary_words.first.definition)
-                      / %a.source{href: '#', target: '_blank'} Link to source
+                        %a.source{href: '#', target: '_blank'} Link to source
                   
 
             / ANALYSIS TAGS
             - @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
               .wrapper
-                .tag.tagAnalysis.trigger.slide
+                .tag.tagAnalysis.trigger.showhide
                   %span.tagContent= what.name
                   .analysisIcon
 
-                  .analysis.hidden.target.slide
+                  .analysis.hidden.target.showhide
                     .arrow
                     .description
                       %p= simple_format(what.dictionary_words.first.definition)
-                    / %a.source{href: '#', target: '_blank'} Dream Moods
+                      %a.source{href: '#', target: '_blank'} Link to source
 
 
             / .clear
