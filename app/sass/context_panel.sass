@@ -74,8 +74,8 @@
     +round(12)
     +block
     +relative
-    width: 200px
-    height: 266px
+    width: 198px
+    height: 264px
     .uploadAvatarWrap
       +absolute
       bottom: 0
@@ -478,6 +478,11 @@
     +transparent-light(50)
     +glow-light(40)
 
+    .avatar
+      border: 1px solid transparent
+      &:hover
+        border: 1px solid #000
+
     .context, .label
       border: 1px solid #8a8a8a
     .context:hover, .entryFilter .label:hover
@@ -578,7 +583,10 @@
     +transparent-dark(50)
     +glow-dark(40)
 
-
+    .avatar
+      border: 1px solid transparent
+      &:hover
+        border: 1px solid #fff
 
     .context, .label
       +shine-dark-alpha(16)
