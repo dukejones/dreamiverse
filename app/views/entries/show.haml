@@ -187,7 +187,7 @@
                   .close-16
 
             / ANALYSIS TAGS
-            - @entry.what_tags.auto.whats.reject{|w| w.definitions.blank? }.each do |what|
+            - @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
               .wrapper
                 .tag.tagAnalysis.trigger.slide
                   %span.tagContent= what.name
@@ -196,7 +196,7 @@
                   .analysis.hidden.target.slide
                     .arrow
                     .description
-                      %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
+                      %p= simple_format(what.dictionary_words.first.definition)
                     %a.source{href: '#', target: '_blank'} Dream Moods
 
             .wrapper

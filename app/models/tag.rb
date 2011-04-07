@@ -59,6 +59,11 @@ class Tag < ActiveRecord::Base
     where(:noun => {:name => name})
   end
 
+  # Scopes for Dictionaries; eager loading & joining
+  def self.with_dictionary_words
+    joins(:noun.type(What) => :dictionary_words).includes(:noun => :dictionary_words)
+  end
+
   # tag the entry with the top x auto tags, inserted after the custom tags
   def self.auto_generate_tags(entry, cloud_size = 16)
     entry.tags.auto.delete_all
