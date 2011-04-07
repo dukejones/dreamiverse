@@ -163,15 +163,4 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal (0..15).to_a, entry.what_tags.map(&:position).sort
   end
   
-  # we were having issues with specific tags saving like: lucid
-  test "assure tag: lucid adds to entry ok" do
-    entry = Entry.make
-    entry.set_whats(['lucid', 'test2', 'test3'])
-    entry.save
-    entry.reload
-    entry.set_whats(['test1', 'test2', 'lucid'])
-    entry.save
-    entry.reload    
-  end
-  
 end
