@@ -166,12 +166,12 @@ class EntryTest < ActiveSupport::TestCase
   # we were having issues with specific tags saving like: lucid
   test "assure tag: lucid adds to entry ok" do
     entry = Entry.make
-    entry.set_whats(['lucid', 'test2', 'test3'])
+    what_tag = What.for('lucid')
+    entry.add_what_tag(what_tag)
     entry.save
     entry.reload
-    entry.set_whats(['test1', 'test2', 'lucid'])
-    entry.save
-    entry.reload    
+    first_what = entry.whats.first
+    assert_equal 'lucid', first_what.name
   end
   
 end
