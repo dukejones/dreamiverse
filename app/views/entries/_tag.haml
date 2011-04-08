@@ -10,11 +10,10 @@
         .arrow
         .description
           .alt
-            %span.selected 1
-            %span 2
-            %span 3
-            %span 4
-            %span 5
+            - what.dictionary_words.count.times do |i|
+              - page = i + 1
+              %span{:class => (page == 1) ? 'selected' : ''}= page
+
           - what.dictionary_words.each_with_index do |word, i|
             .clear{:class => "definition-#{i}"}= simple_format(word.definition)
             %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
