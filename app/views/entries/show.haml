@@ -180,52 +180,14 @@
             .emptyTag.hidden
               %span.tagContent
               .close-16
+            / CUSTOM TAGS
             -# TODO: Put eager loading of dictionary words back in.
             - @entry.what_tags.custom.whats.each do |what|
-              / .tagWhat.tag{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
-              /   %span.tagContent= what.name
-              /   - if @entry.user == current_user
-              /     .close-16
-              .wrapper
-                .tag.tagAnalysis.trigger.showhide
-                  %span.tagContent= what.name
-                  - if @entry.user == current_user
-                    .close-16
-                  - unless what.dictionary_words.empty?
-                    .analysisIcon
-
-                    .analysis.hidden.target.showhide
-                      .arrow
-                      .description
-                        .alt
-                          %span.selected 1
-                          %span 2
-                          %span 3
-                          %span 4
-                          %span 5
-                        %p.clear= simple_format(what.dictionary_words.first.definition)
-                        %a.source{href: '#', target: '_blank'} Link to source
-                  
+              = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user)}
 
             / ANALYSIS TAGS
             - @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
-              .wrapper
-                .tag.tagAnalysis.trigger.showhide
-                  %span.tagContent= what.name
-                  .analysisIcon
-
-                  .analysis.hidden.target.showhide
-                    .arrow
-                    .description
-                      .alt
-                        %span.selected 1
-                        %span 2
-                        %span 3
-                        %span 4
-                        %span 5
-                      %p.clear= simple_format(what.dictionary_words.first.definition)
-                      %a.source{href: '#', target: '_blank'} Link to source
-
+              = render partial: 'tag', locals: {what: what, close_button: false}
 
             / .clear
           #sorting
