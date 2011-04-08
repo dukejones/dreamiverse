@@ -8,12 +8,12 @@
 
       .analysis.hidden.target.showhide
         .arrow
-        .description
-          .alt
-            - what.dictionary_words.count.times do |i|
-              - page = i + 1
-              %span{:class => (page == 1) ? 'selected' : ''}= page
+        - what.dictionary_words.each_with_index do |word, i|
+          - page = i + 1
+          .description{:class => "definition-#{i}"}
+            = page
+            = simple_format(word.definition)
+          .source
+            dictionary:
+            %a{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
 
-          - what.dictionary_words.each_with_index do |word, i|
-            .clear{:class => "definition-#{i}"}= simple_format(word.definition)
-            %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name

@@ -29,13 +29,16 @@
       +overflow
       width: 32px
       height: 32px
-    span
+
+    .tagContent
       +left
       margin: 0 8px
+
     .followStatus
       +right
       width: 32px
       height: 32px
+
     .analysisIcon
       +left
       width: 16px
@@ -47,6 +50,54 @@
   .tagNoImage
     +center
     padding: 0 8px
+
+
+  // TAG ANALYSIS
+  .tagAnalysis
+    height: auto
+    &.expanded
+      margin-right: 0px
+      .close-16
+        +hidden
+
+      .tagContent
+        +font(32)
+        +bold
+        margin: 6px 0 0 20px
+
+      .analysisIcon
+        margin: 4px 8px
+
+    .analysis
+      width: 100%
+      line-height: 32px
+      margin: 0
+
+      .arrow
+        +absolute
+        top: 0
+        right: 12px
+        height: 32px
+        width: 16px
+        margin: 0 0 12px
+        background: url(/images/icons/arrow-up-16.png) no-repeat center
+
+      .description
+        margin: 40px 8px 10px 20px
+        line-height: 20px
+        +clear
+      p
+        margin-bottom: 18px
+
+      .source
+        +alpha(60)
+        +right
+        margin: -18px 12px 18px 0
+        a:hover
+          +alpha(100)
+
+
+
 
 
 // SHARED TAG COLORS

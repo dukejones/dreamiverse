@@ -175,6 +175,8 @@
 
 
 
+
+          / TAGS
           #tag-list.tag-list.ui-sortable.target
 
             .emptyTag.hidden
@@ -199,6 +201,9 @@
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
+
+
+
 
     / COMMENTS
     - unless @comments.count == 0 and current_user.blank?
