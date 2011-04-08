@@ -268,3 +268,15 @@ class Tag
       success: (data, status, xhr) =>
         $.publish 'tags:removed', [@id]
     }
+
+
+
+
+
+# SHOW ENTRY TAG LOGIC
+
+$(document).ready ->
+  # 
+  $('.tagAnalysis.trigger').click( (event) ->
+    $(this).toggleClass('expanded')
+  )
