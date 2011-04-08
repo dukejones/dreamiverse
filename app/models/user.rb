@@ -40,12 +40,12 @@ class User < ActiveRecord::Base
   before_create -> { username.downcase! }
   before_create -> { email.downcase! }
   before_create :create_view_preference
+  before_create :set_defaults
   before_validation(:on => :create) do
     username.strip! 
     email.strip!
   end  
   after_validation :encrypt_password
-  before_save :set_auth_level
 
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
@@ -185,7 +185,8 @@ class User < ActiveRecord::Base
   #   end
   # end
   
-  def set_auth_level
+  def set_defaults
+    self.default_sharing_level ||= Entry::Sharing[:everyone]
     self.auth_level ||= 1
   end
   
