@@ -197,7 +197,13 @@
                     .analysis.hidden.target.showhide
                       .arrow
                       .description
-                        %p= simple_format(what.dictionary_words.first.definition)
+                        .alt
+                          %span.selected 1
+                          %span 2
+                          %span 3
+                          %span 4
+                          %span 5
+                        %p.clear= simple_format(what.dictionary_words.first.definition)
                         %a.source{href: '#', target: '_blank'} Link to source
                   
 
@@ -211,7 +217,13 @@
                   .analysis.hidden.target.showhide
                     .arrow
                     .description
-                      %p= simple_format(what.dictionary_words.first.definition)
+                      .alt
+                        %span.selected 1
+                        %span 2
+                        %span 3
+                        %span 4
+                        %span 5
+                      %p.clear= simple_format(what.dictionary_words.first.definition)
                       %a.source{href: '#', target: '_blank'} Link to source
 
 
