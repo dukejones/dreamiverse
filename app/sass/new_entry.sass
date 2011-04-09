@@ -120,7 +120,7 @@
           +pointer
           min-height: 34px
           line-height: 34px
-          width: 170px
+          width: 170px  // will need to make wider when implementing list of users and url
           margin: 0
           z-index: 1101
           .listSelection
@@ -155,65 +155,149 @@
             option.private
               background: url(/images/icons/private-16-hover.png) no-repeat 8px center
 
-          .listOfUsers
-            +relative
-            +clear
-            margin-bottom: 4px
-            .friendsOnly, .followersOnly, .url
-              +round(8)
-              margin: 4px 0 0
-              label
-                +pointer
-                +block
-                padding: 4px
-                height: 28px
-                line-height: 28px
-                input, span
-                  +right
-                input
-                  +pointer
-                  +outline
-                  margin: 9px 8px 0 8px
-            .friendsOnly
-              label
-                background: url(/images/icons/friend-16.png) no-repeat 8px center
-            .followersOnly
-              label
-                background: url(/images/icons/friend-follower-16.png) no-repeat 8px center
-            .url
-              label
-                background: url(/images/icons/link-light-22.png) no-repeat 8px center
-
-          .everyone
-            +relative
-            +clear
-            margin-bottom: 4px
-            .facebook, .twitter, .buzz
-              +round(8)
-              margin: 4px 0 0
-              label
-                +pointer
-                +block
-                padding: 4px
-                height: 28px
-                line-height: 28px
-                img
-                  margin: 7px 0 0 4px
-                input
-                  +pointer
-                  +right
-                  +outline
-                  margin: 9px 8px 0 8px
-                span, img
-                  +left
-                  margin-right: 4px
-                span.shareOn, span.shared, span.sharedWhen
-                  color: #656565
-                span.sharedWhen, span.shared
-                  margin-top: 2px
-                  font-size: 11px
-                span.shared
-                  text-transform: uppercase
+          // // SHARING - LIST OF USERS
+          // .listOfUsers
+          //   +relative
+          //   +clear
+          //   margin: 0 8px 8px 8px
+          // 
+          //   // USER SEARCH
+          //   .searchWrap
+          //     +relative
+          //     height: 32px
+          //     margin: 4px 0 8px 0
+          // 
+          //     // // SEARCH FIELD
+          //     // .listSearchForm
+          // 
+          //     input.searchField
+          //       +round(4)
+          //       +font(12)
+          //       width: 124px
+          //       margin: 0
+          //       height: 22px
+          //       padding: 4px 24px 4px 4px
+          // 
+          //     input.search
+          //       +absolute
+          //       +transparent
+          //       +pointer
+          //       top: 2px
+          //       right: 2px
+          //       border: none
+          //       height: 32px
+          //       width: 24px
+          //       background: url(/images/icons/search-16.png) no-repeat center transparent
+          //       &:hover
+          //         background: url(/images/icons/search-16-hover.png) no-repeat center transparent
+          //       &:active
+          //         background: url(/images/icons/search-16-active.png) no-repeat center transparent
+          // 
+          //   .userResults
+          //     +user-select
+          // 
+          //     .user
+          //       +round(4)
+          //       height: 32px
+          //       line-height: 32px
+          //       margin: 4px 0 0
+          // 
+          //       .avatar, .username, .statusIcon
+          //         +left
+          //         margin: 0 8px 0 0
+          // 
+          //       .avatar
+          //         +round(4)
+          //         +flat-right
+          //         width: 32px
+          //         height: 32px
+          // 
+          //       .username
+          //         +font(12)
+          // 
+          //       .statusIcon
+          //         width: 16px
+          //         height: 16px
+          //         margin: 8px 8px 0 0
+          //         background: url(/images/icons/friend-stream-sprite.png) no-repeat
+          //         &.none
+          //           background-position: 0% 0%
+          //         &.following
+          //           background-position: 0% 33%
+          //         &.followed_by
+          //           background-position: 0% 66%
+          //         &.friends
+          //           background-position: 0% 100%
+          // 
+          //       .close-16
+          //         +right
+          //         height: 32px
+          //         margin: 0 4px 0 0
+          // 
+          //   label.taggedUsers, label.hideShared
+          //     +round(8)
+          //     +pointer
+          //     +block
+          //     +font(12)
+          //     padding: 0 4px
+          //     height: 22px
+          //     line-height: 22px
+          //     margin: 4px 0 0
+          //     .img
+          //       +left
+          //       width: 16px
+          //       height: 22px
+          //       margin: 0 8px 0 2px
+          //     input
+          //       +right
+          //       +pointer
+          //       +outline
+          //       margin: 5px 0 0
+          //   label.taggedUsers
+          //     .img
+          //       background: url(/images/icons/tag-16.png) no-repeat center transparent
+          //     &:hover .img
+          //       background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+          //     &:active .img
+          //       background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+          //   label.hideShared
+          //     .img
+          //       background: url(/images/icons/anon-16.png) no-repeat center transparent
+          //     &:hover .img
+          //       background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
+          //     &:active .img
+          //       background: url(/images/icons/anon-16-active.png) no-repeat center transparent
+          // 
+          // .everyone
+          //   +relative
+          //   +clear
+          //   margin-bottom: 4px
+          //   .facebook, .twitter, .buzz
+          //     +round(8)
+          //     margin: 4px 0 0
+          //     label
+          //       +pointer
+          //       +block
+          //       padding: 4px
+          //       height: 28px
+          //       line-height: 28px
+          //       img
+          //         margin: 7px 0 0 4px
+          //       input
+          //         +pointer
+          //         +right
+          //         +outline
+          //         margin: 9px 8px 0 8px
+          //       span, img
+          //         +left
+          //         margin-right: 4px
+          //       span.shareOn, span.shared, span.sharedWhen
+          //         color: #656565
+          //       span.sharedWhen, span.shared
+          //         margin-top: 2px
+          //         font-size: 11px
+          //       span.shared
+          //         text-transform: uppercase
 
     .myBooks, .addTheme, .date, .addLocation, #entry_submit
       +round(20)
@@ -744,9 +828,25 @@
       .sharing
 
         .listOfUsers, .everyone
-          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
             +indent-light
             +button-light
+            border: 1px solid #777
+
+          .searchWrap
+            input.searchField
+              +input-light(small)
+              &:focus
+                color: #777
+                box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
+                -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
+                -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
+
+          .userResults
+            .user
+              +bevel-light
+              border: 1px solid #777
+
           .buzz
             +button-light
             +shine-light(16)
@@ -966,9 +1066,26 @@
             color: #ddd
 
         .listOfUsers, .everyone
-          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
             +indent-dark
             +button-dark
+            border: 1px solid #444
+
+          .searchWrap
+            input.searchField
+              +input-dark(small)
+              color: #ccc
+              &:focus
+                color: #ddd
+                box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
+                -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
+                -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
+
+          .userResults
+            .user
+              +bevel-dark
+              border: 1px solid #444
+
           .buzz
             +button-dark
             +shine-dark(16)
