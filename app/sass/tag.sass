@@ -19,9 +19,11 @@
     margin: 0 8px 4px 0
     height: 32px
     line-height: 32px
+
     .close-16
       +right
       margin: 8px 4px 0 0
+
     .avatar, .whereIcon, .tagImage
       +round(8)
       +flat-right
@@ -96,9 +98,7 @@
         margin-bottom: 8px
         +bold
         +round(16)
-        +indent-light
-        +button-light
-        padding: 4px 8px
+        padding: 2px 8px
 
 
 
@@ -111,7 +111,7 @@
         +flat-light-medium
         border: 1px solid #8c8c8c
         color: #333
-        &.user:hover
+        &.custom:hover
           +pointer
           color: #000
           border: 1px solid #000
@@ -119,6 +119,11 @@
         +pointer
         color: #000
         border: 1px solid #000
+        .source
+          +flat-dark-medium
+          +button-dark
+          color: #ccc
+
 
 .dark
   #tagStream, #showEntry, #entryField
@@ -127,7 +132,7 @@
         background: #121212
         color: #ddd
         border: 1px solid #777
-        &.user:hover
+        &.custom:hover
           +pointer
           color: #fff
           border: 1px solid #fff
@@ -135,3 +140,7 @@
         +pointer
         color: #fff
         border: 1px solid #fff
+        .source
+          +flat-light-medium
+          +button-light
+          color: #333

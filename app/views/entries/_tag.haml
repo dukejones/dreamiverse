@@ -1,6 +1,6 @@
 - kind ||= 'custom'
 .wrapper
-  .tag.tagWhat{:'data-id' => what.id, :class => "#{@entry.user == current_user ? 'user' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis trigger showhide'}" }
+  .tag.tagWhat{:'data-id' => what.id, :class => "#{kind == 'custom' ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis trigger showhide'}" }
     %span.tagContent= what.name
     - if close_button
       .close-16

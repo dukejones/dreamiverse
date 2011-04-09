@@ -179,9 +179,11 @@
           / TAGS
           #tag-list.tag-list.ui-sortable.target
 
+            / PLACEHOLDER TAG JS
             .emptyTag.hidden
               %span.tagContent
               .close-16
+
             / CUSTOM TAGS
             -# TODO: Put eager loading of dictionary words back in.
             - kind = 'custom'
@@ -193,9 +195,10 @@
             -# @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
             - kind = 'auto'
             - @entry.what_tags.auto.whats.each do |what|
-              = render partial: 'tag', locals: {what: what, close_button: false, kind: kind}
+              - unless what.dictionary_words.empty?
+                = render partial: 'tag', locals: {what: what, close_button: false, kind: kind}
 
-            / .clear
+
           #sorting
           .clear
 
