@@ -93,19 +93,44 @@
               %option.everyone{value: '500'} everyone
               %option.list{value: '200'} friends only
               %option.followers{value: '150'} followers only
-              / %option.list{value: 'list'} friends only
+              %option.list.trigger.showHide{value: 'list'} list of users
               %option.anon{value: '50'} anonymous
               %option.private{value: '0'} private
 
-            .listOfUsers.target.hidden
-              .friendsOnly
-                %label
-                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
-                  %span friends only
-              .followersOnly
-                %label
-                  %input{value:'150', type: 'radio', name: 'listOfUsers'}
-                  %span followers only
+            / SHARING - LIST OF USERS
+            .listOfUsers.target.showHide.hidden
+            
+              .searchWrap
+                / %form.searchForm  !!! This form was breaking all other form elements on the page. tried ruby form and tried unique classes from meta-menu search == no way
+                %input.searchField{value: 'username...'}
+                %input.search{type: 'submit', value: ''}
+            
+              .userResults
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+
+              %label.taggedUsers
+                .img
+                %span share with tagged..
+                %input{type: 'checkbox', name: 'taggedUsers'}
+
+              %label.hideShared
+                .img
+                %span hide shared users
+                %input{type: 'checkbox', name: 'hide'}
 
             .everyone.target.hidden
               .facebook.hidden
