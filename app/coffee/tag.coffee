@@ -193,7 +193,6 @@ class TagView
   createElement: ->
     @$element = $('.emptyTag').clone()
     @$element.removeClass('hidden emptyTag')
-    @$element.addClass('wrapper tagWhat')
     @setValue(@tag.name)
     
     return @$element
