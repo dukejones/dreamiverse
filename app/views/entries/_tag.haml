@@ -1,3 +1,4 @@
+- kind ||= 'custom'
 .wrapper
   .tag.tagWhat.tagAnalysis.trigger.showhide{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
     %span.tagContent= what.name

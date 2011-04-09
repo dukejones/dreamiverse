@@ -184,14 +184,16 @@
               .close-16
             / CUSTOM TAGS
             -# TODO: Put eager loading of dictionary words back in.
+            - kind = 'custom'
             - @entry.what_tags.custom.whats.each do |what|
-              = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user)}
+              = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: kind}
 
             / ANALYSIS TAGS
             -# TODO: Put the eager loading back in!!  Otherwise it's 4 queries per tag. SLOOW.
             -# @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
+            - kind = 'auto'
             - @entry.what_tags.auto.whats.each do |what|
-              = render partial: 'tag', locals: {what: what, close_button: false}
+              = render partial: 'tag', locals: {what: what, close_button: false, kind: kind}
 
             / .clear
           #sorting
