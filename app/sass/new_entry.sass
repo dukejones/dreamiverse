@@ -828,9 +828,25 @@
       .sharing
 
         .listOfUsers, .everyone
-          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
             +indent-light
             +button-light
+            border: 1px solid #777
+
+          .searchWrap
+            input.searchField
+              +input-light(small)
+              &:focus
+                color: #777
+                box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
+                -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
+                -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
+
+          .userResults
+            .user
+              +bevel-light
+              border: 1px solid #777
+
           .buzz
             +button-light
             +shine-light(16)
@@ -1050,9 +1066,26 @@
             color: #ddd
 
         .listOfUsers, .everyone
-          .friendsOnly, .followersOnly, .url, .facebook, .twitter
+          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
             +indent-dark
             +button-dark
+            border: 1px solid #444
+
+          .searchWrap
+            input.searchField
+              +input-dark(small)
+              color: #ccc
+              &:focus
+                color: #ddd
+                box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
+                -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
+                -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
+
+          .userResults
+            .user
+              +bevel-dark
+              border: 1px solid #444
+
           .buzz
             +button-dark
             +shine-dark(16)
