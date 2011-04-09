@@ -63,7 +63,7 @@
       .tagContent
         +font(32)
         +bold
-        margin: 6px 0 0 20px
+        margin: 6px 0 18px 20px
 
       .analysisIcon
         margin: 4px 8px
@@ -83,20 +83,22 @@
         background: url(/images/icons/arrow-up-16.png) no-repeat center
 
       .description
-        margin: 40px 8px 10px 20px
+        margin: 40px 20px 10px 20px
         line-height: 20px
         +clear
       p
+        +clear
         margin-bottom: 18px
 
       .source
-        +right
-        margin: -18px 12px 18px 0
-        a
-          +alpha(60)
-        a:hover
-          +alpha(100)
-
+        +block
+        +left
+        margin-bottom: 8px
+        +bold
+        +round(16)
+        +indent-light
+        +button-light
+        padding: 4px 8px
 
 
 
