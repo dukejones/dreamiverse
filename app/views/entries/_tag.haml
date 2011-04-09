@@ -1,3 +1,4 @@
+- kind ||= 'custom'
 .wrapper
   .tag.tagWhat{:'data-id' => what.id, :class => "#{@entry.user == current_user ? 'user' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis trigger showhide'}" }
     %span.tagContent= what.name
