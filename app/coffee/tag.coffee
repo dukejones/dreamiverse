@@ -1,7 +1,9 @@
 class window.TagsController
   constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
-    
+    # container for "custom" tags, to append in the right order
+
+
     switch mode
       when 'edit'
         @tagViewClass = EditingTagView
@@ -32,7 +34,7 @@ class window.TagsController
     tagView = new @tagViewClass(tag)
     tagView.create()
 
-    @tagViews.$container.append( tagView.createElement() )
+    $('.custom.tag').last().after( tagView.createElement() )
     
     @tagViews.add(tagView)
 
@@ -191,7 +193,7 @@ class TagView
   createElement: ->
     @$element = $('.emptyTag').clone()
     @$element.removeClass('hidden emptyTag')
-    @$element.addClass('tag tagWhat custom')
+    @$element.addClass('wrapper tagWhat')
     @setValue(@tag.name)
     
     return @$element
@@ -277,6 +279,6 @@ class Tag
 
 $(document).ready ->
   # 
-  $('.tagAnalysis.trigger').click( (event) ->
-    $(this).toggleClass('expanded')
+  $('.tagAnalysis .trigger').click( (event) ->
+    $(this).parent().toggleClass('expanded')
   )

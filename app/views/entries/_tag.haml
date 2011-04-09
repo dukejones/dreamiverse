@@ -1,9 +1,9 @@
 - kind ||= 'custom'
-.wrapper
-  .tag.tagWhat{:'data-id' => what.id, :class => "#{kind == 'custom' ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis trigger showhide'}" }
+.wrapper.tag.tagWhat{:'data-id' => what.id, :class => "#{kind == 'custom' ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
+  .trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
+
     %span.tagContent= what.name
-    - if close_button
-      .close-16
+
     - unless what.dictionary_words.empty?
       .analysisIcon
 
@@ -14,3 +14,5 @@
             %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
             = simple_format(word.definition)
 
+  - if close_button
+    .close-16

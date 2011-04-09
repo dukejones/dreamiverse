@@ -7,6 +7,7 @@
   #tag-list
     clear: left
 
+
   // WHO, WHERE, WHAT TAG STYLES
   // TAG STRUCTURE
   .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
@@ -19,6 +20,9 @@
     margin: 0 8px 4px 0
     height: 32px
     line-height: 32px
+
+    .trigger
+      +left
 
     .close-16
       +right
@@ -65,10 +69,10 @@
       .tagContent
         +font(32)
         +bold
-        margin: 6px 0 18px 20px
+        margin: 14px 0 18px 20px
 
       .analysisIcon
-        margin: 4px 8px
+        margin: 14px 8px
 
     .analysis
       width: 100%
@@ -77,11 +81,10 @@
 
       .arrow
         +absolute
-        top: 0
-        right: 12px
+        top: 12px
+        right: 20px
         height: 32px
         width: 16px
-        margin: 0 0 12px
         background: url(/images/icons/arrow-up-16.png) no-repeat center
 
       .description
@@ -95,7 +98,7 @@
       .source
         +block
         +left
-        margin-bottom: 8px
+        margin: 0 0 8px -8px
         +bold
         +round(16)
         padding: 2px 8px
@@ -119,10 +122,10 @@
         +pointer
         color: #000
         border: 1px solid #000
-        .source
-          +flat-dark-medium
-          +button-dark
-          color: #ccc
+      .source
+        +flat-dark-medium
+        +button-dark
+        color: #ccc
 
 
 .dark
@@ -140,7 +143,7 @@
         +pointer
         color: #fff
         border: 1px solid #fff
-        .source
-          +flat-light-medium
-          +button-light
-          color: #333
+      .source
+        +flat-light-medium
+        +button-light
+        color: #333

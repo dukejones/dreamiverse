@@ -180,8 +180,9 @@
           #tag-list.tag-list.ui-sortable.target
 
             / PLACEHOLDER TAG JS
-            .emptyTag.hidden
-              %span.tagContent
+            .custom.tag.emptyTag.hidden
+              .trigger
+                %span.tagContent
               .close-16
 
             / CUSTOM TAGS
@@ -212,7 +213,7 @@
 
     / COMMENTS
     - unless @comments.count == 0 and current_user.blank?
-      .commentsPanel
+      .commentsPanel.wrapper
         .trigger.slide
           .commentsHeader.headers
             .img
