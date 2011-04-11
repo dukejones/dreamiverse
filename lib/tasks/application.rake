@@ -82,15 +82,13 @@ namespace :fix do
   task :janked_whats => :environment do
     janked_whats = What.where((:name.matches % '%,%') | (:name.matches % '%..%') | (:name.matches % '%--%'))
     
-    msg = janked_whats.count > 0 ? "Attempting to fix #{janked_whats.count} janked what(s)..." : 'Nothing to fix' 
-    log(msg)
+    log("Attempting to fix #{janked_whats.count} janked what(s)...") if janked_whats.count > 0
+    total_fixed = 0
     
     janked_whats.each do |janked_what| 
       (jank_type = 'commas') && (regex = ',+') if janked_what.name =~ /,/
       (jank_type = 'periods') && (regex = '\.+') if janked_what.name =~ /\.\./
       (jank_type = 'dashes') && (regex = '-+') if janked_what.name =~ /--/
-      
-      log("jank_type: #{jank_type} regex: #{regex}")
       
       if regex # make sure we have one
         skip = false # reset
@@ -107,7 +105,7 @@ namespace :fix do
        
           related_tags = Tag.where(noun_id: janked_what.id)  
           
-          msg = related_tags.count > 0 ? "Fixing #{related_tags.count} tag(s) entry") : 'No related tags' 
+          msg = related_tags.count > 0 ? "Fixing #{related_tags.count} tag(s) entry)" : 'No related tags' 
           log(msg)
           
           related_tags.each do |tag|
@@ -126,9 +124,13 @@ namespace :fix do
           end
           janked_what.delete # delete janked what from what table
           log("Deleted #{janked_what.name} from whats table")
+          total_fixed += 1
+        else
+          log("Skipping: #{janked_what.name}")
         end
       end 
-    end         
+    end
+    log("Total janked tags fixed: #{total_fixed}")          
   end  
 end
 
