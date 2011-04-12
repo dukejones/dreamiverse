@@ -24,7 +24,7 @@ class Entry < ActiveRecord::Base
   has_many :comments
 
   # Tag associations
-  has_many :tags
+  has_many :tags, :dependent => :delete_all
   # has_many :custom_tags, 
   #          :through => :tags, 
   #          :source => :noun, 
@@ -222,7 +222,7 @@ class Entry < ActiveRecord::Base
     self.what_tags.custom.each_with_index do |tag, index|
       tag.update_attribute :position, index
     end
-    # then reorder auto tags - up to 16 total tags
+    # then reorder auto tags
     first_auto_tag_position = self.what_tags.custom.count
     self.what_tags.auto.each_with_index do |tag, index|
       tag.update_attribute :position, first_auto_tag_position + index

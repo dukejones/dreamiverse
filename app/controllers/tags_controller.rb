@@ -20,6 +20,9 @@ class TagsController < ApplicationController
 
     tag.destroy
     
+    entry = Entry.find(params[:entry_id])
+    entry.reorder_tags
+    
     render :json => "destroyed"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity

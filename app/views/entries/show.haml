@@ -80,8 +80,8 @@
 
 
     / STARLIGHT COUNT & SHARE OPTIONS
-    .starlight_share
-      %img.starlight{src: '/images/icons/starlight-22.png'}
+    .starlight
+      .img
       %span= @entry.starlight
 
 
@@ -141,34 +141,44 @@
                 %a{href: "#{link.url}", target: "_blank"}= link.title
           .clear
 
+      / / ENTRY LINKS - NEW SYNTAX
+      / - if (@entry.links - @entry.links.youtube).count >= 1
+      /   .entryLinks
+      /     - (@entry.links - @entry.links.youtube).each do |link|
+      /       %a.link{href: "#{link.url}", target: "_blank"}
+      /         %span= link.title
+      /     .clear
 
 
       / TAG
       .showTags
         .wrapper
 
-          - if @entry.user == current_user
-            .tagHeader.headers
-              .img
-              tag
+          .tagInputWrap
+            - if @entry.user == current_user
+              .tagHeader.headers
+                .img
+                tag
 
-            .tagInput.target
-              %input#newTag{placeholder: 'who/where/what'}
-            .tagThisEntry.trigger
-              + add
+              .tagInput.target
+                %input#newTag
+              .tagThisEntry.trigger
+                + add
 
-          / POST TIME, LOCATION & SHARE LEVEL
-          - if !@entry.everyone?
-            .shareLevel
-              .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
-              %span= @entry.sharing
+          / POST INFO - TIME, LOCATION & SHARE LEVEL
+          .postInfo
+
+            - if !@entry.everyone?
+              .shareLevel
+                .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+                %span= @entry.sharing
           
-          .postTime
-            - time = (@entry.dreamed_at || @entry.created_at)
-            = time_ago_in_words(time)
+            .postTime
+              - time = (@entry.dreamed_at || @entry.created_at)
+              = time_ago_in_words(time)
         
-          - if location = @entry.location
-            .postLocation= "#{location.city}, #{location.province}"
+            - if location = @entry.location
+              .postLocation= "#{location.city}, #{location.province}"
 
 
 

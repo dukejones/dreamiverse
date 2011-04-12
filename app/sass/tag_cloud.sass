@@ -18,7 +18,7 @@
     +bold
   .s1
     +font(21)
-  .s3
+  .s2, .s3
     +font(19)
   .s4
     +font(18)
@@ -34,7 +34,7 @@
 .dark .thumb-2d .tagCloud
   .s0
     text-shadow: rgb(0,0,0) 0 0 40px
-  .s1
+  .s1, .s2
     text-shadow: rgb(0,0,0) 0 0 30px
   .s3
     text-shadow: rgb(0,0,0) 0 0 20px
@@ -61,13 +61,16 @@
 
 #showEntry .tagCloud
   .s0
-    +font(68)
+    +font(72)
     text-shadow: rgba(0,0,0,0.7) 0 0 40px
   .s1
     +font(62)
     +bold
     text-shadow: rgba(0,0,0,0.6) 0 0 40px
-  .s3
+  .s2
+    +font(59)
+    +bold
+  .s2, .s3
     +font(58)
     text-shadow: rgba(0,0,0,0.6) 0 0 30px
   .s4
@@ -103,6 +106,8 @@
   .s1
     +font(26)
     +bold
+  .s2
+    +font(25)
   .s3
     +bold
     +font(22)
@@ -127,11 +132,7 @@
 // LIGHT 1D OVERRIDES
 
 .dark .thumb-1d .tagCloud
-  .s0
-    text-shadow: #000 0 0 20px
-  .s1
-    text-shadow: #000 0 0 20px
-  .s3
+  .s0, .s1, .s2, .s3
     text-shadow: #000 0 0 20px
   .s4
     text-shadow: #000 0 0 10px
@@ -156,8 +157,6 @@
   color: #6bd3ff
 
 .light .tagCloud, .dark .tagCloud
-  .s0.white
-    color: #fff 
   .s0
     color: #88e3f7
   .s1

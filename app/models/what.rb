@@ -26,7 +26,7 @@ class What < ActiveRecord::Base
     word.downcase.strip.gsub( /^[^[:alnum:]]+|[^[:alnum:]]+$/, '' ).slice(0...MaxLength)
   end
   
-  def duplicates
+  def self.duplicates
     group('name').having('count(name) > 1')
   end
   

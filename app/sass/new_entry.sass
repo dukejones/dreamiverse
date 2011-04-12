@@ -120,7 +120,7 @@
           +pointer
           min-height: 34px
           line-height: 34px
-          width: 170px
+          width: 170px  // will need to make wider when implementing list of users and url
           margin: 0
           z-index: 1101
           .listSelection
@@ -794,11 +794,11 @@
     .attach.emotions
       .img
         width: 19px
-        background: url(/images/icons/mood-19.png) no-repeat left center transparent
+        background: url(/images/icons/emotions-16.png) no-repeat left center transparent
       &:hover .img
-        background: url(/images/icons/mood-19.png) no-repeat left center transparent
+        background: url(/images/icons/emotions-16-hover.png) no-repeat left center transparent
       &:active .img
-        background: url(/images/icons/mood-19.png) no-repeat left center transparent
+        background: url(/images/icons/emotions-16-active.png) no-repeat left center transparent
 
 
 
@@ -824,6 +824,7 @@
       +shine-light(24)
       +border-light
 
+<<<<<<< HEAD:app/sass/new_entry.sass
       // SHARING
       .sharing
 
@@ -851,6 +852,8 @@
             +button-light
             +shine-light(16)
 
+=======
+>>>>>>> master:app/sass/new_entry.sass
       #entry_submit
         +button-light
         +shine-light(16)
@@ -880,6 +883,9 @@
     // ENTRY IMAGES
     .entryImages
 
+      .entryImageContainer
+        background: url(/images/icons/spinner-light-32.gif) no-repeat center center white
+
       #addFromImageBank
         +bevel-light
         +button-light
@@ -890,7 +896,6 @@
 
     // NEW ENTRY TAG
     .entryTags
-
       .tagInputWrap
         background: url(/images/slices/inputLeftLight-40.png) no-repeat left
         .tagInput
@@ -1065,6 +1070,7 @@
           option
             color: #ddd
 
+<<<<<<< HEAD:app/sass/new_entry.sass
         .listOfUsers, .everyone
           label.taggedUsers, label.hideShared, .url, .facebook, .twitter
             +indent-dark
@@ -1090,6 +1096,8 @@
             +button-dark
             +shine-dark(16)
 
+=======
+>>>>>>> master:app/sass/new_entry.sass
       #entry_submit
         +button-dark
         color: #fff
@@ -1122,6 +1130,9 @@
 
     // ENTRY IMAGES
     .entryImages
+
+      .entryImageContainer
+        background: url(/images/icons/spinner-dark-32.gif) no-repeat center center black
 
       #addFromImageBank
         +bevel-dark

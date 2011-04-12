@@ -11,7 +11,12 @@
 / PRELOAD - NEW ENTRY
 .hidden
   / ENTRY OPTIONS
-  %img{src: '/images/icons/date-24-active.png'}
+  %img{src: '/images/icons/date-24-hover.png'}
+  / INPUTS
+  %img{src: '/images/slices/inputContentLight-40.png'}
+  %img{src: '/images/slices/inputContent-Dark-40.png'}
+  %img{src: '/images/slices/inputLeftLight-40.png'}
+  %img{src: '/images/slices/inputLeft-Dark-40.png'}
   / HEADER ICONS
   %img{src: '/images/icons/date-16-hover.png'}
   %img{src: '/images/icons/location-16-hover.png'}
@@ -25,6 +30,8 @@
   %img{src: '/images/icons/link-16-active.png'}
   %img{src: '/images/icons/comment-16-hover.png'}
   %img{src: '/images/icons/comment-16-active.png'}
+  %img{src: '/images/icons/emotions-16-hover.png'}
+  %img{src: '/images/icons/emotions-16-active.png'}
   / RADIO WRAPPER
   %img{src: '/images/icons/radioWrap-31.png'}
   / CLOSE
@@ -85,8 +92,8 @@
 
         = f.submit :value => 'post'
 
-        // SHARING PANEL
-        .sharingWrap
+        / SHARING PANEL
+        .sharingWrap.wrapper
           .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
             .listSelection{style: "background: url('/images/icons/sharing-24-hover.png') no-repeat center"}
             %select#sharing_select{name: "entry[sharing_level]"}
@@ -184,7 +191,7 @@
         tag
       .tagInputWrap
         .tagInput
-          %input#newTag{:placeholder => "who / what / where"}
+          %input#newTag
           .tagAdd
             %span +
             add

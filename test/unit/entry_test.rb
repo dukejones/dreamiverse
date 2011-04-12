@@ -162,4 +162,5 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal 16, entry.what_tags.count
     assert_equal (0..15).to_a, entry.what_tags.map(&:position).sort
   end
+  
 end

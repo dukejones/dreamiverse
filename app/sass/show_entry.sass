@@ -33,7 +33,7 @@
         display: inline-block
         width: 16px
         height: 21px
-        margin: 0 4px 0 0
+        margin: 0 4px -12px 0
         background: url(/images/icons/play-16.png) no-repeat center
       &:hover .img
         background: url(/images/icons/play-16-hover.png) no-repeat center
@@ -130,7 +130,7 @@
 
 
     // STARLIGHT COUNT & SHARE OPTIONS
-    .starlight_share
+    .starlight
       +round(16)
       +absolute
       top: 210px
@@ -138,11 +138,12 @@
       height: 32px
       line-height: 32px
       padding: 0 8px
-      img.starlight
+      .img
         +left
-        margin: 6px 4px 0 0
-      span
-        +left
+        width: 24px
+        height: 32px
+        margin: 0 4px 0 0
+        background: url(/images/icons/starlight-24.png) no-repeat center
       hr
         +left
         +alpha(20)
@@ -233,7 +234,7 @@
       .entryLinks
         +round(12)
         +clear
-        margin: 4px 12px 0
+        margin: 0 12px
         padding: 8px 4px 0
         .link
           +overflow
@@ -249,20 +250,52 @@
           img
             margin: 7px 8px 0 0
 
+      // // LINKS - NEW SYNTAX
+      // .entryLinks
+      //   +round(12)
+      //   +clear
+      //   margin: 0 12px
+      //   padding: 8px 4px 0
+      //   a.link
+      //     +overflow
+      //     +round(16)
+      //     +left
+      //     +block
+      //     margin: 0 8px 8px 0
+      //     padding: 0 12px
+      //     height: 30px
+      //     line-height: 30px
+      //     .img
+      //       +left
+      //       width: 30px
+      //       height: 30px
+      //       margin: 0 8px 0 0
+
+
       // TAG
       .showTags
+        +relative
         padding: 8px 12px
+        margin: 12px 0 0 0
 
         .hover_label
           width: 140px
 
-        .tagHeader
-          +flat-right
-          +user-select
-          border: none
+        .tagInputWrap, .tagInputWrap.selected
+          +round(19)
+          +transparent
+          +absolute
+          top: 0
+          left: 12px
           height: 36px
+          z-index: 100
 
-        .wrapper
+          .tagHeader
+            +flat-right
+            +user-select
+            border: none
+            height: 36px
+
           .tagInput
             +left
             +overflow
@@ -287,7 +320,7 @@
             +center
             +bold
             +user-select
-            margin: 0 0 16px
+            margin: 0
             padding: 0 12px
             height: 36px
             line-height: 36px
@@ -301,14 +334,19 @@
             &:hover
               border: none
 
-          // POST TIME, LOCATION & SHARE LEVEL
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postInfo
+          +absolute
+          top: 0
+          right: 12px
+
           .postTime, .postLocation, .shareLevel
             +round(20)
             +right
             +center
             +user-select
             +cursor
-            margin: 0 0 4px 8px
+            margin: 0 0 0 8px
             height: 34px
             line-height: 32px
             padding: 0 12px
@@ -320,7 +358,8 @@
               height: 34px
 
 
-          #tag-list // SEE ENTRIES.SASS
+        #tag-list // SEE ENTRIES.SASS
+          margin: 40px 0 0
 
       // ANALYSIS
       .entryAnalysis
@@ -464,13 +503,13 @@
             top: 0
             right: 0
             font-family: Calibri, Arial, Helvetica, sans-serif
-            height: 10px
+            height: 20px
             width: 506px
             min-width: 506px
             max-width: 506px
             border: none
             cursor: text
-            padding: 28px 28px 44px
+            padding: 28px 28px 34px
 
           .user
             +round(8)
@@ -502,7 +541,7 @@
             +bold
             +font(16)
             right: 8px
-            bottom: 8px
+            bottom: 10px
             padding: 0 16px 4px
 
 
@@ -542,7 +581,7 @@
         +button-light
 
       // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
+      .starlight
         +transparent-light(70)
 
       // MOOD ICON
@@ -581,30 +620,38 @@
             +button-light
             +bevel-light
 
-        // POST TIME, LOCATION & SHARE LEVEL
-        .postTime, .postLocation, .shareLevel
-          +indent-light
-          border: 1px solid #f1f1f1
-
         // TAG
         .showTags
 
-          .tagThisEntry
-            +button-light
-            +shine-light(17)
-            border: none
-            &:hover
-              border: none
-          .tagThisEntry.selected
-            +button-dark
-            +shine-dark(17)
-            color: #ddd
-            border: none
-            &:hover
-              border: none
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(0,0,0,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(0,0,0,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(0,0,0,0.8)
 
-          .tagInput
-            +input-light(small)
+          .tagInputWrap, .tagInputWrap.selected
+
+            .tagThisEntry
+              +button-light
+              +shine-light(17)
+              border: none
+              &:hover
+                border: none
+            .tagThisEntry.selected
+              +button-dark
+              +shine-dark(17)
+              color: #ddd
+              border: none
+              &:hover
+                border: none
+
+            .tagInput
+              +input-light(small)
+
+          .postInfo
+            // POST TIME, LOCATION & SHARE LEVEL
+            .postTime, .postLocation, .shareLevel
+              +indent-light
+              border: 1px solid #f1f1f1
 
         // ANALYSIS
         .entryAnalysis
@@ -687,7 +734,7 @@
         +button-dark
 
       // STARLIGHT COUNT & SHARE OPTIONS
-      .starlight_share
+      .starlight
         +transparent-dark(50)
 
       // MOOD ICON
@@ -726,32 +773,40 @@
             a
               color: #ccc
 
-        // POST TIME, LOCATION & SHARE LEVEL
-        .postTime, .postLocation, .shareLevel
-          +indent-dark
-          border: 1px solid #333
-
         // TAG
         .showTags
 
-          .tagThisEntry
-            +button-dark
-            +shine-dark(17)
-            border: none
-            &:hover
-              border: none
-          .tagThisEntry.selected
-            +button-light
-            +shine-light(17)
-            color: #333
-            border: none
-            &:hover
-              border: none
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(250,250,250,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(250,250,250,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(250,250,250,0.8)
 
-          .tagInput
-            +input-dark(small)
-            input
-              color: #ddd
+          .tagInputWrap, .tagInputWrap.selected
+
+            .tagThisEntry
+              +button-dark
+              +shine-dark(17)
+              border: none
+              &:hover
+                border: none
+            .tagThisEntry.selected
+              +button-light
+              +shine-light(17)
+              color: #333
+              border: none
+              &:hover
+                border: none
+
+            .tagInput
+              +input-dark(small)
+              input
+                color: #ddd
+
+          .postInfo
+            // POST TIME, LOCATION & SHARE LEVEL
+            .postTime, .postLocation, .shareLevel
+              +indent-dark
+              border: 1px solid #333
 
       // ANALYSIS
       .entryAnalysis
