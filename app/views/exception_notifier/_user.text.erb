@@ -1,2 +1,2 @@
 <% user = User.find(@request.session['user_id']) if (@request.session['user_id']) %>
-<%= user ? "%s (%s) <%s>" % [user.name, user.username, user.email] : 'None' %>
+<%= user ? raw("%s (%s) <%s>" % [user.name, user.username, user.email]) : 'None' %>
