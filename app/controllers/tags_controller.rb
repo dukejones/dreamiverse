@@ -7,9 +7,10 @@ class TagsController < ApplicationController
     @entry.add_what_tag(what)
     @entry.reorder_tags
     
-    render :json => { :message => "created", :what_id => what.id }
+    tag_html = render_to_string(partial: 'entries/tag', locals: {what: what, close_button: true })
+    render :json => { type: 'ok', html: tag_html }
   rescue => e
-    render :json => e.message, :status => :unprocessable_entity
+    render :json => { type: 'error', message: e.message }
   end
 
     
@@ -23,9 +24,9 @@ class TagsController < ApplicationController
     entry = Entry.find(params[:entry_id])
     entry.reorder_tags
     
-    render :json => "destroyed"
+    render :json => { type: 'ok', message: "destroyed" }
   rescue => e
-    render :json => e.message, :status => :unprocessable_entity
+    render :json => { type: 'error', message: e.message }
   end
   
   def order_custom_tags
