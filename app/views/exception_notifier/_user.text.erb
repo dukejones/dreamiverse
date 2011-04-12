@@ -1,0 +1,2 @@
+<% user = User.find @request.session['user_id'] %>
+<%= raw user.inspect if user %>
