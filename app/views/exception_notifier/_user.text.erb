@@ -1,2 +1,2 @@
-<% user = User.find @request.session['user_id'] %>
-<%= raw user.inspect if user %>
+<% user = User.find user_id if user_id = @request.session['user_id'] %>
+<%= user ? "%s (%s) <%s>" % [user.name, user.username, user.email] : 'None' %>
