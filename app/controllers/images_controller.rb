@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  protect_from_forgery :except => :create
   before_filter :require_user, :only => :manage
 
   def index

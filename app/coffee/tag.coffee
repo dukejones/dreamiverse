@@ -27,15 +27,25 @@ class window.TagsController
         # Check for max tags
         if @tagViews.tagViews.length < 17
           @createTag(tagName)
-    
-    
-  createTag: (tagName)->
+  
+
+  createTag: (tagName)->     
+    # if delimited, split into an array of tags and append each one
+    if /,/.test(tagName) 
+      tagNames = tagName.split(',')
+      @appendTag tag for tag in tagNames
+    else if /\//.test(tagName) 
+      tagNames = tagName.split('/')
+      @appendTag tag for tag in tagNames
+    else
+      @appendTag tagName
+
+  appendTag: (tagName)->
     tag = new Tag(tagName)
-    tagView = new @tagViewClass(tag)
+    tagView = new @tagViewClass(tag)    
     tagView.create()
 
-    $('.custom.tag').last().after( tagView.createElement() )
-    
+    @tagViews.$container.append( tagView.createElement() )
     @tagViews.add(tagView)
 
 class TagInput

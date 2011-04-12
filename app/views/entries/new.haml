@@ -11,7 +11,12 @@
 / PRELOAD - NEW ENTRY
 .hidden
   / ENTRY OPTIONS
-  %img{src: '/images/icons/date-24-active.png'}
+  %img{src: '/images/icons/date-24-hover.png'}
+  / INPUTS
+  %img{src: '/images/slices/inputContentLight-40.png'}
+  %img{src: '/images/slices/inputContent-Dark-40.png'}
+  %img{src: '/images/slices/inputLeftLight-40.png'}
+  %img{src: '/images/slices/inputLeft-Dark-40.png'}
   / HEADER ICONS
   %img{src: '/images/icons/date-16-hover.png'}
   %img{src: '/images/icons/location-16-hover.png'}
@@ -85,29 +90,54 @@
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
-        = f.submit :value => 'post'
+        = f.submit :value => 'post', :'data-disable-with' => "posting..."
 
-        // SHARING PANEL
-        .sharingWrap
+        / SHARING PANEL
+        .sharingWrap.wrapper
           .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
             .listSelection{style: "background: url('/images/icons/sharing-24-hover.png') no-repeat center"}
             %select#sharing_select{name: "entry[sharing_level]"}
-              %option.everyone{value: '500'} everyone
-              %option.list{value: '200'} friends only
-              %option.followers{value: '150'} followers only
-              / %option.list{value: 'list'} friends only
-              %option.anon{value: '50'} anonymous
-              %option.private{value: '0'} private
+              %option.everyone{value: Entry::Sharing[:everyone]} everyone
+              %option.list{value: Entry::Sharing[:friends]} friends only
+              %option.followers{value: Entry::Sharing[:followers]} followers only
+              / %option.list.trigger.showHide{value: 'list'} list of users
+              %option.anon{value: Entry::Sharing[:anonymous]} anonymous
+              %option.private{value: Entry::Sharing[:private]} private
 
-            .listOfUsers.target.hidden
-              .friendsOnly
-                %label
-                  %input{value:'200', type: 'radio', name: 'listOfUsers'}
-                  %span friends only
-              .followersOnly
-                %label
-                  %input{value:'150', type: 'radio', name: 'listOfUsers'}
-                  %span followers only
+            / SHARING - LIST OF USERS
+            .listOfUsers.target.showHide.hidden
+            
+              .searchWrap
+                / %form.searchForm  !!! This form was breaking all other form elements on the page. tried ruby form and tried unique classes from meta-menu search == no way
+                %input.searchField{value: 'username...'}
+                %input.search{type: 'submit', value: ''}
+            
+              .userResults
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+                .user
+                  .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+                  .username username
+                  .statusIcon.friends
+                  .close-16
+
+              %label.taggedUsers
+                .img
+                %span share with tagged..
+                %input{type: 'checkbox', name: 'taggedUsers'}
+
+              %label.hideShared
+                .img
+                %span hide shared users
+                %input{type: 'checkbox', name: 'hide'}
 
             .everyone.target.hidden
               .facebook.hidden
@@ -161,7 +191,7 @@
         tag
       .tagInputWrap
         .tagInput
-          %input#newTag{:placeholder => "who / what / where"}
+          %input#newTag
           .tagAdd
             %span +
             add
