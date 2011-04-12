@@ -90,7 +90,7 @@
           .myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
-        = f.submit :value => 'post'
+        = f.submit :value => 'post', :'data-disable-with' => "posting..."
 
         / SHARING PANEL
         .sharingWrap.wrapper
