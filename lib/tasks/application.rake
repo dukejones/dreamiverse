@@ -80,8 +80,7 @@ namespace :fix do
 
   desc "Split janked (period..dash--and comma) seperated whats into seperate whats and fix related entry what associations in tags table"
   task :janked_whats => :environment do
-    # janked_whats = What.where((:name.matches % '%,%') | (:name.matches % '%..%') | (:name.matches % '%--%'))
-    janked_whats = What.all
+    janked_whats = What.where((:name.matches % '%,%') | (:name.matches % '%..%') | (:name.matches % '%--%'))
     
     log("Attempting to fix #{janked_whats.count} janked what(s)...") if janked_whats.count > 0
     total_fixed = 0
