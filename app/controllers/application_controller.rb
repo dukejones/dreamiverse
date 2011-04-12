@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
 
   MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo", "ipad"]
   def is_mobile?
+    return false unless request.user_agent
     agent = request.user_agent.downcase
     MOBILE_BROWSERS.each do |m|
       return true if agent.match(m)

@@ -40,20 +40,20 @@ class User < ActiveRecord::Base
   before_create -> { username.downcase! }
   before_create -> { email.downcase! }
   before_create :create_view_preference
+  before_create :set_defaults
   before_validation(:on => :create) do
     username.strip! 
     email.strip!
   end  
   after_validation :encrypt_password
-  before_save :set_auth_level
 
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
-  validates_format_of :username, :without => /[^a-zA-Z\d*_\-\.]/, 
-    :message => "contains invalid characters (only letters, numbers, underscores, periods, dashes and asterix's allowed in usernames)"
+  validates_format_of :username, :without => /[^a-zA-Z\d*_\-]/, 
+    :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_presence_of :email
   validates_uniqueness_of :email
@@ -185,7 +185,8 @@ class User < ActiveRecord::Base
   #   end
   # end
   
-  def set_auth_level
+  def set_defaults
+    self.default_sharing_level ||= Entry::Sharing[:everyone]
     self.auth_level ||= 1
   end
   

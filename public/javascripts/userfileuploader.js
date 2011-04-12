@@ -611,7 +611,12 @@ qq.extend(qq.FileUploader.prototype, {
     _onSubmit: function(id, fileName){
         if($('#IB_current_genre').text() != 'Choose'){
           qq.FileUploaderBasic.prototype._onSubmit.apply(this, arguments);
-          this._addToList(id, fileName);
+          //this._addToList(id, fileName);
+          // creates loading wheel container
+          var newNode = '<div class="entryImageContainer" file-name=":file_name"></div>';
+          newNode = newNode.replace(/:file_name/g, fileName);
+          $('#currentImages').prepend(newNode);
+          $('#currentImages').slideDown();  
         } else {
           alert('You must choose a Genre.')
         }
@@ -643,19 +648,17 @@ qq.extend(qq.FileUploader.prototype, {
     },
     _onComplete: function(id, fileName, result){
         qq.FileUploaderBasic.prototype._onComplete.apply(this, arguments);
-        // Add image      
-        var newNode = '<div class="entryImageContainer" data-id=":image_id"><div style="background: url(&quot;:image_url&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="close-24"></div><label class="radio"><input type="radio" value=":image_id" name="entry[main_image_id]"><span>default</span></label><div class="radioWrap"></div></div></div>'
-        
-        newNode = newNode.replace(/:image_id/g, result.image.id)
-        newNode = newNode.replace(/:image_url/, result.image_url)
-        
+        // Add image to its respective container, see _onSubmit
+        var imageElement = $('#currentImages .entryImageContainer[file-name="'+fileName+'"]');
+        imageElement.attr("data-id", result.image.id);
+        imageElement.html('<div style="background: url(&quot;'+result.image_url+'&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="close-24"></div><label class="radio"><input type="radio" value=":image_id" name="entry[main_image_id]"><span>default</span></label><div class="radioWrap"></div></div>');
+
+
         var newHiddenForm = '<input class="image_upload" type="hidden" value=":image_id" name="entry[image_ids][]" id="entry_image_ids_">'
         newHiddenForm = newHiddenForm.replace(/:image_id/, result.image.id)
-        
+
         $('#currentImages').prepend(newHiddenForm)
-        
-        $('#currentImages').prepend(newNode);
-        $('#currentImages').slideDown();               
+        $('#currentImages').slideDown();
     },
     _addToList: function(id, fileName){
         /*var item = qq.toElement(this._options.fileTemplate);                

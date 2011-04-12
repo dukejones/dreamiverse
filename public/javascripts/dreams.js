@@ -102,20 +102,29 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          var ua = navigator.userAgent
-          if(ua.match(/iPad/i)){
-            // IPAD Server HTML5 player
-            var videoArray = data.feed.entry[0].id.$t.split('/')
-            var video_id = videoArray[videoArray.length - 1]
-            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="472" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
-          } else {
-            // Normal flash w/ autoplay
-            var videoPath = data.feed.entry[0].media$group.media$content[0].url;
-            var embedPlayer = '<object width="472" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="472" height="390"></embed></object>';
-          }
+          // Check for non embedable media
+          if(typeof data.feed.entry != 'undefined' && data.feed.entry != null){
+            var ua = navigator.userAgent
+            if(ua.match(/iPad/i)){
+              // IPAD Server HTML5 player
+              var videoArray = data.feed.entry[0].id.$t.split('/')
+              var video_id = videoArray[videoArray.length - 1]
+              var embedPlayer = '<iframe class="youtube-player" type="text/html" width="472" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+            } else {
+              // Normal flash w/ autoplay
+              var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+              var embedPlayer = '<object width="472" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="472" height="390"></embed></object>';
+            }
     
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.after(newElement)
+            var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+            $current_element.after(newElement)
+          } else {
+            // Non embedable video
+            // Make link work
+            $current_element.click(function(){
+              window.open(current_url)
+            })
+          }
         }
       });
     }
@@ -197,20 +206,28 @@ function embedYoutubeLinks(){
         url: filePath,
         dataType: 'jsonp',
         success: function(data) {
-          var ua = navigator.userAgent
-          if(ua.match(/iPad/i)){
-            // IPAD Server HTML5 player
-            var videoArray = data.feed.entry[0].id.$t.split('/')
-            var video_id = videoArray[videoArray.length - 1]
-            var embedPlayer = '<iframe class="youtube-player" type="text/html" width="546" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
-          } else {
-            // Normal flash w/ autoplay
-            var videoPath = data.feed.entry[0].media$group.media$content[0].url;
-            var embedPlayer = '<object width="546" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="546" height="390"></embed></object>';
-          }
+          if(typeof data.feed.entry != 'undefined' && data.feed.entry != null){
+            var ua = navigator.userAgent
+            if(ua.match(/iPad/i)){
+              // IPAD Server HTML5 player
+              var videoArray = data.feed.entry[0].id.$t.split('/')
+              var video_id = videoArray[videoArray.length - 1]
+              var embedPlayer = '<iframe class="youtube-player" type="text/html" width="546" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+            } else {
+              // Normal flash w/ autoplay
+              var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+              var embedPlayer = '<object width="546" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="546" height="390"></embed></object>';
+            }
     
-          var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
-          $current_element.after(newElement)
+            var newElement = '<div class="video hidden" id="' + dataId + '"><div class="close-24 minimize hidden"></div><div class="player">' + embedPlayer + '</div><div class="info"><div style="background: url(/images/icons/youtube-24.png) no-repeat center" class="logo"></div><span class="videoTitle">' + data.feed.entry[0].title.$t + '</span></div></div>';
+            $current_element.after(newElement)
+          } else {
+            // Non embedable video
+            // Make link work
+            $current_element.click(function(){
+              window.open(current_url)
+            })
+          }
         }
       });
     }
@@ -745,23 +762,46 @@ function showYoutubeData(newText){
     url: filePath,
     dataType: 'jsonp',
     success: function(data) {
-      var ua = navigator.userAgent
-      if(ua.match(/iPad/i)){
-        // IPAD Server HTML5 player
-        var videoArray = data.feed.entry[0].id.$t.split('/')
-        var video_id = videoArray[videoArray.length - 1]
-        var embedPlayer = '<iframe class="youtube-player" type="text/html" width="614" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+      if(typeof data.feed.entry != 'undefined' && data.feed.entry != null){
+        var ua = navigator.userAgent
+        if(ua.match(/iPad/i)){
+          // IPAD Server HTML5 player
+          var videoArray = data.feed.entry[0].id.$t.split('/')
+          var video_id = videoArray[videoArray.length - 1]
+          var embedPlayer = '<iframe class="youtube-player" type="text/html" width="614" height="390" src="http://www.youtube.com/embed/' + video_id + '" frameborder="0"></iframe>'
+        } else {
+          // Normal flash w/ autoplay
+          var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+          var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+        }
+        //var videoPath = data.feed.entry[0].media$group.media$content[0].url;
+        //var embedPlayer = '<object width="425" height="350"><param name="movie" value="' + videoPath + '"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>';
+        var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="links[][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="links[][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
+        $('#linkHolder').append(newElement);
+        $('#linkHolder').slideDown()
+        $('.linkContainer').fadeIn();
       } else {
-        // Normal flash w/ autoplay
-        var videoPath = data.feed.entry[0].media$group.media$content[0].url;
-        var embedPlayer = '<object width="614" height="390"><param name="movie" value="' + videoPath + '&autoplay=1&hd=1"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '&autoplay=1&hd=1" type="application/x-shockwave-flash" wmode="transparent" width="614" height="390"></embed></object>';
+        var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
+        var newID = 'link-' + randomNumber;
+        var newEle = '#' + newID;
+        var newDOM = $(newEle);
+        
+        var newElement = '<div id="' + newID + '" class="linkContainer"><div class="title"><input value="Youtube Video" style="width: 220px;" name="links[][title]" class="linkTitleValue"></div><div class="url"><input value="' + newText + '" class="linkTitleValue" name="links[][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div></div>';
+        $('#linkHolder').append(newElement);
+        
+        var dataSent = {url: newText};
+        // Get the title from server
+        var filePath = '/parse/title'
+        $.ajax({
+          url: filePath,
+          context: $(newEle),
+          data: dataSent,
+          success: function(data) {
+            $(this).find('.title .linkTitleValue').val(data.title)
+            $('.linkContainer').fadeIn();
+          }
+        });
       }
-      //var videoPath = data.feed.entry[0].media$group.media$content[0].url;
-      //var embedPlayer = '<object width="425" height="350"><param name="movie" value="' + videoPath + '"></param><param name="wmode" value="transparent"></param><embed src="' + videoPath + '" type="application/x-shockwave-flash" wmode="transparent" width="425" height="350"></embed></object>';
-      var newElement = '<div class="linkContainer youtube"><div class="title"><input class="linkTitleValue" style="width: 220px;" value="' + data.feed.entry[0].title.$t + '" name="links[][title]" /></div><div class="url"><input value="' + newText + '" class="linkUrlValue" name="links[][url]" style="width: 320px;"><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div><div class="close-24"></div><div class="thumb" style="background: url(' + data.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat center center transparent"></div><div class="description">' + data.feed.entry[0].content.$t + '</div></div>';
-      $('#linkHolder').append(newElement);
-      $('#linkHolder').slideDown()
-      $('.linkContainer').fadeIn();
     }
   });
 }
