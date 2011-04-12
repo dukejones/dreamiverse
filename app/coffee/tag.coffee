@@ -106,12 +106,8 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    # New way
-    ua = navigator.userAgent
-    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+    clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"
     
-      # OLD WAY
-    #@$container.find('.tag .close-16').live "click", (event)=>
     @$container.find('.tag .close-16').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
@@ -129,8 +125,8 @@ class TagViewList
   
   addAllCurrentTags: ->
     # Fill up @tagViews with tags for each currently displayed tags
-    for $currentElement in @$container.find('.tag')
-      $element = $($currentElement)
+    for currentElement in @$container.find('.tag')
+      $element = $(currentElement)
       id = $element.data('id')
       name = $element.find('.tagContent').text()
       tag = new Tag(name, id)
@@ -210,6 +206,7 @@ class TagView
     @$element.find('.tagContent').html(tagName)
   setId: (id) ->
     @$element.attr('data-id', id)
+    @tag.setId(id)
   fadeIn: ->
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
     #currentBackground = @$element.css('backgroundColor');
@@ -246,7 +243,6 @@ class ShowingTagView extends TagView
   create: ->
     @tag.create().then (response)=>
       @setId(response.what_id)
-      @tag.setId(response.what_id)
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
     #if $("#sorting").val() is "1"
@@ -291,3 +287,4 @@ $(document).ready ->
   $('.tagAnalysis .trigger').click( (event) ->
     $(this).parent().toggleClass('expanded')
   )
+  
