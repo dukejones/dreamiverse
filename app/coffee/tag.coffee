@@ -1,3 +1,6 @@
+  
+
+
 class window.TagsController
   constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
@@ -14,6 +17,9 @@ class window.TagsController
         @tagViewClass = ShowingTagView
         @tagInputClass = ShowingTagInput
         @tagViewListClass = TagViewList
+        $('.tagAnalysis .trigger').live( 'click', (event)->
+          $(this).parent().toggleClass('expanded')
+        )
         #@$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
     @tagInput = new @tagInputClass(@$container.find('#newTag'))
@@ -43,9 +49,10 @@ class window.TagsController
   appendTag: (tagName)->
     tag = new Tag(tagName)
     tagView = new @tagViewClass(tag)    
-    tagView.create()
+    tagView.appendTo(@tagViews.$container)
 
-    @tagViews.$container.append( tagView.createElement() )
+    # @tagViews.$container.append( tagView.createElement() )
+    
     @tagViews.add(tagView)
 
 class TagInput
@@ -196,12 +203,6 @@ class TagView
   tagNode: -> @tag
   linkElement: (element)->
     @$element = element
-  createElement: ->
-    @$element = $('.emptyTag').clone()
-    @$element.removeClass('hidden emptyTag')
-    @setValue(@tag.name)
-    
-    return @$element
   setValue: (tagName) ->
     @$element.find('.tagContent').html(tagName)
   setId: (id) ->
@@ -223,15 +224,16 @@ class TagView
 class EditingTagView extends TagView
   inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   createElement: ->
-    super()
-    @createFormElement()
-  
-  create: ->
-    @createElement()
-
-  createFormElement: ->
+    @$element = $('.emptyTag').clone()
+    @$element.removeClass('hidden emptyTag')
+    @setValue(@tag.name)
+    
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
+    @$element
+  appendTo: ($container)->
+    $container.append( @createElement() )
+
   remove: ->
     #if $("#sorting").val() is "1"
     @removeFromView()
@@ -240,9 +242,14 @@ class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
-  create: ->
+  appendTo: ($container)->
+    log('appending')
+    log($container)
     @tag.create().then (response)=>
+      @$element = $(response.html)
       @setId(response.what_id)
+      $container.append( @$element )
+      
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
     #if $("#sorting").val() is "1"
@@ -262,7 +269,7 @@ class Tag
     deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
       @id = data.what_id
     return deferred.promise()
-     
+    
   destroy: ->
     $.publish 'tags:remove', [@id]
     
@@ -277,14 +284,3 @@ class Tag
     }
 
 
-
-
-
-# SHOW ENTRY TAG LOGIC
-
-$(document).ready ->
-  # 
-  $('.tagAnalysis .trigger').click( (event) ->
-    $(this).parent().toggleClass('expanded')
-  )
-  
