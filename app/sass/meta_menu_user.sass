@@ -65,7 +65,7 @@
       text-decoration: none
       padding: 2px 4px 2px 4px
       &:active
-        +gradient(#ddd, #fff)
+        +bevel-dark
         color: #333 !important
       &:hover, &.user
         border: 1px solid #8c8c8c
@@ -158,8 +158,10 @@
           border: #8c8c8c 1px solid
           .img
             background: url(/images/icons/search-24-hover.png) no-repeat center transparent
-        &:active .img
-          background: url(/images/icons/search-24-active.png) no-repeat center transparent
+        &:active
+          +bevel-dark
+          .img
+            background: url(/images/icons/search-24-active.png) no-repeat center transparent
 
       // SEARCH FIELD
       .searchForm
@@ -230,31 +232,35 @@
         background-color: #000
         margin-top: -6px
         padding: 6px 4px 8px
+        
+      &:active
+        background-color: #fff !important
+        span
+          background-color: #fff !important
+          color: #000
+
 
 
 
     .settingsPanel, .appearancePanel
       +left
 
-    .settings, .appearance
-      img
-        margin: 1px
-        border: 0px
-
-    .item.settings, .item.appearance
-      width: 20px
     .item.settings
-      background: url(/images/icons/settings-24.png) no-repeat center
-      &:hover
-        background: url(/images/icons/settings-24-hover.png) no-repeat center
-      &:active
-        background: url(/images/icons/settings-24-active.png) no-repeat center
+      .img
+        background: url(/images/icons/settings-24.png) no-repeat center transparent
+      &:hover .img, &.selected .img
+        background: url(/images/icons/settings-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/settings-24-active.png) no-repeat center transparent
+
     .item.appearance
-      background: url(/images/icons/appearance-24.png) no-repeat center
-      &:hover
-        background: url(/images/icons/appearance-24-hover.png) no-repeat center
-      &:active
-        background: url(/images/icons/appearance-24-active.png) no-repeat center
+      .img
+        background: url(/images/icons/appearance-24.png) no-repeat center transparent
+      &:hover .img, &.selected .img
+        background: url(/images/icons/appearance-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/appearance-24-active.png) no-repeat center transparent
+
 
 
 
@@ -337,6 +343,8 @@
       +round(24)
       +inner-glow(20)
       border: none
+    &:active
+      color: #000
 
 
 

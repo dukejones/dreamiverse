@@ -9,6 +9,7 @@ window.setupMetaDropdowns = ->
   $.subscribe('toggleSettings', (event) ->
     appearancePanel.contract()
     settingsPanel.contract()
+    $('.item.appearance').removeClass('selected')
     
     settingsPanel.toggleView()
   )
@@ -26,19 +27,24 @@ window.setupMetaDropdowns = ->
 
   $('.settingsPanel .trigger').first().bind( clickEvent, (event)->
     $.publish('toggleSettings', [this])
+    $('.item.settings').addClass('selected')
   )
-  
+
+
+
   appearancePanel = new AppearancePanel('.appearancePanel')
     
   $.subscribe('toggleAppearance', (event) ->
     appearancePanel.contract()
     settingsPanel.contract()
+    $('.item.settings').removeClass('selected')
     
     appearancePanel.toggleView()
   )
   
   $('.appearancePanel .trigger').first().bind( clickEvent, (event)->
     $.publish('toggleAppearance', [this])
+    $('.item.appearance').addClass('selected')
   )
   
   $.subscribe('hidePanels', (event) ->
@@ -68,6 +74,8 @@ class MetaMenu
     $('#bodyClick').click( (event) =>
       @$currentMenuPanel.hide()
       $('#bodyClick').remove()
+      $('.item.settings').removeClass('selected')
+      $('.item.appearance').removeClass('selected')
     )
     
     @$currentMenuPanel.show()
@@ -76,7 +84,9 @@ class MetaMenu
     # code to contract menu item
     @$currentMenuPanel.fadeOut(250)
     $('#bodyClick').remove()
-    
+
+
+
 
 # Appearance Model Subclass
 class AppearancePanel extends MetaMenu

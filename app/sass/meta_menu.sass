@@ -38,7 +38,7 @@
     +left
     +transparent-dark(50)
     +round(30)
-    +button-light
+    +pointer
     +block
     +user-select
     color: #fff
@@ -46,18 +46,20 @@
     margin: 8px 0 0 12px
     height: 33px
     border: 1px solid rgba(255,255,255,0.4)
-    background-position: center 4px !important
-    background-repeat: no-repeat !important
-    background-image: url('/images/icons/shuffle-24.png') !important
+
+    .img
+      background: url(/images/icons/shuffle-24.png) no-repeat center 4px transparent
+      +pointer
+      width: 40px
+      height: 26px
 
     &:hover
       +glow-dark(8)
       border: 1px solid transparent
-      background-position: center 4px !important
-      background-repeat: no-repeat !important
-      background-image: url('/images/icons/shuffle-24-hover.png') !important
+      .img
+        background: url(/images/icons/shuffle-24-hover.png) no-repeat center 4px transparent
     &:active
-      background-position: center 4px !important
-      background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-24-active.png') !important
+      +gradient(#ddd, #fff)
+      .img
+        background: url(/images/icons/shuffle-24-active.png) no-repeat center 4px transparent
 

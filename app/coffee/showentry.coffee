@@ -56,9 +56,9 @@ $(document).ready ->
   
   $('#comment_submit').hide()
   $('#comment_body').live "focus", =>
-    if !@commentsFocused
-      #$('#comment_body').css('height', '40px')
+    if !@commentsFocused and $('#comment_body').height() < 40
       $('#comment_body').animate({height: '40px'}, 'fast')
+
     @commentsFocused = true
     $('#comment_submit').fadeIn(250)
   
@@ -67,15 +67,15 @@ $(document).ready ->
   
   $('#comment_body').live "keyup", ->
     fitToContent(this, 0)
-  
+
   # Keyboard navigation between entries
   # Check if comment field is focused
-  commentsFocused = false
-  $(document).keypress (e) =>
-    if e.keyCode == 37 and !@commentsFocused
-      window.location = $('#showEntry').find('a.prev').attr('href')
-    else if e.keyCode == 39 and !@commentsFocused
-      window.location = $('#showEntry').find('a.next').attr('href')
+  # commentsFocused = false
+  # $(document).keypress (e) =>
+  #   if e.keyCode == 37 and !@commentsFocused
+  #     window.location = $('#showEntry').find('a.prev').attr('href')
+  #   else if e.keyCode == 39 and !@commentsFocused
+  #     window.location = $('#showEntry').find('a.next').attr('href')
   
   # Setup sharing level icon change
   $('.shareLevel').find('span').each( (i, el)->

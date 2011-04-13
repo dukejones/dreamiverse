@@ -275,7 +275,7 @@
       // TAG
       .showTags
         +relative
-        padding: 8px 12px
+        padding: 8px 12px 12px
         margin: 12px 0 0 0
 
         .hover_label
@@ -324,12 +324,11 @@
             padding: 0 12px
             height: 36px
             line-height: 36px
-            +save(17)
+
             border: none
             &:hover
               border: none
           .tagThisEntry.selected
-            +save(17)
             border: none
             &:hover
               border: none
@@ -358,8 +357,6 @@
               height: 34px
 
 
-        #tag-list // SEE ENTRIES.SASS
-          margin: 40px 0 0
 
 
 
@@ -599,10 +596,12 @@
             .tagThisEntry
               +button-light
               +shine-light(17)
+              +save(17)
               border: none
               &:hover
                 border: none
             .tagThisEntry.selected
+              +save(17)
               +button-dark
               +shine-dark(17)
               color: #ddd
@@ -741,12 +740,14 @@
             .tagThisEntry
               +button-dark
               +shine-dark(17)
+              +save(17)
               border: none
               &:hover
                 border: none
             .tagThisEntry.selected
               +button-light
               +shine-light(17)
+              +save(17)
               color: #333
               border: none
               &:hover
