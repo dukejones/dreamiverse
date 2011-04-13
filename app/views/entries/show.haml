@@ -193,16 +193,14 @@
                 %span.tagContent
               .close-16
 
-            -# TODO: Put eager loading of dictionary words back in.
             - @entry.what_tags.custom.whats.each do |what|
               = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
               
           / ANALYSIS TAGS
           .tag-list.ui-sortable.target
-            -# TODO: Put the eager loading back in!!  Otherwise it's 4 queries per tag. SLOOW.
-            -# @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
-            - @entry.what_tags.auto.whats.reject{|what| what.dictionary_words.empty?}.each do |what|
-              = render partial: 'tag', locals: {what: what, close_button: false, kind: 'auto'}
+            - @entry.what_tags.auto.whats.each do |what|
+              - unless what.dictionary_words.blank?
+                = render partial: 'tag', locals: {what: what, close_button: false, kind: 'auto'}
 
 
           #sorting
