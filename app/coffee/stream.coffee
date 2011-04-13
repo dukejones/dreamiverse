@@ -2,14 +2,20 @@
 $(document).ready ->
   streamController = new StreamController()
 
+  # adds the loading wheel
+  $('.filterList').click( (event) =>
+    $(event.currentTarget).parent().find('.trigger').addClass('loading')
+  )
 
 
 class StreamController
   constructor: ->
     # listen for filter:change update
     $.subscribe 'filter:change', => @streamModel.updateFilters()
+
   
     $.subscribe 'stream:update', (html) => @streamView.update(html)
+
   
     @streamModel = new StreamModel()
     @streamView = new StreamView()
@@ -32,7 +38,11 @@ class StreamView
       $('.noEntrys').show()
     else
       $('.noEntrys').hide()
-    
+
+    # after data loads into view, remove the loading spinner
+    $('.entryFilter.trigger').removeClass('loading')
+    $('.followFilter.trigger').removeClass('loading')
+
     @$container.html(html)
   
     # Run the youtube hooker upper

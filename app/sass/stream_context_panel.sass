@@ -23,14 +23,14 @@
 
 
     .avatar-64
-      +round(11)
+      +round(12)
       +flat-right
       +absolute
-      width: 50px
-      height: 64px
-      margin: 0 8px 0 0
+      border: 1px solid transparent
+      width: 46px
+      height: 62px
+      margin: 1px 8px 1px 1px
       display: inline-block
-      background: url(/images/avatars/default-avatar-tiny.jpg) no-repeat top left
 
     .infoRight
       +right
@@ -40,6 +40,8 @@
       margin-right: 4px
       height: 64px
       width: 138px
+      a:hover, a:hover div
+        color: #3086CF !important
 
       .userName
         h3
@@ -88,31 +90,35 @@
 
 
 
-
-// STREAM CONTEXT PANEL FILTERS
-#streamContextPanel
+  // STREAM CONTEXT PANEL FILTERS
   .wrapper
     .entryFilter, .followFilter, .starlightTab
+      +pointer
       +round(12)
       +relative
       +bold
       +center
-      width: 182px
-      padding: 0 8px
+      width: 188px
+      padding: 0 4px 0 8px
       margin: 4px 0 1px
-      height: 30px
-      line-height: 30px
+      height: 32px
+      line-height: 32px
       span
         +left
       img.icon
         +left
         margin: 8px 8px 0 0
-      img.arrow
+      .arrow
         +right
-        margin: 8px 0 0
+        width: 32px
+        height: 32px
+        background: url('/images/icons/arrow-down-16.png') no-repeat center center
+      &.loading .arrow
+        background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+
+
 
     .filterList
-      width: 198px
       span, img
         +left
       img
@@ -153,6 +159,7 @@
       +pointer
       top: 0
       z-index: 1200
+      width: 100%
       &:hover
         +round(12)
       .type
@@ -182,14 +189,15 @@
     // USER INFO
     .userInfo
       +flat-light
-      +border-light
 
-      a.avatar-64
-        +button-light
+      .avatar-64
+        +pointer
+        &:hover
+          border: 1px solid #000
 
       .infoRight
-        .following, .followers
-          .count
+        a:hover div
+          color: #55CCFF !important
 
     // LABEL
     .myStream
@@ -200,8 +208,6 @@
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .entryFilter, .followFilter, .starlightTab
         +flat-light
-        +button-light
-        border: 1px solid #777
         &:hover
           +glow-light(10)
 
@@ -213,13 +219,14 @@
 
     // USER INFO
     .userInfo
-      +flat-dark
-      +border-dark
+      +transparent-light(15)
 
-      a.avatar-64
+      .avatar-64
         +button-dark
 
       .infoRight
+        a:hover
+          color: #88E3F7 !important
         .following, .followers
           .count
             +flat-light
@@ -233,9 +240,7 @@
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .entryFilter, .followFilter, .starlightTab
-        +flat-dark
-        +button-dark
-        border: 1px solid #555
+        +transparent-light(15)
         &:hover
           +glow-dark(10)
 
@@ -253,7 +258,6 @@
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .filterList
         +glow-light(40)
-        +border-light
         +flat-light
 
         .type
@@ -273,7 +277,6 @@
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .filterList
         +glow-dark(40)
-        +border-dark
         +flat-dark
 
         .type
