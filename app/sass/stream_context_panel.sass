@@ -113,8 +113,6 @@
         width: 32px
         height: 32px
         background: url('/images/icons/arrow-down-16.png') no-repeat center center
-      &.loading .arrow
-        background: url('/images/icons/spinner-light-32.gif') no-repeat center center
 
 
 
@@ -210,6 +208,9 @@
         +flat-light
         &:hover
           +glow-light(10)
+        &.loading .arrow
+          background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+
 
 
 .dark
@@ -243,6 +244,8 @@
         +transparent-light(15)
         &:hover
           +glow-dark(10)
+        &.loading .arrow
+          background: url('/images/icons/spinner-grey-32.gif') no-repeat center center
 
 
 
