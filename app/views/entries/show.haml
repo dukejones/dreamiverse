@@ -198,7 +198,6 @@
               = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
               
           / ANALYSIS TAGS
-          .clear
           .tag-list.ui-sortable.target
             -# TODO: Put the eager loading back in!!  Otherwise it's 4 queries per tag. SLOOW.
             -# @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
