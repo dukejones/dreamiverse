@@ -75,7 +75,6 @@ class ShowingTagInput extends TagInput
     #$('.tagInput').css('width', '0px')
     $('.tagThisEntry').click => @addExpandSubmitHandler()
     $('.tagHeader').click => @expandContractInputField()
-    #$('#newTag').blur => @contractInputField()
   
   expandContractInputField: ->
     switch @buttonMode

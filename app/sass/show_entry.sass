@@ -10,7 +10,7 @@
 
   // STRUCTURE
 
-  #showEntry, #showEntry.noImage
+  #showEntry
     +relative
     +round(16)
     width: 662px 
@@ -361,8 +361,6 @@
         #tag-list // SEE ENTRIES.SASS
           margin: 40px 0 0
 
-        // TAG ANALYSIS - SEE TAG.SASS
-
 
 
     // COMMENTS
@@ -621,10 +619,7 @@
               +indent-light
               border: 1px solid #f1f1f1
 
-          // ANALYSIS
-          .tagAnalysis
-            &.expanded
-              +bevel-light
+
 
       // COMMENTS
       .commentsPanel
@@ -768,10 +763,6 @@
               +indent-dark
               border: 1px solid #333
 
-          // ANALYSIS
-          .tagAnalysis
-            &.expanded
-              +bevel-dark
 
       // COMMENTS
       .commentsPanel

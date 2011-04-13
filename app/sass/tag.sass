@@ -20,6 +20,9 @@
     margin: 0 8px 4px 0
     height: 32px
     line-height: 32px
+    &.auto span
+      color: #88E3F7 !important
+
 
     .trigger
       +left
@@ -63,6 +66,8 @@
     height: auto
     &.expanded
       margin-right: 0px
+      span
+        color: #3086CF !important      
       .close-16
         +hidden
 
@@ -113,14 +118,26 @@
       +flat-light-medium
       border: 1px solid #8c8c8c
       color: #333
+      &.auto
+        border: 1px solid #ccc
+        &:hover
+          border: 1px solid #88E3F7
+        &.expanded, &.expanded:hover
+          border: 1px solid #000
       &.custom:hover
         +pointer
         color: #000
         border: 1px solid #000
-    .tagAnalysis:hover
-      +pointer
-      color: #000
-      border: 1px solid #000
+    .tagAnalysis
+      &.auto
+        +flat-dark
+      &.expanded
+        +bevel-light
+      &:hover
+        +pointer
+        color: #000
+        border: 1px solid #000
+
     .source
       +flat-dark-medium
       +button-dark
@@ -137,10 +154,15 @@
         +pointer
         color: #fff
         border: 1px solid #fff
-    .tagAnalysis:hover
-      +pointer
-      color: #fff
-      border: 1px solid #fff
+    .tagAnalysis
+      &.auto
+        +flat-dark
+      &.expanded
+        +bevel-dark
+      &:hover
+        +pointer
+        color: #fff
+        border: 1px solid #fff
     .source
       +flat-light-medium
       +button-light

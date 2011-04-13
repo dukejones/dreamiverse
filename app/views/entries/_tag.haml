@@ -1,5 +1,5 @@
 - kind ||= 'custom'
-.wrapper.tag.tagWhat{:'data-id' => what.id, :class => "#{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
+.wrapper.tag.tagWhat{:'data-id' => what.id, :class => "#{kind == 'auto' ? 'auto' : ''} #{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
   .trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
 
     %span.tagContent= what.name
