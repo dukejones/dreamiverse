@@ -56,9 +56,9 @@ $(document).ready ->
   
   $('#comment_submit').hide()
   $('#comment_body').live "focus", =>
-    if !@commentsFocused
-      #$('#comment_body').css('height', '40px')
+    if !@commentsFocused and $('#comment_body').height() < 40
       $('#comment_body').animate({height: '40px'}, 'fast')
+
     @commentsFocused = true
     $('#comment_submit').fadeIn(250)
   

@@ -345,18 +345,32 @@
       &:active .img
         background: url('/images/icons/date-24-active.png') center center no-repeat
 
+    #postSpinner
+      +right
+      margin: 0 -32px
+      width: 32px
+      height: 55px
+      background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
+
     #entry_submit
       +bold
       +font(12)
       +round(12)
-      width: 80px
+      width: 100px
       height: 38px
       margin: 8px 8px 0 0
       +save(14)
-      &.selected
-        +gradient(#235b1b, #70d03b)
-        color: #fff
-        border: 1px solid #54943d
+      &.selected, &.selected:hover, &.selected:active
+        box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
+        -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
+        -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
+        background: #aaa
+        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
+        background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
+        color: #fff !important
+        border: 1px solid #777 !important
+        cursor: default !important
+
 
 
 #entryField .edit_entry, #entryField .new_entry

@@ -112,3 +112,13 @@ $(document).ready ->
   if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
     $('.entryType').css('border', 'none')
     
+
+
+
+
+  $('#entry_submit').click( (event) =>
+    $('#entry_submit').addClass('selected')
+    $('#postSpinner').removeClass('hidden')
+  )
+
+
