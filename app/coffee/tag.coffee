@@ -35,12 +35,12 @@ class window.TagsController
   
 
   createTag: (tagName)->     
-    # if delimited, split into an array of tags and append each one
+    # if comma or slash delimited, split into an array of tags and append each one
     if /,/.test(tagName) 
-      tagNames = tagName.split(',')
+      tagNames = tagName.split(/,+/)
       @appendTag tag for tag in tagNames
     else if /\//.test(tagName) 
-      tagNames = tagName.split('/')
+      tagNames = tagName.split(/\/+/)
       @appendTag tag for tag in tagNames
     else
       @appendTag tagName
