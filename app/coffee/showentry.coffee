@@ -178,22 +178,14 @@ $(document).ready ->
   #tags/order_custom = url, with the params: entry_id and position_list (your ordered list of ids) to it?
 
   $('#comment_body').css('overflow','hidden')
-	  
+
   # setup remove comment handler
   $('.deleteComment').live 'click', (event)->
     tempCount = $('.commentsHeader .counter').html();
     tempCount--
     $('.commentsHeader .counter').html(tempCount)
     $(event.currentTarget).parent().parent().slideUp(250)
-  
-    
-  # Hide the elements in the browsers they cant be seen in
-  if window.BrowserDetect.browser is "Safari" or window.BrowserDetect.browser is "Chrome"
-    # for show entry
-    $('.tagInput').css('width', '250px') 
-  
-  
-  
+
   # Setup youtube attachments to load in on the page & links favico
   $('.link a').each ->
     if this.hostname && this.hostname != location.hostname
