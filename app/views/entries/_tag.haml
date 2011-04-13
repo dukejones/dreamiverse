@@ -1,0 +1,18 @@
+- kind ||= 'custom'
+.wrapper.tag.tagWhat{:'data-id' => what.id, :class => "#{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
+  .trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
+
+    %span.tagContent= what.name
+
+    - unless what.dictionary_words.empty?
+      .analysisIcon
+
+      .analysis.hidden.target.showhide
+        .arrow
+        - what.dictionary_words.each_with_index do |word, i|
+          .description{:class => "definition-#{i}"}
+            %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
+            = simple_format(word.definition)
+
+  - if close_button
+    .close-16

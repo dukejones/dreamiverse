@@ -2,6 +2,8 @@ class What < ActiveRecord::Base
   has_many :tags, :as => :noun
   has_many :dreams, :through => :tags, :source => :entry, :source_type => 'Dream'
   has_many :blacklist_words
+  has_many :dictionary_words, {class_name: 'Word', primary_key: :name, foreign_key: :name}
+  belongs_to :image
   
   MaxLength = 30
 

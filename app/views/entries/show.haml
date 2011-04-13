@@ -103,14 +103,14 @@
       /EMOTIONS DETAILS & THUMBS
       - if @entry.tags.emotion.first
         .emotionsWrap.wrapper
-      
+
           / EMOTIONS DETAILS
           .emotions-details.target.emotionshowhide.hidden
             .emotionsHeader
               .img
               emotions
             = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
-      
+
           / EMOTIONS THUMB
           .emotions-thumb.trigger.emotionshowhide
             = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
@@ -172,75 +172,54 @@
               .shareLevel
                 .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
                 %span= @entry.sharing
-          
+
             .postTime
               - time = (@entry.dreamed_at || @entry.created_at)
               = time_ago_in_words(time)
-        
+
             - if location = @entry.location
               .postLocation= "#{location.city}, #{location.province}"
 
 
 
+
+          / TAGS
+          / CUSTOM TAGS
           #tag-list.tag-list.ui-sortable.target
 
-            .emptyTag.hidden
-              %span.tagContent
+            / PLACEHOLDER TAG JS
+            .custom.tag.wrapper.tagWhat.emptyTag.hidden
+              .trigger
+                %span.tagContent
               .close-16
-            - @entry.tags.custom.whats.each do |what|
-              .tagWhat.tag{:'data-id' => what.id, :class => (@entry.user == current_user ? 'user' : '') }
-                %span.tagContent= what.name
-                - if @entry.user == current_user
-                  .close-16
 
-            / .clear
+            -# TODO: Put eager loading of dictionary words back in.
+            - @entry.what_tags.custom.whats.each do |what|
+              = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
+              
+          / ANALYSIS TAGS
+          .clear
+          .tag-list.ui-sortable.target
+            -# TODO: Put the eager loading back in!!  Otherwise it's 4 queries per tag. SLOOW.
+            -# @entry.what_tags.auto.with_dictionary_words.whats.each do |what|
+            - @entry.what_tags.auto.whats.reject{|what| what.dictionary_words.empty?}.each do |what|
+              = render partial: 'tag', locals: {what: what, close_button: false, kind: 'auto'}
+
+
           #sorting
           .clear
- 
-      / ANALYSIS
-      / .entryAnalysis.wrapper
-      /   .trigger.slide
-      /     .analysisHeader.headers
-      /       analysis
-      /       %img{src: '/images/icons/analysis-10.png', width: '10', height: '16'}
-      /     .clear
-      / 
-      /   .target.slide
-      /     / ANALYSIS TAGS
-      /     .analysisTags.wrapper
-      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-      /         dolphin
-      /         .arrow
-      /       .description.target.slide.hidden
-      /         %p To dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-      /         .source Dream Moods
-      / 
-      /     .analysisTags.wrapper
-      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-      /         tsunami
-      /         .arrow
-      / 
-      /     .analysisTags.wrapper
-      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-      /         flying
-      /         .arrow
-      /       .description.target.slide.hidden
-      /         %pTo dream that you are flying, signifies a sense of freedom where you had initially felt restricted and limited. To dream that you are flying with black wings, signifies bitter disappointments.
-      /         .source Dream Moods
-      / 
-      /     .analysisTags.wrapper
-      /       .title.trigger.slide{style: 'background: url(/images/avatars/xavitar.jpg) no-repeat top left'}
-      /         telepathy
-      /         .arrow
 
-   
+
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
 
+
+
+
     / COMMENTS
     - unless @comments.count == 0 and current_user.blank?
-      .commentsPanel
+      .commentsPanel.wrapper
         .trigger.slide
           .commentsHeader.headers
             .img

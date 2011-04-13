@@ -23,14 +23,19 @@
     password: 'confirmation is broke'
   }
 }
+
 # Alternative error syntax, when there are multiple models involved:
-errors: {
-  user: {
-    old_password: 'dont you know your password?'
-    password: 'confirmation is broke'
-  }
-  entry: {
-    body: "can't be blank"
+{
+  type: 'error'
+  message: 'there were errors in your entry'
+  errors: {
+    user: {
+      old_password: 'dont you know your password?'
+      password: 'confirmation is broke'
+      name: 'cannot contain periods'
+    }
+    entry: {
+      body: "can't be blank"
+    }
   }
 }
-

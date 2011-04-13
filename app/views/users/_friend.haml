@@ -15,9 +15,10 @@
     %p= friend.default_location_id
 
     - unless current_user.blank?
-      %p.mutual
-        - mutual_followers = (user.followers & friend.followers).count
-        = pluralize(mutual_followers, "mutual follower")
+      - mutual_follows = (user.followers & friend.followers).count
+      - unless mutual_follows == 0
+        %p.mutual
+          = pluralize(mutual_follows, "mutual follow")
 
   .backdrop
 

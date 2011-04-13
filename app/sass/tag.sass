@@ -1,15 +1,16 @@
 
 // SHARED TAG STYLES
-#tagStream, #showEntry, #entryField
+#showEntry, #entryField
 
   #tagsLive
     +clear
   #tag-list
     clear: left
 
+
   // WHO, WHERE, WHAT TAG STYLES
   // TAG STRUCTURE
-  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
+  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
     +relative
     +round(8)
     +left
@@ -19,9 +20,14 @@
     margin: 0 8px 4px 0
     height: 32px
     line-height: 32px
+
+    .trigger
+      +left
+
     .close-16
       +right
       margin: 8px 4px 0 0
+
     .avatar, .whereIcon, .tagImage
       +round(8)
       +flat-right
@@ -29,13 +35,22 @@
       +overflow
       width: 32px
       height: 32px
-    span
+
+    .tagContent
       +left
       margin: 0 8px
-    .analysisIcon, .followStatus
+
+    .followStatus
       +right
       width: 32px
       height: 32px
+
+    .analysisIcon
+      +left
+      width: 16px
+      height: 32px
+      margin: 0 8px 0 0
+      background: url(/images/icons/analysis-16.png) no-repeat center
 
   // TAG NO IMAGE
   .tagNoImage
@@ -43,27 +58,90 @@
     padding: 0 8px
 
 
+  // TAG ANALYSIS
+  .tagAnalysis
+    height: auto
+    &.expanded
+      margin-right: 0px
+      .close-16
+        +hidden
+
+      .tagContent
+        +font(32)
+        +bold
+        margin: 14px 0 18px 20px
+
+      .analysisIcon
+        margin: 14px 8px
+
+    .analysis
+      width: 100%
+      line-height: 32px
+      margin: 0
+
+      .arrow
+        +absolute
+        top: 12px
+        right: 20px
+        height: 32px
+        width: 16px
+        background: url(/images/icons/arrow-up-16.png) no-repeat center
+
+      .description
+        margin: 40px 20px 10px 20px
+        line-height: 20px
+        +clear
+      p
+        +clear
+        margin-bottom: 18px
+
+      .source
+        +block
+        +left
+        margin: 0 0 8px -8px
+        +bold
+        +round(16)
+        padding: 2px 8px
+
+
+
+
 // SHARED TAG COLORS
 .light
-  #tagStream, #showEntry, #entryField
-    #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
-        +flat-light-medium
-        border: 1px solid #8c8c8c
-        color: #333
-        &.user:hover
-          +pointer
-          color: #000
-          border: 1px solid #000
+  #showEntry, #entryField
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
+      +flat-light-medium
+      border: 1px solid #8c8c8c
+      color: #333
+      &.custom:hover
+        +pointer
+        color: #000
+        border: 1px solid #000
+    .tagAnalysis:hover
+      +pointer
+      color: #000
+      border: 1px solid #000
+    .source
+      +flat-dark-medium
+      +button-dark
+      color: #ccc
+
 
 .dark
-  #tagStream, #showEntry, #entryField
-    #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag
-        background: #121212
-        color: #ddd
-        border: 1px solid #777
-        &.user:hover
-          +pointer
-          color: #fff
-          border: 1px solid #fff
+  #showEntry, #entryField
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
+      background: #121212
+      color: #ddd
+      border: 1px solid #777
+      &.custom:hover
+        +pointer
+        color: #fff
+        border: 1px solid #fff
+    .tagAnalysis:hover
+      +pointer
+      color: #fff
+      border: 1px solid #fff
+    .source
+      +flat-light-medium
+      +button-light
+      color: #333

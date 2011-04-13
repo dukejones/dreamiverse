@@ -16,8 +16,6 @@ gem 'meta_where'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
 
-gem 'mocha' # Needed for Legacy Migration.  Remove later.
-
 # Bundle the extra gems:
 # gem 'bj'
 gem 'nokogiri'

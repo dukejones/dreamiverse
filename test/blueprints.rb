@@ -11,7 +11,7 @@ User.blueprint do
 end
 
 Entry.blueprint do
-  body { Faker::Lorem.paragraphs(6) }
+  body { Faker::Lorem.paragraphs(6).join("\n\n") }
   title { Faker::Lorem.words(5).join(' ').titleize }
   user { User.make }
   skip_auto_tags { true }
@@ -41,6 +41,16 @@ Image.blueprint do
   height { 256 }
   size { 1024 }
   
+end
+
+Dictionary.blueprint do
+  name { Faker::Lorem.words(3).join(' ').titleize }
+end
+
+Word.blueprint do
+  name { Faker::Lorem.words(1).first }
+  definition { Faker::Lorem.paragraphs(2).join("\n") }
+  dictionary { Dictionary.make }
 end
 
 def random_ip

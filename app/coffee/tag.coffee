@@ -1,7 +1,11 @@
+  
+
+
 class window.TagsController
   constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
-    
+
+
     switch mode
       when 'edit'
         @tagViewClass = EditingTagView
@@ -12,6 +16,9 @@ class window.TagsController
         @tagViewClass = ShowingTagView
         @tagInputClass = ShowingTagInput
         @tagViewListClass = TagViewList
+        $('.tagAnalysis .trigger').live( 'click', (event)->
+          $(this).parent().toggleClass('expanded')
+        )
         #@$container.find('.tagAdd').click => $.publish 'tags:create', [@tagInput.value()]
 
     @tagInput = new @tagInputClass(@$container.find('#newTag'))
@@ -25,14 +32,25 @@ class window.TagsController
         # Check for max tags
         if @tagViews.tagViews.length < 17
           @createTag(tagName)
-    
-    
-  createTag: (tagName)->
-    tag = new Tag(tagName)
-    tagView = new @tagViewClass(tag)
-    tagView.create()
+  
 
-    @tagViews.$container.append( tagView.createElement() )
+  createTag: (tagName)->     
+    # if comma or slash delimited, split into an array of tags and append each one
+    if /,/.test(tagName) 
+      tagNames = tagName.split(/,+/)
+      @appendTag tag for tag in tagNames
+    else if /\//.test(tagName) 
+      tagNames = tagName.split(/\/+/)
+      @appendTag tag for tag in tagNames
+    else
+      @appendTag tagName
+
+  appendTag: (tagName)->
+    tag = new Tag(tagName)
+    tagView = new @tagViewClass(tag)    
+    tagView.appendTo(@tagViews.$container)
+
+    # @tagViews.$container.append( tagView.createElement() )
     
     @tagViews.add(tagView)
 
@@ -94,12 +112,8 @@ class TagViewList
     @tagViewClass = tagViewClass
     @addAllCurrentTags()
     
-    # New way
-    ua = navigator.userAgent
-    clickEvent = if (ua.match(/iPad/i)) then "touchstart" else "click"
+    clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"
     
-      # OLD WAY
-    #@$container.find('.tag .close-16').live "click", (event)=>
     @$container.find('.tag .close-16').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
@@ -117,8 +131,8 @@ class TagViewList
   
   addAllCurrentTags: ->
     # Fill up @tagViews with tags for each currently displayed tags
-    for $currentElement in @$container.find('.tag')
-      $element = $($currentElement)
+    for currentElement in @$container.find('.tag')
+      $element = $(currentElement)
       id = $element.data('id')
       name = $element.find('.tagContent').text()
       tag = new Tag(name, id)
@@ -188,17 +202,11 @@ class TagView
   tagNode: -> @tag
   linkElement: (element)->
     @$element = element
-  createElement: ->
-    @$element = $('.emptyTag').clone()
-    @$element.removeClass('hidden emptyTag')
-    @$element.addClass('tag tagWhat user')
-    @setValue(@tag.name)
-    
-    return @$element
   setValue: (tagName) ->
     @$element.find('.tagContent').html(tagName)
   setId: (id) ->
     @$element.attr('data-id', id)
+    @tag.setId(id)
   fadeIn: ->
     # TODO: This should pull the current bg color, change to dark, then animate up to the supposed-to color
     #currentBackground = @$element.css('backgroundColor');
@@ -215,15 +223,16 @@ class TagView
 class EditingTagView extends TagView
   inputHtml: '<input type="hidden" value=":tagName" name="what_tags[]" />'
   createElement: ->
-    super()
-    @createFormElement()
-  
-  create: ->
-    @createElement()
-
-  createFormElement: ->
+    @$element = $('.emptyTag').clone()
+    @$element.removeClass('hidden emptyTag')
+    @setValue(@tag.name)
+    
     hiddenFieldString = @inputHtml.replace(/:tagName/, @tag.name)
     @$element.append(hiddenFieldString)
+    @$element
+  appendTo: ($container)->
+    $container.append( @createElement() )
+
   remove: ->
     #if $("#sorting").val() is "1"
     @removeFromView()
@@ -232,10 +241,14 @@ class ShowingTagView extends TagView
   # ask for ajax stuff
   constructor: (tag) ->
     super(tag)
-  create: ->
+  appendTo: ($container)->
+    log('appending')
+    log($container)
     @tag.create().then (response)=>
+      @$element = $(response.html)
       @setId(response.what_id)
-      @tag.setId(response.what_id)
+      $container.append( @$element )
+      
   remove: ->
     # FIX THIS HERE This if statement is not firing properly
     #if $("#sorting").val() is "1"
@@ -255,7 +268,7 @@ class Tag
     deferred = $.post "/tags", { entry_id: @entryId(), what_name: @name }, (data)->
       @id = data.what_id
     return deferred.promise()
-     
+    
   destroy: ->
     $.publish 'tags:remove', [@id]
     
@@ -268,3 +281,5 @@ class Tag
       success: (data, status, xhr) =>
         $.publish 'tags:removed', [@id]
     }
+
+
