@@ -20,7 +20,7 @@ gem 'exception_notification'
 # gem 'bj'
 gem 'nokogiri'
 # gem 'aws-s3', :require => 'aws/s3'
-
+gem 'whenever', :require => false
 # gem 'rgeo' - when we get into doing lots of geocoding / calculations.
 
 group :development do
