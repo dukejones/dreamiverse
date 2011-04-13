@@ -1,6 +1,6 @@
 
 // SHARED TAG STYLES
-#tagStream, #showEntry, #entryField
+#showEntry, #entryField
 
   #tagsLive
     +clear
@@ -108,42 +108,40 @@
 
 // SHARED TAG COLORS
 .light
-  #tagStream, #showEntry, #entryField
-    #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
-        +flat-light-medium
-        border: 1px solid #8c8c8c
-        color: #333
-        &.custom:hover
-          +pointer
-          color: #000
-          border: 1px solid #000
-      .tagAnalysis:hover
+  #showEntry, #entryField
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
+      +flat-light-medium
+      border: 1px solid #8c8c8c
+      color: #333
+      &.custom:hover
         +pointer
         color: #000
         border: 1px solid #000
-      .source
-        +flat-dark-medium
-        +button-dark
-        color: #ccc
+    .tagAnalysis:hover
+      +pointer
+      color: #000
+      border: 1px solid #000
+    .source
+      +flat-dark-medium
+      +button-dark
+      color: #ccc
 
 
 .dark
-  #tagStream, #showEntry, #entryField
-    #tagsLive, #tag-list, .burstInfo
-      .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
-        background: #121212
-        color: #ddd
-        border: 1px solid #777
-        &.custom:hover
-          +pointer
-          color: #fff
-          border: 1px solid #fff
-      .tagAnalysis:hover
+  #showEntry, #entryField
+    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
+      background: #121212
+      color: #ddd
+      border: 1px solid #777
+      &.custom:hover
         +pointer
         color: #fff
         border: 1px solid #fff
-      .source
-        +flat-light-medium
-        +button-light
-        color: #333
+    .tagAnalysis:hover
+      +pointer
+      color: #fff
+      border: 1px solid #fff
+    .source
+      +flat-light-medium
+      +button-light
+      color: #333

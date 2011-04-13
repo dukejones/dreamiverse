@@ -4,7 +4,6 @@
 class window.TagsController
   constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
-    # container for "custom" tags, to append in the right order
 
 
     switch mode
