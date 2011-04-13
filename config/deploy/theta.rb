@@ -1,6 +1,7 @@
 
 set :application, "theta.dreamcatcher.net"
 set :rails_env, 'theta'
+set :whenever_environment, 'theta'
 
 set :deploy_to, "/var/www/#{application}"
 

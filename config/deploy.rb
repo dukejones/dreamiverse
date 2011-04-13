@@ -4,6 +4,8 @@ set :stages, %w(theta production)
 set :default_stage, "theta"
 require "capistrano/ext/multistage"
 
+set :whenever_command, "bundle exec whenever"
+require 'whenever/capistrano'
 
 set :scm, :git
 set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
