@@ -64,7 +64,7 @@ window.setupDreamplugs = ->
   )
   
   # Setup showhide triggers
-  $('.trigger.showhide').click( (event) ->
+  $('.trigger.showhide').live( 'click', (event)->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
     
     if $newTargetShowHide.css('display') is 'none'

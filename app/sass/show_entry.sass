@@ -361,40 +361,8 @@
         #tag-list // SEE ENTRIES.SASS
           margin: 40px 0 0
 
-      // ANALYSIS
-      .entryAnalysis
-        padding: 8px
-        .analysisHeader
-          margin-bottom: 8px
+        // TAG ANALYSIS - SEE TAG.SASS
 
-        .analysisTags
-          +round(12)
-          +overflow
-          +clear
-          line-height: 32px
-          margin: 0 0 8px
-          padding: 0 12px 0 0
-          .title
-            +bold
-            height: 32px
-            padding-left: 42px
-            .arrow
-              +right
-              height: 32px
-              width: 16px
-              background: url(/images/icons/arrow-down-16.png) no-repeat center
-          .description
-            +clear
-            margin: 20px 8px 20px 20px
-            line-height: 20px
-            .source
-              +round(12)
-              +left
-              +center
-              margin: 0 0 12px 12px
-              padding: 0 12px
-              height: 24px
-              line-height: 24px
 
 
     // COMMENTS
@@ -653,18 +621,10 @@
               +indent-light
               border: 1px solid #f1f1f1
 
-        // ANALYSIS
-        .entryAnalysis
-
-          // ANALYSIS TAGS
-          .analysisTags
-            +bevel-light
-            +button-light
-
-            .description
-              .source
-                +button-light
-                +bevel-light
+          // ANALYSIS
+          .tagAnalysis
+            &.expanded
+              +bevel-light
 
       // COMMENTS
       .commentsPanel
@@ -808,17 +768,9 @@
               +indent-dark
               border: 1px solid #333
 
-      // ANALYSIS
-      .entryAnalysis
-
-        // ANALYSIS TAGS
-        .analysisTags
-          +bevel-dark
-          +button-dark
-
-          .description
-            .source
-              +button-dark
+          // ANALYSIS
+          .tagAnalysis
+            &.expanded
               +bevel-dark
 
       // COMMENTS
