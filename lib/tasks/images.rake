@@ -69,6 +69,7 @@ namespace :image do
   desc 'associate whats with image bank tag images'
   task :link_whats_to_tag_images => :environment do
     Image.where(section: 'Tag').each do |image|
+      next if what.image_id
       pp "processing image: #{image.title}"
       what = What.for(image.title)
       what.image = image
