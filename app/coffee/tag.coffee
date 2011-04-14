@@ -125,9 +125,6 @@ class TagViewList
     $.subscribe 'tags:remove', (id) =>
       @findByTagId(id).startRemoveFromView()
     
-    $.subscribe 'tags:removed', (id) =>
-      @findByTagId(id).removeFromView()
-    
     # set up array functionality
     Array::remove = (e) -> @[t..t] = [] if (t = @.indexOf(e)) > -1
   
@@ -160,7 +157,6 @@ class TagViewList
     return false
 
   removeTag: (tagId) ->
-    #log tagId
     tagViewToRemove = @findByTagId(tagId)
     tagViewToRemove.remove()
     @tagViews.remove(tagViewToRemove)
@@ -277,8 +273,6 @@ class Tag
       data:
         entry_id: @entryId()
         what_id: @id
-      success: (data, status, xhr) =>
-        $.publish 'tags:removed', [@id]
     }
 
 
