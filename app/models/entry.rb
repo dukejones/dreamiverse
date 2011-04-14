@@ -55,7 +55,7 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
-  after_save :process_all_tags 
+  after_commit :process_all_tags 
 
   # Sharing scopes
   def self.everyone
