@@ -72,6 +72,7 @@
     // ANALYSIS
     .analysis
       padding: 20px
+      +bold
 
       .gradient
         height: 14px
@@ -104,14 +105,16 @@
     // EXPANDED VIEW
     &.tagAnalysis.expanded
       height: auto
-      +bold
-      margin: 0px
+      margin: 8px 0 0
 
       .header
+        +round(6)
+        +flat-bottom
         width: 100%
         .tag-icon
           display: block
         .tag-name
+          +bold
           +font(24)
         .dictionaries
           display: block
