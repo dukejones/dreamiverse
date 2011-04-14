@@ -244,8 +244,6 @@ class ShowingTagView extends TagView
   constructor: (tag) ->
     super(tag)
   appendTo: ($container)->
-    log('appending')
-    log($container)
     @tag.create().then (response)=>
       @$element = $(response.html)
       @setId(response.what_id)
@@ -258,7 +256,6 @@ class ShowingTagView extends TagView
     @tag.destroy()
 
 
-# MAKE THIS STORE THE ID OF THE TAG ALSO
 # Tag Model
 class Tag
   constructor: (name, id = '') ->

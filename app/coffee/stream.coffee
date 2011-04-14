@@ -2,37 +2,44 @@
 $(document).ready ->
   streamController = new StreamController()
 
-  # adds the loading wheel
-  $('.filterList').click( (event) =>
-    $(event.currentTarget).parent().find('.trigger').addClass('loading')
-  )
-
 
 class StreamController
   constructor: ->
-    # listen for filter:change update
-    $.subscribe 'filter:change', => @streamModel.updateFilters()
+    @stream = new StreamModel()
+    @streamView = new StreamView(@stream)
 
-  
+    $.subscribe 'filter:change', => 
+      @stream.updateFilters()
+      @stream.load().then (data) =>
+        $.publish 'stream:update', [data.html]
+
     $.subscribe 'stream:update', (html) => @streamView.update(html)
+  
 
-  
-    @streamModel = new StreamModel()
-    @streamView = new StreamView()
-  
-    # Setup youtube images for each entry
-  
+
+class StreamView
+  constructor: (streamModel)->
+    @page = 1
+    @stream = streamModel
+    @$container = $('#entryField .matrix')
     # Setup lightbox for stream
     $('a.lightbox').each((i, el) ->
       $(this).lightBox({containerResizeSpeed: 0});
     )
-
-
-
-class StreamView
-  constructor: () ->
-    @$container = $('#entryField .matrix')
+    # adds the loading wheel
+    $('.filterList').click( (event) =>
+      $(event.currentTarget).parent().find('.trigger').addClass('loading')
+    )
+    # infinite scrolling
+    $(window).scroll =>
+      if ($(window).scrollTop() == $(document).height() - $(window).height())
+        @loadNextPage()
   
+  loadNextPage: ->
+    @page += 1
+    @stream.updateFilters()
+    @stream.load({ page: @page }).then (data)=>
+      @$container.append(data.html)
   update: (html) ->
     if html == ''
       $('.noEntrys').show()
@@ -44,28 +51,21 @@ class StreamView
     $('.followFilter.trigger').removeClass('loading')
 
     @$container.html(html)
-  
-    # Run the youtube hooker upper
+    
 
 
 
 class StreamModel
-  updateData: ->
-    $.getJSON("/stream.json", {
-      filters:
-        type: @filters[0]
-        friend: @filters[1]
-        starlight: @filters[2]
-    },
-    (data) =>
-      $.publish 'stream:update', [data.html]
-    )
-  
-  updateFilters: () ->
+  load: (filters={})->
+    $.extend(filters, @filterOpts())
+    $.getJSON("/stream.json", {filters: filters}).promise()  
+  updateFilters: ->
     @filters = []
     # get new filter values (will be .filter .value to target the span)
     $.each $('.trigger .value'), (key, value) =>
-      @filters.push($(value).text())  # data tightly coupled to display.
-    @updateData()
-
+      @filters.push($(value).text())  # XXX: data tightly coupled to display.
+  filterOpts: ->
+    type: @filters[0]
+    friend: @filters[1]
+    starlight: @filters[2]
 
