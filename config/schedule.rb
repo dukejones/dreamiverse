@@ -17,6 +17,8 @@ set :output, "log/cron.log"
 
 # Learn more: http://github.com/javan/whenever
 
+job_type :rake, "cd :path && RAILS_ENV=:environment /usr/local/bin/rake :task :output"
+
 every 1.day, :at => '3:00 am' do
   rake "app:starlight"
 end
