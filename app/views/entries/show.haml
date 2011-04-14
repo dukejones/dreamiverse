@@ -191,7 +191,7 @@
             .tag.wrapper.custom.tagWhat.emptyTag.hidden
               .header.trigger
                 .tag-name
-                .close-16
+              .close-16
 
             - @entry.what_tags.custom.whats.each do |what|
               = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
