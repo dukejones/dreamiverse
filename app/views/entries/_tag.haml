@@ -10,13 +10,11 @@
     .tag-icon
     .tag-name= what.name
 
-    - if close_button
-      .close-16
-
     .analysis-icon
     .dictionaries dream dictionaries
 
-
+  - if close_button
+    .close-16
 
   - unless what.dictionary_words.empty?
     .analysis.target.showhide.hidden
