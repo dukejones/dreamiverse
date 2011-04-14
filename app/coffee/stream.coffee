@@ -33,13 +33,14 @@ class StreamView
       if ($(window).scrollTop() == $(document).height() - $(window).height())
         @loadNextPage()
   clear: ->
-    $('#noMoreEntries').hide()
-    $('.noEntrys').hide()
+    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()
     
   loadNextPage: ->
     @clear()
+    $('#nextPageLoading').show()
     @page += 1
     @stream.load({ page: @page }).then (data)=>
+      @clear()
       if !data.html? || data.html == ""
         $('#noMoreEntries').show()
         
