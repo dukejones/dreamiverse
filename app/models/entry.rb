@@ -55,7 +55,8 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
-  after_save :process_all_tags 
+  after_save -> { @changed = (body_changed? || title_changed?) }
+  after_commit :process_all_tags
 
   # Sharing scopes
   def self.everyone
@@ -231,8 +232,9 @@ class Entry < ActiveRecord::Base
   
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
+    Rails.logger.warn('processing all tags...')
     return if @skip_auto_tags
-    if body_changed? || title_changed?
+    if @changed
       Tag.auto_generate_tags(self)
       reorder_tags
     end
