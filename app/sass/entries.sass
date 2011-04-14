@@ -241,3 +241,22 @@
   top: 0px
   width: 464px
   padding: 8px
+
+
+.light
+  #noMoreEntries
+    +transparent-light(50)
+    +glow-light(20)
+.dark
+  #noMoreEntries
+    +transparent-dark(50)
+    +glow-dark(10)
+
+#noMoreEntries
+  +user-select
+  +round(16)
+  +font(21)
+  +center
+  +cursor
+  width: 464px
+  padding: 8px
