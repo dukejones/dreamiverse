@@ -244,7 +244,7 @@ qq.obj2url = function(obj, temp, prefixDone){
 //
 
 var qq = qq || {};
-    
+   
 /**
  * Creates upload button, validates upload, but doesn't create file list or dd. 
  */
@@ -512,7 +512,7 @@ qq.FileUploader = function(o){
             '<p class="qq-upload-failed-text">Failed</p>' +
             '<div class="progress-meter"></div>' +
             '</li>',    
-  
+
         
         classes: {
             // used to get elements from templates
@@ -553,6 +553,7 @@ qq.FileUploader = function(o){
     this._setupDragDrop();
 };
 
+var uploadCount = 0;
 // inherit from Basic Uploader
 qq.extend(qq.FileUploader.prototype, qq.FileUploaderBasic.prototype);
 
@@ -616,7 +617,10 @@ qq.extend(qq.FileUploader.prototype, {
           var newNode = '<div class="entryImageContainer" file-name=":file_name"></div>';
           newNode = newNode.replace(/:file_name/g, fileName);
           $('#currentImages').prepend(newNode);
-          $('#currentImages').slideDown();  
+          $('#currentImages').slideDown();
+          $('#entry_submit').attr('disabled', 'disabled');
+          $('#entry_submit').addClass('disabled');
+          uploadCount++;
         } else {
           alert('You must choose a Genre.')
         }
@@ -659,6 +663,11 @@ qq.extend(qq.FileUploader.prototype, {
 
         $('#currentImages').prepend(newHiddenForm)
         $('#currentImages').slideDown();
+        uploadCount--;
+        if (uploadCount == 0) {
+          $('#entry_submit').removeAttr('disabled');
+          $('#entry_submit').removeClass('disabled');
+        }
     },
     _addToList: function(id, fileName){
         /*var item = qq.toElement(this._options.fileTemplate);                
