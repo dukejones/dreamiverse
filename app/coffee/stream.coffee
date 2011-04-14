@@ -20,10 +20,7 @@ class StreamView
     @page = 1
     @stream = streamModel
     @$container = $('#entryField .matrix')
-    # Setup lightbox for stream
-    $('a.lightbox').each((i, el) ->
-      $(this).lightBox({containerResizeSpeed: 0});
-    )
+    @activateLightBox()
     # adds the loading wheel
     $('.filterList').click( (event) =>
       $(event.currentTarget).parent().find('.trigger').addClass('loading')
@@ -31,11 +28,14 @@ class StreamView
     # infinite scrolling
     $(window).scroll =>
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
-        # $(window).scrollTop($(document).height() - $(window).height() - 300)
         @loadNextPage()
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()
-    
+  activateLightBox: ->
+    # Setup lightbox for stream
+    $('a.lightbox').each((i, el) ->
+      $(this).lightBox({containerResizeSpeed: 0});
+    )
   loadNextPage: ->
     return if @currentlyLoading
     @currentlyLoading = true
@@ -50,6 +50,7 @@ class StreamView
         $('#noMoreEntries').show()
         
       @$container.append(data.html)
+      @activateLightBox()
   update: (html) ->
     @clear()
     if html == ''
@@ -60,6 +61,7 @@ class StreamView
     $('.followFilter.trigger').removeClass('loading')
 
     @$container.html(html)
+    @activateLightBox()
     
 
 
