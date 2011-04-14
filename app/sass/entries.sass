@@ -220,24 +220,36 @@
 
 
 
-
+// STREAM INFORMATION PANELS
 
 .light
-  .noEntrys
+  .noEntrys, #noMoreEntries, #nextPageLoading
     +transparent-light(50)
     +glow-light(20)
+
+  #nextPageLoading
+    background: url('/images/icons/spinner-grey-32.gif') no-repeat center center
+
 .dark
-  .noEntrys
+  .noEntrys, #noMoreEntries, #nextPageLoading
     +transparent-dark(50)
     +glow-dark(10)
+    
+  #nextPageLoading
+    background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+  
 
-.noEntrys
+.noEntrys, #noMoreEntries, #nextPageLoading
   +user-select
   +round(16)
   +font(21)
-  +absolute
   +center
   +cursor
-  top: 0px
   width: 464px
   padding: 8px
+
+.noEntrys
+  +absolute
+  top: 0px
+
+

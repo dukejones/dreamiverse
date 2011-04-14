@@ -9,11 +9,9 @@ class StreamController
     @streamView = new StreamView(@stream)
 
     $.subscribe 'filter:change', => 
-      @stream.updateFilters()
       @stream.load().then (data) =>
-        $.publish 'stream:update', [data.html]
+        @streamView.update(data.html)
 
-    $.subscribe 'stream:update', (html) => @streamView.update(html)
   
 
 
@@ -34,17 +32,23 @@ class StreamView
     $(window).scroll =>
       if ($(window).scrollTop() == $(document).height() - $(window).height())
         @loadNextPage()
-  
+  clear: ->
+    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()
+    
   loadNextPage: ->
+    @clear()
+    $('#nextPageLoading').show()
     @page += 1
-    @stream.updateFilters()
     @stream.load({ page: @page }).then (data)=>
+      @clear()
+      if !data.html? || data.html == ""
+        $('#noMoreEntries').show()
+        
       @$container.append(data.html)
   update: (html) ->
+    @clear()
     if html == ''
       $('.noEntrys').show()
-    else
-      $('.noEntrys').hide()
 
     # after data loads into view, remove the loading spinner
     $('.entryFilter.trigger').removeClass('loading')
@@ -57,15 +61,16 @@ class StreamView
 
 class StreamModel
   load: (filters={})->
+    @updateFilters()
     $.extend(filters, @filterOpts())
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
     @filters = []
     # get new filter values (will be .filter .value to target the span)
-    $.each $('.trigger .value'), (key, value) =>
+    $.each $('.trigger span.value'), (key, value) =>
       @filters.push($(value).text())  # XXX: data tightly coupled to display.
   filterOpts: ->
     type: @filters[0]
     friend: @filters[1]
-    starlight: @filters[2]
+    # starlight: @filters[2]
 
