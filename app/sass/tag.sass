@@ -1,6 +1,6 @@
 
 // SHARED TAG STYLES
-#showEntry, #entryField
+#entryField
 
   #tagsLive
     +clear
@@ -8,162 +8,192 @@
     clear: left
     margin-top: 28px
 
-  // WHO, WHERE, WHAT TAG STYLES
+
+
   // TAG STRUCTURE
-  .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
+  .tag
     +relative
     +round(8)
     +left
     +overflow
-    +user-select
     +cursor
     margin: 8px 8px 0 0
     height: 32px
-    line-height: 32px
-    &.auto span
-      color: #88E3F7 !important
+    &.newEntry
+      +pointer
 
-
-    .trigger
-      +left
+    &.auto .tag-name
+      color: #88E3F7
 
     .close-16
       +right
       margin: 8px 4px 0 0
 
-    .avatar, .whereIcon, .tagImage
-      +round(8)
-      +flat-right
-      +left
-      +overflow
-      width: 32px
+
+    // HEADER
+    .header
       height: 32px
 
-    .tagContent
-      +left
-      margin: 0 8px
+      .tag-icon
+        background: url('/images/icons/tag-24.png') no-repeat center center transparent
+        width: 24px
+        height: 24px
+        +left
+        margin: 4px 11px 0 7px
+        +hidden
 
-    .followStatus
-      +right
-      width: 32px
-      height: 32px
+      .tag-name
+        +user-select
+        +font(16)
+        line-height: 30px
+        padding: 0 8px
+        +left
 
-    .analysisIcon
-      +left
-      width: 16px
-      height: 32px
-      margin: 0 8px 0 0
-      background: url(/images/icons/analysis-16.png) no-repeat center
+      .dictionaries
+        +right
+        +user-select
+        padding: 0 10px
+        +round(12)
+        line-height: 21px
+        margin: 3px 8px
+        font-weight: normal
+        +hidden
 
-  // TAG NO IMAGE
-  .tagNoImage
-    +center
-    padding: 0 8px
+    &.tagAnalysis .header
+      +pointer
+
+      .analysis-icon
+        +right
+        width: 16px
+        height: 32px
+        margin: 0 8px 0 0
+        background: url(/images/icons/analysis-16.png) no-repeat center
 
 
-  // TAG ANALYSIS
-  .tagAnalysis
-    height: auto
-    &.expanded
-      margin-right: 0px
-      span
-        color: #3086CF !important      
+    // ANALYSIS
+    .analysis
+      padding: 20px
+
+      .gradient
+        height: 14px
+        +absolute
+        top: 32px
+        left: 0
+        width: 100%
+        +gradient(rgba(0,0,0,0.3), rgba(0,0,0,0))
+      .source
+        +user-select
+        +round(18)
+        padding: 3px 16px
+        box-shadow:         5px 5px 10px rgba(0,0,0,0.4)
+        -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.4)
+        -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.4)
+
+      .description p
+        +clear
+        cursor: text
+        margin-top: 14px
+
+      .divider
+        height: 2px
+        width: 100%
+        margin: 20px 0
+
+
+
+
+    // EXPANDED VIEW
+    &.tagAnalysis.expanded
+      height: auto
+      +bold
+
+      .header
+        .tag-icon
+          display: block
+        .tag-name
+          +font(24)
+        .dictionaries
+          display: block
+
       .close-16
         +hidden
 
-      .tagContent
-        +font(32)
-        +bold
-        margin: 14px 0 18px 20px
 
-      .analysisIcon
-        margin: 14px 8px
 
-    .analysis
-      width: 100%
-      line-height: 32px
-      margin: 0
 
-      .arrow
-        +absolute
-        top: 12px
-        right: 20px
-        height: 32px
-        width: 16px
-        background: url(/images/icons/arrow-up-16.png) no-repeat center
 
-      .description
-        margin: 40px 20px 10px 20px
-        line-height: 20px
-        +clear
-      p
-        +clear
-        margin-bottom: 18px
 
-      .source
-        +block
-        +left
-        margin: 0 0 8px -8px
-        +bold
-        +round(16)
-        padding: 2px 8px
+
+
+
+
+
 
 
 
 
 // SHARED TAG COLORS
-.light
-  #showEntry, #entryField
-    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
-      +flat-light-medium
-      border: 1px solid #8c8c8c
-      color: #333
-      &.auto
-        border: 1px solid #ccc
-        &:hover
-          border: 1px solid #88E3F7
-        &.expanded, &.expanded:hover
-          border: 1px solid #000
-      &.custom:hover
-        +pointer
-        color: #000
-        border: 1px solid #000
-    .tagAnalysis
-      &.auto
-        +transparent-dark(80)
-      &.expanded
-        +bevel-light
+.light #entryField
+
+  .tag
+    +flat-light-medium
+    border: 1px solid #8c8c8c
+    color: #333
+    &.tagAnalysis:hover
+      border: 1px solid #000
+    &.expanded, &.expanded:hover
+      border: 1px solid #000 !important
+    &.auto
+      +transparent-dark(80)
+      border: 1px solid #ccc
       &:hover
-        +pointer
-        color: #000
-        border: 1px solid #000
+        border: 1px solid #88E3F7
 
-    .source
-      +flat-dark-medium
-      +button-dark
-      color: #ccc
+    &.expanded
+      +bevel-light
+      .header, .tag-name
+        color: #ddd
+      .header
+        +gradient(#4b4b4b, #000)
+      .dictionaries
+        border: 2px solid #6b6b6b
+      .divider
+        background-color: #ccc
+
+  .source
+    +gradient(#535353, #000)
+    +button-dark
+    color: #ccc
 
 
-.dark
-  #showEntry, #entryField
-    .tagWho, .tagWhat, .tagWhere, .tagNoImage, .emptyTag, .tag, .tagAnalysis
-      background: #121212
-      color: #ddd
-      border: 1px solid #777
-      &.custom:hover
-        +pointer
-        color: #fff
-        border: 1px solid #fff
-    .tagAnalysis
-      &.auto
-        +flat-dark
-      &.expanded
-        +bevel-dark
+.dark #entryField
+  .tag
+    background: #121212
+    color: #ddd
+    border: 1px solid #777
+    &.tagAnalysis:hover
+      border: 1px solid #fff
+    &.expanded, &.expanded:hover
+      border: 1px solid #404040 !important
+    &.auto
+      +flat-dark
       &:hover
-        +pointer
-        color: #fff
-        border: 1px solid #fff
-    .source
-      +flat-light-medium
-      +button-light
-      color: #333
+        border: 1px solid #88E3F7
+    &.expanded
+      +bevel-dark
+      .header, .tag-name
+        color: #333 !important
+      .header
+        +gradient(#fff, #b4b4b4)
+      .dictionaries
+        border: 2px solid #949494
+      .divider
+        background-color: #2b2b2b
+
+
+  .source
+    +gradient(#fff, #a8a8a8)
+    border: 1px solid black
+    color: #333
+    &:hover
+      border: 1px solid white

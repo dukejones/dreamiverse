@@ -1,18 +1,37 @@
+
+
 - kind ||= 'custom'
-.wrapper.tag.tagWhat{:'data-id' => what.id, :class => "#{kind == 'auto' ? 'auto' : ''} #{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
-  .trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
 
-    %span.tagContent= what.name
 
-    - unless what.dictionary_words.empty?
-      .analysisIcon
 
-      .analysis.hidden.target.showhide
-        .arrow
-        - what.dictionary_words.each_with_index do |word, i|
-          .description{:class => "definition-#{i}"}
-            %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
-            = simple_format(word.definition)
+.tag.wrapper.tagWhat{:'data-id' => what.id, :class => "#{kind == 'auto' ? 'auto' : ''} #{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
 
-  - if close_button
-    .close-16
+  .header.trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
+    .tag-icon
+    .tag-name= what.name
+
+    - if close_button
+      .close-16
+
+    .analysis-icon
+    .dictionaries dream dictionaries
+
+
+
+  - unless what.dictionary_words.empty?
+    .analysis.target.showhide.hidden
+      .gradient
+
+      - what.dictionary_words.each_with_index do |word, i|
+        .description{:class => "definition-#{i}"}
+          %a.source{href: word.dictionary.attribution, target: '_blank'}= word.dictionary.name
+          = simple_format(word.definition)
+
+        - unless i == (what.dictionary_words.count-1)
+          .divider
+
+
+
+
+
+

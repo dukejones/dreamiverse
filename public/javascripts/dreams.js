@@ -417,7 +417,7 @@ function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
     $('#tag-list br').before(newElement);
     $(tagID_element).removeClass('hidden') ; // and unhide the new one
     $(tagID_element).addClass('current-tags');
-    $(tagID_element).find('.tagContent').html( tag_selected ); // populate with tag text
+    $(tagID_element).find('.tag-name').html( tag_selected ); // populate with tag text
 
     setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
 

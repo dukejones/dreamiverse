@@ -136,7 +136,7 @@ class TagViewList
     for currentElement in @$container.find('.tag')
       $element = $(currentElement)
       id = $element.data('id')
-      name = $element.find('.tagContent').text()
+      name = $element.find('.tag-name').text()
       tag = new Tag(name, id)
       tagView = new @tagViewClass( tag )
       tagView.linkElement($element)
@@ -186,7 +186,7 @@ class EditingTagViewList extends TagViewList
       @findByTagId(id).removeFromView()
       
   removeTag: ($tag) ->
-    tagName = $tag.find('.tagContent').text()
+    tagName = $tag.find('.tag-name').text()
     
     
     new_tags = (tag for tag in @tagViews when tag.tag.name != tagName)  
@@ -205,7 +205,7 @@ class TagView
   linkElement: (element)->
     @$element = element
   setValue: (tagName) ->
-    @$element.find('.tagContent').html(tagName)
+    @$element.find('.tag-name').html(tagName)
   setId: (id) ->
     @$element.attr('data-id', id)
     @tag.setId(id)

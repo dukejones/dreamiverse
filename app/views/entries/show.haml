@@ -188,10 +188,10 @@
           #tag-list.tag-list.ui-sortable.target
 
             / PLACEHOLDER TAG JS
-            .custom.tag.wrapper.tagWhat.emptyTag.hidden
-              .trigger
-                %span.tagContent
-              .close-16
+            .tag.wrapper.custom.tagWhat.emptyTag.hidden
+              .header.trigger
+                .tag-name
+                .close-16
 
             -# TODO: Put eager loading of dictionary words back in.
             - @entry.what_tags.custom.whats.each do |what|
