@@ -30,18 +30,23 @@ class StreamView
     )
     # infinite scrolling
     $(window).scroll =>
-      if ($(window).scrollTop() == $(document).height() - $(window).height())
+      if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
+        # $(window).scrollTop($(document).height() - $(window).height() - 300)
         @loadNextPage()
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()
     
   loadNextPage: ->
+    return if @currentlyLoading
+    @currentlyLoading = true
     @clear()
     $('#nextPageLoading').show()
     @page += 1
     @stream.load({ page: @page }).then (data)=>
       @clear()
+      @currentlyLoading = false
       if !data.html? || data.html == ""
+        @currentlyLoading = true # No more entries to load.
         $('#noMoreEntries').show()
         
       @$container.append(data.html)
