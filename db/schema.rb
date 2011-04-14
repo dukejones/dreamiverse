@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110406224335) do
+ActiveRecord::Schema.define(:version => 20110414065926) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -170,7 +170,7 @@ ActiveRecord::Schema.define(:version => 20110406224335) do
     t.string   "phone"
     t.string   "skype"
     t.integer  "default_location_id"
-    t.integer  "default_sharing_level", :default => 200
+    t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
     t.boolean  "ubiquity",              :default => false, :null => false
     t.integer  "auth_level",            :default => 0
