@@ -1,4 +1,5 @@
 class DictionariesController < ApplicationController
+  before_filter :require_moderator
   def index
     @dicts = Dictionary.all
   end

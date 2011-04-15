@@ -55,6 +55,11 @@ class ApplicationController < ActionController::Base
       redirect_to :root, {alert: 'You must be logged in to see this page.'} and return
     end
   end
+  def require_moderator
+    unless current_user && current_user.auth_level >= User::AuthLevel[:moderator]
+      redirect_to :root, {alert: 'You must be a Dreamcatcher moderator to access this page.'} and return
+    end
+  end
   
   def render_404
     render :file => "#{Rails.public_path}/404.html",  :status => 404
