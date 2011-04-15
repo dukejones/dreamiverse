@@ -122,6 +122,7 @@ namespace :fix do
         # now add replacement single_what tags for entry
         single_what_names.each do |single_what_name|
           what = What.for single_what_name
+          next if what.nil?
           entry.tags.create(noun: what, position: entry.tags.count, kind: tag.kind)
           log("Added what tag: #{what.name} for entry_id: #{entry.id}")
         end
