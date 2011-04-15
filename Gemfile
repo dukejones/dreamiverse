@@ -15,12 +15,12 @@ gem 'coffee-haml-filter'
 gem 'meta_where'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
+gem 'nokogiri'
+gem 'whenever', :require => false
 
 # Bundle the extra gems:
 # gem 'bj'
-gem 'nokogiri'
 # gem 'aws-s3', :require => 'aws/s3'
-gem 'whenever', :require => false
 # gem 'rgeo' - when we get into doing lots of geocoding / calculations.
 
 group :development do
@@ -30,21 +30,11 @@ end
 
 group :test do
   gem 'webrat'
-  # gem 'factory_girl'
   gem 'machinist'
   gem 'faker'
   gem 'mocha'
+  gem 'infinity_test', :git => "git://github.com/tomas-stefano/infinity_test.git"
 end
-
-### Install these gems yourself if you wish to use Autotest. ###
-# autotest-standalone
-# autotest-rails-pure
-### Mac
-# autotest-fsevent
-# autotest-growl
-### Linux
-# autotest-inotify
-
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
