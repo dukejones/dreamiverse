@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/tomas-stefano/infinity_test.git
+  revision: 4af2c0fbd0fc4a2331b7fd525cdecba0530133c0
+  specs:
+    infinity_test (1.0.2)
+      notifiers (>= 1.1.0)
+      watchr (>= 0.7)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -94,6 +102,7 @@ GEM
     net-ssh-gateway (1.0.1)
       net-ssh (>= 1.99.1)
     nokogiri (1.4.4)
+    notifiers (1.1.0)
     oa-basic (0.2.1)
       multi_json (~> 0.0.2)
       nokogiri (~> 1.4.2)
@@ -178,6 +187,7 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.26)
+    watchr (0.7)
     webrat (0.7.3)
       nokogiri (>= 1.2.0)
       rack (>= 1.0)
@@ -198,6 +208,7 @@ DEPENDENCIES
   exception_notification
   faker
   haml
+  infinity_test!
   machinist
   meta_where
   mini_magick
