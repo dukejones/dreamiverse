@@ -2,7 +2,7 @@ require 'machinist/active_record'
 
 PW = "password"
 User.blueprint do
-  username { Faker::Internet.user_name }
+  username { Faker::Internet.user_name.gsub('.','-') }
   name { Faker::Name.name }
   email { Faker::Internet.email }
   seed_code { "theta" }

@@ -149,39 +149,4 @@ class TagTest < ActiveSupport::TestCase
     assert_equal (16 - entry.what_tags.custom.count), entry.tags.auto.count
   end
   
-  test "dictionary_words scopes query correctly" do
-    entry = Entry.make
-    tag_words = ['munge', 'cookie', 'robot', 'simple']
-    entry.set_whats(tag_words)
-
-    # Do the scopes work if none of the tags have definitions?
-    dict_tags = entry.what_tags.with_dictionary_words.all
-    assert dict_tags.empty?
-    dict_tags = entry.what_tags.eager_load_dictionary_words.all
-    assert_equal 4, dict_tags.size
-    
-    # Make two Words for two of the Entry's Whats.
-    tag_words.sample(2).each {|name| Word.make(name: name) }
-    
-    # Returns only tags associated with whats that have dictionary words.
-    dict_tags = entry.what_tags.with_dictionary_words.all
-    assert_equal 2, dict_tags.size
-    assert dict_tags.none? {|tag| tag.noun.dictionary_words.empty? }
-    assert (entry.what_tags - dict_tags).all? {|tag| tag.noun.dictionary_words.empty? }
-    
-    # Returns all whats, even if they don't have a dictionary word.
-    dict_tags = entry.what_tags.eager_load_dictionary_words.all
-    assert_equal 4, dict_tags.size
-  end
-  
-  test "dictionary_words scopes working with auto scope and custom scope" do
-    entry = Entry.make(skip_auto_tags: false)
-    tag_words = ['dragon', 'zeppelin', 'fumigate']
-    entry.set_whats(tag_words)
-    
-    entry.what_tags.auto.with_dictionary_words.whats
-    
-    # This works here, but not in entries/show.haml.
-    entry.what_tags.custom.with_dictionary_words.whats
-  end
 end
