@@ -32,6 +32,12 @@ class WordsController < ApplicationController
   rescue
     redirect_to new_word_path
   end
+  
+  def destroy
+    @word = Word.find params[:id]
+    @word.destroy
+    redirect_to dictionary_words_path(params[:dictionary_id]), :notice => "#{@word.name} destroyed."
+  end
 
 protected
   def find_dictionary

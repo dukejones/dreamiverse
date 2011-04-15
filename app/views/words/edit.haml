@@ -9,6 +9,8 @@
       = link_to "< cancel", dictionary_words_path(@dict)
 
     = render( { partial: 'form', locals: { word: @word } } )
+    - unless @word.new_record?
+      = link_to "delete", dictionary_word_path(@dict, @word), {method: :delete, confirm: 'are you sure?'}
 
 
   .module
