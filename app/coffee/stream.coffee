@@ -57,8 +57,7 @@ class StreamView
       $('.noEntrys').show()
 
     # after data loads into view, remove the loading spinner
-    $('.entryFilter.trigger').removeClass('loading')
-    $('.followFilter.trigger').removeClass('loading')
+    $('#streamContextPanel .trigger').removeClass('loading')
 
     @$container.html(html)
     @activateLightBox()
