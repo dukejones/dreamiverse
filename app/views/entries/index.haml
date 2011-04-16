@@ -26,9 +26,7 @@
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
 
-
-    / - unless @entries.empty? || @entries.count < 33
-    - unless @entries.empty?
+      if !@entries.empty? && @entries.count > @page_size
       .thumb-2d.pagination
         %a.next{href: "/entries?page=all"}
         .icon
@@ -57,4 +55,4 @@
     #noMoreEntries.hidden
       you've reached the end of the stream 
     
-    .div.next{href: '#'} next     
+    / .div.next{href: '#'} next     

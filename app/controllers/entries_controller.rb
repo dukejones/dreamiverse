@@ -14,13 +14,15 @@ class EntriesController < ApplicationController
   end
   
   def index
-    if params[:entry_type]
-      # TODO: Make this work without setting it manually.
-      params[:filters] ||= {}
-      params[:filters][:type] = params[:entry_type].singularize
-      params[:filters][:page] = params[:page]
-    end
+    
+    # TODO: Make this work without setting it manually.
+    params[:filters] ||= {}
+    params[:filters][:type] = params[:entry_type].singularize if params[:entry_type]    
+    params[:filters][:page] = params[:page]
+    params[:filters][:page_size] = 10
+    
     @type_filter = params[:filters]._?[:type]
+    @page_size = params[:filters][:page_size]
     
     flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
