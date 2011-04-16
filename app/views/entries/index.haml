@@ -26,11 +26,15 @@
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
 
-    - unless (@user == current_user) && @entries.empty?
+
+    / - unless @entries.empty? || @entries.count < 33
+    - unless @entries.empty?
       .thumb-2d.pagination
         %a.next{href: "/entries?page=all"}
         .icon
         %a.all{href: "/entries?page=all"} show all
+
+
 
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
