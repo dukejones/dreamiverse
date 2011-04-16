@@ -129,6 +129,22 @@ class EntriesController < ApplicationController
       render :json => {type: 'ok', html: thumbs_html}
     end
   end
+  
+  def dreamfield
+    session[:lens] = :dreamfield
+    session[:filters] = params[:filters]
+
+    @user = current_user
+    
+    entry_list
+    
+    if request.xhr?
+      thumbs_html = ""
+      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
+      render :json => {type: 'ok', html: thumbs_html}
+    end
+  end  
+  
 
   def bedsheet
     @entry = Entry.find(params[:id])

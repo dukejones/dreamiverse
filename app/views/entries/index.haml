@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'entries'
-  = coffeescript_include_tag 'modal', 'follow_hover'
+  = coffeescript_include_tag 'modal', 'follow_hover', 'dreamfield'
   = javascript_include_tag 'tag_stream', 'dreams', 'geo'
 
 / CONTEXT PANEL
@@ -24,7 +24,7 @@
     - @entries.each do |entry|
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
-
+      
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
@@ -38,3 +38,13 @@
     - if @user == current_user
       :coffeescript
         $('.item.home').addClass('selected')
+        
+    #nextPageLoading.hidden
+      %img{src: "/images/icons/spinner-grey-32.gif", alt: ""}
+      %span accessing dream field
+
+    #noMoreEntries.hidden
+      you've reached the end of the stream 
+    
+  .clear
+  %a.next{href: '#'} next     
