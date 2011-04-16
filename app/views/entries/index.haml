@@ -32,7 +32,7 @@
         .thumb-2d.hidden
 
       #pagination
-        %a.next{href: "#"}
+        %a.next{href: "/#{@user.username}?page=all"}
         %a.all{href: "/#{@user.username}?page=all"} show all 
         - @pagesize
 
