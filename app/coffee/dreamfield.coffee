@@ -15,10 +15,10 @@ class DreamfieldView
     
     # adds the loading wheel
     $('.filterList').click( (event) =>
-      $(event.currentTarget).parent().find('.trigger').addClass('loading')
-      return false
+      # $(event.currentTarget).parent().find('.trigger').addClass('loading')
     )
     $('.next').click( (event) =>
+      $(event.currentTarget).addClass('loading')
       @loadNextPage()
     )
     
@@ -38,7 +38,7 @@ class DreamfieldView
         @currentlyLoading = true # No more entries to load.
         $('#noMoreEntries').show()
 
-      @$container.append(data.html)
+      @$container.prepend(data.html)
       
   update: (html) ->
     @clear()
