@@ -25,11 +25,14 @@
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
-
-      if !@entries.empty? && @entries.count > @page_size
+    / - unless @entries.empty? || @entries.count < 33
+    / - unless @entries.empty?
+    - if !@entries.empty? && @user.entries.count > @page_size
       .thumb-2d.pagination
-        %a.next{href: "/entries?page=all"}
-        %a.all{href: "/entries?page=all"} show all
+        %a.next{href: "#"}
+        %a.all{href: "/#{@user.username}?page=all"} show all 
+        - @pagesize
+        
 
 
 

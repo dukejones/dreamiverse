@@ -12,7 +12,7 @@ class DreamfieldView
     @page = 1
     @dreamfield = dreamfieldModel
     # @$container = $('#entryField .matrix')
-    @$container = $('.next')
+    @$container = $('.next').parent().parent()
     
     # adds the loading wheel
     $('.filterList').click( (event) =>
@@ -21,6 +21,7 @@ class DreamfieldView
     $('.next').click( (event) =>
       $(event.currentTarget).addClass('loading')
       @loadNextPage()
+      $(event.currentTarget).removeClass('loading')
       return false
     )
     
@@ -39,6 +40,7 @@ class DreamfieldView
       if !data.html? || data.html == ""
         @currentlyLoading = true # No more entries to load.
         $('#noMoreEntries').show()
+        $('.next').parent().hide()
 
       @$container.prepend(data.html)
       
