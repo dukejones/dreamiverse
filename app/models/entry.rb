@@ -132,8 +132,10 @@ class Entry < ActiveRecord::Base
     filters ||= {}
     entry_scope = Entry.order('dreamed_at DESC')
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
-
+    
     page_size = filters[:page_size] || 20
+    page_size = viewer.entries.count if filters[:page] == 'all'
+ 
     entry_scope = entry_scope.where(user_id: viewed.id)
     entry_scope = entry_scope.limit(page_size)
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]

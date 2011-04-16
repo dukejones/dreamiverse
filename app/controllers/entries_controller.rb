@@ -18,6 +18,7 @@ class EntriesController < ApplicationController
       # TODO: Make this work without setting it manually.
       params[:filters] ||= {}
       params[:filters][:type] = params[:entry_type].singularize
+      params[:filters][:page] = params[:page]
     end
     @type_filter = params[:filters]._?[:type]
     

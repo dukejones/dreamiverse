@@ -21,6 +21,7 @@ class DreamfieldView
     $('.next').click( (event) =>
       $(event.currentTarget).addClass('loading')
       @loadNextPage()
+      return false
     )
     
   clear: ->
