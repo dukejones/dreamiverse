@@ -16,6 +16,7 @@ class DreamfieldView
     # adds the loading wheel
     $('.filterList').click( (event) =>
       $(event.currentTarget).parent().find('.trigger').addClass('loading')
+      return false
     )
     $('.next').click( (event) =>
       @loadNextPage()
