@@ -47,6 +47,7 @@ class DreamfieldView
 
     # after data loads into view, remove the loading spinner
     # $('#streamContextPanel .trigger').removeClass('loading')
+    $('.filterList' .trigger).remoteClass('loading')
 
     @$container.html(html)
 
