@@ -19,7 +19,7 @@ class EntriesController < ApplicationController
     params[:filters] ||= {}
     params[:filters][:type] = params[:entry_type].singularize if params[:entry_type]    
     params[:filters][:page] = params[:page]
-    params[:filters][:page_size] = 20
+    params[:filters][:page_size] = 32
     
     @type_filter = params[:filters]._?[:type]
     @page_size = params[:filters][:page_size]
