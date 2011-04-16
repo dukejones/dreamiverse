@@ -129,6 +129,9 @@
   .thumb-2d.pagination
     width: 196px
     height: 296px
+    &:hover
+      +glow-light(0)
+
     .next, .all
       +block
       +absolute
@@ -137,17 +140,16 @@
       z-index: 10
       width: 196px
       height: 296px
-      +alpha(60)
-      &:hover
+      +alpha(25)
+      &:hover, &.loading
         +alpha(100)
       &.loading
-      
+        background-position: center 45% !important
 
     .all
       z-index: 100
-      +round(12)
+      +round(8)
       +center
-      background-color: #333
       bottom: 10px
       left: 10px
       width: 176px
@@ -177,6 +179,9 @@
     +glow-light(40)
 
 
+
+
+
 .dark #entryField .matrix,.dark #home .matrix
   .thumb-2d
     background-color: #3a3a3a !important
@@ -197,14 +202,24 @@
 
 
   .thumb-2d.pagination
-    border: 2px solid #363636
     background: -moz-linear-gradient(top, #363636, #000)
     background: -webkit-gradient(linear, center top, center bottom, from(#363636), to(#000))
-
+    border: 2px solid #363636
     &:hover
-      background: -moz-linear-gradient(top, rgba(0,0,0,0.0), #000 240px, #000)
-      background: -webkit-gradient(linear, center top, center bottom, from(#363636), to(#000))
       border: 2px solid #fff
+
+    .next
+      background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
+      &.loading
+        +spinner-dark
+    .all
+      border: 1px solid #262626
+      +bg-shine(15)
+      +gradient(#262626, #000)
+      &:hover
+        +gradient(#000, #565656)
+
+
 
 
 
