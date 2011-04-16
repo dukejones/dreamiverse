@@ -24,7 +24,12 @@
     - @entries.each do |entry|
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
-      
+
+    - unless (@user == current_user) && @entries.empty?
+      .thumb-2d.pagination
+        .icon
+        .all show all
+
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}

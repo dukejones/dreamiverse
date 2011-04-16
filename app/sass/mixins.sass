@@ -78,6 +78,7 @@
   -moz-border-radius:       $radius + px
   -webkit-border-radius:    $radius + px
 
+  background-clip: padding-box !important
 
 
 // FLAT
@@ -190,13 +191,13 @@
 
 
 =shine-blue($px)
-  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
-  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
-  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
 
   background: #0c2b50
-  background: -webkit-gradient(linear, left top, left bottom, from(#0c2b50), to(#5d80ad))
-  background: -moz-linear-gradient(top, #0c2b50, #5d80ad)
+  background: -webkit-gradient(linear, left top, left bottom, from(#5d80ad), to(#0c2b50))
+  background: -moz-linear-gradient(top, #5d80ad, #0c2b50)
 
 
 =shine-light-alpha($px)
@@ -450,24 +451,27 @@
 =confirm($offset)
   &:hover
     +bg-shine($offset)
-    +gradient(#3ba4d1, #1b485b)
+    +gradient(#0c2b50, #5d80ad)
     +pointer
     color: #fff
     border: 1px solid #4794b5
   &:active
-    +gradient(#1b485b, #3ba4d1)
+    +gradient(#0c2b50, #5d80ad)
     border: 1px solid #fff
     color: #fff
+
+
+
 
 =save($offset)
   &:hover
     +bg-shine($offset)
-    +gradient(#70d03b, #235b1b)
+    +gradient(#235b1b, #70d03b)
     +pointer
     color: #fff
     border: 1px solid #54943d
   &:active
-    +gradient(#235b1b, #70d03b)
+    +gradient(#70d03b, #235b1b)
     color: #fff
     border: 1px solid #fff
 
@@ -487,18 +491,19 @@
 =delete($offset)
   &:hover
     +bg-shine($offset)
-    +gradient(#ee6844, #8b1812)
+    +gradient(#8b1812, #ee6844)
     +pointer
     color: #fff
     border: 1px solid #b22626
   &:active
-    +gradient(#8b1812, #ee6844)
+    +gradient(#ee6844, #8b1812)
     +pointer
     color: #fff
     border: 1px solid #fff
+
 =unfollow($offset)
   +bg-shine($offset)
-  +gradient(#ee6844, #8b1812)
+  +gradient(#8b1812, #ee6844)
   +pointer
   color: #fff
   border: 1px solid #b22626
