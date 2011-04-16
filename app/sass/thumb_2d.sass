@@ -129,15 +129,17 @@
   .thumb-2d.pagination
     width: 196px
     height: 296px
-    .link, .all
+    .next, .all
       +block
       +absolute
 
-    .link
+    .next
       z-index: 10
       width: 196px
       height: 296px
+      +alpha(60)
       &:hover
+        +alpha(100)
       &.loading
       
 
