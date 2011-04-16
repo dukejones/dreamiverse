@@ -27,7 +27,7 @@
 
 
 
-    - if !@entries.empty? && @user.entries.count > @page_size
+    - if !@entries.empty? && @user.entries.count > @page_size && !@view_all_mode
       #paginationAnchor
         .thumb-2d.hidden
 
@@ -58,6 +58,4 @@
       %span accessing dream field
 
     #noMoreEntries.hidden
-      you've reached the end of the stream 
-    
-    / .div.next{href: '#'} next     
+      you've reached the end of the stream     

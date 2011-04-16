@@ -23,6 +23,7 @@ class EntriesController < ApplicationController
     
     @type_filter = params[:filters]._?[:type]
     @page_size = params[:filters][:page_size]
+    @view_all_mode = true if params[:page] == 'all'
     
     flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
     session[:lens] = :field
