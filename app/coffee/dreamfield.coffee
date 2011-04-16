@@ -12,48 +12,40 @@ class DreamfieldView
     @page = 1
     @dreamfield = dreamfieldModel
     # @$container = $('#entryField .matrix')
-    @$container = $('.next').parent().parent()
-    
-    # adds the loading wheel
-    $('.filterList').click( (event) =>
-      # $(event.currentTarget).parent().find('.trigger').addClass('loading')
-    )
+    @$container = $('#paginationAnchor').find('.thumb-2d').last()
+
     $('.next').click( (event) =>
-      $(event.currentTarget).addClass('loading')
       @loadNextPage()
-      $(event.currentTarget).removeClass('loading')
       return false
     )
     
   clear: ->
-    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()
+    $('#pagination .next').removeClass('loading')
 
   loadNextPage: ->
     return if @currentlyLoading
     @currentlyLoading = true
     @clear()
-    $('#nextPageLoading').show()
+    $('#pagination .next').addClass('loading')
     @page += 1
     @dreamfield.load({ page: @page }).then (data)=>
       @clear()
       @currentlyLoading = false
       if !data.html? || data.html == ""
         @currentlyLoading = true # No more entries to load.
-        $('#noMoreEntries').show()
         $('.next').parent().hide()
 
-      @$container.prepend(data.html)
+      @$container.after(data.html)
       
   update: (html) ->
     @clear()
     if html == ''
       $('.noEntrys').show()
 
-    # after data loads into view, remove the loading spinner
-    # $('#streamContextPanel .trigger').removeClass('loading')
-    $('.filterList' .trigger).remoteClass('loading')
-
     @$container.html(html)
+
+
+
 
 
 

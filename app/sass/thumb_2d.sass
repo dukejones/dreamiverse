@@ -12,7 +12,7 @@
 
 
 
-  .thumb-2d
+  .thumb-2d, #pagination
     +round(16)
     +pointer
     +left
@@ -21,6 +21,7 @@
     margin: 0 10px 10px 0
     z-index: 80
 
+  .thumb-2d
     .link
       +block
       +absolute
@@ -127,7 +128,7 @@
 
 
   // PAGINATION
-  .thumb-2d.pagination
+  #pagination
     width: 196px
     height: 262px
 
@@ -176,7 +177,7 @@
 
 
 
-  .thumb-2d.pagination
+  #pagination
     +gradient(#fff, #aaa)
     border: 2px solid #fff
     &:hover
@@ -215,7 +216,7 @@
     // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
 
 
-  .thumb-2d.pagination
+  #pagination
     +gradient(#363636, #000)
     border: 2px solid #363636
     &:hover
