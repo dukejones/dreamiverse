@@ -28,10 +28,9 @@
 
     - unless (@user == current_user) && @entries.empty?
       .thumb-2d.pagination
-        / %a.link{href: "/entries?page=all"}
-        %a.link{href: "#1"}
+        %a.next{href: "/entries?page=all"}
         .icon
-        %a.all{href: "#2"} show all
+        %a.all{href: "/entries?page=all"} show all
 
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
