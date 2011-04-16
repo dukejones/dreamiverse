@@ -129,8 +129,29 @@
   .thumb-2d.pagination
     width: 196px
     height: 296px
-    .icon
+    .link, .all
+      +block
+      +absolute
+
+    .link
+      z-index: 10
+      width: 196px
+      height: 296px
+      &:hover
+      &.loading
+      
+
     .all
+      z-index: 100
+      +round(12)
+      +center
+      background-color: #333
+      bottom: 10px
+      left: 10px
+      width: 176px
+      height: 30px
+      line-height: 30px
+      +bold
 
 
 

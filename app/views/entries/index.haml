@@ -25,10 +25,13 @@
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
 
+
     - unless (@user == current_user) && @entries.empty?
       .thumb-2d.pagination
+        / %a.link{href: "/entries?page=all"}
+        %a.link{href: "#1"}
         .icon
-        .all show all
+        %a.all{href: "#2"} show all
 
     - if (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
