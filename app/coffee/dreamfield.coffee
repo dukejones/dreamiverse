@@ -11,7 +11,8 @@ class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
     @dreamfield = dreamfieldModel
-    @$container = $('#entryField .matrix')
+    # @$container = $('#entryField .matrix')
+    @$container = $('.next')
     
     # adds the loading wheel
     $('.filterList').click( (event) =>
