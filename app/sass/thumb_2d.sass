@@ -42,8 +42,9 @@
         height: 100px
 
     .watermark
-      +georgia
+      +round(16)
       +alpha(10)
+      +georgia
       +absolute
       +center
       +font(45)
@@ -129,8 +130,6 @@
   .thumb-2d.pagination
     width: 196px
     height: 262px
-    &:hover
-      +glow-light(0)
 
     .next, .all
       +block
@@ -162,40 +161,39 @@
 // COLORS
 .light #entryField .matrix, .light #home .matrix
   .thumb-2d
-    background-color: #fff !important
+    +gradient(#fff, #aaa)
+    &:hover
+      +glow-light(40)
 
-    .detailsTop, .detailsBottom, .title
-      .date, .location, .comments, .sharing
-        +transparent-dark(70)
-        color: #fff
-      .entryType
-        +transparent-dark(70)
+  .date, .location, .comments, .sharing, .entryType
+    +transparent-dark(70)
+    color: #fff
 
   .fadedBack
-    background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 160px, #aaa)
-    background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.6,#fff), to(#aaa))
+    background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #dadada 100px, #aaa)
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#dadada), to(#aaa))
     // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
-  .thumb-2d:hover
-    +glow-light(40)
+
 
 
   .thumb-2d.pagination
-    background: -moz-linear-gradient(top, #363636, #000)
-    background: -webkit-gradient(linear, center top, center bottom, from(#363636), to(#000))
-    border: 2px solid #363636
+    +gradient(#fff, #aaa)
+    border: 2px solid #fff
     &:hover
-      border: 2px solid #fff
+      border: 2px solid #000
+      +glow-light(0)
 
     .next
-      background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
+      background: url('/images/icons/arrow-right-55-light.png') no-repeat center 47% transparent
       &.loading
-        +spinner-dark
+        +spinner-light-grey
     .all
-      border: 1px solid #262626
-      +bg-shine(15)
-      +gradient(#262626, #000)
+      border: 1px solid #8a8a8a
+      +shine-light-alpha(15)
       &:hover
-        +gradient(#000, #565656)
+        +gradient(#aaa, #fff)
+      &:active
+        +glow-dark(0)
 
 
 
@@ -203,29 +201,26 @@
 
 .dark #entryField .matrix,.dark #home .matrix
   .thumb-2d
-    background-color: #3a3a3a !important
+    +gradient(#3a3a3a, #000)
+    &:hover
+      +glow-dark(40)
 
-    .detailsTop, .detailsBottom, .title
-      .date, .location, .comments, .sharing
-        +transparent-light(70)
-        color: #000
-      .entryType
-        +transparent-light(70)
+  .date, .location, .comments, .sharing, .entryType
+    +transparent-light(70)
+    color: #000
 
   .fadedBack
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.0), #000 240px, #000)
-    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.0)), color-stop(.8,#000), to(#000))
+    background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #212121 100px, #000)
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#212121), to(#000))
     // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
-  .thumb-2d:hover
-    +glow-dark(40)
 
 
   .thumb-2d.pagination
-    background: -moz-linear-gradient(top, #363636, #000)
-    background: -webkit-gradient(linear, center top, center bottom, from(#363636), to(#000))
+    +gradient(#363636, #000)
     border: 2px solid #363636
     &:hover
       border: 2px solid #fff
+      +glow-light(0)
 
     .next
       background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
@@ -237,6 +232,8 @@
       +gradient(#262626, #000)
       &:hover
         +gradient(#000, #565656)
+      &:active
+        +glow-dark(0)
 
 
 
