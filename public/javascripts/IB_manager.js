@@ -424,7 +424,7 @@ var updateCurrentImagesMeta = function(update){
     if(update == 'update'){
       // Set Save button to spinner
       $('#IB_managerSave').html('Saving');
-      var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
+      var newElement = '<div class="spinner" style="float: left; margin-left: 3px; margin-top: 3px; width: 32px; height: 32px"></div>';
       $('#IB_managerSave').prepend(newElement);
     
       // Collect data from fields for JSON
@@ -460,7 +460,7 @@ var updateCurrentImagesMeta = function(update){
     } else {
       // Set Save button to spinner
       $('#IB_managerSave').html('Saving');
-      var newElement = '<div class="spinner-small" style="float: left; margin-left: 3px; margin-top: 3px;"></div>';
+      var newElement = '<div class="spinner" style="float: left; margin-left: 3px; margin-top: 3px; width: 32px; height: 32px"></div>';
       $('#IB_managerSave').prepend(newElement);
     
       // Collect data from fields for JSON
