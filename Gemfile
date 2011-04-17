@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -17,7 +17,7 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
 gem 'nokogiri'
 gem 'whenever', :require => false
-
+gem 'jammit'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'aws-s3', :require => 'aws/s3'
