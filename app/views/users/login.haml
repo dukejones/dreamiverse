@@ -38,6 +38,11 @@
           = f.password_field :password, tabindex: '2', class: 'inputField'
           .clear
 
+          %label.stay
+            Stay logged in
+            %input{tabindex: '4', type: 'checkbox', name: 'remember_me'}
+
+
           .submit
             .text
               .img

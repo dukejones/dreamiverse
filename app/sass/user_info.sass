@@ -24,6 +24,7 @@ a.dcLogo
   left: 108px
   width: 694px
   color: #fff
+  margin-bottom: 280px
 
   .joinInfo
     height: 44px
@@ -65,11 +66,11 @@ a.dcLogo
         &:hover
           +shine-blue(17)
           background: #0c2b50
-          +gradient(#5d80ad, #0c2b50)
+          +gradient(#0c2b50, #5d80ad)
         &:active
           +shine-blue(0)
           background: #0c2b50
-          +gradient(#0c2b50, #5d80ad)
+          +gradient(#5d80ad, #0c2b50)
 
     .login, .login a
       width: 60px
@@ -166,11 +167,11 @@ a.dcLogo
           +shine-blue(24)
           &:hover
             background: #0c2b50
-            +gradient(#5d80ad, #0c2b50)
+            +gradient(#0c2b50, #5d80ad)
           &:active
             +shine-blue(0)
             background: #0c2b50
-            +gradient(#0c2b50, #5d80ad)
+            +gradient(#5d80ad, #0c2b50)
 
           span
             +font(25)
@@ -179,7 +180,7 @@ a.dcLogo
             +right
             height: 48px
             width: 32px
-            margin: 0 16px 0 0
+            margin: 0 16px 0 -16px
             background: url(/images/icons/login-32.png) no-repeat center transparent
           &:hover .img
             background: url(/images/icons/login-32-hover.png) no-repeat center transparent
@@ -239,6 +240,22 @@ a.dcLogo
             background: url(/images/icons/facebook-16.png) no-repeat center
           &:hover .img
             background: url(/images/icons/facebook-16-hover.png) no-repeat center
+
+
+      .stay
+        +absolute
+        +round(4)
+        padding: 0 6px
+        top: 210px
+        right: 475px
+        border: 1px solid transparent
+        +alpha(60)
+        +pointer
+        & input
+          +pointer
+        &:hover
+          border: 1px solid #fff
+          +alpha(100)
 
 
 // JOIN PAGE ONLY
@@ -386,12 +403,18 @@ a.dcLogo
       +round(8)
       +shine-blue(16)
       +button-blue
-      +confirm(16)
       +font(18)
       height: 40px
       padding: 0 8px 4px
       margin: -1px 0 0 6px
-
+      +bold
+      &:hover
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
 
 // ERROR PAGE ONLY
 #errorPage

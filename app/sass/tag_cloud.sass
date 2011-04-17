@@ -14,34 +14,31 @@
 .thumb-2d .tagCloud
 
   .s0
-    +font(23)
+    +font(22)
     +bold
   .s1
-    +font(21)
+    +font(29)
   .s2, .s3
-    +font(19)
-  .s4
-    +font(18)
-  .s5
-    +font(17)
-  .s6, .s7
     +font(16)
-  .s8, .s9, .s10, .s11
-    +font(15)
-  .s12, .s13, .s14, .s15
-    +font(14)
-
-.dark .thumb-2d .tagCloud
-  .s0
-    text-shadow: rgb(0,0,0) 0 0 40px
-  .s1, .s2
-    text-shadow: rgb(0,0,0) 0 0 30px
-  .s3
-    text-shadow: rgb(0,0,0) 0 0 20px
   .s4
-    text-shadow: rgb(0,0,0) 0 0 15px
+    +font(14)
   .s5
-    text-shadow: rgb(0,0,0) 0 0 11px
+    +font(12)
+  .s6, .s7
+    +font(11)
+  .s8, .s9, .s10, .s11
+    +font(10)
+  .s12, .s13, .s14, .s15
+    +font(9)
+
+  .s5
+    line-height: 160%
+  .s6, .s7, .s8, .s9, .s10
+    line-height: 110%
+  .s11, .s12
+    line-height: 200%
+  .s13, .s14, .s15
+    line-height: 50%
 
 
 
@@ -90,6 +87,14 @@
   .s12, .s13, .s14, .s15
     +font(14)
 
+  .s5
+    line-height: 110%
+  .s6, .s7, .s8, .s9, .s10
+    line-height: 110%
+  .s11, .s12
+    line-height: 200%
+  .s13, .s14, .s15
+    line-height: 300%
 
 
 
@@ -154,7 +159,7 @@
 
 // COLORS
 .light .tagCloud .s0
-  color: #6bd3ff
+  color: #6bd3ff !important
 
 .light .tagCloud, .dark .tagCloud
   .s0
@@ -166,12 +171,10 @@
   .s3, .s4, .s5
     color: #3086cf
   .s5
-    line-height: 110%
   .s6, .s7, .s8, .s9, .s10
     color: #1265c2
-    line-height: 110%
   .s11, .s12, .s13, .s14, .s15
     color: #0049a2
-    line-height: 300%
+
 
 

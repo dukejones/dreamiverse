@@ -28,18 +28,15 @@ body.scroll
 
   .button
     +pointer
+    +user-select
     text-decoration: none
     outline: none
 
-  .spinner-small
-    width: 32px
-    height: 32px
-
 .light
-  .spinner-small
+  .spinner
     background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
 .dark
-  .spinner-small
+  .spinner
     background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
 
 
@@ -116,6 +113,7 @@ abbr, acronym
 
 .matrix
   +relative
+  margin-top: 6px
 
 
 
@@ -307,8 +305,8 @@ abbr, acronym
   +round(16)
   +glow-light(20)
   +flat-top
-  margin: -20px 0 10px
-  padding: 28px 8px 0
+  margin-bottom: 10px
+  padding: 8px 8px 0
   width: 204px
   z-index: 1200
 
@@ -319,12 +317,14 @@ abbr, acronym
     +shine-dark-alpha(14)
     +button-dark
     +round(12)
-    +confirm(12)
     +bold
     color: #fff !important
     height: 28px
     line-height: 27px
     width: 154px
+    &:hover
+      +gradient(#0c2b50, #5d80ad)
+    &:active
     .img
       +right
       height: 28px
@@ -415,11 +415,11 @@ abbr, acronym
 
       &:hover
         background: #0c2b50
-        +gradient(#5d80ad, #0c2b50)
+        +gradient(#0c2b50, #5d80ad)
       &:active
         +shine-blue(0)
         background: #0c2b50
-        +gradient(#0c2b50, #5d80ad)
+        +gradient(#5d80ad, #0c2b50)
 
       .img
         +right
@@ -489,7 +489,7 @@ abbr, acronym
     +pointer
     +center
     +bold
-    +round(8)
+    +round(9)
     +shine-blue(15)
     whitespace: nowrap
     color: #fff !important
@@ -497,7 +497,7 @@ abbr, acronym
     &:hover
       +shine-blue(15)
       background: #0c2b50
-      +gradient(#5d80ad, #0c2b50)
+      +gradient(#0c2b50, #5d80ad)
     &:active
       +shine-blue(0)
       background: #0c2b50
