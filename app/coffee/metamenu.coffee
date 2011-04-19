@@ -21,7 +21,6 @@ class MetaMenu
     
   expand: ->
     $('#bodyClick').show()
-    $('body').prepend(bodyClick)
     $('html, body').animate({scrollTop:0}, 'slow');
   
     $('#bodyClick').click( (event) =>
@@ -29,16 +28,11 @@ class MetaMenu
       $('#bodyClick').hide()
       $('.item.settings, .item.appearance').removeClass('selected')
     )
-    
     @$currentMenuPanel.show()
     
   contract: ->
-    # code to contract menu item
     @$currentMenuPanel.fadeOut(250)
     $('#bodyClick').remove()
-
-
-
 
 # Appearance Model Subclass
 class AppearancePanel extends MetaMenu
