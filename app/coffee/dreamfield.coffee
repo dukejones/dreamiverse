@@ -40,10 +40,8 @@ class DreamfieldView
         $('.next').parent().hide()
       
       if showAll
-        # $('.matrix').find('.thumb-2d').hide() # clear existing thumbs to make room for all
         $('.next').parent().hide()
-      #   @$container.append(data.html) 
-      # else
+
       @$container.before(data.html)
 
       
