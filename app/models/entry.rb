@@ -121,7 +121,8 @@ class Entry < ActiveRecord::Base
       else
         viewer.following
       end
-    # users_to_view << viewer
+    users_to_view << viewer unless users_to_view.include?(viewer)
+    
     entries = entry_scope.where(:user_id => users_to_view.map(&:id))
     # each should be sorted according to date or starlight
 
