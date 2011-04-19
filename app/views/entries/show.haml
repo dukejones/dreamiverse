@@ -1,7 +1,4 @@
 - content_for :head do
-  = sass_link_tag 'entries'
-  = stylesheet_link_tag 'jquery.lightbox-0.5.css'
-
   = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
   = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
   
@@ -37,7 +34,13 @@
   / SHOW ENTRY
   #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
 
-    .type= @entry.type
+    .type
+      .icon{style: "background: url('#{entry_type_icon(@entry.type, 24)}') no-repeat left center"}
+      %span= @entry.type
+
+    .postTime
+      - time = (@entry.dreamed_at || @entry.created_at)
+      = time_ago_in_words(time)
 
     %a.next{href: user_entry_path(@next.user.username, @next)}
       %span &rsaquo;
@@ -172,10 +175,6 @@
               .shareLevel
                 .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
                 %span= @entry.sharing
-
-            .postTime
-              - time = (@entry.dreamed_at || @entry.created_at)
-              = time_ago_in_words(time)
 
             - if location = @entry.location
               .postLocation= "#{location.city}, #{location.province}"

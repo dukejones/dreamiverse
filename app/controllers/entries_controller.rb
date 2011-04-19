@@ -14,24 +14,28 @@ class EntriesController < ApplicationController
   end
   
   def index
-    
     # TODO: Make this work without setting it manually.
     params[:filters] ||= {}
     params[:filters][:type] = params[:entry_type].singularize if params[:entry_type]    
-    params[:filters][:page] = params[:page]
-    params[:filters][:page_size] = 32
-    
+    # params[:filters][:page] ||= params[:page]
+    params[:filters][:page_size] ||= 10
     @type_filter = params[:filters]._?[:type]
     @page_size = params[:filters][:page_size]
-    @view_all_mode = true if params[:page] == 'all'
     
-    flash.keep and redirect_to(user_entries_path(@user.username)) unless params[:username]
+    flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
 
     entry_list
     
     hit( @user )
+
+    if request.xhr?
+      thumbs_html = ""
+      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
+      render :json => {type: 'ok', html: thumbs_html}
+    end
+
   end
 
   def show
@@ -134,22 +138,6 @@ class EntriesController < ApplicationController
     end
   end
   
-  def dreamfield
-    session[:lens] = :dreamfield
-    session[:filters] = params[:filters]
-
-    @user = current_user
-    
-    entry_list
-    
-    if request.xhr?
-      thumbs_html = ""
-      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
-      render :json => {type: 'ok', html: thumbs_html}
-    end
-  end  
-  
-
   def bedsheet
     @entry = Entry.find(params[:id])
     @entry.view_preference.image = Image.find(params[:bedsheet_id])

@@ -121,6 +121,8 @@ class Entry < ActiveRecord::Base
       else
         viewer.following
       end
+    users_to_view << viewer unless users_to_view.include?(viewer)
+    
     entries = entry_scope.where(:user_id => users_to_view.map(&:id))
     # each should be sorted according to date or starlight
 
@@ -133,14 +135,10 @@ class Entry < ActiveRecord::Base
     entry_scope = Entry.order('dreamed_at DESC')
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
     
-    page_size = filters[:page_size] || 32
-    if filters[:page] == 'all'
-      page_size = viewed.entries.count 
-      filters.delete :page
-    end
+    page_size = filters[:page_size] || 10
  
     entry_scope = entry_scope.where(user_id: viewed.id)
-    entry_scope = entry_scope.limit(page_size)
+    entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
     
     if viewer
@@ -172,12 +170,10 @@ class Entry < ActiveRecord::Base
   end
 
   def set_emotions(emotion_params)
-    # return unless emotion_params
     emotion_params.each do |emotion_name, intensity|
-      next if intensity.to_i == 0
       if emotion_tag = self.tags.emotion.named(emotion_name).first
         emotion_tag.update_attribute(:intensity, intensity)
-      else
+      elsif intensity.to_i != 0
         self.tags.emotion.create(noun: Emotion.find_or_create_by_name(emotion_name), intensity: intensity)
       end
     end

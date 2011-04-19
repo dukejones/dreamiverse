@@ -80,14 +80,10 @@
         +overflow
         white-space: nowrap
       .entryType
-        +round(8)
-        border-top-left-radius:         12px
-        -moz-border-radius-topleft:     12px
-        -webkit-border-radius-topleft:  12px
         +left
         width: 32px
         height: 32px
-        margin: 4px 0 0 4px
+        margin-left: 4px
 
     .detailsBottom
       +absolute
@@ -132,7 +128,7 @@
     width: 196px
     height: 262px
 
-    .next, .all
+    .next, .next span, .all
       +block
       +absolute
 
@@ -141,12 +137,19 @@
       width: 196px
       height: 262px
       +alpha(25)
+      +center
+      span
+        +center
+        bottom: 60px
+        width: 196px
+        +font(18)
       &:hover, &.loading
         +alpha(100)
       &.loading
         background-position: center 45% !important
 
     .all
+      display: none
       z-index: 100
       +round(8)
       +center
@@ -156,7 +159,8 @@
       height: 30px
       line-height: 30px
 
-
+    &:hover .all
+      display: block
 
 
 // COLORS

@@ -52,7 +52,7 @@
       +cancel(16)
     .stream
       +flat-all
-    .next, .stream, .prev, .books, .type, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .type, .postTime, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -61,11 +61,23 @@
       padding: 0 18px
       height: 32px
       line-height: 34px
-    .type
+    .type, .postTime
       +round(16)
       +left
       +cursor
       +user-select
+      margin-right: 8px
+    .type
+      .icon
+        width: 32px
+        height: 32px
+        margin-left: -11px
+        +left
+      span
+        +left
+    .postTime
+      font-weight: normal
+      line-height: 32px
     .next, .stream, .prev, .books, .editEntry, .deleteEntry
       +right
     .books
@@ -144,6 +156,8 @@
         height: 32px
         margin: 0 4px 0 0
         background: url(/images/icons/starlight-24.png) no-repeat center
+      span
+        padding-right: 4px
       hr
         +left
         +alpha(20)
@@ -193,10 +207,10 @@
         text-align: left
         margin: 0 0 0 20px
         top: -40px
-        padding: 4px 12px 0
-        height: 36px
-        line-height: 32px
-        max-width: 550px
+        padding: 11px 12px 0
+        min-height: 36px
+        line-height: 18px
+        max-width: 536px
 
       // BODY
       .body
@@ -339,7 +353,7 @@
           top: 0
           right: 12px
 
-          .postTime, .postLocation, .shareLevel
+          .postLocation, .shareLevel
             +round(20)
             +right
             +center
@@ -521,8 +535,8 @@
       +transparent-light(50)
       +glow-light(40)
 
-      .type
-        +bevel-light
+      .type, .postTime
+        +indent-light
         +border-light
 
       .next, .stream, .prev
@@ -614,7 +628,7 @@
 
           .postInfo
             // POST TIME, LOCATION & SHARE LEVEL
-            .postTime, .postLocation, .shareLevel
+            .postLocation, .shareLevel
               +indent-light
               border: 1px solid #f1f1f1
 
@@ -665,8 +679,8 @@
       +transparent-dark(50)
       +glow-dark(40)
 
-      .type
-        +bevel-dark
+      .type, .postTime
+        +indent-dark
         +border-dark
 
       .next, .stream, .prev
@@ -760,7 +774,7 @@
 
           .postInfo
             // POST TIME, LOCATION & SHARE LEVEL
-            .postTime, .postLocation, .shareLevel
+            .postLocation, .shareLevel
               +indent-dark
               border: 1px solid #333
 

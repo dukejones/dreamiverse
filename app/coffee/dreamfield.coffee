@@ -1,41 +1,46 @@
-$(document).ready ->
-  dreamfieldController = new DreamfieldController()
 
-
-class DreamfieldController
-  constructor: ->
-    @dreamfield = new DreamfieldModel()
+class window.DreamfieldController
+  constructor: (username)->
+    @dreamfield = new DreamfieldModel(username)
     @dreamfieldView = new DreamfieldView(@dreamfield)
         
 class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
     @dreamfield = dreamfieldModel
-    # @$container = $('#entryField .matrix')
-    @$container = $('#paginationAnchor').find('.thumb-2d').last()
-
+    @$container = $('#pagination')
+    
     $('.next').click( (event) =>
+      log('next')
       @loadNextPage()
       return false
     )
     
+    $('.all').click( (event) =>
+      log('all')
+      @loadNextPage(true)
+      return false
+    )
+        
   clear: ->
     $('#pagination .next').removeClass('loading')
 
-  loadNextPage: ->
+  loadNextPage: (showAll=false)->
     return if @currentlyLoading
-    @currentlyLoading = true
-    @clear()
     $('#pagination .next').addClass('loading')
     @page += 1
-    @dreamfield.load({ page: @page }).then (data)=>
+    
+    log('page: ' + @page)
+    @dreamfield.load({ page: @page, show_all: showAll }).then (data)=>
       @clear()
-      @currentlyLoading = false
       if !data.html? || data.html == ""
-        @currentlyLoading = true # No more entries to load.
+        $('.next').parent().hide()
+      
+      if showAll
         $('.next').parent().hide()
 
-      @$container.after(data.html)
+      @$container.before(data.html)
+
       
   update: (html) ->
     @clear()
@@ -46,21 +51,10 @@ class DreamfieldView
 
 
 
-
-
-
 class DreamfieldModel
+  constructor: (username)->
+    @username = username
   load: (filters={})->
-    $.extend(filters, @filterOpts())
-    $.getJSON("/dreamfield.json", {filters: filters}).promise()  
-  updateFilters: ->
-    @filters = []
-    # get new filter values (will be .filter .value to target the span)
-    $.each $('.trigger span.value'), (key, value) =>
-      @filters.push($(value).text())  # XXX: data tightly coupled to display.
-  filterOpts: ->
-    # type: @filters[0]
-    # friend: @filters[1]
-    # starlight: @filters[2]
+    $.getJSON("/"+@username+".json", {filters: filters}).promise()
 
-        
+
