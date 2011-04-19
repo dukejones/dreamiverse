@@ -1,0 +1,25 @@
+# package_assets: always # To test this in development
+
+embed_assets: on
+
+# No javascript template pre-compiler
+template_function: off
+
+
+javascripts:
+  shared:
+    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery.lightbox-0.5.min.js
+    - public/javascripts/jquery.hoverIntent.minified.js
+    - public/javascripts/pubsub.js
+    - public/javascripts/rails.js
+    - public/javascripts/modal.js
+    - public/javascripts/jquery.cookie.js
+    - public/javascripts/jquery.placeholder.js
+    - public/javascripts/compiled/dreamplugs.js
+    - public/javascripts/compiled/metamenu.js
+    - public/javascripts/compiled/application.js
+
+stylesheets:
+  shared:
+    - public/stylesheets/compiled/shared.css

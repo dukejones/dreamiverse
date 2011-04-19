@@ -8,10 +8,12 @@
     - if !@entry._?.main_image
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
-    = sass_link_tag 'shared'
-    /= stylesheet_link_tag 'imageBank.artist', 'imagebank.artistList', 'imagebank.browse', 'imagebank', 'imagebank.searchImages', 'imagebank.searchList', 'imagebank.slideshow'
-    = javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.min', 'jquery.hoverIntent.minified', 'pubsub', 'rails', 'modal', 'jquery.cookie.js', 'jquery.placeholder'
-    = coffeescript_include_tag 'dreamplugs', 'metamenu', 'application'
+    =# sass_link_tag 'shared'
+    = include_stylesheets :shared, :media => 'all'
+    =# javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.min', 'jquery.hoverIntent.minified', 'pubsub', 'rails', 'modal', 'jquery.cookie.js', 'jquery.placeholder'
+    =# coffeescript_include_tag 'dreamplugs', 'metamenu', 'application'
+    = include_javascripts :shared
+    
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
@@ -29,10 +31,8 @@
     = yield
 
     - if Rails.env == 'production' || Rails.env == 'theta'
-      - content_for :foot do
-        = javascript_include_tag 'google_analytics'
+      = javascript_include_tag 'google_analytics'
 
 
     = yield :foot
-    -# render "shared/facebook_sdk"
     
