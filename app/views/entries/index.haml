@@ -31,7 +31,7 @@
       #pagination
         %a.next{href: "/#{@user.username}?page=all"}
           %span more
-        %a.all{href: "/#{@user.username}?page=all"} show all 
+        %a.all{href: "/#{@user.username}?page=all", style: "#{is_ipad? ? 'display: block' : 'display: none'}"} show all 
         - @pagesize
 
 
