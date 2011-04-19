@@ -30,6 +30,7 @@
     - if !@entries.empty? && @user.entries.count > @page_size && !@view_all_mode
       #pagination
         %a.next{href: "/#{@user.username}?page=all"}
+          %span more
         %a.all{href: "/#{@user.username}?page=all"} show all 
         - @pagesize
 
