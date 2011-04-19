@@ -60,6 +60,7 @@ class DreamfieldModel
     # when what we really mean is no type filter.
     # _stream_context_panel.haml has data-filter attributes.  We should be using those instead of
     # introspecting into the view and passing that as data.
-    $('.entryFilter.entries .value').text()
+    type = $('.entryFilter.entries .value').text()
+    if type == 'entries' then "" else type
 
 
