@@ -104,7 +104,7 @@
 
 
       /EMOTIONS DETAILS & THUMBS
-      - if @entry.tags.emotion.first
+      - if @entry.tags.emotion.first._?.intensity.to_i > 0
         .emotionsWrap.wrapper
 
           / EMOTIONS DETAILS
