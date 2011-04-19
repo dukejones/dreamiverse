@@ -11,31 +11,55 @@ class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
     @dreamfield = dreamfieldModel
-    # @$container = $('#entryField .matrix')
     @$container = $('#paginationAnchor').find('.thumb-2d').last()
-
+    
     $('.next').click( (event) =>
+      log('next')
       @loadNextPage()
       return false
     )
     
+    $('.all').click( (event) =>
+      log('all')
+      @loadNextPage(true)
+      return false
+    )
+        
   clear: ->
     $('#pagination .next').removeClass('loading')
 
-  loadNextPage: ->
+  loadNextPage: (showAll)->
     return if @currentlyLoading
     @currentlyLoading = true
     @clear()
     $('#pagination .next').addClass('loading')
     @page += 1
+    
+    if showAll
+      @page = 'all'
+      
+      # $('#nextPageLoading').show()
+      # $('<div class="thumb-2d"></div>').insertAfter('.matrix')
+      # $('.matrix').hide()
+      # $('<div class="matrix"></div>').append('#entryField')
+      @$container = $('.matrix')
+    
+    log('page: ' + @page)
     @dreamfield.load({ page: @page }).then (data)=>
       @clear()
       @currentlyLoading = false
       if !data.html? || data.html == ""
         @currentlyLoading = true # No more entries to load.
         $('.next').parent().hide()
+      
+      $('#nextPageLoading').hide()
 
-      @$container.after(data.html)
+      if showAll
+        $('.matrix').find('.thumb-2d').hide() # clear existing thumbs to make room for all
+        $('.next').parent().hide()
+        @$container.append(data.html) 
+      else
+        @$container.after(data.html)
       
   update: (html) ->
     @clear()
@@ -43,9 +67,6 @@ class DreamfieldView
       $('.noEntrys').show()
 
     @$container.html(html)
-
-
-
 
 
 
