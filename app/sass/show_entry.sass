@@ -52,7 +52,7 @@
       +cancel(16)
     .stream
       +flat-all
-    .next, .stream, .prev, .books, .type, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .type, .postTime, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -61,11 +61,23 @@
       padding: 0 18px
       height: 32px
       line-height: 34px
-    .type
+    .type, .postTime
       +round(16)
       +left
       +cursor
       +user-select
+      margin-right: 8px
+    .type
+      .icon
+        width: 32px
+        height: 32px
+        margin-left: -11px
+        +left
+      span
+        +left
+    .postTime
+      font-weight: normal
+      line-height: 32px
     .next, .stream, .prev, .books, .editEntry, .deleteEntry
       +right
     .books
@@ -339,7 +351,7 @@
           top: 0
           right: 12px
 
-          .postTime, .postLocation, .shareLevel
+          .postLocation, .shareLevel
             +round(20)
             +right
             +center
@@ -521,8 +533,8 @@
       +transparent-light(50)
       +glow-light(40)
 
-      .type
-        +bevel-light
+      .type, .postTime
+        +indent-light
         +border-light
 
       .next, .stream, .prev
@@ -614,7 +626,7 @@
 
           .postInfo
             // POST TIME, LOCATION & SHARE LEVEL
-            .postTime, .postLocation, .shareLevel
+            .postLocation, .shareLevel
               +indent-light
               border: 1px solid #f1f1f1
 
@@ -665,7 +677,7 @@
       +transparent-dark(50)
       +glow-dark(40)
 
-      .type
+      .type, .postTime
         +bevel-dark
         +border-dark
 
@@ -760,7 +772,7 @@
 
           .postInfo
             // POST TIME, LOCATION & SHARE LEVEL
-            .postTime, .postLocation, .shareLevel
+            .postLocation, .shareLevel
               +indent-dark
               border: 1px solid #333
 
