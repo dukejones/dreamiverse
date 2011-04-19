@@ -67,7 +67,7 @@ class DreamfieldView
 
 class DreamfieldModel
   load: (filters={})->
-    $.getJSON("/dreamfield.json", {filters: filters}).promise()  
+    $.getJSON("/entries.json", {filters: filters}).promise()
 
 
         
