@@ -1,11 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'dreams', 'geo'
-  = coffeescript_include_tag 'publicstream', 'stream'
-
-/ :coffeescript
-/   require(['stream', 'publicstream'], (StreamController)-> new StreamController())
-/   require({baseUrl: '/javascripts'}, ['dreams', 'geo'])
-
+  = include_javascripts :stream
 
 
 / CONTEXT PANEL
