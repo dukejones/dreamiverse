@@ -134,13 +134,9 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
     
     page_size = filters[:page_size] || 10
-    if filters[:page] == 'all'
-      page_size = viewed.entries.count 
-      filters.delete :page
-    end
  
     entry_scope = entry_scope.where(user_id: viewed.id)
-    entry_scope = entry_scope.limit(page_size)
+    entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
     
     if viewer

@@ -28,32 +28,23 @@ class DreamfieldView
   clear: ->
     $('#pagination .next').removeClass('loading')
 
-  loadNextPage: (showAll)->
+  loadNextPage: (showAll=false)->
     return if @currentlyLoading
-    @currentlyLoading = true
-    @clear()
     $('#pagination .next').addClass('loading')
     @page += 1
     
-    if showAll
-      @page = 'all'
-      
-      @$container = $('.matrix')
-    
     log('page: ' + @page)
-    @dreamfield.load({ page: @page }).then (data)=>
+    @dreamfield.load({ page: @page, show_all: showAll }).then (data)=>
       @clear()
-      @currentlyLoading = false
       if !data.html? || data.html == ""
-        @currentlyLoading = true # No more entries to load.
         $('.next').parent().hide()
       
       if showAll
-        $('.matrix').find('.thumb-2d').hide() # clear existing thumbs to make room for all
+        # $('.matrix').find('.thumb-2d').hide() # clear existing thumbs to make room for all
         $('.next').parent().hide()
-        @$container.append(data.html) 
-      else
-        @$container.before(data.html)
+      #   @$container.append(data.html) 
+      # else
+      @$container.before(data.html)
 
       
   update: (html) ->
@@ -70,4 +61,3 @@ class DreamfieldModel
     $.getJSON("/entries.json", {filters: filters}).promise()
 
 
-        
