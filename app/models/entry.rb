@@ -133,7 +133,7 @@ class Entry < ActiveRecord::Base
   def self.dreamfield(viewer, viewed, filters={})
     entry_scope = Entry.order('dreamed_at DESC')
     
-    page_size = filters[:page_size] || 10
+    page_size = filters[:page_size] || 31
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
