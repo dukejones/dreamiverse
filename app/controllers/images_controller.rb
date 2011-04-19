@@ -168,7 +168,7 @@ class ImagesController < ApplicationController
   def resize
     # return if detect_infinite_redirect
     image = Image.find params[:id]
-    render_404 and return unless image && File.exists?(image.path)
+    render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
     
     image.generate(params[:descriptor], :size => params[:size], :format => params[:format])
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}

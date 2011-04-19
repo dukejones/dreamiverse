@@ -17,12 +17,10 @@ class EntriesController < ApplicationController
     # TODO: Make this work without setting it manually.
     params[:filters] ||= {}
     params[:filters][:type] = params[:entry_type].singularize if params[:entry_type]    
-    params[:filters][:page] = params[:page]
-    params[:filters][:page_size] = 10
-    
+    # params[:filters][:page] ||= params[:page]
+    params[:filters][:page_size] ||= 10
     @type_filter = params[:filters]._?[:type]
     @page_size = params[:filters][:page_size]
-    @view_all_mode = true if params[:page] == 'all'
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username] || request.xhr?
     session[:lens] = :field
