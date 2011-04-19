@@ -1,0 +1,1 @@
+C({"name": "specialevents", "children": ["jQuery.event.special.destroyed"], "type": "page", "parent": "../jquery/event/event.js", "comment": "<p>JavaScriptMVC adds a bunch of useful jQuery extensions for the dom.  Check them out on the left.</p>", "title": "Special Events", "tags": ["core"]})

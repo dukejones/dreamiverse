@@ -1,0 +1,1 @@
+C({"name": "jQuery.String", "type": "class", "parent": "../jquery/lang/lang.js", "comment": "", "children": ["jQuery.String.strip", "jQuery.String.capitalize", "jQuery.String.endsWith", "jQuery.String.camelize", "jQuery.String.classize", "jQuery.String.niceName", "jQuery.String.underscore", "jQuery.String.sub", "jQuery.String.rsplit"]})
