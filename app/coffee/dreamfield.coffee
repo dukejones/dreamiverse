@@ -11,7 +11,7 @@ class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
     @dreamfield = dreamfieldModel
-    @$container = $('#paginationAnchor').find('.thumb-2d').last()
+    @$container = $('#pagination')
     
     $('.next').click( (event) =>
       log('next')
@@ -38,10 +38,6 @@ class DreamfieldView
     if showAll
       @page = 'all'
       
-      # $('#nextPageLoading').show()
-      # $('<div class="thumb-2d"></div>').insertAfter('.matrix')
-      # $('.matrix').hide()
-      # $('<div class="matrix"></div>').append('#entryField')
       @$container = $('.matrix')
     
     log('page: ' + @page)
@@ -52,14 +48,13 @@ class DreamfieldView
         @currentlyLoading = true # No more entries to load.
         $('.next').parent().hide()
       
-      $('#nextPageLoading').hide()
-
       if showAll
         $('.matrix').find('.thumb-2d').hide() # clear existing thumbs to make room for all
         $('.next').parent().hide()
         @$container.append(data.html) 
       else
-        @$container.after(data.html)
+        @$container.before(data.html)
+
       
   update: (html) ->
     @clear()
@@ -72,16 +67,7 @@ class DreamfieldView
 
 class DreamfieldModel
   load: (filters={})->
-    $.extend(filters, @filterOpts())
     $.getJSON("/dreamfield.json", {filters: filters}).promise()  
-  updateFilters: ->
-    @filters = []
-    # get new filter values (will be .filter .value to target the span)
-    $.each $('.trigger span.value'), (key, value) =>
-      @filters.push($(value).text())  # XXX: data tightly coupled to display.
-  filterOpts: ->
-    # type: @filters[0]
-    # friend: @filters[1]
-    # starlight: @filters[2]
+
 
         
