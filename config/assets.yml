@@ -23,3 +23,5 @@ javascripts:
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css
+    - public/stylesheets/compiled/entries.css
+    - public/stylesheets/jquery.lightbox-0.5.css
