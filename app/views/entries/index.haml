@@ -1,7 +1,11 @@
 - content_for :head do
   = sass_link_tag 'entries'
-  = coffeescript_include_tag 'modal', 'follow_hover', 'dreamfield'
-  = javascript_include_tag 'tag_stream', 'dreams', 'geo'
+  = include_javascripts :entries
+  :coffeescript
+    $( ->
+      dreamfieldController = new DreamfieldController('#{@user.username}')
+    )
+  
 
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}

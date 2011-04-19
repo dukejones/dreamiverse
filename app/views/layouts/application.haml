@@ -8,10 +8,7 @@
     - if !@entry._?.main_image
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
-    =# sass_link_tag 'shared'
     = include_stylesheets :shared, :media => 'all'
-    =# javascript_include_tag 'jquery.min', 'jquery.lightbox-0.5.min', 'jquery.hoverIntent.minified', 'pubsub', 'rails', 'modal', 'jquery.cookie.js', 'jquery.placeholder'
-    =# coffeescript_include_tag 'dreamplugs', 'metamenu', 'application'
     = include_javascripts :shared
     
     :coffeescript

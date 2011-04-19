@@ -1,10 +1,7 @@
-$(document).ready ->
-  dreamfieldController = new DreamfieldController()
 
-
-class DreamfieldController
-  constructor: ->
-    @dreamfield = new DreamfieldModel()
+class window.DreamfieldController
+  constructor: (username)->
+    @dreamfield = new DreamfieldModel(username)
     @dreamfieldView = new DreamfieldView(@dreamfield)
         
 class DreamfieldView
@@ -55,7 +52,9 @@ class DreamfieldView
 
 
 class DreamfieldModel
+  constructor: (username)->
+    @username = username
   load: (filters={})->
-    $.getJSON("/entries.json", {filters: filters}).promise()
+    $.getJSON("/"+@username+".json", {filters: filters}).promise()
 
 

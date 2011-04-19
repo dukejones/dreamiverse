@@ -22,7 +22,7 @@ class EntriesController < ApplicationController
     @type_filter = params[:filters]._?[:type]
     @page_size = params[:filters][:page_size]
     
-    flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username] || request.xhr?
+    flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     session[:lens] = :field
     session[:filters] = params[:filters]
 

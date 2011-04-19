@@ -19,7 +19,13 @@ javascripts:
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/metamenu.js
     - public/javascripts/compiled/application.js
-
+  entries:
+    - public/javascripts/compiled/follow_hover.js
+    - public/javascripts/compiled/dreamfield.js
+    - public/javascripts/tag_stream.js
+    - public/javascripts/dreams.js
+    - public/javascripts/geo.js
+    
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css
