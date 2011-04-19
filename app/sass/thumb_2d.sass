@@ -166,7 +166,10 @@
 // COLORS
 .light #entryField .matrix, .light #home .matrix
   .thumb-2d
-    +gradient(#fff, #aaa)
+    background: #fff
+    background: -moz-linear-gradient(top, #fff, #fff 100px, #aaa)
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(.37,#fff), to(#aaa))
+
     &:hover
       +glow-light(40)
 
@@ -175,8 +178,8 @@
       color: #fff
 
     .fadedBack
-      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #dadada 100px, #aaa)
-      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#dadada), to(#aaa))
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 100px, #aaa)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#fff), to(#aaa))
       // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
 
 
@@ -206,7 +209,10 @@
 
 .dark #entryField .matrix,.dark #home .matrix
   .thumb-2d
-    +gradient(#3a3a3a, #000)
+    background: #3a3a3a
+    background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #000)
+    background: -webkit-gradient(linear, center top, center bottom, from(#3a3a3a), color-stop(0.37,#3a3a3a), to(#000))
+
     &:hover
       +glow-dark(40)
 
@@ -215,8 +221,8 @@
       color: #000
 
     .fadedBack
-      background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #212121 100px, #000)
-      background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#212121), to(#000))
+      background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 100px, #000)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#3a3a3a), to(#000))
       // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
 
 
