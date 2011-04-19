@@ -24,5 +24,5 @@ every 1.day, :at => '3:00 am' do
 end
 
 every 3.days, :at => '4:30 am' do
-  rake "image:resize:defaults"
+  rake "image:resize"
 end
