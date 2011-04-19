@@ -11,13 +11,11 @@ class DreamfieldView
     @$container = $('#pagination')
     
     $('.next').click( (event) =>
-      log('next')
       @loadNextPage()
       return false
     )
     
     $('.all').click( (event) =>
-      log('all')
       @loadNextPage(true)
       return false
     )
@@ -30,7 +28,6 @@ class DreamfieldView
     $('#pagination .next').addClass('loading')
     @page += 1
     
-    log('page: ' + @page)
     @dreamfield.load({ page: @page, show_all: showAll }).then (data)=>
       @clear()
       if !data.html? || data.html == ""
@@ -55,6 +52,14 @@ class DreamfieldModel
   constructor: (username)->
     @username = username
   load: (filters={})->
+    $.extend(filters, { type: @typeFilter() })
     $.getJSON("/"+@username+".json", {filters: filters}).promise()
+  typeFilter: ->
+    # XXX: View is tightly coupled to the data being passed.
+    # Extra code is required on the server to deal with strings like "all entries" being passed 
+    # when what we really mean is no type filter.
+    # _stream_context_panel.haml has data-filter attributes.  We should be using those instead of
+    # introspecting into the view and passing that as data.
+    $('.entryFilter.entries .value').text()
 
 
