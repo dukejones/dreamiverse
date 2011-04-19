@@ -21,6 +21,8 @@
 
   %body{id: 'body', class: theme, style: bedsheet_style}
 
+    #bodyClick
+
     - unless flash.notice.blank? && flash.alert.blank?
       = render :partial => "layouts/alert"
 
