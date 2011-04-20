@@ -130,13 +130,12 @@ class Entry < ActiveRecord::Base
     entries
   end
 
-  def self.dreamfield(viewer, viewed, filters)
-    filters ||= {}
+  def self.dreamfield(viewer, viewed, filters={})
     entry_scope = Entry.order('dreamed_at DESC')
-    entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     
-    page_size = filters[:page_size] || 10
+    page_size = filters[:page_size] || 31
  
+    entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
@@ -149,7 +148,7 @@ class Entry < ActiveRecord::Base
 
     entries
   end
-
+  
   def nouns
     whos + wheres + whats
     # tags.all(:include => :noun).map(&:noun) - seems to be slower.

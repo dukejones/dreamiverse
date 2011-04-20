@@ -12,10 +12,10 @@
 / DREAM FIELD
 #entryField
   / PAGE HEADER
-  - if @type_filter
+  - if @filters[:type]
     .pageHeader.dreamHeader
       .img{"style" => "background-image: url(#{dreamfield_header_image})"}
-      %h1= @type_filter._?.pluralize || "all entries"
+      %h1= @filters[:type].pluralize
     .clear
   
   / NEW ENTRY BAR
@@ -30,7 +30,7 @@
 
 
 
-    - if !@entries.empty? && @user.entries.count > @page_size && !@view_all_mode
+    - if !@entries.empty? && @entry_count > @filters[:page_size]
       #pagination
         %a.next{href: "/#{@user.username}?page=all"}
           %span more

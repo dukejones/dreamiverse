@@ -2,31 +2,32 @@ class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream, :random]
 
-  def entry_list
+  def entry_list(filters=nil)
+    filters ||= session[:filters] 
+
     # This is an example of a hack due to tightly coupling Display to Data.
-    session[:filters].delete(:type) if session[:filters]._?[:type] == "all entries"
-    @entries = case session[:lens]
+    filters.delete(:type) if filters[:type] == "all entries"
+
+    return case session[:lens]
       when :stream
-        Entry.dreamstream(current_user, session[:filters])
+        Entry.dreamstream(current_user, filters)
       else # when :field
-        Entry.dreamfield(current_user, @user, session[:filters])
+        Entry.dreamfield(current_user, @user, filters)
     end
   end
   
   def index
-    # TODO: Make this work without setting it manually.
-    params[:filters] ||= {}
-    params[:filters][:type] = params[:entry_type].singularize if params[:entry_type]    
-    # params[:filters][:page] ||= params[:page]
-    params[:filters][:page_size] ||= 10
-    @type_filter = params[:filters]._?[:type]
-    @page_size = params[:filters][:page_size]
+    @filters = params[:filters] || {}
+    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
+    @filters[:page] ||= params[:page]
+    @filters[:page_size] ||= 31
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     session[:lens] = :field
-    session[:filters] = params[:filters]
+    session[:filters] = @filters
 
-    entry_list
+    @entries = entry_list
+    @entry_count = entry_list({type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
 
@@ -43,7 +44,7 @@ class EntriesController < ApplicationController
     @entry_mode = 'show'
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
-    entry_list
+    @entries = entry_list
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
@@ -125,11 +126,11 @@ class EntriesController < ApplicationController
 
   def stream
     session[:lens] = :stream
-    session[:filters] = params[:filters]
+    session[:filters] = params[:filters] || {}
 
     @user = current_user
     
-    entry_list
+    @entries = entry_list
     
     if request.xhr?
       thumbs_html = ""
