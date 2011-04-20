@@ -1,4 +1,4 @@
-$.Controller('Dreamcatcher.Controllers.MetaMenu',
+$.Controller 'Dreamcatcher.Controllers.MetaMenu',
 
   init: ->
     log 'init MetaMenu'
@@ -41,5 +41,3 @@ $.Controller('Dreamcatcher.Controllers.MetaMenu',
     $("#settingsPanel,#appearancePanel").hide()
     $("#bodyClick").hide()
     $('.item.settings,.item.appearance').removeClass('selected')
-
-)

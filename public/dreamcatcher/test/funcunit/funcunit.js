@@ -1,5 +1,11 @@
 steal
  .plugins('steal/coffee',"funcunit")
  .then(function() {
-   steal.coffee("cookbook_test");
+   steal.coffee(
+     "dreamcatcher_test",
+     //"application_controller_test",
+     //"settings_controller_test",
+     "appearance_controller_test"//,
+     //"bedsheet_controller_test"
+   );
  });

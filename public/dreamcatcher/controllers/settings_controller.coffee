@@ -1,4 +1,4 @@
-$.Controller('Dreamcatcher.Controllers.Settings',
+$.Controller 'Dreamcatcher.Controllers.Settings',
 
   init: ->
     @firstRun = true
@@ -8,6 +8,21 @@ $.Controller('Dreamcatcher.Controllers.Settings',
     @defaultSharingId = $('#settingsPanel .defaultSharing').data('id') 
     $('#sharingList').select(@defaultSharingId)
     $('#sharingList').change()
+    
+    #refactor following code into proper methods...see below
+    $('form#change_password').bind 'ajax:beforeSend', (xhr, settings) ->
+      $('.changePassword .target').hide()
+      
+    $('form#change_password').bind 'ajax:success', (data, xhr, status)->
+      $('p.notice').text(xhr.message)
+      if xhr.errors
+        for error, message of xhr.errors
+          $('#user_' + error).prev().text(message[0])
+        # open the panel back up
+        $('.changePassword .target').slideDown(250)
+      else
+        $('#change_password .error').text('')
+        $('#user_old_password, #user_password, #user_password_confirmation').val('')
 
   show: ->    
     $('#settingsPanel').show()
@@ -32,6 +47,7 @@ $.Controller('Dreamcatcher.Controllers.Settings',
   update: (sharingLevel) ->
     Dreamcatcher.Models.Settings.update(sharingLevel)
 
+  
   #? - next 4, not sure if ajax: works in this model... find a good way!
   '#fbLink ajax:success': ->
     $('#fbLink').remove()
@@ -50,4 +66,4 @@ $.Controller('Dreamcatcher.Controllers.Settings',
     $('.changePasswordForm').hide()
     $('#user_password,#user_password_confirmation').val('')
 
-)
+

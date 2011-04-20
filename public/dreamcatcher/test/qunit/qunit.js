@@ -1,5 +1,8 @@
 steal
-  .plugins("steal/coffee","funcunit/qunit", "cookbook")
+  .plugins("steal/coffee","funcunit/qunit", "dreamcatcher")
   .then(function(){
-    steal.coffee("cookbook_test");
+    steal.coffee(
+      "dreamcatcher_test",
+      "bedsheet_test"
+    );
   });

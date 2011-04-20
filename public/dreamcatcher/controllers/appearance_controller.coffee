@@ -1,4 +1,4 @@
-$.Controller('Dreamcatcher.Controllers.Appearance',
+$.Controller 'Dreamcatcher.Controllers.Appearance',
 
   init: ->
     #sets the entryId if current page is an entry
@@ -28,4 +28,4 @@ $.Controller('Dreamcatcher.Controllers.Appearance',
 
   update: (data) ->
     Dreamcatcher.Models.AppearancePanel.update(@entryId, data)
-)
+

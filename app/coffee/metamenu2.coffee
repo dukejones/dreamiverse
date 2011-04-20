@@ -264,12 +264,13 @@ class SettingsPanel extends MetaMenu
       
       #display new link
       $('.network').append(newElement)
-    
+    log 'a'
     # setup change password fields
-    $('form#change_password').bind 'ajax:beforeSend', (xhr, settings)->
+    $('form#change_password').bind 'ajax:beforeSend', (xhr, settings) ->
+      alert 'a'
       $('.changePassword .target').hide()
     
-    $('form#change_password').bind 'ajax:success', (data, xhr, status)->
+    $('form#change_password').bind 'ajax:success', (data, xhr, status) ->
       $('p.notice').text(xhr.message)
       if xhr.errors
         for error, message of xhr.errors
