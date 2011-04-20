@@ -13,7 +13,7 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 24)}'); background-repeat: no-repeat; background-position: center;"}
+      .entryType{style: "background: url('#{entry_type_icon(entry.type, 24)}') no-repeat center center"}
       %table
         %tr
           %td.date= time_ago_in_words(entry.dreamed_at)

@@ -13,12 +13,27 @@ javascripts:
     - public/javascripts/jquery.hoverIntent.minified.js
     - public/javascripts/pubsub.js
     - public/javascripts/rails.js
-    - public/javascripts/modal.js
     - public/javascripts/jquery.cookie.js
     - public/javascripts/jquery.placeholder.js
+    - public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
-
+  entries:
+    - public/javascripts/geo.js
+    - public/javascripts/dreams.js
+    - public/javascripts/compiled/follow_hover.js
+    - public/javascripts/compiled/dreamfield.js
+    - public/javascripts/tag_stream.js
+  stream:
+    - public/javascripts/geo.js
+    - public/javascripts/dreams.js
+    - public/javascripts/compiled/publicstream.js
+    - public/javascripts/compiled/stream.js
+    
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css
+    - public/stylesheets/compiled/entries.css
+    - public/stylesheets/compiled/friends.css
+    - public/stylesheets/compiled/dreamstars.css
+    - public/stylesheets/jquery.lightbox-0.5.css

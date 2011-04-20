@@ -166,9 +166,10 @@ class ImagesController < ApplicationController
   # We should find a way to show a nice spinner while it is redirecting.
   # This may be a prime place for optimization.
   def resize
-    return if detect_infinite_redirect
-    
+    # return if detect_infinite_redirect
     image = Image.find params[:id]
+    render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
+    
     image.generate(params[:descriptor], :size => params[:size], :format => params[:format])
     # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
     redirect_to image.url(params[:descriptor], :size => params[:size])
