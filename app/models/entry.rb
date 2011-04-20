@@ -111,9 +111,10 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     page_size = filters[:page_size] || 32
-    # entry_scope = entry_scope.where(:updated_at > 50.days.ago)
+
     entry_scope = entry_scope.limit(page_size)
     entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
 
     users_to_view =  # based on friend filter
       if filters[:friend] == "friends"
