@@ -10,9 +10,15 @@ steal.plugins(
 	//.css('cookbook')	      // loads styles
 	.resources()					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
+    //StealJS fix: don't forget to contribute!
 		steal.coffee(
-			'models/appearancepanel',
-			'controllers/appearancepanel_controller'
+			'models/settings',
+			'models/appearance',
+			'models/bedsheets',
+			'controllers/metamenu_controller',
+			'controllers/settings_controller',
+			'controllers/appearance_controller',
+			'controllers/bedsheets_controller'
 		);
 	})
 	.views();

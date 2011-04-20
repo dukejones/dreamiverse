@@ -17,7 +17,6 @@ javascripts:
     - public/javascripts/jquery.cookie.js
     - public/javascripts/jquery.placeholder.js
     - public/javascripts/compiled/dreamplugs.js
-    - public/javascripts/compiled/metamenu.js
     - public/javascripts/compiled/application.js
 
 stylesheets:

@@ -9,7 +9,7 @@ window.setupMetaDropdowns = ->
   appearancePanel.expand()
   $('.item.appearance').addClass('selected')
   
-  ###
+
   settingsPanel = new SettingsPanel('.settingsPanel')
 
   $.subscribe('toggleSettings', (event) ->
@@ -35,9 +35,9 @@ window.setupMetaDropdowns = ->
     $.publish('toggleSettings', [this])
     $('.item.settings').addClass('selected')
   )
-  ###
 
-  ###
+
+
   $.subscribe('toggleAppearance', (event) ->
     appearancePanel.contract()
     settingsPanel.contract()
@@ -57,7 +57,7 @@ window.setupMetaDropdowns = ->
     appearancePanel.contract()
     settingsPanel.contract()
   )
-  ###
+
 
 # Model
 class MetaMenu
@@ -99,7 +99,6 @@ class AppearancePanel extends MetaMenu
   constructor: (@name) ->
     super(@name)
 
-    ###
     @initBedsheets()
     @initScrolling()
     @initTheme()
@@ -127,7 +126,7 @@ class AppearancePanel extends MetaMenu
     
     $('.bedsheets .attachment').bind 'ajax:error', (xhr, status, error)->
       $('p.alert').text(error)
-    ###
+    
 
   # code to display and trigger bedsheet updates                   
   initBedsheets: => 

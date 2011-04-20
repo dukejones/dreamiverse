@@ -47,11 +47,12 @@ steal({
 		//@steal-remove-start
 		var current, path;
 		for ( var i = 0; i < arguments.length; i++ ) {
+		  console.log(arguments[i]);
 			steal({
 				path: arguments[i] + ".coffee",
 				type: "text/coffee",
 				process: function( text ) {
-					return CoffeeScript.compile(text)
+					return CoffeeScript.compile(text);
 				}
 			})
 		}
