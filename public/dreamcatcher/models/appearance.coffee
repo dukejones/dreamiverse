@@ -1,4 +1,4 @@
-$.Model.extend('Dreamcatcher.Models.Appearance',{  
+$.Model.extend('Dreamcatcher.Models.Appearance',{
 
   update: ( id, params, success, error ) ->
     url = "/user/set_view_preferences"

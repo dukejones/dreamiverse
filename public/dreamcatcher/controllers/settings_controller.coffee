@@ -1,6 +1,15 @@
 $.Controller('Dreamcatcher.Controllers.Settings',
 
-  show: ->
+  init: ->
+    @firstRun = true
+    
+  load: ->
+    #setup default sharing 
+    @defaultSharingId = $('#settingsPanel .defaultSharing').data('id') 
+    $('#sharingList').select(@defaultSharingId)
+    $('#sharingList').change()
+
+  show: ->    
     $('#settingsPanel').show()
 
   # setup default sharing dropdown change
@@ -16,11 +25,29 @@ $.Controller('Dreamcatcher.Controllers.Settings',
 
     $('.sharingIcon').css("background", "url(/images/icons/#{background}) no-repeat center transparent")
 
-    @update(value) if !@firstRun 
+    #only update if first run?
+    @update(value) if !@firstRun
     @firstRun = false
 
   update: (sharingLevel) ->
     Dreamcatcher.Models.Settings.update(sharingLevel)
+
+  #? - next 4, not sure if ajax: works in this model... find a good way!
+  '#fbLink ajax:success': ->
+    $('#fbLink').remove()
+    $('.network').append('<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>')
+
+  'form#change_password ajax:beforeSend': (xhr, settings) ->
+    alert 'before send'
+  
+  'form#change_password ajax:success': (data, xhr, status) ->
+    alert 'success'
+    
+  'form#change_password ajax:error': (xhr, status, error) ->
+    alert 'error'
+    
+  '.cancel click': ->
+    $('.changePasswordForm').hide()
+    $('#user_password,#user_password_confirmation').val('')
+
 )
-
-

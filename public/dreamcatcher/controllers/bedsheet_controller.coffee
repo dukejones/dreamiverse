@@ -1,5 +1,8 @@
 $.Controller('Dreamcatcher.Controllers.Bedsheet',
 
+  #TODO: incorporate select album/genre functionality
+  #TODO: look at doing a loading spinner if bedsheets haven't been loaded yet
+  
   setParent: (parent) ->
     @parent = parent
 

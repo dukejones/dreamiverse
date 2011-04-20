@@ -1,4 +1,4 @@
-$.Model.extend('Dreamcatcher.Models.Bedsheet',{  
+$.Model.extend('Dreamcatcher.Models.Bedsheet',{
 
   findAll: ( params, success, error ) ->
     $.ajax(
@@ -9,15 +9,15 @@ $.Model.extend('Dreamcatcher.Models.Bedsheet',{
       success: @callback(['wrapMany',success])
       error: error
     )
-    
-    findByGenre: (genre, success, error ) ->
-      $.ajax(
-        url: "/images.json?section=Bedsheets&genre=#{genre}"
-        type: 'get'
-        dataType: 'json'
-        data: {genre: genre}
-        success: @callback(['wrapMany',success])
-        error: error
-      )
+
+  findByGenre: (genre, success, error ) ->
+    $.ajax(
+      url: "/images.json?section=Bedsheets&genre=#{genre}"
+      type: 'get'
+      dataType: 'json'
+      data: {genre: genre}
+      success: @callback(['wrapMany',success])
+      error: error
+    )
 },
 {})

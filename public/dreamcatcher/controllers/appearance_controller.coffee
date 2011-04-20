@@ -1,13 +1,16 @@
 $.Controller('Dreamcatcher.Controllers.Appearance',
-  #id of entry or null for user
+
   init: ->
+    #sets the entryId if current page is an entry
+    #otherwise null for user view
     @entryId = $('#showEntry').data('id') if $('#show_entry_mode').attr('name')?
 
   show: ->
     $('#appearancePanel').show()
-    if not @bedsheets?
-      @bedsheets = new Dreamcatcher.Controllers.Bedsheet($('#bedsheetScroller')) 
-      @bedsheets.setParent(this)
+    
+    #load the bedsheets if object hasn't been created yet
+    @bedsheets = new Dreamcatcher.Controllers.Bedsheet($('#bedsheetScroller')) if not @bedsheets?
+    @bedsheets.setParent(this)
     
   '#scroll,#fixed click': (el) ->
     scrolling = el.attr('id')
@@ -26,5 +29,3 @@ $.Controller('Dreamcatcher.Controllers.Appearance',
   update: (data) ->
     Dreamcatcher.Models.AppearancePanel.update(@entryId, data)
 )
-
-

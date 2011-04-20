@@ -11,6 +11,8 @@
     = include_stylesheets :shared, :media => 'all'
     = include_javascripts :shared
     
+    %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+    
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
@@ -34,6 +36,4 @@
 
 
     = yield :foot
-    
-    %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
     

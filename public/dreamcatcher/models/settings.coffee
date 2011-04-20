@@ -1,4 +1,5 @@
-$.Model('Dreamcatcher.Models.Settings',
+$.Model.extend('Dreamcatcher.Models.Settings',{
+
   update: ( sharingLevel, success, error ) ->
     $.ajax(
       type: 'put'
@@ -7,4 +8,5 @@ $.Model('Dreamcatcher.Models.Settings',
       data:
         "user[default_sharing_level]": parseInt(sharingLevel)
     )
-)
+},
+{})
