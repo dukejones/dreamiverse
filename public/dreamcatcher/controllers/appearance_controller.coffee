@@ -1,12 +1,13 @@
 $.Controller('Dreamcatcher.Controllers.Appearance',
-
   #id of entry or null for user
   init: ->
     @entryId = $('#showEntry').data('id') if $('#show_entry_mode').attr('name')?
 
   show: ->
     $('#appearancePanel').show()
-    @bedsheets = new Dreamcatcher.Controllers.Bedsheets($('#bedsheetScroller'))
+    if not @bedsheets?
+      @bedsheets = new Dreamcatcher.Controllers.Bedsheet($('#bedsheetScroller')) 
+      @bedsheets.setParent(this)
     
   '#scroll,#fixed click': (el) ->
     scrolling = el.attr('id')

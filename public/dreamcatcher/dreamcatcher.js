@@ -14,11 +14,11 @@ steal.plugins(
 		steal.coffee(
 			'models/settings',
 			'models/appearance',
-			'models/bedsheets',
+			'models/bedsheet',
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
-			'controllers/bedsheets_controller'
+			'controllers/bedsheet_controller'
 		);
 	})
 	.views();
