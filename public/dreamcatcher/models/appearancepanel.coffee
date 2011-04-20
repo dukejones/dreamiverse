@@ -1,5 +1,6 @@
 $.Model.extend('Dreamcatcher.Models.AppearancePanel',{  
-  findAllBedsheets: ( params, success, error ) ->
+
+  findAll: ( params, success, error ) ->
     $.ajax(
       url: '/images.json?section=Bedsheets'
       type: 'get'
@@ -9,24 +10,15 @@ $.Model.extend('Dreamcatcher.Models.AppearancePanel',{
       error: error
     )
 
-  updateEntryView: ( id, params, success, error ) ->
+  update: ( id, params, success, error ) ->
+    url = "/user/set_view_preferences"
+    #url = "/entries/#{id}/set_view_preferences" if id? #entry view is id is not null
     $.ajax(
-      url: "/entries/"+id+"/set_view_preferences"
       type: 'post'
-      dataType: 'json'
-      data: params
-      success: @callback(['wrapMany',success])
-      error: error
-    )
-
-  updateUserView: ( params, success, error )->
-    $.ajax(
-      url: "/user/set_view_preferences"
-      type: 'post'
-      dataType: 'json'
+      url: url
       data: params
       success: success
       error: error
-  )
+    )
 },
 {})
