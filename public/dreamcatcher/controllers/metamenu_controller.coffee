@@ -29,6 +29,7 @@ $.Controller('Dreamcatcher.Controllers.MetaMenu',
   expand: () ->
     $('html, body').animate({scrollTop:0}, 'slow') #scroll to top
     @currentPanel.show()
+    $('#bodyClick').show()
 
   contract: ->
     # code to contract menu item

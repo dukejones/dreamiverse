@@ -1,8 +1,7 @@
 $.Controller('Dreamcatcher.Controllers.Bedsheet',
-    
+
   setParent: (parent) ->
     @parent = parent
-    alert @parent
 
   init: ->
     Dreamcatcher.Models.Bedsheet.findAll({}, @callback('populate'))
