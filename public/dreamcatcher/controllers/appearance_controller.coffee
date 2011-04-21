@@ -1,4 +1,5 @@
 $.Controller 'Dreamcatcher.Controllers.Appearance',
+  #TODO: fixed, scroll doesn't work when loaded (not selected)
 
   init: ->
     #sets the entryId if current page is an entry
@@ -20,12 +21,12 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
     ) 
 
   '#light,#dark click': (el) ->
-    theme = el.attr('id')
-    $('#body').removeClass('light dark').addClass(theme)
+    @theme = el.attr('id')
+    $('#body').removeClass('light dark').addClass(@theme)
     @update(
-      theme: theme
+      theme: @theme
     ) 
 
   update: (data) ->
-    Dreamcatcher.Models.AppearancePanel.update(@entryId, data)
+    Dreamcatcher.Models.Appearance.update(@entryId, data)
 
