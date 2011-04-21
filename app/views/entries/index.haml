@@ -32,9 +32,9 @@
 
     - if !@entries.empty? && @entry_count > @filters[:page_size]
       #pagination
-        %a.next{href: "/#{@user.username}?page=all"}
+        %a.next{href: "/#{@user.username}?page=1&show_all=true"}
           %span more
-        %a.all{href: "/#{@user.username}?page=all", style: "#{is_ipad? ? 'display: block' : ''}"} show all 
+        %a.all{href: "/#{@user.username}?page=1&show_all=true", style: "#{is_ipad? ? 'display: block' : ''}"} show all 
         - @pagesize
 
 
