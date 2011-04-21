@@ -78,11 +78,11 @@ class EntriesController < ApplicationController
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     @entry = current_user.entries.create(params[:entry])
-    @entry.set_whats(params[:what_tags])
-    @entry.set_links(params[:links])
-    @entry.set_emotions(params[:emotions])
 
     if @entry.valid?
+      @entry.set_whats(params[:what_tags])
+      @entry.set_links(params[:links])
+      @entry.set_emotions(params[:emotions])
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
