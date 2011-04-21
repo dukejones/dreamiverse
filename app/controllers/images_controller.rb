@@ -3,16 +3,21 @@ class ImagesController < ApplicationController
   before_filter :require_user, :only => :manage
 
   def index
+    image_scope = Image.enabled
+    image_scope = image_scope.where(section: params[:section]) if params.has_key?(:section)
+    
+    image_scope = image_scope.where(genre: params[:genre]) if params.has_key?(:genre)
+    
     if params.has_key?(:artist) && params.has_key?(:album)
       params[:album] = nil if params[:album] == "null"
       params[:artist] = nil if params[:artist] == ""
-      @images = Image.enabled.sectioned(params[:section]).where(artist: params[:artist], album: params[:album])
+      @images = image_scope.where(artist: params[:artist], album: params[:album])
     elsif params[:q] # search
-      @images = Image.enabled.sectioned(params[:section]).search(params) # takes filters etc as well
+      @images = image_scope.search(params) # takes filters etc as well
     elsif params[:ids]
-      @images = Image.enabled.where(id: params[:ids].split(','))
+      @images = image_scope.where(id: params[:ids].split(','))
     else
-      @images = Image.enabled.sectioned(params[:section]).all
+      @images = image_scope.all
     end
 
     respond_to do |format|
@@ -20,7 +25,13 @@ class ImagesController < ApplicationController
         render :partial => 'image_browser' if request.xhr?
         # otherwise, index.html.erb
       end
-      format.json { render :json => @images }
+      format.json do 
+        if params[:ids_only]
+          render :json => @images.map(&:id)
+        else
+          render :json => @images
+        end
+      end
     end
   end
   
