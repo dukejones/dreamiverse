@@ -119,15 +119,15 @@ class ContextView
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
       when 'following'
-        iconFileSource = 'friend-follow-24.png'
+        iconFileSource = 'friend-24-follow.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
       when 'followers'
-        iconFileSource = 'friend-follower-24.png'
+        iconFileSource = 'friend-24-follower.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.friends').find('.image').find('img').attr('src', iconSource)
       else
-        iconFileSource = 'allEntries-24-hover.png'
+        iconFileSource = 'entries-24.png'
         iconSource = '/images/icons/' + iconFileSource
         $('.entryFilter.entries').find('.image').find('img').attr('src', iconSource)
       

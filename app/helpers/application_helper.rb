@@ -21,11 +21,11 @@ module ApplicationHelper
     when :friends
       "friend-#{size}.png"
     when :following
-      "friend-follow-#{size}.png"
+      "friend-#{size}-follow.png"
     when :followed_by
-      "friend-follower-#{size}.png"
+      "friend-#{size}-follower.png"
     when :none
-      "friend-none-#{size}.png"
+      "friend-#{size}-none.png"
     end
   end
 

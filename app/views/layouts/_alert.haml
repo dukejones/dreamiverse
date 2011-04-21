@@ -11,10 +11,10 @@
 
 
 #globalAlert
-  - if flash.notice
+  .notice{class: "#{flash.notice ? '' : 'hidden'}"}
     %p= raw(flash.notice)
     .checkmark
 
-  - if flash.alert
+  .alert{class: "#{flash.alert ? '' : 'hidden'}"}
     %p= raw(flash.alert)
     .close-24
