@@ -38,15 +38,20 @@
         - @pagesize
 
 
-
-
-    - if (@user == current_user) && @entries.empty?
+    - if !@filters[:type] && (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 
     - elsif @entries.empty?
       / NO DREAMS TO DISPLAY
-      .noEntrys there are no public entries to display
+      .noEntrys
+        - if @filters[:type]
+          no 
+          = @filters[:type].pluralize
+          to display
+        - else
+          no public entries to display
+
 
 
 / APPLIES SELECTED CLASS TO META MENU
