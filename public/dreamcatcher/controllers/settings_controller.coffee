@@ -30,6 +30,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   # setup default sharing dropdown change
   '#sharingList change': (el, ev) ->
     value = el.find('option:selected')[0].value
+    alert value
 
     switch value
       when "500" then background = 'sharing-24-hover.png'

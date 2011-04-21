@@ -12,14 +12,5 @@ $.Model.extend('Dreamcatcher.Models.Bedsheet',{
       error: error
     )
 
-  findByGenre: (genre, success, error ) ->
-    $.ajax(
-      url: "/images.json?section=Bedsheets&genre=#{genre}"
-      type: 'get'
-      dataType: 'json'
-      data: {genre: genre}
-      success: @callback(['wrapMany',success])
-      error: error
-    )
 },
 {})
