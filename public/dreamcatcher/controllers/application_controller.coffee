@@ -1,6 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
 
-  load: ->
+  init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu($('.rightPanel'))
     
   '#bodyClick click': ->

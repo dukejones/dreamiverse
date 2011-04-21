@@ -1,40 +1,42 @@
+###
+#LEGACY CODE!
 
 $(document).ready ->
   setupMetaDropdowns()
   
-# init
 window.setupMetaDropdowns = ->
-  appearancePanel = new AppearancePanel('.appearancePanel')
-  appearancePanel.expand()
-
-# Model
-class MetaMenu
-  constructor: (@name)->
-    @$currentMenuButton = $(@name).find('.trigger').first()
-    @$currentMenuPanel = $(@name).find('.target').first()
   
-  toggleView: ->
-    if @$currentMenuPanel.is(":visible")
-      @contract()
+
+
+  
+
+  # setup fb unlink UI update
+  $('#fbLink').bind 'ajax:success', (event, xhr, status)->
+    newElement = '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'
+
+    #remove old link
+    $('#fbLink').remove()
+    
+    #display new link
+    $('.network').append(newElement)
+  
+  # setup change password fields
+  $('form#change_password').bind 'ajax:beforeSend', (xhr, settings)->
+    $('.changePassword .target').hide()
+
+  
+  $('form#change_password').bind 'ajax:success', (data, xhr, status)->
+    $('p.notice').text(xhr.message)
+    if xhr.errors
+      for error, message of xhr.errors
+        $('#user_' + error).prev().text(message[0])
+      # open the panel back up
+      $('.changePassword .target').slideDown(250)
     else
-      @expand()
-    
-  expand: ->
-    $('#bodyClick').show()
-    $('html, body').animate({scrollTop:0}, 'slow');
+      $('#change_password .error').text('')
+      $('#user_old_password, #user_password, #user_password_confirmation').val('')
   
-    $('#bodyClick').click( (event) =>
-      @$currentMenuPanel.hide()
-      $('#bodyClick').hide()
-      $('.item.settings, .item.appearance').removeClass('selected')
-    )
-    @$currentMenuPanel.show()
-    
-  contract: ->
-    @$currentMenuPanel.fadeOut(250)
-    $('#bodyClick').remove()
-
-# Appearance Model Subclass
-class AppearancePanel extends MetaMenu
-  constructor: (@name) ->
-    super(@name)
+  $('form#change_password').bind 'ajax:error', (xhr, status, error)->
+    #$('p.alert').text(xhr.error)
+    log xhr.errors
+###

@@ -1,11 +1,10 @@
 $.Model.extend('Dreamcatcher.Models.Appearance',{
 
+  #TODO: this doesn't work for some reason. Fix.
+
   update: ( id, params, success, error ) ->
     url = "/user/set_view_preferences"
     url = "/entries/#{id}/set_view_preferences" if id? #entry view is id is not null
-    #params.success = (data, status, xhr) ->
-    #  success = true
-      
     $.ajax(
       type: 'post'
       url: url

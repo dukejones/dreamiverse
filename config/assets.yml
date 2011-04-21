@@ -8,7 +8,6 @@ template_function: off
 
 javascripts:
   shared:
-    - public/javascripts/jquery.min.js
     - public/javascripts/jquery.lightbox-0.5.min.js
     - public/javascripts/jquery.hoverIntent.minified.js
     - public/javascripts/pubsub.js
