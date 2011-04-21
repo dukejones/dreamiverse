@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414065926) do
+ActiveRecord::Schema.define(:version => 20110420050326) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110414065926) do
     t.integer  "starlight",            :default => 0
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
+    t.integer  "new_comment_count"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|

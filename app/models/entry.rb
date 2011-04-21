@@ -40,6 +40,7 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
   has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
   
+  has_one :latest_comment, :class_name => 'Comment', :order => 'created_at desc'
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   

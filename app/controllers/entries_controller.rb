@@ -55,6 +55,7 @@ class EntriesController < ApplicationController
 
     @comments = @entry.comments.order('created_at') # .limit(10)
     @page_title = @entry.title
+    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
     
     hit( @entry )
     hit( @entry.user )
