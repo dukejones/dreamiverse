@@ -129,9 +129,9 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value entries
       .image
-        %img.dream{src: '/images/icons/allEntries-24-hover.png', width: '24', height: '24'}
+        %img.dream{src: '/images/icons/entries-24.png'}
       .detail
-        = user.entries.count
+        = @entry_count || user.entries.count
       .clear
 
     .filterList.entries.target.slideArrow.hidden

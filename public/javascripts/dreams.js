@@ -326,7 +326,7 @@ function setupSharingImages(){
           $(this).prev().attr('src', '/images/icons/anon-16.png')
         break;
       case 'users':
-          $(this).prev().attr('src', '/images/icons/listofUsers-16.png')
+          $(this).prev().attr('src', '/images/icons/list-16.png')
         break;
       case 'followers':
           $(this).prev().attr('src', '/images/icons/friend-none-16.png')
