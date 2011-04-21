@@ -416,25 +416,28 @@
             +round(8)
 
           .delete
-            background: url("/images/icons/close-22-off.png") no-repeat center center transparent
+            background: url("/images/icons/close-24.png") no-repeat center center transparent
             +absolute
-            width: 22px
-            height: 22px
-            right: 30px
+            width: 24px
+            height: 24px
+            right: 28px
             +alpha(40)
             +pointer
             &:hover
-              background: url("/images/icons/close-22.png") no-repeat center center transparent
+              background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+              +alpha(100)
+            &:active
+              background: url("/images/icons/close-24-active.png") no-repeat center center transparent
               +alpha(100)
 
-          .user, .postTime
+          .user, .commentTime
             +left
             +center
             height: 32px
             line-height: 32px
             padding: 0 16px
             margin: 0 0 12px
-          .postTime
+          .commentTime
             +alpha(80)
           ul
             +right

@@ -239,7 +239,7 @@ class SettingsPanel extends MetaMenu
       switch $(event.currentTarget).find('option:selected')[0].value
         when "500" then $('.sharingIcon').css('background', 'url(/images/icons/sharing-24-hover.png) no-repeat center transparent')
         when "200" then $('.sharingIcon').css('background', 'url(/images/icons/friend-24.png) no-repeat center transparent')
-        when "150" then $('.sharingIcon').css('background', 'url(/images/icons/friend-follower-24.png) no-repeat center transparent')
+        when "150" then $('.sharingIcon').css('background', 'url(/images/icons/friend-24-follower.png) no-repeat center transparent')
         when "50" then $('.sharingIcon').css('background', 'url(/images/icons/anon-24-hover.png) no-repeat center transparent')
         when "0" then $('.sharingIcon').css('background', 'url(/images/icons/private-24-hover.png) no-repeat center transparent')
       

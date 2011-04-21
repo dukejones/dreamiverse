@@ -16,9 +16,9 @@ module UsersHelper
     when "friends"
       "/images/icons/friend-32.png"
     when "following"
-      "/images/icons/friend-follow-32.png"
+      "/images/icons/friend-32-follow.png"
     when "followers"
-      "/images/icons/friend-follower-32.png"
+      "/images/icons/friend-32-follower.png"
     else
       "/images/icons/friend-32.png"
     end
