@@ -2,6 +2,7 @@ $.Controller 'Dreamcatcher.Controllers.Bedsheet',
     
   loadGenre: (genre) ->
     $("#bedsheetScroller .spinner").show()
+    #TODO: add genre: genre
     Dreamcatcher.Models.Bedsheet.findAll({}, @callback('populate'))
   
   populate: (bedsheets) ->
