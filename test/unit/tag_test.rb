@@ -151,7 +151,7 @@ class TagTest < ActiveSupport::TestCase
 
   # you'll have to db:seed to load the blacklist
   test "doesn't autotag blacklisted words" do
-    @entry = Entry.make(skip_auto_tags: false, body: "I was hanging out the the the the the the the the the the the the the the the or or or or or or we we we we we me me with my favorite characters from Greys Anatomy. We were sun bathing and giggling and having fun. I admire the friendship embedded in these characters, which is probably why I was dreaming of them. We were at their house which is by a large lake.")
+    @entry = Entry.make(skip_auto_tags: false, body: "I was hanging out the the the the the the the the the the the the the the the or or or or or or we we We We We me me with my favorite characters from Greys Anatomy. We were sun bathing and giggling and having fun. I admire the friendship embedded in these characters, which is probably why I was dreaming of them. We were at their house which is by a large lake.")
     Tag.auto_generate_tags(@entry)
     whats = @entry.tags.auto.whats
     words = whats.map(&:name)
@@ -160,7 +160,5 @@ class TagTest < ActiveSupport::TestCase
     assert !words.include?('the'), 'no the'
     assert !Tag.acceptable_tag?('we'), 'we is not acceptable.'
     assert !words.include?('we'), 'no we plz'
-
-
   end
 end
