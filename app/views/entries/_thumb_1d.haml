@@ -86,7 +86,7 @@
 
   / COMMENTS
   - unless entry.comments.count == 0 || current_user.blank?
-    = render :partial => "entries/comment_panel", :locals => {entry_comments: entry.comments, comments_path: entry}
+    = render :partial => "entries/comment_panel", :locals => {entry: entry}
 
 
 
