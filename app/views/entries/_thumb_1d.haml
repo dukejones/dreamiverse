@@ -86,35 +86,20 @@
 
     / COMMENTS
     - unless entry.comments.count == 0
-      .commentsPanel.wrapper
-        .trigger.slide
-          .commentsHeader.headers
-            .img
-            <b>comments</b>
-            &nbsp; (<span class="counter">#{entry.comments.count}</span>)
-        .clear
+      = render :partial => "entries/comment_panel"
 
-        .target.slide
-          = render :partial => "entries/comment", :collection => entry.comments, :locals => {:entry => entry}
 
-          %a{name: "bottom", href: "#"}
 
-          - if current_user
-            .newCommentWrap
-              .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
-              .newComment
-                / .user= current_user.username
-                = form_for [entry, Comment.new] do |f|
-                  = f.hidden_field :user_id, :value => current_user.id
-                  = f.text_area :body, :placeholder => "add comment..."
-                  = f.submit 'post', :class => 'save'
-                  .links.hidden
-                    %img{src: '/images/icons/link-16.png', width: '16', height: '16'}
-                    links
-                  .images.hidden
-                    %img{src: '/images/icons/images-16.png', width: '16', height: '16'}
-                    image
-                  .clear
 
-          .clear
-    
+
+
+
+
+
+
+
+
+
+
+
+
