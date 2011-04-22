@@ -85,13 +85,13 @@ $(document).ready ->
       when 'anonymous'
         $(this).prev().css('background', 'url(/images/icons/anon-16.png) no-repeat center')
       when 'users'
-        $(this).prev().css('background', 'url(/images/icons/listofUsers-16.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/list-16.png) no-repeat center')
       when 'followers'
-        $(this).prev().css('background', 'url(/images/icons/friend-follower-16.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/friend-16-follower.png) no-repeat center')
       when 'friends'
-        $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/friend-16-none.png) no-repeat center')
       when 'friends of friends'
-        $(this).prev().css('background', 'url(/images/icons/friend-none-16.png) no-repeat center')
+        $(this).prev().css('background', 'url(/images/icons/friend-16-none.png) no-repeat center')
       when 'everyone'
         $(this).prev().css('background', 'url(/images/icons/sharing-16.png) no-repeat center')
   )
