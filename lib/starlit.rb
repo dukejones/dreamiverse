@@ -1,5 +1,6 @@
 module Starlit
   Entropy = 6.18
+  @cascade_to = []
   
   def hit
     add_starlight( 1 )
@@ -24,5 +25,19 @@ module Starlit
   def entropize!
     self.starlight *= (100 - Entropy) / 100
     save!
+  end
+  
+  def self.included(base)
+    base.extend(ClassMethods)
+  end
+
+  module ClassMethods
+    def cascade_starlight_to(association)
+      define_method :add_starlight do |amount|
+        super amount
+        obj = self.send(association)
+        obj.add_starlight!(amount)
+      end
+    end
   end
 end

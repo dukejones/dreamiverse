@@ -12,6 +12,7 @@ class Entry < ActiveRecord::Base
   }
 
   include Starlit
+  cascade_starlight_to :user
   
   attr_accessor :skip_auto_tags
   

@@ -13,5 +13,14 @@ class StarlightTest < ActiveSupport::TestCase
   #   starlight2 = Starlight.for(starlight.entity)
   #   assert_equal starlight, starlight2
   # end
-  
+
+  test "starlight cascades" do
+    @user = User.make(:starlight => 0)
+    @entry = Entry.make(:starlight => 0, :user => @user)
+    
+    @entry.add_starlight!(1)
+    @entry.reload; @user.reload
+    assert_equal 1, @entry.starlight, "Updates its own starlight"
+    assert_equal 1, @user.starlight, "Cascades starlight to the user"
+  end
 end
