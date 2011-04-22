@@ -5,22 +5,22 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
   init: ->
     #sets the entryId if current page is an entry (otherwise null for user view)
     @entryId = $('#showEntry').data('id') if $('#show_entry_mode').attr('name')?
-    
-    #TODO: get default genre - needs a field in user table.
-    #defaultGenre = $('#defaultGenre').data('id')
-    #$('#genreSelector').select(defaultGenre)
-    #@bedsheets.updateGenre(defaultGenre)
+    @defaultGenre = $('#defaultGenre').data('id')
 
   showPanel: ->
     $('#appearancePanel').show()
     @bedsheets = new Dreamcatcher.Controllers.Bedsheet($('#bedsheetScroller'),{parent: this}) if not @bedsheets?
-    
+    if @defaultGenre?
+      $('#genreSelector').select(defaultGenre)
+      @bedsheets.loadGenre(defaultGenre)
+
   updateAppearanceModel: (data) ->
     Dreamcatcher.Models.Appearance.update(@entryId, data)    
 
   '#genreSelector change': (el, ev) ->
     genre = el.val()
-    @bedsheets.updateGenre(genre)
+    @bedsheets.loadGenre(genre)
+    @updateAppearanceModel( { default_genre: genre })
     
   '#scroll,#fixed click': (el) ->    
     scrolling = el.attr('id')

@@ -2,6 +2,8 @@
 #appearancePanel.hidden.target
   .arrow
 
+  %input#defaultGenre{:type => 'hidden', :'value' => current_user.view_preference.default_genre}
+
   / BEDSHEETS
   .bedsheets
     .img

@@ -1,8 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.Bedsheet',
     
-  updateGenre: (genre) ->
+  loadGenre: (genre) ->
     #TODO: showloading - perhaps use ajax:beforeSend, ajax:success?
-    #TODO: genre: genre -- insert below once files added
     Dreamcatcher.Models.Bedsheet.findAll({}, @callback('populate'))
   
   populate: (bedsheets) ->
