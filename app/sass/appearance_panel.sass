@@ -7,6 +7,7 @@
     +round(8)
     +cursor
 
+
   .bedsheets
     +clear
     padding: 8px
@@ -21,16 +22,36 @@
       +block
       +bold
       +font(18)
+      +left
       height: 32px
       line-height: 32px
       margin: 0 8px
+      width: 110px
+    #genreSelector
+      -webkit-appearance: none
+      +round(8)
+      +right
+      +pointer
+      +font(14)
+      height: 36px
+      width: 150px
+      padding: 6px 8px
+      margin-bottom: 4px
+
+
     #bedsheetScroller
       +relative
       +overflow
       +clear
       height: 346px
+      .spinner
+        +relative
+        +alpha(80)
+        height: 346px
+        width: 100%
     ul
       +absolute
+      +hidden
       top: 0px
       bottom: 12px
       padding: 4px
@@ -149,6 +170,10 @@
   #appearancePanel
     .arrow
       background: url(/images/icons/arrow-up-27-light.png) no-repeat 304px
+    #genreSelector
+      +input-light(small)
+    .spinner
+      background-color: #eee
     .bedsheets, .colorPicker
       +panel-light
       .options
@@ -172,6 +197,10 @@
   #appearancePanel
     .arrow
       background: url(/images/icons/arrow-up-27-dark.png) no-repeat 304px
+    #genreSelector
+      +input-dark(small)
+    .spinner
+      background-color: #111
     .bedsheets, .colorPicker
       +panel-dark
       .options

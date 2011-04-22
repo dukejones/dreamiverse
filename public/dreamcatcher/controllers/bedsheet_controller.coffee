@@ -1,12 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.Bedsheet',
     
   loadGenre: (genre) ->
-    #TODO: showloading - perhaps use ajax:beforeSend, ajax:success?
+    $("#bedsheetScroller .spinner").show()
     Dreamcatcher.Models.Bedsheet.findAll({}, @callback('populate'))
   
   populate: (bedsheets) ->
     $("#bedsheetScroller ul").html(@view('list',{bedsheets: bedsheets}))
-    #TODO: hide loading...
+    $("#bedsheetScroller ul").show()
+    $("#bedsheetScroller .spinner").hide()
     
   highlightBedsheet: (el) ->
     $(".bedsheet").removeClass("selected")
