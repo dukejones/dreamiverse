@@ -43,7 +43,7 @@ class SharingController
       when "50"
         iconFileSource = 'anon-24-hover.png'
       when "150"
-        iconFileSource = 'friend-follower-24.png'
+        iconFileSource = 'friend-24-follower.png'
       when "200"
         iconFileSource = 'friend-24.png'
       when "500"

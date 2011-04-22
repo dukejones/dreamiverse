@@ -2,6 +2,7 @@
 set :application, "rails.dreamcatcher.net"
 
 set :rails_env, 'production'
+set :branch, 'production'
 
 set :deploy_to, "/var/www/#{application}"
 

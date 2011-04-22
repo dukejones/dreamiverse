@@ -1,27 +1,12 @@
 module EntriesHelper
-  def entry_type_icon(type, size, modifier=nil) # modifier can be active, hover
+  def entry_type_icon(type, size, modifier=nil) # modifier can be 'active' or 'hover'
     raw(
       "/images/icons/#{type}-#{size}#{modifier ? '-' + modifier : ''}.png"
     )
   end
   
   def dreamfield_header_image
-    return entry_type_icon(@type_filter, 32, 'hover')
-    
-    # img_url = case @type_filter
-    # when "dream"
-    #   "/images/icons/dream-32-hover.png"
-    # when "vision"
-    #   "/images/icons/vision-32-hover.png"
-    # when "experience"
-    #   "/images/icons/experience-32-hover.png"
-    # when "article"
-    #   "/images/icons/article-32-hover.png"
-    # else
-    #   "/images/icons/dream-32-hover.png"
-    # end
-    # 
-    # raw( img_url )
+    return entry_type_icon(@filters[:type], 32, 'hover')
   end
 
   def gallery_list_item(image)

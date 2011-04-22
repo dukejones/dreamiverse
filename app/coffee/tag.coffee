@@ -48,11 +48,9 @@ class window.TagsController
   appendTag: (tagName)->
     tag = new Tag(tagName)
     tagView = new @tagViewClass(tag)    
-    tagView.appendTo(@tagViews.$container)
-
-    # @tagViews.$container.append( tagView.createElement() )
-    
-    @tagViews.add(tagView)
+    if (!@tagViews.tagAlreadyExists(tagView))
+      tagView.appendTo(@tagViews.$container)
+      @tagViews.add(tagView)
 
 class TagInput
   constructor: ($input)->
@@ -152,7 +150,6 @@ class TagViewList
     tagString = tagView.tag.name
     for tagViewz in @tagViews
       if tagViewz.tag.name is tagString
-        tagView.removeFromView()
         return true
     return false
 
