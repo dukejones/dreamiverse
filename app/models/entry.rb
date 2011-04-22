@@ -217,7 +217,7 @@ class Entry < ActiveRecord::Base
   def everyone?
     (sharing_level == self.class::Sharing[:everyone])
   end
-
+  
   def create_view_preference
     return if view_preference
     self.view_preference = user.view_preference.clone!

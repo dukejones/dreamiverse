@@ -2,12 +2,13 @@ class CommentsController < ApplicationController
   def create
     @entry = Entry.find params[:entry_id]
     raise "Empty comment!" if params[:comment][:body].blank?
-    created_comment = Comment.create!(params[:comment].merge(entry_id: params[:entry_id]))
+    @comment = Comment.create!(params[:comment].merge(entry_id: params[:entry_id]))
     respond_to do |format|
       format.html { redirect_to(user_entry_path(@entry.user.username, @entry) + '#bottom') }
-      format.json { render :json => { :comment => created_comment } }
+      format.json { render :json => { :comment => @comment } }
     end
-    @entry.add_starlight!(1)
+    
+    @entry.add_starlight!(5) if @comment.starlight_worthy?
   rescue
     redirect_to user_entry_path(@entry.user.username, @entry), :alert => 'You must enter a comment.'
   end
