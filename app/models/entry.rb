@@ -114,7 +114,7 @@ class Entry < ActiveRecord::Base
     page_size = filters[:page_size] || 32
 
     entry_scope = entry_scope.limit(page_size)
-    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page].to_i > 0
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
 
     users_to_view =  # based on friend filter
