@@ -211,8 +211,7 @@
         .clear
 
         .target.slide
-          - @comments.each do |comment|
-            = render :partial => "entries/comment", :object => comment
+          = render :partial => "entries/comment", :collection => @comments, :locals => {:entry => @entry}
 
           %a{name: "bottom", href: "#"}
 
