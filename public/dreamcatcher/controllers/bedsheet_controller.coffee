@@ -1,10 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.Bedsheet',
     
   updateGenre: (genre) ->
-    Dreamcatcher.Models.Bedsheet.findAll({genre: genre}, @callback('populate'))
+    #TODO: showloading - perhaps use ajax:beforeSend, ajax:success?
+    #TODO: genre: genre -- insert below once files added
+    Dreamcatcher.Models.Bedsheet.findAll({}, @callback('populate'))
   
   populate: (bedsheets) ->
     $("#bedsheetScroller ul").html(@view('list',{bedsheets: bedsheets}))
+    #TODO: hide loading...
     
   highlightBedsheet: (el) ->
     $(".bedsheet").removeClass("selected")
@@ -12,11 +15,11 @@ $.Controller 'Dreamcatcher.Controllers.Bedsheet',
 
 
   '.bedsheet click': (el) ->
-    bedsheet = el.closest('.bedsheet').model()
-    $('#body').css('background-image', "url('/images/uploads/#{bedsheet.id}-bedsheet.jpg')")
+    bedsheetId = el.data('id')
+    $('#body').css('background-image', "url('/images/uploads/#{bedsheetId}-bedsheet.jpg')")
     @highlightBedsheet el  
     
     @options.parent.updateAppearanceModel(
-      bedsheet_id: bedsheet.id
+      bedsheet_id: bedsheetId
     )
 

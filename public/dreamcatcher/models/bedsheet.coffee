@@ -1,14 +1,14 @@
 $.Model.extend('Dreamcatcher.Models.Bedsheet',{
   
   findAll: ( params, success, error ) ->
+    params.ids_only = true
     $.ajax(
       url: '/images.json?section=Bedsheets'
       type: 'get'
       dataType: 'json'
       data: params
-      success: @callback(['wrapMany',success])
+      success: @callback(success)
       error: error
     )
-    
 },
 {})

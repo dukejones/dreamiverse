@@ -1,18 +1,28 @@
 $.Controller 'Dreamcatcher.Controllers.Settings',
 
   init: ->
-    @firstRun = true
     @setupDefaults()
     @setupAjaxBinding()
     
   setupDefaults: ->
-    @defaultSharingId = $('#settingsPanel .defaultSharing').data('id') 
-    $('#sharingList').select(@defaultSharingId)
-    $('#sharingList').change()
+    sharingLevel = $('#settingsPanel .defaultSharing').data('id')
+    $('#sharingList').select(sharingLevel)
+    @displaySharingLevel(sharingLevel)
     
   showPanel: ->    
     $('#settingsPanel').show()
 
+  displaySharingLevel: (sharingLevel) ->
+    #TODO: replace with class
+    sharingLevel = parseInt(sharingLevel)
+    switch sharingLevel
+      when 500 then background = 'sharing-24-hover.png'
+      when 200 then background = 'friend-24.png'
+      when 150 then background = 'friend-follower-24.png'
+      when 50 then background = 'anon-24-hover.png'
+      when 0 then background = 'private-24-hover.png'
+
+    $('.sharingIcon').css("background", "url(/images/icons/#{background}) no-repeat center transparent")
 
   updateSharingLevel: (sharingLevel) ->
     Dreamcatcher.Models.Settings.update(sharingLevel)
@@ -42,20 +52,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     
   '#sharingList change': (el, ev) ->
     sharingLevel = el.val()
-
-    #TODO: replace with class
-    switch sharingLevel
-      when "500" then background = 'sharing-24-hover.png'
-      when "200" then background = 'friend-24.png'
-      when "150" then background = 'friend-follower-24.png'
-      when "50" then background = 'anon-24-hover.png'
-      when "0" then background = 'private-24-hover.png'
-
-    $('.sharingIcon').css("background", "url(/images/icons/#{background}) no-repeat center transparent")
-
-    #only update if first run? - TODO: ask for reason why.
-    @updateSharingLevel(sharingLevel) if !@firstRun
-    @firstRun = false
+    @displaySharingLevel(sharingLevel)
+    @updateSharingLevel(sharingLevel)
 
   '.cancel click': ->
     $('.changePasswordForm').hide()

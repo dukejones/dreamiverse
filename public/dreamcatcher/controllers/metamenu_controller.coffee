@@ -37,7 +37,7 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
 
     elementId = el.parent().find(".target:first").attr('id')
 
-    #loads the panel on-the-fly if selected for the first time (otherwise display)
+    #loads the panel on-the-fly if selected for the first time (otherwise just display)
     switch elementId
       when "settingsPanel"
         @settingsPanel = new Dreamcatcher.Controllers.Settings($("#settingsPanel")) if not @settingsPanel?
