@@ -1,5 +1,4 @@
 - content_for :head do
-  = sass_link_tag 'entries'
   = include_javascripts :entries
   :coffeescript
     $( ->
@@ -9,8 +8,9 @@
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
-/ DREAM FIELD
+/ ENTRY FIELD
 #entryField
+
   / PAGE HEADER
   - if @filters[:type]
     .pageHeader.dreamHeader
@@ -18,8 +18,7 @@
       %h1= @filters[:type].pluralize
     .clear
   
-  / NEW ENTRY BAR
-  / TAG ENTRY & STREAM
+
 
   / DREAM MATRIX
   .matrix

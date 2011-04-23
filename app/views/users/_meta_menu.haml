@@ -1,25 +1,6 @@
 - content_for :head do
   /= coffeescript_include_tag 'metamenu'
 
-/ PRELOAD - METAMENU USER & PUBLIC
-.hidden
-  / SHUFFLE
-  %img{src: '/images/icons/shuffle-24-hover.png'}
-  %img{src: '/images/icons/shuffle-24-active.png'}
-  / LOGOUT
-  %img{src: '/images/icons/login-24-hover.png'}
-  %img{src: '/images/icons/login-24-active.png'}
-  %img{src: '/images/icons/logout-24-hover.png'}
-  %img{src: '/images/icons/logout-24-active.png'}
-  / LOADERS
-  %img{src: '/images/icons/spinner-light-32.gif'}
-  %img{src: '/images/icons/spinner-light-grey-32.gif'}
-  %img{src: '/images/icons/spinner-grey-32.gif'}
-  %img{src: '/images/icons/spinner-dark-32.gif'}
-
-
-
-
 #report_box= VERSION
 
 %a#logo{href: root_path }

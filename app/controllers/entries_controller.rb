@@ -57,7 +57,6 @@ class EntriesController < ApplicationController
     @page_title = @entry.title
     
     hit( @entry )
-    hit( @entry.user )
   end
   
   def new

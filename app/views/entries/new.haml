@@ -6,46 +6,17 @@
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 
 
-/ PRELOAD - NEW ENTRY
-.hidden
-  / ENTRY OPTIONS
-  %img{src: '/images/icons/date-24-hover.png'}
-  / INPUTS
-  %img{src: '/images/slices/inputContentLight-40.png'}
-  %img{src: '/images/slices/inputContent-Dark-40.png'}
-  %img{src: '/images/slices/inputLeftLight-40.png'}
-  %img{src: '/images/slices/inputLeft-Dark-40.png'}
-  / HEADER ICONS
-  %img{src: '/images/icons/date-16-hover.png'}
-  %img{src: '/images/icons/location-16-hover.png'}
-  %img{src: '/images/icons/location-16-active.png'}
-  %img{src: '/images/icons/location-24-hover.png'}
-  %img{src: '/images/icons/images-16-hover.png'}
-  %img{src: '/images/icons/images-16-active.png'}
-  %img{src: '/images/icons/tag-16-hover.png'}
-  %img{src: '/images/icons/tag-16-active.png'}
-  %img{src: '/images/icons/link-16-hover.png'}
-  %img{src: '/images/icons/link-16-active.png'}
-  %img{src: '/images/icons/comment-16-hover.png'}
-  %img{src: '/images/icons/comment-16-active.png'}
-  %img{src: '/images/icons/emotions-16-hover.png'}
-  %img{src: '/images/icons/emotions-16-active.png'}
-  / RADIO WRAPPER
-  %img{src: '/images/icons/radioWrap-31.png'}
-  / CLOSE
-  %img{src: '/images/icons/close-16-hover.png'}
-  %img{src: '/images/icons/close-24-hover.png'}
 
 
 
 
-/ CONTEXT BAR
+
+
+
+/ CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
-
-/ ENTRY
 #entryField
-
 
   = form_for @entry do |f|
     / HIDDEN FORM ELEMENTS
