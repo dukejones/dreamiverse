@@ -35,7 +35,6 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
     el.addClass 'selected'
 
     elementId = $('.target:first',el.parent()).attr 'id'
-    alert elementId
 
     #loads the panel on-the-fly if selected for the first time (otherwise just display)
     switch elementId
