@@ -160,6 +160,7 @@
     .details
       +clear
       line-height: 26px
+      height: 26px
       width: 340px
       padding-left: 8px
       .rePost, .date, .starlight
@@ -243,7 +244,7 @@
 
 // COLORS
 .light .matrix
-  .thumb-1d, .thumb-1d.noImage
+  .thumb-1d
     background: #f0f0f0
     background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
     background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
@@ -251,7 +252,6 @@
       +glow-light(40)
 
     .detailsTop
-      // USERNAME + AVATAR
       .user
         +button-light
         +gradient(#fff, #e4e4e4)
@@ -262,32 +262,24 @@
         +transparent-dark(80)
         color: #ddd
 
-    // LEFT SIDE
     .left
-
-      // STARLIGHT
       .starlight
         +transparent-dark(80)
         color: #ddd
+    .details
+      .rePost
+        +border-light
+      .commentCount
+        .counter
+          +transparent-dark(80)
+          color: #ddd
 
-      // ENTRY THUMB DETAILS
-      .details
-        // REPOSTED BY
-        .rePost
-          +border-light
-        //COMMENT COUNT
-        .commentCount
-          .counter
-            +transparent-dark(80)
-            color: #ddd
-
-    // GALLERY
     .entryImages li
       +button-light
 
 
 .dark .matrix
-  .thumb-1d, .thumb-1d.noImage
+  .thumb-1d
     background: #000
     background: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
     background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.3)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
@@ -295,37 +287,27 @@
       +glow-dark(40)
 
     .detailsTop
-      // USERNAME + AVATAR
       .user
         +button-dark
         +gradient(#1d1d1d, #000)
         .name
           color: #ddd
-
       .entryType
         +transparent-light(80)
         color: #222
 
-    // LEFT SIDE
     .left
-
-      // STARLIGHT
       .starlight
         +transparent-light(80)
         color: #222
+    .details
+      .rePost
+        +border-dark
+      .commentCount
+        .counter
+          +transparent-light(80)
+          color: #222
 
-      // ENTRY THUMB DETAILS
-      .details
-        // REPOSTED BY
-        .rePost
-          +border-dark
-        // COMMENT COUNT
-        .commentCount
-          .counter
-            +transparent-light(80)
-            color: #222
-
-    // GALLERY
     .entryImages li
       +button-dark
 

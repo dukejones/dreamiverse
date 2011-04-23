@@ -37,40 +37,14 @@
         +button-light
 
 .light .matrix.stream .commentsPanel
-  +indent-light
+  box-shadow:         0 0 0 #fff
+  -moz-box-shadow:    0 0 0 #fff
+  -webkit-box-shadow: 0 0 0 #fff
 
-  .newCommentWrap
-    .avatar
-      +border-light
+  background: #ccc
+  background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#f3f3f3))
+  background: -moz-linear-gradient(top, #ccc, #f3f3f3)
 
-    .newComment
-      .user
-        +border-light
-        +bevel-light
-      .save
-        +shine-light(16)
-        +button-light
-        +save(16)
-        color: #111
-      textarea
-        color: #333
-        +input-light(large)
-
-  .prevCommentWrap
-    .avatar
-      +button-light
-    .prevComment
-      +input-light(small)
-      border: 2px solid #fff
-      .user
-        +button-light
-        +bevel-light
-      ul
-        li
-          +button-light
-      .rePost
-        +bevel-light
-        +button-light
 
 
 
