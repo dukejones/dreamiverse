@@ -36,6 +36,46 @@
         +bevel-light
         +button-light
 
+.light .matrix.stream .commentsPanel
+  +indent-light
+
+  .newCommentWrap
+    .avatar
+      +border-light
+
+    .newComment
+      .user
+        +border-light
+        +bevel-light
+      .save
+        +shine-light(16)
+        +button-light
+        +save(16)
+        color: #111
+      textarea
+        color: #333
+        +input-light(large)
+
+  .prevCommentWrap
+    .avatar
+      +button-light
+    .prevComment
+      +input-light(small)
+      border: 2px solid #fff
+      .user
+        +button-light
+        +bevel-light
+      ul
+        li
+          +button-light
+      .rePost
+        +bevel-light
+        +button-light
+
+
+
+
+
 .dark .commentsPanel
   +panel-dark
   +shine-dark-alpha(28)
@@ -73,6 +113,8 @@
       .rePost
         +bevel-dark
         +button-dark
+
+
 
 
 
@@ -227,7 +269,148 @@
         padding: 0 16px 4px
 
 
+
+
+
 .matrix.stream .commentsPanel
-  margin: 0px
+  border: 0px solid transparent
+  +round(0)
+
+  .commentsHeader
+    display: none
+
+  .prevCommentWrap
+    margin-top: 8px
+
+  .newCommentWrap
+    margin-top: 16px
+
+  .newCommentWrap, .prevCommentWrap
+    .avatar
+      +round(12)
+      +left
+      +overflow
+      height: 62px
+      width: 62px
+      margin: 0 8px
+      background: url(/images/avatars/default-avatar-tiny.jpg) top left
+
+  .prevCommentWrap
+    .prevComment
+      +round(12)
+      +right
+      width: 544px
+      padding: 8px
+      border: 2px solid white
+
+      .user
+        +round(8)
+
+      .delete
+        background: url("/images/icons/close-24.png") no-repeat center center transparent
+        +absolute
+        width: 24px
+        height: 24px
+        right: 28px
+        +alpha(40)
+        +pointer
+        &:hover
+          background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+          +alpha(100)
+        &:active
+          background: url("/images/icons/close-24-active.png") no-repeat center center transparent
+          +alpha(100)
+
+      .user, .commentTime
+        +left
+        +center
+        height: 32px
+        line-height: 32px
+        padding: 0 16px
+        margin: 0 0 12px
+      .commentTime
+        +alpha(80)
+      ul
+        +right
+        max-width: 270px
+        margin: 0 0 0 8px
+        padding: 0
+        list-style: none
+        li
+          +round(8)
+          +right
+          +overflow
+          margin: 0 2px 2px 0
+          height: 62px
+          width: 62px
+          background: #ababab
+
+      .comment
+        +clear
+        padding: 0 8px 8px 16px
+        p
+          margin-bottom: 18px
+      .rePost
+        +round(16)
+        +left
+        +center
+        height: 32px
+        line-height: 32px
+        padding: 0 12px
+        margin: 12px 0 0
 
 
+  .newCommentWrap
+    .newComment
+      +relative
+      +right
+
+      textarea
+        +round(12)
+        +transparent
+        +font(16)
+        +outline
+        +relative
+        top: 0
+        right: 0
+        font-family: Calibri, Arial, Helvetica, sans-serif
+        height: 20px
+        width: 506px
+        min-width: 506px
+        max-width: 506px
+        border: none
+        cursor: text
+        padding: 28px 28px 34px
+
+      .user
+        +round(8)
+        +left
+        +center
+        +cursor
+        +user-select
+        height: 32px
+        line-height: 32px
+        padding: 0 16px
+        margin: 0 0 12px
+
+      .images, .links, .save
+        +right
+        +center
+        height: 32px
+      .images, .links
+        line-height: 32px
+        padding: 0 16px
+        img
+          +left
+          margin: 11px 8px 0 0
+      .links
+        img
+          margin-top: 9px
+      .save
+        +absolute
+        +round(8)
+        +bold
+        +font(16)
+        right: 8px
+        bottom: 10px
+        padding: 0 16px 4px

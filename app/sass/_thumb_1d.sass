@@ -1,24 +1,19 @@
 
 
 // STRUCTURE
-#entryField .matrix, #home .matrix
-
-  .thumb-1d:hover, .thumb-1d.noImage:hover
+.matrix
+  .thumb-1d:hover
     z-index: 200
-
     .detailsTop .entryType, .details .commentCount, .left .starlight
       +block
 
-
-
-  .thumb-1d, .thumb-1d.noImage
+  .thumb-1d
     border-bottom: 4px solid rgb(80,80,80)
     +relative
     +clear
     +round(16)
     +flat-bottom
     +clear
-    +pointer
     z-index: 100
     margin: 0 0 10px
     padding: 0
@@ -145,8 +140,8 @@
       li
         +left
         margin: 0px 2px 2px 0
-        height: 60px
-        width: 60px
+        height: 58px
+        width: 58px
         &.youtube a img
           margin: 6px
 
@@ -188,7 +183,6 @@
 
       // COMMENT COUNT
       .commentCount
-        +hidden
         +right
         background: url(/images/icons/comment-16.png) no-repeat right
 
@@ -208,16 +202,13 @@
 
 
 
-  // 1D THUMBS - NO IMAGE
-  // STRUCTURE
+  // NO IMAGE
   .thumb-1d.noImage
     .left
       height: 158px
-
       .title
         +absolute
         top: 44px
-
       .titleWatermark
         +block
         +font(48)
@@ -229,7 +220,6 @@
         left: 8px
         font-weight: normal
         max-width: 344px
-
       .text
         +absolute
         margin: 0 8px 0 8px
@@ -237,7 +227,6 @@
         height: 40px
       .image
         +hidden
-
       .divider
         +hidden
 
@@ -252,105 +241,93 @@
 
 
 
-
-
-
-
-
-// 1D ENTRY THUMBS
 // COLORS
-.light
+.light .matrix
+  .thumb-1d, .thumb-1d.noImage
+    background: #f0f0f0
+    background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
+    &:hover
+      +glow-light(40)
 
-  #entryField, #home
+    .detailsTop
+      // USERNAME + AVATAR
+      .user
+        +button-light
+        +gradient(#fff, #e4e4e4)
+        .name
+          color: #333
 
-    .matrix
-      .thumb-1d, .thumb-1d.noImage
-        background: #f0f0f0
-        background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
-        background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
-        &:hover
-          +glow-light(40)
+      .entryType
+        +transparent-dark(80)
+        color: #ddd
 
-        .detailsTop
-          // USERNAME + AVATAR
-          .user
-            +button-light
-            +gradient(#fff, #e4e4e4)
-            .name
-              color: #333
+    // LEFT SIDE
+    .left
 
-          .entryType
+      // STARLIGHT
+      .starlight
+        +transparent-dark(80)
+        color: #ddd
+
+      // ENTRY THUMB DETAILS
+      .details
+        // REPOSTED BY
+        .rePost
+          +border-light
+        //COMMENT COUNT
+        .commentCount
+          .counter
             +transparent-dark(80)
             color: #ddd
 
-        // LEFT SIDE
-        .left
-
-          // STARLIGHT
-          .starlight
-            +transparent-dark(80)
-            color: #ddd
-
-          // ENTRY THUMB DETAILS
-          .details
-            // REPOSTED BY
-            .rePost
-              +border-light
-            //COMMENT COUNT
-            .commentCount
-              .counter
-                +transparent-dark(80)
-                color: #ddd
-
-        // GALLERY
-        .right ul li
-          +button-light
+    // GALLERY
+    .entryImages li
+      +button-light
 
 
-.dark
-  #entryField, #home
-    .matrix
-      .thumb-1d, .thumb-1d.noImage
-        background: #000
-        background: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
-        background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.3)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
-        &:hover
-          +glow-dark(40)
+.dark .matrix
+  .thumb-1d, .thumb-1d.noImage
+    background: #000
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.3)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
+    &:hover
+      +glow-dark(40)
 
-        .detailsTop
-          // USERNAME + AVATAR
-          .user
-            +button-dark
-            +gradient(#1d1d1d, #000)
-            .name
-              color: #ddd
+    .detailsTop
+      // USERNAME + AVATAR
+      .user
+        +button-dark
+        +gradient(#1d1d1d, #000)
+        .name
+          color: #ddd
 
-          .entryType
+      .entryType
+        +transparent-light(80)
+        color: #222
+
+    // LEFT SIDE
+    .left
+
+      // STARLIGHT
+      .starlight
+        +transparent-light(80)
+        color: #222
+
+      // ENTRY THUMB DETAILS
+      .details
+        // REPOSTED BY
+        .rePost
+          +border-dark
+        // COMMENT COUNT
+        .commentCount
+          .counter
             +transparent-light(80)
             color: #222
 
-        // LEFT SIDE
-        .left
-
-          // STARLIGHT
-          .starlight
-            +transparent-light(80)
-            color: #222
-
-          // ENTRY THUMB DETAILS
-          .details
-            // REPOSTED BY
-            .rePost
-              +border-dark
-            // COMMENT COUNT
-            .commentCount
-              .counter
-                +transparent-light(80)
-                color: #222
-
-        // GALLERY
-        .right ul li
-          +button-dark
+    // GALLERY
+    .entryImages li
+      +button-dark
 
 
 
@@ -361,32 +338,6 @@
 
 
 
-
-
-
-
-// 1D ENTRY THUMBS - NO IMAGE
-// COLORS
-.light
-  #entryField, #home
-    .matrix
-      .noImage
-
-        // LEFT SIDE
-        .left
-          .user
-            +border-dark
-
-
-.dark
-  #entryField, #home
-    .matrix
-      .noImage
-
-        // LEFT SIDE
-        .left
-          .user
-            +border-dark
 
 
 
