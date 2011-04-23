@@ -1,87 +1,75 @@
 / ENTRY THUMB 1D - GENERAL
 
-.thumb-1d-wrap
-  .thumb-1d{class: entry.images.blank? ? "noImage" : ""}
+.thumb-1d{class: entry.images.blank? ? "noImage" : ""}
 
 
 
-    / LEFT SIDE
-    .detailsTop
-      %a.user{href: user_entries_path(entry.user.username)}
-        .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
-        %p.name= entry.user.username
+  / LEFT SIDE
+  .detailsTop
+    %a.user{href: user_entries_path(entry.user.username)}
+      .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
+      %p.name= entry.user.username
+    .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 24)}'); background-repeat: no-repeat; background-position: center;"}
 
-      .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 24)}'); background-repeat: no-repeat; background-position: center;"}
+  %a.left{href: user_entry_path(entry.user.username, entry)}
+    / STARLIGHT
+    .starlight
+      .img
+      %span= entry.starlight
+    / only for +image
+    .image{style: "background: url(#{entry.main_image._?.url(:stream_header)}) no-repeat top left"}
 
+    %h1.title= entry.title
+    / only for noimage
+    %h2.titleWatermark= entry.title
+    %p.text= truncate(entry.body, :length => 100)
 
-    %a.left{href: user_entry_path(entry.user.username, entry)}
+    .divider
 
-
-      / STARLIGHT
-      .starlight
-        .img
-        %span= entry.starlight
-
-      / only for +image
-      .image{style: "background: url(#{entry.main_image._?.url(:stream_header)}) no-repeat top left"}
-
-      %h1.title= entry.title
-      / only for noimage
-      %h2.titleWatermark= entry.title
-      %p.text= truncate(entry.body, :length => 100)
- 
-      / ENTRY THUMB DETAILS
-      .details
-        / REPOSTED BY
-        .rePost.hidden
-          reposted by:
-          %span.rePostBy username
-        / DATE
-        .date= time_ago_in_words(entry.created_at)
-
-        - unless entry.comments.count == 0
-          .commentCount
-            .counter= entry.comments.count
-
-      .divider
-
-    / RIGHT SIDE
-    .right
-
-      / IMAGE THUMBNAILS
-      - unless (entry.images.blank? && entry.links.youtube.blank?)
-        %ul.entryImages
-          - entry.links.youtube.limit(5).each do |link|
-            = gallery_1d_youtube(link)
-          - entry.images.limit(5).each do |image|
-            = gallery_1d_thumb(image)
+  / RIGHT SIDE
+  %a.tagCloud{href: user_entry_path(entry.user.username, entry)}
+    - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
+      %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 
 
-      / TAG CLOUD
-      %a.tagCloud{href: user_entry_path(entry.user.username, entry)}
-        - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
-          %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+  / IMAGE THUMBNAILS
+  - unless (entry.images.blank? && entry.links.youtube.blank?)
+    %ul.entryImages
+      - entry.links.youtube.limit(5).each do |link|
+        = gallery_1d_youtube(link)
+      - entry.images.limit(5).each do |image|
+        = gallery_1d_thumb(image)
+
+  /EMOTIONS DETAILS & THUMBS
+  - if entry.tags.emotion.first
+    .emotionsWrap
+      .emotions-details
+        .emotionsHeader
+          .img
+          emotions
+        = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
+      .emotions-thumb
+        = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
 
 
-    /EMOTIONS DETAILS & THUMBS
-    - if entry.tags.emotion.first
-      .emotionsWrap.wrapper
-
-        / EMOTIONS DETAILS
-        .emotions-details.target.emotionshowhide.hidden
-          .emotionsHeader
-            .img
-            emotions
-          = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
-
-        / EMOTIONS THUMB
-        .emotions-thumb.trigger.emotionshowhide
-          = render :partial => "/entries/emotions", :locals => {emotion_tags: entry.tags.emotion}
+  / VIDEO PANEL
+  - entry.links.youtube.each do |link|
+    = render :partial => "entries/video", :locals => {:link => link}
 
 
-    / VIDEO PANEL
-    - entry.links.youtube.each do |link|
-      = render :partial => "entries/video", :locals => {:link => link}
+  / DETAILS
+  .details
+    .rePost.hidden
+      reposted by:
+      %span.rePostBy username
+    .date= time_ago_in_words(entry.created_at)
+
+    - unless entry.comments.count == 0
+      .commentCount
+        .counter= entry.comments.count
+
+
 
 
   / COMMENTS
@@ -89,6 +77,7 @@
     = render :partial => "entries/comment_panel", :locals => {entry_comments: entry.comments, comments_path: entry}
 
 
+  .clear
 
 
 
