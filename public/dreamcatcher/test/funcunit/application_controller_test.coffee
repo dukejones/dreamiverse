@@ -1,6 +1,4 @@
-module "Application test",
-  setup: ->
-    S.open '/'
+#module "Dreamcatcher.Controller.Application test",
 
-#test "log in": ->
+#test basic application test functionality.
 
