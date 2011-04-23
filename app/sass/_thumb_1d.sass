@@ -4,7 +4,7 @@
 #entryField .matrix, #home .matrix
 
   .thumb-1d:hover, .thumb-1d.noImage:hover
-    z-index: 1101
+    z-index: 200
 
     .detailsTop .entryType, .details .commentCount, .left .starlight
       +block
@@ -112,7 +112,9 @@
 
 
       .divider
-        +left
+        +absolute
+        left: 352px
+        top: 0
         width: 1px
         height: 220px
         background: #a3a3a5
@@ -134,7 +136,7 @@
     .entryImages
       +absolute
       top: 0
-      left: 340px
+      left: 356px
       list-style: none
       margin: 4px 0 0
       padding: 0
@@ -143,8 +145,8 @@
       li
         +left
         margin: 0px 2px 2px 0
-        height: 58px
-        width: 58px
+        height: 60px
+        width: 60px
         &.youtube a img
           margin: 6px
 
