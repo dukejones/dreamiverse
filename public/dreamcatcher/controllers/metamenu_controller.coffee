@@ -18,25 +18,22 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
     @currentPanel.showPanel()
     $('#bodyClick').show()
 
-  contractSelectedPanel: ->
-    @currentPanel.fadeOut 250 if @currentPanel?
-    $('#bodyClick').hide()
-
   hideAllPanels: ->
-    $('#settingsPanel,#appearancePanel').hide()
+    $('#settingsPanel,#appearancePanel').fadeOut 250
     $('#bodyClick').hide()
     $('.item.settings,.item.appearance').removeClass 'selected'
 
 
   '.trigger click': (el) ->
-    return if el.hasClass 'selected'
-    
-    @hideAllPanels()
+    if el.hasClass 'selected'
+      #@hideAllPanels() TODO: hide if selected (funny with change password)
+      return
+      
+    @hideAllPanels()    
     el.addClass 'selected'
 
-    elementId = $('.target:first',el.parent()).attr 'id'
-
     #loads the panel on-the-fly if selected for the first time (otherwise just display)
+    elementId = $('.target:first',el.parent()).attr 'id'
     switch elementId
       when "settingsPanel"
         @settingsPanel = new Dreamcatcher.Controllers.Settings $("#settingsPanel") if not @settingsPanel?

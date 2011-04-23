@@ -1,18 +1,19 @@
 $.Controller 'Dreamcatcher.Controllers.Appearance',
 
-  #TODO: fixed, scroll doesn't work when loaded (not selected)
+  #TODO: entryId doesn't actually work on new/edit mode.
 
   init: ->
     #sets the entryId if current page is an entry (otherwise null for user view)
-    @entryId = $('#showEntry').data 'id' if $('#show_entry_mode').attr 'name'?
+    @entryId = $('#showEntry').data 'id' if $('#showEntry')?#if $('#show_entry_mode').attr 'name'?
     @defaultGenre = $('#defaultGenre').val()
 
   showPanel: ->
     $('#appearancePanel').show()
-    @bedsheets = new Dreamcatcher.Controllers.Bedsheet $('#bedsheetScroller'),{parent: this} if not @bedsheets?
-    if @defaultGenre?
-      $('#genreSelector').select @defaultGenre
-      @bedsheets.loadGenre @defaultGenre
+    if not @bedsheets?
+      @bedsheets = new Dreamcatcher.Controllers.Bedsheet $('#bedsheetScroller'),{parent: this}
+      if @defaultGenre?
+        $('#genreSelector').select @defaultGenre
+        @bedsheets.loadGenre @defaultGenre
 
   updateAppearanceModel: (data) ->
     Dreamcatcher.Models.Appearance.update @entryId,data
