@@ -1,16 +1,13 @@
-$.Model.extend('Dreamcatcher.Models.Appearance',{
-
-  #TODO: this doesn't work for some reason. Fix.
+$.Model 'Dreamcatcher.Models.Appearance',{
 
   update: ( id, params, success, error ) ->
-    url = "/user/set_view_preferences"
-    url = "/entries/#{id}/set_view_preferences" if id? #entry view is id is not null
-    $.ajax(
+    $.ajax {
       type: 'post'
-      url: url
+      url: if id? then "/entries/#{id}/set_view_preferences" else "/user/set_view_preferences"
       data: params
       success: success
       error: error
-    )
+    }
+
 },
-{})
+{}

@@ -25,14 +25,14 @@ test("create", function(){
 test("update" , function(){
 	stop();
 	new Cookbook.Models.Recipe({name: "cook dinner", description: "chicken"}).
-            save(function(recipe){
-            	equals(recipe.description,"chicken");
-        		recipe.update({description: "steak"},function(recipe){
-        			start()
-        			equals(recipe.description,"steak");
-        			recipe.destroy();
-        		})
-            })
+    save(function(recipe){
+      equals(recipe.description,"chicken");
+      recipe.update({description: "steak"},function(recipe){
+        start()
+        equals(recipe.description,"steak");
+        recipe.destroy();
+      })
+    })
 
 });
 test("destroy", function(){

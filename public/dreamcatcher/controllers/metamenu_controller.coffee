@@ -9,41 +9,40 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
   setupiOSfix: ->
     clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"
     # ipad doubleclick remover for left panel
-    $('.leftPanel a').bind( clickEvent, (ev)->
+    $('.leftPanel a').bind clickEvent,(ev) ->
       ev.preventDefault()
-      window.location = $(ev.currentTarget).attr('href')
-    )
+      window.location = $(ev.currentTarget).attr 'href'
 
-  expandSelectedPanel: () ->
-    $('html, body').animate({scrollTop:0}, 'slow') #scroll to top
+  expandSelectedPanel: ->
+    $('html, body').animate {scrollTop:0},'slow'
     @currentPanel.showPanel()
     $('#bodyClick').show()
 
   contractSelectedPanel: ->
-    @currentPanel.fadeOut(250) if @currentPanel?
+    @currentPanel.fadeOut 250 if @currentPanel?
     $('#bodyClick').hide()
 
   hideAllPanels: ->
-    $("#settingsPanel,#appearancePanel").hide()
-    $("#bodyClick").hide()
-    $('.item.settings,.item.appearance').removeClass('selected')
+    $('#settingsPanel,#appearancePanel').hide()
+    $('#bodyClick').hide()
+    $('.item.settings,.item.appearance').removeClass 'selected'
 
 
   '.trigger click': (el) ->
     return if el.hasClass 'selected'
     
     @hideAllPanels()
-    el.addClass('selected')
+    el.addClass 'selected'
 
-    elementId = el.parent().find(".target:first").attr('id')
+    elementId = $('.target:first',el.parent()).attr 'id'
 
     #loads the panel on-the-fly if selected for the first time (otherwise just display)
     switch elementId
       when "settingsPanel"
-        @settingsPanel = new Dreamcatcher.Controllers.Settings($("#settingsPanel")) if not @settingsPanel?
+        @settingsPanel = new Dreamcatcher.Controllers.Settings $("#settingsPanel") if not @settingsPanel?
         @currentPanel = @settingsPanel
       when "appearancePanel"
-        @appearancePanel = new Dreamcatcher.Controllers.Appearance($("#appearancePanel")) if not @appearancePanel?
+        @appearancePanel = new Dreamcatcher.Controllers.Appearance $("#appearancePanel") if not @appearancePanel?
         @currentPanel = @appearancePanel
 
     @expandSelectedPanel()
