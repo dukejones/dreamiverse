@@ -22,6 +22,7 @@ class Entry < ActiveRecord::Base
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   has_many :comments
+  has_one :latest_comment, :class_name => 'Comment', :order => 'created_at desc'
 
   # Tag associations
   has_many :tags, :dependent => :delete_all
@@ -40,7 +41,6 @@ class Entry < ActiveRecord::Base
   has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
   has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
   
-  has_one :latest_comment, :class_name => 'Comment', :order => 'created_at desc'
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   
@@ -108,7 +108,7 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    entry_scope = Entry.order('dreamed_at DESC')
+    entry_scope = Entry.joins(:latest_comment).order(:latest_comment => :created_at.desc).order(:created_at.desc)
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     page_size = filters[:page_size] || 32
@@ -133,7 +133,7 @@ class Entry < ActiveRecord::Base
   end
 
   def self.dreamfield(viewer, viewed, filters={})
-    entry_scope = Entry.order('dreamed_at DESC')
+    entry_scope = Entry.order(:dreamed_at.desc)
     
     page_size = filters[:page_size] || 31
  
