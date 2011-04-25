@@ -169,4 +169,20 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal (0...num_tags).to_a, entry.what_tags.map(&:position).sort
   end
   
+  # ordering of dreamstream
+  # entries with a comment should order by created_at of latest_comment
+  # otherwise order the entries by their created_at
+  test "latest_comment pops entry to the top of the dreamstream" do
+    user = User.make
+    time = Time.now
+    entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
+    stream = Entry.dreamstream(user, {})
+    assert_equal entries.map(&:id).reverse, stream.map(&:id)
+    
+    commented = Entry.make(user: user, created_at: time + 3.days)
+    Comment.make(entry: commented)
+    
+    stream = Entry.dreamstream(user, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id)
+  end
 end

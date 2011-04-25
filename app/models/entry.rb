@@ -109,7 +109,7 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    entry_scope = Entry.joins(:latest_comment).order(:latest_comment => :created_at.desc).order(:created_at.desc)
+    entry_scope = Entry.joins(:latest_comment.outer).order(:latest_comment => :created_at.desc).order(:created_at.desc)
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     page_size = filters[:page_size] || 32
