@@ -98,7 +98,7 @@ class Tag < ActiveRecord::Base
 
   # create hash  name => frequency with no blacklisted words.   
   def self.order_and_score_auto_tags(tag_words)
-    tag_scores = tag_words.each_with_object({}) do |tag_word, tag_scores|
+    tag_scores = tag_words.map(&:downcase).each_with_object({}) do |tag_word, tag_scores|
       if acceptable_tag?(tag_word) && what = What.for(tag_word)
         tag_scores[what] ||= 0
         tag_scores[what] += 1

@@ -57,7 +57,6 @@ class EntriesController < ApplicationController
     @entry.update_attribute(:new_comment_count, 0) if user_can_write?
     
     hit( @entry )
-    hit( @entry.user )
   end
   
   def new

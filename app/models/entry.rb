@@ -12,6 +12,7 @@ class Entry < ActiveRecord::Base
   }
 
   include Starlit
+  cascade_starlight_to :user
   
   attr_accessor :skip_auto_tags
   
@@ -140,7 +141,7 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
-    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page]
+    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page].to_i > 0
     
     if viewer
       entries = entry_scope.select {|e| viewer.can_access?(e) }
