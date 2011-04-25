@@ -30,7 +30,8 @@ class EntryTest < ActiveSupport::TestCase
     whats = ['spoon','hound','stove','feh'].map {|word| What.create(name: word) }
     new_whats = ['spoon', 'stove', 'martha'].map {|word| What.create(name: word) }
     
-    entry = Entry.make(whats: whats, title: 'visions', body: 'bridge', skip_auto_tags: false)
+    entry = Entry.make(whats: whats, title: 'visions', body: 'bridge')
+    Tag.auto_generate_tags(entry)
     entry.set_whats(new_whats.map(&:name))  
     entry.save
     entry.reload
@@ -153,14 +154,19 @@ class EntryTest < ActiveSupport::TestCase
   # end
 
   test "reorder tags doesn't create positions for emotion tags" do
-    entry = Entry.make(skip_auto_tags: false)
-    entry.set_whats(['dragon', 'flower', 'volcano', 'hummingbird'])
+    entry = Entry.make
+    Tag.auto_generate_tags(entry, 16)
+    
+    entry
+    user_tags = ['dragon', 'flower', 'volcano', 'hummingbird']
+    entry.set_whats(user_tags)
     entry.set_emotions({'fear' => '3', 'love' => '5', 'joy' => '5'})
     entry.body += ' '
     entry.save
 
-    assert_equal 16, entry.what_tags.count
-    assert_equal (0..15).to_a, entry.what_tags.map(&:position).sort
+    num_tags = 16 + user_tags.size
+    assert_equal num_tags, entry.what_tags.count
+    assert_equal (0...num_tags).to_a, entry.what_tags.map(&:position).sort
   end
   
 end
