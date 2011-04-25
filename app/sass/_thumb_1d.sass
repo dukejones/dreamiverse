@@ -22,12 +22,12 @@
     +round(16)
     +flat-bottom
     width: 670px
-    height: 220px
+    min-height: 220px
 
   // NO IMAGE
   &.noImage
     .entry:
-      height: 158px
+      min-height: 158px
     .left
       height: 158px
       .title
@@ -190,6 +190,7 @@
       +block
 
 
+  // SEE _VIDEO.SASS
   .video
     +clear
     +left
@@ -243,6 +244,9 @@
         padding: 1px 10px
 
 
+  // SEE _COMMENT.SASS
+  .commentsPanel
+    z-index: -1
 
 
 
