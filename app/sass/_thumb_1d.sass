@@ -262,8 +262,6 @@
         padding: 2px 10px
         .img
           margin: 0 6px 0 0
-        &.new
-          +gradient(#e35f5f, #b32f2f)
 
       .arrow
         +left
@@ -273,7 +271,8 @@
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
       &.expanded .arrow
         background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
-      
+
+
 
 
 
@@ -293,7 +292,13 @@
 
 
 
-
+.light, .dark
+  .matrix .thumb-1d
+    .comment.new, .comment.new:hover
+      .count
+        +alpha(100)
+        +gradient(#e35f5f, #b32f2f)
+        color: #fff
 
 
 // COLORS

@@ -27,7 +27,7 @@
       - elsif entry.comments.count != 0
         .comments
           .img
-          %span= entry.comments.count
+          = entry.comments.count
       - unless entry.everyone?
         .sharing
           %img
