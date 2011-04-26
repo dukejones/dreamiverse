@@ -102,6 +102,7 @@ class EntryTest < ActiveSupport::TestCase
     
     emotion_params = {"love" => "3", "anger" => "0"}
     e.set_emotions(emotion_params)
+    e.reload
     assert_equal 3, e.tags.emotion.named('love').first.intensity
     assert_equal nil, e.tags.emotion.named('anger').first
   end
@@ -184,5 +185,16 @@ class EntryTest < ActiveSupport::TestCase
     
     stream = Entry.dreamstream(user, {})
     assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id)
+
+    # Multiple comments should not return duplicates of that entry
+    Comment.make(entry: commented)
+    stream = Entry.dreamstream(user, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id)
+    
+    # Make sure the group by entries.id is selecting the proper comment
+    commented.comments.last.update_attribute(:created_at, Time.now - 5.days)
+    stream = Entry.dreamstream(user, {})
+    assert_equal (entries.reverse + [commented]).map(&:id), stream.map(&:id)
+    
   end
 end

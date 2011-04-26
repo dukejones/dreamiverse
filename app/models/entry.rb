@@ -51,7 +51,7 @@ class Entry < ActiveRecord::Base
   belongs_to :main_image, :class_name => "Image"
 
   validates_presence_of :user
-  validates_presence_of :body
+  #validates_presence_of :body
   validates_presence_of :dreamed_at
   
   after_initialize :init_dreamed_at
@@ -109,7 +109,8 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    entry_scope = Entry.joins(:latest_comment.outer).order(:latest_comment => :created_at.desc).order(:created_at.desc)
+    entry_scope = Entry.joins(:latest_comment.outer).group('entries.id').order(:latest_comment => :created_at.desc).order(:created_at.desc)
+    
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
     page_size = filters[:page_size] || 32
