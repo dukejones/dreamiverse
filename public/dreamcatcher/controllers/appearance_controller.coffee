@@ -1,12 +1,9 @@
 $.Controller 'Dreamcatcher.Controllers.Appearance',
 
-  #TODO: entryId doesn't actually work on new/edit mode.
-
   init: ->
-    #sets the entryId if current page is an entry (otherwise null for user view)
-    @entryId = $('#showEntry').data 'id' if $('#showEntry')?#if $('#show_entry_mode').attr 'name'?
+    @newEntry = $("#entry_view_preference_attributes_theme")?
+    @entryId = $('#showEntry').data 'id' if $('#showEntry')?
     @defaultGenre = $('#defaultGenre').val()
-
 
   showPanel: ->
     $('#appearancePanel').show()
@@ -17,7 +14,13 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
         @bedsheets.loadGenre @defaultGenre
 
   updateAppearanceModel: (data) ->
-    Dreamcatcher.Models.Appearance.update @entryId,data
+    if @newEntry
+      $("#entry_view_preference_attributes_image_id").val(data.bedsheet_id) if data.bedsheet_id?
+      $("#entry_view_preference_attributes_bedsheet_attachment").val(data.scrolling) if data.scrolling?
+      $("#entry_view_preference_attributes_theme").val(data.theme) if data.theme?
+    else
+      Dreamcatcher.Models.Appearance.update @entryId,data
+
 
   '#genreSelector change': (el, ev) ->
     genre = el.val()
