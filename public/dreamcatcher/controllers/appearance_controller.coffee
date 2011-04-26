@@ -7,12 +7,13 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
     @entryId = $('#showEntry').data 'id' if $('#showEntry')?#if $('#show_entry_mode').attr 'name'?
     @defaultGenre = $('#defaultGenre').val()
 
+
   showPanel: ->
     $('#appearancePanel').show()
     if not @bedsheets?
       @bedsheets = new Dreamcatcher.Controllers.Bedsheet $('#bedsheetScroller'),{parent: this}
       if @defaultGenre?
-        $('#genreSelector').select @defaultGenre
+        $('#genreSelector').val(@defaultGenre)
         @bedsheets.loadGenre @defaultGenre
 
   updateAppearanceModel: (data) ->

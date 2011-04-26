@@ -6,7 +6,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     
   setupDefaults: ->
     sharingLevel = $('#settingsPanel .defaultSharing').data 'id'
-    $('#sharingList').select sharingLevel
+    $('#sharingList').val(sharingLevel) 
     @displaySharingLevel sharingLevel
     
   showPanel: ->    
@@ -26,7 +26,6 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
 
   updateSharingLevel: (sharingLevel) ->
     Dreamcatcher.Models.Settings.update sharingLevel
-
 
   setupAjaxBinding: ->
     $('#fbLink').bind 'ajax:success', (event, xhr, status)->
