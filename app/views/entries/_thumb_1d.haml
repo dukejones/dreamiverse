@@ -71,6 +71,13 @@
           .img
           %span comment
           .arrow
+      - elsif entry.new_comment_count > 0
+        .comment.new
+          .count
+            .img
+            = entry.new_comment_count
+          %span comments
+          .arrow
       - else
         .comment
           .count

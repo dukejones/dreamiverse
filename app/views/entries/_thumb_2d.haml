@@ -20,9 +20,13 @@
           / %td.location dream location
 
     .detailsBottom
-      - unless entry.comments.count == 0
+      - if entry.new_comment_count > 0
+        .comments.new
+          .img
+          = entry.new_comment_count
+      - elsif entry.comments.count != 0
         .comments
-          = image_tag("icons/comment-16.png")
+          .img
           = entry.comments.count
       - unless entry.everyone?
         .sharing
