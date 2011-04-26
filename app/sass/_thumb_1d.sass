@@ -228,7 +228,6 @@
     .comment
       +pointer
       +user-select
-      +transparent-dark(10)
       +absolute
       right: 0px
       bottom: 0px
@@ -238,6 +237,7 @@
 
       .img
         +left
+        +alpha(80)
         width: 16px
         height: 16px
         background: url(/images/icons/comment-16.png) no-repeat center center
@@ -249,24 +249,25 @@
         line-height: 24px
 
       .count
-        +transparent-dark(10)
         +left
         +round(12)
         +center
         +bold
         +font(14)
-        margin: 4px
+        margin: 4px 0 4px 4px
         height: 16px
         line-height: 17px
         padding: 2px 10px
         .img
-          margin: 0 12px 0 0
+          margin: 0 6px 0 0
+        &.new
+          +gradient(#e35f5f, #b32f2f)
 
       .arrow
         +left
         width: 16px
         height: 26px
-        margin-right: 12px
+        margin-right: 8px
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
       &.expanded .arrow
         background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
@@ -275,8 +276,9 @@
 
 
   // SEE _COMMENT.SASS
-  // this allows for drop shadow to cover the comments panel
+  // this hides all comments panels and allows for drop shadow coverage
   .commentsPanel
+    // +hidden
     z-index: -1
 
 
@@ -301,30 +303,31 @@
   &:hover .entry, &.expanded .entry
     +glow-light(40)
 
-  .detailsTop
-    .user
-      +button-light
-      +gradient(#fff, #e4e4e4)
-      .name
-        color: #333
+  .user
+    +button-light
+    +gradient(#fff, #e4e4e4)
+    .name
+      color: #333
 
-    .entryType
-      +transparent-dark(80)
-      color: #ddd
+  .entryType, .starlight
+    +transparent-dark(80)
+    color: #ddd
 
-  .left
-    .starlight
-      +transparent-dark(80)
-      color: #ddd
-  .details
-    .rePost
-      +border-light
-    .comment
-      .count
-        color: #ddd
+  .rePost
+    +border-light
 
   .entryImages li
     +button-light
+
+  .comment:hover
+    +gradient(#b3b3b3, #777)
+    color: #fff
+    .count
+      +transparent-light(20)
+      color: #fff
+  .count
+    +transparent-dark(60)
+    color: #ddd
 
 
 .dark .matrix .thumb-1d
@@ -335,26 +338,18 @@
   &:hover .entry, &.expanded .entry
     +glow-dark(40)
 
-  .detailsTop
-    .user
-      +button-dark
-      +gradient(#1d1d1d, #000)
-      .name
-        color: #ddd
-    .entryType
-      +transparent-light(80)
-      color: #222
+  .user
+    +button-dark
+    +gradient(#1d1d1d, #000)
+    .name
+      color: #ddd
 
-  .left
-    .starlight
-      +transparent-light(80)
-      color: #222
-  .details
-    .rePost
-      +border-dark
-    .comment
-      .count
-        color: #222
+  .entryType, .starlight, .count
+    +transparent-light(80)
+    color: #222
+
+  .rePost
+    +border-dark
 
   .entryImages li
     +button-dark

@@ -76,7 +76,7 @@
           .count
             .img
             = entry.comments.count
-          %span comment
+          %span comments
           .arrow
 
     .clear
@@ -84,7 +84,7 @@
 
 
   / COMMENTS
-  - unless entry.comments.count == 0 || current_user.blank?
+  - unless current_user.blank?
     = render :partial => "entries/comment_panel", :locals => {entry: entry}
 
 
