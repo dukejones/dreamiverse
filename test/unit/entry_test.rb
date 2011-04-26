@@ -178,23 +178,23 @@ class EntryTest < ActiveSupport::TestCase
     time = Time.now
     entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
     stream = Entry.dreamstream(user, {})
-    assert_equal entries.map(&:id).reverse, stream.map(&:id)
+    assert_equal entries.map(&:id).reverse, stream.map(&:id), 'entries ordered created_at desc'
     
     commented = Entry.make(user: user, created_at: time + 3.days)
-    Comment.make(entry: commented)
+    Comment.make(entry: commented, created_at: Time.now - 1.hour)
     
     stream = Entry.dreamstream(user, {})
-    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id)
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'recent comment for old entry is first'
 
     # Multiple comments should not return duplicates of that entry
     Comment.make(entry: commented)
     stream = Entry.dreamstream(user, {})
-    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id)
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'no duplicates for multiple comments'
     
     # Make sure the group by entries.id is selecting the proper comment
     commented.comments.last.update_attribute(:created_at, Time.now - 5.days)
     stream = Entry.dreamstream(user, {})
-    assert_equal (entries.reverse + [commented]).map(&:id), stream.map(&:id)
+    assert_equal (entries.reverse + [commented]).map(&:id), stream.map(&:id), 'groups by the last comment'
     
   end
 end
