@@ -6,7 +6,7 @@
   .clear
 
   .target.slide
-    = render :partial => "entries/comment", :collection => entry.comments, :locals => {:comments_path => entry}
+    = render :partial => "entries/comment", :collection => entry.comments
 
     %a{name: "bottom", href: "#"}
 
