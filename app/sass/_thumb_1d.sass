@@ -10,24 +10,16 @@
   border-bottom: 4px solid rgb(80,80,80)
   +relative
   +clear
-  +clear
   z-index: 100
   margin: 0 0 10px
   padding: 0
   width: 670px
 
 
-
-  .entry
-    +round(16)
-    +flat-bottom
-    width: 670px
-    min-height: 220px
-
   // NO IMAGE
   &.noImage
     .entry:
-      min-height: 158px
+      min-height: 158px !important
     .left
       height: 158px
       .title
@@ -57,6 +49,11 @@
     .tagCloud
       height: 118px
 
+
+  .entry
+    +round(16)
+    +flat-bottom
+    width: 670px
 
   // DETAILS TOP
   .detailsTop
@@ -227,25 +224,63 @@
       padding: 0
 
 
-    // COMMENT COUNT
-    .commentCount
-      +right
-      background: url(/images/icons/comment-16.png) no-repeat right
 
-      .counter
+
+    // COMMENT COUNT
+    .comment
+      +pointer
+      +user-select
+      +absolute
+      right: 0px
+      bottom: 0px
+      height: 26px
+      +round(12)
+      +flat-bottom
+
+      .img
+        +left
+        +alpha(80)
+        width: 16px
+        height: 16px
+        background: url(/images/icons/comment-16.png) no-repeat center center
+        margin: 6px 0 6px 12px
+
+      span
+        +left
+        padding: 0 6px
+        line-height: 24px
+
+      .count
+        +left
         +round(12)
-        +right
         +center
         +bold
         +font(14)
-        margin: 0 20px 0 0
+        margin: 4px 0 4px 4px
         height: 16px
         line-height: 17px
-        padding: 1px 10px
+        padding: 2px 10px
+        .img
+          margin: 0 6px 0 0
+        &.new
+          +gradient(#e35f5f, #b32f2f)
+
+      .arrow
+        +left
+        width: 16px
+        height: 26px
+        margin-right: 8px
+        background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      &.expanded .arrow
+        background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+      
+
 
 
   // SEE _COMMENT.SASS
+  // this hides all comments panels and allows for drop shadow coverage
   .commentsPanel
+    +hidden
     z-index: -1
 
 
@@ -270,31 +305,31 @@
   &:hover .entry, &.expanded .entry
     +glow-light(40)
 
-  .detailsTop
-    .user
-      +button-light
-      +gradient(#fff, #e4e4e4)
-      .name
-        color: #333
+  .user
+    +button-light
+    +gradient(#fff, #e4e4e4)
+    .name
+      color: #333
 
-    .entryType
-      +transparent-dark(80)
-      color: #ddd
+  .entryType, .starlight
+    +transparent-dark(80)
+    color: #ddd
 
-  .left
-    .starlight
-      +transparent-dark(80)
-      color: #ddd
-  .details
-    .rePost
-      +border-light
-    .commentCount
-      .counter
-        +transparent-dark(80)
-        color: #ddd
+  .rePost
+    +border-light
 
   .entryImages li
     +button-light
+
+  .comment:hover
+    +gradient(#b3b3b3, #555)
+    color: #fff
+    .count
+      +transparent-light(20)
+      color: #fff
+  .count
+    +transparent-dark(60)
+    color: #ddd
 
 
 .dark .matrix .thumb-1d
@@ -305,27 +340,18 @@
   &:hover .entry, &.expanded .entry
     +glow-dark(40)
 
-  .detailsTop
-    .user
-      +button-dark
-      +gradient(#1d1d1d, #000)
-      .name
-        color: #ddd
-    .entryType
-      +transparent-light(80)
-      color: #222
+  .user
+    +button-dark
+    +gradient(#1d1d1d, #000)
+    .name
+      color: #ddd
 
-  .left
-    .starlight
-      +transparent-light(80)
-      color: #222
-  .details
-    .rePost
-      +border-dark
-    .commentCount
-      .counter
-        +transparent-light(80)
-        color: #222
+  .entryType, .starlight, .count
+    +transparent-light(80)
+    color: #222
+
+  .rePost
+    +border-dark
 
   .entryImages li
     +button-dark
