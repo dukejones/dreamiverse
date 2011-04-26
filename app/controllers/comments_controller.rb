@@ -1,6 +1,12 @@
 class CommentsController < ApplicationController
   def index
-    
+    @entry = Entry.find params[:entry_id]
+
+    if request.xhr?
+      respond_to do |format|
+        format.html { render :partial => 'entries/comment_panel', :locals => {:entry => @entry} }
+      end
+    end
   end
   
   def create
