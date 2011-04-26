@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+  def index
+    
+  end
+  
   def create
     @entry = Entry.find params[:entry_id]
     raise "Empty comment!" if params[:comment][:body].blank?

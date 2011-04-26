@@ -5,11 +5,14 @@ Dreamcatcher::Application.routes.draw do
       URI.parse(request.url).tap {|url| url.host.sub!('www.', '') }.to_s
     }
   end
+
   # Authorization Routes
   namespace "user" do
     resource :session
     resource :registration
   end
+
+  # Authorization and Registration Routes
   post  'login'  => 'user/sessions#create', :as => :login
   get   'login'  => 'user/sessions#new', :as => :login
   match 'logout' => 'user/sessions#destroy', :as => :logout
@@ -22,7 +25,7 @@ Dreamcatcher::Application.routes.draw do
   match 'auth/failure', :to => 'user/authentications#failure'
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
   
-  # Universal 
+  # Universal Routes
   match 'thank_you' => 'home#thank_you', :as => :thank_you
   get  '/feedback' => 'home#feedback', :as => :feedback
   post '/feedback' => 'home#submit_feedback'
@@ -36,6 +39,8 @@ Dreamcatcher::Application.routes.draw do
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
+
+
   # Resources
 
   resource :user do
@@ -55,7 +60,7 @@ Dreamcatcher::Application.routes.draw do
 
   # Images
   match 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
-    constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/ }
+    constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
   resources :images do
     collection do
       get 'manage'
@@ -111,9 +116,6 @@ Dreamcatcher::Application.routes.draw do
     put "/:id", :to => 'entries#update', :constraints => {id: /\d+/}
     delete "/:id", :to => 'entries#delete', :constraints => {id: /\d+/}
     
-    # resources :entries, :as => 'user_entries'
-    # match '/' => redirect("/%{username}/dreams"), :defaults => { :username => ''}
-
     # Friends & Following
     match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
     match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
@@ -130,42 +132,4 @@ Dreamcatcher::Application.routes.draw do
 
   root :to => 'home#index'
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end
