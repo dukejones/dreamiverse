@@ -75,6 +75,14 @@ function setupDropdownEvents(){
 }
 
 function setGenreOptions(){
+  if ($("#IB_typeList option:selected").val() == "Bedsheets") {
+    var newGenres = "<option value='None'></option>";
+    var genreList = ["City","Design","Earth","Far East","Indigenous","Landscapes","Nightmares","Plants","Skies","Space","Textures","Travel","Water"];
+    for(var i = 0; i < genreList.length; i++) {
+      newGenres += "<option value='"+genreList[i]+"'>"+genreList[i]+"</option>";
+    }
+    $('#IB_genreList').html(newGenres);
+  }
   if($("#IB_categoryList option:selected").val() == "Modern Art"){
     var newGenres = '<option value="None"></option><option value="Paintings">Paintings</option><option value="Digital">Digital</option><option value="Fantasy">Fantasy</option> <option value="Visionary">Visionary</option><option value="Graphics">Graphics</option>';
     
