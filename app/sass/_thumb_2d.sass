@@ -58,12 +58,13 @@
 
     .detailsTop, .detailsBottom, .title
       z-index: 84
-      .date, .location, .comments, .sharing
-        +round(12)
-        +center
-        +font(11)
-        margin: 4px
-        padding: 4px 8px
+    .date, .location, .comments, .sharing
+      +round(12)
+      +center
+      +font(11)
+      line-height: 16px
+      margin: 4px
+      padding: 4px 8px
 
 
     .detailsTop
@@ -94,14 +95,16 @@
         +left
         +hidden
         &.new
-          background: rgba(255,0,0,0.80)
+          +gradient(#e35f5f, #b32f2f)
           display: block !important
+          +bold
+          color: #fff !important
         .img
           +left
           width: 16px
           height: 16px
           background: url(/images/icons/comment-16.png) no-repeat center center transparent
-          margin: 0 2px -5px 0
+          margin-right: 5px
         span
           +left
       .sharing

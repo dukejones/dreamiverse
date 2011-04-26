@@ -20,11 +20,11 @@
           / %td.location dream location
 
     .detailsBottom
-      / - if entry.number_new_comments
-      /   .comments
-      /     .img
-      /     = entry.comments.count
-      - if entry.comments.count != 0
+      - if entry.new_comment_count > 0
+        .comments.new
+          .img
+          = entry.new_comment_count
+      - elsif entry.comments.count != 0
         .comments
           .img
           %span= entry.comments.count
