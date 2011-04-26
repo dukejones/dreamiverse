@@ -1,11 +1,11 @@
 .commentsPanel.wrapper
-  .trigger.slide
+  .trigger.showhide
     .commentsHeader.headers
       .img
       <b>#{entry.comments.count} comments</b>
   .clear
 
-  .target.slide
+  .target.showhide
     = render :partial => "entries/comment", :collection => entry.comments
 
     %a{name: "bottom", href: "#"}
