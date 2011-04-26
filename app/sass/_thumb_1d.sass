@@ -10,24 +10,16 @@
   border-bottom: 4px solid rgb(80,80,80)
   +relative
   +clear
-  +clear
   z-index: 100
   margin: 0 0 10px
   padding: 0
   width: 670px
 
 
-
-  .entry
-    +round(16)
-    +flat-bottom
-    width: 670px
-    min-height: 220px
-
   // NO IMAGE
   &.noImage
     .entry:
-      min-height: 158px
+      min-height: 158px !important
     .left
       height: 158px
       .title
@@ -57,6 +49,11 @@
     .tagCloud
       height: 118px
 
+
+  .entry
+    +round(16)
+    +flat-bottom
+    width: 670px
 
   // DETAILS TOP
   .detailsTop
@@ -229,6 +226,8 @@
 
     // COMMENT COUNT
     .comment
+      +pointer
+      +user-select
       +transparent-dark(10)
       +absolute
       right: 0px
@@ -241,13 +240,13 @@
         +left
         width: 16px
         height: 16px
-        background: url(/images/icons/comment-16.png) no-repeat right
-        margin-right: 8px
+        background: url(/images/icons/comment-16.png) no-repeat center center
+        margin: 6px 0 6px 12px
 
       span
         +left
-        padding-left: 6px
-        line-height: 26px
+        padding: 0 6px
+        line-height: 24px
 
       .count
         +transparent-dark(10)
@@ -256,9 +255,23 @@
         +center
         +bold
         +font(14)
+        margin: 4px
         height: 16px
         line-height: 17px
-        padding: 1px 10px
+        padding: 2px 10px
+        .img
+          margin: 0 12px 0 0
+
+      .arrow
+        +left
+        width: 16px
+        height: 26px
+        margin-right: 12px
+        background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      &.expanded .arrow
+        background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+      
+
 
 
   // SEE _COMMENT.SASS
