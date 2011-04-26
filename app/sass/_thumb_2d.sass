@@ -96,8 +96,14 @@
         &.new
           background: rgba(255,0,0,0.80)
           display: block !important
-        img
+        .img
+          +left
+          width: 16px
+          height: 16px
+          background: url(/images/icons/comment-16.png) no-repeat center center transparent
           margin: 0 2px -5px 0
+        span
+          +left
       .sharing
         +right
         +hidden
