@@ -66,9 +66,16 @@
         %span.rePostBy username
       .date= time_ago_in_words(entry.created_at)
 
-      - unless entry.comments.count == 0
-        .commentCount
-          .counter= entry.comments.count
+      - if entry.comments.count == 0
+        .comment
+          .img
+          %span comment
+      - else
+        .comment
+          .count
+            .img
+            = entry.comments.count
+          %span comment
 
     .clear
 

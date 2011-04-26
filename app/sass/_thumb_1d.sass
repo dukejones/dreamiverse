@@ -228,23 +228,41 @@
 
 
     // COMMENT COUNT
-    .commentCount
-      +right
-      background: url(/images/icons/comment-16.png) no-repeat right
+    .comment
+      +transparent-dark(10)
+      +absolute
+      right: 0px
+      bottom: 0px
+      height: 26px
+      +round(12)
+      +flat-bottom
 
-      .counter
+      .img
+        +left
+        width: 16px
+        height: 16px
+        background: url(/images/icons/comment-16.png) no-repeat right
+        margin-right: 8px
+
+      span
+        +left
+        padding-left: 6px
+        line-height: 26px
+
+      .count
+        +transparent-dark(10)
+        +left
         +round(12)
-        +right
         +center
         +bold
         +font(14)
-        margin: 0 20px 0 0
         height: 16px
         line-height: 17px
         padding: 1px 10px
 
 
   // SEE _COMMENT.SASS
+  // this allows for drop shadow to cover the comments panel
   .commentsPanel
     z-index: -1
 
@@ -288,9 +306,8 @@
   .details
     .rePost
       +border-light
-    .commentCount
-      .counter
-        +transparent-dark(80)
+    .comment
+      .count
         color: #ddd
 
   .entryImages li
@@ -322,9 +339,8 @@
   .details
     .rePost
       +border-dark
-    .commentCount
-      .counter
-        +transparent-light(80)
+    .comment
+      .count
         color: #222
 
   .entryImages li
