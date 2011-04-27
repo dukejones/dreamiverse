@@ -6,6 +6,9 @@
   .clear
 
   .target.showhide
+
+    .showAll{class: (entry.comments.count == 0 ? 'hidden' : '')} show all #{entry.comments.count} comments
+
     .comments
 
     %a{name: "bottom", href: "#"}
