@@ -14,7 +14,6 @@
       .newCommentWrap
         .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
         .newComment
-          / .user= current_user.username
           = form_for [entry, Comment.new] do |f|
             = f.hidden_field :user_id, :value => current_user.id
             = f.text_area :body, :placeholder => "add comment..."
