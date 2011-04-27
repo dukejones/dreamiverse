@@ -1,0 +1,1 @@
+C({"name": "dom", "children": ["jQuery.fixture", "jQuery.fn.formParams"], "type": "page", "parent": "../jquery/dom/dom.js", "comment": "<p>JavaScriptMVC adds a bunch of useful jQuery extensions for the dom.  Check them out on the left.</p>", "title": "DOM Helpers", "tags": ["core"]})

@@ -6,8 +6,11 @@
 
 .tag.wrapper.tagWhat{:'data-id' => what.id, :class => "#{kind == 'auto' ? 'auto' : ''} #{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
 
-  .header.trigger{:class => (what.dictionary_words.empty? ? '' : 'showhide')}
-    .tag-icon
+  .header.trigger{class: (what.dictionary_words.empty? ? '' : 'showhide')}
+    - if what.image == nil
+      .tag-icon
+    - else
+      .tag-icon.image{style: "background: url('#{what.image.source_url}') no-repeat center center transparent"}
     .tag-name= what.name
 
     .analysis-icon

@@ -8,8 +8,6 @@ template_function: off
 
 javascripts:
   shared:
-    - public/javascripts/jquery.min.js
-    - public/javascripts/jquery.lightbox-0.5.min.js
     - public/javascripts/jquery.hoverIntent.minified.js
     - public/javascripts/pubsub.js
     - public/javascripts/rails.js
@@ -17,7 +15,6 @@ javascripts:
     - public/javascripts/jquery.placeholder.js
     - public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
-    - public/javascripts/compiled/metamenu.js
     - public/javascripts/compiled/application.js
   entries:
     - public/javascripts/geo.js

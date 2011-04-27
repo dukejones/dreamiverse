@@ -9,14 +9,18 @@
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = include_stylesheets :shared, :media => 'all'
-    = include_javascripts :shared
     
+  %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+    = include_javascripts :shared
+        
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
     = yield :head
 
   %body{id: 'body', class: theme, style: bedsheet_style}
+
+    #bodyClick
 
     - unless flash.notice.blank? && flash.alert.blank?
       = render :partial => "layouts/alert"

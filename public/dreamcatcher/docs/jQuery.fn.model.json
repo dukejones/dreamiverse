@@ -1,0 +1,1 @@
+C({"name": "jQuery.fn.model", "params": {"type": {"description": "", "type": "Object", "optional": false, "order": 0, "name": "type"}}, "ret": {"type": "undefined", "description": ""}, "type": "function", "parent": "jQuery.fn", "comment": "<p>Returns the first model instance found from [jQuery.fn.models].</p>", "children": []})

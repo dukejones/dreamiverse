@@ -1,0 +1,1 @@
+C({"name": "jQuery.Model.prototype.destroyed", "type": "function", "parent": "jQuery.Model.prototype", "comment": "<p>Called after an instance is destroyed.  Publishes\n\"shortName.destroyed\"</p>", "hide": true, "children": []})
