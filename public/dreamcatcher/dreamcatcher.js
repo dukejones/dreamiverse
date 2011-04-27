@@ -16,11 +16,13 @@ steal.plugins(
 			'models/settings',
 			'models/appearance',
 			'models/bedsheet',
+			'models/comment',
 			'controllers/application_controller',
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
-			'controllers/bedsheet_controller'
+			'controllers/bedsheet_controller',
+			'controllers/comment_controller'
 		);
 	})
 	.views();
