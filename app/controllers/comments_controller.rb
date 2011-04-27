@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
     if request.xhr?
       respond_to do |format|
         format.html { render :partial => 'entries/comment_panel', :locals => {:entry => @entry} }
+        format.json { render :json => @entry.comments }
       end
     end
   end
