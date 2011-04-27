@@ -3,6 +3,13 @@
   +panel-light
   +shine-light-alpha(28)
 
+  .showAll
+    +indent-light
+    +button-light
+    border: 1px solid #8C8C8C
+    &:active
+      border: 1px solid black
+
   .newCommentWrap
     .avatar
       +border-light
@@ -53,6 +60,13 @@
 .dark .commentsPanel
   +panel-dark
   +shine-dark-alpha(28)
+
+  .showAll
+    +indent-dark
+    +button-dark
+    border: 1px solid #444
+    &:active
+      border: 1px solid black
 
   .newCommentWrap
     .avatar
@@ -106,6 +120,15 @@
       +font(14)
       margin-top: -2px
 
+  .showAll
+    +round(16)
+    +center
+    +pointer
+    +user-select
+    height: 24px
+    line-height: 24px
+    width: 562px
+    margin-left: 80px
 
   .prevCommentWrap
     margin-top: 8px
