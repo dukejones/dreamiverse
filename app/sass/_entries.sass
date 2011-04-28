@@ -214,6 +214,7 @@
 
 .noEntrys
   +absolute
+  +center
   top: 0px
   color: #ccc
 
@@ -221,21 +222,25 @@
   +user-select
   +round(16)
   +font(21)
-  +center
   +cursor
   width: 654px
   padding: 8px
 
+#noMoreEntries
+  +center
 
 #noMoreEntries, #nextPageLoading
   +flat-top
   margin-top: 10px
-  height: 32px
-  line-height: 32px
+  height: 64px
+  line-height: 64px
 
 #nextPageLoading
-  img
-    margin: -3px 11px -11px
+  .spinner
+    +left
+    height: 64px
+    width: 32px
+    margin: 0 12px 0 220px
 
 
 
