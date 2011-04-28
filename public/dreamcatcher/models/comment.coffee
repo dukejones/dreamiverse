@@ -15,9 +15,9 @@ $.Model 'Dreamcatcher.Models.Comment',{
       url: "/entries/#{entryId}/comments"
       type: 'post'
       dataType: 'json'
-      success: success
+      success: @callback success
       error: error
-      data: attrs
+      data: {comment: attrs}
     }
     
   delete: ( entryId, commentId, attrs, success, error ) ->

@@ -1,16 +1,24 @@
 $.Controller 'Dreamcatcher.Controllers.Comment',
 
+  init: ()
+    #by default, get new comments only
+    #{only_new: true}
+
+  getEntryElement: (entryId) ->
+    return $("#entry_id_#{entryId}").closest(".thumb-1d")
+
   populate: (comments) ->
     entryId = comments[0].entry_id if comments.length > 0
-    commentView = @view('list',{comments: comments})
-    $(".thumb-1d").each ->
-      if $(this).find("#entry_id_#{entryId}").length > 0
-        $(this).find(".comments").html commentView
+    entry = @getEntryElement entryId
+    $(".comments",entry).html @view('list',{comments: comments})
         
-  #remove: (commentId) ->
-    
+  created: (data) ->
+    comment = data.comment
+    entryId = comment.entry_id
+    entry = @getEntryElement entryId
+    $(".comments",entry).append @view('show',comment)
+    $(".comment_body",entry).val ''
         
-
   '.comment click': (el) ->
     entryId = $(".entry_id",el.parent()).val()
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populate')
@@ -18,12 +26,13 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   '.deleteComment click': (el) ->
     entryId = el.data 'entryid'
     commentId = el.data 'id'
-    alert entryId+' '+commentId
-    Dreamcatcher.Models.Comment.delete entryId,commentId,@callback('remove')
+    Dreamcatcher.Models.Comment.delete entryId,commentId
+    el.closest('.prevCommentWrap').fadeOut 200
     
-  '#comment_submit': (el) ->
-    params = {
-      body: $('#comment_body').text()
-      #entry_id: 
+  '.save click': (el) ->
+    comment = {
+      user_id: $(".user_id",el.parent()).val()
+      body: $(".comment_body",el.parent()).val()
     }
-    
+    entryId = $(".entry_id",el.closest(".thumb-1d")).val()
+    Dreamcatcher.Models.Comment.create entryId,comment,@callback('created')

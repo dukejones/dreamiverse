@@ -14,3 +14,8 @@ test "delete", ->
 	stop 2000
 	Dreamcatcher.Models.Comment.delete 4109,1368,{},(success=true),(failed=true)
 	ok(success)
+	
+test "delete", ->
+	stop 2000
+	Dreamcatcher.Models.Comment.delete 4109,1368,{},(success=true),(failed=true)
+	ok(success)
