@@ -81,6 +81,7 @@ class EntryTest < ActiveSupport::TestCase
     # It sets the emotions' and their intensities.
     emotion_params = {"love"=>"1", "joy"=>"2", "surprise"=>"3", "anger"=>"4"}
     e.set_emotions(emotion_params)
+    e.reload
     assert_equal 4, e.emotions.count
     assert_equal 1, e.tags.emotion.named('love').first.intensity
     assert_equal 2, e.tags.emotion.named('joy').first.intensity
@@ -173,15 +174,15 @@ class EntryTest < ActiveSupport::TestCase
   # ordering of dreamstream
   # entries with a comment should order by created_at of latest_comment
   # otherwise order the entries by their created_at
-  test "latest_comment pops entry to the top of the dreamstream" do
+  test "dreamstream ordering is correct: merge ordering of created_at and latest comment's created_at" do
     user = User.make
-    time = Time.now
+    time = Time.now - 20.days
     entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
     stream = Entry.dreamstream(user, {})
     assert_equal entries.map(&:id).reverse, stream.map(&:id), 'entries ordered created_at desc'
     
-    commented = Entry.make(user: user, created_at: time + 3.days)
-    Comment.make(entry: commented, created_at: Time.now - 1.hour)
+    commented = Entry.make(user: user, created_at: time - 3.days) # older entry
+    Comment.make(entry: commented, created_at: time + 4.hours)    # but newer comment
     
     stream = Entry.dreamstream(user, {})
     assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'recent comment for old entry is first'
@@ -192,9 +193,12 @@ class EntryTest < ActiveSupport::TestCase
     assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'no duplicates for multiple comments'
     
     # Make sure the group by entries.id is selecting the proper comment
-    commented.comments.last.update_attribute(:created_at, Time.now - 5.days)
+    commented.comments.first.update_attribute(:created_at, time - 5.hours) # now the entry wouldn't be first
+    commented.comments.last.update_attribute(:created_at, time + 7.days)   # except for this brand new comment 
     stream = Entry.dreamstream(user, {})
-    assert_equal (entries.reverse + [commented]).map(&:id), stream.map(&:id), 'groups by the last comment'
+
+    assert_equal commented.comments.last.created_at.utc, stream.find{|e| e.id == commented.id}.stream_time, "the stream entry's stream_time should be the last comment's created_at"
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'orders by the most recent comment'
     
   end
 end
