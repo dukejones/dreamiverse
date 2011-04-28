@@ -23,7 +23,8 @@ module ImageProfiles
       :header, :stream_header, :dreamfield_header, 
       :avatar_main, :avatar_medium, :avatar, 
       :thumb,
-      :bedsheet, :bedsheet_small
+      :bedsheet, :bedsheet_small,
+      :tag
     ]
   end
 
