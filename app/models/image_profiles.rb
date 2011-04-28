@@ -23,7 +23,8 @@ module ImageProfiles
       :header, :stream_header, :dreamfield_header, 
       :avatar_main, :avatar_medium, :avatar, 
       :thumb,
-      :bedsheet, :bedsheet_small
+      :bedsheet, :bedsheet_small,
+      :tag
     ]
   end
 
@@ -160,4 +161,10 @@ module ImageProfiles
     img.write(path(:bedsheet_small, options))
   end
 
+  def tag(options={})
+    img = magick_image
+    img.resize "43x32"
+
+    img.write(path(:tag))
+  end
 end

@@ -7,10 +7,11 @@
 .tag.wrapper.tagWhat{:'data-id' => what.id, :class => "#{kind == 'auto' ? 'auto' : ''} #{((kind == 'custom') && @entry.user == current_user) ? 'custom' : ''} #{what.dictionary_words.empty? ? '' : 'tagAnalysis'}" }
 
   .header.trigger{class: (what.dictionary_words.empty? ? '' : 'showhide')}
-    - if what.image == nil
-      .tag-icon
+    - if what.image
+      .tag-icon.image{style: "background: url('#{what.image.url(:tag)}') no-repeat center center transparent"}
     - else
-      .tag-icon.image{style: "background: url('#{what.image.source_url}') no-repeat center center transparent"}
+      .tag-icon
+
     .tag-name= what.name
 
     .analysis-icon
