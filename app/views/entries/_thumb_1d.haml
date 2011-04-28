@@ -67,28 +67,19 @@
       .date= time_ago_in_words(entry.created_at)
 
       = hidden_field :entry_id, entry.id, :value => entry.id, :class => "entry_id"
+      = hidden_field :user_id, entry.id, :value => current_user.username, :class => "currentUser"
 
-      - if entry.comments.count == 0
-        .comment
-          .img
+      .comment{class: entry.new_comment_count > 0 ? 'new' : ''}
+        .arrow
+        - if entry.comments.count == 0
           %span comment
-          .arrow
-      - elsif entry.new_comment_count > 0
-        .comment.new
-          .count
-            .img
-            %span
-              = entry.new_comment_count
-          %span comments
-          .arrow
-      - else
-        .comment
-          .count
-            .img
-            %span
-              = entry.comments.count
-          %span comments
-          .arrow
+        .count
+          .img
+          - if entry.new_comment_count > 0
+            %span=entry.new_comment_count
+          - elsif entry.comments.count > 0
+            %span=entry.comments.count
+          - else
 
     .clear
 
