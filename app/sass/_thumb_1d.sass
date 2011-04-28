@@ -3,7 +3,7 @@
 // STRUCTURE
 .matrix .thumb-1d:hover
   z-index: 200
-  .detailsTop .entryType, .left .starlight
+  .detailsTop .entryType, .details .comment, .left .starlight
     +block
 
 .matrix .thumb-1d
@@ -230,6 +230,7 @@
 
     // COMMENT COUNT
     .comment
+      +hidden
       +pointer
       +user-select
       +absolute
@@ -238,6 +239,8 @@
       height: 26px
       +round(12)
       +flat-bottom
+      &.new
+        +block
 
       .img
         +left
