@@ -160,4 +160,10 @@ module ImageProfiles
     img.write(path(:bedsheet_small, options))
   end
 
+  def tag(options={})
+    img = magick_image
+    img.resize "43x32"
+
+    img.write(path(:tag))
+  end
 end
