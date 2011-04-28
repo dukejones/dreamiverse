@@ -1,39 +1,55 @@
 $.Controller 'Dreamcatcher.Controllers.Comment',
 
   init: ->
-    #by default, get new comments only
-    #{only_new: true}
+    $(".entry_id").each (index,element) =>
+      entryId = $(element).val()
+      entry = @getEntryElement entryId
+      newComments = @getNewComments entry
+      Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populate') if newComments > 0
+      total = @getTotalComments entry
+      #log newComments+' '+total
+      if total is 0
+        $(".showAll",entry).hide()
+        log entryId
+      # if total is 0# or total is newComments
+        
 
   getEntryElement: (id) ->
     return $("#entry_id_#{id}").closest(".thumb-1d")
     
   getEntryId: (el) ->
-    entryId = $(".entry_id",el.closest(".thumb-1d")).val()
+    return $(".entry_id",el.closest(".thumb-1d")).val()
+    
+  getNewComments: (entry) ->
+    return parseInt $(".newComments",entry).val()
+    
+  getTotalComments: (entry) ->
+    return parseInt $(".totalComments",entry).val()
 
   populate: (comments) ->
     entryId = comments[0].entry_id if comments.length > 0
-    commentsContainer = $(".comments",@getEntryElement(entryId))
+    entry = @getEntryElement entryId
+    newComments = @getNewComments entry
+    commentsContainer = $(".comments",entry)
     commentsContainer.html @view('list',{comments: comments})
-    commentsContainer.fadeIn 200
-        
+    
+    #show new comments only
+    $(".prevCommentWrap",entry).each (index,element) ->
+      $(element).show() if index < newComments
+
   created: (data) ->
     comment = data.comment
     entryId = comment.entry_id
     entry = @getEntryElement entryId
     $(".comments",entry).append @view('show',comment)
     $(".comment_body",entry).val ''
-    count = parseInt $(".count span",entry).text().trim()
-    $(".count span",entry).text count+1
+    $(".count span",entry).text @getCommentCount(entry)+1
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
   
   '.showAll click': (el) ->
     entryId = @getEntryId el
-    Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populate')
-  
-  #TODO new only
-  '.comment click': (el) ->
-    entryId = @getEntryId el
-    Dreamcatcher.Models.Comment.findEntryComments entryId,{new_only:true},@callback('populate')
+    entry = @getEntryElement entryId
+    $(".prevCommentWrap",entry).show()
     
   '.deleteComment click': (el) ->
     entryId = el.data 'entryid'
