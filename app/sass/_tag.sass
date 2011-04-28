@@ -20,8 +20,14 @@
     margin: 8px 8px 0 0
     height: 32px
 
-    &.auto .tag-name
-      color: #88E3F7
+    &.auto
+      border: 1px solid #5c99e1 !important
+      .tag-name
+        color: #99daf1 !important
+      &:hover
+        border: 1px solid #fff !important
+        .tag-name
+          color: #fff !important
 
     .close-16
       +right
@@ -66,6 +72,9 @@
         height: 32px
         margin: 0 8px 0 0
         background: url(/images/icons/analysis-16.png) no-repeat center
+
+    &.auto .header .analysis-icon
+      background: url(/images/icons/analysis-16-blue.png) no-repeat center
 
 
     // ANALYSIS
@@ -155,10 +164,7 @@
     &.expanded, &.expanded:hover
       border: 1px solid #000 !important
     &.auto
-      +transparent-dark(80)
-      border: 1px solid #ccc
-      &:hover
-        border: 1px solid #88E3F7
+      +transparent-dark(90)
 
     &.expanded
       +bevel-light
@@ -188,9 +194,8 @@
     &.expanded, &.expanded:hover
       border: 1px solid #404040 !important
     &.auto
-      +flat-dark
-      &:hover
-        border: 1px solid #88E3F7
+      +transparent-dark(90)
+
     &.expanded
       +bevel-dark
       .header, .tag-name
