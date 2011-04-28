@@ -40,11 +40,11 @@
       +left
 
       .tag-icon
-        background: url('/images/icons/tag-24.png') no-repeat center center transparent
-        width: 24px
-        height: 24px
+        background: url('/images/icons/tag-24.png') no-repeat 7px center transparent
+        width: 42px
+        height: 32px
         +left
-        margin: 4px 11px 0 7px
+        margin: 0
         +hidden
 
       .tag-name
@@ -75,11 +75,13 @@
 
     &.auto .header .analysis-icon
       background: url(/images/icons/analysis-16-blue.png) no-repeat center
+    &.auto.expanded .header .analysis-icon
+      background: url(/images/icons/analysis-16.png) no-repeat center
 
 
     // ANALYSIS
     .analysis
-      padding: 20px
+      padding: 20px 42px
 
       .gradient
         height: 14px
@@ -100,7 +102,7 @@
       .description p
         +clear
         cursor: text
-        margin: 14px 18px 0
+        margin-top: 14px
 
       .divider
         height: 2px
