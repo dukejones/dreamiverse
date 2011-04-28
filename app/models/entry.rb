@@ -130,7 +130,6 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(:user_id => users_to_view.map(&:id))
     # each should be sorted according to date or starlight
 
-    # entry_scope = entry_scope.joins(:latest_comment.outer).group('entries.id').order(:latest_comment => :created_at.desc).order(:created_at.desc)
     with_comments = entry_scope.joins(:comments).group('entries.id')
     without_comments = entry_scope.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
 
