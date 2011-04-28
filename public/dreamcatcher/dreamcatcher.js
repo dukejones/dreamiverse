@@ -6,10 +6,12 @@ steal.plugins(
 	'jquery/controller/view',	// lookup views with the controller's name
 	'jquery/model',					  // Ajax wrappers
 	'jquery/dom/fixture',			// simulated Ajax requests
-	'jquery/dom/form_params',
-	'jquery/lightbox'
+	'jquery/dom/form_params'
 	)	// form data helper
-	.resources()					    // 3rd party script's (like jQueryUI), in resources folder
+	.resources(
+	  'jquery.lightbox-0.5',
+	  'jquery.timeago'
+	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //StealJS fix: don't forget to contribute!
 		steal.coffee(

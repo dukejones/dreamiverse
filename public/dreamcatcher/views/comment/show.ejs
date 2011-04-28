@@ -1,8 +1,8 @@
 <a style="background-image: url('/images/uploads/<%= this.user_id %>-avatar-64.jpg')" href="/<%= this.user_id %>" class="avatar"></a>
 <div class="prevComment">
   <a href="/<%= this.user_id %>" class="user"><%= this.user_id %></a>
-  <div class="commentTime"><%= this.updated_at %></div>
-  <a rel="nofollow" data-remote="true" data-method="delete" class="deleteComment" href="/entries/<%= this.entry_id %>/comments/<%= this.id %>"><div class="delete"></div>
+  <div class="commentTime"><%= $.timeago(this.updated_at) %></div>
+  <a rel="nofollow" data-entryid="<%= this.entry_id %>" data-id="<%= this.id %>" class="deleteComment"><div class="delete"></div>
   </a>
   <div class="body"><p><%= this.body %></p></div>
 </div>

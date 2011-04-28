@@ -1,13 +1,33 @@
 $.Model 'Dreamcatcher.Models.Comment',{
   
-  findComments: ( id, params, success, error ) ->
+  findEntryComments: ( entryId, params, success, error ) ->
     $.ajax {
-      url: "/entries/#{id}/comments"
+      url: "/entries/#{entryId}/comments"
       type: 'get'
       dataType: 'json'
       data: params
       success: @callback success
       error: error
+    }
+    
+  create: ( entryId, attrs, success, error ) ->
+    $.ajax {
+      url: "/entries/#{entryId}/comments"
+      type: 'post'
+      dataType: 'json'
+      success: success
+      error: error
+      data: attrs
+    }
+    
+  delete: ( entryId, commentId, attrs, success, error ) ->
+    $.ajax {
+      url: "/entries/#{entryId}/comments/#{commentId}"
+      type: 'delete'
+      dataType: 'json'
+      success: success
+      error: error
+      data: attrs
     }
 
 },
