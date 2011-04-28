@@ -109,7 +109,7 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    entry_scope = Entry.order(:created_at.desc)
+    entry_scope = Entry.scoped
     
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
 
@@ -131,13 +131,14 @@ class Entry < ActiveRecord::Base
     # each should be sorted according to date or starlight
 
     # entry_scope = entry_scope.joins(:latest_comment.outer).group('entries.id').order(:latest_comment => :created_at.desc).order(:created_at.desc)
-    comment_ordered_entry_scope = entry_scope.joins(:latest_comment).group('entries.id').having('max(comments.id)').order(:latest_comment => :created_at.desc)
+    with_comments = entry_scope.joins(:comments).group('entries.id')
+    without_comments = entry_scope.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
 
     entries = Entry.find_by_sql(%{
-      (#{entry_scope.select('entries.*, entries.created_at as created').to_sql})
+      (#{without_comments.select('entries.*, entries.created_at as stream_time').to_sql})
       UNION DISTINCT
-      (#{comment_ordered_entry_scope.select('entries.*, comments.created_at as created').to_sql})
-      ORDER BY created DESC
+      (#{with_comments.select('entries.*, max(comments.created_at) as stream_time').to_sql})
+      ORDER BY stream_time DESC
     })
 
     entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
