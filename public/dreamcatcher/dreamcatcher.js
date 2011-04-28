@@ -9,7 +9,7 @@ steal.plugins(
 	'jquery/dom/form_params'
 	)	// form data helper
 	.resources(
-	  'jquery.lightbox-0.5',
+	  'jquery-lightbox-0.5',
 	  'jquery.timeago'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
