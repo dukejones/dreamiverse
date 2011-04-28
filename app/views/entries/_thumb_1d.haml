@@ -77,14 +77,16 @@
         .comment.new
           .count
             .img
-            = entry.new_comment_count
+            %span
+              = entry.new_comment_count
           %span comments
           .arrow
       - else
         .comment
           .count
             .img
-            = entry.comments.count
+            %span
+              = entry.comments.count
           %span comments
           .arrow
 

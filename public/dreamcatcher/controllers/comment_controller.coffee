@@ -1,16 +1,20 @@
 $.Controller 'Dreamcatcher.Controllers.Comment',
 
-  init: ()
+  init: ->
     #by default, get new comments only
     #{only_new: true}
 
-  getEntryElement: (entryId) ->
-    return $("#entry_id_#{entryId}").closest(".thumb-1d")
+  getEntryElement: (id) ->
+    return $("#entry_id_#{id}").closest(".thumb-1d")
+    
+  getEntryId: (el) ->
+    entryId = $(".entry_id",el.closest(".thumb-1d")).val()
 
   populate: (comments) ->
     entryId = comments[0].entry_id if comments.length > 0
-    entry = @getEntryElement entryId
-    $(".comments",entry).html @view('list',{comments: comments})
+    commentsContainer = $(".comments",@getEntryElement(entryId))
+    commentsContainer.html @view('list',{comments: comments})
+    commentsContainer.fadeIn 200
         
   created: (data) ->
     comment = data.comment
@@ -18,10 +22,18 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entry = @getEntryElement entryId
     $(".comments",entry).append @view('show',comment)
     $(".comment_body",entry).val ''
-        
-  '.comment click': (el) ->
-    entryId = $(".entry_id",el.parent()).val()
+    count = parseInt $(".count span",entry).text().trim()
+    $(".count span",entry).text count+1
+    $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
+  
+  '.showAll click': (el) ->
+    entryId = @getEntryId el
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populate')
+  
+  #TODO new only
+  '.comment click': (el) ->
+    entryId = @getEntryId el
+    Dreamcatcher.Models.Comment.findEntryComments entryId,{new_only:true},@callback('populate')
     
   '.deleteComment click': (el) ->
     entryId = el.data 'entryid'
@@ -30,9 +42,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.closest('.prevCommentWrap').fadeOut 200
     
   '.save click': (el) ->
+    $(".comment_body,.save",el.parent()).attr("disabled",true).addClass("disabled")
     comment = {
       user_id: $(".user_id",el.parent()).val()
       body: $(".comment_body",el.parent()).val()
     }
-    entryId = $(".entry_id",el.closest(".thumb-1d")).val()
+    entryId = @getEntryId el
     Dreamcatcher.Models.Comment.create entryId,comment,@callback('created')
