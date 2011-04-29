@@ -27,7 +27,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
   changeCommentCount: (entry, difference) ->
     newComments = $(".newComments",entry).val()
-    newComments = 0 if not newComments?
+    newComments = if newComments? then parseInt newComments else 0
     newComments = newComments+difference
     $(".newComments",entry).val(newComments)
     $(".count span",entry).text(newComments)
@@ -51,6 +51,14 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   displayComments: (entry, newComments, totalComments, comments) ->
     commentsPanel = $(".commentsTarget",entry)
     commentsPanel.html @view('list',{newComments: newComments, totalComments: totalComments, comments: comments})
+    
+    #remove all delete buttons which should  not be accessed
+    currentUserId = $(".current_user_id",entry).val()
+    entryUserId = $(".entry_user_id",entry).val()
+    if currentUserId isnt entryUserId
+      $(".deleteComment",commentsPanel).each ->
+        $(this).remove() if $(this).data('userid') isnt currentUserId
+    
     commentsPanel.addClass("commentsPanel").addClass("wrapper").show()
     
     #hide loading wheel
@@ -94,8 +102,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   
   '.showAll click': (el) ->
     entry = @getEntryFromElement el
-    $(".prevCommentWrap",entry).show(), ->
-      el.hide()
+    $(".prevCommentWrap",entry).show()
+    el.hide()
     
   '.deleteComment click': (el) ->
     entry = @getEntryFromElement el
