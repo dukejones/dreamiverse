@@ -1,14 +1,9 @@
-<% for(var i = 0; i < comments.length; i++){ %>
-  <%= $.View('//dreamcatcher/views/comment/show',comments[i])%>
-<% } %>
-
-
 <div class="commentsPanel wrapper">
   <div class="trigger showhide">
     <div class="commentsHeader headers">
       <div class="count">
         <div class="img"></div>
-        <span>6</span>
+        <span><%= newComments %></span>
       </div>
       comments
     </div>
@@ -17,10 +12,14 @@
   <div class="target showhide">
     <div class="showAll">
       show all
-      <span>6</span>
+      <span><span><%= totalComments %></span></span>
       comments
     </div>
-    <div class="comments"></div>
+    <div class="comments">
+      <% for(var i = 0; i < comments.length; i++){ %>
+        <%= $.View('//dreamcatcher/views/comment/show',comments[i])%>
+      <% } %>
+    </div>
     <a name="bottom" href="#"></a>
     <div class="newCommentWrap">
       <div style="background-image: url('/images/uploads/1-avatar-64.jpg')" class="avatar"></div>

@@ -6,13 +6,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       entry = @getEntryElement entryId
       newComments = @getNewComments entry
       Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populate') if newComments > 0
-      total = @getTotalComments entry
-      #log newComments+' '+total
-      if total is 0
-        $(".showAll",entry).hide()
-        log entryId
-      # if total is 0# or total is newComments
-        
+      $(entry).addClass("expanded")
+      #$(".newCommentWrap").hide()
 
   getEntryElement: (id) ->
     return $("#entry_id_#{id}").closest(".thumb-1d")
@@ -30,9 +25,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entryId = comments[0].entry_id if comments.length > 0
     entry = @getEntryElement entryId
     newComments = @getNewComments entry
-    commentsContainer = $(".comments",entry)
-    commentsContainer.html @view('list',{comments: comments})
-    
+    commentsContainer = $(".commentsTarget",entry)
+    total = @getTotalComments entry
+    commentsContainer.html @view('list',{newComments: newComments, totalComments: total, comments: comments})
+    #$(".showAll",commentsContainer).hide() if total is 0
     #show new comments only
     $(".prevCommentWrap",entry).each (index,element) ->
       $(element).show() if index < newComments
@@ -45,13 +41,23 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     $(".comment_body",entry).val ''
     $(".count span",entry).text @getCommentCount(entry)+1
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
-  
-  '.showAll click': (el) ->
+
+  '.comment click': (el) ->
     entryId = @getEntryId el
     entry = @getEntryElement entryId
-    $(".prevCommentWrap",entry).show()
+    total = @getTotalComments entry
+    commentsContainer = $(".commentsTarget",entry)
+    commentsContainer.html @view('list',{newComments: 0, totalComments: 0, comments: {}})
+  
+  '.showAll click': (el) ->
+    alert 'x'
+    entryId = @getEntryId el
+    entry = @getEntryElement entryId
+    alert entryId
+    #$(".prevCommentWrap",entry).show()
     
   '.deleteComment click': (el) ->
+    alert 'y'
     entryId = el.data 'entryid'
     commentId = el.data 'id'
     Dreamcatcher.Models.Comment.delete entryId,commentId
