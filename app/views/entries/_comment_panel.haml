@@ -1,13 +1,18 @@
 .commentsPanel.wrapper
   .trigger.showhide
     .commentsHeader.headers
-      .img
-      <b>#{entry.comments.count} comments</b>
+      .count
+        .img
+        %span=entry.comments.count
+      comments
   .clear
 
   .target.showhide
 
-    .showAll{class: (entry.comments.count == 0 ? 'hidden' : '')} show all #{entry.comments.count} comments
+    .showAll{class: (entry.comments.count == 0 ? 'hidden' : '')}
+      show all
+      %span=entry.comments.count
+      comments
 
     .comments
 

@@ -67,36 +67,29 @@
       .date= time_ago_in_words(entry.created_at)
 
       = hidden_field :entry_id, entry.id, :value => entry.id, :class => "entry_id"
+      = hidden_field :user_id, entry.id, :value => current_user.username, :class => "currentUser"
+      - if entry.new_comment_count > 0 && !current_user.blank?
+        = hidden_field :new_comments, entry.id, :value => entry.new_comment_count, :class => "newComments"
+      = hidden_field :total_comments, entry.id, :value => entry.comments.count, :class => "totalComments"
 
-      - if entry.comments.count == 0
-        .comment
+      .comment{class: entry.new_comment_count > 0 && !current_user.blank? ? 'new' : ''}
+        .arrow
+        %span.text comment
+        .count
           .img
-          %span comment
-          .arrow
-      - elsif entry.new_comment_count > 0
-        .comment.new
-          .count
-            .img
-            %span
-              = entry.new_comment_count
-          %span comments
-          .arrow
-      - else
-        .comment
-          .count
-            .img
-            %span
-              = entry.comments.count
-          %span comments
-          .arrow
+          - if entry.new_comment_count > 0 && !current_user.blank?
+            %span=entry.new_comment_count
+          - elsif entry.comments.count > 0
+            %span=entry.comments.count
+          - else
 
     .clear
 
 
-
-  / COMMENTS
-  - unless current_user.blank?
-    = render :partial => "entries/comment_panel", :locals => {entry: entry}
+  .commentsPanel.wrapper
+  / / COMMENTS
+  / - unless current_user.blank?
+  /   = render :partial => "entries/comment_panel", :locals => {entry: entry}
 
 
   .clear

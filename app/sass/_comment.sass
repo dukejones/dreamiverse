@@ -3,6 +3,9 @@
   +panel-light
   +shine-light-alpha(28)
 
+  .commentsHeader .count
+    background-color: #ddd
+
   .showAll
     +indent-light
     +button-light
@@ -61,6 +64,9 @@
   +panel-dark
   +shine-dark-alpha(28)
 
+  .commentsHeader .count
+    background-color: #262626
+
   .showAll
     +indent-dark
     +button-dark
@@ -113,12 +119,32 @@
   margin-bottom: 0
 
   .commentsHeader
-    font-weight: normal
+    +bold
     margin-bottom: 8px
     +user-select
-    .counter
+
+
+    .count
+      +left
+      +round(12)
+      +center
       +font(14)
-      margin-top: -2px
+      margin: 5px 10px 5px 2px
+      height: 24px
+      line-height: 17px
+      padding: 0 12px 0 6px
+
+      .img
+        +left
+        width: 16px
+        height: 24px
+
+      span
+        +left
+        line-height: 24px
+        margin-left: 8px
+
+
 
   .showAll
     +round(16)
@@ -130,10 +156,8 @@
     width: 562px
     margin-left: 80px
 
-  .comments
-    +hidden
-
   .prevCommentWrap
+    +hidden
     margin-top: 8px
 
   .newCommentWrap
