@@ -39,14 +39,19 @@
       left: 58px
       margin-right: 4px
       height: 64px
-      width: 138px
+      width: 134px
       a:hover, a:hover div
         color: #3086CF !important
 
-      .userName
+      a.userName
+        +block
+        +round(8)
+        margin: 4px 0
+        padding: 0 4px
+        border: 1px solid transparent
         h3
-          margin: 8px 0 0px 8px
-          +font(21)
+          margin: 0
+          +font(18)
 
       .following
         left: 0
@@ -61,6 +66,8 @@
         +block
         margin: 0 4px 0 0
         width: 64px
+        &:hover .count
+          +flat-light
         .count
           +round(4)
           +center
@@ -69,6 +76,7 @@
           line-height: 14px
           color: #fff
           background: #7a7a7a
+
 
   .myStream
     +round(12)
@@ -103,6 +111,7 @@
       margin: 4px 0 1px
       height: 32px
       line-height: 32px
+      border: 1px solid #7a7a7a
       span
         +left
       img.icon
@@ -186,7 +195,7 @@
 
     // USER INFO
     .userInfo
-      +flat-light
+      +shine-light(16)
 
       .avatar-64
         +pointer
@@ -196,6 +205,9 @@
       .infoRight
         a:hover div
           color: #55CCFF !important
+
+        a.userName:hover
+          +button-light
 
     // LABEL
     .myStream
@@ -220,7 +232,7 @@
 
     // USER INFO
     .userInfo
-      background-color: #333
+      +shine-dark(16)
 
       .avatar-64
         +button-dark
@@ -228,10 +240,10 @@
       .infoRight
         a:hover
           color: #88E3F7 !important
-        .following, .followers
-          .count
-            +flat-light
-            color: #000
+
+        a.userName:hover
+          +button-dark
+
 
     // LABEL
     .myStream
@@ -241,7 +253,7 @@
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .entryFilter, .followFilter, .starlightTab
-        background-color: #333
+        +flat-dark
         &:hover
           +glow-dark(10)
         &.loading .arrow
