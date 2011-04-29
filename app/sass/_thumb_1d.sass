@@ -277,8 +277,11 @@
         height: 26px
         margin-left: 8px
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
-  &.expanded .arrow
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+  &.expanded .details
+    .comment, .text
+      display: block
+    .arrow
+      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
 
 
 
@@ -334,7 +337,7 @@
   .entryImages li
     +button-light
 
-  .comment:hover
+  .comment:hover, &.expanded .comment
     +gradient(#b3b3b3, #555)
     color: #fff
     .count
@@ -366,7 +369,7 @@
   .entryImages li
     +button-dark
 
-  .comment:hover
+  .comment:hover, &.expanded .comment
     +gradient(#b3b3b3, #555)
     color: #fff
     .count
