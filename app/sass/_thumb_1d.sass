@@ -244,7 +244,6 @@
 
       .img
         +left
-        +alpha(80)
         width: 16px
         height: 16px
         background: url(/images/icons/comment-16.png) no-repeat center center
@@ -323,7 +322,7 @@
     .name
       color: #333
 
-  .entryType, .starlight
+  .entryType, .starlight, .count
     +transparent-dark(80)
     color: #ddd
 
@@ -337,11 +336,8 @@
     +gradient(#b3b3b3, #555)
     color: #fff
     .count
-      +transparent-light(20)
+      +transparent-light(30)
       color: #fff
-  .count
-    +transparent-dark(60)
-    color: #ddd
 
 
 .dark .matrix .thumb-1d
@@ -368,6 +364,12 @@
   .entryImages li
     +button-dark
 
+  .comment:hover
+    +gradient(#b3b3b3, #555)
+    color: #fff
+    .count
+      +transparent-light(20)
+      color: #fff
 
 
 
