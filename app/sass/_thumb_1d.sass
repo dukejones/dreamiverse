@@ -3,7 +3,7 @@
 // STRUCTURE
 .matrix .thumb-1d:hover
   z-index: 200
-  .detailsTop .entryType, .details .comment, .left .starlight
+  .detailsTop .entryType, .details .comment, .details .comment .text, .left .starlight
     +block
 
 .matrix .thumb-1d
@@ -244,7 +244,6 @@
 
       .img
         +left
-        +alpha(80)
         width: 16px
         height: 16px
         background: url(/images/icons/comment-16.png) no-repeat center center
@@ -253,6 +252,8 @@
         +left
         padding: 0 6px
         line-height: 24px
+      .text
+        +hidden
 
       .count
         +left
@@ -267,7 +268,7 @@
 
         span
           padding: 0
-          line-height: 16px
+          line-height: 17px
           margin-left: 6px
 
       .arrow
@@ -276,8 +277,11 @@
         height: 26px
         margin-left: 8px
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
-  &.expanded .arrow
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+  &.expanded .details
+    .comment, .text
+      display: block
+    .arrow
+      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
 
 
 
@@ -323,7 +327,7 @@
     .name
       color: #333
 
-  .entryType, .starlight
+  .entryType, .starlight, .count
     +transparent-dark(80)
     color: #ddd
 
@@ -333,15 +337,12 @@
   .entryImages li
     +button-light
 
-  .comment:hover
+  .comment:hover, &.expanded .comment
     +gradient(#b3b3b3, #555)
     color: #fff
     .count
-      +transparent-light(20)
+      +transparent-dark(50)
       color: #fff
-  .count
-    +transparent-dark(60)
-    color: #ddd
 
 
 .dark .matrix .thumb-1d
@@ -368,6 +369,12 @@
   .entryImages li
     +button-dark
 
+  .comment:hover, &.expanded .comment
+    +gradient(#b3b3b3, #555)
+    color: #fff
+    .count
+      +transparent-light(20)
+      color: #fff
 
 
 
