@@ -74,7 +74,7 @@
 
       .comment{class: entry.new_comment_count > 0 && !current_user.blank? ? 'new' : ''}
         .arrow
-        %span comment
+        %span.text comment
         .count
           .img
           - if entry.new_comment_count > 0 && !current_user.blank?
