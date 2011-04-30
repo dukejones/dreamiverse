@@ -318,8 +318,10 @@
     background: #f0f0f0
     background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
     background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
-  &:hover .entry, &.expanded .entry
+  &:hover .entry,
     +glow-light(40)
+  &.expanded .entry
+    +glow-light-alpha(40, 0.4)
 
   .user
     +button-light
@@ -338,7 +340,7 @@
     +button-light
 
   .comment:hover, &.expanded .comment
-    +gradient(#b3b3b3, #555)
+    +gradient(#c5c5c5, #a4a4a4)
     color: #fff
     .count
       +transparent-dark(50)
