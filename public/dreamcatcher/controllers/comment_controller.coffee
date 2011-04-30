@@ -45,6 +45,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     totalCount = @getTotalCommentCount(entry)
     $(".showAll span",entry).text(totalCount)
     $(".commentsHeader .count span",entry).text(totalCount)
+    $(".comment .count span",entry).text(totalCount)
 
   loadComments: (entryId) ->
     #show loading wheel
@@ -116,9 +117,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entryId = el.data 'entryid'
     commentId = el.data 'id'
     Dreamcatcher.Models.Comment.delete entryId,commentId
-    el.closest('.prevCommentWrap').fadeOut 200, (element) =>
-      $(element).remove()
-      @updateCommentCount entry
+    el.closest('.prevCommentWrap').remove()
+    @updateCommentCount entry
   
   '.save click': (el) ->
     $(".comment_body,.save",el.parent()).attr("disabled",true).addClass("disabled")
