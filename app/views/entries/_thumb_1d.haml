@@ -64,17 +64,19 @@
       .date= time_ago_in_words(entry.created_at)
 
       /= hidden_field :entry_id, entry.id, :value => entry.id, :class => "entry_id"
+      /- unless current_user.blank?
+      /  = hidden_field :current_user_id, entry.id, :value => current_user.id, :class => "current_user_id"
       /= hidden_field :entry_user_id, entry.id, :value => entry.user.id, :class => "entry_user_id"
-      - if entry.new_comment_count > 0 && !current_user.blank?
+      - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
         = hidden_field :new_comments, entry.id, :value => entry.new_comment_count, :class => "newComments"
       /= hidden_field :total_comments, entry.id, :value => entry.comments.count, :class => "totalComments"
 
-      .comment{class: entry.new_comment_count > 0 && !current_user.blank? ? 'new' : ''}
+      .comment{class: entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user ? 'new' : ''}
         .arrow
         %span.text comment
         .count
           .img
-          - if entry.new_comment_count > 0 && !current_user.blank?
+          - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
             %span=entry.new_comment_count
           - elsif entry.comments.count > 0
             %span=entry.comments.count

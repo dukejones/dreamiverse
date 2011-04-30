@@ -45,6 +45,22 @@ module ImageProfiles
     generate_profile(profile, options) unless profile_generated?(profile, options)
     magick_image(profile, options)
   end
+
+  # Resizes to specific dimensions, shaving off any pixels that exceed the given aspect ratio.
+  def shave(img, x, y)
+    img.resize "#{x}x#{y}^"
+    x_offset = (img[:width] - x) / 2
+    y_offset = (img[:height] - y) / 2
+    img.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
+  end
+
+  def convert(img, new_format, quality=nil)
+    img.quality quality if quality
+    
+    img.format options[:format] if !new_format.blank? && self.format != new_format
+  end
+
+  ########## PROFILES #############
   
   def medium(options={})
     img = magick_image
@@ -83,21 +99,9 @@ module ImageProfiles
     # img.thumbnail # => Faster but no pixel averaging.
     size = (options[:size] || 128).to_i
     img = magick_image
-    img.format options[:format] if options[:format]
-    # img.combine_options do |i|
-    img.resize "#{size}x#{size}^"
-    # img.resize (width > height) ? "x#{size}" : size
     
-    # offset = if (width > height)
-    #   pix = (img[:width] - size.to_i) / 2
-    #   "+#{pix}+0" 
-    # else
-    #   pix = (img[:height] - size.to_i) / 2
-    #   "+0+#{pix}"
-    # end
-    x_offset = (img[:width] - size) / 2
-    y_offset = (img[:height] - size) / 2
-    img.crop "#{size}x#{size}+#{x_offset}+#{y_offset}"
+    convert(img, options[:format])
+    shave(img, size, size)
     # img.repage
     img.write(path('thumb', options))
   end
@@ -118,7 +122,6 @@ module ImageProfiles
   def avatar_medium(options)
     img = profile_magick_image(:avatar_main)
     img.resize "24%"
-    
     img.write(path(:avatar_medium))
   end
   
@@ -136,35 +139,23 @@ module ImageProfiles
   end
 
   def bedsheet(options)
-    # this apparently doesn't work.  For now, we'll just specify each time.
-    # options[:format] = 'jpg'
-    
     img = magick_image
-    if options[:format] != self.format
-      # change to specified format - quality: 40%
-      img.quality 40
-      img.format options[:format]
-    end
+    # change to specified format - quality: 40%
+    convert(img, options[:format], 40)
     img.resize '2048<' # only if both dimensions exceed
     img.write(path(:bedsheet, options))
   end
   
   def bedsheet_small(options)
-    # options[:format] = 'jpg'
-
     img = magick_image
-    if options[:format] != self.format
-      img.quality 50
-      img.format options[:format]
-    end
+    convert(img, options[:format], 50)
     img.resize 1024
     img.write(path(:bedsheet_small, options))
   end
 
   def tag(options={})
     img = magick_image
-    img.resize "43x32"
-
+    img.shave(43, 32)
     img.write(path(:tag))
   end
 end

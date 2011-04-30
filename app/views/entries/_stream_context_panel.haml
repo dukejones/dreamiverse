@@ -6,8 +6,7 @@
     %a.avatar-64{href: user_entries_path(user.username), style: "background:url(#{avatar_image(current_user, :medium)}) no-repeat center center"}
 
     .infoRight
-      %a.userName{href: user_entries_path(user.username)}
-        %h3= user.username
+      %a.userName{href: user_entries_path(user.username)}= user.username
       .clear
 
       %a.following{href: following_path(user.username)}

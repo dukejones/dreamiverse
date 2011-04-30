@@ -193,48 +193,61 @@
 
 
 
-
+// STREAM INFORMATION PANELS
+// STRUCTURE
 
 .noEntrys
-  +transparent-dark(80)
   +absolute
+  +center
+  padding: 8px 0
   top: 0px
-
-// STREAM INFORMATION PANELS
-
-.light .noEntrys
-  +transparent-light(50)
-  +glow-light(20)
-
-
-.dark .noEntrys
-  +transparent-dark(50)
-  +glow-dark(10)
-    
-
-
-#noMoreEntries, #nextPageLoading
-  margin-top: 80px
-  +transparent-dark(80)
-  height: 32px
-
-#nextPageLoading
-  background-color: black
-  img
-    margin: -3px 11px -11px
-
-
+  color: #ccc
 
 .noEntrys, #noMoreEntries, #nextPageLoading
-  color: #ccc
   +user-select
   +round(16)
   +font(21)
-  +center
   +cursor
-  width: 656px
-  padding: 8px
+  border: 1px solid #333
+  width: 668px
+
+#noMoreEntries
+  +center
+
+#noMoreEntries, #nextPageLoading
+  +flat-top
+  margin-top: 10px
+  height: 64px
+  line-height: 64px
+
+#nextPageLoading .spinner
+  height: 64px
+  width: 32px
+  margin: auto
 
 
 
+// STREAM INFORMATION PANELS
+// COLOR
+
+.light 
+  .noEntrys
+    +transparent-light(50)
+    +glow-light(20)
+
+  #noMoreEntries, #nextPageLoading
+    +gradient(#ccc, #fff)
+    .spinner
+      background: url(/images/icons/spinner-light-grey-32.gif) no-repeat scroll center center transparent
+
+
+.dark 
+  .noEntrys
+    +transparent-dark(50)
+    +glow-dark(10)
+
+  #noMoreEntries, #nextPageLoading
+    +gradient(#000, #252525)
+    .spinner
+      background: url(/images/icons/spinner-dark-32.gif) no-repeat scroll center center transparent
 
