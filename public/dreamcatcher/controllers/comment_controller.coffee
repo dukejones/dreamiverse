@@ -46,6 +46,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     $(".showAll span",entry).text(totalCount)
     $(".commentsHeader .count span",entry).text(totalCount)
     $(".comment .count span",entry).text(totalCount)
+    if totalCount > 0
+      $(".comment .count span").removeClass("empty")
+    else
+      $(".comment .count span").addClass("empty").text("")
 
   loadComments: (entryId) ->
     #show loading wheel
