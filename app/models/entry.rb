@@ -133,7 +133,8 @@ class Entry < ActiveRecord::Base
     
     time_range = Entry.select('max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
     # It sorts on stream_time, so must only be run within the UNION statement.
-    my_entries = entry_scope.where(:user => viewer, :created_at.gt => time_range.min_time, :created_at.lt => time_range.max_time)
+    my_entries = entry_scope.where(:user => viewer, :created_at.gt => time_range.min_time)
+    my_entries = my_entries.where(:created_at.lt => time_range.max_time) unless page == 1
     my_commented_entries = my_entries.joins(:comments).group('entries.id')
     my_uncommented_entries = my_entries.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
 
