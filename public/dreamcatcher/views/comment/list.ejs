@@ -15,7 +15,9 @@
     comments
   </div>
   <div class="comments">
-
+    <% for(var i = 0; i < comments.length; i++){ %>
+      <%= $.View('//dreamcatcher/views/comment/show',comments[i])%>
+    <% } %>
   </div>
   <a name="bottom" href="#"></a>
   <div class="newCommentWrap">
