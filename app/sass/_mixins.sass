@@ -372,6 +372,12 @@
   -moz-box-shadow:    0 0 $depth * 0.5 + px #fff
   -webkit-box-shadow: 0 0 $depth + px #fff
 
+=glow-dark-alpha($depth, $percent)
+  box-shadow:         0 0 $depth + px rgba(255,255,255,$percent)
+  -moz-box-shadow:    0 0 $depth * 0.7 + px rgba(255,255,255,$percent)
+  -webkit-box-shadow: 0 0 $depth + px rgba(255,255,255,$percent)
+
+
 =glow-blue($depth)
   box-shadow:         0 0 $depth + px #1188c0
   -moz-box-shadow:    0 0 $depth + px #1188c0
