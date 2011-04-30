@@ -48,22 +48,17 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
 
   loadComments: (entryId) ->
     #show loading wheel
-    Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments')
+    Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments',entryId)
     
-  populateComments: (comments) ->
-    entryId = comments[0].entry_id if comments.length > 0
+  populateComments: (entryId,comments) ->
     entry = @getEntry entryId
     newCount = @getNewCommentCount entry
     totalCount = comments.length
-    @displayComments entry,newCount,totalCount,comments
-    
-  displayComments: (entry, newCount, totalCount, comments) ->
     commentsPanel = $(".commentsTarget",entry)
     commentsPanel.html @view('list',{userId: @currentUserId, newCount: newCount, totalCount: totalCount, comments: comments})
     
     #remove all delete buttons which should  not be accessed
     entryUserId = entry.data("userid")
-
     if @currentUserId isnt entryUserId or not $("#entryField").data 'owner'
       $(".deleteComment",commentsPanel).each (index,element) =>
         commentUserId = parseInt $(element).data('userid')
@@ -73,17 +68,15 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
     #TODO: hide loading wheel
     
-    if @entryView
+    if @entryView #show all for entryView
       $(".prevCommentWrap",entry).show()
       #if not @entryView or (totalCount > 0 and newCount < totalCount) #show only new comments initially
-    else
+    else #only show new ones, or at least 2
       $(entry).addClass("expanded")
-      indexToStartShowing = totalCount - Math.max(newCount,2) #show all new, or at least 2 --- TODO: This may change
+      indexToStartShowing = totalCount - Math.max(newCount,2)
       $(".showAll",commentsPanel).show() if indexToStartShowing > 0 #only show showAll button if some left to show
       $(".prevCommentWrap",entry).each (index,element) ->
         $(element).show() if index >= indexToStartShowing
-    #else #just show all of them!
-    
 
   created: (data) ->
     comment = data.comment
@@ -108,10 +101,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     else if $(".prevCommentWrap",entry).length > 0 #collapsed, been expanded, comments already loaded, just expand
       $(".commentsTarget",entry).show()
       entry.addClass("expanded")
-    else if @getTotalCommentCount(entry) > 0
+    else #if @getTotalCommentCount(entry) > 0
       @loadComments entryId
-    else
-      @displayComments entry,0,0,{}
+    #else
+    #  @displayComments entry,0,0,{}
   
   '.showAll click': (el) ->
     entry = @getEntryFromElement el
