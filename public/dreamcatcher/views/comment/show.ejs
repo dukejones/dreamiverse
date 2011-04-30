@@ -3,7 +3,7 @@
   <div class="prevComment">
     <a href="/<%= this.username %>" class="user"><%= this.username %></a>
     <div class="commentTime"><%= $.timeago(this.updated_at) %></div>
-    <a rel="nofollow" data-entryid="<%= this.entry_id %>" data-id="<%= this.id %>" class="deleteComment"><div class="delete"></div>
+    <a rel="nofollow" data-userid="<%= this.user_id %>" data-entryid="<%= this.entry_id %>" data-id="<%= this.id %>" class="deleteComment"><div class="delete"></div>
     </a>
     <div class="body"><p><%= this.body %></p></div>
   </div>

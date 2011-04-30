@@ -18,13 +18,17 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     return el.closest(".thumb-1d")
     
   getNewComments: (entry) ->
-    return parseInt $(".newComments",entry).val()
+    newComments = $(".newComments",entry).val()
+    return parseInt newComments if newComments?
+    return 0
 
   getTotalComments: (entry) ->
     return parseInt $(".totalComments",entry).val()
     
   changeCommentCount: (entry, difference) ->
-    newComments = @getNewComments(entry)+difference
+    newComments = $(".newComments",entry).val()
+    newComments = if newComments? then parseInt newComments else 0
+    newComments = newComments+difference
     $(".newComments",entry).val(newComments)
     $(".count span",entry).text(newComments)
     $(".comment",entry).addClass("new") if not $(".comment",entry).hasClass("new")
@@ -47,18 +51,26 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   displayComments: (entry, newComments, totalComments, comments) ->
     commentsPanel = $(".commentsTarget",entry)
     commentsPanel.html @view('list',{newComments: newComments, totalComments: totalComments, comments: comments})
-    commentsPanel.addClass("commentsPanel").addClass("wrapper").slideDown 200
+    
+    #remove all delete buttons which should  not be accessed
+    currentUserId = $(".current_user_id",entry).val()
+    entryUserId = $(".entry_user_id",entry).val()
+    if currentUserId isnt entryUserId
+      $(".deleteComment",commentsPanel).each ->
+        $(this).remove() if $(this).data('userid') isnt currentUserId
+    
+    commentsPanel.addClass("commentsPanel").addClass("wrapper").show()
     
     #hide loading wheel
     $(entry).addClass("expanded")
-    #$(".target",commentsPanel).show()
+    #alert "new:#{newComments} total:#{totalComments}"
     
     if (totalComments > 0 and newComments < totalComments) #show only new comments initially
+      $(".showAll",commentsPanel).show()
       $(".prevCommentWrap",entry).each (index,element) ->
-        $(element).slideDown 200 if showAll or index >= (totalComments-newComments)
+        $(element).show() if showAll or index >= (totalComments-newComments)
     else
-      $(".showAll",commentsPanel).hide()
-      $(".prevCommentWrap",entry).slideDown 200
+      $(".prevCommentWrap",entry).show()
 
   created: (data) ->
     comment = data.comment
@@ -90,8 +102,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   
   '.showAll click': (el) ->
     entry = @getEntryFromElement el
-    $(".prevCommentWrap",entry).slideDown 200, ->
-      el.hide()
+    $(".prevCommentWrap",entry).show()
+    el.hide()
     
   '.deleteComment click': (el) ->
     entry = @getEntryFromElement el
