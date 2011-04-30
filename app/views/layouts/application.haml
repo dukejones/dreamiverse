@@ -19,6 +19,9 @@
     = yield :head
 
   %body{id: 'body', class: theme, style: bedsheet_style}
+  
+  - unless current_user.blank?
+    = hidden_field :current_user_id, 1, :value => current_user.id
 
     #bodyClick
 
