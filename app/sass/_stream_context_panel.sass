@@ -39,14 +39,16 @@
       left: 58px
       margin-right: 4px
       height: 64px
-      width: 138px
-      a:hover, a:hover div
-        color: #3086CF !important
+      width: 134px
 
       .userName
-        h3
-          margin: 8px 0 0px 8px
-          +font(21)
+        +block
+        +round(8)
+        margin: 4px 0
+        padding: 0 4px
+        border: 1px solid transparent
+        +font(18)
+
 
       .following
         left: 0
@@ -61,6 +63,9 @@
         +block
         margin: 0 4px 0 0
         width: 64px
+        &:hover .count
+          +flat-light
+          color: #000
         .count
           +round(4)
           +center
@@ -69,6 +74,7 @@
           line-height: 14px
           color: #fff
           background: #7a7a7a
+
 
   .myStream
     +round(12)
@@ -91,60 +97,60 @@
 
 
   // STREAM CONTEXT PANEL FILTERS
-  .wrapper
-    .entryFilter, .followFilter, .starlightTab
-      +pointer
-      +round(12)
-      +relative
-      +bold
-      +center
-      width: 188px
-      padding: 0 4px 0 8px
-      margin: 4px 0 1px
+  .entryFilter, .followFilter, .starlightTab
+    +pointer
+    +round(12)
+    +relative
+    +bold
+    +center
+    width: 186px
+    padding: 0 4px 0 8px
+    margin: 4px 0 1px
+    height: 32px
+    line-height: 32px
+    border: 1px solid #7a7a7a
+    span
+      +left
+    .icon
+      +left
+      margin: 8px 8px 0 0
+    .arrow
+      +right
+      width: 32px
       height: 32px
-      line-height: 32px
+      background: url('/images/icons/arrow-down-16.png') no-repeat center center
+
+
+
+  .filterList
+    span, img
+      +left
+    img
+      margin: 8px 12px 0 8px
+
+
+
+  .starlightTab
+    .icon
+      margin: 7px 8px 0 0
+
+    .starlightFilter
+      +round(12)
+      +right
+      +relative
+      +center
+      width: 70px
+      margin: 5px 0 0
+      height: 18px
+      line-height: 18px
+      padding: 0
       span
-        +left
-      img.icon
-        +left
-        margin: 8px 8px 0 0
-      .arrow
-        +right
-        width: 32px
-        height: 32px
-        background: url('/images/icons/arrow-down-16.png') no-repeat center center
+        float: none
 
-
-
-    .filterList
-      span, img
-        +left
-      img
-        margin: 8px 12px 0 8px
-
-
-
-    .starlightTab
-      img.icon
-        margin: 7px 8px 0 0
-
-      .starlightFilter
-        +round(12)
-        +right
-        +relative
-        +center
+      .filterList
         width: 70px
-        margin: 5px 0 0
-        height: 18px
-        line-height: 18px
-        padding: 0
-        span
-          float: none
-
-        .filterList
-          width: 70px
-          top: 0
-          left: 0
+        top: 0
+        left: 0
 
 
 // SHARED BETWEEN BOTH
@@ -152,16 +158,16 @@
   .wrapper
     +relative
     .filterList
+      border: 1px solid #7a7a7a
       +round(12)
       +absolute
       +pointer
       top: 0
       z-index: 1200
-      width: 100%
+      width: 198px
       &:hover
         +round(12)
       .type
-        +center
         +bold
         height: 30px
         line-height: 30px
@@ -179,73 +185,61 @@
 
 // STREAM CONTEXT PANEL
 // COLORS
-.light
-  #streamContextPanel
-    +transparent-light(50)
-    +glow-light(40)
+.light #streamContextPanel
+  +transparent-light(50)
+  +glow-light(40)
 
-    // USER INFO
-    .userInfo
-      +flat-light
+  // USER INFO
+  .userInfo
+    +shine-light(16)
 
-      .avatar-64
-        +pointer
-        &:hover
-          border: 1px solid #000
+  .avatar-64
+    +pointer
+    &:hover
+      border: 1px solid #000
 
-      .infoRight
-        a:hover div
-          color: #55CCFF !important
+  .infoRight .userName:hover
+    +button-light
 
-    // LABEL
-    .myStream
-      +shine-dark-alpha(16)
-      color: #fff
+  // LABEL
+  .myStream
+    +shine-dark-alpha(16)
+    color: #fff
 
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        +flat-light
-        &:hover
-          +glow-light(10)
-        &.loading .arrow
-          background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+  // FILTER BY ENTRY TYPE & FOLLOW TYPE
+  .entryFilter, .followFilter, .starlightTab
+    +flat-light
+    &:hover
+      +glow-light(10)
+    &.loading .arrow
+      background: url('/images/icons/spinner-light-32.gif') no-repeat center center
 
 
 
-.dark
-  #streamContextPanel
-    +transparent-dark(50)
-    +glow-dark(40)
+.dark #streamContextPanel
+  +transparent-dark(50)
+  +glow-dark(40)
 
-    // USER INFO
-    .userInfo
-      background-color: #333
+  .userInfo
+    +shine-dark(16)
 
-      .avatar-64
-        +button-dark
+  .avatar-64
+    +button-dark
 
-      .infoRight
-        a:hover
-          color: #88E3F7 !important
-        .following, .followers
-          .count
-            +flat-light
-            color: #000
+  .infoRight .userName:hover
+    +button-dark
 
-    // LABEL
-    .myStream
-      +shine-light(16)
-      color: #000
+  .myStream
+    +shine-light(16)
+    color: #000
 
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .entryFilter, .followFilter, .starlightTab
-        background-color: #333
-        &:hover
-          +glow-dark(10)
-        &.loading .arrow
-          background: url('/images/icons/spinner-grey-32.gif') no-repeat center center
+  // FILTER BY ENTRY TYPE & FOLLOW TYPE
+  .entryFilter, .followFilter, .starlightTab
+    +flat-dark
+    &:hover
+      +glow-dark(10)
+    &.loading .arrow
+      background: url('/images/icons/spinner-grey-32.gif') no-repeat center center
 
 
 

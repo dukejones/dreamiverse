@@ -13,10 +13,11 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .entryType{style: "background: url('#{entry_type_icon(entry.type, 24)}') no-repeat center center"}
       %table
         %tr
-          %td.date= time_ago_in_words(entry.dreamed_at)
+          %td.date
+            .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 16)}')"}
+            = time_ago_in_words(entry.dreamed_at)
           / %td.location dream location
 
     .detailsBottom

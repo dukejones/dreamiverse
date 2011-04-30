@@ -193,48 +193,57 @@
 
 
 
-
+// STREAM INFORMATION PANELS
+// STRUCTURE
 
 .noEntrys
-  +transparent-dark(80)
   +absolute
+  +center
   top: 0px
-
-// STREAM INFORMATION PANELS
-
-.light .noEntrys
-  +transparent-light(50)
-  +glow-light(20)
-
-
-.dark .noEntrys
-  +transparent-dark(50)
-  +glow-dark(10)
-    
-
-
-#noMoreEntries, #nextPageLoading
-  margin-top: 80px
-  +transparent-dark(80)
-  height: 32px
-
-#nextPageLoading
-  background-color: black
-  img
-    margin: -3px 11px -11px
-
-
+  color: #ccc
 
 .noEntrys, #noMoreEntries, #nextPageLoading
-  color: #ccc
   +user-select
   +round(16)
   +font(21)
-  +center
   +cursor
-  width: 656px
+  width: 654px
   padding: 8px
 
+#noMoreEntries
+  +center
+
+#noMoreEntries, #nextPageLoading
+  +flat-top
+  margin-top: 10px
+  height: 64px
+  line-height: 64px
+
+#nextPageLoading
+  .spinner
+    +left
+    height: 64px
+    width: 32px
+    margin: 0 12px 0 220px
 
 
 
+// STREAM INFORMATION PANELS
+// COLOR
+
+.light 
+  .noEntrys
+    +transparent-light(50)
+    +glow-light(20)
+
+  #noMoreEntries, #nextPageLoading
+    +bevel-light
+
+
+.dark 
+  .noEntrys
+    +transparent-dark(50)
+    +glow-dark(10)
+
+  #noMoreEntries, #nextPageLoading
+    +bevel-dark
