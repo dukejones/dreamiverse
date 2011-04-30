@@ -47,7 +47,8 @@
         +hidden
 
     .tagCloud
-      height: 118px
+      height: 138px
+      padding-top: 20px
 
 
   .entry
@@ -250,7 +251,7 @@
 
       span
         +left
-        padding: 0 6px
+        padding: 0 6px 0 10px
         line-height: 24px
       .text
         +hidden
@@ -290,8 +291,9 @@
   // SEE _COMMENT.SASS
   // this hides all comments panels and allows for drop shadow coverage
   .commentsPanel
-    // +hidden
     z-index: -1
+    .showAll
+      margin-left: 90px
 
 
 
@@ -305,15 +307,13 @@
 
 .light, .dark
   .matrix .thumb-1d
-    .comment.new, .comment.new:hover
-      .count
-        +alpha(100)
-        background:     #e35f5f
-        background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
-        background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
-        background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
-
-        color: #fff
+    .comment.new .count, .comment.new:hover .count
+      +alpha(100)
+      background:     #e35f5f
+      background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
+      background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
+      background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
+      color: #fff
 
 
 // COLORS
@@ -345,10 +345,25 @@
 
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
-    color: #fff
-    .count
-      +transparent-dark(50)
-      color: #fff
+    .arrow
+      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+
+
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
+
+    background: #ccc
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#f3f3f3))
+    background: -moz-linear-gradient(top, #ccc, #f3f3f3)
+
+
+
+
+
 
 
 .dark .matrix .thumb-1d
@@ -356,8 +371,10 @@
     background: #000
     background: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
     background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.3)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
-  &:hover .entry, &.expanded .entry
+  &:hover .entry
     +glow-dark(40)
+  &.expanded .entry
+    +glow-dark-alpha(40, 0.4)
 
   .user
     +button-dark
@@ -376,13 +393,24 @@
     +button-dark
 
   .comment:hover, &.expanded .comment
-    +gradient(#b3b3b3, #555)
+    +gradient(#575757, #323232)
     color: #fff
-    .count
-      +transparent-light(20)
-      color: #fff
+    .arrow
+      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
 
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
 
+    background: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#111))
+    background: -moz-linear-gradient(top, #000, #111)
+    
+    .prevComment
+      border: 2px solid #333
 
 
 
