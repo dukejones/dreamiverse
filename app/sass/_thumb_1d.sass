@@ -308,7 +308,11 @@
     .comment.new, .comment.new:hover
       .count
         +alpha(100)
-        +gradient(#e35f5f, #b32f2f)
+        background:     #e35f5f
+        background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
+        background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
+        background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
+
         color: #fff
 
 
