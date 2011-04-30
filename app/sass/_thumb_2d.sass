@@ -1,6 +1,6 @@
 
 
-#entryField .matrix, #home .matrix
+.matrix
 
   // HOVER
   .thumb-2d:hover
@@ -73,7 +73,7 @@
       z-index: 100
       table
         +right
-        width: 164px
+        width: 100%
         border-collapse: separate
         border-spacing: 4px
       .date
@@ -81,10 +81,8 @@
         white-space: nowrap
       .entryType
         +left
-        +round(12)
-        width: 32px
-        height: 32px
-        margin: 4px 0 0 4px
+        width: 16px
+        height: 16px
 
     .detailsBottom
       +absolute
@@ -165,7 +163,7 @@
 
 
 // COLORS
-.light #entryField .matrix, .light #home .matrix
+.light .matrix
   .thumb-2d
     background: #fff
     background: -moz-linear-gradient(top, #fff, #fff 100px, #aaa)
@@ -174,7 +172,7 @@
     &:hover
       +glow-light(40)
 
-    .date, .location, .comments, .sharing, .entryType
+    .date, .location, .comments, .sharing
       +transparent-dark(70)
       color: #fff
     .entryType
@@ -211,7 +209,7 @@
 
 
 
-.dark #entryField .matrix, .dark #home .matrix
+.dark .matrix
   .thumb-2d
     background: #3a3a3a
     background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #000)
@@ -220,7 +218,7 @@
     &:hover
       +glow-dark(40)
 
-    .date, .location, .comments, .sharing, .entryType
+    .date, .location, .comments, .sharing
       +transparent-light(70)
       color: #000
     .entryType
