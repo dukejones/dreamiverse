@@ -2,7 +2,7 @@
   <div class="commentsHeader headers">
     <div class="count">
       <div class="img"></div>
-      <span><%= newComments %></span>
+      <span><%= totalCount %></span>
     </div>
     comments
   </div>
@@ -11,7 +11,7 @@
 <div class="target showhide">
   <div class="showAll">
     show all
-    <span><span><%= totalComments %></span></span>
+    <span><span><%= totalCount %></span></span>
     comments
   </div>
   <div class="comments">
@@ -21,9 +21,8 @@
   </div>
   <a name="bottom" href="#"></a>
   <div class="newCommentWrap">
-    <div style="background-image: url('/images/uploads/1-avatar-64.jpg')" class="avatar"></div>
+    <div style="background-image: url('/images/uploads/<%= userId %>-avatar-64.jpg')" class="avatar"></div>
     <div class="newComment">
-      <input type="hidden" value="1" name="user_id_[1]" id="user_id_1" class="user_id">
       <textarea rows="20" cols="40" class="comment_body"></textarea>
       <input type="button" value="post" class="save">
       <div class="links hidden">
