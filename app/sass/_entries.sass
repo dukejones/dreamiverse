@@ -215,6 +215,7 @@
 .noEntrys
   +absolute
   +center
+  padding: 8px 0
   top: 0px
   color: #ccc
 
@@ -223,8 +224,8 @@
   +round(16)
   +font(21)
   +cursor
-  width: 654px
-  padding: 8px
+  border: 1px solid #333
+  width: 668px
 
 #noMoreEntries
   +center
@@ -235,12 +236,10 @@
   height: 64px
   line-height: 64px
 
-#nextPageLoading
-  .spinner
-    +left
-    height: 64px
-    width: 32px
-    margin: 0 12px 0 220px
+#nextPageLoading .spinner
+  height: 64px
+  width: 32px
+  margin: auto
 
 
 
@@ -253,7 +252,9 @@
     +glow-light(20)
 
   #noMoreEntries, #nextPageLoading
-    +bevel-light
+    +gradient(#ccc, #fff)
+    .spinner
+      background: url(/images/icons/spinner-light-grey-32.gif) no-repeat scroll center center transparent
 
 
 .dark 
@@ -262,4 +263,11 @@
     +glow-dark(10)
 
   #noMoreEntries, #nextPageLoading
-    +bevel-dark
+    +gradient(#000, #252525)
+    .spinner
+      background: url(/images/icons/spinner-dark-32.gif) no-repeat scroll center center transparent
+
+    
+    
+    
+    
