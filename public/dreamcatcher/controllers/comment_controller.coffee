@@ -2,31 +2,30 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
 
   init: ->
     @currentUserId = parseInt $("#current_user_id_1").val()
-    #Stream view
-    $(".thumb-1d").each (index,element) =>
-      entry = $(element)
-      newCount = @getNewCommentCount(entry)
-      entryId = entry.data('id') 
-      @loadComments entryId if newCount > 0
-    
-    #Single-entry view
-    if $("#showEntry")?
-      @entryId = $('#showEntry').data 'id' if $('#showEntry')?
+
+    @entryView = $("#showEntry").length > 0
+    if @entryView #Single-entry view
+      @entryId = $('#showEntry').data 'id'
       @loadComments @entryId
+    else #Stream view
+      $(".thumb-1d").each (index,element) =>
+        entry = $(element)
+        newCount = @getNewCommentCount(entry)
+        entryId = entry.data('id') 
+        @loadComments entryId if newCount > 0
 
   #Helper Methods
   getEntry: (id) ->
-    return $("#showEntry") if $("#showEntry")?
-    #TODO: Fix entry -- doesn't return
-    $(".thumb-1d").each ->
-      return $(this) if $(this).data('id') is id
+    return $("#showEntry") if @entryView
+    return $(".thumb-1d[data-id='#{id}']")#.filter(":data(id=#{id})").html()
     
   getEntryId: (el) ->
-    return @entryId if $("#showEntry")?
-    return $(".entry",el.closest(".thumb-1d")).data('id')
+    return @entryId if @entryView
+    return el.data('id') if el.hasClass("thumb-1d")
+    return $(el.closest(".thumb-1d")).data('id')
     
   getEntryFromElement: (el) ->
-    return $("#showEntry") if $("#showEntry")?
+    return $("#showEntry") if @entryView
     return el.closest(".thumb-1d")
     
   getNewCommentCount: (entry) ->
@@ -54,7 +53,6 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   populateComments: (comments) ->
     entryId = comments[0].entry_id if comments.length > 0
     entry = @getEntry entryId
-    alert(entry.html())
     newCount = @getNewCommentCount entry
     totalCount = comments.length
     @displayComments entry,newCount,totalCount,comments
@@ -64,26 +62,28 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     commentsPanel.html @view('list',{userId: @currentUserId, newCount: newCount, totalCount: totalCount, comments: comments})
     
     #remove all delete buttons which should  not be accessed
-    entryUserId = $entry.data("userid")
-    alert entryUserId
+    entryUserId = entry.data("userid")
 
     if @currentUserId isnt entryUserId or not $("#entryField").data 'owner'
-      $(".deleteComment",commentsPanel).each ->
-        commentUserId = parseInt $(this).data('userid')
-        $(this).remove() if commentUserId isnt @currentUserId
+      $(".deleteComment",commentsPanel).each (index,element) =>
+        commentUserId = parseInt $(element).data('userid')
+        $(element).remove() if commentUserId isnt @currentUserId
     
     commentsPanel.addClass("commentsPanel").addClass("wrapper").show()
     
     #TODO: hide loading wheel
-    $(entry).addClass("expanded")
     
-    if not $("#showEntry")? or (totalCount > 0 and newCount < totalCount) #show only new comments initially
+    if @entryView
+      $(".prevCommentWrap",entry).show()
+      #if not @entryView or (totalCount > 0 and newCount < totalCount) #show only new comments initially
+    else
+      $(entry).addClass("expanded")
       indexToStartShowing = totalCount - Math.max(newCount,2) #show all new, or at least 2 --- TODO: This may change
       $(".showAll",commentsPanel).show() if indexToStartShowing > 0 #only show showAll button if some left to show
       $(".prevCommentWrap",entry).each (index,element) ->
         $(element).show() if index >= indexToStartShowing
-    else #just show all of them!
-      $(".prevCommentWrap",entry).show()
+    #else #just show all of them!
+    
 
   created: (data) ->
     comment = data.comment
@@ -136,4 +136,5 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       body: $(".comment_body",el.parent()).val()
     }
     entryId = @getEntryId el
+    #alert entryId
     Dreamcatcher.Models.Comment.create entryId,comment,@callback('created')
