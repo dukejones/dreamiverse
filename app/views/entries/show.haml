@@ -108,9 +108,6 @@
 
 
       .body= simple_format(@entry.body)
-      / VIDEO PANEL
-      - @entry.links.youtube.each do |link|
-        = render :partial => "video", :locals => {:link => link}
 
       / IMAGE GALLERY
       %ul.gallery
@@ -120,7 +117,9 @@
           = youtube_link(link)
       .clear
 
-
+      / VIDEO PANEL
+      - @entry.links.youtube.each do |link|
+        = render :partial => "video", :locals => {:link => link}
 
       / ENTRY LINKS
       - if (@entry.links - @entry.links.youtube).count >= 1

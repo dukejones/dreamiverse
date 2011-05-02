@@ -8,7 +8,7 @@
         <div class="delete"></div>
       </a>
     <% } %>
-    <div class="body"><p><%= comment.body %></p></div>
+    <div class="body"><p><%= comment.body.replace(/\n/g, "<br />") %></p></div>
   </div>
   <div class="clear"></div>
 </div>

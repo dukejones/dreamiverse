@@ -11,28 +11,23 @@
       border: 1px solid black
 
   .newCommentWrap
-    .avatar
-      +border-light
-
     .newComment
       .user
         +border-light
         +bevel-light
       .save
-        +shine-light(16)
         +button-light
         +save(16)
-        color: #111
       textarea
         color: #333
         +input-light(large)
 
   .prevCommentWrap
-    .avatar
-      +button-light
+    .avatar:hover
+      border: 1px solid #fff
     .prevComment
       +input-light(small)
-      border: 2px solid #fff
+      border: 1px solid #fff
       .user
         +button-light
         +bevel-light
@@ -59,29 +54,23 @@
       border: 1px solid black
 
   .newCommentWrap
-    .avatar
-      +border-dark
-
     .newComment
-
       .user
         +border-dark
         +bevel-dark
       .save
-        +shine-dark(16)
         +button-dark
         +save(16)
-        color: #fff
       textarea
         color: #ddd
         +input-dark(large)
 
   .prevCommentWrap
-    .avatar
-      +button-dark
+    .avatar:hover
+      border: 1px solid #aaa
     .prevComment
       +input-dark(small)
-      border: 2px solid black
+      border: 1px solid #222
       .user
         +button-dark
         +bevel-dark
@@ -104,7 +93,6 @@
 
   .commentsHeader
     +bold
-    margin-bottom: 8px
     +user-select
 
 
@@ -155,28 +143,44 @@
       +round(12)
       +left
       +overflow
+      border: 1px solid transparent
       height: 62px
       width: 62px
-      margin: 0 8px
-      background: url(/images/avatars/default-avatar-tiny.jpg) top left
+      margin: 0 6px
+      background: url(/images/avatars/default-avatar-tiny.jpg) center center transparent
 
   .prevCommentWrap
     .prevComment
-      +round(12)
+      +round(6)
       +right
-      width: 544px
-      padding: 8px
-      border: 2px solid white
+      width: 560px
+      margin-right: 2px
 
+
+      .user, .commentTime
+        +left
+        +center
+        height: 22px
+        line-height: 21px
       .user
-        +round(8)
+        +round(5)
+        margin: 2px 0 0 2px
+        padding: 0 15px
+      .commentTime
+        +alpha(80)
+        +cursor
+        margin-top: 3px
+        +font(14)
+        padding: 0 6px
+
 
       .delete
         background: url("/images/icons/close-24.png") no-repeat center center transparent
         +absolute
         width: 24px
         height: 24px
-        right: 28px
+        right: 16px
+        margin-top: 6px
         +alpha(40)
         +pointer
         &:hover
@@ -186,16 +190,13 @@
           background: url("/images/icons/close-24-active.png") no-repeat center center transparent
           +alpha(100)
 
-      .user, .commentTime
-        +left
-        +center
-        height: 32px
-        line-height: 32px
-        padding: 0 16px
-        margin: 0 0 12px
-      .commentTime
-        +alpha(80)
-        +cursor
+      .body
+        +clear
+        padding: 15px 18px 0 18px
+        p
+          margin-bottom: 16px
+
+
       ul
         +right
         max-width: 270px
@@ -211,11 +212,6 @@
           width: 62px
           background: #ababab
 
-      .body
-        +clear
-        padding: 0 8px 8px 16px
-        p
-          margin-bottom: 18px
       .rePost
         +round(16)
         +left
@@ -232,31 +228,21 @@
       +right
 
       textarea
-        +round(12)
+        +round(6)
         +font(16)
         +outline
         +relative
         top: 0
-        right: 0
+        right: 2px
         font-family: Calibri, Arial, Helvetica, sans-serif
         height: 20px
-        width: 506px
-        min-width: 506px
-        max-width: 506px
+        width: 504px
+        min-width: 504px
+        max-width: 504px
         border: none
         cursor: text
         padding: 28px 28px 34px
-
-      .user
-        +round(8)
-        +left
-        +center
-        +cursor
-        +user-select
-        height: 32px
-        line-height: 32px
-        padding: 0 16px
-        margin: 0 0 12px
+        margin-bottom: 3px
 
       .images, .links, .save
         +right
@@ -272,13 +258,16 @@
         img
           margin-top: 9px
       .save
+        +shine-grey(16)
+        color: #fff
         +absolute
-        +round(8)
+        +round(6)
         +bold
-        +font(16)
-        right: 8px
-        bottom: 10px
-        padding: 0 16px 4px
+        +font(13)
+        right: 4px
+        bottom: 5px
+        height: 34px
+        padding: 0 21px 4px
 
 
 
