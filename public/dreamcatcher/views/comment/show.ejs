@@ -1,4 +1,4 @@
-<div class="prevCommentWrap">
+<div class="prevCommentWrap <%= hidden ? 'hidden': '' %>">
   <a style="background-image: url('/images/uploads/<%= comment.user_id %>-avatar-64.jpg')" href="/<%= comment.username %>" class="avatar"></a>
   <div class="prevComment">
     <a href="/<%= comment.username %>" class="user"><%= comment.username %></a>

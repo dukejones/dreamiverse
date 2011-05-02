@@ -59,30 +59,32 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments',entry,entryId)
     
   populateComments: (entry,entryId,comments) ->
+    totalCount = comments.length
+    newCount = @getNewCommentCount entry
+    
+    #show new items, or just 2.
+    if @entryView
+      numberToShow = totalCount
+      $(".commentHeader span",entry).text(totalCount)
+    else
+      log newCount
+      numberToShow = if newCount > 0 then newCount else 2
+      log numberToShow
+      numberToShow = Math.min(totalCount,numberToShow) #make sure numberToShow does not exceed total
+      log numberToShow
+      $(entry).addClass("expanded")
+      if numberToShow < totalCount
+        $(".showAll span",entry).text(totalCount)
+        $(".showAll",entry).show()
+    
     $(".comments",entry).html(
       @view 'list', {
         comments: comments
         userId: @currentUserId
         entryUserId: entry.data("userid")
+        numberToShow: numberToShow
       }
     ).removeClass("spinner")
-    
-    #TODO: May need this for delete if @currentUserId isnt entryUserId or not $("#entryField").data 'owner'
-
-    @updateCommentCount entry
-    
-    if @entryView
-      $(".prevCommentWrap",entry).show()
-      
-    else #just show "new" comments (or the latest 2)
-      newCount = @getNewCommentCount entry
-      totalCount = @getTotalCommentCount entry
-      
-      $(entry).addClass("expanded")
-      indexToStartShowing = totalCount - Math.max(newCount,2)
-      $(".showAll",entry).show() if indexToStartShowing > 0 
-      $(".prevCommentWrap",entry).each (index,element) ->
-        $(element).show() if index >= indexToStartShowing
 
   created: (data) ->
     comment = data.comment
@@ -93,6 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       @view 'show',{
         comment: comment
         showDelete: true
+        hidden: false
       }
     )
     
