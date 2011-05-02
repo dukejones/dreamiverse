@@ -1,5 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.Comment',
 
+  #TODO: Could abstract into Comment, with StreamComment, and EntryComment inheriting. 
+
   init: ->
     @currentUserId = parseInt $("#current_user_id_1").val()
     @entryView = $("#showEntry").length > 0
@@ -54,7 +56,12 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       
 
   loadComments: (entry,entryId) -> 
-    $(".commentsTarget",entry).addClass("commentsPanel wrapper").html @view('init',{userId: @currentUserId})
+    $(".commentsTarget",entry).addClass("commentsPanel wrapper").html(
+      @view 'init',{
+        userId: @currentUserId
+        entryId: entryId
+      }
+    )
     $(".comments",entry).addClass("spinner") if @getTotalCommentCount(entry) > 0
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments',entry,entryId)
     
@@ -67,11 +74,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       numberToShow = totalCount
       $(".commentHeader span",entry).text(totalCount)
     else
-      log newCount
       numberToShow = if newCount > 0 then newCount else 2
-      log numberToShow
       numberToShow = Math.min(totalCount,numberToShow) #make sure numberToShow does not exceed total
-      log numberToShow
       $(entry).addClass("expanded")
       if numberToShow < totalCount
         $(".showAll span",entry).text(totalCount)
@@ -105,7 +109,6 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
     
     @updateCommentCount entry
-
 
   '.comment click': (el) ->
     entry = @getEntryFromElement el
