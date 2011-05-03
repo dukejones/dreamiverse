@@ -134,6 +134,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     @updateCommentCount entry
   
   '.save click': (el) ->
+    return if $(".comment_body",el.parent()).val().trim().length is 0
     $(".comment_body,.save",el.parent()).attr("disabled",true).addClass("disabled")
     entry = @getEntryFromElement el
     
