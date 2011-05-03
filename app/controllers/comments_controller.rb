@@ -28,7 +28,8 @@ class CommentsController < ApplicationController
   
   def destroy
     comment = Comment.where(id: params[:id], entry_id: params[:entry_id]).first
-
+    @entry = Entry.find params[:entry_id]
+    @entry.update_attribute(:new_comment_count, @entry.new_comment_count - 1)
     if comment
       comment.destroy
     
