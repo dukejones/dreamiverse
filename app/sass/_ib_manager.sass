@@ -1,0 +1,339 @@
+@import mixins
+
+// IMAGEBANK MANAGER STYLES
+#frame.manager
+  +relative
+  +clear
+  +round(16)
+  margin: 90px 40px 20px
+  width: 760px
+  +shine-light(32)
+
+  // SHARED STYLES
+  h2
+    +font(16)
+    +bold
+    text-transform: uppercase
+
+  h2.header
+    +clear
+    margin: 0
+    padding: 0 0 0 20px
+    width: 740px
+    height: 22px
+    line-height: 24px
+    color: white
+    background: #a3a29f
+
+  .panel
+    margin: 0
+    +bevel-light
+
+  .wrap
+    +left
+    margin: 4px 24px 0 0
+
+  h2.label
+    float: none
+    height: 18px
+    line-height: 18px
+    margin: 4px 0 0 10px
+    color: #737373
+
+  .inputWrap
+    +round(8)
+    margin: 0
+    height: 22px
+    padding: 8px
+    +input-light(large)
+
+    input.text
+      +transparent
+      +font(16)
+      margin: 0 12px 0 0
+      height: 22px
+      border: none
+
+    input.checkbox
+      +pointer
+      +right
+      margin: 8px 0 0 0
+
+
+  // TOP
+  .browseWrap
+    +pointer
+    +center
+    +left
+    +round(12)
+    margin: 12px 8px 0 12px
+    width: 52px
+    height: 46px
+    padding: 0
+    +bevel-light
+    &:active
+      +gradient(#a7a9ac, #fff)
+
+    .browse
+      +block
+      +round(12)
+      width: 48px
+      height: 42px
+      padding: 0
+      margin: 2px
+      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat 6px 6px
+      &:hover
+        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat 6px 6px
+
+  .icon
+    +left
+    width: 37px
+    height: 37px
+    margin: 16px 8px 0
+    background: url(/images/icons/ib-icons/editManager-37.png) no-repeat center center transparent
+
+  h1
+    +left
+    +font(21)
+    +bold
+    line-height: 74px
+    margin: 0
+    padding: 0 0 0 8px
+    text-transform: uppercase
+    color: #414042
+
+  .searchWrap
+    +pointer
+    +right
+    +center
+    +round(12)
+    width: 58px
+    height: 46px
+    margin: 12px 12px 0 0
+    padding: 2px 0
+    +bevel-light
+    &:active
+      +gradient(#a7a9ac, #fff)
+
+    .search
+      +center
+      +round(12)
+      width: 42px
+      height: 34px
+      margin: 0 auto
+      padding: 6px
+      background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
+      &:hover
+        background: url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center transparent
+
+  // DROPBOX
+  .dropboxWrap
+    +clear
+    background: #a3a29f
+
+    .icon
+      +left
+      width: 26px
+      height: 42px
+      margin: 0 8px 0 20px
+      background: url(/images/icons/dropbox-26.png) no-repeat center center transparent
+
+    h2.drop, h2.all, h2.drag
+      +left
+      margin: 0 12px 0 0
+      line-height: 42px
+    h2.drop
+      +pointer
+      color: white
+    h2.all
+      text-decoration: underline
+      color: #58595b
+      &:hover
+        text-decoration: none
+        color: #000
+    h2.drag
+      +right
+      color: #dbdbdb
+
+    .browse
+      +pointer
+      +right
+      +bold
+      +center
+      +round(16)
+      margin: 6px 12px 0 0
+      padding: 0 12px
+      height: 28px
+      line-height: 28px
+      color: #58595b
+      +bevel-light
+      &:hover
+        color: #000
+        +shine-light(14)
+
+    .dropbox
+      +clear
+      margin: 0 4px
+      padding: 0
+      height: 175px
+      overflow-x: hidden
+      overflow-y: scroll
+      background: #626262
+      +inner-shadow(10)
+
+      ul
+        margin: 12px 0 0 8px
+        padding: 0
+        width: 725px
+        height: 162px
+        list-style: none
+
+        li
+          +left
+          +cursor
+          +overflow
+          margin: 0 4px 8px 4px
+          height: 128px
+          -moz-box-shadow:    2px 5px 10px #111
+          box-shadow:         2px 5px 10px #111
+          -webkit-box-shadow: 2px 5px 10px #111
+          border: 4px solid #CCCCCC
+
+          img 
+            border: 4px solid #333
+            &:hover
+              border: 4px solid #fff
+
+        li.selected 
+          +round(4)
+          border: 4px solid #427ee8
+
+        li.selected img
+          border: 4px solid #fff
+
+
+  // ORGANIZATION ONLY
+  #organization
+    padding: 8px 0
+
+    h2.label
+      +left
+      margin: 6px 6px 0 24px
+      line-height: 34px
+      color: #a3a29f
+
+    .listWrap
+      +left
+      +round(8)
+      +pointer
+      margin: 4px 0 0 0
+      padding: 0 8px
+      height: 34px
+      +input-light(large)
+
+      input
+        +right
+        margin: 12px 0 0 0
+
+      select.list
+        +left
+        +outline
+        +transparent
+        +block
+        +font(16)
+        +pointer
+        +center
+        border: 0
+        height: 34px
+        padding: 7px 8px
+        option
+          padding: 6px 4px
+
+
+  // INFO ONLY
+  #info
+    padding: 0 0 24px 24px
+
+    input.text
+      width: 298px
+
+    .year
+      input.text
+        width: 50px
+
+    .notes
+      input.text
+        width: 545px
+
+
+  // SOURCE ONLY
+  #source
+    padding: 4px 0 24px 24px
+
+    .source
+      input.text
+        width: 176px
+
+
+  // TAGS
+  #tags
+    padding: 8px
+
+    .tags
+      height: auto
+
+      textarea
+        +transparent
+        +font(16)
+        width: 695px
+        min-width: 695px
+        max-width: 695px
+        height: 58px
+        min-height: 58px
+        max-height: 58px
+        margin: 0 12px 0 0
+        border: none
+
+      input
+
+
+  // FOOTER BUTTONS
+  .saveWrap, .updateWrap, .cancelWrap
+    +center
+    +right
+    +round(12)
+    margin: 8px 8px 8px 0
+    padding: 1px
+    +gradient(#6e6e6e, #fff)
+
+    .save, .update, .cancel
+      +pointer
+      +center
+      +font(18)
+      +round(12)
+      width: 120px
+      height: 38px
+      margin: 0 auto
+      line-height: 40px
+      text-transform: uppercase
+      padding: 0px
+      color: #58595b
+      border: 1px solid transparent
+      +shine-light(19)
+      &:hover
+        color: #222
+        // +gradient(#fff, #777)
+      &:active
+        // +shine-light(0)
+        // +gradient(#6e6e6e, #fff)
+
+    .save
+      +save(19)
+    .update
+      +confirm(19)
+    .cancel
+      +cancel(19)
+
+
+
+

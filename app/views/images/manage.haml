@@ -1,0 +1,152 @@
+- content_for :head do
+  = sass_link_tag 'ib'
+
+#frame.manager
+
+  / TOP
+  .browseWrap
+    .browse
+  .icon
+  %h1 manager
+  .searchWrap
+    .search
+
+  / DROPBOX
+  .dropboxWrap
+    .icon
+    %h2.drop dropbox
+    %h2.all select all
+    .browse browse
+    %h2.drag drag files here to upload
+
+    .dropbox
+      %ul
+        %li
+        %li
+        %li
+
+  / ORGANIZATION
+  %h2.header organization
+  #organization.panel
+
+    %h2.label type
+    .listWrap
+      %input{type: "checkbox"}
+      %select.list
+        %option{value: "Library"} Library
+        %option{value: "Bedsheets"} Bedsheets
+        %option{value: "Prima Materia"} Prima Materia
+        %option{value: "Book Covers"} Book Covers
+        %option{value: "Tag"} Tag
+
+    %h2.label category
+    .listWrap
+      %input{type: "checkbox"}
+      %select.list
+        %option{value: "General"} General
+        %option{value: "Modern Art"} Modern Art
+        %option{value: "Classical Art"} Classical Art
+        %option{value: "Photo"} Photo
+
+    %h2.label genre
+    .listWrap
+      %input{type: "checkbox"}
+      %select.list
+        %option{value: "Placeholder"} Placeholder
+
+    .clear
+
+
+  / INFO
+  %h2.header info
+  #info.panel
+
+    .wrap
+      %h2.label title
+      .inputWrap
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label album
+      .inputWrap
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label author
+      .inputWrap
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label location
+      .inputWrap
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label year
+      .inputWrap.year
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label notes
+      .inputWrap.notes
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .clear
+
+
+
+  / SOURCE
+  %h2.header SOURCE
+  #source.panel
+
+    .wrap
+      %h2.label date
+      .inputWrap.source
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label user
+      .inputWrap.source
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .wrap
+      %h2.label geotag
+      .inputWrap.source
+        %input.text{type: "text"}
+        %input.checkbox{type: "checkbox"}
+
+    .clear
+
+
+
+  / TAGS
+  %h2.header tags
+  #tags.panel
+
+    .inputWrap.tags
+      %textarea{type: "text",  rows: "2", cols: "75"}
+      %input{type: "checkbox"}
+
+
+  / FOOTER BUTTONS
+  .saveWrap
+    .save save
+
+  .updateWrap
+    .update update
+
+  .cancelWrap
+    .cancel cancel
+
+  .clear
+
+
+
