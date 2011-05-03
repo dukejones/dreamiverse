@@ -70,8 +70,11 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   populateComments: (entry, entryId, comments) ->
     totalCount = comments.length
     if @entryView
-      numberToShow = totalCount
-      $(".commentsHeader span",entry).text totalCount
+      if totalCount is 0 and @currentUserId is null
+        $(".commentsTarget",entry).html("").removeClass("commentsPanel wrapper")
+      else  
+        numberToShow = totalCount
+        $(".commentsHeader span",entry).text totalCount
     else
       $(".comment .count span",entry).text(totalCount) if not $(".comment",entry).hasClass("new") and totalCount > 0
       newCount = @getNewCommentCount entry
