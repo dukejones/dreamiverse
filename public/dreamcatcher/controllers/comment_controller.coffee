@@ -133,8 +133,9 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entryId = el.data 'entryid'
     commentId = el.data 'id'
     Dreamcatcher.Models.Comment.delete entryId,commentId
-    el.closest('.prevCommentWrap').fadeOut 200
+    el.closest('.prevCommentWrap').remove()
     @updateCommentCount entry
+
   
   '.save click': (el) ->
     $(".comment_body,.save",el.parent()).attr("disabled",true).addClass("disabled")
