@@ -2,16 +2,18 @@
 
 // IMAGEBANK MANAGER STYLES
 #frame.manager
-  +relative
+  +absolute
   +clear
   +round(16)
-  margin: 90px 40px 20px
+  top: 90px
+  left: 40px
+  margin: 0
   width: 760px
   +shine-light(32)
 
   // SHARED STYLES
   h2
-    +font(16)
+    +font(14)
     +bold
     text-transform: uppercase
 
@@ -27,17 +29,18 @@
 
   .panel
     margin: 0
+    padding: 0 0 8px 24px
     +bevel-light
 
   .wrap
     +left
-    margin: 4px 24px 0 0
+    margin: 8px 24px 0 0
 
   h2.label
     float: none
     height: 18px
     line-height: 18px
-    margin: 4px 0 0 10px
+    margin: 0
     color: #737373
 
   .inputWrap
@@ -47,12 +50,21 @@
     padding: 8px
     +input-light(large)
 
+    h2.label
+      +left
+      +round(12)
+      margin: 4px 8px 0 0
+      padding: 0 8px
+      text-transform: lowercase
+      +bevel-light
+
     input.text
       +transparent
       +font(16)
-      margin: 0 12px 0 0
+      margin: 0 8px 0 0
       height: 22px
       border: none
+      width: auto
 
     input.checkbox
       +pointer
@@ -214,11 +226,10 @@
 
   // ORGANIZATION ONLY
   #organization
-    padding: 8px 0
 
     h2.label
       +left
-      margin: 6px 6px 0 24px
+      margin: 10px 6px 0 0
       line-height: 34px
       color: #a3a29f
 
@@ -226,7 +237,7 @@
       +left
       +round(8)
       +pointer
-      margin: 4px 0 0 0
+      margin: 8px 28px 0 0
       padding: 0 8px
       height: 34px
       +input-light(large)
@@ -252,27 +263,31 @@
 
   // INFO ONLY
   #info
-    padding: 0 0 24px 24px
+
+    .inputWrap
+      width: 324px
 
     input.text
-      width: 298px
+      width: 220px
 
     .year
+      width: 120px
       input.text
-        width: 50px
+        width: 44px
 
     .notes
+      width: 528px
       input.text
-        width: 545px
+        width: 444px
 
 
   // SOURCE ONLY
   #source
-    padding: 4px 0 24px 24px
 
     .source
+      width: 202px
       input.text
-        width: 176px
+        width: 110px
 
 
   // TAGS
