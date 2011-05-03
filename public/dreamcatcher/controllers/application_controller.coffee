@@ -20,6 +20,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #TODO: eventually remove '.comment_body' to apply to all 'textarea's
   '.comment_body keyup': (el) ->
     @fitToContent el.attr("id"),0
+    
+  '.button.appearance click': (el) ->
+    @metaMenu.selectPanel 'appearance'
+    
+  '.addTheme .img click': (el) ->
+    @metaMenu.selectPanel 'appearance'
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

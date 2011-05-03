@@ -28,17 +28,16 @@ window.setupDreamplugs = ->
       $newTargetSlideArrow.fadeIn(250)
       
       # Create bodyclick
-      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-      $('body').prepend(bodyClick)
+      $('#bodyClick').show()
     
       $('#bodyClick').click( (event) =>
         $newTargetSlideArrow.hide()
-        $('#bodyClick').remove()
+        $('#bodyClick').hide()
       )
       
       $newTargetSlideArrow.find('.type').unbind()
       $newTargetSlideArrow.find('.type').click( (event) ->
-        $('#bodyClick').remove()
+        $('#bodyClick').hide()
         
         newIcon = $(event.currentTarget).find('img').attr('src')
         $toggleIcon.attr('src', newIcon)
@@ -80,16 +79,14 @@ window.setupDreamplugs = ->
     if $newTargetShowHide.css('display') is 'none'
       $newTargetShowHide.show()
       $('#search_string').focus()
-      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-      $('body').prepend(bodyClick)
-    
+      
       $('#bodyClick').click( (event) =>
         $newTargetShowHide.fadeOut(250)
-        $('#bodyClick').remove()
+        $('#bodyClick').hide()
       )
     else
       $newTargetShowHide.fadeOut(250)
-      $('#bodyClick').remove()
+      $('#bodyClick').hide()
   )
   
   # Setup showhide triggers FOR EMOTIONS PANEL
@@ -137,14 +134,13 @@ window.setupDreamplugs = ->
     
     if $newTargetFade.css('display') is 'none'
       # Create bodyclick
-      bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-      $('body').prepend(bodyClick)
+      $("#bodyClick").show()
     
       $('html, body').animate({scrollTop:0}, 'slow');
     
       $('#bodyClick').click( (event) =>
         $newTargetFade.hide()
-        $('#bodyClick').remove()
+        $('#bodyClick').hide()
       )
       
       $newTargetFade.fadeIn(250)

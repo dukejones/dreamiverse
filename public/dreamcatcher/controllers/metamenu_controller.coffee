@@ -22,24 +22,25 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
     $('#settingsPanel,#appearancePanel').fadeOut 250
     $('#bodyClick').hide()
     $('.item.settings,.item.appearance').removeClass 'selected'
+    
+  selectPanel: (name) ->
+    $(".item.trigger.#{name}").addClass 'selected'
+  
+    switch name
+      when "settings"
+        @settingsPanel = new Dreamcatcher.Controllers.Settings $("#settingsPanel") if not @settingsPanel?
+        @currentPanel = @settingsPanel
+      when "appearance"
+        @appearancePanel = new Dreamcatcher.Controllers.Appearance $("#appearancePanel") if not @appearancePanel?
+        @currentPanel = @appearancePanel
+      
+    @expandSelectedPanel()
 
 
   '.trigger click': (el) ->
-    if el.hasClass 'selected'
-      #@hideAllPanels() TODO: hide if selected (funny with change password)
-      return
-      
-    @hideAllPanels()    
-    el.addClass 'selected'
+    expanded = el.hasClass('selected')
+    @hideAllPanels()
+    return if expanded
+    panelName = $('.target:first',el.parent()).attr('id').replace('Panel','')
+    @selectPanel panelName
 
-    #loads the panel on-the-fly if selected for the first time (otherwise just display)
-    elementId = $('.target:first',el.parent()).attr 'id'
-    switch elementId
-      when "settingsPanel"
-        @settingsPanel = new Dreamcatcher.Controllers.Settings $("#settingsPanel") if not @settingsPanel?
-        @currentPanel = @settingsPanel
-      when "appearancePanel"
-        @appearancePanel = new Dreamcatcher.Controllers.Appearance $("#appearancePanel") if not @appearancePanel?
-        @currentPanel = @appearancePanel
-
-    @expandSelectedPanel()
