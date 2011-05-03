@@ -4,6 +4,9 @@ module "Dreamcatcher test",
       S.open '/logout'
       S.wait 500
     S.open '/'
+    
+username = 'testuser'
+password = '1234'
 
 test "Welcome", ->
 	equals S("h1:first").text(),"Welcome","Welcome text"
@@ -11,12 +14,14 @@ test "Welcome", ->
 test "Enter login details", ->
   S('.login').click()
   S('.loginPanel').visible ->
-    S('#user_username').click().val 'carboes'
-    equals S('#user_username').val(),'carboes','User name'
-    S('#user_password').click().val 'xo1234'
-    equals S('#user_password').val(),'xo1234','Password'
+  
+    S('#user_username').click().val(username)
+    equals( S('#user_username').val(), username, 'username' )
+
+    S('#user_password').click().val(password)
+    equals( S('#user_password').val(), password, 'password' )
     
 test "Logging in", ->
   S('#loginButton').click()
   S('.rightPanel .user').visible ->
-    equals S('.rightPanel .user').text().trim(),"carboes","User name"
+    equals( S('.rightPanel .user').text().trim(),username,"Logged in username" )

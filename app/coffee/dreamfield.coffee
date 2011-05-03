@@ -9,6 +9,15 @@ class DreamfieldView
     @page = 1
     @dreamfield = dreamfieldModel
     @$container = $('#pagination')
+
+    $('#pagination').live "mouseenter", (event) =>
+      $('#pagination .next .text').fadeIn('fast')
+      $('#pagination .all').fadeIn()
+      
+    .live "mouseleave", (event) =>
+      $('#pagination .next .text').fadeOut()
+      $('#pagination .all').fadeOut()
+
     
     $('.next').click( (event) =>
       @loadNextPage()
