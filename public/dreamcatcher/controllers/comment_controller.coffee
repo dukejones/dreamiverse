@@ -86,7 +86,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         entryUserId: entry.data("userid")
         numberToShow: numberToShow
       }
-    ).removeClass("spinner")
+    )
+    #$(".comments",entry).removeClass("spinner")
 
   created: (data) ->
     comment = data.comment
