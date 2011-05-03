@@ -37,7 +37,7 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
     @expandSelectedPanel()
 
 
-  '.trigger click': (el) ->
+  '.item.settings,.item.appearance click': (el) ->
     expanded = el.hasClass('selected')
     @hideAllPanels()
     return if expanded
