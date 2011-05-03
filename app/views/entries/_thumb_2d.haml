@@ -21,7 +21,7 @@
           / %td.location dream location
 
     .detailsBottom
-      - if entry.new_comment_count > 0
+      - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
         .comments.new
           .img
           = entry.new_comment_count
