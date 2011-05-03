@@ -6,10 +6,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     @currentUserId = parseInt $("#current_user_id_1").val()
     @entryView = $("#showEntry").length > 0
     
-    if @entryView                                 #single entry view
+    if @entryView #single entry view
       @entryId = $('#showEntry').data 'id'
       @loadComments $('#showEntry'),@entryId
-    else                                          #stream view
+    else #stream view
       $(".thumb-1d").each (index,element) =>
         entry = $(element)
         newCount = @getNewCommentCount(entry)
@@ -18,12 +18,12 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
 
   #Helper Methods
   getEntry: (id) ->
-    return $("#showEntry") if @entryView            #single entry 
-    return $(".thumb-1d[data-id='#{id}']")          #stream
+    return $("#showEntry") if @entryView 
+    return $(".thumb-1d[data-id='#{id}']")
     
   getEntryId: (el) ->
-    return @entryId if @entryView                   #single entry
-    return el.data('id') if el.hasClass("thumb-1d") #stream
+    return @entryId if @entryView
+    return el.data('id') if el.hasClass("thumb-1d")
     return $(el.closest(".thumb-1d")).data('id')
     
   getEntryFromElement: (el) ->
@@ -80,12 +80,13 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         $(".showAll",entry).show()
     
     $(".comments",entry).html(
-      @view 'list', {
+      @view 'list',{
         comments: comments
         userId: @currentUserId
         entryUserId: entry.data("userid")
         numberToShow: numberToShow
-      }).removeClass("spinner")
+      }
+    ).removeClass("spinner")
 
   created: (data) ->
     comment = data.comment
