@@ -89,7 +89,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         numberToShow: numberToShow
       }
     )
-    #$(".comments",entry).removeClass("spinner")
+    $(".comments",entry).removeClass("spinner")
 
   created: (data) ->
     comment = data.comment
@@ -108,6 +108,14 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     $(".comment_body",entry).val ''
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
     
+    #@updateCommentCount entry
+    @clearNewComments entry,entryId
+    
+    
+  clearNewComments: (entry, entryId) ->
+    if $(".comment",entry).hasClass("new")
+      Dreamcatcher.Models.Comment.showEntry entryId
+      $(".comment",entry).removeClass "new" 
     @updateCommentCount entry
 
   '.comment click': (el) ->
@@ -115,11 +123,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entryId = @getEntryId entry
     
     if entry.hasClass("expanded")                 #currently expanded -> collapse
-      
-      if $(".comment",entry).hasClass "new"
-        Dreamcatcher.Models.Comment.showEntry entryId
-        $(".comment",entry).removeClass "new" 
-        $(".comment .count span",entry).text @getTotalCommentCount(entry)
+      @clearNewComments entry,entryId
       $(".commentsTarget",entry).hide()
       entry.removeClass("expanded")
       
