@@ -189,9 +189,11 @@
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
   -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
-  background: #0c2b50
-  +gradient(#5d80ad, #0c2b50)
-
+  // written out longhand for IE degredation
+  background:         #0c2b50
+  background:         -webkit-gradient(linear, center top, center bottom, from(#5d80ad), to(#0c2b50))
+  background:         -moz-linear-gradient(#5d80ad, #0c2b50)
+  background:         -o-linear-gradient(#5d80ad, #0c2b50)
 
 =shine-grey($px)
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
@@ -235,17 +237,10 @@
 
 
 =bevel-light
-  background: #fff
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc))
-  background: -moz-linear-gradient(top, #fff, #dcdcdc)
-  background: -o-linear-gradient(#fff, #dcdcdc)
+  +gradient(#fff, #dcdcdc)
 
 =bevel-dark
-  background: #222
-  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#010101))
-  background: -moz-linear-gradient(top, #222, #010101)
-  background: -o-linear-gradient(#222, #010101)
-
+  +gradient(#222, #010101)
 
 =indent-light
   border: 1px solid #fff
@@ -263,11 +258,7 @@
 
 =indent-blue
   border: 1px solid #6183a1
-  background: #09233f
-  background: -webkit-gradient(linear, left top, left bottom, from(#09233f), to(#1c4d78))
-  background: -moz-linear-gradient(top, #09233f, #1c4d78)
-  background: -o-linear-gradient(#09233f, #1c4d78)
-
+  +gradient(#09233f, #1c4d78)
 
 =panel-light
   padding: 8px
