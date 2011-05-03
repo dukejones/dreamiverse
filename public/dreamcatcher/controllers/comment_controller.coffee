@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting. 
 
   init: ->
-    @currentUserId = parseInt $("#userInfo").data 'id'
+    @currentUserId = if $("#userInfo").exists() then parseInt $("#userInfo").data 'id' else null
     @currentUserImageId = parseInt $("#userInfo").data 'imageid'
     @entryView = $("#showEntry").exists()
     
@@ -62,6 +62,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       @view 'init',{
         imageId: @currentUserImageId
         entryId: entryId
+        userId: @currentUserId
       })
     $(".comments",entry).addClass("spinner") if @getTotalCommentCount(entry) > 0
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments',entry,entryId)
@@ -157,7 +158,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
     comment = {
       user_id: @currentUserId
-      image_id: @currentUserImageId
+      image_id: @currentUserImageId #TODO: not sure if image_id should be used like this
       body: $(".comment_body",el.parent()).val()
     }
     entryId = @getEntryId el

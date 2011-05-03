@@ -17,6 +17,7 @@
   <div class="comments">
 
   </div>
+  <% if (userId != null) { %>
   <a name="bottom" href="#"></a>
   <div class="newCommentWrap">
     <div style="background-image: url('/images/uploads/<%= imageId %>-avatar-64.jpg')" class="avatar"></div>
@@ -34,6 +35,7 @@
       <div class="clear"></div>
     </div>
   </div>
+  <% } %>
   <div class="clear"></div>
 </div>
 
