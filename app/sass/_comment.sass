@@ -3,10 +3,15 @@
   +panel-light
   +shine-light-alpha(28)
 
+  .spinner
+    +spinner-light-grey
+
   .showAll
     +indent-light
     +button-light
     border: 1px solid #8C8C8C
+    &:hover
+      border: 1px solid #333
     &:active
       border: 1px solid black
 
@@ -18,6 +23,8 @@
       .save
         +button-light
         +save(16)
+        &.disabled:hover
+          +shine-grey(16)
       textarea
         color: #333
         +input-light(large)
@@ -61,6 +68,8 @@
       .save
         +button-dark
         +save(16)
+        &.disabled:hover
+          +shine-grey(16)
       textarea
         color: #ddd
         +input-dark(large)
@@ -132,7 +141,7 @@
     width: 562px
     margin-left: 80px
 
-  .prevCommentWrap
+  .comments
     margin-top: 8px
 
   .newCommentWrap
@@ -232,17 +241,17 @@
         +font(16)
         +outline
         +relative
+        +overflow
         top: 0
         right: 2px
         font-family: Calibri, Arial, Helvetica, sans-serif
-        height: 20px
-        width: 504px
-        min-width: 504px
-        max-width: 504px
+        height: 24px
+        width: 524px
+        min-width: 524px
+        max-width: 524px
         border: none
         cursor: text
-        padding: 28px 28px 34px
-        margin-bottom: 3px
+        padding: 20px 18px 17px
         resize: none
 
       .images, .links, .save
@@ -266,9 +275,13 @@
         +bold
         +font(13)
         right: 4px
-        bottom: 5px
+        bottom: 2px
         height: 34px
         padding: 0 21px 4px
+        &.disabled
+          +alpha(40)
+          +cursor
+          border: 1px solid transparent !important
 
 
 
