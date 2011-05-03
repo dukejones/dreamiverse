@@ -61,8 +61,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       @view 'init',{
         userId: @currentUserId
         entryId: entryId
-      }
-    )
+      })
     $(".comments",entry).addClass("spinner") if @getTotalCommentCount(entry) > 0
     Dreamcatcher.Models.Comment.findEntryComments entryId,{},@callback('populateComments',entry,entryId)
     
@@ -86,8 +85,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         userId: @currentUserId
         entryUserId: entry.data("userid")
         numberToShow: numberToShow
-      }
-    ).removeClass("spinner")
+      }).removeClass("spinner")
 
   created: (data) ->
     comment = data.comment
@@ -99,8 +97,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         comment: comment
         showDelete: true
         hidden: false
-      }
-    )
+      })
     
     $(".prevCommentWrap:last",entry).show()
     
