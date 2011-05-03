@@ -1,8 +1,8 @@
 $.Controller 'Dreamcatcher.Controllers.Appearance',
 
   init: ->
-    @newEntry = $("#entry_view_preference_attributes_theme").length > 0
-    @entryId = $('#showEntry').data 'id' if $('#showEntry').length > 0
+    @newEntry = $("#entry_view_preference_attributes_theme").exists()
+    @entryId = $('#showEntry').data 'id' if $('#showEntry').exists()
     @defaultGenre = $('#defaultGenre').val()
 
   showPanel: ->

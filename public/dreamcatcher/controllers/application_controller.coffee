@@ -1,8 +1,8 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
 
   init: ->
-    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel')?
-    @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField')?
+    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
+    @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
@@ -17,7 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
     
-  #TODO: eventually remove '.comment_body' to apply to all textareas
+  #TODO: eventually remove '.comment_body' to apply to all 'textarea's
   '.comment_body keyup': (el) ->
     @fitToContent el.attr("id"),0
 

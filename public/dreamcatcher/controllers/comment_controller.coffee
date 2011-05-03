@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   init: ->
     @currentUserId = parseInt $("#userInfo").data 'id'
     @currentUserImageId = parseInt $("#userInfo").data 'imageid'
-    @entryView = $("#showEntry").length > 0
+    @entryView = $("#showEntry").exists()
     
     if @entryView #single entry view
       @entryId = $('#showEntry').data 'id'
@@ -72,6 +72,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       numberToShow = totalCount
       $(".commentsHeader span",entry).text totalCount
     else
+      $(".comment .count span",entry).text(totalCount) if not $(".comment",entry).hasClass("new") and totalCount > 0
       newCount = @getNewCommentCount entry
       numberToShow = if newCount > 0 then newCount else 2   #show all 'new' items, or just latest 2
       numberToShow = Math.min totalCount,numberToShow       #make sure numberToShow does not exceed total
@@ -113,11 +114,18 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     entryId = @getEntryId entry
     
     if entry.hasClass("expanded")                 #currently expanded -> collapse
+      
+      if $(".comment",entry).hasClass "new"
+        Dreamcatcher.Models.Comment.showEntry entryId
+        $(".comment",entry).removeClass "new" 
+        $(".comment .count span",entry).text @getTotalCommentCount(entry)
       $(".commentsTarget",entry).hide()
       entry.removeClass("expanded")
+      
     else if $(".commentsPanel",entry).length > 0  #already been expanded -> re-expand
       $(".commentsTarget",entry).show()
       entry.addClass("expanded")
+    
     else                                          #never been expanded -> populate    
       @loadComments entry,entryId
   
@@ -127,7 +135,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.hide()
     
   '.deleteComment click': (el) ->
-    return if not confirm('confirm you want to delete this comment:')    
+    text = "'"+$(".body",el.parent()).text()+"' ("+$(".commentTime",el.parent()).text()+")"
+    return if not confirm("confirm you want to delete this comment:\n\n#{text}")    
     entry = @getEntryFromElement el
     entryId = el.data 'entryid'
     commentId = el.data 'id'

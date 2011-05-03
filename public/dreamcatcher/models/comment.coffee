@@ -20,14 +20,21 @@ $.Model 'Dreamcatcher.Models.Comment',{
       data: {comment: attrs}
     }
     
-  delete: ( entryId, commentId, attrs, success, error ) ->
+  delete: ( entryId, commentId, success, error ) ->
     $.ajax {
       url: "/entries/#{entryId}/comments/#{commentId}"
       type: 'delete'
       dataType: 'json'
       success: success
       error: error
-      data: attrs
+    }
+    
+  showEntry: ( entryId, success, errpr ) ->
+    $.ajax {
+      url: "/entries/#{entryId}"
+      type: 'get'
+      dataType: 'json'
+      success: success
     }
 
 },
