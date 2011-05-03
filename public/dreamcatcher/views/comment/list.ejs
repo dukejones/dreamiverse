@@ -1,6 +1,7 @@
 <% for(var i = 0; i < comments.length; i++){ %>
   <%= $.View('//dreamcatcher/views/comment/show', {
     comment: comments[i],
-    showDelete: (userId == entryUserId || userId == comments[i].user_id)
+    showDelete: (userId == entryUserId || userId == comments[i].user_id),
+    hidden: i < (comments.length - numberToShow)
   }) %>
 <% } %>
