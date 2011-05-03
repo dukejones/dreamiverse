@@ -18,6 +18,8 @@
     text-transform: uppercase
 
   h2.header
+    +pointer
+    +user-select
     +clear
     margin: 0
     padding: 0 0 0 20px
@@ -26,6 +28,7 @@
     line-height: 24px
     color: white
     background: #a3a29f
+    border-bottom: 1px solid #dcdcdc
 
   .panel
     margin: 0
@@ -108,8 +111,7 @@
     +left
     +font(21)
     +bold
-    line-height: 74px
-    margin: 0
+    margin: 24px 0 0
     padding: 0 0 0 8px
     text-transform: uppercase
     color: #414042
@@ -121,7 +123,7 @@
     +round(12)
     width: 58px
     height: 46px
-    margin: 12px 12px 0 0
+    margin: 12px 12px 4px 0
     padding: 2px 0
     +bevel-light
     &:active
