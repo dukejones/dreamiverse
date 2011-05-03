@@ -19,7 +19,7 @@
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
 
   / SHOW ENTRY
-  #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
+  #showEntry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :class => @entry.images.blank? ? "noImage" : "" }
 
     .type
       .icon{style: "background: url('#{entry_type_icon(@entry.type, 24)}') no-repeat left center"}

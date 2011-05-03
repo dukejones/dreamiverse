@@ -14,7 +14,7 @@ steal.plugins(
 	  'jquery.data-selector'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
-    //StealJS fix: don't forget to contribute!
+    //TODO: StealJS fix: don't forget to contribute!
 		steal.coffee(
 			'models/settings',
 			'models/appearance',
