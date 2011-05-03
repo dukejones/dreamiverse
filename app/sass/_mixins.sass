@@ -177,6 +177,7 @@
   +gradient(#fff, #aaa)
 
 
+
 =shine-dark($px)
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.05)
   -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.05)
@@ -188,8 +189,11 @@
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
   -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
-  +gradient(#5d80ad, #0c2b50)
-  background: #0c2b50
+  // written out longhand for IE degredation
+  background:         #0c2b50
+  background:         -webkit-gradient(linear, center top, center bottom, from(#5d80ad), to(#0c2b50))
+  background:         -moz-linear-gradient(#5d80ad, #0c2b50)
+  background:         -o-linear-gradient(#5d80ad, #0c2b50)
 
 =shine-grey($px)
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
@@ -207,6 +211,7 @@
   background: #f0f0f0
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(120,120,120,0.75)))
   background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(120,120,120,0.75))
+  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(120,120,120,0.75))
 
 
 =shine-dark-alpha($px)
@@ -217,6 +222,7 @@
   background: #000
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(34,34,34,0.75)), to(rgba(0,0,0,0.75)))
   background: -moz-linear-gradient(top, rgba(34,34,34,0.75), rgba(0,0,0,0.75))
+  background: -o-linear-gradient(rgba(34,34,34,0.75), rgba(0,0,0,0.75))
 
 
 =shine-blue-alpha($px)
@@ -227,37 +233,32 @@
   background: #5b71a4
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(10,31,78,1.0)), to(rgba(14,66,132,0.65)))
   background: -moz-linear-gradient(top, rgba(10,31,78,1.0), rgba(14,66,132,0.65))
+  background: -o-linear-gradient(rgba(10,31,78,1.0), rgba(14,66,132,0.65))
 
 
 =bevel-light
-  background: #fff
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc))
-  background: -moz-linear-gradient(top, #fff, #dcdcdc)
+  +gradient(#fff, #dcdcdc)
 
 =bevel-dark
-  background: #222
-  background: -webkit-gradient(linear, left top, left bottom, from(#222), to(#010101))
-  background: -moz-linear-gradient(top, #222, #010101)
-
+  +gradient(#222, #010101)
 
 =indent-light
   border: 1px solid #fff
   background: #e6e6e6
   background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
   background: -moz-linear-gradient(top, #e6e6e6, #fff)
+  background: -o-linear-gradient(#e6e6e6, #fff)
 
 =indent-dark
   border: 1px solid #000
   background: #1a1a1a
   background: -webkit-gradient(linear, left top, left bottom, from(#090909), to(#1a1a1a))
   background: -moz-linear-gradient(top, #090909, #1a1a1a)
+  background: -o-linear-gradient(#090909, #1a1a1a)
 
 =indent-blue
   border: 1px solid #6183a1
-  background: #09233f
-  background: -webkit-gradient(linear, left top, left bottom, from(#09233f), to(#1c4d78))
-  background: -moz-linear-gradient(top, #09233f, #1c4d78)
-
+  +gradient(#09233f, #1c4d78)
 
 =panel-light
   padding: 8px
@@ -528,3 +529,8 @@
     +pointer
     color: #fff
     border: 1px solid #fff
+
+
+// IE 6+ gradient filter
+// filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)
+// -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)"
