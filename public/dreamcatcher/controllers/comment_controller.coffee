@@ -69,7 +69,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     totalCount = comments.length
     if @entryView
       numberToShow = totalCount
-      $(".commentHeader span",entry).text totalCount
+      $(".commentsHeader span",entry).text totalCount
     else
       newCount = @getNewCommentCount entry
       numberToShow = if newCount > 0 then newCount else 2   #show all 'new' items, or just latest 2
@@ -78,7 +78,6 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       if numberToShow < totalCount
         $(".showAll span",entry).text totalCount
         $(".showAll",entry).show()
-    
     $(".comments",entry).html(
       @view 'list',{
         comments: comments
@@ -126,6 +125,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.hide()
     
   '.deleteComment click': (el) ->
+    return if not confirm('Are you sure you want to delete this post?')    
     entry = @getEntryFromElement el
     entryId = el.data 'entryid'
     commentId = el.data 'id'
