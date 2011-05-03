@@ -470,10 +470,11 @@
     +gradient(#0c2b50, #5d80ad)
     +pointer
     color: #fff
-    border: 1px solid #4794b5
+    border: 1px solid #5d80ad
   &:active
-    +gradient(#0c2b50, #5d80ad)
-    border: 1px solid #fff
+    +bg-shine(0)
+    +gradient(#051f3f, #416799)
+    border: 1px solid #051f3f
     color: #fff
 
 
@@ -485,24 +486,26 @@
     +gradient(#235b1b, #70d03b)
     +pointer
     color: #fff
-    border: 1px solid #54943d
+    border: 1px solid #70d03b
   &:active
-    +gradient(#70d03b, #235b1b)
+    +bg-shine(0)
+    +gradient(#15460e, #5bbe25)
     color: #fff
-    border: 1px solid #fff
+    border: 1px solid #15460e
 
 =cancel($offset)
   &:hover
     +bg-shine($offset)
-    +gradient(#979797, #4e4e4e)
-    +pointer
-    color: #fff
-    border: 1px solid #848484
-  &:active
     +gradient(#4e4e4e, #979797)
     +pointer
     color: #fff
-    border: 1px solid #fff
+    border: 1px solid #979797
+  &:active
+    +bg-shine(0)
+    +gradient(#3e3e3e, #7e7e7e)
+    +pointer
+    color: #fff
+    border: 1px solid #3e3e3e
 
 =delete($offset)
   &:hover

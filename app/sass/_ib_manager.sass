@@ -7,7 +7,7 @@
   +round(16)
   top: 90px
   left: 40px
-  margin: 0
+  margin: 0 0 40px
   width: 760px
   +shine-light(32)
 
@@ -138,7 +138,7 @@
       padding: 6px
       background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
       &:hover
-        background: url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center transparent
+        background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
 
   // DROPBOX
   .dropboxWrap
@@ -157,9 +157,10 @@
       margin: 0 12px 0 0
       line-height: 42px
     h2.drop
-      +pointer
       color: white
     h2.all
+      +pointer
+      +user-select
       text-decoration: underline
       color: #58595b
       &:hover
@@ -171,19 +172,23 @@
 
     .browse
       +pointer
+      +user-select
       +right
       +bold
       +center
       +round(16)
       margin: 6px 12px 0 0
-      padding: 0 12px
+      padding: 0 16px
       height: 28px
-      line-height: 28px
+      line-height: 30px
       color: #58595b
-      +bevel-light
+      +shine-light(14)
       &:hover
         color: #000
-        +shine-light(14)
+        +gradient(#fff, #777)
+      &:active
+        +shine-light(0)
+        +gradient(#777, #fff)
 
     .dropbox
       +clear
