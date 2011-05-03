@@ -3,7 +3,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting. 
 
   init: ->
-    @currentUserId = parseInt $("#current_user_id_1").val()
+    @currentUserId = parseInt $("#userInfo").data 'id'
+    @currentUserImageId = parseInt $("#userInfo").data 'imageid'
     @entryView = $("#showEntry").length > 0
     
     if @entryView #single entry view
@@ -59,7 +60,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
   loadComments: (entry, entryId) -> 
     $(".commentsTarget",entry).addClass("commentsPanel wrapper").html(
       @view 'init',{
-        userId: @currentUserId
+        imageId: @currentUserImageId
         entryId: entryId
       })
     $(".comments",entry).addClass("spinner") if @getTotalCommentCount(entry) > 0
@@ -125,13 +126,19 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.hide()
     
   '.deleteComment click': (el) ->
-    return if not confirm('Are you sure you want to delete this post?')    
+    return if not confirm('confirm you want to delete this comment:')    
     entry = @getEntryFromElement el
     entryId = el.data 'entryid'
     commentId = el.data 'id'
     Dreamcatcher.Models.Comment.delete entryId,commentId
     el.closest('.prevCommentWrap').remove()
     @updateCommentCount entry
+    
+  '.comment_body focus': (el) ->
+    if el.height() < 40
+      el.animate({height: '40px'}, 'fast')
+      $(".save", el.parent()).fadeIn 200,->
+        $(this).removeClass("hidden")
   
   '.save click': (el) ->
     return if $(".comment_body",el.parent()).val().trim().length is 0
@@ -140,6 +147,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
     comment = {
       user_id: @currentUserId
+      image_id: @currentUserImageId
       body: $(".comment_body",el.parent()).val()
     }
     entryId = @getEntryId el

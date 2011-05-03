@@ -2,7 +2,7 @@
 
 load("steal/rhino/steal.js");
 steal.plugins('steal/clean',function(){
-	steal.clean('cookbook/cookbook.html',{
+	steal.clean('dreamcatcher/dreamcatcher.html',{
 		indent_size: 1, 
 		indent_char: '\t', 
 		jslint : false,

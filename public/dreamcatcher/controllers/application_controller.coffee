@@ -17,8 +17,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
     
-  #TODO: eventually remove '.comment_body' to apply to all.
-  'textarea.comment_body keyup': (el) ->
+  #TODO: eventually remove '.comment_body' to apply to all textareas
+  '.comment_body keyup': (el) ->
     @fitToContent el.attr("id"),0
 
 $(document).ready ->
