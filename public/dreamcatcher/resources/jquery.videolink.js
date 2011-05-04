@@ -19,8 +19,9 @@ jQuery.fn.videolink = function(){
 
     // Checks for SOUNDCLOUD LINK
     if(hostname == "soundcloud.com" || hostname == "www.soundcloud.com"){
-      var dataId = String("soundcloud-" + i);
-      $(ele).data('id', i);
+      index = $("a.soundcloud").length
+      var dataId = String("soundcloud-" + index);
+      $(ele).data('id', index);
       $(ele).addClass('soundcloud');
 
       var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
@@ -36,8 +37,9 @@ jQuery.fn.videolink = function(){
       });
 
     } else if(hostname == "vimeo.com" || hostname == "www.vimeo.com"){
-      var dataId = String("vimeo-" + i);
-      $(ele).data('id', i);
+      index = $("a.vimeo").length
+      var dataId = String("vimeo-" + index);
+      $(ele).data('id', index);
       $(ele).addClass('vimeo');
 
       var filePath = 'http://api.embed.ly/1/oembed?url=' + current_url + '&format=json'
@@ -56,8 +58,9 @@ jQuery.fn.videolink = function(){
 
     } else if(hostname == "youtube.com" || hostname == "www.youtube.com"){
       // Create new Element & make it work
-      var dataId = String("youtube-" + i);
-      $(ele).data('id', i);
+      index = $("a.youtube").length
+      var dataId = String("youtube-" + index);
+      $(ele).data('id', index);
 
       $(ele).addClass('youtube');
 
