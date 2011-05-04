@@ -9,7 +9,7 @@
     .browse
 
   / SEARCH
-  .searchFieldWrap
+  .searchFieldWrap.hidden
     .searchField
       .img
       %a.options{href: "#"} options
@@ -21,13 +21,15 @@
     .img
     %span back
 
-  %h1#IB_category
+  / HEADER
+  %h1 header
 
-  #IB_searchBoxWrap.round-12
-    #IB_searchBox.round-12
-      %img(src="/images/icons/searchIcon36.png" width="36" height="36")
+  / SEARCH BUTTON
+  .searchWrap
+    .search
 
-  #IB_slideshowTimer.uiMode.slideshow.round-8 20
-  %a#IB_manageArtistImages.uiMode.artist.round-8
-  %a#IB_artistSlideshow.uiMode.artist.round-8
-  %span#IB_slideshowCount.uiMode.slideshow
+  / TOOLS & INFO
+  .timer 20
+  %a.manage{href: "#"}
+  .play
+  .counter 4/18

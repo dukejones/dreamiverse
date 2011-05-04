@@ -1,14 +1,6 @@
-@import mixins
 
 // IMAGEBANK MANAGER STYLES
 #frame.manager
-  +absolute
-  +clear
-  +round(16)
-  top: 90px
-  left: 40px
-  margin: 0 0 40px
-  width: 760px
   +shine-light(32)
 
   // SHARED STYLES
@@ -344,10 +336,7 @@
       +shine-light(19)
       &:hover
         color: #222
-        // +gradient(#fff, #777)
       &:active
-        // +shine-light(0)
-        // +gradient(#6e6e6e, #fff)
 
     .save
       +save(19)
