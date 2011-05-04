@@ -22,7 +22,8 @@ steal.plugins(
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
-			'controllers/bedsheet_controller'
+			'controllers/bedsheet_controller',
+			'controllers/ib_manager_controller'
 		);
 	})
 	.views();
