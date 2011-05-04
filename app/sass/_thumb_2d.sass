@@ -58,12 +58,13 @@
 
     .detailsTop, .detailsBottom, .title
       z-index: 84
-      .date, .location, .comments, .sharing
-        +round(12)
-        +center
-        +font(11)
-        margin: 4px
-        padding: 4px 8px
+    .date, .location, .comments, .sharing
+      +round(12)
+      +center
+      +font(11)
+      line-height: 16px
+      margin: 4px
+      padding: 4px 8px
 
 
     .detailsTop
@@ -93,10 +94,17 @@
         +left
         +hidden
         &.new
-          background: rgba(255,0,0,0.80)
+          +gradient(#e35f5f, #b32f2f)
           display: block !important
-        img
-          margin: 0 2px -5px 0
+          color: #fff !important
+        .img
+          +left
+          width: 16px
+          height: 16px
+          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+          margin-right: 5px
+        span
+          +left
       .sharing
         +right
         +hidden
@@ -127,7 +135,7 @@
     width: 196px
     height: 262px
 
-    .next, .next span, .all
+    .next, .all
       +block
       +absolute
 
@@ -137,7 +145,8 @@
       height: 262px
       +alpha(25)
       +center
-      span
+      .text
+        +absolute
         +center
         bottom: 60px
         width: 196px
@@ -146,28 +155,31 @@
         +alpha(100)
       &.loading
         background-position: center 45% !important
+        .text
+          display: none !important
 
     .all
       display: none
       z-index: 100
       +round(8)
       +center
+      +alpha(60)
       bottom: 10px
       left: 10px
       width: 176px
       height: 30px
       line-height: 30px
+      &:hover
+        +alpha(100)
 
-    &:hover .all
-      display: block
 
 
 // COLORS
 .light .matrix
   .thumb-2d
     background: #fff
-    background: -moz-linear-gradient(top, #fff, #fff 100px, #aaa)
-    background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(.37,#fff), to(#aaa))
+    background: -moz-linear-gradient(top, #fff, #fff 100px, #e3e3e3)
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(.37,#fff), to(#e3e3e3))
 
     &:hover
       +glow-light(40)
@@ -180,14 +192,14 @@
       background-position: center
 
     .fadedBack
-      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 100px, #aaa)
-      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#fff), to(#aaa))
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 100px, #e3e3e3)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#fff), to(#e3e3e3))
       // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
 
 
 
   #pagination
-    +gradient(#fff, #aaa)
+    +gradient(#fff, #ccc)
     border: 2px solid #fff
     &:hover
       border: 2px solid #000
@@ -200,10 +212,8 @@
     .all
       border: 1px solid #8a8a8a
       +shine-light-alpha(15)
-      &:hover
-        +gradient(#aaa, #fff)
       &:active
-        +glow-dark(0)
+        +gradient(#aaa, #fff)
 
 
 
@@ -212,8 +222,8 @@
 .dark .matrix
   .thumb-2d
     background: #3a3a3a
-    background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #000)
-    background: -webkit-gradient(linear, center top, center bottom, from(#3a3a3a), color-stop(0.37,#3a3a3a), to(#000))
+    background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #111 160px, #000)
+    background: -webkit-gradient(linear, center top, center bottom, from(#3a3a3a), color-stop(0.37,#3a3a3a), color-stop(0.53,#3a3a3a), to(#000))
 
     &:hover
       +glow-dark(40)
@@ -226,8 +236,8 @@
       background-position: center
 
     .fadedBack
-      background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 100px, #000)
-      background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#3a3a3a), to(#000))
+      background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 100px, #111 160px, #000)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#3a3a3a), color-stop(0.53,#111), to(#000))
       // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
 
 
@@ -246,10 +256,8 @@
       border: 1px solid #262626
       +bg-shine(15)
       +gradient(#262626, #000)
-      &:hover
-        +gradient(#000, #565656)
       &:active
-        +glow-dark(0)
+        +gradient(#000, #565656)
 
 
 

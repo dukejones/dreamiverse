@@ -23,6 +23,7 @@ class Entry < ActiveRecord::Base
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   has_many :comments
+  has_one :latest_comment, :class_name => 'Comment', :order => 'created_at desc'
 
   # Tag associations
   has_many :tags, :dependent => :delete_all
@@ -50,7 +51,7 @@ class Entry < ActiveRecord::Base
   belongs_to :main_image, :class_name => "Image"
 
   validates_presence_of :user
-  validates_presence_of :body
+  #validates_presence_of :body
   validates_presence_of :dreamed_at
   
   after_initialize :init_dreamed_at
@@ -108,39 +109,66 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    entry_scope = Entry.order('dreamed_at DESC')
-    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
-
     page_size = filters[:page_size] || 32
+    page = filters[:page].to_i
+    page = 1 if page <= 0
 
-    entry_scope = entry_scope.limit(page_size)
-    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page].to_i > 0
+    # Universal scope
+    entry_scope = Entry.order(:created_at.desc)
+    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
 
-    users_to_view =  # based on friend filter
+    user_ids_to_view =  # based on friend filter
       if filters[:friend] == "friends"
-        viewer.friends
+        viewer.friends.select('users.id')
       else
-        viewer.following
-      end
-    users_to_view << viewer unless users_to_view.include?(viewer)
+        viewer.following.select('users.id')
+      end.map(&:id)
+    user_ids_to_view.delete(viewer.id)
     
-    entries = entry_scope.where(:user_id => users_to_view.map(&:id))
-    # each should be sorted according to date or starlight
+    # Others' Entries, paged.
+    others_entries = entry_scope.where(:user_id => user_ids_to_view)
+    others_entries = others_entries.limit(page_size)
+    others_entries = others_entries.offset(page_size * (page - 1))
+    
+    time_range = Entry.select('max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
 
-    entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
+    my_entries = entry_scope.where(:user => viewer)
+    # my_entries = entry_scope.where(:user => viewer, :stream_time.gt => time_range.min_time)
+    # my_entries = my_entries.where(:stream_time.lt => time_range.max_time) unless page == 1
+
+    my_commented_entries = my_entries.joins(:comments).group('entries.id')
+    my_commented_entries = my_commented_entries.having(["max(comments.created_at) > ?", time_range.min_time])
+    my_commented_entries = my_commented_entries.having(["max(comments.created_at) < ?", time_range.max_time]) unless page == 1
+    
+    my_uncommented_entries = my_entries.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time)
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) unless page == 1
+
+    entries = Entry.find_by_sql(%{
+      (#{others_entries.select('entries.*, entries.created_at as stream_time').to_sql})
+      UNION
+      (#{my_uncommented_entries.select('entries.*, entries.created_at as stream_time').to_sql})
+      UNION
+      (#{my_commented_entries.select('entries.*, max(comments.created_at) as stream_time').to_sql})
+      ORDER BY stream_time DESC
+    })
+
+    # entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
     entries
   end
 
   def self.dreamfield(viewer, viewed, filters={})
-    entry_scope = Entry.order('dreamed_at DESC')
+    entry_scope = Entry.order(:dreamed_at.desc)
     
     page_size = filters[:page_size] || 31
+    page = filters[:page].to_i
+    page = 1 if page <= 0
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
-    entry_scope = entry_scope.offset(page_size * (filters[:page].to_i - 1)) if filters[:page].to_i > 0
+    entry_scope = entry_scope.offset(page_size * (page - 1))
     
     if viewer
       entries = entry_scope.select {|e| viewer.can_access?(e) }

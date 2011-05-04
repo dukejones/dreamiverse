@@ -6,23 +6,29 @@ steal.plugins(
 	'jquery/controller/view',	// lookup views with the controller's name
 	'jquery/model',					  // Ajax wrappers
 	'jquery/dom/fixture',			// simulated Ajax requests
-	'jquery/dom/form_params',
-	'jquery/lightbox'
+	'jquery/dom/form_params'
 	)	// form data helper
 	.resources(
-	  'fileuploader'
-	  )					    // 3rd party script's (like jQueryUI), in resources folder
+	  'jquery-lightbox-0.5',
+	  'jquery.timeago',
+		'jquery.exists',
+		'jquery.linkify',
+		'jquery.videolink',
+		'fileuploader'
+	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
-    //StealJS fix: don't forget to contribute!
+    //TODO: StealJS fix: don't forget to contribute!
 		steal.coffee(
 			'models/settings',
 			'models/appearance',
 			'models/bedsheet',
+			'models/comment',
 			'controllers/application_controller',
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
 			'controllers/bedsheet_controller',
+			'controllers/comment_controller',
 			'controllers/ib_manager_controller'
 		);
 	})
