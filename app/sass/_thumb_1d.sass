@@ -205,7 +205,7 @@
     height: 26px
     margin-bottom: -26px
 
-    width: 340px
+    width: 341px
     padding-left: 8px
 
     .rePost, .date, .starlight
@@ -240,6 +240,8 @@
       height: 26px
       +round(12)
       +flat-bottom
+      border: 1px solid transparent
+      border-bottom: 0px !important
       &.new
         +block
 
@@ -350,6 +352,9 @@
   .entryImages li
     +button-light
 
+  &.expanded .comment:hover
+    border: 1px solid #999
+
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
@@ -398,6 +403,9 @@
 
   .entryImages li
     +button-dark
+
+  &.expanded .comment:hover
+    border: 1px solid #575757
 
   .comment:hover, &.expanded .comment
     +gradient(#575757, #323232)
