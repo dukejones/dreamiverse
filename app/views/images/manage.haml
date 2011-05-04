@@ -26,114 +26,118 @@
         %li
 
   / ORGANIZATION
-  %h2.header organization
-  #organization.panel
+  .wrapper
+    %h2.header.trigger.showhide organization
+    #organization.panel.target.showhide
 
-    %h2.label type
-    .listWrap
-      %input{type: "checkbox"}
-      %select.list
-        %option{value: "Library"} Library
-        %option{value: "Bedsheets"} Bedsheets
-        %option{value: "Prima Materia"} Prima Materia
-        %option{value: "Book Covers"} Book Covers
-        %option{value: "Tag"} Tag
+      %h2.label type
+      .listWrap
+        %input{type: "checkbox"}
+        %select.list
+          %option{value: "Library"} Library
+          %option{value: "Bedsheets"} Bedsheets
+          %option{value: "Prima Materia"} Prima Materia
+          %option{value: "Book Covers"} Book Covers
+          %option{value: "Tag"} Tag
 
-    %h2.label category
-    .listWrap
-      %input{type: "checkbox"}
-      %select.list
-        %option{value: "General"} General
-        %option{value: "Modern Art"} Modern Art
-        %option{value: "Classical Art"} Classical Art
-        %option{value: "Photo"} Photo
+      %h2.label category
+      .listWrap
+        %input{type: "checkbox"}
+        %select.list
+          %option{value: "General"} General
+          %option{value: "Modern Art"} Modern Art
+          %option{value: "Classical Art"} Classical Art
+          %option{value: "Photo"} Photo
 
-    %h2.label genre
-    .listWrap
-      %input{type: "checkbox"}
-      %select.list
-        %option{value: "Placeholder"} Placeholder
+      %h2.label genre
+      .listWrap
+        %input{type: "checkbox"}
+        %select.list
+          %option{value: "Placeholder"} Placeholder
 
-    .clear
+      .clear
 
 
   / INFO
-  %h2.header info
-  #info.panel
+  .wrapper
+    %h2.header.trigger.showhide info
+    #info.panel.target.showhide
 
-    .wrap
-      .inputWrap
-        %h2.label title
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap
+          %h2.label title
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap
-        %h2.label album
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap
+          %h2.label album
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap
-        %h2.label author
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap
+          %h2.label author
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap
-        %h2.label location
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap
+          %h2.label location
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap.year
-        %h2.label year
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap.year
+          %h2.label year
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap.notes
-        %h2.label notes
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap.notes
+          %h2.label notes
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .clear
+      .clear
 
 
 
   / SOURCE
-  %h2.header SOURCE
-  #source.panel
+  .wrapper
+    %h2.header.trigger.showhide SOURCE
+    #source.panel.target.showhide
 
-    .wrap
-      .inputWrap.source
-        %h2.label date
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap.source
+          %h2.label date
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap.source
-        %h2.label user
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap.source
+          %h2.label user
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .wrap
-      .inputWrap.source
-        %h2.label geotag
-        %input.text{type: "text"}
-        %input.checkbox{type: "checkbox"}
+      .wrap
+        .inputWrap.source
+          %h2.label geotag
+          %input.text{type: "text"}
+          %input.checkbox{type: "checkbox"}
 
-    .clear
+      .clear
 
 
 
   / TAGS
-  %h2.header tags
-  #tags.panel
+  .wrapper
+    %h2.header.trigger.showhide tags
+    #tags.panel.target.showhide
 
-    .inputWrap.tags
-      %textarea{type: "text",  rows: "2", cols: "75"}
-      %input{type: "checkbox"}
+      .inputWrap.tags
+        %textarea{type: "text",  rows: "2", cols: "75"}
+        %input{type: "checkbox"}
 
 
   / FOOTER BUTTONS
