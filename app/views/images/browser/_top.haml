@@ -1,24 +1,25 @@
-#IB_top.dark.C-shine-36.round-12.gradient-9-down
-  #IB_browseBackWrap.round-12
-    #IB_browseBack.round-12
+/ TOP
+.top
 
-  / SEARCH Mode
-  #IB_searchBoxActiveWrap.round-12
-    #IB_searchBoxActive.O-input-15.round-12
-      %img(src="/images/icons/searchIcon36.png" width="36" height="36")
-      %a#IB_searchOptionsButton.round-8(href="#") Options
-      %a#IB_searchOptionsTab.round-8-top.hidden(href="#") Options
-      %input#IB_searchText(type="text" value="search")
+  / BROWSE BARS (only display on opening view)
+  .browseBars
 
-  / Browse Mode
-  #IB_browseArrow.float-left
-    #IB_browseArrowLeft
-    #IB_browseArrowContent
-      %p.font-21.float-left
-    #IB_browseArrowRight
-  
-  / Only display on opening view
-  %img.browseBars(src="/images/icons/browseBars-36-light.png" width="36" height="32")
+  / BROWSE BUTTON
+  .browseWrap
+    .browse
+
+  / SEARCH
+  .searchFieldWrap
+    .searchField
+      .img
+      %a.options{href: "#"} options
+      %a.optionsTab.hidden{href: "#"} options
+      %input{type: "text", value: "search"}
+
+  / BACK ARROW
+  .backArrow
+    .img
+    %span back
 
   %h1#IB_category
 
