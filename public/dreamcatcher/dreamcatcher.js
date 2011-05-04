@@ -9,7 +9,9 @@ steal.plugins(
 	'jquery/dom/form_params',
 	'jquery/lightbox'
 	)	// form data helper
-	.resources()					    // 3rd party script's (like jQueryUI), in resources folder
+	.resources(
+	  'fileuploader'
+	  )					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //StealJS fix: don't forget to contribute!
 		steal.coffee(
@@ -20,7 +22,8 @@ steal.plugins(
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
-			'controllers/bedsheet_controller'
+			'controllers/bedsheet_controller',
+			'controllers/ib_manager_controller'
 		);
 	})
 	.views();
