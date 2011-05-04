@@ -13,7 +13,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     $('#settingsPanel').show()
 
   displaySharingLevel: (sharingLevel) ->
-    #TODO: replace with class
+    #TODO: after SASS refactor, replace with class
     sharingLevel = parseInt sharingLevel
     switch sharingLevel
       when 500 then background = 'sharing-24-hover.png'
@@ -28,6 +28,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     Dreamcatcher.Models.Settings.update sharingLevel
 
   setupAjaxBinding: ->
+    #TODO: Needs refactoring.
     $('#fbLink').bind 'ajax:success', (event, xhr, status)->
       $('#fbLink').remove()
       $('.network').append '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'

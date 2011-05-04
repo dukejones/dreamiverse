@@ -2,5 +2,5 @@
 
 load('steal/rhino/steal.js');
 steal.plugins("documentjs").then(function(){
-	DocumentJS('cookbook/cookbook.html');
+	DocumentJS('dreamcatcher/dreamcatcher.html');
 });

@@ -85,7 +85,7 @@ class AvatarView
     $.publish 'uploader:init', [@container]
   
   removeUploader: (avatar_path = 'old', avatar_thumb_path = 'old')->
-    $('#bodyClick').remove()
+    $('#bodyClick').hide()
     
     $.publish 'uploader:removed', [this]
     
@@ -99,12 +99,11 @@ class AvatarView
     @$container.show()
   
   displayBodyClick: ->
-    bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-    $('body').prepend(bodyClick)
+    $('#bodyClick').show()
   
     $('html, body').animate({scrollTop:0}, 'slow');
   
     $('#bodyClick').click( (event) =>
       @removeUploader()
-      $('#bodyClick').remove()
+      $('#bodyClick').hide()
     )

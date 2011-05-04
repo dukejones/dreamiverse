@@ -15,13 +15,11 @@ $(document).ready ->
           $('#user_username').focus()
         )
         
-        
-        bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-        $('body').prepend(bodyClick)
+        $('#bodyClick').show()
   
         $('#bodyClick').click( (event) =>
           $('.loginPanel').slideUp(250)
-          $('#bodyClick').remove()
+          $('#bodyClick').hide()
         )
       else
         $(this).parent().find('.loginPanel').slideUp(250)
@@ -87,16 +85,14 @@ class LoginView
     
   displayBodyClick: ->
     @bodyClickVisible = true
-    $('#bodyClick').remove()
-    bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-    $('body').prepend(bodyClick)
+    $('#bodyClick').show()
   
     #$('html, body').animate({scrollTop:0}, 'slow');
   
     $('#bodyClick').click( (event) =>
       @bodyClickVisible = false
       @closePanel()
-      $('#bodyClick').remove()
+      $('#bodyClick').hide()
     )
     
   

@@ -10,7 +10,11 @@
 
     = include_stylesheets :shared, :media => 'all'
     
-  %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+    - if Rails.env == 'production' || Rails.env == 'theta'
+      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    - else 
+      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+
     = include_javascripts :shared
         
     :coffeescript
@@ -19,6 +23,9 @@
     = yield :head
 
   %body{id: 'body', class: theme, style: bedsheet_style}
+
+    - unless current_user.blank?
+      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}
 
     #bodyClick
 

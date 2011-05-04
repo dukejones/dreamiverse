@@ -53,6 +53,12 @@ Word.blueprint do
   dictionary { Dictionary.make }
 end
 
+Comment.blueprint do
+  body { Faker::Lorem.paragraphs(2).join("\n") }
+  user { User.make }
+  entry { Entry.make }
+end
+
 def random_ip
   (0...4).to_a.map { rand(256) }.join('.')
 end

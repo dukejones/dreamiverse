@@ -34,39 +34,29 @@
       +font(16)
       +bold
 
-// THUMB 1D VIDEO
-.thumb-1d.videoExpand
-  +overflow
-  .video
-    margin: 230px 12px 12px
-.thumb-1d.noImage.videoExpand
-  +overflow
-  .video
-    margin: 176px 12px 12px
+// THUMB 1D VIDEO - SEE thumb_1d.sass
+.thumb-1d .video
 
-.thumb-1d, .thumb-1d.noImage
-  .video
-    +flat-bottom
+
+
 
 
 // VIDEO PANEL COLORS
-.light
-  .video
-    +bevel-light
+.light .video
+  +bevel-light
 
-    .info
-      color: #777
-      +indent-light
-      +border-light
+  .info
+    color: #777
+    +indent-light
+    +border-light
 
-.dark
-  .video
-    +gradient(#000, #0f0f0f)
+.dark .video
+  +gradient(#000, #0f0f0f)
 
-    .info
-      color: #ddd
-      +indent-dark
-      +border-dark
+  .info
+    color: #ddd
+    +indent-dark
+    +border-dark
 
 
 
