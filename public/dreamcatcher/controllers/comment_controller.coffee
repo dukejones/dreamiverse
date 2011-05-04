@@ -153,8 +153,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.hide()
     
   '.deleteComment click': (el) ->
-    text = "'"+$(".body",el.parent()).text()+"' ("+$(".commentTime",el.parent()).text()+")"
-    return if not confirm("confirm you want to delete this comment:\n\n#{text}")    
+    #text = "'"+$(".body",el.parent()).text()+"' ("+$(".commentTime",el.parent()).text()+")"
+    return if not confirm("confirm you want to delete this comment")    
     entry = @getEntryFromElement el
     entryId = el.data 'entryid'
     commentId = el.data 'id'
