@@ -112,7 +112,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         hidden: false
       })
     
-    $(".prevCommentWrap:last",entry).show()
+    $(".prevCommentWrap:last",entry).show().linkify().videolink()
     
     $(".comment_body",entry).val ''
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
