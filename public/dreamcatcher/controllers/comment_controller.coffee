@@ -84,6 +84,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       if numberToShow < totalCount
         $(".showAll span",entry).text totalCount
         $(".showAll",entry).show()
+        
     $(".comments",entry).html(
       @view 'list',{
         comments: comments
@@ -91,7 +92,12 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
         entryUserId: entry.data("userid")
         numberToShow: numberToShow
       }
-    )
+    ).linkify()
+    
+    $(".comments",entry).videolink()
+    
+    #linkify, and add youtube links
+    
     $(".comments",entry).removeClass("spinner")
 
   created: (data) ->

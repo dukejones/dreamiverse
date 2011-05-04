@@ -11,7 +11,9 @@ steal.plugins(
 	.resources(
 	  'jquery-lightbox-0.5',
 	  'jquery.timeago',
-		'jquery.exists'
+		'jquery.exists',
+		'jquery.linkify',
+		'jquery.videolink'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //TODO: StealJS fix: don't forget to contribute!
