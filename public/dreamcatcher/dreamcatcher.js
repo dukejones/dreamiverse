@@ -14,7 +14,8 @@ steal.plugins(
 		'jquery.exists',
 		'jquery.linkify',
 		'jquery.videolink',
-		'fileuploader'
+		'fileuploader',
+		'jquery.cookie'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //TODO: StealJS fix: don't forget to contribute!
@@ -23,6 +24,7 @@ steal.plugins(
 			'models/appearance',
 			'models/bedsheet',
 			'models/comment',
+			'models/ib_manager',
 			'controllers/application_controller',
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',

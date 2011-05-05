@@ -31,7 +31,7 @@
     #organization.panel.target.showhide
 
       %h2.label type
-      .listWrap
+      .listWrap#image_type
         %input{type: "checkbox"}
         %select.list
           %option{value: "Library"} Library
@@ -41,7 +41,7 @@
           %option{value: "Tag"} Tag
 
       %h2.label category
-      .listWrap
+      .listWrap#image_category
         %input{type: "checkbox"}
         %select.list
           %option{value: "General"} General
@@ -50,7 +50,7 @@
           %option{value: "Photo"} Photo
 
       %h2.label genre
-      .listWrap
+      .listWrap#image_genre
         %input{type: "checkbox"}
         %select.list
           %option{value: "Placeholder"} Placeholder
@@ -64,37 +64,37 @@
     #info.panel.target.showhide
 
       .wrap
-        .inputWrap
+        .inputWrap#image_title
           %h2.label title
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap
+        .inputWrap#image_album
           %h2.label album
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap
+        .inputWrap#image_author
           %h2.label author
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap
+        .inputWrap#image_location
           %h2.label location
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap.year
+        .inputWrap.year#image_year
           %h2.label year
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap.notes
+        .inputWrap.notes#image_notes
           %h2.label notes
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
