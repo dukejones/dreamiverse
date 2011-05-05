@@ -1,0 +1,195 @@
+// IMAGEBANK TOP
+
+.top
+  margin: 0
+  padding: 0
+  height: 74px
+
+
+  // SHARED STYLES
+  .browseWrap, .searchWrap
+    +pointer
+    +user-select
+    +round(12)
+    width: 52px
+    height: 52px
+    margin: 12px 8px 0
+    +gradient(#707070, #111111)
+    // &:hover
+    //   +gradient(#707070, #B7B7B7)
+    &:active
+      +gradient(#111111, #707070)
+
+    .browse, .search
+      +round(12)
+      width: 48px
+      height: 48px
+      margin: 2px auto
+      +input-light(large)
+
+
+
+
+  // BROWSE BARS
+  .browseBars
+    +left
+    width: 52px
+    height: 52px
+    margin: 12px 0 0 8px
+    background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat center center transparent
+
+
+  // BROWSE BUTTON
+  .browseWrap
+    +left
+
+    .browse
+      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+      &:hover
+        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+
+
+  // SEARCH
+  .searchFieldWrap
+    +left
+    +round(12)
+    width: 668px
+    height: 48px
+    margin: 12px 12px 0 0
+    +gradient(#898989, #fff)
+
+    .searchField
+      +round(12)
+      margin: 2px auto
+      width: 652px
+      height: 32px
+      padding: 6px
+      line-height: 32px
+      color: #808285
+      +input-light(large)
+      border: none
+
+      input.input
+        +transparent
+        +left
+        +font(24)
+        border: none
+        margin: 0
+        width: 494px
+        height: 32px
+        color: #555555
+
+      a.options
+        +right
+        +bold
+        +font(16)
+        +center
+        +round(8)
+        width: 70px
+        height: 28px
+        line-height: 28px
+        margin: 3px 20px 0 0
+        padding: 0 8px
+        color: #626262
+        border: 1px solid #EBEBEB
+        +bevel-light
+        box-shadow:         0px 2px 10px #7D7D7D
+        -moz-box-shadow:    0px 2px 10px #7D7D7D
+        -webkit-box-shadow: 0px 2px 10px #7D7D7D
+
+      a.optionsTab
+        +right
+        +center
+        +bold
+        +font(16)
+        width: 70px
+        height: 28px
+        line-height: 28px
+        margin: 9px 20px 0 0
+        padding: 0 8px
+        +gradient(#626262, #262626)
+        color: #bcbec0
+
+      input.search
+        +pointer
+        +right
+        +transparent
+        border: none
+        width: 36px
+        height: 36px
+        background: url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center transparent
+
+
+  // BACK ARROW
+  .backArrow
+    +pointer
+    +left
+    margin: 12px 0 0 20px
+    padding: 0 20px
+    height: 51px
+    color: #626262
+    // create new background image, not sliced.
+    +round(12)
+    +bevel-dark
+    &:hover
+      color: #C2C2C2
+
+    .img
+      +left
+
+    span
+      margin: 0 8px
+      line-height: 51px
+
+
+  // HEADER
+  h1
+    +left
+    +font(21)
+    margin: 0 0 0 20px
+    line-height: 74px
+    color: #D7D7D7
+
+
+  // SEARCH BUTTON
+  .searchWrap
+    +right
+
+    .search
+      background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
+      &:hover
+
+
+  // TOOLS & INFO
+  .timer, a.manage, .play, .counter
+    +pointer
+    +right
+    +center
+    margin: 12px 8px 0 0
+    width: 48px
+    height: 48px
+    line-height: 48px
+    color: #C2C2C2
+
+  .timer, a.manage, .play
+    +round(8)
+    border: 1px solid #7D7D7D
+    &:hover
+      border: 1px solid #C2C2C2
+
+  a.manage
+    +block
+    background: url(background:/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+
+  .play
+    background: url(/images/icons/ib-icons/playSlideshow-24.png) no-repeat center center transparent
+    &:hover
+      background: url(/images/icons/ib-icons/playSlideshow-24-over.png) no-repeat center center transparent
+  
+  .counter
+
+
+
+
+
+
