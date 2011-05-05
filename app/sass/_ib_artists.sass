@@ -3,7 +3,8 @@
 table.artistList
   width: 100%
   padding: 0
-  border: 1px solid #fff
+  color: #ddd
+  border: 1px solid #ddd
 
   // COLUMN NAME ROW
   tr.columnNames
@@ -14,16 +15,18 @@ table.artistList
     td
       +font(14)
       width: 50%
+      padding: 0 0 0 20px
+      border: 1px solid #ddd
 
 
   // ARTIST ROW
   tr.artist
     height: 60px
+    +flat-dark
 
     td
       +font(18)
       width: 50%
-      color: #ddd
 
     td.name
       h2
