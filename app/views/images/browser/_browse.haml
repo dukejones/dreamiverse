@@ -1,0 +1,43 @@
+/ IMAGEBANK BROWSE
+
+#frame
+
+  / TOP
+  = render :partial => "images/browser/top"
+
+
+  / GENRES
+  #genreList
+
+    / MODERN ART
+    .genre
+      %h2 Modern Art
+      .subGenres.hidden
+        %span Paintings
+        %span Digital
+        %span Fantasy
+        %span Visionary
+        %span Graphics
+
+    / CLASSICAL ART
+    .genre
+      %h2 Classical Art
+      .subGenres.hidden
+        %span Europe
+        %span Eurasia
+        %span Asia
+        %span Americas
+        %span Africa
+        %span Australia
+
+    / PHOTOS
+    .genre
+      %h2 Photos
+      .subGenres.hidden
+        %span People
+        %span Places
+        %span Things
+        %span Concept
+        %span Animals
+
+    .clear
