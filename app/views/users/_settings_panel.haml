@@ -12,14 +12,21 @@
 
       %h2.sharing-label default sharing
 
-
       %select#sharingList.sharingList
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
         %option.friends{   value: Entry::Sharing[:friends]   } friends only
         %option.followers{ value: Entry::Sharing[:followers] } followers only
         %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
         %option.private{   value: Entry::Sharing[:private]   } private
+      
+      .clear
+      .img.sharingIcon
 
+      %h2.sharing-label default home
+
+      %select#landingPage.sharingList
+        %option.stream{  value: User::LandingPage[:stream]  } stream
+        %option.dreamfield{  value: User::LandingPage[:dreamfield]  } dream field
 
     %label.hidden
       I must authorize all follow requests
