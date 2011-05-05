@@ -712,7 +712,7 @@ function showYoutubeData(newText){
 
 function setupImageButtons(){
   // Click to remove Image
-  $('#currentImages .close-24').live('click', function(event){
+  $('#currentImages .close').live('click', function(event){
     // Remove from list of used images
     var currentImageId = $(this).parent().parent().data('id');
     
@@ -731,7 +731,7 @@ function setupImageButtons(){
 
 function setupLinkButtons(){
   // Click to remove link
-  $('#linkHolder .close-24').live('click', function(event){
+  $('#linkHolder .close').live('click', function(event){
     // Remove from list of used link  
     $(event.currentTarget).parent().slideUp(250, function(){
       $(this).remove()
