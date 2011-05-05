@@ -1,23 +1,19 @@
 $.Controller 'Dreamcatcher.Controllers.IbManager',
   init: ->
-    $.cookie("selectedImages",2868)
     @createUploader()
-    imageId = @getSelectedImages()[0]
-    Dreamcatcher.Models.ImageBank.getImage imageId,{},@callback('showImage')
+    images = @getImages()
+    Dreamcatcher.Models.ImageBank.getImage image,{},@callback('showImage') for image in images
     
-  getSelectedImages: ->
+  getImages: ->
     return $.cookie("selectedImages").split(",") if $.cookie("selectedImages")?
-    #return 2868
   
-  addSelectedImage: (imageId) ->
-    images = @getSelectedImages()
+  addImage: (imageId) ->
+    images = @getImages()
     #if not $.inArray(imageId.toString(),images)
-    #if images.length > 0
-    #$.cookie("selectedImages")
-  
+    images.push(imageId)
+    $.cookie("selectedImages",images.join(","))
+      
   showImage: (image) ->
-    @showMetaData image
-    #$(".imagelist ul").append 'x'
     $(".imagelist").append(@view('show',image))
     
   metaData: ->
@@ -36,18 +32,17 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     }
     
   showMetaData: (image) ->
-      #todo: include checkbox if
-      $("#image_category select").val(image.category)
-      $("#image_genre select").val(image.genre)
-      $("#image_section select").val(image.section)
-      #info
-      $("#image_title input[type='text']").val(image.title)
-      $("#image_album input[type='text']").val(image.album)
-      $("#image_author input[type='text']").val(image.artist) #diff
-      $("#image_location input[type='text']").val(image.location)
-      $("#image_year input[type='text']").val(image.year)
-      $("#image_notes input[type='text']").val(image.notes)
-    
+    #todo: include checkbox if
+    $("#category select").val(image.category)
+    $("#genre select").val(image.genre)
+    $("#section select").val(image.section)
+    #info
+    $("#title input[type='text']").val(image.title)
+    $("#album input[type='text']").val(image.album)
+    #$("#author input[type='text']").val(image.artist) #diff
+    $("#location input[type='text']").val(image.location)
+    $("#year input[type='text']").val(image.year)
+    $("#notes input[type='text']").val(image.notes)
     
   createUploader: ->
     uploader = new qq.FileUploader {
@@ -58,27 +53,24 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       debug: true
       onSubmit: (id, fileName) ->
         log id+' '+fileName
-      onComplete: (id, fileName, result) ->
+      onComplete: (id, fileName, result) =>
         image_url = result.image_url
         image = result.image
-
-        $(".imagelist li:eq(#{id})").data("id",image.id).html("<img src='#{image_url}'/>")
-        
-      template: @view('template')
+        $(".imagelist li:last").data("id",image.id).data("image",JSON.stringify(image)).html("<img src='#{image_url}'/>")
+        @addImage image.id
+      template: $("#uploader").html()
       fileTemplate: @view('fileTemplate')
       classes: {
         button: 'browse'
         drop: 'dropArea'
-        dropActive: 'dropAreaActive'
+        dropActive: 'active'
         list: 'imagelist'
-        
         progress: 'progress-meter'
         file: 'upload-file'
         spinner: 'spinner'
         size: 'upload-size'
         cancel: 'upload-cancel'
         success: 'upload-success'
-        
         fail: 'upload-fail'
       }
     }
@@ -88,10 +80,11 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.removeClass('selected')
     else
       el.addClass('selected')
-      @addSelectedImage el.data('id')
+      @showMetaData el.data('image')#eval("(#{})")
     
   '.save click': (el) ->
+    imageData = @metaData()
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.ImageBank.update imageId,@metaData(),->
-        alert 'updated'
+      $(element).data 'image',imageData
+      Dreamcatcher.Models.ImageBank.update imageId,imageData
