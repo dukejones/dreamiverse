@@ -1,0 +1,11 @@
+.icon
+%h2.drop dropbox
+%h2.all select all
+.browse browse
+%h2.drag drag files here to upload
+
+.dropbox
+  %ul
+    %li
+    %li
+    %li

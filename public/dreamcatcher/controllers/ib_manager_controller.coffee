@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $.cookie("selectedImages",2868)
     @createUploader()
     imageId = @getSelectedImages()[0]
-    Dreamcatcher.Models.IbManager.getImage imageId,{},@callback('showImage')
+    Dreamcatcher.Models.ImageBank.getImage imageId,{},@callback('showImage')
     
   getSelectedImages: ->
     return $.cookie("selectedImages").split(",") if $.cookie("selectedImages")?
@@ -93,5 +93,5 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   '.save click': (el) ->
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.IbManager.update imageId,@metaData(),->
+      Dreamcatcher.Models.ImageBank.update imageId,@metaData(),->
         alert 'updated'
