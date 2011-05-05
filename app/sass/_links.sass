@@ -1,4 +1,20 @@
-// SHARED LINK STYLES
+// LINKS
+// removes dotted line around links
+a:active, a:focus, select:active, select:focus, select::-moz-focus-inner
+  outline: none
+  border: 0
+.light a, .light a:hover, .light a:focus, .light a:visited, .dark a, .dark a:hover, .dark a:focus, .dark a:visited
+  text-decoration: none
+.dark a, .dark a:visited
+  color: #fff
+.light a, .light a:visited
+  color: #000
+.light a img, .dark a img
+  border: 0px
+
+
+
+// IN-PAGE LINKS
 .body, .comment
   a:link, a:visited
     color: #3086CF
@@ -8,7 +24,7 @@
     text-decoration: underline
 
 
-// IN PAGE YOUTUBE LINKS
+// IN-PAGE YOUTUBE LINKS
 .youtube, .vimeo, .soundcloud
   .img
     +left
