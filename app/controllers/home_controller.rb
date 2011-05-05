@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   def index
     if current_user
       flash.keep
-      redirect_to stream_path
+      redirect_to entries_path
     end
 
     @entries = Entry.everyone.where(:created_at > 1.week.ago).order("starlight DESC").limit(8)
