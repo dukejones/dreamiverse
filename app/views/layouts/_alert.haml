@@ -10,7 +10,7 @@
     $('#globalAlert').fadeOut('500', => $(this).remove())
 
 
-#globalAlert
+#globalAlert{class: "#{flash.notice ? '' : 'hidden'}"}
   .notice{class: "#{flash.notice ? '' : 'hidden'}"}
     %p= raw(flash.notice)
     .checkmark
