@@ -7,16 +7,22 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   setupDefaults: ->
     defaultSharingLevel = $('#default-sharing').data 'id'
     defaultLandingPage = $('#default-landingPage').data 'id'
+    defaultMenuStyle = $('#default-menuStyle').data 'id'
+    
     $('#default-sharing-list').val(defaultSharingLevel)
     $('#default-landingPage-list').val(defaultLandingPage)
+    $('#default-menuStyle-list').val(defaultLandingPage)
+    
     @displayDefaultSharingLevel defaultSharingLevel
     @displayDefaultLandingPage defaultLandingPage
+    @displayDefaultMenuStyle defaultMenuStyle
+ 
     
   showPanel: ->    
     $('#settingsPanel').show()
 
   displayDefaultSharingLevel: (defaultSharingLevel) ->
-    #TODO: after SASS refactor, replace with class
+    # TODO: after SASS refactor, replace with class
     defaultSharingLevel = parseInt defaultSharingLevel
     switch defaultSharingLevel
       when 500 then background = 'sharing-24-hover.png'
@@ -28,17 +34,27 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
   displayDefaultLandingPage: (defaultLandingPage) ->
-    log('running displayDefaultLandingPage with: ' + defaultLandingPage)
-    #TODO: after SASS refactor, replace with class
+    # TODO: after SASS refactor, replace with class
     switch defaultLandingPage
       when 'stream' then background = 'stream-24-hover.png'
       when 'home' then background = 'home-24-hover.png'
       when 'today' then background = 'home-24-hover.png'
     
     $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+
+  displayDefaultMenuStyle: (defaultMenuStyle) ->
+    # TODO: after SASS refactor, replace with class
+    switch defaultMenuStyle
+      when 'stream' then background = 'stream-24-hover.png'
+      when 'home' then background = 'home-24-hover.png'
+      when 'today' then background = 'home-24-hover.png'
+
+    $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    
     
   updateSettingsModel: (params) ->
     Dreamcatcher.Models.Settings.update params
+
 
   setupAjaxBinding: ->
     #TODO: Needs refactoring.
@@ -71,7 +87,12 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#default-landingPage-list change': (element) ->
     defaultLandingPage = element.val()
     @displayDefaultLandingPage defaultLandingPage
-    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage}   
+    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage} 
+
+  '#default-menuStyle-list change': (element) ->
+    defaultMenuStyle = element.val()
+    @displayDefaultMenuStyle defaultMenuStyle
+    @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
 
   '.cancel click': ->
     $('.changePasswordForm').hide()
