@@ -33,8 +33,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     # TODO: Geoff - also add .landingIcon class here and uncomment - thanx, dr. J
     # $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
-  updateSettingsModel: (fieldName, data) ->
-    Dreamcatcher.Models.Settings.update fieldName, data 
+  updateSettingsModel: (params) ->
+    Dreamcatcher.Models.Settings.update params
 
   setupAjaxBinding: ->
     #TODO: Needs refactoring.
@@ -62,13 +62,11 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#sharingList change': (el, ev) ->
     sharingLevel = el.val()
     @displaySharingLevel sharingLevel
-    # @updateSettingsModel 'default_sharing_level',sharingLevel
     @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
 
   '#landingPage change': (el, ev) ->
     landingPage = el.val()
     @displayLandingPage landingPage
-    # @updateSettingsModel 'default_landing_page',landingPage
     @updateSettingsModel {'user[default_landing_page]': landingPage}   
 
   '.cancel click': ->

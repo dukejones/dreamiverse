@@ -13,7 +13,6 @@
 # },
 # {}
 
-# IDEAL
 $.Model 'Dreamcatcher.Models.Settings',{
 
   update: ( params, success, error ) ->
