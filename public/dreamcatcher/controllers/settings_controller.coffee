@@ -22,16 +22,16 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
       when 50 then background = 'anon-24-hover.png'
       when 0 then background = 'private-24-hover.png'
 
-    $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
   displayLandingPage: (landingPage) ->
     #TODO: after SASS refactor, replace with class + Geoff please adjust the icon settings here
     switch landingPage
-      when 'stream' then background = 'sharing-24-hover.png'
-      when 'home' then background = 'friend-24.png'
+      when 'stream' then background = 'stream-24-hover.png'
+      when 'home' then background = 'home-24-hover.png'
+      when 'today' then background = 'home-24-hover.png'
     
-    # TODO: Geoff - also add .landingIcon class here and uncomment - thanx, dr. J
-    # $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
   updateSettingsModel: (params) ->
     Dreamcatcher.Models.Settings.update params

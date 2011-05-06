@@ -12,6 +12,12 @@
     padding: 6px 8px
     option
       padding: 6px 0 6px 24px
+      &.stream
+        background: url(/images/icons/stream-16-hover.png) no-repeat 4px
+      &.home
+        background: url(/images/icons/home-16-hover.png) no-repeat 4px
+      &.today
+        background: url(/images/icons/home-16-hover.png) no-repeat 4px
       &.everyone
         background: url(/images/icons/sharing-16-hover.png) no-repeat 4px
       &.friends
@@ -36,15 +42,6 @@
     margin: 0 0 4px
     padding: 8px
 
-  .feedback
-    +block
-    +alpha(60)
-    +center
-    +font(12)
-    margin-bottom: 0px
-    &:hover
-      +alpha(100)
-
   hr
     +alpha(30)
 
@@ -59,6 +56,8 @@
 
     &.sharing-icon
       background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
+    &.landing-icon
+      background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
     &.facebook-icon
       background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
     &.password-icon
@@ -143,7 +142,7 @@
         +left
 
     // THE INCREDIBLE FONT SIZER
-    .fontSizing
+    #defaultFont
       .small, .medium, .large
         +relative
         +right
@@ -182,6 +181,9 @@
       height: 34px
       line-height: 30px
       +confirm(16)
+      +alpha(80)
+      &:hover
+        +alpha(100)
 
 
 
@@ -207,7 +209,14 @@
       width: 306px
 
 
-
+  .feedback
+    +block
+    +alpha(80)
+    +center
+    +font(14)
+    margin-bottom: 0px
+    &:hover
+      +alpha(100)
 
 
 
@@ -237,7 +246,7 @@
     .network
       .linkAccount
         +button-light
-        +shine-light-alpha(16)
+        +shine-light-alpha(17)
 
     .changePassword:hover
       border: 1px solid #090909
@@ -246,7 +255,7 @@
       #user_old_password, #user_password, #user_password_confirmation
         +input-light(small)
 
-    .fontSizing
+    #defaultFont
       .large, .medium, .small
         +button-light
         +indent-light
@@ -295,7 +304,7 @@
     .network
       .linkAccount
         +button-dark
-        +shine-dark-alpha(16)
+        +shine-grey(17)
 
     .changePassword:hover
       border: 1px solid #ccc
@@ -304,7 +313,7 @@
       #user_old_password, #user_password, #user_password_confirmation
         +input-dark(small)
 
-    .fontSizing
+    #defaultFont
       .large, .medium, .small
         +button-dark
         +indent-dark
@@ -317,7 +326,7 @@
     border: none
 
     .dropdown
-      +input-light(small)
+      +input-dark(small)
 
     .cancel, .confirm
       +button-dark

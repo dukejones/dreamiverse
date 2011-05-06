@@ -96,7 +96,7 @@
         +round(4)
         +block
         +center
-        width: 47%
+        width: 148px
         padding: 2px
         +cancel(8)
         input
@@ -146,16 +146,16 @@
       +round(8)
       +right
       width: 225px
-      padding: 4px 4px 4px 0
+      padding: 3px 3px 3px 0
 
       .sun, .moon
         +left
-        +round(4)
+        +round(6)
         +font(14)
         +center
-        margin-left: 4px
+        margin-left: 3px
         padding: 0 5px
-        width: 96px
+        width: 95px
         height: 28px
         line-height: 28px
         img
@@ -165,14 +165,18 @@
         +shine-light(14)
         +button-light
         color: #111
+        border: 2px solid transparent
         &:hover
           color: #000
+          border: 2px solid transparent
       .moon
         +shine-dark(14)
         +button-dark
         color: #ccc
+        border: 2px solid transparent
         &:hover
           color: #fff
+          border: 2px solid transparent
 
 
 
@@ -186,8 +190,6 @@
   #appearancePanel
     .arrow
       background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
-    #genreSelector
-      +input-light(small)
     .spinner
       background-color: #eee
     .bedsheets, .colorPicker
@@ -199,13 +201,17 @@
           +button-light
           +bevel-light
           +cancel(12)
-          border: 1px solid #bbb
+          border: 2px solid #bbb
+          &:hover
+            border: 2px solid #bbb
       .more
         +button-light
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
 .light.fixed .fixed, .light.scroll .scroll
-  border: 1px solid #111 !important
+  border: 2px solid #111 !important
+.light #appearancePanel .sun
+  border: 2px solid #111 !important
 
 
 
@@ -213,8 +219,6 @@
   #appearancePanel
     .arrow
       background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
-    #genreSelector
-      +input-dark(small)
     .spinner
       background-color: #111
     .bedsheets, .colorPicker
@@ -226,13 +230,16 @@
           +button-dark
           +bevel-dark
           +cancel(12)
-          border: 1px solid #222
+          border: 2px solid #222
+          &:hover
+            border: 2px solid #222
       .more
         +button-dark
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
 .dark.fixed .fixed, .dark.scroll .scroll
-  border: 1px solid #777 !important
-
+  border: 2px solid #777 !important
+.dark #appearancePanel .moon
+  border: 2px solid #777 !important
 
 

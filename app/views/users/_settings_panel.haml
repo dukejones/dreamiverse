@@ -8,7 +8,7 @@
 
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
 
-      .img.sharingIcon
+      .img.sharing-icon
       %h2.sharing-label sharing
 
       %select#sharingList.dropdown
@@ -20,23 +20,35 @@
       .clear
 
 
-    .defaultLanding
-      .img.landingIcon
+    #defaultLanding
+      .img.landing-icon
       %h2.landing-label landing page
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
       %select#landingPage.dropdown
-        %option.stream{     value: 'stream' } stream
-        %option.dreamfield{ value: 'home'   } home
-        %option.stream{     value: 'today'  } today in dreams
+        %option.stream{ value: 'stream' } stream
+        %option.home{   value: 'home'   } home
+        %option.today{  value: 'today'  } today in dreams
         
   
       / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
       / %option.dreamField{  value: User::DefaultHomePage[:dreamField]  } dream field
       .clear
 
+
     // THE INCREDIBLE FONT SIZER
-    .fontSizing
+    #defaultMenu
+      .img.menu-icon
+      %h2.menu-label meny style
+
+      %select#menuStyle.dropdown
+        %option.float{  value: 'float'  } floating
+        %option.inpage{ value: 'inpage' } in-page
+      .clear
+
+
+    // THE INCREDIBLE FONT SIZER
+    #defaultFont
       .img.font-icon
       %h2.font-label font size
 
@@ -44,6 +56,7 @@
       .medium A
       .small A
       .clear
+
 
     %label.hidden
       I must authorize all follow requests
