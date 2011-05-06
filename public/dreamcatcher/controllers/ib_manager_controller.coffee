@@ -1,27 +1,12 @@
 $.Controller 'Dreamcatcher.Controllers.IbManager',
-  
-  attributes: ['type','category','genre','title','album','artist','location','year','notes','tags']
-  types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
-  categories: [
-    {
-      name: "Modern Art"
-      genres: ["Paintings","Digital","Fantasy","Visionary","Graphics"]
-    },
-    {
-      name: "Classical Art"
-      genres: ["Europe","Eurasia","Asia","Americas","Africa","Australia"]
-    },
-    {
-      name: "Photos"
-      genres: ["People","Places","Things","Concept","Animals"]
-    }
-  ]
+
+  model: Dreamcatcher.Models.ImageBank
   
   init: ->
     @populateLists()
     @createUploader()
     images = @getImages()
-    Dreamcatcher.Models.ImageBank.getImage image,{},@callback('showImage') for image in images
+    @model.getImage image,{},@callback('showImage') for image in images
   
   ##cookies
   getImages: ->
@@ -43,8 +28,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $(".imagelist").append(@view('show',image))
     
   populateLists: ->
-    $("#type select").append("<option>#{type}</option>") for type in @types
-    $("#category select").append("<option>#{category.name}</option>") for category in @categories
+    $("#type select").append("<option>#{type}</option>") for type in @model.types
+    $("#category select").append("<option>#{category.name}</option>") for category in @model.categories
   
   isText: (attr) ->
     return $("##{attr} input[type='text']").exists()
@@ -78,20 +63,20 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   grabMetaData: () ->
     selectedOnly = true
     image = {}
-    for attribute in @attributes
+    for attribute in @model.attributes
       value = @getAttribute(attribute,selectedOnly)
       image[attribute] = value if value? or not selectedOnly
     log image
     return {image: image}
     
   displayMetaData: (image) ->
-    @setAttribute(attribute,image[attribute]) for attribute in @attributes
+    @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
     
   showCommonMeta: ->
     common = {}
     $(".imagelist li.selected").each (index, element) =>
       data = $(element).data 'image'
-      for attr in @attributes
+      for attr in @model.attributes
         if not common[attr]?
           common[attr] = data[attr]
         else if common[attr] isnt data[attr]
@@ -105,9 +90,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       maxConnections: 1
       params: {
         image: {
-          type: 'Library'
-          category: 'General'
-          genre: 'Placeholder'
+          type: "Bedsheet"
         }
       }
       debug: true
@@ -158,8 +141,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   '.save click': (el) ->
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.ImageBank.update imageId,@grabMetaData()
-      Dreamcatcher.Models.ImageBank.getImage imageId,{},@callback('updateImageMeta',$(element))
+      @model.update imageId,@grabMetaData()
+      @model.getImage imageId,{},@callback('updateImageMeta',$(element))
       
   updateImageMeta: (el,data) ->
     el.data('image',data)
@@ -186,7 +169,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   '.cancel click': (el) ->
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.ImageBank.disable imageId,{},@callback('disable',$(element),imageId)
+      @model.disable imageId,{},@callback('disable',$(element),imageId)
   
   disable: (el, id) ->
     el.css("opacity",0.5)
