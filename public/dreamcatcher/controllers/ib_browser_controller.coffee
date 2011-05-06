@@ -18,7 +18,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @artist = $("h2:first",el).text()
     #alert "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}"
     $.get "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}",(albums) ->
-      alert albums.html()
+      alert albums
       
   '.backArrow click': (el) ->
     $("#genreList").show()

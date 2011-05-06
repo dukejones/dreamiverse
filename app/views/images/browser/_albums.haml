@@ -12,12 +12,11 @@
 
     %tr.images
       %td
-        .img
-          - images.each do |image|
-            - metaData = ''
-        .img
-          .add.hidden +
-          .preview{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
+        - images.each do |image|
+          - metaData = ''
+          .img
+            .add.hidden +
+            .preview{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
 
 
   .dropbox

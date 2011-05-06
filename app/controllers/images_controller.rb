@@ -75,7 +75,7 @@ class ImagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render(partial:"images/browser/album") }
+      format.html { render(partial:"images/browser/albums") }
       format.json { render :json => @albums }
     end
   end
