@@ -30,6 +30,17 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       success: @callback success
       error: error
     }
+    
+  disable: (imageId, data, success, error) ->
+    $.ajax {
+      url: "/images/#{imageId}/disable.json"
+      type: 'post'
+      contentType: 'application/json'
+      dataType: 'json'
+      data: data
+      complete: @callback success
+      error: error
+    }
   
 },
 {}
