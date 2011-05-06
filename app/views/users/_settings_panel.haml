@@ -22,7 +22,7 @@
 
 
       .img.landingPage
-      %h2.sharing-label landing
+      %h2.sharing-label landing page
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
       %select#landingPage.sharingList
@@ -46,10 +46,9 @@
 
 
     .network
-
       .img.facebook-icon
-
       %h2.facebook-label facebook login
+
       - if current_user && current_user.authentications.facebook?
         = link_to "/auth/#{current_user.authentications.facebook.first.id}.json", :method => :delete, :remote => true, :id => 'fbLink', :class => 'linkAccount' do
           un-link
@@ -57,7 +56,6 @@
         %a#fbLink.linkAccount{href: '/auth/facebook'}
           link account
 
-        
     .clear
 
 
@@ -86,8 +84,19 @@
           = f.submit :'change password', :class => 'confirm'
           .clear
 
-
     .clear
+
+
+  / FONT SIZING
+  .fontSizing
+    .img.font-icon
+    %h2.font-label font
+
+    .large A
+    .medium A
+    .small A
+    .clear
+
 
 
 
@@ -98,12 +107,3 @@
 
 
 
-  /
-    FONT SIZING
-    .fontSizing
-      %h2
-        %img{src: '/images/icons/font_size-16.png'}
-        Font
-      .large A
-      .medium A
-      .small A

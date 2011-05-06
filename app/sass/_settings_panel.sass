@@ -2,34 +2,23 @@
 // SETTINGS PANEL
 
 #settingsPanel
-
   +user-select
+  padding: 8px
 
-
-  .sharing, .savedLocations, .fontSizing
+  .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
     +clear
     +round(8)
     margin: 0 0 8px
-
-  .changePassword
-    +round(8)
+    padding: 8px
 
   .feedback
+    +block
     +alpha(60)
-    +round(12)
     +center
     +font(12)
-    +user-select
-    +right
-    margin: 4px 0 -3px
-    padding: 4px
-    height: 16px
-    line-height: 16px
-    font-weight: normal
-    width: 324px
+    margin-bottom: 0px
     &:hover
       +alpha(100)
-
 
   hr
     +alpha(30)
@@ -49,7 +38,8 @@
       background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
     &.password-icon
       background: url(/images/icons/admin-24-hover.png) no-repeat center transparent
-
+    &.font-icon
+      background: url(/images/icons/font_size-16.png) no-repeat center transparent
 
   h2
     +font(18)
@@ -65,13 +55,12 @@
 
     &.facebook-label
       margin-top: 3px
-
     &.password-label
       +pointer
-
+    &.font-label
+      margin-top: 3px
 
   // LABEL BUTTON
-
   label
     +clear
     +pointer
@@ -95,7 +84,6 @@
 
 
   // CANCEL AND CONFIRM
-
   .cancel, .confirm
     +round(6)
     +center
@@ -121,11 +109,7 @@
 
 
 
-
-
   // DEFAULT SHARING PANEL
-
-
   .sharing
     padding: 8px
 
@@ -134,7 +118,6 @@
 
       select
         +round(8)
-
       p
         +left
 
@@ -164,10 +147,8 @@
 
 
     // FACEBOOK LOGIN
-
     .network
       +clear
-
 
       .linkAccount
         +round(8)
@@ -211,41 +192,30 @@
 
 
 
-
   // THE INCREDIBLE FONT SIZER
-
-
   .fontSizing
-    height: 50px
-    margin: 0 0 2px
- 
- 
-    h2
-      +left
-      +cursor
-      line-height: 36px
-      img
-        padding: 8px 8px 0 0 
+    padding: 4px 8px
+
     .small, .medium, .large
       +relative
       +right
       +center
       +pointer
       +round(24)
-      margin-left: 4px
+      margin-left: 14px
 
     .small
       +font(12)
       padding: 2px 6px
-      margin-top: 16px
+      margin-top: 11px
     .medium
       +font(16)
       padding: 3px 8px
-      margin-top: 12px
+      margin-top: 7px
     .large
       +font(18)
       padding: 6px 12px
-      margin: 8px 8px 0 4px
+      margin: 3px 8px 0 14px
 
 
 
@@ -266,25 +236,20 @@
     +glow-light(40)
     border: none
 
-
     .cancel, .confirm
       +button-light
       +shine-light(16)
       color: #111
-
     .cancel
       +cancel(16)
-
     .confirm
       +confirm(16)
 
     .feedback
       +button-light
 
-
-    .sharing, .savedLocations, .changePassword, .fontSizing
+    .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
       +panel-light
-
 
     .defaultSharing
       select
@@ -295,8 +260,6 @@
         +button-light
         +shine-light-alpha(16)
 
-
-
     .changePassword:hover
       border: 1px solid #090909
 
@@ -304,10 +267,10 @@
       #user_old_password, #user_password, #user_password_confirmation
         +input-light(small)
 
-
     .fontSizing
       .large, .medium, .small
         +button-light
+        +indent-light
 
 
 
@@ -330,25 +293,19 @@
     +glow-dark(40)
     border: none
 
-
-
-
-
     .cancel, .confirm
       +button-dark
       +shine-dark-alpha(16)
       color: #eee
-
     .cancel
       +cancel(16)
-
     .confirm
       +confirm(16)
 
     .feedback
       +button-dark
 
-    .sharing, .savedLocations, .changePassword, .fontSizing
+    .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
       +panel-dark
 
     .defaultSharing
@@ -370,5 +327,6 @@
     .fontSizing
       .large, .medium, .small
         +button-dark
+        +indent-dark
 
 
