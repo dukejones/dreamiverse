@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     defaultSharingLevel = $('#default-sharing').data 'id'
     defaultLandingPage = $('#default-landingPage').data 'id'
     defaultMenuStyle = $('#default-menuStyle').data 'id'
-    log('fms: '+ defaultMenuStyle)
+
     $('#default-sharing-list').val(defaultSharingLevel)
     $('#default-landingPage-list').val(defaultLandingPage)
     $('#default-menuStyle-list').val(defaultMenuStyle)
@@ -25,31 +25,35 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     # TODO: after SASS refactor, replace with class
     defaultSharingLevel = parseInt defaultSharingLevel
     switch defaultSharingLevel
-      when 500 then background = 'sharing-24-hover.png'
-      when 200 then background = 'friend-24.png'
-      when 150 then background = 'friend-24-follower.png'
-      when 50 then background = 'anon-24-hover.png'
-      when 0 then background = 'private-24-hover.png'
+      when 500 then class = 'everyone'
+      when 200 then class = 'friend'
+      when 150 then class = 'follower'
+      when 50 then class = 'anonymous'
+      when 0 then class = 'private'
 
-    $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    
+    sharingIcon = $('#sharing-icon')
+    sharingIcon.removeClass(className) for className in ['everyone','friend','follower','anonymous','private']
+    sharingIcon.addClass(defaultSharingLevel)    
+    
 
   displayDefaultLandingPage: (defaultLandingPage) ->
-    # TODO: after SASS refactor, replace with class
-    switch defaultLandingPage
-      when 'stream' then background = 'stream-24-hover.png'
-      when 'home' then background = 'home-24-hover.png'
-      when 'today' then background = 'home-24-hover.png'
-    
-    $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    landingIcon = $('#landing-icon')
+    landingIcon.removeClass(className) for className in ['stream','home','today']
+    landingIcon.addClass(defaultLandingPage)
 
   displayDefaultMenuStyle: (defaultMenuStyle) ->
     # TODO: after SASS refactor, replace with class
     switch defaultMenuStyle
-      when 'stream' then background = 'stream-24-hover.png'
-      when 'home' then background = 'home-24-hover.png'
-      when 'today' then background = 'home-24-hover.png'
+      when 'stream' then class = 'stream'
+      when 'home' then class = 'home'
+      when 'today' then class = 'home'
 
-    $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    # $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    menuIcon = $('#menu-icon')
+    menuIcon.removeClass(className) for className in ['stream','home']
+    menuIcon.addClass(defaultMenuStyle)
     
     
   updateSettingsModel: (params) ->
