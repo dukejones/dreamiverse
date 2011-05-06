@@ -6,8 +6,11 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     
   setupDefaults: ->
     sharingLevel = $('#settingsPanel .defaultSharing').data 'id'
-    $('#sharingList').val(sharingLevel) 
+    landingPage = $('#settingsPanel .defaultLandingPage').data 'id'
+    $('#sharingList').val(sharingLevel)
+    $('#landingList').val(landingPage)
     @displaySharingLevel sharingLevel
+    @displayLandingPage landingPage
     
   showPanel: ->    
     $('#settingsPanel').show()
@@ -25,6 +28,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
   displayLandingPage: (landingPage) ->
+    log('running displayLandingPage with: ' + landingPage)
     #TODO: after SASS refactor, replace with class
     switch landingPage
       when 'stream' then background = 'stream-24-hover.png'
@@ -64,7 +68,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @displaySharingLevel sharingLevel
     @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
 
-  '#landingPage change': (el, ev) ->
+  '#landingList change': (el, ev) ->
     landingPage = el.val()
     @displayLandingPage landingPage
     @updateSettingsModel {'user[default_landing_page]': landingPage}   
