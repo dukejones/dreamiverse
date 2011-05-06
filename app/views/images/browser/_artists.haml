@@ -11,17 +11,14 @@
 
   / ARTIST ROW
   %tr.artist
-    / - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
-    %td.name
-      %h2
-        / = artist.blank? ? "Unknown" : artist
+    - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
+      %td.name
+        %h2= artist.blank? ? "Unknown" : artist
 
-    %td.images
-      .img
-        / - images.each do |image|
-        /   / metaData = image.title+'|'+image.tags+'|'+image.artist+'|'+image.year
-        /   = image_tag image.url('62x62'), :alt => image.id
-        /   / item += '<img class="albumPreviewThumbs" src="/images/art/IB_artistImages/artistImage2.jpg"/>'
+      %td.images
+        .img
+          - images.each do |image|
+            = image_tag image.url('62x62'), :alt => image.id
 
 
 
