@@ -18,14 +18,14 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     switch sharingLevel
       when 500 then background = 'sharing-24-hover.png'
       when 200 then background = 'friend-24.png'
-      when 150 then background = 'friend-follower-24.png'
+      when 150 then background = 'friend-24-follower.png'
       when 50 then background = 'anon-24-hover.png'
       when 0 then background = 'private-24-hover.png'
 
     $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
   displayLandingPage: (landingPage) ->
-    #TODO: after SASS refactor, replace with class + Geoff please adjust the icon settings here
+    #TODO: after SASS refactor, replace with class
     switch landingPage
       when 'stream' then background = 'stream-24-hover.png'
       when 'home' then background = 'home-24-hover.png'
