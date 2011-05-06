@@ -2,8 +2,8 @@
 #settingsPanel.hidden.target
   .arrow
 
-  / SHARING
-  .sharing
+  / DEFAULTS
+  .defaults
 
 
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
@@ -17,24 +17,32 @@
         %option.followers{ value: Entry::Sharing[:followers] } followers only
         %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
         %option.private{   value: Entry::Sharing[:private]   } private
-      
       .clear
 
 
-      .img.landingPage
+      .img.landingIcon
       %h2.sharing-label landing page
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
       %select#landingPage.sharingList
-        %option.stream{     value: 'stream'     } stream
-        %option.dreamfield{ value: 'home'       } home
-        %option.stream{     value: 'today'      } today in dreams
+        %option.stream{     value: 'stream' } stream
+        %option.dreamfield{ value: 'home'   } home
+        %option.stream{     value: 'today'  } today in dreams
         
   
       / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
       / %option.dreamField{  value: User::DefaultHomePage[:dreamField]  } dream field
+      .clear
 
+    // THE INCREDIBLE FONT SIZER
+    .fontSizing
+      .img.font-icon
+      %h2.font-label font size
 
+      .large A
+      .medium A
+      .small A
+      .clear
 
     %label.hidden
       I must authorize all follow requests
@@ -59,8 +67,9 @@
     .clear
 
 
-  / CHANGE PASSWORD
 
+
+  / CHANGE PASSWORD
   .changePassword.wrapper
 
     .trigger.showhide
@@ -85,20 +94,6 @@
           .clear
 
     .clear
-
-
-  / FONT SIZING
-  .fontSizing
-    .img.font-icon
-    %h2.font-label font size
-
-    .large A
-    .medium A
-    .small A
-    .clear
-
-
-
 
 
 

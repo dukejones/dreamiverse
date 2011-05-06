@@ -5,7 +5,7 @@
   +user-select
   padding: 8px
 
-  .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
+  .defaults, .savedLocations, .changePassword, .feedback
     +clear
     +round(8)
     margin: 0 0 8px
@@ -109,8 +109,8 @@
 
 
 
-  // DEFAULT SHARING PANEL
-  .sharing
+  // DEFAULTS PANEL
+  .defaults
     padding: 8px
 
     .defaultSharing, .network
@@ -143,7 +143,29 @@
         &.private
           background: url(/images/icons/private-16-hover.png) no-repeat 4px
 
+    // THE INCREDIBLE FONT SIZER
+    .fontSizing
 
+      .small, .medium, .large
+        +relative
+        +right
+        +center
+        +pointer
+        +round(24)
+        margin-left: 14px
+
+      .small
+        +font(12)
+        padding: 2px 6px
+        margin-top: 11px
+      .medium
+        +font(16)
+        padding: 3px 8px
+        margin-top: 7px
+      .large
+        +font(18)
+        padding: 6px 12px
+        margin: 3px 8px 0 14px
 
 
     // FACEBOOK LOGIN
@@ -192,30 +214,7 @@
 
 
 
-  // THE INCREDIBLE FONT SIZER
-  .fontSizing
-    padding: 4px 8px
 
-    .small, .medium, .large
-      +relative
-      +right
-      +center
-      +pointer
-      +round(24)
-      margin-left: 14px
-
-    .small
-      +font(12)
-      padding: 2px 6px
-      margin-top: 11px
-    .medium
-      +font(16)
-      padding: 3px 8px
-      margin-top: 7px
-    .large
-      +font(18)
-      padding: 6px 12px
-      margin: 3px 8px 0 14px
 
 
 
@@ -248,7 +247,7 @@
     .feedback
       +button-light
 
-    .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
+    .defaults, .savedLocations, .changePassword, .feedback
       +panel-light
 
     .defaultSharing
@@ -305,7 +304,7 @@
     .feedback
       +button-dark
 
-    .sharing, .savedLocations, .changePassword, .fontSizing, .feedback
+    .defaults, .savedLocations, .changePassword, .feedback
       +panel-dark
 
     .defaultSharing
