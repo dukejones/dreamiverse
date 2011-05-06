@@ -16,7 +16,7 @@ $.Model 'Dreamcatcher.Models.Settings',{
 
   update: ( fieldName, data, success, error ) ->
     log 'fieldName: '+ fieldName
-    log 'data:'+ data
+    log 'data: '+ data
     # data = parseInt data if fieldName == default_sharing_level
     $.ajax {
       type: 'put'
