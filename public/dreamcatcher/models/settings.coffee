@@ -18,14 +18,24 @@ $.Model 'Dreamcatcher.Models.Settings',{
     log 'fieldName: '+ fieldName
     log 'data: '+ data
     # data = parseInt data if fieldName == default_sharing_level
-    $.ajax {
-      type: 'put'
-      url: '/user.json'
-      dataType: 'json'
-      data: 'user[default_sharing_level]': parseInt data if fieldName == 'default_sharing_level'
-      data: 'user[default_landing_page]': data if fieldName == 'default_landing_page'
-      # data: 'user['+ fieldName +']': data
-    }
-
+    'user[default_landing_page]: ' if fieldName == 'default_landing_page'
+    
+    if fieldName == 'default_sharing_level'
+      $.ajax {
+        type: 'put'
+        url: '/user.json'
+        dataType: 'json'
+        data:
+          'user[default_sharing_level]': parseInt data       
+      }
+      
+    else if fieldName == 'default_landing_page'
+      $.ajax {
+        type: 'put'
+        url: '/user.json'
+        dataType: 'json'
+        data:      
+          'user[default_landing_page]': data
+      }
 },
 {}
