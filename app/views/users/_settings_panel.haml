@@ -6,12 +6,12 @@
   .defaults
 
 
-    .defaultSharing{:'data-id' => current_user.default_sharing_level}
+    #default-sharing{:'data-id' => current_user.default_sharing_level}
 
       .img.sharing-icon
       %h2.sharing-label sharing
 
-      %select#sharingList.dropdown
+      %select#default-sharing-list.dropdown
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
         %option.friends{   value: Entry::Sharing[:friends]   } friends only
         %option.followers{ value: Entry::Sharing[:followers] } followers only
@@ -20,11 +20,11 @@
       .clear
 
 
-    #defaultLanding
+    #default-landingPage
       .img.landing-icon
       %h2.landing-label landing page
       
-      %select#landingPage.dropdown
+      %select#default-landingPage-list.dropdown
         %option.stream{ value: 'stream' } stream
         %option.home{   value: 'home'   } home
         %option.today{  value: 'today'  } today in dreams
@@ -34,18 +34,18 @@
 
 
     // THE INCREDIBLE FONT SIZER
-    #defaultMenu
+    #default-menu
       .img.menu-icon
       %h2.menu-label menu style
 
-      %select#menuStyle.dropdown
+      %select#default-menu-list.dropdown
         %option.float{  value: 'float'  } floating
         %option.inpage{ value: 'inpage' } in-page
       .clear
 
 
     // THE INCREDIBLE FONT SIZER
-    #defaultFont
+    #default-font
       .img.font-icon
       %h2.font-label font size
 

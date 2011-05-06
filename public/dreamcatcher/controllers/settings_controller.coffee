@@ -5,8 +5,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @setupAjaxBinding()
     
   setupDefaults: ->
-    sharingLevel = $('#settingsPanel .defaultSharing').data 'id'
-    $('#sharingList').val(sharingLevel) 
+    sharingLevel = $('#default-sharing').data 'id'
+    $('#default-sharing-list').val(sharingLevel) 
     @displaySharingLevel sharingLevel
     
   showPanel: ->    
