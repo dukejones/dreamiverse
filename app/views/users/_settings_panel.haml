@@ -11,7 +11,7 @@
       .img.sharingIcon
       %h2.sharing-label sharing
 
-      %select#sharingList.sharingList
+      %select#sharingList.dropdowns
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
         %option.friends{   value: Entry::Sharing[:friends]   } friends only
         %option.followers{ value: Entry::Sharing[:followers] } followers only
@@ -20,11 +20,12 @@
       .clear
 
 
+    .defaultLanding
       .img.landingIcon
-      %h2.sharing-label landing page
+      %h2.landing-label landing page
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
-      %select#landingPage.sharingList
+      %select#landingPage.dropdowns
         %option.stream{     value: 'stream' } stream
         %option.dreamfield{ value: 'home'   } home
         %option.stream{     value: 'today'  } today in dreams
@@ -50,20 +51,16 @@
     .clear
 
 
-    %hr.alpha-20
+  .network
+    .img.facebook-icon
+    %h2.facebook-label facebook login
 
-
-    .network
-      .img.facebook-icon
-      %h2.facebook-label facebook login
-
-      - if current_user && current_user.authentications.facebook?
-        = link_to "/auth/#{current_user.authentications.facebook.first.id}.json", :method => :delete, :remote => true, :id => 'fbLink', :class => 'linkAccount' do
-          un-link
-      - else  
-        %a#fbLink.linkAccount{href: '/auth/facebook'}
-          link account
-
+    - if current_user && current_user.authentications.facebook?
+      = link_to "/auth/#{current_user.authentications.facebook.first.id}.json", :method => :delete, :remote => true, :id => 'fbLink', :class => 'linkAccount' do
+        un-link
+    - else  
+      %a#fbLink.linkAccount{href: '/auth/facebook'}
+        link account
     .clear
 
 

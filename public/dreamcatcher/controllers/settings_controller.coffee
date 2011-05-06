@@ -28,7 +28,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     #TODO: after SASS refactor, replace with class + Geoff please adjust the icon settings here
     switch landingPage
       when 'stream' then background = 'sharing-24-hover.png'
-      when 'dreamfield' then background = 'friend-24.png'
+      when 'home' then background = 'friend-24.png'
     
     # TODO: Geoff - also add .landingIcon class here and uncomment - thanx, dr. J
     # $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
