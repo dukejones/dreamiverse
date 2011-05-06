@@ -20,7 +20,7 @@
       .clear
 
 
-    #default-landingPage
+    #default-landingPage{:'data-id' => current_user.default_landing_page}
       .img.landing-icon
       %h2.landing-label landing page
       
@@ -28,8 +28,6 @@
         %option.stream{ value: 'stream' } stream
         %option.home{   value: 'home'   } home
         %option.today{  value: 'today'  } today in dreams
-        / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
-        / %option.home{  value: User::DefaultHomePage[:home]  } home
       .clear
 
 

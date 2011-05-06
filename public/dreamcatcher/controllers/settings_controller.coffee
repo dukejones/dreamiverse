@@ -5,17 +5,20 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @setupAjaxBinding()
     
   setupDefaults: ->
-    sharingLevel = $('#default-sharing').data 'id'
-    $('#default-sharing-list').val(sharingLevel) 
-    @displaySharingLevel sharingLevel
+    defaultSharingLevel = $('#default-sharing').data 'id'
+    defaultLandingPage = $('#default-landingPage').data 'id'
+    $('#default-sharing-list').val(defaultSharingLevel)
+    $('#default-landingPage-list').val(defaultLandingPage)
+    @displayDefaultSharingLevel defaultSharingLevel
+    @displayDefaultLandingPage defaultLandingPage
     
   showPanel: ->    
     $('#settingsPanel').show()
 
-  displaySharingLevel: (sharingLevel) ->
+  displayDefaultSharingLevel: (defaultSharingLevel) ->
     #TODO: after SASS refactor, replace with class
-    sharingLevel = parseInt sharingLevel
-    switch sharingLevel
+    defaultSharingLevel = parseInt defaultSharingLevel
+    switch defaultSharingLevel
       when 500 then background = 'sharing-24-hover.png'
       when 200 then background = 'friend-24.png'
       when 150 then background = 'friend-24-follower.png'
@@ -24,9 +27,10 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
 
     $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
-  displayLandingPage: (landingPage) ->
+  displayDefaultLandingPage: (defaultLandingPage) ->
+    log('running displayDefaultLandingPage with: ' + defaultLandingPage)
     #TODO: after SASS refactor, replace with class
-    switch landingPage
+    switch defaultLandingPage
       when 'stream' then background = 'stream-24-hover.png'
       when 'home' then background = 'home-24-hover.png'
       when 'today' then background = 'home-24-hover.png'
@@ -59,15 +63,15 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
       log xhr.errors
     
     
-  '#sharingList change': (el, ev) ->
-    sharingLevel = el.val()
-    @displaySharingLevel sharingLevel
+  '#sharingList change': (element) ->
+    sharingLevel = element.val()
+    @displayDefaultSharingLevel defaultSharingLevel
     @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
 
-  '#landingPage change': (el, ev) ->
-    landingPage = el.val()
-    @displayLandingPage landingPage
-    @updateSettingsModel {'user[default_landing_page]': landingPage}   
+  '#default-landing-ist change': (element) ->
+    defaultLandingPage = element.val()
+    @displayDefaultLandingPage defaultLandingPage
+    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage}   
 
   '.cancel click': ->
     $('.changePasswordForm').hide()
