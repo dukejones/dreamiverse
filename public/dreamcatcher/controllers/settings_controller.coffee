@@ -68,7 +68,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @displayDefaultSharingLevel defaultSharingLevel
     @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
 
-  '#default-landing-ist change': (element) ->
+  '#default-landingPage-list change': (element) ->
     defaultLandingPage = element.val()
     @displayDefaultLandingPage defaultLandingPage
     @updateSettingsModel {'user[default_landing_page]': defaultLandingPage}   
