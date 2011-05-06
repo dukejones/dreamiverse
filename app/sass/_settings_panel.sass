@@ -1,6 +1,31 @@
 
-// SETTINGS PANEL
+// SHARED
+#settingsPanel, #appearancePanel
+  .dropdown
+    +right
+    +font(16)
+    +pointer
+    +round(8)
+    +font(14)
+    height: 36px
+    width: 138px
+    padding: 6px 8px
+    option
+      padding: 6px 0 6px 24px
+      &.everyone
+        background: url(/images/icons/sharing-16-hover.png) no-repeat 4px
+      &.friends
+        background: url(/images/icons/friend-16.png) no-repeat 4px
+      &.followers
+        background: url(/images/icons/friend-16-follower.png) no-repeat 4px
+      &.anonymous
+        background: url(/images/icons/anon-16-hover.png) no-repeat 4px
+      &.private
+        background: url(/images/icons/private-16-hover.png) no-repeat 4px
 
+
+
+// SETTINGS PANEL
 .light #settingsPanel, .dark #settingsPanel
   +user-select
   padding: 8px
@@ -80,28 +105,6 @@
       +right
       margin: 7px 4px 0 8px
 
-  .dropdowns
-    +right
-    +font(16)
-    +pointer
-    +round(8)
-    +font(14)
-    height: 36px
-    width: 138px
-    padding: 6px 8px
-    option
-      padding: 6px 0 6px 24px
-      &.everyone
-        background: url(/images/icons/sharing-16-hover.png) no-repeat 4px
-      &.friends
-        background: url(/images/icons/friend-16.png) no-repeat 4px
-      &.followers
-        background: url(/images/icons/friend-16-follower.png) no-repeat 4px
-      &.anonymous
-        background: url(/images/icons/anon-16-hover.png) no-repeat 4px
-      &.private
-        background: url(/images/icons/private-16-hover.png) no-repeat 4px
-
 
   // CANCEL AND CONFIRM
   .cancel, .confirm
@@ -136,14 +139,11 @@
     .defaultSharing
       margin: 0 0 4px
 
-      select
-        +round(8)
       p
         +left
 
     // THE INCREDIBLE FONT SIZER
     .fontSizing
-
       .small, .medium, .large
         +relative
         +right
@@ -234,10 +234,6 @@
     .defaults, .network, .changePassword, .feedback
       +panel-light
 
-    .defaultSharing
-      select
-        +input-light(small)
-
     .network
       .linkAccount
         +button-light
@@ -259,6 +255,9 @@
     +panel-light
     +glow-light(40)
     border: none
+
+    .dropdown
+      +input-light(small)
 
     .cancel, .confirm
       +button-light
@@ -316,6 +315,9 @@
     +panel-dark
     +glow-dark(40)
     border: none
+
+    .dropdown
+      +input-light(small)
 
     .cancel, .confirm
       +button-dark

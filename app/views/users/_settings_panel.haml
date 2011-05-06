@@ -11,7 +11,7 @@
       .img.sharingIcon
       %h2.sharing-label sharing
 
-      %select#sharingList.dropdowns
+      %select#sharingList.dropdown
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
         %option.friends{   value: Entry::Sharing[:friends]   } friends only
         %option.followers{ value: Entry::Sharing[:followers] } followers only
@@ -25,7 +25,7 @@
       %h2.landing-label landing page
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
-      %select#landingPage.dropdowns
+      %select#landingPage.dropdown
         %option.stream{     value: 'stream' } stream
         %option.dreamfield{ value: 'home'   } home
         %option.stream{     value: 'today'  } today in dreams
