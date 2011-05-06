@@ -9,6 +9,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '.subGenres span click': (el) ->
     @genre = el.text()
 
+    $(".backArrow span").text("Home")    
+    $("h1").text(@genre)
+
     $.get "/artists?genre=#{@genre}&section=#{@section}",(artists) ->
       $("#genreList").hide()
       $("#genreList").after(artists)
@@ -16,6 +19,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   'tr.artist click': (el) ->
     @artist = $("h2:first",el).text()
+    
+    $(".backArrow span").text(@genre)
+    $("h1").text(@artist)
     
     $.get "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}",(albums) ->
       $("#artistList").hide()
