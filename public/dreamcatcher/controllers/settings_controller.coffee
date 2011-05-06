@@ -62,12 +62,14 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#sharingList change': (el, ev) ->
     sharingLevel = el.val()
     @displaySharingLevel sharingLevel
-    @updateSettingsModel 'default_sharing_level',sharingLevel
+    # @updateSettingsModel 'default_sharing_level',sharingLevel
+    @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
 
   '#landingPage change': (el, ev) ->
     landingPage = el.val()
     @displayLandingPage landingPage
-    @updateSettingsModel 'default_landing_page',landingPage    
+    # @updateSettingsModel 'default_landing_page',landingPage
+    @updateSettingsModel {'user[default_landing_page]': landingPage}   
 
   '.cancel click': ->
     $('.changePasswordForm').hide()
