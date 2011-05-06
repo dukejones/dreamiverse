@@ -1,0 +1,31 @@
+/ ALBUMS
+
+%table#albumList.hidden
+  - @albums._?.each do |album, images|
+
+    %tr.name
+      %td
+        = album || "All Images"
+
+        %a.manage(href="#{manage_images_path}?ids=#{images.map(&:id).join(',')}")
+          .img
+
+    %tr.images
+      %td
+        .img
+          - images.each do |image|
+            - metaData = ''
+        .img
+          .add.hidden +
+          .preview{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
+
+
+  .dropbox
+    %h2 My Collection
+    .active
+
+
+
+
+
+
