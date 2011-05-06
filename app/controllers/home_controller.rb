@@ -2,10 +2,10 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    if current_user
-      flash.keep
-      redirect_to stream_path
-    end
+    # if current_user
+    #   flash.keep
+    #   redirect_to stream_path
+    # end
 
     @entries = Entry.everyone.where(:created_at > 1.week.ago).order("starlight DESC").limit(8)
   end

@@ -130,6 +130,9 @@ Dreamcatcher::Application.routes.draw do
     
   end
 
+
+  #default landing page
   root :to => 'home#index'
+
 
 end

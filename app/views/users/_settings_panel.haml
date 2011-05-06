@@ -8,7 +8,7 @@
 
     #default-sharing{:'data-id' => current_user.default_sharing_level}
 
-      .img.sharing-icon
+      #sharing-icon.img
       %h2.sharing-label sharing
 
       %select#default-sharing-list.dropdown
@@ -21,7 +21,7 @@
 
 
     #default-landingPage{:'data-id' => current_user.default_landing_page}
-      .img.landing-icon
+      #landing-icon.img
       %h2.landing-label landing page
       
       %select#default-landingPage-list.dropdown
@@ -33,7 +33,7 @@
 
     / MENU STYLE
     #default-menuStyle
-      .img.menu-icon
+      #menu-icon.img
       %h2.menu-label menu style
 
       %select#default-menuStyle-list.dropdown
@@ -44,7 +44,7 @@
 
     / THE INCREDIBLE FONT SIZER
     #default-font
-      .img.font-icon
+      #font-icon.img
       %h2.font-label font size
 
       .large A
@@ -60,7 +60,7 @@
 
 
   .network
-    .img.facebook-icon
+    #facebook-icon.img
     %h2.facebook-label facebook login
 
     - if current_user && current_user.authentications.facebook?
@@ -78,7 +78,7 @@
   .changePassword.wrapper
 
     .trigger.showhide
-      .img.password-icon
+      #password-icon.img
       %h2.password-label change password
       .clear
 

@@ -54,15 +54,11 @@
     height: 36px
     margin-right: 8px
 
-    &.sharing-icon
-      background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
-    &.landing-icon
-      background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
-    &.facebook-icon
+    &#facebook-icon
       background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
-    &.password-icon
+    &#password-icon
       background: url(/images/icons/admin-24-hover.png) no-repeat center transparent
-    &.font-icon
+    &#font-icon
       background: url(/images/icons/font-24.png) no-repeat center transparent
 
   h2
@@ -137,6 +133,26 @@
 
     #default-sharing, #default-landingPage, #default-menuStyle
       margin-bottom: 4px
+
+    .everyone #sharing-icon
+      background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
+    .friends #sharing-icon
+      background: url(/images/icons/friend-24.png) no-repeat center transparent
+    .followers #sharing-icon
+      background: url(/images/icons/friend-24-follower.png) no-repeat center transparent
+    .anonymous #sharing-icon
+      background: url(/images/icons/anon-24-hover.png) no-repeat center transparent
+    .private #sharing-icon
+      background: url(/images/icons/private-24-hover.png) no-repeat center transparent
+
+    .stream #landing-icon
+      background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
+    .home #landing-icon
+      background: url(/images/icons/home-24-hover.png) no-repeat center transparent
+    .today #landing-icon
+      background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
+
+
 
     // THE INCREDIBLE FONT SIZER
     #default-font
