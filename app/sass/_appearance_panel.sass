@@ -3,7 +3,7 @@
   +user-select
   padding: 8px
 
-  .bedsheets, .colorPicker
+  .bedsheets, .theme
     +round(8)
     +cursor
     padding: 8px
@@ -118,7 +118,7 @@
         +alpha(100)
 
 
-  .colorPicker
+  .theme
     +clear
     +bold
     padding: 8px
@@ -186,59 +186,65 @@
 
 
 // COLORS
-.light
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
-    .spinner
-      background-color: #eee
-    .bedsheets, .colorPicker
-      +panel-light
-      .options
-        +button-light
-      .attachment
-        .fixed, .scroll
-          +button-light
-          +bevel-light
-          +cancel(12)
-          border: 2px solid #bbb
-          &:hover
-            border: 2px solid #bbb
-      .more
-        +button-light
+.light #appearancePanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
+  .spinner
+    background-color: #eee
+  .bedsheets, .theme
+    +panel-light
+  .attachment
+    .fixed, .scroll
+      +button-light
+      +bevel-light
+      +cancel(12)
+      border: 2px solid #bbb
+      &:hover
+        border: 2px solid #777
+  .more
+    +button-light
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
-.light.fixed .fixed, .light.scroll .scroll
-  border: 2px solid #111 !important
+.light.fixed #appearancePanel .attachment .fixed, .light.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #777 !important
+  +indent-light
+  &:hover
+    +indent-light
+    +glow-light(0)
+    color: #111
 .light #appearancePanel .sun
   border: 2px solid #111 !important
 
 
 
-.dark
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
-    .spinner
-      background-color: #111
-    .bedsheets, .colorPicker
-      +panel-dark
-      .options
-        +button-dark
-      .attachment
-        .fixed, .scroll
-          +button-dark
-          +bevel-dark
-          +cancel(12)
-          border: 2px solid #222
-          &:hover
-            border: 2px solid #222
-      .more
-        +button-dark
+
+
+
+.dark #appearancePanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
+  .spinner
+    background-color: #111
+  .bedsheets, .theme
+    +panel-dark
+  .attachment
+    .fixed, .scroll
+      +button-dark
+      +bevel-dark
+      +cancel(12)
+      border: 2px solid #222
+      &:hover
+        border: 2px solid #333
+  .more
+    +button-dark
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
-.dark.fixed .fixed, .dark.scroll .scroll
-  border: 2px solid #777 !important
+.dark.fixed #appearancePanel .attachment .fixed, .dark.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #333 !important
+  +indent-dark
+  &:hover
+    +indent-dark
+    +glow-dark(0)
 .dark #appearancePanel .moon
   border: 2px solid #777 !important
 
