@@ -8,10 +8,10 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     defaultSharingLevel = $('#default-sharing').data 'id'
     defaultLandingPage = $('#default-landingPage').data 'id'
     defaultMenuStyle = $('#default-menuStyle').data 'id'
-    
+    log('fms: '+ defaultMenuStyle)
     $('#default-sharing-list').val(defaultSharingLevel)
     $('#default-landingPage-list').val(defaultLandingPage)
-    $('#default-menuStyle-list').val(defaultLandingPage)
+    $('#default-menuStyle-list').val(defaultMenuStyle)
     
     @displayDefaultSharingLevel defaultSharingLevel
     @displayDefaultLandingPage defaultLandingPage
