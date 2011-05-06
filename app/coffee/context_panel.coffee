@@ -54,8 +54,8 @@ class ContextController
       $('.profile .view .name').text($('#user_name').val())
     
     $('form#update_profile').bind 'ajax:success', (data, xhr, status)=>
-      $('.profile .alert').find('.checkmark').show()
-      $('.profile .alert').find('.close-16').hide()
+      $('.profile .alert').find('.check').show()
+      $('.profile .alert').find('.close').hide()
       
       setTimeout("$('.profile .alert').hide();", 5000)
       
@@ -69,8 +69,8 @@ class ContextController
       
       
     $('form#update_profile').bind 'ajax:error', (xhr, status, error)=>
-      $('.profile .alert').find('.checkmark').hide()
-      $('.profile .alert').find('.close-16').show()
+      $('.profile .alert').find('.check').hide()
+      $('.profile .alert').find('.close').show()
       
       setTimeout("$('.profile .alert').hide();", 5000)
       

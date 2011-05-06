@@ -179,82 +179,83 @@
       +round(8)
       padding: 4px 0
 
-      // PROFILE UPDATE ALERT
-      .alert
-        +absolute
-        +round(4)
-        +pointer
-        +center
-        left: 4px
-        bottom: 4px
-        width: 192px
-        height: 24px
-        line-height: 24px
-        border-spacing: 0
-        border-collapse: separate
+    // PROFILE UPDATE ALERT
+    .alert
+      +absolute
+      +round(4)
+      +pointer
+      +center
+      left: 4px
+      bottom: 4px
+      width: 192px
+      height: 24px
+      line-height: 24px
+      border-spacing: 0
+      border-collapse: separate
 
-        span.message
-          +font(14)
-          +bold
+      span.message
+        +font(14)
+        +bold
 
-        .checkmark, .close-16
-          margin: 0px 0 -2px 4px
-        //.checkmark
-          background: url(/images/icons/check-16.png) no-repeat center
-        .close-16
-          +alpha(100)
-          //background: url(/images/icons/close-16-hover.png) no-repeat center
-
-
-      .name
-        +font(21)
-        +pointer
-
-      .location
-        +font(12)
-        +center
-        +user-select
-        +pointer
-
-      .details
-        +overflow
-        margin: 0 4px
-
-        .website, .email, .phone, .skype
-          +block
-          +font(14)
-          margin-bottom: 6px
-
-        .website:hover
-          text-decoration: underline
-
-        .email, .phone, .skype
-          +cursor
-
-        .skype
-          background: url('/images/icons/skype-16.png') no-repeat 0 2px transparent
-          padding: 0 0 2px 20px
-          display: inline-block
-
-        .facebook, .twitter
-          +round(4)
-          +center
-          +font(11)
-          padding: 0 12px
-          margin: 8px 2px 0
-        .facebook
-          +left
-        .twitter
-          +right
+      .check, .close
+        +right
+        margin: 5px 4px 0 -4px
+      .check
+        +check-16
+      .close
+        +close-16
+        +alpha(100)
 
 
-        .change
-          +user-select
-          +clear
-          +center
-          +round(4)
-          height: 22px
-          line-height: 22px
+    .name
+      +font(21)
+      +pointer
+
+    .location
+      +font(12)
+      +center
+      +user-select
+      +pointer
+
+    .details
+      +overflow
+      margin: 0 4px
+
+    .website, .email, .phone, .skype
+      +block
+      +font(14)
+
+    .website:hover
+      text-decoration: underline
+
+    .email, .phone, .skype
+      +cursor
+
+    .skype
+      background: url('/images/icons/skype-16.png') no-repeat 0 2px transparent
+      padding: 0 0 2px 20px
+      display: inline-block
+
+    .facebook, .twitter
+      +round(4)
+      +center
+      +font(11)
+      padding: 0 12px
+      margin: 8px 2px 0
+    .facebook
+      +left
+    .twitter
+      +right
+
+
+    .change
+      +user-select
+      +clear
+      +center
+      +round(4)
+      height: 22px
+      line-height: 22px
+      margin-top: 6px
 
 
 
@@ -265,14 +266,14 @@
 
       span
         +font(11)
-        margin-left: 11px
+        margin-left: 4px
 
       #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
         +round(8)
         +font(12)
         width: 180px
         height: 24px
-        margin: 0
+        margin-bottom: -4px
         padding: 0 0 0 8px
       .skypeWrap
         +relative

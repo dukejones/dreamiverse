@@ -16,7 +16,7 @@
     = yield :head
 
   %body.home.light
-  
+
     #bodyClick
     -# render "shared/facebook_sdk"
 
@@ -24,14 +24,10 @@
     /   / META MENU - USER
     /   = render :partial => "users/meta_menu_user"
 
-
-    - unless flash.notice.blank? && flash.alert.blank?
-      = render :partial => "layouts/alert"
-
+    = render :partial => "layouts/alert"
 
     #drop_shadow
     #home
-
 
       = yield
 

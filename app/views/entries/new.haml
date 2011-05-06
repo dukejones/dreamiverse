@@ -87,17 +87,17 @@
                   .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
                   .username username
                   .statusIcon.friends
-                  .close-16
+                  .close
                 .user
                   .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
                   .username username
                   .statusIcon.friends
-                  .close-16
+                  .close
                 .user
                   .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
                   .username username
                   .statusIcon.friends
-                  .close-16
+                  .close
 
               %label.taggedUsers
                 .img
@@ -172,13 +172,13 @@
         .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
           .header.trigger
             .tag-name
-          .close-16
+          .close
 
         - @entry.tags.custom.whats.each do |what|
           .tag.tagWhat.newEntry
             .header.trigger
               .tag-name= what.name
-            .close-16
+            .close
             %input{type: 'hidden', name: 'what_tags[]', value: what.name}
 
       #sorting.clear
@@ -205,7 +205,7 @@
               %input.linkUrlValue{:value => "#{link.url}", name: 'links[][url]', style: "width: 320px"}
               .icon
                 %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
-            .close-24
+            .close
             - if link.youtube?
               .thumb{style: "background: url('') no-repeat center center transparent"}
               .description
