@@ -2,7 +2,20 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   
   attributes: ['type','category','genre','title','album','artist','location','year','notes','tags']
   types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
-  categories: ['General','Modern Art','Classical Art','Photo']
+  categories: [
+    {
+      name: "Modern Art"
+      genres: ["Paintings","Digital","Fantasy","Visionary","Graphics"]
+    },
+    {
+      name: "Classical Art"
+      genres: ["Europe","Eurasia","Asia","Americas","Africa","Australia"]
+    },
+    {
+      name: "Photos"
+      genres: ["People","Places","Things","Concept","Animals"]
+    }
+  ]
   
   init: ->
     @populateLists()
@@ -31,7 +44,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     
   populateLists: ->
     $("#type select").append("<option>#{type}</option>") for type in @types
-    $("#category select").append("<option>#{category}</option>") for category in @categories
+    $("#category select").append("<option>#{category.name}</option>") for category in @categories
   
   isText: (attr) ->
     return $("##{attr} input[type='text']").exists()
