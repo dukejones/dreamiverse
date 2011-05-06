@@ -25,17 +25,17 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     # TODO: after SASS refactor, replace with class
     defaultSharingLevel = parseInt defaultSharingLevel
     switch defaultSharingLevel
-      when 500 then class = 'everyone'
-      when 200 then class = 'friend'
-      when 150 then class = 'follower'
-      when 50 then class = 'anonymous'
-      when 0 then class = 'private'
-
+      when 500 then newClass = 'everyone'
+      when 200 then newClass = 'friend'
+      when 150 then newClass = 'follower'
+      when 50 then newClass = 'anonymous'
+      when 0 then newClass = 'private'
+    log('newClass '+ newClass)
     # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
     sharingIcon = $('#sharing-icon')
-    sharingIcon.removeClass(className) for className in ['everyone','friend','follower','anonymous','private']
-    sharingIcon.addClass(defaultSharingLevel)    
+    sharingIcon.removeClass(oldClass) for oldClass in ['everyone','friend','follower','anonymous','private']
+    sharingIcon.addClass(newClass)    
     
 
   displayDefaultLandingPage: (defaultLandingPage) ->
@@ -44,13 +44,6 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     landingIcon.addClass(defaultLandingPage)
 
   displayDefaultMenuStyle: (defaultMenuStyle) ->
-    # TODO: after SASS refactor, replace with class
-    switch defaultMenuStyle
-      when 'stream' then class = 'stream'
-      when 'home' then class = 'home'
-      when 'today' then class = 'home'
-
-    # $('.landing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     menuIcon = $('#menu-icon')
     menuIcon.removeClass(className) for className in ['stream','home']
     menuIcon.addClass(defaultMenuStyle)
@@ -58,7 +51,6 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     
   updateSettingsModel: (params) ->
     Dreamcatcher.Models.Settings.update params
-
 
   setupAjaxBinding: ->
     #TODO: Needs refactoring.
