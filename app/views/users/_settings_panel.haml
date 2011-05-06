@@ -24,15 +24,12 @@
       .img.landing-icon
       %h2.landing-label landing page
       
-      / Geoff - please adjust the .sharingList class here and the landingPage image above
       %select#landingPage.dropdown
         %option.stream{ value: 'stream' } stream
         %option.home{   value: 'home'   } home
         %option.today{  value: 'today'  } today in dreams
-        
-  
-      / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
-      / %option.dreamField{  value: User::DefaultHomePage[:dreamField]  } dream field
+        / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
+        / %option.home{  value: User::DefaultHomePage[:home]  } home
       .clear
 
 
