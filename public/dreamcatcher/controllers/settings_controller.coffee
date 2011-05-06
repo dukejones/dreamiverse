@@ -24,8 +24,17 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
 
     $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
 
-  updateSharingLevel: (sharingLevel) ->
-    Dreamcatcher.Models.Settings.update sharingLevel
+  displayLandingPage: (landingPage) ->
+    #TODO: after SASS refactor, replace with class + Geoff please adjust the icon settings here
+    switch landingPage
+      when 'stream' then background = 'sharing-24-hover.png'
+      when 'dreamfield' then background = 'friend-24.png'
+    
+    # TODO: Geoff - also add .landingIcon class here and uncomment - thanx, dr. J
+    # $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+    
+  updateSettingsModel: (fieldName, data) ->
+    Dreamcatcher.Models.Settings.update fieldName, data 
 
   setupAjaxBinding: ->
     #TODO: Needs refactoring.
@@ -53,7 +62,12 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#sharingList change': (el, ev) ->
     sharingLevel = el.val()
     @displaySharingLevel sharingLevel
-    @updateSharingLevel sharingLevel
+    @updateSettingsModel 'default_sharing_level',sharingLevel
+
+  '#landingPage change': (el, ev) ->
+    landingPage = el.val()
+    @displayLandingPage landingPage
+    @updateSettingsModel 'default_landing_page',landingPage    
 
   '.cancel click': ->
     $('.changePasswordForm').hide()

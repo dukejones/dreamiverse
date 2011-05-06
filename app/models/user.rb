@@ -187,6 +187,7 @@ class User < ActiveRecord::Base
   
   def set_defaults
     self.default_sharing_level ||= Entry::Sharing[:everyone]
+    self.default_landing_page ||='stream'
     self.auth_level ||= 1
   end
   

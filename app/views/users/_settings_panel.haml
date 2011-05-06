@@ -20,13 +20,20 @@
         %option.private{   value: Entry::Sharing[:private]   } private
       
       .clear
-      .img.sharingIcon
+      .img.landingPage
 
       %h2.sharing-label default landing
+      
+      / Geoff - please adjust the .sharingList class here and the landingPage image above
+      %select#landingPage.sharingList
+        %option.stream{     value: 'stream'     } stream
+        %option.dreamfield{ value: 'dreamfield' } dream field
+        
+  
+      / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream
+      / %option.dreamField{  value: User::DefaultHomePage[:dreamField]  } dream field
 
-      / %select#landingPage.sharingList
-      / %option.stream{  value: User::LandingPage[:stream]  } stream
-      / %option.dreamfield{  value: User::LandingPage[:dreamfield]  } dream field
+
 
     %label.hidden
       I must authorize all follow requests
