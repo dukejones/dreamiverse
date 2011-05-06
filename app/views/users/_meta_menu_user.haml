@@ -5,13 +5,13 @@
   .leftPanelWrap
     .leftPanel
 
-      %a.item.home{href: user_entries_path(current_user.username)}
-        .img
-        = render partial: "shared/hover_label", locals: {message: "home", x: "12", y: "-30"}
-
       %a.item.stream{href: stream_path}
         .img
         = render partial: "shared/hover_label", locals: {message: "stream", x: "12", y: "-30"}
+
+      %a.item.home{href: user_entries_path(current_user.username)}
+        .img
+        = render partial: "shared/hover_label", locals: {message: "home", x: "12", y: "-30"}
 
       %a.item.dreamstars{href: '/dreamstars'}
         .img
@@ -42,10 +42,9 @@
 
   / SETTINGS MENU
   .rightPanel
-    %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
-      %span
-        = current_user.username
 
+    %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
+      %span= current_user.username
 
     .settingsPanel.wrapper
       .item.settings.trigger

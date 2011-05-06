@@ -1,0 +1,80 @@
+// PAGE HEADERS
+// STRUCTURE
+#entryField, #friendField
+  .pageHeader
+    +user-select
+    +cursor
+    +relative
+    +left  
+    border-radius:            16px 48px 0 0
+    -moz-border-radius:       16px 48px 0 0
+    -webkit-border-radius:    16px 48px 0 0
+    background: #000
+    background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
+    height: 54px
+    line-height: 50px
+    margin: 0 0 20px
+    padding-right: 36px
+    .img
+      +left
+      width: 32px
+      height: 54px
+      margin: 0 12px
+    h1
+      +left
+      +font(24)
+      letter-spacing: 2px
+      color: #fff
+
+  .dreamHeader
+    .img
+      background: url(/images/icons/dream-32-hover.png) no-repeat center transparent
+  .visionHeader
+    .img
+      background: url(/images/icons/vision-32-hover.png) no-repeat center transparent
+  .experienceHeader
+    .img
+      background: url(/images/icons/experience-32-hover.png) no-repeat center transparent
+  .articleHeader
+    .img
+      background: url(/images/icons/article-32-hover.png) no-repeat center transparent
+  .friendHeader
+    .img
+      background: url(/images/icons/friend-32.png) no-repeat center transparent
+  .followHeader
+    .img
+      background: url(/images/icons/friend-32-follow.png) no-repeat center transparent
+  .followerHeader
+    .img
+      background: url(/images/icons/friend-32-follower.png) no-repeat center transparent
+  .nofriendsHeader
+    .img
+      background: url(/images/icons/friend-none-32.png) no-repeat center transparent
+
+
+// PAGE HEADERS
+// COLOR
+.light
+  #entryField, #friendField
+    .pageHeader
+      background: #fff
+      background: -moz-linear-gradient(top, rgba(255,255,255,1.0), rgba(255,255,255,1.0) 4px, rgba(255,255,255,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,1.0)), color-stop(.1,rgba(255,255,255,1.0)), to(rgba(255,255,255,0.0)))
+
+      h1
+        color: #000
+        text-shadow: #fff 0 0 15px
+
+
+
+.dark
+  #entryField, #friendField
+    .pageHeader
+      background: #000
+      background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,0,0,1.0) 4px, rgba(0,0,0,0.0))
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,1.0)), color-stop(.1,rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)))
+
+      h1
+        color: #fff
+        text-shadow: #000 0 0 15px

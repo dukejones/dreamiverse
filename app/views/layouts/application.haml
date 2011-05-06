@@ -29,18 +29,13 @@
 
     #bodyClick
 
-    - unless flash.notice.blank? && flash.alert.blank?
-      = render :partial => "layouts/alert"
-
-
+    = render :partial => "layouts/alert"
     = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
-
 
     = yield
 
     - if Rails.env == 'production' || Rails.env == 'theta'
       = javascript_include_tag 'google_analytics'
 
-
     = yield :foot
-    
+

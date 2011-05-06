@@ -100,7 +100,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
     $(".comments",entry).removeClass("spinner")
 
-  created: (data) ->
+  created: (data) ->    
     comment = data.comment
     comment.username = $(".rightPanel .user span").text().trim()
     entryId = comment.entry_id
@@ -116,6 +116,10 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     
     $(".comment_body",entry).val ''
     $(".comment_body,.save",entry).removeAttr("disabled",false).removeClass("disabled")
+    
+    $(".comment_body",entry).animate({height: '24px'}, 'fast')
+    $(".save", entry).fadeOut 200,->
+      $(this).addClass("hidden")
     
     #@updateCommentCount entry
     @clearNewComments entry,entryId
@@ -149,8 +153,8 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
     el.hide()
     
   '.deleteComment click': (el) ->
-    text = "'"+$(".body",el.parent()).text()+"' ("+$(".commentTime",el.parent()).text()+")"
-    return if not confirm("confirm you want to delete this comment:\n\n#{text}")    
+    #text = "'"+$(".body",el.parent()).text()+"' ("+$(".commentTime",el.parent()).text()+")"
+    return if not confirm("confirm you want to delete this comment")    
     entry = @getEntryFromElement el
     entryId = el.data 'entryid'
     commentId = el.data 'id'
@@ -163,7 +167,7 @@ $.Controller 'Dreamcatcher.Controllers.Comment',
       el.animate({height: '40px'}, 'fast')
       $(".save", el.parent()).fadeIn 200,->
         $(this).removeClass("hidden")
-  
+          
   '.save click': (el) ->
     return if $(".comment_body",el.parent()).val().trim().length is 0
     $(".comment_body,.save",el.parent()).attr("disabled",true).addClass("disabled")

@@ -29,7 +29,8 @@
         .tag-name
           color: #fff !important
 
-    .close-16
+    .close
+      +close-16
       +right
       margin: 8px 4px 0 0
 
@@ -131,7 +132,7 @@
         .dictionaries
           display: block
 
-      .close-16
+      .close
         +hidden
 
 
@@ -139,9 +140,9 @@
     &.newEntry:hover
       +pointer
       border: 1px solid #971313
-      .close-16
+      .close
+        +close-16
         +alpha(100)
-        background: url(/images/icons/close-16-hover.png) no-repeat center
 
 
 
