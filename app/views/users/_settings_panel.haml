@@ -9,8 +9,7 @@
     .defaultSharing{:'data-id' => current_user.default_sharing_level}
 
       .img.sharingIcon
-
-      %h2.sharing-label default sharing
+      %h2.sharing-label sharing
 
       %select#sharingList.sharingList
         %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
@@ -20,14 +19,16 @@
         %option.private{   value: Entry::Sharing[:private]   } private
       
       .clear
-      .img.landingPage
 
-      %h2.sharing-label default landing
+
+      .img.landingPage
+      %h2.sharing-label landing
       
       / Geoff - please adjust the .sharingList class here and the landingPage image above
       %select#landingPage.sharingList
         %option.stream{     value: 'stream'     } stream
-        %option.dreamfield{ value: 'dreamfield' } dream field
+        %option.dreamfield{ value: 'home'       } home
+        %option.stream{     value: 'today'      } today in dreams
         
   
       / %option.stream{  value: User::DefaultLandingPage[:stream]  } stream

@@ -52,10 +52,6 @@ module ApplicationHelper
 
   # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
-    bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= @user._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= 'scroll'
 
     if request.path == dreamstars_path || request.path == search_user_path
       bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" 
@@ -73,7 +69,7 @@ module ApplicationHelper
       end
       bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
     end
-    "background: url(#{bedsheet_url}) repeat #{bedsheet_attachment} 0 0"
+    "background-image: url(#{bedsheet_url})"
   end
   
   def theme
