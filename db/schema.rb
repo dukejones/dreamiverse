@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110505222817) do
+ActiveRecord::Schema.define(:version => 20110506203117) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -178,6 +178,7 @@ ActiveRecord::Schema.define(:version => 20110505222817) do
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
     t.string   "default_landing_page"
+    t.string   "default_menu_style"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
