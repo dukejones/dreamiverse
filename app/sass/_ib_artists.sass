@@ -13,7 +13,7 @@ table#artistList
     vertical-align: center
 
     td
-      +font(14)
+      +font(16)
       width: 50%
       padding: 0 0 0 20px
       border: 1px solid #ddd
@@ -21,15 +21,17 @@ table#artistList
 
   // ARTIST ROW
   tr.artist
+    +overflow
     height: 60px
     +flat-dark
 
     td
-      +font(18)
+      +font(24)
       width: 50%
 
     td.name
       h2
+        margin: 0 0 0 20px
 
     td.images
       .img
