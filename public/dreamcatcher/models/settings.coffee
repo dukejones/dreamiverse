@@ -1,3 +1,4 @@
+# ORIGINAL
 # $.Model 'Dreamcatcher.Models.Settings',{
 # 
 #   update: ( sharingLevel, success, error ) ->
@@ -12,13 +13,33 @@
 # },
 # {}
 
+# IDEAL
+# $.Model 'Dreamcatcher.Models.Settings',{
+# 
+#   update: ( fieldName, data, success, error ) ->
+#     log 'fieldName: '+ fieldName
+#     log 'data: '+ data
+#     data = parseInt data if fieldName == default_sharing_level
+#     fieldname2 = "user[#{fieldName}]"
+#     #if fieldName == 'default_sharing_level'
+#     $.ajax {
+#       type: 'put'
+#       url: '/user.json'
+#       dataType: 'json'
+#       data: 
+#         "user[#{fieldName}]": data       
+#     }
+#       
+# },
+# {}
+
+# WORKING
 $.Model 'Dreamcatcher.Models.Settings',{
 
   update: ( fieldName, data, success, error ) ->
     log 'fieldName: '+ fieldName
     log 'data: '+ data
     # data = parseInt data if fieldName == default_sharing_level
-    'user[default_landing_page]: ' if fieldName == 'default_landing_page'
     
     if fieldName == 'default_sharing_level'
       $.ajax {
@@ -39,3 +60,4 @@ $.Model 'Dreamcatcher.Models.Settings',{
       }
 },
 {}
+
