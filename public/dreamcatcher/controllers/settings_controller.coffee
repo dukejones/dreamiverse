@@ -63,10 +63,10 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
       log xhr.errors
     
     
-  '#sharingList change': (element) ->
-    sharingLevel = element.val()
+  '#default-sharing-list change': (element) ->
+    defaultSharingLevel = element.val()
     @displayDefaultSharingLevel defaultSharingLevel
-    @updateSettingsModel {'user[default_sharing_level]': parseInt sharingLevel}
+    @updateSettingsModel {'user[default_sharing_level]': parseInt defaultSharingLevel}
 
   '#default-landingPage-list change': (element) ->
     defaultLandingPage = element.val()
