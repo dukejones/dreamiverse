@@ -31,7 +31,8 @@ steal.plugins(
 			'controllers/appearance_controller',
 			'controllers/bedsheet_controller',
 			'controllers/comment_controller',
-			'controllers/ib_manager_controller'
+			'controllers/ib_manager_controller',
+			'controllers/ib_browser_controller'
 		);
 	})
 	.views();

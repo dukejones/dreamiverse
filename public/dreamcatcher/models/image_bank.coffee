@@ -1,4 +1,21 @@
 $.Model 'Dreamcatcher.Models.ImageBank',{
+  
+  attributes: ['type','category','genre','title','album','artist','location','year','notes','tags']
+  types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
+  categories: [
+    {
+      name: "Modern Art"
+      genres: ["Paintings","Digital","Fantasy","Visionary","Graphics"]
+    },
+    {
+      name: "Classical Art"
+      genres: ["Europe","Eurasia","Asia","Americas","Africa","Australia"]
+    },
+    {
+      name: "Photos"
+      genres: ["People","Places","Things","Concept","Animals"]
+    }
+  ]
 
   update: ( imageId, data, success, error ) ->
     $.ajax {

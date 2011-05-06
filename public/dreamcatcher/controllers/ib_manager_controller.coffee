@@ -1,37 +1,44 @@
 $.Controller 'Dreamcatcher.Controllers.IbManager',
-  
-  attributes: ['type','category','genre','title','album','artist','location','year','notes','tags']
-  types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
-  categories: ['General','Modern Art','Classical Art','Photo']
+
+  model: Dreamcatcher.Models.ImageBank
   
   init: ->
     @populateLists()
     @createUploader()
     images = @getImages()
-    Dreamcatcher.Models.ImageBank.getImage image,{},@callback('showImage') for image in images
+    @model.getImage image,{},@callback('showImage') for image in images
   
   ##cookies
   getImages: ->
     return $.cookie("selectedImages").split(",") if $.cookie("selectedImages")?
+    return null
   
   addImage: (imageId) ->
     images = @getImages()
-    if images.indexOf(imageId) is -1
+    if not images?
+      $.cookie("selectedImages",imageId)
+    else if images.indexOf(imageId) is -1
       images.push(imageId)
       $.cookie("selectedImages",images.join(","))
-  
+
   removeImage: (imageId) ->
     images = @getImages()
+    if not images?
+      return
     newImages = images.filter (item) ->
       return item isnt imageId.toString()
     $.cookie("selectedImages",newImages.join(","))
       
   showImage: (image) ->
     $(".imagelist").append(@view('show',image))
-    
+  
+   
   populateLists: ->
-    $("#type select").append("<option>#{type}</option>") for type in @types
-    $("#category select").append("<option>#{category}</option>") for category in @categories
+    $("#type select").append("<option>#{type}</option>") for type in @model.types
+    for category in @model.categories
+      $("#category select").append("<option>#{category.name}</option>")
+      $("#category select option:last").data("genres",category.genres)
+  
   
   isText: (attr) ->
     return $("##{attr} input[type='text']").exists()
@@ -65,20 +72,21 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   grabMetaData: () ->
     selectedOnly = true
     image = {}
-    for attribute in @attributes
+    for attribute in @model.attributes
       value = @getAttribute(attribute,selectedOnly)
       image[attribute] = value if value? or not selectedOnly
+    image.section = "Library"
     log image
     return {image: image}
     
   displayMetaData: (image) ->
-    @setAttribute(attribute,image[attribute]) for attribute in @attributes
+    @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
     
   showCommonMeta: ->
     common = {}
     $(".imagelist li.selected").each (index, element) =>
       data = $(element).data 'image'
-      for attr in @attributes
+      for attr in @model.attributes
         if not common[attr]?
           common[attr] = data[attr]
         else if common[attr] isnt data[attr]
@@ -92,9 +100,9 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       maxConnections: 1
       params: {
         image: {
-          type: 'Library'
-          category: 'General'
-          genre: 'Placeholder'
+          type: "Bedsheet"
+          category: "Classical Art"
+          genre: "Africa"
         }
       }
       debug: true
@@ -145,8 +153,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   '.save click': (el) ->
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.ImageBank.update imageId,@grabMetaData()
-      Dreamcatcher.Models.ImageBank.getImage imageId,{},@callback('updateImageMeta',$(element))
+      @model.update imageId,@grabMetaData()
+      @model.getImage imageId,{},@callback('updateImageMeta',$(element))
       
   updateImageMeta: (el,data) ->
     el.data('image',data)
@@ -173,7 +181,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   '.cancel click': (el) ->
     $('.imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
-      Dreamcatcher.Models.ImageBank.disable imageId,{},@callback('disable',$(element),imageId)
+      @model.disable imageId,{},@callback('disable',$(element),imageId)
+      
+  '#category select change': (el) ->
+    genres = $("option:selected",el).data("genres")
+    $("#genre select").html("")
+    $("#genre select").append("<option>#{genre}</option>") for genre in genres
   
   disable: (el, id) ->
     el.css("opacity",0.5)

@@ -1,0 +1,10 @@
+<%for(var i = 0; i < categories.length ; i++){ %>
+<div class="genre">
+  <h2><%= categories[i].name %></h2>
+  <div class="subGenres hidden">
+    <%for(var j = 0; j < categories[i].genres.length ; j++){%>
+    <span><%= categories[i].genres[j] %></span>
+    <%}%>
+  </div>
+</div>
+<%}%>
