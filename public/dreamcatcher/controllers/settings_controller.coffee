@@ -96,8 +96,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @displayDefaultMenuStyle defaultMenuStyle
     @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
 
-  '#fontLarge, #fontMedium, #fontSmall click': (element) ->
-    defaultFontSize = @.id
+  '#default-fontSize .fontSize click': (element) ->
+    defaultFontSize = element.attr("id")
     log('defaultFontSize: ' + defaultFontSize)
     @displayDefaultFontSize defaultFontSize
     @updateSettingsModel {'user[default_font_size]': defaultFontSize}
