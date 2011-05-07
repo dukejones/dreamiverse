@@ -51,7 +51,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
 
   displayDefaultFontSize: (defaultFontSize) ->
     pageBody = $('#body')
-    pageBody.removeClass(className) for className in ['small','medium','large']
+    pageBody.removeClass(className) for className in ['fontSmall','fontMedium','fontLarge']
     pageBody.addClass(defaultFontSize)
     # when #fontLarge is clicked add class #fontLarge to body   
     
@@ -96,7 +96,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @displayDefaultMenuStyle defaultMenuStyle
     @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
 
-  '#fontLarge, #fontMedium, #fontSmall click': (element) ->
+  '#default-fontSize .fontSize click': (element) ->
     defaultFontSize = element.attr("id")
     log('defaultFontSize: ' + defaultFontSize)
     @displayDefaultFontSize defaultFontSize
