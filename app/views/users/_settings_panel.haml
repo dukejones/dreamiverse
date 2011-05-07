@@ -8,7 +8,7 @@
 
     #default-sharing{:'data-id' => current_user.default_sharing_level}
 
-      #sharing-icon.img{class: current_user.default_sharing_level}
+      #default-sharing-icon.img{class: current_user.default_sharing_level}
       %h2.sharing-label sharing
 
       %select#default-sharing-list.dropdown
@@ -21,7 +21,7 @@
 
 
     #default-landingPage{:'data-id' => current_user.default_landing_page}
-      #landing-icon.img{class: current_user.default_landing_page}
+      #default-landingPage-icon.img{class: current_user.default_landing_page}
       %h2.landing-label landing page
       
       %select#default-landingPage-list.dropdown
@@ -33,7 +33,7 @@
 
     / MENU STYLE
     #default-menuStyle{:'data-id' => current_user.default_menu_style}
-      #menu-icon.img
+      #default-menuStyle-icon.img
       %h2.menu-label menu style
 
       %select#default-menuStyle-list.dropdown
@@ -43,8 +43,8 @@
 
 
     / THE INCREDIBLE FONT SIZER
-    #default-font
-      #font-icon.img
+    #default-fontSize
+      #default-fontSize-icon.img
       %h2.font-label font size
 
       .large A
