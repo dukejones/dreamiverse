@@ -156,27 +156,26 @@
 
 
   // THE INCREDIBLE FONT SIZER
-  #default-fontSize
-    .small, .medium, .large
-      +relative
-      +right
-      +center
-      +pointer
-      +round(24)
-      margin-left: 14px
+  #fontLarge, #fontMedium, #fontSmall
+    +relative
+    +right
+    +center
+    +pointer
+    +round(24)
+    margin-left: 14px
 
-    .small
-      +font(12)
-      padding: 2px 6px
-      margin-top: 11px
-    .medium
-      +font(16)
-      padding: 3px 8px
-      margin-top: 7px
-    .large
-      +font(18)
-      padding: 6px 12px
-      margin: 3px 20px 0 14px
+  #fontSmall
+    +font(12)
+    padding: 2px 6px
+    margin-top: 11px
+  #fontMedium
+    +font(16)
+    padding: 3px 8px
+    margin-top: 7px
+  #fontLarge
+    +font(18)
+    padding: 6px 12px
+    margin: 3px 20px 0 14px
 
 
   // FACEBOOK LOGIN
@@ -271,7 +270,7 @@
         +input-light(small)
 
     #default-fontSize
-      .large, .medium, .small
+      #fontLarge, #fontMedium, #fontSmall
         +button-light
         +indent-light
 
@@ -329,7 +328,7 @@
         +input-dark(small)
 
     #default-fontSize
-      .large, .medium, .small
+      #fontLarge, #fontMedium, #fontSmall
         +button-dark
         +indent-dark
 

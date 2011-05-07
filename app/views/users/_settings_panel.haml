@@ -8,7 +8,7 @@
 
     #default-sharing{:'data-id' => current_user.default_sharing_level}
 
-      #default-sharing-icon.img{class: current_user.default_sharing_level}
+      #default-sharing-icon.img
       %h2.sharing-label sharing
 
       %select#default-sharing-list.dropdown
@@ -21,7 +21,7 @@
 
 
     #default-landingPage{:'data-id' => current_user.default_landing_page}
-      #default-landingPage-icon.img{class: current_user.default_landing_page}
+      #default-landingPage-icon.img
       %h2.landing-label landing page
       
       %select#default-landingPage-list.dropdown
@@ -47,10 +47,10 @@
       #default-fontSize-icon.img
       %h2.font-label font size
 
-      .large A
-      .medium A
-      .small A
-      .clear
+      #fontLarge A
+      #fontMedium A
+      #fontSmall A
+      #clear
 
 
     %label.hidden
