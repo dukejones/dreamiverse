@@ -45,9 +45,9 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     landingIcon.addClass(defaultLandingPage)
 
   displayDefaultMenuStyle: (defaultMenuStyle) ->
-    menuIcon = $('#menu-icon')
-    menuIcon.removeClass(className) for className in ['stream','home']
-    menuIcon.addClass(defaultMenuStyle)
+    pageBody = $('#body')
+    pageBody.removeClass(className) for className in ['float','inpage']
+    pageBody.addClass(defaultMenuStyle)
     
     
   updateSettingsModel: (params) ->
