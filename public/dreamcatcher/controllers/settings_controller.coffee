@@ -8,14 +8,15 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     defaultSharingLevel = $('#default-sharing').data 'id'
     defaultLandingPage = $('#default-landingPage').data 'id'
     defaultMenuStyle = $('#default-menuStyle').data 'id'
+    defaultFontSize = $('#default-fontSize').data 'id'
 
     $('#default-sharing-list').val(defaultSharingLevel)
     $('#default-landingPage-list').val(defaultLandingPage)
     $('#default-menuStyle-list').val(defaultMenuStyle)
+    $('#default-fontSize-list').val(defaultFontSize)
     
     @displayDefaultSharingLevel defaultSharingLevel
     @displayDefaultLandingPage defaultLandingPage
-    @displayDefaultMenuStyle defaultMenuStyle
  
     
   showPanel: ->    
@@ -43,18 +44,13 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     landingIcon = $('#landing-icon')
     landingIcon.removeClass(className) for className in ['stream','home','today']
     landingIcon.addClass(defaultLandingPage)
-
-  displayDefaultMenuStyle: (defaultMenuStyle) ->
-    menuIcon = $('#menu-icon')
-    menuIcon.removeClass(className) for className in ['stream','home']
-    menuIcon.addClass(defaultMenuStyle)
     
     
   updateSettingsModel: (params) ->
     Dreamcatcher.Models.Settings.update params
 
   setupAjaxBinding: ->
-    #TODO: Needs refactoring.
+    # TODO: Needs refactoring.
     $('#fbLink').bind 'ajax:success', (event, xhr, status)->
       $('#fbLink').remove()
       $('.network').append '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'
