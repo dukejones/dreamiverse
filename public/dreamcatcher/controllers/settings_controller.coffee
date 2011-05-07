@@ -26,8 +26,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     defaultSharingLevel = parseInt defaultSharingLevel
     switch defaultSharingLevel
       when 500 then newClass = 'everyone'
-      when 200 then newClass = 'friend'
-      when 150 then newClass = 'follower'
+      when 200 then newClass = 'friends'
+      when 150 then newClass = 'followers'
       when 50 then newClass = 'anonymous'
       when 0 then newClass = 'private'
       
@@ -35,7 +35,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
     sharingIcon = $('#sharing-icon')
-    sharingIcon.removeClass(oldClass) for oldClass in ['everyone','friend','follower','anonymous','private']
+    sharingIcon.removeClass(oldClass) for oldClass in ['everyone','friends','followers','anonymous','private']
     sharingIcon.addClass(newClass)    
     
 

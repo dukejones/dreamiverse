@@ -8,7 +8,7 @@
 
     #default-sharing{:'data-id' => current_user.default_sharing_level}
 
-      #sharing-icon.img
+      #sharing-icon.img{class: current_user.default_sharing_level}
       %h2.sharing-label sharing
 
       %select#default-sharing-list.dropdown
@@ -21,7 +21,7 @@
 
 
     #default-landingPage{:'data-id' => current_user.default_landing_page}
-      #landing-icon.img
+      #landing-icon.img{class: current_user.default_landing_page}
       %h2.landing-label landing page
       
       %select#default-landingPage-list.dropdown

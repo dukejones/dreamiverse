@@ -8,7 +8,7 @@
     +round(8)
     +font(14)
     height: 36px
-    width: 138px
+    width: 160px
     padding: 6px 8px
     option
       padding: 6px 0 6px 24px
@@ -56,7 +56,7 @@
 
     &#facebook-icon
       background: url(/images/icons/facebook-24-hover.png) no-repeat center transparent
-    &#font-icon
+    &#default-fontSize-icon
       background: url(/images/icons/font-24.png) no-repeat center transparent
     &#menu-icon
       background: url(/images/icons/menu-24.png) no-repeat center transparent
@@ -128,56 +128,55 @@
 
 
 
+  // DEFAULT ICON STYLING
 
-  // DEFAULTS PANEL
-  .defaults
-    padding: 8px
-
-    #default-sharing, #default-landingPage, #default-menuStyle
-      margin-bottom: 4px
-
-    .everyone #sharing-icon
+  #sharing-icon
+    &.everyone
       background: url(/images/icons/sharing-24-hover.png) no-repeat center transparent
-    .friends #sharing-icon
+    &.friends
       background: url(/images/icons/friend-24.png) no-repeat center transparent
-    .followers #sharing-icon
+    &.followers
       background: url(/images/icons/friend-24-follower.png) no-repeat center transparent
-    .anonymous #sharing-icon
+    &.anonymous
       background: url(/images/icons/anon-24-hover.png) no-repeat center transparent
-    .private #sharing-icon
+    &.private
       background: url(/images/icons/private-24-hover.png) no-repeat center transparent
 
-    .stream #landing-icon
+  #landing-icon
+    &.stream
       background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
-    .home #landing-icon
+    &.home
       background: url(/images/icons/home-24-hover.png) no-repeat center transparent
-    .today #landing-icon
+    &.today
       background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
 
+  // DEFAULTS PANEL
+  #default-sharing, #default-landingPage, #default-menuStyle
+    margin-bottom: 4px
 
 
-    // THE INCREDIBLE FONT SIZER
-    #default-font
-      .small, .medium, .large
-        +relative
-        +right
-        +center
-        +pointer
-        +round(24)
-        margin-left: 14px
+  // THE INCREDIBLE FONT SIZER
+  #default-fontSize
+    .small, .medium, .large
+      +relative
+      +right
+      +center
+      +pointer
+      +round(24)
+      margin-left: 14px
 
-      .small
-        +font(12)
-        padding: 2px 6px
-        margin-top: 11px
-      .medium
-        +font(16)
-        padding: 3px 8px
-        margin-top: 7px
-      .large
-        +font(18)
-        padding: 6px 12px
-        margin: 3px 8px 0 14px
+    .small
+      +font(12)
+      padding: 2px 6px
+      margin-top: 11px
+    .medium
+      +font(16)
+      padding: 3px 8px
+      margin-top: 7px
+    .large
+      +font(18)
+      padding: 6px 12px
+      margin: 3px 20px 0 14px
 
 
   // FACEBOOK LOGIN
@@ -193,7 +192,7 @@
       +font(18)
       margin: 0
       padding: 0 8px
-      width: 120px
+      width: 142px
       height: 34px
       line-height: 30px
       +confirm(16)
