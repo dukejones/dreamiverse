@@ -30,6 +30,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
       when 150 then newClass = 'follower'
       when 50 then newClass = 'anonymous'
       when 0 then newClass = 'private'
+      
     log('newClass '+ newClass)
     # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
