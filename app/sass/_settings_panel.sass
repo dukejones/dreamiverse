@@ -229,6 +229,7 @@
     +center
     +font(14)
     margin-bottom: 0px
+    +cancel(18)
     &:hover
       +alpha(100)
 
@@ -245,51 +246,59 @@
 // COLORS
 
 
-.light
+.light #settingsPanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-light.png) no-repeat 266px
 
-  #settingsPanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-light.png) no-repeat 266px
+  .feedback
+    +button-light
 
-    .feedback
-      +button-light
-
-    .defaults, .network, .changePassword, .feedback
-      +panel-light
-
-    .network
-      .linkAccount
-        +button-light
-        +shine-light-alpha(17)
-
-    .changePassword:hover
-      border: 1px solid #090909
-
-    .changePasswordForm
-      #user_old_password, #user_password, #user_password_confirmation
-        +input-light(small)
-
-    #default-fontSize
-      #fontLarge, #fontMedium, #fontSmall
-        +button-light
-        +indent-light
-
-  #settingsPanel, #appearancePanel
+  .defaults, .network, .changePassword, .feedback
     +panel-light
-    +glow-light(40)
-    border: none
 
-    .dropdown
-      +input-light(small)
-
-    .cancel, .confirm
+  .network
+    .linkAccount
       +button-light
-      +shine-light(16)
-      color: #111
-    .cancel
-      +cancel(16)
-    .confirm
-      +confirm(16)
+      +shine-light-alpha(17)
+
+  .changePassword:hover
+    border: 1px solid #090909
+
+  #user_old_password, #user_password, #user_password_confirmation
+    +input-light(small)
+
+  #fontLarge, #fontMedium, #fontSmall
+    +button-light
+    +indent-light
+
+  .cancel, .confirm
+    +button-light
+    +shine-light(16)
+    color: #111
+  .cancel
+    +cancel(16)
+  .confirm
+    +confirm(16)
+
+// SELECTED FONT SIZE - LIGHT
+.light
+  &.fontLarge #settingsPanel #fontLarge, &.fontMedium #settingsPanel #fontMedium, &.fontSmall #settingsPanel #fontSmall
+    border: 1px solid #777
+    +gradient(#aaa, #eee)
+    &:hover
+      border: 1px solid #777
+      +gradient(#aaa, #eee)
+    &:active
+      border: 1px solid #777
+      +gradient(#aaa, #eee)
+
+.light #settingsPanel, .light #appearancePanel
+  +panel-light
+  +glow-light(40)
+  border: none
+
+  .dropdown
+    +input-light(small)
 
 
 
@@ -298,55 +307,65 @@
 
 
 
-.dark
 
+.dark #settingsPanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-dark.png) no-repeat 266px
 
-  #settingsPanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-dark.png) no-repeat 266px
+  .feedback
+    +button-dark
 
-    .feedback
-      +button-dark
-
-    .defaults, .network, .changePassword, .feedback
-      +panel-dark
-
-    .defaultSharing
-      select
-        +input-dark(small)
-
-    .network
-      .linkAccount
-        +button-dark
-        +shine-grey(17)
-
-    .changePassword:hover
-      border: 1px solid #ccc
-
-    .changePasswordForm
-      #user_old_password, #user_password, #user_password_confirmation
-        +input-dark(small)
-
-    #default-fontSize
-      #fontLarge, #fontMedium, #fontSmall
-        +button-dark
-        +indent-dark
-
-
-
-  #settingsPanel, #appearancePanel
+  .defaults, .network, .changePassword, .feedback
     +panel-dark
-    +glow-dark(40)
-    border: none
 
-    .dropdown
+  .defaultSharing
+    select
       +input-dark(small)
 
-    .cancel, .confirm
+  .network
+    .linkAccount
       +button-dark
-      +shine-dark-alpha(16)
-      color: #eee
-    .cancel
-      +cancel(16)
-    .confirm
-      +confirm(16)
+      +shine-grey(17)
+
+  .changePassword:hover
+    border: 1px solid #ccc
+
+  #user_old_password, #user_password, #user_password_confirmation
+    +input-dark(small)
+
+  #fontLarge, #fontMedium, #fontSmall
+    +button-dark
+    +indent-dark
+    border: 1px solid #333
+
+  .cancel, .confirm
+    +button-dark
+    +shine-dark-alpha(16)
+    color: #eee
+  .cancel
+    +cancel(16)
+  .confirm
+    +confirm(16)
+
+// SELECTED FONT SIZE - DARK
+.dark
+  &.fontLarge #settingsPanel #fontLarge, &.fontMedium #settingsPanel #fontMedium, &.fontSmall #settingsPanel #fontSmall
+    border: 1px solid #777
+    +gradient(#222, #555)
+    &:hover
+      border: 1px solid #777
+      +gradient(#222, #555)
+    &:active
+      border: 1px solid #777
+      +gradient(#222, #555)
+
+
+.dark #settingsPanel, .dark #appearancePanel
+  +panel-dark
+  +glow-dark(40)
+  border: none
+
+  .dropdown
+    +input-dark(small)
+
+
