@@ -8,15 +8,14 @@
         = album || "All Images"
 
         %a.manage(href="#{manage_images_path}?ids=#{images.map(&:id).join(',')}")
-          .img
 
     %tr.images
       %td
         - images.each do |image|
           - metaData = ''
           .img
+            %img{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
             .add.hidden +
-            %img.preview{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
 
 
 .dropbox.collection.hidden
