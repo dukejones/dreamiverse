@@ -43,7 +43,7 @@
 
 
     / THE INCREDIBLE FONT SIZER
-    #default-fontSize
+    #default-fontSize{:'data-id' => current_user.default_font_size, :class => current_user.default_font_size}
       #default-fontSize-icon.img
       %h2.font-label font size
 
