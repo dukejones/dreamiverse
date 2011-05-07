@@ -79,8 +79,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
 
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
       log xhr.errors
-    
-    
+
   '#default-sharing-list change': (element) ->
     defaultSharingLevel = element.val()
     @displayDefaultSharingLevel defaultSharingLevel
