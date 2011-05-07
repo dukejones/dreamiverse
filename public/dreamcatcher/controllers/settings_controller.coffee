@@ -49,7 +49,12 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     pageBody = $('#body')
     pageBody.removeClass(className) for className in ['float','inpage']
     pageBody.addClass(defaultMenuStyle)
-   
+
+  displayDefaultFontSize: (defaultFontSize) ->
+    body = $('#body')
+    body.removeClass(className) for className in ['small','medium','large']
+    body.addClass(defaultFontSize)
+    # when #fontLarge is clicked add class #fontLarge to body   
     
   updateSettingsModel: (params) ->
     Dreamcatcher.Models.Settings.update params
@@ -91,6 +96,11 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     defaultMenuStyle = element.val()
     @displayDefaultMenuStyle defaultMenuStyle
     @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
+
+  '#default-fontSize change': (element) ->
+    defaultFontSize = element.className
+    @displayDefaultFontSize defaultFontSize
+    @updateSettingsModel {'user[default_font_size]': defaultFontSize}
 
   '.cancel click': ->
     $('.changePasswordForm').hide()
