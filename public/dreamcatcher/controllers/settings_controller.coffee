@@ -35,13 +35,13 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     log('newClass '+ newClass)
     # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
-    sharingIcon = $('#sharing-icon')
+    sharingIcon = $('#default-sharing-icon')
     sharingIcon.removeClass(oldClass) for oldClass in ['everyone','friends','followers','anonymous','private']
     sharingIcon.addClass(newClass)    
     
 
   displayDefaultLandingPage: (defaultLandingPage) ->
-    landingIcon = $('#landing-icon')
+    landingIcon = $('#default-landingPage-icon')
     landingIcon.removeClass(className) for className in ['stream','home','today']
     landingIcon.addClass(defaultLandingPage)
 
