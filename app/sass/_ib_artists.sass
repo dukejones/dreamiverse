@@ -10,31 +10,36 @@ table#artistList
 
     td
       +font(16)
-      width: 50%
       padding: 0 0 0 20px
       border: 1px solid #ddd
+    td.imageColumn
+      width: 364px
 
 
   // ARTIST ROW
   tr.artist
+    +pointer
     +overflow
-    height: 60px
+    height: 62px
     +flat-dark
-
-    td
-      +font(24)
-      width: 50%
+    &:hover
+      color: #222
+      +gradient(#fff, #8c8c8c)
 
     td.name
       h2
+        +font(24)
         margin: 0 0 0 20px
 
     td.images
-      .img
+      img
         +left
-        height: 60px
-        width: auto
-
+        margin: 0
+        height: 62px
+        width: 62px
+        border: 1px solid transparent
+        &:hover
+          border: 1px solid #222
 
 
 

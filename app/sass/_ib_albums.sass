@@ -5,15 +5,26 @@ table#albumList
   tr.name
 
     td
-      +font(16)
+      +font(24)
       width: 100%
-      height: 32px
-      vertical-align: center
+      height: 60px
+      line-height: 60px
       padding: 0 0 0 20px
       +indent-dark
+      border: none
+      border-bottom: 1px solid #ddd
 
       a.manage
-        .img
+        +pointer
+        +block
+        +right
+        +alpha(50)
+        margin: 0 12px 0 0
+        width: 33px
+        height: 60px
+        background: url(/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+        &:hover
+          +alpha(100)
 
   tr.images
 
@@ -33,6 +44,9 @@ table#albumList
           .add
             +block
 
+        img
+          width: 126px
+          height: 126px
 
         .add
           +absolute
@@ -42,15 +56,13 @@ table#albumList
           +bold
           width: 24px
           height: 24px
-          line-height: 29px
+          line-height: 24px
+          color: green
           background: #fff
           bottom: 0px
           right: 0px
-
-        .preview
-          +overflow
-          width: 126px
-          height: 126px
+          &:hover
+            +alpha(100)
 
 
 // DROPBOX MY COLLECTION

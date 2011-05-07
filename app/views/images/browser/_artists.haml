@@ -6,7 +6,7 @@
   %tr.columnNames
     %td
       Artist
-    %td
+    %td.imageColumn
       Images
 
   / ARTIST ROW
@@ -16,9 +16,8 @@
         %h2= artist.blank? ? "Unknown" : artist
 
       %td.images
-        .img
-          - images.each do |image|
-            = image_tag image.url('62x62'), :alt => image.id
+        - images.each do |image|
+          = image_tag image.url('62x62'), :alt => image.id
 
 
 
