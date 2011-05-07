@@ -32,7 +32,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $.cookie("selectedImages",newImages.join(","))
       
   showImage: (image) ->
-    $(".imagelist").append(@view('show',image))
+    $("#imagelist").append(@view('show',image))
   
    
   populateLists: ->
@@ -84,11 +84,13 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   ###
     
   displayMetaData: (image) ->
+    image.date = image.created_at if image.created_at?
+    image.user = image.uploaded_by_id if image.uploaded_by_id?
     @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
     
   showCommonMeta: ->
     common = {}
-    $(".imagelist li.selected").each (index, element) =>
+    $("#imagelist li.selected").each (index, element) =>
       data = $(element).data 'image'
       for attr in @model.attributes
         if not common[attr]?
@@ -98,6 +100,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @displayMetaData(common)
     
   createUploader: ->
+    
     uploader = new qq.FileUploader {
       element: $('#uploader').get(0)
       action: '/images.json'
@@ -116,10 +119,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         image_url = result.image_url
         log image_url
         image = result.image
-        $(".imagelist li:last").data("id",image.id).data("image",JSON.stringify(image)).append("<img src='#{image_url}'/>")
+        $("#imagelist li").each (index,element) ->
+          $(element).remove() if $(".upload-file",element).text() is fileName
+        @showImage image
         @addImage image.id
       template: $("#uploader").html()
-      fileTemplate: $(".imagelist").html()
+      fileTemplate: @view('fileTemplate')
       classes: {
         button: 'browse'
         drop: 'dropArea'
@@ -129,13 +134,13 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         file: 'upload-file'
         spinner: 'spinner'
         size: 'upload-size'
-        cancel: 'upload-cancel'
+        cancel: 'close'
         success: 'upload-success'
         fail: 'upload-fail'
       }
     }
   
-  '.imagelist li click': (el) ->
+  '#imagelist li click': (el) ->
     if el.hasClass('selected')
       el.removeClass('selected')
     else
@@ -146,16 +151,16 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     
   '.all click': (el) ->
     if el.text().indexOf('all') != -1
-      $(".imagelist li").addClass('selected')
+      $("#imagelist li").addClass('selected')
       el.text('select none')
     else
-      $(".imagelist li").removeClass('selected')
+      $("#imagelist li").removeClass('selected')
       el.text('select all')
       
     @showCommonMeta()
   
   '.save click': (el) ->
-    $('.imagelist li').each (index,element) =>
+    $('#imagelist li').each (index,element) =>
       imageId = $(element).data('id')
       if $(element).is(":visible")
         imageMeta = $(element).data('image')
@@ -171,14 +176,14 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("input[type='checkbox']",el.parent()).attr("checked",el.val().length > 0)
     value = el.val()
     attribute = el.parent().attr('id')
-    $('.imagelist li.selected').each (index,element) =>
+    $('#imagelist li.selected').each (index,element) =>
       meta = $(element).data 'image'
       meta[attribute] = value
       $(element).data 'image',meta
         
       
   '.cancel click': (el) ->
-    $('.imagelist li.selected').each (index,element) =>
+    $('#imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
       @model.disable imageId,{},@callback('disable',$(element),imageId)
       
@@ -195,9 +200,9 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.parent().css('opacity',0.5)
       
   '.reset click': (el) ->
-    $(".imagelist li").removeClass("selected")
+    $("#imagelist li").removeClass("selected")
     @displayMetaData {}
-    $('.imagelist li').each (index,element) =>
+    $('#imagelist li').each (index,element) =>
       imageId = $(element).data 'id'
       @model.getImage imageId,{},(data) =>
         $(element).data('image',data)

@@ -23,7 +23,7 @@
 
     .dropbox
 
-      %ul.imagelist
+      %ul#imagelist.imagelist
 
         %li.uploading
 
@@ -117,19 +117,19 @@
     #source.panel.target.showhide.hidden
 
       .wrap
-        .inputWrap.source
+        .inputWrap.source#date
           %h2.label date
-          %input.text{type: "text"}
-          %input.checkbox{type: "checkbox"}
+          %input.text{type: "text", :disabled => true}
+          /%input.checkbox{type: "checkbox", disabled: "disabled"}
 
       .wrap
-        .inputWrap.source
+        .inputWrap.source#user
           %h2.label user
-          %input.text{type: "text"}
-          %input.checkbox{type: "checkbox"}
+          %input.text{type: "text", :disabled => true}
+          /%input.checkbox{type: "checkbox"}
 
       .wrap
-        .inputWrap.source
+        .inputWrap.source#geotag
           %h2.label geotag
           %input.text{type: "text"}
           %input.checkbox{type: "checkbox"}
@@ -143,7 +143,7 @@
     %h2.header.trigger.showhide tags
     #tags.panel.target.showhide.hidden
 
-      .inputWrap.tags
+      .inputWrap.tags#tags
         %textarea{type: "text",  rows: "2", cols: "75"}
         %input{type: "checkbox"}
 
