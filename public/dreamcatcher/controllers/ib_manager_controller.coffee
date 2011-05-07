@@ -5,8 +5,10 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   init: ->
     @populateLists()
     @createUploader()
-    images = @getImages()
-    @model.getImage image,{},@callback('showImage') for image in images
+    @loadImages()
+
+  loadImages: ->
+    @model.getImage image,{},@callback('showImage') for image in @getImages()
   
   ##cookies
   getImages: ->
@@ -69,6 +71,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     else
       $("##{attr} textarea").val(value)
   
+  ###
   grabMetaData: () ->
     selectedOnly = true
     image = {}
@@ -78,6 +81,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     image.section = "Library"
     log image
     return {image: image}
+  ###
     
   displayMetaData: (image) ->
     @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
@@ -112,10 +116,10 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         image_url = result.image_url
         log image_url
         image = result.image
-        $(".imagelist li:last").data("id",image.id).data("image",JSON.stringify(image)).html("<img src='#{image_url}'/>")
+        $(".imagelist li:last").data("id",image.id).data("image",JSON.stringify(image)).append("<img src='#{image_url}'/>")
         @addImage image.id
       template: $("#uploader").html()
-      fileTemplate: @view('fileTemplate')
+      fileTemplate: $(".imagelist").html()
       classes: {
         button: 'browse'
         drop: 'dropArea'
@@ -151,31 +155,26 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @showCommonMeta()
   
   '.save click': (el) ->
-    $('.imagelist li.selected').each (index,element) =>
+    $('.imagelist li').each (index,element) =>
       imageId = $(element).data('id')
-      @model.update imageId,@grabMetaData()
-      @model.getImage imageId,{},@callback('updateImageMeta',$(element))
-      
-  updateImageMeta: (el,data) ->
-    el.data('image',data)
-  
-  ###  
-  checkDifferent: (el) ->
-    if el.is(':checked') and $("input[type='text']",el.parent()).attr("placeholder") is "different"
-      if not confirm 'are you sure?'
-        el.attr("checked",false)
-        return false
-    return true
-    
-  'input[type="checkbox"] checked': (el) ->
-    @checkDifferent(el)
-  ###
-     
+      if $(element).is(":visible")
+        imageMeta = $(element).data('image')
+        @model.update imageId,{image: imageMeta}
+      else
+        @model.disable imageId,{},=>
+          @removeImage imageId
+
   'input[type="text"],select focus': (el) ->
     $("input[type='checkbox']",el.parent()).attr("checked",true)
     
-  'input[type="text"] blur': (el) ->
+  'input[type="text"],select blur': (el) ->
     $("input[type='checkbox']",el.parent()).attr("checked",el.val().length > 0)
+    value = el.val()
+    attribute = el.parent().attr('id')
+    $('.imagelist li.selected').each (index,element) =>
+      meta = $(element).data 'image'
+      meta[attribute] = value
+      $(element).data 'image',meta
         
       
   '.cancel click': (el) ->
@@ -187,9 +186,23 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     genres = $("option:selected",el).data("genres")
     $("#genre select").html("")
     $("#genre select").append("<option>#{genre}</option>") for genre in genres
-  
-  disable: (el, id) ->
-    el.css("opacity",0.5)
-    @removeImage id
+    
+  '.close click': (el) ->
+    if el.parent().css('opacity') is '0.5'
+      imageId = el.parent().data('id')
+      el.parent().hide()
+    else
+      el.parent().css('opacity',0.5)
+      
+  '.reset click': (el) ->
+    $(".imagelist li").removeClass("selected")
+    @displayMetaData {}
+    $('.imagelist li').each (index,element) =>
+      imageId = $(element).data 'id'
+      @model.getImage imageId,{},(data) =>
+        $(element).data('image',data)
+      $(element).show()
+      
+        
   
   
