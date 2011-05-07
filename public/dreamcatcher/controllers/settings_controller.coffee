@@ -32,7 +32,6 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
       when 50 then newClass = 'anonymous'
       when 0 then newClass = 'private'
       
-    log('newClass '+ newClass)
     # $('.sharing-icon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
     
     sharingIcon = $('#default-sharing-icon')
@@ -51,9 +50,9 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     pageBody.addClass(defaultMenuStyle)
 
   displayDefaultFontSize: (defaultFontSize) ->
-    body = $('#body')
-    body.removeClass(className) for className in ['small','medium','large']
-    body.addClass(defaultFontSize)
+    pageBody = $('#body')
+    pageBody.removeClass(className) for className in ['small','medium','large']
+    pageBody.addClass(defaultFontSize)
     # when #fontLarge is clicked add class #fontLarge to body   
     
   updateSettingsModel: (params) ->
@@ -97,8 +96,9 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @displayDefaultMenuStyle defaultMenuStyle
     @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
 
-  '#default-fontSize change': (element) ->
-    defaultFontSize = element.className
+  '#fontLarge, #fontMedium, #fontSmall click': (element) ->
+    defaultFontSize = @.id
+    log('defaultFontSize: ' + defaultFontSize)
     @displayDefaultFontSize defaultFontSize
     @updateSettingsModel {'user[default_font_size]': defaultFontSize}
 
