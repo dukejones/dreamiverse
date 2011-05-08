@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 
   def parse_url_title
     @url = params[:url]
-    @title = ExternalUrl.title(@url)
+    @title = ExternalUrl.title(@url) || @url
     render :json => {:title => @title}
   end
 

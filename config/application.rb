@@ -2,11 +2,11 @@ require File.expand_path('../boot', __FILE__)
 
 require 'net/http' # temp hack to prevent re-captcha uninitialized constant Net::HTTP errors
 require 'rails/all'
+require 'open-uri'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
-
 
 FB_PERMS = "publish_stream, publish_checkins, user_photos" # user_location, user_checkins, email
 
