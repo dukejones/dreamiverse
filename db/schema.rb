@@ -173,13 +173,13 @@ ActiveRecord::Schema.define(:version => 20110507005153) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false, :null => false
+    t.boolean  "ubiquity",              :default => false,    :null => false
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
-    t.string   "default_landing_page"
     t.string   "default_menu_style"
     t.string   "default_font_size"
+    t.string   "default_landing_page",  :default => "stream"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
