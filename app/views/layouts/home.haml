@@ -20,9 +20,9 @@
     #bodyClick
     -# render "shared/facebook_sdk"
 
-    / - unless current_user.blank?
-    /   / META MENU - USER
-    /   = render :partial => "users/meta_menu_user"
+    - unless current_user.blank?
+      / META MENU - USER
+      = render :partial => "users/meta_menu"
 
     = render :partial => "layouts/alert"
 
