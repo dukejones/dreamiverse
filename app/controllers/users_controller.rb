@@ -59,13 +59,14 @@ class UsersController < ApplicationController
   end
   
   def confirm
-    #redirect_to login_path, :alert => 'please log in, then try confirming again' and return unless current_user
     user = User.find params[:id]
     if params[:confirmation] == user.confirmation_code
       flash.notice = "email address has been confirmed"
+      set_current_user user
     else
       flash.alert = "confirmation code did not match logged-in user"
     end
+    redirect_to root_path
   end
   
   def search
