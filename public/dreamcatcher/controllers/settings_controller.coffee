@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   init: ->
     @setupDefaults()
     @setupAjaxBinding()
-    
+  
   setupDefaults: ->
     # GATHER THE IN PAGE DEFAULTS
     defaultLandingPage = $('#default-landingPage').data 'id'
@@ -14,14 +14,18 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     $('#default-landingPage-list').val(defaultLandingPage)
     $('#default-menuStyle-list').val(defaultMenuStyle)
 
-    
     @displayDefaultLandingPage defaultLandingPage
  
-    
+ 
   showPanel: ->    
     $('#settingsPanel').show()
-    
 
+
+  updateSettingsModel: (params) ->
+    Dreamcatcher.Models.Settings.update params
+    
+        
+  # DEFAULT SETTINGS DISPLAY METHODS
   displayDefaultLandingPage: (defaultLandingPage) ->
     landingIcon = $('#default-landingPage-icon')
     landingIcon.removeClass(className) for className in ['stream','home','today']
@@ -36,9 +40,29 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     pageBody = $('#body')
     pageBody.removeClass(className) for className in ['fontSmall','fontMedium','fontLarge']
     pageBody.addClass(defaultFontSize)
+ 
     
-  updateSettingsModel: (params) ->
-    Dreamcatcher.Models.Settings.update params
+  # ON CLICK AND CHANGE METHODS
+
+  '#default-landingPage-list change': (element) ->
+    defaultLandingPage = element.val()
+    @displayDefaultLandingPage defaultLandingPage
+    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage} 
+
+  '#default-menuStyle-list change': (element) ->
+    defaultMenuStyle = element.val()
+    @displayDefaultMenuStyle defaultMenuStyle
+    @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
+
+  '#default-fontSize .fontSize click': (element) ->
+    defaultFontSize = element.attr("id")
+    @displayDefaultFontSize defaultFontSize
+    @updateSettingsModel {'user[default_font_size]': defaultFontSize}
+
+  '.cancel click': ->
+    $('.changePasswordForm').hide()
+    $('#user_password,#user_password_confirmation').val ''
+    
 
   setupAjaxBinding: ->
     # TODO: Needs refactoring.
@@ -60,26 +84,4 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
         $('#user_old_password, #user_password, #user_password_confirmation').val ''
 
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
-      log xhr.errors
-
-
-  # ON CLICK AND CHANGE METHODS
-
-  '#default-landingPage-list change': (element) ->
-    defaultLandingPage = element.val()
-    @displayDefaultLandingPage defaultLandingPage
-    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage} 
-
-  '#default-menuStyle-list change': (element) ->
-    defaultMenuStyle = element.val()
-    @displayDefaultMenuStyle defaultMenuStyle
-    @updateSettingsModel {'user[default_menu_style]': defaultMenuStyle} 
-
-  '#default-fontSize .fontSize click': (element) ->
-    defaultFontSize = element.attr("id")
-    @displayDefaultFontSize defaultFontSize
-    @updateSettingsModel {'user[default_font_size]': defaultFontSize}
-
-  '.cancel click': ->
-    $('.changePasswordForm').hide()
-    $('#user_password,#user_password_confirmation').val ''
+      log xhr.errors    
