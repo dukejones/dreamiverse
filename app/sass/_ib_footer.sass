@@ -15,6 +15,7 @@
   -webkit-box-shadow: inset 0 10px 10px rgba(0,0,0,0.7)
 
   h2
+    +absolute
     +font(16)
     +bold
     margin: 8px
@@ -53,20 +54,21 @@
   left: 4px
   width: 752px
   height: 32px
-  padding: 4px 0
+  padding: 3px 0
 
-  .cancel, .edit, .add, .set, .drag
+  .cancel, .edit, .add, .set, .drag, .next, .prev
     +right
     +pointer
+    +user-select
     +center
     +round(8)
     margin: 0 8px 0 0
     padding: 0 12px
     height: 28px
-    line-height: 30px
-    border: 1px solid #ddd
+    line-height: 26px
+    border: 1px solid #242424
     +shine-dark(14)
-    +gradient(#7D7D7D, #000)
+    +gradient(#242424, #000)
 
     .img
       +left
@@ -75,7 +77,12 @@
       margin: 0 8px 0 0
 
     &:hover
+      color: #fff
+      border: 1px solid #777
+    &:active
       border: 1px solid #fff
+      +shine-dark(0)
+      +gradient(#000, #242424)
 
   .edit
 
@@ -85,5 +92,18 @@
   .set .img
     background: url(/images/icons/check-16.png) no-repeat center center transparent
 
+  .next, .prev
+    +font(32)
+    +bold
+    line-height: 28px
+
+  .next
+    +flat-left
+    margin: 0 4px 0 0
+
+  .prev
+    +flat-right
+    +left
+    margin: 0 0 0 4px
 
 
