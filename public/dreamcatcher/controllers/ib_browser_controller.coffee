@@ -6,32 +6,31 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @section = "Library"
     $("#genreList").html @view('categories',{categories: @model.categories})
     
+  updateTitle: (back,backType,current) ->
+    $(".backArrow span").text(back)
+    $(".backArrow").attr("name",backType)
+    $("h1").text(current)
+  
+  displayScreen: (previous,current,html) ->
+    $(previous).hide()
+    $(previous).after(html) if not $(current).exists()
+    $(current).show()
+    
   '.subGenres span click': (el) ->
     @genre = el.text()
-
-    $(".backArrow span").text("Home")    
-    $("h1").text(@genre)
-
-    $.get "/artists?genre=#{@genre}&section=#{@section}",(artists) ->
-      $("#genreList").hide()
-      $("#genreList").after(artists)
-      $("#artistList").show()
+    @updateTitle "home","genre",@genre
+    $.get "/artists?genre=#{@genre}&section=#{@section}",(artists) =>
+      @displayScreen("#genreList","#artistList",artists)
   
   'tr.artist click': (el) ->
     @artist = $("h2:first",el).text()
-    
-    $(".backArrow span").text(@genre)
-    $("h1").text(@artist)
-    
-    $.get "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}",(albums) ->
-      $("#artistList").hide()
-      $("#artistList").after(albums)
-      $("#albumList").show()
-      
+    @updateTitle @genre,"artist",@artist
+    $.get "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}",(albums) =>
+      @displayScreen("#artistList","#albumList",albums)
+  
   '.backArrow click': (el) ->
-    $("#genreList").show()
-    $("#artistList").hide()
-  
-      
-  
-
+    $("#genreList,#artistList,#albumList").hide()
+    switch el.attr("name")
+      when "genres" then $("#genreList").show()
+      when "artists" then $("#artistList").show()
+      when "albums" then $("#albumList").show()

@@ -1,6 +1,6 @@
 $.Model 'Dreamcatcher.Models.ImageBank',{
   
-  attributes: ['type','category','genre','title','album','artist','location','year','notes','tags']
+  attributes: ['type','category','genre','title','album','artist','location','year','notes','date','user','geotag','tags']
   types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
   categories: [
     {
