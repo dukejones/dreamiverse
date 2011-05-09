@@ -5,21 +5,6 @@
   / DEFAULTS
   .defaults
 
-
-    #default-sharing{:'data-id' => current_user.default_sharing_level}
-
-      #default-sharing-icon.img
-      %h2.sharing-label sharing
-
-      %select#default-sharing-list.dropdown
-        %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
-        %option.friends{   value: Entry::Sharing[:friends]   } friends only
-        %option.followers{ value: Entry::Sharing[:followers] } followers only
-        %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
-        %option.private{   value: Entry::Sharing[:private]   } private
-      .clear
-
-
     #default-landingPage{:'data-id' => current_user.default_landing_page}
       #default-landingPage-icon.img
       %h2.landing-label landing page

@@ -57,6 +57,7 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
+  after_create :set_default_sharing_level
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
 
@@ -288,6 +289,11 @@ protected
 
   def set_sharing_level
     self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
+  end
+
+  def set_default_sharing_level
+    self.user._?.default_sharing_level = self.sharing_level
+    self.user.save
   end
 
   def init_dreamed_at
