@@ -1,6 +1,7 @@
 // ALBUMS
 
 table#albumList
+  margin: 0 0 136px
 
   tr.name
 
@@ -68,11 +69,17 @@ table#albumList
 // DROPBOX MY COLLECTION
 .dropbox.collection
   +absolute
-  bottom: 0
+  bottom: 40px
   margin: 0
   padding: 0
   height: 128px
+  width: 752px
   background: #272727 url(/images/icons/ib-icons/dropboxIconText.png) no-repeat center center
+
+  h2
+    +font(16)
+    +bold
+    margin: 8px
 
   .active
     +alpha(70)
