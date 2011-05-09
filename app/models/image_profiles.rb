@@ -54,10 +54,11 @@ module ImageProfiles
     img.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
   end
 
-  def convert(img, new_format, quality=nil)
+  def convert(img, options, quality=nil)
     img.quality quality if quality
     
-    img.format options[:format] if !new_format.blank? && self.format != new_format
+    new_format = options[:format]
+    img.format new_format if new_format && self.format != new_format
   end
 
   ########## PROFILES #############
