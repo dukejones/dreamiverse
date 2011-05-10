@@ -1,0 +1,130 @@
+// SEARCH OPTIONS
+
+#searchOptions
+  margin: 0 0 20px
+
+  .listBar
+    margin: 0 10px
+    padding: 8px
+    +round(12)
+    +gradient(#505050, rgba(39,39,39,0.1))
+
+    .category, .size
+      +pointer
+      +round(8)
+      height: 32px
+      margin: 0
+      padding: 0
+      background: #1c1c1c
+
+      input.checkbox
+        +right
+        margin: 11px 12px 0 0
+
+      select.list
+        +left
+        +pointer
+        +outline
+        +transparent
+        +font(14)
+        border: none
+        padding: 6px 8px
+        height: 32px
+        width: 102px
+        color: #ddd
+
+        option
+          +font(12)
+          margin: 0
+          padding: 4px 8px
+          color: #C2C2C2
+          background: #464646
+          border: 1px solid #1C1C1C
+          border-top: none
+          &:hover
+            background: #EBEBEB
+            color: #464646
+            border: 1px solid #000
+            border-top: none
+
+        option.label
+
+    .category
+      +left
+
+    .size
+      +right
+
+
+
+  .filters
+    +left
+    +round(12)
+    margin: 12px 0 0 12px
+    padding: 8px
+    width: 224px
+    +gradient(#505050, rgba(39,39,39,0.1))
+
+    h2
+      +font(18)
+      margin: 0 0 8px
+      padding: 0
+      color: #d1d3d4
+      text-transform: uppercase
+
+    .filter
+      +clear
+      height: 32px
+      margin: 0 0 4px
+
+      label
+        +right
+        margin: 0 12px 0 0
+        padding: 0
+        line-height: 30px
+        color: #a7a9ac
+        text-align: right
+
+      input
+        +right
+        +round(8)
+        width: 132px
+        height: 30px
+        +input-dark(large)
+
+
+  .genres
+    +right
+    +round(12)
+    margin: 12px 12px 0px 0px
+    padding: 8px
+    width: 460px
+    +gradient(#505050, rgba(39,39,39,0.1))
+
+    h2
+      +font(18)
+      margin: 0 0 8px
+      padding: 0
+      color: #d1d3d4
+      text-transform: uppercase
+
+    .genre
+      +left
+      +pointer
+      +center
+      +font(18)
+      +round(8)
+      margin: 0 8px 4px 16px
+      width: 198px
+      height: 28px
+      line-height: 28px
+      +flat-dark
+      border: 1px solid #444
+      &:hover, &.selected
+        color: #414042
+        border: 1px solid #e6e7e8
+        +gradient(#8c8c8c, #fff)
+
+
+
+
