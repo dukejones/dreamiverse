@@ -2,42 +2,42 @@
 
 #searchOptions
 
-  .category
-    %input.checkbox{type: 'checkbox'}
-    %select.list
-      %option.label{type: 'disabled'} Category
-      %option{value: 'Library'} Library
-      %option{value: 'Hypnos'} Hypnos
-      %option{value: 'P.A.C.E.'} P.A.C.E.
+  .listBar
+    .category
+      %input.checkbox{type: 'checkbox'}
+      %select.list
+        %option.label{value: ''} Category
+        %option{value: 'Library'} Library
+        %option{value: 'Hypnos'} Hypnos
+        %option{value: 'P.A.C.E.'} P.A.C.E.
 
-  .size
-    %input.checkbox{type: 'checkbox'}
-    %select.list
-      %option.label{type: 'disabled'} Size
-      %option{value: 'Small'} Small
-      %option{value: 'Medium'} Medium
-      %option{value: 'Large'} Large
-
-  .clear
+    .size
+      %input.checkbox{type: 'checkbox'}
+      %select.list
+        %option.label{value: ''} Size
+        %option{value: 'Small'} Small
+        %option{value: 'Medium'} Medium
+        %option{value: 'Large'} Large
+    .clear
 
 
   .filters
     %h2 Filters
     .filter
+      %input{type: 'text'}
       %label artist:
-      %input{type: 'text'}
     .filter
+      %input{type: 'text'}
       %label album:
-      %input{type: 'text'}
     .filter
+      %input{type: 'text'}
       %label title:
-      %input{type: 'text'}
     .filter
+      %input{type: 'text'}
       %label year:
-      %input{type: 'text'}
     .filter
-      %label tag:
       %input{type: 'text'}
+      %label tag:
 
   .genres
     %h2 Genres
@@ -52,6 +52,8 @@
     .genre NASA
     .genre Anime
     .genre Featured Gallery
+
+  .clear
 
 
 

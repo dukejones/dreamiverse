@@ -3,31 +3,31 @@
   margin: 0 0 8px
   padding: 0
 
-.genre
-  +pointer
-  +center
-  +relative
-  height: 124px
-  line-height: 124px
-  +shine-dark(57)
-  &:hover .subGenres
-    +block
-  &:hover h2
-    color: #fff
+  .genre
+    +pointer
+    +center
+    +relative
+    height: 124px
+    line-height: 124px
+    +shine-dark(57)
+    &:hover .subGenres
+      +block
+    &:hover h2
+      color: #fff
 
-  h2
-    +font(26)
-    margin: 0
-    color: #a1a1a1
-
-  .subGenres
-    +absolute
-    top: 30px
-    width: 100%
-
-    span
-      +font(16)
-      margin: 0 12px
+    h2
+      +font(26)
+      margin: 0
       color: #a1a1a1
-      &:hover
-        color: #fff
+
+    .subGenres
+      +absolute
+      top: 30px
+      width: 100%
+
+      span
+        +font(16)
+        margin: 0 12px
+        color: #a1a1a1
+        &:hover
+          color: #fff
