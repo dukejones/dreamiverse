@@ -9,14 +9,15 @@
         %td
           = album || "All Images"
 
-          %a.manage(href="#{manage_images_path}?ids=#{images.map(&:id).join(',')}")
+          %a.manage(href="#{manage_images_path}")
+          /?ids=#{images.map(&:id).join(',')}
 
       %tr.images
         %td
           - images.each do |image|
             - metaData = ''
-            .img
-              %img{id: "image_#{image.id}", src: image.url("126x126"), alt: metaData }
+            .img{:'data-id' => image.id}
+              %img{id: "image_#{image.id}", src: image.url("126x126")}
               .add.hidden +
 
 
