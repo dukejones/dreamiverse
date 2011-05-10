@@ -40,21 +40,20 @@
     %h2.header.trigger.showhide organization
     #organization.panel.target.showhide
 
-      %h2.label type
       .listWrap#type
         %input{type: "checkbox"}
         %select.list
+          %option.label{value: ''} type
 
-      %h2.label category
       .listWrap#category
         %input{type: "checkbox"}
         %select.list
+          %option.label{value: ''} category
 
-      %h2.label genre
       .listWrap#genre
         %input{type: "checkbox"}
         %select.list
-          %option{value: "Placeholder"} Placeholder
+          %option.label{value: ''} genre
 
       .clear
 
