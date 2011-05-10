@@ -5,12 +5,12 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     @setupAjaxBinding()
   
   setupDefaults: ->
-    # GATHER THE IN PAGE DEFAULTS
+    # Gather the in page defaults
     defaultLandingPage = $('#default-landingPage').data 'id'
     defaultMenuStyle = $('#default-menuStyle').data 'id'
     defaultFontSize = $('#default-fontSize').data 'id'
     
-    # SET THE PULLDOWN DEFAULTS
+    # Set the pulldown defaults
     $('#default-landingPage-list').val(defaultLandingPage)
     $('#default-menuStyle-list').val(defaultMenuStyle)
 
@@ -25,7 +25,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     Dreamcatcher.Models.Settings.update params
     
         
-  # DEFAULT SETTINGS DISPLAY METHODS
+  # Default settings display methods
   displayDefaultLandingPage: (defaultLandingPage) ->
     landingIcon = $('#default-landingPage-icon')
     landingIcon.removeClass(className) for className in ['stream','home','today']
@@ -42,8 +42,7 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     pageBody.addClass(defaultFontSize)
  
     
-  # ON CLICK AND CHANGE METHODS
-
+  # Listener methods
   '#default-landingPage-list change': (element) ->
     defaultLandingPage = element.val()
     @displayDefaultLandingPage defaultLandingPage
@@ -63,9 +62,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
     $('.changePasswordForm').hide()
     $('#user_password,#user_password_confirmation').val ''
     
-
+  # Facebook and change password code: TODO: Needs refactoring
   setupAjaxBinding: ->
-    # TODO: Needs refactoring.
     $('#fbLink').bind 'ajax:success', (event, xhr, status)->
       $('#fbLink').remove()
       $('.network').append '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'
