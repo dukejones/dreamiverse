@@ -48,9 +48,9 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   isSelect: (attr) ->
     return $("##{attr} select").exists()
 
+  ###
   getAttribute: (attr,selectedOnly) ->
     return null if not $("##{attr} input[type='checkbox']").attr("checked") and selectedOnly
-
     if @isText(attr)
       return $("##{attr} input[type='text']").val()
     else if @isSelect(attr)
@@ -58,8 +58,16 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     else
       log $("##{attr} textarea").val()
       return $("##{attr} textarea").val()
+  ###
   
   setAttribute: (attr, value) ->
+    if attr is "created_at"
+      attr = "date"
+      value = $.format.date(value.replace("T"," "), 'MMM dd, yyyy')
+    if attr is "uploaded_by_id"
+      attr = "user"
+      value = "phong" #TODO: usercontroller
+
     $("##{attr} input[type='checkbox']").attr("checked",value? and value isnt "*")
     if @isText(attr)
       if value is "*"
@@ -67,25 +75,11 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       else
         $("##{attr} input[type='text']").val(value).removeAttr("placeholder")
     else if @isSelect(attr)
-      $("##{attr} select").val(value)
+      $("##{attr} select").val(value).change()
     else
       $("##{attr} textarea").val(value)
-  
-  ###
-  grabMetaData: () ->
-    selectedOnly = true
-    image = {}
-    for attribute in @model.attributes
-      value = @getAttribute(attribute,selectedOnly)
-      image[attribute] = value if value? or not selectedOnly
-    image.section = "Library"
-    log image
-    return {image: image}
-  ###
     
   displayMetaData: (image) ->
-    image.date = image.created_at if image.created_at?
-    image.user = image.uploaded_by_id if image.uploaded_by_id?
     @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
     
   showCommonMeta: ->
@@ -164,6 +158,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       imageId = $(element).data('id')
       if $(element).is(":visible")
         imageMeta = $(element).data('image')
+        log imageMeta
         @model.update imageId,{image: imageMeta}
       else
         @model.disable imageId,{},=>
