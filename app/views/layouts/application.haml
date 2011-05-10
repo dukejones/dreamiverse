@@ -22,7 +22,7 @@
         $('input[placeholder], textarea[placeholder]').placeholder()
     = yield :head
 
-  %body{id: 'body', class: "#{theme} #{bedsheet_attachment} #{current_user.default_menu_style} #{current_user.default_font_size}", style: bedsheet_style}
+  %body{id: 'body', class: current_user.blank? ? "#{theme} #{bedsheet_attachment}" : "#{theme} #{bedsheet_attachment} #{current_user.default_menu_style} #{current_user.default_font_size}", style: bedsheet_style}
 
     - unless current_user.blank?
       #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}
