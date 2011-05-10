@@ -2,7 +2,7 @@
 body.home
   background-image: url('/images/bedsheets/today-in-dreams-med.jpg')
   background-attachment: scroll
-  background-repeat: no-repeat
+  background-repeat: repeat-x
   background-position: top center
   background-color: #05204b !important
   margin: 0
@@ -68,11 +68,16 @@ body.home
       .img
         background: url(/images/icons/shuffle-24-active.png) no-repeat center
 
+#home.public
+  // LEFT COLUMN - logged out height
+  #leftColumn
+    top: 160px
 
+#home
   // LEFT COLUMN
   #leftColumn
     width: 730px
-    top: 160px
+    top: 83px
     left: 50px
     +absolute
 
@@ -239,7 +244,7 @@ body.home
 
     .topPadding
       width: 20px
-      height: 160px
+      height: 83px
 
     .facebook .hover_label
       top: 43px !important

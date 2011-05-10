@@ -30,13 +30,13 @@
   / PUBLIC STREAM
   #publicStreamGlow
     #publicStream
-      .today this week in dreams
+      .today today in dreams
       / .todayFilter today
       / %h1.in in
       / .dreamsFilter dreams
 
       / DREAM MATRIX - ternary to remove comments from public view
-      .matrix{class: current_user.blank? ? 'public' : ''}
+      .matrix
 
 
         / / DREAM THUMBS 1D

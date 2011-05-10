@@ -27,7 +27,7 @@
     = render :partial => "layouts/alert"
 
     #drop_shadow
-    #home
+    #home{class: current_user.blank? ? 'public' : ''}
 
       = yield
 
