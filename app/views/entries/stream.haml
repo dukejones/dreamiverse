@@ -18,28 +18,17 @@
     - @entries.each do |entry|
       = render :partial => 'thumb_1d', :locals => {:entry => entry}
 
-
-    - if @entries.empty?
-      / NEW LOGIN SPLASH
-      = render :partial => "new_login", :locals => {:user => @user}
-
-
-    / APPLIES SELECTED CLASS TO META MENU
-    :coffeescript
-      $('.item.stream').addClass('selected')
-
-
-
+  / STREAM PAGINATION
   #nextPageLoading.hidden
     .spinner
 
-  #noMoreEntries.hidden
-    you've reached the end of the stream
-
+  / END OF STREAM
+  #noMoreEntries.hidden you've reached the end of the stream
 
   / NO ENTRIES TO DISPLAY
   .noEntrys.hidden there are no entries to display
 
 
-
-
+/ APPLIES SELECTED CLASS TO META MENU
+:coffeescript
+  $('.item.stream').addClass('selected')
