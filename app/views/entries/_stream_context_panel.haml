@@ -49,11 +49,14 @@
 
     / FILTER BY FOLLOW TYPE
     .followFilter.trigger.slideArrow
-      %img.icon{src: '/images/icons/friend-16-follow.png'}
+      %img.icon{src: '/images/icons/sharing-16-hover.png'}
       .arrow
-      %span.value following
+      %span.value all users
     .filterList.target.slideArrow.hidden
       .type.top
+        %img{src: '/images/icons/sharing-16-hover.png', width: '16', height: '16'}
+        %span all users
+      .type
         %img{src: '/images/icons/friend-16.png', width: '16', height: '16'}
         %span friends
       .type.bottom
