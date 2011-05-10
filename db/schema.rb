@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510011248) do
+ActiveRecord::Schema.define(:version => 20110510184228) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20110510011248) do
     t.string   "default_landing_page",  :default => "stream"
     t.string   "default_menu_style",    :default => "inpage"
     t.string   "default_font_size",     :default => "medium"
+    t.string   "default_entry_type",    :default => "dream"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
