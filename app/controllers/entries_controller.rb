@@ -61,6 +61,7 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+    @entry.type = current_user.default_entry_type
     @entry_mode = 'new'
   end
   
