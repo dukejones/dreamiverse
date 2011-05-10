@@ -233,13 +233,13 @@ function setupSharingImages(){
           $(this).prev().attr('src', '/images/icons/list-16.png')
         break;
       case 'followers':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-16-none.png')
         break;
       case 'friends':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-16-none.png')
         break;
       case 'friends of friends':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
+          $(this).prev().attr('src', '/images/icons/friend-16-none.png')
         break;
       case 'everyone':
           $(this).prev().attr('src', '/images/icons/sharing-16.png')

@@ -1,11 +1,12 @@
 
 / DREAMCATCHER LOGO
-%a.dcLogo{href: root_path}
-  %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
+- if current_user.blank?
+  %a.dcLogo{href: root_path}
+    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
-%a.randomDream{href: '/random'}
-  .img
-  random dream...
+  %a.randomDream{href: '/random'}
+    .img
+    random dream...
 
 
 / LEFT COLUMN
@@ -29,13 +30,13 @@
   / PUBLIC STREAM
   #publicStreamGlow
     #publicStream
-      .today this week in dreams
+      .today today in dreams
       / .todayFilter today
       / %h1.in in
       / .dreamsFilter dreams
 
       / DREAM MATRIX - ternary to remove comments from public view
-      .matrix{class: current_user.blank? ? 'public' : ''}
+      .matrix
 
 
         / / DREAM THUMBS 1D
@@ -81,4 +82,4 @@
   = render :partial => 'users/dreamstars_mini'
 
   .like
-    <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2Fdreamcatchernet%2F204828486223840&amp;width=220&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=82" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+    <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2Fdreamcatchernet%2F204828486223840&amp;width=220&amp;colorscheme=dark&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=82" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
