@@ -125,9 +125,21 @@
   select
     +font(14)
     height: auto
+    // line-height for chrome / webkit height
     line-height: 20px
     padding: 6px 12px
     width: 200px
+
+  .spinner
+    +relative
+    left: 164px
+    top: 4px
+    width: 32px
+    height: 32px
+    margin-bottom: -32px
+    z-index: 1
+    +hidden
+
 
 
   .filterList
@@ -259,6 +271,11 @@
 .light
   #contextPanel, #streamContextPanel
 
+    .spinner
+      +spinner-light
+    select
+      color: black
+
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
       .filterList
@@ -277,6 +294,11 @@
 
 .dark
   #contextPanel, #streamContextPanel
+
+    .spinner
+      +spinner-dark
+    select
+      color: white
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
