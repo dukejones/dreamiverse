@@ -6,39 +6,25 @@
   = render :partial => "images/browser/top"
 
 
-  / GENRES
-  #genreList
+  / TYPE
+  %ul#type
+    %li bedsheets
+    %li library
+    %li user uploaded
+    %li emoticons
+    %li book covers
+    %li prima materia
+    .clear
 
-    / MODERN ART
-    .genre
-      %h2 Modern Art
-      .subGenres.hidden
-        %span Paintings
-        %span Digital
-        %span Fantasy
-        %span Visionary
-        %span Graphics
+  / CATEGORIES
+  #categories
 
-    / CLASSICAL ART
-    .genre
-      %h2 Classical Art
-      .subGenres.hidden
-        %span Europe
-        %span Eurasia
-        %span Asia
-        %span Americas
-        %span Africa
-        %span Australia
+    .category colors
+    .category textures
+    .category space
+    .category earth
+    / etc...
 
-    / PHOTOS
-    .genre
-      %h2 Photos
-      .subGenres.hidden
-        %span People
-        %span Places
-        %span Things
-        %span Concept
-        %span Animals
 
 
   / ARTISTS
