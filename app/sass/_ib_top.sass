@@ -145,9 +145,15 @@
     margin: 12px 0 0 20px
     padding: 0 20px
     height: 51px
-    color: #626262
+    color: #999
     &:hover
-      color: #C2C2C2
+      color: #ddd
+    &:active .left
+      background: url(/images/slices/browseArrowLeft-active.png) no-repeat center center transparent
+    &:active .content
+      background: url(/images/slices/browseArrowContent-active.png) repeat-x left transparent
+    &:active .right
+      background: url(/images/slices/browseArrowRight-active.png) no-repeat center center transparent
 
     .left, .content, .right
       +left
