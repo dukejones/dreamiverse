@@ -127,10 +127,10 @@ class EntriesController < ApplicationController
   def stream
     session[:lens] = :stream
     session[:filters] = params[:filters] || {}
-
     @user = current_user
-
     @entries = entry_list
+    
+    @user.set_default_stream_filters(params[:filters]) if params[:filters]
     
     if request.xhr?
       thumbs_html = ""

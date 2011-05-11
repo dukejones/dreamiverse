@@ -21,6 +21,17 @@
     .img
     stream
 
+
+  #entry-filter-wrap
+    .spinner
+    %select#entry-filter
+      %option.allEntries{   value: 'allEntries'   } all entries
+      %option.dreams{       value: 'dreams'       } dreams
+      %option.visions{      value: 'visions'      } visions
+      %option.experiences{  value: 'experiences'  } experiences
+      %option.articles{     value: 'articles'     } articles
+      %option.journals{     value: 'journals'     } journals
+
   .wrapper
 
     / FILTER BY ENTRY TYPE
@@ -44,6 +55,14 @@
       .type.bottom{'data-filter' => 'article'}
         %img{src: '/images/icons/article-16-hover.png', width: '16', height: '16'}
         %span articles
+
+
+  #follow-filter-wrap
+    .spinner
+    %select#follow-filter
+      %option.allUsers{   value: 'allUsers'   } all users
+      %option.friends{    value: 'friends'    } friends
+      %option.following{  value: 'following'  } following
 
   .wrapper
 
