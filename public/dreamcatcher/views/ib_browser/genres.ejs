@@ -1,7 +1,6 @@
-<%for(var i = 0; i < categories.length ; i++){ %>
-  <%for(var j = 0; j < categories[i].genres.length ; j++){ %>
-    <div class="genre">
-      <%= categories[i].genres[j] %>
-    </div>
-  <% }%>
+<h2>Genres</h2>
+<%for(var i = 0; i < genres.length ; i++){ %>
+<div class="genre">
+  <%= genres[i] %>
+</div>
 <% }%>

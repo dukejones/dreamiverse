@@ -68,6 +68,16 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       success: @callback success
       error: error
     }
+  
+  searchImages: ( data, success, error ) ->
+    $.ajax {
+      url: "/images.json"
+      type: 'get'
+      dataType: 'json'
+      data: data
+      success: @callback success
+      error: error
+    }
     
   getImage: (imageId, data, success, error) ->
     $.ajax {

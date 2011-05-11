@@ -9,6 +9,12 @@ steal.plugins(
 	'jquery/dom/form_params'
 	)	// form data helper
 	.resources(
+	  'ui/jquery.ui.core',
+		'ui/jquery.ui.widget',
+		'ui/jquery.ui.mouse',
+
+		'ui/jquery.ui.draggable',
+		//'ui/jquery.ui.droppable',
 	  'jquery-lightbox-0.5',
 	  'jquery.timeago',
 		'jquery.exists',
