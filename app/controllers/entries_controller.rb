@@ -128,8 +128,7 @@ class EntriesController < ApplicationController
     session[:lens] = :stream
     session[:filters] = params[:filters] || {}
         
-    @user = current_user
-    
+    @user = current_user    
     @entries = entry_list
     
     @user.set_default_stream_filters(params[:filters]) if params[:filters]
