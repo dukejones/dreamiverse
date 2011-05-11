@@ -97,7 +97,8 @@
 
 
   // STREAM CONTEXT PANEL FILTERS
-  .entryFilter, .followFilter, .starlightTab
+
+  .entryFilter, .followFilter, .starlightTab, select
     +pointer
     +round(12)
     +relative
@@ -119,6 +120,25 @@
       width: 32px
       height: 32px
       background: url('/images/icons/arrow-down-16.png') no-repeat center center
+
+  // degradable styling for dropdowns
+  select
+    +font(14)
+    height: auto
+    // line-height for chrome / webkit height
+    line-height: 20px
+    padding: 6px 12px
+    width: 200px
+
+  .spinner
+    +relative
+    left: 164px
+    top: 4px
+    width: 32px
+    height: 32px
+    margin-bottom: -32px
+    z-index: 1
+    +hidden
 
 
 
@@ -207,7 +227,7 @@
     color: #fff
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-light
     &:hover
       +glow-light(10)
@@ -234,7 +254,7 @@
     color: #000
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-dark
     &:hover
       +glow-dark(10)
@@ -250,6 +270,11 @@
 // COLORS
 .light
   #contextPanel, #streamContextPanel
+
+    .spinner
+      +spinner-light
+    select
+      color: black
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
@@ -269,6 +294,11 @@
 
 .dark
   #contextPanel, #streamContextPanel
+
+    .spinner
+      +spinner-dark
+    select
+      color: white
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
