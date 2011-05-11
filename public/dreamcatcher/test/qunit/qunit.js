@@ -5,7 +5,7 @@ steal
       "dreamcatcher_test",
       //"appearance_test",
       //"bedsheet_test"
-      //"comment_test"
+      //"comment_test",
       "settings_test"
     );
   });

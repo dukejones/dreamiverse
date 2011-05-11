@@ -5,7 +5,9 @@ $.Model 'Dreamcatcher.Models.Settings',{
       type: 'put'
       url: '/user.json'
       dataType: 'json'
-      data: params     
+      data: params
+      success: success
+      error: error
     }
      
 },
