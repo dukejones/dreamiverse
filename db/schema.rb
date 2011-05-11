@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510184228) do
+ActiveRecord::Schema.define(:version => 20110510221325) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -172,15 +172,17 @@ ActiveRecord::Schema.define(:version => 20110510184228) do
     t.string   "skype"
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
-    t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false,    :null => false
-    t.integer  "auth_level",            :default => 0
-    t.integer  "starlight",             :default => 0
-    t.integer  "cumulative_starlight",  :default => 0
-    t.string   "default_landing_page",  :default => "stream"
-    t.string   "default_menu_style",    :default => "inpage"
-    t.string   "default_font_size",     :default => "medium"
-    t.string   "default_entry_type",    :default => "dream"
+    t.boolean  "follow_authorization",             :default => false
+    t.boolean  "ubiquity",                         :default => false,         :null => false
+    t.integer  "auth_level",                       :default => 0
+    t.integer  "starlight",                        :default => 0
+    t.integer  "cumulative_starlight",             :default => 0
+    t.string   "default_landing_page",             :default => "stream"
+    t.string   "default_menu_style",               :default => "inpage"
+    t.string   "default_font_size",                :default => "medium"
+    t.string   "default_entry_type",               :default => "dream"
+    t.string   "default_stream_entry_type_filter", :default => "all entries"
+    t.string   "default_stream_users_filter",      :default => "all users"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
