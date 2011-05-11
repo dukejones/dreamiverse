@@ -3,10 +3,10 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream, :random]
 
   def entry_list(filters=nil)
-    filters ||= session[:filters] || {}
-
+    filters = session[:filters] || {}
     # This is an example of a hack due to tightly coupling Display to Data.
     filters.delete(:type) if filters[:type] == "all entries"
+    filters.delete(:friend) if filters[:friend] == "all users"
 
     return case session[:lens]
     when :stream
@@ -127,8 +127,7 @@ class EntriesController < ApplicationController
   def stream
     session[:lens] = :stream
     session[:filters] = params[:filters] || {}
-        
-    @user = current_user    
+    @user = current_user
     @entries = entry_list
     
     @user.set_default_stream_filters(params[:filters]) if params[:filters]

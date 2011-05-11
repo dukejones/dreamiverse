@@ -119,16 +119,21 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
 
-    user_ids_to_view =  # based on friend filter
-      if filters[:friend] == "friends"
-        viewer.friends.select('users.id')
-      else
-        viewer.following.select('users.id')
-      end.map(&:id)
-    user_ids_to_view.delete(viewer.id)
-    
     # Others' Entries, paged.
-    others_entries = entry_scope.where(:user_id => user_ids_to_view)
+    others_entries = entry_scope
+
+    if filters[:friend]
+      user_ids_to_view =  # based on friend filter
+        if filters[:friend] == "friends"
+          viewer.friends.select('users.id')
+        elsif filters[:friend == "following"]
+          viewer.following.select('users.id')
+        end.map(&:id)
+      user_ids_to_view.delete(viewer.id)
+    
+      others_entries = others_entries.where(:user_id => user_ids_to_view)
+    end
+
     others_entries = others_entries.limit(page_size)
     others_entries = others_entries.offset(page_size * (page - 1))
     
