@@ -6,7 +6,11 @@ class HomeController < ApplicationController
   end
   
   def landing_page
-    redirect_to today_path and return unless current_user
+    unless current_user
+      index
+      render :index and return
+    end
+    
     case current_user.default_landing_page
     when 'stream' then redirect_to stream_path
     when 'home'   then redirect_to entries_path

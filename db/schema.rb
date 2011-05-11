@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110510221325) do
     t.integer  "starlight",            :default => 0
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
-    t.integer  "new_comment_count"
+    t.integer  "new_comment_count",    :default => 0
   end
 
   create_table "entries_images", :id => false, :force => true do |t|

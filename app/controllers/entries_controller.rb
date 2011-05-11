@@ -9,10 +9,10 @@ class EntriesController < ApplicationController
     filters.delete(:type) if filters[:type] == "all entries"
 
     return case session[:lens]
-      when :stream
-        Entry.dreamstream(current_user, filters)
-      else # when :field
-        Entry.dreamfield(current_user, @user, filters)
+    when :stream
+      current_user ? Entry.dreamstream(current_user, filters) : []
+    else # when :field
+      Entry.dreamfield(current_user, @user, filters)
     end
   end
   
