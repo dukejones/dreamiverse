@@ -22,9 +22,13 @@ class StreamView
     @$container = $('#entryField .matrix')
     @activateLightBox()
     # adds the loading wheel
-    $('.filterList').click( (event) =>
+    $('.filterList').change( (event) =>
       $(event.currentTarget).parent().find('.trigger').addClass('loading')
     )
+        
+    # $('.filterList').click( (event) =>
+    #   $(event.currentTarget).parent().find('.trigger').addClass('loading')
+    # )
     # infinite scrolling
     $(window).scroll =>
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)

@@ -22,13 +22,15 @@
     stream
 
 
-  %select#entry-filter
-    %option.allEntries{   value: 'allEntries'   } all entries
-    %option.dreams{       value: 'dreams'       } dreams
-    %option.visions{      value: 'visions'      } visions
-    %option.experiences{  value: 'experiences'  } experiences
-    %option.articles{     value: 'articles'     } articles
-    %option.journals{     value: 'journals'     } journals
+  #entry-filter-wrap
+    .spinner
+    %select#entry-filter
+      %option.allEntries{   value: 'allEntries'   } all entries
+      %option.dreams{       value: 'dreams'       } dreams
+      %option.visions{      value: 'visions'      } visions
+      %option.experiences{  value: 'experiences'  } experiences
+      %option.articles{     value: 'articles'     } articles
+      %option.journals{     value: 'journals'     } journals
 
   .wrapper
 
@@ -55,11 +57,12 @@
         %span articles
 
 
-
-  %select#follow-filter
-    %option.allUsers{   value: 'allUsers'   } all users
-    %option.friends{    value: 'friends'    } friends
-    %option.following{  value: 'following'  } following
+  #follow-filter-wrap
+    .spinner
+    %select#follow-filter
+      %option.allUsers{   value: 'allUsers'   } all users
+      %option.friends{    value: 'friends'    } friends
+      %option.following{  value: 'following'  } following
 
   .wrapper
 
