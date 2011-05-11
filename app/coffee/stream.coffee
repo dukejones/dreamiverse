@@ -22,8 +22,9 @@ class StreamView
     @$container = $('#entryField .matrix')
     @activateLightBox()
     # adds the loading wheel
-    $('.filterList').change( (event) =>
-      $(event.currentTarget).parent().find('.trigger').addClass('loading')
+    #entry-filter-wrap
+    $('#entry-filter, #follow-filter').change( (event) =>
+      $(event.currentTarget .spinner).show()
     )
         
     # $('.filterList').click( (event) =>

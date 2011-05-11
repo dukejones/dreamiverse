@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510221325) do
+ActiveRecord::Schema.define(:version => 20110511014553) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110510221325) do
     t.integer  "starlight",            :default => 0
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
-    t.integer  "new_comment_count",    :default => 0
+    t.integer  "new_comment_count"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -179,10 +179,10 @@ ActiveRecord::Schema.define(:version => 20110510221325) do
     t.integer  "cumulative_starlight",             :default => 0
     t.string   "default_landing_page",             :default => "stream"
     t.string   "default_menu_style",               :default => "inpage"
-    t.string   "default_font_size",                :default => "medium"
     t.string   "default_entry_type",               :default => "dream"
     t.string   "default_stream_entry_type_filter", :default => "all entries"
     t.string   "default_stream_users_filter",      :default => "all users"
+    t.string   "default_font_size",                :default => "fontMedium"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
