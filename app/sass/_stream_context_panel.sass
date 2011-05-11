@@ -97,7 +97,8 @@
 
 
   // STREAM CONTEXT PANEL FILTERS
-  .entryFilter, .followFilter, .starlightTab
+
+  .entryFilter, .followFilter, .starlightTab, select
     +pointer
     +round(12)
     +relative
@@ -120,6 +121,10 @@
       height: 32px
       background: url('/images/icons/arrow-down-16.png') no-repeat center center
 
+  // degradable styling for dropdowns
+  select
+    +font(14)
+    width: 200px
 
 
   .filterList
@@ -207,7 +212,7 @@
     color: #fff
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-light
     &:hover
       +glow-light(10)
@@ -234,7 +239,7 @@
     color: #000
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-dark
     &:hover
       +glow-dark(10)
