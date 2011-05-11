@@ -7,9 +7,9 @@
       %input.checkbox{type: 'checkbox'}
       %select.list
         %option.label{value: ''} Category
-        %option{value: 'Library'} Library
-        %option{value: 'Hypnos'} Hypnos
-        %option{value: 'P.A.C.E.'} P.A.C.E.
+        /%option{value: 'Library'} Library
+        /%option{value: 'Hypnos'} Hypnos
+        /%option{value: 'P.A.C.E.'} P.A.C.E.
 
     .size
       %input.checkbox{type: 'checkbox'}
@@ -23,19 +23,19 @@
 
   .filters
     %h2 Filters
-    .filter
+    .filter#artist
       %input{type: 'text'}
       %label artist:
-    .filter
+    .filter#album
       %input{type: 'text'}
       %label album:
-    .filter
+    .filter#title
       %input{type: 'text'}
       %label title:
-    .filter
+    .filter#year
       %input{type: 'text'}
       %label year:
-    .filter
+    .filter#tags
       %input{type: 'text'}
       %label tag:
 

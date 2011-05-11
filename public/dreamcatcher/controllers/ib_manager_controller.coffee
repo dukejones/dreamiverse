@@ -8,30 +8,18 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @createUploader()
     @loadImages @imageCookie.getAll()
   
-  populateLists: ->
-    $("#type select").append("<option>#{type}</option>") for type in @model.types
-    for category in @model.categories
-      $("#category select").append("<option>#{category.name}</option>")
-      $("#category select option:last").data("genres",category.genres)
 
-
-  # UPLOADER
+  ## [ IMAGE FILE UPLOADER ] ##
 
   createUploader: ->
     @uploader = new qq.FileUploader {
       element: $('#uploader').get(0)
       action: '/images.json'
       maxConnections: 1
-      params: {
-        image: {
-          type: "Library"
-          category: "Classical Art"
-          genre: "Africa"
-        }
-      }
+      params: @getOrganizationMeta()
       debug: true
       onSubmit: (id, fileName) ->
-        #log id+' '+fileName
+        log "Submitted: "+id+' '+fileName
       onComplete: (id, fileName, result) =>
         image_url = result.image_url
         image = result.image
@@ -53,27 +41,48 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       }
     }
 
-
-  loadImages: (images) ->
-    log images
-    if images?
-      @model.getImage image,{},@callback('showImage',null) for image in images
     
+  #- populates the organization lists with seed date
+  populateLists: ->
+    for type in @model.types
+      $("#type select").append("<option>#{type.name}</option>")
+      $("#type select option:last").data("categories",type.categories)
+    for genre in @model.genres
+      $("#genre select").append("<option>#{genre}</option>")
+
+  #- loads all meta for a list of images
+  loadImages: (imageIds) ->
+    @model.getImage imageId,{},@callback('showImage',null) for imageId in imageIds if imageIds?
+    
+  #- add image Html to the Dom
   showImage: (uploadElement, image) ->
     imageHtml = @view 'show',image
     if uploadElement?
       uploadElement.replaceWith imageHtml
     else
       $("#imagelist").append imageHtml
+
   
-  # IMAGE META
+  ## [ IMAGE META ] ##
+  
+  #- gets the type, category & genre meta (for new uploaded images)
+  getOrganizationMeta: ->
+    image = {}
+    $("#organization select").each (index,element) =>
+      attr = $(element).parent().attr("id")
+      val = $(element).val()
+      image[attr] = if val.length > 0 then val else null
+    image.section = image.type
+    return {image: image}
     
+  #- show only the common meta for all the selected images
+  #- if only one is selected, then show all that comments meta
   showCommonImageMetaData: ->
     common = {}
     $("#imagelist li.selected").each (index, element) =>
       data = $(element).data 'image'
       
-      #- special cases
+      #- special cases, such as date and user (i.e. needs to be converted from raw json)
       data.date = $.format.date(data["created_at"].replace("T"," "), 'MMM dd, yyyy')
       data.user = "phong"
       
@@ -84,15 +93,19 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
           common[attr] = '*'
     @displayMetaData(common)
 
+  #- display's the meta data for a particular image object
   displayMetaData: (image) ->
     @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
   
+  #- checks if an attribute is of type "text"
   isText: (attr) ->
     return $("##{attr} input[type='text']").exists()
 
+  #- checks if an attribute is of type "select"
   isSelect: (attr) ->
     return $("##{attr} select").exists()
   
+  #- sets the text input or select to display a certain value
   setAttribute: (attr, value) ->
     $("##{attr} input[type='checkbox']").attr("checked",value? and value isnt "*")
     if @isText(attr)
@@ -106,7 +119,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       $("##{attr} textarea").val(value)
 
   
-  # DOM EVENTS
+  ## [ DOM EVENTS ] ##
   
   #- select all/select none
   '.all click': (el) ->
@@ -124,7 +137,6 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.removeClass('selected')
     else
       el.addClass('selected')
-      #@displayMetaData el.data('image')
     @showCommonImageMetaData()
     
   #- delete individual image
@@ -136,11 +148,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.parent().css('opacity',0.5)
 
 
-  #- input (select) change
-  '#category select change': (el) ->
-    genres = $("option:selected",el).data("genres")
-    $("#genre select").html("")
-    $("#genre select").append("<option>#{genre}</option>") for genre in genres
+  #- "category" input (select) change
+  '#type select change': (el) ->
+    $("#category select option[class!='label']").remove()
+    if el.val().length > 0
+      categories = $("option:selected",el).data("categories")
+      $("#category select").append("<option>#{category}</option>") for category in categories
 
   #- input (select, text) focus
   'input[type="text"],select focus': (el) ->
@@ -176,7 +189,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       imageId = $(element).data('id')
       if $(element).is(":visible")
         data = $(element).data 'image'
-        delete data.date
+        delete data.date # special cases for UI display - remove before submitting
         delete data.user
         data.section = "Library"
         @model.update imageId,{image: data},=>
@@ -193,18 +206,3 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       imageId = $(element).data('id')
       @model.disable imageId,{},@callback('disable',$(element),imageId)
     window.location.href = "/images"
-
-
-
-
-
-
-
-
-        
-      
-
-      
-        
-  
-  

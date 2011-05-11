@@ -1,25 +1,56 @@
 $.Model 'Dreamcatcher.Models.ImageBank',{
   
   attributes: ['type','category','genre','title','album','artist','location','year','notes','date','user','geotag','tags']
+  ###
   types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
   categories: [
     {
-      name: "Modern Art"
-      genres: ["Paintings","Digital","Fantasy","Visionary","Graphics"]
+      name: 'Modern Art'
+      genres: ['Paintings','Digital','Fantasy','Visionary','Graphics']
     },
     {
-      name: "Classical Art"
-      genres: ["Europe","Eurasia","Asia","Americas","Africa","Australia"]
+      name: 'Classical Art'
+      genres: ['Europe','Eurasia','Asia','Americas','Africa','Australia']
     },
     {
-      name: "Photos"
-      genres: ["People","Places","Things","Concept","Animals"]
+      name: 'Photos'
+      genres: ['People','Places','Things','Concept','Animals']
     }
   ]
+  ###
+  
+  types: [
+    {
+      name: 'bedsheets'
+      categories: ['colors','textures','space','earth','city','nature','cultural','nightmare','water','landscape']
+    },
+    {
+      name: 'library'
+      categories: ['paintings','digital','fantasy','visionary']#,'graphics','europe','eurasia','asia','americas','africa','australia','people','places','things','concept','animals']
+    },
+    {
+      name: 'user uploaded'
+      categories: []
+    },
+    {
+      name: 'emotions'
+      categories: ['animals','smilies','shapes','plants','powers','eyes','weather','hands','classics']
+    },
+    {
+      name: 'book covers'
+      categories: []
+    },
+    {
+      name: 'prima materia'
+      categories: ['symbol','illustration','photo','3d']
+    }
+  ]
+  genres: ['photo','art','design']
+  
 
   update: ( imageId, data, success, error ) ->
     $.ajax {
-      url: "/images/#{imageId}.json"
+      url: '/images/#{imageId}.json'
       type: 'put'
       contentType: 'application/json'
       data: JSON.stringify(data)
@@ -30,7 +61,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
   
   findImagesById: ( imageIds, data, success, error ) ->
     $.ajax {
-      url: "/images.json?ids=#{imageIds}"
+      url: '/images.json?ids=#{imageIds}'
       type: 'get'
       dataType: 'json'
       data: data
@@ -40,7 +71,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
     
   getImage: (imageId, data, success, error) ->
     $.ajax {
-      url: "/images/#{imageId}.json"
+      url: '/images/#{imageId}.json'
       type: 'get'
       dataType: 'json'
       data: data
@@ -50,7 +81,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
     
   disable: (imageId, data, success, error) ->
     $.ajax {
-      url: "/images/#{imageId}/disable.json"
+      url: '/images/#{imageId}/disable.json'
       type: 'post'
       contentType: 'application/json'
       dataType: 'json'
