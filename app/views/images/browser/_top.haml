@@ -1,8 +1,8 @@
 / TOP
 .top
 
-  / BROWSE BARS (only display on opening view)
-  .browseBars
+  / BROWSE HEADER
+  .browseHeader browse
 
   / BROWSE BUTTON
   .browseWrap
@@ -13,13 +13,14 @@
     .searchField
       %input.search{type: "submit", value: ""}
       %a.options{href: "#"} options
-      %a.optionsTab.hidden{href: "#"} options
       %input.input{type: "text", value: "search"}
 
   / BACK ARROW
   .backArrow
     .left
-    .content back
+    .content
+      .img.hidden
+      %span back
     .right
 
   / HEADER

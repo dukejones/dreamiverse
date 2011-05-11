@@ -15,14 +15,19 @@
   -webkit-box-shadow: inset 0 10px 10px rgba(0,0,0,0.7)
 
   h2
-    +absolute
     +font(16)
     +bold
     margin: 8px
 
   .active
+    +absolute
     +alpha(70)
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
     background: #000
+    z-index: 2
 
   ul.imagelist
     +user-select

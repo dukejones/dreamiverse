@@ -35,13 +35,18 @@
 
 
 
-  // BROWSE BARS
-  .browseBars
+  // BROWSE HEADER
+  .browseHeader
     +left
-    width: 52px
+    +font(22)
+    +bold
+    width: auto
     height: 52px
+    line-height: 52px
     margin: 12px 0 0 8px
-    background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat center center transparent
+    padding: 0 0 0 44px
+    color: #ddd
+    background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat left center transparent
 
 
   // BROWSE BUTTON
@@ -102,20 +107,11 @@
         -moz-box-shadow:    0px 2px 10px #000
         -webkit-box-shadow: 0px 2px 10px #000
 
-      a.optionsTab
-        +right
-        +center
-        +bold
-        +round(8)
-        +flat-bottom
-        +font(16)
-        width: 70px
-        height: 28px
-        line-height: 30px
-        margin: 15px 20px 0 0
-        padding: 0 8px
-        color: #ddd
-        +bevel-dark
+      a.options.selected
+        +gradient(#010101, #222)
+        box-shadow:         inset 0px 2px 10px #000
+        -moz-box-shadow:    inset 0px 2px 10px #000
+        -webkit-box-shadow: inset 0px 2px 10px #000
 
       input.search
         +pointer
@@ -151,6 +147,10 @@
       padding: 0 8px
       line-height: 49px
       background: url(/images/slices/browseArrowContent.png) repeat-x left transparent
+      .img
+        width: 36px
+        height: 51px
+        background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat center center transparent
     .right
       width: 12px
       background: url(/images/slices/browseArrowRight.png) no-repeat center center transparent
