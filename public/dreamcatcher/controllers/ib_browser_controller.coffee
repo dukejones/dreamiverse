@@ -5,6 +5,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
     $("#searchOptions").hide()
+    
+    @showIcons ".browseHeader, .searchWrap"
+    # @updateScreen null,null,"#browse","browse",html
+    
     $("#type").replaceWith @view('types',{types: @model.types})
     $("#type li:first").click()
     
@@ -19,31 +23,24 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $.get "/artists?category=#{@category}&section=#{@section}",(html) =>
       @displayScreen "#artistList",html
       
-  #hideIcons: (part) ->
-  #  $(".#{part}").children().hide()
-    
-  #displayIcon: (className,part) ->
-  #  $(".#{className}",".#{part}").show()
+  showIcons: (icons) ->
+    $(".top,.footerButtons").children().hide()
+    $(icons,".top,.footerButtons").show()
 
   displayScreen: (type, html) ->
-    #@hideIcons 'top'
-    #@hideIcons 'footerButtons'
     switch type
-      when "#browse"
-        #$(".browseHeader,.searchWrap",".top").show()
-        @updateScreen null,null,"#browse","browse",html
       when "#artistList"
-        #$(".backArrow,h1",".top").show()
+        @showIcons ".browseWrap, h1, .searchWrap"
         @updateScreen "#type,#categories","Genres","#artistList",@genre,html
       when "#albumList"
-        #$(".backArrow,h1",".top").show()
+        @showIcons ".browseWrap, .backArrow, h1, .play, .manage, .searchWrap, .drag"
         @updateScreen "#artistList",@genre,"#albumList",@artist,html
 
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml) ->
     $("#browse,#artistList,#albumList").hide()
     $(".backArrow .content").text(previousName)
     $(".backArrow").attr("name",previousType)
-    if previousType? then $(".backArrow").show() else $(".backArrow").hide()
+    #if previousType? then $(".backArrow").show() else $(".backArrow").hide()
     $("h1").text(currentName)
     $(currentType).replaceWith(currentHtml) if currentHtml?
     $(currentType).show()
@@ -67,6 +64,12 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @artist = $("h2:first",el).text()
     $.get "/albums?artist=#{@artist}&section=#{@section}&category=#{@category}",(html) =>
       @displayScreen "#albumList",html
+      $("#albumList .images .img").draggable()
+      $(".dropbox").show()
+      $(".dropbox").droppable({
+        drop: (ev, ui) ->
+          alert 'x'#TODO
+      })
       
   '#albumList .add click': (el) ->
     img = el.parent()
