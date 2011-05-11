@@ -141,12 +141,14 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     
   #- delete individual image
   '.close click': (el) ->
-    if el.parent().css('opacity') is '0.5'
+    if el.parent().hasClass('delete')
       imageId = el.parent().data('id')
       el.parent().hide()
     else
-      el.parent().css('opacity',0.5)
-
+      el.parent().addClass('delete')
+  
+  '.dontDelete click': (el) ->
+    el.closest('li').removeClass('delete')
 
   #- "category" input (select) change
   '#type select change': (el) ->

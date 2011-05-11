@@ -10,8 +10,8 @@
       Images
 
   / ARTIST ROW
-  %tr.artist
-    - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
+  - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
+    %tr.artist
       %td.name
         %h2= artist.blank? ? "Unknown" : artist
 

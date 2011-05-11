@@ -7,7 +7,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $("#searchOptions").hide()#TODO
     #@imageCookie.clear()
     @section = "Library"#TODO
-    $("#frame .top").after @view('types',{types: @model.types})
+    @genre = "Paintings"
+    $.get "/artists?genre=#{@genre}&section=#{@section}",(html) =>
+      @displayScreen "#artistList",html
+    #$("#frame .top").after @view('types',{types: @model.types})
     #@displayScreen "#genreList", @view('types',{types: @model.types})
     #@displayScreen "#genreList", @view('categories',{categories: @model.categories})
     #$("#searchOptions .genres").html @view('genres',{categories: @model.categories})
@@ -43,7 +46,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     categories = el.data('categories').split(',')
     @displayScreen "#genreList", @view('categories',{categories: categories})
     
-    
   '.subGenres span click': (el) ->
     @genre = el.text()
     $.get "/artists?genre=#{@genre}&section=#{@section}",(html) =>
@@ -60,9 +62,18 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     id = img.data('id')
     @imageCookie.add id
     
-  '.search click': (el) ->
-    $("#genreList,#artistList,#albumList").hide() #repeated code
+  '.search click': ->
+    if $('.searchFieldWrap').is(':visible')
+      $('.searchFieldWrap').hide()
+      $(".browseHeader,.browseWrap,.backArrow,h1,.searchWrap,.timer,.manage,.play,.counter").show()
+    else
+      $('.searchFieldWrap').show()
+      $(".browseHeader,.browseWrap,.backArrow,h1,.searchWrap,.timer,.manage,.play,.counter").hide()
+      
+  '.searchField .options click': ->
     $("#searchOptions").show()
+    $("#genreList,#artistList,#albumList").hide() #repeated code
+    #$("#searchOptions").show()
     
   #'.genre click': (el) ->
   #  if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
