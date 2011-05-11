@@ -38,10 +38,9 @@
   .browseHeader
     +left
     +font(22)
-    +bold
     width: auto
     height: 52px
-    line-height: 52px
+    line-height: 50px
     margin: 12px 0 0 8px
     padding: 0 0 0 44px
     color: #ddd
@@ -204,7 +203,7 @@
     line-height: 48px
     color: #C2C2C2
 
-  .timer, a.manage, .play
+  .timer, a.manage
     +round(8)
     border: 1px solid #7D7D7D
     &:hover
@@ -218,9 +217,11 @@
     background: url(background:/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
 
   .play
-    background: url(/images/icons/ib-icons/playSlideshow-24.png) no-repeat center center transparent
+    background: url(/images/icons/play-32.png) no-repeat center center transparent
     &:hover
-      background: url(/images/icons/ib-icons/playSlideshow-24-over.png) no-repeat center center transparent
+      background: url(/images/icons/play-32-hover.png) no-repeat center center transparent
+    &:active
+      background: url(/images/icons/play-32-active.png) no-repeat center center transparent
   
   .counter
 
