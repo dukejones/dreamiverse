@@ -3,9 +3,10 @@
 
 ul#type
   +round(12)
-  margin: 0 0 20px
   list-style: none
+  margin: 0
   padding: 16px 8px 8px 16px
+  height: 40px
   +gradient(#505050, rgba(39,39,39,0.1))
 
   li
@@ -31,16 +32,17 @@ ul#type
   .category
     +pointer
     +center
-    +relative
+    +left
     +font(26)
-    height: 124px
-    line-height: 120px
-    margin: 0
+    height: 108px
+    line-height: 104px
+    width: 372px
+    margin: 0 2px
     color: #a1a1a1
-    +shine-dark(62)
+    +shine-dark(54)
     &:hover
-      +block
       color: #fff
+      +gradient(#444, #111)
 
 
 

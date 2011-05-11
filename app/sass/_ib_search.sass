@@ -10,51 +10,52 @@
     +round(12)
     +gradient(#505050, rgba(39,39,39,0.1))
 
-    .category, .size
+  .category, .size
+    +pointer
+    +round(8)
+    height: 32px
+    margin: 0
+    padding: 0
+    background: #1c1c1c
+
+    input.checkbox
       +pointer
-      +round(8)
-      height: 32px
-      margin: 0
-      padding: 0
-      background: #1c1c1c
-
-      input.checkbox
-        +right
-        margin: 11px 12px 0 0
-
-      select.list
-        +left
-        +pointer
-        +outline
-        +transparent
-        +font(14)
-        border: none
-        padding: 6px 8px
-        height: 32px
-        width: 102px
-        color: #ddd
-
-        option
-          +font(12)
-          margin: 0
-          padding: 4px 8px
-          color: #C2C2C2
-          background: #464646
-          border: 1px solid #1C1C1C
-          border-top: none
-          &:hover
-            background: #EBEBEB
-            color: #464646
-            border: 1px solid #000
-            border-top: none
-
-        option.label
-
-    .category
-      +left
-
-    .size
       +right
+      margin: 11px 12px 0 0
+
+  select.list
+    +left
+    +pointer
+    +outline
+    +transparent
+    +font(14)
+    border: none
+    padding: 6px 8px
+    height: 32px
+    width: 102px
+    color: #ddd
+
+  option
+    +font(12)
+    margin: 0
+    padding: 4px 8px
+    color: #C2C2C2
+    background: #464646
+    border: 1px solid #1C1C1C
+    border-top: none
+    &:hover
+      background: #EBEBEB
+      color: #464646
+      border: 1px solid #000
+      border-top: none
+
+  option.label
+
+  .category
+    +left
+
+  .size
+    +right
 
 
 
@@ -73,25 +74,27 @@
       color: #d1d3d4
       text-transform: uppercase
 
-    .filter
-      +clear
-      height: 32px
-      margin: 0 0 4px
+  .filter
+    +clear
+    height: 32px
+    margin: 0 0 4px
 
-      label
-        +right
-        margin: 0 12px 0 0
-        padding: 0
-        line-height: 30px
-        color: #a7a9ac
-        text-align: right
+    label
+      +right
+      margin: 0 12px 0 0
+      padding: 0
+      line-height: 30px
+      color: #a7a9ac
+      text-align: right
 
-      input
-        +right
-        +round(8)
-        width: 132px
-        height: 30px
-        +input-dark(large)
+    input
+      +right
+      +round(8)
+      +font(12)
+      padding: 0 8px
+      width: 132px
+      height: 30px
+      +input-dark(large)
 
 
   .genres
@@ -138,15 +141,15 @@
     list-style: none
     margin: 0
 
-    li
-      +left
-      margin: 0
-      padding: 0
-      width: 126px
-      height: 126px
-      border: 1px solid transparent
-      &:hover
-        border: 1px solid #ddd
+  li
+    +left
+    margin: 0
+    padding: 0
+    width: 126px
+    height: 126px
+    border: 1px solid transparent
+    &:hover
+      border: 1px solid #ddd
 
 
 
