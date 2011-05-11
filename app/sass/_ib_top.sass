@@ -107,20 +107,11 @@
         -moz-box-shadow:    0px 2px 10px #000
         -webkit-box-shadow: 0px 2px 10px #000
 
-      a.optionsTab
-        +right
-        +center
-        +bold
-        +round(8)
-        +flat-bottom
-        +font(16)
-        width: 70px
-        height: 28px
-        line-height: 30px
-        margin: 15px 20px 0 0
-        padding: 0 8px
-        color: #ddd
-        +bevel-dark
+      a.options.selected
+        +gradient(#010101, #222)
+        box-shadow:         inset 0px 2px 10px #000
+        -moz-box-shadow:    inset 0px 2px 10px #000
+        -webkit-box-shadow: inset 0px 2px 10px #000
 
       input.search
         +pointer
