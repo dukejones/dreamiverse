@@ -61,7 +61,7 @@
   height: 32px
   padding: 3px 0
 
-  .cancel, .edit, .add, .set, .drag, .next, .prev
+  .cancel, .edit, .add, .set, .next, .prev
     +right
     +pointer
     +user-select
@@ -88,6 +88,20 @@
       border: 1px solid #fff
       +shine-dark(0)
       +gradient(#000, #242424)
+
+  .drag
+    +user-select
+    +center
+    margin: 0
+    height: 28px
+    line-height: 26px
+    color: #777
+    .img
+      margin: 0 0 -6px 12px
+      width: 32px
+      height: 28px
+      display: inline-block
+      background: url(/images/icons/dropbox-26.png) no-repeat center center transparent
 
   .add .img
     background: url(/images/icons/add-15.png) no-repeat center center transparent
