@@ -7,7 +7,7 @@ class StreamController
   constructor: ->
     @stream = new StreamModel()
     @streamView = new StreamView(@stream)
-
+    
     $.subscribe 'filter:change', => 
       @stream.load().then (data) =>
         @streamView.update(data.html)
@@ -24,9 +24,9 @@ class StreamView
     # adds the loading wheel
     #entry-filter-wrap
     $('#entry-filter, #follow-filter').change( (event) =>
-      alert(event.currentTarget.id)
-      $('#entry-filter-wrap .spinner').show()
-      $('#entry-filter-wrap').find('.spinner').show()
+      # alert(event.currentTarget.id)
+      # $('#entry-filter-wrap .spinner').show()
+      # $('#entry-filter-wrap').find('.spinner').show()
       $('#entry-filter-wrap .spinner').show() if event.currentTarget.id == '#entry_filter'
       $(event.currentTarget.id).prev().show()
     )
