@@ -24,7 +24,11 @@ class StreamView
     # adds the loading wheel
     #entry-filter-wrap
     $('#entry-filter, #follow-filter').change( (event) =>
-      $(event.currentTarget .spinner).show()
+      alert(event.currentTarget.id)
+      $('#entry-filter-wrap .spinner').show()
+      $('#entry-filter-wrap').find('.spinner').show()
+      $('#entry-filter-wrap .spinner').show() if event.currentTarget.id == '#entry_filter'
+      $(event.currentTarget.id).prev().show()
     )
         
     # $('.filterList').click( (event) =>
