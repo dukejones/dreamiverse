@@ -193,7 +193,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         data = $(element).data 'image'
         delete data.date # special cases for UI display - remove before submitting
         delete data.user
-        data.section = "Library"
+        data.section = data.type
         @model.update imageId,{image: data},=>
           @imageCookie.add image.id
       else

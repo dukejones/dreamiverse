@@ -1,5 +1,5 @@
-<ul>
+<ul id="type">
   <% for(var i = 0; i < types.length ; i++){ %>
-    <li class="type" data-categories="<%= types[i].categories.join(',') %>"><%= types[i].name %></li>
+    <li data-categories="<%= types[i].categories.join(',') %>"><%= types[i].name %></li>
   <% } %>
 </ul>

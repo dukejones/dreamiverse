@@ -4,19 +4,43 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
-    $("#searchOptions").hide()#TODO
-    #@imageCookie.clear()
-    @section = "Library"#TODO
-    @genre = "Paintings"
-    $.get "/artists?genre=#{@genre}&section=#{@section}",(html) =>
+    $("#searchOptions").hide()
+    $("#type").replaceWith @view('types',{types: @model.types})
+    $("#type li:first").click()
+    
+  '#type li click': (el) ->
+    $("#type li").removeClass('selected')
+    el.addClass('selected')
+    @section = @type = el.text().trim()
+    $("#categories").replaceWith @view('categories',{ categories: el.data('categories').split(',') })
+    
+  '#categories .category click': (el) ->
+    @category = el.text().trim()
+    $.get "/artists?category=#{@category}&section=#{@section}",(html) =>
       @displayScreen "#artistList",html
-    #$("#frame .top").after @view('types',{types: @model.types})
-    #@displayScreen "#genreList", @view('types',{types: @model.types})
-    #@displayScreen "#genreList", @view('categories',{categories: @model.categories})
-    #$("#searchOptions .genres").html @view('genres',{categories: @model.categories})
+      
+  #hideIcons: (part) ->
+  #  $(".#{part}").children().hide()
+    
+  #displayIcon: (className,part) ->
+  #  $(".#{className}",".#{part}").show()
+
+  displayScreen: (type, html) ->
+    #@hideIcons 'top'
+    #@hideIcons 'footerButtons'
+    switch type
+      when "#browse"
+        #$(".browseHeader,.searchWrap",".top").show()
+        @updateScreen null,null,"#browse","browse",html
+      when "#artistList"
+        #$(".backArrow,h1",".top").show()
+        @updateScreen "#type,#categories","Genres","#artistList",@genre,html
+      when "#albumList"
+        #$(".backArrow,h1",".top").show()
+        @updateScreen "#artistList",@genre,"#albumList",@artist,html
 
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml) ->
-    $("#genreList,#artistList,#albumList").hide()
+    $("#browse,#artistList,#albumList").hide()
     $(".backArrow .content").text(previousName)
     $(".backArrow").attr("name",previousType)
     if previousType? then $(".backArrow").show() else $(".backArrow").hide()
@@ -30,14 +54,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         if @imageCookie.contains id
           $(element).addClass('selected')
     
-  displayScreen: (type, html) ->
-    switch type
-      when "#genreList"
-        @updateScreen null,null,"#genreList","Genres",html
-      when "#artistList"
-        @updateScreen "#genreList","Genres","#artistList",@genre,html
-      when "#albumList"
-        @updateScreen "#artistList",@genre,"#albumList",@artist,html 
+
 
   '.backArrow click': (el) ->
     @displayScreen el.attr("name"),null
@@ -45,15 +62,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '.type click': (el) ->
     categories = el.data('categories').split(',')
     @displayScreen "#genreList", @view('categories',{categories: categories})
-    
-  '.subGenres span click': (el) ->
-    @genre = el.text()
-    $.get "/artists?genre=#{@genre}&section=#{@section}",(html) =>
-      @displayScreen "#artistList",html
   
   'tr.artist click': (el) ->
     @artist = $("h2:first",el).text()
-    $.get "/albums?artist=#{@artist}&section=#{@section}&genre=#{@genre}",(html) =>
+    $.get "/albums?artist=#{@artist}&section=#{@section}&category=#{@category}",(html) =>
       @displayScreen "#albumList",html
       
   '#albumList .add click': (el) ->

@@ -50,7 +50,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
 
   update: ( imageId, data, success, error ) ->
     $.ajax {
-      url: '/images/#{imageId}.json'
+      url: "/images/#{imageId}.json"
       type: 'put'
       contentType: 'application/json'
       data: JSON.stringify(data)
@@ -61,7 +61,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
   
   findImagesById: ( imageIds, data, success, error ) ->
     $.ajax {
-      url: '/images.json?ids=#{imageIds}'
+      url: "/images.json?ids=#{imageIds}"
       type: 'get'
       dataType: 'json'
       data: data
@@ -71,7 +71,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
     
   getImage: (imageId, data, success, error) ->
     $.ajax {
-      url: '/images/#{imageId}.json'
+      url: "/images/#{imageId}.json"
       type: 'get'
       dataType: 'json'
       data: data
@@ -81,7 +81,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
     
   disable: (imageId, data, success, error) ->
     $.ajax {
-      url: '/images/#{imageId}/disable.json'
+      url: "/images/#{imageId}/disable.json"
       type: 'post'
       contentType: 'application/json'
       dataType: 'json'
