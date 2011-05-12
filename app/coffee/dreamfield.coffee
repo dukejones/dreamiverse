@@ -10,9 +10,6 @@ class DreamfieldView
     @entryCount = $('.entryCount').data('id')
     @pageSize = $('.pageSize').data('id')
     @totalPages = Math.ceil @entryCount / @pageSize
-    log('entryCount:' + @entryCount)
-    log('pageSize: ' + @pageSize)
-    log('totalPages: ' + @totalPages)
     @dreamfield = dreamfieldModel
     @$container = $('#pagination')
 
