@@ -82,6 +82,7 @@ class EntriesController < ApplicationController
       @entry.set_whats(params[:what_tags])
       @entry.set_links(params[:links])
       @entry.set_emotions(params[:emotions])
+      flash[:alert] = "This entry has a blank body." if @entry.body.blank?
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
