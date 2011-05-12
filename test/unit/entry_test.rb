@@ -206,12 +206,36 @@ class EntryTest < ActiveSupport::TestCase
   test "dreamstream paginates" do
     viewer = User.make
     user = User.make
-    viewer.following << user; viewer.save!; viewer.reload
     time = Time.now
     entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    assert_equal [], stream
+    viewer.following << user; viewer.save!; viewer.reload
     stream = Entry.dreamstream(viewer, {page_size: 5})
     assert_equal entries[0...5].map(&:id), stream.map(&:id), 'first page is latest five'
     stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
     assert_equal entries[5..-1].map(&:id), stream.map(&:id), 'second page is older five'
+  end
+  
+  test "dreamstream filters" do
+    viewer = User.make
+    user = User.make
+    time = Time.now
+    entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+    
+    # viewer has no following
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'following'}).map(&:id), 'Viewer doesnt follow, so no entries in stream'
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'friends'}).map(&:id), 'Viewer doesnt follow, still no entries in stream'
+    
+    # viewer follows user
+    viewer.following << user; viewer.save!
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'following'}).map(&:id), 'Following should show entries'
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'friends'}), 'Friends should show no entries'
+
+    # viewer befriends user
+    viewer.followers << user; viewer.save!
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'following'}).map(&:id)
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'friends'}).map(&:id)
+    
   end
 end
