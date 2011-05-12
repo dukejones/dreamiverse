@@ -30,15 +30,15 @@
 
 
 
-// MY COLLECTION
-.collection
+// DROP BOX
+#dropbox
   +round(16)
   +cursor
   position: fixed
   top: 83px
   left: 13px
   width: 200px
-  padding: 4px
+  padding: 0 4px 24px
   color: #ddd
   +shine-dark(20)
 
@@ -46,14 +46,14 @@
     +left
     width: 32px
     height: 26px
-    margin: 4px 8px 8px
+    margin: 8px
     background: url(/images/icons/dropbox-26.png) no-repeat center center
 
   h2
     +left
     +font(16)
     +bold
-    margin: 4px 0 0
+    margin: 8px 0 0
     line-height: 26px
 
   .active
@@ -69,7 +69,7 @@
   ul.imagelist
     +user-select
     +clear
-    margin: 0 0 20px
+    margin: 0 0 16px
     padding: 1px
     width: auto
     min-height: 198px
@@ -94,6 +94,29 @@
       img
         height: 95px
         width: 95px
+
+.dropboxFooter
+  +absolute
+  bottom: 4px
+  left: 4px
+  width: 200px
+  height: 24px
+  padding: 4px 0
+
+  .cancel, .edit
+    +right
+    +pointer
+    +user-select
+    +center
+    +round(8)
+    margin: 0 8px 0 0
+    padding: 0 12px
+    height: 24px
+    line-height: 22px
+    border: 1px solid #242424
+    +shine-dark(14)
+    +gradient(#242424, #000)
+
 
 
 
