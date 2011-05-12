@@ -21,18 +21,19 @@
           / %td.location dream location
 
     .detailsBottom
-      - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
+      - if entry.new_comment_count > 0 && current_user && entry.user == current_user
         .comments.new
           .img
           = entry.new_comment_count
       - elsif entry.comments.count != 0
-        .comments
-          .img
+        .comments{class: entry.new_comment_count > 0 }
+          .img.comment
           = entry.comments.count
+
       - unless entry.everyone?
         .sharing
-          %img
-          %span= entry.sharing
+          .img{class: entry.sharing}
+          = entry.sharing
 
     / TITLE
     .title= entry.title
