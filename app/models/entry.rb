@@ -171,7 +171,7 @@ class Entry < ActiveRecord::Base
   def self.dreamfield(viewer, viewed, filters={})
     entry_scope = Entry.order(:dreamed_at.desc)
     
-    page_size = filters[:page_size] || 31
+    page_size = filters[:page_size] || 24
     page = filters[:page].to_i
     page = 1 if page <= 0
  

@@ -20,7 +20,7 @@ class EntriesController < ApplicationController
     @filters = params[:filters] || {}
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
     @filters[:page] ||= params[:page]
-    @filters[:page_size] ||= 31
+    @filters[:page_size] ||= 24
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     session[:lens] = :field
@@ -128,6 +128,7 @@ class EntriesController < ApplicationController
   def stream
     session[:lens] = :stream
     session[:filters] = params[:filters] || {}
+
     @user = current_user
     @entries = entry_list
     
