@@ -23,20 +23,22 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
   displayScreen: (type, html) ->
     switch type
-      when "browse"
-        @showIcons ".browseHeader, .searchWrap"
+      when 'browse'
+        @showIcons '.browseHeader, .searchWrap'
         @updateScreen null,null,"#browse",null,html
-      when "artistList"
-        @showIcons ".browseWrap, h1, .searchWrap"
-        @updateScreen "#browse",null,"#artistList",@category,html
-      when "albumList"
-        @showIcons ".browseWrap, .backArrow, h1, .play, .manage, .searchWrap, .drag"
-        @updateScreen "#artistList",@category,"#albumList",@artist,html
+      when 'artistList'
+        @showIcons '.backArrow, h1, .searchWrap'
+        @updateScreen "browse",'browse',"#artistList",@category,html
+      when 'albumList'
+        @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag'
+        @updateScreen "artistList",@category,"#albumList",@artist,html
       when 'searchResults'
+        @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateScreen null,null,'#searchResults',null,html
       when 'slideshow'
-        @showIcons '.counter,.play'
-        @updateScreen null,null,'#slideshow',null,html
+        @showIcons '.backArrow, h1, .counter, .play, .prev, .info, .tag, .add, .next, .edit, .cancel'
+        @updateScreen 'albumList',@artist,'#slideshow','slideshow',html
+        @showSlide 0
 
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml) ->
     @hideAllViews()
@@ -59,7 +61,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   ## TOP ICONS
     
   '.browseWrap click': (el) ->
-    @displayScreen "browse",null
+    @showLastView()
 
   '.backArrow click': (el) ->
     @displayScreen el.attr("name"),null
@@ -70,8 +72,23 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   '.play click': ->
     imageIds = @imageCookie.getAll()
-
+    $(".counter").text("1/"+imageIds.length)
     @displayScreen 'slideshow', @view('slideshow', { imageIds: imageIds })
+    
+  ## [ footer icons ]
+  '.next click': ->
+    currentIndex = $("#slideshow img:visible").index()
+    @showSlide currentIndex+1
+
+  '.prev click': ->
+    currentIndex = $("#slideshow img:visible").index()
+    @showSlide currentIndex+1
+    
+  showSlide: (index) ->
+    $("#slideshow img").hide()
+    $("#slideshow img:eq(#{index})").show()
+    totalCount = $("#slideshow img").length
+    $(".counter").text "#{index+1}/#{totalCount}"
     
   #VIEWS
     
@@ -137,6 +154,22 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     
   displaySearchResults: (images) ->
     @displayScreen 'searchResults',@view('searchresults',{ images : images } )
+    
+    #TODO: copied code - refactor
+    $("#searchResults ul li").draggable {
+      containment: 'document'
+      zIndex: 100
+      start: ->
+        $("#dropbox").show()
+        $(".drag").hide()
+    }
+    
+    $("#dropbox").droppable {
+      drop: (ev, ui) =>
+        ui.draggable.css({top: '', left: ''}).appendTo("#dropbox .imagelist")
+        @imageCookie.add ui.draggable.data('id')
+    }
+    
 
   '#searchOptions .genre click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
