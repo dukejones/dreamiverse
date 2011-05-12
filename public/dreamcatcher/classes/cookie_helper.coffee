@@ -3,9 +3,18 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
   init: (key) ->
     @key = key
   
+  #- basic
   clear: ->
-    $.cookie(@key,null)
+    $.cookie @key,null
+  
+  set: (value) ->
+    $.cookie @key,value
     
+  get: ->
+    return $.cookie @key
+    
+    
+  #- collection
   getAll: ->
     return $.cookie(@key).split(",") if $.cookie(@key)?
     return null
