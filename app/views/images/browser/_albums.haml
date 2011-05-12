@@ -1,26 +1,24 @@
 / ALBUMS
 
-#albumList.hidden
+%table#albumList.hidden
+  - @albums._?.each do |album, images|
 
-  %table
-    - @albums._?.each do |album, images|
+    %tr.name
+      %td
+        = album || "All Images"
 
-      %tr.name
-        %td
-          = album || "All Images"
+        %a.manage
+        /(href="#{manage_images_path}")
+        /?ids=#{images.map(&:id).join(',')}
 
-          %a.manage
-          /(href="#{manage_images_path}")
-          /?ids=#{images.map(&:id).join(',')}
-
-      %tr.images
-        %td
-          %ul
-          - images.each do |image|
-            - metaData = ''
-            %li.img{:'data-id' => image.id}
-              %img{src: image.url("126x126")}
-              .add.hidden +
+    %tr.images
+      %td
+        %ul
+        - images.each do |image|
+          - metaData = ''
+          %li.img{:'data-id' => image.id}
+            %img{src: image.url("126x126")}
+            .add.hidden +
 
 
 

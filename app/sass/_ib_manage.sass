@@ -70,6 +70,7 @@
   // TOP
   .browseWrap
     +pointer
+    +user-select
     +center
     +left
     +round(12)
@@ -88,9 +89,11 @@
       height: 42px
       padding: 0
       margin: 2px
-      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat 6px 6px
+      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
       &:hover
-        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat 6px 6px
+        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+      &:active
+        background: #eee url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
 
   .icon
     +left
@@ -110,6 +113,7 @@
 
   .searchWrap
     +pointer
+    +user-select
     +right
     +center
     +round(12)
@@ -128,9 +132,11 @@
       height: 34px
       margin: 0 auto
       padding: 6px
-      background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
+      background: #fff url(/images/icons/search-32.png) no-repeat center center
       &:hover
-        background: #fff url(/images/icons/ib-icons/searchIcon36.png) no-repeat center center
+        background: #fff url(/images/icons/search-32-hover.png) no-repeat center center
+      &:active
+        background: #eee url(/images/icons/search-32-active.png) no-repeat center center
 
 
   // DROPBOX

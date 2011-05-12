@@ -1,74 +1,69 @@
 // ALBUMS
 
+table#albumList
 
-// container to give min-height to albums for dropbox expander
-#albumList
-  min-height: 372px
+  tr.name
 
+    td
+      +font(24)
+      width: 100%
+      height: 60px
+      line-height: 60px
+      padding: 0 0 0 20px
+      +indent-dark
+      border: none
+      border-bottom: 1px solid #333
 
-  table
-
-    tr.name
-
-      td
-        +font(24)
-        width: 100%
+      a.manage
+        +pointer
+        +block
+        +right
+        +alpha(50)
+        margin: 0 12px 0 0
+        width: 33px
         height: 60px
-        line-height: 60px
-        padding: 0 0 0 20px
-        +indent-dark
-        border: none
-        border-bottom: 1px solid #333
+        background: url(/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+        &:hover
+          +alpha(100)
 
-        a.manage
+  tr.images
+
+    td
+
+      .img
+        +relative
+        +left
+        +overflow
+        +pointer
+        margin: 3px 0 0 3px
+        width: 128px
+        height: 128px
+        border: 1px solid transparent
+        &:hover
+          border: 1px solid #ddd
+          .add
+            +block
+
+        img
+          width: 128px
+          height: 128px
+
+        .add
+          +absolute
           +pointer
-          +block
-          +right
+          +center
           +alpha(50)
-          margin: 0 12px 0 0
-          width: 33px
-          height: 60px
-          background: url(/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+          +bold
+          +font(24)
+          width: 28px
+          height: 28px
+          line-height: 28px
+          color: green
+          background: #fff
+          bottom: 0px
+          right: 0px
           &:hover
             +alpha(100)
-
-    tr.images
-
-      td
-
-        .img
-          +relative
-          +left
-          +overflow
-          +pointer
-          margin: 0
-          width: 126px
-          height: 126px
-          border: 1px solid transparent
-          &:hover
-            border: 1px solid #ddd
-            .add
-              +block
-
-          img
-            width: 126px
-            height: 126px
-
-          .add
-            +absolute
-            +pointer
-            +center
-            +alpha(50)
-            +bold
-            width: 24px
-            height: 24px
-            line-height: 24px
-            color: green
-            background: #fff
-            bottom: 0px
-            right: 0px
-            &:hover
-              +alpha(100)
 
 
 
