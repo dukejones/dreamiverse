@@ -176,29 +176,39 @@ class EntryTest < ActiveSupport::TestCase
   # otherwise order the entries by their created_at
   test "dreamstream ordering is correct: merge ordering of created_at and latest comment's created_at" do
     user = User.make
+    viewer = User.make
     time = Time.now - 20.days
     entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
-    stream = Entry.dreamstream(user, {})
+    stream = Entry.dreamstream(viewer, {})
     assert_equal entries.map(&:id).reverse, stream.map(&:id), 'entries ordered created_at desc'
     
-    commented = Entry.make(user: user, created_at: time - 3.days) # older entry
+    commented = Entry.make(user: viewer, created_at: time - 3.days) # older entry
     Comment.make(entry: commented, created_at: time + 4.hours)    # but newer comment
     
-    stream = Entry.dreamstream(user, {})
-    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'recent comment for old entry is first'
+    stream = Entry.dreamstream(viewer, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'recent comment for old entry should be first'
 
     # Multiple comments should not return duplicates of that entry
     Comment.make(entry: commented)
-    stream = Entry.dreamstream(user, {})
-    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'no duplicates for multiple comments'
+    stream = Entry.dreamstream(viewer, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'should be no duplicates for multiple comments'
     
     # Make sure the group by entries.id is selecting the proper comment
     commented.comments.first.update_attribute(:created_at, time - 5.hours) # now the entry wouldn't be first
     commented.comments.last.update_attribute(:created_at, time + 7.days)   # except for this brand new comment 
-    stream = Entry.dreamstream(user, {})
+    stream = Entry.dreamstream(viewer, {})
 
     assert_equal commented.comments.last.created_at.utc, stream.find{|e| e.id == commented.id}.stream_time, "the stream entry's stream_time should be the last comment's created_at"
     assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'orders by the most recent comment'
     
+  end
+
+  test "dreamstream paginates" do
+    viewer = User.make
+    user = User.make
+    time = Time.now
+    entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
   end
 end
