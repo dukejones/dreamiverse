@@ -138,15 +138,17 @@ class Entry < ActiveRecord::Base
     # my_entries = my_entries.where(:stream_time.lt => time_range.max_time) unless page == 1
 
     my_commented_entries = my_entries.joins(:comments).group('entries.id')
-    my_commented_entries = my_commented_entries.having(["max(comments.created_at) > ?", time_range.min_time])
-    my_commented_entries = my_commented_entries.having(["max(comments.created_at) < ?", time_range.max_time]) unless page == 1
+    my_commented_entries = my_commented_entries.having(["max(comments.created_at) > ?", time_range.min_time]) if time_range.min_time
+    my_commented_entries = my_commented_entries.having(["max(comments.created_at) < ?", time_range.max_time]) if page != 1 && time_range.max_time
 
     # debugger
 
     my_uncommented_entries = my_entries.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
-    my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time)
-    my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) unless page == 1
-    # debugger
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time) if time_range.min_time
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) if page != 1 && time_range.max_time
+
+    debugger
+
     entries = Entry.find_by_sql(%{
       (#{others_entries.select('entries.*, entries.created_at as stream_time').to_sql})
       UNION

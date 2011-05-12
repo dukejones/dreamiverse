@@ -208,7 +208,7 @@ class EntryTest < ActiveSupport::TestCase
     user = User.make
     time = Time.now
     entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
-    stream = Entry.dreamstream(viewer, {page_size: 5})
+    # stream = Entry.dreamstream(viewer, {page_size: 5})
     stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
   end
 end
