@@ -9,7 +9,8 @@
         %td
           = album || "All Images"
 
-          %a.manage(href="#{manage_images_path}")
+          %a.manage
+          /(href="#{manage_images_path}")
           /?ids=#{images.map(&:id).join(',')}
 
       %tr.images

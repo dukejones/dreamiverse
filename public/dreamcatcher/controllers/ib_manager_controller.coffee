@@ -85,6 +85,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       #- special cases, such as date and user (i.e. needs to be converted from raw json)
       data.date = $.format.date(data["created_at"].replace("T"," "), 'MMM dd, yyyy')
       data.user = "phong"
+      data.type = data.section
       
       for attr in @model.attributes
         if not common[attr]?
@@ -120,6 +121,9 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
 
   
   ## [ DOM EVENTS ] ##
+  
+  '.browse click': ->
+    window.location.href = "/images"
   
   #- select all/select none
   '.all click': (el) ->
@@ -200,11 +204,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         @model.disable imageId,{},=>
           @imageCookie.remove imageId
         
-    #window.location.href = "/images"  
+    window.location.href = "/images"  
 
   #- cancels all data changes and goes back to ib_browser
   '.cancel click': (el) ->
     $('#imagelist li.selected').each (index,element) =>
       imageId = $(element).data('id')
       @model.disable imageId,{},@callback('disable',$(element),imageId)
+      
     window.location.href = "/images"
