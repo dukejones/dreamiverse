@@ -13,7 +13,6 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
   get: ->
     return $.cookie @key
     
-    
   #- collection
   getAll: ->
     return $.cookie(@key).split(",") if $.cookie(@key)?

@@ -6,7 +6,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
-    @restoreState()
+    #@restoreState()
     @displayScreen "browse",@view('types', { types: @model.types })
   
   hideAllViews: ->
