@@ -21,50 +21,46 @@
 
 
     // MOOD ICON
-    .wrapper
-      .moodIcon
-        +absolute
-        right: -26px
-        top: -26px
-      .moodIcon-picker
-        +absolute
-        right: -8px
-        top: -8px
+    .moodIcon
+      +absolute
+      right: -26px
+      top: -26px
+    .moodIcon-picker
+      +absolute
+      right: -8px
+      top: -8px
 
-    .entryType
+
+    // for degredation when JS doesnt load new technique
+    #entryType-list
+      padding: 7px 8px
+
+    #entryType-list, #entryType-list-button
       +round(20)
       +right
-      right: 70px
       height: 34px
       width: 158px // For Chrome
-      line-height: 34px
-      .typeSelection
-        +left
-        width: 24px
-        height: 34px
-        margin: 0 -36px 0 8px
-      select#entryType_list
-        +outline
-        +transparent
-        +block
-        +font(14)
-        +pointer
-        +right
-        +center
-        border: 0
-        height: 34px
-        padding: 7px 8px
-        option
-          padding: 6px 4px 6px 38px
-          text-align: left
-        option.dream
-          background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
-        option.vision
-          background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
-        option.experience
-          background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
-        option.article
-          background: url(/images/icons/article-16-hover.png) no-repeat 8px center
+      +block
+      +font(14)
+      +pointer
+      +right
+      +center
+
+      option, li
+        padding: 6px 4px 6px 38px
+        text-align: left
+      .dream
+        background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
+      .vision
+        background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
+      .experience
+        background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
+      .article
+        background: url(/images/icons/article-16-hover.png) no-repeat 8px center
+      .journal
+        background: url(/images/icons/journal-16-hover.png) no-repeat 8px center
+
+
     #entry_title, #entry_body
       +outline
       +transparent
@@ -825,9 +821,9 @@
       +flat-light
       +glow-light(40)
 
-      .entryType
-        +indent-light
-        +button-light
+    #entryType-list, #entryType-list-button
+      +indent-light
+      +button-light
 
     // SHARED PANEL STYLES
     .entryPanels
@@ -1060,13 +1056,11 @@
       +flat-dark
       +glow-dark(40)
 
-      .entryType
-        +button-dark
-        +indent-dark
-        border: 1px solid #222
-
-        #entryType_list
-          color: #ddd
+    #entryType-list, #entryType-list-button
+      +button-dark
+      +indent-dark
+      border: 1px solid #222
+      color: #ddd
 
     // NEW ENTRY OPTIONS
     #entryOptions

@@ -33,17 +33,19 @@
     / NEW ENTRY INPUT PANEL
     #newEntry
 
-      .wrapper
-        / MOOD ICON
-        /= render :partial => "mood_icon"
+      / .wrapper
+      /   MOOD ICON
+      /   = render :partial => "mood_icon"
 
-      .entryType
-        .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
-        %select#entryType_list{name: 'entry[type]'}
-          %option.dream{:value => 'dream', :selected => @entry.type == 'dream'} dream
-          %option.vision{:value => 'vision', :selected => @entry.type == 'vision'} vision
-          %option.experience{:value => 'experience', :selected => @entry.type == 'experience'} experience
-          %option.article{:value => 'article', :selected => @entry.type == 'article'} article
+      / .entryType
+      /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
+
+      %select#entryType-list{name: 'entry[type]'}
+        %option.dream{      :value => 'dream',      :selected => @entry.type == 'dream'}      dream
+        %option.vision{     :value => 'vision',     :selected => @entry.type == 'vision'}     vision
+        %option.experience{ :value => 'experience', :selected => @entry.type == 'experience'} experience
+        %option.article{    :value => 'article',    :selected => @entry.type == 'article'}    article
+        %option.journal{    :value => 'journal',    :selected => @entry.type == 'journal'}    journal
 
 
       / TITLE AND BODY
