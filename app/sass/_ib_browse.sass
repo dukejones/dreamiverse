@@ -5,7 +5,7 @@ ul#type
   +round(12)
   list-style: none
   margin: 0
-  padding: 16px 8px 8px 16px
+  padding: 8px 0 0 12px
   height: 40px
   +gradient(#505050, rgba(39,39,39,0.1))
 
@@ -16,8 +16,8 @@ ul#type
     +round(8)
     height: 32px
     line-height: 30px
-    margin: 0 16px 0 0
-    padding: 0 16px
+    margin: 0 8px 0 0
+    padding: 0 14px
     background: #1c1c1c
     &:hover, &.selected
       color: #414042
@@ -26,17 +26,18 @@ ul#type
 
 #categories
   +clear
-  margin: 0 0 8px
+  margin: 8px 0 0
   padding: 0
 
   .category
     +pointer
+    +user-select
     +center
     +left
     +font(26)
     height: 108px
     line-height: 104px
-    width: 372px
+    width: 331px
     margin: 0 2px
     color: #a1a1a1
     +shine-dark(54)
