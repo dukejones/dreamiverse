@@ -3,6 +3,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
+    
+    $('#entryType_list').selectmenu()
+
+
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
