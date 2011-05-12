@@ -208,7 +208,9 @@ class EntryTest < ActiveSupport::TestCase
     user = User.make
     time = Time.now
     entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
-    # stream = Entry.dreamstream(viewer, {page_size: 5})
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    assert_equal entries[0...5].map(&:id), stream.map(&:id), 'first page is latest five'
     stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
+    assert_equal entries[5..-1].map(&:id), stream.map(&:id), 'second page is older five'
   end
 end

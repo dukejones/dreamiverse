@@ -147,7 +147,7 @@ class Entry < ActiveRecord::Base
     my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time) if time_range.min_time
     my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) if page != 1 && time_range.max_time
 
-    debugger
+    # debugger
 
     entries = Entry.find_by_sql(%{
       (#{others_entries.select('entries.*, entries.created_at as stream_time').to_sql})
