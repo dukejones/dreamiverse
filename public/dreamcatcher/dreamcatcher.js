@@ -14,7 +14,7 @@ steal.plugins(
 		'ui/jquery.ui.mouse',
 
 		'ui/jquery.ui.draggable',
-		//'ui/jquery.ui.droppable',
+		'ui/jquery.ui.droppable',
 	  'jquery-lightbox-0.5',
 	  'jquery.timeago',
 		'jquery.exists',

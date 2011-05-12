@@ -1,7 +1,11 @@
 $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
   model: Dreamcatcher.Models.ImageBank
-  allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow']
+  allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow','dropbox']
+  
+  init: ->
+    @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
+    @displayScreen "browse",@view('types', { types: @model.types })
   
   hideAllViews: ->
     for view in @allViews
@@ -15,9 +19,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $(".top,.footerButtons").children().hide()
     $(icons,".top,.footerButtons").show()    
       
-  init: ->
-    @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
-    @displayScreen "browse",@view('types', { types: @model.types })
+
 
   displayScreen: (type, html) ->
     switch type
@@ -34,7 +36,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         @updateScreen null,null,'#searchResults',null,html
       when 'slideshow'
         @showIcons '.counter,.play'
-        @updateScreen null,null,'#slideshow',null,null
+        @updateScreen null,null,'#slideshow',null,html
 
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml) ->
     @hideAllViews()
@@ -62,15 +64,14 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '.backArrow click': (el) ->
     @displayScreen el.attr("name"),null
 
-  '.search click': ->
+  '.searchWrap click': ->
     if not $('.searchFieldWrap').is(':visible')
       @showIcons '.browseWrap, .searchFieldWrap'
-    else
-      data = @getSearchOptions()
-      @model.searchImages data,@callback('displaySearchResults'
   
   '.play click': ->
-    @displayScreen 'slideshow',null
+    imageIds = @imageCookie.getAll()
+
+    @displayScreen 'slideshow', @view('slideshow', { imageIds: imageIds })
     
   #VIEWS
     
@@ -92,53 +93,80 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @artist = $("h2:first",el).text()
     $.get "/albums?artist=#{@artist}&section=#{@section}&category=#{@category}",(html) =>
       @displayScreen "albumList",html
-      $("#albumList .images .img").draggable()
-      $(".dropbox").show()
-      $(".dropbox .imagelist").droppable({
-        drop: (ev, ui) ->
-          alert 'x'#TODO
-      })
+      $("#albumList .images .img").draggable {
+        containment: 'document'
+        #helper: 'clone'
+        #appendTo: '#dropbox'
+        zIndex: 100
+        #distance: 40
+        #scroll: false
+        #revert: false
+        start: ->
+          $("#dropbox").show()
+          $(".drag").hide()
+        #stop: ->
+        #$("#dropbox").slideDown()
+      }
+      
+      $("#dropbox").droppable {
+        drop: (ev, ui) =>
+          ui.draggable.css({top: '', left: ''}).appendTo("#dropbox .imagelist")
+          @imageCookie.add ui.draggable.data('id')
+      }
   
   #- albumList
-  '#albumList .add click': (el) ->
-    img = el.parent()
-    img.addClass("selected")
-    id = img.data('id')
-    @imageCookie.add id
+  #'#albumList .add click': (el) ->
+  #  img = el.parent()
+  #  img.addClass("selected")
+  #  id = img.data('id')
+  #  @imageCookie.add id
     
-  #- searchOptions
-  displaySearchResults: (images) ->
-    @displayScreen 'searchResults',@view('searchresults',{ images : images } )
-    
+  #- searchOptions    
   '.searchField .options click': (el) ->
     if not $("#searchOptions").is(":visible")
       @hideAllViews()
       el.addClass("selected")
-      for category in @categories
-        $('#searchOptions .category select').append("<option>#{category}</option>")
+      $('#searchOptions .category select').append("<option>#{category}</option>") for category in @categories
       $("#searchOptions .genres").html @view('genres',{genres: @model.genres})
       $("#searchOptions").show()
-      $(".category .list")
     else
       @showLastView()
+      
+  '.searchField .search click': (el) ->
+    @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
+    
+  displaySearchResults: (images) ->
+    @displayScreen 'searchResults',@view('searchresults',{ images : images } )
 
   '#searchOptions .genre click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
     
   getSearchOptions: ->
     options = {}
-    options.q = $(".searchField input.input").val()
-    for attr in ['artist','album','title','year','tags']
-      val = ""
-      inputElement = $("##{attr} input[type='text']");
-      val = inputElement.val().trim() if inputElement.val()?
-      options[attr] = val if val.length > 0
-    log options
     
-    #genres = []
-    #$(".genre.selected").each (index,element) ->
-    #  genres.push $(element).text()
-    #options['genres'] = genres.join(',')
+    #searchtext
+    searchText = $(".searchField input[type='text']").val().trim()
+    options['q'] = searchText  if searchText.length > 0
+    
+    if $("#searchOptions").is(":visible")
       
+      #attributes - artist, album etc
+      for attr in ['artist','album','title','year','tags']
+        val = @getValFromAttr attr
+        options[attr] = val if val?
+        
+      #genres
+      genres = []
+      $(".genre.selected").each (index,element) ->
+        genres.push $(element).text().trim()
+      options['genres'] = genres.join(',') if genres.length > 0
+    
+    return options
+    
+  getValFromAttr: (attr) ->
+    inputElement = $("##{attr} input[type='text']");
+    val = inputElement.val().trim() if inputElement.val()?
+    return val if val.length > 0
+    return null
   
 
