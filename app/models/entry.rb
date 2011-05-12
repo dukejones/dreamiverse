@@ -120,7 +120,7 @@ class Entry < ActiveRecord::Base
 
     user_ids_to_view =  # based on friend filter
       if filters[:friend] == "friends"
-        viewer.friends.select('users.id')
+        viewer.friends
       else
         viewer.following.select('users.id')
       end.map(&:id)
