@@ -206,6 +206,7 @@ class EntryTest < ActiveSupport::TestCase
   test "dreamstream paginates" do
     viewer = User.make
     user = User.make
+    viewer.following << user; viewer.save!; viewer.reload
     time = Time.now
     entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
     stream = Entry.dreamstream(viewer, {page_size: 5})
