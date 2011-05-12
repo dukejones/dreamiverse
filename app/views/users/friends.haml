@@ -10,8 +10,8 @@
 
   / PAGE HEADER
 
-  .pageHeader.friendHeader
-    .img{"style" => "background-image: url(#{friends_header_image})"}
+  .pageHeader
+    .img{class: @mode}
     %h1= @mode
   .clear
 
