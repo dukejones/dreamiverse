@@ -116,7 +116,7 @@ class Entry < ActiveRecord::Base
     # Universal scope
     entry_scope = Entry.order(:created_at.desc)
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
-    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
+    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]).where(:sharing_level ^ self::Sharing[:anonymous])
 
     user_ids_to_view =  # based on friend filter
       if filters[:friend] == "friends"
