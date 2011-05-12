@@ -1,13 +1,4 @@
 module EntriesHelper
-  def entry_type_icon(type, size, modifier=nil) # modifier can be 'active' or 'hover'
-    raw(
-      "/images/icons/#{type}-#{size}#{modifier ? '-' + modifier : ''}.png"
-    )
-  end
-  
-  def dreamfield_header_image
-    return entry_type_icon(@filters[:type], 32, 'hover')
-  end
 
   def gallery_list_item(image)
     small_image_url = image.url(:thumb, :size => 122)

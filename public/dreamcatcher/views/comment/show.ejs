@@ -1,5 +1,11 @@
 <div class="prevCommentWrap <%= hidden ? 'hidden': '' %>">
-  <a style="background-image: url('/images/uploads/<%= comment.image_id %>-avatar-64.jpg')" href="/<%= comment.username %>" class="avatar"></a>
+
+  <% if (comment.image_id) { %>
+    <a style="background-image: url('/images/uploads/<%= comment.image_id %>-avatar-64.jpg')" href="/<%= comment.username %>" class="avatar"></a>
+  <% } else { %>
+    <a href="/<%= comment.username %>" class="avatar"></a>
+  <% } %>
+    
   <div class="prevComment">
     <a href="/<%= comment.username %>" class="user"><%= comment.username %></a>
     <div class="commentTime"><%= $.timeago(comment.updated_at) %></div>

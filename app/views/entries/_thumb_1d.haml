@@ -7,7 +7,7 @@
       %a.user{href: user_entries_path(entry.user.username)}
         .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
         %p.name= entry.user.username
-      .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 24)}'); background-repeat: no-repeat; background-position: center;"}
+      .entryType{class: entry.type}
 
     %a.left{href: user_entry_path(entry.user.username, entry)}
       / STARLIGHT

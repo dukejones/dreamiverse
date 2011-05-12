@@ -16,14 +16,14 @@
       %table
         %tr
           %td.date
-            .entryType{style: "background-image: url('#{entry_type_icon(entry.type, 16)}')"}
+            .entryType{class: entry.type}
             = time_ago_in_words(entry.dreamed_at)
           / %td.location dream location
 
     .detailsBottom
       - if entry.new_comment_count > 0 && current_user && entry.user == current_user
         .comments.new
-          .img
+          .img.comment
           = entry.new_comment_count
       - elsif entry.comments.count != 0
         .comments{class: entry.new_comment_count > 0 }

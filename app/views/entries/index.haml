@@ -13,8 +13,8 @@
 
   / PAGE HEADER
   - if @filters[:type]
-    .pageHeader.dreamHeader
-      .img{"style" => "background-image: url(#{dreamfield_header_image})"}
+    .pageHeader
+      .img{class: @filters[:type]}
       %h1= @filters[:type].pluralize
     .clear
   
