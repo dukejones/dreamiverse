@@ -6,13 +6,13 @@
   +absolute
   +clear
   +round(16)
-  top: 90px
-  left: 40px
+  top: 83px
+  left: 242px
   margin: 0 0 40px
   padding: 0 4px 32px
   width: 752px
   color: #ddd
-  +shine-dark(32)
+  +shine-dark(38)
 
 
   table
@@ -27,6 +27,74 @@
     margin: 0
     width: 100%
     +flat-dark
+
+
+
+// MY COLLECTION
+.collection
+  +round(16)
+  +cursor
+  position: fixed
+  top: 83px
+  left: 13px
+  width: 200px
+  padding: 4px
+  color: #ddd
+  +shine-dark(20)
+
+  .icon
+    +left
+    width: 32px
+    height: 26px
+    margin: 4px 8px 8px
+    background: url(/images/icons/dropbox-26.png) no-repeat center center
+
+  h2
+    +left
+    +font(16)
+    +bold
+    margin: 4px 0 0
+    line-height: 26px
+
+  .active
+    +absolute
+    +alpha(70)
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    background: #000 url(/images/icons/ib-icons/dropboxIconText.png) no-repeat center center
+    z-index: 2
+
+  ul.imagelist
+    +user-select
+    +clear
+    margin: 0 0 20px
+    padding: 1px
+    width: auto
+    min-height: 198px
+    list-style: none
+    border: 1px solid #333
+    background: #272727
+    box-shadow:         inset 0 10px 10px rgba(0,0,0,0.7)
+    -moz-box-shadow:    inset 0 10px 10px rgba(0,0,0,0.7)
+    -webkit-box-shadow: inset 0 10px 10px rgba(0,0,0,0.7)
+
+    li
+      +relative
+      +left
+      +pointer
+      +overflow
+      +round(4)
+      margin: 1px 1px 0 0
+      height: 95px
+      width: 95px
+      border: 1px solid #ddd
+
+      img
+        height: 95px
+        width: 95px
+
 
 
 
