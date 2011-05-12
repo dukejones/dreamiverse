@@ -6,7 +6,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @imageCookie = new Dreamcatcher.Classes.CookieHelper("imagebank")
     @populateLists()
     @createUploader()
-    @loadImages @imageCookie.getAll()
+    
+    album = $.query.get 'album'
+    if album.length > 0
+      @loadAlbumImages album
+    else
+      @loadImages @imageCookie.getAll()
   
 
   ## [ IMAGE FILE UPLOADER ] ##
@@ -52,15 +57,21 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
 
   #- loads all meta for a list of images
   loadImages: (imageIds) ->
-    @model.getImage imageId,{},@callback('showImage',null) for imageId in imageIds if imageIds?
+    @model.findImagesById imageIds.join(','),{},@callback('showImages')
+    
+  loadAlbumImages: (album) ->
+    @model.searchImages {q: album, album: album},@callback('showImages')
+
+  showImages: (images) ->
+    $("#imagelist").append @view('list',{images: images})
     
   #- add image Html to the Dom
   showImage: (uploadElement, image) ->
     imageHtml = @view 'show',image
     if uploadElement?
       uploadElement.replaceWith imageHtml
-    else
-      $("#imagelist").append imageHtml
+    #else
+    #  $("#imagelist").append imageHtml
 
   
   ## [ IMAGE META ] ##

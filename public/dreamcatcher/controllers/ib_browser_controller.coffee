@@ -1,12 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
   model: Dreamcatcher.Models.ImageBank
-  allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow','dropbox']
+  allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow']#/*,'dropbox'*/]
   
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
     #@restoreState()
+    @loadDropbox()
     @displayScreen "browse",@view('types', { types: @model.types })
   
   hideAllViews: ->
@@ -55,10 +56,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         @showIcons '.backArrow, h1, .searchWrap'
         @updateScreen "browse",'browse',"#artistList",@category,html
       when 'albumList'
-        @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag, .edit, .cancel'
+        @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag'
         @updateScreen "artistList",@category,"#albumList",@artist,html
       when 'searchResults'
-        @showIcons '.browseWrap, .searchFieldWrap, .drag, .cancel'
+        @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateScreen null,null,'#searchResults',null,html
       when 'slideshow'
         @showIcons '.backArrow, h1, .counter, .play, .prev, .info, .tag, .add, .next, .edit, .cancel'
@@ -74,14 +75,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     
     $(currentType).replaceWith(currentHtml) if currentHtml?
     $(currentType).show()
-    
-    ###
-    if currentType is "#albumList" and currentHtml?
-      $("#albumList .img").each (index,element) =>
-        id = $(element).data 'id'
-        if @imageCookie.contains id
-          $(element).addClass('selected')
-    ###
           
   ## TOP ICONS
     
@@ -172,26 +165,40 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         helper: 'clone'
         zIndex: 100
         start: ->
-          $("#collection").show()
-          $(".drag").hide()
-        }
-      
-      $("#collection").droppable {
+          $("#dropbox .active").show()
+        stop: ->
+          $("#dropbox .active").hide()
+      }
+      $("#dropbox").droppable {
         drop: (ev, ui) =>
-          #ui.draggable.css({top: '', left: ''}).appendTo("#dropbox .imagelist")
-          @imageCookie.add ui.draggable.data('id')
+          id = ui.draggable.data('id')
+          if not @imageCookie.contains id
+            @imageCookie.add id
+            @showImageInDropbox id
+          else
+            alert 'already here'
       }
       
   #- albumList
-  '#albumList .manage click': (el) ->
-    @imageCookie.clear()
-    $('.img',el.closest('tr.name').next()).each (index,element) =>
-      @imageCookie.add $(element).data 'id'
-    window.location.href = "/images/manage"
-    
-  '.edit click': ->
+
+  #- dropbox
+  loadDropbox: ->
+    $("#dropbox .imagelist").html("")
+    @showImageInDropbox id for id in @imageCookie.getAll()
+        
+  showImageInDropbox: (id) ->
+    @model.getImage id, {}, (image) =>
+      $("#dropbox .imagelist").append @view('dropboximage',{ image: image })
+  ###
+  '#dropbox .edit click': -> #TODO: fix
     @setState()
     window.location.href = "/images/manage"
+  
+  '.dropboxFooter .cancel click': (el) -> #TODO: fix
+    alert 'x'
+    @imageCookie.clear()
+    $("#dropbox .imagelist").html("")
+  ###
     
   #- searchOptions    
   '.searchField .options click': (el) ->
@@ -215,11 +222,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       containment: 'document'
       zIndex: 100
       start: ->
-        $("#collection").show()
+        $("#dropbox").show()
         $(".drag").hide()
     }
     
-    $("#collection").droppable {
+    $("#dropbox").droppable {
       drop: (ev, ui) =>
         ui.draggable.css({top: '', left: ''}).appendTo("#dropbox .imagelist")
         @imageCookie.add ui.draggable.data('id')

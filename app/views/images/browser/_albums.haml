@@ -8,16 +8,13 @@
       %tr.name
         %td
           = album || "All Images"
-
-          %a.manage
-          /(href="#{manage_images_path}")
-          /?ids=#{images.map(&:id).join(',')}
+          %a.manage(href="#{manage_images_path}?album=#{album}")
 
       %tr.images
         %td
           %ul
           - images.each do |image|
-            - metaData = ''
+            /- metaData = render :json => image
             %li.img{:'data-id' => image.id}
               %img{src: image.url("126x126")}
               .add.hidden +
