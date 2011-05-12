@@ -22,7 +22,8 @@ steal.plugins(
 		'jquery.videolink',
 		'fileuploader',
 		'jquery.cookie',
-		'jquery.dateFormat-1.0'
+		'jquery.dateFormat-1.0',
+		'jquery.query-2.1.7'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //TODO: StealJS fix: don't forget to contribute!
