@@ -119,6 +119,16 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
 
+
+    user_ids_to_view =  # based on friend filter
+      if filters[:friend] == "friends"
+        viewer.friends
+      else
+        viewer.following.select('users.id')
+      end.map(&:id)
+    user_ids_to_view.delete(viewer.id)
+    
+
     # Others' Entries, paged.
     others_entries = entry_scope
 

@@ -33,12 +33,11 @@ class UsersController < ApplicationController
 
     redirect_to(root_path, {alert: "User #{params[:username]} does not exist."}) and return unless @user
       
-    
     @mode = params[:mode].to_sym
     @friends = case @mode
-      when 'friends'   then @user.friends
-      when 'following' then @user.following
-      when 'followers' then @user.followers
+      when :friends   then @user.friends
+      when :following then @user.following
+      when :followers then @user.followers
     end
   end
   
