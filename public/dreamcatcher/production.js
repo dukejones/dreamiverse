@@ -1,4 +1,4 @@
-steal.plugins("steal/coffee","jquery/controller","jquery/controller/subscribe","jquery/view/ejs","jquery/controller/view","jquery/model","jquery/dom/fixture","jquery/dom/form_params").resources("jquery-lightbox-0.5","jquery.timeago","jquery.exists","jquery.linkify","jquery.videolink").then(function(){steal.coffee("models/settings","models/appearance","models/bedsheet","models/comment","controllers/application_controller","controllers/metamenu_controller","controllers/settings_controller","controllers/appearance_controller",
+steal.plugins("steal/coffee","jquery/controller","jquery/controller/subscribe","jquery/view/ejs","jquery/controller/view","jquery/model","jquery/dom/fixture","jquery/dom/form_params").resources("jquery-lightbox-0.5","jquery.timeago","jquery.exists","jquery.linkify","jquery.videolink").then(function(){steal.coffee("models/settings","models/appearance","models/bedsheet","models/comment","controllers/application_controller","controllers/meta_menu_controller","controllers/settings_controller","controllers/appearance_controller",
 "controllers/bedsheet_controller","controllers/comment_controller")}).views();
 ;
 steal.end();
