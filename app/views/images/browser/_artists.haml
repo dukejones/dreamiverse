@@ -17,7 +17,7 @@
 
       %td.images
         - images.each do |image|
-          = image_tag image.url('62x62'), :alt => image.id
+          = image_tag image.url('62x62'), :'data-id' => image.id
 
 
 
