@@ -162,17 +162,9 @@
           margin: -8px -8px -8px 4px
 
       .sun
-        +shine-light(14)
-        +button-light
-        color: #111
-        &:hover
-          color: #000
+        color: #555
       .moon
-        +shine-dark(14)
-        +button-dark
         color: #ccc
-        &:hover
-          color: #fff
 
 
 
@@ -201,22 +193,30 @@
   .more
     +button-light
 
+  .sun, .sun:hover
+    border: 2px solid #111 !important
+    +indent-light
+    +glow-light(0)
+  .moon
+    +shine-dark(14)
+    +button-dark
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #fff
+
+
+
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
 .light.fixed #appearancePanel .attachment .fixed, .light.scroll #appearancePanel .attachment .scroll
   border: 2px solid #777 !important
   +indent-light
+  +cursor
   &:hover
     +indent-light
     +glow-light(0)
     color: #111
-.light #appearancePanel .sun
-  border: 2px solid #111 !important
-.light #appearancePanel .moon
-  +round(24)
-  border: 0px solid transparent !important
-  margin-top: 2px
-  margin-left: 5px !important
-
 
 
 
@@ -240,19 +240,28 @@
   .more
     +button-dark
 
+  .sun
+    +shine-light(14)
+    +button-light
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #000
+  .moon, .moon:hover
+    border: 2px solid #777 !important
+    +indent-dark
+    +glow-dark(0)
+    margin-left: 5px !important
+
+
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
 .dark.fixed #appearancePanel .attachment .fixed, .dark.scroll #appearancePanel .attachment .scroll
   border: 2px solid #333 !important
   +indent-dark
+  +cursor
   &:hover
     +indent-dark
     +glow-dark(0)
-.dark #appearancePanel .sun
-  border: 0px solid transparent !important
-  margin-top: 2px
-  margin-left: 5px !important
-.dark #appearancePanel .moon
-  border: 2px solid #777 !important
-  margin-left: 5px !important
 
 
