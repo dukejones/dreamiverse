@@ -32,6 +32,7 @@
 
 // DROP BOX
 #dropbox
+  +relative
   +round(16)
   +cursor
   position: fixed
@@ -58,6 +59,7 @@
 
   .active
     +absolute
+    +round(16)
     +alpha(70)
     top: 0
     left: 0
@@ -116,6 +118,12 @@
     border: 1px solid #242424
     +shine-dark(14)
     +gradient(#242424, #000)
+
+  .edit
+    +confirm(12)
+
+  .cancel
+    +cancel(12)
 
 
 
