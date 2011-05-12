@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
     @entry = Entry.find params[:entry_id]
     raise "Empty comment!" if params[:comment][:body].blank?
     @comment = Comment.create!(params[:comment].merge(entry_id: params[:entry_id]))
-    @entry.update_attribute(:new_comment_count, @entry.new_comment_count + 1) unless @comment.user == current_user
+    @entry.update_attribute(:new_comment_count, @entry.new_comment_count + 1) unless @entry.user == current_user
 
     respond_to do |format|
       format.html { redirect_to(user_entry_path(@entry.user.username, @entry) + '#bottom') }
