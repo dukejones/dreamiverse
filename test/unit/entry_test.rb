@@ -177,6 +177,8 @@ class EntryTest < ActiveSupport::TestCase
   test "dreamstream ordering is correct: merge ordering of created_at and latest comment's created_at" do
     user = User.make
     viewer = User.make
+    viewer.following << user; viewer.save!
+
     time = Time.now - 20.days
     entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
     stream = Entry.dreamstream(viewer, {})
@@ -207,14 +209,28 @@ class EntryTest < ActiveSupport::TestCase
     viewer = User.make
     user = User.make
     time = Time.now
-    entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
-    stream = Entry.dreamstream(viewer, {page_size: 5})
-    assert_equal [], stream
-    viewer.following << user; viewer.save!; viewer.reload
+    entries = (1..12).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+
+    assert_equal [], Entry.dreamstream(viewer, {page_size: 5})
+
+    viewer.following << user; viewer.save!
     stream = Entry.dreamstream(viewer, {page_size: 5})
     assert_equal entries[0...5].map(&:id), stream.map(&:id), 'first page is latest five'
     stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
-    assert_equal entries[5..-1].map(&:id), stream.map(&:id), 'second page is older five'
+    assert_equal entries[5...10].map(&:id), stream.map(&:id), 'second page is older five'
+    
+    # Now viewer has authored an Entry.
+    my_entry = Entry.make(user: viewer, created_at: Time.now)
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    assert_equal ([my_entry] + entries[0...5]).map(&:id), stream.map(&:id), 'my entry is first, then the others entries'
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
+    assert_equal entries[5...10].map(&:id), stream.map(&:id), 'second page is older five'
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 3})
+    assert_equal entries[10...12].map(&:id), stream.map(&:id), 'third page is next oldest five'
+
+    # Make sure your own entry does not then repeat on the final page.
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 4})
+    assert_equal [], stream.map(&:id), 'nothing on the 4th page'
   end
   
   test "dreamstream filters" do
