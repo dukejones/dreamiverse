@@ -4,11 +4,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow']
   
   init: ->
-    @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
+    @imageCookie = new Dreamcatcher.Classes.CookieHelper "ib_dropbox"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
-    
     @displayScreen "browse",@view('types', { types: @model.types })
     
+    #@managerShow = 'dropbox' #dropbox, album, artist
     @loadDropbox()
     @restoreState()
     
@@ -27,12 +27,13 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       type: @type
       category: @category
       artist: @artist
-      
       currentView: @currentView
+      manageShow: @manageShow
       
       dropbox: $("#dropbox").offset()
     }
     @stateCookie.set JSON.stringify(state)
+    #log @stateCookie.get()
 
   restoreState: ->
     state = JSON.parse @stateCookie.get()
@@ -58,10 +59,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
     $("#dropbox").droppable {
       drop: (ev, ui) =>
-        id = ui.draggable.data('id')
+        id = ui.draggable.data 'id'
+        meta = ui.draggable.data 'image'
         if not @imageCookie.contains id
           @imageCookie.add id
-          @showImageInDropbox id
+          @showImageInDropbox id,meta
         else
           alert 'already here'
     }
@@ -79,6 +81,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '#dropbox .cancel click': (el) -> #TODO: fix
     @imageCookie.clear()
     $("#dropbox .imagelist").html("")
+    
+  '#dropbox .edit click': (el) ->
+    @showManager 'dropbox'
     
   '#dropbox li .close click': (el) ->
     imageId = el.parent().data 'id'
@@ -101,10 +106,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   hideAllViews: ->
     for view in @allViews
-      @lastView = view if $("##{view}").is(":visible")
+      @lastView = view if $("##{view}").is(":visible") and view isnt 'searchOptions'
     return $( '#'+@allViews.join(', #') ).hide()
     
   showLastView: ->
+    #log @lastView
     @displayScreen @lastView,null if @lastView?
     
   showIcons: (icons) ->
@@ -146,7 +152,19 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     
     $(currentType).replaceWith(currentHtml) if currentHtml?
     $(currentType).show()
-
+    
+  showManager: (manageShow) ->
+    #log manageShow
+    @manageShow = manageShow
+    @saveState()
+    
+    if not $("#frame.manager").exists()
+      $.get '/images/manage',(html) =>
+        $('#frame.browser').hide().after html
+        @ibManager = new Dreamcatcher.Controllers.IbManager $("#frame.manager") if not @ibManager
+        @ibManager.showManager()
+    else
+      @ibManager.showManager()
           
   ## TOP ICON EVENTS
     
@@ -162,8 +180,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   '.top .play click': ->
     @showAlbumSlides 0
-
-
+    
+  '.top .manage click': ->
+    @showManager 'artist'
 
 
     
@@ -203,15 +222,17 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @displayScreen "albumList",html
       @setDraggable $("#albumList .images .img")
   
-  
-      
   #- Album List -#
+  
+  '#albumList .manage': (el) ->
+    log 'x'
+    @album = el.closest("tr").data 'album'
+    @showManager 'album'
   
   '#albumList .images .img click': (el) ->
     imageId = el.data 'id'
-    @showAlbumSlides imageId
-  
-  
+    album = el.closest("tr").data 'album'
+    @showAlbumSlides imageId,album
   
     
   #- Slideshow -#
@@ -232,13 +253,14 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showImageInDropbox imageId,imageMeta
     el.hide()
     
-  showAlbumSlides: (imageId) ->
+  showAlbumSlides: (imageId, album) ->
     imageIds = []
-    $("#albumList .img").each (index,element) =>
-      imageIds.push $(element).data('id')
-      
-    #index = 
-
+    index = 0
+    albumSelector = if album? then "tr[data-album='#{album}']"  else ""
+    $("#albumList #{albumSelector} .img").each (i, el) =>
+      id = $(el).data 'id'
+      imageIds[i] = id
+      index = i if id is imageId
     $(".counter").text("1/"+imageIds.length)    
     @model.findImagesById imageIds.join(','), {}, (images) =>
       @displayScreen 'slideshow', @view('slideshow', { images: images })
@@ -262,7 +284,13 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     imageId = imageElement.data 'id'
     imageMeta = imageElement.data 'image'
 
-    $("h1").text(imageMeta.title)
+    title = imageMeta.title
+    album = imageMeta.album
+    album = " / "+album if album.length > 0
+    header = title + album
+    $("h1").text(title)
+    
+    imageMeta.title
 
     if totalCount is 1 then $(".counter,.prev,.next").hide() else $(".counter").text "#{index+1}/#{totalCount}"
     if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()

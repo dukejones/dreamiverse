@@ -3,15 +3,16 @@
 %table#albumList.hidden
   - @albums._?.each do |album, images|
 
-    %tr.name
+    %tr.name{:'data-album' => album}
       %td
         = album || "All Images"
-        %a.manage(href="#{manage_images_path}?album=#{album}")
+        %a.manage
 
-    %tr.images
+    %tr.images{:'data-album' => album}
       %td
+        - require 'json'
         - images.each do |image|
-          .img{:'data-id' => image.id}
+          .img{:'data-id' => image.id, :'data-image' => "#{image.to_json}"}
             = image_tag image.url('128x128')
             .add.hidden +
 

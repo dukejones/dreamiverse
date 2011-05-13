@@ -83,7 +83,7 @@ class ImagesController < ApplicationController
 
   def manage
     respond_to do |format|
-      format.html # manage.html.erb
+      format.html { render(partial:"images/browser/manage") }
       # format.json  { render :json => @images }
     end
   end

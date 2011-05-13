@@ -4,24 +4,39 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
 
   
   init: ->
-    @imageCookie = new Dreamcatcher.Classes.CookieHelper("imagebank")
+    @imageCookie = new Dreamcatcher.Classes.CookieHelper "ib_dropbox"
+    @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
+
     @populateLists()
     @createUploader()
     @shiftDown = false
     @enableShiftKey()
       
-    album = $.query.get 'album'
-    if album.length > 0
-      @loadAlbumImages album
+  showBrowser: ->
+    $("#frame.browser").show()
+    $("#frame.manager").hide()
+    
+  showManager: ->
+    $("#imagelist").html()
+    stateMeta = JSON.parse @stateCookie.get()
+    if stateMeta.manageShow is 'dropbox'
+      #log @imageCookie.getAll()
+      imageIds = @imageCookie.getAll()
+      @loadImagesByIds imageIds if imageIds
     else
-      @loadImages @imageCookie.getAll()
+      meta = {q: stateMeta.artist}
+      meta['artist'] = stateMeta.artist if stateMeta.artist?
+      meta['album'] = stateMeta.album if stateMeta.album?
+      @loadImagesByMeta meta
+    #$("#frame.browser").show()
+    $("#frame.manager").show()
       
     
   enableShiftKey: ->
     $(document).bind 'contextmenu', (index,element) =>
       return false
     
-      log $(element).html()
+      #log $(element).html()
       if @ctrlDown
         log @ctrlDown+'x'
         @selectRange $(element)
@@ -76,17 +91,16 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   #- populates the organization lists with seed date
   populateLists: ->
     for type in @model.types
-      $("#type select").append("<option>#{type.name}</option>")
-      $("#type select option:last").data("categories",type.categories)
+      $("#type select").append("<option data-categories='#{JSON.stringify type.categories}'>#{type.name}</option>")
     for genre in @model.genres
       $("#genre select").append("<option>#{genre}</option>")
 
   #- loads all meta for a list of images
-  loadImages: (imageIds) ->
+  loadImagesByIds: (imageIds) ->
     @model.findImagesById imageIds.join(','),{},@callback('showImages')
     
-  loadAlbumImages: (album) ->
-    @model.searchImages {q: album, album: album},@callback('showImages')
+  loadImagesByMeta: (meta) ->
+    @model.searchImages meta,@callback('showImages')
 
   showImages: (images) ->
     $("#imagelist").append @view('list',{images: images})
@@ -159,7 +173,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   ## [ DOM EVENTS ] ##
   
   '.browseWrap click': ->
-    window.location.href = "/images"
+    @showBrowser()
   
   #- select all/select none
   '.all click': (el) ->
@@ -261,13 +275,12 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       else
         @model.disable imageId,{},=>
           @imageCookie.remove imageId
-        
+    
     #window.location.href = "/images"  
 
   #- cancels all data changes and goes back to ib_browser
   '.cancel click': (el) ->
-    $('#imagelist li.selected').each (index,element) =>
-      imageId = $(element).data('id')
-      @model.disable imageId,{},@callback('disable',$(element),imageId)
-      
-    window.location.href = "/images"
+    #$('#imagelist li.selected').each (index,element) =>
+    #  imageId = $(element).data('id')
+    #  @model.disable imageId,{},@callback('disable',$(element),imageId)
+    @showBrowser()
