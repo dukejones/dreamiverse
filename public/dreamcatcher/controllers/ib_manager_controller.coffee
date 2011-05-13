@@ -1,17 +1,27 @@
 $.Controller 'Dreamcatcher.Controllers.IbManager',
 
   model: Dreamcatcher.Models.ImageBank
+
   
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper("imagebank")
     @populateLists()
     @createUploader()
-    
+    @enableShiftKey()
+      
     album = $.query.get 'album'
     if album.length > 0
       @loadAlbumImages album
     else
       @loadImages @imageCookie.getAll()
+      
+    
+  enableShiftKey: ->
+    @shiftDown = false
+    $(document).keydown (event) =>
+      @shiftDown = event.keyCode is 16
+    $(document).keyup (event) =>
+      @shiftDown = false if event.keyCode is 16
   
 
   ## [ IMAGE FILE UPLOADER ] ##
@@ -129,11 +139,10 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       $("##{attr} select").val(value).change()
     else
       $("##{attr} textarea").val(value)
-
   
   ## [ DOM EVENTS ] ##
   
-  '.browse click': ->
+  '.browseWrap click': ->
     window.location.href = "/images"
   
   #- select all/select none
@@ -155,6 +164,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     if el.hasClass('selected')
       el.removeClass('selected')
     else
+      $('#imagelist li').removeClass('selected') if not @shiftDown
       el.addClass('selected')
     @showCommonImageMetaData()
     
@@ -219,7 +229,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         @model.disable imageId,{},=>
           @imageCookie.remove imageId
         
-    window.location.href = "/images"  
+    #window.location.href = "/images"  
 
   #- cancels all data changes and goes back to ib_browser
   '.cancel click': (el) ->

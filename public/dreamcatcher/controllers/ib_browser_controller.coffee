@@ -6,8 +6,17 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
+    
+    @displayScreen "browse",@view('types', { types: @model.types })
+    
     @loadDropbox()
     @restoreState()
+    
+    $(document).keyup (event) ->
+      if event.keyCode is 37
+        $(".footer .prev").click() if $(".footer .prev").is(":visible")
+      if event.keyCode is 39
+        $(".footer .next").click() if $(".footer .next").is(":visible")
     
     
   ## STATE MANAGEMENT
@@ -24,16 +33,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       dropbox: $("#dropbox").offset()
     }
     @stateCookie.set JSON.stringify(state)
-    log state
 
   restoreState: ->
     state = JSON.parse @stateCookie.get()
-    log state
-
-    if not state?
-      @displayScreen "browse",@view('types', { types: @model.types })
-
-    else    
+    if state?    
       @section = state.section
       @type = state.type
       @category = state.category
@@ -43,8 +46,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showAlbumList() if @artist?
       
       $("#dropbox").offset state.dropbox if state.dropbox
-      
-      log state.currentView
       
       @displayScreen state.currentView, null
       
@@ -270,8 +271,18 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     else
       @showLastView()
       
+  '.searchField input[type="text"] keypress': (element,event) ->
+    @startSearch() if event.keyCode is 13 #test
+      
   '.searchField .search click': (el) ->
-    @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
+    @startSearch()
+    
+  startSearch: ->
+    if $("#searchResults").is(":visible")
+      $("#searchResults").html("")
+      $("#searchResults").addClass("spinner").css("height","100px")
+    else
+      @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
     
   displaySearchResults: (images) ->
     @displayScreen 'searchResults',@view('searchresults',{ images : images } )
@@ -305,5 +316,4 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     val = inputElement.val().trim() if inputElement.val()?
     return val if val.length > 0
     return null
-  
 
