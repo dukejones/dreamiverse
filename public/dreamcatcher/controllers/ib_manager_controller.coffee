@@ -16,32 +16,22 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("#frame.browser").show()
     $("#frame.manager").hide()
     
-  showManager: ->
+  showManager: (imageIds) ->
     $("#imagelist").html('')
-    stateMeta = JSON.parse @stateCookie.get()
-    if stateMeta.manageShow is 'dropbox'
-      imageIds = @imageCookie.getAll()
-      @loadImagesByIds imageIds if imageIds
-    else
-      meta = {q: stateMeta.artist}
-      meta['artist'] = stateMeta.artist if stateMeta.artist?
-      meta['album'] = stateMeta.album if stateMeta.album?
-      @loadImagesByMeta meta
+    @loadImagesByIds imageIds if imageIds
+    #stateMeta = JSON.parse @stateCookie.get()
+    #if stateMeta.manageShow is 'dropbox'
+    #  imageIds = @imageCookie.getAll()
+    #  
+    #else
+    #  meta = {q: stateMeta.artist}
+    #  meta['artist'] = stateMeta.artist if stateMeta.artist?
+    #  meta['album'] = stateMeta.album if stateMeta.album?
+    #  @loadImagesByMeta meta
     $("#frame.manager").show()
       
     
   enableShiftKey: ->
-    ###
-    $(document).bind 'contextmenu', (index,element) =>
-      return false
-    
-      #log $(element).html()
-      if @ctrlDown
-        log @ctrlDown+'x'
-        @selectRange $(element)
-      return false
-    ### 
-    
     @shiftDown = false
     @ctrlDown = false
     $(document).keydown (event) =>
@@ -176,6 +166,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   
   #- select all/select none
   '.all click': (el) ->
+    #todo: have both all and none
     if el.text().indexOf('all') != -1
       $("#imagelist li").addClass('selected')
       el.text('select none')
@@ -284,7 +275,5 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
 
   #- cancels all data changes and goes back to ib_browser
   '.cancel click': (el) ->
-    #$('#imagelist li.selected').each (index,element) =>
-    #  imageId = $(element).data('id')
-    #  @model.disable imageId,{},@callback('disable',$(element),imageId)
+    $('#imagelist').html('')
     @showBrowser()
