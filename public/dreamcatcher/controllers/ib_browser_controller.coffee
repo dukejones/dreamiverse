@@ -6,19 +6,22 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "imagebank"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
-    @restoreState()
     @loadDropbox()
+    @restoreState()
     
     
   ## STATE MANAGEMENT
     
-  saveState: (currentView) ->
+  saveState: () ->
     state = {
       section: @section
       type: @type
       category: @category
       artist: @artist
-      currentView: currentView
+      
+      currentView: @currentView
+      
+      dropbox: $("#dropbox").offset()
     }
     @stateCookie.set JSON.stringify(state)
     log state
@@ -39,9 +42,54 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showArtistList() if @category?
       @showAlbumList() if @artist?
       
+      $("#dropbox").offset state.dropbox if state.dropbox
+      
       log state.currentView
       
       @displayScreen state.currentView, null
+      
+      
+  ## DROPBOX ##
+  
+  loadDropbox: ->
+    $("#dropbox .imagelist").html("")
+    @showImageInDropbox id for id in @imageCookie.getAll() if @imageCookie.getAll()?
+
+    $("#dropbox").droppable {
+      drop: (ev, ui) =>
+        id = ui.draggable.data('id')
+        if not @imageCookie.contains id
+          @imageCookie.add id
+          @showImageInDropbox id
+        else
+          alert 'already here'
+    }
+    $("#dropbox").draggable {
+      stop: =>
+        @saveState()
+    }
+
+  showImageInDropbox: (imageId, imageMeta) ->
+    if imageMeta?
+      $("#dropbox .imagelist").append @view('dropboximage',{ image: imageMeta })
+    else
+      @model.getImage imageId, {}, @callback('showImageInDropbox', imageId)  
+      
+  '#dropbox .cancel click': (el) -> #TODO: fix
+    @imageCookie.clear()
+    $("#dropbox .imagelist").html("")
+
+  setDraggable: (el) ->
+    el.draggable {
+      containment: 'document'
+      helper: 'clone'
+      zIndex: 100
+      start: ->
+        $("#dropbox .active").show()
+      stop: ->
+        $("#dropbox .active").hide()
+    }   
+      
   
   ## GENERAL DISPLAY
   
@@ -60,9 +108,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   displayScreen: (type, html) ->
     switch type
       when 'browse'
+        @category = null
         @showIcons '.browseHeader, .searchWrap'
         @updateScreen null,null,"#browse",null,html
       when 'artistList'
+        @artist = null
         @showIcons '.backArrow, h1, .searchWrap'
         @updateScreen "browse",'browse',"#artistList",@category,html
       when 'albumList'
@@ -79,7 +129,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
           @updateScreen 'artistList',@category,'#slideshow','slideshow',html
         @showSlide 0
         
-    @saveState type
+    @currentView = type
+    @saveState()
 
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml) ->
     @hideAllViews()
@@ -112,6 +163,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $(".counter").text("1/"+imageIds.length)    
     @model.findImagesById imageIds.join(','), {}, (images) =>
       @displayScreen 'slideshow', @view('slideshow', { images: images })
+
+
 
 
     
@@ -158,45 +211,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '#albumList .images .img click': (el) ->
     imageId = el.data 'id'
     @showSingleSlide imageId
-
-
-
-  #- Dropbox -#
-  
-  setDraggable: (el) ->
-    el.draggable {
-      containment: 'document'
-      helper: 'clone'
-      zIndex: 100
-      start: ->
-        $("#dropbox .active").show()
-      stop: ->
-        $("#dropbox .active").hide()
-    }
-  
-  loadDropbox: ->
-    $("#dropbox .imagelist").html("")
-    @showImageInDropbox id for id in @imageCookie.getAll() if @imageCookie.getAll()?
-    
-    $("#dropbox").droppable {
-      drop: (ev, ui) =>
-        id = ui.draggable.data('id')
-        if not @imageCookie.contains id
-          @imageCookie.add id
-          @showImageInDropbox id
-        else
-          alert 'already here'
-    }
-        
-  showImageInDropbox: (imageId, imageMeta) ->
-    if imageMeta?
-      $("#dropbox .imagelist").append @view('dropboximage',{ image: meta })
-    else
-      @model.getImage imageId, {}, @callback('showImageInDropbox',imageId)
-  
-  '#dropbox .cancel click': (el) -> #TODO: fix
-    @imageCookie.clear()
-    $("#dropbox .imagelist").html("")
   
   
   
