@@ -259,11 +259,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   #- Slideshow -#
 
   '.footer .prev click': ->
-    currentIndex = $("#slideshow img:visible").index()
+    currentIndex = $("#slideshow .img:visible").index()
     @showSlide currentIndex-1  
 
   '.footer .next click': ->
-    currentIndex = $("#slideshow img:visible").index()
+    currentIndex = $("#slideshow .img:visible").index()
     @showSlide currentIndex+1
 
   '.footer .add click': (el) ->
@@ -325,13 +325,13 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showSlide 0
 
   showSlide: (index) ->
-    totalCount = $("#slideshow img").length
+    totalCount = $("#slideshow .img").length
     index = 0 if index is totalCount
     index = (totalCount-1) if index is -1
 
-    $("#slideshow img").hide()
+    $("#slideshow .img").hide()
 
-    imageElement = $("#slideshow img:eq(#{index})")
+    imageElement = $("#slideshow .img:eq(#{index})")
     imageElement.show()
 
     imageId = imageElement.data 'id'
