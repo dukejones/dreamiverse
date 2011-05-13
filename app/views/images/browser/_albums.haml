@@ -5,11 +5,14 @@
 
     %tr.name
       %td
-        = album || "All Images"
+        = album || "Unknown Album"
         %a.manage(href="#{manage_images_path}?album=#{album}")
 
     %tr.images
       %td
+
+        .spinner.hidden
+
         - images.each do |image|
           .img
             = image_tag image.url('128x128'), :'data-id' => image.id

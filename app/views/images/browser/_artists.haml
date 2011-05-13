@@ -12,10 +12,14 @@
   / ARTIST ROW
   - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
     %tr.artist
+
       %td.name
         %h2= artist.blank? ? "Unknown" : artist
 
       %td.images
+
+        .spinner.hidden
+
         - images.each do |image|
           = image_tag image.url('62x62'), :'data-id' => image.id
 
