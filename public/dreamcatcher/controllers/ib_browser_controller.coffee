@@ -269,7 +269,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   #- Album List -#
   
-  '#albumList .manage click': (el) ->#fix
+  '#albumList .manage click': (el) ->
     @showManager $('.img',el.closest("tr").next())
   
   '#albumList .images .img img click': (el) ->
