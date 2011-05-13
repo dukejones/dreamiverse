@@ -389,6 +389,7 @@
 
   // FOOTER BUTTONS
   .saveWrap, .cancelWrap, .resetWrap
+    +relative
     +center
     +right
     +round(12)
@@ -396,7 +397,7 @@
     padding: 1px
     +gradient(#6e6e6e, #fff)
 
-    .save, .cancel, .reset
+    .save, .saving, .cancel, .reset
       +pointer
       +center
       +font(18)
@@ -416,6 +417,23 @@
 
     .save
       +save(19)
+
+    .saving
+      +absolute
+      top: 1px
+      text-align: right
+      padding: 0 16px 0 0
+      width: 104px
+
+      .spinner
+        +absolute
+        height: 38px
+        width: 32px
+        left: 8px
+        background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
+        z-index: 2
+
+
     .cancel
       +cancel(19)
 
