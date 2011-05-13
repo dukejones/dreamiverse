@@ -317,6 +317,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       $("#slideshow").replaceWith @view('slideshow', { images: images })
       @showSlide index #todo: only show once slide displayed
       @displayScreen 'slideshow',null
+      @setDraggable $('#slideshow .img')
 
   showSingleSlide: (imageId) ->
     @model.getImage imageId, {}, (image) =>
@@ -344,7 +345,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showInfo imageMeta
 
     if totalCount is 1 then $(".counter,.prev,.next").hide() else $(".counter").text "#{index+1}/#{totalCount}"
-    if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()
+    # todo: look at add buttons etc
+    # if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()
+    
+  '#slideshow .add click': (el) ->
+    @addImageToDropbox el.parent()
   
   
   #- SearchResults -#
