@@ -262,9 +262,12 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()
   
   
+  #- SearchResults -#
+  '#searchResults li click': (el) ->
+    imageId = el.data 'id'
+    @showSingleSlide imageId #todo: check repeated
   
-  
-  #- SearchOptions -# 
+  #- SearchOptions -#
   
   '.searchField .options click': (el) ->
     if not $("#searchOptions").is(":visible")

@@ -7,7 +7,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @imageCookie = new Dreamcatcher.Classes.CookieHelper("imagebank")
     @populateLists()
     @createUploader()
-    @enableShiftKey()
+    @shiftDown = true
+    #@enableShiftKey()
       
     album = $.query.get 'album'
     if album.length > 0
@@ -19,9 +20,11 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   enableShiftKey: ->
     @shiftDown = false
     $(document).keydown (event) =>
-      @shiftDown = event.keyCode is 16
+      @shiftDown = true if event.shiftKey
+      @ctrlDown = true if event.ctrlDpwn
     $(document).keyup (event) =>
-      @shiftDown = false if event.keyCode is 16
+      @shiftDown = false if event.shiftKey
+      @ctrlDown = false if event.ctrlDown
   
 
   ## [ IMAGE FILE UPLOADER ] ##
