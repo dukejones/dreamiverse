@@ -79,6 +79,11 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '#dropbox .cancel click': (el) -> #TODO: fix
     @imageCookie.clear()
     $("#dropbox .imagelist").html("")
+    
+  '#dropbox li .close click': (el) ->
+    imageId = el.parent().data 'id'
+    @imageCookie.remove imageId
+    el.parent().remove()
 
   setDraggable: (el) ->
     el.draggable {
