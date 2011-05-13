@@ -56,22 +56,22 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   loadDropbox: ->
     $("#dropbox .imagelist").html("")
     @showImageInDropbox id for id in @imageCookie.getAll() if @imageCookie.getAll()?
-
+    # for adding images
     $("#dropbox").droppable {
       drop: (ev, ui) =>
         @addImageToDropbox ui.draggable
+    }
+    # for removing images
+    $('#bodyClick').droppable {
+      drop: (ev, ui) =>
+        @removeImageFromDropbox ui.draggable
     }
     $("#dropbox").draggable {
       handle: 'h2,.icon'
       stop: =>
         @saveState()
     }
-    #new: refactor
-    $("#dropbox").css('z-index',1200)
-    $('#bodyClick').droppable {
-      drop: (ev, ui) =>
-        @removeImageFromDropbox ui.draggable
-    }
+
   #new: refactor
   setDraggableDropbox: (el) ->
     el.draggable {
@@ -79,10 +79,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       helper: 'clone'
       zIndex: 100
       start: ->
-        log 'x'
+        $("#dropbox").css('z-index',1200)
         $("#bodyClick").show()
       stop: ->
-        log 'y'
+        $("#dropbox").css('z-index','')
         $("#bodyClick").hide()
     }
 
@@ -104,7 +104,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @imageCookie.add imageId
       @showImageInDropbox imageId,imageMeta
     else
-      alert 'already here' #todo - something better
+      log 'already here' #todo - something better
 
   showImageInDropbox: (imageId, imageMeta) ->
     if imageMeta?
@@ -122,7 +122,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $("#dropbox .imagelist").html("")
     
   '#dropbox .edit click': (el) ->
-    @showManager 'dropbox'
+    @showManager $('#dropbox li')
     
   '#dropbox li .close click': (el) ->
     @removeImageFromDropbox el.parent()
@@ -183,18 +183,19 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $(currentType).replaceWith(currentHtml) if currentHtml?
     $(currentType).show()
     
-  showManager: (manageShow) ->
-    @manageShow = manageShow
-    @saveState()
+  showManager: (elements) ->
+    imageIds = []
+    elements.each (i,el) =>
+      imageIds[i] = $(el).data 'id'
     
     if not $("#frame.manager").exists()
       $.get '/images/manage',(html) =>
         $('#frame.browser').hide().after html
         @ibManager = new Dreamcatcher.Controllers.IbManager $("#frame.manager") if not @ibManager
-        @ibManager.showManager()
+        @ibManager.showManager imageIds
     else
       $('#frame.browser').hide()
-      @ibManager.showManager()
+      @ibManager.showManager imageIds
           
   ## TOP ICON EVENTS
     
@@ -215,7 +216,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showAlbumSlides 0
     
   '.top .manage click': ->
-    @showManager 'artist'
+    @showManager $("#albumList .img")
 
 
     
@@ -268,9 +269,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   #- Album List -#
   
-  '#albumList .manage': (el) ->#fix
-    @album = el.closest("tr").data 'album'
-    @showManager 'album'
+  '#albumList .manage click': (el) ->#fix
+    @showManager $('.img',el.closest("tr").next())
   
   '#albumList .images .img img click': (el) ->
     imageId = el.parent().data 'id'
