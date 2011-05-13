@@ -20,7 +20,6 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("#imagelist").html()
     stateMeta = JSON.parse @stateCookie.get()
     if stateMeta.manageShow is 'dropbox'
-      #log @imageCookie.getAll()
       imageIds = @imageCookie.getAll()
       @loadImagesByIds imageIds if imageIds
     else
@@ -28,7 +27,6 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       meta['artist'] = stateMeta.artist if stateMeta.artist?
       meta['album'] = stateMeta.album if stateMeta.album?
       @loadImagesByMeta meta
-    #$("#frame.browser").show()
     $("#frame.manager").show()
       
     
@@ -195,9 +193,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.removeClass('selected')
     else
       $('#imagelist li').removeClass('selected') if not @shiftDown
-      log @ctrlDown
-      if @ctrlDown
-        log 'x'
+      if @ctrlDown#todo
         @selectRange el 
       else
         el.addClass('selected')

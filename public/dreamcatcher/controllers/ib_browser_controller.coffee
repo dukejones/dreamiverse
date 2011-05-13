@@ -33,7 +33,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       dropbox: $("#dropbox").offset()
     }
     @stateCookie.set JSON.stringify(state)
-    #log @stateCookie.get()
 
   restoreState: ->
     state = JSON.parse @stateCookie.get()
@@ -110,7 +109,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     return $( '#'+@allViews.join(', #') ).hide()
     
   showLastView: ->
-    #log @lastView
     @displayScreen @lastView,null if @lastView?
     
   showIcons: (icons) ->
@@ -154,7 +152,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $(currentType).show()
     
   showManager: (manageShow) ->
-    #log manageShow
     @manageShow = manageShow
     @saveState()
     
@@ -164,6 +161,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         @ibManager = new Dreamcatcher.Controllers.IbManager $("#frame.manager") if not @ibManager
         @ibManager.showManager()
     else
+      $('#frame.browser').hide()
       @ibManager.showManager()
           
   ## TOP ICON EVENTS
@@ -203,8 +201,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showArtistList()
       
   showArtistList: ->
+    $("#frame.browser .spinner").show()
     $.get "/artists?category=#{@category}&section=#{@section}",(html) =>
       @displayScreen "artistList",html
+      $("#frame.browser .spinner").hide()
   
   
   #- ArtistList -#
@@ -218,14 +218,15 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showSingleSlide imageId
     
   showAlbumList: ->
+    $("#frame.browser .spinner").show()
     $.get "/albums?artist=#{@artist}&section=#{@section}&category=#{@category}",(html) =>
       @displayScreen "albumList",html
       @setDraggable $("#albumList .images .img")
+      $("#frame.browser .spinner").hide()
   
   #- Album List -#
   
-  '#albumList .manage': (el) ->
-    log 'x'
+  '#albumList .manage': (el) ->#fix
     @album = el.closest("tr").data 'album'
     @showManager 'album'
   
@@ -303,7 +304,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   #- SearchOptions -#
   
-  '.searchField .options click': (el) ->
+  '.searchField .options click': (el) ->    
     if not $("#searchOptions").is(":visible")
       @hideAllViews()
       el.addClass("selected")
@@ -320,14 +321,15 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @startSearch()
     
   startSearch: ->
-    if $("#searchResults").is(":visible")
-      $("#searchResults").html("")
-      $("#searchResults").addClass("spinner").css("height","100px")
-    else
-      @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
+    #if $("#searchResults").is(":visible")
+    #  $("#searchResults").html("")
+    #else
+    $("#frame.browser .spinner").show()
+    @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
     
   displaySearchResults: (images) ->
     @displayScreen 'searchResults',@view('searchresults',{ images : images } )
+    $("#frame.browser .spinner").hide()
     @setDraggable $("#searchResults ul li")
 
   '#searchOptions .genre click': (el) ->

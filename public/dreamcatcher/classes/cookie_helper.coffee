@@ -8,7 +8,7 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
     $.cookie @key,null
   
   set: (value) ->
-    log value
+    #log value
     $.cookie @key,value
     
   get: ->
