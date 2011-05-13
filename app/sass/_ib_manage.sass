@@ -2,7 +2,9 @@
 // IMAGEBANK MANAGER STYLES
 #frame.manager
   +shine-light(32)
+  left: 80px
   padding: 0 4px
+  width: 752px
 
   // SHARED STYLES
   h2
@@ -159,20 +161,21 @@
       +alpha(70)
       background: #000
 
-    h2.all, h2.drag
-      line-height: 42px
-    h2.all
+    h2
       +pointer
       +user-select
       +left
       margin: 0 12px 0 12px
+      line-height: 42px
       text-decoration: underline
       color: #58595b
       &:hover
         text-decoration: none
         color: #000
     h2.drag
+      +cursor
       +right
+      text-decoration: none
       margin: 0 12px 0 0
       color: #dbdbdb
 
