@@ -38,7 +38,7 @@
   top: 83px
   left: 13px
   width: 200px
-  padding: 0 4px 24px
+  padding: 0 4px 28px
   color: #ddd
   +shine-dark(20)
 
@@ -70,9 +70,9 @@
   ul.imagelist
     +user-select
     +clear
-    margin: 0 0 16px
+    margin: 0 0 8px
     padding: 1px 0 1px 1px
-    width: auto
+    width: 100%
     min-height: 198px
     list-style: none
     border: 1px solid #333
@@ -89,11 +89,18 @@
       margin: 1px 1px 0 0
       height: 95px
       width: 95px
-      border: 1px solid #ddd
+      border: 1px solid transparent
+      &:hover
+        border: 1px solid #fff
 
       img
         height: 95px
         width: 95px
+
+      .close
+        +close-16
+        top: 4px
+        right: 4px
 
 .dropboxFooter
   +absolute
@@ -103,7 +110,7 @@
   height: 24px
   padding: 4px 0
 
-  .cancel, .edit
+  .cancel, a.edit
     +right
     +pointer
     +user-select
@@ -113,6 +120,7 @@
     padding: 0 12px
     height: 24px
     line-height: 22px
+    color: #ddd
     border: 1px solid #242424
     +shine-dark(14)
     +gradient(#242424, #000)
