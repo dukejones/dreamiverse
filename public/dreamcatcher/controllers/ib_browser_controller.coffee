@@ -62,8 +62,28 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         @addImageToDropbox ui.draggable
     }
     $("#dropbox").draggable {
+      handle: 'h2,.icon'
       stop: =>
         @saveState()
+    }
+    #new: refactor
+    $("#dropbox").css('z-index',1200)
+    $('#bodyClick').droppable {
+      drop: (ev, ui) =>
+        @removeImageFromDropbox ui.draggable
+    }
+  #new: refactor
+  setDraggableDropbox: (el) ->
+    el.draggable {
+      containment: 'document'
+      helper: 'clone'
+      zIndex: 100
+      start: ->
+        log 'x'
+        $("#bodyClick").show()
+      stop: ->
+        log 'y'
+        $("#bodyClick").hide()
     }
 
   setDraggable: (el) ->
@@ -89,8 +109,13 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   showImageInDropbox: (imageId, imageMeta) ->
     if imageMeta?
       $("#dropbox .imagelist").append @view('dropboximage',{ image: imageMeta })
+      @setDraggableDropbox $('#dropbox .imagelist li:last')
     else
-      @model.getImage imageId, {}, @callback('showImageInDropbox', imageId)  
+      @model.getImage imageId, {}, @callback('showImageInDropbox', imageId)
+
+  removeImageFromDropbox: (el) ->
+    @imageCookie.remove el.data 'id'
+    el.remove()
       
   '#dropbox .cancel click': (el) -> #TODO: fix
     @imageCookie.clear()
@@ -100,9 +125,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showManager 'dropbox'
     
   '#dropbox li .close click': (el) ->
-    imageId = el.parent().data 'id'
-    @imageCookie.remove imageId
-    el.parent().remove()
+    @removeImageFromDropbox el.parent()
 
 
   
@@ -289,7 +312,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     if target.is(":visible") 
       target.hide() 
     else
-      meta = $("#slideshow img:visible:first").data 'image'
+      meta = $("#slideshow .img:visible:first").data 'image'
       if type is 'tagging' #todo: refactor?
         @showTags meta
         $('#info').hide()
@@ -368,7 +391,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
       
   '.searchField input[type="text"] keypress': (element,event) ->
-    @startSearch() if event.keyCode is 13 #enter press
+    @startSearch() if event.keyCode is 13
+    return
       
   '.searchField .search click': (el) ->
     @startSearch()

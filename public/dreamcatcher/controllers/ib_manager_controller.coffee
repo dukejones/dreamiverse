@@ -31,6 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       
     
   enableShiftKey: ->
+    ###
     $(document).bind 'contextmenu', (index,element) =>
       return false
     
@@ -39,18 +40,18 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         log @ctrlDown+'x'
         @selectRange $(element)
       return false
-        
+    ### 
     
     @shiftDown = false
     @ctrlDown = false
     $(document).keydown (event) =>
       @shiftDown = event.shiftKey
-      @ctrlDown = event.ctrlKey
-      log @ctrlDown
+      @ctrlDown = event.altKey
+      return
     $(document).keyup (event) =>
       @shiftDown = event.shiftKey
-      @ctrlDown = event.ctrlKey
-      log @ctrlDown
+      @ctrlDown = event.altKey
+      return
   
 
   ## [ IMAGE FILE UPLOADER ] ##
@@ -189,22 +190,28 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     
   #- select individual images
   '#imagelist li click': (el) ->
-    if el.hasClass('selected')
-      el.removeClass('selected')
-    else
-      $('#imagelist li').removeClass('selected') if not @shiftDown
-      if @ctrlDown#todo
-        @selectRange el 
+    if @shiftDown
+      @selectRange el 
+    else if @ctrlDown
+      if el.hasClass('selected')
+        el.removeClass('selected')
       else
         el.addClass('selected')
+    else
+      if el.hasClass('selected')
+        el.removeClass('selected')
+      else
+        $('#imagelist li').removeClass('selected')
+        el.addClass('selected') 
+
     @showCommonImageMetaData()
   
   selectRange: (el) ->
-    firstIndex = $("#imagelist li:visible:first").index()
+    firstIndex = $('#imagelist li.selected:first').index()
+    lastIndex = $('#imagelist li.selected:last').index()
     currentIndex = el.index()
     fromIndex = Math.min(firstIndex,currentIndex)
-    toIndex = Math.min(firstIndex,currentIndex)
-    alert fromIndex+' '+toIndex
+    toIndex = Math.max(lastIndex,currentIndex)
     $('#imagelist li').removeClass('selected')
     $('#imagelist li').each (index,element) ->
       $(element).addClass('selected') if index >= fromIndex and index  <= toIndex
@@ -267,7 +274,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         delete data.user
         data.section = data.type
         @model.update imageId,{image: data},=>
-          @imageCookie.add image.id
+          @imageCookie.add imageId
+          log imageId+' saved'
       else
         @model.disable imageId,{},=>
           @imageCookie.remove imageId
