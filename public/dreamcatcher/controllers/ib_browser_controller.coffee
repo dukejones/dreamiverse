@@ -254,6 +254,30 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showImageInDropbox imageId,imageMeta
     el.hide()
     
+  '.footer .info click': ->
+    $("#tagging").hide()
+    if $("#tagging").is(":visible")
+      $("#info").hide()
+    else
+      @showInfo $("#slideshow img:visible:first").data 'image'
+      $("#tagging").hide()
+      $("#info").show()
+
+      
+  showInfo: (meta) ->
+    $("#info .name span").text meta.title
+    $("#info .author span").text meta.artist
+    $("#info .year span").text meta.year
+  
+  '.footer .tag click':  ->
+    $("#info").hide()
+    if $("#info").is(":visible")
+      $("#tagging").hide()
+    else
+      $("#info").hide()
+      $("#tagging").show()
+  
+    
   showAlbumSlides: (imageId, album) ->
     imageIds = []
     index = 0
@@ -290,8 +314,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     album = " / "+album if album.length > 0
     header = title + album
     $("h1").text(title)
-    
-    imageMeta.title
+    @showInfo imageMeta
 
     if totalCount is 1 then $(".counter,.prev,.next").hide() else $(".counter").text "#{index+1}/#{totalCount}"
     if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()

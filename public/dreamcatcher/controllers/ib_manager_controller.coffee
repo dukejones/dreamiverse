@@ -17,7 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("#frame.manager").hide()
     
   showManager: ->
-    $("#imagelist").html()
+    $("#imagelist").html('')
     stateMeta = JSON.parse @stateCookie.get()
     if stateMeta.manageShow is 'dropbox'
       imageIds = @imageCookie.getAll()
