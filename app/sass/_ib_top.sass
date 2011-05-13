@@ -201,24 +201,26 @@
     +user-select
     +right
     +center
-    margin: 12px 8px 0 0
+    margin: 12px 4px 0 0
     width: 48px
     height: 48px
     line-height: 48px
     color: #C2C2C2
 
-  .timer, a.manage
+  .timer
+    +hidden
     +round(8)
     border: 1px solid #7D7D7D
     &:hover
       border: 1px solid #C2C2C2
-  
-  .timer
-    +hidden
 
   a.manage
     +block
-    background: url(background:/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+    background: url(/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
+    &:hover
+      background: url(/images/icons/ib-icons/edit-33-over.png) no-repeat center center transparent
+    &:active
+      background: url(/images/icons/ib-icons/edit-33.png) no-repeat center center transparent
 
   .play
     background: url(/images/icons/play-32.png) no-repeat center center transparent
