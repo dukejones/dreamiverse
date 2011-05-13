@@ -146,6 +146,10 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.text('select all')
     @showCommonImageMetaData()
     
+  '.clearImages click': (el) ->
+    $("#imagelist").html("")
+    @imageCookie.clear()
+    
   #- select individual images
   '#imagelist li click': (el) ->
     if el.hasClass('selected')
