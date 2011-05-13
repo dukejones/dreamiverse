@@ -293,6 +293,10 @@
         height: 26px
         margin-left: 8px
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      &.ipad
+        +block
+        .text
+          +block
   &.expanded .details
     .comment, .text
       display: block
@@ -316,7 +320,7 @@
   +cursor
   &:hover
     background: transparent !important
-  .text, .arrow
+  .text, .arrow, .count
     display: none !important
 
 

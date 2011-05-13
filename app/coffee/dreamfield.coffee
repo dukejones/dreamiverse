@@ -7,6 +7,9 @@ class window.DreamfieldController
 class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
+    @entryCount = $('.entryCount').data('id')
+    @pageSize = $('.pageSize').data('id')
+    @totalPages = Math.ceil @entryCount / @pageSize
     @dreamfield = dreamfieldModel
     @$container = $('#pagination')
 
@@ -42,7 +45,7 @@ class DreamfieldView
       if !data.html? || data.html == ""
         $('.next').parent().hide()
       
-      if showAll
+      if showAll || @page >= @totalPages
         $('.next').parent().hide()
 
       @$container.before(data.html)

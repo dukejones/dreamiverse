@@ -22,6 +22,8 @@
 
   / DREAM MATRIX
   .matrix
+    .entryCount{:'data-id' => @entry_count}
+    .pageSize{:'data-id' => @filters[:page_size]}
 
     - @entries.each do |entry|
       / DREAM THUMBS 2D
