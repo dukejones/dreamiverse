@@ -27,6 +27,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       type: @type
       category: @category
       artist: @artist
+      searchOptions: @searchOptions
       currentView: @currentView
       manageShow: @manageShow
       
@@ -143,6 +144,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
           @updateScreen 'albumList',@artist,'#slideshow','slideshow',html
         else
           @updateScreen 'artistList',@category,'#slideshow','slideshow',html
+        #todo: different one for search
         
     @currentView = type
     @saveState()
@@ -284,8 +286,12 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       target.hide() 
     else
       meta = $("#slideshow img:visible:first").data 'image'
-      @showTags meta if type = 'tagging'
-      @showInfo meta if type = 'info'
+      if type is 'tagging' #todo: refactor?
+        @showTags meta
+        $('#info').hide()
+      else if type is 'info'
+        @showInfo meta
+        $('#tagging').hide()
       target.show()  
     
   '.footer .info click': ->
@@ -293,8 +299,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   '.footer .tag click': ->
     @showInfoTag 'tagging'
-
-    
+        
   showAlbumSlides: (imageId, album) ->
     imageIds = []
     index = 0
@@ -305,8 +310,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       index = i if id is imageId
     #$(".counter").text("1/"+imageIds.length)    
     @model.findImagesById imageIds.join(','), {}, (images) =>
-      @displayScreen 'slideshow', @view('slideshow', { images: images })
+      #this loads the html first, before it displays the slideshow
+      $("#slideshow").replaceWith @view('slideshow', { images: images })
       @showSlide index #todo: only show once slide displayed
+      @displayScreen 'slideshow',null
 
   showSingleSlide: (imageId) ->
     @model.getImage imageId, {}, (image) =>
@@ -390,6 +397,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         genres.push $(element).text().trim()
       options['genres'] = genres.join(',') if genres.length > 0
     
+    @searchOptions = options
     return options
     
   getValFromAttr: (attr) ->
