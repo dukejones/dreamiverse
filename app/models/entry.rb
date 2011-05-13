@@ -131,8 +131,9 @@ class Entry < ActiveRecord::Base
     others_entries = others_entries.limit(page_size)
     others_entries = others_entries.offset(page_size * (page - 1))
     
-    time_range = Entry.select('max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
-
+    time_range = Entry.select('count(e.created_at) as num_entries, max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
+    return [] if time_range.num_entries == 0
+    
     my_entries = entry_scope.where(:user => viewer)
     # my_entries = entry_scope.where(:user => viewer, :stream_time.gt => time_range.min_time)
     # my_entries = my_entries.where(:stream_time.lt => time_range.max_time) unless page == 1
@@ -173,11 +174,11 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
     if viewer
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]) unless viewer == viewed
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])   unless viewer == viewed
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:anonymous]) unless viewer == viewed
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed)
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends]) unless viewer.friends_with?(viewed)
-      # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line.
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed)
+      # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line eventually.
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
       entries = entry_scope.where(sharing_level: self::Sharing[:everyone])
