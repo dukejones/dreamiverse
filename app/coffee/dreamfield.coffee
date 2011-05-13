@@ -7,8 +7,20 @@ class window.DreamfieldController
 class DreamfieldView
   constructor: (dreamfieldModel)->
     @page = 1
+    @entryCount = $('.entryCount').data('id')
+    @pageSize = $('.pageSize').data('id')
+    @totalPages = Math.ceil @entryCount / @pageSize
     @dreamfield = dreamfieldModel
     @$container = $('#pagination')
+
+    $('#pagination').live "mouseenter", (event) =>
+      $('#pagination .next .text').fadeIn('fast')
+      $('#pagination .all').fadeIn()
+      
+    .live "mouseleave", (event) =>
+      $('#pagination .next .text').fadeOut()
+      $('#pagination .all').fadeOut()
+
     
     $('.next').click( (event) =>
       @loadNextPage()
@@ -33,7 +45,7 @@ class DreamfieldView
       if !data.html? || data.html == ""
         $('.next').parent().hide()
       
-      if showAll
+      if showAll || @page >= @totalPages
         $('.next').parent().hide()
 
       @$container.before(data.html)

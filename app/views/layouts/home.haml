@@ -4,7 +4,7 @@
     %title Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
     %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
-    = sass_link_tag 'shared', 'home'
+    = include_stylesheets :shared, :media => 'all'
     = javascript_include_tag 'jquery.min', 'rails', 'pubsub', 'jquery.lightbox-0.5.min', 'jquery.placeholder'
     = coffeescript_include_tag 'dreamplugs', 'cookies', 'publicstream'
     :coffeescript
@@ -16,20 +16,18 @@
     = yield :head
 
   %body.home.light
+
+    #bodyClick
     -# render "shared/facebook_sdk"
 
     / - unless current_user.blank?
     /   / META MENU - USER
     /   = render :partial => "users/meta_menu_user"
 
-
-    - unless flash.notice.blank? && flash.alert.blank?
-      = render :partial => "layouts/alert"
-
+    = render :partial => "layouts/alert"
 
     #drop_shadow
     #home
-
 
       = yield
 

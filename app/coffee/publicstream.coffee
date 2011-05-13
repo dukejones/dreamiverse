@@ -27,17 +27,17 @@ $(document).ready ->
       $(event.currentTarget).parent().hide()
   
       $('.thumb-1d .video').hide()
-      $('.thumb-1d').removeClass('videoExpand')
+      # $('.thumb-1d').removeClass('expanded')
   
       #$('.video').hide()
       $parent = $(event.currentTarget).parent().parent().parent().parent()
-      $parent.addClass('videoExpand')
+      # $parent.addClass('expanded')
   
       new_id = $(event.currentTarget).parent().data('id')
       $container = $("#" + new_id).parent().parent()
       $container.find('.minimize').click( (event) =>
         $('.thumb-1d .video').hide()
-        $('.thumb-1d').removeClass('videoExpand')
+        # $('.thumb-1d').removeClass('expanded')
         $('.gallery .youtube').show()
         $('.entryImages .youtube').show()
       )
@@ -95,7 +95,7 @@ getYoutubeData = (video_url, linked_element) ->
           window.open(video_url)
           $('.video').hide()
           linked_element.show()
-          linked_element.parent().parent().parent().removeClass('videoExpand')
+          linked_element.parent().parent().parent().removeClass('expanded')
         )
   })
 

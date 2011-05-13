@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110414065926) do
+ActiveRecord::Schema.define(:version => 20110423020646) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110414065926) do
     t.integer  "starlight",            :default => 0
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
+    t.integer  "new_comment_count",    :default => 0
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -196,6 +197,7 @@ ActiveRecord::Schema.define(:version => 20110414065926) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bedsheet_attachment", :default => "scroll"
+    t.string   "default_genre"
   end
 
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"

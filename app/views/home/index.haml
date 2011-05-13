@@ -1,13 +1,3 @@
-- content_for :head do
-  = stylesheet_link_tag 'jquery.lightbox-0.5.css'
-
-
-/ PRELOADER
-.hidden
-  %img{src: '/images/icons/shuffle-24-hover.png'}
-  %img{src: '/images/icons/login-24-hover.png'}
-  %img{src: '/images/icons/login-24-active.png'}
-
 
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
@@ -39,13 +29,13 @@
   / PUBLIC STREAM
   #publicStreamGlow
     #publicStream
-      .today this week in dreams
+      .today today in dreams
       / .todayFilter today
       / %h1.in in
       / .dreamsFilter dreams
 
-      / DREAM MATRIX
-      .matrix
+      / DREAM MATRIX - ternary to remove comments from public view
+      .matrix{class: current_user.blank? ? 'public' : ''}
 
 
         / / DREAM THUMBS 1D
@@ -57,7 +47,7 @@
   #bottomLinks
     - unless current_user.blank?
       %a{href: feedback_path} feedback / report a bug
-    %a{href: terms_path} terms of agreement
+    %a{href: terms_path} terms of service
 
 
 / RIGHT COLUMN
@@ -92,4 +82,5 @@
   / DREAMSTARS MINI
   = render :partial => 'users/dreamstars_mini'
 
-
+  .like
+    <iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2Fdreamcatchernet%2F204828486223840&amp;width=220&amp;colorscheme=dark&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=82" scrolling="no" frameborder="0" allowTransparency="true"></iframe>

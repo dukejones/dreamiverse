@@ -99,7 +99,7 @@ class Image < ActiveRecord::Base
 
   # Generates the crops and resizes necessary for the requested profile.
   def generate(descriptor, options={})
-    if descriptor =~ /\d+x\d+/
+    if /\d+x\d+/.match(descriptor)
       resize(descriptor)
     else
       generate_profile(descriptor, options)
@@ -169,7 +169,7 @@ protected
       end
       
       self.original_filename = @incoming_filename
-      self.format = @incoming_filename.split('.').last.downcase unless format
+      self.format = @incoming_filename.split('.').last.downcase if self.format.blank?
       self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize if self.title.blank?
     end
   end

@@ -1,5 +1,4 @@
 - content_for :head do
-  = sass_link_tag 'entries'
   = include_javascripts :entries
   :coffeescript
     $( ->
@@ -9,20 +8,22 @@
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
-/ DREAM FIELD
+/ ENTRY FIELD
 #entryField
+
   / PAGE HEADER
   - if @filters[:type]
-    .pageHeader.dreamHeader
-      .img{"style" => "background-image: url(#{dreamfield_header_image})"}
+    .pageHeader
+      .img{class: @filters[:type]}
       %h1= @filters[:type].pluralize
     .clear
   
-  / NEW ENTRY BAR
-  / TAG ENTRY & STREAM
+
 
   / DREAM MATRIX
   .matrix
+    .entryCount{:'data-id' => @entry_count}
+    .pageSize{:'data-id' => @filters[:page_size]}
 
     - @entries.each do |entry|
       / DREAM THUMBS 2D
@@ -33,20 +34,25 @@
     - if !@entries.empty? && @entry_count > @filters[:page_size]
       #pagination
         %a.next{href: "/#{@user.username}?page=1&show_all=true"}
-          %span more
+          .text.hidden more
         %a.all{href: "/#{@user.username}?page=1&show_all=true", style: "#{is_ipad? ? 'display: block' : ''}"} show all 
         - @pagesize
 
 
-
-
-    - if (@user == current_user) && @entries.empty?
+    - if !@filters[:type] && (@user == current_user) && @entries.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 
     - elsif @entries.empty?
       / NO DREAMS TO DISPLAY
-      .noEntrys there are no public entries to display
+      .noEntrys
+        - if @filters[:type]
+          no 
+          = @filters[:type].pluralize
+          to display
+        - else
+          no public entries to display
+
 
 
 / APPLIES SELECTED CLASS TO META MENU

@@ -1,0 +1,178 @@
+.tagCloud div
+  +user-select
+  +right
+  +round(8)
+  text-decoration: none
+  padding: 1px 5px
+  line-height: 80%
+
+
+
+// 2D THUMB
+
+
+.thumb-2d .tagCloud
+
+  .s0
+    +font(29)
+    +bold
+  .s1
+    +font(22)
+  .s2, .s3
+    +font(16)
+  .s4
+    +font(14)
+  .s5, .s6, .s7, .s8, .s9, .s10, .s11
+    +font(12)
+  .s12, .s13, .s14, .s15
+    +font(11)
+
+  .s5
+    line-height: 60%
+  .s6, .s7, .s8, .s9, .s10
+    line-height: 90%
+  .s11, .s12
+    line-height: 200%
+  .s13, .s14, .s15
+    line-height: 50%
+
+
+
+
+
+
+
+
+
+// SHOW ENTRY MODE
+
+#showEntry .tagCloud div
+  text-decoration: none
+  padding: 0 16px
+  +cursor
+
+
+#showEntry .tagCloud
+  .s0
+    +font(72)
+    text-shadow: rgba(0,0,0,0.7) 0 0 40px
+  .s1
+    +font(62)
+    +bold
+    text-shadow: rgba(0,0,0,0.6) 0 0 40px
+  .s2
+    +font(59)
+    +bold
+  .s2, .s3
+    +font(58)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s4
+    +font(50)
+    text-shadow: rgba(0,0,0,0.6) 0 0 30px
+  .s5
+    +font(44)
+    line-height: 20px
+    text-shadow: rgba(0,0,0,0.5) 0 0 30px
+  .s6, .s7
+    +font(32)
+    line-height: 16px
+    text-shadow: rgba(0,0,0,0.4) 0 0 30px
+  .s8, .s9, .s10, .s11
+    +font(18)
+
+  .s12, .s13, .s14, .s15
+    +font(14)
+
+  .s5
+    line-height: 110%
+  .s6, .s7, .s8, .s9, .s10
+    line-height: 110%
+  .s11, .s12
+    line-height: 200%
+  .s13, .s14, .s15
+    line-height: 300%
+
+
+
+
+// 1D THUMBS
+
+.thumb-1d .tagCloud div
+  padding: 1px 8px
+
+
+.thumb-1d .tagCloud
+  .s0
+    +font(32)
+  .s1
+    +font(26)
+    +bold
+  .s2
+    +font(25)
+  .s3
+    +bold
+    +font(22)
+  .s4
+    +font(19)
+    line-height: 130%
+  .s5
+    +font(15)
+    +bold
+    line-height: 110%
+  .s6, .s7
+    +font(17)
+    line-height: 110%
+  .s8, .s9, .s10, .s11
+    +font(16)
+    line-height: 110%
+  .s12, .s13, .s14, .s15
+    +bold
+    +font(14)
+    line-height: 300%
+
+
+
+// LIGHT 1D OVERRIDES
+
+.dark .thumb-1d .tagCloud
+  .s0, .s1, .s2, .s3
+    text-shadow: #000 0 0 20px
+  .s4
+    text-shadow: #000 0 0 10px
+  .s5
+    text-shadow: #000 0 0 12px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// COLORS
+.light .tagCloud .s0
+  color: #6bd3ff !important
+
+.light .tagCloud, .dark .tagCloud
+  .s0
+    color: #88e3f7
+  .s1
+    color: #55ccff
+  .s2
+    color: #3ea7eb
+  .s3, .s4, .s5
+    color: #3086cf
+  .s5
+  .s6, .s7, .s8, .s9, .s10
+    color: #1265c2
+  .s11, .s12, .s13, .s14, .s15
+    color: #0049a2
+
+
+

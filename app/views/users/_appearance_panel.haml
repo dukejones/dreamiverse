@@ -2,13 +2,31 @@
 #appearancePanel.hidden.target
   .arrow
 
+  %input#defaultGenre{:type => 'hidden', :'value' => current_user.view_preference.default_genre}
+
   / BEDSHEETS
   .bedsheets
     .img
     %h2 bedsheets
+
+    / %select#genreSelector
+    /   %option.city City
+    /   %option.design Design
+    /   %option.earth Earth
+    /   %option.farEast Far East
+    /   %option.indigenous Indigenous
+    /   %option.landscapes Landscapes
+    /   %option.nightmares Nightmares
+    /   %option.plants Plants
+    /   %option.skies Skies
+    /   %option.space Space
+    /   %option.textures Textures
+    /   %option.travel Travel
+    /   %option.water Water
+    
     #bedsheetScroller
       %ul
-
+      .spinner
 
     - unless is_ipad?
       .attachment 
@@ -21,9 +39,9 @@
       .more + browse more...
 
   / COLOR PICKER
-  .colorPicker
+  .theme
     .img
-    %h2 color
+    %h2 theme
     .buttons
       %a#light.sun.span
         sun

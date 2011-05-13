@@ -1,17 +1,18 @@
+- Rails.logger.warn comment.body
 .prevCommentWrap
   %a.avatar{href: user_entries_path(comment.user.username), style: "background-image: url('#{avatar_image(comment.user, 64)}')"}
   .prevComment
     %a.user{href: user_entries_path(comment.user.username)}= comment.user.username
-    .postTime= time_ago_in_words(comment.created_at)
-    - if (@entry.user == current_user) || (comment.user == current_user)
-      = link_to entry_comment_path(@entry, comment), {:method => :delete, :remote => true, :class => 'deleteComment'} do
+    .commentTime= time_ago_in_words(comment.created_at)
+    - if (comment.entry.user == current_user) || (comment.user == current_user)
+      = link_to entry_comment_path(comment.entry, comment), {:method => :delete, :remote => true, :class => 'deleteComment'} do
         .delete
     /%ul
     /  %li
     /  %li
     /  %li
     /  %li
-    .comment= simple_format(comment.body)
+    .body= simple_format(comment.body)
     /.rePost
     / %img{src: '', width: '16', height: '16'}
     / Another Related Dream

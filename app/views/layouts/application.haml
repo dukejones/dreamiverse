@@ -9,27 +9,33 @@
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = include_stylesheets :shared, :media => 'all'
-    = include_javascripts :shared
     
+    - if Rails.env == 'production' || Rails.env == 'theta'
+      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    - else 
+      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+
+    = include_javascripts :shared
+        
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
     = yield :head
 
-  %body{id: 'body', class: theme, style: bedsheet_style}
+  %body{id: 'body', class: "#{theme} #{bedsheet_attachment}", style: bedsheet_style}
 
-    - unless flash.notice.blank? && flash.alert.blank?
-      = render :partial => "layouts/alert"
+    - unless current_user.blank?
+      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}
 
+    #bodyClick
 
+    = render :partial => "layouts/alert"
     = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
-
 
     = yield
 
     - if Rails.env == 'production' || Rails.env == 'theta'
       = javascript_include_tag 'google_analytics'
 
-
     = yield :foot
-    
+

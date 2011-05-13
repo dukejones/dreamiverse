@@ -114,7 +114,7 @@ class TagViewList
     
     clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"
     
-    @$container.find('.tag .close-16').live clickEvent, (event)=>
+    @$container.find('.tag .close').live clickEvent, (event)=>
       @removeTag($(event.currentTarget).parent().data('id'))
     
     #@$container.delegate 'div', 'click', (event)=>

@@ -13,29 +13,16 @@
 /   require({baseUrl: "/javascripts/compiled"}, [ 'tag', 'showentry', 'entries' ] )
 
 
-/ PRELOAD - SHOW ENTRY
-.hidden
-  / ARROWS
-  %img{src: '/images/icons/arrow-right-16-dark.png'}
-  %img{src: '/images/icons/arrow-right-16-light.png'}
-  / CLOSE
-  %img{src: '/images/icons/close-16-hover.png'}
-  %img{src: '/images/icons/close-24-hover.png'}
-  / PLAY
-  %img{src: '/images/icons/play-16-hover.png'}
-  %img{src: '/images/icons/play-16-active.png'}
-
-
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @entry.user}
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
 
   / SHOW ENTRY
-  #showEntry{:'data-id' => @entry.id, :class => @entry.images.blank? ? "noImage" : "" }
+  #showEntry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :class => @entry.images.blank? ? "noImage" : "" }
 
-    .type
-      .icon{style: "background: url('#{entry_type_icon(@entry.type, 24)}') no-repeat left center"}
+    .entryType
+      .img{class: @entry.type}
       %span= @entry.type
 
     .postTime
@@ -64,7 +51,7 @@
     .wrapper
       / HEADER IMAGE & TITLE
       - if @entry.main_image
-        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat top left"}
+        .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat center center transparent"}
         .tagToggle.trigger.fade
       - if location = @entry.location
         #entryLocationMap{style: "position: absolute; display: none; top: 50px; height: 200px;-moz-user-select: none; border-radius: 16px 16px 0 0; clear: both; height: 200px; margin: 0; overflow: hidden; padding: 0px; width: 662px;", 'data-lng'=> "#{location.longitude}", 'data-lat'=> "#{location.latitude}", 'data-city'=> "#{location.city}", 'data-province'=> "#{location.province}"}
@@ -121,9 +108,6 @@
 
 
       .body= simple_format(@entry.body)
-      / VIDEO PANEL
-      - @entry.links.youtube.each do |link|
-        = render :partial => "video", :locals => {:link => link}
 
       / IMAGE GALLERY
       %ul.gallery
@@ -133,7 +117,9 @@
           = youtube_link(link)
       .clear
 
-
+      / VIDEO PANEL
+      - @entry.links.youtube.each do |link|
+        = render :partial => "video", :locals => {:link => link}
 
       / ENTRY LINKS
       - if (@entry.links - @entry.links.youtube).count >= 1
@@ -190,7 +176,7 @@
             .tag.wrapper.custom.tagWhat.emptyTag.hidden
               .header.trigger
                 .tag-name
-              .close-16
+              .close
 
             - @entry.what_tags.custom.whats.each do |what|
               = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
@@ -207,43 +193,9 @@
 
 
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
+    .commentsTarget
     = form_tag do 
       = hidden_field_tag(:show_entry_mode, 1) 
 
 
 
-
-    / COMMENTS
-    - unless @comments.count == 0 and current_user.blank?
-      .commentsPanel.wrapper
-        .trigger.slide
-          .commentsHeader.headers
-            .img
-            <b>comments</b>
-            &nbsp; (<span class="counter">#{@comments.count}</span>)
-        .clear
-
-        .target.slide
-          - @comments.each do |comment|
-            = render :partial => "entries/comment", :object => comment
-
-          %a{name: "bottom", href: "#"}
-
-          - if current_user
-            .newCommentWrap
-              .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
-              .newComment
-                / .user= current_user.username
-                = form_for [@entry, Comment.new] do |f|
-                  = f.hidden_field :user_id, :value => current_user.id
-                  = f.text_area :body, :placeholder => "add comment..."
-                  = f.submit 'post', :class => 'save'
-                  .links.hidden
-                    %img{src: '/images/icons/link-16.png', width: '16', height: '16'}
-                    links
-                  .images.hidden
-                    %img{src: '/images/icons/images-16.png', width: '16', height: '16'}
-                    image
-                  .clear
-
-          .clear

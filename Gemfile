@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.6'
+gem 'rails', '3.0.7'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -8,6 +8,7 @@ gem 'rails', '3.0.6'
 gem 'mini_magick'
 gem 'mysql2'
 gem 'haml'
+gem 'sass'
 gem 'omniauth'
 gem 'coffee-script'
 gem 'barista'

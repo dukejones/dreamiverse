@@ -13,21 +13,27 @@
 
     / DETAILS (DATE + LOCATION)
     .detailsTop
-      .entryType{style: "background: url('#{entry_type_icon(entry.type, 24)}') no-repeat center center"}
       %table
         %tr
-          %td.date= time_ago_in_words(entry.dreamed_at)
+          %td.date
+            .entryType{class: entry.type}
+            = time_ago_in_words(entry.dreamed_at)
           / %td.location dream location
 
     .detailsBottom
-      - unless entry.comments.count == 0
-        .comments
-          = image_tag("icons/comment-16.png")
+      - if entry.new_comment_count > 0 && current_user && entry.user == current_user
+        .comments.new
+          .img.comment
+          = entry.new_comment_count
+      - elsif entry.comments.count != 0
+        .comments{class: entry.new_comment_count > 0 }
+          .img.comment
           = entry.comments.count
+
       - unless entry.everyone?
         .sharing
-          %img
-          %span= entry.sharing
+          .img{class: entry.sharing}
+          = entry.sharing
 
     / TITLE
     .title= entry.title

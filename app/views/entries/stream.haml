@@ -2,22 +2,14 @@
   = include_javascripts :stream
 
 
+
+
+
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
 
-
-
 / ENTRY FIELD
 #entryField
-
-  / PAGE HEADER
-  /.pageHeader.streamHeader
-  /  .img
-  /  %h1 stream
-  /.clear
-
-  / NEW ENTRY BAR
-  / TAG ENTRY & STREAM
 
   / DREAM MATRIX
   .matrix.stream
@@ -39,8 +31,7 @@
 
 
   #nextPageLoading.hidden
-    %img{src: "/images/icons/spinner-grey-32.gif", alt: ""}
-    %span accessing the cloud
+    .spinner
 
   #noMoreEntries.hidden
     you've reached the end of the stream

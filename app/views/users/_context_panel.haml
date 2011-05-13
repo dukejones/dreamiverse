@@ -42,7 +42,7 @@
           = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
       - else
         .icon
-          %img{src: "/images/colors/clear.png"}
+          %img{src: "/images/icons/clear.png"}
       = user.username
 
 
@@ -65,8 +65,8 @@
       .alert.hidden
         %span.message
           update message
-        %img.checkmark.hidden{src: '/images/icons/check-16.png'}
-        %img.close-16{src: '/images/icons/close-16-hover.png'}
+        .check.hidden
+        .close
 
 
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
@@ -129,7 +129,7 @@
         %img.arrow{src: '/images/icons/arrow-down-16.png'} 
         %span.value entries
       .image
-        %img.dream{src: '/images/icons/allEntries-24-hover.png', width: '24', height: '24'}
+        %img.dream{src: '/images/icons/entries-24.png'}
       .detail
         = @entry_count || user.entries.count
       .clear

@@ -122,11 +122,13 @@ class User < ActiveRecord::Base
   end
   # Note: you are considered to be friends with yourself.
   def friends_with?(user)
-    user && (self.following?(user) && self.followed_by?(user)) || (self == user)
+    user && (self.following?(user) && self.followed_by?(user))
   end
   def relationship_with(other)
     return :none if other.nil?
-    if self.friends_with? other
+    if self == other
+      :self
+    elsif self.friends_with? other
       :friends
     elsif self.following? other
       :following

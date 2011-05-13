@@ -30,7 +30,8 @@ class EntryTest < ActiveSupport::TestCase
     whats = ['spoon','hound','stove','feh'].map {|word| What.create(name: word) }
     new_whats = ['spoon', 'stove', 'martha'].map {|word| What.create(name: word) }
     
-    entry = Entry.make(whats: whats, title: 'visions', body: 'bridge', skip_auto_tags: false)
+    entry = Entry.make(whats: whats, title: 'visions', body: 'bridge')
+    Tag.auto_generate_tags(entry)
     entry.set_whats(new_whats.map(&:name))  
     entry.save
     entry.reload
@@ -80,6 +81,7 @@ class EntryTest < ActiveSupport::TestCase
     # It sets the emotions' and their intensities.
     emotion_params = {"love"=>"1", "joy"=>"2", "surprise"=>"3", "anger"=>"4"}
     e.set_emotions(emotion_params)
+    e.reload
     assert_equal 4, e.emotions.count
     assert_equal 1, e.tags.emotion.named('love').first.intensity
     assert_equal 2, e.tags.emotion.named('joy').first.intensity
@@ -101,6 +103,7 @@ class EntryTest < ActiveSupport::TestCase
     
     emotion_params = {"love" => "3", "anger" => "0"}
     e.set_emotions(emotion_params)
+    e.reload
     assert_equal 3, e.tags.emotion.named('love').first.intensity
     assert_equal nil, e.tags.emotion.named('anger').first
   end
@@ -153,14 +156,102 @@ class EntryTest < ActiveSupport::TestCase
   # end
 
   test "reorder tags doesn't create positions for emotion tags" do
-    entry = Entry.make(skip_auto_tags: false)
-    entry.set_whats(['dragon', 'flower', 'volcano', 'hummingbird'])
+    entry = Entry.make
+    Tag.auto_generate_tags(entry, 16)
+    
+    entry
+    user_tags = ['dragon', 'flower', 'volcano', 'hummingbird']
+    entry.set_whats(user_tags)
     entry.set_emotions({'fear' => '3', 'love' => '5', 'joy' => '5'})
     entry.body += ' '
     entry.save
 
-    assert_equal 16, entry.what_tags.count
-    assert_equal (0..15).to_a, entry.what_tags.map(&:position).sort
+    num_tags = 16 + user_tags.size
+    assert_equal num_tags, entry.what_tags.count
+    assert_equal (0...num_tags).to_a, entry.what_tags.map(&:position).sort
   end
   
+  # ordering of dreamstream
+  # entries with a comment should order by created_at of latest_comment
+  # otherwise order the entries by their created_at
+  test "dreamstream ordering is correct: merge ordering of created_at and latest comment's created_at" do
+    user = User.make
+    viewer = User.make
+    viewer.following << user; viewer.save!
+
+    time = Time.now - 20.days
+    entries = (0..5).to_a.map { time += 1.day; Entry.make(user: user, created_at: time) }
+    stream = Entry.dreamstream(viewer, {})
+    assert_equal entries.map(&:id).reverse, stream.map(&:id), 'entries ordered created_at desc'
+    
+    commented = Entry.make(user: viewer, created_at: time - 3.days) # older entry
+    Comment.make(entry: commented, created_at: time + 4.hours)    # but newer comment
+    
+    stream = Entry.dreamstream(viewer, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'recent comment for old entry should be first'
+
+    # Multiple comments should not return duplicates of that entry
+    Comment.make(entry: commented)
+    stream = Entry.dreamstream(viewer, {})
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'should be no duplicates for multiple comments'
+    
+    # Make sure the group by entries.id is selecting the proper comment
+    commented.comments.first.update_attribute(:created_at, time - 5.hours) # now the entry wouldn't be first
+    commented.comments.last.update_attribute(:created_at, time + 7.days)   # except for this brand new comment 
+    stream = Entry.dreamstream(viewer, {})
+
+    assert_equal commented.comments.last.created_at.utc, stream.find{|e| e.id == commented.id}.stream_time, "the stream entry's stream_time should be the last comment's created_at"
+    assert_equal ([commented] + entries.reverse).map(&:id), stream.map(&:id), 'orders by the most recent comment'
+    
+  end
+
+  test "dreamstream paginates" do
+    viewer = User.make
+    user = User.make
+    time = Time.now
+    entries = (1..12).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+
+    assert_equal [], Entry.dreamstream(viewer, {page_size: 5})
+
+    viewer.following << user; viewer.save!
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    assert_equal entries[0...5].map(&:id), stream.map(&:id), 'first page is latest five'
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
+    assert_equal entries[5...10].map(&:id), stream.map(&:id), 'second page is older five'
+    
+    # Now viewer has authored an Entry.
+    my_entry = Entry.make(user: viewer, created_at: Time.now)
+    stream = Entry.dreamstream(viewer, {page_size: 5})
+    assert_equal ([my_entry] + entries[0...5]).map(&:id), stream.map(&:id), 'my entry is first, then the others entries'
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 2})
+    assert_equal entries[5...10].map(&:id), stream.map(&:id), 'second page is older five'
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 3})
+    assert_equal entries[10...12].map(&:id), stream.map(&:id), 'third page is next oldest five'
+
+    # Make sure your own entry does not then repeat on the final page.
+    stream = Entry.dreamstream(viewer, {page_size: 5, page: 4})
+    assert_equal [], stream.map(&:id), 'nothing on the 4th page'
+  end
+  
+  test "dreamstream filters" do
+    viewer = User.make
+    user = User.make
+    time = Time.now
+    entries = (1..10).to_a.map { time -= 1.day; Entry.make(user: user, created_at: time) }
+    
+    # viewer has no following
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'following'}).map(&:id), 'Viewer doesnt follow, so no entries in stream'
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'friends'}).map(&:id), 'Viewer doesnt follow, still no entries in stream'
+    
+    # viewer follows user
+    viewer.following << user; viewer.save!
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'following'}).map(&:id), 'Following should show entries'
+    assert_equal [], Entry.dreamstream(viewer, {friend: 'friends'}), 'Friends should show no entries'
+
+    # viewer befriends user
+    viewer.followers << user; viewer.save!
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'following'}).map(&:id)
+    assert_equal entries.map(&:id), Entry.dreamstream(viewer, {friend: 'friends'}).map(&:id)
+    
+  end
 end

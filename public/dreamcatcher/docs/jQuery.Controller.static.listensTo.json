@@ -1,0 +1,1 @@
+C({"name": "jQuery.Controller.static.listensTo", "type": "attribute", "parent": "jQuery.Controller.static", "comment": "<p>A list of special events this controller listens too.  You only need to add event names that\nare whole words (ie have no special characters).</p>", "children": []})

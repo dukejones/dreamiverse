@@ -5,8 +5,8 @@ class Follow < ActiveRecord::Base
   validates_presence_of :user_id, :following_id
   validates_uniqueness_of :following_id, :scope => :user_id
   
-  def self.friend?(u1, u2)
-    u1.friendship.following.find(u2) &&
-    u2.friendship.following.find(u1)
-  end
+  # def self.friend?(u1, u2)
+  #   u1.friendship.following.find(u2) &&
+  #   u2.friendship.following.find(u1)
+  # end
 end

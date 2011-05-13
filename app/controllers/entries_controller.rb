@@ -9,10 +9,10 @@ class EntriesController < ApplicationController
     filters.delete(:type) if filters[:type] == "all entries"
 
     return case session[:lens]
-      when :stream
-        Entry.dreamstream(current_user, filters)
-      else # when :field
-        Entry.dreamfield(current_user, @user, filters)
+    when :stream
+      current_user ? Entry.dreamstream(current_user, filters) : []
+    else # when :field
+      Entry.dreamfield(current_user, @user, filters)
     end
   end
   
@@ -20,7 +20,7 @@ class EntriesController < ApplicationController
     @filters = params[:filters] || {}
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
     @filters[:page] ||= params[:page]
-    @filters[:page_size] ||= 31
+    @filters[:page_size] ||= 24
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     session[:lens] = :field
@@ -45,6 +45,8 @@ class EntriesController < ApplicationController
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @entries = entry_list
+    @entry_count = entry_list({type: 'all entries', show_all: "true"}).count
+    
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
@@ -53,11 +55,10 @@ class EntriesController < ApplicationController
     @previous = @entry unless @previous
     deny and return unless user_can_access?
 
-    @comments = @entry.comments.order('created_at') # .limit(10)
     @page_title = @entry.title
+    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
     
     hit( @entry )
-    hit( @entry.user )
   end
   
   def new
@@ -83,6 +84,7 @@ class EntriesController < ApplicationController
       @entry.set_whats(params[:what_tags])
       @entry.set_links(params[:links])
       @entry.set_emotions(params[:emotions])
+      flash[:alert] = "This entry has a blank body." if @entry.body.blank?
       redirect_to user_entry_path(current_user.username, @entry)
     else
       @entry_mode = 'new'
