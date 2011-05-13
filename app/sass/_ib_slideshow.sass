@@ -7,25 +7,23 @@
 
   .img
     +relative
-    &:hover
-      .add
-        +block
-        +absolute
-        +pointer
-        +center
-        +alpha(50)
-        +bold
-        +font(24)
-        bottom: 0
-        right: 0
-        width: 36px
-        height: 36px
-        line-height: 36px
-        color: green
-        background: #fff
-        &:hover
-          +alpha(100)
-
+    &:hover .add
+      +block
+      +absolute
+      +pointer
+      +center
+      +alpha(50)
+      +bold
+      +font(24)
+      bottom: 0
+      right: 0
+      width: 36px
+      height: 36px
+      line-height: 36px
+      color: green
+      background: #fff
+      &:hover
+        +alpha(100)
 
 // INFO & TAGGING
 #infoTags
