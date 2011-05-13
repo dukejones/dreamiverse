@@ -109,7 +109,7 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    page_size = filters[:page_size] || 32
+    page_size = filters[:page_size] || 10
     page = filters[:page].to_i
     page = 1 if page <= 0
 
