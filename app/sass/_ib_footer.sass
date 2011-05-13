@@ -8,7 +8,7 @@
   height: 32px
   padding: 3px 0
 
-  .add, .set, .next, .prev
+  .add-collection, .add-album, .add-artist, .set, .next, .prev
     +right
     +pointer
     +user-select
@@ -50,8 +50,9 @@
       display: inline-block
       background: url(/images/icons/dropbox-26.png) no-repeat center center transparent
 
-  .add .img
-    background: url(/images/icons/add-15.png) no-repeat center center transparent
+  .add-collection, .add-album, .add-artist
+    .img
+      background: url(/images/icons/add-15.png) no-repeat center center transparent
 
   .set .img
     background: url(/images/icons/check-16.png) no-repeat center center transparent

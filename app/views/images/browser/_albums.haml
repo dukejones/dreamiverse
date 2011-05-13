@@ -10,10 +10,9 @@
 
     %tr.images
       %td
-        %ul
         - images.each do |image|
-          %li.img{:'data-id' => image.id}
-            %img{src: image.url("126x126")}
+          .img
+            = image_tag image.url('128x128'), :'data-id' => image.id
             .add.hidden +
 
 
