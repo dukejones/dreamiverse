@@ -7,8 +7,8 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     @imageCookie = new Dreamcatcher.Classes.CookieHelper("imagebank")
     @populateLists()
     @createUploader()
-    @shiftDown = true
-    #@enableShiftKey()
+    @shiftDown = false
+    @enableShiftKey()
       
     album = $.query.get 'album'
     if album.length > 0
@@ -18,13 +18,26 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       
     
   enableShiftKey: ->
+    $(document).bind 'contextmenu', (index,element) =>
+      return false
+    
+      log $(element).html()
+      if @ctrlDown
+        log @ctrlDown+'x'
+        @selectRange $(element)
+      return false
+        
+    
     @shiftDown = false
+    @ctrlDown = false
     $(document).keydown (event) =>
-      @shiftDown = true if event.shiftKey
-      @ctrlDown = true if event.ctrlDpwn
+      @shiftDown = event.shiftKey
+      @ctrlDown = event.ctrlKey
+      log @ctrlDown
     $(document).keyup (event) =>
-      @shiftDown = false if event.shiftKey
-      @ctrlDown = false if event.ctrlDown
+      @shiftDown = event.shiftKey
+      @ctrlDown = event.ctrlKey
+      log @ctrlDown
   
 
   ## [ IMAGE FILE UPLOADER ] ##
@@ -168,8 +181,25 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       el.removeClass('selected')
     else
       $('#imagelist li').removeClass('selected') if not @shiftDown
-      el.addClass('selected')
+      log @ctrlDown
+      if @ctrlDown
+        log 'x'
+        @selectRange el 
+      else
+        el.addClass('selected')
     @showCommonImageMetaData()
+  
+  selectRange: (el) ->
+    firstIndex = $("#imagelist li:visible:first").index()
+    currentIndex = el.index()
+    fromIndex = Math.min(firstIndex,currentIndex)
+    toIndex = Math.min(firstIndex,currentIndex)
+    alert fromIndex+' '+toIndex
+    $('#imagelist li').removeClass('selected')
+    $('#imagelist li').each (index,element) ->
+      $(element).addClass('selected') if index >= fromIndex and index  <= toIndex
+      
+    
     
   #- delete individual image
   '.close click': (el) ->
