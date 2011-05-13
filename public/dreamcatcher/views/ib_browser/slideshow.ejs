@@ -1,5 +1,8 @@
 <div id="slideshow">
 <% for(var i = 0; i < images.length ; i++){ %>
-  <img data-id="<%= images[i].id %>" data-image='<%= JSON.stringify(images[i]) %>' src="/images/uploads/originals/<%= images[i].id %>.<%= images[i].format %>" width="670" />
+  <div class="img">
+    <img data-id="<%= images[i].id %>" data-image='<%= JSON.stringify(images[i]) %>' src="/images/uploads/originals/<%= images[i].id %>.<%= images[i].format %>" width="670" />
 <% } %>
+    <div class="add">+</div>
+  </div>
 </div>
