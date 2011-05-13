@@ -14,8 +14,8 @@
         .spinner.hidden
 
         - images.each do |image|
-          .img
-            = image_tag image.url('128x128'), :'data-id' => image.id
+          .img{:'data-id' => image.id}
+            = image_tag image.url('128x128')
             .add.hidden +
 
 

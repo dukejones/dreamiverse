@@ -133,7 +133,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
           @updateScreen 'albumList',@artist,'#slideshow','slideshow',html
         else
           @updateScreen 'artistList',@category,'#slideshow','slideshow',html
-        @showSlide 0
         
     @currentView = type
     @saveState()
@@ -162,13 +161,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showIcons '.browseWrap, .searchFieldWrap'
   
   '.top .play click': ->
-    imageIds = []
-    $("#albumList .img").each (index,element) =>
-      imageIds.push $(element).data('id')
-    
-    $(".counter").text("1/"+imageIds.length)    
-    @model.findImagesById imageIds.join(','), {}, (images) =>
-      @displayScreen 'slideshow', @view('slideshow', { images: images })
+    @showAlbumSlides 0
 
 
 
@@ -216,7 +209,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   '#albumList .images .img click': (el) ->
     imageId = el.data 'id'
-    @showSingleSlide imageId
+    @showAlbumSlides imageId
   
   
   
@@ -238,10 +231,23 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @imageCookie.add imageId
     @showImageInDropbox imageId,imageMeta
     el.hide()
+    
+  showAlbumSlides: (imageId) ->
+    imageIds = []
+    $("#albumList .img").each (index,element) =>
+      imageIds.push $(element).data('id')
+      
+    #index = 
+
+    $(".counter").text("1/"+imageIds.length)    
+    @model.findImagesById imageIds.join(','), {}, (images) =>
+      @displayScreen 'slideshow', @view('slideshow', { images: images })
+      @showSlide index
 
   showSingleSlide: (imageId) ->
     @model.getImage imageId, {}, (image) =>
       @displayScreen 'slideshow', @view('slideshow', { images: [image] })
+      @showSlide 0
 
   showSlide: (index) ->
     totalCount = $("#slideshow img").length
