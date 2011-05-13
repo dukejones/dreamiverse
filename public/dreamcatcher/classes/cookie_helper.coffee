@@ -8,7 +8,6 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
     $.cookie @key,null
   
   set: (value) ->
-    #log value
     $.cookie @key,value
     
   get: ->
@@ -27,9 +26,6 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
     else if items.indexOf(id) is -1
       items.push(id)
       $.cookie(@key,items.join(","))
-      log $.cookie(@key)
-    else
-      log "already exists"
       
   contains: (id) ->
     id = id.toString()

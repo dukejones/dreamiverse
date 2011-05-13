@@ -175,7 +175,10 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   ## TOP ICON EVENTS
     
   '.top .browseWrap click': (el) ->
-    @showLastView()
+    if $("#searchResults").is(":visible")
+      @showLastView()
+    else
+      @displayScreen @currentView,null
 
   '.top .backArrow click': (el) ->
     @displayScreen el.attr("name"),null
@@ -355,11 +358,12 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     if not $("#searchOptions").is(":visible")
       @hideAllViews()
       el.addClass("selected")
-      $('#searchOptions .category select').append("<option>#{category}</option>") for category in @categories
-      $("#searchOptions .genres").html @view('genres',{genres: @model.genres})
+      $('#searchOptions .category select').append("<option>#{category}</option>") for category in @categories if @categories
+      $("#searchOptions .genres").html @view('genres', { genres: @model.genres })
       $("#searchOptions").show()
     else
-      @showLastView()
+      @displayScreen @currentView,null #but keep search header
+      @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
       
   '.searchField input[type="text"] keypress': (element,event) ->
     @startSearch() if event.keyCode is 13 #enter press
