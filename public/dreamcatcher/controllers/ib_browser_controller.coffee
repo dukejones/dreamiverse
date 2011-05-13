@@ -304,6 +304,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showInfoTag 'tagging'
         
   showAlbumSlides: (imageId, album) ->
+    #todo: refactor so there's no need for ajax call
     imageIds = []
     index = 0
     albumSelector = if album? then "tr[data-album='#{album}']"  else ""
@@ -311,7 +312,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       id = $(el).data 'id'
       imageIds[i] = id
       index = i if id is imageId
-    #$(".counter").text("1/"+imageIds.length)    
     @model.findImagesById imageIds.join(','), {}, (images) =>
       #this loads the html first, before it displays the slideshow
       $("#slideshow").replaceWith @view('slideshow', { images: images })
@@ -337,11 +337,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     imageId = imageElement.data 'id'
     imageMeta = imageElement.data 'image'
 
-    title = imageMeta.title
-    #album = imageMeta.album
-    #album = " / "+album if album.length > 0
-    header = title #+ album
-    $("h1").text(title)
+    $("h1").text imageMeta.title
     @showInfo imageMeta
 
     if totalCount is 1 then $(".counter,.prev,.next").hide() else $(".counter").text "#{index+1}/#{totalCount}"
