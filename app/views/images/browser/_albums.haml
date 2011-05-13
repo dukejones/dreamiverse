@@ -5,12 +5,14 @@
 
     %tr.name{:'data-album' => album}
       %td
-        = album || "All Images"
+        = album || "Unknown Album"
         %a.manage
 
     %tr.images{:'data-album' => album}
       %td
         - require 'json'
+        .spinner.hidden
+
         - images.each do |image|
           .img{:'data-id' => image.id, :'data-image' => "#{image.to_json}"}
             = image_tag image.url('128x128')

@@ -16,7 +16,6 @@ table#artistList
     td.imageColumn
       width: 364px
 
-
   // ARTIST ROW
   tr.artist
     +pointer
@@ -42,6 +41,13 @@ table#artistList
         &:hover
           border: 1px solid #222
 
+
+  .spinner
+    +absolute
+    +alpha(70)
+    height: 64px
+    width: 384px
+    background: #000 url('/images/icons/spinner-grey-32.gif') no-repeat center center
 
 
 
