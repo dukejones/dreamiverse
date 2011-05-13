@@ -152,7 +152,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   updateScreen: (previousType, previousName, currentType, currentName, currentHtml, show) ->
     @hideAllViews()
     
-    $(".backArrow .content").text(previousName) if previousName
+    $(".backArrow .content span").text(previousName) if previousName
+    if previousName is "browse" then $(".backArrow .content .img").show() else $(".backArrow .content .img").hide()
     $(".backArrow").attr("name",previousType) if previousType
     $("h1").text(currentName) if currentName
     
