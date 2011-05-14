@@ -32,33 +32,10 @@
       %option.articles{     value: 'articles'     } articles
       %option.journals{     value: 'journals'     } journals
 
-  .wrapper
-
-    / FILTER BY ENTRY TYPE
-    .entryFilter.trigger.slideArrow
-      %img.icon{src: '/images/icons/entries-16.png'}
-      .arrow
-      %span.value all entries
-    .filterList.target.slideArrow.hidden
-      .type.top{'data-filter' => 'all entries'}
-        %img{src: '/images/icons/entries-16.png', width: '16', height: '16'}
-        %span all entries
-      .type{'data-filter' => 'dream'}
-        %img{src: '/images/icons/dream-16-hover.png', width: '16', height: '16'}
-        %span dreams
-      .type{'data-filter' => 'vision'}
-        %img{src: '/images/icons/vision-16-hover.png', width: '16', height: '16'}
-        %span visions
-      .type{'data-filter' => 'experience'}
-        %img{src: '/images/icons/experience-16-hover.png', width: '16', height: '16'}
-        %span experiences
-      .type.bottom{'data-filter' => 'article'}
-        %img{src: '/images/icons/article-16-hover.png', width: '16', height: '16'}
-        %span articles
-
 
   #users-filter-wrap
     .spinner
+    
     %select#users-filter
       %option.allUsers{   value: 'all users'   } all users
       %option.friends{    value: 'friends'    } friends
@@ -66,21 +43,7 @@
 
   .wrapper
 
-    / FILTER BY FOLLOW TYPE
-    .followFilter.trigger.slideArrow
-      %img.icon{src: '/images/icons/sharing-16-hover.png'}
-      .arrow
-      %span.value all users
-    .filterList.target.slideArrow.hidden
-      .type.top
-        %img{src: '/images/icons/sharing-16-hover.png', width: '16', height: '16'}
-        %span all users
-      .type
-        %img{src: '/images/icons/friend-16.png', width: '16', height: '16'}
-        %span friends
-      .type.bottom
-        %img{src: '/images/icons/friend-16-follow.png', width: '16', height: '16'}
-        %span following
+
 
   / .wrapper
   / 
