@@ -20,7 +20,11 @@
   <% if (userId != null) { %>
   <a name="bottom" href="#"></a>
   <div class="newCommentWrap">
-    <div style="background-image: url('/images/uploads/<%= imageId %>-avatar-64.jpg')" class="avatar"></div>
+    <% if (imageId) { %>
+      <div style="background-image: url('/images/uploads/<%= imageId %>-avatar-64.jpg')" class="avatar"></div>
+    <% } else { %>
+      <div class="avatar"></div>
+    <% } %>
     <div class="newComment">
       <textarea id="entryComment_<%= entryId %>" rows="20" cols="40" class="comment_body" placeholder="add comment..."></textarea>
       <input type="button" value="post" class="save hidden">
