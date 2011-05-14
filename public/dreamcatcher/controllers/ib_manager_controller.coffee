@@ -256,6 +256,11 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
       
   #- saves all data and goes back to ib_browser
   '.save click': (el) ->
+    @showSavingSpinner()
+    
+    totalToSave = $('#imagelist li').length
+    totalSaved = 0
+  
     @imageCookie.clear()
     $('#imagelist li').each (index,element) =>
       imageId = $(element).data('id')
@@ -266,10 +271,26 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
         data.section = data.type
         @model.update imageId,{image: data},=>
           @imageCookie.add imageId
-          log imageId+' saved'
+          totalSaved++
+          if totalToSave is totalSaved
+            @hideSavingSpinner()
+
       else
         @model.disable imageId,{},=>
           @imageCookie.remove imageId
+          totalSaved++
+          if totalToSave is totalSaved
+            @hideSavingSpinner()
+          
+  showSavingSpinner: ->
+    $(".save span").hide()
+    $(".save .spinner, .save .saving").show()
+  
+  hideSavingSpinner: ->
+    alert 'saved'
+    $(".save span").show()
+    $(".save .spinner, .save .saving").hide()
+    
     
     #window.location.href = "/images"  
 
