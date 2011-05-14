@@ -1,7 +1,7 @@
 
 $(document).ready ->
   streamController = new StreamController()
-  streamController.streamView.loadNextPage()
+  # streamController.streamView.loadNextPage()
 
 
 class StreamController
@@ -72,7 +72,7 @@ class StreamView
       $('.noEntrys').show()
 
     # after data loads into view, remove the loading spinner
-    $('#streamContextPanel .trigger').removeClass('loading')
+    # $('#streamContextPanel .trigger').removeClass('loading')
     # and hide the filter spinners
     $('#entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
 
@@ -81,27 +81,28 @@ class StreamView
     
 
 
-
 class StreamModel
   load: (filters={})->
     log 'running StreamModel load'
     @updateFilters()
-    $.extend(filters, @filterOpts())
+    $.extend(filters, @filterOptions())
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
-    @filters = []
-    @filters[0] = $('#entry-filter').val()
-    @filters[1] = $('#users-filter').val()
+    @entryFilter = $('#entry-filter').val()
+    @friendFilter = $('#users-filter').val()    
    
-    log '@filters[0]: ' + @filters[0]
-    log '@filters[1]: ' + @filters[1]    
-   
-    # get new filter values (will be .filter .value to target the span)
-    # $.each $('.trigger span.value'), (key, value) =>
-    #   @filters.push($(value).text())  # XXX: data tightly coupled to display.
-    
+    log '@entryFilter: ' + @entryFilter
+    log '@friendFilter: ' + @friendFilter   
 
-  filterOpts: ->
-    type: @filters[0]
-    friend: @filters[1]
+  # 
+  # filterOptions: ->
+  #   @options = ''
+  #   @options += 'type: ' + @entryFilter if @entryFilter != 'all entries'
+  #   @options += 'friend: ' + @friendFilter if @friendFilter != 'all users'
+  #   log('@options: ' + @options)
+  #   return @options 
+
+  filterOptions: ->
+    type: @entryFilter
+    friend: @friendFilter
     # starlight: @filters[2]

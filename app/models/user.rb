@@ -166,9 +166,10 @@ class User < ActiveRecord::Base
   
   def set_default_stream_filters(filters)
     entry_type = filters['type'] ? filters['type'] : 'all entries' # filters['type'] is not set for 'all entries'
+    user_type = filters['friend'] ? filters['friend'] : 'all users' # fitlers['friend'] is not set for 'all users'
     self.default_stream_entry_type_filter = entry_type
-    self.default_stream_users_filter = filters['friend']
-    self.save
+    self.default_stream_users_filter = user_type
+    self.save!
   end
   
   protected
