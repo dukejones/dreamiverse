@@ -66,7 +66,7 @@ class StreamView
       @$container.append(data.html)
       @activateLightBox()
   update: (html) ->
-    alert 'running StreamView update:'
+    log 'running StreamView update:'
     @clear()
     if html == ''
       $('.noEntrys').show()
@@ -92,13 +92,14 @@ class StreamModel
     @filters = []
     @filters[0] = $('#entry-filter').val()
     @filters[1] = $('#users-filter').val()
-
+   
+    log '@filters[0]: ' + @filters[0]
+    log '@filters[1]: ' + @filters[1]    
+   
     # get new filter values (will be .filter .value to target the span)
     # $.each $('.trigger span.value'), (key, value) =>
     #   @filters.push($(value).text())  # XXX: data tightly coupled to display.
     
-    log '@filters[0]: ' + @filters[0]
-    log '@filters[1]: ' + @filters[1]
 
   filterOpts: ->
     type: @filters[0]

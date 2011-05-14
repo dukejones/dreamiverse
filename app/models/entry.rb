@@ -136,7 +136,7 @@ class Entry < ActiveRecord::Base
       user_ids_to_view =  # based on friend filter
         if filters[:friend] == "friends"
           viewer.friends
-        elsif filters[:friend == "following"]
+        elsif filters[:friend] == "following"
           viewer.following.select('users.id')
         end.map(&:id)
       user_ids_to_view.delete(viewer.id)
