@@ -39,15 +39,12 @@ class EntriesController < ApplicationController
 
   end
 
-  def show
-    session[:lens] = '' # unset this in case it's currently set to: stream
+  def show      
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @entries = entry_list
-    @entry_count = entry_list({type: 'all entries', show_all: "true"}).count
-
     
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
