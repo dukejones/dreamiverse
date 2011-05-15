@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   
   include Starlit
 
+  serialize :stream_filter
+  
   has_many :authentications
   has_many :entries
   has_many :hits
@@ -58,7 +60,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create  
-  # validate :has_at_least_one_authentication
+
+  validates_inclusion_of :default_entry_type, :in => %w( dream vision experience article journal )
+  validates_inclusion_of :default_landing_page, :in => %w( home stream dreamfield )
   
   # def self.order_by_starlight
   #   select('users.*').
@@ -139,10 +143,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  # def encrypted_password= *args
-  #   # raise "Can't set the encrypted password directly."
-  # end
-  # 
   def can_access?(entry)
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
@@ -165,18 +165,18 @@ class User < ActiveRecord::Base
   end
   
   def set_default_stream_filters(filters)
-    entry_type = filters['type'] ? filters['type'] : 'all entries' # filters['type'] is not set for 'all entries'
-    user_type = filters['friend'] ? filters['friend'] : 'all users' # fitlers['friend'] is not set for 'all users'
-    self.default_stream_entry_type_filter = entry_type
-    self.default_stream_users_filter = user_type
-    self.save!
+    # entry_type = filters['type'] ? filters['type'] : 'all entries' # filters['type'] is not set for 'all entries'
+    # user_type = filters['friend'] ? filters['friend'] : 'all users' # fitlers['friend'] is not set for 'all users'
+    # self.default_stream_entry_type_filter = entry_type
+    # self.default_stream_users_filter = user_type
+    # self.save!
   end
   
   def get_default_stream_filters
-    filters = {}
-    filters['type'] = self.default_stream_entry_type_filter
-    filters['friend'] = self.default_stream_users_filter
-    filters
+    # filters = {}
+    # filters['type'] = self.default_stream_entry_type_filter
+    # filters['friend'] = self.default_stream_users_filter
+    # filters
   end
   
   protected
@@ -203,9 +203,11 @@ class User < ActiveRecord::Base
   # end
   
   def set_defaults
+    self.auth_level ||= AuthLevel[:basic]
     self.default_sharing_level ||= Entry::Sharing[:everyone]
     self.default_landing_page ||= 'stream'
-    self.auth_level ||= 1
+    self.default_entry_type ||= 'dream'
+    self.stream_filter ||= {}
   end
   
 end

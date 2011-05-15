@@ -40,7 +40,7 @@ class EntriesController < ApplicationController
 
   end
 
-  def show      
+  def show
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
@@ -63,7 +63,7 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
-    @entry.type = current_user.default_entry_type
+    @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
   end
   

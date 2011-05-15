@@ -15,7 +15,7 @@
 
     = yield :head
 
-  %body.home.light{class: current_user.blank? ? '' : current_user.default_menu_style}
+  %body.home.light{class: appearance_classes}
 
     -# render "shared/facebook_sdk"
 

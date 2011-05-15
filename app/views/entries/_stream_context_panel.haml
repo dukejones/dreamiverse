@@ -25,20 +25,20 @@
   #entry-filter-wrap
     .spinner
     %select#entry-filter
-      %option.allEntries{   value: 'all entries', :selected => @user.default_stream_entry_type_filter == 'all entries' ? true : nil } all entries
-      %option.dreams{       value: 'dreams',      :selected => @user.default_stream_entry_type_filter == 'dreams' ? true : nil } dreams
-      %option.visions{      value: 'visions',     :selected => @user.default_stream_entry_type_filter == 'visions' ? true : nil } visions
-      %option.experiences{  value: 'experiences', :selected => @user.default_stream_entry_type_filter == 'experiences' ? true : nil  } experiences
-      %option.articles{     value: 'articles',    :selected => @user.default_stream_entry_type_filter == 'articles' ? true : nil } articles
-      %option.journals{     value: 'journals',    :selected => @user.default_stream_entry_type_filter == 'journals' ? true : nil } journals
+      %option.allEntries{   value: 'all entries', :selected => false } all entries
+      %option.dreams{       value: 'dreams',      :selected => false } dreams
+      %option.visions{      value: 'visions',     :selected => false } visions
+      %option.experiences{  value: 'experiences', :selected => false  } experiences
+      %option.articles{     value: 'articles',    :selected => false } articles
+      %option.journals{     value: 'journals',    :selected => false } journals
 
   #users-filter-wrap
     .spinner
     
     %select#users-filter
-      %option.allUsers{   value: 'all users', :selected => @user.default_stream_users_filter == 'all users' ? true : nil } all users
-      %option.friends{    value: 'friends',   :selected => @user.default_stream_users_filter == 'friends' ? true : nil    } friends
-      %option.following{  value: 'following', :selected => @user.default_stream_users_filter == 'following' ? true : nil  } following
+      %option.allUsers{   value: 'all users', :selected => false } all users
+      %option.friends{    value: 'friends',   :selected => false    } friends
+      %option.following{  value: 'following', :selected => false  } following
 
   .wrapper
 

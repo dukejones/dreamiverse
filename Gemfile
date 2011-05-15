@@ -27,6 +27,7 @@ gem 'jammit'
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
+  gem 'wirble'
 end
 
 group :test do
