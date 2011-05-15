@@ -10,13 +10,20 @@ class ChangeViewDefaults < ActiveRecord::Migration
       t.remove :default_menu_style
 
       # Not perfect, but let's just store a serialized hash to allow filters to change without having to change the model.
-      t.string :stream_filter  
+      t.string :stream_filter 
     end
     
     change_table :view_preferences do |t|
       t.remove :default_genre
       t.column :font_size, :string
       t.column :menu_style, :string
+    end
+    
+    User.all.each do |user|
+      if user.stream_filter.nil?
+        user.stream_filter = {}
+        user.save!
+      end
     end
   end
 

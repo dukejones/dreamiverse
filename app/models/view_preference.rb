@@ -3,7 +3,7 @@ class ViewPreference < ActiveRecord::Base
   
   belongs_to :viewable, :polymorphic => true
   
-  # validates_inclusion_of :menu_style, :in => %w( inset hover )
+  validates_inclusion_of :menu_style, :in => %w( float inpage )
   validates_inclusion_of :font_size, :in => %w( small medium large )
 
   def clone!

@@ -24,21 +24,22 @@
 
   #entry-filter-wrap
     .spinner
+    - type = current_user.stream_filter[:type]
     %select#entry-filter
-      %option.allEntries{   value: 'all entries', :selected => false } all entries
-      %option.dreams{       value: 'dreams',      :selected => false } dreams
-      %option.visions{      value: 'visions',     :selected => false } visions
-      %option.experiences{  value: 'experiences', :selected => false  } experiences
-      %option.articles{     value: 'articles',    :selected => false } articles
-      %option.journals{     value: 'journals',    :selected => false } journals
+      %option.allEntries{   value: '',            :selected => (type.blank?) } all entries
+      %option.dreams{       value: 'dreams',      :selected => (type == 'dreams') } dreams
+      %option.visions{      value: 'visions',     :selected => (type == 'visions') } visions
+      %option.experiences{  value: 'experiences', :selected => (type == 'experiences')  } experiences
+      %option.articles{     value: 'articles',    :selected => (type == 'articles') } articles
+      %option.journals{     value: 'journals',    :selected => (type == 'journals') } journals
 
   #users-filter-wrap
     .spinner
-    
+    - users = current_user.stream_filter[:users]
     %select#users-filter
-      %option.allUsers{   value: 'all users', :selected => false } all users
-      %option.friends{    value: 'friends',   :selected => false    } friends
-      %option.following{  value: 'following', :selected => false  } following
+      %option.allUsers{   value: '', :selected => (users.blank?) } all users
+      %option.friends{    value: 'friends',   :selected => (users == 'friends')    } friends
+      %option.following{  value: 'following', :selected => (users == 'following')  } following
 
   .wrapper
 

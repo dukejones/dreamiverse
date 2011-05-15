@@ -62,7 +62,7 @@ class User < ActiveRecord::Base
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create  
 
   validates_inclusion_of :default_entry_type, :in => %w( dream vision experience article journal )
-  validates_inclusion_of :default_landing_page, :in => %w( home stream dreamfield )
+  validates_inclusion_of :default_landing_page, :in => %w( stream home today )
   
   # def self.order_by_starlight
   #   select('users.*').
