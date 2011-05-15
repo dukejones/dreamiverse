@@ -1,17 +1,21 @@
 $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
 
-  init: (key) ->
+  init: (key, isJson) ->
     @key = key
+    @isJson = isJson
   
   #- basic
   clear: ->
     $.cookie @key,null
   
   set: (value) ->
+    value = JSON.stringify value if @isJson
     $.cookie @key,value
     
   get: ->
-    return $.cookie @key
+    value = $.cookie @key
+    return JSON.parse value if @isJson
+    return value
     
   #- collection
   getAll: ->

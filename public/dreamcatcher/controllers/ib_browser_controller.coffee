@@ -195,6 +195,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
         @ibManager.showManager imageIds
     else
       $('#frame.browser').hide()
+      #todo: refactor to pass manager meta data, so it doesn't need to load.
       @ibManager.showManager imageIds
           
   ## TOP ICON EVENTS
@@ -313,12 +314,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       target.hide() 
     else
       meta = $("#slideshow .img:visible:first").data 'image'
-      if type is 'tagging' #todo: refactor?
-        @showTags meta
-        $('#info').hide()
-      else if type is 'info'
-        @showInfo meta
-        $('#tagging').hide()
+      @showTags meta if type is 'tagging'
+      @showInfo meta if type is 'info'
       target.show()  
     
   '.footer .info click': ->

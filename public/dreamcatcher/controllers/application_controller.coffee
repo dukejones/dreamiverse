@@ -4,6 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
     @ibBrowser = new Dreamcatcher.Controllers.IbBrowser $("#frame.browser") if $("#frame.browser").exists()
+    @entry = new Dreamcatcher.Controllers.Entry $("#newEntry") if $("#newEntry").exists()
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
