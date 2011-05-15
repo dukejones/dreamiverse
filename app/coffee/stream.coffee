@@ -1,7 +1,7 @@
 
 $(document).ready ->
   streamController = new StreamController()
-  # streamController.streamView.loadNextPage()
+  streamController.streamView.loadNextPage()
 
 
 class StreamController
