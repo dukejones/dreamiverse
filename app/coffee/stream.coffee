@@ -1,7 +1,7 @@
 
 $(document).ready ->
   streamController = new StreamController()
-  streamController.streamView.loadNextPage()
+  #streamController.streamView.loadNextPage()
 
 
 class StreamController
@@ -88,19 +88,18 @@ class StreamModel
     $.extend(filters, @filterOptions())
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
+    # @entryFilter = $('#entry-filter').val()
+    # @friendFilter = $('#users-filter').val() 
+       
     @entryFilter = $('#entry-filter').val()
     @friendFilter = $('#users-filter').val()    
-   
+    
+    # we don't want filters for all
+    @entryFilter = '' if @entryFilter == 'all entries'
+    @friendFilter = '' if @friendFilter == 'all users'
+    
     log '@entryFilter: ' + @entryFilter
     log '@friendFilter: ' + @friendFilter   
-
-  # 
-  # filterOptions: ->
-  #   @options = ''
-  #   @options += 'type: ' + @entryFilter if @entryFilter != 'all entries'
-  #   @options += 'friend: ' + @friendFilter if @friendFilter != 'all users'
-  #   log('@options: ' + @options)
-  #   return @options 
 
   filterOptions: ->
     type: @entryFilter

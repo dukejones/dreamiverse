@@ -4,6 +4,7 @@ class EntriesController < ApplicationController
 
   def entry_list(filters=nil)
     filters ||= session[:filters] || {}
+
     # This is an example of a hack due to tightly coupling Display to Data.
     filters.delete(:type) if filters[:type] == "all entries"
     filters.delete(:friend) if filters[:friend] == "all users"
@@ -129,8 +130,7 @@ class EntriesController < ApplicationController
   def stream
     session[:lens] = :stream
     session[:filters] = params[:filters] || current_user.get_default_stream_filters
-    debugger
-    1
+
     @user = current_user
     @user.set_default_stream_filters(params[:filters]) if params[:filters] 
     @entries = entry_list

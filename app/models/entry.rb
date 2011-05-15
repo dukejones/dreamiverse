@@ -113,10 +113,10 @@ class Entry < ActiveRecord::Base
     page_size = filters[:page_size] || 10
     page = filters[:page].to_i
     page = 1 if page <= 0
-
+    
     # Universal scope
     entry_scope = Entry.order(:created_at.desc)
-    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
+    entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank? # Type: visions,  dreams,  experiences
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]).where(:sharing_level ^ self::Sharing[:anonymous])
 
 
@@ -132,7 +132,7 @@ class Entry < ActiveRecord::Base
     # Others' Entries, paged.
     others_entries = entry_scope
 
-    if filters[:friend]
+    unless filters[:friend].blank?
       user_ids_to_view =  # based on friend filter
         if filters[:friend] == "friends"
           viewer.friends
