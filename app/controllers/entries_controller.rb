@@ -126,8 +126,8 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
-    @user.update_stream_filter(params[:filters]) if params[:filters]
-    @entries = entry_list(:stream, @user.stream_filter)
+    @filters = @user.update_stream_filter(params[:filters])
+    @entries = entry_list(:stream, @filters)
     
     if request.xhr?
       thumbs_html = ""

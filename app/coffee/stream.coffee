@@ -89,19 +89,19 @@ class StreamModel
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
     # @entryFilter = $('#entry-filter').val()
-    # @friendFilter = $('#users-filter').val() 
+    # @usersFilter = $('#users-filter').val() 
        
     @entryFilter = $('#entry-filter').val()
-    @friendFilter = $('#users-filter').val()    
+    @usersFilter = $('#users-filter').val()    
     
     # we don't want filters for all
     @entryFilter = '' if @entryFilter == 'all entries'
-    @friendFilter = '' if @friendFilter == 'all users'
+    @usersFilter = '' if @usersFilter == 'all users'
     
     log '@entryFilter: ' + @entryFilter
-    log '@friendFilter: ' + @friendFilter   
+    log '@usersFilter: ' + @usersFilter   
 
   filterOptions: ->
     type: @entryFilter
-    friend: @friendFilter
+    users: @usersFilter
     # starlight: @filters[2]

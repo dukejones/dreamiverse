@@ -165,8 +165,15 @@ class User < ActiveRecord::Base
   end
   
   def update_stream_filter(filters)
-    self.stream_filter.merge(filters)
-    self.save
+    if filters.kind_of?(Hash)
+      # only the keys which we are storing as defaults
+      self.stream_filter[:type] = filters[:type] if filters.has_key?(:type)
+      self.stream_filter[:users] = filters[:users] if filters.has_key?(:users)
+      self.save
+    else
+      filters = self.stream_filter
+    end
+    filters
   end
   
   protected

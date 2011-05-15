@@ -116,27 +116,17 @@ class Entry < ActiveRecord::Base
     
     # Universal scope
     entry_scope = Entry.order(:created_at.desc)
-    entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank? # Type: visions,  dreams,  experiences
+    entry_scope = entry_scope.where(type: filters[:type]) unless filters[:type].blank?
     entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]).where(:sharing_level ^ self::Sharing[:anonymous])
-
-
-    user_ids_to_view =  # based on friend filter
-      if filters[:friend] == "friends"
-        viewer.friends
-      else
-        viewer.following.select('users.id')
-      end.map(&:id)
-    user_ids_to_view.delete(viewer.id)
-    
 
     # Others' Entries, paged.
     others_entries = entry_scope
 
-    unless filters[:friend].blank?
+    unless filters[:users].blank?
       user_ids_to_view =  # based on friend filter
-        if filters[:friend] == "friends"
+        if filters[:users] == "friends"
           viewer.friends
-        elsif filters[:friend] == "following"
+        elsif filters[:users] == "following"
           viewer.following.select('users.id')
         end.map(&:id)
       user_ids_to_view.delete(viewer.id)
@@ -153,8 +143,6 @@ class Entry < ActiveRecord::Base
     return [] if time_range.num_entries == 0
     
     my_entries = entry_scope.where(:user => viewer)
-    # my_entries = entry_scope.where(:user => viewer, :stream_time.gt => time_range.min_time)
-    # my_entries = my_entries.where(:stream_time.lt => time_range.max_time) unless page == 1
 
     my_commented_entries = my_entries.joins(:comments).group('entries.id')
 

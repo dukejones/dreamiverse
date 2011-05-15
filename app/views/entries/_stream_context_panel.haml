@@ -24,22 +24,20 @@
 
   #entry-filter-wrap
     .spinner
-    - type = current_user.stream_filter[:type]
     %select#entry-filter
-      %option.allEntries{   value: '',            :selected => (type.blank?) } all entries
-      %option.dreams{       value: 'dream',      :selected => (type == 'dream') } dreams
-      %option.visions{      value: 'vision',     :selected => (type == 'vision') } visions
-      %option.experiences{  value: 'experience', :selected => (type == 'experience')  } experiences
-      %option.articles{     value: 'article',    :selected => (type == 'article') } articles
-      %option.journals{     value: 'journal',    :selected => (type == 'journal') } journals
+      %option.allEntries{   value: '',           :selected => (@filters[:type].blank?)          } all entries
+      %option.dreams{       value: 'dream',      :selected => (@filters[:type] == 'dream')      } dreams
+      %option.visions{      value: 'vision',     :selected => (@filters[:type] == 'vision')     } visions
+      %option.experiences{  value: 'experience', :selected => (@filters[:type] == 'experience') } experiences
+      %option.articles{     value: 'article',    :selected => (@filters[:type] == 'article')    } articles
+      %option.journals{     value: 'journal',    :selected => (@filters[:type] == 'journal')    } journals
 
   #users-filter-wrap
     .spinner
-    - users = current_user.stream_filter[:users]
     %select#users-filter
-      %option.allUsers{   value: '', :selected => (users.blank?) } all users
-      %option.friends{    value: 'friends',   :selected => (users == 'friends')    } friends
-      %option.following{  value: 'following', :selected => (users == 'following')  } following
+      %option.allUsers{   value: '',          :selected => (@filters[:users].blank?)          } all users
+      %option.friends{    value: 'friends',   :selected => (@filters[:users] == 'friends')    } friends
+      %option.following{  value: 'following', :selected => (@filters[:users] == 'following')  } following
 
   .wrapper
 
