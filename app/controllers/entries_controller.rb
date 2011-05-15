@@ -10,7 +10,7 @@ class EntriesController < ApplicationController
     return case session[:lens]
     when :stream
       current_user ? Entry.dreamstream(current_user, filters) : []
-    else # when :field
+    else
       Entry.dreamfield(current_user, @user, filters)
     end
   end
@@ -24,7 +24,7 @@ class EntriesController < ApplicationController
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
 
-    @entries = entry_list(:field)
+    @entries = entry_list(:home)
     @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
