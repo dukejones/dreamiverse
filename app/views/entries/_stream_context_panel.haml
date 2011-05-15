@@ -26,21 +26,22 @@
 
   #entry-filter-wrap
     .spinner
+    - type = current_user.stream_filter[:type]
     %select#entry-filter
-      %option.allEntries{   value: 'all entries', :selected => @user.default_stream_entry_type_filter == 'all entries' ? true : nil } all entries
-      %option.dreams{       value: 'dreams',      :selected => @user.default_stream_entry_type_filter == 'dreams' ? true : nil } dreams
-      %option.visions{      value: 'visions',     :selected => @user.default_stream_entry_type_filter == 'visions' ? true : nil } visions
-      %option.experiences{  value: 'experiences', :selected => @user.default_stream_entry_type_filter == 'experiences' ? true : nil  } experiences
-      %option.articles{     value: 'articles',    :selected => @user.default_stream_entry_type_filter == 'articles' ? true : nil } articles
-      %option.journals{     value: 'journals',    :selected => @user.default_stream_entry_type_filter == 'journals' ? true : nil } journals
+      %option.allEntries{   value: '',            :selected => (type.blank?) } all entries
+      %option.dreams{       value: 'dream',      :selected => (type == 'dream') } dreams
+      %option.visions{      value: 'vision',     :selected => (type == 'vision') } visions
+      %option.experiences{  value: 'experience', :selected => (type == 'experience')  } experiences
+      %option.articles{     value: 'article',    :selected => (type == 'article') } articles
+      %option.journals{     value: 'journal',    :selected => (type == 'journal') } journals
 
   #users-filter-wrap
     .spinner
-    
+    - users = current_user.stream_filter[:users]
     %select#users-filter
-      %option.allUsers{   value: 'all users', :selected => @user.default_stream_users_filter == 'all users' ? true : nil } all users
-      %option.friends{    value: 'friends',   :selected => @user.default_stream_users_filter == 'friends' ? true : nil    } friends
-      %option.following{  value: 'following', :selected => @user.default_stream_users_filter == 'following' ? true : nil  } following
+      %option.allUsers{   value: '', :selected => (users.blank?) } all users
+      %option.friends{    value: 'friends',   :selected => (users == 'friends')    } friends
+      %option.following{  value: 'following', :selected => (users == 'following')  } following
 
   .wrapper
 

@@ -71,6 +71,29 @@ module ApplicationHelper
     end
     "background-image: url(#{bedsheet_url})"
   end
+
+  def bedsheet_attachment
+    bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= @user._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
+    bedsheet_attachment ||= "scroll"
+    bedsheet_attachment
+  end
+  
+  def menu_style
+    return nil unless current_user
+    current_user.view_preference.menu_style
+  end
+  
+  def font_size
+    return nil unless current_user
+
+    case current_user.view_preference.font_size
+    when 'large' then 'fontLarge'
+    when 'medium' then 'fontMedium'
+    when 'small' then 'fontSmall'
+    end
+  end
   
   def theme
     theme ||= @entry._?.view_preference._?.theme
@@ -79,12 +102,9 @@ module ApplicationHelper
     theme ||= "light"
     theme
   end
-  
-  def bedsheet_attachment
-    bedsheet_attachment ||= @entry._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= @user._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= current_user._?.view_preference._?.bedsheet_attachment
-    bedsheet_attachment ||= "scroll"
-    bedsheet_attachment
+
+  def appearance_classes
+    "#{theme} #{bedsheet_attachment} #{menu_style} #{font_size}"
   end
+
 end
