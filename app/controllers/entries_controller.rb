@@ -5,10 +5,6 @@ class EntriesController < ApplicationController
   def entry_list(filters=nil)
     filters ||= session[:filters] || {}
 
-    # This is an example of a hack due to tightly coupling Display to Data.
-    filters.delete(:type) if filters[:type] == "all entries"
-    filters.delete(:friend) if filters[:friend] == "all users"
-
     return case session[:lens]
     when :stream
       current_user ? Entry.dreamstream(current_user, filters) : []
