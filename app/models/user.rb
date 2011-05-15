@@ -164,19 +164,9 @@ class User < ActiveRecord::Base
     sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
   end
   
-  def set_default_stream_filters(filters)
-    # entry_type = filters['type'].blank? ? 'all entries' : filters['type']  # filters['type'] is not set for 'all entries'
-    # user_type = filters['friend'].blank? ? 'all users' : filters['friend'] # neither for 'all users'
-    # self.default_stream_entry_type_filter = entry_type
-    # self.default_stream_users_filter = user_type
-    # self.save!
-  end
-  
-  def get_default_stream_filters
-    # filters = {}
-    # filters['type'] = self.default_stream_entry_type_filter
-    # filters['friend'] = self.default_stream_users_filter
-    # filters
+  def update_stream_filter(filters)
+    self.stream_filter.merge(filters)
+    self.save
   end
   
   protected

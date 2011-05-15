@@ -27,11 +27,11 @@
     - type = current_user.stream_filter[:type]
     %select#entry-filter
       %option.allEntries{   value: '',            :selected => (type.blank?) } all entries
-      %option.dreams{       value: 'dreams',      :selected => (type == 'dreams') } dreams
-      %option.visions{      value: 'visions',     :selected => (type == 'visions') } visions
-      %option.experiences{  value: 'experiences', :selected => (type == 'experiences')  } experiences
-      %option.articles{     value: 'articles',    :selected => (type == 'articles') } articles
-      %option.journals{     value: 'journals',    :selected => (type == 'journals') } journals
+      %option.dreams{       value: 'dream',      :selected => (type == 'dream') } dreams
+      %option.visions{      value: 'vision',     :selected => (type == 'vision') } visions
+      %option.experiences{  value: 'experience', :selected => (type == 'experience')  } experiences
+      %option.articles{     value: 'article',    :selected => (type == 'article') } articles
+      %option.journals{     value: 'journal',    :selected => (type == 'journal') } journals
 
   #users-filter-wrap
     .spinner

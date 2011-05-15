@@ -2,7 +2,9 @@ class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream, :random]
 
-  def entry_list(filters=nil)
+  def entry_list(lens=nil, filters=nil)
+    session[:lens] = lens unless lens.nil?
+    
     filters ||= session[:filters] || {}
 
     return case session[:lens]
@@ -18,13 +20,12 @@ class EntriesController < ApplicationController
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
     @filters[:page] ||= params[:page]
     @filters[:page_size] ||= 24
+    session[:filters] = @filters
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
-    session[:lens] = :field
-    session[:filters] = @filters
 
-    @entries = entry_list
-    @entry_count = entry_list({type: @filters[:type], show_all: "true"}).count
+    @entries = entry_list(:field)
+    @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
 
@@ -124,13 +125,10 @@ class EntriesController < ApplicationController
   end
 
   def stream
-    session[:lens] = :stream
-    session[:filters] = params[:filters] || current_user.get_default_stream_filters
-
     @user = current_user
-    @user.set_default_stream_filters(params[:filters]) if params[:filters] 
-    @entries = entry_list
-        
+    @user.update_stream_filter(params[:filters]) if params[:filters]
+    @entries = entry_list(:stream, @user.stream_filter)
+    
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
