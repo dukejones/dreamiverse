@@ -128,13 +128,13 @@ class EntriesController < ApplicationController
 
   def stream
     session[:lens] = :stream
-    session[:filters] = params[:filters] || {}
-    
+    session[:filters] = params[:filters] || current_user.get_default_stream_filters
+    debugger
+    1
     @user = current_user
+    @user.set_default_stream_filters(params[:filters]) if params[:filters] 
     @entries = entry_list
-    
-    @user.set_default_stream_filters(params[:filters]) if params[:filters]
-    
+        
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }

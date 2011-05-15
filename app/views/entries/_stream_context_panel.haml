@@ -32,7 +32,6 @@
       %option.articles{     value: 'articles',    :selected => @user.default_stream_entry_type_filter == 'articles' ? true : nil } articles
       %option.journals{     value: 'journals',    :selected => @user.default_stream_entry_type_filter == 'journals' ? true : nil } journals
 
-
   #users-filter-wrap
     .spinner
     
@@ -42,8 +41,6 @@
       %option.following{  value: 'following', :selected => @user.default_stream_users_filter == 'following' ? true : nil  } following
 
   .wrapper
-
-
 
   / .wrapper
   / 

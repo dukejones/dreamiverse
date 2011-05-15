@@ -172,6 +172,13 @@ class User < ActiveRecord::Base
     self.save!
   end
   
+  def get_default_stream_filters
+    filters = {}
+    filters['type'] = self.default_stream_entry_type_filter
+    filters['friend'] = self.default_stream_users_filter
+    filters
+  end
+  
   protected
 
   def encrypt_password
