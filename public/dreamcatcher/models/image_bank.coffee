@@ -1,23 +1,6 @@
 $.Model 'Dreamcatcher.Models.ImageBank',{
   
   attributes: ['type','category','genre','title','album','artist','location','year','notes','date','user','geotag','tags']
-  ###
-  types: ['Library','Bedsheets','Prima Materia','Book Covers','Tag']
-  categories: [
-    {
-      name: 'Modern Art'
-      genres: ['Paintings','Digital','Fantasy','Visionary','Graphics']
-    },
-    {
-      name: 'Classical Art'
-      genres: ['Europe','Eurasia','Asia','Americas','Africa','Australia']
-    },
-    {
-      name: 'Photos'
-      genres: ['People','Places','Things','Concept','Animals']
-    }
-  ]
-  ###
   
   types: [
     {
@@ -47,15 +30,13 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
   ]
   genres: ['photo','art','design']
   
-
-  update: ( imageId, data, success, error ) ->
+  getImage: (imageId, data, success, error) ->
     $.ajax {
       url: "/images/#{imageId}.json"
-      type: 'put'
-      contentType: 'application/json'
-      data: JSON.stringify(data)
+      type: 'get'
       dataType: 'json'
-      complete: success
+      data: data
+      success: @callback success
       error: error
     }
   
@@ -78,14 +59,15 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       success: @callback success
       error: error
     }
-    
-  getImage: (imageId, data, success, error) ->
+
+  update: ( imageId, data, success, error ) ->
     $.ajax {
       url: "/images/#{imageId}.json"
-      type: 'get'
+      type: 'put'
+      contentType: 'application/json'
+      data: JSON.stringify(data)
       dataType: 'json'
-      data: data
-      success: @callback success
+      complete: success
       error: error
     }
     
@@ -99,6 +81,23 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       complete: @callback success
       error: error
     }
-  
+    
+  getArtists: (data, success, error) ->
+    $.ajax {
+      url: '/artists'
+      data: data
+      dataType: 'html'
+      success: @callback success
+      error: error
+    }
+    
+  getAlbums: (data, success, error) ->
+    $.ajax {
+      url: '/albums'
+      data: data
+      dataType: 'html'
+      success: @callback success
+      error: error
+    }
 },
 {}
