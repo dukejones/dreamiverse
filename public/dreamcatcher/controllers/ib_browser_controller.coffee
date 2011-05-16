@@ -237,7 +237,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   #- ArtistList -#
 
   '#artistList tr.artist click': (el) ->
-    @artist = $("h2:first",el).text()
+    @artist = $("input.editable[type='text']:first",el).val()
     @model.getAlbums {artist: @artist, section: @section, category: @category}, @callback('displayScreen', 'albumList')
       
   
