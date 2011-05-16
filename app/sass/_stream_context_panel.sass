@@ -132,11 +132,12 @@
 
   .spinner
     +relative
+    +round(12)
     left: 164px
-    top: 4px
-    width: 32px
-    height: 32px
-    margin-bottom: -32px
+    top: 6px
+    width: 30px
+    height: 30px
+    margin-bottom: -30px
     z-index: 1
     +hidden
 
@@ -232,7 +233,7 @@
     &:hover
       +glow-light(10)
     &.loading .arrow
-      background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+      background: url('/images/icons/spinner-light-32.gif') no-repeat center center white
 
 
 
@@ -259,7 +260,7 @@
     &:hover
       +glow-dark(10)
     &.loading .arrow
-      background: url('/images/icons/spinner-dark-32.gif') no-repeat center center
+      background: url('/images/icons/spinner-dark-32.gif') no-repeat center center black
 
 
 
@@ -273,6 +274,7 @@
 
     .spinner
       +spinner-light
+      background-color: white
     select
       color: black
 
@@ -297,6 +299,7 @@
 
     .spinner
       +spinner-dark
+      background-color: black
     select
       color: white
 
