@@ -15,9 +15,11 @@
 
       %td.name
 
-        %input.editable{type: "text", value: artist.blank? ? "Unknown" : artist}
+        .editableWrap
 
-        .edit.hidden
+          %input.editable{type: "text", value: artist.blank? ? "Unknown" : artist}
+
+          .edit.hidden
 
       %td.images
 
