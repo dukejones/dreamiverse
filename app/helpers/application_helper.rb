@@ -39,7 +39,7 @@ module ApplicationHelper
   end
   
   def is_ipad?
-    request.user_agent.match(/iPad/)
+    request.user_agent._?.match(/iPad/)
   end
   
   def coffeescript_include_tag(*sources)
