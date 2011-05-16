@@ -69,7 +69,7 @@ class SharingView
     @isExpanded = false
     
     @$container.find('.target').slideUp(250)
-    $('#bodyClick').remove()
+    $('#bodyClick').hide()
     
   expandCurrentView: (type) ->
     @isExpanded = true
@@ -79,15 +79,13 @@ class SharingView
     @$container.find('.target').hide()
     
     # Remove any bodyclick & create a new one
-    $('#bodyClick').remove()
-    bodyClick = '<div id="bodyClick" style="z-index: 1100; cursor: pointer; width: 100%; height: 100%; position: fixed; top: 0; left: 0;" class=""></div>'
-    $('body').prepend(bodyClick)
+    $('#bodyClick').show()
   
     #$('html, body').animate({scrollTop:0}, 'slow');
   
     $('#bodyClick').click( (event) =>
       @$container.find('.target').hide()
-      $('#bodyClick').remove()
+      $('#bodyClick').hide()
     )
     
     # logic to update the visual display
