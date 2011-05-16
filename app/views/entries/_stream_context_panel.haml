@@ -21,8 +21,8 @@
     .img
     stream
 
-  #default-entry-filter{:'data-id' => "#{current_user.default_stream_entry_type_filter}"}
-  #default-users-filter{:'data-id' => "#{current_user.default_stream_users_filter}"}
+  #default-entry-filter{:'data-id' => @filters[:type]}
+  #default-users-filter{:'data-id' => @filters[:users]}
 
   #entry-filter-wrap
     .spinner
