@@ -152,7 +152,7 @@ namespace :fix do
           entry.reorder_tags
           fixed += 1
           break
-       end                   
+        end                   
       end 
     end   
     log("Fixed #{fixed} entries. Total time: #{Time.now - begin_time}")
