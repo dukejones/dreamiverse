@@ -242,7 +242,13 @@
             width: 120px
           &:hover
             border: 4px solid #ddd
-              
+          &:hover .close
+            +block
+            +absolute
+            +close-24
+            top: 4px
+            right: 4px
+
           .message
             +hidden
 
@@ -253,11 +259,6 @@
             width: 128px
             background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
 
-          .close
-            +absolute
-            +close-24
-            top: 4px
-            right: 4px
 
         li.selected
           border: 4px solid #427ee8

@@ -76,18 +76,18 @@
       border: 1px solid transparent
       &:hover
         border: 1px solid #fff
-
-      img
-        height: 95px
-        width: 95px
-
-      .close
+      &:hover .close
+        +block
         +close-16
         +absolute
         top: 4px
         right: 4px
         width: 16px
         height: 16px
+
+      img
+        height: 95px
+        width: 95px
 
 .dropboxFooter
   +absolute
