@@ -142,18 +142,20 @@ namespace :fix do
   desc "Re-process all tags clouds that have blacklisted words"
   task :blacklisted_clouds => :environment do
     begin_time = Time.now
+    fixed = 0
     log("---Looking for blacklisted tag clouds---")
     Entry.all.map do |entry|
       entry.what_tags.auto.each do |tag|
         if Tag::BlacklistWords[tag.noun.name]
-          log("re-processing tag cloud for entry id: #{entry.id} because of: tag: #{tag.noun.name} tag id: #{tag.id} noun_id: #{tag.noun_id} kind: #{tag.kind} ")
+          log("Re-processing cloud for entry id: #{entry.id} because of: tag: \"#{tag.noun.name}\" tag.id: #{tag.id} noun_id: #{tag.noun_id} ")
           Tag.auto_generate_tags(entry) 
           entry.reorder_tags
-          next
+          fixed += 1
+          break
        end                   
       end 
     end   
-    log("Total time: #{Time.now - begin_time}")
+    log("Fixed #{fixed} entries. Total time: #{Time.now - begin_time}")
   end
 end
 
