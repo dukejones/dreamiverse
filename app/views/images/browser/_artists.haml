@@ -15,7 +15,7 @@
 
       %td.name
 
-        %input.editable{type: "text", value: artist.blank? ? "Unknown" : artist}
+        %input.editable.artistName{type: "text", readonly: 'true', value: artist.blank? ? "Unknown" : artist}
 
         .edit.hidden
 
