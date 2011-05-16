@@ -14,7 +14,10 @@
     %tr.artist
 
       %td.name
-        %h2= artist.blank? ? "Unknown" : artist
+
+        %input.editable{type: "text", value: artist.blank? ? "Unknown" : artist}
+
+        .edit.hidden
 
       %td.images
 

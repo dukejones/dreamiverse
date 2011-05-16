@@ -21,15 +21,35 @@ table#artistList
     +pointer
     +overflow
     height: 62px
+    vertical-align: center
     border: 1px solid #333
     +flat-dark
     &:hover
       color: #222
       +gradient(#fff, #8c8c8c)
+    &:hover .name .editable
+      color: #222
 
     td.name
-      h2
+
+      &:hover .edit
+        +block
+        +right
+        +pointer
+        width: 24px
+        height: 62px
+        margin: 0 8px 0 0
+        background: url(/images/icons/edit-24.png) no-repeat center center transparent
+        &:hover
+          background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+        &:active
+          background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+
+      .editable
+        +left
         +font(24)
+        width: 228px
+        height: 62px
         margin: 0 0 0 20px
 
     td.images
