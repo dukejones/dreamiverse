@@ -4,10 +4,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
+    # STREAM FILTER - entry type
     $('#entry-filter').selectmenu(
       style: 'popup'
       menuWidth: "200px"
     )
+    # STREAM FILTER - user type
     $('#users-filter').selectmenu(
       style: 'popup'
       menuWidth: "200px"

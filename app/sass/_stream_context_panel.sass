@@ -110,8 +110,6 @@
     +hidden
 
 
-
-
   .starlightTab
     .icon
       margin: 7px 8px 0 0
@@ -213,52 +211,41 @@
 
 // STREAM CONTEXT PANEL FILTERS
 // COLORS
-.light
-  #contextPanel, #streamContextPanel
+.light #contextPanel, .light #streamContextPanel
 
-    .spinner
-      +spinner-light
-      background-color: white
-    select
-      color: black
+  .spinner
+    +spinner-light
+    background-color: white
 
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .filterList
-        +glow-light(40)
-        +flat-light
+  .filterList
+    +glow-light(40)
+    +flat-light
 
-        .type
-          &:hover
-            background: #000
-            color: #fff
+  .type
+    &:hover
+      background: #000
+      color: #fff
 
-      .starlightTab
-        .starlightFilter
-          +button-light
-          +flat-light
+  .starlightFilter
+    +button-light
+    +flat-light
 
-.dark
-  #contextPanel, #streamContextPanel
 
-    .spinner
-      +spinner-dark
-      background-color: black
-    select
-      color: white
+.dark #contextPanel, .dark #streamContextPanel
 
-    .wrapper
-      // FILTER BY ENTRY TYPE & FOLLOW TYPE
-      .filterList
-        +glow-dark(40)
-        +flat-dark
+  .spinner
+    +spinner-dark
+    background-color: black
 
-        .type
-          &:hover
-            background: #fff
-            color: #000
+  .filterList
+    +glow-dark(40)
+    +flat-dark
 
-      .starlightTab
-        .starlightFilter
-          +button-dark
-          +flat-dark
+  .type
+    &:hover
+      background: #fff
+      color: #000
+
+  .starlightFilter
+    +button-dark
+    +flat-dark
