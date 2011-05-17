@@ -4,60 +4,6 @@
 #searchOptions
   margin: 0 0 20px
 
-  .listBar
-    margin: 0 8px
-    padding: 8px
-    +round(12)
-    +gradient(#505050, rgba(39,39,39,0.1))
-
-  .category, .size
-    +pointer
-    +round(8)
-    height: 32px
-    margin: 0
-    padding: 0
-    background: #1c1c1c
-
-    input.checkbox
-      +pointer
-      +right
-      margin: 11px 12px 0 0
-
-  select.list
-    +left
-    +pointer
-    +outline
-    +transparent
-    +font(14)
-    border: none
-    padding: 6px 8px
-    height: 32px
-    width: 102px
-    color: #ddd
-
-  option
-    +font(12)
-    margin: 0
-    padding: 4px 8px
-    color: #C2C2C2
-    background: #464646
-    border: 1px solid #1C1C1C
-    border-top: none
-    &:hover
-      background: #EBEBEB
-      color: #464646
-      border: 1px solid #000
-      border-top: none
-
-  option.label
-
-  .category
-    +left
-
-  .size
-    +right
-
-
 
   .filters
     +left
@@ -97,7 +43,7 @@
       +input-dark(large)
 
 
-  .genres
+  .categories
     +right
     +round(12)
     margin: 8px 8px 0 0
@@ -112,7 +58,7 @@
       color: #d1d3d4
       text-transform: uppercase
 
-    .genre
+    .category
       +left
       +pointer
       +center

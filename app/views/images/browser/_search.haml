@@ -3,21 +3,15 @@
 / SEARCH OPTIONS
 #searchOptions.hidden
 
-  .listBar
-    /.category
-    /  %input.checkbox{type: 'checkbox'}
-    /  %select.list
-    /    %option.label{value: ''} Category
-
-
-    /.size
-    /  %input.checkbox{type: 'checkbox'}
-    /  %select.list
-    /    %option.label{value: ''} Size
-    /    %option{value: 'Small'} Small
-    /    %option{value: 'Medium'} Medium
-    /    %option{value: 'Large'} Large
-    /.clear
+  / TYPE
+  %ul#type
+    %li bedsheets
+    %li library
+    %li user uploaded
+    %li emoticons
+    %li book covers
+    %li prima materia
+    .clear
 
 
   .filters
@@ -38,19 +32,9 @@
       %input{type: 'text'}
       %label tag:
 
-  .genres
+  .categories
     %h2 Categories
-    /.genre Classical Art
-    /.genre World Art
-    /.genre Eastern Art
-    /.genre Modern Art
-    /.genre Digital Art
-    /.genre Photos
-    /.genre Sci-fi/Fantasy Art
-    /.genre Visionary Art
-    /.genre NASA
-    /.genre Anime
-    /.genre Featured Gallery
+
 
   .clear
 

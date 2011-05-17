@@ -21,6 +21,33 @@
     border: 1px solid #333
     +flat-dark
 
+
+// TYPE - search & browse
+ul#type
+  +round(12)
+  list-style: none
+  margin: 0
+  padding: 8px 0 0 12px
+  height: 40px
+  +gradient(#505050, rgba(39,39,39,0.1))
+
+  li
+    +left
+    +pointer
+    +user-select
+    +round(8)
+    height: 32px
+    line-height: 30px
+    margin: 0 8px 0 0
+    padding: 0 14px
+    background: #1c1c1c
+    &:hover, &.selected
+      color: #414042
+      +gradient(#8c8c8c, #fff)
+
+
+
+
   // EDITABLE INPUTS - shared styles
   .editable
     +transparent
