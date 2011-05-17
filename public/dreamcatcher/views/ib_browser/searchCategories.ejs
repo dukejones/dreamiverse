@@ -1,0 +1,8 @@
+<h2>Categories</h2>
+<% for(var i = 0; i < types.length ; i++) { %>
+  <% for(var j = 0; j < types[i].categories.length ; j++) { %>
+  <div class="genre">
+    <%= types[i].categories[j] %>
+  </div>
+  <% }%>
+<% }%>
