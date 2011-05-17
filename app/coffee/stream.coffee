@@ -6,14 +6,14 @@ $(document).ready ->
 
 class StreamController
   constructor: ->
-    @stream = new StreamModel()
+    @stream = new StreamModel
     @streamView = new StreamView(@stream)
 
-    $.subscribe 'filter:change', => 
+    $('#entry-filter, #users-filter').change( (event) =>
       @stream.load().then (data) =>
         @streamView.update(data.html)
-
-  
+    )
+    
 
 
 class StreamView
@@ -23,9 +23,12 @@ class StreamView
     @$container = $('#entryField .matrix')
     @activateLightBox()
     # adds the loading wheel
-    $('.filterList').click( (event) =>
-      $(event.currentTarget).parent().find('.trigger').addClass('loading')
+
+    $('#entry-filter, #users-filter').change( (event) =>
+      $('#entry-filter-wrap .spinner').show() if event.currentTarget.id is 'entry-filter'
+      $('#users-filter-wrap .spinner').show() if event.currentTarget.id is 'users-filter'
     )
+    
     # infinite scrolling
     $(window).scroll =>
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
@@ -37,7 +40,7 @@ class StreamView
     $('a.lightbox').each((i, el) ->
       $(this).lightBox({containerResizeSpeed: 0});
     )
-  loadNextPage: ->
+  loadNextPage: () ->
     return if @currentlyLoading
     @currentlyLoading = true
     @clear()
@@ -53,31 +56,34 @@ class StreamView
       @$container.append(data.html)
       @activateLightBox()
   update: (html) ->
+    log 'running StreamView update:'
     @clear()
     if html == ''
       $('.noEntrys').show()
 
     # after data loads into view, remove the loading spinner
-    $('#streamContextPanel .trigger').removeClass('loading')
+    # $('#streamContextPanel .trigger').removeClass('loading')
+    # and hide the filter spinners
+    $('#entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
 
     @$container.html(html)
     @activateLightBox()
     
 
 
-
 class StreamModel
-  load: (filters={})->
+  load: (filters={}) ->
     @updateFilters()
-    $.extend(filters, @filterOpts())
+    $.extend(filters, @filterOptions())
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
-    @filters = []
-    # get new filter values (will be .filter .value to target the span)
-    $.each $('.trigger span.value'), (key, value) =>
-      @filters.push($(value).text())  # XXX: data tightly coupled to display.
-  filterOpts: ->
-    type: @filters[0]
-    friend: @filters[1]
-    # starlight: @filters[2]
+    @entryFilter = $('#entry-filter').val()
+    @usersFilter = $('#users-filter').val()    
+    
+    log '@entryFilter: ' + @entryFilter
+    log '@usersFilter: ' + @usersFilter   
 
+  filterOptions: ->
+    type: @entryFilter
+    users: @usersFilter
+    # starlight: @filters[2]

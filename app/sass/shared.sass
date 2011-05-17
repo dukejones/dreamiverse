@@ -13,11 +13,12 @@ body.light
 body.dark
   background-color: #202020 !important
 body.fixed
+  background-position: center top
   background-attachment: fixed !important
 body.float
   #metaMenu
     z-index: 1100
-  #metaMenu, #logo, #report_box, #streamContextPanel
+  #metaMenu, #logo, #report_box, #drop_shadow
     position: fixed !important
 body.scroll
   background-attachment: scroll !important
@@ -52,7 +53,7 @@ select
 // BODY CLICK
 #bodyClick
   +hidden
-  z-index: 1100
+  z-index: 1111
   +pointer
   width: 100%
   height: 100%
@@ -109,6 +110,7 @@ select
 @import show_entry
 @import friends
 
+@import widget_dropdown
 @import emotions
 @import comment
 @import new_user_welcome

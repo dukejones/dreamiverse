@@ -45,7 +45,7 @@
         +block
         +round(8)
         margin: 4px 0
-        padding: 0 4px
+        padding: 0 4px 0 8px
         border: 1px solid transparent
         +font(18)
 
@@ -97,7 +97,8 @@
 
 
   // STREAM CONTEXT PANEL FILTERS
-  .entryFilter, .followFilter, .starlightTab
+
+  .entryFilter, .followFilter, .starlightTab, select
     +pointer
     +round(12)
     +relative
@@ -113,12 +114,32 @@
       +left
     .icon
       +left
-      margin: 8px 8px 0 0
+      margin: 8px 12px 0 0
     .arrow
       +right
       width: 32px
       height: 32px
       background: url('/images/icons/arrow-down-16.png') no-repeat center center
+
+  // degradable styling for dropdowns
+  select
+    +font(14)
+    height: auto
+    // line-height for chrome / webkit height
+    line-height: 20px
+    padding: 6px 12px
+    width: 200px
+
+  .spinner
+    +relative
+    +round(12)
+    left: 164px
+    top: 6px
+    width: 30px
+    height: 30px
+    margin-bottom: -30px
+    z-index: 1
+    +hidden
 
 
 
@@ -207,12 +228,12 @@
     color: #fff
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-light
     &:hover
       +glow-light(10)
     &.loading .arrow
-      background: url('/images/icons/spinner-light-32.gif') no-repeat center center
+      background: url('/images/icons/spinner-light-32.gif') no-repeat center center white
 
 
 
@@ -234,12 +255,12 @@
     color: #000
 
   // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab
+  .entryFilter, .followFilter, .starlightTab, select
     +flat-dark
     &:hover
       +glow-dark(10)
     &.loading .arrow
-      background: url('/images/icons/spinner-dark-32.gif') no-repeat center center
+      background: url('/images/icons/spinner-dark-32.gif') no-repeat center center black
 
 
 
@@ -250,6 +271,12 @@
 // COLORS
 .light
   #contextPanel, #streamContextPanel
+
+    .spinner
+      +spinner-light
+      background-color: white
+    select
+      color: black
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE
@@ -269,6 +296,12 @@
 
 .dark
   #contextPanel, #streamContextPanel
+
+    .spinner
+      +spinner-dark
+      background-color: black
+    select
+      color: white
 
     .wrapper
       // FILTER BY ENTRY TYPE & FOLLOW TYPE

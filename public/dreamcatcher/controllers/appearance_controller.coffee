@@ -21,12 +21,6 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
     else
       Dreamcatcher.Models.Appearance.update @entryId,data
 
-
-  '#genreSelector change': (el, ev) ->
-    genre = el.val()
-    @bedsheets.loadGenre genre
-    @updateAppearanceModel {default_genre: genre}
-    
   '#scroll,#fixed click': (el) ->    
     scrolling = el.attr 'id'
     $('#body').removeClass('fixed scroll').addClass scrolling

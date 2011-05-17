@@ -15,19 +15,18 @@
 
     = yield :head
 
-  %body.home.light
+  %body.home.light{class: appearance_classes}
 
-    #bodyClick
     -# render "shared/facebook_sdk"
 
-    / - unless current_user.blank?
-    /   / META MENU - USER
-    /   = render :partial => "users/meta_menu_user"
+    - unless current_user.blank?
+      / META MENU - USER
+      = render :partial => "users/meta_menu"
 
     = render :partial => "layouts/alert"
 
     #drop_shadow
-    #home
+    #home{class: current_user.blank? ? 'public' : ''}
 
       = yield
 

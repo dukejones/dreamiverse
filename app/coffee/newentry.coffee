@@ -18,9 +18,9 @@ $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
   # Setup icon type changing
-  $('#entryType_list').unbind();
-  $('#entryType_list').change( ->
-    newSelection = $('#entryType_list').val()
+  $('#entryType-list').unbind();
+  $('#entryType-list').change( ->
+    newSelection = $('#entryType-list').val()
     
     switch newSelection
       when "dream"
@@ -36,7 +36,7 @@ $(document).ready ->
     
     $(this).prev().css('background', iconSource)
   )
-  $('#entryType_list').change()
+  $('#entryType-list').change()
   
   
   # If there are tags or images, expand them!

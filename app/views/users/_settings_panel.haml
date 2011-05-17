@@ -2,23 +2,40 @@
 #settingsPanel.hidden.target
   .arrow
 
-  / SHARING
-  .sharing
+  / DEFAULTS
+  .defaults
+
+    #default-landingPage{:'data-id' => current_user.default_landing_page}
+      #default-landingPage-icon.img
+      %h2.landing-label landing page
+      
+      %select#default-landingPage-list.dropdown
+        %option.stream{ value: 'stream' } stream
+        %option.home{   value: 'home'   } home
+        %option.today{  value: 'today'  } today in dreams
+      .clear
 
 
-    .defaultSharing{:'data-id' => current_user.default_sharing_level}
+    / MENU STYLE
+    #default-menuStyle{:'data-id' => current_user.view_preference.menu_style}
+      #default-menuStyle-icon.img
+      %h2.menu-label menu style
 
-      .img.sharingIcon
+      %select#default-menuStyle-list.dropdown
+        %option.float{  value: 'float'  } floating
+        %option.inpage{ value: 'inpage' } in-page
+      .clear
 
-      %h2.sharing-label default sharing
 
+    / THE INCREDIBLE FONT SIZER
+    #default-fontSize{:'data-id' => current_user.view_preference.font_size, :class => font_size}
+      #default-fontSize-icon.img
+      %h2.font-label font size
 
-      %select#sharingList.sharingList
-        %option.everyone{  value: Entry::Sharing[:everyone]  } everyone
-        %option.friends{   value: Entry::Sharing[:friends]   } friends only
-        %option.followers{ value: Entry::Sharing[:followers] } followers only
-        %option.anonymous{ value: Entry::Sharing[:anonymous] } anonymous
-        %option.private{   value: Entry::Sharing[:private]   } private
+      #fontLarge.fontSize A
+      #fontMedium.fontSize A
+      #fontSmall.fontSize A
+      #clear
 
 
     %label.hidden
@@ -27,31 +44,26 @@
     .clear
 
 
-    %hr.alpha-20
+  .network
+    #facebook-icon.img
+    %h2.facebook-label facebook login
+
+    - if current_user && current_user.authentications.facebook?
+      = link_to "/auth/#{current_user.authentications.facebook.first.id}.json", :method => :delete, :remote => true, :id => 'fbLink', :class => 'linkAccount' do
+        un-link
+    - else  
+      %a#fbLink.linkAccount{href: '/auth/facebook'}
+        link account
 
 
-    .network
 
-      .img.facebook-icon
-
-      %h2.facebook-label facebook login
-      - if current_user && current_user.authentications.facebook?
-        = link_to "/auth/#{current_user.authentications.facebook.first.id}.json", :method => :delete, :remote => true, :id => 'fbLink', :class => 'linkAccount' do
-          un-link
-      - else  
-        %a#fbLink.linkAccount{href: '/auth/facebook'}
-          link account
-
-        
-    .clear
 
 
   / CHANGE PASSWORD
-
   .changePassword.wrapper
 
     .trigger.showhide
-      .img.password-icon
+      #password-icon.img
       %h2.password-label change password
       .clear
 
@@ -71,10 +83,7 @@
           = f.submit :'change password', :class => 'confirm'
           .clear
 
-
     .clear
-
-
 
 
 
@@ -83,12 +92,3 @@
 
 
 
-  /
-    FONT SIZING
-    .fontSizing
-      %h2
-        %img{src: '/images/icons/font_size-16.png'}
-        Font
-      .large A
-      .medium A
-      .small A
