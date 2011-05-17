@@ -6,30 +6,30 @@
   .leftPanelWrap
     .leftPanel
 
-      %a.item.stream{href: stream_path, title: "stream"}
+      %a.item.stream.tooltip{href: stream_path, title: "stream"}
         .img
 
-      %a.item.home{href: user_entries_path(current_user.username), title: "home"}
+      %a.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
         .img
 
-      %a.item.dreamstars{href: '/dreamstars', title: "dreamstars"}
+      %a.item.dreamstars.tooltip{href: '/dreamstars', title: "dreamstars"}
         .img
 
       .searchWrap.wrapper
-        .searchIcon.trigger.showhidesearch{title: "search users"}
+        .searchIcon.trigger.showhidesearch.tooltip{title: "search users"}
           .img
 
         = form_tag search_user_path, class: 'searchForm target showhidesearch hidden' do
           = text_field_tag :search_string, nil, class: 'searchField', placeholder: 'search users'
           = submit_tag 'search', :class => 'search', :value => ''
 
-    %a.randomDream{href: '/random', title: "random dream!"}
+    %a.randomDream.tooltip{href: '/random', title: "random dream!"}
       .img
 
 
 
   / LOG OUT
-  %a.logOut{href: '/logout', title: "log out"}
+  %a.logOut.tooltip{href: '/logout', title: "log out"}
     .img
 
 

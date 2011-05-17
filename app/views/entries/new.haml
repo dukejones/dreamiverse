@@ -40,7 +40,7 @@
       / .entryType
       /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
 
-      %select#entryType-list{name: 'entry[type]'}
+      %select#entryType-list.select-menu-radio.dropdown{name: 'entry[type]'}
         %option.dream{      :value => 'dream',      :selected => @entry.type == 'dream'}      dream
         %option.vision{     :value => 'vision',     :selected => @entry.type == 'vision'}     vision
         %option.experience{ :value => 'experience', :selected => @entry.type == 'experience'} experience
@@ -66,7 +66,7 @@
 
         / SHARING PANEL
 
-        %select#sharing-list{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
+        %select#sharing-list.select-menu-radio{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
           %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
           %option.list{       value: Entry::Sharing[:friends]   } friends
           %option.followers{  value: Entry::Sharing[:followers] } followers
@@ -149,10 +149,10 @@
         .addLocation.hidden
           .img
           = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38",f: f}
-        .date{title: "date and time"}
+        .date.tooltip{title: "date and time"}
           .img
           / = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
-        .addTheme{title: "appearance"}
+        .addTheme.tooltip{title: "appearance"}
           .img
           / = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
 
