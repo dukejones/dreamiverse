@@ -28,7 +28,7 @@ table#artistList
       color: #222
       +gradient(#fff, #8c8c8c)
 
-    &:hover .name .editable
+    &:hover .name .editableWrap .editable
       color: #222
 
     td.name
@@ -58,6 +58,7 @@ table#artistList
             background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
 
         .editable
+          +transparent
           +left
           +round(8)
           +font(22)
@@ -65,6 +66,7 @@ table#artistList
           height: 38px
           margin: 0 0 0 10px
           padding: 0 0 0 8px
+          color: #ddd
           border: 1px solid transparent
 
 
