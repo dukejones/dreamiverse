@@ -38,6 +38,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       fade: 250
     );
 
+    $('#logo').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250
+    );
+
     $('#metaMenu .stream').tooltip(
       track: true,
       delay: 0,
@@ -45,6 +53,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: " - ",
       fade: 250
     );
+
 
     $('#metaMenu .home').tooltip(
       track: true,
