@@ -86,6 +86,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       fade: 250 
     );
 
+
+
+
+
+
+
+
+
+
+
+
     # STREAM FILTER - entry type
     $('#entry-filter').selectmenu(
       style: 'popup'
