@@ -8,12 +8,15 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
   showPanel: ->
     $('#appearancePanel').show()
     if not @bedsheets?
-      @bedsheets = new Dreamcatcher.Controllers.Bedsheet $('#bedsheetScroller'),{parent: this}
-      if @defaultGenre?
-        $('#genreSelector').val(@defaultGenre)
-        @bedsheets.loadGenre @defaultGenre
+      @bedsheets = new Dreamcatcher.Controllers.Bedsheets $('#bedsheetScroller'),{parent: this}
+      @bedsheets.loadGenre @defaultGenre
+      
+      # if @defaultGenre?
+      #  $('#genreSelector').val(@defaultGenre)
+      
 
   updateAppearanceModel: (data) ->
+    log('feh')
     if @newEntry
       $("#entry_view_preference_attributes_image_id").val(data.bedsheet_id) if data.bedsheet_id?
       $("#entry_view_preference_attributes_bedsheet_attachment").val(data.scrolling) if data.scrolling?
