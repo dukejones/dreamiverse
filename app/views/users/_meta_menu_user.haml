@@ -6,37 +6,31 @@
   .leftPanelWrap
     .leftPanel
 
-      %a.item.stream{href: stream_path}
+      %a.item.stream{href: stream_path, title: "stream"}
         .img
-        = render partial: "shared/hover_label", locals: {message: "stream", x: "12", y: "-30"}
 
-      %a.item.home{href: user_entries_path(current_user.username)}
+      %a.item.home{href: user_entries_path(current_user.username), title: "home"}
         .img
-        = render partial: "shared/hover_label", locals: {message: "home", x: "12", y: "-30"}
 
-      %a.item.dreamstars{href: '/dreamstars'}
+      %a.item.dreamstars{href: '/dreamstars', title: "dreamstars"}
         .img
-        = render partial: "shared/hover_label", locals: {message: "dreamstars", x: "12", y: "-30"}
 
       .searchWrap.wrapper
-        .searchIcon.trigger.showhidesearch
+        .searchIcon.trigger.showhidesearch{title: "search users"}
           .img
-          = render partial: "shared/hover_label", locals: {message: "search users", x: "12", y: "-39"}
 
         = form_tag search_user_path, class: 'searchForm target showhidesearch hidden' do
           = text_field_tag :search_string, nil, class: 'searchField', placeholder: 'search users'
           = submit_tag 'search', :class => 'search', :value => ''
 
-    %a.randomDream{href: '/random'}
+    %a.randomDream{href: '/random', title: "random dream!"}
       .img
-      = render partial: "shared/hover_label", locals: {message: "random dream!", x: "19", y: "-30"}
 
 
 
   / LOG OUT
-  %a.logOut{href: '/logout'}
+  %a.logOut{href: '/logout', title: "log out"}
     .img
-    = render partial: "shared/hover_label", locals: {message: "log out", x: "0", y: "-4"}
 
 
 

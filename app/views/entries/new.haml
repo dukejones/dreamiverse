@@ -149,12 +149,12 @@
         .addLocation.hidden
           .img
           = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38",f: f}
-        .date
+        .date{title: "date and time"}
           .img
-          = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
-        .addTheme
+          / = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
+        .addTheme{title: "appearance"}
           .img
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
+          / = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
 
 
 

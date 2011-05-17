@@ -179,13 +179,6 @@ $(document).ready ->
 
   $('#comment_body').css('overflow','hidden')
 
-  # setup remove comment handler
-  $('.deleteComment').live 'click', (event)->
-    tempCount = $('.commentsHeader .counter').html();
-    tempCount--
-    $('.commentsHeader .counter').html(tempCount)
-    $(event.currentTarget).parent().parent().slideUp(250)
-
   # Setup youtube attachments to load in on the page & links favico
   $('.link a').each ->
     if this.hostname && this.hostname != location.hostname

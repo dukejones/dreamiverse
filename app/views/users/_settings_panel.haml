@@ -22,8 +22,8 @@
       %h2.menu-label menu style
 
       %select#default-menuStyle-list.dropdown
-        %option.float{  value: 'float'  } floating
-        %option.inpage{ value: 'inpage' } in-page
+        %option.float{  value: 'float',  selected: (menu_style == 'float')  } floating
+        %option.inpage{ value: 'inpage', selected: (menu_style == 'inpage') } in-page
       .clear
 
 

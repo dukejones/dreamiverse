@@ -4,8 +4,7 @@
   %a.login{href: login_path}
     .img
     %span login
-  %a.loginItem.facebook{href: '/auth/facebook'}
-    = render partial: "shared/hover_label", locals: {message: "log in with facebook", x: "8", y: "10"}
+  %a.loginItem.facebook{href: '/auth/facebook', title: 'log in with facebook'}
   .clear
 
 

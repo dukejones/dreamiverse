@@ -87,6 +87,23 @@ select
 
 
 
+// TOOLTIP
+#tooltip
+  +absolute
+  z-index: 3000
+  +round(12)
+  padding: 0 8px
+  +alpha(85)
+#tooltip h3, #tooltip div
+  margin: 0
+
+.light #tooltip
+  border: 1px solid #111
+  background-color: #eee
+
+.dark #tooltip
+  border: 1px solid #ccc
+  background-color: #111
 
 
 @import home

@@ -4,6 +4,99 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
+
+    # TOOL TIPS
+    $('#rightColumn .loginItem.facebook').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#sharing-list-menu label').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#entryOptions .addTheme').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#entryOptions .date').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#metaMenu .stream').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#metaMenu .home').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+    $('#metaMenu .dreamstars').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#metaMenu .searchIcon').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+    $('#metaMenu .randomDream').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+
+    $('#metaMenu .logOut').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
+
+
+
+
+
+
+
+
+
+
+
     # STREAM FILTER - entry type
     $('#entry-filter').selectmenu(
       style: 'popup'
