@@ -6,6 +6,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
 
     # TOOL TIPS
+    $('#rightColumn .loginItem.facebook').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      fade: 250 
+    );
+
     $('#sharing-list-menu label').tooltip(
       track: true,
       delay: 0,
@@ -77,6 +85,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: " - ",
       fade: 250 
     );
+
+
+
+
+
+
+
+
+
+
+
 
     # STREAM FILTER - entry type
     $('#entry-filter').selectmenu(
