@@ -1,364 +1,441 @@
 
 // NEW ENTRY
 // STRUCTURE
-#entryField
 
-  // .headers -- see entries.sass
 
-  // SHARED PANEL STYLES
-  .entryPanels
-    +hidden
-    +round(12)
-    width: 662px
-    padding: 8px
+// for degredation when JS doesnt load new technique
+#entryType-list
+  padding: 7px 8px
+  +block
+  height: 34px
+  +round(20)
+  +right
+  width: 158px // For Chrome
+  +font(14)
+  +pointer
+  +right
+  +center
+
+  option, li
+    padding: 6px 4px 6px 38px
+    text-align: left
+  .dream
+    background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
+  .vision
+    background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
+  .experience
+    background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
+  .article
+    background: url(/images/icons/article-16-hover.png) no-repeat 8px center
+  .journal
+    background: url(/images/icons/journal-16-hover.png) no-repeat 8px center
+
+
+#entryType-list-button
+  +round(16)
+  +right
+  +font(14)
+  +pointer
+  +right
+
+  .ui-selectmenu-status
+    padding-left: 36px
+
+  &.dream .ui-selectmenu-status
+    background: url(/images/icons/dream-24-active.png) no-repeat 4px center
+  &.vision .ui-selectmenu-status
+    background: url(/images/icons/vision-24-active.png) no-repeat 4px center
+  &.experience .ui-selectmenu-status
+    background: url(/images/icons/experience-24-active.png) no-repeat 4px center
+  &.article .ui-selectmenu-status
+    background: url(/images/icons/article-24-active.png) no-repeat 4px center
+  &.journal .ui-selectmenu-status
+    background: url(/images/icons/journal-24-active.png) no-repeat 4px center
+
+  // COLOR
+  .ui-selectmenu-icon
+    width: 16px
+    height: 16px
+    background: url(/images/icons/arrow-down-16.png) no-repeat center center
+
+
+#entryType-list-menu
+  +round(16)
+
+  // COLOR
+  border: 1px solid #ccc
+  background-color: #f5f5f5
+  box-shadow:         3px 0 12px rgba(0,0,0,0.15)
+  -moz-box-shadow:    3px 0 10px rgba(0,0,0,0.15)
+  -webkit-box-shadow: 3px 0 12px rgba(0,0,0,0.15)
+  .default
+    background-color: #c3ddea
+  .ui-selectmenu-item-focus
+    background-color: black
+    a
+      color: white
+
+
+
+  li
+    +relative
+    a
+      padding-left: 36px
+    &.dream a
+      background: url(/images/icons/dream-24-hover.png) no-repeat 4px center
+    &.vision a
+      background: url(/images/icons/vision-24-hover.png) no-repeat 4px center
+    &.experience a
+      background: url(/images/icons/experience-24-hover.png) no-repeat 4px center
+    &.article a
+      background: url(/images/icons/article-24-hover.png) no-repeat 4px center
+    &.journal a
+      background: url(/images/icons/journal-24-hover.png) no-repeat 4px center
+
+
+    label
+      +pointer
+      +absolute
+      top: 0
+      right: 0
+      +block
+      +right
+      width: 8px
+      height: 16px
+      padding: 7px 11px
+      input
+        +pointer
+
+
+// SHARED PANEL STYLES
+.entryPanels
+  +hidden
+  +round(12)
+  width: 662px
+  padding: 8px
+
+#entry_title, #entry_body
+  +outline
+  +transparent
+  margin: 10px 0 0 10px
+  border: none
+  font-family: Calibri, Arial, Helvetica, sans-serif
+#entry_title
+  +font(25)
+  width: 480px
+  height: 26px
+  line-height: 26px
+  padding-bottom: 6px
+hr
+  +alpha(20)
+  width: 480px
+  margin: 6px 12px
+#entry_body
+  +font(17)
+  width: 640px
+  min-width: 640px
+  max-width: 640px
+  min-height: 134px
+  height: 134px
+
+// NEW ENTRY OPTIONS
+#entryOptions
+  +round(16)
+  +relative
+  width: 660px 
+  height: 52px
+  margin: 0 auto
+  bottom: 0
+
+  // SHARING
+  .sharingWrap
+    +right
+    +relative
+    width: 180px
+    margin: 8px 0 0 8px
+    .sharing
+      +absolute
+      +round(20)
+      +pointer
+      min-height: 34px
+      line-height: 34px
+      width: 170px  // will need to make wider when implementing list of users and url
+      margin: 0
+      z-index: 1101
+      .listSelection
+        +pointer
+        +left
+        width: 24px
+        height: 34px
+        margin: 0 -36px 0 6px
+
+      select#sharing_select
+        +outline
+        +round(8)
+        +font(14)
+        +pointer
+        +right
+        +transparent
+        +center
+        border: none
+        height: 34px
+        padding: 7px 8px
+        option
+          padding: 8px 0 8px 30px
+          text-align: left
+        option.everyone
+          background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
+        option.list
+          background: url(/images/icons/friend-16.png) no-repeat 8px center
+        option.followers
+          background: url(/images/icons/friend-16-follower.png) no-repeat 8px center
+        option.anon
+          background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
+        option.private
+          background: url(/images/icons/private-16-hover.png) no-repeat 8px center
+
+      // SHARING - LIST OF USERS
+      .listOfUsers
+        +relative
+        +clear
+        margin: 0 8px 8px 8px
+
+        // USER SEARCH
+        .searchWrap
+          +relative
+          height: 32px
+          margin: 4px 0 8px 0
+
+          // // SEARCH FIELD
+          // .listSearchForm
+
+          input.searchField
+            +round(4)
+            +font(12)
+            width: 124px
+            margin: 0
+            height: 22px
+            padding: 4px 24px 4px 4px
+
+          input.search
+            +absolute
+            +transparent
+            +pointer
+            top: 2px
+            right: 2px
+            border: none
+            height: 32px
+            width: 24px
+            background: url(/images/icons/search-16.png) no-repeat center transparent
+            &:hover
+              background: url(/images/icons/search-16-hover.png) no-repeat center transparent
+            &:active
+              background: url(/images/icons/search-16-active.png) no-repeat center transparent
+
+        .userResults
+          +user-select
+
+          .user
+            +round(4)
+            height: 32px
+            line-height: 32px
+            margin: 4px 0 0
+
+            .avatar, .username, .statusIcon
+              +left
+              margin: 0 8px 0 0
+
+            .avatar
+              +round(4)
+              +flat-right
+              width: 32px
+              height: 32px
+
+            .username
+              +font(12)
+
+            .statusIcon
+              width: 16px
+              height: 16px
+              margin: 8px 8px 0 0
+              background: url(/images/icons/friend-stream-sprite.png) no-repeat
+              &.none
+                background-position: 0% 0%
+              &.following
+                background-position: 0% 33%
+              &.followed_by
+                background-position: 0% 66%
+              &.friends
+                background-position: 0% 100%
+
+            .close
+              +close-16
+              +right
+              height: 32px
+              margin: 0 4px 0 0
+
+        label.taggedUsers, label.hideShared
+          +round(8)
+          +pointer
+          +block
+          +font(12)
+          padding: 0 4px
+          height: 22px
+          line-height: 22px
+          margin: 4px 0 0
+          .img
+            +left
+            width: 16px
+            height: 22px
+            margin: 0 8px 0 2px
+          input
+            +right
+            +pointer
+            +outline
+            margin: 5px 0 0
+        label.taggedUsers
+          .img
+            background: url(/images/icons/tag-16.png) no-repeat center transparent
+          &:hover .img
+            background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+          &:active .img
+            background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+        label.hideShared
+          .img
+            background: url(/images/icons/anon-16.png) no-repeat center transparent
+          &:hover .img
+            background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
+          &:active .img
+            background: url(/images/icons/anon-16-active.png) no-repeat center transparent
+
+      .everyone
+        +relative
+        +clear
+        margin-bottom: 4px
+        .facebook, .twitter, .buzz
+          +round(8)
+          margin: 4px 0 0
+          label
+            +pointer
+            +block
+            padding: 4px
+            height: 28px
+            line-height: 28px
+            img
+              margin: 7px 0 0 4px
+            input
+              +pointer
+              +right
+              +outline
+              margin: 9px 8px 0 8px
+            span, img
+              +left
+              margin-right: 4px
+            span.shareOn, span.shared, span.sharedWhen
+              color: #656565
+            span.sharedWhen, span.shared
+              margin-top: 2px
+              font-size: 11px
+            span.shared
+              text-transform: uppercase
+
+
+
+
+
 
   // NEW ENTRY INPUT PANEL
-  #newEntry
-    +round(16)
-    width: 662px 
-    padding: 8px
+#newEntry
+  +round(16)
+  width: 662px 
+  padding: 8px
 
 
 
-    // MOOD ICON
-    .moodIcon
-      +absolute
-      right: -26px
-      top: -26px
-    .moodIcon-picker
-      +absolute
-      right: -8px
-      top: -8px
+  // MOOD ICON
+  .moodIcon
+    +absolute
+    right: -26px
+    top: -26px
+  .moodIcon-picker
+    +absolute
+    right: -8px
+    top: -8px
 
 
-    // for degredation when JS doesnt load new technique
-    #entryType-list
-      padding: 7px 8px
-
-    #entryType-list, #entryType-list-button
-      +round(20)
-      +right
-      height: 34px
-      width: 158px // For Chrome
-      +block
-      +font(14)
-      +pointer
-      +right
-      +center
-
-      option, li
-        padding: 6px 4px 6px 38px
-        text-align: left
-      .dream
-        background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
-      .vision
-        background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
-      .experience
-        background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
-      .article
-        background: url(/images/icons/article-16-hover.png) no-repeat 8px center
-      .journal
-        background: url(/images/icons/journal-16-hover.png) no-repeat 8px center
-
-
-    #entry_title, #entry_body
-      +outline
-      +transparent
-      margin: 10px 0 0 10px
-      border: none
-      font-family: Calibri, Arial, Helvetica, sans-serif
-    #entry_title
-      +font(25)
-      width: 480px
-      height: 26px
-      line-height: 26px
-      padding-bottom: 6px
-    hr
-      +alpha(20)
-      width: 480px
-      margin: 6px 12px
-    #entry_body
-      +font(17)
-      width: 640px
-      min-width: 640px
-      max-width: 640px
-      min-height: 134px
-      height: 134px
-
-    // NEW ENTRY OPTIONS
-    #entryOptions
-      +round(16)
-      +relative
-      width: 660px 
-      height: 52px
-      margin: 0 auto
-      bottom: 0
-
-      // SHARING
-      .sharingWrap
-        +right
-        +relative
-        width: 180px
-        margin: 8px 0 0 8px
-        .sharing
-          +absolute
-          +round(20)
-          +pointer
-          min-height: 34px
-          line-height: 34px
-          width: 170px  // will need to make wider when implementing list of users and url
-          margin: 0
-          z-index: 1101
-          .listSelection
-            +pointer
-            +left
-            width: 24px
-            height: 34px
-            margin: 0 -36px 0 6px
-
-          select#sharing_select
-            +outline
-            +round(8)
-            +font(14)
-            +pointer
-            +right
-            +transparent
-            +center
-            border: none
-            height: 34px
-            padding: 7px 8px
-            option
-              padding: 8px 0 8px 30px
-              text-align: left
-            option.everyone
-              background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
-            option.list
-              background: url(/images/icons/friend-16.png) no-repeat 8px center
-            option.followers
-              background: url(/images/icons/friend-16-follower.png) no-repeat 8px center
-            option.anon
-              background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
-            option.private
-              background: url(/images/icons/private-16-hover.png) no-repeat 8px center
-
-          // SHARING - LIST OF USERS
-          .listOfUsers
-            +relative
-            +clear
-            margin: 0 8px 8px 8px
-
-            // USER SEARCH
-            .searchWrap
-              +relative
-              height: 32px
-              margin: 4px 0 8px 0
-
-              // // SEARCH FIELD
-              // .listSearchForm
-
-              input.searchField
-                +round(4)
-                +font(12)
-                width: 124px
-                margin: 0
-                height: 22px
-                padding: 4px 24px 4px 4px
-
-              input.search
-                +absolute
-                +transparent
-                +pointer
-                top: 2px
-                right: 2px
-                border: none
-                height: 32px
-                width: 24px
-                background: url(/images/icons/search-16.png) no-repeat center transparent
-                &:hover
-                  background: url(/images/icons/search-16-hover.png) no-repeat center transparent
-                &:active
-                  background: url(/images/icons/search-16-active.png) no-repeat center transparent
-
-            .userResults
-              +user-select
-
-              .user
-                +round(4)
-                height: 32px
-                line-height: 32px
-                margin: 4px 0 0
-
-                .avatar, .username, .statusIcon
-                  +left
-                  margin: 0 8px 0 0
-
-                .avatar
-                  +round(4)
-                  +flat-right
-                  width: 32px
-                  height: 32px
-
-                .username
-                  +font(12)
-
-                .statusIcon
-                  width: 16px
-                  height: 16px
-                  margin: 8px 8px 0 0
-                  background: url(/images/icons/friend-stream-sprite.png) no-repeat
-                  &.none
-                    background-position: 0% 0%
-                  &.following
-                    background-position: 0% 33%
-                  &.followed_by
-                    background-position: 0% 66%
-                  &.friends
-                    background-position: 0% 100%
-
-                .close
-                  +close-16
-                  +right
-                  height: 32px
-                  margin: 0 4px 0 0
-
-            label.taggedUsers, label.hideShared
-              +round(8)
-              +pointer
-              +block
-              +font(12)
-              padding: 0 4px
-              height: 22px
-              line-height: 22px
-              margin: 4px 0 0
-              .img
-                +left
-                width: 16px
-                height: 22px
-                margin: 0 8px 0 2px
-              input
-                +right
-                +pointer
-                +outline
-                margin: 5px 0 0
-            label.taggedUsers
-              .img
-                background: url(/images/icons/tag-16.png) no-repeat center transparent
-              &:hover .img
-                background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
-              &:active .img
-                background: url(/images/icons/tag-16-active.png) no-repeat center transparent
-            label.hideShared
-              .img
-                background: url(/images/icons/anon-16.png) no-repeat center transparent
-              &:hover .img
-                background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
-              &:active .img
-                background: url(/images/icons/anon-16-active.png) no-repeat center transparent
-
-          .everyone
-            +relative
-            +clear
-            margin-bottom: 4px
-            .facebook, .twitter, .buzz
-              +round(8)
-              margin: 4px 0 0
-              label
-                +pointer
-                +block
-                padding: 4px
-                height: 28px
-                line-height: 28px
-                img
-                  margin: 7px 0 0 4px
-                input
-                  +pointer
-                  +right
-                  +outline
-                  margin: 9px 8px 0 8px
-                span, img
-                  +left
-                  margin-right: 4px
-                span.shareOn, span.shared, span.sharedWhen
-                  color: #656565
-                span.sharedWhen, span.shared
-                  margin-top: 2px
-                  font-size: 11px
-                span.shared
-                  text-transform: uppercase
-
-    .myBooks, .addTheme, .date, .addLocation, #entry_submit
-      +round(20)
-      +center
-      +pointer
-      +right
-      height: 34px
-      line-height: 34px
-      margin: 8px 0 0 8px
-    .myBooks
-      +bold
+  .myBooks, .addTheme, .date, .addLocation, #entry_submit
+    +round(20)
+    +center
+    +pointer
+    +right
+    height: 34px
+    line-height: 34px
+    margin: 8px 0 0 8px
+  .myBooks
+    +bold
+    +left
+    width: 184px
+    img
       +left
-      width: 184px
-      img
-        +left
-        margin: 9px 0 0 14px
+      margin: 9px 0 0 14px
 
-    .addTheme, .date, .addLocation
-      width: 42px
-    .addLocation .img, .addTheme .img, .date .img
-      width: 42px
-      height: 34px
-    .addLocation
-      .img
-        background: url('/images/icons/location-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/location-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/location-24.png') center center no-repeat
-    .addLocation.selected
-      .img
-        background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-    .addTheme
-      .img
-        background: url('/images/icons/appearance-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/appearance-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/appearance-24-active.png') center center no-repeat
-    .date 
-      .img
-        background: url('/images/icons/date-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/date-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/date-24-active.png') center center no-repeat
+  .addTheme, .date, .addLocation
+    width: 42px
+  .addLocation .img, .addTheme .img, .date .img
+    width: 42px
+    height: 34px
+  .addLocation
+    .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+  .addLocation.selected
+    .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat !important
+  .addTheme
+    .img
+      background: url('/images/icons/appearance-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/appearance-24-active.png') center center no-repeat
+  .date 
+    .img
+      background: url('/images/icons/date-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/date-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/date-24-active.png') center center no-repeat
 
-    #postSpinner
-      +right
-      margin: 0 -95px
-      width: 32px
-      height: 55px
-      background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
+  #postSpinner
+    +right
+    margin: 0 -95px
+    width: 32px
+    height: 55px
+    background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
 
-    #entry_submit
-      +bold
-      +font(12)
-      +round(12)
-      width: 100px
-      height: 38px
-      margin: 8px 8px 0 0
-      +save(14)
-      &.disabled
-        +alpha(20)
-      &.disabled, &.selected, &.selected:hover, &.selected:active
-        box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
-        -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
-        -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
-        background: #aaa
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
-        background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
-        color: #fff !important
-        border: 1px solid #777 !important
-        cursor: default !important
+  #entry_submit
+    +bold
+    +font(12)
+    +round(12)
+    width: 100px
+    height: 38px
+    margin: 8px 8px 0 0
+    +save(14)
+    &.disabled
+      +alpha(20)
+    &.disabled, &.selected, &.selected:hover, &.selected:active
+      box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
+      background: #aaa
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
+      background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
+      color: #fff !important
+      border: 1px solid #777 !important
+      cursor: default !important
 
 
 

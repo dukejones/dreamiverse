@@ -325,7 +325,7 @@ $.widget("ui.selectmenu", {
 						var iconClass = o.icons[j].icon || "";						
 						thisLi
 							.find('a:eq(0)')
-							.prepend('<span class="' + self.widgetBaseClass + '-item-icon ui-icon ' + iconClass + '"></span>');
+							.after('<label class="' + self.widgetBaseClass + '-default"><input type=radio name="' + self.widgetBaseClass + '-default" value="' + self.widgetBaseClass + '"></label>');
 						if (selectOptionData[i].bgImage) {
 							thisLi.find('span').css('background-image', selectOptionData[i].bgImage);
 						}
@@ -333,6 +333,7 @@ $.widget("ui.selectmenu", {
 				}
 			}
 		}	
+
 				
 		// we need to set and unset the CSS classes for dropdown and popup style
 		var isDropDown = (o.style == 'dropdown');
