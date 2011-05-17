@@ -16,18 +16,10 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("#frame.browser").show()
     $("#frame.manager").hide()
     
-  showManager: (images) ->
+  showManager: (images, title) ->
     $("#imagelist").html('')
-    @showImages images if images
-    #stateMeta = JSON.parse @stateCookie.get()
-    #if stateMeta.manageShow is 'dropbox'
-    #  imageIds = @imageCookie.getAll()
-    #  
-    #else
-    #  meta = {q: stateMeta.artist}
-    #  meta['artist'] = stateMeta.artist if stateMeta.artist?
-    #  meta['album'] = stateMeta.album if stateMeta.album?
-    #  @loadImagesByMeta meta
+    $("#frame.manager h1").text title if title?
+    @showImages images if images?
     $("#frame.manager").show()
       
     
@@ -120,7 +112,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   showCommonImageMetaData: ->
     common = {}
     $("#imagelist li.selected").each (index, element) =>
-      data = $(element).data 'image'
+      data = JSON.parse $(element).data 'image'
       
       #- special cases, such as date and user (i.e. needs to be converted from raw json)
       data.date = $.format.date(data["created_at"].replace("T"," "), 'MMM dd, yyyy')

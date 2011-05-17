@@ -30,6 +30,7 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
   ]
   genres: ['photo','art','design']
   
+  
   getImage: (imageId, data, success, error) ->
     $.ajax {
       url: "/images/#{imageId}.json"
@@ -82,22 +83,14 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       error: error
     }
     
-  getArtists: (data, success, error) ->
+  get: (type, data, success, error) ->
     $.ajax {
-      url: '/artists'
+      url: "/#{type}"
       data: data
       dataType: 'html'
       success: @callback success
       error: error
     }
-    
-  getAlbums: (data, success, error) ->
-    $.ajax {
-      url: '/albums'
-      data: data
-      dataType: 'html'
-      success: @callback success
-      error: error
-    }
+
 },
 {}
