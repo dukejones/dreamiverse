@@ -15,7 +15,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       positionOptions: {
         offset: "0 -37px"}
       )
-
+    $('#sharing-list').selectmenu(
+      icons:[
+        {find: '.everyone'}
+        {find: '.list'}
+        {find: '.followers'}
+        {find: '.anon'}
+        {find: '.private'}
+      ]
+      style: 'popup'
+      menuWidth: "170px"
+      )
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
