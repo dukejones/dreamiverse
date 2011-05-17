@@ -13,6 +13,7 @@ steal.plugins(
     'ui/jquery.ui.widget',
     'ui/jquery.ui.position',
     'ui/jquery.ui.selectmenu',
+    'ui/jquery.tooltip.pack.js',
     'jquery-lightbox-0.5',
     'jquery.timeago',
     'jquery.exists',
