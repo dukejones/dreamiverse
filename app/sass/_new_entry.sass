@@ -16,7 +16,7 @@
   +right
   +center
 
-  option, li
+  option
     padding: 6px 4px 6px 38px
     text-align: left
   .dream
@@ -91,19 +91,134 @@
     &.journal a
       background: url(/images/icons/journal-24-hover.png) no-repeat 4px center
 
-
+    &:hover label
+      +block
     label
+      +hidden
       +pointer
       +absolute
       top: 0
       right: 0
-      +block
       +right
       width: 8px
       height: 16px
       padding: 7px 11px
       input
         +pointer
+
+
+
+// NEW ENTRY SHARING LIST
+#sharing-list
+  margin: 8px
+  padding: 8px
+  +block
+  height: 36px
+  +round(20)
+  +right
+  width: 188px !important
+  +font(14)
+  +pointer
+  +right
+  +center
+
+  option
+    padding: 6px 4px 6px 38px
+    text-align: left
+  option.everyone
+    background: url(/images/icons/sharing-24-hover.png) no-repeat 8px center
+  option.list
+    background: url(/images/icons/friend-24.png) no-repeat 8px center
+  option.followers
+    background: url(/images/icons/friend-24-follower.png) no-repeat 8px center
+  option.anon
+    background: url(/images/icons/anon-24-hover.png) no-repeat 8px center
+  option.private
+    background: url(/images/icons/private-24-hover.png) no-repeat 8px center
+
+
+#sharing-list-button
+  margin: 8px
+  +round(20)
+  +right
+  +pointer
+  +right
+
+  .ui-selectmenu-status
+    padding-left: 36px
+  &.everyone .ui-selectmenu-status
+    background: url(/images/icons/sharing-24-hover.png) no-repeat 6px center
+  &.list .ui-selectmenu-status
+    background: url(/images/icons/friend-24.png) no-repeat 6px center
+  &.followers .ui-selectmenu-status
+    background: url(/images/icons/friend-24-follower.png) no-repeat 6px center
+  &.anon .ui-selectmenu-status
+    background: url(/images/icons/anon-24-hover.png) no-repeat 6px center
+  &.private .ui-selectmenu-status
+    background: url(/images/icons/private-24-hover.png) no-repeat 6px center
+
+  // COLOR
+  .ui-selectmenu-icon
+    width: 16px
+    height: 16px
+    background: url(/images/icons/arrow-down-16.png) no-repeat center center
+
+
+#sharing-list-menu
+  +round(20)
+  +right
+
+  // COLOR
+  border: 1px solid #ccc
+  background-color: #f5f5f5
+  box-shadow:         3px 0 12px rgba(0,0,0,0.15)
+  -moz-box-shadow:    3px 0 10px rgba(0,0,0,0.15)
+  -webkit-box-shadow: 3px 0 12px rgba(0,0,0,0.15)
+  .default
+    background-color: #c3ddea
+  .ui-selectmenu-item-focus
+    background-color: black
+    a
+      color: white
+
+
+
+  li
+    +relative
+    a
+      padding-left: 36px
+    &.everyone a
+      background: url(/images/icons/sharing-24-hover.png) no-repeat 4px center
+    &.list a
+      background: url(/images/icons/friend-24.png) no-repeat 4px center
+    &.followers a
+      background: url(/images/icons/friend-24-follower.png) no-repeat 4px center
+    &.anon a
+      background: url(/images/icons/anon-24-hover.png) no-repeat 4px center
+    &.private a
+      background: url(/images/icons/private-24-hover.png) no-repeat 4px center
+
+
+    &:hover label
+      +block
+    label
+      +hidden
+      +pointer
+      +absolute
+      top: 0
+      right: 0
+      +right
+      width: 16px
+      height: 16px
+      padding: 7px 11px
+      input
+        +pointer
+
+
+
+
+
+
 
 
 // SHARED PANEL STYLES
@@ -136,6 +251,7 @@ hr
   max-width: 640px
   min-height: 134px
   height: 134px
+
 
 // NEW ENTRY OPTIONS
 #entryOptions
@@ -897,7 +1013,7 @@ hr
       +flat-light
       +glow-light(40)
 
-    #entryType-list, #entryType-list-button
+    #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
       +indent-light
       +button-light
 
@@ -945,7 +1061,7 @@ hr
         color: #fff
         border: 1px solid #a9a9a9
 
-      .sharing, .myBooks, .addTheme, .addLocation, .date
+      #sharing-list, .myBooks, .addTheme, .addLocation, .date
         +indent-light
         +button-light
         border: 1px solid #fff
@@ -1132,7 +1248,7 @@ hr
       +flat-dark
       +glow-dark(40)
 
-    #entryType-list, #entryType-list-button
+    #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
       +button-dark
       +indent-dark
       border: 1px solid #222
@@ -1186,7 +1302,7 @@ hr
         background: #aaa
         +gradient(#222, #aaa)
 
-      .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
+      #sharing-list, .myBooks, .addTheme, .sharing, .addLocation, .date
         +indent-dark
         +button-dark
         border: 1px solid #000
