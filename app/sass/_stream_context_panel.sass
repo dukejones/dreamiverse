@@ -96,58 +96,19 @@
 
 
 
-  // STREAM CONTEXT PANEL FILTERS
-
-  .entryFilter, .followFilter, .starlightTab, select
-    +pointer
-    +round(12)
-    +relative
-    +bold
-    +center
-    width: 186px
-    padding: 0 4px 0 8px
-    margin: 4px 0 1px
-    height: 32px
-    line-height: 32px
-    border: 1px solid #7a7a7a
-    span
-      +left
-    .icon
-      +left
-      margin: 8px 12px 0 0
-    .arrow
-      +right
-      width: 32px
-      height: 32px
-      background: url('/images/icons/arrow-down-16.png') no-repeat center center
-
-  // degradable styling for dropdowns
-  select
-    +font(14)
-    height: auto
-    // line-height for chrome / webkit height
-    line-height: 20px
-    padding: 6px 12px
-    width: 200px
+  // STREAM CONTEXT PANEL FILTERS - see _widget_dropdown.sass
 
   .spinner
     +relative
     +round(12)
     left: 164px
     top: 6px
-    width: 30px
-    height: 30px
-    margin-bottom: -30px
+    width: 32px
+    height: 32px
+    margin-bottom: -32px
     z-index: 1
     +hidden
 
-
-
-  .filterList
-    span, img
-      +left
-    img
-      margin: 8px 12px 0 8px
 
 
 
@@ -227,14 +188,6 @@
     +shine-dark-alpha(16)
     color: #fff
 
-  // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab, select
-    +flat-light
-    &:hover
-      +glow-light(10)
-    &.loading .arrow
-      background: url('/images/icons/spinner-light-32.gif') no-repeat center center white
-
 
 
 .dark #streamContextPanel
@@ -253,15 +206,6 @@
   .myStream
     +shine-light(16)
     color: #000
-
-  // FILTER BY ENTRY TYPE & FOLLOW TYPE
-  .entryFilter, .followFilter, .starlightTab, select
-    +flat-dark
-    &:hover
-      +glow-dark(10)
-    &.loading .arrow
-      background: url('/images/icons/spinner-dark-32.gif') no-repeat center center black
-
 
 
 

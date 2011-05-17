@@ -4,6 +4,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
+    $('#entry-filter').selectmenu(
+      style: 'popup'
+      menuWidth: "200px"
+    )
+    $('#users-filter').selectmenu(
+      style: 'popup'
+      menuWidth: "200px"
+    )
+
+    # NEW ENTRY - entry type
     $('#entryType-list').selectmenu(
       icons:[
         {find: '.dream'}
@@ -15,6 +25,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       positionOptions: {
         offset: "0 -37px"}
       )
+    # NEW ENTRY - sharing level
     $('#sharing-list').selectmenu(
       icons:[
         {find: '.everyone'}
@@ -24,7 +35,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         {find: '.private'}
       ]
       style: 'popup'
-      menuWidth: "170px"
+      menuWidth: "160px"
       )
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
