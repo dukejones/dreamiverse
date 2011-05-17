@@ -17,7 +17,7 @@
 
 
     / MENU STYLE
-    #default-menuStyle{:'data-id' => current_user.view_preference.menu_style}
+    #default-menuStyle{:'data-id' => menu_style}
       #default-menuStyle-icon.img
       %h2.menu-label menu style
 
@@ -28,7 +28,7 @@
 
 
     / THE INCREDIBLE FONT SIZER
-    #default-fontSize{:'data-id' => current_user.view_preference.font_size, :class => font_size}
+    #default-fontSize{:'data-id' => font_size, :class => font_size}
       #default-fontSize-icon.img
       %h2.font-label font size
 
