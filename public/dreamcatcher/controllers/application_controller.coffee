@@ -2,7 +2,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
-    @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
+    @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
 
 
     # TOOL TIPS
