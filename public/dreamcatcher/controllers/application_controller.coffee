@@ -5,13 +5,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
     $('#entryType-list').selectmenu(
-      icons: [
+      icons:[
         {find: '.dream'}
         {find: '.vision'}
         {find: '.experience'}
         {find: '.article'}
         {find: '.journal'}
-      ])
+      ]
+      positionOptions: {
+        offset: "0 -37px"}
+      )
 
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
