@@ -19,6 +19,7 @@ gem 'exception_notification'
 gem 'nokogiri'
 gem 'whenever', :require => false
 gem 'jammit'
+gem 'memcache-client'
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'aws-s3', :require => 'aws/s3'
