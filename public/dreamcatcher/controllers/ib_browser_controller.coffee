@@ -228,17 +228,16 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   #- ArtistList -#
 
-  '#artistList .artistName click': (el) ->
-    if el.attr 'readonly'
-      @artist = el.val()
+  '#artistList tr.artist click': (el) ->
+    if $('.artistName',el).attr('readonly')
+      @artist = $('.artistName',el).val()
       @model.get 'albums', {artist: @artist, section: @section, category: @category}, @callback('displayScreen', 'albumList')
       
   '#artistList .edit click': (el) ->
     $('.artistName', el.parent()).removeAttr('readonly').focus()
   
   '#artistList .artistName keypress': (el, event) ->
-    if event.keyCode is 13
-      el.blur().attr 'readonly', true
+    el.blur().attr('readonly', true) if event.keyCode is 13
 
     
   
@@ -347,17 +346,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showSlides $('#searchResults li'), el.data 'id'
   
   #- SearchOptions -#
-  
-  '.searchField .options click': (el) ->    
-    if not $("#searchOptions").is(":visible")
-      @hideAllViews()
-      el.addClass("selected")
-      $('#searchOptions .category select').append("<option>#{category}</option>") for category in @categories if @categories
-      $("#searchOptions .genres").html @view('genres', { genres: @model.genres })
-      $("#searchOptions").show()
-    else
-      @displayScreen @currentView,null #but keep search header
-      @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
       
   '.searchField input[type="text"] keypress': (element,event) ->
     @startSearch() if event.keyCode is 13
@@ -368,12 +356,24 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     
   startSearch: ->
     #@showSpinner()
-    @model.searchImages @getSearchOptions(),@callback('displaySearchResults')
+    @model.searchImages @getSearchOptions(), @callback('displaySearchResults')
     
   displaySearchResults: (images) ->
-    @displayScreen 'searchResults',@view('searchresults',{ images : images } )
+    @displayScreen 'searchResults', @view('searchresults',{ images : images } )
     @setDraggable $("#searchResults ul li")
     @hideSpinner()
+    
+  '.searchField .options click': (el) ->    
+    if not $("#searchOptions").is(":visible")
+      @hideAllViews()
+      el.addClass 'selected'
+      $('#searchOptions .listBar').html @view('searchTypes', {types: @model.types})
+      $("#searchOptions .genres").html @view('searchCategories', { types: @model.types })
+      
+      $("#searchOptions").show()
+    else
+      @displayScreen @currentView,null #but keep search header
+      @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
 
   '#searchOptions .genre click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")

@@ -5,8 +5,14 @@
 
     %tr.name{:'data-album' => album}
       %td
-        = album || "Unknown Album"
-        .manage
+
+        .editableWrap
+
+          %input.editable{type: "text", value: album || "Unknown Album"}
+
+          .edit
+
+        .manage.hidden
 
     %tr.images{:'data-album' => album}
       %td

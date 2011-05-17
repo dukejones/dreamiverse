@@ -27,30 +27,46 @@ table#artistList
     &:hover
       color: #222
       +gradient(#fff, #8c8c8c)
+
     &:hover .name .editable
       color: #222
 
     td.name
 
-      &:hover .edit
-        +block
-        +right
-        +pointer
-        width: 24px
-        height: 62px
-        margin: 0 8px 0 0
-        background: url(/images/icons/edit-24.png) no-repeat center center transparent
-        &:hover
-          background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
-        &:active
-          background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
-
-      .editable
+      .editableWrap
         +left
-        +font(24)
-        width: 228px
-        height: 62px
-        margin: 0 0 0 20px
+        +relative
+        padding: 12px 0
+        height: 36px
+
+        &:hover .editable
+          +input-light(large)
+
+        &:hover .edit
+          +absolute
+          +block
+          +left
+          +pointer
+          top: 0
+          right: 12px
+          width: 24px
+          height: 62px
+          background: url(/images/icons/edit-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+
+        .editable
+          +left
+          +round(8)
+          +font(22)
+          width: 252px
+          height: 36px
+          margin: 0 0 0 10px
+          padding: 0 0 0 8px
+          border: 1px solid transparent
+
 
     td.images
       img
