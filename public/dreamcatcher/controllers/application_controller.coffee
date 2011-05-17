@@ -4,8 +4,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
 
-    $('#entryType-list').selectmenu()
-
+    $('#entryType-list').selectmenu(
+      icons: [
+        {find: '.dream'}
+        {find: '.vision'}
+        {find: '.experience'}
+        {find: '.article'}
+        {find: '.journal'}
+      ])
 
 
   #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
