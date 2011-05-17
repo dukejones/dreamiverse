@@ -263,7 +263,7 @@ hr
     top: -8px
 
 
-  .myBooks, .addTheme, .date, .addLocation, #entry_submit
+  #myBooks, #entry-appearance, #entry-date, #entry-location, #entry_submit
     +round(20)
     +center
     +pointer
@@ -271,7 +271,7 @@ hr
     height: 34px
     line-height: 34px
     margin: 8px 0 0 8px
-  .myBooks
+  #myBooks
     +bold
     +left
     width: 184px
@@ -279,29 +279,29 @@ hr
       +left
       margin: 9px 0 0 14px
 
-  .addTheme, .date, .addLocation
+  #entry-appearance, #entry-date, #entry-location
     width: 42px
-  .addLocation .img, .addTheme .img, .date .img
+  #entry-appearance .img, #entry-date .img, #entry-location .img
     width: 42px
     height: 34px
-  .addLocation
+  #entry-location
     .img
       background: url('/images/icons/location-24.png') center center no-repeat
     &:hover .img
       background: url('/images/icons/location-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/location-24.png') center center no-repeat
-  .addLocation.selected
+  #entry-location.selected
     .img
       background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-  .addTheme
+  #entry-appearance
     .img
       background: url('/images/icons/appearance-24.png') center center no-repeat
     &:hover .img
       background: url('/images/icons/appearance-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/appearance-24-active.png') center center no-repeat
-  .date 
+  #entry-date 
     .img
       background: url('/images/icons/date-24.png') center center no-repeat
     &:hover .img
@@ -841,7 +841,7 @@ hr
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, .myBooks, .addTheme, .addLocation, .date
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
       +indent-light
       +button-light
       border: 1px solid #fff
@@ -1076,7 +1076,7 @@ hr
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, .myBooks, .addTheme, .sharing, .addLocation, .date
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
       +indent-dark
       +button-dark
       border: 1px solid #000
