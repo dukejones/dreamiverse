@@ -21,8 +21,8 @@ class User::SessionsController < ApplicationController
     
     if auth_provider = session.delete(:registration_auth_provider)
       redirect_to "/auth/#{auth_provider}"
-    elsif request.path == root_path || request.path == login_path
-      redirect_to entries_path
+    elsif request.path == root_path || request.path == login_path || request.env['HTTP_REFERER'].blank?
+      redirect_to root_path
     else
       redirect_to :back
     end
