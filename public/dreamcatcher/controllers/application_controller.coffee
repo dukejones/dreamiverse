@@ -11,7 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
     $('#sharing-list-menu label').tooltip(
@@ -19,23 +19,23 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
-    $('#entryOptions .addTheme').tooltip(
+    $('#entry-appearance').tooltip(
       track: true,
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
-    $('#entryOptions .date').tooltip(
+    $('#entry-date').tooltip(
       track: true,
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
     $('#metaMenu .stream').tooltip(
@@ -43,7 +43,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
     $('#metaMenu .home').tooltip(
@@ -51,14 +51,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
     $('#metaMenu .dreamstars').tooltip(
       track: true,
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
     $('#metaMenu .searchIcon').tooltip(
@@ -66,7 +66,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
     $('#metaMenu .randomDream').tooltip(
@@ -74,16 +74,34 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      fade: 250
     );
 
+    $('#metaMenu .settings').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      positionLeft: true,
+      fade: 250
+    );
+
+    $('#metaMenu .appearance').tooltip(
+      track: true,
+      delay: 0,
+      showURL: false,
+      showBody: " - ",
+      positionLeft: true,
+      fade: 250
+    );
 
     $('#metaMenu .logOut').tooltip(
       track: true,
       delay: 0,
       showURL: false,
       showBody: " - ",
-      fade: 250 
+      positionLeft: true,
+      fade: 250
     );
 
 
@@ -153,7 +171,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '.button.appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
     
-  '.addTheme .img click': (el) ->
+  '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
 
 $(document).ready ->

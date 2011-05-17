@@ -42,9 +42,8 @@
       %span= current_user.username
 
     .settingsPanel.wrapper
-      .item.settings.trigger
+      .item.settings.trigger{title: "settings"}
         .img
-        = render partial: "shared/hover_label", locals: {message: "settings", x: "12", y: "-30"}
 
       / SETTINGS PANEL
       = render partial: "users/settings_panel"
@@ -53,9 +52,8 @@
 
     - if page_is_mine?
       .appearancePanel.wrapper
-        .item.appearance.trigger
+        .item.appearance.trigger{title: "appearance"}
           .img
-          = render partial: "shared/hover_label", locals: {message: "appearance", x: "12", y: "-30"}
 
         / APPEARANCE PANEL
         = render partial: "users/appearance_panel"
