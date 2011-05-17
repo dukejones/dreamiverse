@@ -51,12 +51,12 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#default-menuStyle-list change': (element) ->
     defaultMenuStyle = element.val()
     @displayDefaultMenuStyle defaultMenuStyle
-    @updateSettingsModel {'user[view_preference_attributes][default_menu_style]': defaultMenuStyle} 
+    @updateSettingsModel {'user[view_preference_attributes][menu_style]': defaultMenuStyle} 
 
   '#default-fontSize .fontSize click': (element) ->
     defaultFontSize = element.attr("id")
     @displayDefaultFontSize defaultFontSize
-    @updateSettingsModel {'user[view_preference_attributes][default_font_size]': defaultFontSize}
+    @updateSettingsModel {'user[view_preference_attributes][font_size]': defaultFontSize}
 
   '.cancel click': ->
     $('.changePasswordForm').hide()

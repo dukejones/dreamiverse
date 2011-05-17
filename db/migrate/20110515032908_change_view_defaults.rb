@@ -18,13 +18,6 @@ class ChangeViewDefaults < ActiveRecord::Migration
       t.column :font_size, :string
       t.column :menu_style, :string
     end
-    
-    User.all.each do |user|
-      if user.stream_filter.nil?
-        user.stream_filter = {}
-        user.save!
-      end
-    end
   end
 
   def self.down
