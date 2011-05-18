@@ -34,8 +34,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   initSelectMenu: ->
     $('.select-menu').selectmenu(
-      style: 'popup'
+      style: 'dropdown'
       menuWidth: "200px"
+      positionOptions:
+        offset: "0px -37px"
     )
     
     # iterates through each select menu radio
@@ -48,7 +50,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       # sets up the select menu (converts to list)
       $(el).selectmenu {
         style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
-        menuWidth: '200px'
+        positionOptions:
+          offset: if $(el).hasClass('dropdown') then "0px -37px" else null
+        menuWidth: '156px'
         format: (text) =>
           return @view 'selectMenuFormat', {
             text: text

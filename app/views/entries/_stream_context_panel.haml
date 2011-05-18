@@ -23,7 +23,7 @@
 
   #entry-filter-wrap
     .spinner
-    %select#entry-filter.select-menu
+    %select#entry-filter.select-menu.dropdown
       %option.allEntries{   value: '',           :selected => (@filters[:type].blank?)          } all entries
       %option.dreams{       value: 'dream',      :selected => (@filters[:type] == 'dream')      } dreams
       %option.visions{      value: 'vision',     :selected => (@filters[:type] == 'vision')     } visions
@@ -33,7 +33,7 @@
 
   #users-filter-wrap
     .spinner
-    %select#users-filter.select-menu
+    %select#users-filter.select-menu.dropdown
       %option.allUsers{   value: '',          :selected => (@filters[:users].blank?)          } all users
       %option.friends{    value: 'friends',   :selected => (@filters[:users] == 'friends')    } friends
       %option.following{  value: 'following', :selected => (@filters[:users] == 'following')  } following
