@@ -3,7 +3,7 @@ class DefaultUserDefaultSettings < ActiveRecord::Migration
     change_table :users do |t|
       t.remove :default_landing_page, :default_entry_type
 
-      t.string :default_landing_page, :default => 'home'
+      t.string :default_landing_page, :default => 'stream'
       t.string :default_entry_type, :default => 'dream'
     end
   end
