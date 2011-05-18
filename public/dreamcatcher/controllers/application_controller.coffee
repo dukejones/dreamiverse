@@ -17,6 +17,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       fade: 250
     }
+    $('.tooltip-left').tooltip {
+      track: true
+      delay: 0
+      showURL: false
+      showBody: ' - '
+      positionLeft: true
+      fade: 250
+    }
     ###
     TODO: 
     $('#entryOptions .date').tooltip -doesn't work - weird
@@ -71,7 +79,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '.button.appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
     
-  '#entry-appearance click': (el) ->
+  '#entry_appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
 
 $(document).ready ->
