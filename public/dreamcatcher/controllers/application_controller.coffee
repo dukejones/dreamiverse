@@ -37,17 +37,35 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       menuWidth: "200px"
     )
     
+    # iterates through each select menu radio
     $('.select-menu-radio').each (i, el) =>
-      $(el).val $(el).data 'id'
-      $(el).selectmenu(
+      id = $(el).attr 'id'
+      defaultValue = $(el).data 'id'
+      
+      $(el).val defaultValue
+      
+      # sets up the select menu (converts to list)
+      $(el).selectmenu {
         style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
         menuWidth: '200px'
-        format: (text, value) =>
-          return @view 'selectMenuFormat', text
-      )
-
-    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
-      $(el).appendTo $(el).parent().parent() # move labels to outside the a tag.
+        format: (text) =>
+          return @view 'selectMenuFormat', {
+            text: text
+            value: text
+            name: id
+          }
+      }
+      log $("##{id}-menu label.ui-selectmenu-default")
+      $("##{id}-menu label.ui-selectmenu-default").each (i,el) ->
+        li = $(el).closest('li')
+        value = $('a',li).data 'value'
+        isDefault = value is defaultValue
+        
+        # sets it as checked if it's default
+        $('input[type="radio"]',el).attr 'checked', isDefault
+        
+        # moves the radio button outside the a tag
+        $(el).appendTo li
       
   '.ui-selectmenu-default input click': (el) ->
     value = $('a:first',el.closest('li')).data 'value'
