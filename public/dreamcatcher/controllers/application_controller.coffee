@@ -55,16 +55,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
             name: id
           }
       }
-      log $("##{id}-menu label.ui-selectmenu-default")
+      # iterates through each label and radio button
       $("##{id}-menu label.ui-selectmenu-default").each (i,el) ->
         li = $(el).closest('li')
         value = $('a',li).data 'value'
         isDefault = value is defaultValue
         
-        # sets it as checked if it's default
+        # checks the radio button if it's the default value
         $('input[type="radio"]',el).attr 'checked', isDefault
         
-        # moves the radio button outside the a tag
+        # moves the radio button outside the a tag (so it doesn't conflictg)
         $(el).appendTo li
       
   '.ui-selectmenu-default input click': (el) ->
