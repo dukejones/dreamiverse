@@ -1,5 +1,4 @@
 steal.plugins(
-<<<<<<< HEAD
 	'steal/coffee',
 	'jquery/controller',			// a widget factory
 	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
@@ -38,7 +37,7 @@ steal.plugins(
 			'models/comment',
 			'models/image_bank',
 			'controllers/application_controller',
-			'controllers/metamenu_controller',
+			'controllers/meta_menu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
 			'controllers/bedsheets_controller',
