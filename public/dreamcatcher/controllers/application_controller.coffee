@@ -18,22 +18,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       fade: 250
     }
     ###
-    $('#rightColumn .loginItem.facebook')
-    $('#entryOptions .date').tooltip -doesn't work
+    TODO: 
+    $('#entryOptions .date').tooltip -doesn't work - weird
     $('#sharing-list-menu label').tooltip(
     ###
-
-    ###
-    $('#entry-filter').selectmenu {
-    $('#users-filter').selectmenu(
+  
+  initSelectMenu: ->
+    $('.select-menu').selectmenu(
       style: 'popup'
       menuWidth: "200px"
     )
-    ###
-  
-  
-  initSelectMenu: ->
-
+    
     $('.select-menu-radio').each (i, el) =>
       $(el).selectmenu {
         style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
