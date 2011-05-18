@@ -27,6 +27,7 @@ steal.plugins(
       'models/appearance',
       'models/bedsheet',
       'models/comment',
+      'models/user',
       'controllers/application_controller',
       'controllers/meta_menu_controller',
       'controllers/settings_controller',

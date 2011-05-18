@@ -1,166 +1,57 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
 
+  userModel: Dreamcatcher.Models.User
+  
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
+    @initSelectMenu()
+    @initTooltips()
 
 
-    # TOOL TIPS
-    $('#rightColumn .loginItem.facebook').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
+  initTooltips: ->
+    $('.tooltip').tooltip {
+      track: true
+      delay: 0
+      showURL: false
+      showBody: ' - '
       fade: 250
-    );
-
+    }
+    ###
+    TODO: 
+    $('#entryOptions .date').tooltip -doesn't work - weird
     $('#sharing-list-menu label').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#entry-appearance').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#entry-date').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#logo').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#metaMenu .stream').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-
-    $('#metaMenu .home').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-    $('#metaMenu .dreamstars').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#metaMenu .searchIcon').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#metaMenu .randomDream').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      fade: 250
-    );
-
-    $('#metaMenu .settings').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      positionLeft: true,
-      fade: 250
-    );
-
-    $('#metaMenu .appearance').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      positionLeft: true,
-      fade: 250
-    );
-
-    $('#metaMenu .logOut').tooltip(
-      track: true,
-      delay: 0,
-      showURL: false,
-      showBody: " - ",
-      positionLeft: true,
-      fade: 250
-    );
-
-
-
-
-
-
-
-
-
-
-
-
-    # STREAM FILTER - entry type
-    $('#entry-filter').selectmenu(
+    ###
+  
+  initSelectMenu: ->
+    $('.select-menu').selectmenu(
       style: 'popup'
       menuWidth: "200px"
     )
-    # STREAM FILTER - user type
-    $('#users-filter').selectmenu(
-      style: 'popup'
-      menuWidth: "200px"
-    )
+    
+    $('.select-menu-radio').each (i, el) =>
+      $(el).selectmenu {
+        style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
+        menuWidth: '200px'
+        format: (text) =>
+          return @view("selectMenuFormat",text)
+      }
+    # hack - move labels to outside the a tag.
+    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
+      $(el).appendTo $(el).parent().parent()
+      
 
-    # NEW ENTRY - entry type
-    $('#entryType-list').selectmenu(
-      icons:[
-        {find: '.dream'}
-        {find: '.vision'}
-        {find: '.experience'}
-        {find: '.article'}
-        {find: '.journal'}
-      ]
-      positionOptions: {
-        offset: "0 -37px"}
-      )
-    # NEW ENTRY - sharing level
-    $('#sharing-list').selectmenu(
-      icons:[
-        {find: '.everyone'}
-        {find: '.list'}
-        {find: '.followers'}
-        {find: '.anon'}
-        {find: '.private'}
-      ]
-      style: 'popup'
-      menuWidth: "160px"
-      )
+  '.ui-selectmenu-default input click': (el) ->
+    value = el.closest('li').attr('class')
+    data = {}
+    switch el.closest('ul').attr('id').replace('-list-menu','')
+      when 'entryType'
+        data['user[default_entry_type]'] = value
+      when 'sharing'
+        data['user[default_sharing_level]'] = value
+    @userModel.update { data }
 
-  #TODO: Possibly refactor into jQuery syntax, and remove all other versions.
+  # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
     text = if id and id.style then id else document.getElementById(id)
     return 0 if not text
