@@ -79,7 +79,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '.button.appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
     
-  '#entry_appearance click': (el) ->
+  '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
 
 $(document).ready ->
