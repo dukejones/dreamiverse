@@ -75,7 +75,7 @@ namespace :fix do
       if last_what.tags.empty?
         last_what.destroy
       end
-    end
+    end  
   end
 
   desc "Split janked (period..dash--and comma) seperated whats into seperate whats and fix related entry what associations in tags table"
@@ -138,7 +138,27 @@ namespace :fix do
     end
     log("Total janked tags fixed: #{total_fixed}")
   end
+
+  desc "Re-process all tags clouds that have blacklisted words"
+  task :blacklisted_clouds => :environment do
+    begin_time = Time.now
+    fixed = 0
+    log("---Looking for blacklisted tag clouds---")
+    Entry.all.map do |entry|
+      entry.what_tags.auto.each do |tag|
+        if Tag::BlacklistWords[tag.noun.name]
+          log("Re-processing cloud for entry id: #{entry.id} because of: tag: \"#{tag.noun.name}\" tag.id: #{tag.id} noun_id: #{tag.noun_id} ")
+          Tag.auto_generate_tags(entry) 
+          entry.reorder_tags
+          fixed += 1
+          break
+        end                   
+      end 
+    end   
+    log("Fixed #{fixed} entries. Total time: #{Time.now - begin_time}")
+  end
 end
+
 
 def log(msg)
   Rails.logger.info(msg)

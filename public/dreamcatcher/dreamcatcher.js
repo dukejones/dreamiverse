@@ -1,4 +1,5 @@
 steal.plugins(
+<<<<<<< HEAD
 	'steal/coffee',
 	'jquery/controller',			// a widget factory
 	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
@@ -12,9 +13,11 @@ steal.plugins(
 	  'ui/jquery.ui.core',
 		'ui/jquery.ui.widget',
 		'ui/jquery.ui.mouse',
-
+    'ui/jquery.ui.position',
+    'ui/jquery.ui.selectmenu',
 		'ui/jquery.ui.draggable',
 		'ui/jquery.ui.droppable',
+		'ui/jquery.tooltip.pack.js',
 	  'jquery-lightbox-0.5',
 	  'jquery.timeago',
 		'jquery.exists',
@@ -38,8 +41,8 @@ steal.plugins(
 			'controllers/metamenu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
-			'controllers/bedsheet_controller',
-			'controllers/comment_controller',
+			'controllers/bedsheets_controller',
+			'controllers/comments_controller',
 			'controllers/ib_manager_controller',
 			'controllers/ib_browser_controller',
 			'controllers/entry_controller'

@@ -4,7 +4,6 @@ $(document).ready(function() {
   setupEvents();
   setupImagebank();
   setupUploader();
-  setupSharingImages();
   setupLinkButtons();
   setup2dThumbIPadClick();
 });
@@ -220,33 +219,7 @@ function setup2dThumbIPadClick(){
   })
 }
 
-function setupSharingImages(){
-  $('.detailsBottom .sharing span').each(function(){
-    switch($(this).text()){
-      case 'private':
-          $(this).prev().attr('src', '/images/icons/private-16.png')
-        break;
-      case 'anonymous':
-          $(this).prev().attr('src', '/images/icons/anon-16.png')
-        break;
-      case 'users':
-          $(this).prev().attr('src', '/images/icons/list-16.png')
-        break;
-      case 'followers':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
-        break;
-      case 'friends':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
-        break;
-      case 'friends of friends':
-          $(this).prev().attr('src', '/images/icons/friend-none-16.png')
-        break;
-      case 'everyone':
-          $(this).prev().attr('src', '/images/icons/sharing-16.png')
-        break;
-    }
-  })
-}
+
 
 var uploader = null;
 var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
@@ -527,8 +500,8 @@ function setupEvents(){
     checkAttachButtons();
   })
   
-  $('#entryOptions .date').unbind();
-  $('#entryOptions .date, .dateTimeHeader').click(function(){
+  $('#entry-date').unbind();
+  $('#entry-date, .dateTimeHeader').click(function(){
     if($('.entryDateTime').css('display') == 'none'){
       $('.entryDateTime').slideDown();
     } else {

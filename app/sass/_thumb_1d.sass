@@ -94,7 +94,18 @@
       +left
       width: 32px
       height: 32px
-
+      background-position: center center !important
+      background-repeat: no-repeat !important
+      &.dream
+        background-image: url(/images/icons/dream-24.png)
+      &.vision
+        background-image: url(/images/icons/vision-24.png)
+      &.experience
+        background-image: url(/images/icons/experience-24.png)
+      &.journal
+        background-image: url(/images/icons/journal-24.png)
+      &.article
+        background-image: url(/images/icons/article-24.png)
 
   // LEFT SIDE
   .left
@@ -282,6 +293,10 @@
         height: 26px
         margin-left: 8px
         background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      &.ipad
+        +block
+        .text
+          +block
   &.expanded .details
     .comment, .text
       display: block
@@ -301,11 +316,11 @@
 
 
 // FRONT PAGE STREAM COMMENT STYLING - removes comment hover-expander tek
-.matrix.public .thumb-1d .details .comment
+.public .matrix .thumb-1d .details .comment
   +cursor
   &:hover
     background: transparent !important
-  .text, .arrow
+  .text, .arrow, .count
     display: none !important
 
 
@@ -329,8 +344,8 @@
 .light .matrix .thumb-1d
   .entry
     background: #f0f0f0
-    background: -moz-linear-gradient(top, rgba(243,243,243,0.3), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
-    background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.3)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
+    background: -moz-linear-gradient(top, rgba(243,243,243,0.7), rgba(243,243,243,1.0) 80px, rgba(243,243,243,1.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(243,243,243,0.7)), color-stop(.5,rgba(243,243,243,1.0)), to(rgba(243,243,243,1.0)))
   &:hover .entry,
     +glow-light(40)
   &.expanded .entry
@@ -381,8 +396,8 @@
 .dark .matrix .thumb-1d
   .entry
     background: #000
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.3), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
-    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.3)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
+    background: -moz-linear-gradient(top, rgba(0,0,0,0.7), rgba(0,0,0,1.0) 80px, rgba(0,0,0,1.0))
+    background: -webkit-gradient(linear, center top, center bottom, from(rgba(0,0,0,0.7)), color-stop(.5,rgba(0,0,0,1.0)), to(rgba(0,0,0,1.0)))
   &:hover .entry
     +glow-dark(40)
   &.expanded .entry

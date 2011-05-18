@@ -2,17 +2,25 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    if current_user
-      flash.keep
-      redirect_to stream_path
+    @entries = Entry.everyone.where(:created_at >= 3.days.ago).order("starlight DESC").limit(8)
+  end
+  
+  def landing_page
+    unless current_user
+      index
+      render :index and return
     end
-
-    @entries = Entry.everyone.where(:created_at > 1.week.ago).order("starlight DESC").limit(8)
+    
+    case current_user.default_landing_page
+    when 'stream' then redirect_to stream_path
+    when 'home'   then redirect_to entries_path
+    when 'today'  then redirect_to today_path
+    end
   end
 
   def parse_url_title
     @url = params[:url]
-    @title = ExternalUrl.title(@url)
+    @title = ExternalUrl.title(@url) || @url
     render :json => {:title => @title}
   end
 

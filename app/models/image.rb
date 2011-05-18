@@ -99,7 +99,7 @@ class Image < ActiveRecord::Base
 
   # Generates the crops and resizes necessary for the requested profile.
   def generate(descriptor, options={})
-    if descriptor =~ /\d+x\d+/
+    if /\d+x\d+/.match(descriptor)
       resize(descriptor)
     else
       generate_profile(descriptor, options)

@@ -84,11 +84,40 @@
         +left
         width: 16px
         height: 16px
+        background-position: left center !important
+        background-repeat: no-repeat !important
+        &.dream
+          background-image: url(/images/icons/dream-16.png)
+        &.vision
+          background-image: url(/images/icons/vision-16.png)
+        &.experience
+          background-image: url(/images/icons/experience-16.png)
+        &.journal
+          background-image: url(/images/icons/journal-16.png)
+        &.article
+          background-image: url(/images/icons/article-16.png)
 
     .detailsBottom
       +absolute
       bottom: 0
       width: 100%
+
+      .img
+        +left
+        width: 16px
+        height: 16px
+        margin-right: 5px
+        &.comment
+          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+        &.friends
+          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+        &.followers
+          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+        &.anonymous
+          background: url(/images/icons/anon-16.png) no-repeat center center transparent
+        &.private
+          background: url(/images/icons/private-16.png) no-repeat center center transparent
+
 
       .comments
         +left
@@ -97,19 +126,10 @@
           +gradient(#e35f5f, #b32f2f)
           display: block !important
           color: #fff !important
-        .img
-          +left
-          width: 16px
-          height: 16px
-          background: url(/images/icons/comment-16.png) no-repeat center center transparent
-          margin-right: 5px
-        span
-          +left
+
       .sharing
         +right
         +hidden
-        img
-          margin: -1px 2px -4px -2px
 
     .title
       +absolute

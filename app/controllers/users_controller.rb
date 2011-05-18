@@ -33,12 +33,11 @@ class UsersController < ApplicationController
 
     redirect_to(root_path, {alert: "User #{params[:username]} does not exist."}) and return unless @user
       
-    
-    @mode = params[:mode] 
+    @mode = params[:mode].to_sym
     @friends = case @mode
-      when 'friends'   then @user.friends
-      when 'following' then @user.following
-      when 'followers' then @user.followers
+      when :friends   then @user.friends
+      when :following then @user.following
+      when :followers then @user.followers
     end
   end
   
@@ -59,13 +58,14 @@ class UsersController < ApplicationController
   end
   
   def confirm
-    #redirect_to login_path, :alert => 'please log in, then try confirming again' and return unless current_user
     user = User.find params[:id]
     if params[:confirmation] == user.confirmation_code
       flash.notice = "email address has been confirmed"
+      set_current_user user
     else
       flash.alert = "confirmation code did not match logged-in user"
     end
+    redirect_to root_path
   end
   
   def search
@@ -94,7 +94,6 @@ class UsersController < ApplicationController
     @user.view_preference.update_attribute(:image, Image.find(params[:bedsheet_id])) unless params[:bedsheet_id].nil?
     @user.view_preference.update_attribute(:bedsheet_attachment, params[:scrolling]) unless params[:scrolling].nil?
     @user.view_preference.update_attribute(:theme, params[:theme]) unless params[:theme].nil?
-    @user.view_preference.update_attribute(:default_genre, params[:default_genre]) unless params[:default_genre].nil?
     render :json => "user view preferences updated"
   rescue => e
     render :json => e.message, :status => :unprocessable_entity

@@ -6,8 +6,8 @@ var geoFetching = false;
 var locationSuccess = false;
 
 function initGeo(){
-  $('.addLocation').unbind();
-  $('.addLocation').click(function(){
+  $('#entry-location').unbind();
+  $('#entry-location').click(function(){
     if($('.entryLocation').css('display') == 'none'){
       $(this).addClass('selected');
       //$('.entryLocation').slideDown()
@@ -33,7 +33,7 @@ function initGeo(){
   
   $('.entryLocation .cancelLocation').unbind();
   $('.entryLocation .cancelLocation').click(function(){
-    $('.addLocation').removeClass('selected');
+    $('#entry-location').removeClass('selected');
     //$('.entryLocation').slideUp();
     slideToggle('.entryLocation', false)
     

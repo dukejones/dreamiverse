@@ -6,7 +6,7 @@
     .commentTime= time_ago_in_words(comment.created_at)
     - if (comment.entry.user == current_user) || (comment.user == current_user)
       = link_to entry_comment_path(comment.entry, comment), {:method => :delete, :remote => true, :class => 'deleteComment'} do
-        .delete
+        .delete.hidden
     /%ul
     /  %li
     /  %li

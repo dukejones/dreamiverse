@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   
   include Starlit
 
+  serialize :stream_filter
+  
   has_many :authentications
   has_many :entries
   has_many :hits
@@ -58,7 +60,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create  
-  # validate :has_at_least_one_authentication
+
+  validates_inclusion_of :default_entry_type, :in => %w( dream vision experience article journal )
+  validates_inclusion_of :default_landing_page, :in => %w( stream home today )
   
   # def self.order_by_starlight
   #   select('users.*').
@@ -68,7 +72,7 @@ class User < ActiveRecord::Base
   #   order('starlights.value DESC')
   # end
   def self.dreamstars
-    order("starlight DESC").where("starlight > 20")
+    order("starlight DESC").where("starlight > 50")
   end
 
   attr_accessor :password, :password_confirmation, :old_password
@@ -122,11 +126,13 @@ class User < ActiveRecord::Base
   end
   # Note: you are considered to be friends with yourself.
   def friends_with?(user)
-    user && (self.following?(user) && self.followed_by?(user)) || (self == user)
+    user && (self.following?(user) && self.followed_by?(user))
   end
   def relationship_with(other)
     return :none if other.nil?
-    if self.friends_with? other
+    if self == other
+      :self
+    elsif self.friends_with? other
       :friends
     elsif self.following? other
       :following
@@ -137,10 +143,6 @@ class User < ActiveRecord::Base
     end
   end
   
-  # def encrypted_password= *args
-  #   # raise "Can't set the encrypted password directly."
-  # end
-  # 
   def can_access?(entry)
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
@@ -160,6 +162,19 @@ class User < ActiveRecord::Base
   # This depends on the current password, so if they change their password, the code will no longer be valid.
   def password_reset_code
     sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
+  end
+  
+  def update_stream_filter(filters)
+    if filters.kind_of?(Hash)
+      # only the keys which we are storing as defaults
+      self.stream_filter ||= {}
+      self.stream_filter[:type] = filters[:type] if filters.has_key?(:type)
+      self.stream_filter[:users] = filters[:users] if filters.has_key?(:users)
+      self.save
+    else
+      filters = self.stream_filter
+    end
+    filters || {}
   end
   
   protected
@@ -186,8 +201,11 @@ class User < ActiveRecord::Base
   # end
   
   def set_defaults
+    self.auth_level ||= AuthLevel[:basic]
     self.default_sharing_level ||= Entry::Sharing[:everyone]
-    self.auth_level ||= 1
+    self.default_landing_page ||= 'stream'
+    self.default_entry_type ||= 'dream'
+    self.stream_filter ||= {}
   end
   
 end

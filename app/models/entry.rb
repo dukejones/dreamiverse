@@ -57,6 +57,7 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
+  after_create :set_user_defaults
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
 
@@ -109,41 +110,49 @@ class Entry < ActiveRecord::Base
 
   def self.dreamstream(viewer, filters)
     filters ||= {}
-    page_size = filters[:page_size] || 32
+    page_size = filters[:page_size] || 10
     page = filters[:page].to_i
     page = 1 if page <= 0
-
+    
     # Universal scope
     entry_scope = Entry.order(:created_at.desc)
-    entry_scope = entry_scope.where(type: filters[:type].singularize) if filters[:type] # Type: visions,  dreams,  experiences
-    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])
+    entry_scope = entry_scope.where(type: filters[:type]) unless filters[:type].blank?
+    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]).where(:sharing_level ^ self::Sharing[:anonymous])
 
-    user_ids_to_view =  # based on friend filter
-      if filters[:friend] == "friends"
-        viewer.friends.select('users.id')
-      else
-        viewer.following.select('users.id')
-      end.map(&:id)
-    user_ids_to_view.delete(viewer.id)
-    
     # Others' Entries, paged.
-    others_entries = entry_scope.where(:user_id => user_ids_to_view)
+    others_entries = entry_scope
+
+    unless filters[:users].blank?
+      user_ids_to_view =  # based on friend filter
+        if filters[:users] == "friends"
+          viewer.friends
+        elsif filters[:users] == "following"
+          viewer.following.select('users.id')
+        end.map(&:id)
+      user_ids_to_view.delete(viewer.id)
+    
+      others_entries = others_entries.where(:user_id => user_ids_to_view)
+    else
+      others_entries = others_entries.where(:user_id ^ viewer.id)
+    end
+
     others_entries = others_entries.limit(page_size)
     others_entries = others_entries.offset(page_size * (page - 1))
     
-    time_range = Entry.select('max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
-
+    time_range = Entry.select('count(e.created_at) as num_entries, max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
+    return [] if time_range.num_entries == 0
+    
     my_entries = entry_scope.where(:user => viewer)
-    # my_entries = entry_scope.where(:user => viewer, :stream_time.gt => time_range.min_time)
-    # my_entries = my_entries.where(:stream_time.lt => time_range.max_time) unless page == 1
 
     my_commented_entries = my_entries.joins(:comments).group('entries.id')
-    my_commented_entries = my_commented_entries.having(["max(comments.created_at) > ?", time_range.min_time])
-    my_commented_entries = my_commented_entries.having(["max(comments.created_at) < ?", time_range.max_time]) unless page == 1
-    
+
+    comment_having = "max(comments.created_at) > '#{time_range.min_time.utc.to_s(:db)}'" if time_range.min_time
+    comment_having << " AND max(comments.created_at) < '#{time_range.max_time.utc.to_s(:db)}'" if page != 1 && time_range.max_time
+    my_commented_entries = my_commented_entries.having(comment_having) 
+
     my_uncommented_entries = my_entries.joins(:comments.outer).group('entries.id').having('count(comments.id)=0')
-    my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time)
-    my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) unless page == 1
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.gt => time_range.min_time) if time_range.min_time
+    my_uncommented_entries = my_uncommented_entries.where(:created_at.lt => time_range.max_time) if page != 1 && time_range.max_time
 
     entries = Entry.find_by_sql(%{
       (#{others_entries.select('entries.*, entries.created_at as stream_time').to_sql})
@@ -161,7 +170,7 @@ class Entry < ActiveRecord::Base
   def self.dreamfield(viewer, viewed, filters={})
     entry_scope = Entry.order(:dreamed_at.desc)
     
-    page_size = filters[:page_size] || 31
+    page_size = filters[:page_size] || 24
     page = filters[:page].to_i
     page = 1 if page <= 0
  
@@ -171,6 +180,11 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
     if viewer
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])   unless viewer == viewed
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:anonymous]) unless viewer == viewed
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed)
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed)
+      # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line eventually.
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
       entries = entry_scope.where(sharing_level: self::Sharing[:everyone])
@@ -288,6 +302,12 @@ protected
 
   def set_sharing_level
     self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
+  end
+
+  def set_user_defaults
+    self.user._?.default_sharing_level = self.sharing_level
+    self.user._?.default_entry_type = self.type
+    self.user.save
   end
 
   def init_dreamed_at

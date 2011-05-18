@@ -26,11 +26,12 @@ Dreamcatcher::Application.routes.draw do
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
   
   # Universal Routes
+  get 'today' => 'home#index', :as => :today
   match 'thank_you' => 'home#thank_you', :as => :thank_you
-  get  '/feedback' => 'home#feedback', :as => :feedback
-  post '/feedback' => 'home#submit_feedback'
-  match '/terms' => 'home#terms', :as => :terms
-  match '/error' => 'home#error'
+  get  'feedback' => 'home#feedback', :as => :feedback
+  post 'feedback' => 'home#submit_feedback'
+  match 'terms' => 'home#terms', :as => :terms
+  match 'error' => 'home#error'
 
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
@@ -130,6 +131,8 @@ Dreamcatcher::Application.routes.draw do
     
   end
 
-  root :to => 'home#index'
+
+  #default landing page
+  root :to => 'home#landing_page'
 
 end

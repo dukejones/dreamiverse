@@ -1,13 +1,14 @@
 $.Model 'Dreamcatcher.Models.Settings',{
 
-  update: ( sharingLevel, success, error ) ->
+  update: ( params, success, error ) ->
     $.ajax {
       type: 'put'
       url: '/user.json'
       dataType: 'json'
-      data:
-        'user[default_sharing_level]': parseInt sharingLevel
+      data: params
+      success: success
+      error: error
     }
-
+     
 },
 {}

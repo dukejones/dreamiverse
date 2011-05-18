@@ -27,7 +27,7 @@
       +cancel(16)
     .stream
       +flat-all
-    .next, .stream, .prev, .books, .type, .postTime, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry
       +block
       +center
       +bold
@@ -36,18 +36,30 @@
       padding: 0 18px
       height: 32px
       line-height: 34px
-    .type, .postTime
+    .entryType, .postTime
       +round(16)
       +left
       +cursor
       +user-select
       margin-right: 8px
-    .type
-      .icon
+    .entryType
+      .img
         width: 32px
         height: 32px
         margin-left: -11px
         +left
+        background-position: left center !important
+        background-repeat: no-repeat !important
+        &.dream
+          background-image: url(/images/icons/dream-24.png)
+        &.vision
+          background-image: url(/images/icons/vision-24.png)
+        &.experience
+          background-image: url(/images/icons/experience-24.png)
+        &.journal
+          background-image: url(/images/icons/journal-24.png)
+        &.article
+          background-image: url(/images/icons/article-24.png)
       span
         +left
     .postTime
@@ -267,9 +279,6 @@
         padding: 8px 12px 12px
         margin: 12px 0 0 0
 
-        .hover_label
-          width: 140px
-
         .tagInputWrap, .tagInputWrap.selected
           +round(19)
           +transparent
@@ -358,7 +367,7 @@
       +transparent-light(50)
       +glow-light(40)
 
-      .type, .postTime
+      .entryType, .postTime
         +indent-light
         +border-light
 
@@ -466,7 +475,7 @@
       +transparent-dark(50)
       +glow-dark(40)
 
-      .type, .postTime
+      .entryType, .postTime
         +indent-dark
         +border-dark
 

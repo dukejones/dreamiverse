@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110515032908) do
+ActiveRecord::Schema.define(:version => 20110517061220) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -173,13 +173,13 @@ ActiveRecord::Schema.define(:version => 20110515032908) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false,                :null => false
+    t.boolean  "ubiquity",              :default => false,        :null => false
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
-    t.string   "default_landing_page",  :default => "--- \n:default: \n"
-    t.string   "default_entry_type",    :default => "--- \n:default: \n"
-    t.string   "stream_filter"
+    t.string   "default_landing_page"
+    t.string   "default_entry_type"
+    t.string   "stream_filter",         :default => "--- {}\n\n"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"
@@ -200,8 +200,8 @@ ActiveRecord::Schema.define(:version => 20110515032908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bedsheet_attachment", :default => "scroll"
-    t.string   "font_size"
-    t.string   "menu_style"
+    t.string   "font_size",           :default => "medium"
+    t.string   "menu_style",          :default => "float"
   end
 
   add_index "view_preferences", ["viewable_id", "viewable_type"], :name => "index_view_preferences_on_viewable_id_and_viewable_type"

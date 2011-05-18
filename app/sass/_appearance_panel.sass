@@ -1,10 +1,12 @@
 
 #appearancePanel
   +user-select
+  padding: 8px
 
-  .bedsheets, .colorPicker
+  .bedsheets, .theme
     +round(8)
     +cursor
+    padding: 8px
 
 
   .bedsheets
@@ -94,7 +96,7 @@
         +round(4)
         +block
         +center
-        width: 47%
+        width: 148px
         padding: 2px
         +cancel(8)
         input
@@ -116,7 +118,7 @@
         +alpha(100)
 
 
-  .colorPicker
+  .theme
     +clear
     +bold
     padding: 8px
@@ -144,33 +146,26 @@
       +round(8)
       +right
       width: 225px
-      padding: 4px 4px 4px 0
+      padding: 3px 3px 3px 0
 
       .sun, .moon
         +left
-        +round(4)
+        +round(6)
         +font(14)
         +center
-        margin-left: 4px
+        margin-left: 3px
         padding: 0 5px
-        width: 96px
+        width: 95px
         height: 28px
         line-height: 28px
         img
           margin: -8px -8px -8px 4px
 
       .sun
-        +shine-light(14)
-        +button-light
-        color: #111
-        &:hover
-          color: #000
+        color: #555
       .moon
-        +shine-dark(14)
-        +button-dark
         color: #ccc
-        &:hover
-          color: #fff
+
 
 
 
@@ -180,57 +175,93 @@
 
 
 // COLORS
-.light
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
-    #genreSelector
-      +input-light(small)
-    .spinner
-      background-color: #eee
-    .bedsheets, .colorPicker
-      +panel-light
-      .options
-        +button-light
-      .attachment
-        .fixed, .scroll
-          +button-light
-          +bevel-light
-          +cancel(12)
-          border: 1px solid #bbb
-      .more
-        +button-light
+.light #appearancePanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
+  .spinner
+    background-color: #eee
+  .bedsheets, .theme
+    +panel-light
+  .attachment
+    .fixed, .scroll
+      +button-light
+      +bevel-light
+      +cancel(12)
+      border: 2px solid #bbb
+      &:hover
+        border: 2px solid #777
+  .more
+    +button-light
+
+  .sun, .sun:hover
+    border: 2px solid #111 !important
+    +indent-light
+    +glow-light(0)
+  .moon
+    +shine-dark(14)
+    +button-dark
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #fff
+
+
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
-.light.fixed .fixed, .light.scroll .scroll
-  border: 1px solid #111 !important
+.light.fixed #appearancePanel .attachment .fixed, .light.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #777 !important
+  +indent-light
+  +cursor
+  &:hover
+    +indent-light
+    +glow-light(0)
+    color: #111
 
 
 
-.dark
-  #appearancePanel
-    .arrow
-      background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
-    #genreSelector
-      +input-dark(small)
-    .spinner
-      background-color: #111
-    .bedsheets, .colorPicker
-      +panel-dark
-      .options
-        +button-dark
-      .attachment
-        .fixed, .scroll
-          +button-dark
-          +bevel-dark
-          +cancel(12)
-          border: 1px solid #222
-      .more
-        +button-dark
+
+
+.dark #appearancePanel
+  .arrow
+    background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
+  .spinner
+    background-color: #111
+  .bedsheets, .theme
+    +panel-dark
+  .attachment
+    .fixed, .scroll
+      +button-dark
+      +bevel-dark
+      +cancel(12)
+      border: 2px solid #222
+      &:hover
+        border: 2px solid #333
+  .more
+    +button-dark
+
+  .sun
+    +shine-light(14)
+    +button-light
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #000
+  .moon, .moon:hover
+    border: 2px solid #777 !important
+    +indent-dark
+    +glow-dark(0)
+    margin-left: 5px !important
+
 
 // SELECTED STATES FOR BACKGROUND ATTACHMENT
-.dark.fixed .fixed, .dark.scroll .scroll
-  border: 1px solid #777 !important
-
+.dark.fixed #appearancePanel .attachment .fixed, .dark.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #333 !important
+  +indent-dark
+  +cursor
+  &:hover
+    +indent-dark
+    +glow-dark(0)
 
 

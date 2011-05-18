@@ -1,368 +1,337 @@
 
 // NEW ENTRY
 // STRUCTURE
-#entryField
-
-  // .headers -- see entries.sass
-
-  // SHARED PANEL STYLES
-  .entryPanels
-    +hidden
-    +round(12)
-    width: 662px
-    padding: 8px
-
-  // NEW ENTRY INPUT PANEL
-  #newEntry
-    +round(16)
-    width: 662px 
-    padding: 8px
 
 
+// SHARING LIST and ENTRY TYPE LIST - see _dropdown.sass
 
-    // MOOD ICON
-    .wrapper
-      .moodIcon
-        +absolute
-        right: -26px
-        top: -26px
-      .moodIcon-picker
-        +absolute
-        right: -8px
-        top: -8px
 
-    .entryType
+// SHARED PANEL STYLES
+.entryPanels
+  +hidden
+  +round(12)
+  width: 662px
+  padding: 8px
+
+#entry_title, #entry_body
+  +outline
+  +transparent
+  margin: 10px 0 0 10px
+  border: none
+  font-family: Calibri, Arial, Helvetica, sans-serif
+#entry_title
+  width: 480px
+  padding-bottom: 4px
+hr
+  +alpha(20)
+  width: 480px
+  margin: 6px 12px
+#entry_body
+  width: 640px
+  min-width: 640px
+  max-width: 640px
+  min-height: 134px
+  height: 134px
+
+
+// NEW ENTRY OPTIONS
+#entryOptions
+  +round(16)
+  +relative
+  width: 660px 
+  height: 52px
+  margin: 0 auto
+  bottom: 0
+
+  // SHARING
+  .sharingWrap
+    +right
+    +relative
+    width: 180px
+    margin: 8px 0 0 8px
+    .sharing
+      +absolute
       +round(20)
-      +right
-      right: 70px
-      height: 34px
-      width: 158px // For Chrome
+      +pointer
+      min-height: 34px
       line-height: 34px
-      .typeSelection
+      width: 170px  // will need to make wider when implementing list of users and url
+      margin: 0
+      z-index: 1101
+      .listSelection
+        +pointer
         +left
         width: 24px
         height: 34px
-        margin: 0 -36px 0 8px
-      select#entryType_list
+        margin: 0 -36px 0 6px
+
+      select#sharing_select
         +outline
-        +transparent
-        +block
+        +round(8)
         +font(14)
         +pointer
         +right
+        +transparent
         +center
-        border: 0
+        border: none
         height: 34px
         padding: 7px 8px
         option
-          padding: 6px 4px 6px 38px
+          padding: 8px 0 8px 30px
           text-align: left
-        option.dream
-          background: url(/images/icons/dream-16-hover.png) no-repeat 8px center
-        option.vision
-          background: url(/images/icons/vision-16-hover.png) no-repeat 8px center
-        option.experience
-          background: url(/images/icons/experience-16-hover.png) no-repeat 8px center
-        option.article
-          background: url(/images/icons/article-16-hover.png) no-repeat 8px center
-    #entry_title, #entry_body
-      +outline
-      +transparent
-      margin: 10px 0 0 10px
-      border: none
-      font-family: Calibri, Arial, Helvetica, sans-serif
-    #entry_title
-      +font(25)
-      width: 480px
-      height: 26px
-      line-height: 26px
-      padding-bottom: 6px
-    hr
-      +alpha(20)
-      width: 480px
-      margin: 6px 12px
-    #entry_body
-      +font(17)
-      width: 640px
-      min-width: 640px
-      max-width: 640px
-      min-height: 134px
-      height: 134px
+        option.everyone
+          background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
+        option.list
+          background: url(/images/icons/friend-16.png) no-repeat 8px center
+        option.followers
+          background: url(/images/icons/friend-16-follower.png) no-repeat 8px center
+        option.anon
+          background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
+        option.private
+          background: url(/images/icons/private-16-hover.png) no-repeat 8px center
 
-    // NEW ENTRY OPTIONS
-    #entryOptions
-      +round(16)
-      +relative
-      width: 660px 
-      height: 52px
-      margin: 0 auto
-      bottom: 0
-
-      // SHARING
-      .sharingWrap
-        +right
+      // SHARING - LIST OF USERS
+      .listOfUsers
         +relative
-        width: 180px
-        margin: 8px 0 0 8px
-        .sharing
-          +absolute
-          +round(20)
-          +pointer
-          min-height: 34px
-          line-height: 34px
-          width: 170px  // will need to make wider when implementing list of users and url
-          margin: 0
-          z-index: 1101
-          .listSelection
-            +pointer
-            +left
-            width: 24px
-            height: 34px
-            margin: 0 -36px 0 6px
+        +clear
+        margin: 0 8px 8px 8px
 
-          select#sharing_select
-            +outline
-            +round(8)
-            +font(14)
-            +pointer
-            +right
+        // USER SEARCH
+        .searchWrap
+          +relative
+          height: 32px
+          margin: 4px 0 8px 0
+
+          // // SEARCH FIELD
+          // .listSearchForm
+
+          input.searchField
+            +round(4)
+            +font(12)
+            width: 124px
+            margin: 0
+            height: 22px
+            padding: 4px 24px 4px 4px
+
+          input.search
+            +absolute
             +transparent
-            +center
+            +pointer
+            top: 2px
+            right: 2px
             border: none
-            height: 34px
-            padding: 7px 8px
-            option
-              padding: 8px 0 8px 30px
-              text-align: left
-            option.everyone
-              background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
-            option.list
-              background: url(/images/icons/friend-16.png) no-repeat 8px center
-            option.followers
-              background: url(/images/icons/friend-16-follower.png) no-repeat 8px center
-            option.anon
-              background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
-            option.private
-              background: url(/images/icons/private-16-hover.png) no-repeat 8px center
+            height: 32px
+            width: 24px
+            background: url(/images/icons/search-16.png) no-repeat center transparent
+            &:hover
+              background: url(/images/icons/search-16-hover.png) no-repeat center transparent
+            &:active
+              background: url(/images/icons/search-16-active.png) no-repeat center transparent
 
-          // SHARING - LIST OF USERS
-          .listOfUsers
-            +relative
-            +clear
-            margin: 0 8px 8px 8px
+        .userResults
+          +user-select
 
-            // USER SEARCH
-            .searchWrap
-              +relative
+          .user
+            +round(4)
+            height: 32px
+            line-height: 32px
+            margin: 4px 0 0
+
+            .avatar, .username, .statusIcon
+              +left
+              margin: 0 8px 0 0
+
+            .avatar
+              +round(4)
+              +flat-right
+              width: 32px
               height: 32px
-              margin: 4px 0 8px 0
 
-              // // SEARCH FIELD
-              // .listSearchForm
-
-              input.searchField
-                +round(4)
-                +font(12)
-                width: 124px
-                margin: 0
-                height: 22px
-                padding: 4px 24px 4px 4px
-
-              input.search
-                +absolute
-                +transparent
-                +pointer
-                top: 2px
-                right: 2px
-                border: none
-                height: 32px
-                width: 24px
-                background: url(/images/icons/search-16.png) no-repeat center transparent
-                &:hover
-                  background: url(/images/icons/search-16-hover.png) no-repeat center transparent
-                &:active
-                  background: url(/images/icons/search-16-active.png) no-repeat center transparent
-
-            .userResults
-              +user-select
-
-              .user
-                +round(4)
-                height: 32px
-                line-height: 32px
-                margin: 4px 0 0
-
-                .avatar, .username, .statusIcon
-                  +left
-                  margin: 0 8px 0 0
-
-                .avatar
-                  +round(4)
-                  +flat-right
-                  width: 32px
-                  height: 32px
-
-                .username
-                  +font(12)
-
-                .statusIcon
-                  width: 16px
-                  height: 16px
-                  margin: 8px 8px 0 0
-                  background: url(/images/icons/friend-stream-sprite.png) no-repeat
-                  &.none
-                    background-position: 0% 0%
-                  &.following
-                    background-position: 0% 33%
-                  &.followed_by
-                    background-position: 0% 66%
-                  &.friends
-                    background-position: 0% 100%
-
-                .close
-                  +close-16
-                  +right
-                  height: 32px
-                  margin: 0 4px 0 0
-
-            label.taggedUsers, label.hideShared
-              +round(8)
-              +pointer
-              +block
+            .username
               +font(12)
-              padding: 0 4px
-              height: 22px
-              line-height: 22px
-              margin: 4px 0 0
-              .img
-                +left
-                width: 16px
-                height: 22px
-                margin: 0 8px 0 2px
-              input
-                +right
-                +pointer
-                +outline
-                margin: 5px 0 0
-            label.taggedUsers
-              .img
-                background: url(/images/icons/tag-16.png) no-repeat center transparent
-              &:hover .img
-                background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
-              &:active .img
-                background: url(/images/icons/tag-16-active.png) no-repeat center transparent
-            label.hideShared
-              .img
-                background: url(/images/icons/anon-16.png) no-repeat center transparent
-              &:hover .img
-                background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
-              &:active .img
-                background: url(/images/icons/anon-16-active.png) no-repeat center transparent
 
-          .everyone
-            +relative
-            +clear
-            margin-bottom: 4px
-            .facebook, .twitter, .buzz
-              +round(8)
-              margin: 4px 0 0
-              label
-                +pointer
-                +block
-                padding: 4px
-                height: 28px
-                line-height: 28px
-                img
-                  margin: 7px 0 0 4px
-                input
-                  +pointer
-                  +right
-                  +outline
-                  margin: 9px 8px 0 8px
-                span, img
-                  +left
-                  margin-right: 4px
-                span.shareOn, span.shared, span.sharedWhen
-                  color: #656565
-                span.sharedWhen, span.shared
-                  margin-top: 2px
-                  font-size: 11px
-                span.shared
-                  text-transform: uppercase
+            .statusIcon
+              width: 16px
+              height: 16px
+              margin: 8px 8px 0 0
+              background: url(/images/icons/friend-stream-sprite.png) no-repeat
+              &.none
+                background-position: 0% 0%
+              &.following
+                background-position: 0% 33%
+              &.followed_by
+                background-position: 0% 66%
+              &.friends
+                background-position: 0% 100%
 
-    .myBooks, .addTheme, .date, .addLocation, #entry_submit
-      +round(20)
-      +center
-      +pointer
-      +right
-      height: 34px
-      line-height: 34px
-      margin: 8px 0 0 8px
-    .myBooks
-      +bold
+            .close
+              +close-16
+              +right
+              height: 32px
+              margin: 0 4px 0 0
+
+        label.taggedUsers, label.hideShared
+          +round(8)
+          +pointer
+          +block
+          +font(12)
+          padding: 0 4px
+          height: 22px
+          line-height: 22px
+          margin: 4px 0 0
+          .img
+            +left
+            width: 16px
+            height: 22px
+            margin: 0 8px 0 2px
+          input
+            +right
+            +pointer
+            +outline
+            margin: 5px 0 0
+        label.taggedUsers
+          .img
+            background: url(/images/icons/tag-16.png) no-repeat center transparent
+          &:hover .img
+            background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+          &:active .img
+            background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+        label.hideShared
+          .img
+            background: url(/images/icons/anon-16.png) no-repeat center transparent
+          &:hover .img
+            background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
+          &:active .img
+            background: url(/images/icons/anon-16-active.png) no-repeat center transparent
+
+      .everyone
+        +relative
+        +clear
+        margin-bottom: 4px
+        .facebook, .twitter, .buzz
+          +round(8)
+          margin: 4px 0 0
+          label
+            +pointer
+            +block
+            padding: 4px
+            height: 28px
+            line-height: 28px
+            img
+              margin: 7px 0 0 4px
+            input
+              +pointer
+              +right
+              +outline
+              margin: 9px 8px 0 8px
+            span, img
+              +left
+              margin-right: 4px
+            span.shareOn, span.shared, span.sharedWhen
+              color: #656565
+            span.sharedWhen, span.shared
+              margin-top: 2px
+              font-size: 11px
+            span.shared
+              text-transform: uppercase
+
+
+
+
+
+
+  // NEW ENTRY INPUT PANEL
+#newEntry
+  +round(16)
+  width: 662px 
+  padding: 8px
+
+
+
+  // MOOD ICON
+  .moodIcon
+    +absolute
+    right: -26px
+    top: -26px
+  .moodIcon-picker
+    +absolute
+    right: -8px
+    top: -8px
+
+
+  #myBooks, #entry-appearance, #entry-date, #entry-location, #entry_submit
+    +round(20)
+    +center
+    +pointer
+    +right
+    height: 34px
+    line-height: 34px
+    margin: 8px 0 0 8px
+  #myBooks
+    +bold
+    +left
+    width: 184px
+    img
       +left
-      width: 184px
-      img
-        +left
-        margin: 9px 0 0 14px
+      margin: 9px 0 0 14px
 
-    .addTheme, .date, .addLocation
-      width: 42px
-    .addLocation .img, .addTheme .img, .date .img
-      width: 42px
-      height: 34px
-    .addLocation
-      .img
-        background: url('/images/icons/location-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/location-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/location-24.png') center center no-repeat
-    .addLocation.selected
-      .img
-        background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-    .addTheme
-      .img
-        background: url('/images/icons/appearance-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/appearance-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/appearance-24-active.png') center center no-repeat
-    .date 
-      .img
-        background: url('/images/icons/date-24.png') center center no-repeat
-      &:hover .img
-        background: url('/images/icons/date-24-hover.png') center center no-repeat
-      &:active .img
-        background: url('/images/icons/date-24-active.png') center center no-repeat
+  #entry-appearance, #entry-date, #entry-location
+    width: 42px
+  #entry-appearance .img, #entry-date .img, #entry-location .img
+    width: 42px
+    height: 34px
+  #entry-location
+    .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+  #entry-location.selected
+    .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat !important
+  #entry-appearance
+    .img
+      background: url('/images/icons/appearance-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/appearance-24-active.png') center center no-repeat
+  #entry-date 
+    .img
+      background: url('/images/icons/date-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/date-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/date-24-active.png') center center no-repeat
 
-    #postSpinner
-      +right
-      margin: 0 -95px
-      width: 32px
-      height: 55px
-      background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
+  #postSpinner
+    +right
+    margin: 0 -95px
+    width: 32px
+    height: 55px
+    background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
 
-    #entry_submit
-      +bold
-      +font(12)
-      +round(12)
-      width: 100px
-      height: 38px
-      margin: 8px 8px 0 0
-      +save(14)
-      &.disabled
-        +alpha(20)
-      &.disabled, &.selected, &.selected:hover, &.selected:active
-        box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
-        -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
-        -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
-        background: #aaa
-        background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
-        background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
-        color: #fff !important
-        border: 1px solid #777 !important
-        cursor: default !important
+  #entry_submit
+    +bold
+    +font(12)
+    +round(12)
+    width: 100px
+    height: 38px
+    margin: 8px 8px 0 0
+    +save(14)
+    &.disabled
+      +alpha(20)
+    &.disabled, &.selected, &.selected:hover, &.selected:active
+      box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
+      background: #aaa
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
+      background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
+      color: #fff !important
+      border: 1px solid #777 !important
+      cursor: default !important
 
 
 
@@ -818,472 +787,459 @@
 
 // NEW ENTRY
 // COLORS
-.light
-  #entryField
+.light #entryField
 
-    #newEntry
-      +flat-light
-      +glow-light(40)
+  #newEntry
+    +flat-light
+    +glow-light(40)
 
-      .entryType
-        +indent-light
-        +button-light
+  // SHARED PANEL STYLES
+  .entryPanels
+    +shine-light-alpha(27)
 
-    // SHARED PANEL STYLES
-    .entryPanels
-      +shine-light-alpha(27)
+  // NEW ENTRY OPTIONS
+  #entryOptions
+    +shine-light(24)
+    +border-light
 
-    // NEW ENTRY OPTIONS
-    #entryOptions
-      +shine-light(24)
-      +border-light
+    // SHARING
+    .sharing
 
-      // SHARING
-      .sharing
+      .listOfUsers
+        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
+          +indent-light
+          +button-light
+          border: 1px solid #777
 
-        .listOfUsers, .everyone
-          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
-            +indent-light
-            +button-light
+        .searchWrap
+          input.searchField
+            +input-light(small)
+            &:focus
+              color: #777
+              box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
+              -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
+              -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
+
+        .userResults
+          .user
+            +bevel-light
             border: 1px solid #777
 
-          .searchWrap
-            input.searchField
-              +input-light(small)
-              &:focus
-                color: #777
-                box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
-                -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
-                -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
+        .buzz
+          +button-light
+          +shine-light(16)
 
-          .userResults
-            .user
-              +bevel-light
-              border: 1px solid #777
+    #entry_submit
+      +button-light
+      +shine-light(16)
+      +gradient(#b9b9b9, #1a1a1a)
+      +save(16)
+      color: #fff
+      border: 1px solid #a9a9a9
 
-          .buzz
-            +button-light
-            +shine-light(16)
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
+      +indent-light
+      +button-light
+      border: 1px solid #fff
 
-      #entry_submit
-        +button-light
-        +shine-light(16)
-        +gradient(#b9b9b9, #1a1a1a)
-        +save(16)
-        color: #fff
-        border: 1px solid #a9a9a9
+  // ENTRY DATE & TIME
+  .entryDateTime
 
-      .sharing, .myBooks, .addTheme, .addLocation, .date
-        +indent-light
-        +button-light
-        border: 1px solid #fff
+    .hour, .month, .day, .year, .minute, .amPm
+      +input-light(small)
+      +border-light
 
-    // ENTRY DATE & TIME
-    .entryDateTime
+  // ENTRY LOCATION
+  .entryLocation
 
-      .hour, .month, .day, .year, .minute, .amPm
-        +input-light(small)
-        +border-light
+    .finding, .name, .city, .state, .country
+      +input-light(small)
 
-    // ENTRY LOCATION
-    .entryLocation
+  // ENTRY IMAGES
+  .entryImages
 
-      .finding, .name, .city, .state, .country
-        +input-light(small)
+    .entryImageContainer
+      background: url(/images/icons/spinner-light-32.gif) no-repeat center center white
 
-    // ENTRY IMAGES
-    .entryImages
+    #addFromImageBank
+      +bevel-light
+      +button-light
 
-      .entryImageContainer
-        background: url(/images/icons/spinner-light-32.gif) no-repeat center center white
-
-      #addFromImageBank
-        +bevel-light
-        +button-light
-
-      #imageDropArea
-        +input-light(large)
+    #imageDropArea
+      +input-light(large)
 
 
-    // NEW ENTRY TAG
-    .entryTags
-      .tagInputWrap
-        background: url(/images/slices/inputLeftLight-40.png) no-repeat left
-        .tagInput
-          background: url(/images/slices/inputContentLight-40.png) repeat-x
-          input
-            color: #333
-          .tagAdd
-            +button-light
-            +shine-light-alpha(13)
-        .tagInputRight
-          background: url(/images/slices/inputRightLight-40.png) no-repeat right
-
-
-
-    // NEW ENTRY LINK
-    .entryLinks
-
-      #linkInputWrap
-        +input-light(large)
-        #linkValue
+  // NEW ENTRY TAG
+  .entryTags
+    .tagInputWrap
+      background: url(/images/slices/inputLeftLight-40.png) no-repeat left
+      .tagInput
+        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        input
           color: #333
-        .linkAdd
+        .tagAdd
           +button-light
           +shine-light-alpha(13)
-
-      .linkContainer
-        +border-light
-        +transparent-light(40)
-
-        .url, .title
-          +input-light(small)
-          input
-            color: #555
-
-    // NEW ENTRY EMOTIONS
-    .entryEmotions
-      .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
-        .zero, .one, .two, .three, .four
-          box-shadow:         inset 0 18px rgba(255,255,255,0.5)
-          -moz-box-shadow:    inset 0 18px rgba(255,255,255,0.5)
-          -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
-        .zero
-          +flat-light
-
-      .love
-        .one
-          background-color: rgb(216, 235, 157)
-        .two
-          background-color: rgb(196, 225, 99)
-        .three
-          background-color: rgb(153, 204, 51)
-        .four
-          background-color: rgb(123, 189, 13)
-      .joy
-        .one
-          background-color: rgb(255, 255, 204)
-        .two
-          background-color: rgb(254, 241, 130)
-        .three
-          background-color: rgb(250, 219, 77)
-        .four
-          background-color: rgb(237, 197, 0)
-      .surprise
-        .one
-          background-color: rgb(254, 218, 164)
-        .two
-          background-color: rgb(248, 185, 104)
-        .three
-          background-color: rgb(242, 153, 58)
-        .four
-          background-color: rgb(232, 114, 0)
-      .anger
-        .one
-          background-color: rgb(248, 166, 164)
-        .two
-          background-color: rgb(237, 100, 107)
-        .three
-          background-color: rgb(228, 48, 84)
-        .four
-          background-color: rgb(220, 0, 71)
-      .mystical
-        .one
-          background-color: rgb(206, 178, 216)
-        .two
-          background-color: rgb(186, 153, 203)
-        .three
-          background-color: rgb(148, 99, 198)
-        .four
-          background-color: rgb(123, 78, 163)
-      .wonder
-        .one
-          background-color: rgb(198, 238, 255)
-        .two
-          background-color: rgb(138, 220, 254)
-        .three
-          background-color: rgb(68, 194, 246)
-        .four
-          background-color: rgb(0, 113, 208)
-      .sadness
-        .one
-          background-color: rgb(200, 223, 212)
-        .two
-          background-color: rgb(150, 198, 191)
-        .three
-          background-color: rgb(80, 157, 163)
-        .four
-          background-color: rgb(41, 82, 94)
-      .stress
-        .one
-          background-color: rgb(217, 205, 203)
-        .two
-          background-color: rgb(188, 171, 158)
-        .three
-          background-color: rgb(147, 130, 95)
-        .four
-          background-color: rgb(85, 79, 52)
-      .fear
-        .one
-          background-color: rgb(196, 196, 196)
-        .two
-          background-color: rgb(162, 162, 162)
-        .three
-          background-color: rgb(127, 127, 127)
-        .four
-          background-color: rgb(101, 101, 101)
+      .tagInputRight
+        background: url(/images/slices/inputRightLight-40.png) no-repeat right
 
 
-    // NEW ENTRY ATTACHMENTS
-    .entryAttach
-      +shine-light-alpha(24)
-      p
-        color: #090909
 
+  // NEW ENTRY LINK
+  .entryLinks
 
-      .images, .tag, .links, .emotions
-        +bevel-light
+    #linkInputWrap
+      +input-light(large)
+      #linkValue
+        color: #333
+      .linkAdd
         +button-light
+        +shine-light-alpha(13)
+
+    .linkContainer
+      +border-light
+      +transparent-light(40)
+
+      .url, .title
+        +input-light(small)
+        input
+          color: #555
+
+  // NEW ENTRY EMOTIONS
+  .entryEmotions
+    .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
+      .zero, .one, .two, .three, .four
+        box-shadow:         inset 0 18px rgba(255,255,255,0.5)
+        -moz-box-shadow:    inset 0 18px rgba(255,255,255,0.5)
+        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.5)
+      .zero
+        +flat-light
+
+    .love
+      .one
+        background-color: rgb(216, 235, 157)
+      .two
+        background-color: rgb(196, 225, 99)
+      .three
+        background-color: rgb(153, 204, 51)
+      .four
+        background-color: rgb(123, 189, 13)
+    .joy
+      .one
+        background-color: rgb(255, 255, 204)
+      .two
+        background-color: rgb(254, 241, 130)
+      .three
+        background-color: rgb(250, 219, 77)
+      .four
+        background-color: rgb(237, 197, 0)
+    .surprise
+      .one
+        background-color: rgb(254, 218, 164)
+      .two
+        background-color: rgb(248, 185, 104)
+      .three
+        background-color: rgb(242, 153, 58)
+      .four
+        background-color: rgb(232, 114, 0)
+    .anger
+      .one
+        background-color: rgb(248, 166, 164)
+      .two
+        background-color: rgb(237, 100, 107)
+      .three
+        background-color: rgb(228, 48, 84)
+      .four
+        background-color: rgb(220, 0, 71)
+    .mystical
+      .one
+        background-color: rgb(206, 178, 216)
+      .two
+        background-color: rgb(186, 153, 203)
+      .three
+        background-color: rgb(148, 99, 198)
+      .four
+        background-color: rgb(123, 78, 163)
+    .wonder
+      .one
+        background-color: rgb(198, 238, 255)
+      .two
+        background-color: rgb(138, 220, 254)
+      .three
+        background-color: rgb(68, 194, 246)
+      .four
+        background-color: rgb(0, 113, 208)
+    .sadness
+      .one
+        background-color: rgb(200, 223, 212)
+      .two
+        background-color: rgb(150, 198, 191)
+      .three
+        background-color: rgb(80, 157, 163)
+      .four
+        background-color: rgb(41, 82, 94)
+    .stress
+      .one
+        background-color: rgb(217, 205, 203)
+      .two
+        background-color: rgb(188, 171, 158)
+      .three
+        background-color: rgb(147, 130, 95)
+      .four
+        background-color: rgb(85, 79, 52)
+    .fear
+      .one
+        background-color: rgb(196, 196, 196)
+      .two
+        background-color: rgb(162, 162, 162)
+      .three
+        background-color: rgb(127, 127, 127)
+      .four
+        background-color: rgb(101, 101, 101)
 
 
-.dark
-  #entryField
+  // NEW ENTRY ATTACHMENTS
+  .entryAttach
+    +shine-light-alpha(24)
+    p
+      color: #090909
 
-    #entry_body, #entry_title
-      color: #ddd
 
-    // SHARED PANEL STYLES
-    .entryPanels
-      +shine-dark(27)
+    .images, .tag, .links, .emotions
+      +bevel-light
+      +button-light
 
-    #newEntry
-      +flat-dark
-      +glow-dark(40)
 
-      .entryType
-        +button-dark
-        +indent-dark
-        border: 1px solid #222
+.dark #entryField
 
-        #entryType_list
+  #entry_body, #entry_title
+    color: #ddd
+
+  // SHARED PANEL STYLES
+  .entryPanels
+    +shine-dark(27)
+
+  #newEntry
+    +flat-dark
+    +glow-dark(40)
+
+
+  // NEW ENTRY OPTIONS
+  #entryOptions
+    +shine-dark-alpha(24)
+    border: 1px solid rgba(0, 0, 0, 0.75)
+
+    // SHARING
+    .sharing
+
+      #sharing_select
+        color: #ddd
+        option
           color: #ddd
 
-    // NEW ENTRY OPTIONS
-    #entryOptions
-      +shine-dark-alpha(24)
-      border: 1px solid rgba(0, 0, 0, 0.75)
+      .listOfUsers
+        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
+          +indent-dark
+          +button-dark
+          border: 1px solid #444
 
-      // SHARING
-      .sharing
+        .searchWrap
+          input.searchField
+            +input-dark(small)
+            color: #ccc
+            &:focus
+              color: #ddd
+              box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
+              -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
+              -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
 
-        #sharing_select
-          color: #ddd
-          option
-            color: #ddd
-
-        .listOfUsers, .everyone
-          label.taggedUsers, label.hideShared, .url, .facebook, .twitter
-            +indent-dark
-            +button-dark
+        .userResults
+          .user
+            +bevel-dark
             border: 1px solid #444
 
-          .searchWrap
-            input.searchField
-              +input-dark(small)
-              color: #ccc
-              &:focus
-                color: #ddd
-                box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
-                -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
-                -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
+        .buzz
+          +button-dark
+          +shine-dark(16)
 
-          .userResults
-            .user
-              +bevel-dark
-              border: 1px solid #444
+    #entry_submit
+      +button-dark
+      color: #fff
+      +save(16)
+      box-shadow:         inset 0 16px rgba(255,255,255,0.2)
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
+      background: #aaa
+      +gradient(#222, #aaa)
 
-          .buzz
-            +button-dark
-            +shine-dark(16)
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
+      +indent-dark
+      +button-dark
+      border: 1px solid #000
 
-      #entry_submit
-        +button-dark
-        color: #fff
-        +save(16)
-        box-shadow:         inset 0 16px rgba(255,255,255,0.2)
-        -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
-        -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
-        background: #aaa
-        +gradient(#222, #aaa)
+  // ENTRY DATE & TIME
+  .entryDateTime
 
-      .sharing, .myBooks, .addTheme, .sharing, .addLocation, .date
-        +indent-dark
-        +button-dark
-        border: 1px solid #000
+    .hour, .month, .day, .year, .minute, .amPm
+      +input-dark(small)
+      +border-dark
 
-    // ENTRY DATE & TIME
-    .entryDateTime
+  // ENTRY LOCATION
+  .entryLocation
 
-      .hour, .month, .day, .year, .minute, .amPm
-        +input-dark(small)
-        +border-dark
+    .finding, .name, .city, .state, .country
+      +input-dark(small)
+    input, select, option
+      color: #ccc
 
-    // ENTRY LOCATION
-    .entryLocation
+  // ENTRY IMAGES
+  .entryImages
 
-      .finding, .name, .city, .state, .country
-        +input-dark(small)
-      input, select, option
-        color: #ccc
+    .entryImageContainer
+      background: url(/images/icons/spinner-dark-32.gif) no-repeat center center black
 
-    // ENTRY IMAGES
-    .entryImages
+    #addFromImageBank
+      +bevel-dark
+      +button-dark
 
-      .entryImageContainer
-        background: url(/images/icons/spinner-dark-32.gif) no-repeat center center black
+    #imageDropArea
+      +input-dark(large)
 
-      #addFromImageBank
-        +bevel-dark
-        +button-dark
+  // NEW ENTRY TAG
+  .entryTags
 
-      #imageDropArea
-        +input-dark(large)
-
-    // NEW ENTRY TAG
-    .entryTags
-
-      .tagInputWrap
-        background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
-        .tagInput
-          background: url(/images/slices/inputContent-Dark-40.png) repeat-x
-          input
-            color: #ddd
-          .tagAdd
-            +button-dark
-            +shine-dark-alpha(13)
-        .tagInputRight
-          background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
-
-    // NEW ENTRY LINK
-    .entryLinks
-
-      #linkInputWrap
-        +input-dark(large)
-        #linkValue
+    .tagInputWrap
+      background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
+      .tagInput
+        background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+        input
           color: #ddd
-        .linkAdd
+        .tagAdd
           +button-dark
           +shine-dark-alpha(13)
+      .tagInputRight
+        background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
 
-      .linkContainer
-        +border-dark
-        +transparent-dark(20)
+  // NEW ENTRY LINK
+  .entryLinks
 
-        .url, .title
-          +input-dark(small)
-          input
-            color: #ccc
-
-    // NEW ENTRY MOOD
-    .entryEmotions
-      .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
-        .one, .two, .three, .four
-          box-shadow:         inset 0 18px rgba(255,255,255,0.2)
-          -moz-box-shadow:    inset 0 18px rgba(255,255,255,0.2)
-          -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
-        .zero
-          color: #ddd
-          +flat-dark
-
-      .love
-        .one
-          background-color: rgb(40, 60, 7)
-        .two
-          background-color: rgb(83, 122, 15)
-        .three
-          background-color: rgb(125, 184, 22)
-        .four
-          background-color: rgb(147, 226, 12)
-      .joy
-        .one
-          background-color: rgb(60, 59, 7)
-        .two
-          background-color: rgb(122, 117, 15)
-        .three
-          background-color: rgb(184, 178, 22)
-        .four
-          background-color: rgb(226, 218, 12)
-      .surprise
-        .one
-          background-color: rgb(60, 47, 7)
-        .two
-          background-color: rgb(122, 94, 15)
-        .three
-          background-color: rgb(184, 142, 22)
-        .four
-          background-color: rgb(226, 171, 12)
-      .anger
-        .one
-          background-color: rgb(60, 22, 7)
-        .two
-          background-color: rgb(122, 44, 15)
-        .three
-          background-color: rgb(184, 67, 22)
-        .four
-          background-color: rgb(226, 71, 12)
-      .mystical
-        .one
-          background-color: rgb(31, 7, 60)
-        .two
-          background-color: rgb(62, 15, 122)
-        .three
-          background-color: rgb(94, 22, 184)
-        .four
-          background-color: rgb(106, 12, 226)
-      .wonder
-        .one
-          background-color: rgb(7, 41, 60)
-        .two
-          background-color: rgb(15, 85, 122)
-        .three
-          background-color: rgb(22, 128, 184)
-        .four
-          background-color: rgb(12, 152, 226)
-      .sadness
-        .one
-          background-color: rgb(25, 41, 43)
-        .two
-          background-color: rgb(50, 84, 87)
-        .three
-          background-color: rgb(75, 126, 131)
-        .four
-          background-color: rgb(82, 150, 156)
-      .stress
-        .one
-          background-color: rgb(43, 28, 25)
-        .two
-          background-color: rgb(87, 56, 50)
-        .three
-          background-color: rgb(131, 85, 75)
-        .four
-          background-color: rgb(156, 94, 82)
-      .fear
-        .one
-          background-color: rgb(34, 34, 34)
-        .two
-          background-color: rgb(69, 69, 69)
-        .three
-          background-color: rgb(103, 103, 103)
-        .four
-          background-color: rgb(119, 119, 119)
-
-
-    // NEW ENTRY ATTACHMENTS
-    .entryAttach
-      +shine-dark-alpha(24)
-      p
-        color: #8a8a8a
-
-      .images, .tag, .links, .emotions
-        +bevel-dark
+    #linkInputWrap
+      +input-dark(large)
+      #linkValue
+        color: #ddd
+      .linkAdd
         +button-dark
+        +shine-dark-alpha(13)
+
+    .linkContainer
+      +border-dark
+      +transparent-dark(20)
+
+      .url, .title
+        +input-dark(small)
+        input
+          color: #ccc
+
+  // NEW ENTRY MOOD
+  .entryEmotions
+    .love, .joy, .surprise, .anger, .mystical, .wonder, .sadness, .stress, .fear
+      .one, .two, .three, .four
+        box-shadow:         inset 0 18px rgba(255,255,255,0.2)
+        -moz-box-shadow:    inset 0 18px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 18px rgba(255,255,255,0.2)
+      .zero
+        color: #ddd
+        +flat-dark
+
+    .love
+      .one
+        background-color: rgb(40, 60, 7)
+      .two
+        background-color: rgb(83, 122, 15)
+      .three
+        background-color: rgb(125, 184, 22)
+      .four
+        background-color: rgb(147, 226, 12)
+    .joy
+      .one
+        background-color: rgb(60, 59, 7)
+      .two
+        background-color: rgb(122, 117, 15)
+      .three
+        background-color: rgb(184, 178, 22)
+      .four
+        background-color: rgb(226, 218, 12)
+    .surprise
+      .one
+        background-color: rgb(60, 47, 7)
+      .two
+        background-color: rgb(122, 94, 15)
+      .three
+        background-color: rgb(184, 142, 22)
+      .four
+        background-color: rgb(226, 171, 12)
+    .anger
+      .one
+        background-color: rgb(60, 22, 7)
+      .two
+        background-color: rgb(122, 44, 15)
+      .three
+        background-color: rgb(184, 67, 22)
+      .four
+        background-color: rgb(226, 71, 12)
+    .mystical
+      .one
+        background-color: rgb(31, 7, 60)
+      .two
+        background-color: rgb(62, 15, 122)
+      .three
+        background-color: rgb(94, 22, 184)
+      .four
+        background-color: rgb(106, 12, 226)
+    .wonder
+      .one
+        background-color: rgb(7, 41, 60)
+      .two
+        background-color: rgb(15, 85, 122)
+      .three
+        background-color: rgb(22, 128, 184)
+      .four
+        background-color: rgb(12, 152, 226)
+    .sadness
+      .one
+        background-color: rgb(25, 41, 43)
+      .two
+        background-color: rgb(50, 84, 87)
+      .three
+        background-color: rgb(75, 126, 131)
+      .four
+        background-color: rgb(82, 150, 156)
+    .stress
+      .one
+        background-color: rgb(43, 28, 25)
+      .two
+        background-color: rgb(87, 56, 50)
+      .three
+        background-color: rgb(131, 85, 75)
+      .four
+        background-color: rgb(156, 94, 82)
+    .fear
+      .one
+        background-color: rgb(34, 34, 34)
+      .two
+        background-color: rgb(69, 69, 69)
+      .three
+        background-color: rgb(103, 103, 103)
+      .four
+        background-color: rgb(119, 119, 119)
+
+
+  // NEW ENTRY ATTACHMENTS
+  .entryAttach
+    +shine-dark-alpha(24)
+    p
+      color: #8a8a8a
+
+    .images, .tag, .links, .emotions
+      +bevel-dark
+      +button-dark

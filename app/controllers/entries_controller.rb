@@ -2,17 +2,16 @@ class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream, :random]
 
-  def entry_list(filters=nil)
+  def entry_list(lens=nil, filters=nil)
+    session[:lens] = lens unless lens.nil?
+    
     filters ||= session[:filters] || {}
 
-    # This is an example of a hack due to tightly coupling Display to Data.
-    filters.delete(:type) if filters[:type] == "all entries"
-
     return case session[:lens]
-      when :stream
-        Entry.dreamstream(current_user, filters)
-      else # when :field
-        Entry.dreamfield(current_user, @user, filters)
+    when :stream
+      current_user ? Entry.dreamstream(current_user, filters) : []
+    else
+      Entry.dreamfield(current_user, @user, filters)
     end
   end
   
@@ -20,14 +19,13 @@ class EntriesController < ApplicationController
     @filters = params[:filters] || {}
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
     @filters[:page] ||= params[:page]
-    @filters[:page_size] ||= 31
+    @filters[:page_size] ||= 24
+    session[:filters] = @filters
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
-    session[:lens] = :field
-    session[:filters] = @filters
 
-    @entries = entry_list
-    @entry_count = entry_list({type: @filters[:type], show_all: "true"}).count
+    @entries = entry_list(:home)
+    @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
 
@@ -45,6 +43,7 @@ class EntriesController < ApplicationController
     flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
 
     @entries = entry_list
+    
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
@@ -61,6 +60,7 @@ class EntriesController < ApplicationController
   
   def new
     @entry = Entry.new
+    @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
   end
   
@@ -124,12 +124,10 @@ class EntriesController < ApplicationController
   end
 
   def stream
-    session[:lens] = :stream
-    session[:filters] = params[:filters] || {}
-
     @user = current_user
-    
-    @entries = entry_list
+    @filters = @user.update_stream_filter(params[:filters])
+    session[:filters] = @filters
+    @entries = entry_list(:stream, @filters)
     
     if request.xhr?
       thumbs_html = ""

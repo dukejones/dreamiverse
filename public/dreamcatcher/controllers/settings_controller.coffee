@@ -1,34 +1,67 @@
 $.Controller 'Dreamcatcher.Controllers.Settings',
 
+  model: Dreamcatcher.Models.Settings
+  
   init: ->
     @setupDefaults()
     @setupAjaxBinding()
-    
+  
   setupDefaults: ->
-    sharingLevel = $('#settingsPanel .defaultSharing').data 'id'
-    $('#sharingList').val(sharingLevel) 
-    @displaySharingLevel sharingLevel
+    # Gather the in page defaults
+    defaultLandingPage = $('#default-landingPage').data 'id'
+    defaultMenuStyle = $('#default-menuStyle').data 'id'
+    defaultFontSize = $('#default-fontSize').data 'id'
     
+    # Set the pulldown defaults
+    $('#default-landingPage-list').val(defaultLandingPage)
+    $('#default-menuStyle-list').val(defaultMenuStyle)
+
+    @displayDefaultLandingPage defaultLandingPage
+ 
+ 
   showPanel: ->    
     $('#settingsPanel').show()
+    
+        
+  # Default settings display methods
+  displayDefaultLandingPage: (defaultLandingPage) ->
+    landingIcon = $('#default-landingPage-icon')
+    landingIcon.removeClass(className) for className in ['stream','home','today']
+    landingIcon.addClass(defaultLandingPage)
 
-  displaySharingLevel: (sharingLevel) ->
-    #TODO: after SASS refactor, replace with class
-    sharingLevel = parseInt sharingLevel
-    switch sharingLevel
-      when 500 then background = 'sharing-24-hover.png'
-      when 200 then background = 'friend-24.png'
-      when 150 then background = 'friend-follower-24.png'
-      when 50 then background = 'anon-24-hover.png'
-      when 0 then background = 'private-24-hover.png'
+  displayDefaultMenuStyle: (defaultMenuStyle) ->
+    pageBody = $('#body')
+    pageBody.removeClass(className) for className in ['float','inpage']
+    pageBody.addClass(defaultMenuStyle)
 
-    $('.sharingIcon').css "background","url(/images/icons/#{background}) no-repeat center transparent"
+  displayDefaultFontSize: (defaultFontSize) ->
+    pageBody = $('#body')
+    pageBody.removeClass(className) for className in ['fontSmall','fontMedium','fontLarge']
+    pageBody.addClass(defaultFontSize)
+ 
+    
+  # Listener methods
+  '#default-landingPage-list change': (element) ->
+    defaultLandingPage = element.val()
+    @displayDefaultLandingPage defaultLandingPage
+    @model.update {'user[default_landing_page]': defaultLandingPage} 
 
-  updateSharingLevel: (sharingLevel) ->
-    Dreamcatcher.Models.Settings.update sharingLevel
+  '#default-menuStyle-list change': (element) ->
+    defaultMenuStyle = element.val()
+    @displayDefaultMenuStyle defaultMenuStyle
+    @model.update {'user[view_preference_attributes][menu_style]': defaultMenuStyle} 
 
+  '#default-fontSize .fontSize click': (element) ->
+    defaultFontSize = element.attr("id")
+    @displayDefaultFontSize defaultFontSize
+    @model.update {'user[view_preference_attributes][font_size]': defaultFontSize}
+
+  '.cancel click': ->
+    $('.changePasswordForm').hide()
+    $('#user_password,#user_password_confirmation').val ''
+    
+  # Facebook and change password code: TODO: Needs refactoring
   setupAjaxBinding: ->
-    #TODO: Needs refactoring.
     $('#fbLink').bind 'ajax:success', (event, xhr, status)->
       $('#fbLink').remove()
       $('.network').append '<a id="fbLink" href="/auth/facebook" class="linkAccount">link account</a>'
@@ -47,14 +80,4 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
         $('#user_old_password, #user_password, #user_password_confirmation').val ''
 
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
-      log xhr.errors
-    
-    
-  '#sharingList change': (el, ev) ->
-    sharingLevel = el.val()
-    @displaySharingLevel sharingLevel
-    @updateSharingLevel sharingLevel
-
-  '.cancel click': ->
-    $('.changePasswordForm').hide()
-    $('#user_password,#user_password_confirmation').val ''
+      log xhr.errors    
