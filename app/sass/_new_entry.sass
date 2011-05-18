@@ -259,7 +259,7 @@ hr
     top: -8px
 
 
-  #myBooks, #entry_appearance, #entry_date, #entry_location, #entry_submit
+  #myBooks, #entry_appearance, #entry_date_time, #entry_location, #entry_submit
     +round(20)
     +center
     +pointer
@@ -275,9 +275,9 @@ hr
       +left
       margin: 9px 0 0 14px
 
-  #entry_appearance, #entry_date, #entry_location
+  #entry_appearance, #entry_date_time, #entry_location
     width: 42px
-  #entry_appearance .img, #entry_date .img, #entry_location .img
+  #entry_appearance .img, #entry_date_time .img, #entry_location .img
     width: 42px
     height: 34px
   #entry_location
@@ -297,7 +297,7 @@ hr
       background: url('/images/icons/appearance-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/appearance-24-active.png') center center no-repeat
-  #entry_date
+  #entry_date_time
     .img
       background: url('/images/icons/date-24.png') center center no-repeat
     &:hover .img
@@ -837,7 +837,7 @@ hr
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date
+    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date_time
       +indent-light
       +button-light
       border: 1px solid #fff
@@ -1072,7 +1072,7 @@ hr
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date
+    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date_time
       +indent-dark
       +button-dark
       border: 1px solid #000
