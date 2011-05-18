@@ -15,7 +15,7 @@ class DreamfieldView
 
     $('#pagination').live "mouseenter", (event) =>
       $('#pagination .next .text').fadeIn('fast')
-      $('#pagination .all').fadeIn()
+      $('#pagination .all').fadeIn('fast')
       
     .live "mouseleave", (event) =>
       $('#pagination .next .text').fadeOut()
