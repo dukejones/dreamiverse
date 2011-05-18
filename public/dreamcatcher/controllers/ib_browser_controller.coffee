@@ -95,7 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @imageCookie.clear()
     $('#dropbox .imagelist').html ''
     
-  '#dropbox .edit click': (el) ->
+  '#dropbox .manage click': (el) ->
     @showManager $('#dropbox li'), 'Drop box'
     
   '#dropbox li .close click': (el) ->
@@ -367,8 +367,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     if not $("#searchOptions").is(":visible")
       @hideAllViews()
       el.addClass 'selected'
-      $('#searchOptions .listBar').html @view('searchTypes', {types: @model.types})
-      $("#searchOptions .genres").html @view('searchCategories', { types: @model.types })
+      #$('#searchOptions .listBar').html @view('searchTypes', {types: @model.types})
+      #$("#searchOptions .categories").html @view('searchCategories', { types: @model.types })
       
       $("#searchOptions").show()
     else
