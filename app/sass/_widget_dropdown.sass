@@ -90,11 +90,11 @@
 
 
 .light .ui-selectmenu-item-focus
-  background-color: black
+  background-color: black !important
   a
     color: white !important
 .dark .ui-selectmenu-item-focus
-  background-color: white
+  background-color: white !important
   a
     color: black !important
 
@@ -115,12 +115,14 @@
   +font(14)
 
 
+#users-filter-wrap, #entry-filter-wrap
+  margin: 4px 0 1px
+
 // STREAM FILTERS - widget
 #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
   +pointer
   +round(12)
   +relative
-  margin: 4px 0 1px
   border: 1px solid #7a7a7a
 
 // STREAM FILTERS - icons
@@ -192,7 +194,6 @@
   height: 34px
   +round(20)
   +right
-  width: 158px // For Chrome
   +font(14)
   +pointer
   +center
@@ -288,6 +289,10 @@
 
 #entryType-list-menu, #sharing-list-menu
   li
+    &.default, &.default-hover
+      background-color: rgba(0,170,255,0.25)
+    &.default label
+      +block
     &:hover label
       +block
     label
@@ -309,6 +314,7 @@
   #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
     +indent-light
     +button-light
+
 .dark
   #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
     +button-dark
@@ -323,9 +329,18 @@
   box-shadow:         0 3px 12px rgba(0,0,0,0.15)
   -moz-box-shadow:    0 3px 10px rgba(0,0,0,0.15)
   -webkit-box-shadow: 0 3px 12px rgba(0,0,0,0.15)
+.light #entryType-list-menu, .light #sharing-list-menu
+  li.default, li.default-hover
+    background-color: #c3ddea
+
 .dark #entryType-list-menu, .dark #sharing-list-menu
   border: 1px solid #222
   +flat-dark
   box-shadow:         0 3px 12px rgba(255,255,255,0.15)
   -moz-box-shadow:    0 3px 10px rgba(255,255,255,0.15)
   -webkit-box-shadow: 0 3px 12px rgba(255,255,255,0.15)
+.dark #entryType-list-menu, .dark #sharing-list-menu
+  li.default, li.default-hover
+    background-color: #333 
+
+
