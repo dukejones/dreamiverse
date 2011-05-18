@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
   protect_from_forgery :except => :create
-  before_filter :require_user, :only => :manage
+  before_filter :require_moderator, :only => :manage
 
   def index
     image_scope = Image.enabled
