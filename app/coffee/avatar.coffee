@@ -28,11 +28,11 @@ class AvatarController
     $.subscribe 'uploader:removed', (event) =>
       @uploaderDisplayed = false
 
-    $('#contextPanel .avatar').live "mouseenter", (event) =>
-      if !@uploaderDisplayed
-        $('.avatar .uploadAvatarWrap').fadeIn('fast')
-    .live "mouseleave", (event) =>
-      $('.avatar .uploadAvatarWrap').fadeOut()
+    # $('#contextPanel .avatar').live "mouseenter", (event) =>
+    #   if !@uploaderDisplayed
+    #     $('.avatar .uploadAvatarWrap').fadeIn('fast')
+    # .live "mouseleave", (event) =>
+    #   $('.avatar .uploadAvatarWrap').fadeOut()
 
   setupUploader: ->
     @avatarParams = 

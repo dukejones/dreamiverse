@@ -14,7 +14,7 @@
     - if (user == current_user) && !is_ipad?
 
 
-      .uploadAvatarWrap.hidden
+      .uploadAvatarWrap
         .uploadAvatar
           <span>+</span> upload new avatar
       #avatarDrop.uploader.hidden
@@ -68,7 +68,7 @@
         .check.hidden
         .close
 
-      .prompt{onclick: "window.contextController.toggleProfile()"} edit your profile
+      / .prompt{onclick: "window.contextController.toggleProfile()"} edit your profile
       .name.hidden{onclick: "window.contextController.toggleProfile()"}
         = user.name
 
