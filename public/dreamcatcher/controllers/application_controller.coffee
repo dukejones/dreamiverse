@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
-    @comment = new Dreamcatcher.Controllers.Comment $('#entryField') if $('#entryField').exists()
+    @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @initSelectMenu()
     @initTooltips()
 
@@ -23,7 +23,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#sharing-list-menu label').tooltip(
     ###
 
-    # STREAM FILTER - user type
     ###
     $('#entry-filter').selectmenu {
     $('#users-filter').selectmenu(
@@ -77,7 +76,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '.button.appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
     
-  '.addTheme .img click': (el) ->
+  '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
 
 $(document).ready ->

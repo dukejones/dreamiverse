@@ -58,7 +58,7 @@
       #entryOptions
         /
           Save for later
-          .myBooks
+          #myBooks
             %img{src: '/images/icons/books-16.png'} My Lucid Dreams
 
         = f.submit :value => 'post', :'data-disable-with' => "posting       "
@@ -146,17 +146,12 @@
         /           %span.sharedWhen 10 hours ago
         /       .clear
 
-        .addLocation.hidden
+        #entry-location.hidden.tooltip{title: "add your location"}
           .img
-          = render partial: "shared/hover_label", locals: {message: "add your location", x: "21", y: "-38",f: f}
-        .date.tooltip{title: "date and time"}
+        #entry-date.tooltip{title: "date and time"}
           .img
-          / = render partial: "shared/hover_label", locals: {message: "date and time", x: "21", y: "-38"}
-        .addTheme.tooltip{title: "appearance"}
+        #entry-appearance.tooltip{title: "appearance"}
           .img
-          / = render partial: "shared/hover_label", locals: {message: "appearance", x: "21", y: "-38"}
-
-
 
     / NEW ENTRY DATE TIME
     = render :partial => "date_time"

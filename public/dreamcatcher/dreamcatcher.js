@@ -32,8 +32,8 @@ steal.plugins(
       'controllers/meta_menu_controller',
       'controllers/settings_controller',
       'controllers/appearance_controller',
-      'controllers/bedsheet_controller',
-      'controllers/comment_controller'
+      'controllers/bedsheets_controller',
+      'controllers/comments_controller'
     );
   })
   .views();

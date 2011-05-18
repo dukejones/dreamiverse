@@ -18,12 +18,14 @@ set :use_sudo, false
 
 
 
-# after "deploy", "deploy:cleanup"
+after "deploy", "deploy:cleanup"
 after "deploy", "barista:brew"
 after "deploy", "uploads:symlink"
+after "deploy", "jmvc:compile"
 
 after "deploy:migrations", "barista:brew"
 after "deploy:migrations", "uploads:symlink"
+after "deploy:migrations", "jmvc:compile"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -40,6 +42,12 @@ end
 
 namespace :barista do
   task :brew do
-    run("cd #{deploy_to}/current; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+    run("cd #{current_path}; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+  end
+end
+
+namespace :jmvc do
+  task :compile do
+    run("cd #{current_path}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
   end
 end

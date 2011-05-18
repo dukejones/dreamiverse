@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Bedsheet',
+$.Controller 'Dreamcatcher.Controllers.Bedsheets',
   
   loadGenre: (genre) ->
     $("#bedsheetScroller .spinner").show()

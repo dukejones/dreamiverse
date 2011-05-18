@@ -422,20 +422,66 @@ a.dcLogo
   +cursor
   +user-select
 
-  h2
-    +absolute
-    top: 120px
-    left: 40px
-    +font(30)
-    color: #fff
-  a
-    +absolute
-    top: 180px
-    left: 120px
-    +font(24)
-    color: #fff
-    &:hover
-      text-decoration: underline
+  .glowBox
+    width: 532px
+    .shineBox
+      padding: 10px
+      width: 512px
+
+      h2
+        +font(20)
+        margin: 10px 0 0 40px
+
+      p
+        +font(14)
+        margin: 10px 0 30px 40px
+
+      .back, .feedback, .home
+        +pointer
+        +shine-blue(14)
+        +round(8)
+        +left
+        +block
+        +font(16)
+        +center
+        +overflow
+        margin: 0
+        height: 28px
+        line-height: 26px
+        color: #ddd
+        +border-blue
+
+        &:hover
+          color: #fff
+          border: 1px solid #fff
+
+      .back
+        width: 71px
+
+      .feedback
+        width: 317px
+        margin: 0 10px
+        .teaser
+          +left
+          width: 46px
+          height: 28px
+          margin: 0 -30px 0 50px
+          background: url(/images/icons/input_teaser.gif) no-repeat center center transparent
+
+      .home
+        width: 97px
+        &:hover .icon
+          background: url(/images/icons/home-16-hover.png) no-repeat center center transparent
+        &:active .icon
+          background: url(/images/icons/home-16-active.png) no-repeat center center transparent
+        .icon
+          +left
+          height: 24px
+          width: 24px
+          margin: 0 -12px 0 16px
+          background: url(/images/icons/home-16.png) no-repeat center center transparent
+
+
 
 
 // RESET PASSWORD PAGE ONLY
