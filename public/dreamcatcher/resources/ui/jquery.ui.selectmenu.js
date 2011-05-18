@@ -83,10 +83,10 @@ $.widget("ui.selectmenu", {
 			.bind('mousedown.selectmenu', function(event) {
 				self._toggle(event, true);
 				// make sure a click won't open/close instantly
-				if (o.style == "popup") {
+				//if (o.style == "popup") {
 					self._safemouseup = false;
 					setTimeout(function() { self._safemouseup = true; }, 300);
-				}
+				//}
 				return false;
 			})
 			.bind('click.selectmenu', function() {
