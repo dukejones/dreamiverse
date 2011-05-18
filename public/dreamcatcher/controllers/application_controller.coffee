@@ -55,7 +55,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
             value: text
             name: id
           }
+        offset: '100px'
       }
+      #$("##{id}-menu").offset "0px", "500px"
       # iterates through each label and radio button
       $("##{id}-menu label.ui-selectmenu-default").each (i,el) ->
         li = $(el).closest('li')

@@ -34,7 +34,7 @@ steal.plugins(
       'controllers/settings_controller',
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
-      'controllers/comments_controller'
+      'controllers/comments_controller',
       'controllers/entry_controller'
     );
   })
