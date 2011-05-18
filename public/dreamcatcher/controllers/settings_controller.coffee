@@ -54,7 +54,8 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#default-fontSize .fontSize click': (element) ->
     defaultFontSize = element.attr("id")
     @displayDefaultFontSize defaultFontSize
-    @model.update {'user[view_preference_attributes][font_size]': defaultFontSize}
+    fontSize = defaultFontSize.replace('font','').toLowerCase() #todo: fix
+    @model.update {'user[view_preference_attributes][font_size]': fontSize}
 
   '.cancel click': ->
     $('.changePasswordForm').hide()

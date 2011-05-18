@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110517061220) do
+ActiveRecord::Schema.define(:version => 20110518020744) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -177,9 +177,9 @@ ActiveRecord::Schema.define(:version => 20110517061220) do
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
-    t.string   "default_landing_page"
-    t.string   "default_entry_type"
     t.string   "stream_filter",         :default => "--- {}\n\n"
+    t.string   "default_landing_page",  :default => "stream"
+    t.string   "default_entry_type",    :default => "dream"
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"

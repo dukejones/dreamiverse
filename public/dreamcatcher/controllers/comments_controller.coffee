@@ -163,8 +163,8 @@ $.Controller 'Dreamcatcher.Controllers.Comments',
     @updateCommentCount entry
     
   '.comment_body focus': (el) ->
-    if el.height() < 40
-      el.animate({height: '40px'}, 'fast')
+    if el.height() < 36
+      el.animate({height: '36px'}, 'fast')
       $(".save", el.parent()).fadeIn 200,->
         $(this).removeClass("hidden")
           

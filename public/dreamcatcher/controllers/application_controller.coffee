@@ -17,6 +17,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       fade: 250
     }
+    $('.tooltip-left').tooltip {
+      track: true
+      delay: 0
+      showURL: false
+      showBody: ' - '
+      positionLeft: true
+      fade: 250
+    }
     ###
     TODO: 
     $('#entryOptions .date').tooltip -doesn't work - weird
@@ -30,26 +38,26 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     )
     
     $('.select-menu-radio').each (i, el) =>
-      $(el).selectmenu {
+      $(el).val $(el).data 'id'
+      $(el).selectmenu(
         style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
         menuWidth: '200px'
-        format: (text) =>
-          return @view("selectMenuFormat",text)
-      }
-    # hack - move labels to outside the a tag.
-    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
-      $(el).appendTo $(el).parent().parent()
-      
+        format: (text, value) =>
+          return @view 'selectMenuFormat', text
+      )
 
+    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
+      $(el).appendTo $(el).parent().parent() # move labels to outside the a tag.
+      
   '.ui-selectmenu-default input click': (el) ->
-    value = el.closest('li').attr('class')
-    data = {}
-    switch el.closest('ul').attr('id').replace('-list-menu','')
+    value = $('a:first',el.closest('li')).data 'value'
+    type = el.closest('ul').attr('id').replace('-menu','')
+    switch type.replace('-list','')
       when 'entryType'
-        data['user[default_entry_type]'] = value
+        @userModel.update {'user[default_entry_type]': value}
       when 'sharing'
-        data['user[default_sharing_level]'] = value
-    @userModel.update { data }
+        @userModel.update {'user[default_sharing_level]': value}
+  
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
