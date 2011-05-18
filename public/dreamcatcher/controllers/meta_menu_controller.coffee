@@ -14,7 +14,7 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
       window.location = $(ev.currentTarget).attr 'href'
 
   expandSelectedPanel: ->
-    $('html, body').animate {scrollTop:0},'slow'
+    $('html, body').animate {scrollTop:0},'slow' if not $('#body').hasClass 'float'
     @currentPanel.showPanel()
     $('#bodyClick').show()
 
