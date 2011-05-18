@@ -500,8 +500,8 @@ function setupEvents(){
     checkAttachButtons();
   })
   
-  $('#entry_date').unbind();
-  $('#entry_date, .dateTimeHeader').click(function(){
+  $('#entry-schmentry').unbind();
+  $('#entry-schmentry, .dateTimeHeader').click(function(){
     if($('.entryDateTime').css('display') == 'none'){
       $('.entryDateTime').slideDown();
     } else {

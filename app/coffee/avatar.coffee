@@ -28,12 +28,6 @@ class AvatarController
     $.subscribe 'uploader:removed', (event) =>
       @uploaderDisplayed = false
 
-    $('#contextPanel .avatar').live "mouseenter", (event) =>
-      if !@uploaderDisplayed
-        $('.avatar .uploadAvatarWrap').fadeIn('fast')
-    .live "mouseleave", (event) =>
-      $('.avatar .uploadAvatarWrap').fadeOut()
-
   setupUploader: ->
     @avatarParams = 
       image:
@@ -78,7 +72,7 @@ class AvatarView
     @displayBodyClick()
     
     
-    @$contextPanel.find('.avatar').hide()
+    # @$contextPanel.find('.avatar').hide()
     @$contextPanel.css('z-index', '1200')
     @$contextPanel.prepend("<div id='avatarDrop' class='uploader'><div class='qq-upload-drop-area' id='avatarDropContainer'><div class='text'><a xmlns='http://www.w3.org/1999/xhtml'>drag new image here</a></div><div class='browse'><div class='toggle'><a xmlns='http://www.w3.org/1999/xhtml'>browse for a file</a></div><div class='cancel'><a xmlns='http://www.w3.org/1999/xhtml'>cancel</a></div><div class='dropboxBrowse'><a xmlns='http://www.w3.org/1999/xhtml'>browse</a></div></div></div></div>")
     

@@ -259,7 +259,7 @@ hr
     top: -8px
 
 
-  #myBooks, #entry_appearance, #entry_date, #entry_location, #entry_submit
+  #myBooks, #entry-appearance, #entry-schmentry, #entry-location, #entry_submit
     +round(20)
     +center
     +pointer
@@ -275,35 +275,35 @@ hr
       +left
       margin: 9px 0 0 14px
 
-  #entry_appearance, #entry_date, #entry_location
+  #entry-appearance, #entry-schmentry, #entry-location
     width: 42px
-  #entry_appearance .img, #entry_date .img, #entry_location .img
+  #entry-appearance .img, #entry-schmentry .img, #entry-location .img
     width: 42px
     height: 34px
-  #entry_location
+  #entry-location
     .img
       background: url('/images/icons/location-24.png') center center no-repeat
     &:hover .img
       background: url('/images/icons/location-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/location-24.png') center center no-repeat
-  #entry_location.selected
+  #entry-location.selected
     .img
       background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-  #entry_appearance
+  #entry-appearance
     .img
       background: url('/images/icons/appearance-24.png') center center no-repeat
     &:hover .img
       background: url('/images/icons/appearance-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/appearance-24-active.png') center center no-repeat
-  #entry_date
+  #entry-schmentry
     .img
       background: url('/images/icons/date-24.png') center center no-repeat
     &:hover .img
       background: url('/images/icons/date-24-hover.png') center center no-repeat
     &:active .img
-      background: url('/images/icons/date-24-active.png') center center no-repeat
+      background: url('/images/icons/date-24.png') center center no-repeat
 
   #postSpinner
     +right
@@ -837,7 +837,7 @@ hr
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-schmentry
       +indent-light
       +button-light
       border: 1px solid #fff
@@ -1072,7 +1072,7 @@ hr
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, #myBooks, #entry_appearance, #entry_location, #entry_date
+    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-schmentry
       +indent-dark
       +button-dark
       border: 1px solid #000

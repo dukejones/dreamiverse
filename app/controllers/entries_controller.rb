@@ -102,7 +102,7 @@ class EntriesController < ApplicationController
     @entry.set_links(params[:links])
     @entry.set_emotions(params[:emotions])
 
-    if @entry.update_attributes(params[:entry])
+    if @entry.update_attributes(params[:entry].merge({updated_at: Time.now}))
       respond_to do |format|
         format.html { redirect_to :action => :show, :id => params[:id] }
         format.json { render :json => {type: 'ok', message: 'entry updated'}}
