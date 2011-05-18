@@ -149,7 +149,6 @@
     +center
     +font(10)
     +user-select
-    +right
     border: 1px solid transparent
     color: #333 !important
     margin-top: 2px
@@ -160,15 +159,18 @@
     font-weight: normal
 
   .stay
-    margin-right: 10px
-    width: 80px
+    +right
+    margin-right: 6px
+    +relative
+    padding-right: 18px
     input
       +outline
-      +right
-      margin: 2px 0 0
+      +absolute
+      right: 2px
+      top: 2px
 
   .forgot
-    margin-left: 10px
+    margin-left: 6px
     +left
     +relative
 

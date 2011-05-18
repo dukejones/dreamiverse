@@ -22,8 +22,8 @@ class StreamView
     @stream = streamModel
     @$container = $('#entryField .matrix')
     @activateLightBox()
+    
     # adds the loading wheel
-
     $('#entry-filter, #users-filter').change( (event) =>
       $('#entry-filter-wrap .spinner').show() if event.currentTarget.id is 'entry-filter'
       $('#users-filter-wrap .spinner').show() if event.currentTarget.id is 'users-filter'
@@ -78,10 +78,7 @@ class StreamModel
     $.getJSON("/stream.json", {filters: filters}).promise()  
   updateFilters: ->
     @entryFilter = $('#entry-filter').val()
-    @usersFilter = $('#users-filter').val()    
-    
-    log '@entryFilter: ' + @entryFilter
-    log '@usersFilter: ' + @usersFilter   
+    @usersFilter = $('#users-filter').val()     
 
   filterOptions: ->
     type: @entryFilter

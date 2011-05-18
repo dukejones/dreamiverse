@@ -1,5 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.Settings',
 
+  model: Dreamcatcher.Models.Settings
+  
   init: ->
     @setupDefaults()
     @setupAjaxBinding()
@@ -19,10 +21,6 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
  
   showPanel: ->    
     $('#settingsPanel').show()
-
-
-  updateSettingsModel: (params) ->
-    Dreamcatcher.Models.Settings.update params
     
         
   # Default settings display methods
@@ -46,17 +44,17 @@ $.Controller 'Dreamcatcher.Controllers.Settings',
   '#default-landingPage-list change': (element) ->
     defaultLandingPage = element.val()
     @displayDefaultLandingPage defaultLandingPage
-    @updateSettingsModel {'user[default_landing_page]': defaultLandingPage} 
+    @model.update {'user[default_landing_page]': defaultLandingPage} 
 
   '#default-menuStyle-list change': (element) ->
     defaultMenuStyle = element.val()
     @displayDefaultMenuStyle defaultMenuStyle
-    @updateSettingsModel {'user[view_preference_attributes][menu_style]': defaultMenuStyle} 
+    @model.update {'user[view_preference_attributes][menu_style]': defaultMenuStyle} 
 
   '#default-fontSize .fontSize click': (element) ->
     defaultFontSize = element.attr("id")
     @displayDefaultFontSize defaultFontSize
-    @updateSettingsModel {'user[view_preference_attributes][font_size]': defaultFontSize}
+    @model.update {'user[view_preference_attributes][font_size]': defaultFontSize}
 
   '.cancel click': ->
     $('.changePasswordForm').hide()
