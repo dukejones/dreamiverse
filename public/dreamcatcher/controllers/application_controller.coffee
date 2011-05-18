@@ -5,6 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
+    @entry = new Dreamcatcher.Controllers.Entry $("#newEntry") if $("#newEntry").exists()
     @initSelectMenu()
     @initTooltips()
 

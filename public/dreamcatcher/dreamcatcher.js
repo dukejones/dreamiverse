@@ -23,6 +23,7 @@ steal.plugins(
   .then(function() {
     //TODO: StealJS fix: don't forget to contribute!
     steal.coffee(
+      'classes/cookie_helper',
       'models/settings',
       'models/appearance',
       'models/bedsheet',
@@ -34,6 +35,7 @@ steal.plugins(
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
       'controllers/comments_controller'
+      'controllers/entry_controller'
     );
   })
   .views();
