@@ -1,5 +1,5 @@
 / ENTRY THUMB 1D - GENERAL
-- cache([entry, "thumb1d"]) do
+- cache([entry, entry.user, "thumb1d"]) do
   .thumb-1d{class: entry.images.blank? ? "noImage" : "",:'data-id' => entry.id, :'data-userid' => entry.user.id}
     .entry
       / LEFT SIDE
