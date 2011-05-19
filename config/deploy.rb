@@ -19,13 +19,9 @@ set :use_sudo, false
 
 
 after "deploy", "deploy:cleanup"
-after "deploy", "barista:brew"
-after "deploy", "uploads:symlink"
-after "deploy", "jmvc:compile"
-
-after "deploy:migrations", "barista:brew"
-after "deploy:migrations", "uploads:symlink"
-after "deploy:migrations", "jmvc:compile"
+before "deploy:symlink", "barista:brew"
+before "deploy:symlink", "uploads:symlink"
+before "deploy:symlink", "jmvc:compile"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
