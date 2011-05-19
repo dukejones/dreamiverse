@@ -15,12 +15,18 @@
   +relative
   margin: 0 auto
   width: 1160px
+  height: 100%
 
+  &:hover .close
 
-  .close
+    +close-24
+    +block
     +absolute
-    top: 24px
-    right: 24px
+    +alpha(20)
+    top: 20px
+    right: 40px
+
+
 
 
   // LEFT & RIGHT
@@ -51,7 +57,7 @@
     +bold
     +center
     +overflow
-    +alpha(30)
+    +alpha(40)
     top: 60px
     width: 180px
     height: 720px
@@ -86,6 +92,8 @@
         margin: -40px 0 0
 
 
+
+
   // LEFT & RIGHT REFLECT
   .leftReflect
     left: 0
@@ -117,7 +125,7 @@
     top: 800px
     width: 180px
     height: 80px
-    +alpha(30)
+    +alpha(40)
 
     img
       +absolute
@@ -130,6 +138,7 @@
       left: 0
       width: 180px
       height: 80px
+
 
 
 
@@ -157,7 +166,7 @@
   .imageReflect
     +absolute
     +overflow
-    +alpha(30)
+    +alpha(40)
     top: 800px
     left: 220px
     width: 720px
@@ -174,6 +183,52 @@
       height: 80px
       +gradient(rgba(0,0,0,0.0), rgba(0,0,0,1.0))
 
+
+
+
+  // CONTROLS
+  .controls
+    +absolute
+    top: 800px
+    left: 220px
+    padding: 12px
+    width: 696px
+    height: 56px
+    color: #ddd
+
+    &:hover .info
+      +alpha(100)
+    &:hover .tagging
+      +alpha(100)
+    &:hover .download
+      +alpha(100)
+
+    .info, .tagging, .download
+      +pointer
+      +user-select
+      +left
+      +alpha(40)
+      width: 24px
+      height: 24px
+      margin: 0 12px 0 0
+
+    .info
+      background: url(/images/icons/info-24.png) no-repeat center center transparent
+      &:hover
+        background: url(/images/icons/info-24-hover.png) no-repeat center center transparent
+      &:active
+        background: url(/images/icons/info-24-active.png) no-repeat center center transparent
+
+    .tagging
+      background: url(/images/icons/tag-24.png) no-repeat center center transparent
+      &:hover
+        background: url(/images/icons/tag-24-hover.png) no-repeat center center transparent
+      &:active
+        background: url(/images/icons/tag-24-active.png) no-repeat center center transparent
+
+    .download
+
+    .comment
 
 
 
