@@ -92,14 +92,16 @@ class Entry < ActiveRecord::Base
   end
   
   # where dream is public or i am friends with entry.user
+  # XXX: Does not work yet. Perfect the unit test.
   def self.accessible_by(user)
     where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
+        { user: user } |
         (
           { sharing_level: Entry::Sharing[:friends] } & 
           { user: { following: user, followers: user} }
-        ) 
+        )
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   end
