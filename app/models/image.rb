@@ -79,14 +79,16 @@ class Image < ActiveRecord::Base
   def write(binary_data)
     begin
       delete_all_resized_files!
-      file = File.open(path, 'wb')
-      file.write(binary_data)
+      
+      @original_magick = MiniMagick::Image.read(binary_data)
       set_metadata
       self.save!
-      file = File.open(path, 'wb')
-      file.write(binary_data)
-    ensure
-      file._?.close
+      
+      @original_magick.write(path)
+    #   file = File.open(path, 'wb')
+    #   file.write(binary_data)
+    # ensure
+    #   file._?.close
     end
   end
 
