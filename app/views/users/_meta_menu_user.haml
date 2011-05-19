@@ -6,10 +6,10 @@
   .leftPanelWrap
     .leftPanel
 
-      %a.item.stream.tooltip{href: stream_path, title: "stream"}
+      %a.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
         .img
 
-      %a.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
+      %a.item.stream.tooltip{href: stream_path, title: "stream"}
         .img
 
       %a.item.dreamstars.tooltip{href: '/dreamstars', title: "dreamstars"}
