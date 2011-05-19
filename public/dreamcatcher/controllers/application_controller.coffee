@@ -6,6 +6,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
     @initSelectMenu()
     @initTooltips()
+    
+  userModel: Dreamcatcher.Models.User
 
 
   initTooltips: ->
