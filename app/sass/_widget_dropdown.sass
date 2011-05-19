@@ -32,11 +32,11 @@
   margin-top: -1px
 .ui-selectmenu-menu-dropdown
 .ui-selectmenu-menu li
-  padding: 0
+  padding: 1px 0
   margin: 0
   +block
-  border-top: 1px dotted transparent
-  border-bottom: 1px dotted transparent
+  // border-top: 1px dotted transparent
+  // border-bottom: 1px dotted transparent
   border-right-width: 0 !important
   border-left-width: 0 !important
   font-weight: normal !important
@@ -90,11 +90,11 @@
 
 
 .light .ui-selectmenu-item-focus
-  background-color: black !important
+  background-color: #333 !important
   a
     color: white !important
 .dark .ui-selectmenu-item-focus
-  background-color: white !important
+  background-color: #ccc !important
   a
     color: black !important
 
@@ -149,7 +149,7 @@
   &.journals .ui-selectmenu-status, .journals a
     background: url(/images/icons/journal-24-hover.png) no-repeat 10px center
 
-  // fix for chrome hovers
+  // chrome fix hovers
   .allEntries.ui-selectmenu-item-focus
     +round(11)
     +flat-bottom
@@ -166,12 +166,12 @@
   &.following .ui-selectmenu-status, .following a
     background: url(/images/icons/friend-24-follow.png) no-repeat 10px center
 
-  // fix for chrome hovers
+  // chrome fix hovers
   .allUsers.ui-selectmenu-item-focus
-    +round(12)
+    +round(11)
     +flat-bottom
   .following.ui-selectmenu-item-focus
-    +round(12)
+    +round(11)
     +flat-top
 
 
@@ -289,12 +289,12 @@
   .journal a
     background: url(/images/icons/journal-24-hover.png) no-repeat 8px center
 
-  // fix for chrome hovers
-  .dream.ui-selectmenu-item-focus, &.default
-    +round(20)
+  // chrome fix for hovers
+  .dream.ui-selectmenu-item-focus
+    +round(19)
     +flat-bottom
-  .journal.ui-selectmenu-item-focus, &.default
-    +round(20)
+  .journal.ui-selectmenu-item-focus
+    +round(19)
     +flat-top
 
 
@@ -310,12 +310,12 @@
   &.private .ui-selectmenu-status, .private a
     background: url(/images/icons/private-24-hover.png) no-repeat 8px center
 
-  // fix for chrome hovers
+  // chrome fix for hovers
   .everyone.ui-selectmenu-item-focus
-    +round(20)
+    +round(19)
     +flat-bottom
   .private.ui-selectmenu-item-focus
-    +round(20)
+    +round(19)
     +flat-top
 
 
@@ -323,11 +323,20 @@
   li
     &.default, &.default-hover
       background-color: rgba(0,170,255,0.25)
+
+      // chrome fix for entry type
+      &.dream
+        +round(19)
+        +flat-bottom
+      &.journal
+        +round(19)
+        +flat-top
+      // chrome fix for sharing level
       &.everyone
-        +round(20)
+        +round(19)
         +flat-bottom
       &.private
-        +round(20)
+        +round(19)
         +flat-top
 
     &.default label
