@@ -81,7 +81,7 @@
           %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
             = "#{(user.link.blank?) ? ' ' : user.link.url}" 
 
-        - if user.friends_with?(current_user)
+        - if user.friends_with?(current_user) || user == current_user
           .email= user.email
           .phone= user.phone
           .skype= user.skype
