@@ -19,8 +19,6 @@ class Image < ActiveRecord::Base
   #
   # Callbacks 
   #
-  before_validation :parse_incoming_parameters
-  
   before_destroy :delete_all_files!
 
   #
@@ -80,18 +78,18 @@ class Image < ActiveRecord::Base
   #
   def write(binary_data)
     begin
-      parse_incoming_parameters
       delete_all_resized_files!
+      set_metadata
       file = File.open(path, 'wb')
       file.write(binary_data)
     ensure
       file._?.close
     end
-    set_metadata!
   end
 
-  def import_from_file(filename)
-    self.incoming_filename = filename.split('/').last
+  def import_from_file(filename, original_filename=nil)
+    original_filename ||= filename.split('/').last
+    self.incoming_filename = original_filename
     file = open(filename, 'rb')
     self.write( file.read )
     self.save
@@ -136,53 +134,46 @@ class Image < ActiveRecord::Base
   def magick_image(descriptor=nil, options={})
     MiniMagick::Image.open(path(descriptor, options))
   end
+  
+  def magick_info(info)
+    @original_magick ||= MiniMagick::Image.new(path)
+    @original_magick[info]
+  end
 
   def delete_all_resized_files!
     Dir["#{Rails.public_path}/#{UPLOADS_PATH}/#{self.id}-*"].each do |filename|
       File.delete filename
-      Rails.logger.info "Deleted #{filename}."
+      Rails.logger.info "Deleted previously resized file: #{filename}."
     end
   end
 
 protected
   
-  def parse_incoming_parameters
+  def set_metadata
     if @incoming_filename
-      # TODO: use named regexp matches
-      # p "hello 2011!".match(/(?<year>\d+)/)[:year]  # => "2011"
-
-      # Parse the URL if it's in the filename.
-      if (url_matches = @incoming_filename.scan(/(^http-::[^\s]+)(.*)/).first)
-        url, extra = url_matches
-        url.gsub!(':','/')
-        url.sub!('http-','http:')
-        self.source_url = url
-        last_bit = url.split('/').last
-        @incoming_filename = last_bit + extra
-      end
-
-      # Remove any dates from the filename.
-      if (date_range = @incoming_filename.scan(/\d{4}-\d{4}/).first)
-        self.year = date_range.split('-').last
-      elsif (date = @incoming_filename.scan(/\d{4}/).last)
-        self.year = date
-      end
-      
       self.original_filename = @incoming_filename
-      self.format = @incoming_filename.split('.').last.downcase if self.format.blank?
       self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize if self.title.blank?
+    else
+      Rails.logger.warn("New image saved with no incoming filename.")
     end
-  end
-  
-  def set_metadata!
-    img = magick_image
-    update_attributes!({
-      width: img[:width],
-      height: img[:height],
-      size: img[:size]
-    })
+    
+    self.format = magick_info(:format).downcase
+    self.size = magick_info(:size)
+    self.width, self.height = magick_info(:dimensions)
   end
 
+  # Side-Effect: changes @incoming_filename if it detects a URL.
+  def pull_url
+    if (url_matches = @incoming_filename.scan(/(^http[\-\:](::|\/\/)[^\s]+)(.*)/).first)
+      slashes, url, extra = url_matches
+      url.gsub!(':','/')
+      url.sub!('http-','http:')
+      self.source_url = url
+      last_bit = url.split('/').last
+      @incoming_filename = last_bit + extra
+    end
+    
+  end
   def delete_all_files!
     if File.exists?(self.path)
       File.delete(self.path) 
