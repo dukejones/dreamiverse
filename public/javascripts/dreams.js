@@ -500,7 +500,7 @@ function setupEvents(){
     checkAttachButtons();
   })
   
-  $('#entry-date').unbind();
+  // $('#entry-date').unbind();
   $('#entry-date, .dateTimeHeader').click(function(){
     if($('.entryDateTime').css('display') == 'none'){
       $('.entryDateTime').slideDown();
