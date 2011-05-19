@@ -24,6 +24,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       positionLeft: true
       fade: 250
+      top: 20
     }
     ###
     TODO: 
