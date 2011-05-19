@@ -112,7 +112,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
   showCommonImageMetaData: ->
     common = {}
     $("#imagelist li.selected").each (index, element) =>
-      data = JSON.parse $(element).data 'image'
+      data = JSON.parse $(element).data('image')
       
       #- special cases, such as date and user (i.e. needs to be converted from raw json)
       data.date = $.format.date(data["created_at"].replace("T"," "), 'MMM dd, yyyy')
