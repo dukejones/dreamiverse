@@ -375,7 +375,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @displayScreen @currentView,null #but keep search header
       @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
       
-  #todo111
+  '#searchOptions .type li click': (el) ->
+    if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
 
   '#searchOptions .genre click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
