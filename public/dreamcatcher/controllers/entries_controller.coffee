@@ -6,13 +6,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   
   init: ->
     @entryCookie = new Dreamcatcher.Classes.CookieHelper 'dc_new_entry',true
+    @posted = false
     @retrieveState()
     @initSelectMenu()
     @saveState()
     
   saveState: ->
+    return if @posted
     entryBody = $('#entry_body').val().trim()
-    if entryBody.length > 0
+    if entryBody.length > 0 
       entry = {}
       entry[field] = $(field).val() for field in @fields
       entry['#currentImages'] = $('#currentImages').html()
@@ -23,17 +25,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   
   retrieveState: ->
     entry = @entryCookie.get()
-    if entry? and confirm 'you have an unsaved entry.\n\nwould you like to bring it back ?'
-      @stateRetrieved = true
-      $(field).val entry[field] for field in @fields
-      $('#currentImages').html entry['#currentImages']
+    if entry?
+      if confirm 'you have an unsaved entry.\n\nwould you like to bring it back ?'
+        @stateRetrieved = true
+        $(field).val entry[field] for field in @fields
+        $('#currentImages').html entry['#currentImages']
     @clearState()
   
   clearState: ->
     @entryCookie.clear()
   
   '#entry_submit click': ->
-    @entryCookie.clear()
+    @posted = true
+    @clearState()
     
   initSelectMenu: ->
     # iterates through each select menu radio

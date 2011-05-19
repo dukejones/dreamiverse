@@ -1,14 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
+  userModel: Dreamcatcher.Models.User
+
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
     @initSelectMenu()
     @initTooltips()
-    
-  userModel: Dreamcatcher.Models.User
-
 
   initTooltips: ->
     $('.tooltip').tooltip {

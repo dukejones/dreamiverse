@@ -162,24 +162,25 @@
       width: 560px
       margin-right: 2px
 
-      &:hover a.deleteComment
+      &:hover .delete
+        +block
 
-        .delete
-          +alpha(40)
-          +pointer
-          +block
-          +absolute
-          background: url("/images/icons/close-24.png") no-repeat center center transparent
-          width: 24px
-          height: 24px
-          right: 16px
-          margin-top: 6px
-          &:hover
-            background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
-            +alpha(100)
-          &:active
-            background: url("/images/icons/close-24-active.png") no-repeat center center transparent
-            +alpha(100)
+      .delete
+        +hidden
+        +alpha(40)
+        +pointer
+        +absolute
+        background: url("/images/icons/close-24.png") no-repeat center center transparent
+        width: 24px
+        height: 24px
+        right: 16px
+        margin-top: 6px
+        &:hover
+          background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+          +alpha(100)
+        &:active
+          background: url("/images/icons/close-24-active.png") no-repeat center center transparent
+          +alpha(100)
 
 
       .user, .commentTime
