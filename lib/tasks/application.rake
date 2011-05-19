@@ -58,7 +58,7 @@ namespace :fix do
   task :bad_image_formats => :environment do
     Image.all.select{|i| i.format.length > 3 && i.format != 'jpeg'}.each do |i|
       begin
-        log("Fixing image: #{i.id} - #{i.format} - #{i.original_filename}")
+        log("Fixing image: #{i.id} - #{i.enabled ? 'enabled' : 'disabled'} - #{i.format} - #{i.original_filename}")
         i.format = i.original_filename.split('.').last.gsub(/\s/, '').downcase
         i.import_from_file(i.path, i.original_filename)
       rescue => e
