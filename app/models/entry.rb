@@ -163,7 +163,7 @@ class Entry < ActiveRecord::Base
       ORDER BY stream_time DESC
     })
 
-    # entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
     entries
   end
 
