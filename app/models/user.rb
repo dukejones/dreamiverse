@@ -140,6 +140,7 @@ class User < ActiveRecord::Base
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
+    (entry.sharing_level == Entry::Sharing[:followers] && following?(entry.user)) ||
     (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self))
   end
 
