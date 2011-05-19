@@ -6,9 +6,10 @@ class EntryTest < ActiveSupport::TestCase
     users.each do |name, user|
       Entry.make(user: user, sharing_level: Entry::Sharing[:private])
       Entry.make(user: user, sharing_level: Entry::Sharing[:friends])
+      Entry.make(user: user, sharing_level: Entry::Sharing[:followers])
       Entry.make(user: user, sharing_level: Entry::Sharing[:everyone])
     end
-    users[:duke].following = [users[:phong]]
+    users[:duke].following =  [users[:phong]]
     users[:geoff].following = [users[:duke], users[:phong]]
     users[:leopi].following = [users[:duke], users[:phong]]
     users[:phong].following = [users[:duke], users[:geoff]]
@@ -18,7 +19,10 @@ class EntryTest < ActiveSupport::TestCase
     # where dream is public or i am friends with entry.user
     assert Entry.everyone.all?{|e| accessible.include?(e) }, "all public dreams are accessible"
     assert Entry.private.none?{|e| accessible.include?(e) }, "no private dreams are accessible"
-    debugger
+
+    assert_equal Entry.friends.where(user: users[:phong]).map(&:id), Entry.friends.accessible_by(users[:duke]).map(&:id)
+    assert_equal Entry.followers.where(user: users[:phong]).map(&:id), Entry.followers.accessible_by(users[:duke]).map(&:id)
+    assert_equal Entry.followers.where(:user => [users[:duke].id, users[:phong].id]).map(&:id), Entry.followers.accessible_by(users[:geoff]).map(&:id)
     
     assert accessible.all?{|e| users[:duke].can_access?(e) }, "not all accessible_by entries are actually accessible by the user."
     
