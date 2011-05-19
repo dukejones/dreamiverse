@@ -13,22 +13,21 @@
 
 
     / LEFT
-    %a.left{href: '/'}
+    .left
 
       %img{src: '/images/bedsheets/air-03.jpg'}
-
-      .gradient
-
-      .arrow.hidden
-        &lsaquo;
-        .text left arrow key
 
     / LEFT REFLECT
     .leftReflect
 
       %img{src: '/images/bedsheets/air-03.jpg'}
 
-      .gradient
+    / LEFT GRADIENT
+    %a.gradient-left{href: '/'}
+
+      .arrow.hidden
+        &lsaquo;
+        .text left arrow key
 
 
 
@@ -77,7 +76,32 @@
 
       %img{src: '/images/bedsheets/today-in-dreams-med.jpg', width: '720', height: '540'}
 
-      .gradient
+
+
+
+    / RIGHT
+    .right
+
+      %img{src: '/images/bedsheets/air-05.jpg'}
+
+    / RIGHT REFLECT
+    .rightReflect{style: 'background: url(/images/bedsheets/air-05.jpg)'}
+
+    / RIGHT GRADIENT
+    %a.gradient-right{href: '/'}
+
+      .arrow.hidden
+        &rsaquo;
+        .text right arrow key
+
+
+
+
+    / BOTTOM GRADIENT
+    .gradient-bottom
+
+
+
 
     / CONTROLS
     .controls
@@ -92,25 +116,6 @@
 
     / COMMENTS (use existing)
     .comments
-
-
-
-
-    / RIGHT
-    %a.right
-
-      %img{src: '/images/bedsheets/air-05.jpg'}
-
-      .gradient
-
-      .arrow.hidden
-        &rsaquo;
-        .text right arrow key
-
-    / RIGHT REFLECT
-    .rightReflect{style: 'background: url(/images/bedsheets/air-05.jpg)'}
-
-      .gradient
 
 
 
