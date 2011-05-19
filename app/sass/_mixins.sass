@@ -385,10 +385,24 @@
   background-color: rgba(0,0,0, $percent / 100 )
 
 
+// FLIP VERTICAL & HORIZONTAL
+=flip($xy)
 
-
-
-
+  @if $xy == Y
+    -moz-transform: scaleY(-1)
+    -o-transform: scaleY(-1)
+    -webkit-transform: scaleY(-1)
+    transform: scaleY(-1)
+    filter: FlipV
+    -ms-filter: "FlipV"
+  
+  @else if $xy == X
+    -moz-transform: scaleX(-1)
+    -o-transform: scaleX(-1)
+    -webkit-transform: scaleX(-1)
+    transform: scaleX(-1)
+    filter: FlipH
+    -ms-filter: "FlipH"
 
 
 // GLOWS AND SHADOWS
@@ -439,6 +453,14 @@
   background:     -webkit-gradient(linear, center top, center bottom, from( $color1 ), to( $color2 ))
   background:     -moz-linear-gradient($color1, $color2)
   background:     -o-linear-gradient($color1, $color2)
+
+
+=gradient-H($color1, $color2)
+  background:     $color1
+  background:     -webkit-gradient(linear, left top, right top, from( $color1 ), to( $color2 ))
+  background:     -moz-linear-gradient(left, $color1, $color2)
+  background:     -o-linear-gradient(left, $color1, $color2)
+
 
 =bg-shine($offset)
   box-shadow:         inset 0px $offset + px rgba(255,255,255,0.1)
@@ -571,6 +593,12 @@
     border: 1px solid #fff
 
 
-// IE 6+ gradient filter
+// IE 6+ gradient filter - horizontal
 // filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)
+// IE 8 only
 // -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)"
+
+// IE 6+ gradient filter - vertical
+// filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#1471da, endColorstr=#1C85FB)
+// IE 8 only
+// -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=1, startColorstr=#1471da, endColorstr=#1C85FB)"
