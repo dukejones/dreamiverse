@@ -50,8 +50,11 @@ end
 
 namespace :fix do
   desc "Fix any reference to yourself as your own friend"
-  task :im_my_own_friend do
-    
+  task :following_myself => :environment do
+    Follow.where("user_id=following_id").each do |follow|
+      log("Destroying user #{follow.user.username} following himself.")
+      follow.destroy
+    end
   end
   
   desc "Fix improperly detected image formats"
