@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow','infoTags']
   
   init: ->
-    @imageCookie = new Dreamcatcher.Classes.CookieHelper "ib_dropbox"
+    @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     #@stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
     @displayScreen "browse", @view('types', { types: @model.types })
     @loadDropbox()
@@ -212,8 +212,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     
   #- Browse -#
 
-  '#type li click': (el) ->
-    $("#type li").removeClass 'selected'
+  '#browse .type li click': (el) ->
+    $("#browse .type li").removeClass 'selected'
     el.addClass 'selected'
     @section = @type = el.text().trim()
     @categories = el.data('categories').split ','
@@ -374,6 +374,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     else
       @displayScreen @currentView,null #but keep search header
       @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
+      
+  '#searchOptions .type li click': (el) ->
+    if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
 
   '#searchOptions .genre click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
