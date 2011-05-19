@@ -182,8 +182,8 @@ class Entry < ActiveRecord::Base
     if viewer
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])   unless viewer == viewed
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:anonymous]) unless viewer == viewed
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed)
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed)
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed) || viewer == viewed
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed) || viewer == viewed
       # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line eventually.
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
