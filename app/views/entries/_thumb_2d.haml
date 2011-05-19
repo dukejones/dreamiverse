@@ -22,11 +22,11 @@
             / %td.location dream location
 
       .detailsBottom
-        - if entry.new_comment_count > 0 && current_user && entry.user == current_user
+        - if new_comments?(entry)
           .comments.new
             .img.comment
             = entry.new_comment_count
-        - elsif entry.comments.count != 0
+        - elsif entry.comments.count > 0
           .comments{class: entry.new_comment_count > 0 }
             .img.comment
             = entry.comments.count

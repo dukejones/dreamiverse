@@ -62,15 +62,15 @@
           %span.rePostBy username
         .date= time_ago_in_words(entry.created_at)
 
-        - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
+        - if new_comments?(entry)
           = hidden_field :new_comments, entry.id, :value => entry.new_comment_count, :class => "newComments"
 
-        .comment{class: "#{entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user ? 'new' : ''} #{is_ipad? ? 'ipad' : ''}"}
+        .comment{class: "#{new_comments?(entry) ? 'new' : ''} #{is_ipad? ? 'ipad' : ''}"}
           .arrow
           %span.text comment
           .count
             .img
-            - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
+            - if new_comments?(entry)
               %span=entry.new_comment_count
             - elsif entry.comments.count > 0
               %span=entry.comments.count

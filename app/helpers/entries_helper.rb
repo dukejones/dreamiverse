@@ -73,4 +73,8 @@ module EntriesHelper
       select_tag(name, options_for_select(%w(am pm).map{|v| [v, v] }, (hour < 12) ? 'am' : 'pm'), html_options)
     )
   end
+  
+  def new_comments?(entry)
+    entry.new_comment_count > 0 && entry.user == current_user
+  end
 end
