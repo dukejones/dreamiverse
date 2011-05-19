@@ -1,10 +1,17 @@
 $.Controller 'Dreamcatcher.Controllers.Stream',
 
+  model: Dreamcatcher.Models.Stream
+
   init: ->
+    @container = $('#entryField .matrix')
+
+  '#entry-filter, #users-filter change': (el) ->
+    filters = {
+      type: $('#entry-filter').val()
+      users: $('#users-filter').val()
+    }
+    @model.update {filters: filters}, @callback('updateStream')
     
-    $('#entry-filter, #users-filter').change( (event) =>
-      @stream.load().then (data) =>
-        @streamView.update(data.html)
-    )
+  updateStream: (html) ->
+    @container.html html
     
-  

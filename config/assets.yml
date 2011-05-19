@@ -26,7 +26,6 @@ javascripts:
     - public/javascripts/geo.js
     - public/javascripts/dreams.js
     - public/javascripts/compiled/publicstream.js
-    - public/javascripts/compiled/stream.js
     
 stylesheets:
   shared:
