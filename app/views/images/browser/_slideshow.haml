@@ -1,40 +1,118 @@
 
-/ SLIDESHOW
-#slideshow.hidden
+/ BACKDROP
+#slideshow-back
 
 
-/ INFO & TAGGING
-#infoTags
+  / SLIDESHOW
+  #slideshow
 
 
-  / TAGGING
-  #tagging.hidden
-
-    .tagInputWrap
-      .tagInput
-        %input#newTag
-        .tagAdd
-          %span +
-          add
-      .tagInputRight
-
-    #tag-list.tag-list.ui-sortable
-
-      .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
-        .header.trigger
-          .tag-name
-        .close
+    .close
 
 
-  / INFO
 
-  #info.hidden
-    .name
-      name:
-      %span Artist Name
-    .author
-      author:
-      %span Author Name
-    .year
-      year:
-      %span 1912
+
+    / LEFT
+    %a.left{href: '/'}
+
+      %img{src: '/images/bedsheets/air-03.jpg'}
+
+      .gradient
+
+      .arrow.hidden
+        &lsaquo;
+        .text left arrow key
+
+    / LEFT REFLECT
+    .leftReflect
+
+      %img{src: '/images/bedsheets/air-03.jpg'}
+
+      .gradient
+
+
+
+
+    / IMAGE
+    .imageContainer
+
+      %table.image
+        %tr
+          %td
+            %img{src: '/images/bedsheets/today-in-dreams-med.jpg', width: '720', height: '540'}
+
+
+      / TAGGING
+      #tagging.hidden
+
+        .tagInputWrap
+          .tagInput
+            %input#newTag
+            .tagAdd
+              %span +
+              add
+          .tagInputRight
+
+        #tag-list.tag-list.ui-sortable
+
+          .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
+            .header.trigger
+              .tag-name
+            .close
+
+      / INFO
+      #info.hidden
+        .name
+          name:
+          %span Artist Name
+        .author
+          author:
+          %span Author Name
+        .year
+          year:
+          %span 1912
+
+    / IMAGE REFLECT
+    .imageReflect
+
+      %img{src: '/images/bedsheets/today-in-dreams-med.jpg', width: '720', height: '540'}
+
+      .gradient
+
+    / CONTROLS
+    .controls
+
+      .info
+
+      .tagging
+
+      .download
+
+      .comment
+
+    / COMMENTS (use existing)
+    .comments
+
+
+
+
+    / RIGHT
+    %a.right
+
+      %img{src: '/images/bedsheets/air-05.jpg'}
+
+      .gradient
+
+      .arrow.hidden
+        &rsaquo;
+        .text right arrow key
+
+    / RIGHT REFLECT
+    .rightReflect{style: 'background: url(/images/bedsheets/air-05.jpg)'}
+
+      .gradient
+
+
+
+
+
