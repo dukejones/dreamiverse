@@ -11,8 +11,8 @@ before 'uploads:symlink', 'uploads:create_shared'
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
-    run "rm -rf #{current_path}/public/images/uploads"
-    run "ln -fs #{shared_path}/images/uploads #{current_path}/public/images/"
+    run "rm -rf #{current_release}/public/images/uploads"
+    run "ln -fs #{shared_path}/images/uploads #{current_release}/public/images/"
   end
   
   desc "Create the shared image uploads directory if it doesn't exist, and set the correct permissions."
