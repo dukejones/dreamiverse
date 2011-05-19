@@ -69,7 +69,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   'label.ui-selectmenu-default mouseout': (el) ->
     el.parent().removeClass 'default-hover'
 
-
   '.ui-selectmenu-default input click': (el) ->
     $('li',$(el).closest('ul')).removeClass 'default'
     $(el).closest('li').addClass 'default'
