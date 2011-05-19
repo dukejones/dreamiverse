@@ -59,7 +59,7 @@ namespace :fix do
   
   desc "Fix improperly detected image formats"
   task :bad_image_formats => :environment do
-    Image.all.select{|i| i.format.length > 3 && i.format != 'jpeg'}.each do |i|
+    Image.all.select{|i| !i.format || (i.format.length > 3 && i.format != 'jpeg')}.each do |i|
       begin
         log("Fixing image: #{i.id} - #{i.enabled ? 'enabled' : 'disabled'} - #{i.format} - #{i.original_filename}")
         i.format = i.original_filename.split('.').last.gsub(/\s/, '').downcase

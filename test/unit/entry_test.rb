@@ -18,8 +18,10 @@ class EntryTest < ActiveSupport::TestCase
     # where dream is public or i am friends with entry.user
     assert Entry.everyone.all?{|e| accessible.include?(e) }, "all public dreams are accessible"
     assert Entry.private.none?{|e| accessible.include?(e) }, "no private dreams are accessible"
-
+    debugger
+    
     assert accessible.all?{|e| users[:duke].can_access?(e) }, "not all accessible_by entries are actually accessible by the user."
+    
   end
 
   test "followed_by scope" do
