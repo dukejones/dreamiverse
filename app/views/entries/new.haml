@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'userfileuploader', 'dreams', 'geo'
+  = javascript_include_tag 'browserdetect', 'pubsub', 'userfileuploader', 'geo'
   = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'fit_to_content', 'newentry'
 
 - content_for :foot do
@@ -149,7 +149,7 @@
         #entry-location.hidden.tooltip{title: "add your location"}
           .img
         / renamed from entry-date to entry-schmentry as "date", "time", "chronos", etc. seem to be reserved words. DO NOT ADJUST
-        #entry-schmentry.tooltip{title:"apples"}
+        #entry-date.tooltip{title: "date and time"}
           .img
         #entry-appearance.tooltip{title: "appearance"}
           .img

@@ -16,7 +16,6 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
       
 
   updateAppearanceModel: (data) ->
-    log('feh')
     if @newEntry
       $("#entry_view_preference_attributes_image_id").val(data.bedsheet_id) if data.bedsheet_id?
       $("#entry_view_preference_attributes_bedsheet_attachment").val(data.scrolling) if data.scrolling?

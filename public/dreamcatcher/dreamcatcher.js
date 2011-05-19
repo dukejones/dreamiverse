@@ -13,7 +13,7 @@ steal.plugins(
     'ui/jquery.ui.widget',
     'ui/jquery.ui.position',
     'ui/jquery.ui.selectmenu',
-    'ui/jquery.tooltip.js',
+    'jquery.tooltip.js',
     'jquery-lightbox-0.5',
     'jquery.timeago',
     'jquery.exists',
@@ -23,6 +23,7 @@ steal.plugins(
   .then(function() {
     //TODO: StealJS fix: don't forget to contribute!
     steal.coffee(
+      'classes/cookie_helper',
       'models/settings',
       'models/appearance',
       'models/bedsheet',
@@ -33,7 +34,8 @@ steal.plugins(
       'controllers/settings_controller',
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
-      'controllers/comments_controller'
+      'controllers/comments_controller',
+      'controllers/entries_controller'
     );
   })
   .views();
