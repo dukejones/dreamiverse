@@ -149,6 +149,15 @@
   &.journals .ui-selectmenu-status, .journals a
     background: url(/images/icons/journal-24-hover.png) no-repeat 10px center
 
+  // fix for chrome hovers
+  .allEntries.ui-selectmenu-item-focus
+    +round(11)
+    +flat-bottom
+  .journals.ui-selectmenu-item-focus
+    +round(11)
+    +flat-top
+
+
   // USERS FILTER
   &.allUsers .ui-selectmenu-status, .allUsers a
     background: url(/images/icons/sharing-24-hover.png) no-repeat 10px center
@@ -156,6 +165,14 @@
     background: url(/images/icons/friend-24.png) no-repeat 10px center
   &.following .ui-selectmenu-status, .following a
     background: url(/images/icons/friend-24-follow.png) no-repeat 10px center
+
+  // fix for chrome hovers
+  .allUsers.ui-selectmenu-item-focus
+    +round(12)
+    +flat-bottom
+  .following.ui-selectmenu-item-focus
+    +round(12)
+    +flat-top
 
 
 .light 
@@ -272,6 +289,14 @@
   .journal a
     background: url(/images/icons/journal-24-hover.png) no-repeat 8px center
 
+  // fix for chrome hovers
+  .dream.ui-selectmenu-item-focus, &.default
+    +round(20)
+    +flat-bottom
+  .journal.ui-selectmenu-item-focus, &.default
+    +round(20)
+    +flat-top
+
 
   // SHARING LEVEL
   &.everyone .ui-selectmenu-status, .everyone a
@@ -285,11 +310,26 @@
   &.private .ui-selectmenu-status, .private a
     background: url(/images/icons/private-24-hover.png) no-repeat 8px center
 
+  // fix for chrome hovers
+  .everyone.ui-selectmenu-item-focus
+    +round(20)
+    +flat-bottom
+  .private.ui-selectmenu-item-focus
+    +round(20)
+    +flat-top
+
 
 #entryType-list-menu, #sharing-list-menu
   li
     &.default, &.default-hover
       background-color: rgba(0,170,255,0.25)
+      &.everyone
+        +round(20)
+        +flat-bottom
+      &.private
+        +round(20)
+        +flat-top
+
     &.default label
       +block
     &:hover label
