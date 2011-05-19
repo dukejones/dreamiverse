@@ -72,20 +72,3 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
 
         # moves the radio button outside the a tag (so it doesn't conflictg)
         $(el).appendTo li
-        
-
-  'label.ui-selectmenu-default mouseover': (el) ->
-    el.parent().addClass 'default-hover'
-
-  'label.ui-selectmenu-default mouseout': (el) ->
-    el.parent().removeClass 'default-hover'
-
-
-  '.ui-selectmenu-default input click': (el) ->
-    value = $('a:first',el.closest('li')).data 'value'
-    type = el.closest('ul').attr('id').replace('-menu','')
-    switch type.replace('-list','')
-      when 'entryType'
-        @userModel.update {'user[default_entry_type]': value}
-      when 'sharing'
-        @userModel.update {'user[default_sharing_level]': value}

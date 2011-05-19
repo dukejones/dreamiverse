@@ -60,6 +60,24 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
   '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
+    
+  'label.ui-selectmenu-default mouseover': (el) ->
+    el.parent().addClass 'default-hover'
+
+  'label.ui-selectmenu-default mouseout': (el) ->
+    el.parent().removeClass 'default-hover'
+
+
+  '.ui-selectmenu-default input click': (el) ->
+    $('li',$(el).closest('ul')).removeClass 'default'
+    $(el).closest('li').addClass 'default'
+    value = $('a:first',el.closest('li')).data 'value'
+    type = el.closest('ul').attr('id').replace('-menu','')
+    switch type.replace('-list','')
+      when 'entryType'
+        @userModel.update {'user[default_entry_type]': value}
+      when 'sharing'
+        @userModel.update {'user[default_sharing_level]': value}
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
