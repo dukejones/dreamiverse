@@ -160,7 +160,7 @@
 
             - if !@entry.everyone?
               .shareLevel
-                .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+                .img{class: @entry.sharing}
                 %span= @entry.sharing
 
             - if location = @entry.location
