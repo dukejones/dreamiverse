@@ -8,7 +8,7 @@
 
 / CONTEXT PANEL
 
-- cache([user, current_user._?.relationship_with(user), user.entries.count, user.friends.count, "context_panel"]) do
+- cache([user, @mode, current_user._?.relationship_with(user), user.entries.count, user.friends.count, "context_panel"]) do
   #contextPanel
 
     / IMAGE
