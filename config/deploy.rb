@@ -38,12 +38,12 @@ end
 
 namespace :barista do
   task :brew do
-    run("cd #{current_path}; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+    run("cd #{current_release}; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
   end
 end
 
 namespace :jmvc do
   task :compile do
-    run("cd #{current_path}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
   end
 end
