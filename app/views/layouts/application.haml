@@ -28,9 +28,11 @@
       #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}
 
     = render :partial => "layouts/alert"
-    = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
 
     = yield
+
+
+    = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
 
     - if Rails.env == 'production' || Rails.env == 'theta'
       = javascript_include_tag 'google_analytics'

@@ -14,12 +14,12 @@ class DreamfieldView
     @$container = $('#pagination')
 
     $('#pagination').live "mouseenter", (event) =>
-      $('#pagination .next .text').fadeIn('fast')
-      $('#pagination .all').fadeIn('fast')
+      $('#pagination .next .text').show()
+      $('#pagination .all').show()
       
     .live "mouseleave", (event) =>
-      $('#pagination .next .text').fadeOut()
-      $('#pagination .all').fadeOut()
+      $('#pagination .next .text').fadeOut('fast')
+      $('#pagination .all').fadeOut('fast')
 
     
     $('.next').click( (event) =>
