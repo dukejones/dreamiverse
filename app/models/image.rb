@@ -158,6 +158,7 @@ protected
     end
     
     self.format = magick_info(:format).downcase
+    self.format = 'jpg' if self.format == 'jpeg'
     self.size = magick_info(:size)
     self.width, self.height = magick_info(:dimensions)
   end
