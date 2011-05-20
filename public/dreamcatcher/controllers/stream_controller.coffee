@@ -1,22 +1,24 @@
 $.Controller 'Dreamcatcher.Controllers.Stream',
 
-  model: Dreamcatcher.Models.Stream
+  # model: Dreamcatcher.Models.Stream
 
   init: ->
-    @page = 1
+    @page =  1
     @container = $('#entryField .matrix')
     @initSelectMenu()
-    # @loadNextPage()
+    # @loadNextPage() # we want to load 2 pages on load (first page was loaded with ruby)
     
     # infinite scrolling
     $(window).scroll =>
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
+        log 'window scroll'
         @loadNextPage()
         
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()  
     
   loadNextPage: ->
+    log 'running loadNextPage'
     return if @currentlyLoading
     @currentlyLoading = true
     @clear()
@@ -48,11 +50,13 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     }
     
   getOptions: ->
+    log 'running getOptions'
     filters: {
+      page: @page
       type: $('#entry-filter').val()
       users: $('#users-filter').val()
     }
-    page: @page
+    
 
   '#entry-filter, #users-filter change': (el) ->
     @page = 1
@@ -60,17 +64,21 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
     
   updateStream: (json) ->
+    log 'running updateStream'
     @clear()
-    @currentlyLoading = false
+    @currentlyLoading = false   
+    
     if !json.html? || json.html == ""
-      @currentlyLoading = true # No more entries to load.
-      $('#noMoreEntries').show()    
+      $('#noMoreEntries').show() # No more entries to load.
+      
+    $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
     
     if @page > 1
       @container.append json.html
     else
       @container.html json.html
-      $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
+      
+
     
 
     

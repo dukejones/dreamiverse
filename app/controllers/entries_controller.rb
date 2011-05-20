@@ -6,7 +6,8 @@ class EntriesController < ApplicationController
     session[:lens] = lens unless lens.nil?
     
     filters ||= session[:filters] || {}
-
+    # debugger 
+    # 1
     return case session[:lens]
     when :stream
       current_user ? Entry.dreamstream(current_user, filters) : []
