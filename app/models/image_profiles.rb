@@ -35,7 +35,7 @@ module ImageProfiles
   def generate_profile(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
     raise "Ridiculous resize requested" if options[:size].to_i > 15000
-
+    Rails.logger.info("Generating Profile: #{profile} #{options.inspect}")
     self.send(profile.to_sym, options)
   end
 

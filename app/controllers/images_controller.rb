@@ -177,10 +177,21 @@ class ImagesController < ApplicationController
   def resize
     image = Image.find params[:id]
     render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
-    
-    image.generate(params[:descriptor], :size => params[:size], :format => params[:format])
-    # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
-    redirect_to image.url(params[:descriptor], :size => params[:size])
+
+    options = { :size => params[:size], :format => params[:format] }
+    image.generate(params[:descriptor], options)
+
+    mime_type = Mime::Type.lookup_by_extension(params[:format] || image.format)
+    send_file image.path(params[:descriptor], options), {type: mime_type, disposition: 'inline'}
+
+    # redirect_to image.url(params[:descriptor], options)
+    # For future Rails Release (3.1?): Streaming / Chunked response.
+    # self.response_body = proc {|response, output|
+    #   break if @run; @run = true # bug in Rails 3.0.x - Runs this proc twice.
+    #   open(image.path(params[:descriptor], options)) do |f|
+    #     f.each_chunk(4096) {|chunk| response.write(chunk) }
+    #   end
+    # }
   end
   
 
