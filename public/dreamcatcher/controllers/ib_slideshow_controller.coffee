@@ -9,6 +9,11 @@ $.Controller 'Dreamcatcher.Controllers.IbSlideshow',
   '.close click': (el) ->
     $('#slideshow-back').hide()
     
+  '.graident-left click': (el) ->
+    alert 'prev'
+      
+  '.graident-right click': (el) ->
+    alert 'next'
     
     
     ###

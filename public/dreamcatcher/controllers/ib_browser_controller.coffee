@@ -50,8 +50,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       zIndex: 100
       start: ->
         $("#dropbox .active").show()
+        el.addClass 'grabbing'
         ###
-        #el.addClass 'grabbing'
+        #
         #if fromDropbox
           $("#dropbox").css('z-index',1200)
           $("#bodyClick").show()
