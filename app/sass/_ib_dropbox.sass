@@ -1,5 +1,4 @@
 
-
 // DROP BOX
 #dropbox
   +relative
@@ -21,19 +20,25 @@
     background: url(/images/icons/dropbox-26.png) no-repeat center center
 
   h2
-    +left
+    +grab
+    +user-select
+    +absolute
     +font(16)
     +bold
-    margin: 8px 0 0
+    margin: 10px 0 0
+    padding: 0 0 0 48px
+    height: 46px
     line-height: 26px
+    width: 156px
 
   .play
     +pointer
     +user-select
-    +right
-    margin: 12px 8px 0 0
-    width: 24px
-    height: 24px
+    +absolute
+    top: 4px
+    right: 4px
+    width: 36px
+    height: 36px
     background: url(/images/icons/play-24.png) no-repeat center center transparent
     &:hover
       background: url(/images/icons/play-24-hover.png) no-repeat center center transparent
