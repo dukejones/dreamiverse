@@ -1,10 +1,10 @@
 module EntriesHelper
 
   def gallery_list_item(image)
-    small_image_url = image.url(:thumb, :size => 122)
+    small_image_url = image.url(:thumb)
     large_image_url = image.url(:medium)
     raw(%{
-      <li class="lightbox" style="background: url(#{small_image_url}) no-repeat transparent">
+      <li class="lightbox" style="background: url(#{small_image_url}) no-repeat scroll center center transparent">
         <a href="#{large_image_url}"></a>
       </li>
     })
