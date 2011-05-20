@@ -60,7 +60,8 @@ class Entry < ActiveRecord::Base
   after_create :set_user_defaults
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
-
+  after_commit :pre_generate_images
+  
   # Sharing scopes
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
@@ -314,5 +315,11 @@ protected
 
   def init_dreamed_at
     self.dreamed_at ||= Time.zone.now
+  end
+
+  def pre_generate_images
+    self.main_image._?.pre_generate(:facebook)
+    self.main_image._?.pre_generate(:stream_header)
+    self.main_image._?.pre_generate(:dreamfield_header)
   end
 end

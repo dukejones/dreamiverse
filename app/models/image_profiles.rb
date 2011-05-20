@@ -24,14 +24,19 @@ module ImageProfiles
       :avatar_main, :avatar_medium, :avatar, 
       :thumb,
       :bedsheet, :bedsheet_small,
-      :tag
+      :tag, :facebook
     ]
   end
 
+  def pre_generate(profile, options={})
+    # options[:format] = "jpg" unless Mime::Type.lookup_by_extension(options[:format] || self.format)
+    generate_profile(profile, options) unless profile_generated?(profile, options)
+  end
+  
   def generate_profile(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
     raise "Ridiculous resize requested" if options[:size].to_i > 15000
-
+    Rails.logger.info("Generating Profile: #{profile} #{options.inspect}")
     self.send(profile.to_sym, options)
   end
 
@@ -157,5 +162,10 @@ module ImageProfiles
     img = magick_image
     img.shave(43, 32)
     img.write(path(:tag))
+  end
+  
+  def facebook(options={})
+    img = profile_magick_image(:thumb, :size => 256)
+    img.write(path(:facebook))
   end
 end
