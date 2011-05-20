@@ -31,14 +31,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#entryOptions .date').tooltip -doesn't work - weird
     $('#sharing-list-menu label').tooltip(
     ###
-  
-  initSelectMenu: ->
-    $('.select-menu').selectmenu(
-      style: 'dropdown'
-      menuWidth: "200px"
-      positionOptions:
-        offset: "0px -37px"
-    )
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   fitToContent: (id, maxHeight) ->
