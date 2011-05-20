@@ -47,28 +47,36 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       helper: 'clone'
       zIndex: 100
       start: ->
+        el.addClass 'grabbing'
+        ###
         if fromDropbox
           $("#dropbox").css('z-index',1200)
           $("#bodyClick").show()
         else
-          $("#dropbox .active").show()
+        ###
+        $("#dropbox .active").show()
       stop: ->
+        ###
         if fromDropbox
           $("#dropbox").css('z-index','')
           $("#bodyClick").hide()
         else
-          $("#dropbox .active").hide()
+        ###
+        $("#dropbox .active").hide()
+    
     }
     
   setDroppable: (el) ->
     el.droppable {
-      drop: (ev, ui) =>
+      drop: (ev, ui) =>        
         album = el.parent().data 'album'
         imageId = ui.draggable.data 'id'
+        ###
         @model.update imageId, {image: {album: album} }, =>
           ui.draggable.appendTo el
-          #todo: no longer draggable
+          todo: no longer draggable
           ui.draggable.remove()
+        ###
     }
 
   addImageToDropbox: (el) ->
