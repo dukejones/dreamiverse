@@ -44,6 +44,7 @@ steal.plugins(
 			'controllers/comments_controller',
 			'controllers/ib_manager_controller',
 			'controllers/ib_browser_controller',
+			'controllers/ib_slideshow_controller',
 			'controllers/entry_controller'
 		);
 	})

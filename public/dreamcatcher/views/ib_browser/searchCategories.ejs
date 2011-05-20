@@ -1,8 +1,5 @@
-<h2>Categories</h2>
-<% for(var i = 0; i < types.length ; i++) { %>
-  <% for(var j = 0; j < types[i].categories.length ; j++) { %>
-  <div class="category">
-    <%= types[i].categories[j] %>
-  </div>
-  <% }%>
+<% for(var i = 0; i < categories.length ; i++) { %>
+<div class="category" data-type="<%= type %>">
+  <%= categories[i] %>
+</div>
 <% }%>
