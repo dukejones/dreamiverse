@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
   # model: Dreamcatcher.Models.Stream
 
   init: ->
-    @page =  1
+    @page = 1
     @container = $('#entryField .matrix')
     @initSelectMenu()
     @activateLightBox()
@@ -13,7 +13,7 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     # infinite scrolling
     $(window).scroll =>
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
-        log 'window scroll'
+        # log 'window scroll'
         @loadNextPage()
  
       
@@ -34,13 +34,13 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()  
     
   loadNextPage: ->
-    log 'running loadNextPage'
     return if @currentlyLoading
+    # log 'running loadNextPage'
     @currentlyLoading = true
-    @clear()
-    $('#nextPageLoading').show()
     @page += 1
-    log('page:' + @page)
+    @clear()
+    
+    $('#nextPageLoading').show()
     
     Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
     
@@ -63,7 +63,6 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @activateLightBox()     
            
   getOptions: ->
-    log 'running getOptions'
     filters: {
       page: @page
       type: $('#entry-filter').val()
