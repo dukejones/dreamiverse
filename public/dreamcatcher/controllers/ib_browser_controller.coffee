@@ -4,6 +4,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow','infoTags']
   
   init: ->
+    $('#slideshow-back').hide()
+    
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     #@stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
     @displayScreen "browse", @view('types', { types: @model.types })
@@ -47,37 +49,47 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       helper: 'clone'
       zIndex: 100
       start: ->
-        el.addClass 'grabbing'
+        $("#dropbox .active").show()
         ###
-        if fromDropbox
+        #el.addClass 'grabbing'
+        #if fromDropbox
           $("#dropbox").css('z-index',1200)
           $("#bodyClick").show()
         else
         ###
-        $("#dropbox .active").show()
+        #@dragging = true
       stop: ->
+        $("#dropbox .active").hide()
         ###
         if fromDropbox
           $("#dropbox").css('z-index','')
           $("#bodyClick").hide()
         else
         ###
-        $("#dropbox .active").hide()
+        #@dragging = false
+          
     
     }
+
     
   setDroppable: (el) ->
     el.droppable {
-      drop: (ev, ui) =>        
-        album = el.parent().data 'album'
+      drop: (ev, ui) =>
+        droppedTo = $(ev.target).parent()
+        album = droppedTo.data 'album'
+        imageMeta = ui.draggable.data 'image'
+        return if imageMeta.album is album
         imageId = ui.draggable.data 'id'
-        ###
-        @model.update imageId, {image: {album: album} }, =>
-          ui.draggable.appendTo el
-          todo: no longer draggable
-          ui.draggable.remove()
-        ###
+        @model.update imageId, {image: {album: album} }, @callback('droppedToNewAlbum', imageId, album)
     }
+  droppedToNewAlbum: (imageId, album)->
+    imageElement = $(".img[data-id='#{imageId}']")
+    albumElement = "tr.images[data-album='#{album}'] td"
+    imageElement.appendTo albumElement
+    imageMeta = imageElement.data 'image'
+    imageMeta.album = album
+    imageElement.data 'image', imageMeta
+    @setDraggable imageElement, false
 
   addImageToDropbox: (el) ->
     imageId = el.data 'id'
@@ -144,8 +156,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       when 'albumList'
         @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag'
         @updateScreen 'artistList', @category, '#albumList', @artist, html
-        @setDraggable $("#albumList .images .img"), false
         @setDroppable $('#albumList .images td')
+        @setDraggable $("#albumList .images .img"), false
         
       when 'searchResults'
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
@@ -217,6 +229,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   
   hideSpinner: ->
     $("#frame.browser .spinner").hide()
+    
+    
     
   #- Browse -#
 

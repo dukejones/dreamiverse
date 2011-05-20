@@ -1,4 +1,4 @@
-<li data-id="<%= image.id %>" data-image='<%= JSON.stringify(image) %>'>
+<li data-id="<%= image.id %>" data-image='<%= JSON.stringify(image).replace("'","`") %>'>
   <img src="/images/uploads/<%= image.id %>-thumb.<%= image.format %>" />
   <div class="close hidden"></div>
 </li>
