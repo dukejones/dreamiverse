@@ -77,3 +77,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
+  ###
+  $(window).unload ->
+    if not confirm 'are you sure?'
+      window.location.reload()
+      return false
+    #history.go -1
+  ###

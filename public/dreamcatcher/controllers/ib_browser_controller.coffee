@@ -1,10 +1,9 @@
 $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
   model: Dreamcatcher.Models.ImageBank
-  allViews: ['browse','genreList','artistList','albumList','searchOptions','searchResults','slideshow','infoTags']
+  allViews: ['browse', 'genreList', 'artistList', 'albumList', 'searchOptions', 'searchResults', 'slideshow-back']
   
   init: ->
-    $('#slideshow-back').hide()
     
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     #@stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
@@ -12,6 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @loadDropbox()
     
     $(document).keyup (event) ->
+      #alert event.keyCode
       if event.keyCode is 37
         $(".footer .prev").click() if $(".footer .prev").is(":visible")
       if event.keyCode is 39
@@ -50,8 +50,9 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       zIndex: 100
       start: ->
         $("#dropbox .active").show()
+        el.addClass 'grabbing'
         ###
-        #el.addClass 'grabbing'
+        #
         #if fromDropbox
           $("#dropbox").css('z-index',1200)
           $("#bodyClick").show()
@@ -162,15 +163,17 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       when 'searchResults'
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateScreen null, null, '#searchResults', null, html
-        
-      when 'slideshow'
-        @showIcons '.backArrow, h1, .counter, .prev, .info, .tag, .add, .next, .edit, .cancel'
-        if @searchOptions?
-          @updateScreen 'searchResults', 'Search', '#slideshow', 'slideshow', html
-        else if @artist?
-          @updateScreen 'albumList', @artist, '#slideshow', 'slideshow', html
-        else
-          @updateScreen 'artistList', @category, '#slideshow', 'slideshow', html
+      
+        ### 
+        when 'slideshow'
+          @showIcons '.backArrow, h1, .counter, .prev, .info, .tag, .add, .next, .edit, .cancel'
+          if @searchOptions?
+            @updateScreen 'searchResults', 'Search', '#slideshow', 'slideshow', html
+          else if @artist?
+            @updateScreen 'albumList', @artist, '#slideshow', 'slideshow', html
+          else
+            @updateScreen 'artistList', @category, '#slideshow', 'slideshow', html
+        ###
         
     @currentView = type
 
@@ -184,10 +187,14 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     $(currentType).replaceWith(currentHtml) if currentHtml?
     $(currentType).show()
     
-  showManager: (elements, title) ->
+  getImagesFromElements: (elements) ->
     images = []
     elements.each (i,el) =>
       images[i] = $(el).data 'image'
+    return images
+    
+  showManager: (elements, title) ->
+    images = @getImagesFromElements elements
     
     if not $('#frame.manager').exists()
       $.get '/images/manage', (html) =>
@@ -197,6 +204,12 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     else
       $('#frame.browser').hide()
       @ibManager.showManager images, title
+      
+  showSlideshow: (elements) ->
+    images = @getImagesFromElements elements
+    @ibSlideshow = new Dreamcatcher.Controllers.IbSlideshow $("#slideshow-back") if not @ibSlideshow
+    @ibSlideshow.showSlideshow images
+    $('#frame.browser').hide()
           
   ## TOP ICON EVENTS
     
@@ -215,7 +228,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       @showIcons '.browseWrap, .searchFieldWrap'
   
   '.top .play click': ->
-    @showSlides $('#albumList .img')
+    @showSlideshow $('#albumList .img')
     
   '.top .manage click': ->
     @showManager $("#albumList .img"), @artist
@@ -277,90 +290,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
   '#albumList .images .add click': (el) ->
     @addImageToDropbox el.parent()
         
-  #- Slideshow -#
-
-  '.footer .prev click': ->
-    currentIndex = $("#slideshow .img:visible").index()
-    @showSlide currentIndex - 1  
-
-  '.footer .next click': ->
-    currentIndex = $("#slideshow .img:visible").index()
-    @showSlide currentIndex + 1
-
-  ###
-  '.footer .add click': (el) ->
-    imageElement = $("#slideshow img:visible")
-    imageId = imageElement.data 'id' 
-    imageMeta = imageElement.data 'image'  #todo: refactor?
-    @imageCookie.add imageId
-    @showImageInDropbox imageId,imageMeta
-    el.hide()
-  ###
-    
-  showInfo: (meta) ->
-    $("#info .name span").text meta.title
-    $("#info .author span").text meta.artist
-    $("#info .year span").text meta.year
   
-  showTags: (meta) ->
-    #todo
-    
-  showInfoTag: (type) ->
-    $("#infoTags").show() if not $("#infoTags").is(':visible')
-    target = $("##{type}")
-    if target.is(":visible") 
-      target.hide() 
-    else
-      meta = $("#slideshow .img:visible:first").data 'image'
-      @showTags meta if type is 'tagging'
-      @showInfo meta if type is 'info'
-      target.show()  
-    
-  '.footer .info click': ->
-    @showInfoTag 'info'
-  
-  '.footer .tag click': ->
-    @showInfoTag 'tagging'
-  
-  showSlides: (imageElements, imageId) ->
-    images = []
-    index = 0
-    imageElements.each (i, el) =>
-      images[i] = $(el).data 'image'
-      index = i if imageId? and $(el).data('id') is imageId
-    $("#slideshow").replaceWith @view('slideshow', { images: images })
-    @showSlide index
-    @displayScreen 'slideshow',null
-    @setDraggable $('#slideshow .img')
-
-  #todo?
-  showSingleSlide: (imageId) ->
-    @model.getImage imageId, {}, (image) =>
-      @displayScreen 'slideshow', @view('slideshow', { images: [image] })
-      @showSlide 0
-
-  showSlide: (index) ->
-    totalCount = $("#slideshow .img").length
-    index = 0 if index is totalCount
-    index = (totalCount-1) if index is -1
-
-    $("#slideshow .img").hide()
-
-    imageElement = $("#slideshow .img:eq(#{index})")
-    imageElement.show()
-
-    imageId = imageElement.data 'id'
-    imageMeta = imageElement.data 'image'
-
-    $("h1").text imageMeta.title
-    @showInfo imageMeta
-
-    if totalCount is 1 then $(".counter,.prev,.next").hide() else $(".counter").text "#{index+1}/#{totalCount}"
-    # todo: look at add buttons etc
-    # if @imageCookie.contains imageId then $('.add').hide() else $('.add').show()
-    
-  '#slideshow .add click': (el) ->
-    @addImageToDropbox el.parent()
   
   
   #- SearchResults -#
@@ -389,37 +319,48 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     if not $("#searchOptions").is(":visible")
       @hideAllViews()
       el.addClass 'selected'
-      #$('#searchOptions .listBar').html @view('searchTypes', {types: @model.types})
-      #$("#searchOptions .categories").html @view('searchCategories', { types: @model.types })
-      
+      if not @optionsOpened
+        $('#searchOptions .type').html @view('searchTypes', {types: @model.types})
+        $("#searchOptions .type li").removeClass 'selected'
+        $("#searchOptions .type li:contains(#{@type})").click()
+        @optionsOpened = true
       $("#searchOptions").show()
     else
       @displayScreen @currentView,null #but keep search header
       @showIcons '.browseWrap, .searchFieldWrap' #todo: refactor
       
   '#searchOptions .type li click': (el) ->
+    type = el.text().trim()
+    if el.hasClass 'selected'
+      el.removeClass 'selected'
+      $("#searchOptions .categories div[data-type='#{type}']").remove()
+    else
+      el.addClass 'selected'
+      categories = el.data('categories').split ','
+      $('#searchOptions .categories').append @view 'searchCategories', {
+        type: type
+        categories: categories
+      }
+      
+  '#searchOptions .category click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
 
-  '#searchOptions .genre click': (el) ->
-    if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
-    
   getSearchOptions: ->
     options = {}
     
-    #searchtext
     searchText = $(".searchField input[type='text']").val().trim()
     options['q'] = searchText  if searchText.length > 0
     
     if $("#searchOptions").is(":visible")
-      #attributes - artist, album etc
+    
       for attr in ['artist','album','title','year','tags']
         val = @getValFromAttr attr
         options[attr] = val if val?
-      #genres
-      genres = []
-      $(".genre.selected").each (index,element) ->
-        genres.push $(element).text().trim()
-      options['genres'] = genres.join(',') if genres.length > 0
+    
+      categories = []
+      $("#searchOptions .categories .selected").each (i, el) ->
+        categories.push $(el).text().trim()
+      options['categories'] = genres.join(',') if categories.length > 0
     
     @searchOptions = options
     return options
