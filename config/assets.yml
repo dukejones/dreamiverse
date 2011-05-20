@@ -23,10 +23,9 @@ javascripts:
     - public/javascripts/compiled/dreamfield.js
     - public/javascripts/tag_stream.js
   stream:
-    - public/javascripts/geo.js
     - public/javascripts/dreams.js
     - public/javascripts/compiled/publicstream.js
-    
+     
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css

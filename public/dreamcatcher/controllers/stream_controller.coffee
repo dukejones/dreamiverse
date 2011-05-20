@@ -6,6 +6,8 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @page =  1
     @container = $('#entryField .matrix')
     @initSelectMenu()
+    @activateLightBox()
+    
     # @loadNextPage() # we want to load 2 pages on load (first page was loaded with ruby)
     
     # infinite scrolling
@@ -13,7 +15,21 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
       if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
         log 'window scroll'
         @loadNextPage()
-        
+ 
+      
+  '#entry-filter, #users-filter change': (el) ->
+    @page = 1
+    $("##{el.attr('id')}-wrap .spinner").show()
+    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')  
+
+  initSelectMenu: ->
+   $('.select-menu').selectmenu {
+     style: 'dropdown'
+     menuWidth: "200px"
+     positionOptions:
+       offset: "0px -37px"
+   }
+
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()  
     
@@ -27,41 +43,6 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     log('page:' + @page)
     
     Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
-
-    
-    ###
-    @stream.load({ page: @page }).then (data)=>
-      @clear()
-      @currentlyLoading = false
-      if !data.html? || data.html == ""
-        @currentlyLoading = true # No more entries to load.
-        $('#noMoreEntries').show()
-        
-      @$container.append(data.html)
-      @activateLightBox()
-    ###
-    
-  initSelectMenu: ->
-    $('.select-menu').selectmenu {
-      style: 'dropdown'
-      menuWidth: "200px"
-      positionOptions:
-        offset: "0px -37px"
-    }
-    
-  getOptions: ->
-    log 'running getOptions'
-    filters: {
-      page: @page
-      type: $('#entry-filter').val()
-      users: $('#users-filter').val()
-    }
-    
-
-  '#entry-filter, #users-filter change': (el) ->
-    @page = 1
-    $("##{el.attr('id')}-wrap .spinner").show()
-    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
     
   updateStream: (json) ->
     log 'running updateStream'
@@ -69,6 +50,7 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @currentlyLoading = false   
     
     if !json.html? || json.html == ""
+      @currentlyLoading = true
       $('#noMoreEntries').show() # No more entries to load.
       
     $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
@@ -78,7 +60,18 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     else
       @container.html json.html
       
-
+    @activateLightBox()     
+           
+  getOptions: ->
+    log 'running getOptions'
+    filters: {
+      page: @page
+      type: $('#entry-filter').val()
+      users: $('#users-filter').val()
+    }
     
-
-    
+  activateLightBox: ->
+    # Setup lightbox for stream
+    $('a.lightbox').each((i, el) ->
+      $(this).lightBox({containerResizeSpeed: 0});
+    )    
