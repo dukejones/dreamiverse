@@ -82,6 +82,8 @@ class Image < ActiveRecord::Base
     set_metadata
     save!
     @original_magick.write(path)
+
+    # convert to web-safe format ?
   end
 
   def import_from_file(filename, original_filename=nil)

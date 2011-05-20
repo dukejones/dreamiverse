@@ -178,10 +178,15 @@ class ImagesController < ApplicationController
     image = Image.find params[:id]
     render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
 
-    options = { :size => params[:size], :format => params[:format] }
+    format = params[:format] || image.format
+    mime_type = Mime::Type.lookup_by_extension(format)
+    unless mime_type
+      mime_type = "image/jpeg"
+      format = "jpg"
+    end
+    options = { :size => params[:size], :format => format }
     image.generate(params[:descriptor], options)
 
-    mime_type = Mime::Type.lookup_by_extension(params[:format] || image.format)
     send_file image.path(params[:descriptor], options), {type: mime_type, disposition: 'inline'}
 
     # redirect_to image.url(params[:descriptor], options)

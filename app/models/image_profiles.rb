@@ -29,6 +29,7 @@ module ImageProfiles
   end
 
   def pre_generate(profile, options={})
+    # options[:format] = "jpg" unless Mime::Type.lookup_by_extension(options[:format] || self.format)
     generate_profile(profile, options) unless profile_generated?(profile, options)
   end
   
