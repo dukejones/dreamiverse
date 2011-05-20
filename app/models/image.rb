@@ -77,14 +77,13 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
   def write(binary_data)
-    begin
-      delete_all_resized_files!
-      set_metadata
-      file = File.open(path, 'wb')
-      file.write(binary_data)
-    ensure
-      file._?.close
-    end
+    delete_all_resized_files!
+    @original_magick = MiniMagick::Image.read(binary_data)
+    set_metadata
+    save!
+    @original_magick.write(path)
+
+    # convert to web-safe format ?
   end
 
   def import_from_file(filename, original_filename=nil)
@@ -158,6 +157,7 @@ protected
     end
     
     self.format = magick_info(:format).downcase
+    self.format = 'jpg' if self.format == 'jpeg'
     self.size = magick_info(:size)
     self.width, self.height = magick_info(:dimensions)
   end

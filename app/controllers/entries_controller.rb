@@ -41,7 +41,7 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
-    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
+    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
 
     @entries = entry_list
     

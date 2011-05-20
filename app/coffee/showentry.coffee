@@ -76,25 +76,8 @@ $(document).ready ->
   #     window.location = $('#showEntry').find('a.prev').attr('href')
   #   else if e.keyCode == 39 and !@commentsFocused
   #     window.location = $('#showEntry').find('a.next').attr('href')
-  
-  # Setup sharing level icon change
-  $('.shareLevel').find('span').each( (i, el)->
-    switch $(this).text()
-      when 'private'
-        $(this).prev().css('background', 'url(/images/icons/private-16.png) no-repeat center')
-      when 'anonymous'
-        $(this).prev().css('background', 'url(/images/icons/anon-16.png) no-repeat center')
-      when 'users'
-        $(this).prev().css('background', 'url(/images/icons/list-16.png) no-repeat center')
-      when 'followers'
-        $(this).prev().css('background', 'url(/images/icons/friend-16-follower.png) no-repeat center')
-      when 'friends'
-        $(this).prev().css('background', 'url(/images/icons/friend-16-none.png) no-repeat center')
-      when 'friends of friends'
-        $(this).prev().css('background', 'url(/images/icons/friend-16-none.png) no-repeat center')
-      when 'everyone'
-        $(this).prev().css('background', 'url(/images/icons/sharing-16.png) no-repeat center')
-  )
+
+
   
   $('.gallery .youtube').each (i, el) =>
     # Pass the url and the element it came from

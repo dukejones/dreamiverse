@@ -1,4 +1,4 @@
-- cache([entry, "thumb2d"]) do
+- cache([entry, (current_user==entry.user), "thumb2d"]) do
   .thumb-2d
 
     / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
@@ -27,7 +27,7 @@
             .img.comment
             = entry.new_comment_count
         - elsif entry.comments.count > 0
-          .comments{class: entry.new_comment_count > 0 }
+          .comments
             .img.comment
             = entry.comments.count
 

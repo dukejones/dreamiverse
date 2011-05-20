@@ -60,7 +60,8 @@ class Entry < ActiveRecord::Base
   after_create :set_user_defaults
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
-
+  after_commit :pre_generate_images
+  
   # Sharing scopes
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
@@ -92,14 +93,16 @@ class Entry < ActiveRecord::Base
   end
   
   # where dream is public or i am friends with entry.user
+  # XXX: Does not work yet. Perfect the unit test.
   def self.accessible_by(user)
     where( 
       (
         { sharing_level: Entry::Sharing[:everyone] } | 
+        { user: user } |
         (
           { sharing_level: Entry::Sharing[:friends] } & 
           { user: { following: user, followers: user} }
-        ) 
+        )
       )
     ).joins(:user.outer => [:following.outer, :followers.outer]).group(:id)
   end
@@ -163,7 +166,7 @@ class Entry < ActiveRecord::Base
       ORDER BY stream_time DESC
     })
 
-    # entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
+    entries.select!{|e| viewer.can_access?(e) } if entries # this is very, very slow.
     entries
   end
 
@@ -182,8 +185,8 @@ class Entry < ActiveRecord::Base
     if viewer
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])   unless viewer == viewed
       entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:anonymous]) unless viewer == viewed
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed)
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed)
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed) || viewer == viewed
+      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed) || viewer == viewed
       # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line eventually.
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
@@ -312,5 +315,11 @@ protected
 
   def init_dreamed_at
     self.dreamed_at ||= Time.zone.now
+  end
+
+  def pre_generate_images
+    self.main_image._?.pre_generate(:facebook)
+    self.main_image._?.pre_generate(:stream_header)
+    self.main_image._?.pre_generate(:dreamfield_header)
   end
 end

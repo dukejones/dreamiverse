@@ -6,7 +6,7 @@
     %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
     
   - if @entry._?.main_image
-    %meta{name:"og:image", content:"http://dreamcatcher.net#{@entry.main_image.url(:thumb, :size=> 256)}"}
+    %meta{name:"og:image", content:"http://dreamcatcher.net#{@entry.main_image.url(:facebook)}"}
 
 / :coffeescript
 /   require({baseUrl: "/javascripts"}, [ 'autoresize.jquery.min' ])
@@ -160,7 +160,7 @@
 
             - if !@entry.everyone?
               .shareLevel
-                .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+                .img{class: @entry.sharing}
                 %span= @entry.sharing
 
             - if location = @entry.location
