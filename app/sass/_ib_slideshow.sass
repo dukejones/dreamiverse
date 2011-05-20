@@ -19,8 +19,10 @@
   height: 100%
 
   &:hover .close
-    +close-24
     +block
+
+  .close
+    +close-24
     +absolute
     +alpha(20)
     top: 20px
@@ -98,24 +100,24 @@
     width: 180px
     height: 820px
 
-    &:hover
+    &:hover .arrow
+      +block
 
-      .arrow
-        +absolute
-        +block
-        +font(200)
-        +center
-        +bold
-        width: 180px
-        top: 200px
-        left: 0
-        color: #fff
-        color: rgba(250,250,250,0.5)
+    .arrow
+      +absolute
+      +font(200)
+      +center
+      +bold
+      width: 180px
+      top: 200px
+      left: 0
+      color: #fff
+      color: rgba(250,250,250,0.5)
 
-      .text
-        +font(18)
-        font-weight: normal
-        margin: -40px 0 0
+    .text
+      +font(18)
+      font-weight: normal
+      margin: -40px 0 0
 
   .gradient-left
     left: 0
@@ -184,14 +186,10 @@
     padding: 12px
     width: 696px
     height: 56px
-    color: #ddd
 
-    &:hover .info
-      +alpha(100)
-    &:hover .tagging
-      +alpha(100)
-    &:hover .download
-      +alpha(100)
+    &:hover
+      .info, .tagging, .download, .comment
+        +alpha(100)
 
     .info, .tagging, .download
       +pointer
@@ -223,8 +221,72 @@
       &:active
         background: url(/images/icons/download-24-active.png) no-repeat center center transparent
 
-    .comment
 
+
+    // COMMENT COUNT - (taken almost directly from thumb_1d.sass)
+    .comment
+      +pointer
+      +user-select
+      +right
+      height: 26px
+      +round(12)
+      +flat-bottom
+      border: 1px solid transparent
+      border-bottom: 0px !important
+      &.new
+        +block
+
+      .img
+        +left
+        width: 16px
+        height: 16px
+        background: url(/images/icons/comment-16.png) no-repeat center center
+
+      span
+        +left
+        padding: 0 6px 0 10px
+        line-height: 24px
+
+      .count
+        +left
+        +round(12)
+        +center
+        +bold
+        +font(14)
+        margin: 4px
+        height: 16px
+        line-height: 17px
+        padding: 2px 10px
+
+        span
+          padding: 0
+          line-height: 17px
+          margin-left: 6px
+          &.empty
+            margin: 0px
+
+      .arrow
+        +left
+        width: 16px
+        height: 26px
+        margin-left: 8px
+        background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      &.ipad
+        +block
+        .text
+          +block
+  &.expanded .details
+    .comment, .text
+      display: block
+    .arrow
+      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+
+  // SEE _COMMENT.SASS
+  // this hides all comments panels and allows for drop shadow coverage
+  .commentsPanel
+    z-index: -1
+    .showAll
+      margin-left: 90px
 
 
 
@@ -311,4 +373,70 @@
       text-transform: lowercase
       margin: 0 0 0 8px
       color: #ddd
+
+
+
+// COLORS - COMMENTS
+.light, .dark
+  #slideshow
+    .comment.new .count, .comment.new:hover .count
+      +alpha(100)
+      background:     #e35f5f
+      background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
+      background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
+      background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
+      color: #fff
+
+
+.light #slideshow
+  .count
+    +transparent-dark(80)
+    color: #ddd
+
+  &.expanded .comment:hover
+    border: 1px solid #999
+
+  .comment:hover, &.expanded .comment
+    +gradient(#c5c5c5, #a4a4a4)
+    .arrow
+      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+
+
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
+
+    background: #ccc
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#f3f3f3))
+    background: -moz-linear-gradient(top, #ccc, #f3f3f3)
+
+
+.dark #slideshow
+  .count
+    +transparent-light(80)
+    color: #222
+
+  &.expanded .comment:hover
+    border: 1px solid #575757
+
+  .comment:hover, &.expanded .comment
+    +gradient(#575757, #323232)
+    color: #fff
+    .arrow
+      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
+
+    background: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#111))
+    background: -moz-linear-gradient(top, #000, #111)
+
 
