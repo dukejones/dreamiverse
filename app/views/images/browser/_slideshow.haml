@@ -118,7 +118,7 @@
       /   = hidden_field :new_comments, entry.id, :value => entry.new_comment_count, :class => "newComments"
 
       / {class: "#{entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user ? 'new' : ''} #{is_ipad? ? 'ipad' : ''}"}
-      .comment
+      .comment.trigger.showhide
         .arrow
         %span.text comment
         .count

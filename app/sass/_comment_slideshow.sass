@@ -1,0 +1,47 @@
+// COMMENTS PANEL - (slideshow specific)
+.light, .dark
+  #slideshow-back #slideshow
+
+    .commentsPanel
+      +absolute
+      top: 860px
+      left: 220px
+      padding: 12px
+      width: 696px
+      border: none
+      +transparent
+      box-shadow:          none
+      -moz-box-shadow:     none
+      -webkit-box-shadow:  none
+      border-radius:            0
+      -moz-border-radius:       0
+      -webkit-border-radius:    0
+
+
+    .newCommentWrap
+      .newComment
+        .save
+          +button-dark
+          +save(14)
+          &.disabled:hover
+            +shine-grey(14)
+        textarea
+          color: #ddd
+          +input-dark(large)
+
+    .prevCommentWrap
+      .avatar:hover
+        border: 1px solid #aaa
+      .prevComment
+        +input-dark(small)
+        border: 1px solid #222
+        .user
+          color: #bbb
+          +button-dark
+          +bevel-dark
+        ul
+          li
+            +button-dark
+        .rePost
+          +bevel-dark
+          +button-dark
