@@ -22,9 +22,6 @@ javascripts:
     - public/javascripts/compiled/follow_hover.js
     - public/javascripts/compiled/dreamfield.js
     - public/javascripts/tag_stream.js
-  stream:
-    - public/javascripts/dreams.js
-    - public/javascripts/compiled/publicstream.js
      
 stylesheets:
   shared:

@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @initSelectMenu()
     @activateLightBox()
     
-    # @loadNextPage() # we want to load 2 pages on load (first page was loaded with ruby)
+    @loadNextPage() # we want to load 2 pages on load (first page was loaded with ruby)
     
     # infinite scrolling
     $(window).scroll =>
