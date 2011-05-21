@@ -1,0 +1,4 @@
+$.Class 'Dreamcatcher.Classes.ImageBankHelper',{},{
+  
+  
+}
