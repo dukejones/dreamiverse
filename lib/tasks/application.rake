@@ -167,15 +167,14 @@ namespace :fix do
     log("---Looking for blacklisted tag clouds---")
     Entry.all.map do |entry|
       entry.what_tags.auto.each do |tag|
-        if Tag::BlacklistWords[tag.noun.name]
+        if entry.what_tags.auto.any? { |tag| Tag::BlacklistWords[tag.noun.name] }  
           log("Re-processing cloud for entry id: #{entry.id} because of: tag: \"#{tag.noun.name}\" tag.id: #{tag.id} noun_id: #{tag.noun_id} ")
           Tag.auto_generate_tags(entry) 
           entry.reorder_tags
           fixed += 1
-          break
         end                   
-      end 
-    end   
+      end             
+    end  
     log("Fixed #{fixed} entries. Total time: #{Time.now - begin_time}")
   end
 end
