@@ -2,52 +2,53 @@
   = sass_link_tag 'admin'
 
 #adminPage
-#entryField
+  #entryField
 
-  .user.panel
-    .img
-    %h1 users
-    .total= @users.count
-
-    / .module.newUsers
-    /   %h2 new users
-    /   .clear
-    / .clear
-
-
-    .module.allUsers
+    .user.panel
       .img
-      %h2 user list
+      %h1 users
+      .total= @users.count
+
+      / .module.newUsers
+      /   %h2 new users
+      /   .clear
+      / .clear
+
+
+      .module.allUsers
+        .img
+        %h2 user list
+        .clear
+        #userList
+        - @users.each do |user|
+          %a.userNode{href: user_entries_path(user.username)}
+            = user.username
+            .postCount= user.entries.count     
+        #nextPage= 'next'
+        #currentPage = {:'data-id' => 1}
+        .clear
+        
+
+
+
+    .entries.panel
+      .img
+      %h1 entries
+      .total= Entry.count
       .clear
-      #userList
-      - @users.each do |user|
-        %a.userNode{href: user_entries_path(user.username)}
-          = user.username
-          .postCount= user.entries.count
 
+      / entries last week
+      / entries last month
+
+
+      .module.activeUsers
+        %h2 most active users
       .clear
-      #next= 'next'
-
-
-
-  .entries.panel
-    .img
-    %h1 entries
-    .total= Entry.count
-    .clear
-
-    / entries last week
-    / entries last month
-
-
-    .module.activeUsers
-      %h2 most active users
-    .clear
-    / 
-    / .module.seedCodes
-    /   %h2 seed codes
-    / .clear
-    / 
-    / .module.sharing
-    /   %h2 sharing
-    / .clear
+      / 
+      / .module.seedCodes
+      /   %h2 seed codes
+      / .clear
+      / 
+      / .module.sharing
+      /   %h2 sharing
+      / .clear

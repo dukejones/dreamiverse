@@ -1,11 +1,14 @@
 $.Model 'Dreamcatcher.Models.Admin',{
+  
   load: ( params, success, error ) ->
     $.ajax {
-      url: "/admin}"
+      url: "/admin"
       type: 'get'
       data: params
-      dataType: 'json'
+      dataType:'json'
       success: success
+      error: error
     } 
+    
 },
 {}

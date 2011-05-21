@@ -1,16 +1,20 @@
 $.Controller 'Dreamcatcher.Controllers.Admin',
-
+  model: Dreamcatcher.Models.Admin
   init: ->
     @page = 1
     log 'loaded admin controller'
+    # @updateUserPage
+
+  '#nextPage click': ->
+    @page += 1
+    log 'next clicked page: ' + @page
+    # @updateUsersPage()
+    @model.load @getParams(),@callback(@updateUsersPage)
     
-  '#next click': (el) ->
-    log 'next clicked'
-    @updateUserPage
+  updateUsersPage: (json) ->       
+    $("#userList").html(json.html)
+    log 'json: ' + json.html
     
-  updateUsersPage:
-    params['page'] = @page
-    # Dreamcatcher.Models.Admin.load @page,@callback(updateUsersPage)
-    @admin.load @page,@callback(updateUsersPage)
-    $("#userList").html(""). 
-    
+  getParams: ->
+    page: @page
+       
