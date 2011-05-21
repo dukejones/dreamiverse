@@ -70,6 +70,7 @@
       &:hover, &.user
         border: 1px solid #8c8c8c
         color: #4b93d9
+    .item, .searchIcon
       &.selected, &.selected:hover, &.selected:active
         color: #fff !important
         +cursor
@@ -154,10 +155,12 @@
           width: 24px
           height: 26px
           background: url(/images/icons/search-24.png) no-repeat center transparent
-        &:hover
+        &:hover, &.selected
           border: #8c8c8c 1px solid
           .img
             background: url(/images/icons/search-24-hover.png) no-repeat center transparent
+        &.selected
+          +bevel-dark
         &:active
           +bevel-dark
           .img

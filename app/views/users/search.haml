@@ -33,3 +33,8 @@
           / .status
           /   .img.friends
           /   %span follow
+
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  :coffeescript
+    $('.searchIcon.showhidesearch').addClass('selected')
