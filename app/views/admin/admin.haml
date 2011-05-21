@@ -1,14 +1,13 @@
 - content_for :head do
   = sass_link_tag 'admin'
 
-
+#adminPage
 #entryField
-
 
   .user.panel
     .img
     %h1 users
-    .total= User.count
+    .total= @users.count
 
     / .module.newUsers
     /   %h2 new users
@@ -20,13 +19,14 @@
       .img
       %h2 user list
       .clear
-
-      - User.all.each do |user|
+      #userList
+      - @users.each do |user|
         %a.userNode{href: user_entries_path(user.username)}
           = user.username
           .postCount= user.entries.count
 
       .clear
+      #next= 'next'
 
 
 
