@@ -42,9 +42,12 @@ steal.plugins(
 			'controllers/appearance_controller',
 			'controllers/bedsheets_controller',
 			'controllers/comments_controller',
-			'controllers/ib_manager_controller',
 			'controllers/ib_browser_controller',
 			'controllers/ib_slideshow_controller',
+			'controllers/ib_dropbox_controller',
+			'controllers/ib_search_options_controller',
+			'controllers/ib_manager_controller',
+
 			'controllers/entry_controller'
 		);
 	})

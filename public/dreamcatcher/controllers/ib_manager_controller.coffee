@@ -16,7 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.IbManager',
     $("#frame.browser").show()
     $("#frame.manager").hide()
     
-  showManager: (images, title) ->
+  show: (images, title) ->
     $("#imagelist").html('')
     $("#frame.manager h1").text title if title?
     @showImages images if images?

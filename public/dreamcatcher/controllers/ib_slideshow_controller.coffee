@@ -11,13 +11,14 @@ $.Controller 'Dreamcatcher.Controllers.IbSlideshow',
   
   getCurrentImage: ->
     @currentIndex = @images.length-1 if @currentIndex is -1
+    @currentIndex = 0 if @currentIndex is @images.length
     return @images[@currentIndex]
   
-  showSlideshow: (images, currentIndex) ->
+  show: (images, currentIndex) ->
     @images = images
-    @currentIndex = 0 if not currentIndex?
+    @currentIndex = if currentIndex? then currentIndex else 0
     $('.commentsPanel').hide()
-    $('#slideshow-back,#slideshow').show()
+    $('#slideshow-back, #slideshow').show()
     $('#slideshow-back').height $(document).height()
     @showSlide()
     
