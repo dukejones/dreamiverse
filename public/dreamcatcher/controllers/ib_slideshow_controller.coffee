@@ -2,19 +2,57 @@ $.Controller 'Dreamcatcher.Controllers.IbSlideshow',
 
   model: Dreamcatcher.Models.ImageBank
   
-  showSlideshow: (images) ->
+  init: ->
+    $(document).keyup (event) ->
+      switch event.keyCode
+        when 27 then $('.close').click()
+        when 37 then $('.gradient-left').click()
+        when 39 then $('.gradient-right').click()
+  
+  getCurrentImage: ->
+    @currentIndex = @images.length-1 if @currentIndex is -1
+    return @images[@currentIndex]
+  
+  showSlideshow: (images, currentIndex) ->
+    @images = images
+    @currentIndex = 0 if not currentIndex?
+    $('.commentsPanel').hide()
     $('#slideshow-back,#slideshow').show()
-    $('#slideshow .image img').attr 'src', "/images/uploads/originals/#{images[0].id}.#{images[0].format}"
+    $('#slideshow-back').height $(document).height()
+    @showSlide()
+    
+  showSlide: ->
+    image = @getCurrentImage()
+    $('#slideshow .image img, .imageReflect img').attr 'src', "/images/uploads/originals/#{image.id}.#{image.format}"
     
   '.close click': (el) ->
     $('#slideshow-back').hide()
+    $('#frame.browser').show()
     
-  '.graident-left click': (el) ->
-    alert 'prev'
+  '.gradient-left click': (el) ->
+    @currentIndex--
+    @showSlide()
       
-  '.graident-right click': (el) ->
-    alert 'next'
+  '.gradient-right click': (el) ->
+    @currentIndex++
+    @showSlide()
     
+  '.info click': (el) ->
+    image = @getCurrentImage()
+    $('#info .name span').text(image.title)
+    $('#info .author span').text(image.artist)
+    $('#info .year span').text(image.year)
+    $('#info').toggle()
+  
+  '.tagging click': (el) ->
+    $('#tagging').toggle()
+
+  '.download click': (el) ->
+    alert 'download'
+  
+  '.comment click': (el) ->
+    $('.commentsPanel').toggle()
+
     
     ###
     images = []

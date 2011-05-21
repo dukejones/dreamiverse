@@ -9,14 +9,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     #@stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
     @displayScreen "browse", @view('types', { types: @model.types })
     @loadDropbox()
-    
-    $(document).keyup (event) ->
-      #alert event.keyCode
-      if event.keyCode is 37
-        $(".footer .prev").click() if $(".footer .prev").is(":visible")
-      if event.keyCode is 39
-        $(".footer .next").click() if $(".footer .next").is(":visible")
-
 
   ## DROPBOX ##
   
@@ -48,28 +40,19 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       containment: 'document'
       helper: 'clone'
       zIndex: 100
-      start: ->
+      start: (ev, ui) ->
         $("#dropbox .active").show()
-        el.addClass 'grabbing'
-        ###
-        #
-        #if fromDropbox
-          $("#dropbox").css('z-index',1200)
-          $("#bodyClick").show()
-        else
-        ###
-        #@dragging = true
-      stop: ->
+        #ev.target.className = 'grabbing'
+      stop: (ev, ui) ->
         $("#dropbox .active").hide()
         ###
+        ev.target.removeClass 'grabbing'
+        ui.draggable.removeClass 'grabbing'
         if fromDropbox
           $("#dropbox").css('z-index','')
           $("#bodyClick").hide()
         else
         ###
-        #@dragging = false
-          
-    
     }
 
     
@@ -123,7 +106,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @removeImageFromDropbox el.parent()
     
   '#dropbox .play click': (el) ->
-    @showSlides $('#dropbox li')
+    @showSlideshow $('#dropbox li')
 
 
   
@@ -144,6 +127,7 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
 
   displayScreen: (type, html) ->
     switch type
+    
       when 'browse'
         @category = null
         @showIcons '.browseHeader, .searchWrap'
@@ -163,17 +147,6 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
       when 'searchResults'
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateScreen null, null, '#searchResults', null, html
-      
-        ### 
-        when 'slideshow'
-          @showIcons '.backArrow, h1, .counter, .prev, .info, .tag, .add, .next, .edit, .cancel'
-          if @searchOptions?
-            @updateScreen 'searchResults', 'Search', '#slideshow', 'slideshow', html
-          else if @artist?
-            @updateScreen 'albumList', @artist, '#slideshow', 'slideshow', html
-          else
-            @updateScreen 'artistList', @category, '#slideshow', 'slideshow', html
-        ###
         
     @currentView = type
 
@@ -284,8 +257,8 @@ $.Controller 'Dreamcatcher.Controllers.IbBrowser',
     @showManager $('.img',tr.next()), album
   
   '#albumList .images .img img click': (el) ->
-    imageId = el.parent().data 'id'
-    @showSlides $('.img', el.closest("tr")), imageId
+    index = el.parent().data 'id'
+    @showSlideshow $('.img', el.closest("tr")), 
     
   '#albumList .images .add click': (el) ->
     @addImageToDropbox el.parent()
