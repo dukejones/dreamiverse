@@ -1,0 +1,99 @@
+// BOOKS
+
+.book
+  +pointer
+  +left
+  +relative
+  +overflow
+  width: 200px
+  height: 266px
+  margin: 0 10px 10px 0
+  z-index: 1
+
+  a.link, .closed, .fade
+    +absolute
+    top: 0
+    right: 0
+    width: 200px
+    height: 266px
+
+  a.link
+    +block
+    z-index: 3
+
+  // CLOSED BOOK
+  .closed
+    z-index: 2
+
+    .info
+      +absolute
+      +round(16)
+      left: 0
+      bottom: 0
+      width: 170px
+      height: 248px
+
+      .entries, .edit, .title, .comments, .sharing
+        +absolute
+        +round(12)
+        +font(14)
+        +bold
+        color: #222
+        background-color: rgba(250,250,250,0.5)
+        // background-color: rgba(18,61,102,0.5)
+
+      .entries, .comments, .sharing
+        height: 24px
+        line-height: 24px
+        padding: 0 8px 0 28px
+        background-position: 4px center
+        background-repeat: no-repeat
+
+      .entries
+        top: 4px
+        left: 4px
+
+      .edit
+        top: 4px
+        right: 4px
+        height: 24px
+        line-height: 24px
+        padding: 0 8px
+
+      .title
+        +font(18)
+        top: 156px
+        left: 4px
+        width: 144px
+        height: auto
+        padding: 8px
+        +outline
+        border: none
+
+      .comments
+        bottom: 4px
+        left: 4px
+
+      .sharing
+        bottom: 4px
+        right: 4px
+
+    .cover
+      +absolute
+      +overflow
+      +round(16)
+      left: 0
+      bottom: 0
+      width: 170px
+      height: 248px
+      background-position: center
+      background-repeat: no-repeat
+
+  // OPEN BOOK
+  .open
+    +absolute
+    top: 0
+    right: 0
+    width: 335px
+    height: 334px
+    z-index: 2
