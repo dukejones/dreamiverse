@@ -6,14 +6,15 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     # @updateUserPage
 
   '#nextPage click': ->
+    @currentPage = $('#currentPage').data 'id'
     @page += 1
-    log 'next clicked page: ' + @page
+   
+    log 'next clicked page: ' + @page + 'currentPage: ' + @currentPage
     # @updateUsersPage()
-    @model.load @getParams(),@callback(@updateUsersPage)
+    @model.load @getParams(), @callback(@updateUsersPage)
     
   updateUsersPage: (json) ->       
-    $("#userList").html(json.html)
-    log 'json: ' + json.html
+    $("#userList").replaceWith(json.html)
     
   getParams: ->
     page: @page

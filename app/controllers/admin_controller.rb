@@ -2,7 +2,8 @@ class AdminController < ApplicationController
   before_filter :require_user, :require_admin
 
   def user_list
-    params ||= {}
+    # params ||= {}
+    # params = {} if !params?
     page_size = params[:page_size] || 3
     page = params[:page].to_i
     page = 1 if page <= 0   
@@ -22,7 +23,7 @@ class AdminController < ApplicationController
   end
      
   def admin
-   user_list
+    user_list
   end
 
 

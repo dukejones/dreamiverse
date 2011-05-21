@@ -20,12 +20,12 @@
         %h2 user list
         .clear
         #userList
-        - @users.each do |user|
-          %a.userNode{href: user_entries_path(user.username)}
-            = user.username
-            .postCount= user.entries.count     
+          - @users.each do |user|
+            %a.userNode{href: user_entries_path(user.username)}
+              = user.username
+              .postCount= user.entries.count     
         #nextPage= 'next'
-        #currentPage = {:'data-id' => 1}
+        #currentPage{:'data-id' => 1}
         .clear
         
 
