@@ -8,28 +8,29 @@
     .user.panel
       .img
       %h1 users
-      .total= @users.count
-
-      / .module.newUsers
-      /   %h2 new users
-      /   .clear
-      / .clear
-
+      .total= @users.count  
 
       .module.allUsers
         .img
         %h2 user list
         .clear
-        #userList
+
+        / USER LIST
+        #userList     
           - @users.each do |user|
             %a.userNode{href: user_entries_path(user.username)}
               = user.username
               .postCount= user.entries.count     
-        .spinner
+          
         .clear
-        #prevPage= 'prev' 
+        
+        .spinner    
+        #prevPage{valign: 'bottom'}= 'prev ' 
+        #pages
         #nextPage= 'next'      
         #currentPage{:'data-id' => 1}
+        #totalUsers{:'data-id' => @users.count}
+        #pageSize{:'data-id' => @page_size}
         .clear
         
         
