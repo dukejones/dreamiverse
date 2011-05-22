@@ -4,7 +4,7 @@ class AdminController < ApplicationController
   def user_list
     # params ||= {}
     # params = {} if !params?
-    page_size = params[:page_size] || 16
+    page_size = params[:page_size] || 40
     page = params[:page].to_i
     page = 1 if page <= 0   
     

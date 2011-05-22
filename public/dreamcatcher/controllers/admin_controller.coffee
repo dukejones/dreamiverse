@@ -1,5 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.Admin',
+  
   model: Dreamcatcher.Models.Admin
+  
   init: ->
     # @model = new Dreamcatcher.Models.Admin
     @totalUsers = parseInt $('#totalUsers').data 'id'
@@ -7,36 +9,32 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @totalPages = Math.ceil(@totalUsers / @pageSize)    
     @page = 1
     
-    log 'loaded admin controller'
     $('#prevPage').hide() 
 
     num = 0
     while num < @totalPages
       num += 1
-      $('#pages').append('<a href="#"' + num + ' id="userPage">' + num + '</a>')
-
+      $('#pages').append @view 'page_number', {page: num}
+     
 
   '#userPage click': (el,ev) ->
     @page = el.text()
-    Dreamcatcher.Models.Admin.load @getParams(), @callback(@updateUsersPage)
+    Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage
 
   '#nextPage, #prevPage click': (el,ev) ->
     @page = 1 if !@page? 
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
-    
-    Dreamcatcher.Models.Admin.load @getParams(), @callback(@updateUsersPage)
+    .spinner.show()
+    Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage
 
   updateUsersPage: (json) ->  
-    $("#userList").hide("slide", { direction: "right" }, 200)     
     $("#userList").html(json.html)
-    $("#userList").show("slide", { direction: "left" }, 200);
    
     if @page > 1 
       $('#prevPage').show() 
     else 
       $('#prevPage').hide()
-         
-      
+               
     $('#nextPage').show()
     $('#nextPage').hide() if @page >= @totalPages    
     log "page: #{@page} totalPages: #{@totalPages}"
