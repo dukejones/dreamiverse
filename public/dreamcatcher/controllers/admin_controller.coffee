@@ -17,21 +17,14 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
 
 
   '#userPage click': (el,ev) ->
-    log 'feh '+ el.text()
     @page = el.text()
     Dreamcatcher.Models.Admin.load @getParams(), @callback(@updateUsersPage)
 
   '#nextPage, #prevPage click': (el,ev) ->
     @page = 1 if !@page? 
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
-   
-    log "#{ev.currentTarget.id} clicked, page: " + @page + ' totalPages: ' + @totalPages
     
     Dreamcatcher.Models.Admin.load @getParams(), @callback(@updateUsersPage)
-    
-
-    # $('.total#page').html(@page)  
-
 
   updateUsersPage: (json) ->  
     $("#userList").hide("slide", { direction: "right" }, 200)     

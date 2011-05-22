@@ -25,9 +25,11 @@
         .clear
         
         .spinner    
-        #prevPage{valign: 'bottom'}= 'prev ' 
+        #prevPage 
+          %a{href: "#"}='prev ' 
         #pages
-        #nextPage= 'next'      
+        #nextPage
+          %a{href: "#"}='next' 
         #currentPage{:'data-id' => 1}
         #totalUsers{:'data-id' => @users.count}
         #pageSize{:'data-id' => @page_size}
