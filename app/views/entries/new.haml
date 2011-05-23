@@ -24,9 +24,11 @@
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
       = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
-      - if @entry_mode == 'new'
+      - if @entry_mode == 'new' 
         = hidden_field_tag :new_entry_mode, 1 
-
+    
+    #entryMode{:'data-id' => @entry_mode}
+    
     - @entry.images.each do |image|
       = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
     
