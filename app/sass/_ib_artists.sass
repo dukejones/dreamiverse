@@ -39,12 +39,12 @@ table#artistList
         padding: 12px 0
         height: 38px
 
-        &:hover .editable
-          +input-light(large)
-
         &:hover .edit
-          +absolute
           +block
+
+        .edit
+          +hidden
+          +absolute
           +left
           +pointer
           top: 0
@@ -68,6 +68,9 @@ table#artistList
           padding: 0 0 0 8px
           color: #ddd
           border: 1px solid transparent
+
+        .editable.hover
+          +input-light(large)
 
 
     td.images
