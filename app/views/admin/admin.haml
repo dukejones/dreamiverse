@@ -20,8 +20,7 @@
           - @users.each do |user|
             %a.userNode{href: user_entries_path(user.username)}
               = user.username
-              .postCount= user.entries.count     
-          
+              .postCount= user.entries.count               
         .clear
         
         .spinner    
@@ -30,15 +29,12 @@
         #pages
         #nextPage
           %a{href: "#"}='next' 
-        #currentPage{:'data-id' => 1}
+
         #totalUsers{:'data-id' => @users.count}
         #pageSize{:'data-id' => @page_size}
         .clear
         
-        
-
-
-
+      
     .entries.panel
       .img
       %h1 entries
