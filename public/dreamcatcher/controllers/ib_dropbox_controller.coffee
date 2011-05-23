@@ -24,6 +24,7 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
     }
 
     $("#dropbox").draggable {
+      cursor: 'grabbing'
       handle: 'h2,.icon'
       stop: (ev, ui) =>
         @stateCookie.set ui.position
@@ -59,19 +60,13 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
     el.draggable {
       containment: 'document'
       helper: 'clone'
+      cursor: 'grabbing' #todo
       zIndex: 100
       start: (ev, ui) =>
-        ###
-        #ev.target.className = 'grabbing'
-        #$("#dropbox .active").hide()
-        @isDragging = false
-        ev.target.removeClass 'grabbing'
-        ###
         if fromDropbox
           $("#dropbox").css('z-index','1100')
           $("#bodyClick").show()
       stop: (ev, ui) =>
-        #ui.draggable.removeClass 'grabbing'
         if fromDropbox
           $("#dropbox").css('z-index','')
           $("#bodyClick").hide()
