@@ -41,6 +41,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     )
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
+  # NOTE: this is not currently working, see fit_to_content.coffee
   fitToContent: (id, maxHeight) ->
     text = if id and id.style then id else document.getElementById(id)
     return 0 if not text
@@ -48,8 +49,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     if not maxHeight or maxHeight > adjustedHeight
       adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
       adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-      text.style.height = adjustedHeight + 80 + 'px' if adjustedHeight > text.clientHeight    
-
+      text.style.height = slideDown(80) if adjustedHeight > text.clientHeight
+ 
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
     

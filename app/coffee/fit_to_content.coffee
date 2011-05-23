@@ -7,5 +7,7 @@ window.fitToContent = (id, maxHeight) ->
   if not maxHeight or maxHeight > adjustedHeight
     adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
     adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-    text.style.height = adjustedHeight + 80 + 'px' if adjustedHeight > text.clientHeight
+    $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
+
+    #text.style.height = adjustedHeight + 80 + 'px' if adjustedHeight > text.clientHeight
 
