@@ -151,6 +151,85 @@
               text-align: center
 
 
+        // TAGGING & INFO
+        #tagging, #info
+          +absolute
+          bottom: 4px
+          left: 0
+          width: 696px
+          padding: 12px
+          background: rgba(0,0,0,0.7)
+
+
+        // TAGGING
+        #tagging
+          height: 80px
+
+          // (taken almost directly from new_entry)
+          .tagInputWrap
+            height: 40px
+            margin: 0 16px
+            background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left center transparent
+            img
+              +left
+              margin: 0
+            .tagInput
+              +left
+              height: 40px
+              margin: 0 0 0 26px
+              background: url(/images/slices/inputContent-Dark-40.png) repeat-x 0 0 transparent
+              input
+                +left
+                +font(18)
+                +transparent
+                +outline
+                color: #ddd
+                width: 500px
+                height: 32px
+                margin: 4px 0
+                border: 0
+            .tagAdd
+              +round(4)
+              +center
+              +right
+              +bold
+              width: 62px
+              height: 28px
+              line-height: 30px
+              margin: 5px 0
+              +button-dark
+              +shine-dark-alpha(13)
+              span
+                color: #ddd
+            .tagInputRight
+              +left
+              width: 14px
+              height: 40px
+              background: url(/images/slices/inputRight-Dark-40.png) no-repeat right center transparent
+
+        // INFO
+        #info
+          height: 28px
+
+          .name, .author, .year
+            +left
+            +round(16)
+            +font(14)
+            height: 28px
+            line-height: 28px
+            margin: 0 8px 0 0
+            padding: 0 14px
+            text-transform: uppercase
+            color: #777
+            background: #1c1c1c
+          span
+            text-transform: lowercase
+            margin: 0 0 0 8px
+            color: #ddd
+
+
+
+
       // IMAGE REFLECT
       .imageReflect
         +absolute
@@ -319,91 +398,6 @@
   // SEE _COMMENT_SLIDESHOW.SASS (slideshow specific)
 
 
-
-
-
-
-// INFO & TAGGING
-#infoTags
-  +absolute
-  +transparent
-  bottom: 44px
-  left: 4px
-  width: 670px
-  height: auto
-
-
-  // TAGGING
-  #tagging
-    height: 80px
-    padding: 12px
-    background: rgba(0,0,0,0.7)
-
-    // (taken almost directly from new_entry)
-    .tagInputWrap
-      height: 40px
-      margin: 0 16px
-      background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left center transparent
-      img
-        +left
-        margin: 0
-      .tagInput
-        +left
-        height: 40px
-        margin: 0 0 0 26px
-        background: url(/images/slices/inputContent-Dark-40.png) repeat-x 0 0 transparent
-        input
-          +left
-          +font(18)
-          +transparent
-          +outline
-          color: #ddd
-          width: 500px
-          height: 32px
-          margin: 4px 0
-          border: 0
-      .tagAdd
-        +round(4)
-        +center
-        +right
-        +bold
-        width: 62px
-        height: 28px
-        line-height: 30px
-        margin: 5px 0
-        +button-dark
-        +shine-dark-alpha(13)
-        span
-          color: #009933
-      .tagInputRight
-        +left
-        width: 14px
-        height: 40px
-        background: url(/images/slices/inputRight-Dark-40.png) no-repeat right center transparent
-
-
-
-  // INFO
-  #info
-    height: 28px
-    padding: 12px
-    background: rgba(0,0,0,0.7)
-
-    .name, .author, .year
-      +left
-      +round(16)
-      +font(14)
-      height: 28px
-      line-height: 28px
-      margin: 0 8px 0 0
-      padding: 0 14px
-      text-transform: uppercase
-      color: #777
-      background: #1c1c1c
-    span
-      text-transform: lowercase
-      margin: 0 0 0 8px
-      color: #ddd
 
 
 
