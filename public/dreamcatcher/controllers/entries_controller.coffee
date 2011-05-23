@@ -26,11 +26,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   retrieveState: ->
     entry = @entryCookie.get()
     if entry?
-      if confirm 'you have an unsaved entry.\n\nwould you like to bring it back ?'
-        @stateRetrieved = true
-        $(field).val entry[field] for field in @fields
-        $('#currentImages').html entry['#currentImages']
-    @clearState()
+      # populate form with saved state then confirm they want to use it     
+      $(field).val entry[field] for field in @fields
+      $('#currentImages').html entry['#currentImages']
+      @stateRetrieved = true 
+    # reset form unless confirmation to use saved state
+    unless confirm 'you have an unsaved entry.\n\nwould you like to use it?'
+      log 'clearing form'
+      $(field).val '' for field in @fields
+      $('#currentImages').html ''
+      
+    @clearState()  
   
   clearState: ->
     @entryCookie.clear()
