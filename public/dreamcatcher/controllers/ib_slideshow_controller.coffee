@@ -8,12 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.IbSlideshow',
         when 27 then $('.close').click()
         when 37 then $('.gradient-left').click()
         when 39 then $('.gradient-right').click()
-  
-  getCurrentImage: ->
-    @currentIndex = @images.length-1 if @currentIndex is -1
-    @currentIndex = 0 if @currentIndex is @images.length
-    return @images[@currentIndex]
-  
+                
   show: (images, currentIndex) ->
     @images = images
     @currentIndex = if currentIndex? then currentIndex else 0
@@ -21,21 +16,39 @@ $.Controller 'Dreamcatcher.Controllers.IbSlideshow',
     $('#slideshow-back, #slideshow').show()
     $('#slideshow-back').height $(document).height()
     @showSlide()
+  
+        
+  getSafeIndex: (index) ->
+    return @images.length - 1 if index is -1
+    return 0 if index is @images.length
+    return index
+    
+  changeIndex: (diff) ->
+    @currentIndex = @getSafeIndex @currentIndex+diff
+    
+  getImage: (diff) ->
+    index = @getSafeIndex @currentIndex+diff
+    return @images[index]
+  
+    
+  setImageSource: (selector, image) ->
+    return $(selector).attr 'src', "/images/uploads/originals/#{image.id}.#{image.format}"
     
   showSlide: ->
-    image = @getCurrentImage()
-    $('#slideshow .image img, .imageReflect img').attr 'src', "/images/uploads/originals/#{image.id}.#{image.format}"
+    @setImageSource '#slideshow .left img, #slideshow .leftReflect img', @getImage -1
+    @setImageSource '#slideshow .image img, #slideshow .imageReflect img', @getImage 0 
+    @setImageSource '#slideshow .right img, #slideshow .rightReflect img', @getImage 1
     
   '.close click': (el) ->
     $('#slideshow-back').hide()
     $('#frame.browser').show()
     
   '.gradient-left click': (el) ->
-    @currentIndex--
+    @changeIndex -1
     @showSlide()
       
   '.gradient-right click': (el) ->
-    @currentIndex++
+    @changeIndex 1
     @showSlide()
     
   '.info click': (el) ->
