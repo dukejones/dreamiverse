@@ -7,7 +7,7 @@
 
 
   / CLOSED BOOK
-  .closed
+  .closed.hidden
 
     .cover{style: 'background-image: url(/images/avatars/default-avatar-full.jpg)'}
 
@@ -29,4 +29,44 @@
         friends
 
   / OPEN BOOK
-  .open
+  .open{style: 'background: url(/images/books/open-blue-dark.png) no-repeat center center'}
+
+    / CONTROL PANEL
+    .control-panel
+
+      .header
+
+        .back &lsaquo;
+
+        %span My Book of Dreams
+
+      .color
+        color
+        .icon
+
+      .coverImage
+        cover image
+        .icon
+
+      .access
+        access
+        .icon
+
+      .settings
+        settings
+        .icon
+
+
+    / COLOR PANEL
+    .color-panel
+
+      .header
+
+        .back &lsaquo;
+
+        .icon
+
+
+
+
+
