@@ -16,6 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     entryBody = $('#entry_body').val().trim()
     if entryBody.length > 0 
       entry = {}
+      entry['type'] = $('#entryMode').data 'id'
       entry[field] = $(field).val() for field in @fields
       entry['#currentImages'] = $('#currentImages').html()
       @entryCookie.set entry
@@ -26,6 +27,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   retrieveState: ->
     entry = @entryCookie.get()
     if entry?
+      log "entry[type] #{entry['type']}"
       # populate form with saved state then confirm they want to use it     
       $(field).val entry[field] for field in @fields
       $('#currentImages').html entry['#currentImages']
