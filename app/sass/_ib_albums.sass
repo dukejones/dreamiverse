@@ -31,12 +31,12 @@ table#albumList
         padding: 12px 0
         height: 36px
 
-        &:hover .editable
-          +input-dark(large)
-
         &:hover .edit
-          +absolute
           +block
+
+        .edit
+          +hidden
+          +absolute
           +left
           +pointer
           top: 0
@@ -58,6 +58,10 @@ table#albumList
         padding: 0 0 0 12px
         color: #ddd
         border: 1px solid transparent
+
+      .editable.hover
+        +input-dark(large)
+
 
   tr.images
 
