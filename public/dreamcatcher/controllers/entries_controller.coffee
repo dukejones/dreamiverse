@@ -34,7 +34,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
       $(field).val entry[field] for field in @fields
       $('#currentImages').html entry['#currentImages']
       @stateRetrieved = true
-      unless confirm 'you have an unsaved entry.\n\n would you like to use it?'
+      unless confirm 'keep this un-saved entry?'
         @clearForm()
         
     @clearState()         
