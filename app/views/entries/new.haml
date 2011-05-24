@@ -20,6 +20,7 @@
       - if @entry_mode == 'new' 
         = hidden_field_tag :new_entry_mode, 1 
     
+    #entryId{:'data-id' => @entry.id}
     #entryMode{:'data-id' => @entry_mode}
     
     - @entry.images.each do |image|

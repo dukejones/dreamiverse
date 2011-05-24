@@ -16,10 +16,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     entryBody = $('#entry_body').val().trim()
     if entryBody.length > 0 
       entry = {}
-      entry['type'] = $('#entryMode').data 'id'
-      entry[field] = $(field).val() for field in @fields
-      entry['#currentImages'] = $('#currentImages').html()
-      @entryCookie.set entry
+      entry_type = $('#entryMode').data 'id'
+      if entry_type is 'new'
+        entry[field] = $(field).val() for field in @fields
+        entry['#currentImages'] = $('#currentImages').html()
+        @entryCookie.set entry
     setTimeout =>
       @saveState()
     , @interval
@@ -27,16 +28,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   retrieveState: ->
     entry = @entryCookie.get()
     if entry?
-      log "entry[type] #{entry['type']}"
+      # log "entry[type] #{entry['type']} entry[id]: #{entry['id']}"
       # populate form with saved state then confirm they want to use it     
       $(field).val entry[field] for field in @fields
       $('#currentImages').html entry['#currentImages']
       @stateRetrieved = true 
-    # reset form unless confirmation to use saved state
-    unless confirm 'you have an unsaved entry.\n\nwould you like to use it?'
-      log 'clearing form'
-      $(field).val '' for field in @fields
-      $('#currentImages').html ''
+      
+      # reset form unless confirmation to use saved state
+      unless confirm 'you have an unsaved entry.\n\nwould you like to use it?'
+        log 'clearing form'
+        $(field).val '' for field in @fields
+        $('#currentImages').html ''
       
     @clearState()  
   
