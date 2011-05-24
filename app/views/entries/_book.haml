@@ -20,7 +20,8 @@
 
       .edit edit
 
-      %input.title{type: 'text', value: 'Title of the Book Goes Here'}
+      .title Title of the Book Goes Here
+      / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
 
       .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
         4
@@ -33,7 +34,7 @@
   .open{style: 'background: url(/images/books/open-blue-dark.png) no-repeat center center'}
 
     / CONTROL PANEL
-    .control-panel
+    .control-panel.hidden
 
       .header
 
@@ -54,6 +55,11 @@
       .settings
         settings
         .icon
+
+      .more
+        .arrow
+
+      .confirm OK
 
 
     / COLOR PANEL
@@ -83,7 +89,7 @@
         %li.maroon
         %li.white
         %li.grey-light
-        %li.green-dark
+        %li.grey-dark
         %li.black
 
 

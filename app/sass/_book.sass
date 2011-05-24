@@ -18,7 +18,7 @@
 
   a.link
     +block
-    z-index: 3
+    z-index: 1
 
   // CLOSED BOOK
   .closed
@@ -61,13 +61,11 @@
 
       .title
         +font(18)
-        top: 156px
-        left: 4px
-        width: 144px
+        bottom: 40px
+        left: 0
+        margin: 0 4px
         height: auto
         padding: 8px
-        +outline
-        border: none
 
       .comments
         bottom: 4px
@@ -95,83 +93,150 @@
     right: 0
     width: 335px
     height: 334px
+    color: #444
     z-index: 2
 
 
-    // CONTROL PANEL
-    .control-panel
+    // PANEL SHARED STYLES
+    .control-panel, .color-panel
       +absolute
-      top: 20px
+      top: 19px
       right: 32px
       bottom: 0
       padding: 8px
       width: 148px
-      height: 232px
+      height: 224px
 
-      .header, .color, .coverImage, .access, .settings
-        +round(8)
+    .header, .color, .coverImage, .access, .settings, .more, .confirm
+      +round(4)
+      height: 30px
+      line-height: 30px
+      margin: 0 0 4px
+      border: 1px solid #888
+      +bevel-light
+
+      .icon, .back
+        +left
+        +round(4)
+        +flat-right
         height: 30px
-        line-height: 30px
+        width: 30px
+        margin: 0 12px 0 0
 
-        .icon
-          +left
-          height: 30px
-          width: 30px
-
-      .header
-        +indent-light
-        +center
-        border: 0
-        border-bottom: 2px solid #000
-
-      .color
-
-        .icon
-
-      .coverImage
-
-        .icon
-
-      .access
-
-        .icon
-
-      .settings
-
-        .icon
+    .header
+      +indent-light
+      +center
+      height: 32px
+      line-height: 32px
+      padding: 2px 0
+      border: 0
+      border-bottom: 2px solid #000
 
 
-    // COLOR PANEL
+    // CONTROL PANEL ONLY
+    .color .icon
+      background: #123d66
+      box-shadow:         inset 0 16px rgba(255,255,255,0.5)
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.5)
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.5)
+
+    .coverImage .icon
+      background: url(/images/icons/images-16-hover.png) no-repeat center center transparent
+
+    .access .icon
+      background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
+
+    .settings .icon
+      background: url(/images/icons/settings-24-hover.png) no-repeat center center transparent
+
+    .more
+      +absolute
+      bottom: 2px
+      left: 8px
+      width: 30px
+      .arrow
+        +absolute
+        width: 30px
+        height: 30px
+        background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center transparent
+
+    .confirm
+      +confirm(16)
+      +font(18)
+      +bold
+      +absolute
+      bottom: 2px
+      right: 8px
+      padding: 0 16px
+
+
+    // COLOR PANEL ONLY
     .color-panel
 
       .header
+        text-align: left
 
-        .back
+      .back
+        +font(24)
+        +bold
+        +center
+        width: 30px
+        margin: 0 4px
+        border: 1px solid #888
+        +bevel-light
 
-        .icon
+      .icon
+        background: url(/images/icons/appearance-24-hover.png) no-repeat center center transparent
 
-        span
+      .swatches
+        margin: 0 0 0 4px
 
-      ul.swatches
+      li
+        +left
+        +round(4)
+        width: 30px
+        height: 30px
+        line-height: 30px
+        margin: 0 4px 4px 0
+        border: 1px solid #fff
 
-        li
+        &:hover
+          box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+          -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+          -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
 
-        .blue-dark
-        .purple-dark
-        .purple-light
-        .red
-        .teal
-        .green-light
-        .yellow
-        .orange
-        .blue-light
-        .green-dark
-        .brown
-        .maroon
-        .white
-        .grey-light
-        .green-dark
-        .black
+      .blue-dark
+        background-color: #123d66
+      .purple-dark
+        background-color: #5b2e87
+      .purple-light
+        background-color: #912487
+      .red
+        background-color: #912425
+      .teal
+        background-color: #2e8786
+      .green-light
+        background-color: #5a9223
+      .yellow
+        background-color: #b88400
+      .orange
+        background-color: #aa5009
+      .blue-light
+        background-color: #5ea8e0
+      .green-dark
+        background-color: #3f6254
+      .brown
+        background-color: #53412e
+      .maroon
+        background-color: #661c27
+      .white
+        background-color: #fff
+      .grey-light
+        background-color: #bebebe
+      .grey-dark
+        background-color: #4b4b4b
+      .black
+        background-color: #000
 
 
 
