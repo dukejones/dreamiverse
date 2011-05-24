@@ -1,7 +1,7 @@
 // ARTISTS
 
 table#artistList
-  +user-select
+
 
   // COLUMN NAME ROW
   tr.columnNames
@@ -58,6 +58,7 @@ table#artistList
             background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
 
         .editable
+          +pointer
           +transparent
           +left
           +round(8)
@@ -71,6 +72,7 @@ table#artistList
           cursor: pointer
 
         .editable.hover
+          cursor: text
           +input-light(large)
           cursor: text
 
