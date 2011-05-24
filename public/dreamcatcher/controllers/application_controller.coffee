@@ -5,8 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
-    @entry = new Dreamcatcher.Controllers.Entry $("#newEntry") if $("#newEntry").exists()
-    @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
+    @entry = new Dreamcatcher.Controllers.Entry $("#entryField") if $("#entryField").exists()
     @initSelectMenu()
     @initTooltips()
 
@@ -18,12 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       fade: 250
     }
-    ###
-    TODO: 
-    $('#entryOptions .date').tooltip -doesn't work - weird
-    $('#sharing-list-menu label').tooltip(
-    ###
-  
+      
   initSelectMenu: ->
     $('.select-menu').selectmenu(
       style: 'popup'
@@ -37,7 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         format: (text) =>
           return @view("selectMenuFormat",text)
       }
-    # hack - move labels to outside the a tag.
+    
     $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
       $(el).appendTo $(el).parent().parent()
       
