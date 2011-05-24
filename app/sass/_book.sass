@@ -98,7 +98,7 @@
 
 
     // PANEL SHARED STYLES
-    .control-panel, .color-panel, .cover-panel, .dropbox
+    .control-panel, .color-panel, .cover-panel, .dropbox, .access-panel
       +absolute
       top: 19px
       right: 32px
@@ -144,7 +144,6 @@
 
 
     // CONTROL PANEL ONLY
-
     .control-panel
       .header, .color, .coverImage, .access, .settings
         +center
@@ -303,6 +302,15 @@
         background: rgba(0,0,0,0.5)
         z-index: 5
 
+    // ACCESS PANEL ONLY
+    .access-panel
 
+      .icon
+        background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
 
-
+      .viewing-menu, .commenting-menu
+        width: 200px
+        padding: 6px 0
+        // line-height for chrome / webkit height
+        line-height: 20px
+        +font(14)
