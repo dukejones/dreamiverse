@@ -7,6 +7,9 @@ class CommentsController < ApplicationController
         format.html { render :partial => 'entries/comment_panel', :locals => {:entry => @entry} }
         format.json { render :json => @entry.comments.joins(:user).select('comments.*, users.username, users.image_id') }
       end
+    else
+      Rails.logger.error("Hit comments#index with a synchronous request.")
+      redirect_to entry_path(@entry)
     end
   end
   

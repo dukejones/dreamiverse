@@ -33,7 +33,7 @@
       +input-light(small)
       border: 1px solid #fff
       .user
-        color: #656565
+        color: #777
         +button-light
         +bevel-light
       ul
@@ -76,7 +76,7 @@
       +input-dark(small)
       border: 1px solid #222
       .user
-        color: #bbb
+        color: #999
         +button-dark
         +bevel-dark
       ul
@@ -162,24 +162,25 @@
       width: 560px
       margin-right: 2px
 
-      &:hover a.deleteComment
+      &:hover .delete
+        +block
 
-        .delete
-          +alpha(40)
-          +pointer
-          +block
-          +absolute
-          background: url("/images/icons/close-24.png") no-repeat center center transparent
-          width: 24px
-          height: 24px
-          right: 16px
-          margin-top: 6px
-          &:hover
-            background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
-            +alpha(100)
-          &:active
-            background: url("/images/icons/close-24-active.png") no-repeat center center transparent
-            +alpha(100)
+      .delete
+        +hidden
+        +alpha(40)
+        +pointer
+        +absolute
+        background: url("/images/icons/close-24.png") no-repeat center center transparent
+        width: 24px
+        height: 24px
+        right: 16px
+        margin-top: 6px
+        &:hover
+          background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+          +alpha(100)
+        &:active
+          background: url("/images/icons/close-24-active.png") no-repeat center center transparent
+          +alpha(100)
 
 
       .user, .commentTime
@@ -192,7 +193,7 @@
         margin: 2px 0 0 2px
         padding: 0 15px
       .commentTime
-        +alpha(80)
+        +alpha(40)
         +cursor
         margin-top: 3px
         +font(14)
@@ -202,6 +203,7 @@
       .body
         +clear
         padding: 15px 18px 0 18px
+        +wrap
         p
           margin-bottom: 16px
 
@@ -251,7 +253,7 @@
         max-width: 524px
         border: none
         cursor: text
-        padding: 20px 18px 17px
+        padding: 20px 18px 22px
         resize: none
 
       .images, .links, .save

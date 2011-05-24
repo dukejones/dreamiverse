@@ -1,11 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
-
-  userModel: Dreamcatcher.Models.User
   
+  userModel: Dreamcatcher.Models.User
+
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @entry = new Dreamcatcher.Controllers.Entry $("#entryField") if $("#entryField").exists()
+    @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
+    @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
     @initSelectMenu()
     @initTooltips()
 
@@ -17,11 +19,21 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       fade: 250
     }
-      
+    $('.tooltip-left').tooltip {
+      track: true
+      delay: 0
+      showURL: false
+      showBody: ' - '
+      positionLeft: true
+      fade: 250
+    }
+  
   initSelectMenu: ->
     $('.select-menu').selectmenu(
-      style: 'popup'
+      style: 'dropdown'
       menuWidth: "200px"
+      positionOptions:
+        offset: "0px -37px"
     )
     
     $('.select-menu-radio').each (i, el) =>
@@ -68,13 +80,24 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
   '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
+    
+  'label.ui-selectmenu-default mouseover': (el) ->
+    el.parent().addClass 'default-hover'
+
+  'label.ui-selectmenu-default mouseout': (el) ->
+    el.parent().removeClass 'default-hover'
+
+  '.ui-selectmenu-default input click': (el) ->
+    $('li',$(el).closest('ul')).removeClass 'default'
+    $(el).closest('li').addClass 'default'
+    value = $('a:first',el.closest('li')).data 'value'
+    type = el.closest('ul').attr('id').replace('-menu','')
+    switch type.replace('-list','')
+      when 'entryType'
+        @userModel.update {'user[default_entry_type]': value}
+      when 'sharing'
+        @userModel.update {'user[default_sharing_level]': value}
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
-  ###
-  $(window).unload ->
-    if not confirm 'are you sure?'
-      window.location.reload()
-      return false
-    #history.go -1
-  ###
+

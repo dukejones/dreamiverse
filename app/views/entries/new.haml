@@ -1,5 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'jquery-ui.min', 'browserdetect', 'pubsub', 'userfileuploader', 'dreams', 'geo'
+  = javascript_include_tag 'browserdetect', 'pubsub', 'userfileuploader', 'geo'
   = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'fit_to_content', 'newentry'
 
 - content_for :foot do
@@ -40,7 +40,7 @@
       / .entryType
       /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
 
-      %select#entryType-list.select-menu-radio.dropdown{name: 'entry[type]'}
+      %select#entryType-list.select-menu-radio.dropdown{'data-id' => "#{@entry.type ? @entry.type : current_user.default_entry_type}", name: 'entry[type]'}
         %option.dream{      :value => 'dream',      :selected => @entry.type == 'dream'}      dream
         %option.vision{     :value => 'vision',     :selected => @entry.type == 'vision'}     vision
         %option.experience{ :value => 'experience', :selected => @entry.type == 'experience'} experience
@@ -65,7 +65,7 @@
         #postSpinner.hidden
 
         / SHARING PANEL
-
+        
         %select#sharing-list.select-menu-radio{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
           %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
           %option.list{       value: Entry::Sharing[:friends]   } friends
@@ -148,6 +148,7 @@
 
         #entry-location.hidden.tooltip{title: "add your location"}
           .img
+        / renamed from entry-date to entry-schmentry as "date", "time", "chronos", etc. seem to be reserved words. DO NOT ADJUST
         #entry-date.tooltip{title: "date and time"}
           .img
         #entry-appearance.tooltip{title: "appearance"}

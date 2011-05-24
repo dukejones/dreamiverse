@@ -18,6 +18,7 @@ steal.plugins(
 		'ui/jquery.ui.droppable',
 		'ui/jquery.tooltip.pack.js',
 	  'jquery-lightbox-0.5',
+	  'jquery.tooltip.js',
 	  'jquery.timeago',
 		'jquery.exists',
 		'jquery.linkify',
@@ -35,22 +36,22 @@ steal.plugins(
 			'models/appearance',
 			'models/bedsheet',
 			'models/comment',
-			'models/image_bank',
+			'models/image',
+	    'models/user',
 			'controllers/application_controller',
 			'controllers/meta_menu_controller',
 			'controllers/settings_controller',
 			'controllers/appearance_controller',
 			'controllers/bedsheets_controller',
 			'controllers/comments_controller',
-			
-			'controllers/image_bank_controller',
-			'controllers/ib_browser_controller',
-			'controllers/ib_slideshow_controller',
-			'controllers/ib_dropbox_controller',
-			'controllers/ib_search_options_controller',
-			'controllers/ib_manager_controller',
+			'controllers/entries_controller'
+			'controllers/image_bank/image_bank_controller',
+			'controllers/image_bank/browser_controller',
+			'controllers/image_bank/slideshow_controller',
+			'controllers/image_bank/dropbox_controller',
+			'controllers/image_bank/search_options_controller',
+			'controllers/image_bank/manager_controller'
 
-			'controllers/entry_controller'
 		);
 	})
 	.views();

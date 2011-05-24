@@ -49,6 +49,27 @@ namespace :app do
 end
 
 namespace :fix do
+  desc "Fix any reference to yourself as your own friend"
+  task :following_myself => :environment do
+    Follow.where("user_id=following_id").each do |follow|
+      log("Destroying user #{follow.user.username} following himself.")
+      follow.destroy
+    end
+  end
+  
+  desc "Fix improperly detected image formats"
+  task :bad_image_formats => :environment do
+    Image.all.select{|i| !i.format || (i.format.length > 3 && i.format != 'jpeg')}.each do |i|
+      begin
+        log("Fixing image: #{i.id} - #{i.enabled ? 'enabled' : 'disabled'} - #{i.format} - #{i.original_filename}")
+        i.format = i.original_filename.split('.').last.gsub(/\s/, '').downcase
+        i.import_from_file(i.path, i.original_filename)
+      rescue => e
+        log("Error!! Image #{i.id}: #{e}")
+      end
+    end
+  end
+  
   desc "Eliminate duplicate What tags"
   task :duplicate_whats => :environment do
     dupe_names = What.group('name').having('count(name) > 1').count.keys

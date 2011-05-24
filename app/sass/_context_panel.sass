@@ -16,6 +16,7 @@
 
 
   #avatarDrop
+    +absolute
     +round(12)
     width: 200px
     height: 266px
@@ -34,7 +35,7 @@
         background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.6)
 
       .text
-        +font(21)
+        +font(18)
         +center
         padding-top: 20px
         z-index: 1200
@@ -43,7 +44,7 @@
         +font(14)
         +center
         +relative
-        top: 160px
+        top: 184px
         left: 0
         z-index: 1200
 
@@ -74,7 +75,10 @@
     width: 198px
     height: 264px
     background-clip: border-box !important
+    &:hover .uploadAvatarWrap
+      +block
     .uploadAvatarWrap
+      +hidden
       +absolute
       bottom: 0
       width: 100%
@@ -84,22 +88,21 @@
         +round(8)
         +center
         +pointer
-        +alpha(60)
         +transparent-dark(50)
         +glow-light(20)
         +font(12)
-        color: #fff
+        color: #ccc
         padding: 2px 6px
         width: 120px
         margin: 0 auto
-        border: 1px solid #fff
+        border: 1px solid #ccc
         span
           +bold
           color: #68b800
       .uploadAvatar:hover
-        +alpha(100)
         +inner-glow(20)
-        border: 1px solid transparent
+        border: 1px solid #fff
+        color: #fff
 
     .uploader
       +round(12)

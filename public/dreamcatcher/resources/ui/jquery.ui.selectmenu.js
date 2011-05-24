@@ -83,10 +83,10 @@ $.widget("ui.selectmenu", {
 			.bind('mousedown.selectmenu', function(event) {
 				self._toggle(event, true);
 				// make sure a click won't open/close instantly
-				if (o.style == "popup") {
+				//if (o.style == "popup") {
 					self._safemouseup = false;
 					setTimeout(function() { self._safemouseup = true; }, 300);
-				}
+				//}
 				return false;
 			})
 			.bind('click.selectmenu', function() {
@@ -263,7 +263,7 @@ $.widget("ui.selectmenu", {
 
 		// write li's
 		for (var i = 0; i < selectOptionData.length; i++) {
-				var thisLi = $('<li role="presentation"' + (selectOptionData[i].disabled ? ' class="' + this.namespace + '-state-disabled' + '"' : '' ) + '><a href="#" tabindex="-1" role="option"' + (selectOptionData[i].disabled ? ' aria-disabled="true"' : '' ) + ' aria-selected="false"' + (selectOptionData[i].typeahead ? ' typeahead="' + selectOptionData[i].typeahead + '"' : '' ) + '>'+ selectOptionData[i].text +'</a></li>')
+				var thisLi = $('<li role="presentation"' + (selectOptionData[i].disabled ? ' class="' + this.namespace + '-state-disabled' + '"' : '' ) + '><a href="#" tabindex="-1" role="option"' + (selectOptionData[i].disabled ? ' aria-disabled="true"' : '' ) + ' aria-selected="false"' + (selectOptionData[i].typeahead ? ' typeahead="' + selectOptionData[i].typeahead + '"' : '' ) + ' data-value="' + selectOptionData[i].value + '">'+ selectOptionData[i].text +'</a></li>')
 				.data('index', i)
 				.addClass(selectOptionData[i].classes)
 				.data('optionClasses', selectOptionData[i].classes || '')

@@ -86,8 +86,8 @@
 
 
     .content
-
-      .title= @entry.title
+      - unless @entry.title.blank?
+        .title= @entry.title
 
 
 
@@ -108,7 +108,7 @@
 
 
 
-      .body= simple_format(@entry.body)
+      .body{class: @entry.body.blank? ? 'blank' : ''}= simple_format(@entry.body)
 
       / IMAGE GALLERY
       %ul.gallery
@@ -160,7 +160,7 @@
 
             - if !@entry.everyone?
               .shareLevel
-                .img{style: "background: url(/images/icons/sharing-16.png) no-repeat center"}
+                .img{class: @entry.sharing}
                 %span= @entry.sharing
 
             - if location = @entry.location

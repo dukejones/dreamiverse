@@ -204,8 +204,11 @@
         margin: 0
         padding: 34px 34px 16px
         font-size: 17px
+        +wrap
         p
           margin-bottom: 18px
+        &.blank
+          padding: 1px
 
 
       // GALLERY
@@ -215,6 +218,7 @@
         li
           +round(8)
           +left
+          clear: right
           margin: 0 4px 4px 0
           height: 122px
           width: 122px
@@ -353,7 +357,14 @@
               margin-right: 6px
               width: 16px
               height: 34px
-
+              &.friends
+                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+              &.followers
+                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+              &.anonymous
+                background: url(/images/icons/anon-16.png) no-repeat center center transparent
+              &.private
+                background: url(/images/icons/private-16.png) no-repeat center center transparent
 
 
 

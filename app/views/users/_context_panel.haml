@@ -7,187 +7,189 @@
 
 
 / CONTEXT PANEL
-#contextPanel
 
-  / IMAGE
-  %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) no-repeat center center"}
-    - if (user == current_user) && !is_ipad?
+- cache([user, current_user._?.relationship_with(user), @mode, @entry_count, user.friends.count, "context_panel"]) do
+  #contextPanel
 
-
-      .uploadAvatarWrap.hidden
-        .uploadAvatar
-          <span>+</span> upload new avatar
-      #avatarDrop.uploader.hidden
-        #avatarDropContainer.qq-upload-drop-area
-          .text drag image here
-          .browse
-            .cancel cancel
-            .dropboxBrowse{style: "overflow: hidden; direction: ltr;"}
-              browse
-              %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
+    / IMAGE
+    %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) no-repeat center center"}
+      - if (user == current_user) && !is_ipad?
 
 
-
-
-  - if user == current_user
-    / LABEL
-    .context
-      = user.username
-
-  - else
-    / LABEL
-    .context
-      - if current_user && current_user.relationship_with(user) != :none
-        .icon
-          = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
-      - else
-        .icon
-          %img{src: "/images/icons/clear.png"}
-      = user.username
+        .uploadAvatarWrap
+          .uploadAvatar
+            <span>+</span> upload new avatar
+        #avatarDrop.uploader.hidden
+          #avatarDropContainer.qq-upload-drop-area
+            .text drag image here
+            .browse
+              .cancel cancel
+              .dropboxBrowse{style: "overflow: hidden; direction: ltr;"}
+                browse
+                %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
 
 
 
-    / FOLLOW
-    - if current_user
-      = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
-
-  .divider
-
-
-
-
-
-  / PROFILE
-  .profile
-
-    .view
-
-      .alert.hidden
-        %span.message
-          update message
-        .check.hidden
-        .close
-
-
-      .name.hidden{onclick: "window.contextController.toggleProfile()"}
-        = user.name
-
-      / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
-      .details.hidden
-
-        .website
-          - if user.link
-            - proper_url = assure_http(user.link.url)
-          %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
-            = "#{(user.link.blank?) ? ' ' : user.link.url}" 
-
-        - if user.friends_with?(current_user)
-          .email= user.email
-          .phone= user.phone
-          .skype= user.skype
-
-        / .facebook facebook
-        / .twitter twitter
-        .clear
-
-        - if user == current_user
-          .change edit profile
-
-        .clear
 
     - if user == current_user
-      .edit.hidden
-        = form_tag :user, :method => :put, :remote => true, :'data-type' => 'json', :id => 'update_profile' do
-          = fields_for current_user do |f|
-            %span full name
-            = f.text_field :name, :placeholder => 'full name'
-            %span website url
-            = f.fields_for :link, current_user.link || Link.new do |l|
-              = l.text_field :url, :placeholder => 'http://yoursite.com'
-            %span email address
-            = f.text_field :email, :placeholder => 'email@address.com'
-            %span phone number
-            = f.text_field :phone, :placeholder => '(123) 456-7890'
-            %span skype username
-            .skypeWrap
-              = f.text_field :skype, :placeholder => 'skype.username'
-              %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
-            .cancel cancel
-            = f.submit :save, :class => 'save'
-            .clear
+      / LABEL
+      .context
+        = user.username
+
+    - else
+      / LABEL
+      .context
+        - if current_user && current_user.relationship_with(user) != :none
+          .icon
+            = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
+        - else
+          .icon
+            %img{src: "/images/icons/clear.png"}
+        = user.username
+
+
+
+      / FOLLOW
+      - if current_user
+        = render partial: 'users/follow', locals: { relationship: current_user.relationship_with(user), user: user }
+
+    .divider
+
+
+
+
+
+    / PROFILE
+    .profile
+
+      .view
+
+        .alert.hidden
+          %span.message
+            update message
+          .check.hidden
+          .close
+
+        / .prompt{onclick: "window.contextController.toggleProfile()"} edit your profile
+        .name.hidden{onclick: "window.contextController.toggleProfile()"}
+          = user.name
+
+        / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
+        .details.hidden
+
+          .website
+            - if user.link
+              - proper_url = assure_http(user.link.url)
+            %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
+              = "#{(user.link.blank?) ? ' ' : user.link.url}" 
+
+          - if user.friends_with?(current_user) || user == current_user
+            .email= user.email
+            .phone= user.phone
+            .skype= user.skype
+
+          / .facebook facebook
+          / .twitter twitter
+          .clear
+
+          - if user == current_user
+            .change edit profile
+
+          .clear
+
+      - if user == current_user
+        .edit.hidden
+          = form_tag :user, :method => :put, :remote => true, :'data-type' => 'json', :id => 'update_profile' do
+            = fields_for current_user do |f|
+              %span full name
+              = f.text_field :name, :placeholder => 'full name'
+              %span website url
+              = f.fields_for :link, current_user.link || Link.new do |l|
+                = l.text_field :url, :placeholder => 'http://yoursite.com'
+              %span email address
+              = f.text_field :email, :placeholder => 'email@address.com'
+              %span phone number
+              = f.text_field :phone, :placeholder => '(123) 456-7890'
+              %span skype username
+              .skypeWrap
+                = f.text_field :skype, :placeholder => 'skype.username'
+                %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+              .cancel cancel
+              = f.submit :save, :class => 'save'
+              .clear
 
 
 
 
 
 
-  / FILTER BY ENTRY TYPE
-  .wrapper
+    / FILTER BY ENTRY TYPE
+    .wrapper
 
-    .item.entryFilter.entries.trigger.slideArrow
-      .label
-        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value entries
+      .item.entryFilter.entries.trigger.slideArrow
+        .label
+          %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+          %span.value entries
+        .image
+          %img.dream{src: '/images/icons/entries-24.png'}
+        .detail
+          = @entry_count || user.entries.count
+        .clear
+
+      .filterList.entries.target.slideArrow.hidden
+        %a.type.top{href: user_entries_path(user.username)}
+          %span all entries
+        %a.type{href: user_entries_filter_path(user.username, 'dreams')}
+          %span dreams
+        %a.type{href: user_entries_filter_path(user.username, 'visions')}
+          %span visions
+        %a.type{href: user_entries_filter_path(user.username, 'experiences')}
+          %span experiences
+        %a.type.bottom{href: user_entries_filter_path(user.username, 'articles')}
+          %span articles
+
+
+
+    / FILTER BY FRIENDS
+    .wrapper
+
+      .item.entryFilter.friends.trigger.slideArrow
+        .label
+          %img.arrow{src: '/images/icons/arrow-down-16.png'} 
+          %span.value= (@mode || 'friends')
+        .image
+          %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
+        .detail
+          = @mode ? user.send(@mode).count : user.friends.count
+        .clear
+
+      .filterList.friends.target.slideArrow.hidden
+        %a.type.top{href: friends_path(user.username)}
+          %span friends
+        %a.type{href: following_path(user.username)}
+          %span following
+        %a.type.bottom{href: followers_path(user.username)}
+          %span followers
+
+
+    / STARLIGHT
+    .item
+      .label.starlight
+        %span.value starlight
       .image
-        %img.dream{src: '/images/icons/entries-24.png'}
+        %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
       .detail
-        = @entry_count || user.entries.count
+        = user.starlight
       .clear
 
-    .filterList.entries.target.slideArrow.hidden
-      %a.type.top{href: user_entries_path(user.username)}
-        %span all entries
-      %a.type{href: user_entries_filter_path(user.username, 'dreams')}
-        %span dreams
-      %a.type{href: user_entries_filter_path(user.username, 'visions')}
-        %span visions
-      %a.type{href: user_entries_filter_path(user.username, 'experiences')}
-        %span experiences
-      %a.type.bottom{href: user_entries_filter_path(user.username, 'articles')}
-        %span articles
 
+    / VIEW FILTERS - FAVORITES, REPOST, TAG
+    / .viewFilters
+    /   .favoritesWrap
+    /     .favorites
+    /   .rePostWrap
+    /     .rePost
+    /   .tagWrap
+    /     .tag.hidden
 
-
-  / FILTER BY FRIENDS
-  .wrapper
-
-    .item.entryFilter.friends.trigger.slideArrow
-      .label
-        %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-        %span.value= (@mode || 'friends')
-      .image
-        %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
-      .detail
-        = @mode ? user.send(@mode).count : user.friends.count
-      .clear
-
-    .filterList.friends.target.slideArrow.hidden
-      %a.type.top{href: friends_path(user.username)}
-        %span friends
-      %a.type{href: following_path(user.username)}
-        %span following
-      %a.type.bottom{href: followers_path(user.username)}
-        %span followers
-
-
-  / STARLIGHT
-  .item
-    .label.starlight
-      %span.value starlight
-    .image
-      %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
-    .detail
-      = user.starlight
-    .clear
-
-
-  / VIEW FILTERS - FAVORITES, REPOST, TAG
-  / .viewFilters
-  /   .favoritesWrap
-  /     .favorites
-  /   .rePostWrap
-  /     .rePost
-  /   .tagWrap
-  /     .tag.hidden
-
-.pagePadding
+  .pagePadding

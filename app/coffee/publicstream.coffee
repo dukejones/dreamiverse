@@ -45,9 +45,11 @@ $(document).ready ->
     )
 
   # Setup lightbox for stream
+  ###
   $('a.lightbox').each( (i, el) ->
     $(el).lightBox({containerResizeSpeed: 0})
   )
+  ###
   $('a.lightbox').lightBox({containerResizeSpeed: 0})
 
 

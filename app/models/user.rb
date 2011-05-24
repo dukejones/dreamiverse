@@ -64,13 +64,6 @@ class User < ActiveRecord::Base
   validates_inclusion_of :default_entry_type, :in => %w( dream vision experience article journal )
   validates_inclusion_of :default_landing_page, :in => %w( stream home today )
   
-  # def self.order_by_starlight
-  #   select('users.*').
-  #   from( "( #{Starlight.current_for('User').to_sql} ) as maxstars " ).
-  #   joins("JOIN starlights ON starlights.id=maxstars.maxid").
-  #   joins("JOIN users ON users.id=starlights.entity_id").
-  #   order('starlights.value DESC')
-  # end
   def self.dreamstars
     order("starlight DESC").where("starlight > 50")
   end
@@ -147,6 +140,7 @@ class User < ActiveRecord::Base
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
     (entry.sharing_level == Entry::Sharing[:friends]  && friends_with?(entry.user)) ||
+    (entry.sharing_level == Entry::Sharing[:followers] && following?(entry.user)) ||
     (entry.sharing_level == Entry::Sharing[:users]    && entry.authorized_users.exists?(self))
   end
 

@@ -21,9 +21,9 @@
     .img
     stream
 
-  #entry-filter-wrap
+  #entry-filter-wrap.tooltip{title: "entry type filter"}
     .spinner
-    %select#entry-filter.select-menu
+    %select#entry-filter.select-menu.dropdown
       %option.allEntries{   value: '',           :selected => (@filters[:type].blank?)          } all entries
       %option.dreams{       value: 'dream',      :selected => (@filters[:type] == 'dream')      } dreams
       %option.visions{      value: 'vision',     :selected => (@filters[:type] == 'vision')     } visions
@@ -31,9 +31,9 @@
       %option.articles{     value: 'article',    :selected => (@filters[:type] == 'article')    } articles
       %option.journals{     value: 'journal',    :selected => (@filters[:type] == 'journal')    } journals
 
-  #users-filter-wrap
+  #users-filter-wrap.tooltip{title: "sharing level filter"}
     .spinner
-    %select#users-filter.select-menu
+    %select#users-filter.select-menu.dropdown
       %option.allUsers{   value: '',          :selected => (@filters[:users].blank?)          } all users
       %option.friends{    value: 'friends',   :selected => (@filters[:users] == 'friends')    } friends
       %option.following{  value: 'following', :selected => (@filters[:users] == 'following')  } following

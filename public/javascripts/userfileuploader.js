@@ -655,7 +655,7 @@ qq.extend(qq.FileUploader.prototype, {
         // Add image to its respective container, see _onSubmit
         var imageElement = $('#currentImages .entryImageContainer[file-name="'+fileName+'"]');
         imageElement.attr("data-id", result.image.id);
-        var elementHtml = '<div style="background: url(&quot;'+result.image_url+'&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="close-24"></div><label class="radio"><input type="radio" value=":image_id" name="entry[main_image_id]"><span>default</span></label><div class="radioWrap"></div></div>';
+        var elementHtml = '<div style="background: url(&quot;'+result.image_url+'&quot;) no-repeat scroll center center transparent;" class="entryImage"><div class="close"></div><label class="radio"><input type="radio" value=":image_id" name="entry[main_image_id]"><span>default</span></label><div class="radioWrap"></div></div>';
         imageElement.html( elementHtml.replace(/:image_id/, result.image.id) );
 
         var newHiddenForm = '<input class="image_upload" type="hidden" value=":image_id" name="entry[image_ids][]" id="entry_image_ids_">';
