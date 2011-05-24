@@ -79,16 +79,16 @@ class ImagesController < ApplicationController
       format.json { render :json => @albums }
     end
   end
-
-  def manage
-    respond_to do |format|
-      format.html { render(partial:"images/browser/manage") }
-    end
-  end
   
   def slideshow
     respond_to do |format|
       format.html { render(partial:"images/browser/slideshow") }
+    end
+  end
+  
+  def manager
+    respond_to do |format|
+      format.html { render(partial:"images/browser/manage") }
     end
   end
 

@@ -1,6 +1,10 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
 
-  model: Dreamcatcher.Models.Image
+  imageModel: Dreamcatcher.Models.Image
+  ibModel: Dreamcatcher.Models.ImageBank
+  
+  getView: (url, data) ->
+    return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
 
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "ib_dropbox"
@@ -11,7 +15,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @shiftDown = false
     @enableShiftKey()
       
-  showBrowser: ->
+  close: ->
     $("#frame.browser").show()
     $("#frame.manager").hide()
     
@@ -51,7 +55,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
         image = result.image
         @showImage $("#imagelist li .file:contains('#{fileName}')").closest('li'),image
       template: $("#uploader").html()
-      fileTemplate: @view('fileTemplate')
+      fileTemplate: @getView 'fileTemplate'
       classes: {
         button: 'browse'
         drop: 'dropArea'
@@ -70,28 +74,26 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     
   #- populates the organization lists with seed date
   populateLists: ->
-    for type in @model.types
+    for type in @ibModel.types
       $("#type select").append("<option data-categories='#{JSON.stringify type.categories}'>#{type.name}</option>")
-    for genre in @model.genres
+    for genre in @ibModel.genres
       $("#genre select").append("<option>#{genre}</option>")
 
   #- loads all meta for a list of images
   loadImagesByIds: (imageIds) ->
-    @model.findImagesById imageIds.join(','),{},@callback('showImages')
+    @imageModel.findById imageIds.join(','),{},@callback('showImages')
     
   loadImagesByMeta: (meta) ->
-    @model.searchImages meta,@callback('showImages')
+    @imageModel.search meta, @callback('showImages')
 
   showImages: (images) ->
-    $("#imagelist").append @view('list',{images: images})
+    $("#imagelist").append @getView 'show', image for image in images
     
   #- add image Html to the Dom
   showImage: (uploadElement, image) ->
-    imageHtml = @view 'show',image
+    imageHtml = @getView 'show', image
     if uploadElement?
       uploadElement.replaceWith imageHtml
-    #else
-    #  $("#imagelist").append imageHtml
 
   
   ## [ IMAGE META ] ##
@@ -118,7 +120,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       data.user = "phong"
       data.type = data.section
       
-      for attr in @model.attributes
+      for attr in @ibModel.attributes
         if not common[attr]?
           common[attr] = data[attr]
         else if common[attr] isnt data[attr]
@@ -127,7 +129,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
 
   #- display's the meta data for a particular image object
   displayMetaData: (image) ->
-    @setAttribute(attribute,image[attribute]) for attribute in @model.attributes
+    @setAttribute(attribute,image[attribute]) for attribute in @ibModel.attributes
   
   #- checks if an attribute is of type "text"
   isText: (attr) ->
@@ -153,7 +155,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   ## [ DOM EVENTS ] ##
   
   '.browseWrap click': ->
-    @showBrowser()
+    @close()
   
   #- select all/select none
   '.all click': (el) ->
@@ -241,7 +243,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @displayMetaData {}
     $('#imagelist li').each (index,element) =>
       imageId = $(element).data 'id'
-      @model.getImage imageId,{},(data) =>
+      @imageModel.get imageId,{},(data) =>
         $(element).data('image',data)
       $(element).show()
       
@@ -260,14 +262,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
         delete data.date # special cases for UI display - remove before submitting
         delete data.user
         data.section = data.type
-        @model.update imageId,{image: data},=>
+        @imageModel.update imageId,{image: data},=>
           @imageCookie.add imageId
           totalSaved++
           if totalToSave is totalSaved
             @hideSavingSpinner()
 
       else
-        @model.disable imageId,{},=>
+        @imageModel.disable imageId,{},=>
           @imageCookie.remove imageId
           totalSaved++
           if totalToSave is totalSaved
@@ -288,4 +290,4 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   #- cancels all data changes and goes back to ib_browser
   '.cancel click': (el) ->
     $('#imagelist').html('')
-    @showBrowser()
+    @close()

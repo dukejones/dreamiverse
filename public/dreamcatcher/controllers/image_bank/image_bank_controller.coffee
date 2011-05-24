@@ -13,30 +13,30 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     switch widget
     
       when 'browser'
-        @ibBrowser = new Dreamcatcher.Controllers.ImageBank.Browser $("#frame.browser") if not @ibBrowser
-        @ibBrowser.parent = this
-        @ibBrowser.show()
+        @browser = new Dreamcatcher.Controllers.ImageBank.Browser $("#frame.browser") if not @browser
+        @browser.parent = this
+        @browser.show()
     
       when 'dropbox'
-        @ibDropbox = new Dreamcatcher.Controllers.ImageBank.Dropbox $("#dropbox") if not @ibDropbox
-        @ibDropbox.parent = this
-        @ibDropbox.show()
+        @dropbox = new Dreamcatcher.Controllers.ImageBank.Dropbox $("#dropbox") if not @dropbox
+        @dropbox.parent = this
+        @dropbox.show()
         
       when 'slideshow'
-        @ibSlideshow = new Dreamcatcher.Controllers.ImageBank.Slideshow $("#slideshow-back") if not @ibSlideshow?
+        @slideshow = new Dreamcatcher.Controllers.ImageBank.Slideshow $("#slideshow-back") if not @slideshow?
         index = params.index if params? and params.index?
-        @ibSlideshow.show images, index
+        @slideshow.show images, index
       
       when 'searchOptions'
-        @ibSearchOptions = new Dreamcatcher.Controllers.ImageBank.SearchOptions $("#searchOptions") if not @ibSearchOptions?
-        @ibSearchOptions.parent = this
-        @ibSearchOptions.show()
+        @searchOptions = new Dreamcatcher.Controllers.ImageBank.SearchOptions $("#searchOptions") if not @searchOptions?
+        @searchOptions.parent = this
+        @searchOptions.show()
       
       when 'manager'
-        @ibManager = new Dreamcatcher.Controllers.ImageBank.Manager $("#frame.manager") if not @ibManager?
-        @ibManager.parent = this
+        @manager = new Dreamcatcher.Controllers.ImageBank.Manager $("#frame.manager") if not @manager?
+        @manager.parent = this
         title = params.title if params? and params.title?
-        @ibManager.show images, title
+        @manager.show images, title
   
   getImagesFromElements: (elements) ->
     images = []
@@ -51,10 +51,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     @showWidget 'searchOptions'
     
   showSlideshow: (elements, index) ->
-    @lazyLoad '#slideshow-back', 'images/slideshow', 'slideshow', @getImagesFromElements elements, { index: index }
+    images = @getImagesFromElements elements
+    @lazyLoad '#slideshow-back', 'images/slideshow', 'slideshow', images, { index: index }
     
   showManager: (elements, title) ->
-    @lazyLoad '#frame.manager', 'images/manage', 'manager', @getImagesFromElements elements, { title: title }
+    images = @getImagesFromElements elements
+    @lazyLoad '#frame.manager', 'images/manager', 'manager', images, { title: title }
       
   lazyLoad: (selector, path, widget, images, params) ->
     if not $(selector).exists()
@@ -66,14 +68,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       
   #called from within browser
   addImageToDropbox: (el) ->
-    @ibDropbox.addImage el
+    @dropbox.addImage el
     
   registerDroppable: (el) ->
-    @ibDropbox.registerDroppable el
+    @dropbox.registerDroppable el
   
   registerDraggable: (el, fromDropbox) ->
-    @ibDropbox.registerDraggable el, fromDropbox
+    @dropbox.registerDraggable el, fromDropbox
     
   getSearchOptions: ->
-    return @ibSearchOptions.get() if @ibSearchOptions?
+    return @searchOptions.get() if @searchOptions?
     return {}
