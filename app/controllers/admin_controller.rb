@@ -26,6 +26,10 @@ class AdminController < ApplicationController
   end
      
   def admin
+    @users_created_last_week = User.where(:created_at.gt => 1.week.ago).count
+    @users_created_last_month = User.where(:created_at.gt => 1.month.ago).count
+    @entries_created_last_week = Entry.where(:created_at.gt => 1.week.ago).count
+    @entries_created_last_month = Entry.where(:created_at.gt => 1.month.ago).count
     user_list
   end
 

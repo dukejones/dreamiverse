@@ -29,6 +29,17 @@
         #pages
         #nextPage
           %a{href: "#"}='next' 
+        
+        %br
+        %br
+        %h1 users created last week
+        .total= @users_created_last_week
+        %h1 users created last month
+        .total= @users_created_last_month         
+        %h1 entries created last week
+        .total= @entries_created_last_week
+        %h1 entries created last month
+        .total= @entries_created_last_month        
 
         #totalUsers{:'data-id' => @users.count}
         #pageSize{:'data-id' => @page_size}
