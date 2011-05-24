@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   userModel: Dreamcatcher.Models.User
   
   init: ->
-    @entryCookie = new Dreamcatcher.Classes.CookieHelper 'dc_new_entry',true
+    @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
     @posted = false
     @retrieveState()
     @initSelectMenu()
@@ -15,32 +15,43 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     return if @posted
     entryBody = $('#entry_body').val().trim()
     if entryBody.length > 0 
-      entry = {}
-      entry_type = $('#entryMode').data 'id'
-      if entry_type is 'new'
-        entry[field] = $(field).val() for field in @fields
-        entry['#currentImages'] = $('#currentImages').html()
-        @entryCookie.set entry
+      entry = {}  
+      entry['type'] = $('#entryMode').data 'id'
+      entry['id'] = $('#entryId').data 'id'
+
+      entry[field] = $(field).val() for field in @fields
+      entry['#currentImages'] = $('#currentImages').html()
+      @entryCookie.set entry
     setTimeout =>
       @saveState()
     , @interval
   
   retrieveState: ->
     entry = @entryCookie.get()
-    if entry?
-      # log "entry[type] #{entry['type']} entry[id]: #{entry['id']}"
-      # populate form with saved state then confirm they want to use it     
-      $(field).val entry[field] for field in @fields
-      $('#currentImages').html entry['#currentImages']
-      @stateRetrieved = true 
+    currentEntryType = $('#entryMode').data 'id'   
+    if entry?        
+      if entry['type'] is currentEntryType  # make sure our cookie entry type matches new or edit like the current form
+        currentEntryId = parseInt($('#entryId').data('id')) if currentEntryType is 'edit'               
       
-      # reset form unless confirmation to use saved state
-      unless confirm 'you have an unsaved entry.\n\nwould you like to use it?'
-        log 'clearing form'
-        $(field).val '' for field in @fields
-        $('#currentImages').html ''
+      @populateForm(entry) unless currentEntryType is 'edit' and currentEntryId isnt entry['id']  
+      @clearState()
       
-    @clearState()  
+      log "entry[type] #{entry['type']} entry[id]: #{entry['id']} currentEntryType: #{currentEntryType} currentEntryId: #{currentEntryId}"                 
+      
+      
+  # populate form with saved state so they can see it, then confirm they want to use it         
+  populateForm: (entry) ->
+    $(field).val entry[field] for field in @fields
+    $('#currentImages').html entry['#currentImages']
+    @stateRetrieved = true    
+    @clearForm() unless confirm 'you have an unsaved entry.\n\nwould you like to use it?' # reset form unless confirmation
+    
+      
+  clearForm: ->
+    log 'clearing form'
+    $(field).val '' for field in @fields
+    $('#currentImages').html ''
+    @stateRetrieved = false  
   
   clearState: ->
     @entryCookie.clear()
