@@ -1,6 +1,8 @@
-$.Controller 'Dreamcatcher.Controllers.IbDropbox',
+$.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
 
-  model: Dreamcatcher.Models.ImageBank
+  model: Dreamcatcher.Models.Image  
+  getView: (url, data) ->
+    return @view "//dreamcatcher/views/image_bank/dropbox/#{url}.ejs", data
 
   init: ->
     $('#dropbox .imagelist').html ''
@@ -48,10 +50,10 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
     
   showImage: (imageId, imageMeta) ->
     if imageMeta?
-      $("#dropbox .imagelist").append @view 'image', { image: imageMeta }
+      $("#dropbox .imagelist").append @getView 'image', { image: imageMeta }
       @registerDraggable $('#dropbox .imagelist li:last'), true
     else
-      @model.getImage imageId, {}, @callback('showImage', imageId)
+      @model.get imageId, {}, @callback('showImage', imageId)
       
       
   registerDraggable: (el, fromDropbox) ->
@@ -70,8 +72,8 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
           $("#bodyClick").hide()
     }
   
-  registerDroppable: (elemenet) ->
-    element.droppable {  
+  registerDroppable: (el) ->
+    el.droppable {  
       drop: (ev, ui) =>  
         dropTo = $(ev.target).parent()
         album = dropTo.data 'album'

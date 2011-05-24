@@ -1,8 +1,7 @@
-$.Controller 'Dreamcatcher.Controllers.IbManager',
+$.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
 
-  model: Dreamcatcher.Models.ImageBank
+  model: Dreamcatcher.Models.Image
 
-  
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper "ib_dropbox"
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state"
