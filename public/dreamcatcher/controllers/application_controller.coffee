@@ -49,8 +49,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     if not maxHeight or maxHeight > adjustedHeight
       adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
       adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-      text.style.height = slideDown(80) if adjustedHeight > text.clientHeight
- 
+      $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
+
+
+
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
     
