@@ -21,14 +21,18 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   # Show or hide next/prev buttons
   updateNav: ->
     if @page > 1 
-     $('#prevPage').show() 
+     $('#prevPage').show()
+     $('#prevPageEnd').hide()
     else 
      $('#prevPage').hide()
+     $('#prevPageEnd').show()
 
     if @page < @totalPages    
       $('#nextPage').show()
+      $('#nextPageEnd').hide()
     else
       $('#nextPage').hide()
+      $('#nextPageEnd').show()
   
   # Add numbered page links  
   addPageLinks: ->

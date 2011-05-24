@@ -8,42 +8,54 @@
     .user.panel
       .img
       %h1 users
-      .total= @users.count  
+      .total= @users.count
+      .clear
+
+      .last-week
+        %h2 last week
+        .total= @users_created_last_week
+        .clear
+
+      .last-month
+        %h2 last month
+        .total= @users_created_last_month
+        .clear
+
 
       .module.allUsers
         .img
         %h2 user list
+
+
+        .spinner
+        %a#nextPage{href: "#"} ›
+        #nextPageEnd ›
+
+        #pages
+        %a#prevPage{href: "#"} ‹
+        #prevPageEnd ‹
+
+
         .clear
 
+
         / USER LIST
-        #userList     
+        #userList
           - @users.each do |user|
             %a.userNode{href: user_entries_path(user.username)}
               = user.username
-              .postCount= user.entries.count               
+              .postCount= user.entries.count
         .clear
-        
-        .spinner    
-        #prevPage 
-          %a{href: "#"}='prev ' 
-        #pages
-        #nextPage
-          %a{href: "#"}='next' 
-        
-        %br
-        %br
-        %h1 users created last week
-        .total= @users_created_last_week
-        %h1 users created last month
-        .total= @users_created_last_month         
-        %h1 entries created last week
-        .total= @entries_created_last_week
-        %h1 entries created last month
-        .total= @entries_created_last_month        
+
 
         #totalUsers{:'data-id' => @users.count}
         #pageSize{:'data-id' => @page_size}
         .clear
+
+
+
+    
+
         
       
     .entries.panel
@@ -56,9 +68,21 @@
       / entries last month
 
 
-      .module.activeUsers
-        %h2 most active users
+      .last-week
+        %h2 last week
+        .total= @entries_created_last_week
+        .clear
+
+      .last-month
+        %h2 last month
+        .total= @entries_created_last_month
+        .clear
+
       .clear
+
+      / .module.activeUsers
+      /   %h2 most active users
+      / .clear
       / 
       / .module.seedCodes
       /   %h2 seed codes
