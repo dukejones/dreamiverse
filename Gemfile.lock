@@ -97,7 +97,7 @@ GEM
     multi_json (1.0.3)
     multi_xml (0.2.2)
     multipart-post (1.1.1)
-    mysql2 (0.3.2)
+    mysql2 (0.2.7)
     net-ldap (0.2.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -224,10 +224,10 @@ DEPENDENCIES
   meta_where
   mini_magick
   mocha
-  mysql2
+  mysql2 (~> 0.2.7)
   nokogiri
   omniauth
-  rails (= 3.0.7)
+  rails (~> 3.0)
   recaptcha
   ruby-debug19
   sass
