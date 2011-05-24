@@ -4,7 +4,7 @@ module EntriesHelper
     small_image_url = image.url(:thumb)
     large_image_url = image.url(:medium)
     raw(%{
-      <li class="lightbox" style="background: url(#{small_image_url}) no-repeat scroll center center transparent">
+      <li class="lightbox" style="background: url(#{small_image_url}) no-repeat center center transparent">
         <a href="#{large_image_url}"></a>
       </li>
     })
