@@ -32,9 +32,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     if entry?        
       if entry['type'] is currentEntryType  # make sure our cookie entry type matches new or edit like the current form
         currentEntryId = parseInt($('#entryId').data('id')) if currentEntryType is 'edit'               
-      
-      @populateForm(entry) unless currentEntryType is 'edit' and currentEntryId isnt entry['id']  
-      @clearState()
+     
+      if currentEntryType is 'edit' and currentEntryId isnt entry['id'] 
+        @stateRetrieved = false 
+      else
+        @populateForm(entry) 
+        @stateRetrieved = true
+        @clearState() 
       
       log "entry[type] #{entry['type']} entry[id]: #{entry['id']} currentEntryType: #{currentEntryType} currentEntryId: #{currentEntryId}"                 
       
@@ -42,17 +46,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   # populate form with saved state so they can see it, then confirm they want to use it         
   populateForm: (entry) ->
     $(field).val entry[field] for field in @fields
-    $('#currentImages').html entry['#currentImages']
-    @stateRetrieved = true    
+    $('#currentImages').html entry['#currentImages']    
     @clearForm() unless confirm 'you have an unsaved entry.\n\nwould you like to use it?' # reset form unless confirmation
-    
-      
+        
   clearForm: ->
-    log 'clearing form'
     $(field).val '' for field in @fields
     $('#currentImages').html ''
-    @stateRetrieved = false  
-  
+     
   clearState: ->
     @entryCookie.clear()
   
