@@ -20,7 +20,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
         entry = {}  
         entry['type'] = $('#entryMode').data 'id'
         entry['id'] = $('#entryId').data 'id'
-
         entry[field] = $(field).val() for field in @fields
         entry['#currentImages'] = $('#currentImages').html()
         @entryCookie.set entry
