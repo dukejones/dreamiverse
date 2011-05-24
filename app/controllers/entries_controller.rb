@@ -40,7 +40,7 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
-    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) unless params[:username]
+    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
 
     @entries = entry_list
     
@@ -125,8 +125,7 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
-    @filters = @user.update_stream_filter(params[:filters])
-    session[:filters] = @filters
+    @filters = session[:filters] = @user.update_stream_filter(params[:filters])
     @entries = entry_list(:stream, @filters)
     
     if request.xhr?

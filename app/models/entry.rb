@@ -57,10 +57,11 @@ class Entry < ActiveRecord::Base
   after_initialize :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
-  after_create :set_user_defaults
+  # after_create :set_user_defaults
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
-
+  after_commit :pre_generate_images
+  
   # Sharing scopes
   def self.everyone
     where(sharing_level: Entry::Sharing[:everyone])
@@ -306,13 +307,19 @@ protected
     self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
   end
 
-  def set_user_defaults
-    self.user._?.default_sharing_level = self.sharing_level
-    self.user._?.default_entry_type = self.type
-    self.user.save
-  end
+  # def set_user_defaults
+  #   self.user._?.default_sharing_level = self.sharing_level
+  #   self.user._?.default_entry_type = self.type
+  #   self.user.save
+  # end
 
   def init_dreamed_at
     self.dreamed_at ||= Time.zone.now
+  end
+
+  def pre_generate_images
+    self.main_image._?.pre_generate(:facebook)
+    self.main_image._?.pre_generate(:stream_header)
+    self.main_image._?.pre_generate(:dreamfield_header)
   end
 end

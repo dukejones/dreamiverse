@@ -77,19 +77,12 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
   def write(binary_data)
-    begin
-      delete_all_resized_files!
-      
-      @original_magick = MiniMagick::Image.read(binary_data)
-      set_metadata
-      self.save!
-      
-      @original_magick.write(path)
-    #   file = File.open(path, 'wb')
-    #   file.write(binary_data)
-    # ensure
-    #   file._?.close
-    end
+    delete_all_resized_files!
+    @original_magick = MiniMagick::Image.read(binary_data)
+    set_metadata
+    convert_to_web_format(@original_magick)
+    save!
+    @original_magick.write(path)
   end
 
   def import_from_file(filename, original_filename=nil)
@@ -166,6 +159,14 @@ protected
     self.format = 'jpg' if self.format == 'jpeg'
     self.size = magick_info(:size)
     self.width, self.height = magick_info(:dimensions)
+    self.save!
+  end
+  
+  def convert_to_web_format(img)
+    unless Mime::Type.lookup_by_extension(self.format)
+      img.format 'jpg'
+      self.format = 'jpg'
+    end
   end
 
   # Side-Effect: changes @incoming_filename if it detects a URL.
