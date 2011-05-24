@@ -65,6 +65,7 @@ Dreamcatcher::Application.routes.draw do
   resources :images do
     collection do
       get 'manage'
+      get 'slideshow'
       get 'artists'
       get 'albums'
     end

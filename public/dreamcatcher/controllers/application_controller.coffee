@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
-    @ibBrowser = new Dreamcatcher.Controllers.IbBrowser $("#frame.browser") if $("#frame.browser").exists()
+    @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @entry = new Dreamcatcher.Controllers.Entry $("#newEntry") if $("#newEntry").exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @initSelectMenu()

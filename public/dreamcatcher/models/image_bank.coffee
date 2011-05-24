@@ -83,9 +83,9 @@ $.Model 'Dreamcatcher.Models.ImageBank',{
       error: error
     }
     
-  get: (type, data, success, error) ->
+  getHtml: (path, data, success, error) ->
     $.ajax {
-      url: "/#{type}"
+      url: "/#{path}"
       data: data
       dataType: 'html'
       success: @callback success

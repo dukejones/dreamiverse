@@ -80,18 +80,21 @@ class ImagesController < ApplicationController
     end
   end
 
-
   def manage
     respond_to do |format|
       format.html { render(partial:"images/browser/manage") }
-      # format.json  { render :json => @images }
+    end
+  end
+  
+  def slideshow
+    respond_to do |format|
+      format.html { render(partial:"images/browser/slideshow") }
     end
   end
 
-
   def show
     @image = Image.find(params[:id])
-
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json  { render :json => @image }

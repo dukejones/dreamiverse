@@ -3,7 +3,6 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
   model: Dreamcatcher.Models.ImageBank
 
   init: ->
-    #@isDragging = false
     $('#dropbox .imagelist').html ''
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     @stateCookie = new Dreamcatcher.Classes.CookieHelper "ib_state", true
@@ -97,10 +96,10 @@ $.Controller 'Dreamcatcher.Controllers.IbDropbox',
     $('#dropbox .imagelist').html ''
   
   '#dropbox .manage click': (el) ->
-    @ibBrowser.showManager $('#dropbox li'), 'Drop box'
+    @parent.showManager $('#dropbox li'), 'Drop box'
   
   '#dropbox li .close click': (el) ->
     @removeImage el.parent()
   
   '#dropbox .play click': (el) ->
-    @ibBrowser.showSlideshow $('#dropbox li')
+    @parent.showSlideshow $('#dropbox li')
