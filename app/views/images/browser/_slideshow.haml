@@ -7,20 +7,10 @@
   #slideshow
 
 
-    .close.hidden
+    .close
 
 
 
-
-    / LEFT
-    .left
-
-      %img{src: '/images/bedsheets/air-03.jpg'}
-
-    / LEFT REFLECT
-    .leftReflect
-
-      %img{src: '/images/bedsheets/air-03.jpg'}
 
     / LEFT GRADIENT
     %a.gradient-left
@@ -32,62 +22,21 @@
 
 
 
-    / IMAGE
-    .imageContainer
-
-      %table.image
-        %tr
-          %td
-            %img{src: '/images/bedsheets/today-in-dreams-med.jpg', width: '720', height: '540'}
 
 
-      / TAGGING
-      #tagging.hidden
+    #gallery
 
-        .tagInputWrap
-          .tagInput
-            %input#newTag
-            .tagAdd
-              %span +
-              add
-          .tagInputRight
-
-        #tag-list.tag-list.ui-sortable
-
-          .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
-            .header.trigger
-              .tag-name
-            .close
-
-      / INFO
-      #info.hidden
-        .name
-          name:
-          %span Artist Name
-        .author
-          author:
-          %span Author Name
-        .year
-          year:
-          %span 1912
-
-    / IMAGE REFLECT
-    .imageReflect
-
-      %img{src: '/images/bedsheets/today-in-dreams-med.jpg', width: '720', height: '540'}
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
+      = render :partial => 'images/browser/slideshow_image'
 
 
 
-
-    / RIGHT
-    .right
-
-      %img{src: '/images/bedsheets/air-05.jpg'}
-
-    / RIGHT REFLECT
-    .rightReflect
-
-      %img{src: '/images/bedsheets/air-05.jpg'}
 
     / RIGHT GRADIENT
     %a.gradient-right
