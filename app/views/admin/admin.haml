@@ -22,19 +22,28 @@
         .total= @users_created_last_month
         .clear
 
+      %select#user-filter.select-menu.dropdown
+        %option.sortBy{       value: ''             } ordered by:
+        %option.age{          value: 'age'          } age
+        %option.alphabetical{ value: 'alphabetical' } alphabetical
+        %option.entries{      value: 'entries'      } entries
+        %option.starlight{    value: 'starlight'    } starlight
+        %option.traffic{      value: 'traffic'      } traffic
+
 
       .module.allUsers
         .img
         %h2 user list
 
 
-        .spinner
         #nextPageEnd ›
         %a#nextPage{href: "#"} ›
 
         #pages
         %a#prevPage{href: "#"} ‹
         #prevPageEnd ‹
+
+        #pageLoading.spinner
 
 
         .clear
