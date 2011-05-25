@@ -13,14 +13,6 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
         # log 'window scroll'
         @loadNextPage()
  
-      
-  '#entry-filter, #users-filter change': (el) ->
-    @page = 1
-    $("##{el.attr('id')}-wrap .spinner").show()
-    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')  
-
-  clear: ->
-    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()  
     
   loadNextPage: ->
     return if @currentlyLoading
@@ -71,3 +63,13 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     $('a.lightbox').each((i, el) ->
       $(this).lightBox({containerResizeSpeed: 0});
     )    
+    
+  clear: ->
+    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()    
+  
+  # Form listeners    
+  '#entry-filter, #users-filter change': (el) ->
+    @page = 1
+    $("##{el.attr('id')}-wrap .spinner").show()
+    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
+    
