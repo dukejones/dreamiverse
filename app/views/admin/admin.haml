@@ -1,53 +1,103 @@
 - content_for :head do
   = sass_link_tag 'admin'
+  = javascript_include_tag 'jquery-ui.min'
+
+#adminPage
+  #entryField
+
+    .user.panel
+      .header
+        .img
+        %h1 users
+        .total= @users.count
 
 
-#entryField
+      .last-week
+        %h2 last week
+        .total= @users_created_last_week
+        .clear
+
+      .last-month
+        %h2 last month
+        .total= @users_created_last_month
+        .clear
+
+      / %select#user-filter.select-menu.dropdown
+      /   %option.sortBy{       value: ''             } ordered by:
+      /   %option.age{          value: 'age'          } age
+      /   %option.alphabetical{ value: 'alphabetical' } alphabetical
+      /   %option.entries{      value: 'entries'      } entries
+      /   %option.starlight{    value: 'starlight'    } starlight
+      /   %option.traffic{      value: 'traffic'      } traffic
 
 
-  .user.panel
-    .img
-    %h1 users
-    .total= User.count
-
-    / .module.newUsers
-    /   %h2 new users
-    /   .clear
-    / .clear
+      .module.allUsers
+        .img
+        %h2 user list
 
 
-    .module.allUsers
-      .img
-      %h2 user list
+        #nextPageEnd ›
+        %a#nextPage{href: "#"} ›
+
+        #pages
+        %a#prevPage{href: "#"} ‹
+        #prevPageEnd ‹
+
+        #pageLoading.spinner
+
+
+        .clear
+
+
+        / USER LIST
+        #userList
+          - @users.each do |user|
+            %a.userNode{href: user_entries_path(user.username)}
+              = user.username
+              .postCount= user.entries.count
+        .clear
+
+
+        #totalUsers{:'data-id' => @users.count}
+        #pageSize{:'data-id' => @page_size}
+        .clear
+
+
+
+    
+
+        
+      
+    .entries.panel
+      .header
+        .img
+        %h1 entries
+        .total= Entry.count
+
+      / entries last week
+      / entries last month
+
+
+      .last-week
+        %h2 last week
+        .total= @entries_created_last_week
+        .clear
+
+      .last-month
+        %h2 last month
+        .total= @entries_created_last_month
+        .clear
+
       .clear
 
-      - User.all.each do |user|
-        %a.userNode{href: user_entries_path(user.username)}
-          = user.username
-          .postCount= user.entries.count
-
-      .clear
-
-
-
-  .entries.panel
-    .img
-    %h1 entries
-    .total= Entry.count
-    .clear
-
-    / entries last week
-    / entries last month
-
-
-    .module.activeUsers
-      %h2 most active users
-    .clear
-    / 
-    / .module.seedCodes
-    /   %h2 seed codes
-    / .clear
-    / 
-    / .module.sharing
-    /   %h2 sharing
-    / .clear
+      / .module.activeUsers
+      /   %h2 most active users
+      / .clear
+      / 
+      / .module.seedCodes
+      /   %h2 seed codes
+      / .clear
+      / 
+      / .module.sharing
+      /   %h2 sharing
+      / .clear
