@@ -1,4 +1,4 @@
-VERSION = "theta b2.0"
+VERSION = "theta b2.1"
 
 FB_PERMS = "publish_stream, publish_checkins, user_photos" # user_location, user_checkins, email
 
