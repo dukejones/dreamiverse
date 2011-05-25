@@ -2,8 +2,6 @@ class AdminController < ApplicationController
   before_filter :require_user, :require_admin
 
   def user_list
-    # params ||= {}
-    # params = {} if !params?
     page_size = params[:page_size] || 40
     page = params[:page].to_i
     page = 1 if page <= 0   
