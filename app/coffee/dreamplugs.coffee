@@ -67,10 +67,10 @@ window.setupDreamplugs = ->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
     if $newTargetShowHide.css('display') is 'none'
       $newTargetShowHide.show()
-      $('#bodyClick').show()
+      # $('#bodyClick').show()
     else
       $newTargetShowHide.hide()
-      $('#bodyClick').hide()
+      # $('#bodyClick').hide()
   )
   
   # Setup showhide SEARCH triggers
