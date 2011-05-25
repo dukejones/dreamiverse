@@ -38,9 +38,8 @@ class AdminController < ApplicationController
   protected
   
   def require_admin
-    unless current_user.auth_level == 5
-      flash.alert = "This page requires admin access."
-      redirect_to :root and return
+    unless current_user.auth_level >= User::AuthLevel[:admin]
+      redirect_to :root, {alert: "This page requires admin access."} and return
     end
   end
 end
