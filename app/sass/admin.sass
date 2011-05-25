@@ -106,45 +106,62 @@
     +clear
     .img
 
-
-  // PAGINATION
-  #prevPage, #nextPage, #pages, #prevPageEnd, #nextPageEnd
+  .spinner
     +right
-    +block
-    +round(12)
-    +user-select
-    padding: 4px 8px
-    +shine-light-alpha(12)
-    margin-bottom: 6px
-    a:focus, a:hover, a.current
-      text-decoration: underline
+    width: 32px
+    height: 32px
 
-  #prevPage, #nextPage, #pages
-    +button-dark
-    +cancel(12)
+  #user-filter, #user-filter-button
+    width: 200px
+    +round(20)
+    +right
+    +input-dark(large)
 
-  #prevPage, #nextPage, #prevPageEnd, #nextPageEnd
-    +bold
-    font-size: 25px
-    line-height: 29px
-    padding: 0px 24px
-  #prevPageEnd, #nextPageEnd
-    +alpha(50)
-    color: #000
-    border: 1px solid #000
-    +cursor
+#user-filter-menu
+  +flat-dark
+  +round(20)
 
-  #prevPage, #prevPageEnd
-    +flat-right
-  #nextPage, #nextPageEnd
-    +flat-left
-    margin-right: 8px
 
-  #pages
-    margin: 0 4px
-    +round(2)
-    +font(18)
-    line-height: 21px
+
+
+// PAGINATION
+#prevPage, #nextPage, #pages, #prevPageEnd, #nextPageEnd
+  +right
+  +block
+  +round(12)
+  +user-select
+  padding: 4px 8px
+  +shine-light-alpha(12)
+  margin-bottom: 6px
+  a:focus, a:hover, a.current
+    text-decoration: underline
+
+#prevPage, #nextPage, #pages
+  +button-dark
+  +cancel(12)
+
+#prevPage, #nextPage, #prevPageEnd, #nextPageEnd
+  +bold
+  font-size: 25px
+  line-height: 29px
+  padding: 0px 24px
+#prevPageEnd, #nextPageEnd
+  +alpha(50)
+  color: #000
+  border: 1px solid #000
+  +cursor
+
+#prevPage, #prevPageEnd
+  +flat-right
+#nextPage, #nextPageEnd
+  +flat-left
+  margin-right: 8px
+
+#pages
+  margin: 0 4px
+  +round(2)
+  +font(18)
+  line-height: 21px
     
 
 

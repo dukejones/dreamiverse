@@ -38,7 +38,7 @@ end
 
 namespace :barista do
   task :brew do
-    run("cd #{current_release}; /usr/bin/env rake barista:brew RAILS_ENV=#{rails_env}")
+    run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
   end
 end
 
