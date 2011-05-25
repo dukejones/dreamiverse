@@ -7,14 +7,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @totalPages = Math.ceil(@totalUsers / @pageSize)    
     @addPageLinks()
     @updateNav()
-    
-    log "page: #{@page} totalUsers: #{@totalUsers} pageSize: #{@pageSize} totalPages: #{@totalPages}"  
-    
         
   updateUsersPage: (json) ->  
-    $("#userList").html(json.html)
+    $('#userList').html(json.html)
     # @updateNav()
-    $("#userList .spinner").hide()
+    $('#pageLoading').hide()
 
   getParams: ->
     page: @page
