@@ -74,9 +74,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   '.top .browseWrap click': (el) ->
     if $("#searchResults").is ':visible'
-      @displayView @previous.name, null
+      @displayView @previousView, null
     else
-      @displayView @current.view, null
+      @displayView @currentView, null
 
   '.top .backArrow click': (el) ->
     @displayView el.attr('name'), null
@@ -181,8 +181,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     $('.searchField .search').click() if ev.keyCode is 13
 
   '.searchField .search click': (el) ->
-    @imageModel.search @getSearchOptions(), (images) =>
-      @displayScreen 'searchResults', @getView('searchresults',{ images : images } )
+    @imageModel.search @parent.getSearchOptions(), (images) =>
+      @displayView 'searchResults', @getView('searchresults',{ images : images } )
       @parent.registerDraggable $("#searchResults ul li")
       
   '.spinner click': (el) ->

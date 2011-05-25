@@ -1,12 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
 
-  model: Dreamcatcher.Models.Image
+  imageModel: Dreamcatcher.Models.Image
+  ibModel: Dreamcatcher.Models.ImageBank
   
   getView: (url, data) ->
     return @view "//dreamcatcher/views/image_bank/search_options/#{url}.ejs", data
   
   init: ->
-    $('#searchOptions .type').html @getView('types', {types: @model.types})
+    $('#searchOptions .type').html @getView('types', {types: @ibModel.types})
     $("#searchOptions .type li").removeClass 'selected'
     $("#searchOptions .type li:contains(#{@type})").click()
 
@@ -26,7 +27,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
       categories = []
       $("#searchOptions .categories .selected").each (i, el) ->
         categories.push $(el).text().trim()
-      options['categories'] = genres.join(',') if categories.length > 0
+      options['categories'] = categories.join(',') if categories.length > 0
 
     return options
     

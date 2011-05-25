@@ -85,9 +85,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
   
   '.controls .tagging click': (el) ->
     $('#gallery .tagging').toggle()
+    
+  '#gallery .tagAdd click': (el) ->
+    alert $("newTag",el.parent).val()
 
   '.controls .download click': (el) ->
     window.open @getOriginal @images[@index]
-  
-  '.controls .comment click': (el) ->
-    $('.controls .commentsPanel').toggle()
+    
+
