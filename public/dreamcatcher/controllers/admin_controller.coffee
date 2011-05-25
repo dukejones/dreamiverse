@@ -11,6 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   updateUsersPage: (json) ->  
     $('#userList').html(json.html)
     # @updateNav()
+    $('#allUsersIcon').show()
     $('#pageLoading').hide()
 
   getParams: ->
@@ -43,6 +44,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   # Dom listeners
   '#userPage click': (el,ev) ->
     @page = parseInt el.text()
+    $('#allUsersIcon').hide()
     $('#pageLoading').show()
     Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage
     @updateNav()
@@ -50,6 +52,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   '#nextPage, #prevPage click': (el,ev) ->
     @page = 1 if !@page? 
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
+    $('#allUsersIcon').hide()
     $('#pageLoading').show()
     Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage  
     @updateNav()     
