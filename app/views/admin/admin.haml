@@ -6,10 +6,11 @@
   #entryField
 
     .user.panel
-      .img
-      %h1 users
-      .total= @users.count
-      .clear
+      .header
+        .img
+        %h1 users
+        .total= @users.count
+
 
       .last-week
         %h2 last week
@@ -28,8 +29,8 @@
 
 
         .spinner
-        %a#nextPage{href: "#"} ›
         #nextPageEnd ›
+        %a#nextPage{href: "#"} ›
 
         #pages
         %a#prevPage{href: "#"} ‹
@@ -59,10 +60,10 @@
         
       
     .entries.panel
-      .img
-      %h1 entries
-      .total= Entry.count
-      .clear
+      .header
+        .img
+        %h1 entries
+        .total= Entry.count
 
       / entries last week
       / entries last month

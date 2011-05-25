@@ -6,6 +6,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @pageSize = $('#pageSize').data 'id'
     @totalPages = Math.ceil(@totalUsers / @pageSize)    
     @addPageLinks()
+    @updateNav()
     
     log "page: #{@page} totalUsers: #{@totalUsers} pageSize: #{@pageSize} totalPages: #{@totalPages}"  
     
