@@ -29,13 +29,15 @@ steal.plugins(
       'models/bedsheet',
       'models/comment',
       'models/user',
+      'models/stream',
       'controllers/application_controller',
       'controllers/meta_menu_controller',
       'controllers/settings_controller',
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
       'controllers/comments_controller',
-      'controllers/entries_controller'
+      'controllers/entries_controller',
+      'controllers/stream_controller'
     );
   })
   .views();
