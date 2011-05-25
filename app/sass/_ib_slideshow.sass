@@ -15,7 +15,7 @@
     #slideshow
       +relative
       margin: 0 auto
-      width: 1160px
+      width: 1280px
       height: 100%
       overflow: hidden
 
@@ -121,18 +121,18 @@
 
       .gradient-left
         left: 0
-        +gradient-H(rgba(0,0,0,1.0), rgba(0,0,0,0.0))
+        +gradient-H(rgba(0,0,0,1.0), rgba(0,0,0,0.8))
 
       .gradient-right
         right: 0
-        +gradient-H(rgba(0,0,0,0.0), rgba(0,0,0,1.0))
+        +gradient-H(rgba(0,0,0,0.8), rgba(0,0,0,1.0))
 
 
 
       #gallery
         +absolute
         top: 0
-        left: 220px
+        left: 280px
         width: auto
         height: 720px
 
@@ -143,6 +143,7 @@
         +left
         width: 720px
         height: 100%
+        margin: 0 100px 0 0
 
         .image_data
           +absolute
@@ -274,7 +275,7 @@
       .controls
         +absolute
         top: 740px
-        left: 220px
+        left: 280px
         padding: 12px
         width: 696px
         height: 56px
