@@ -23,6 +23,7 @@
   .noEntrys.hidden there are no entries to display
 
 
-/ APPLIES SELECTED CLASS TO META MENU
-:coffeescript
-  $('.item.stream').addClass('selected')
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  :coffeescript
+    $('.item.stream').addClass('selected')

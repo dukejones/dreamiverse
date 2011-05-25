@@ -3,6 +3,7 @@
   .imagesHeader.headers
     .img
     images
+
   #addFromImageBank.hidden
     %img{src: '/images/icons/green-plus-20.png'}
     from Image Bank
@@ -14,7 +15,7 @@
   #currentImages
     - images.each do |image|
       .entryImageContainer{:'data-id' => image.id}
-        .entryImage{style: "background: url(#{image.url(:thumb, :size => 120)}) no-repeat scroll center center transparent"}
+        .entryImage{style: "background: url(#{image.url(:thumb)}) no-repeat center center transparent"}
           .close
           %label.radio{class: (@entry.main_image==image) ? 'selected' : ''}
             %input{type: 'radio', name: "entry[main_image_id]", value: image.id, checked: (@entry.main_image==image)}

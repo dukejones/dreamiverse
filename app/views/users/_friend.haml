@@ -14,11 +14,11 @@
     %h3= friend.username
     %p= friend.default_location_id
 
-    - unless current_user.blank?
-      - mutual_follows = (user.followers & friend.followers).count
-      - unless mutual_follows == 0
-        %p.mutual
-          = pluralize(mutual_follows, "mutual follow")
+    / - unless current_user.blank?
+    /   - mutual_follows = (user.followers & friend.followers).count
+    /   - unless mutual_follows == 0
+    /     %p.mutual
+    /       = pluralize(mutual_follows, "mutual follow")
 
   .backdrop
 

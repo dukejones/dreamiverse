@@ -55,8 +55,9 @@
 
 
 
-/ APPLIES SELECTED CLASS TO META MENU
-- if @user == current_user
-  :coffeescript
-    $('.item.home').addClass('selected')
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  - if @user == current_user
+    :coffeescript
+      $('.item.home').addClass('selected')
 
