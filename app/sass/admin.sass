@@ -63,13 +63,22 @@
 
 
 
-
+// SPINNER styling to accomodate light / dark user theme prefs to render the same +spinner-dark
+.light, .dark
+  .user.panel .spinner
+    +spinner-dark
+    +left
+    +hidden
+    width: 32px
+    height: 32px
+    margin: 0 8px 8px 0
 
 .user.panel
   .img
     background-image: url('/images/icons/sharing-24-hover.png')
   .module .img
     background-image: url('/images/icons/friend-24.png')
+    margin: 4px 12px 12px 4px
 
   .userNode
     +block
@@ -104,13 +113,12 @@
   .allUsers
     padding: 8px 0 0 8px
     +clear
-    .img
+    
+    #allUsersHeader
+      margin-bottom: 8px
 
-  .spinner
-    +right
-    +hidden
-    width: 32px
-    height: 32px
+
+
 
   #user-filter, #user-filter-button
     width: 200px
@@ -160,10 +168,12 @@
   margin-right: 8px
 
 #pages
+  +center
   margin: 0 4px
   +round(2)
   +font(18)
   line-height: 21px
+  width: 580px
     
 
 

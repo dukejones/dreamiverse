@@ -32,8 +32,18 @@
 
 
       .module.allUsers
-        .img
-        %h2 user list
+        #allUsersIcon.img
+        #pageLoading.spinner
+        %h2#allUsersHeader user list
+
+        .clear
+
+
+        / USER LIST
+        #userList
+          = render(partial: 'user', collection: @users)
+        .clear
+
 
 
         #nextPageEnd ›
@@ -42,20 +52,6 @@
         #pages
         %a#prevPage{href: "#"} ‹
         #prevPageEnd ‹
-
-        #pageLoading.spinner
-
-
-        .clear
-
-
-        / USER LIST
-        #userList
-          - @users.each do |user|
-            %a.userNode{href: user_entries_path(user.username)}
-              = user.username
-              .postCount= user.entries.count
-        .clear
 
 
         #totalUsers{:'data-id' => @users.count}
