@@ -46,13 +46,13 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   # Dom listeners
   '#userPage click': (el,ev) ->
     @page = parseInt el.text()
-    $("#userList .spinner").show()
+    $('#pageLoading').show()
     Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage
     @updateNav()
 
   '#nextPage, #prevPage click': (el,ev) ->
     @page = 1 if !@page? 
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
-    $("#userList .spinner").show()
+    $('#pageLoading').show()
     Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage  
     @updateNav()     
