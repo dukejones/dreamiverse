@@ -9,43 +9,56 @@
   width: 744px
 
 
-.module
-  +indent-dark
-  +round(12)
+  .module
+    +indent-dark
+    +round(12)
 
 
-h1
-  +left
-  +font(21)
-  color: #fff
-  line-height: 18px
-h2
-  +left
-  +font(18)
-  color: #ccc
+  h1
+    +left
+    +font(21)
+    color: #fff
+    line-height: 22px
+  h2
+    +left
+    +font(18)
+    color: #ccc
 
-.img
-  +left
-  width: 48px
-  height: 24px
-  background-repeat: no-repeat
-  background-position: center center
-  margin-bottom: 8px
-
-
-h1, h2, .img
-  +user-select
-  +cursor
+  .img
+    +left
+    width: 24px
+    height: 24px
+    margin-right: 12px
+    background-repeat: no-repeat
+    background-position: center center
 
 
-.total
-  +round(12)
-  +left
-  +bevel-dark
-  color: #ccc
-  padding: 2px 8px
-  margin-left: 32px
+  h1, h2, .img
+    +user-select
+    +cursor
 
+
+  .total
+    +round(12)
+    +left
+    +bevel-dark
+    color: #ccc
+    padding: 2px 8px
+    margin-left: 22px
+
+
+
+  .header, .last-week, .last-month
+    +left
+    padding: 4px 8px 4px 16px
+    +round(20)
+    +indent-dark
+    margin: 0 0 8px 8px
+  .last-week, .last-month
+    +alpha(80)
+  .header
+    margin-left: 0px
+    padding-left: 8px
 
 
 
@@ -54,7 +67,9 @@ h1, h2, .img
 
 .user.panel
   .img
-    background-image: url('/images/icons/dream-24-hover.png')
+    background-image: url('/images/icons/sharing-24-hover.png')
+  .module .img
+    background-image: url('/images/icons/friend-24.png')
 
   .userNode
     +block
@@ -62,7 +77,7 @@ h1, h2, .img
     +button-dark
     +flat-dark
     +relative
-    width: 148px
+    width: 157px
     height: 33px
     line-height: 33px
     padding: 0px 8px
@@ -90,6 +105,66 @@ h1, h2, .img
     padding: 8px 0 0 8px
     +clear
     .img
+
+  .spinner
+    +right
+    +hidden
+    width: 32px
+    height: 32px
+
+  #user-filter, #user-filter-button
+    width: 200px
+    +round(20)
+    +right
+    +input-dark(large)
+
+#user-filter-menu
+  +flat-dark
+  +round(20)
+  +glow-dark(20)
+
+
+
+
+// PAGINATION
+#prevPage, #nextPage, #pages, #prevPageEnd, #nextPageEnd
+  +right
+  +block
+  +round(12)
+  +user-select
+  padding: 4px 8px
+  +shine-light-alpha(12)
+  margin-bottom: 6px
+  a:focus, a:hover, a.current
+    text-decoration: underline
+
+#prevPage, #nextPage, #pages
+  +button-dark
+  +cancel(12)
+
+#prevPage, #nextPage, #prevPageEnd, #nextPageEnd
+  +bold
+  font-size: 25px
+  line-height: 29px
+  padding: 0px 24px
+#prevPageEnd, #nextPageEnd
+  +alpha(50)
+  color: #000
+  border: 1px solid #000
+  +cursor
+
+#prevPage, #prevPageEnd
+  +flat-right
+#nextPage, #nextPageEnd
+  +flat-left
+  margin-right: 8px
+
+#pages
+  margin: 0 4px
+  +round(2)
+  +font(18)
+  line-height: 21px
+    
 
 
 .entries.panel
