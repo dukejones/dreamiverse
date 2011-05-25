@@ -10,12 +10,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
   show: (images, index) ->    
     html = $('#gallery').html()
     $('#gallery').html ''
-    $('#gallery').css 'width', (images.length * 720) + 'px'
+    $('#gallery').css 'width', (images.length * 820 + 280) + 'px'
     
     for image in images
       $('#gallery').append html 
       @showImage '#gallery .imageContainer:last', image
-      $("#gallery .imageContainer").css "opacity", 0.3
+      #$("#gallery .imageContainer").css "opacity", 0.3
     
     @images = images      
     @index = if index? then index else 0
@@ -40,6 +40,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
   getCurrent: ->
     $("#gallery .imageContainer:eq(#{@index})")
   
+  ###
   dimCurrent: ->
     current = @getCurrent()
     current.css 'opacity', 0.3
@@ -49,7 +50,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
     current = @getCurrent()
     current.css 'opacity', 1
     current.addClass 'current'
-    
+  ###
+  
   changeSlide: (difference) ->
     if @index + difference is -1
       return
@@ -57,14 +59,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
       $('#slideshow-back').fadeOut 'fast'
       $('#frame.browser').show()
     
-    @dimCurrent()
+    #@dimCurrent()
     @index += difference
     
     $('#gallery').animate {
-      left: (@index * -720 + 220) + 'px'
+      left: (@index * -820 + 280) + 'px'
     }, 'fast'
     
-    @highlightCurrent()
+    #@highlightCurrent()
     
   getOriginal: (image) ->
     return "/images/uploads/originals/#{image.id}.#{image.format}"
