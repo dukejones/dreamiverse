@@ -11,7 +11,7 @@ class AdminController < ApplicationController
     # debugger
     # 1
 
-    @users = User.where(:username ^ 'feh')
+    @users = User.scoped
     @users = @users.limit(page_size).offset(page_size * (page - 1))
     @page_size = page_size
     @total_pages = (@users.count / page_size)
@@ -19,7 +19,7 @@ class AdminController < ApplicationController
     
     if request.xhr?
       users_html = ""
-      @users.each { |user| users_html += render_to_string(:partial => 'users', :locals => {:user => user}) }
+      @users.each { |user| users_html += render_to_string(partial: 'user', object: user) }
       render :json => {type: 'ok', html: users_html}
     end    
        

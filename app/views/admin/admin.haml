@@ -41,10 +41,7 @@
 
         / USER LIST
         #userList
-          - @users.each do |user|
-            %a.userNode{href: user_entries_path(user.username)}
-              = user.username
-              .postCount= user.entries.count
+          = render {partial: 'user', collection: @users}
         .clear
 
 
