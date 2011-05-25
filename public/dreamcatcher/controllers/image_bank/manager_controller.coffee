@@ -42,7 +42,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   ## [ IMAGE FILE UPLOADER ] ##
 
   createUploader: ->
-    log @getView 'fileTemplate'
     @uploader = new qq.FileUploader {
       element: $('#uploader').get(0)
       action: '/images.json'
@@ -50,7 +49,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       params: @getOrganizationMeta()
       debug: true
       onSubmit: (id, fileName) ->
-        log "Submitted: "+id+' '+fileName
+        #log "Submitted: "+id+' '+fileName
       onComplete: (id, fileName, result) =>
         image_url = result.image_url
         image = result.image

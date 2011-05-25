@@ -155,25 +155,36 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   '.edit click': (el) ->
     editable = $('.editable', el.parent())
     editable.removeAttr 'readonly'
+    editable.addClass 'hover'
     editable.focus()
 
   '.editable keypress': (el, event) ->
-    el.blur() if event.keyCode is 13
-
-  '.editable blur': (el) ->
-    el.attr 'readonly', true
-    el.removeClass 'hover'
-
-    field = el.closest('table').attr 'id'
-    field = field.replace('List','')
+    if event.keyCode is 13
+      el.attr 'readonly', true
+      el.blur()
+      el.removeClass 'hover'
+      @updateField el 
+    
+  updateField: (el) ->
+    #todo
+    field = el.closest('table').attr('id').replace('List','')
     newVal = el.val()
+    oldVal = el.closest('tr').data field
+    log field+' '+oldVal+' '+newVal
     
-    if field is 'album'
-      oldVal = el.closest('tr').data 'album'
-      $("#albumList tr.images[data-album='#{oldVal}'] .img")
-    
-    log field+' '+val
-    
+    image = {}
+    image[field] = oldVal
+    imageMeta = {
+      field: field
+      old_value: oldVal
+      new_value: newVal
+    }
+    @imageModel.update imageMeta
+  
+  #'.editable blur': (el) ->
+
+
+
     
   #- SearchResults -#
   

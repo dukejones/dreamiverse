@@ -7,15 +7,15 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
         when 37 then $('.gradient-left').click()
         when 39 then $('.gradient-right').click()
                 
-  show: (images, index) ->    
-    html = $('#gallery').html()
+  show: (images, index) ->
+    if not @template?
+      @template = $('#gallery').html()
     $('#gallery').html ''
     $('#gallery').css 'width', (images.length * 820 + 280) + 'px'
     
     for image in images
-      $('#gallery').append html 
+      $('#gallery').append @template
       @showImage '#gallery .imageContainer:last', image
-      #$("#gallery .imageContainer").css "opacity", 0.3
     
     @images = images      
     @index = if index? then index else 0
@@ -40,33 +40,24 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
   getCurrent: ->
     $("#gallery .imageContainer:eq(#{@index})")
   
-  ###
-  dimCurrent: ->
-    current = @getCurrent()
-    current.css 'opacity', 0.3
-    current.removeClass 'current'
-  
-  highlightCurrent: ->
-    current = @getCurrent()
-    current.css 'opacity', 1
-    current.addClass 'current'
-  ###
-  
   changeSlide: (difference) ->
     if @index + difference is -1
       return
+    
     if @index + difference is @images.length
       $('#slideshow-back').fadeOut 'fast'
       $('#frame.browser').show()
-    
-    #@dimCurrent()
+          
     @index += difference
+    
+    $('.gradient-left').toggle @index isnt 0
+    
+    rightText = if @index is @images.length - 1 then 'close slideshow' else 'right arrow key'
+    $('.gradient-right .text').text rightText
     
     $('#gallery').animate {
       left: (@index * -820 + 280) + 'px'
     }, 'fast'
-    
-    #@highlightCurrent()
     
   getOriginal: (image) ->
     return "/images/uploads/originals/#{image.id}.#{image.format}"

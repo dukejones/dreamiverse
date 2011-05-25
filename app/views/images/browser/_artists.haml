@@ -11,7 +11,7 @@
 
   / ARTIST ROW
   - @artists._?.to_a.sort_by{|el| el[0].to_s}.each do |artist, images|
-    %tr.artist
+    %tr.artist{:'data-artist' => artist}
 
       %td.name
 
