@@ -291,7 +291,7 @@ addImagesToDream = function(images){
   // Create image node for each image passed
   // image returns thumbnail w/ format
   for(var u = 0; u < images.length; u++){
-    var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;/images/uploads/' + images[u] + '&quot;) no-repeat center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
+    var newNode = '<div class="dreamImageContainer" style="width: 120px;"><div style="background: url(&quot;/images/uploads/' + images[u] + '&quot;) no-repeat scroll center center transparent; width: 120px;" class="dreamImage round-8"><div class="imageRemoveButton dark O-bevel">X</div><textarea class="dreamImageCaption"></textarea></div></div>';
     
     $('#currentImages').prepend(newNode);
   }
