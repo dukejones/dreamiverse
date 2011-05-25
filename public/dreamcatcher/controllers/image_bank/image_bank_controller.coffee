@@ -77,5 +77,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     @dropbox.registerDraggable el, fromDropbox
     
   getSearchOptions: ->
-    return @searchOptions.get() if @searchOptions?
-    return {}
+    options = {}
+    options = @searchOptions.get() if @searchOptions?
+    options['q'] = $(".searchField input[type='text']").val()
+    return options
