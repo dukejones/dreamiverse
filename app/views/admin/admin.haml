@@ -32,19 +32,9 @@
 
 
       .module.allUsers
-        .img
-        %h2 user list
-
-
-        #nextPageEnd ›
-        %a#nextPage{href: "#"} ›
-
-        #pages
-        %a#prevPage{href: "#"} ‹
-        #prevPageEnd ‹
-
+        #allUsersIcon.img
         #pageLoading.spinner
-
+        %h2#allUsersHeader user list
 
         .clear
 
@@ -56,6 +46,15 @@
               = user.username
               .postCount= user.entries.count
         .clear
+
+
+
+        #nextPageEnd ›
+        %a#nextPage{href: "#"} ›
+
+        #pages
+        %a#prevPage{href: "#"} ‹
+        #prevPageEnd ‹
 
 
         #totalUsers{:'data-id' => @users.count}
