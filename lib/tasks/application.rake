@@ -177,8 +177,3 @@ namespace :fix do
   end
 end
 
-
-def log(msg)
-  Rails.logger.info(msg)
-  puts msg
-end
