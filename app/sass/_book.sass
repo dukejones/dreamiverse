@@ -308,9 +308,75 @@
       .icon
         background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
 
-      .viewing-menu, .commenting-menu
-        width: 200px
-        padding: 6px 0
-        // line-height for chrome / webkit height
+      .viewing, .commenting
+        height: 20px
         line-height: 20px
+        padding: 0 0 0 20px
+
+      .viewing
+        background: url(/images/icons/viewing-16.png) no-repeat left center transparent
+
+      .commenting
+        background: url(/images/icons/comment-16-active.png) no-repeat left center transparent
+
+
+      // VIEWING & COMMENTING MENU DROPDOWNS
+      .viewing-menu, .commenting-menu
+        width: 148px
+        margin: 2px 0 8px
+        padding: 2px 0
+        // line-height for chrome / webkit height
+        line-height: 18px
         +font(14)
+        +round(4)
+        color: #333
+        outline: none
+        background-color: #fff
+        border: 1px solid #666
+        box-shadow:         inset 2px 2px 5px #ccc
+        -moz-box-shadow:    inset 2px 2px 5px #ccc
+        -webkit-box-shadow: inset 2px 2px 5px #ccc
+
+        .ui-selectmenu-status, li a
+          padding-left: 38px
+
+        // ICONS
+        &.everyone .ui-selectmenu-status, .everyone a
+          background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
+        &.friends .ui-selectmenu-status, .friends a
+          background: url(/images/icons/friend-16.png) no-repeat 10px center
+        &.followers .ui-selectmenu-status, .followers a
+          background: url(/images/icons/friend-16-follower.png) no-repeat 10px center
+        &.private .ui-selectmenu-status, .private a
+          background: url(/images/icons/private-16-hover.png) no-repeat 10px center
+        &.anon .ui-selectmenu-status, .anon a
+          background: url(/images/icons/anon-16-hover.png) no-repeat 10px center
+
+.ui-selectmenu-menu.viewing-menu, .ui-selectmenu-menu.commenting-menu
+  z-index: 100 !important
+  width: 146px !important
+  +flat-light
+  +round(4)
+  +glow-light(10)
+  +border-light
+
+  li a
+    padding-left: 38px
+
+  // ICONS
+  .everyone a
+    background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
+  .friends a
+    background: url(/images/icons/friend-16.png) no-repeat 10px center
+  .followers a
+    background: url(/images/icons/friend-16-follower.png) no-repeat 10px center
+  .private a
+    background: url(/images/icons/private-16-hover.png) no-repeat 10px center
+  .anon a
+    background: url(/images/icons/anon-16-hover.png) no-repeat 10px center
+
+
+
+
+
+
