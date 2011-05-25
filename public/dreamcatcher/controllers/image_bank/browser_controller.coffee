@@ -128,25 +128,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
       @displayView 'albumList', html
       
-  '#artistList .edit mouseover': (el) ->
-    $('.artistName', el.parent()).addClass 'hover'
-    
-  '#artistList .edit mouseout': (el) ->
-    artistName = $('.artistName', el.parent())
-    artistName.removeClass 'hover' if not artistName.is(':focus')
-      
-  '#artistList .edit click': (el) ->
-    artistName = $('.artistName', el.parent())
-    artistName.removeAttr 'readonly'
-    artistName.focus()
-  
-  '#artistList .artistName keypress': (el, event) ->
-    el.blur() if event.keyCode is 13
-  
-  '#artistList .artistName blur': (el) ->
-    el.attr 'readonly', true
-    el.removeClass 'hover'
-
     
   #- Album List -#
   
@@ -160,6 +141,38 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   '#albumList .images .add click': (el) ->
     @parent.addImageToDropbox el.parent()
+
+
+
+    
+  '.edit mouseover': (el) ->
+    $('.editable', el.parent()).addClass 'hover'
+
+  '.edit mouseout': (el) ->
+    editable = $('.editable', el.parent())
+    editable.removeClass 'hover' if not editable.is(':focus')
+
+  '.edit click': (el) ->
+    editable = $('.editable', el.parent())
+    editable.removeAttr 'readonly'
+    editable.focus()
+
+  '.editable keypress': (el, event) ->
+    el.blur() if event.keyCode is 13
+
+  '.editable blur': (el) ->
+    el.attr 'readonly', true
+    el.removeClass 'hover'
+
+    field = el.closest('table').attr 'id'
+    field = field.replace('List','')
+    newVal = el.val()
+    
+    if field is 'album'
+      oldVal = el.closest('tr').data 'album'
+      $("#albumList tr.images[data-album='#{oldVal}'] .img")
+    
+    log field+' '+val
     
     
   #- SearchResults -#

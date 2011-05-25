@@ -17,7 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
   get: ->
     options = {}
     
-    if $("#searchOptions").is(":visible")
+    if $("#searchOptions").is ":visible"
 
       for attr in ['artist','album','title','year','tags']
         val = @getValFromAttr attr

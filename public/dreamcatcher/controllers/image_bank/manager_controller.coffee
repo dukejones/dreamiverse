@@ -42,6 +42,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   ## [ IMAGE FILE UPLOADER ] ##
 
   createUploader: ->
+    log @getView 'fileTemplate'
     @uploader = new qq.FileUploader {
       element: $('#uploader').get(0)
       action: '/images.json'
