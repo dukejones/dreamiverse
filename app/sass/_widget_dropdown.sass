@@ -31,6 +31,7 @@
 .ui-selectmenu-menu-popup
   margin-top: -1px
 .ui-selectmenu-menu-dropdown
+  height: auto !important
 .ui-selectmenu-menu li
   padding: 1px 0
   margin: 0
@@ -118,9 +119,10 @@
 #users-filter-wrap, #entry-filter-wrap
   margin: 4px 0 1px
 
-// this makes the menus show up over top of the spinners
+// this makes the menus show up over top of the spinners, adjusts width -2px
 #entry-filter-menu, #users-filter-menu
   z-index: 2 !important
+  width: 198px !important
 
 // STREAM FILTERS - widget
 #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
