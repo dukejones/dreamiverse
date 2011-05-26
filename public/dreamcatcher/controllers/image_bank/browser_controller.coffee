@@ -3,33 +3,36 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   ibModel: Dreamcatcher.Models.ImageBank
   imageModel: Dreamcatcher.Models.Image
   
-  views: ['browse', 'genreList', 'artistList', 'albumList', 'searchOptions', 'searchResults']
   
+  #- gets a specific browser view
   getView: (url, data) ->
     return @view "//dreamcatcher/views/image_bank/browser/#{url}.ejs", data
   
+  #- constructor
   init: ->
     @showBrowse()
     
-  showBrowse: ->
-    @displayView 'browse', @getView 'types', { types: @ibModel.types }
-  
-  show: ->
-    @refreshView()
+  #- shows the browser, and refreshes the current view
+  show: (refresh) ->
+    @refreshView() if refresh
     $('#frame.browser').show()
     
+  #- hides all the views, and saves the previous view
   hideAllViews: ->
-    for view in @views
-      @lastView = view if $("##{view}").is(':visible') and view isnt 'searchOptions'
+    for view in ['browse', 'artistList', 'albumList', 'searchResults']
+      @previousView = view if $("##{view}").is(':visible')
       $("##{view}").hide()
     
-  showLastView: ->
-    @displayView @previous if @previous?
+  #- show the previous view
+  showPreviousView: ->
+    @displayView @previousView if @previousView?
     
+  #- shows only the specified icons
   showIcons: (icons) ->
     $(".top,.footer").children().hide()
     $(icons, ".top,.footer").show()
     
+  #- refreshes the current view (usually if the underlying model has changed)
   refreshView: ->
     switch @currentView
       when 'browse'
@@ -38,9 +41,22 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         @showArtists()
       when 'albumList'
         @showAlbums()
+        
+  #- show the browse view
+  showBrowse: ->
+    @displayView 'browse', @getView 'types', { types: @ibModel.types }
+    
+  showArtists: ->
+    @ibModel.getHtml 'artists', {category: @category, section: @section}, (html) =>
+      @displayView 'artistList', html
+      
+  showAlbums: ->
+     @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
+        @displayView 'albumList', html
+        @parent.registerDroppable $('#albumList .images td')
+        @parent.registerDraggable $("#albumList .images .img"), false
     
   displayView: (name, html) ->
-    
     switch name
     
       when 'browse'
@@ -57,23 +73,18 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag'
         @updateView 'artistList', @category, name, @artist, html
         
-        @parent.registerDroppable $('#albumList .images td')
-        @parent.registerDraggable $("#albumList .images .img"), false
-        
       when 'searchResults'
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateView null, null, name, null, html
         
-    @currentView = name    
-
-  updateView: (previousElement, previousName, currentElement, currentName, html) ->
+    @currentView = name 
     
+  updateView: (previousElement, previousName, currentElement, currentName, html) ->
     # update head
     backArrow = $(".backArrow") 
     backArrow.attr 'name', previousElement if previousElement?
-    
     $(".content span", backArrow).text previousName if previousName?
-    $('.content .img', backArrow).toggle(previousName is 'browse')
+    $('.content .img', backArrow).toggle previousName is 'browse'
     $('#frame.browser h1').text currentName if currentName
 
     @hideAllViews()
@@ -81,8 +92,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     $("##{currentElement}").replaceWith html if html?
     $("##{currentElement}").show()
 
-  ## TOP ICON EVENTS
-    
+
+  ## DOM Events ##
+  
+  #- Top Header
+
   '.top .browseWrap click': (el) ->
     if $("#searchResults").is ':visible'
       @displayView @previousView, null
@@ -103,7 +117,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   '.top .manage click': ->
     @parent.showManager 'artist', @artist
 
-
   ## VIEW EVENTS
   
   showSpinner: ->
@@ -113,8 +126,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     $("#frame.browser .spinner").hide()
     
         
-  #- Browse -#
-
+  #- Browse
+  
   '#browse .type li click': (el) ->
     $("#browse .type li").removeClass 'selected'
     el.addClass 'selected'
@@ -127,23 +140,15 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     @category = el.text().trim()
     @artist = null
     @showArtists()
-
-  showArtists: ->
-    @ibModel.getHtml 'artists', {category: @category, section: @section}, (html) =>
-      @displayView 'artistList', html
   
-  #- ArtistList -#
+  #- Artists
 
   '#artistList tr.artist click': (el) ->
     return if not $('.artistName',el).attr 'readonly'
     @artist = $('.artistName',el).val()
     @showAlbums()
     
-  showAlbums: ->
-     @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
-        @displayView 'albumList', html
-    
-  #- Album List -#
+  #- Albums
   
   '#albumList .manage click': (el) ->
     tr = el.closest 'tr'
@@ -158,7 +163,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   '#albumList .images .add click': (el) ->
     @parent.addImageToDropbox el.parent()
-    
+
+  #- Edit (used by both Artist and Album List)
+  
   '.edit mouseover': (el) ->
     $('.editable', el.parent()).addClass 'hover'
 
@@ -184,8 +191,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     newValue = el.val()
     oldValue = el.closest('tr').data field
     
-    #log newValue
-    
     image = {}
     image[field] = newValue
     if field is 'album'      
@@ -195,10 +200,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         @refreshView()
         
     else if field is 'artist'
+      # todo
       alert 'cannot update this!'
       el.val oldValue
       
-  #- SearchResults -#
+  #- Search Results -#
   
   '.searchField input[type="text"] keypress': (el, ev) ->
     $('.searchField .search').click() if ev.keyCode is 13

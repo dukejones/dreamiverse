@@ -6,26 +6,30 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     return @view "//dreamcatcher/views/image_bank/#{type}/#{url}.ejs", data
 
   init: ->
-    
-    $('#dropbox .imagelist').html ''
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     @stateCookie = new Dreamcatcher.Classes.CookieHelper 'ib_state', true
+    $('#dropbox .imagelist').html ''
+    
     @showImage imageId for imageId in @imageCookie.getAll() if @imageCookie.getAll()?
-
     $("#dropbox").offset @stateCookie.get() if @stateCookie.get()?
   
-    # for adding images
+    @initDragAndDrop()
+  
+  show: ->
+    $('#dropbox').show()
+    
+  initDragAndDrop: ->
+    # adding images
     $("#dropbox").droppable {
       drop: (ev, ui) =>
         @addImage ui.draggable
     }
-
-    # for removing images
+    # removing images
     $('#bodyClick').droppable {
       drop: (ev, ui) =>
         @removeImage ui.draggable
     }
-
+    # positioning drop box
     $("#dropbox").draggable {
       cursor: 'grabbing'
       handle: 'h2,.icon'
@@ -33,15 +37,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
         @stateCookie.set ui.position
     }
     
-
-  
-  show: ->
-    $('#dropbox').show()
-    
+  # clearing images from UI and cookie
   clearImages: ->
     @imageCookie.clear()
     $('#dropbox .imagelist').html ''
   
+  # adding image to UI and cookie
   addImage: (el) ->
     imageId = el.data 'id'
     imageMeta = el.data 'image'
@@ -53,13 +54,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     else
       log 'already here' #todo - something better
       
+  # remove image from UI and cookie
+  removeImage: (el) -> 
+    @imageCookie.remove el.data 'id'
+    el.remove()
+      
+  # setting the images from a list of elements
   setImages: (elements) ->
     elements.each (i, el) =>
       @addImage $(el)
 
-  removeImage: (el) -> 
-    @imageCookie.remove el.data 'id'
-    el.remove()
+
     
   showImage: (imageId, imageMeta) ->
     if imageMeta?
