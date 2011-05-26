@@ -196,8 +196,13 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     if field is 'album'      
       $("#albumList tr.images[data-album='#{oldValue}'] .img").each (i, el) =>
         imageId = $(el).data 'id'
-        @imageModel.update imageId, {image: image }
-        @refreshView()
+        @imageModel.update imageId, {image: image}
+      $("#albumList tr[data-album='#{oldValue}']").each (i, el) =>
+        $(el).data 'album', newValue
+        log $(el).html()
+        log $(el).data 'album'
+      #$("#albumList tr[data-album='#{newValue}']").each (i, el) =>  
+      #@refreshView() #todo
         
     else if field is 'artist'
       # todo

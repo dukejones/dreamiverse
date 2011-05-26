@@ -53,11 +53,13 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       params: @getOrganizationMeta()
       debug: true
       onSubmit: (id, fileName) ->
-        #log "Submitted: "+id+' '+fileName
+        if @replaceImageId?
+          $("#imagelist li[data-id=#{@replaceImageId}]").remove()
+        log "Submitted: "+id+' '+fileName
       onComplete: (id, fileName, result) =>
         image_url = result.image_url
         image = result.image
-        @showImage $("#imagelist li .file:contains('#{fileName}')").closest('li'),image
+        @showImage $("#imagelist li .file:contains('#{fileName}')").closest('li'), image
       template: $("#uploader").html()
       fileTemplate: @getView 'fileTemplate'
       classes: {
@@ -207,12 +209,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     
     
   #- delete individual image
-  '.close click': (el) ->
+  '#imagelist .close click': (el) ->
     if el.parent().hasClass('delete')
       imageId = el.parent().data('id')
       el.parent().hide()
     else
       el.parent().addClass('delete')
+      
+  '#imagelist .replace click': (el) ->
+    @replaceImageId = el.parent().data 'id'
+    @uploader.params = { id: @replaceImageId }
+    $('#uploader .browse input[type=file]').click()
   
   '.dontDelete click': (el) ->
     el.closest('li').removeClass('delete')
