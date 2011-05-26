@@ -30,6 +30,9 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     else
       $('#nextPage').hide()
       $('#nextPageEnd').show()
+      
+    $(".userPage").css("text-decoration", "none") # reset
+    $("#userPage-#{@page}").css("text-decoration", "underline")   
   
   # Add numbered page links  
   addPageLinks: ->
@@ -46,12 +49,12 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     }
         
   # Dom listeners
-  '#userPage click': (el,ev) ->
+  '.userPage click': (el,ev) ->
     @page = parseInt el.text()
     $('#allUsersIcon').hide()
     $('#pageLoading').show()
     Dreamcatcher.Models.Admin.load @getOptions(), @updateUsersPage
-    @updateNav()
+    @updateNav()     
 
   '#nextPage, #prevPage click': (el,ev) ->
     @page = 1 if !@page? 
