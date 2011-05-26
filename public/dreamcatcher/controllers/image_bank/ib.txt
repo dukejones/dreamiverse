@@ -1,0 +1,62 @@
+###
+### {
+  element: $(params.elementId).get(0)
+  action: params.url
+  maxConnections: 1
+  params: {}
+  debug: true # todo: false
+  allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
+  onSubmit: submit
+  onComplete: complete 
+  onProgress: progress
+  onCancel: cancel
+  template: $(params.elementId).html()
+  fileTemplate: params.fileTemplate
+  classes: {
+    button: 'browse'
+    drop: 'dropArea'
+    dropActive: 'active'
+    list: 'imagelist'
+    progress: 'progress'
+    file: 'file'
+    spinner: 'spinner'
+    size: 'size'
+    cancel: 'cancel'
+    success: 'success'
+    fail: 'fail'
+  }
+}
+###
+###
+#@uploader = Dreamcatcher.Classes.UploadHelper.createUploader params, @fileSubmit, @fileComplete, @fileComplete
+
+fileSubmit: (id, fileName) ->
+log id+fileName
+
+fileComplete: (id, fileName) ->
+log 'x'
+
+submit: (id, fileName) ->
+if @replaceImageId?
+  $("#imagelist li[data-id=#{@replaceImageId}]").remove()
+complete: (id, fileName, result) =>
+log result
+@replaceImageId = null
+@uploader.setParams @getOrganizationMeta()
+image_url = result.image_url
+image = result.image
+@showImage $("#imagelist li .file:contains('#{fileName}')").closest('li'), image
+progress: #(id, fileName, loaded, total) =>
+cancel: #(id, fileName) =>
+$("#imagelist li .file:contains('#{fileName}')").closest('li').remove()
+###
+
+###
+$.Class 'Dreamcatcher.Classes.UploadHelper', {  
+}, {
+  
+  ##createUploader: (params, submit, complete, progress, cancel) ->
+  ##  return 'new qq.FileUploader()'
+
+}
+###
