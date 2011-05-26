@@ -23,6 +23,7 @@ steal.plugins(
   .then(function() {
     //TODO: StealJS fix: don't forget to contribute!
     steal.coffee(
+      'resources/google.charts',
       'classes/cookie_helper',
       'models/settings',
       'models/appearance',

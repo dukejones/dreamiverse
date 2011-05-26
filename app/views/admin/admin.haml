@@ -1,6 +1,6 @@
 - content_for :head do
   = sass_link_tag 'admin'
-  = javascript_include_tag 'jquery-ui.min'
+  %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
 
 #adminPage
   #entryField
@@ -85,15 +85,11 @@
         .clear
 
       .clear
+      
 
-      / .module.activeUsers
-      /   %h2 most active users
-      / .clear
-      / 
-      / .module.seedCodes
-      /   %h2 seed codes
-      / .clear
-      / 
-      / .module.sharing
-      /   %h2 sharing
-      / .clear
+    #chart-test= 'chart-test'
+    #chart-div
+    
+    / - content_for :foot do
+    /   %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
+      

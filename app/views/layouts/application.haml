@@ -10,6 +10,7 @@
 
     = include_stylesheets :shared, :media => 'all'
     
+    = yield :head
     - if Rails.env == 'development'
       %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
     - else 
@@ -20,7 +21,7 @@
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
-    = yield :head
+
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
 
