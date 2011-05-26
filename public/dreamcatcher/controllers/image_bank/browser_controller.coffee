@@ -12,6 +12,13 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   init: ->
     @showBrowse()
     
+  getState: ->
+    {
+      type: @type
+      category: @category
+      artist: @artist
+    }
+    
   #- shows the browser, and refreshes the current view
   show: (refresh) ->
     @refreshView() if refresh
@@ -79,7 +86,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         
     @currentView = name 
     
-  updateView: (previousElement, previousName, currentElement, currentName, html) ->
+  updateView: (previousElement, previousName, currentId, currentName, html) ->
     # update head
     backArrow = $(".backArrow") 
     backArrow.attr 'name', previousElement if previousElement?
@@ -89,8 +96,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
 
     @hideAllViews()
 
-    $("##{currentElement}").replaceWith html if html?
-    $("##{currentElement}").show()
+    currentElement = $("##{currentId}")
+    if currentElement.exists() and html?
+      currentElement.replaceWith html
+    else
+      $('#browse').after html
+      currentElement = $("##{currentId}")
+    
+    currentElement.show()
 
 
   ## DOM Events ##
@@ -223,7 +236,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     if not $('#searchOptions').is ':visible'
       @hideAllViews()
       el.addClass 'selected'
-      @parent.showSearchOptions()
+      @parent.showSearchOptions @getState()
     else
       el.removeClass 'selected'
       @displayView @currentView

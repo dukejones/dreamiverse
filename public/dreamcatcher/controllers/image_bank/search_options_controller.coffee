@@ -8,11 +8,15 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
   
   init: ->
     $('#searchOptions .type').html @getView('types', {types: @ibModel.types})
+
+  show: (params) ->
     $("#searchOptions .type li").removeClass 'selected'
-    $("#searchOptions .type li:contains(#{@type})").click()
-
-
-  show: ->
+    
+    if params?      
+      $("#searchOptions .type li:contains(#{params.type})").click() if params.type?
+      $("#searchOptions .category li:contains(#{params.category})").click() if params.category?
+      @setValueForAttribute 'artist', params.artist if params.artist?
+    
     $('#searchOptions').show()
     
   get: ->
@@ -21,7 +25,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
     if $("#searchOptions").is ":visible"
 
       for attr in ['artist','album','title','year','tags']
-        val = @getValFromAttr attr
+        val = @getValueFromAttribute attr
         options[attr] = val if val?
 
       categories = []
@@ -32,11 +36,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
     return options
     
 
-  getValFromAttr: (attr) ->
-    inputElement = $("##{attr} input[type='text']");
+  getValueFromAttribute: (attr) ->
+    inputElement = $("#searchOptions input[name='#{attr}']")
     val = inputElement.val().trim() if inputElement.val()?
     return val if val.length > 0
     return null
+    
+  setValueForAttribute: (attr, val) ->
+    $("#searchOptions input[name='#{attr}']").val val
 
 
     

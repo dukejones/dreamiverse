@@ -1,4 +1,6 @@
-$.Class 'Dreamcatcher.Classes.CookieHelper',{},{
+$.Class 'Dreamcatcher.Classes.CookieHelper', {
+  
+}, {
 
   init: (key, isJson) ->
     @key = key
@@ -46,4 +48,5 @@ $.Class 'Dreamcatcher.Classes.CookieHelper',{},{
     newItems = items.filter (item) ->
       return item isnt id
     $.cookie(@key,newItems.join(","))
+    
 }

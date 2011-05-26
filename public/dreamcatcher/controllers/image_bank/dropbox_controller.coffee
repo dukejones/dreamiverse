@@ -17,7 +17,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
   show: ->
     $('#dropbox').show()
     
-    
   initDragAndDrop: ->
     # adding images
     $("#dropbox").droppable {
@@ -37,12 +36,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
         @stateCookie.set ui.position
     }
     
-  # clearing images from UI and cookie
+  #- clearing images from UI and cookie
   clearImages: ->
     @imageCookie.clear()
     $('#dropbox .imagelist').html ''
   
-  # adding image to UI and cookie
+  #- adding image to UI and cookie
   addImage: (el) ->
     imageId = el.data 'id'
     imageMeta = el.data 'image'
@@ -54,17 +53,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     else
       log 'already here' #todo - something better
       
-  # remove image from UI and cookie
+  #- remove image from UI and cookie
   removeImage: (el) -> 
     @imageCookie.remove el.data 'id'
     el.remove()
       
-  # setting the images from a list of elements
+  #- setting the images from a list of elements
   setImages: (elements) ->
     elements.each (i, el) =>
       @addImage $(el)
 
-  # shows an image in the drop box
+  #- shows an image in the drop box
   showImage: (imageId, imageMeta) ->
     if imageMeta?
       $("#dropbox .imagelist").append @getView 'image', { image: imageMeta }
@@ -72,7 +71,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     else
       @model.get imageId, {}, @callback('showImage', imageId)
       
-  # registers an element as draggable  
+  #- registers an element as draggable  
   registerDraggable: (el, fromDropbox) ->
     el.draggable {
       containment: 'document'
@@ -89,7 +88,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
           $("#bodyClick").hide()
     }
   
-  # registers an element as droppable
+  #- registers an element as droppable
   registerDroppable: (el) ->
     el.droppable {  
       drop: (ev, ui) =>  
