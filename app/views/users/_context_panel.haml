@@ -13,6 +13,11 @@
   - cache([user, current_user._?.relationship_with(user), @mode, @entry_count, user.friends.count, "context_panel"]) do
     #contextPanel
 
+
+      / BOOKS (for testing)
+      / = render :partial => '/entries/book'
+
+
       / IMAGE
       %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) no-repeat center center"}
         - if (user == current_user) && !is_ipad?
