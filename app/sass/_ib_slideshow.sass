@@ -60,7 +60,7 @@
           +center
           +bold
           width: 180px
-          top: 360px
+          top: 240px
           color: #fff
           color: rgba(250,250,250,0.5)
 
@@ -94,7 +94,7 @@
         top: 0
         left: 280px
         width: auto
-        height: 720px
+        height: 640px
 
 
       // IMAGE
@@ -111,7 +111,7 @@
           top: 0
           left: 0
           width: 720px
-          height: 720px
+          height: 640px
 
           .image
             width: 100%
@@ -122,6 +122,10 @@
                 padding: 0
                 vertical-align: bottom
                 text-align: center
+
+                // temporary, until resize
+                img
+                  max-height: 640px
 
 
           // TAGGING & INFO
@@ -208,7 +212,7 @@
           +absolute
           +overflow
           +alpha(20)
-          top: 740px
+          top: 660px
           left: 0
           width: 720px
           height: 80px
@@ -226,13 +230,16 @@
                 img
                   +flip(Y)
 
+                  // temporary, until resize
+                  max-height: 640px
+
 
 
 
       // BOTTOM GRADIENT
       .gradient-bottom
         +absolute
-        top: 740px
+        top: 660px
         left: 0
         width: 100%
         height: 80px
@@ -244,7 +251,7 @@
       // CONTROLS
       .controls
         +absolute
-        top: 740px
+        top: 660px
         left: 280px
         padding: 12px
         width: 696px
