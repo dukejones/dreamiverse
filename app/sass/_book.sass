@@ -38,6 +38,10 @@
   .closed
     z-index: 2
 
+    &:hover
+      .entries, .edit, .comments, .sharing
+        +block
+
     .entries, .edit, .title, .comments, .sharing
       +absolute
       +round(12)
@@ -45,6 +49,7 @@
       +bold
 
     .entries, .comments, .sharing
+      +hidden
       height: 24px
       line-height: 24px
       padding: 0 8px 0 28px
@@ -56,6 +61,7 @@
       left: 4px
 
     .edit
+      +hidden
       top: 24px
       right: 36px
       height: 24px
@@ -65,7 +71,7 @@
     .title
       +font(18)
       +center
-      bottom: 40px
+      bottom: 32px
       left: 0
       margin: 0 4px
       width: 146px
@@ -228,11 +234,11 @@
         background-color: #123d66
       .purple-dark
         background-color: #5b2e87
-      .purple-light
+      .pink
         background-color: #912487
       .red
         background-color: #912425
-      .teal
+      .aqua
         background-color: #2e8786
       .green-light
         background-color: #5a9223
