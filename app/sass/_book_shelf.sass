@@ -1,11 +1,53 @@
 // BOOK SHELF
 
 #bookShelf
+  margin: 12px 0 0
 
 
-  // BOOK SPINE
+  // BOOK SPINE STRUCTURE
   .bookSpine
+    +relative
+    +round(8)
+    +overflow
+    margin: 0
+    height: 48px
+    width: 208px
+
+    .cover, .mask
+      +absolute
+      top: 8px
+      left: 0
+      height: 32px
+      width: 208px
+
+    .title, .count
+      +absolute
+      +round(8)
+      +center
+      +font(18)
+      +bold
+      top: 12px
+      height: 24px
+      line-height: 28px
 
     .title
+      left: 8px
+      color: #fff
+      padding: 0 16px
+      background: #000
+      background: rgba(0,0,0,0.6)
 
     .count
+      right: 8px
+      width: 24px
+      background: #fff
+
+
+  // BOOK SPINE COLORS
+  .bookSpine.blue-dark
+    +gradient(#2e72b1, #16538b)
+    background: url(/images/books/spine-blue-dark.png) repeat-x left
+    .mask
+      background: -moz-linear-gradient(rgba(46,114,177,1.0), rgba(46,114,177,0.2), rgba(22,83,139,1.0))
+    .count
+      color: #245a91

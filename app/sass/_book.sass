@@ -1,5 +1,18 @@
 // BOOKS
 
+
+// BOOK COLOR VARIATIONS
+.book.blue-dark
+  .mask
+    background: url(/images/books/mask-blue-dark.png) no-repeat center center
+  .open
+    background: url(/images/books/open-blue-dark.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: rgba(18,61,102,0.5)
+
+
+// BOOK STRUCTURE
 .book
   +pointer
   +left
@@ -9,7 +22,7 @@
   margin: 0 10px 10px 0
   z-index: 81
 
-  a.link, .closed, .fade
+  a.link, .closed, .mask
     +absolute
     top: 0
     right: 0
@@ -20,60 +33,53 @@
     +block
     z-index: 1
 
+
   // CLOSED BOOK
   .closed
     z-index: 2
 
-    .info
+    .entries, .edit, .title, .comments, .sharing
       +absolute
-      +round(16)
+      +round(12)
+      +font(14)
+      +bold
+
+    .entries, .comments, .sharing
+      height: 24px
+      line-height: 24px
+      padding: 0 8px 0 28px
+      background-position: 4px center
+      background-repeat: no-repeat
+
+    .entries
+      top: 24px
+      left: 4px
+
+    .edit
+      top: 24px
+      right: 36px
+      height: 24px
+      line-height: 24px
+      padding: 0 8px
+
+    .title
+      +font(18)
+      +center
+      bottom: 40px
       left: 0
-      bottom: 0
-      width: 170px
-      height: 248px
+      margin: 0 4px
+      width: 146px
+      height: auto
+      line-height: 18px
+      padding: 8px
 
-      .entries, .edit, .title, .comments, .sharing
-        +absolute
-        +round(12)
-        +font(14)
-        +bold
-        color: #222
-        background-color: rgba(250,250,250,0.5)
-        // background-color: rgba(18,61,102,0.5)
+    .comments
+      bottom: 4px
+      left: 4px
 
-      .entries, .comments, .sharing
-        height: 24px
-        line-height: 24px
-        padding: 0 8px 0 28px
-        background-position: 4px center
-        background-repeat: no-repeat
-
-      .entries
-        top: 4px
-        left: 4px
-
-      .edit
-        top: 4px
-        right: 4px
-        height: 24px
-        line-height: 24px
-        padding: 0 8px
-
-      .title
-        +font(18)
-        bottom: 40px
-        left: 0
-        margin: 0 4px
-        height: auto
-        padding: 8px
-
-      .comments
-        bottom: 4px
-        left: 4px
-
-      .sharing
-        bottom: 4px
-        right: 4px
+    .sharing
+      bottom: 4px
+      right: 36px
 
     .cover
       +absolute
@@ -83,8 +89,7 @@
       bottom: 0
       width: 170px
       height: 248px
-      background-position: center
-      background-repeat: no-repeat
+
 
   // OPEN BOOK
   .open

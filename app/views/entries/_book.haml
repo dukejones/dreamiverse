@@ -1,37 +1,36 @@
 / BOOKS
 
-.book
+.book.blue-dark
 
 
   / %a.link{href: '/'}
 
 
   / CLOSED BOOK
-  .closed.hidden
+  .closed
 
-    .cover{style: 'background-image: url(/images/avatars/default-avatar-full.jpg)'}
+    .cover{style: 'background: url(/images/avatars/default-avatar-full.jpg) no-repeat center center'}
 
-    .fade{style: 'background: url(/images/books/fade-blue-dark.png) no-repeat center center'}
+    .mask
 
-    .info
 
-      .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
-        82
+    .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
+      82
 
-      .edit edit
+    .edit edit
 
-      .title Title of the Book Goes Here
-      / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
+    .title Title of the Book Goes Here
+    / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
 
-      .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
-        4
+    .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
+      4
 
-      .sharing{style: 'background-image: url(/images/icons/friend-16.png)'}
-        friends
+    .sharing{style: 'background-image: url(/images/icons/friend-16.png)'}
+      friends
 
 
   / OPEN BOOK
-  .open{style: 'background: url(/images/books/open-blue-dark.png) no-repeat center center'}
+  .open.hidden
 
     / CONTROL PANEL
     .control-panel.hidden
