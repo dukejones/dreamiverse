@@ -32,7 +32,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       when 'searchOptions'
         @searchOptions = new Dreamcatcher.Controllers.ImageBank.SearchOptions $("#searchOptions") if not @searchOptions?
         @searchOptions.parent = this
-        @searchOptions.show()
+        @searchOptions.show params
       
       when 'manager'
         @manager = new Dreamcatcher.Controllers.ImageBank.Manager $("#frame.manager") if not @manager?
@@ -52,8 +52,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
   showDropbox: ->
     @showWidget 'dropbox'
     
-  showSearchOptions: ->
-    @showWidget 'searchOptions'
+  showSearchOptions: (params) ->
+    @showWidget 'searchOptions', null, params
     
   showSlideshow: (type, imageId, album) ->
     elements = @getImageElements type, album
@@ -96,12 +96,13 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     imageId = parseInt imageId
     @imageModel.get imageId, {}, @callback('updateImageMeta', imageId)
     
+  ###
   'image.started subscribe': (called) ->
     @browser.showSpinner()
   
   'image.stopped subscribe': (called) ->
     @browser.hideSpinner()
-    
+  ###
   
   
   updateImageMeta: (imageId, imageMeta) ->

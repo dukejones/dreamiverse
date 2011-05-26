@@ -6,26 +6,29 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     return @view "//dreamcatcher/views/image_bank/#{type}/#{url}.ejs", data
 
   init: ->
-    
-    $('#dropbox .imagelist').html ''
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     @stateCookie = new Dreamcatcher.Classes.CookieHelper 'ib_state', true
+    $('#dropbox .imagelist').html ''
+    
     @showImage imageId for imageId in @imageCookie.getAll() if @imageCookie.getAll()?
-
     $("#dropbox").offset @stateCookie.get() if @stateCookie.get()?
+    @initDragAndDrop()
   
-    # for adding images
+  show: ->
+    $('#dropbox').show()
+    
+  initDragAndDrop: ->
+    # adding images
     $("#dropbox").droppable {
       drop: (ev, ui) =>
         @addImage ui.draggable
     }
-
-    # for removing images
+    # removing images
     $('#bodyClick').droppable {
       drop: (ev, ui) =>
         @removeImage ui.draggable
     }
-
+    # positioning drop box
     $("#dropbox").draggable {
       cursor: 'grabbing'
       handle: 'h2,.icon'
@@ -33,15 +36,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
         @stateCookie.set ui.position
     }
     
-
-  
-  show: ->
-    $('#dropbox').show()
-    
+  #- clearing images from UI and cookie
   clearImages: ->
     @imageCookie.clear()
     $('#dropbox .imagelist').html ''
   
+  #- adding image to UI and cookie
   addImage: (el) ->
     imageId = el.data 'id'
     imageMeta = el.data 'image'
@@ -53,14 +53,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     else
       log 'already here' #todo - something better
       
+  #- remove image from UI and cookie
+  removeImage: (el) -> 
+    @imageCookie.remove el.data 'id'
+    el.remove()
+      
+  #- setting the images from a list of elements
   setImages: (elements) ->
     elements.each (i, el) =>
       @addImage $(el)
 
-  removeImage: (el) -> 
-    @imageCookie.remove el.data 'id'
-    el.remove()
-    
+  #- shows an image in the drop box
   showImage: (imageId, imageMeta) ->
     if imageMeta?
       $("#dropbox .imagelist").append @getView 'image', { image: imageMeta }
@@ -68,23 +71,24 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     else
       @model.get imageId, {}, @callback('showImage', imageId)
       
-      
+  #- registers an element as draggable  
   registerDraggable: (el, fromDropbox) ->
     el.draggable {
       containment: 'document'
       helper: 'clone'
-      cursor: 'grabbing' # todo
+      #cursor: 'grabbing' # todo
       zIndex: 100
       start: (ev, ui) =>
         if fromDropbox
-          $("#dropbox").css('z-index', '1100') # look at styles
+          #$("#dropbox").css('z-index', '1100') # todo: look at styles
           $("#bodyClick").show()
       stop: (ev, ui) =>
         if fromDropbox
-          $("#dropbox").css('z-index', '') #  look at styles
+          #$("#dropbox").css('z-index', '') #todo: look at styles
           $("#bodyClick").hide()
     }
   
+  #- registers an element as droppable
   registerDroppable: (el) ->
     el.droppable {  
       drop: (ev, ui) =>  
@@ -101,6 +105,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
           ui.draggable.data 'image', imageMeta
           @registerDraggable ui.draggable, false
     }
+    
+    
+  #- View Events
     
   '.cancel click': (el) -> #TODO: fix
     @clearImages()

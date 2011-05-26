@@ -41,47 +41,62 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       @shiftDown = event.shiftKey
       @ctrlDown = event.altKey
       return
-  
-
-  ## [ IMAGE FILE UPLOADER ] ##
+      
+  ##- File Uploader
 
   createUploader: ->
-    @uploader = new qq.FileUploader {
-      element: $('#uploader').get(0)
-      action: '/images.json'
-      maxConnections: 1
-      params: @getOrganizationMeta()
-      debug: true
-      onSubmit: (id, fileName) ->
-        #log "Submitted: "+id+' '+fileName
-      onComplete: (id, fileName, result) =>
-        image_url = result.image_url
-        image = result.image
-        @showImage $("#imagelist li .file:contains('#{fileName}')").closest('li'),image
-      template: $("#uploader").html()
+    params = {
+      elementId: '#uploader'
+      url: '/images.json'
       fileTemplate: @getView 'fileTemplate'
-      classes: {
-        button: 'browse'
-        drop: 'dropArea'
-        dropActive: 'active'
-        list: 'imagelist'
-        progress: 'progress'
-        file: 'file'
-        spinner: 'spinner'
-        size: 'size'
-        cancel: 'cancel'
-        success: 'success'
-        fail: 'fail'
-      }
     }
-
+    @uploader = Dreamcatcher.Classes.UploadHelper.createUploader params, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
+      #, @uploadComplete, @uploadCancel, @uploadProgress
+  
+  uploadSubmit: (id, fileName) ->
+    if @replaceImageId?
+      $("#imagelist li[data-id=#{@replaceImageId}]").remove()
     
-  #- populates the organization lists with seed date
+  uploadComplete: (id, fileName, result) ->
+    log result
+    @replaceImageId = null
+    log @uploader
+    @uploader.setParams @getOrganizationMeta()
+    
+    image_url = result.image_url
+    image = result.image
+    @showImage @getUploadElement(fileName), image
+  
+  uploadCancel: (id, fileName) =>
+    el = @getUploadElement fileName
+    el.remove()
+  
+  uploadProgress: (id, fileName, loaded, total) =>
+    log loaded
+    log total
+
+  getUploadElement: (fileName) ->
+    return $("#imagelist li .file:contains('#{fileName}')").closest('li')
+    
+    
+  #- Organization Lists
+
   populateLists: ->
     for type in @ibModel.types
       $("#type select").append("<option data-categories='#{JSON.stringify type.categories}'>#{type.name}</option>")
     for genre in @ibModel.genres
       $("#genre select").append("<option>#{genre}</option>")
+      
+  #- gets the type, category & genre meta (for new uploaded images)
+  getOrganizationMeta: ->
+    image = {}
+    $("#organization select").each (index,element) =>
+      attr = $(element).parent().attr("id")
+      val = $(element).val()
+      image[attr] = if val.length > 0 then val else null
+    image.section = image.type
+    return {image: image}
+      
 
   #- loads all meta for a list of images
   loadImagesByIds: (imageIds) ->
@@ -101,17 +116,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
 
   
   ## [ IMAGE META ] ##
-  
-  #- gets the type, category & genre meta (for new uploaded images)
-  getOrganizationMeta: ->
-    image = {}
-    $("#organization select").each (index,element) =>
-      attr = $(element).parent().attr("id")
-      val = $(element).val()
-      image[attr] = if val.length > 0 then val else null
-    image.section = image.type
-    return {image: image}
-    
   #- show only the common meta for all the selected images
   #- if only one is selected, then show all that comments meta
   showCommonImageMetaData: ->
@@ -120,7 +124,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       data = $(element).data('image')
       
       #- special cases, such as date and user (i.e. needs to be converted from raw json)
-      data.date = $.format.date(data["created_at"].replace("T"," "), 'MMM dd, yyyy')
+      data.date = $.format.date data["created_at"].replace("T"," "), 'MMM dd, yyyy'
       data.user = "phong"
       data.type = data.section
       
@@ -129,11 +133,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
           common[attr] = data[attr]
         else if common[attr] isnt data[attr]
           common[attr] = '*'
-    @displayMetaData(common)
+    @displayMetaData common
+    
 
   #- display's the meta data for a particular image object
   displayMetaData: (image) ->
-    @setAttribute(attribute,image[attribute]) for attribute in @ibModel.attributes
+    @setAttribute(attribute, image[attribute]) for attribute in @ibModel.attributes
   
   #- checks if an attribute is of type "text"
   isText: (attr) ->
@@ -145,7 +150,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   
   #- sets the text input or select to display a certain value
   setAttribute: (attr, value) ->
-    $("##{attr} input[type='checkbox']").attr("checked",value? and value isnt "*")
+    $("##{attr} input[type='checkbox']").attr("checked", value? and value isnt "*")
     if @isText(attr)
       if value is "*"
         $("##{attr} input[type='text']").val("").attr("placeholder","different")
@@ -207,12 +212,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     
     
   #- delete individual image
-  '.close click': (el) ->
+  '#imagelist .close click': (el) ->
     if el.parent().hasClass('delete')
       imageId = el.parent().data('id')
       el.parent().hide()
     else
       el.parent().addClass('delete')
+      
+  '#imagelist .replace click': (el) ->
+    @replaceImageId = el.parent().data 'id'
+    @uploader.setParams { id: @replaceImageId }
+    $('#uploader .browse input[type=file]').click()
   
   '.dontDelete click': (el) ->
     el.closest('li').removeClass('delete')
@@ -225,11 +235,17 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       $("#category select").append("<option>#{category}</option>") for category in categories
 
   #- input (select, text) focus
-  'input[type="text"],select focus': (el) ->
+  'input[type="text"], select focus': (el) ->
     $("input[type='checkbox']",el.parent()).attr("checked",true)
+    
+  'select change': (el) ->
+    @uploader.setParams @getOrganizationMeta()
+    
+  '#uploader .browse click': (el) ->
+    @uploader.setParams @getOrganizationMeta()
 
   #- input (select, text) blur - update Meta
-  'input[type="text"],textarea,select blur': (el) ->
+  'input[type="text"], textarea, select blur': (el) ->
     value = el.val().trim()
     doUpdate = value.length > 0
     $("input[type='checkbox']",el.parent()).attr("checked",doUpdate)
