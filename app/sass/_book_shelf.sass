@@ -9,7 +9,7 @@
     +relative
     +round(8)
     +overflow
-    +font(18)
+    +font(16)
     margin: 0
     height: 32px
     width: 208px
@@ -41,16 +41,19 @@
       width: 18px
       height: 18px
       line-height: 21px
-      padding: 0 0 0 1px
       background: #fff
 
-    .icon
+    .dropbox, .active
       +absolute
       top: 0
-      right: 8px
+      left: 0
       height: 32px
-      width: 16px
-      background: url(/images/icons/plus-16-greenBlue.png) no-repeat center center transparent
+      width: 208px
+
+    .active
+      +hidden
+      background: #000 url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
+      background: rgba(0,0,0,0.7) url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
 
 
   // BOOK SPINE COLORS

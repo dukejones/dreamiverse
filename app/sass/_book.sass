@@ -3,10 +3,23 @@
 
 // BOOK COLOR VARIATIONS
 .book.blue-dark
+  .closed
+    background: url(/images/books/flat-blue-dark.png) no-repeat center center
   .mask
     background: url(/images/books/mask-blue-dark.png) no-repeat center center
   .open
     background: url(/images/books/open-blue-dark.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: rgba(18,61,102,0.5)
+
+.book.aqua
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
   .entries, .edit, .title, .comments, .sharing
     color: #fff
     background-color: rgba(18,61,102,0.5)
@@ -66,7 +79,9 @@
       right: 36px
       height: 24px
       line-height: 24px
-      padding: 0 8px
+      padding: 0 12px
+      &:hover
+        +inner-glow(4)
 
     .title
       +font(18)
@@ -175,9 +190,9 @@
       background: url(/images/icons/settings-24-hover.png) no-repeat center center transparent
 
     .more
-      +absolute
-      bottom: 2px
-      left: 8px
+      +relative
+      +left
+      margin: 6px 0 0
       width: 30px
       .arrow
         +absolute
@@ -189,9 +204,8 @@
       +confirm(16)
       +font(18)
       +bold
-      +absolute
-      bottom: 2px
-      right: 8px
+      +right
+      margin: 6px 0 0
       padding: 0 16px
 
 
