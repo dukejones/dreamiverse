@@ -1,5 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
 
+  imageModel: Dreamcatcher.Models.Image
+
   init: ->
     $(document).keyup (event) ->
       switch event.keyCode
@@ -7,7 +9,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
         when 37 then $('.gradient-left').click()
         when 39 then $('.gradient-right').click()
                 
-  show: (images, index) ->
+  show: (images, imageId) ->
     if not @template?
       @template = $('#gallery').html()
     $('#gallery').html ''
@@ -17,25 +19,31 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
       $('#gallery').append @template
       @showImage '#gallery .imageContainer:last', image
     
-    @images = images      
-    @index = if index? then index else 0
+    @images = images
+    @index = 0
+    for i in [0..@images.length-1]
+      @index = i if @images[i].id is imageId
+    
     @changeSlide 0
     
-    $('.commentsPanel').hide()
+    $('.comment,.commentTarget,.commentsPanel').hide() #hide for now
     $('#slideshow-back').show()
     $('#slideshow-back').height "1000px"
     
+  close: ->
+    $('#slideshow-back').hide()
+    @parent.showBrowser()
     
   showImage: (parent, image) ->
     $('img', parent).attr 'src', @getLarge image 
     $('.info .name span', parent).text image.title
     $('.info .author span', parent).text image.artist
     $('.info .year span', parent).text image.year
-    $('.tagInput input', parent).text image.tags
+    $('.newTag', parent).val image.tags
+    $(parent).data 'id', image.id
     
   '.close click': (el) ->
-    $('#slideshow-back').hide()
-    $('#frame.browser').show()
+    @close()
     
   getCurrent: ->
     $("#gallery .imageContainer:eq(#{@index})")
@@ -45,8 +53,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
       return
     
     if @index + difference is @images.length
-      $('#slideshow-back').fadeOut 'fast'
-      $('#frame.browser').show()
+      @close()
           
     @index += difference
     
@@ -72,13 +79,23 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
     @changeSlide 1
 
   '.controls .info click': (el) ->
-    $('#gallery .info').toggle()
+    info = $('#gallery .info')
+    info.toggle()
+    if info.is ':visible'
+      $('#gallery .tagging').hide()
   
   '.controls .tagging click': (el) ->
-    $('#gallery .tagging').toggle()
+    tagging = $('#gallery .tagging')
+    tagging.toggle()
+    if tagging.is ':visible'
+      $('#gallery .info').hide()
     
   '#gallery .tagAdd click': (el) ->
-    alert $("newTag",el.parent).val()
+    imageId = el.closest('.imageContainer').data 'id'
+    tags = $('.newTag', el.parent()).val()
+    
+    image = { tags: tags }
+    @imageModel.update imageId, { image: image }
 
   '.controls .download click': (el) ->
     window.open @getOriginal @images[@index]

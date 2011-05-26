@@ -1,6 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank',
 
   ibModel: Dreamcatcher.Models.ImageBank
+  imageModel: Dreamcatcher.Models.Image
   
   init: ->
     @showWidget 'browser'
@@ -24,8 +25,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
         
       when 'slideshow'
         @slideshow = new Dreamcatcher.Controllers.ImageBank.Slideshow $("#slideshow-back") if not @slideshow?
-        index = params.index if params? and params.index?
-        @slideshow.show images, index
+        @slideshow.parent = this
+        imageId = params.imageId if params? and params.imageId?
+        @slideshow.show images, imageId
       
       when 'searchOptions'
         @searchOptions = new Dreamcatcher.Controllers.ImageBank.SearchOptions $("#searchOptions") if not @searchOptions?
@@ -44,17 +46,22 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       images[i] = $(el).data 'image'
     return images
       
+  showBrowser: ->
+    @showWidget 'browser'
+  
   showDropbox: ->
     @showWidget 'dropbox'
     
   showSearchOptions: ->
     @showWidget 'searchOptions'
     
-  showSlideshow: (elements, index) ->
+  showSlideshow: (type, imageId, album) ->
+    elements = @getImageElements type, album
     images = @getImagesFromElements elements
-    @lazyLoad '#slideshow-back', 'images/slideshow', 'slideshow', images, { index: index }
+    @lazyLoad '#slideshow-back', 'images/slideshow', 'slideshow', images, { imageId: imageId }
     
-  showManager: (elements, title) ->
+  showManager: (type, title, album) ->
+    elements = @getImageElements type, album
     images = @getImagesFromElements elements
     @lazyLoad '#frame.manager', 'images/manager', 'manager', images, { title: title }
       
@@ -70,6 +77,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
   addImageToDropbox: (el) ->
     @dropbox.addImage el
     
+  setDropboxImages: (elements) ->
+    @dropbox.setImages elements
+    
   registerDroppable: (el) ->
     @dropbox.registerDroppable el
   
@@ -81,3 +91,31 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     options = @searchOptions.get() if @searchOptions?
     options['q'] = $(".searchField input[type='text']").val()
     return options
+  
+  'image.updated subscribe': (called, imageId) ->
+    imageId = parseInt imageId
+    @imageModel.get imageId, {}, @callback('updateImageMeta', imageId)
+    
+  'image.started subscribe': (called) ->
+    @browser.showSpinner()
+  
+  'image.stopped subscribe': (called) ->
+    @browser.hideSpinner()
+    
+  
+  
+  updateImageMeta: (imageId, imageMeta) ->
+    @getImageElements().each (i, el) =>
+      id = parseInt $(el).data 'id'
+      if imageId is id
+        $(el).data 'image', imageMeta
+        #log $(el).data 'image'
+    
+  getImageElements: (type, album) ->
+    switch type
+      when 'artist' then return $('#albumList .img')
+      when 'album' then return $("#albumList tr.images[data-album='#{album}'] .img")
+      when 'dropbox' then return $('#dropbox li')
+      when 'searchResults' then return $('#searchResults li')
+    return $('#albumList .img,#dropbox li,#searchResults li')
+    

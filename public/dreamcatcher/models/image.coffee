@@ -37,7 +37,9 @@ $.Model 'Dreamcatcher.Models.Image',{
       contentType: 'application/json'
       data: JSON.stringify(data)
       dataType: 'json'
-      complete: success
+      success: success
+      complete: =>
+        @publish 'updated', imageId
       error: error
     }
     
@@ -48,9 +50,8 @@ $.Model 'Dreamcatcher.Models.Image',{
       contentType: 'application/json'
       dataType: 'json'
       data: data
-      complete: @callback success
+      success: @callback success
       error: error
     }
-
 },
 {}

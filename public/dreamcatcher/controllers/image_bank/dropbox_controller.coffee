@@ -1,10 +1,12 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
 
   model: Dreamcatcher.Models.Image  
-  getView: (url, data) ->
-    return @view "//dreamcatcher/views/image_bank/dropbox/#{url}.ejs", data
+  getView: (url, data, type) ->
+    type = 'dropbox' if not type?
+    return @view "//dreamcatcher/views/image_bank/#{type}/#{url}.ejs", data
 
   init: ->
+    
     $('#dropbox .imagelist').html ''
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     @stateCookie = new Dreamcatcher.Classes.CookieHelper 'ib_state', true
@@ -31,18 +33,29 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
         @stateCookie.set ui.position
     }
     
+
+  
   show: ->
     $('#dropbox').show()
-  
+    
+  clearImages: ->
+    @imageCookie.clear()
+    $('#dropbox .imagelist').html ''
   
   addImage: (el) ->
     imageId = el.data 'id'
     imageMeta = el.data 'image'
-    if not @imageCookie.contains imageId
+    if not imageId?
+      log 'error with image'
+    else if not @imageCookie.contains imageId
       @imageCookie.add imageId
       @showImage imageId, imageMeta
     else
       log 'already here' #todo - something better
+      
+  setImages: (elements) ->
+    elements.each (i, el) =>
+      @addImage $(el)
 
   removeImage: (el) -> 
     @imageCookie.remove el.data 'id'
@@ -87,19 +100,20 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
           imageMeta.album = album
           ui.draggable.data 'image', imageMeta
           @registerDraggable ui.draggable, false
-    
     }
-
     
-  '#dropbox .cancel click': (el) -> #TODO: fix
-    @imageCookie.clear()
-    $('#dropbox .imagelist').html ''
+  '.cancel click': (el) -> #TODO: fix
+    @clearImages()
   
-  '#dropbox .manage click': (el) ->
-    @parent.showManager $('#dropbox li'), 'Drop box'
+  '.manage click': (el) ->
+    @parent.showManager 'dropbox', 'Drop box'
   
-  '#dropbox li .close click': (el) ->
+  'li .close click': (el) ->
     @removeImage el.parent()
   
-  '#dropbox .play click': (el) ->
-    @parent.showSlideshow $('#dropbox li')
+  '.play click': (el) ->
+    @parent.showSlideshow 'dropbox'
+    
+  'li img dblclick': (el) ->
+    imageId = el.parent().data 'id'
+    @parent.showSlideshow 'dropbox', imageId

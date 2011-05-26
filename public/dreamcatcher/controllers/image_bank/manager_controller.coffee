@@ -16,7 +16,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @enableShiftKey()
       
   close: ->
-    $("#frame.browser").show()
+    @parent.showBrowser true
+    
+    if $('frame.manager h1').text() is 'Drop box'
+      @parent.setDropboxImages $('#imagelist li')
+    
     $("#frame.manager").hide()
     
   show: (images, title) ->

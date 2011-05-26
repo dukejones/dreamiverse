@@ -9,10 +9,13 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     return @view "//dreamcatcher/views/image_bank/browser/#{url}.ejs", data
   
   init: ->
-    html = @getView 'types', { types: @ibModel.types }
-    @displayView 'browse', html
+    @showBrowse()
+    
+  showBrowse: ->
+    @displayView 'browse', @getView 'types', { types: @ibModel.types }
   
   show: ->
+    @refreshView()
     $('#frame.browser').show()
     
   hideAllViews: ->
@@ -25,7 +28,16 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   showIcons: (icons) ->
     $(".top,.footer").children().hide()
-    $(icons, ".top,.footer").show()    
+    $(icons, ".top,.footer").show()
+    
+  refreshView: ->
+    switch @currentView
+      when 'browse'
+        @showBrowse()
+      when 'artist'
+        @showArtists()
+      when 'albumList'
+        @showAlbums()
     
   displayView: (name, html) ->
     
@@ -68,8 +80,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
 
     $("##{currentElement}").replaceWith html if html?
     $("##{currentElement}").show()
-    
-          
+
   ## TOP ICON EVENTS
     
   '.top .browseWrap click': (el) ->
@@ -87,10 +98,10 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       @showIcons '.browseWrap, .searchFieldWrap'
   
   '.top .play click': ->
-    @parent.showSlideshow $('#albumList .img')
+    @parent.showSlideshow 'artist'
     
   '.top .manage click': ->
-    @parent.showManager $("#albumList .img"), @artist
+    @parent.showManager 'artist', @artist
 
 
   ## VIEW EVENTS
@@ -115,35 +126,38 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   '#categories .category click': (el) ->
     @category = el.text().trim()
     @artist = null
+    @showArtists()
+
+  showArtists: ->
     @ibModel.getHtml 'artists', {category: @category, section: @section}, (html) =>
-      @displayView 'artistList', html    
-  
+      @displayView 'artistList', html
   
   #- ArtistList -#
 
   '#artistList tr.artist click': (el) ->
     return if not $('.artistName',el).attr 'readonly'
-    
     @artist = $('.artistName',el).val()
-    @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
-      @displayView 'albumList', html
-      
+    @showAlbums()
+    
+  showAlbums: ->
+     @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
+        @displayView 'albumList', html
     
   #- Album List -#
   
   '#albumList .manage click': (el) ->
     tr = el.closest 'tr'
     album = tr.data 'album'
-    @parent.showManager $('.img', tr.next()), album
+    @parent.showManager 'album', album, album
   
   '#albumList .images .img img click': (el) ->
-    @parent.showSlideshow $('.img', el.closest 'tr'), el.parent().index()
+    tr = el.closest 'tr'
+    album = tr.data 'album'
+    imageId = el.parent().data 'id'
+    @parent.showSlideshow 'album', imageId, album
     
   '#albumList .images .add click': (el) ->
     @parent.addImageToDropbox el.parent()
-
-
-
     
   '.edit mouseover': (el) ->
     $('.editable', el.parent()).addClass 'hover'
@@ -166,26 +180,24 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       @updateField el 
     
   updateField: (el) ->
-    #todo
     field = el.closest('table').attr('id').replace('List','')
-    newVal = el.val()
-    oldVal = el.closest('tr').data field
-    log field+' '+oldVal+' '+newVal
+    newValue = el.val()
+    oldValue = el.closest('tr').data field
+    
+    #log newValue
     
     image = {}
-    image[field] = oldVal
-    imageMeta = {
-      field: field
-      old_value: oldVal
-      new_value: newVal
-    }
-    @imageModel.update imageMeta
-  
-  #'.editable blur': (el) ->
-
-
-
-    
+    image[field] = newValue
+    if field is 'album'      
+      $("#albumList tr.images[data-album='#{oldValue}'] .img").each (i, el) =>
+        imageId = $(el).data 'id'
+        @imageModel.update imageId, {image: image }
+        @refreshView()
+        
+    else if field is 'artist'
+      alert 'cannot update this!'
+      el.val oldValue
+      
   #- SearchResults -#
   
   '.searchField input[type="text"] keypress': (el, ev) ->
@@ -195,9 +207,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     @imageModel.search @parent.getSearchOptions(), (images) =>
       @displayView 'searchResults', @getView('searchresults',{ images : images } )
       @parent.registerDraggable $("#searchResults ul li")
-      
-  '.spinner click': (el) ->
-    $('.spinner').show()
   
   '.searchField .options click': (el) ->    
     if not $('#searchOptions').is ':visible'
@@ -210,4 +219,4 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       @showIcons '.browseWrap, .searchFieldWrap'
   
   '#searchResults li click': (el) ->
-    @parent.showSlideshow $('#searchResults li'), el.data 'id'
+    @parent.showSlideshow 'searchResults', el.data 'id'
