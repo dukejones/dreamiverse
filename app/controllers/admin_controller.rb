@@ -7,23 +7,23 @@ class AdminController < ApplicationController
     @page = @filters[:page].to_i 
     @page = 1 if @page < 1
     @order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
-    @order_by = @order_by.to_sym
-    @direction = 'ASC' 
-    @direction = 'DESC' if @order_by == :starlight
+    @direction = 'DESC' 
+    @direction = 'ASC' if @order_by == 'username'
 
-    # debugger
-    # 1
-    
-    @users = User.scoped.order("#{@order_by} #{@direction}")
+    case @order_by
+      when 'traffic' then @users = User.includes(:entries).order("sum(entries.uniques) #{@direction}").group('users.id')
+      when 'entries' then @users = User.includes(:entries).order("count(entries.id) #{@direction}").group('users.id')
+      else
+        @users = User.scoped.order("#{@order_by} #{@direction}") 
+      end
+         
     @users = @users.limit(@page_size).offset(@page_size * (@page - 1))
-    
-    
+        
     if request.xhr?
       users_html = ""
       @users.each { |user| users_html += render_to_string(partial: 'user', object: user) }
       render :json => {type: 'ok', html: users_html}
-    end    
-       
+    end          
   end
      
   def admin
