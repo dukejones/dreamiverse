@@ -5,7 +5,7 @@
 
 
   // BOOK SPINE STRUCTURE
-  .bookSpine
+  .bookSpine, .bookSpine-add
     +relative
     +round(8)
     +overflow
@@ -42,9 +42,26 @@
       width: 24px
       background: #fff
 
+  .bookSpine-add
+    line-height: 48px
+
+    span
+      +font(18)
+      +bold
+      color: #fff
+      margin: 0 0 0 12px
+
+    .icon
+      +absolute
+      top: 0
+      right: 8px
+      height: 48px
+      width: 24px
+      background: url(/images/icons/plus-24-greenBlue.png) no-repeat center center transparent
+
 
   // BOOK SPINE COLORS
-  .bookSpine.blue-dark
+  .bookSpine.blue-dark, .bookSpine-add
     +gradient(#2e72b1, #16538b)
     background: url(/images/books/spine-blue-dark.png) repeat-x left
     .mask
