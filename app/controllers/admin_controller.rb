@@ -2,13 +2,21 @@ class AdminController < ApplicationController
   before_filter :require_user, :require_admin
 
   def user_list
-    page_size = params[:page_size] || 40
-    page = params[:page].to_i
-    page = 1 if page <= 0   
+    @filters = session[:admin_filters] = params[:filters] || {}
+    @page_size = @filters[:page_size] || 40
+    @page = @filters[:page].to_i 
+    @page = 1 if @page < 1
+    @order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
+    @order_by = @order_by.to_sym
+    @direction = 'ASC' 
+    @direction = 'DESC' if @order_by == :starlight
+
+    # debugger
+    # 1
     
-    @users = User.scoped
-    @users = @users.limit(page_size).offset(page_size * (page - 1))
-    @page_size = page_size
+    @users = User.scoped.order("#{@order_by} #{@direction}")
+    @users = @users.limit(@page_size).offset(@page_size * (@page - 1))
+    
     
     if request.xhr?
       users_html = ""

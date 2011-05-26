@@ -14,8 +14,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $('#allUsersIcon').show()
     $('#pageLoading').hide()
 
-  getParams: ->
-    page: @page
   
   # Show or hide next/prev buttons
   updateNav: ->
@@ -40,13 +38,19 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
       num += 1
       $('#pages').append @view 'page_number', {page: num}    
 
+  # Generate model options   
+  getOptions: ->
+    filters: {
+      page: @page
+      order_by: $('#user-filter').val()
+    }
         
   # Dom listeners
   '#userPage click': (el,ev) ->
     @page = parseInt el.text()
     $('#allUsersIcon').hide()
     $('#pageLoading').show()
-    Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage
+    Dreamcatcher.Models.Admin.load @getOptions(), @updateUsersPage
     @updateNav()
 
   '#nextPage, #prevPage click': (el,ev) ->
@@ -54,5 +58,12 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
     $('#allUsersIcon').hide()
     $('#pageLoading').show()
-    Dreamcatcher.Models.Admin.load @getParams(), @updateUsersPage  
-    @updateNav()     
+    Dreamcatcher.Models.Admin.load @getOptions(), @updateUsersPage  
+    @updateNav() 
+    
+  '#user-filter change': (el) ->
+    log 'user-filter changed to: ' + el.val()
+    @page = 1 
+    $('#pageLoading').show()
+    Dreamcatcher.Models.Admin.load @getOptions(), @updateUsersPage  
+    @updateNav()    
