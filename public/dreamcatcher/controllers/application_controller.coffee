@@ -6,6 +6,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
+    @books = new Dreamcatcher.Controllers.Books $("#entryField") if $("#entryField").exists()
+    
     @initSelectMenu()
     @initTooltips()
 
@@ -26,11 +28,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       fade: 250
       top: 20
     }
-    ###
-    TODO: 
-    $('#entryOptions .date').tooltip -doesn't work - weird
-    $('#sharing-list-menu label').tooltip(
-    ###
   
   initSelectMenu: ->
     $('.select-menu').selectmenu(

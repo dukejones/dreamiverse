@@ -35,7 +35,8 @@ steal.plugins(
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
       'controllers/comments_controller',
-      'controllers/entries_controller'
+      'controllers/entries_controller',
+      'controllers/books_controller'
     );
   })
   .views();

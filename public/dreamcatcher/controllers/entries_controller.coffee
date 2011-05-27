@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   userModel: Dreamcatcher.Models.User
   
   init: ->
-    @entryCookie = new Dreamcatcher.Classes.CookieHelper 'dc_new_entry',true
+    @entryCookie = new Dreamcatcher.Classes.CookieHelper 'dc_new_entry', true
     @posted = false
     @retrieveState()
     @initSelectMenu()
