@@ -1,30 +1,6 @@
 // BOOKS
 
 
-// BOOK COLOR VARIATIONS
-.book.blue-dark
-  .closed
-    background: url(/images/books/flat-blue-dark.png) no-repeat center center
-  .mask
-    background: url(/images/books/mask-blue-dark.png) no-repeat center center
-  .open
-    background: url(/images/books/open-blue-dark.png) no-repeat center center
-  .entries, .edit, .title, .comments, .sharing
-    color: #fff
-    background-color: rgba(18,61,102,0.5)
-
-.book.aqua
-  .closed
-    background: url(/images/books/flat-aqua.png) no-repeat center center
-  .mask
-    background: url(/images/books/mask-aqua.png) no-repeat center center
-  .open
-    background: url(/images/books/open-aqua.png) no-repeat center center
-  .entries, .edit, .title, .comments, .sharing
-    color: #fff
-    background-color: rgba(18,61,102,0.5)
-
-
 // BOOK STRUCTURE
 .book
   +pointer
@@ -208,9 +184,14 @@
       margin: 6px 0 0
       padding: 0 16px
 
+    .more-settings
+      width: 148px
+      margin: 8px 0 0
+
 
     // COLOR PANEL ONLY
     .color-panel
+      +hidden
 
       .header
         text-align: left
@@ -246,7 +227,7 @@
 
       .blue-dark
         background-color: #123d66
-      .purple-dark
+      .purple
         background-color: #5b2e87
       .pink
         background-color: #912487
@@ -280,6 +261,7 @@
 
     // COLOR IMAGE PANEL
     .cover-panel
+      +hidden
       +font(14)
 
       .icon
@@ -329,6 +311,7 @@
 
     // ACCESS PANEL ONLY
     .access-panel
+      +hidden
 
       .icon
         background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
@@ -404,4 +387,196 @@
 
 
 
+
+// BOOK COLOR VARIATIONS
+.book.blue-dark
+  .closed
+    background: url(/images/books/flat-blue-dark.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-blue-dark.png) no-repeat center center
+  .open
+    background: url(/images/books/open-blue-dark.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: rgba(18,61,102,0.5)
+
+.book.purple
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5b2e87
+    background-color: rgba(91,46,135,0.5)
+
+.book.pink
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912487
+    background-color: rgba(145,36,135,0.5)
+
+.book.red
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912425
+    background-color: rgba(145,36,37,0.5)
+
+.book.aqua
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #2e8786
+    background-color: rgba(18,61,102,0.5)
+
+.book.green-light
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5a9223
+    background-color: rgba(90,146,35,0.5)
+
+.book.yellow
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #b88400
+    background-color: rgba(184,132,0,0.5)
+
+.book.orange
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #aa5009
+    background-color: rgba(170,80,9,0.5)
+
+.book.blue-light
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5ea8e0
+    background-color: rgba(94,168,224,0.5)
+
+.book.green-dark
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #3f6254
+    background-color: rgba(63,98,84,0.5)
+
+.book.brown
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #53412e
+    background-color: rgba(83,65,46,0.5)
+
+.book.maroon
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #661c27
+    background-color: rgba(102,28,39,0.5)
+
+.book.white
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #fff
+    background-color: rgba(250,250,250,0.5)
+
+.book.grey-light
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #bebebe
+    background-color: rgba(190,190,190,0.5)
+
+.book.grey-dark
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #4b4b4b
+    background-color: rgba(75,75,75,0.5)
+
+.book.black
+  .closed
+    background: url(/images/books/flat-aqua.png) no-repeat center center
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #000
+    background-color: rgba(0,0,0,0.5)
 

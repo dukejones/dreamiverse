@@ -7,7 +7,7 @@
 
 
   / CLOSED BOOK
-  .closed
+  .closed.hidden
 
     .cover{style: 'background: url(/images/avatars/default-avatar-full.jpg) no-repeat center center'}
 
@@ -30,39 +30,46 @@
 
 
   / OPEN BOOK
-  .open.hidden
+  .open
 
     / CONTROL PANEL
-    .control-panel.hidden
+    .control-panel
 
-      .header
+      .settings-basic
 
-        %span My Book of Dreams
+        .header
 
-      .color
-        color
-        .icon
+          %span My Book of Dreams
 
-      .coverImage
-        cover image
-        .icon
+        .color
+          color
+          .icon
 
-      .access
-        access
-        .icon
+        .coverImage
+          cover image
+          .icon
 
-      .settings
-        settings
-        .icon
+        .access
+          access
+          .icon
+
+        .settings
+          settings
+          .icon
 
       .more
         .arrow
 
       .confirm OK
 
+      .clear
+
+      .more-settings
+        advanced settings here...
+
 
     / COLOR PANEL
-    .color-panel.hidden
+    .color-panel
 
       .header
 
@@ -75,7 +82,7 @@
       %ul.swatches
 
         %li.blue-dark
-        %li.purple-dark
+        %li.purple
         %li.pink
         %li.red
         %li.aqua
@@ -93,7 +100,7 @@
 
 
     / COLOR IMAGE PANEL
-    .cover-panel.hidden
+    .cover-panel
 
       .dropbox
 

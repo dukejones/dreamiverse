@@ -4,63 +4,158 @@
   margin: 12px 0 0
 
 
-  // BOOK SPINE STRUCTURE
-  .bookSpine, .bookSpine-add
-    +relative
+// BOOK SPINE STRUCTURE
+.bookSpine, .bookSpine-add
+  +relative
+  +round(7)
+  +overflow
+  +font(16)
+  margin: 0
+  height: 32px
+  width: 208px
+
+  // .cover, .mask
+  //   +absolute
+  //   top: 8px
+  //   left: 0
+  //   height: 32px
+  //   width: 208px
+
+  .title, .count
+    +absolute
+    +center
+    +bold
+
+  .title
+    left: 8px
+    height: 32px
+    line-height: 34px
+    // background: #000
+    // background: rgba(0,0,0,0.6)
+
+  .count
     +round(8)
-    +overflow
-    +font(16)
-    margin: 0
+    top: 6px
+    right: 6px
+    width: 18px
+    height: 18px
+    line-height: 21px
+    background: #fff
+
+  .dropbox, .active
+    +absolute
+    top: 0
+    left: 0
     height: 32px
     width: 208px
+
+  .active
+    +hidden
+    background: #000 url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
+    background: rgba(0,0,0,0.7) url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
+
+
+// BOOK SPINE COLORS
+.bookSpine.blue-dark, .bookSpine-add
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  // .mask
+  //   background: -moz-linear-gradient(rgba(46,114,177,1.0), rgba(46,114,177,0.2), rgba(22,83,139,1.0))
+  .count
+    color: #123d66
+
+.bookSpine.purple
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #5b2e87
+
+.bookSpine.pink
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #912487
+
+.bookSpine.red
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #912425
+
+.bookSpine.aqua
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #2e8786
+
+.bookSpine.green-light
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #5a9223
+
+.bookSpine.yellow
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #b88400
+
+.bookSpine.orange
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #aa5009
+
+.bookSpine.blue-light
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #5ea8e0
+
+.bookSpine.green-dark
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #3f6254
+
+.bookSpine.brown
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #53412e
+
+.bookSpine.maroon
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #661c27
+
+.bookSpine.white
+  color: #000
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
     color: #fff
 
-    // .cover, .mask
-    //   +absolute
-    //   top: 8px
-    //   left: 0
-    //   height: 32px
-    //   width: 208px
+.bookSpine.grey-light
+  color: #000
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #bebebe
 
-    .title, .count
-      +absolute
-      +center
-      +bold
+.bookSpine.grey-dark
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #4b4b4b
 
-    .title
-      left: 8px
-      height: 32px
-      line-height: 34px
-      // background: #000
-      // background: rgba(0,0,0,0.6)
-
-    .count
-      +round(8)
-      top: 6px
-      right: 6px
-      width: 18px
-      height: 18px
-      line-height: 21px
-      background: #fff
-
-    .dropbox, .active
-      +absolute
-      top: 0
-      left: 0
-      height: 32px
-      width: 208px
-
-    .active
-      +hidden
-      background: #000 url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
-      background: rgba(0,0,0,0.7) url(/images/icons/plus-16-greenBlue.png) no-repeat 184px center
+.bookSpine.black
+  color: #fff
+  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  .count
+    color: #000
 
 
-  // BOOK SPINE COLORS
-  .bookSpine.blue-dark, .bookSpine-add
-    +gradient(#2e72b1, #16538b)
-    background: url(/images/books/spine-blue-dark.png) repeat-x left
-    // .mask
-    //   background: -moz-linear-gradient(rgba(46,114,177,1.0), rgba(46,114,177,0.2), rgba(22,83,139,1.0))
-    .count
-      color: #245a91
+
+
+
+
