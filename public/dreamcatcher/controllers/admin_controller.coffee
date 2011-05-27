@@ -55,36 +55,35 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   getChartOptions: (@title) ->
     title: @title 
 
-
+  countObj: (obj) ->
+    i = 0
+    for x of obj
+      if obj.hasOwnProperty(x)
+        i++
+    return i
+      
   drawChart: (json) ->
     log json.data
     log json.data[0]['label']['val']
-    # log json['total']
+
     data = new google.visualization.DataTable()
     data.addColumn('string', 'Date')
     data.addColumn('number', 'New Users')
-    data.addRows(7)    
-    fehz = for num of json.data
-      num = parseInt num
-      log num
-      data.setValue(num, num, json.data[num]['label']['val'])
-      data.setValue(num, (num + 1), json.data[num]['data']['val'])
+        
+    keys = [6..0]
+    data.addRows(keys.length) 
+    for num in keys
+      num = parseInt num 
+      log 'label: ' + json.data[num]['label']['val']
+      log 'data: ' + json.data[num]['data']['val']
+      
+      data.setValue(6-num, 0, json.data[num]['label']['val'])
+      data.setValue(6-num, 1, json.data[num]['data']['val'])
+      
     
-    data.setValue(0, 0, '2004')
-    data.setValue(0, 1, 1000)
-    data.setValue(1, 0, '2005')
-    data.setValue(1, 1, 1170)
-    data.setValue(2, 0, '2006')
-    data.setValue(2, 1, 860)
-    data.setValue(3, 0, '2007')
-    data.setValue(3, 1, 1030)
-    # (0..6).each do |num| 
-    #   day = (Time.now - num.days)
-    #   data.setValue(num, 0, t.strftime("%d"))
-    #   data.setValue(num, 1, num)
-    # end
     chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 400, height: 240, title: 'Company Performance'})
+    chart.draw(data, {width: 400, height: 240, title: 'New user signups in the last week'})
+ 
      
   getChartData: ->
     Dreamcatcher.Models.Admin.loadChart @getChartOptions('last_7_days_in_users'), @drawChart

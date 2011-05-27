@@ -31,21 +31,17 @@ class AdminController < ApplicationController
     data = {}
     if title == 'last_7_days_in_users'
       (0..6).each do |num|
-        t = Time.now - num.days 
+        t = Time.now - num.days
+        newUsers = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
         data[num] = ({
           label: {pos: num, bar: num, val: t.strftime("%a %d")},
-          data: {pos: num, bar: (num + 1), val: num}
+          data: {pos: num, bar: (num + 1), val: newUsers}
         })
         
-        # @data[num] => ['label'] => ['pos'] = num
-        # @data[num]['label']['bar'] = num
-        # @data[num]['label']['val'] = t.strftime("%d")
-        # @data[num]['data']['pos'] = num
-        # @data[num]['data']['bar'] = num + 1
-        # @data[num]['data']['val'] = num
         data['total'] = num
       end  
-         
+      # data = data.invert   
+      # data.map {|k,v| [k, v.sort.reverse]}
     end
     
     if request.xhr?
