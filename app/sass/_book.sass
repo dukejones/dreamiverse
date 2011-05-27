@@ -108,7 +108,7 @@
       width: 148px
       height: 224px
 
-    .header, .color, .coverImage, .access, .settings, .more, .confirm
+    .titleInput, .header, .color, .coverImage, .access, .settings, .more, .confirm
       +round(4)
       height: 30px
       line-height: 30px
@@ -124,12 +124,19 @@
         width: 30px
         margin: 0 8px 0 0
 
-    .header
+    .titleInput, .header
       +indent-light
       height: 32px
       line-height: 32px
       padding: 2px 0
-      border: 0
+      border: none
+      border-bottom: 2px solid #000
+
+    .titleInput
+      +outline
+      +font(12)
+      padding: 2px 8px
+      width: 132px
       border-bottom: 2px solid #000
 
     .back
@@ -185,6 +192,7 @@
       padding: 0 16px
 
     .more-settings
+      +hidden
       width: 148px
       margin: 8px 0 0
 
