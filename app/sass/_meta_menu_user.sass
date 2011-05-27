@@ -321,30 +321,6 @@
       background-image: url('/images/icons/logout-24-active.png')
 
 
-  .newEntry
-    +right
-    +glow-dark(40)
-    +bold
-    padding: 6px 10px
-    font-size: 17px
-    margin: 8px 12px 0 0
-    border: none
-    .img
-      +left
-      width: 15px
-      height: 15px
-      margin: 3px 7px 0 0
-      background: url("/images/icons/add-15.png") no-repeat center center transparent
-    &:hover
-      +round(24)
-      +inner-glow(20)
-      border: none
-    &:active
-      color: #000
-
-
-
-
 
 
 
@@ -410,8 +386,77 @@
 
 
 
+  // NEW ENTRY LINK, NEW POST HTML MENU & BUTTON
+  .newEntry, #new-post, #new-post-button
+    +right
+    +relative
+    +round(20)
+    +bold
+    top: 8px
+    height: 32px
+    +glow-dark(20)
+    +bevel-dark
+    border: 1px solid #ddd
+    color: #ddd
+    &:hover
+      +inner-glow(10)
 
+  // NEW ENTRY LINK ONLY
+  .newEntry
+    +block
+    +flat-right
+    +font(18)
+    +center
+    padding: 0 10px
+    width: 110px
+    line-height: 32px
+    margin-right: 4px
+    .img
+      +left
+      width: 15px
+      height: 32px
+      margin: 0 7px 0 0
+      background: url(/images/icons/add-15.png) no-repeat center center transparent
+    &:active
+      color: #000
 
+  // NEW POST HTML MENU & BUTTON
+  #new-post, #new-post-button
+    +outline
+    +flat-left
+    margin-right: 12px
+    width: 38px !important
+    padding: 0
+    // line-height for chrome / webkit height
+    line-height: 18px
+
+    .ui-selectmenu-status
+      +hidden
+
+// NEW POST MENU DROPDOWN
+#new-post-menu
+  z-index: 1100 !important
+  width: 174px !important
+  top: 8px !important
+  left: 1423px !important
+  +bevel-dark
+  +round(20)
+  +glow-dark(20)
+  border: 1px solid #ddd
+  color: #ddd
+
+  li a
+    +font(18)
+    +bold
+    line-height: 18px
+    padding-left: 38px
+    color: white !important
+
+  // ICONS
+  li.new-entry
+    background: url(/images/icons/add-15.png) no-repeat 10px center
+  li.new-book
+    background: url(/images/icons/friend-16.png) no-repeat 10px center
 
 
 
