@@ -63,7 +63,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
       $('.gradient-right span').text 'x'
     else
       $('.gradient-right .text').text 'right arrow key'
-      $('.gradient-right span').text '>'
+      $('.gradient-right span').html '&rsaquo;'
     
     $('#gallery').animate {
       left: (@index * -820 + 280) + 'px'
