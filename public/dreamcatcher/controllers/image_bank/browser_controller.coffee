@@ -63,47 +63,45 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         @parent.registerDroppable $('#albumList .images td')
         @parent.registerDraggable $("#albumList .images .img"), false
     
-  displayView: (name, html) ->
-    switch name
+  displayView: (viewId, html) ->
+    switch viewId
     
       when 'browse'
         @category = null
         @showIcons '.browseHeader, .searchWrap'
-        @updateView null, null, name, null, html
+        @updateView null, null, viewId, null, html
         
       when 'artistList'
         @artist = null
         @showIcons '.backArrow, h1, .searchWrap'
-        @updateView 'browse', 'browse', name, @category, html
+        @updateView 'browse', 'browse', viewId, @category, html
         
       when 'albumList'
         @showIcons '.backArrow, h1, .play, .manage, .searchWrap, .drag'
-        @updateView 'artistList', @category, name, @artist, html
+        @updateView 'artistList', @category, viewId, @artist, html
         
       when 'searchResults'
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
-        @updateView null, null, name, null, html
+        @updateView null, null, viewId, null, html
         
     @currentView = name 
     
-  updateView: (previousElement, previousName, currentId, currentName, html) ->
+  updateView: (previousId, previousName, currentId, currentName, html) ->
     # update head
     backArrow = $(".backArrow") 
-    backArrow.attr 'name', previousElement if previousElement?
+    backArrow.attr 'name', previousId if previousId?
     $(".content span", backArrow).text previousName if previousName?
     $('.content .img', backArrow).toggle previousName is 'browse'
     $('#frame.browser h1').text currentName if currentName
 
     @hideAllViews()
 
-    currentElement = $("##{currentId}")
-    if currentElement.exists() and html?
-      currentElement.replaceWith html
+    if $("##{currentId}").exists() and html?
+      $("##{currentId}").replaceWith html
     else
       $('#browse').after html
-      currentElement = $("##{currentId}")
     
-    currentElement.show()
+    $("##{currentId}").show()
 
 
   ## DOM Events ##

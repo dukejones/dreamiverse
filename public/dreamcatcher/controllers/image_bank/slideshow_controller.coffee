@@ -56,11 +56,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
       @close()
           
     @index += difference
-    
     $('.gradient-left').toggle @index isnt 0
     
-    rightText = if @index is @images.length - 1 then 'close slideshow' else 'right arrow key'
-    $('.gradient-right .text').text rightText
+    if @index is @images.length - 1 
+      $('.gradient-right .text').text 'close slideshow'
+      $('.gradient-right span').text 'x'
+    else
+      $('.gradient-right .text').text 'right arrow key'
+      $('.gradient-right span').text '>'
     
     $('#gallery').animate {
       left: (@index * -820 + 280) + 'px'
