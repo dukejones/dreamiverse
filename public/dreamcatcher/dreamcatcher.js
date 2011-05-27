@@ -46,7 +46,7 @@ steal.plugins(
 			//'controllers/appearance_controller',
 			//'controllers/bedsheets_controller',
 			//'controllers/comments_controller',
-			//'controllers/entries_controller',
+			'controllers/entries_controller',
 			'controllers/image_bank/image_bank_controller',
 			'controllers/image_bank/browser_controller',
 			'controllers/image_bank/slideshow_controller',
@@ -59,7 +59,4 @@ steal.plugins(
 		);
 	})
 	.views(
-	  /*'//dreamcatcher/views/image_bank/browser/categories.ejs',
-		#'//dreamcatcher/views/image_bank/browser/searchresults.ejs',
-		'//dreamcatcher/views/image_bank/browser/types.ejs'*/
 	);
