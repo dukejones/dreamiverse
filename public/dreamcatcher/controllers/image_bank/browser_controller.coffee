@@ -26,7 +26,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   #- hides all the views, and saves the previous view
   hideAllViews: ->
-    for view in ['browse', 'artistList', 'albumList', 'searchResults']
+    for view in ['browse', 'artistList', 'albumList', 'searchResults', 'searchOptions']
       @previousView = view if $("##{view}").is(':visible')
       $("##{view}").hide()
     
@@ -84,7 +84,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         @showIcons '.browseWrap, .searchFieldWrap, .drag'
         @updateView null, null, viewId, null, html
         
-    @currentView = name 
+    @currentView = viewId 
     
   updateView: (previousId, previousName, currentId, currentName, html) ->
     # update head
@@ -226,8 +226,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     $('.searchField .search').click() if ev.keyCode is 13
 
   '.searchField .search click': (el) ->
-    @imageModel.search @parent.getSearchOptions(), (images) =>
-      @displayView 'search_results', @getView('searchresults',{ images : images } )
+    options = @parent.getSearchOptions()
+    @imageModel.search options, (images) =>
+      @displayView 'searchResults', @getView('search_results',{ images : images } )
       @parent.registerDraggable $("#searchResults ul li")
   
   '.searchField .options click': (el) ->    

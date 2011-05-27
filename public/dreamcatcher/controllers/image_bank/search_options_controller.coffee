@@ -11,10 +11,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
 
   show: (params) ->
     $("#searchOptions .type li").removeClass 'selected'
+    $("#searchOptions .categories li").remove()
     
     if params?      
       $("#searchOptions .type li:contains(#{params.type})").click() if params.type?
-      $("#searchOptions .category li:contains(#{params.category})").click() if params.category?
+      $("#searchOptions .category:contains(#{params.category})").click() if params.category?
       @setValueForAttribute 'artist', params.artist if params.artist?
     
     $('#searchOptions').show()
