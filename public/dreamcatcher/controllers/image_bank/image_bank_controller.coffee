@@ -16,7 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       when 'browser'
         @browser = new Dreamcatcher.Controllers.ImageBank.Browser $("#frame.browser") if not @browser
         @browser.parent = this
-        @browser.show()
+        @browser.show params.refresh, params.showSearch if params?
     
       when 'dropbox'
         @dropbox = new Dreamcatcher.Controllers.ImageBank.Dropbox $("#dropbox") if not @dropbox
@@ -46,8 +46,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       images[i] = $(el).data 'image'
     return images
       
-  showBrowser: ->
-    @showWidget 'browser'
+  showBrowser: (refresh, showSearch) ->
+    @showWidget 'browser', null, {
+      refresh: refresh
+      showSearch: showSearch
+    }
   
   showDropbox: ->
     @showWidget 'dropbox'

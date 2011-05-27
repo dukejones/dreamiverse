@@ -37,6 +37,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerSelector',
   #- select individual images
 
   '#imagelist li click': (el) ->
+    return if el.hasClass 'uploading'
+    
     if @shiftDown
       @selectRange el 
 

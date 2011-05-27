@@ -214,7 +214,7 @@
       overflow-y: scroll
       +inner-shadow(10)
       background: #626262
-
+    
       ul
         +user-select
         margin: 12px 0 0 8px
@@ -273,7 +273,6 @@
             background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
 
         li.uploading
-          +hidden
           
           .progress-bar
             height: 20px
@@ -323,6 +322,10 @@
               +cancel(10)
               &:hover
                 +alpha(100)
+                
+      ul.imageReplace
+        li.uploading
+          +hidden
 
 
   // ORGANIZATION ONLY

@@ -20,8 +20,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     }
     
   #- shows the browser, and refreshes the current view
-  show: (refresh) ->
+  show: (refresh, showSearch) ->
     @refreshView() if refresh
+    $('#frame.browser .searchWrap').click() is showSearch and not $('.searchFieldWrap').is ':visible'
     $('#frame.browser').show()
     
   #- hides all the views, and saves the previous view

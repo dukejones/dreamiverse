@@ -46,12 +46,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     imageId = el.data 'id'
     imageMeta = el.data 'image'
     if not imageId?
-      log 'error with image'
+      @parent.showMessage 'error with image'
     else if not @imageCookie.contains imageId
       @imageCookie.add imageId
       @showImage imageId, imageMeta
     else
-      @parent.showMessage 'image already in dropbox'
+      @parent.showMessage 'image already exists in dropbox'
       
   #- remove image from UI and cookie
   removeImage: (el) -> 

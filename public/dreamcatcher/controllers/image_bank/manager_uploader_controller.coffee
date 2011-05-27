@@ -4,39 +4,54 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
     return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
 
   init: ->
-    params = {
+    @filesUploaded = 0
+    
+    @fileUploader = Dreamcatcher.Classes.UploadHelper.createUploader {
       elementId: '#uploader'
       url: '/images.json'
       fileTemplate: @getView 'image_upload'
-    }
-    @fileUploader = Dreamcatcher.Classes.UploadHelper.createUploader params, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
-
-
-  '#uploader .browse click': (el) ->
-    @filesUploaded = 0
+    }, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
+  
+  setDefaultUploadParams: ->
     @fileUploader.setParams @manager.getMeta 'organization' if not @replaceImageId?
-
+    
+  clearReplaceImage: ->
+    if @replaceImageId?  
+      @replaceImageId = null
+      @setDefaultUploadParams()
+      
+    $('#upload input[type=file]').attr 'multiple', 'multiple'  
+    $('#imagelist').removeClass 'imageReplace'
+    
+  setReplaceImage: (imageId )->
+    @replaceImageId = imageId
+    @fileUploader.setParams { id: @replaceImageId }
+    $('#imagelist').addClass 'imageReplace'
+    
+    fileInput = $('#uploader .browse input[type=file]')
+    fileInput.removeAttr 'multiple'
+    fileInput.click()
+    
+  getUploadElement: (fileName) ->
+    return $("#imagelist li .file:contains('#{fileName}')").closest 'li'
+    
   uploadSubmit: (id, fileName) ->
-    $('#upload input[type=file]').attr 'multiple', 'multiple'
-    @fileUploader.setParams @manager.getMeta 'organization' if not @replaceImageId?
+    @setDefaultUploadParams()  
   
   uploadComplete: (id, fileName, result) ->
-    @manager.showImage result.image, @getUploadElement fileName
-    @filesUploaded++
-    filesLeft = 0
-    filesFailed = 0
-    $('#imagelist .uploading').each (i, el) =>
-      if $(el).hasClass 'fail'
-        filesFailed++
-      else
-        filesLeft++
-    log @filesUploaded+' '+filesLeft+' '+filesFailed
-    ###
-    if result? and result.image?
+    if result.image?
+      @manager.showImage result.image, @getUploadElement fileName
+      @filesUploaded++
       
-    else
-      log 'error'
-    ###
+    @clearReplaceImage()
+    filesRemaining = $('#imagelist .uploading:not(.fail)').length
+    filesFailed = $('#imagelist .uploading.fail').length
+    if filesRemaining is 0
+      message = "#{@filesUploaded} images have been uploaded"
+      message += " (#{filesFailed} failed)" if filesFailed > 0
+      @manager.parent.showMessage message
+      @filesUploaded = 0
+
 
   uploadCancel: (id, fileName) ->
     el = @getUploadElement fileName
@@ -55,14 +70,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
     progressEl.animate {
       width: "#{percent}%"
     }, 'fast'
-  
-  
-  getUploadElement: (fileName) ->
-    return $("#imagelist li .file:contains('#{fileName}')").closest 'li'
+
     
   '#imagelist .replace click': (el) ->
-    @replaceImageId = el.parent().data 'id'
-    @fileUploader.setParams { id: @replaceImageId }
-    fileInput = $('#uploader .browse input[type=file]')
-    fileInput.removeAttr 'multiple'
-    fileInput.click()
+    @setReplaceImage el.parent().data 'id'

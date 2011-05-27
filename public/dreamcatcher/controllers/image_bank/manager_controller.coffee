@@ -14,21 +14,19 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @uploader.manager = this
     @selector.manager = this
     @meta.manager = this
-      
-  close: ->
-    #@parent.setDropboxImages $('#imagelist li') if @isDropbox
-    @parent.showBrowser true
     
-    $("#frame.manager").hide()
+    @uploader.setDefaultUploadParams()
+      
+  close: (showSearch) ->
+    @parent.showBrowser true, showSearch
+    $("#frame.manager").fadeOut 'fast'
     
   show: (images, title) ->
     $("#frame.manager h1").text title if title?
     @isDropbox = title.trim().toLowerCase() is 'drop box'
     @showImages images if images?
-    $("#frame.manager").show()
+    $("#frame.manager").fadeIn 'fast'
       
-  '.browseWrap click': ->
-    @close()
     
   #- loads all meta for a list of images
   showImages: (images) ->
@@ -47,12 +45,18 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     else
       $("#imagelist").append html
     
-    
   updateMeta: ->
     @meta.update()
     
   getMeta: (type) ->
     return @meta.get type
+    
+    
+  '.browseWrap click': ->
+    @close()
+    
+  '.searchWrap click': ->
+    @close true
   
   ##--- BUTTONS ---##
 
