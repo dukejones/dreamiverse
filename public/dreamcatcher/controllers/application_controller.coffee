@@ -8,7 +8,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @entry = new Dreamcatcher.Controllers.Entry $("#entryField") if $("#entryField").exists()
     @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
-    @initSelectMenu()
+    @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
+    @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
+    
+    #@initSelectMenu()     
     @initTooltips()
 
   initTooltips: ->
@@ -26,6 +29,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       showBody: ' - '
       positionLeft: true
       fade: 250
+      top: 20
     }
   
   initSelectMenu: ->
@@ -59,6 +63,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @userModel.update { data }
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
+  # NOTE: this is not currently working, see fit_to_content.coffee
   fitToContent: (id, maxHeight) ->
     text = if id and id.style then id else document.getElementById(id)
     return 0 if not text
@@ -66,7 +71,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     if not maxHeight or maxHeight > adjustedHeight
       adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
       adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-      text.style.height = adjustedHeight + 80 + 'px' if adjustedHeight > text.clientHeight    
+      $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
+
+
 
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?

@@ -1,11 +1,6 @@
 
 #dreamstars.dark
 
-  / APPLIES SELECTED CLASS TO META MENU
-  :coffeescript
-    $('.item.dreamstars').addClass('selected')
-
-
   / HEADER
   .header
     %img{:src => "/images/logos/header-dreamstars.png", :alt => "Dreamstars"}
@@ -50,3 +45,10 @@
         / .status
         /   .img.friends
         /   %span follow
+
+
+
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  :coffeescript
+    $('.item.dreamstars').addClass('selected')
