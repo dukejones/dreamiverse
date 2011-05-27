@@ -104,13 +104,16 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     @browser.hideSpinner()
   ###
   
+  #todo refactor
+  showMessage: (message) ->
+    $('.alert p').text message
+    $('#globalAlert,.alert').show()
   
   updateImageMeta: (imageId, imageMeta) ->
     @getImageElements().each (i, el) =>
       id = parseInt $(el).data 'id'
       if imageId is id
         $(el).data 'image', imageMeta
-        #log $(el).data 'image'
     
   getImageElements: (type, album) ->
     switch type

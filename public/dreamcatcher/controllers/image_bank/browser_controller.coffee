@@ -166,7 +166,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     album = tr.data 'album'
     @parent.showManager 'album', album, album
   
-  '#albumList .images .img img click': (el) ->
+  '#albumList .images .img img dblclick': (el) ->
     tr = el.closest 'tr'
     album = tr.data 'album'
     imageId = el.parent().data 'id'
@@ -208,17 +208,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       $("#albumList tr.images[data-album='#{oldValue}'] .img").each (i, el) =>
         imageId = $(el).data 'id'
         @imageModel.update imageId, {image: image}
-      $("#albumList tr[data-album='#{oldValue}']").each (i, el) =>
-        $(el).data 'album', newValue
-        log $(el).html()
-        log $(el).data 'album'
-      #$("#albumList tr[data-album='#{newValue}']").each (i, el) =>  
-      #@refreshView() #todo
+      @refreshView()
         
     else if field is 'artist'
-      # todo
-      alert 'cannot update this!'
       el.val oldValue
+      @parent.showMessage 'could not update this field'
       
   #- Search Results -#
   
@@ -241,5 +235,5 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       @displayView @currentView
       @showIcons '.browseWrap, .searchFieldWrap'
   
-  '#searchResults li click': (el) ->
+  '#searchResults li dblclick': (el) ->
     @parent.showSlideshow 'searchResults', el.data 'id'

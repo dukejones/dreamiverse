@@ -91,12 +91,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     if @totalToSave is @totalSaved
       @hideSavingSpinner()
       @close()
-      @showMessage 'your image details have been updated'
-  
-  #todo refactor
-  showMessage: (message) ->
-    $('.alert p').text message
-    $('#globalAlert,.alert').show()
+      @parent.showMessage 'your image details have been updated'
           
   showSavingSpinner: ->
     $(".save span").hide()

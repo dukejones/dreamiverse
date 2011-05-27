@@ -1,4 +1,4 @@
-$.Model 'Dreamcatcher.Models.ImageBank',{
+$.Model 'Dreamcatcher.Models.ImageBank', {
   
   attributes: ['type', 'category', 'genre', 'title', 'album', 'artist', 'location', 'year', 'notes', 'date', 'user', 'geotag', 'tags']
   

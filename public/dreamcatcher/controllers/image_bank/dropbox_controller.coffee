@@ -51,7 +51,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
       @imageCookie.add imageId
       @showImage imageId, imageMeta
     else
-      log 'already here' #todo - something better
+      @parent.showMessage 'image already in dropbox'
       
   #- remove image from UI and cookie
   removeImage: (el) -> 
@@ -80,11 +80,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
       zIndex: 100
       start: (ev, ui) =>
         if fromDropbox
-          #$("#dropbox").css('z-index', '1100') # todo: look at styles
           $("#bodyClick").show()
       stop: (ev, ui) =>
         if fromDropbox
-          #$("#dropbox").css('z-index', '') #todo: look at styles
           $("#bodyClick").hide()
     }
   
@@ -109,7 +107,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
     
   #- View Events
     
-  '.cancel click': (el) -> #TODO: fix
+  '.cancel click': (el) ->
     @clearImages()
   
   '.manage click': (el) ->
