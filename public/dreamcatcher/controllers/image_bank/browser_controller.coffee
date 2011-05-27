@@ -227,7 +227,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
 
   '.searchField .search click': (el) ->
     @imageModel.search @parent.getSearchOptions(), (images) =>
-      @displayView 'searchResults', @getView('searchresults',{ images : images } )
+      @displayView 'search_results', @getView('searchresults',{ images : images } )
       @parent.registerDraggable $("#searchResults ul li")
   
   '.searchField .options click': (el) ->    

@@ -1,0 +1,8 @@
+<li data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>)'>
+  <div class="message">
+    <span>confirm delete</span>
+    <div class="dontDelete">cancel</div>
+  </div>
+  <div class="close hidden"></div>
+  <div class="replace" style="width: 20px; height: 20px; background-color: green"></div>
+</li>

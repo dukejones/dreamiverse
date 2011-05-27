@@ -1,0 +1,9 @@
+<div id="searchResults">
+<ul class="clearfix">
+<% for(var i = 0; i < images.length ; i++){ %>
+  <li data-id="<%= images[i].id %>" data-image='<%= JSON.stringify(images[i]) %>'>
+    <img alt="<%= images[i].title %>" src="/images/uploads/<%= images[i].id %>-thumb.<%= images[i].format %>">
+<% } %>
+  </li>
+</ul>
+</div>
