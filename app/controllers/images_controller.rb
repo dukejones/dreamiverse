@@ -108,21 +108,19 @@ class ImagesController < ApplicationController
       uploaded_by: current_user
     }))
 
-    if !@image.save
-      respond_to do |format|
-        format.html { render :action => "new", :alert => "Could not upload the file." }
-        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      end
-    else
+    if @image.save
       @image.write(request.body.read)
+      
       respond_to do |format|
         format.html { render :text => 'Image was successfully created.' }
         format.json  { 
-          #thumb_size = '120x120'
-          thumb_size = :thumb
-          # @image.resize(thumb_size)
-          render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
+          render :json => {image_url: @image.url(:thumb), image: @image}.to_json, :status => :created
         }
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => "new", :alert => "Could not upload the file." }
+        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
       end
     end
   rescue => e
