@@ -25,6 +25,33 @@ class AdminController < ApplicationController
       render :json => {type: 'ok', html: users_html}
     end          
   end
+
+  def charts
+    title = params[:title] || 'none'
+    data = {}
+    if title == 'last_7_days_in_users'
+      (0..6).each do |num|
+        t = Time.now - num.days 
+        data[num] = ({
+          label: {pos: num, bar: num, val: t.strftime("%a %d")},
+          data: {pos: num, bar: (num + 1), val: num}
+        })
+        
+        # @data[num] => ['label'] => ['pos'] = num
+        # @data[num]['label']['bar'] = num
+        # @data[num]['label']['val'] = t.strftime("%d")
+        # @data[num]['data']['pos'] = num
+        # @data[num]['data']['bar'] = num + 1
+        # @data[num]['data']['val'] = num
+        data['total'] = num
+      end  
+         
+    end
+    
+    if request.xhr?
+      render :json => {type: 'ok', data: data}
+    end          
+  end
      
   def admin
     @users_created_last_week = User.where(:created_at.gt => 1.week.ago).count

@@ -37,7 +37,7 @@ Dreamcatcher::Application.routes.draw do
 
   match '/admin' => 'admin#admin', :as => :admin
   get '/admin/user_list' => 'admin#user_list', :as => :admin
-
+  get '/admin/charts' => 'admin#charts', :as => :admin
   
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
