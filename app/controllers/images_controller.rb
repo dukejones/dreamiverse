@@ -177,35 +177,30 @@ class ImagesController < ApplicationController
 
   # This method is called when a url for a size image that has not yet been generated is requested.
   # It responds with a redirect.
-  # We should find a way to show a nice spinner while it is redirecting.
-  # This may be a prime place for optimization.
   def resize
-    # return if detect_infinite_redirect
     image = Image.find params[:id]
     render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
-    
-    image.generate(params[:descriptor], :size => params[:size], :format => params[:format])
-    # send_file image.path(params[:size]), {type: params[:format].downcase.to_sym, disposition: 'inline'}
-    redirect_to image.url(params[:descriptor], :size => params[:size])
-  # rescue => e
-  #   Rails.logger.error "Error in Realtime Resize: #{e}"
-  #   render_404
+
+    format = params[:format] || image.format
+    mime_type = Mime::Type.lookup_by_extension(format)
+    unless mime_type
+      mime_type = "image/jpeg"
+      format = "jpg"
+    end
+    options = { :size => params[:size], :format => format }
+    image.generate(params[:descriptor], options)
+
+    send_file image.path(params[:descriptor], options), {type: mime_type, disposition: 'inline'}
+
+    # redirect_to image.url(params[:descriptor], options)
+    # For future Rails Release (3.1?): Streaming / Chunked response.
+    # self.response_body = proc {|response, output|
+    #   break if @run; @run = true # bug in Rails 3.0.x - Runs this proc twice.
+    #   open(image.path(params[:descriptor], options)) do |f|
+    #     f.each_chunk(4096) {|chunk| response.write(chunk) }
+    #   end
+    # }
   end
   
-  private
 
-  def detect_infinite_redirect
-    session[:resize_queries] ||= {}
-    session[:resize_queries] = {} if session[:resize_queries].keys.size > 10
-    session[:resize_queries][request.path] ||= 0
-
-
-    if (session[:resize_queries][request.path] += 1) > 5
-      render :text => "Error in Realtime Resize."
-      Rails.logger.error "Error in Realtime Resize: #{request.url} with params #{params}"
-      true
-    else
-      false
-    end
-  end
 end

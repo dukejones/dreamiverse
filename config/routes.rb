@@ -36,7 +36,9 @@ Dreamcatcher::Application.routes.draw do
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
   match '/admin' => 'admin#admin', :as => :admin
+  get '/admin/user_list' => 'admin#user_list', :as => :admin
 
+  
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
@@ -108,7 +110,7 @@ Dreamcatcher::Application.routes.draw do
        
     # Entries
     match "/:entry_type", :to => 'entries#index', 
-      :constraints => {entry_type: /dreams|visions|experiences|articles/}, :as => 'user_entries_filter'
+      :constraints => {entry_type: /dreams|visions|experiences|articles|journals/}, :as => 'user_entries_filter'
     
     get '/' => 'entries#index', :as => 'user_entries'
     post '/' => 'entries#create'

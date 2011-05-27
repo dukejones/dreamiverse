@@ -1,3 +1,4 @@
+
 $.Controller 'Dreamcatcher.Controllers.MetaMenu',
 
   init: ->

@@ -1,9 +1,3 @@
-- content_for :head do
-  = include_javascripts :stream
-
-
-
-
 
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
@@ -29,6 +23,7 @@
   .noEntrys.hidden there are no entries to display
 
 
-/ APPLIES SELECTED CLASS TO META MENU
-:coffeescript
-  $('.item.stream').addClass('selected')
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  :coffeescript
+    $('.item.stream').addClass('selected')
