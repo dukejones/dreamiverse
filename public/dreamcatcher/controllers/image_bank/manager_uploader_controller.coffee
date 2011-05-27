@@ -13,6 +13,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
 
 
   '#uploader .browse click': (el) ->
+    @filesUploaded = 0
     @fileUploader.setParams @manager.getMeta 'organization' if not @replaceImageId?
 
   uploadSubmit: (id, fileName) ->
@@ -20,10 +21,22 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
     @fileUploader.setParams @manager.getMeta 'organization' if not @replaceImageId?
   
   uploadComplete: (id, fileName, result) ->
+    @manager.showImage result.image, @getUploadElement fileName
+    @filesUploaded++
+    filesLeft = 0
+    filesFailed = 0
+    $('#imagelist .uploading').each (i, el) =>
+      if $(el).hasClass 'fail'
+        filesFailed++
+      else
+        filesLeft++
+    log @filesUploaded+' '+filesLeft+' '+filesFailed
+    ###
     if result? and result.image?
-      @manager.showImage result.image, @getUploadElement fileName
+      
     else
       log 'error'
+    ###
 
   uploadCancel: (id, fileName) ->
     el = @getUploadElement fileName
@@ -38,8 +51,10 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
       @replaceImageId = null
     
     percent = loaded / total * 100
-    progressEl = $('progress-bar',uploadEl)
-    progressEl.css('width',"#{percent}%")
+    progressEl = $('.progress-bar',uploadEl)
+    progressEl.animate {
+      width: "#{percent}%"
+    }, 'fast'
   
   
   getUploadElement: (fileName) ->
