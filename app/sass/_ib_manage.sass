@@ -248,6 +248,19 @@
             +close-24
             top: 4px
             right: 4px
+            
+          &:hover .replace
+            +block
+            +absolute
+            +alpha(50)
+            top: 4px
+            left: 4px
+            width: 24px
+            height: 24px
+            background-color: green
+            
+          .replace:hover
+            +alpha(100)
 
           .message
             +hidden

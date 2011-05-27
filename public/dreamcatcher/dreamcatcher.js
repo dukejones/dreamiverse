@@ -52,7 +52,10 @@ steal.plugins(
 			'controllers/image_bank/slideshow_controller',
 			'controllers/image_bank/dropbox_controller',
 			'controllers/image_bank/search_options_controller',
-			'controllers/image_bank/manager_controller'
+			'controllers/image_bank/manager_controller',
+			'controllers/image_bank/manager_uploader_controller',
+			'controllers/image_bank/manager_selector_controller',
+			'controllers/image_bank/manager_meta_controller'
 		);
 	})
 	.views(
