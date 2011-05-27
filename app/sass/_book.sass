@@ -11,21 +11,25 @@
   margin: 0 10px 10px 0
   z-index: 81
 
-  a.link, .closed, .mask
+  .closed, .mask
     +absolute
     top: 0
     right: 0
     width: 200px
     height: 266px
 
-  a.link
-    +block
-    z-index: 1
-
 
   // CLOSED BOOK
   .closed
     z-index: 2
+
+    .entryDrop
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 200px
+      height: 266px
 
     &:hover
       .entries, .edit, .comments, .sharing
@@ -98,6 +102,18 @@
     color: #444
     z-index: 2
 
+    .entryDrop-active
+      +hidden
+      +absolute
+      top: 19px
+      right: 33px
+      padding: 8px
+      width: 146px
+      height: 224px
+      background: rgba(0,0,0,0.7) url(/images/icons/plus-48.png) no-repeat center center
+      border-radius:          4px 16px 16px 4px
+      -moz-border-radius:     4px 16px 16px 4px
+      -webkit-border-radius:  4px 16px 16px 4px
 
     // PANEL SHARED STYLES
     .control-panel, .color-panel, .cover-panel, .dropbox, .access-panel
