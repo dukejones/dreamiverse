@@ -14,18 +14,16 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @uploader.manager = this
     @selector.manager = this
     @meta.manager = this
-    
-  isDropbox: ->
-    return $('frame.manager h1').text() is 'Drop box'
       
   close: ->
-    @parent.setDropboxImages $('#imagelist li') if @isDropbox()
+    #@parent.setDropboxImages $('#imagelist li') if @isDropbox
     @parent.showBrowser true
     
     $("#frame.manager").hide()
     
   show: (images, title) ->
     $("#frame.manager h1").text title if title?
+    @isDropbox = title.trim().toLowerCase() is 'drop box'
     @showImages images if images?
     $("#frame.manager").show()
       
@@ -42,6 +40,10 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     html = @getView 'image_show', image
     if replaceElement?
       replaceElement.replaceWith html
+      
+      if @isDropbox
+        @parent.addImageToDropbox @getImageElement image.id
+      
     else
       $("#imagelist").append html
     
@@ -78,6 +80,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
         @imageModel.update imageId, {image: imageMeta}, @closeOnAllSaved()
       else
         @imageModel.disable imageId, {}, @closeOnAllSaved()
+        
+  getImageElement: (imageId) ->
+    return $("#imagelist li[data-id=#{imageId}]")
         
   getMetaToSave: (el) ->
     imageMeta = el.data 'image'
