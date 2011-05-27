@@ -1,0 +1,22 @@
+ui:
+- refactor ejs, and make ways of listing images more consistent.
+- remove manager search button
+- show hide has bodyclick showing in manager
+
+ajax calls needs:
+- mass update artist (for a given type & category)
+- mass update of album (for a given artist, ?type & ?category)
+- mass update of selected images (fields to change, image ids)
+- uploader needs to be able to replace image (backend, param = image_id then repalce)
+
+ruby
+- uploader doesn't work (bug -> duke)
+- ruby search logic not always accurate, when using search options.
+
+new functionality
+- comments
+- improve tagging
+
+- make fields editable in slideshow
+- permissions - who has the ability to browse and edit which images
+- image permissions
