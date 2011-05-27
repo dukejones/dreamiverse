@@ -18,8 +18,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
       $("##{type} select").each (i, el) =>
         attr = $(el).parent().attr 'id'
         value = $(el).val()
-        image[attr] = if value.length > 0 then value else null
+        image[attr] = if value.length > 0 then value else ''
       image.section = image.type
+      #delete image.type
       return { image: image }
     # todo: other types - return when needed
 
