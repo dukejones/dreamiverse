@@ -106,4 +106,3 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
-

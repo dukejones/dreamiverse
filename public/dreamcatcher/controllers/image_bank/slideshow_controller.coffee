@@ -27,11 +27,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
     @changeSlide 0
     
     $('.comment,.commentTarget,.commentsPanel').hide() #hide for now
-    $('#slideshow-back').show()
+    $('#slideshow-back').fadeIn 'slow'
     $('#slideshow-back').height "1000px"
     
   close: ->
-    $('#slideshow-back').hide()
+    $('#slideshow-back').fadeOut()
     @parent.showBrowser()
     
   showImage: (parent, image) ->

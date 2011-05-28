@@ -26,7 +26,8 @@ steal.plugins(
 		'fileuploader',
 		'jquery.cookie',
 		'jquery.dateFormat-1.0',
-		'jquery.query-2.1.7'
+		'jquery.query-2.1.7',
+		'dream.plugs'
 	)					    // 3rd party script's (like jQueryUI), in resources folder
 	.then(function() {
     //TODO: StealJS fix: don't forget to contribute!

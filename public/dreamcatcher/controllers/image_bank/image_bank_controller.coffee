@@ -108,9 +108,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
   ###
   
   #todo refactor
-  showMessage: (message) ->
-    $('.alert p').text message
-    $('#globalAlert,.alert').show()
   
   updateImageMeta: (imageId, imageMeta) ->
     @getImageElements().each (i, el) =>

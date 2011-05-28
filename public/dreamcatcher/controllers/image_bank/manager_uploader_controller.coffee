@@ -49,7 +49,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
     if filesRemaining is 0
       message = "#{@filesUploaded} images have been uploaded"
       message += " (#{filesFailed} failed)" if filesFailed > 0
-      @manager.parent.showMessage message
+      notice message
       @filesUploaded = 0
 
 
