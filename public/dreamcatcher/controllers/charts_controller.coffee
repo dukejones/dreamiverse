@@ -1,10 +1,10 @@
 $.Controller 'Dreamcatcher.Controllers.Charts',
   
-  init: ->
-    log 'running charts controllers'
-    @scope = 'none'
+  init: (id,scope)->
+    log 'running charts controllers scope: ' + scope
+    @scope = scope
     
-  drawLineChart: (json) =>
+  drawLineChart: (json) ->
     log json.data
     log json.data[0]['label']['val']
 
@@ -27,15 +27,15 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
 
 
     chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 400, height: 240, title: "test #{@scope}"})
+    chart.draw(data, {width: 600, height: 240, title: "test #{@scope}"})
 
 
   getChartData: (scope) ->
     @scope = scope
     log 'running getChartData ' + @scope
-    Dreamcatcher.Models.Admin.loadChart @getChartOptions(), @drawLineChart
+    Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart
     
   # Generate model options   
-  getChartOptions: ->
-    scope: @scope
+  getChartOptions: (scope) ->
+    scope: scope
      

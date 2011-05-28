@@ -8,12 +8,8 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @addPageLinks()
     @updateNav()
     @scope = 'None'
-    # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
-    #     # last_8_weeks_in_users  last_7_days_in_users
-    # google.setOnLoadCallback @charts.getChartData('last_7_days_in_users')
-    # google.setOnLoadCallback @charts.getChartData('last_8_weeks_in_users')
-
-    
+    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
+   
         
   updateUsersPage: (json) ->  
     $('#userList').html(json.html)
@@ -55,16 +51,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
       order_by: $('#user-filter').val()
     }
 
-
-  countObj: (obj) ->
-    i = 0
-    for x of obj
-      if obj.hasOwnProperty(x)
-        i++
-    return i
-      
-
-        
+ 
   # Dom listeners
   '.userPage click': (el,ev) ->
     @page = parseInt el.text()
@@ -89,14 +76,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @updateNav()    
 
   '.chart-select click': (el,ev) ->
-    log '.chart-select'
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it loads before this controller loads
-    # google.setOnLoadCallback @drawChart()
-    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
-    # last_8_weeks_in_users  last_7_days_in_users
+    # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
     if ev.currentTarget.id is 'chart-a' then google.setOnLoadCallback @charts.getChartData('last_7_days_in_users')
     if ev.currentTarget.id is 'chart-b' then google.setOnLoadCallback @charts.getChartData('last_8_weeks_in_users')    
-
+    if ev.currentTarget.id is 'chart-c' then google.setOnLoadCallback @charts.getChartData('last_6_months_in_users')
   
     
     

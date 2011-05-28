@@ -6,15 +6,15 @@ class AdminController < ApplicationController
     @page_size = @filters[:page_size] || 40
     @page = @filters[:page].to_i 
     @page = 1 if @page < 1
-    @order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
-    @direction = 'DESC' 
-    @direction = 'ASC' if @order_by == 'username'
+    order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
+    direction = 'DESC' 
+    direction = 'ASC' if @order_by == 'username'
 
     case @order_by
-      when 'traffic' then @users = User.includes(:entries).order("sum(entries.uniques) #{@direction}").group('users.id')
-      when 'entries' then @users = User.includes(:entries).order("count(entries.id) #{@direction}").group('users.id')
+      when 'traffic' then @users = User.includes(:entries).order("sum(entries.uniques) #{direction}").group('users.id')
+      when 'entries' then @users = User.includes(:entries).order("count(entries.id) #{direction}").group('users.id')
       else
-        @users = User.scoped.order("#{@order_by} #{@direction}") 
+        @users = User.scoped.order("#{order_by} #{direction}") 
       end
          
     @users = @users.limit(@page_size).offset(@page_size * (@page - 1))
@@ -29,6 +29,7 @@ class AdminController < ApplicationController
   def charts
     scope = params[:scope] || 'none'
     data = {}
+    
     if scope == 'last_7_days_in_users'
       (0..6).each do |num|
         t = Time.now - num.days
@@ -39,6 +40,7 @@ class AdminController < ApplicationController
         })     
         data['total'] = num
       end
+      
     elsif scope == 'last_8_weeks_in_users'
       (0..7).each do |num|
         t = Time.now - num.weeks
@@ -48,9 +50,20 @@ class AdminController < ApplicationController
           data: {pos: num, bar: (num + 1), val: new_users}
         })     
         data['total'] = num 
-      end     
+      end
+      
+    elsif scope == 'last_6_months_in_users'
+      (0..5).each do |num|
+        t = Time.now - num.months
+        new_users = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+        data[num] = ({
+          label: {pos: num, bar: num, val: t.strftime("%b")},
+          data: {pos: num, bar: (num + 1), val: new_users}
+        })     
+        data['total'] = num           
+      end
     end
-    
+   
     if request.xhr?
       render :json => {type: 'ok', data: data}
     end          

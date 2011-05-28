@@ -4,11 +4,16 @@
 
 #adminPage
   #entryField
-
-    #chart-a.chart-select 'last_7_days_in_users'
-    #chart-b.chart-select 'last_8_weeks_in_users'
     
-    #chart-div
+    .charts.panel
+      %h1 stats
+      %br
+      %br
+      #chart-a.chart-select 'last_7_days_in_users'
+      #chart-b.chart-select 'last_8_weeks_in_users'
+      #chart-c.chart-select 'last_6_months_in_users'
+      
+      #chart-div{align: 'center'}
 
     .user.panel
       .header
