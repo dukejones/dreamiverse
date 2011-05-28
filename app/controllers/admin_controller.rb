@@ -27,21 +27,28 @@ class AdminController < ApplicationController
   end
 
   def charts
-    title = params[:title] || 'none'
+    scope = params[:scope] || 'none'
     data = {}
-    if title == 'last_7_days_in_users'
+    if scope == 'last_7_days_in_users'
       (0..6).each do |num|
         t = Time.now - num.days
-        newUsers = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        new_users = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
         data[num] = ({
           label: {pos: num, bar: num, val: t.strftime("%a %d")},
-          data: {pos: num, bar: (num + 1), val: newUsers}
-        })
-        
+          data: {pos: num, bar: (num + 1), val: new_users}
+        })     
         data['total'] = num
-      end  
-      # data = data.invert   
-      # data.map {|k,v| [k, v.sort.reverse]}
+      end
+    elsif scope == 'last_8_weeks_in_users'
+      (0..7).each do |num|
+        t = Time.now - num.weeks
+        new_users = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
+        data[num] = ({
+          label: {pos: num, bar: num, val: t.strftime("%b %d")},
+          data: {pos: num, bar: (num + 1), val: new_users}
+        })     
+        data['total'] = num 
+      end     
     end
     
     if request.xhr?

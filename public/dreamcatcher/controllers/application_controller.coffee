@@ -8,6 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
+    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage') if $('#adminPage').exists()
     
     #@initSelectMenu()     
     @initTooltips()

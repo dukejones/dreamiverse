@@ -7,7 +7,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @totalPages = Math.ceil(@totalUsers / @pageSize)    
     @addPageLinks()
     @updateNav()
-    google.setOnLoadCallback @getChartData()
+    @scope = 'None'
+    # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
+    #     # last_8_weeks_in_users  last_7_days_in_users
+    # google.setOnLoadCallback @charts.getChartData('last_7_days_in_users')
+    # google.setOnLoadCallback @charts.getChartData('last_8_weeks_in_users')
 
     
         
@@ -51,9 +55,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
       order_by: $('#user-filter').val()
     }
 
-  # Generate model options   
-  getChartOptions: (@title) ->
-    title: @title 
 
   countObj: (obj) ->
     i = 0
@@ -62,31 +63,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
         i++
     return i
       
-  drawChart: (json) ->
-    log json.data
-    log json.data[0]['label']['val']
 
-    data = new google.visualization.DataTable()
-    data.addColumn('string', 'Date')
-    data.addColumn('number', 'New Users')
-        
-    keys = [6..0]
-    data.addRows(keys.length) 
-    for num in keys
-      num = parseInt num 
-      log 'label: ' + json.data[num]['label']['val']
-      log 'data: ' + json.data[num]['data']['val']
-      
-      data.setValue(6-num, 0, json.data[num]['label']['val'])
-      data.setValue(6-num, 1, json.data[num]['data']['val'])
-      
-    
-    chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 400, height: 240, title: 'New user signups in the last week'})
- 
-     
-  getChartData: ->
-    Dreamcatcher.Models.Admin.loadChart @getChartOptions('last_7_days_in_users'), @drawChart
         
   # Dom listeners
   '.userPage click': (el,ev) ->
@@ -110,10 +87,16 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $('#pageLoading').show()
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  
     @updateNav()    
-    
-  '#chart-test click': (el) ->
+
+  '.chart-select click': (el,ev) ->
+    log '.chart-select'
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it loads before this controller loads
     # google.setOnLoadCallback @drawChart()
+    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
+    # last_8_weeks_in_users  last_7_days_in_users
+    if ev.currentTarget.id is 'chart-a' then google.setOnLoadCallback @charts.getChartData('last_7_days_in_users')
+    if ev.currentTarget.id is 'chart-b' then google.setOnLoadCallback @charts.getChartData('last_8_weeks_in_users')    
+
   
     
     

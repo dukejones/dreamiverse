@@ -32,6 +32,7 @@ steal.plugins(
       'models/user',
       'models/stream',
       'models/admin',
+      'models/charts',
       'controllers/application_controller',
       'controllers/meta_menu_controller',
       'controllers/settings_controller',
@@ -40,7 +41,8 @@ steal.plugins(
       'controllers/comments_controller',
       'controllers/entries_controller',
       'controllers/stream_controller',
-      'controllers/admin_controller'
+      'controllers/admin_controller',
+      'controllers/charts_controller'
     );
   })
   .views();
