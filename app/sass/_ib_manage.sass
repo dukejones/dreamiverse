@@ -248,19 +248,24 @@
             +close-24
             top: 4px
             right: 4px
-            
-          &:hover .replace
-            +block
+
+          .replace
+            +hidden
             +absolute
             +alpha(50)
             top: 4px
             left: 4px
             width: 24px
             height: 24px
-            background-color: green
-            
-          .replace:hover
-            +alpha(100)
+            background: url(/images/icons/reload-24.png)
+            &:hover
+              background: url(/images/icons/reload-24-hover.png)
+              +alpha(100)
+            &:active
+              background: url(/images/icons/reload-24-active.png)
+
+          &:hover .replace
+            +block
 
           .message
             +hidden
@@ -276,7 +281,8 @@
           
           .progress-bar
             height: 20px
-            background-color: green
+            +flat-light
+            +alpha(40)
             width: 0%
             height: 100%
             position: absolute
