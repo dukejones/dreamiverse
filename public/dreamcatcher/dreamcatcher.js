@@ -18,7 +18,8 @@ steal.plugins(
     'jquery.timeago',
     'jquery.exists',
     'jquery.linkify',
-    'jquery.videolink'
+    'jquery.videolink',
+    'jquery.history'
   )              // 3rd party script's (like jQueryUI), in resources folder
   .then(function() {
     //TODO: StealJS fix: don't forget to contribute!
@@ -29,14 +30,17 @@ steal.plugins(
       'models/bedsheet',
       'models/comment',
       'models/user',
+      'models/entry',
       'controllers/application_controller',
       'controllers/meta_menu_controller',
       'controllers/settings_controller',
       'controllers/appearance_controller',
       'controllers/bedsheets_controller',
       'controllers/comments_controller',
-      'controllers/entries_controller',
-      'controllers/books_controller'
+      'controllers/entries/entries_controller',
+      'controllers/entries/index_controller',
+      'controllers/entries/new_controller',
+      'controllers/entries/books_controller'
     );
   })
   .views();

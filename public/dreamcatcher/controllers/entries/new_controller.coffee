@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Entries',
+$.Controller 'Dreamcatcher.Controllers.Entries.New',
   
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
   interval: 5000

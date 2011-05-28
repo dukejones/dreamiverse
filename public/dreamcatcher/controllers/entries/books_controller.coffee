@@ -1,10 +1,10 @@
-$.Controller 'Dreamcatcher.Controllers.Books',
+$.Controller 'Dreamcatcher.Controllers.Entries.Books',
 
   init: ->
     @initSelectMenu()
     $('.book').each (i, el) =>
       @closeBook $(el)
-    
+  
   initSelectMenu:  ->
     $('#new-list').selectmenu {
       style: 'popup'

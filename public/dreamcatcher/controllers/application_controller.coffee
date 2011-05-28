@@ -5,8 +5,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   init: ->
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
-    @books = new Dreamcatcher.Controllers.Books $("#entryField") if $("#entryField").exists()
+    @entries = new Dreamcatcher.Controllers.Entries $('#entryField') if $("#entryField").exists()
+    
+    #@entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
+    #@books = new Dreamcatcher.Controllers.Books $("#entryField") if $("#entryField").exists()
     
     @initSelectMenu()
     @initTooltips()
