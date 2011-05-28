@@ -58,6 +58,35 @@ class EntriesController < ApplicationController
     hit( @entry )
   end
   
+  def showPartial
+    
+    #start: refactor (see above)
+    @entry = Entry.find params[:id]
+    @entry_mode = 'show'
+    #flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
+
+    @entries = entry_list
+    
+    i = (@entries.index {|e| e == @entry }) || 0
+    @previous = @entries[i-1]
+    @next = @entries[i+1] || @entries[0]
+    # TODO: Remove this.
+    @next = @entry unless @next
+    @previous = @entry unless @previous
+    deny and return unless user_can_access?
+
+    @page_title = @entry.title
+    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
+    
+    hit( @entry )
+    #end: refactor
+    
+    respond_to do |format|
+      format.html { render(partial:"entries/show") }
+      format.json { render :json => @albums }
+    end
+  end
+  
   def new
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
