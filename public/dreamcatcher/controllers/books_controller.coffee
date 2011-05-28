@@ -53,7 +53,6 @@ $.Controller 'Dreamcatcher.Controllers.Books',
   '.book .open .back click': (el) ->
     @showPage el, 'control'
     
-    
   '.book .color-panel .swatches li click': (el) ->
     @changeBookColor el
     
