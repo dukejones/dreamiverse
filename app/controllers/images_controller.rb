@@ -103,10 +103,19 @@ class ImagesController < ApplicationController
 
 
   def create
-    @image = Image.new(params[:image].merge({
+    imageData = {
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
-    }))
+    }
+    
+    if params.has_key?(:id)
+      @image = Image.find(params[:id])
+      @image.update_attributes(imageData)
+    
+    elsif params.has_key?(:image)
+      @image = Image.new(imageData)
+    
+    end
 
     if @image.save
       @image.write(request.body.read)
