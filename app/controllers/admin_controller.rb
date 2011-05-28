@@ -32,42 +32,68 @@ class AdminController < ApplicationController
     
     if scope == 'last_7_days_in_users'
       (0..6).each do |num|
-        t = Time.now - num.days
-        new_users = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data[num] = ({
-          label: {pos: num, bar: num, val: t.strftime("%a %d")},
-          data: {pos: num, bar: (num + 1), val: new_users}
-        })     
-        data['total'] = num
+        label = Time.now - num.days
+        label_format = '%a'
+        val = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        data = append_data(data,num,label,label_format,val)
       end
       
     elsif scope == 'last_8_weeks_in_users'
       (0..7).each do |num|
-        t = Time.now - num.weeks
-        new_users = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data[num] = ({
-          label: {pos: num, bar: num, val: t.strftime("%b %d")},
-          data: {pos: num, bar: (num + 1), val: new_users}
-        })     
-        data['total'] = num 
+        label = Time.now - num.weeks
+        label_format = '%b %d'
+        val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
+        data = append_data(data,num,label,label_format,val)
       end
       
     elsif scope == 'last_6_months_in_users'
       (0..5).each do |num|
-        t = Time.now - num.months
-        new_users = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data[num] = ({
-          label: {pos: num, bar: num, val: t.strftime("%b")},
-          data: {pos: num, bar: (num + 1), val: new_users}
-        })     
-        data['total'] = num           
+        label = Time.now - num.months
+        label_format = '%b %d'
+        val = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+        data = append_data(data,num,label,label_format,val)        
       end
+
+    elsif scope == 'last_7_days_in_entries'
+      (0..6).each do |num|
+        label = Time.now - num.days
+        label_format = '%a'
+        val = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        data = append_data(data,num,label,label_format,val)
+      end
+
+    elsif scope == 'last_8_weeks_in_entries'
+      (0..7).each do |num|
+        label = Time.now - num.weeks
+        label_format = '%b %d'
+        val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
+        data = append_data(data,num,label,label_format,val)
+      end
+      
+    elsif scope == 'last_6_months_in_entries'
+      (0..5).each do |num|
+        label = Time.now - num.months
+        label_format = '%b %d'
+        val = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+        data = append_chart_data(data,num,label,label_format,val)        
+      end      
     end
    
     if request.xhr?
       render :json => {type: 'ok', data: data}
     end          
   end
+  
+  # params = data hash, index, value
+  def append_chart_data(data,i,label,label_format,val)
+    data[i] = ({
+      label: {pos: i, bar: i, val: label.strftime(label_format)},
+      data: {pos: i, bar: (i + 1), val: val}
+    })     
+    data['total'] = i
+    data
+  end
+
      
   def admin
     @users_created_last_week = User.where(:created_at.gt => 1.week.ago).count
