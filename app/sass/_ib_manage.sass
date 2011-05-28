@@ -105,6 +105,7 @@
     background: url(/images/icons/ib-icons/editManager-37.png) no-repeat center center transparent
 
   h1
+    +user-select
     +left
     +font(21)
     +bold
@@ -210,14 +211,14 @@
       margin: 0 4px
       padding: 0
       min-height: 146px
-      overflow-x: hidden
-      overflow-y: scroll
       +inner-shadow(10)
       background: #626262
+      overflow-y: hidden
+      overflow-x: hidden
     
       ul
         +user-select
-        margin: 12px 0 0 8px
+        margin: 12px 0 0 13px
         padding: 0
         width: 725px
         min-height: 146px
@@ -229,7 +230,7 @@
           +pointer
           +overflow
           +round(4)
-          margin: 0 8px 8px 0
+          margin: 0 9px 9px 0
           height: 128px
           width: 128px
           -moz-box-shadow:    2px 5px 10px #111
@@ -248,35 +249,39 @@
             +close-24
             top: 4px
             right: 4px
-            
-          &:hover .replace
-            +block
+
+          .replace
+            +hidden
             +absolute
-            +alpha(50)
             top: 4px
             left: 4px
             width: 24px
             height: 24px
-            background-color: green
-            
-          .replace:hover
-            +alpha(100)
+            background: url(/images/icons/reload-24.png)
+            &:hover
+              background: url(/images/icons/reload-24-hover.png)
+            &:active
+              background: url(/images/icons/reload-24-active.png)
+
+          &:hover .replace
+            +block
 
           .message
             +hidden
 
           .spinner
+            +hidden
             +absolute
             top: 0
             height: 128px
             width: 128px
-            background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
 
         li.uploading
           
           .progress-bar
             height: 20px
-            background-color: green
+            +flat-light
+            +alpha(40)
             width: 0%
             height: 100%
             position: absolute
@@ -284,6 +289,24 @@
             
           .file, .size, .failed, .progress
             position: relative
+          .file
+            +font(11)
+          .size
+            +absolute
+            +center
+            width: 120px
+            bottom: 54px
+            right: 4px
+
+          .cancel
+            +absolute
+            +center
+            +round(4)
+            +shine-light-alpha(10)
+            +cancel(10)
+            bottom: 4px
+            left: 4px
+            width: 120px
             
         li.uploading.fail
           +alpha(50)
@@ -429,6 +452,7 @@
     +gradient(#6e6e6e, #fff)
 
     .save, .cancel, .reset
+      +user-select
       +pointer
       +center
       +font(18)
