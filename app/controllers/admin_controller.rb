@@ -35,7 +35,7 @@ class AdminController < ApplicationController
         label = Time.now - num.days
         label_format = '%a'
         val = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_data(data,num,label,label_format,val)
+        data = append_chart_data(data,num,label,label_format,val)
       end
       
     elsif scope == 'last_8_weeks_in_users'
@@ -43,7 +43,7 @@ class AdminController < ApplicationController
         label = Time.now - num.weeks
         label_format = '%b %d'
         val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_data(data,num,label,label_format,val)
+        data = append_chart_data(data,num,label,label_format,val)
       end
       
     elsif scope == 'last_6_months_in_users'
@@ -51,7 +51,7 @@ class AdminController < ApplicationController
         label = Time.now - num.months
         label_format = '%b %d'
         val = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_data(data,num,label,label_format,val)        
+        data = append_chart_data(data,num,label,label_format,val)        
       end
 
     elsif scope == 'last_7_days_in_entries'
@@ -59,7 +59,7 @@ class AdminController < ApplicationController
         label = Time.now - num.days
         label_format = '%a'
         val = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_data(data,num,label,label_format,val)
+        data = append_chart_data(data,num,label,label_format,val)
       end
 
     elsif scope == 'last_8_weeks_in_entries'
@@ -67,7 +67,7 @@ class AdminController < ApplicationController
         label = Time.now - num.weeks
         label_format = '%b %d'
         val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_data(data,num,label,label_format,val)
+        data = append_chart_data(data,num,label,label_format,val)
       end
       
     elsif scope == 'last_6_months_in_entries'
