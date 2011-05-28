@@ -105,6 +105,7 @@
     background: url(/images/icons/ib-icons/editManager-37.png) no-repeat center center transparent
 
   h1
+    +user-select
     +left
     +font(21)
     +bold
@@ -210,10 +211,9 @@
       margin: 0 4px
       padding: 0
       min-height: 146px
-      overflow-x: hidden
-      overflow-y: scroll
       +inner-shadow(10)
       background: #626262
+      overflow: hidden
     
       ul
         +user-select
@@ -252,7 +252,6 @@
           .replace
             +hidden
             +absolute
-            +alpha(50)
             top: 4px
             left: 4px
             width: 24px
@@ -260,7 +259,6 @@
             background: url(/images/icons/reload-24.png)
             &:hover
               background: url(/images/icons/reload-24-hover.png)
-              +alpha(100)
             &:active
               background: url(/images/icons/reload-24-active.png)
 
@@ -290,6 +288,19 @@
             
           .file, .size, .failed, .progress
             position: relative
+          .file
+            +font(11)
+          .size
+            +absolute
+            bottom: 4px
+            right: 4px
+          .cancel
+            +absolute
+            bottom: 4px
+            left: 4px
+            +round(4)
+            +shine-light-alpha(10)
+            +cancel(10)
             
         li.uploading.fail
           +alpha(50)
@@ -435,6 +446,7 @@
     +gradient(#6e6e6e, #fff)
 
     .save, .cancel, .reset
+      +user-select
       +pointer
       +center
       +font(18)
