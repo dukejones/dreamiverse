@@ -269,11 +269,11 @@
             +hidden
 
           .spinner
+            +hidden
             +absolute
             top: 0
             height: 128px
             width: 128px
-            background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
 
         li.uploading
           
@@ -292,15 +292,20 @@
             +font(11)
           .size
             +absolute
-            bottom: 4px
+            +center
+            width: 120px
+            bottom: 54px
             right: 4px
+
           .cancel
             +absolute
-            bottom: 4px
-            left: 4px
+            +center
             +round(4)
             +shine-light-alpha(10)
             +cancel(10)
+            bottom: 4px
+            left: 4px
+            width: 120px
             
         li.uploading.fail
           +alpha(50)
