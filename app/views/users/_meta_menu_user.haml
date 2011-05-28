@@ -98,11 +98,11 @@
 
 
 
-  / NEW ENTRY LINK
+  / / NEW ENTRY MENU
+  %select#new-post.select-menu.dropdown
+    %option.new-entry{value: 'entry'} entry
+    %option.new-book{value: 'book'} book
+
   %a.newEntry{href: new_entry_path}
     .img
     new entry
-    
-  %select#new-list.select-menu-radio.dropdown
-    %option.entry{ :value => 'entry' } entry
-    %option.book{ :value => 'book' } book
