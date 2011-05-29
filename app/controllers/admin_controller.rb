@@ -77,14 +77,34 @@ class AdminController < ApplicationController
         val = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
         data = append_chart_data(data,num,label,label_format,val)        
       end      
-    end
-   
+
+    elsif scope == 'last_6_months_in_entry_types'
+      vals = []
+      (0..5).each do |num|
+        label = Time.now - num.months
+        label_format = '%b %d'
+        vals[1] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => 'dream'}).count
+        vals[2] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => 'vision'}).count
+        vals[3] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => 'experience'}).count
+        vals[4] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => 'article'}).count
+        vals[5] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => 'journal'}).count
+        
+        data[num] = ({
+          label: {pos: num, bar: num, val: label.strftime(label_format)},
+          data: {val1: vals[1], val2: vals[2], val3: vals[3], val4: vals[4], val5: vals[5]}
+        })
+        data['total'] = num
+
+        # data = append_chart_data(data,num,label,label_format,vals)        
+      end      
+  end
+     
     if request.xhr?
       render :json => {type: 'ok', data: data}
     end          
   end
   
-  # params = data hash, index, value
+  # params = data hash, index, value, label, label_format, value
   def append_chart_data(data,i,label,label_format,val)
     data[i] = ({
       label: {pos: i, bar: i, val: label.strftime(label_format)},

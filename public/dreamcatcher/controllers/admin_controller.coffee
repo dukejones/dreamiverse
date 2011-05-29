@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @addPageLinks()
     @updateNav()
     @scope = 'None'
-    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
+    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
    
         
   updateUsersPage: (json) ->  
@@ -84,5 +84,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'chart-d' then google.setOnLoadCallback @charts.getChartData('last_7_days_in_entries')
     if ev.currentTarget.id is 'chart-e' then google.setOnLoadCallback @charts.getChartData('last_8_weeks_in_entries')
     if ev.currentTarget.id is 'chart-f' then google.setOnLoadCallback @charts.getChartData('last_6_months_in_entries')
+    if ev.currentTarget.id is 'chart-g' then google.setOnLoadCallback @charts.getChartData('last_6_months_in_entry_types')
     
     
