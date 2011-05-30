@@ -6,13 +6,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @closeBook $(el)
   
   initSelectMenu:  ->
-    $('#new-list').selectmenu {
-      style: 'popup'
-      menuWidth: '156px'
-      positionOptions: {
-        offset: '-136px -37px'
-      }
+    
+    $('#new-post').selectmenu {
       style: 'dropdown'
+      menuWidth: '174px'
+      positionOptions: {
+        offset: '-136px -35px'
+      }
     }
     
   showPage: (el, page) ->
