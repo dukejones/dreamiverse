@@ -15,6 +15,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   getState: ->
     {
       type: @type
+      section: @type
       category: @category
       artist: @artist
     }
@@ -200,8 +201,21 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     
   updateField: (el) ->
     field = el.closest('table').attr('id').replace('List','')
-    newValue = el.val()
-    oldValue = el.closest('tr').data field
+    params = @getState()
+    if field is 'artist'
+      params.artist = el.closest('tr').data 'artist'
+      params.new_artist = el.val()
+    else if field is 'album'
+      params.album = el.closest('tr').data 'artist'
+      params.new_album = el.val()
+    @imageModel.updateField params, => @refreshView()
+    
+  
+  ###
+  'image.fieldUpdated subscribe': (called) ->
+    field = el.closest('table').attr('id').replace('List','')
+    
+    oldValue = 
     
     image = {}
     image[field] = newValue
@@ -214,6 +228,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     else if field is 'artist'
       el.val oldValue
       @parent.showMessage 'could not update this field'
+  ###
       
   #- Search Results -#
   

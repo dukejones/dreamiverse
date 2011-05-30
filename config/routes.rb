@@ -70,6 +70,7 @@ Dreamcatcher::Application.routes.draw do
       get 'slideshow'
       get 'artists'
       get 'albums'
+      post 'updatefield'
     end
     member do
       post 'disable'

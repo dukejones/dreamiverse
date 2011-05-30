@@ -103,17 +103,17 @@ class ImagesController < ApplicationController
 
 
   def create
-    imageData = {
+    image_data = {
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
     }
     
     if params.has_key?(:id)
       @image = Image.find(params[:id])
-      @image.update_attributes(imageData)
+      @image.update_attributes(image_data.merge(enabled: true))
     
     elsif params.has_key?(:image)
-      @image = Image.new(params[:image].merge(imageData))
+      @image = Image.new(params[:image].merge(image_data))
       
     end
 
@@ -154,6 +154,28 @@ class ImagesController < ApplicationController
         format.html { render :action => "edit" }
         format.json  { render :json => { type: 'error', errors: @image.errors, status: :unprocessable_entity } }
       end
+    end
+  end
+  
+  def updatefield    
+    image_finder = Image.enabled
+    image_finder = image_finder.where(section: params[:section]) if params.has_key?(:section)
+    image_finder = image_finder.where(category: params[:category]) if params.has_key?(:category)
+    image_finder = image_finder.where(artist: params[:artist]) if params.has_key?(:artist)
+    image_finder = image_finder.where(album: params[:album]) if params.has_key?(:album)
+    
+    new_image_data = {
+      album: params[:new_album] if params[:new_album]
+      artist: params[:new_artist] if params[:new_artist]
+    }
+
+    image_finder.each do |image|
+      image.update_attributes(new_image_data.merge(enabled: true))
+    end
+      
+    respond_to do |format|
+      format.html { render :text => 'Images were successfully updated.' }
+      format.json  { render json: {type: 'ok', message: 'Images were successfully updated.'} }
     end
   end
 
