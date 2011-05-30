@@ -10,7 +10,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       style: 'popup'
       menuWidth: '156px'
       positionOptions: {
-        offset: '0 -37px'
+        offset: '-136px -37px'
       }
       style: 'dropdown'
     }
