@@ -41,6 +41,7 @@ steal.plugins(
     steal.coffee(
       'classes/cookie_helper',
       'classes/upload_helper',
+      'classes/ui_helper',
       'models/settings',
       'models/appearance',
       'models/bedsheet',

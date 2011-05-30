@@ -3,63 +3,27 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   userModel: Dreamcatcher.Models.User
 
   init: ->
+    @initUi()
+    
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    
-    @initSelectMenu()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    
     @entries = new Dreamcatcher.Controllers.Entries $("#entryField") if $("#entryField").exists()
-    
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
-    @initTooltips()
+  initUi: ->
     
-  initTooltips: ->
     $('.tooltip').each (i, el) =>
-      @registerTooltip $(el)
-    $('.tooltip').livequery (i, el) =>
-      @registerTooltip $(el)
-    
-  registerTooltip: (el) ->
-    el.tooltip {
-      track: true
-      delay: 0
-      showURL: false
-      showBody: ' - '
-      fade: 250
-    }
-    # $('.tooltip-left').tooltip {
-    #       track: true
-    #       delay: 0
-    #       showURL: false
-    #       showBody: ' - '
-    #       positionLeft: true
-    #       fade: 250
-    #       top: 20
-    #     }
-  
-  initSelectMenu: ->
-    $('.select-menu').selectmenu(
-      style: 'dropdown'
-      menuWidth: "200px"
-      positionOptions:
-        offset: "0px -37px"
-    )
-    
-    $('.select-menu-radio').each (i, el) =>
-      $(el).selectmenu {
-        style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
-        menuWidth: '200px'
-        format: (text) =>
-          return @view("selectMenuFormat",text)
-      }
-    
-    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
-      $(el).appendTo $(el).parent().parent()
+      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
       
+    $('.select-menu').each (i, el) =>
+      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
+      
+    
+    #$('.tooltip').livequery (i, el) =>
+    #  @registerTooltip $(el)
 
   '.ui-selectmenu-default input click': (el) ->
     value = el.closest('li').attr('class')
@@ -85,7 +49,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
 
   '#bodyClick click': ->
-    @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
+    @metaMenu.hideAllPanels() if @metaMenu?
     
   #TODO: eventually remove '.comment_body' to apply to all 'textarea's
   '.comment_body keyup': (el) ->

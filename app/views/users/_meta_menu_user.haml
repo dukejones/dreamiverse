@@ -29,7 +29,7 @@
 
 
   / LOG OUT
-  %a.logOut.tooltip-left{href: '/logout', title: "log out"}
+  %a.logOut.tooltip.left{href: '/logout', title: "log out"}
     .img
 
 
@@ -42,7 +42,7 @@
       %span= current_user.username
 
     .settingsPanel.wrapper
-      .item.settings.trigger.tooltip-left{title: "settings"}
+      .item.settings.trigger.tooltip.left{title: "settings"}
         .img
 
       / SETTINGS PANEL
@@ -52,7 +52,7 @@
 
     - if page_is_mine?
       .appearancePanel.wrapper
-        .item.appearance.trigger.tooltip-left{title: "appearance"}
+        .item.appearance.trigger.tooltip.left{title: "appearance"}
           .img
 
         / APPEARANCE PANEL
