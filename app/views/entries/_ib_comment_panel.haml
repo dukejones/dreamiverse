@@ -1,0 +1,44 @@
+.commentsPanel.target.showhide
+  .clear
+
+  .showAll
+    show all
+    %span 12
+    comments
+
+  .comments
+    .prevCommentWrap
+      %a.avatar{href: "#", style: "background-image: url(/images/avatars/default-avatar-tiny.jpg)"}
+      .prevComment
+        %a.user{href: "#"} username
+        .commentTime 2 hours ago
+        .delete.hidden
+        .body Yo super sweet pic yo!
+      .clear
+
+    .prevCommentWrap
+      %a.avatar{href: "#", style: "background-image: url(/images/avatars/default-avatar-tiny.jpg)"}
+      .prevComment
+        %a.user{href: "#"} user2
+        .commentTime 1 hour ago
+        .delete.hidden
+        .body Agreed, most excellent
+      .clear
+
+
+  %a{name: "bottom", href: "#"}
+
+  .newCommentWrap
+    .avatar{style: "background-image: url('#{avatar_image(current_user, 64)}')"}
+    .newComment
+      %textarea.comment_body{rows: 20, cols: 40}
+      %input.save{type: 'button', value: 'post'}
+      .links.hidden
+        %img{src: '/images/icons/link-16.png', width: '16', height: '16'}
+        links
+      .images.hidden
+        %img{src: '/images/icons/images-16.png', width: '16', height: '16'}
+        image
+      .clear
+
+  .clear

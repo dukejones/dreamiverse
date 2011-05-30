@@ -1,80 +1,47 @@
+/ SEARCH OPTIONS & RESULTS
 
-#IB_searchOptions.uiMode.gradient-9-down.round-12
-  %form(action="")
-    #IB_searchCategory
-      %h1 Category
-      #IB_searchCategoryList.IB_searchListWrap
-        %span#IB_searchCurrent_category Library
-        %input#IB_searchCategory_checkbox(type="checkbox")
-        %select.searchdrop
-          %option(value="Library") Library
-          %option(value="Hypnos") Hypnos
-          %option(value="P.A.C.E.") P.A.C.E.
+/ SEARCH OPTIONS
+#searchOptions.hidden
 
-    #IB_searchSize
-      %h1 Size
-      #IB_searchSizeList.IB_searchListWrap
-        %span#IB_searchCurrent_size Large
-        %input#IB_searchSize_checkbox(type="checkbox")
-        %select.searchdrop
-          %option(value="Small") Small
-          %option(value="Medium") Medium
-          %option(value="Large") Large
+  / TYPE
+  %ul.type
+    %li bedsheets
+    %li library
+    %li user uploaded
+    %li emoticons
+    %li book covers
+    %li prima materia
+    .clear
 
-#IB_searchFiltersContainer.uiMode.gradient-9-down.round-12
-  %h2 Filters
-  %ul#IB_searchFilters
-    %li
+
+  .filters
+    %h2 Filters
+    .filter#artist
+      %input{type: 'text', name: 'artist'}
       %label artist:
-      %input#IB_search_artist(type="text")
-    %li
+    .filter#album
+      %input{type: 'text', name: 'album'}
       %label album:
-      %input#IB_search_album(type="text")
-    %li
+    .filter#title
+      %input{type: 'text', name: 'title'}
       %label title:
-      %input#IB_search_title(type="text")
-    %li
+    .filter#year
+      %input{type: 'text', name: 'year'}
       %label year:
-      %input#IB_search_year(type="text")
-    %li
+    .filter#tags
+      %input{type: 'text', name: 'tags'}
       %label tag:
-      %input#IB_search_tag(type="text")
-  %br(style="clear: both; ")
 
-#IB_searchGenresContainer.uiMode.gradient-9-down.round-12
-  %h2 Genres
-  %ul#IB_searchGenres
-    %li Classical Art
-    %li World Art
-    %li Eastern Art
-    %li Modern Art
-    %li Digital Art
-    %li Photos
-    %li Sci-fi/Fantasy Art
-    %li Visionary Art
-    %li NASA
-    %li Anime
-    %li Featured Gallery	
-  %br(style="clear: both; ")
-
-#IB_searchImageResultsContainer.uiMode
-  %ul#IB_searchImageResults.clearfix.images
-
-#IB_searchResultsSelectBar.uiMode
-  %ul#IB_searchResultsSelect
+  .categories
+    %h2 Categories
 
 
-  #IB_searchResultsSelectButtons
-    #IB_searchResultsSelectCancelWrap.round-8
-      #IB_searchResultsSelectCancel.round-8 Cancel
-
-    #IB_searchResultsSelectEditWrap.round-8
-      #IB_searchResultsSelectEdit.round-8 Edit
-
-    #IB_searchResultsSelectAddWrap.round-8
-      #IB_searchResultsSelectAdd.round-8
-        Add
-        %img(src="/images/icons/add-36.png" width="36" height="36")
+  .clear
 
 
+/ SEARCH RESULTS
+#searchResults.hidden
+
+  %ul.clearfix
+    %li
 

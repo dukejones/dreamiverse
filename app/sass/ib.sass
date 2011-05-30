@@ -1,0 +1,71 @@
+@import mixins
+
+
+// ImageBank general & shared styles
+
+#frame
+  +absolute
+  +clear
+  +round(16)
+  top: 83px
+  left: 242px
+  margin: 0 0 40px
+  padding: 0 4px 32px
+  width: 670px
+  color: #ddd
+  +shine-dark(38)
+
+  table
+    width: 100%
+    margin: 0 0 20px
+    padding: 0
+    border: 1px solid #333
+    +flat-dark
+
+
+// TYPE - search & browse
+ul.type
+  +round(12)
+  list-style: none
+  margin: 0
+  padding: 8px 0 0 12px
+  height: 40px
+  +gradient(#505050, rgba(39,39,39,0.1))
+
+  li
+    +left
+    +pointer
+    +user-select
+    +round(8)
+    height: 32px
+    line-height: 30px
+    margin: 0 8px 0 0
+    padding: 0 14px
+    background: #1c1c1c
+    &:hover, &.selected
+      color: #414042
+      +gradient(#8c8c8c, #fff)
+
+
+
+
+  // EDITABLE INPUTS - shared styles
+  .editable
+    +transparent
+    +outline
+    color: #ddd
+    border: none
+
+
+
+
+
+@import ib_top
+@import ib_browse
+@import ib_dropbox
+@import ib_artists
+@import ib_albums
+@import ib_slideshow
+@import ib_search
+@import ib_footer
+@import ib_manage

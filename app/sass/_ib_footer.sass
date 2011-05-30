@@ -1,0 +1,96 @@
+// FOOTER
+
+
+.footer
+  +absolute
+  bottom: 0
+  left: 4px
+  width: 670px
+  height: 32px
+  padding: 3px 0
+
+  .add-collection, .add-album, .add-artist, .set, .next, .prev
+    +right
+    +pointer
+    +user-select
+    +center
+    +round(8)
+    margin: 0 8px 0 0
+    padding: 0 12px
+    height: 28px
+    line-height: 26px
+    border: 1px solid #242424
+    +shine-dark(14)
+    +gradient(#242424, #000)
+
+    .img
+      +left
+      height: 28px
+      width: 16px
+      margin: 0 8px 0 0
+
+    &:hover
+      color: #fff
+      border: 1px solid #777
+    &:active
+      border: 1px solid #fff
+      +shine-dark(0)
+      +gradient(#000, #242424)
+
+  .drag
+    +user-select
+    +center
+    margin: 0
+    height: 28px
+    line-height: 26px
+    color: #777
+    .img
+      margin: 0 0 -6px 12px
+      width: 32px
+      height: 28px
+      display: inline-block
+      background: url(/images/icons/dropbox-26.png) no-repeat center center transparent
+
+  .add-collection, .add-album, .add-artist
+    .img
+      background: url(/images/icons/add-15.png) no-repeat center center transparent
+
+  .set .img
+    background: url(/images/icons/check-16.png) no-repeat center center transparent
+
+  .next, .prev
+    +font(32)
+    +bold
+    line-height: 28px
+
+  .next
+    +flat-left
+    margin: 0 4px 0 0
+
+  .prev
+    +flat-right
+    +left
+    margin: 0 0 0 4px
+
+  .info, .tag
+    +pointer
+    +user-select
+    +left
+    margin: 0 0 0 8px
+    width: 26px
+    height: 28px
+
+  .info
+    background: url(/images/icons/info-24.png) no-repeat center center transparent
+    &:hover
+      background: url(/images/icons/info-24-hover.png) no-repeat center center transparent
+    &:active
+      background: url(/images/icons/info-24-active.png) no-repeat center center transparent
+
+  .tag
+    background: url(/images/icons/tag-24.png) no-repeat center center transparent
+    &:hover
+      background: url(/images/icons/tag-24-hover.png) no-repeat center center transparent
+    &:active
+      background: url(/images/icons/tag-24-active.png) no-repeat center center transparent
+
