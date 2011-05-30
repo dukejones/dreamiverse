@@ -56,10 +56,17 @@
 
 
       #entryOptions
-        /
-          Save for later
-          #myBooks
-            %img{src: '/images/icons/books-16.png'} My Lucid Dreams
+
+
+        / BOOKS LIST
+        .books-list
+          .img
+
+        %select#books-list.select-menu.dropdown
+          %option{value: 'My Book of Dreams'}
+          %option{value: 'Autobiography of a yogi'}
+          %option{value: 'Another book'}
+
 
         = f.submit :value => 'post', :'data-disable-with' => "posting       "
         #postSpinner.hidden

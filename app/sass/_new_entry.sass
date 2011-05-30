@@ -3,7 +3,6 @@
 // STRUCTURE
 
 
-// SHARING LIST and ENTRY TYPE LIST - see _dropdown.sass
 
 
 // SHARED PANEL STYLES
@@ -259,7 +258,7 @@ hr
     top: -8px
 
 
-  #myBooks, #entry-appearance, #entry-date, #entry-location, #entry_submit
+  .books-list, #entry-appearance, #entry-date, #entry-location, #entry_submit
     +round(20)
     +center
     +pointer
@@ -267,17 +266,16 @@ hr
     height: 34px
     line-height: 34px
     margin: 8px 0 0 8px
-  #myBooks
-    +bold
+
+  .books-list
     +left
-    width: 184px
-    img
-      +left
-      margin: 9px 0 0 14px
+
+    .img
+      background: url('/images/icons/date-24.png') center center no-repeat
 
   #entry-appearance, #entry-date, #entry-location
     width: 42px
-  #entry-appearance .img, #entry-date .img, #entry-location .img
+  .books-list .img, #entry-appearance .img, #entry-date .img, #entry-location .img
     width: 42px
     height: 34px
   #entry-location
@@ -837,7 +835,7 @@ hr
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
+    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
       +indent-light
       +button-light
       border: 1px solid #fff
@@ -1072,7 +1070,7 @@ hr
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, #myBooks, #entry-appearance, #entry-location, #entry-date
+    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
       +indent-dark
       +button-dark
       border: 1px solid #000
