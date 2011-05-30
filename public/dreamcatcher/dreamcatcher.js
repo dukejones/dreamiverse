@@ -26,6 +26,7 @@ steal.plugins(
 		'jquery.cookie',
 		'jquery.dateFormat-1.0',
 		'jquery.query-2.1.7',
+		'jquery.livequery',
 		
 		'fileuploader',
 		

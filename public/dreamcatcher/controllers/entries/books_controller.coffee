@@ -6,7 +6,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @closeBook $(el)
   
   initSelectMenu:  ->
-    
     $('#new-post').selectmenu {
       style: 'dropdown'
       menuWidth: '174px'

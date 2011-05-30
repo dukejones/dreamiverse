@@ -9,29 +9,37 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @initSelectMenu()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
+    
+    @entries = new Dreamcatcher.Controllers.Entries $("#entryField") if $("#entryField").exists()
+    
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
     @initTooltips()
-
+    
   initTooltips: ->
-    $('.tooltip').tooltip {
+    $('.tooltip').each (i, el) =>
+      @registerTooltip $(el)
+    $('.tooltip').livequery (i, el) =>
+      @registerTooltip $(el)
+    
+  registerTooltip: (el) ->
+    el.tooltip {
       track: true
       delay: 0
       showURL: false
       showBody: ' - '
       fade: 250
     }
-    $('.tooltip-left').tooltip {
-      track: true
-      delay: 0
-      showURL: false
-      showBody: ' - '
-      positionLeft: true
-      fade: 250
-      top: 20
-    }
+    # $('.tooltip-left').tooltip {
+    #       track: true
+    #       delay: 0
+    #       showURL: false
+    #       showBody: ' - '
+    #       positionLeft: true
+    #       fade: 250
+    #       top: 20
+    #     }
   
   initSelectMenu: ->
     $('.select-menu').selectmenu(
