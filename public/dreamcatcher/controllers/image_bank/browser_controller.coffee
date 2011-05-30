@@ -206,29 +206,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       params.artist = el.closest('tr').data 'artist'
       params.new_artist = el.val()
     else if field is 'album'
-      params.album = el.closest('tr').data 'artist'
+      params.album = el.closest('tr').data 'album'
       params.new_album = el.val()
-    @imageModel.updateField params, => @refreshView()
+    @imageModel.updateField params, @callback('refreshView'), @callback('rollbackUpdateField', el)
     
-  
-  ###
-  'image.fieldUpdated subscribe': (called) ->
+  rollbackUpdateField: (el) ->
     field = el.closest('table').attr('id').replace('List','')
-    
-    oldValue = 
-    
-    image = {}
-    image[field] = newValue
-    if field is 'album'      
-      $("#albumList tr.images[data-album='#{oldValue}'] .img").each (i, el) =>
-        imageId = $(el).data 'id'
-        @imageModel.update imageId, {image: image}
-      @refreshView()
-        
-    else if field is 'artist'
-      el.val oldValue
-      @parent.showMessage 'could not update this field'
-  ###
+    el.val el.closest('tr').data field
+    alert 'could not update '+field
       
   #- Search Results -#
   

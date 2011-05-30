@@ -164,18 +164,27 @@ class ImagesController < ApplicationController
     image_finder = image_finder.where(artist: params[:artist]) if params.has_key?(:artist)
     image_finder = image_finder.where(album: params[:album]) if params.has_key?(:album)
     
-    new_image_data = {
-      album: params[:new_album] if params[:new_album]
-      artist: params[:new_artist] if params[:new_artist]
-    }
-
+    errors = ''
     image_finder.each do |image|
-      image.update_attributes(new_image_data.merge(enabled: true))
+      if params.has_key?(:new_album)
+        if not image.update_attribute(:album, params[:new_album]) 
+          errors += image.errors
+        end
+      elsif params.has_key?(:new_artist)
+        if not image.update_attribute(:artist, params[:new_artist])
+          errors += image.errors
+        end
+      end
     end
-      
+    
     respond_to do |format|
-      format.html { render :text => 'Images were successfully updated.' }
-      format.json  { render json: {type: 'ok', message: 'Images were successfully updated.'} }
+      if errors == ''
+        format.html { render :text => 'Images were successfully updated.' }
+        format.json  { render json: {type: 'ok', message: 'Images were successfully updated.'} }
+      else
+        format.html { render :action => "edit" }
+        format.json  { render :json => { type: 'error', errors: errors, status: :unprocessable_entity } }
+      end
     end
   end
 

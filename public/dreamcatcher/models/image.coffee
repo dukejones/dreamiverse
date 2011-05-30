@@ -48,11 +48,10 @@ $.Model 'Dreamcatcher.Models.Image',{
       url: "/images/updatefield.json"
       type: 'post'
       contentType: 'application/json'
-      data: data
+      data: JSON.stringify(data)
       dataType: 'json'
       success: success
-      error: =>
-        alert 'update failed'
+      error: error
     }
     
   disable: ( imageId, data, success, error) ->
