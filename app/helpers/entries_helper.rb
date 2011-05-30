@@ -13,7 +13,7 @@ module EntriesHelper
   def youtube_link(link)
     raw(%{
       <li class="youtube" data-id="#{link.id}">
-        <a target="_blank" style="background: url() no-repeat center center transparent" href="#{link.url}">
+        <a target="_blank" style="background: url() no-repeat scroll center center transparent" href="#{link.url}">
           <img src="/images/icons/youtube-video-112.png" border="0">
         </a>
       </li>
@@ -39,7 +39,7 @@ module EntriesHelper
   def gallery_1d_youtube(link)
     raw(%{
       <li class="youtube" data-id="#{link.id}">
-        <a target="_blank" style="background: url() no-repeat center center transparent" href="#{link.url}">
+        <a target="_blank" style="background: url() no-repeat scroll center center transparent" href="#{link.url}">
           <img src="/images/icons/youtube-video-48.png" border="0">
         </a>
       </li>

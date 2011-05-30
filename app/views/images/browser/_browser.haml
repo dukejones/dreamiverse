@@ -1,0 +1,54 @@
+/ IMAGEBANK
+
+
+
+
+/ BROWSER FRAME
+#frame.browser
+
+
+  / DROP BOX
+  = render :partial => "images/browser/dropbox"
+
+
+  / TOP
+  = render :partial => "images/browser/top"
+
+
+  / BROWSE
+  #browse
+
+    / TYPE
+    %ul#type
+      %li bedsheets
+      %li library
+      %li user uploaded
+      %li emoticons
+      %li book covers
+      %li prima materia
+      .clear
+
+    / CATEGORIES
+    #categories
+
+      .category colors
+
+      / etc...
+
+
+
+  / ARTISTS
+  /= render :partial => "images/browser/artists"
+
+  / ALBUMS
+  /= render :partial => "images/browser/albums"
+
+  / SEARCH
+  = render :partial => "images/browser/search"
+
+
+  / FOOTER
+  = render :partial => "images/browser/footer"
+
+
+

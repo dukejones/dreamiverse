@@ -1,0 +1,84 @@
+
+/ BACKDROP
+#slideshow-back
+
+
+  / SLIDESHOW
+  #slideshow
+
+
+    .close
+
+
+
+
+    / LEFT GRADIENT
+    %a.gradient-left
+
+      .arrow.hidden
+        &lsaquo;
+        .text left arrow key
+
+
+
+
+
+
+    #gallery
+
+      = render :partial => 'images/browser/slideshow_image'
+
+
+
+
+    / RIGHT GRADIENT
+    %a.gradient-right
+
+      .arrow.hidden
+        %span &rsaquo;
+        .text right arrow key
+
+
+
+
+    / BOTTOM GRADIENT
+    .gradient-bottom
+
+
+
+
+    / CONTROLS
+    .controls.wrapper
+
+      .info
+
+      .tagging
+
+      .download
+
+
+      / COMMENTS (use existing)
+      / - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
+      /   = hidden_field :new_comments, entry.id, :value => entry.new_comment_count, :class => "newComments"
+
+      / {class: "#{entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user ? 'new' : ''} #{is_ipad? ? 'ipad' : ''}"}
+      .comment.trigger.showhide
+        .arrow
+        %span.text comment
+        .count
+          .img
+          / - if entry.new_comment_count > 0 && !current_user.blank? && entry.user == current_user
+          /   %span=entry.new_comment_count
+          / - elsif entry.comments.count > 0
+          /   %span=entry.comments.count
+          / - else
+          /   %span.empty
+
+      .commentsTarget
+
+
+      / temporary for styling
+      = render :partial => "entries/ib_comment_panel"
+
+
+

@@ -1,0 +1,97 @@
+// ARTISTS
+
+table#artistList
+
+
+  // COLUMN NAME ROW
+  tr.columnNames
+    +indent-dark
+    height: 30px
+    vertical-align: center
+
+    td
+      +font(16)
+      padding: 0 0 0 20px
+      border: 1px solid #333
+    td.imageColumn
+      width: 364px
+
+  // ARTIST ROW
+  tr.artist
+    +pointer
+    +overflow
+    height: 62px
+    vertical-align: center
+    border: 1px solid #333
+    +flat-dark
+    &:hover
+      color: #222
+      +gradient(#fff, #8c8c8c)
+
+    &:hover .name .editableWrap .editable
+      color: #222
+
+    td.name
+
+      .editableWrap
+        +left
+        +relative
+        padding: 12px 0
+        height: 38px
+
+        &:hover .edit
+          +block
+
+        .edit
+          +hidden
+          +absolute
+          +left
+          +pointer
+          top: 0
+          right: 8px
+          width: 24px
+          height: 62px
+          background: url(/images/icons/edit-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+
+        .editable
+          +pointer
+          +transparent
+          +left
+          +round(8)
+          +font(22)
+          width: 252px
+          height: 38px
+          margin: 0 0 0 10px
+          padding: 0 0 0 8px
+          color: #ddd
+          border: 1px solid transparent
+          cursor: pointer
+
+        .editable.hover
+          cursor: text
+          +input-light(large)
+          cursor: text
+
+
+    td.images
+      img
+        +left
+        margin: 0
+        height: 62px
+        width: 62px
+        border: 1px solid transparent
+
+
+  .spinner
+    +absolute
+    +alpha(70)
+    height: 64px
+    width: 384px
+    background: #000 url('/images/icons/spinner-grey-32.gif') no-repeat center center
+
+
+
