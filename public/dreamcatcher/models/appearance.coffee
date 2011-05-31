@@ -1,4 +1,4 @@
-$.Model 'Dreamcatcher.Models.Appearance',{
+$.Model 'Dreamcatcher.Models.Appearance', {
 
   update: ( id, params, success, error ) ->
     $.ajax {

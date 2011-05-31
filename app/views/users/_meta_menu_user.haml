@@ -29,7 +29,7 @@
 
 
   / LOG OUT
-  %a.logOut.tooltip-left{href: '/logout', title: "log out"}
+  %a.logOut.tooltip.left{href: '/logout', title: "log out"}
     .img
 
 
@@ -38,11 +38,11 @@
   / SETTINGS MENU
   .rightPanel
 
-    %a.item.user{:'data-id' => current_user.id, href: root_path, style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
+    %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
       %span= current_user.username
 
     .settingsPanel.wrapper
-      .item.settings.trigger.tooltip-left{title: "settings"}
+      .item.settings.trigger.tooltip.left{title: "settings"}
         .img
 
       / SETTINGS PANEL
@@ -52,7 +52,7 @@
 
     - if page_is_mine?
       .appearancePanel.wrapper
-        .item.appearance.trigger.tooltip-left{title: "appearance"}
+        .item.appearance.trigger.tooltip.left{title: "appearance"}
           .img
 
         / APPEARANCE PANEL
@@ -99,7 +99,7 @@
 
 
   / / NEW ENTRY MENU
-  %select#new-post.select-menu.dropdown
+  %select#new-post.select-menu.dropdown.offset
     %option.new-entry{value: 'entry'} entry
     %option.new-book{value: 'book'} book
 

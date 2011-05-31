@@ -2,20 +2,11 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>ImageBank Browser - Dreamcatcher</title>
   <%= stylesheet_link_tag "imageBank", "imageBank.browse", "imageBank.artist", "imageBank.artistList", 
-    "imageBank.slideshow", "imageBank.search", "imageBank.searchList", "imageBank.searchImages" %>
-  <%= coffeescript_include_tag "imagebank" %>
-  <%= javascript_include_tag "imageBank" %>
-  <script type="text/javascript">
-    $(document).ready(function(){
-      loadBrowse();
-      // ib.showBrowser()
-      $('#IB_browser_frame').fadeIn();
-    });
-  </script>
+    "imageBank.slideshow", "imageBank.search", "imageBank.searchList", "imageBank.searchImages", "compiled/ib" %>
 
 <% end %>
 
-<%= render :partial => 'images/browser/image_browser' %>
+<%= render :partial => 'images/browser/browser' %>
 
 </body>
 </html>

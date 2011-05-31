@@ -1,0 +1,493 @@
+
+// IMAGEBANK MANAGER STYLES
+#frame.manager
+  +shine-light(32)
+  left: 80px
+  padding: 0 4px
+  width: 752px
+
+  // SHARED STYLES
+  h2
+    +font(14)
+    +bold
+    text-transform: uppercase
+
+  h2.header
+    +pointer
+    +user-select
+    +clear
+    margin: 0
+    padding: 0 0 0 20px
+    height: 22px
+    line-height: 24px
+    color: white
+    background: #a3a29f
+    border-bottom: 1px solid #dcdcdc
+
+  .panel
+    margin: 0
+    padding: 0 0 8px 24px
+    +bevel-light
+
+  .wrap
+    +left
+    margin: 8px 24px 0 0
+
+  h2.label
+    float: none
+    height: 18px
+    line-height: 18px
+    margin: 0
+    color: #737373
+
+  .inputWrap
+    +round(8)
+    margin: 0
+    height: 22px
+    padding: 8px
+    +input-light(large)
+
+    h2.label
+      +left
+      +round(12)
+      margin: 4px 8px 0 0
+      padding: 0 8px
+      text-transform: lowercase
+      +bevel-light
+
+    input.text
+      +transparent
+      +font(16)
+      margin: 0 8px 0 0
+      height: 22px
+      border: none
+      width: auto
+
+    input.checkbox
+      +pointer
+      +right
+      margin: 8px 0 0 0
+
+
+  // TOP
+  .browseWrap
+    +pointer
+    +user-select
+    +center
+    +left
+    +round(12)
+    margin: 12px 8px 0 12px
+    width: 52px
+    height: 46px
+    padding: 0
+    +bevel-light
+    &:active
+      +gradient(#a7a9ac, #fff)
+
+    .browse
+      +block
+      +round(12)
+      width: 48px
+      height: 42px
+      padding: 0
+      margin: 2px
+      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+      &:hover
+        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+      &:active
+        background: #eee url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+
+  .icon
+    +left
+    width: 37px
+    height: 37px
+    margin: 16px 8px 0
+    background: url(/images/icons/ib-icons/editManager-37.png) no-repeat center center transparent
+
+  h1
+    +user-select
+    +left
+    +font(21)
+    +bold
+    margin: 24px 0 0
+    padding: 0 0 0 8px
+    text-transform: uppercase
+    color: #414042
+
+  .searchWrap
+    +pointer
+    +user-select
+    +right
+    +center
+    +round(12)
+    width: 58px
+    height: 46px
+    margin: 12px 12px 4px 0
+    padding: 2px 0
+    +bevel-light
+    &:active
+      +gradient(#a7a9ac, #fff)
+
+    .search
+      +center
+      +round(12)
+      width: 42px
+      height: 34px
+      margin: 0 auto
+      padding: 6px
+      background: #fff url(/images/icons/search-32.png) no-repeat center center
+      &:hover
+        background: #fff url(/images/icons/search-32-hover.png) no-repeat center center
+      &:active
+        background: #eee url(/images/icons/search-32-active.png) no-repeat center center
+
+
+  // DROPBOX
+  .dropboxWrap
+    +clear
+    +relative
+    background: #a3a29f
+
+    .dropArea
+      +absolute
+      +transparent
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      z-index: 2
+
+    .active
+      +alpha(70)
+      background: #000 url(/images/icons/ib-icons/dropboxIconText.png) no-repeat center center
+
+    h2
+      +pointer
+      +user-select
+      +left
+      margin: 0 12px 0 12px
+      line-height: 42px
+      text-decoration: underline
+      color: #58595b
+      &:hover
+        text-decoration: none
+        color: #000
+    h2.drag
+      +cursor
+      +right
+      text-decoration: none
+      margin: 0 12px 0 0
+      color: #dbdbdb
+
+    .img
+      +right
+      width: 32px
+      height: 42px
+      margin: 0 12px 0 0
+      background: url(/images/icons/dropbox-26.png) no-repeat center center
+
+    .browse
+      +pointer
+      +user-select
+      +right
+      +bold
+      +center
+      +round(16)
+      margin: 6px 12px 0 0
+      padding: 0 16px
+      height: 28px
+      line-height: 30px
+      color: #58595b
+      +shine-light(14)
+      &:hover
+        color: #000
+        +gradient(#fff, #777)
+      &:active
+        +shine-light(0)
+        +gradient(#777, #fff)
+
+    .dropbox
+      +clear
+      margin: 0 4px
+      padding: 0
+      min-height: 146px
+      +inner-shadow(10)
+      background: #626262
+      overflow-y: hidden
+      overflow-x: hidden
+    
+      ul
+        +user-select
+        margin: 12px 0 0 13px
+        padding: 0
+        width: 725px
+        min-height: 146px
+        list-style: none
+
+        li
+          +relative
+          +left
+          +pointer
+          +overflow
+          +round(4)
+          margin: 0 9px 9px 0
+          height: 128px
+          width: 128px
+          -moz-box-shadow:    2px 5px 10px #111
+          box-shadow:         2px 5px 10px #111
+          -webkit-box-shadow: 2px 5px 10px #111
+          border: 4px solid #1a1a1a
+
+          img
+            height: 120px
+            width: 120px
+          &:hover
+            border: 4px solid #ddd
+          &:hover .close
+            +block
+            +absolute
+            +close-24
+            top: 4px
+            right: 4px
+
+          .replace
+            +hidden
+            +absolute
+            top: 4px
+            left: 4px
+            width: 24px
+            height: 24px
+            background: url(/images/icons/reload-24.png)
+            &:hover
+              background: url(/images/icons/reload-24-hover.png)
+            &:active
+              background: url(/images/icons/reload-24-active.png)
+
+          &:hover .replace
+            +block
+
+          .message
+            +hidden
+
+          .spinner
+            +hidden
+            +absolute
+            top: 0
+            height: 128px
+            width: 128px
+
+        li.uploading
+          
+          .progress-bar
+            height: 20px
+            +flat-light
+            +alpha(40)
+            width: 0%
+            height: 100%
+            position: absolute
+            top: 0px
+            
+          .file, .size, .failed, .progress
+            position: relative
+          .file
+            +font(11)
+          .size
+            +absolute
+            +center
+            width: 120px
+            bottom: 54px
+            right: 4px
+
+          .cancel
+            +absolute
+            +center
+            +round(4)
+            +shine-light-alpha(10)
+            +cancel(10)
+            bottom: 4px
+            left: 4px
+            width: 120px
+            
+        li.uploading.fail
+          +alpha(50)
+          border-color: red
+
+        li.selected
+          border: 4px solid #427ee8
+
+        li.delete
+          +alpha(50)
+          border: 4px solid #971313
+
+          .message
+            +absolute
+            +font(14)
+            display: block
+            top: 0px
+            width: 112px
+            height: 114px
+            padding: 6px 8px 8px
+            color: #ddd
+            background: #555
+            background: rgba(0,0,0,0.3)
+
+            .dontDelete
+              +absolute
+              +round(4)
+              +center
+              +alpha(70)
+              bottom: 8px
+              padding: 2px
+              width: 106px
+              color: #222
+              border: 1px solid transparent
+              +gradient(#6e6e6e, #fff)
+              +cancel(10)
+              &:hover
+                +alpha(100)
+                
+      ul.imageReplace
+        li.uploading
+          +hidden
+
+
+  // ORGANIZATION ONLY
+  #organization
+
+    h2.label
+      +left
+      margin: 10px 6px 0 0
+      line-height: 34px
+      color: #a3a29f
+
+    .listWrap
+      +left
+      +round(8)
+      +pointer
+      margin: 8px 24px 0 0
+      padding: 0 8px
+      height: 34px
+      +input-light(large)
+
+      input
+        +right
+        margin: 12px 0 0 0
+
+      select.list
+        +left
+        +outline
+        +transparent
+        +block
+        +font(16)
+        +pointer
+        +center
+        border: 0
+        height: 34px
+        width: 186px
+        padding: 7px 8px
+        option
+          padding: 6px 4px
+        option.label
+          +bold
+          color: #ddd
+          background: #111
+
+
+  // INFO ONLY
+  #info
+
+    .inputWrap
+      width: 320px
+
+    input.text
+      width: 220px
+
+    .year
+      width: 120px
+      input.text
+        width: 44px
+
+    .notes
+      width: 520px
+      input.text
+        width: 436px
+
+
+  // SOURCE ONLY
+  #source
+
+    .source
+      width: 199px
+      input.text
+        width: 110px
+
+
+  // TAGS
+  #tags
+    padding: 8px
+
+    .tags
+      height: auto
+
+      textarea
+        +transparent
+        +font(16)
+        width: 695px
+        min-width: 695px
+        max-width: 695px
+        height: 58px
+        min-height: 58px
+        max-height: 58px
+        margin: 0 12px 0 0
+        border: none
+
+
+  // FOOTER BUTTONS
+  .saveWrap, .cancelWrap, .resetWrap
+    +center
+    +right
+    +round(12)
+    margin: 8px 8px 8px 0
+    padding: 1px
+    +gradient(#6e6e6e, #fff)
+
+    .save, .cancel, .reset
+      +user-select
+      +pointer
+      +center
+      +font(18)
+      +round(12)
+      width: 120px
+      height: 38px
+      margin: 0 auto
+      line-height: 40px
+      text-transform: uppercase
+      padding: 0px
+      color: #58595b
+      border: 1px solid transparent
+      +shine-light(19)
+      &:hover
+        color: #222
+      &:active
+
+    .save
+      +relative
+      +save(19)
+
+      .spinner
+        +absolute
+        height: 38px
+        width: 32px
+        left: 8px
+        background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
+        z-index: 2
+
+      span.saving
+        margin: 0 0 0 24px
+
+    .cancel
+      +cancel(19)
+
+
+
+

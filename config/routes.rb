@@ -36,7 +36,9 @@ Dreamcatcher::Application.routes.draw do
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
   match '/admin' => 'admin#admin', :as => :admin
+  get '/admin/user_list' => 'admin#user_list', :as => :admin
 
+  
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
@@ -64,9 +66,11 @@ Dreamcatcher::Application.routes.draw do
     constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
   resources :images do
     collection do
-      get 'manage'
+      get 'manager'
+      get 'slideshow'
       get 'artists'
       get 'albums'
+      post 'updatefield'
     end
     member do
       post 'disable'

@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
     session[:lens] = lens unless lens.nil?
     
     filters ||= session[:filters] || {}
-
+    
     return case session[:lens]
     when :stream
       current_user ? Entry.dreamstream(current_user, filters) : []
@@ -154,8 +154,7 @@ class EntriesController < ApplicationController
 
   def stream
     @user = current_user
-    @filters = @user.update_stream_filter(params[:filters])
-    session[:filters] = @filters
+    @filters = session[:filters] = @user.update_stream_filter(params[:filters])
     @entries = entry_list(:stream, @filters)
     
     if request.xhr?

@@ -1,0 +1,33 @@
+/ ALBUMS
+
+%table#albumList.hidden
+  - @albums._?.each do |album, images|
+
+    %tr.name{:'data-album' => album}
+      %td
+
+        .editableWrap
+
+          %input.editable{type: "text", readonly: 'true', value: album || "Unknown Album"}
+
+          .edit
+
+        .manage.hidden
+
+    %tr.images{:'data-album' => album}
+      %td
+        - require 'json'
+        .spinner.hidden
+
+        - images.each do |image|
+          .img{:'data-id' => image.id, :'data-image' => "#{image.to_json}"}
+            = image_tag image.url('128x128')
+            .add.hidden +
+
+
+
+
+
+
+
+

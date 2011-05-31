@@ -1,0 +1,120 @@
+// ALBUMS
+
+table#albumList
+
+  tr.name
+
+    td
+      width: 100%
+      height: 60px
+      padding: 0 0 0 12px
+      +indent-dark
+      border: 1px solid #333
+
+      &:hover .manage
+        +block
+        +pointer
+        +right
+        +alpha(50)
+        margin: 0 12px 0 0
+        width: 32px
+        height: 60px
+        background: url(/images/icons/manage-32.png) no-repeat center center transparent
+        &:hover
+          background: url(/images/icons/manage-32-hover.png) no-repeat center center transparent
+        &:active
+          background: url(/images/icons/manage-32-active.png) no-repeat center center transparent
+
+      .editableWrap
+        +left
+        +relative
+        padding: 12px 0
+        height: 36px
+
+        &:hover .edit
+          +block
+
+        .edit
+          +hidden
+          +absolute
+          +left
+          +pointer
+          top: 0
+          right: 12px
+          width: 24px
+          height: 60px
+          background: url(/images/icons/edit-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+
+      .editable
+        +transparent
+        +font(22)
+        +round(8)
+        width: 374px
+        height: 36px
+        padding: 0 0 0 12px
+        color: #ddd
+        border: 1px solid transparent
+
+      .editable.hover
+        +input-dark(large)
+
+
+  tr.images
+
+    td
+      padding: 0 0 3px
+
+      // For JS to apply class when pulling to dropbox
+      .img.grabbing
+        +grabbing
+
+      .img
+        +relative
+        +left
+        +overflow
+        +grab
+        margin: 3px 0 0 3px
+        width: 128px
+        height: 128px
+        border: 1px solid transparent
+        &:hover
+          border: 1px solid #ddd
+          .add
+            +block
+
+        img
+          width: 128px
+          height: 128px
+
+        .add
+          +absolute
+          +pointer
+          +center
+          +alpha(50)
+          +bold
+          +font(24)
+          width: 28px
+          height: 28px
+          line-height: 28px
+          color: green
+          background: #fff
+          bottom: 0px
+          right: 0px
+          &:hover
+            +alpha(100)
+
+  .spinner
+    +absolute
+    +alpha(70)
+    height: 100%
+    width: 668px
+    background: #000 url('/images/icons/spinner-grey-32.gif') no-repeat center center
+    z-index: 2
+
+
+
+

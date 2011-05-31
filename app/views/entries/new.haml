@@ -6,13 +6,6 @@
   = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
 
 
-
-
-
-
-
-
-
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
@@ -24,9 +17,12 @@
       = v.hidden_field 'image_id' # Bedsheet
       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
       = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
-      - if @entry_mode == 'new'
+      - if @entry_mode == 'new' 
         = hidden_field_tag :new_entry_mode, 1 
-
+    
+    #entryId{:'data-id' => @entry.id}
+    #entryMode{:'data-id' => @entry_mode}
+    
     - @entry.images.each do |image|
       = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
     
@@ -40,7 +36,7 @@
       / .entryType
       /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
 
-      %select#entryType-list.select-menu-radio.dropdown{'data-id' => "#{@entry.type ? @entry.type : current_user.default_entry_type}", name: 'entry[type]'}
+      %select#entryType-list.select-menu.radio.dropdown{'data-id' => "#{@entry.type ? @entry.type : current_user.default_entry_type}", name: 'entry[type]'}
         %option.dream{      :value => 'dream',      :selected => @entry.type == 'dream'}      dream
         %option.vision{     :value => 'vision',     :selected => @entry.type == 'vision'}     vision
         %option.experience{ :value => 'experience', :selected => @entry.type == 'experience'} experience
@@ -73,7 +69,7 @@
 
         / SHARING PANEL
         
-        %select#sharing-list.select-menu-radio{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
+        %select#sharing-list.select-menu.radio{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
           %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
           %option.list{       value: Entry::Sharing[:friends]   } friends
           %option.followers{  value: Entry::Sharing[:followers] } followers
