@@ -1,5 +1,5 @@
 - cache([entry, (current_user==entry.user), "thumb2d"]) do
-  .thumb-2d
+  .thumb-2d{:'data-id' => entry.id}
 
     / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
     - unless entry.main_image
