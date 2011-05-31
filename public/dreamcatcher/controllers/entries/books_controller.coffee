@@ -3,12 +3,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   model: Dreamcatcher.Models.Book
   
   init: ->
-    $('.book').each (i, el) =>
-      @closeBook $(el)
+    @model.get {}, (html) =>
+      $('#entryField .matrix').prepend html
+      $('.book').each (i, el) =>
+        @closeBook $(el)
       
   newBook: ->
-    @model.getHtml 'new', {}, (html) =>
+    @model.new {}, (html) =>
       $('#entryField .matrix').prepend html
+      @openBook $('#entryField .matrix .book:first')
     
   showPage: (el, page) ->
     bookEl = el.closest '.book'
@@ -22,8 +25,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     
   openBook: (el) ->
     bookEl = el.closest '.book'
+    #close all books
+    $('.book .open').hide()
+    $('.book .closed').show()
+    #just open the current
     $('.open', bookEl).show()
     $('.closed', bookEl).hide()
+    #$('#bodyClick').show()
     
   changeBookColor: (el) ->
     color = el.attr 'class'
@@ -53,9 +61,22 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     @changeBookColor el
     
   '.book .control-panel .confirm click': (el) ->
-    @model.create @getBookMeta el, =>
-      alert 'success!'
-      @closeBook el
+    bookEl = el.closest '.book'
+    bookMeta = @getBookMeta bookEl
+    bookId = bookEl.data 'id'
+    if bookId is 'new'
+      @model.create bookMeta, @callback('bookCreated', bookEl)
+    else
+      bookId = parseInt bookId
+      @model.update bookId, bookMeta, @callback('bookUpdated', bookEl)
+  
+  bookCreated: (el)->
+    notice 'New book has been created'
+    @closeBook el
+  
+  bookUpdated: (el, result) -> 
+    notice result.message
+    @closeBook el
     
   '.book .closed .edit click': (el) ->
     @openBook el
@@ -64,11 +85,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     @showMore el
     
   getBookMeta: (el) ->
-    bookEl = el.closest '.book'
     return {
       book: {
-        title: $('.titleInput', bookEl).val()
-        #color: bookEl.data 'color'
+        title: $('.titleInput', el).val()
+        user_id: $('.userInfo').data 'id'
+        color: el.attr('class').replace('book','').trim()
         #viewing_level: $('.viewing-menu',bookEl).val()
         #commenting_level: $('.commenting-menu',bookEl).val()
       }

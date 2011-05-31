@@ -1,6 +1,5 @@
-test
-- @books._?.each do |books|
-  = render :partial => "books/book"
+- @books._?.each do |book|
+  = render :partial => "books/book", :locals => {:book => book}
 
 
 
