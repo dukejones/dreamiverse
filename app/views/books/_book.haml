@@ -1,7 +1,5 @@
 / BOOKS
-
-.book.blue
-
+.book{:'data-id' => book ? book.id : 'new', class: (book && book.color) ? book.color : 'blue'}
 
   / CLOSED BOOK
   .closed.hidden
@@ -18,8 +16,8 @@
       82
 
     .edit edit
-
-    .title Title of the Book Goes Here
+    .title 
+      = book ? book.title : 'Title of Book Goes Here'
     / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
 
     .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
@@ -37,9 +35,8 @@
     .control-panel
 
       .settings-basic
-
-        %input.titleInput{type: 'text', value: 'My Book of Dreams'}
-
+        %input.titleInput{type: 'text', value: book ? book.title : 'Title of Book Goes Here'}
+        
         .color
           color
           .icon

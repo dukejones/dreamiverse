@@ -106,11 +106,7 @@ Dreamcatcher::Application.routes.draw do
     resources :comments
   end
   
-  resources :books do
-    collection do
-      get 'new'
-    end
-  end
+  resources :books
 
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
