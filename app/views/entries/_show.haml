@@ -1,5 +1,5 @@
 / SHOW ENTRY
-#showEntry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :class => @entry.images.blank? ? "noImage" : "" }
+#showEntry.entry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :class => @entry.images.blank? ? "noImage" : "" }
 
   .entryType
     .img{class: @entry.type}
@@ -9,18 +9,19 @@
     - time = (@entry.dreamed_at || @entry.created_at)
     = time_ago_in_words(time)
 
-  %a.next{href: user_entry_path(@next.user.username, @next)}
+  %a.next.history{href: user_entry_path(@next.user.username, @next)}
     %span &rsaquo;
 
   - if session[:lens] == :stream
-    %a.stream{href: stream_path} stream
+    %a.stream.history{href: stream_path} stream
   - else
-    %a.stream{href: user_entries_path(@user.username)} entries
+    %a.stream.history{href: user_entries_path(@user.username)} entries
 
-  %a.prev{href: user_entry_path(@previous.user.username, @previous)}
+  %a.prev.history{href: user_entry_path(@previous.user.username, @previous)}
     %span &lsaquo;
 
   - if @entry.user == current_user
+    /todo: bring back!
     /%a.editEntry{href: edit_entry_path(@entry)} edit
     /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 

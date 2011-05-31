@@ -2,37 +2,48 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Index',
   
   model: Dreamcatcher.Models.Entry
 
-  hash: (hash) ->
-    if hash.trim().length is 0
+  hash: (entryId) ->
+    if entryId.trim().length is 0
       @showMatrix()
     else
-      @showEntryId hash
+      @showEntryById entryId
+      
+  bindAjaxLinks: (parent) ->
+    $('a.history', parent).each (i, el) =>
+      href = $(el).attr 'href'
+      if href.indexOf '#' is -1
+        entryId = href.split('/').pop()
+        $(el).attr 'href', "##{entryId}"
   
   init: ->
+    @bindAjaxLinks '#entryField .matrix'
     $.history.init @callback('hash')
-    
-    $('.thumb-2d a.link').each (i, el) =>
-      href = $(el).attr 'href'
-      entryId = href.split('/').pop()
-      $(el).attr 'href', "##{entryId}"
 
   'a[@rel=history] click': (el) ->
     entryId = el.attr('href').replace(/^.*#/, '')
     $.history.load entryId
-    @showEntryId entryId
+    @showEntryById entryId
     return false
     
-  showMatrix: ->
+  hideAllEntries: ->
     $('#entryField').children().hide()
+  
+  showMatrix: ->
+    @hideAllEntries()
     $('#entryField .matrix').show()
 
-  showEntryId: (entryId) ->
-    #todo check dom for entry, show it, instead of loading it again
-    @model.getHtml { id: entryId }, @callback('showEntryHtml')
+  showEntryById: (entryId) ->
+    entryEl = $(".entry[data-id=#{entryId}]")
+    if entryEl.exists()
+      @hideAllEntries()
+      entryEl.show()
+    else
+      @model.getHtml { id: entryId }, @callback('showEntryHtml')
 
   showEntryHtml: (html) ->
-    $('#entryField').children().hide()
+    @hideAllEntries()
     $('#entryField').append html
+    @bindAjaxLinks '#entryField .entry:last'
 
     
         
