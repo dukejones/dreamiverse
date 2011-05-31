@@ -58,7 +58,7 @@ class EntriesController < ApplicationController
     hit( @entry )
   end
   
-  def showPartial
+  def show_entry
     
     #start: refactor (see above)
     @entry = Entry.find params[:id]

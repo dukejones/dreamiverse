@@ -2,7 +2,7 @@ $.Model 'Dreamcatcher.Models.Entry', {
   
   getHtml: ( params, success, error ) ->
     $.ajax {
-      url: '/entries/showPartial'
+      url: '/entries/show_entry'
       type: 'get'
       dataType: 'html'
       data: params

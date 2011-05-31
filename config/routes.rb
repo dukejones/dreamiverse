@@ -97,7 +97,7 @@ Dreamcatcher::Application.routes.draw do
   resources :entries do
     collection do
       get 'random'
-      get 'showPartial'
+      get 'show_entry'
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
