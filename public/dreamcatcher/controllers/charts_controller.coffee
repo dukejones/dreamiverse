@@ -5,13 +5,12 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
     @scope = 'test'
     
   drawLineChart: (json) ->
-    log json.data
-    log json.data[0]['label']['val']
 
     data = new google.visualization.DataTable()
     data.addColumn('string', 'Date')
     data.addColumn('number', 'New Users')
-
+    data.addColumn('number', 'New Users2')
+    
     numKeys = parseInt json.data['total']
     log 'numKeys: ' + numKeys
 
@@ -25,49 +24,40 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       data.setValue(numKeys-num, 0, json.data[num]['label']['val'])
       data.setValue(numKeys-num, 1, json.data[num]['data']['val'])
 
-
     chart = new google.visualization.LineChart(document.getElementById('chart-div'))
     chart.draw(data, {width: 600, height: 240, title: "test #{@scope}"})
 
   drawMultiLineChart: (json) ->
-    log 'test'
-    data = new google.visualization.DataTable();
-    data.addColumn('string', 'date');
-    data.addColumn('number', 'dream');
-    data.addColumn('number', 'vision');
-    data.addColumn('number', 'experience');
-    data.addColumn('number', 'article');
-    data.addColumn('number', 'journal');
-    numKeys = parseInt json.data['total']
-    log 'numKeys: ' + numKeys
+    data = new google.visualization.DataTable()
+    
+    # Add columns
+    data.addColumn('string', 'Date')
+    for column in json.data['columns']
+      data.addColumn('number', column)
+  
+    numCols = parseInt json.data['num_cols']
+    maxRange = parseInt json.data['max_range']  
+    ranges = [0..maxRange]
+    cols = [0..numCols]
+   
+    log "numCols: #{numCols} maxRange: #{maxRange} cols: #{cols}"
 
-    keys = [numKeys..0]
-    data.addRows(keys.length) 
-    for num in keys
-      num = parseInt num 
-      log 'label: ' + json.data[num]['label']['val']
-      log 'data: ' + json.data[num]['data']['val1']
+    data.addRows(ranges.length)
+     
+    for range in ranges # for each date range    
+      for col in cols # add label + values for each column         
+        data.setValue(maxRange-range, 0, json.data[range]['label']) if col is 0 
+        data.setValue(maxRange-range, col+1, json.data[range]['data']['vals'][col])
 
-      data.setValue(numKeys-num, 0, json.data[num]['label']['val'])
-      data.setValue(numKeys-num, 1, json.data[num]['data']['val1'])    
-      data.setValue(numKeys-num, 2, json.data[num]['data']['val2']) 
-      data.setValue(numKeys-num, 3, json.data[num]['data']['val3']) 
-      data.setValue(numKeys-num, 4, json.data[num]['data']['val4']) 
-      data.setValue(numKeys-num, 5, json.data[num]['data']['val5'])
-      
-    chart = new google.visualization.LineChart(document.getElementById('chart-div'));
-    chart.draw(data, {width: 500, height: 400, title: 'Entry types added'});
-      
-    # new google.visualization.LineChart(document.getElementById('chart-div')).draw(data, null)
-    # chart.draw(data, {width: 500, height: 400, title: "test #{@scope}"})
-
+    chart = new google.visualization.LineChart(document.getElementById('chart-div'))
+    chart.draw(data, {width: 600, height: 240, title: "test #{@scope}"})
 
 
   getChartData: (scope) ->
     @scope = scope
     log 'running getChartData ' + @scope
-    # Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart
-    if scope is 'last_6_months_in_entry_types' 
+    # Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart  
+    if scope is 'last_6_months_in_entry_types' # or if scope is 'last_6_months_in_entries' 
       Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawMultiLineChart
     else 
       Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart
