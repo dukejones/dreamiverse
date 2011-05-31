@@ -425,8 +425,16 @@
       +font(16)
       margin: 0
       height: 32px
-      background: url(/images/books/spine-blue-64.png) repeat-x left
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat: repeat-x
+      background-position: left
       background-size: 100% 100%
+      background:     -webkit-gradient(linear, top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       border: 1px solid #00305c !important
 
       a
