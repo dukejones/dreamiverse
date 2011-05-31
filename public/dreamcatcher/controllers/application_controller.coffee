@@ -14,26 +14,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
   initUi: ->
-    
     $('.tooltip').each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-      
     $('.select-menu').each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-      
-    
-    #$('.tooltip').livequery (i, el) =>
-    #  @registerTooltip $(el)
-
-  '.ui-selectmenu-default input click': (el) ->
-    value = el.closest('li').attr('class')
-    data = {}
-    switch el.closest('ul').attr('id').replace('-list-menu','')
-      when 'entryType'
-        data['user[default_entry_type]'] = value
-      when 'sharing'
-        data['user[default_sharing_level]'] = value
-    @userModel.update { data }
+    #todo -live query
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   # NOTE: this is not currently working, see fit_to_content.coffee
@@ -65,9 +50,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     el.parent().addClass 'default-hover'
 
   'label.ui-selectmenu-default mouseout': (el) ->
-    el.parent().removeClass 'default-hover'
-
-  '.ui-selectmenu-default input click': (el) ->
+    el.parent().removeClass 'default-hover'  
+  
+  # radio button check for select-menu
+  '.ui-selectmenu-default input[type=radio] click': (el) ->
     $('li',$(el).closest('ul')).removeClass 'default'
     $(el).closest('li').addClass 'default'
     value = $('a:first',el.closest('li')).data 'value'

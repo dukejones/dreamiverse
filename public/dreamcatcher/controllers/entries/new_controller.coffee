@@ -50,6 +50,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
     @posted = true
     @clearState()
     
+  ###
   initSelectMenu: ->
     # iterates through each select menu radio
     $('.select-menu-radio').each (i, el) =>
@@ -87,3 +88,4 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
 
         # moves the radio button outside the a tag (so it doesn't conflictg)
         $(el).appendTo li
+    ###

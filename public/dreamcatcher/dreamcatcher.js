@@ -48,14 +48,15 @@ steal.plugins(
       'models/comment',
       'models/user',
       'models/entry',
-      'models/image',
-			'models/image_bank',
 	    'models/user',
+	    'models/stream',
       'controllers/application_controller',
       'controllers/meta_menu_controller'
     );
     if (imageBank) {
       steal.coffee(
+        'models/image',
+  			'models/image_bank',
         'controllers/image_bank/image_bank_controller',
 			  'controllers/image_bank/browser_controller',
 			  'controllers/image_bank/slideshow_controller',
@@ -72,6 +73,7 @@ steal.plugins(
         'controllers/appearance_controller',
         'controllers/bedsheets_controller',
         'controllers/comments_controller',
+        'controllers/stream_controller',
         'controllers/entries/entries_controller',
         'controllers/entries/index_controller',
         'controllers/entries/new_controller',

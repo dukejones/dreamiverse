@@ -1,18 +1,8 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.Books',
 
   init: ->
-    @initSelectMenu()
     $('.book').each (i, el) =>
       @closeBook $(el)
-  
-  initSelectMenu:  ->
-    $('#new-post').selectmenu {
-      style: 'dropdown'
-      menuWidth: '174px'
-      positionOptions: {
-        offset: '-136px -35px'
-      }
-    }
     
   showPage: (el, page) ->
     bookEl = el.closest '.book'

@@ -3,7 +3,6 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
   init: ->
     @page = 1
     @container = $('#entryField .matrix')
-    @initSelectMenu()
     @activateLightBox()   
     @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
@@ -49,14 +48,6 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
       type: $('#entry-filter').val()
       users: $('#users-filter').val()
     }
-
-  initSelectMenu: ->
-   $('.select-menu').selectmenu {
-     style: 'dropdown'
-     menuWidth: "200px"
-     positionOptions:
-       offset: "0px -37px"
-   }
   
   # Setup lightbox for stream  
   activateLightBox: ->
