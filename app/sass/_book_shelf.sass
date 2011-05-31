@@ -21,26 +21,32 @@
   //   height: 32px
   //   width: 208px
 
-  .title, .count
-    +absolute
-    +center
+  table
     +bold
+    border: none
+    padding: 0
+    height: 100%
 
-  .title
-    left: 8px
-    height: 32px
-    line-height: 34px
-    // background: #000
-    // background: rgba(0,0,0,0.6)
+    &:hover .count
+      +block
 
-  .count
-    +round(8)
-    top: 6px
-    right: 6px
-    width: 18px
-    height: 18px
-    line-height: 21px
-    background: #fff
+    .title
+      padding-left: 8px
+      width: 176px
+      height: 100%
+      vertical-align: middle
+
+    .count
+      +hidden
+      +center
+      padding-right: 6px
+
+      div
+        +round(8)
+        width: 18px
+        height: 18px
+        line-height: 20px
+        background: #fff
 
   .dropbox, .active
     +absolute
@@ -56,9 +62,10 @@
 
 
 // BOOK SPINE COLORS
-.bookSpine.blue-dark, .bookSpine-add
+.bookSpine.blue, .bookSpine-add
   color: #fff
-  background: url(/images/books/spine-blue-dark.png) repeat-x left
+  background: url(/images/books/spine-blue-64.png) repeat-x left
+  background-size: 100% 100%
   // .mask
   //   background: -moz-linear-gradient(rgba(46,114,177,1.0), rgba(46,114,177,0.2), rgba(22,83,139,1.0))
   .count
