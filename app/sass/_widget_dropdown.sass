@@ -399,6 +399,9 @@
 
 // NEW ENTRY BOOKS HTML MENU & BUTTON
 #newEntry
+  #books-list-button
+    width: 32px !important
+
   #books-list, #books-list-button
     +outline
     margin: 0
@@ -409,20 +412,25 @@
     .ui-selectmenu-status
       +hidden
 
+
 // NEW ENTRY BOOKS MENU DROPDOWN
-.light #books-list-menu
-  +round(20)
-  +indent-light
-  +button-light
-  border: 1px solid #fff
+.light, .dark
+  #books-list-menu
+    left: 259px !important
+    width: 208px !important
 
-  li a
+    li
+      +round(7)
+      +overflow
+      +font(16)
+      margin: 0
+      height: 32px
+      background: url(/images/books/spine-blue-64.png) repeat-x left
+      background-size: 100% 100%
+      border: 1px solid #00305c !important
 
-
-.dark #books-list-menu
-  +round(20)
-  +indent-dark
-  +button-dark
-  border: 1px solid #000
-
-  li a
+      a
+        color: #ddd
+        line-height: 1.1em !important
+        &:hover
+          color: #fff
