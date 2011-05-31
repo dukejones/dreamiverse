@@ -31,6 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     #just open the current
     $('.open', bookEl).show()
     $('.closed', bookEl).hide()
+    #$('#bodyClick').show()
     
   changeBookColor: (el) ->
     color = el.attr 'class'
