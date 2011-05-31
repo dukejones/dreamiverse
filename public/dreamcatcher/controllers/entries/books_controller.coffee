@@ -1,8 +1,14 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.Books',
 
+  model: Dreamcatcher.Models.Book
+  
   init: ->
     $('.book').each (i, el) =>
       @closeBook $(el)
+      
+  newBook: ->
+    @model.getHtml 'new', {}, (html) =>
+      $('#entryField .matrix').prepend html
     
   showPage: (el, page) ->
     bookEl = el.closest '.book'
@@ -24,6 +30,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     bookEl = el.closest '.book'
     bookEl.attr 'class', 'book'
     bookEl.addClass color
+    bookEl.data 'color', color
     
   showMore: (el) ->
     bookEl = el.closest '.book'
@@ -45,15 +52,28 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   '.book .color-panel .swatches li click': (el) ->
     @changeBookColor el
     
-    
   '.book .control-panel .confirm click': (el) ->
-    @closeBook el
+    @model.create @getBookMeta el, =>
+      alert 'success!'
+      @closeBook el
     
   '.book .closed .edit click': (el) ->
     @openBook el
     
   '.book .more click': (el) ->
     @showMore el
+    
+  getBookMeta: (el) ->
+    bookEl = el.closest '.book'
+    return {
+      book: {
+        title: $('.titleInput', bookEl).val()
+        #color: bookEl.data 'color'
+        #viewing_level: $('.viewing-menu',bookEl).val()
+        #commenting_level: $('.commenting-menu',bookEl).val()
+      }
+    }
+    
     
 
     

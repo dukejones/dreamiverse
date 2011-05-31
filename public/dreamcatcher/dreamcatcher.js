@@ -48,8 +48,9 @@ steal.plugins(
       'models/comment',
       'models/user',
       'models/entry',
-	    'models/user',
-	    'models/stream',
+	    //'models/user',
+	    //'models/stream',
+	    'models/book',
       'controllers/application_controller',
       'controllers/meta_menu_controller'
     );

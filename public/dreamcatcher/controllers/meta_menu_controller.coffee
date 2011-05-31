@@ -44,4 +44,5 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
     return if expanded
     panelName = $('.target:first',el.parent()).attr('id').replace('Panel','')
     @selectPanel panelName
+    
 

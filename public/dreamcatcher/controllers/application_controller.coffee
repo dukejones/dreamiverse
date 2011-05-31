@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   init: ->
     @initUi()
     
-    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
+    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('#metaMenu') if $('#metaMenu').exists()
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
@@ -63,6 +63,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         @userModel.update {'user[default_entry_type]': value}
       when 'sharing'
         @userModel.update {'user[default_sharing_level]': value}
+        
+  '#new-post change': (el) ->
+    switch el.val()
+      when 'book'
+        @entries.newBook()
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
