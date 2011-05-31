@@ -6,9 +6,9 @@
 
     .entryDrop
 
-
-    .cover{style: 'background: url(/images/avatars/default-avatar-full.jpg) no-repeat center center'}
-
+    - imageUrl = (book && book.cover_image_id) ? Image.find(book.cover_image_id).url('252x252') : '/images/avatars/default-avatar-full.jpg'
+    .cover{style: "background: url(#{imageUrl}) no-repeat center center"}
+    
     .mask
 
 
