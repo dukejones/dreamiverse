@@ -126,9 +126,9 @@ class AdminController < ApplicationController
   end
 
 
-  def load_pie_chart
-    title = params[:title] || 'none'
+  def load_pie_chart 
     data = {}
+    title = params[:title]
     data['title'] = title
       
     if title == 'seed codes usages'
@@ -139,7 +139,15 @@ class AdminController < ApplicationController
         val = User.scoped.where(seed_code: data['slices'][num]).count
         data = append_pie_chart_data(data,num,label,val)
       end
-
+      
+    elsif title == 'top 32 users by entries'
+        data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
+        (0..data['slices'].count).each do |num|        
+          label = data['slices'][num]
+          user = User.find_by_username(data['slices'][num])
+          val = user.nil? ? '' : user.entries.count
+          data = append_pie_chart_data(data,num,label,val)
+        end           
     end
 
     if request.xhr?
