@@ -34,6 +34,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
   '#bodyClick click': ->
     @metaMenu.hideAllPanels() if @metaMenu?
+    @entries.closeEverythingOpen() if @entries?
     
   #TODO: eventually remove '.comment_body' to apply to all 'textarea's
   '.comment_body keyup': (el) ->

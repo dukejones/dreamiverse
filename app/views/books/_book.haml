@@ -5,6 +5,8 @@
     - coverUrl = Image.find(book.cover_image_id).url('252x252')
     - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
   - title = book.title if book && book.title
+  - viewingLevel = book.viewing_level if book && book.viewing_level
+  - commentingLevel = book.commenting_level if book && book.commenting_level
 
   / CLOSED BOOK
   .closed.hidden
@@ -150,20 +152,12 @@
       .viewing viewing
 
       %select.select-menu.viewing-menu
-        %option.everyone everyone
-        %option.friends friends only
-        %option.followers followers
-        %option.private private
-        %option.anon anonymous
+        = render :partial => "entries/sharing_level", :locals => {:level => viewingLevel}
 
       .commenting commenting
 
       %select.select-menu.commenting-menu
-        %option.everyone everyone
-        %option.friends friends only
-        %option.followers followers
-        %option.private private
-        %option.anon anonymous
+        = render :partial => "entries/sharing_level", :locals => {:level => commentingLevel}
 
     / ENTRY DROP ACTIVE
     .entryDrop-active

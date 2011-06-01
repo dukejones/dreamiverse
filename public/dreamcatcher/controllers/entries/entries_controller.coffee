@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   init: ->
     @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix') if $("#entryField .matrix").exists()
     $.history.init @callback('hash')
-    
+      
   hash: (keyValue) ->
     split = keyValue.split('=')
     key = split[0]
@@ -17,6 +17,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
       @books.showBookById value
     else
       @showMatrix()
+      
+  closeEverythingOpen: ->
+    @books.closeAllBooks()
 
   newBook: ->
     @books.newBook()

@@ -4,36 +4,36 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   entryModel: Dreamcatcher.Models.Entry
   
   init: ->
-    @model.get {}, (html) =>
-      #todo: refactor
-      $('#entryField .matrix').prepend html
-      $('.book').each (i, el) =>
-        @closeBook $(el)
-        
-      $('#entryField .thumb-2d').each (i, el) =>
-        $('a.link',el).remove()
-
-      $('#entryField .thumb-2d').draggable {
-        containment: 'document'
-        zIndex: 100
-        revert: true
+    @model.get {}, @callback('populate')
+    
+  populate: (html) ->
+    $('#entryField .matrix').prepend html
+    
+    $('#entryField .book').each (i, el) =>
+      @closeBook $(el)
+      $(el).droppable {  
+        drop: (ev, ui) =>
+          entryMeta = {
+            entry: {
+              book_id: $(ev.target).data 'id'
+            }
+          }
+          entryId = ui.draggable.data 'id'
+          @entryModel.update entryId, entryMeta, =>
+            notice 'successful moved'
+            ui.draggable.remove()
       }
       
-      $('#entryField .book').each (i, el) =>
-        $(el).droppable {  
-          drop: (ev, ui) =>
-            entryMeta = {
-              entry: {
-                book_id: $(ev.target).data 'id'
-              }
-            }
-            entryId = ui.draggable.data 'id'
-            @entryModel.update entryId, entryMeta, =>
-              notice 'successful moved'
-              ui.draggable.remove()
-        }
-        
+    $('#entryField .thumb-2d').each (i, el) =>
+      $('a.link',el).remove()
 
+    $('#entryField .thumb-2d').draggable {
+      containment: 'document'
+      zIndex: 100
+      revert: true
+    }
+    
+        
   showBookById: (bookId) ->
     @model.show bookId, {}, (html) =>
       $('#entryField').children().hide()
@@ -44,6 +44,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     @model.new {}, (html) =>
       $('#entryField .matrix').prepend html
       @openBook $('#entryField .matrix .book:first')
+      
     
   showPage: (el, page) ->
     bookEl = el.closest '.book'
@@ -56,15 +57,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     $('.open', bookEl).hide()
     $('.closed', bookEl).show()
     
-  openBook: (el) ->
-    bookEl = el.closest '.book'
-    #close all books
+  closeAllBooks: ->
     $('.book .open').hide()
     $('.book .closed').show()
-    #just open the current
+    
+  openBook: (el) ->
+    @closeAllBooks()
+    
+    bookEl = el.closest '.book'
     $('.open', bookEl).show()
     $('.closed', bookEl).hide()
-    #$('#bodyClick').show()
+    
+    $('#bodyClick').show()
+    bookEl.css 'z-index', '1200' #todo: should be a style
     
   changeBookColor: (el) ->
     color = el.attr 'class'
@@ -129,8 +134,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
         user_id: $('.userInfo').data 'id'
         color: el.attr('class').replace('book','').trim()
         cover_image_id: el.data('image') if el.data('image')
-        #viewing_level: $('.viewing-menu',bookEl).val()
-        #commenting_level: $('.commenting-menu',bookEl).val()
+        viewing_level: $('.viewing-menu', el).val()
+        commenting_level: $('.commenting-menu', el).val()
       }
     }
     
@@ -164,8 +169,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   
   uploadProgress: ->
     log 'progress'
-    
-  #todo: add mask to flat (styles)
   
   
     
