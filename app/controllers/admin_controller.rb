@@ -141,23 +141,35 @@ class AdminController < ApplicationController
       end
       
     elsif title == 'top 32 users by entries'
-        data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
-        (0..data['slices'].count).each do |num|        
-          label = data['slices'][num]
-          user = User.find_by_username(data['slices'][num])
-          val = user.nil? ? '' : user.entries.count
-          data = append_pie_chart_data(data,num,label,val)
-        end  
+      data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
+      (0..data['slices'].count).each do |num|        
+        label = data['slices'][num]
+        user = User.find_by_username(data['slices'][num])
+        val = user.nil? ? '' : user.entries.count
+        data = append_pie_chart_data(data,num,label,val)
+      end  
 
     elsif title == 'top 32 users by starlight'
-        data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
-        (0..data['slices'].count).each do |num|        
-          label = data['slices'][num]
-          user = User.find_by_username(data['slices'][num])
-          val = user.nil? ? '' : user.starlight
-          data = append_pie_chart_data(data,num,label,val)
-        end        
-                 
+      data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
+      (0..data['slices'].count).each do |num|        
+        label = data['slices'][num]
+        user = User.find_by_username(data['slices'][num])
+        val = user.nil? ? '' : user.starlight
+        data = append_pie_chart_data(data,num,label,val)
+      end        
+        
+    elsif title == 'top 32 tags'
+      data['slices'] = Tag.scoped.order("count(noun_id) DESC").group(:noun_id).limit(32).map(&:noun_id)
+      (0..data['slices'].count).each do |num| 
+        #log "data[slices][num]: #{data['slices'][num]}" 
+        what = What.find_by_id(data['slices'][num])
+        label = what.nil? ? '' : what.name
+       
+        # user = User.find_by_username(data['slices'][num])
+        # tags.each do |t| count = Tag.where(:noun_id => t.noun_id).count; pp count end
+        val = Tag.where(:noun_id => data['slices'][num]).count
+        data = append_pie_chart_data(data,num,label,val)
+      end                 
     end
 
     if request.xhr?

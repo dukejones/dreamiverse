@@ -24,9 +24,14 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
         
     # Generate chart
     chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 600, height: 240, title: "#{json.data['title']}"})
+    chart.draw(data, {
+      title: "#{json.data['title']}",
+      width: 600, height: 300, 
+      backgroundColor: 'black',
+      legendTextStyle: {color: 'white'},
+      titleTextStyle: {color: 'white'}
+    })
 
-    log "numLines: #{numLines} maxRange: #{maxRange} lineKeys: #{lineKeys}"
 
   drawPieChart: (json) ->
     data = new google.visualization.DataTable()   
@@ -47,10 +52,18 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
      
     # Generate Chart
     chart = new google.visualization.PieChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 600, height: 300, cht: 'p3', is3D: true, title: "#{json.data['title']}"})
+    chart.draw(data, {
+      title: "#{json.data['title']}",
+      width: 600, height: 300, 
+      cht: 'p3', 
+      is3D: true,  
+      backgroundColor: 'black',
+      legendTextStyle: {color: 'white'},
+      titleTextStyle: {color: 'white'}
+    })
     
-
-  getLineChartData: (title) ->  
+    
+  getLineChartData: (title) ->               
     Dreamcatcher.Models.Chart.loadLineChart @getChartOptions(title), @drawLineChart  
 
   getPieChartData: (title) ->

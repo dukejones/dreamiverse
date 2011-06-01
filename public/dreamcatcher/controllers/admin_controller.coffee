@@ -88,5 +88,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts. getPieChartData('seed codes usages')
     if ev.currentTarget.id is 'chart-i' then google.setOnLoadCallback @charts. getPieChartData('top 32 users by entries')
     if ev.currentTarget.id is 'chart-j' then google.setOnLoadCallback @charts. getPieChartData('top 32 users by starlight')
+    if ev.currentTarget.id is 'chart-k' then google.setOnLoadCallback @charts. getPieChartData('top 32 tags')
     
     
