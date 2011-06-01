@@ -1,11 +1,11 @@
 $.Controller 'Dreamcatcher.Controllers.Bedsheets',
   
-  loadGenre: (genre) ->
+  loadGenre: (category) ->
     $("#bedsheetScroller .spinner").show()
-    Dreamcatcher.Models.Bedsheet.findAll {},@callback('populate')
+    Dreamcatcher.Models.Bedsheet.findAll { category: category }, @callback('populate')
   
   populate: (bedsheets) ->
-    $("#bedsheetScroller ul").html @view('list',{bedsheets: bedsheets})
+    $("#bedsheetScroller ul").html @view 'list', { bedsheets: bedsheets }
     $("#bedsheetScroller ul").show()
     $("#bedsheetScroller .spinner").hide()
     
@@ -16,7 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.Bedsheets',
 
   '.bedsheet click': (el) ->
     bedsheetId = el.data 'id'
-    $('#body').css 'background-image',"url('/images/uploads/#{bedsheetId}-bedsheet.jpg')"
+    $('#body').css 'background-image', "url('/images/uploads/#{bedsheetId}-bedsheet.jpg')"
     @highlightBedsheet el 
-    @options.parent.updateAppearanceModel {bedsheet_id: bedsheetId}
+    @options.parent.updateAppearanceModel { bedsheet_id: bedsheetId }
 
