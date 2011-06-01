@@ -40,7 +40,7 @@ class AdminController < ApplicationController
         label = Time.now - num.days
         label = label.strftime('%a')
         vals[0] = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_chart_data(data,num,label,vals)
+        data = append_line_chart_data(data,num,label,vals)
       end
       
     elsif title == 'last 8 weeks in users'
@@ -52,7 +52,7 @@ class AdminController < ApplicationController
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
         vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_chart_data(data,num,label,vals)
+        data = append_line_chart_data(data,num,label,vals)
       end
       
     elsif title == 'last 6 months in users'
@@ -64,7 +64,7 @@ class AdminController < ApplicationController
         label = Time.now - num.months
         label = label.strftime('%b %d')
         vals[0] = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_chart_data(data,num,label,vals)        
+        data = append_line_chart_data(data,num,label,vals)        
       end
 
     elsif title == 'last 7 days in entries'
@@ -76,7 +76,7 @@ class AdminController < ApplicationController
         label = Time.now - num.days
         label = label.strftime('%a')
         vals[0] = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_chart_data(data,num,label,vals)
+        data = append_line_chart_data(data,num,label,vals)
       end
 
     elsif title == 'last 8 weeks in entries'
@@ -88,7 +88,7 @@ class AdminController < ApplicationController
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
         vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_chart_data(data,num,label,vals)
+        data = append_line_chart_data(data,num,label,vals)
       end
          
     elsif title == 'last 6 months in entries'
@@ -101,7 +101,7 @@ class AdminController < ApplicationController
         label = label.strftime('%b %d')
               
         vals[0] = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_chart_data(data,num,label,vals)        
+        data = append_line_chart_data(data,num,label,vals)        
       end
 
     elsif title == 'last 6 months in entry types' 
@@ -116,7 +116,7 @@ class AdminController < ApplicationController
         data['lines'].each_with_index do |type,i|
           vals[i] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
         end       
-        data = append_chart_data(data,num,label,vals)    
+        data = append_line_chart_data(data,num,label,vals)    
       end  
     end  
   
@@ -130,31 +130,42 @@ class AdminController < ApplicationController
     title = params[:title] || 'none'
     data = {}
     data['title'] = title
-    
-    if title == 'seed codes'
-      data['lines'] = ['users']
-      data['max_range'] = 5 # account for zeros
-            
-      (0..6).each do |num|
-        vals = []
-        label = Time.now - num.days
-        label = label.strftime('%a')
-        vals[0] = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_chart_data(data,num,label,vals)
+      
+    if title == 'seed codes usages'
+      data['slices'] = User.scoped.where(:seed_code ^ nil).group(:seed_code).map(&:seed_code)  
+       
+      (0..data['slices'].count).each do |num|        
+        label = data['slices'][num]
+        val = User.scoped.where(seed_code: data['slices'][num]).count
+        data = append_pie_chart_data(data,num,label,val)
       end
+
     end
+
+    if request.xhr?
+      render :json => {type: 'ok', data: data}
+    end    
+    
   end
 
      
   # params = data hash, index, value, label, value
-  def append_chart_data(data,i,label,vals)
+  def append_line_chart_data(data,i,label,vals)
     data[i] = ({
       label: label,
-      data: {vals: vals}
+      vals: vals
     })     
     data
   end
-  
+
+  # params = data hash, index, value, label, value
+  def append_pie_chart_data(data,i,label,val)
+    data[i] = ({
+      label: label,
+      val: val
+    })     
+    data
+  end  
      
   def admin
     @users_created_last_week = User.where(:created_at.gt => 1.week.ago).count

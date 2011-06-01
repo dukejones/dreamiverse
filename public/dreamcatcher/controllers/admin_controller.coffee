@@ -85,6 +85,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'chart-e' then google.setOnLoadCallback @charts. getLineChartData('last 8 weeks in entries')
     if ev.currentTarget.id is 'chart-f' then google.setOnLoadCallback @charts. getLineChartData('last 6 months in entries')
     if ev.currentTarget.id is 'chart-g' then google.setOnLoadCallback @charts. getLineChartData('last 6 months in entry types')
-    if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts. getPieChartData('seed codes')
+    if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts. getPieChartData('seed codes usages')
     
     
