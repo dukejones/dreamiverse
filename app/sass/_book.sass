@@ -313,6 +313,9 @@
           -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
           -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
 
+          &:hover .close
+            +block
+
           .add
             +center
             margin: 60px auto 0
@@ -320,6 +323,12 @@
             padding: 28px 0 0
             color: #fff
             background: url(/images/icons/plus-24-greenBlue.png) no-repeat top center transparent
+
+      .close
+        +absolute
+        +close-16
+        top: 8px
+        right: 8px
 
       .active
         +hidden
@@ -422,6 +431,7 @@
     background: url(/images/books/open-blue.png) no-repeat center center
   .entries, .edit, .title, .comments, .sharing
     color: #fff
+    background-color: #123d66
     background-color: rgba(18,61,102,0.5)
 
 .book.purple
