@@ -93,12 +93,21 @@
   // OPEN BOOK
   .open
     +absolute
+    +user-select
     top: 0
     right: 0
     width: 335px
     height: 334px
     color: #444
     z-index: 82
+
+    .bodyClick
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 100%
+      height: 100%
 
     .entryDrop-active
       +hidden
