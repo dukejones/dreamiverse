@@ -1,6 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
 
-  imageModel: Dreamcatcher.Models.Image
+  model: Dreamcatcher.Models.Image
 
   init: ->
     $(document).keyup (event) ->
@@ -98,7 +98,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
     tags = $('.newTag', el.parent()).val()
     
     image = { tags: tags }
-    @imageModel.update imageId, { image: image }
+    @model.update imageId, { image: image }
 
   '.controls .download click': (el) ->
     window.open @getOriginal @images[@index]

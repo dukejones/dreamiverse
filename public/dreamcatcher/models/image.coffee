@@ -2,7 +2,7 @@ $.Model 'Dreamcatcher.Models.Image',{
   
   get: (imageId, data, success, error) ->
     $.ajax {
-      url: "/images/#{imageId}.json"
+      url: "/images/#{imageId}"
       type: 'get'
       dataType: 'json'
       data: data
@@ -12,7 +12,7 @@ $.Model 'Dreamcatcher.Models.Image',{
   
   findByIds: ( imageIds, data, success, error ) ->
     $.ajax {
-      url: "/images.json?ids=#{imageIds}"
+      url: "/images?ids=#{imageIds}"
       type: 'get'
       dataType: 'json'
       data: data
@@ -22,7 +22,7 @@ $.Model 'Dreamcatcher.Models.Image',{
   
   search: ( data, success, error ) ->
     $.ajax {
-      url: "/images.json"
+      url: "/images"
       type: 'get'
       dataType: 'json'
       data: data
@@ -32,7 +32,7 @@ $.Model 'Dreamcatcher.Models.Image',{
 
   update: ( imageId, data, success, error ) ->
     $.ajax {
-      url: "/images/#{imageId}.json"
+      url: "/images/#{imageId}"
       type: 'put'
       contentType: 'application/json'
       data: JSON.stringify(data)
@@ -43,9 +43,9 @@ $.Model 'Dreamcatcher.Models.Image',{
       error: error
     }
     
-  updateField: (data, success, error) ->
+  updatefield: (data, success, error) ->
     $.ajax {
-      url: "/images/updatefield.json"
+      url: "/images/updatefield"
       type: 'post'
       contentType: 'application/json'
       data: JSON.stringify(data)
@@ -56,7 +56,7 @@ $.Model 'Dreamcatcher.Models.Image',{
     
   disable: ( imageId, data, success, error) ->
     $.ajax {
-      url: "/images/#{imageId}/disable.json"
+      url: "/images/#{imageId}/disable"
       type: 'post'
       contentType: 'application/json'
       dataType: 'json'
@@ -64,5 +64,70 @@ $.Model 'Dreamcatcher.Models.Image',{
       success: @callback success
       error: error
     }
+    
+  artists: (data, success, error) ->
+    $.ajax {
+      url: "/images/artists"
+      data: data
+      dataType: 'html'
+      success: @callback success
+      error: error
+    }
+    
+  albums: (data, success, error) ->
+    $.ajax {
+      url: "/images/albums"
+      data: data
+      dataType: 'html'
+      success: @callback success
+      error: error
+    }
+    
+    
+  getHtml: (path, data, success, error) ->
+    $.ajax {
+      url: "/#{path}"
+      data: data
+      dataType: 'html'
+      success: @callback success
+      error: error
+    }
+    
+  
+  
+  #json constants  
+    
+  attributes: ['type', 'category', 'genre', 'title', 'album', 'artist', 'location', 'year', 'notes', 'date', 'user', 'geotag', 'tags']
+
+  types: [
+    {
+      name: 'bedsheets'
+      categories: ['colors', 'textures', 'space', 'earth', 'city', 'nature', 'cultural', 'nightmare', 'water', 'landscape']
+    }
+    {
+      name: 'library'
+      categories: ['paintings', 'digital', 'fantasy', 'visionary', 'graphics', 'europe', 'eurasia', 'asia', 'americas', 'africa', 'australia', 'people', 'places', 'things', 'concept', 'animals']
+    }
+    {
+      name: 'user uploaded'
+      categories: ['all']
+    }
+    {
+      name: 'emotions'
+      categories: ['animals', 'smilies', 'shapes', 'plants', 'powers', 'eyes', 'weather', 'hands', 'classics']
+    }
+    {
+      name: 'book covers'
+      categories: ['all']
+    }
+    {
+      name: 'prima materia'
+      categories: ['symbol', 'illustration', 'photo', '3d']
+    }
+  ]
+
+  genres: ['photo', 'art', 'design']
+
+
 },
 {}

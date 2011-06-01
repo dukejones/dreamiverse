@@ -5,7 +5,7 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       
       maxConnections: 1
       params: {}
-      debug: true # todo: false
+      debug: false # todo: false
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
       classes: {

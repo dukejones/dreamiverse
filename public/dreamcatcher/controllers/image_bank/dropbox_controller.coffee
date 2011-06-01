@@ -1,6 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
 
   model: Dreamcatcher.Models.Image  
+  
   getView: (url, data, type) ->
     type = 'dropbox' if not type?
     return @view "//dreamcatcher/views/image_bank/#{type}/#{url}.ejs", data

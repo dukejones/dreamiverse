@@ -1,7 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
 
-  imageModel: Dreamcatcher.Models.Image
-  ibModel: Dreamcatcher.Models.ImageBank
+  model: Dreamcatcher.Models.Image
   
   getView: (url, data) ->
     return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
@@ -14,7 +13,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @uploader.manager = this
     @selector.manager = this
     @meta.manager = this
-    
     @uploader.setDefaultUploadParams()
       
   close: (showSearch) ->
@@ -66,7 +64,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     @displayMetaData {}
     $('#imagelist li').each (i, el) =>
       imageId = $(element).data 'id'
-      @imageModel.get imageId, {}, (imageMeta) =>
+      @model.get imageId, {}, (imageMeta) =>
         $(el).data 'image', imageMeta
       $(el).show()
       
@@ -81,9 +79,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
       imageId = $(el).data 'id'
       imageMeta = @getMetaToSave $(el)
       if $(el).is ":visible"
-        @imageModel.update imageId, {image: imageMeta}, @closeOnAllSaved()
+        @model.update imageId, {image: imageMeta}, @closeOnAllSaved()
       else
-        @imageModel.disable imageId, {}, @closeOnAllSaved()
+        @model.disable imageId, {}, @closeOnAllSaved()
         
   getImageElement: (imageId) ->
     return $("#imagelist li[data-id=#{imageId}]")

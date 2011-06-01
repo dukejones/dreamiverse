@@ -1,14 +1,14 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
 
-  ibModel: Dreamcatcher.Models.ImageBank
+  model: Dreamcatcher.Models.Image
 
   init: ->
     @initLists()
   
   initLists: ->
-    for type in @ibModel.types
+    for type in @model.types
       $("#type select").append "<option data-categories='#{JSON.stringify type.categories}'>#{type.name}</option>"
-    for genre in @ibModel.genres
+    for genre in @model.genres
       $("#genre select").append "<option>#{genre}</option>"
 
   #- gets the type, category & genre meta (for new uploaded images)
@@ -35,7 +35,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
       imageMeta.user = 'phong'
       imageMeta.type = imageMeta.section
 
-      for attr in @ibModel.attributes
+      for attr in @model.attributes
         if not commonMeta[attr]?
           commonMeta[attr] = imageMeta[attr]
         else if commonMeta[attr] isnt imageMeta[attr]
@@ -44,7 +44,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
 
   #- display's the meta data for a particular image object
   displayImageMeta: (imageMeta) ->
-    for attribute in @ibModel.attributes
+    for attribute in @model.attributes
       @displayAttribute attribute, imageMeta[attribute] 
 
   #- checks if an attribute is of type "text"
