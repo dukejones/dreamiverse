@@ -13,8 +13,8 @@ class BooksController < ApplicationController
       user_id: current_user.id
     }))
     respond_to do |format|
-      format.html { 'created' }
-      format.json { render :json => { :book => book } }
+      format.html { render :text => "new book has been created" }
+      format.json  { render json: {type: 'ok', message: "new book has been created"} }
     end
   end
   
@@ -22,8 +22,8 @@ class BooksController < ApplicationController
     book = Book.find(params[:id])
     respond_to do |format|
       if book.update_attributes(params[:book])
-        format.html { render :text => 'Book was successfully updated.' }
-        format.json  { render json: {type: 'ok', message: 'Book was successfully updated.'} }
+        format.html { render :text => 'book has been updated' }
+        format.json  { render json: {type: 'ok', message: 'book has been updated'} }
       else
         format.html { render :action => "edit" }
         format.json  { render :json => { type: 'error', errors: book.errors, status: :unprocessable_entity } }

@@ -4,7 +4,7 @@
   - if (book && book.cover_image_id)
     - coverUrl = Image.find(book.cover_image_id).url('252x252')
     - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
-  - title = (book && book.title) ? book.title : 'Title of Book Goes Here'
+  - title = book.title if book && book.title
 
   / CLOSED BOOK
   .closed.hidden
@@ -21,7 +21,7 @@
     .edit edit
     
     .title 
-      = book ? book.title : 'Title of Book Goes Here'
+      = title ? title : 'Untitled Book'
     / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
 
     .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
@@ -39,7 +39,10 @@
     .control-panel
 
       .settings-basic
-        %input.titleInput{type: 'text', value: book ? book.title : 'Title of Book Goes Here'}
+        - if title
+          %input.titleInput{type: 'text', value: title}
+        - else
+          %input.titleInput{type: 'text', placeholder: 'title of book'}
         
         .color
           color
