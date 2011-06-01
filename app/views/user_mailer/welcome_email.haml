@@ -5,49 +5,84 @@
 
   %body
 
-    %table{width: "639", border: "0", cellspacing: "0", cellpadding: "0", style: "margin: auto"}
+    / DECLARE VISITED LINK STYLING HERE
+    %style{type: "text/css"}
+      a{text-decoration: none}
+      a:hover{text-decoration: underline}
+      a:visited{color: #6383a5}
+
+
+    %table{width: "639", border: "0", cellspacing: "0", cellpadding: "0", style: "border-top-left-radius: 20px; -moz-border-radius-topleft: 20px; -webkit-border-radius-topleft: 20px; border-top-right-radius: 20px; -moz-border-radius-topright: 20px; -webkit-border-radius-topright: 20px; border-bottom-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-radius-bottomright: 20px; border-bottom-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-radius-bottomleft: 20px; margin-top: 20px; margin-left: auto; margin-right: auto; box-shadow: 0 0 20px black; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; "}
       %tr
-        %td{height: "100", valign: "bottom"}
-          %img{src: "http://dreamcatcher.net/images/logos/emailHeader.jpg", width: "639", height: "92", alt: " ", style: "border-bottom: 8px solid #0b3f6f"}
+        %td{height: "92", valign: "bottom", background: "http://localhost:3000/images/email/emailHeader.jpg", style: "border-bottom: 8px solid #0b3f6f; border-radius: 20px 20px 0 0; -moz-border-radius: 20px 20px 0 0; -webkit-border-radius: 20px 20px 0 0; "}
 
       %tr
         %td{bgcolor: "#e6ebf0", style: "color: #0b3f6f; padding: 10px 29px; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px;"}
 
           %h1{style: "color: #0b3f6f; font-size: 28px; font-weight: normal; margin: 0;"}
             welcome to Dreamcatcher, 
-            %a{href: "http://dreamcatcher.net/#{@user.username}", style: "color: #0B3F6F; font-weight: normal; text-decoration: none;"}= @user.username
+            %a{href: "http://dreamcatcher.net/#{@user.username}", style: "color: #0B3F6F; font-weight: normal;"}= @user.username
+
+          %p{style: "color: #6383a5; font-size: 19px"}
+            discover a deeper part of yourself<br>
+            explore your subconscious mind<br>
+            share your creative journey with the world
 
           %br
+          %h2{style: "color: #0b3f6f; font-size: 24px; font-weight: normal; margin: 0px"} Life is a dream...
+
+          %ul{style: "font-size: 19px;"}
+
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
+              explore your <b style="color: #0b3f6f;">dreams</b> with other dreamers
+
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/vision-24-hover.png')"}
+              share your <b style="color: #0b3f6f;">vision</b> with the world
+
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/experience-24-hover.png')"}
+              chart your peak <b style="color: #0b3f6f;">experiences</b>
+
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/article-24-hover.png')"}
+              compose <b style="color: #0b3f6f;">articles</b> to share with your network
+
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/journal-24-hover.png')"}
+              use as your multi-media diary and <b style="color: #0b3f6f;">journal</b>
+
+
+
           %h2{style: "color: #0b3f6f; font-size: 24px; font-weight: normal; margin: 0px"} using Dreamcatcher
 
           %ul{style: "font-size: 19px;"}
 
-            %li{style: "color:#0b3f6f; list-style: none; margin: 0 0 15px 15px"}
-              %a{href: "http://dreamcatcher.net/entries/new", target: "_blank", style: "text-decoration: none;"}
-                %img{src: "http://dreamcatcher.net/images/icons/dream-24-hover.png", width: "24", height: "24", alt: " ", style: "border: 0px; margin: 0px 6px -6px -32px;"}
-                improve your dream recall by logging last night's dream ›
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
+              %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
+                improve your dream recall and <b style="color: #0b3f6f;">log last night's dream ›</b>
 
-            %li{style: "color:#0b3f6f; list-style: none; margin: 0 0 15px 15px"}
-              %a{href: "http://dreamcatcher.net/stream", target: "_blank", style: "color: #0b3f6f; text-decoration: none;"}
-                %img{src: "http://dreamcatcher.net/images/icons/stream-24-hover.png", width: "24", height: "24", alt: " ", style: "border: 0px; margin: 0px 6px -6px -32px;"}
-                find other dreamers and build networks in the Dream Stream ›
-
-
-            %li{style: "color:#0b3f6f; list-style: none; margin: 0 0 15px 15px"}
-              %a{href: "http://dreamcatcher.net/today", target: "_blank", style: "color: #0b3f6f; text-decoration: none;"}
-                %img{src: "http://dreamcatcher.net/images/icons/quasm-24.png", width: "24", height: "24", alt: " ", style: "border: 0px; margin: 0px 6px -6px -32px"}
-                check out what's trending at Today in Dreams ›
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
+              %a{href: "http://dreamcatcher.net/stream", target: "_blank"}
+                build networks,
+                %img{src: "http://dreamcatcher.net/images/icons/friend-24-follow.png",  width: "24", height: "24", border: "0", alt: "friends and followers", style: "border: 0px; margin-bottom: -6px; margin-right: 3px; margin-left: 3px"}
+                find other dreamers in the <b style="color: #0b3f6f;">Dream Stream ›</b>
 
 
-          %br
-          %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "display: block; postiion: relative; bottom: -54px; z-index: 2; color: #fff; font-size: 28px; margin: -48px"}
-            http://dreamcatcher.net/
-            = @user.username
+            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
+              %a{href: "http://dreamcatcher.net/today", target: "_blank"}
+                check out what's trending at <b style="color: #0b3f6f;">Today in Dreams ›</b>
 
 
       %tr
-        %td
-          %img{src: "http://dreamcatcher.net/images/logos/emailFooter.jpg", width: "639", height: "44", alt: " ", style: "border-top:8px solid #0b3f6f; z-index: -1"}
+        %td{bgcolor: "#e6ebf0", style: "padding: 8px"}
+
+          %table{width: "100%", background: "http://localhost:3000/images/email/post-bar.png"}
+            %tr
+              %td{height: "52", style: "padding-left: 20px"}
+                %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #0b3f6f; font-size: 28px; text-shadow: #fff 0 1px 1px; text-decoration: none;"}
+                  http://dreamcatcher.net/#{@user.username}
+              %td{width: "100", style: "padding-right: 8px"}
+                %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
+                  %img{src: "http://localhost:3000/images/email/post-button.png",  width: "100", height: "37", border: "0", alt: "friends and followers", style: "border: 0px;"}
+
+
 
 
 
