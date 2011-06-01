@@ -1,0 +1,103 @@
+// SEARCH OPTIONS & RESULTS
+
+// SEARCH OPTIONS
+#searchOptions
+  margin: 0 0 20px
+
+
+  .filters
+    +left
+    +round(12)
+    margin: 8px 0 0 8px
+    padding: 8px
+    width: 216px
+    +gradient(#505050, rgba(39,39,39,0.1))
+
+    h2
+      +font(18)
+      margin: 0 0 8px
+      padding: 0
+      color: #d1d3d4
+      text-transform: uppercase
+
+  .filter
+    +clear
+    height: 32px
+    margin: 0 0 4px
+
+    label
+      +right
+      margin: 0 12px 0 0
+      padding: 0
+      line-height: 30px
+      color: #a7a9ac
+      text-align: right
+
+    input
+      +right
+      +round(8)
+      +font(12)
+      padding: 0 8px
+      width: 132px
+      height: 30px
+      +input-dark(large)
+
+
+  .categories
+    +right
+    +round(12)
+    margin: 8px 8px 0 0
+    padding: 8px
+    width: 398px
+    +gradient(#505050, rgba(39,39,39,0.1))
+
+    h2
+      +font(18)
+      margin: 0 0 8px
+      padding: 0
+      color: #d1d3d4
+      text-transform: uppercase
+
+    .category
+      +left
+      +pointer
+      +center
+      +font(18)
+      +round(8)
+      margin: 0 4px 4px
+      width: 188px
+      height: 28px
+      line-height: 28px
+      +flat-dark
+      border: 1px solid #444
+      &:hover, &.selected
+        color: #414042
+        border: 1px solid #e6e7e8
+        +gradient(#8c8c8c, #fff)
+
+
+// SEARCH RESULTS
+#searchResults
+  margin: 0 0 20px
+  padding: 0
+  border: 1px solid #333
+  +flat-dark
+
+  ul
+    list-style: none
+    margin: 0
+    padding: 0 0 3px
+
+  li
+    +left
+    margin: 3px 0 0 3px
+    padding: 0
+    width: 128px
+    height: 128px
+    border: 1px solid transparent
+    background-repeat: no-repeat
+    &:hover
+      border: 1px solid #ddd
+
+
+

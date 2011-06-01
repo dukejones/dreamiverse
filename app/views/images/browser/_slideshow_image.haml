@@ -1,0 +1,49 @@
+
+/ IMAGE
+.imageContainer
+
+  .image_data
+
+    %table.image
+      %tr
+        %td
+          %img{src: '/images/bedsheets/today-in-dreams-med.jpg'}
+
+
+    / TAGGING
+    .tagging
+
+      .tagInputWrap
+        .tagInput
+          %input.newTag
+          .tagAdd
+            %span +
+            save
+        .tagInputRight
+
+      #tag-list.tag-list.ui-sortable
+
+        .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
+          .header.trigger
+            .tag-name
+          .close
+
+    / INFO
+    .info
+      .name
+        name:
+        %span Artist Name
+      .author
+        author:
+        %span Author Name
+      .year
+        year:
+        %span 1912
+
+  / IMAGE REFLECT
+  .imageReflect
+
+    %table.image
+      %tr
+        %td
+          %img{src: '/images/bedsheets/today-in-dreams-med.jpg'}

@@ -1,8 +1,0 @@
-<div id="searchResults">
-  <ul>
-    <% for(var i = 0; i < images.length ; i++){ %>
-      <li data-id="<%= images[i].id %>" data-image='<%= JSON.stringify(images[i]) %>' style='background: url(/images/uploads/<%= images[i].id %>-thumb.<%= images[i].format %>)'>
-    <% } %>
-    <div class="clear"></div>
-  </ul>
-</div>

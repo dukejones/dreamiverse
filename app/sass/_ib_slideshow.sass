@@ -1,0 +1,457 @@
+.light, .dark
+
+  // BACKDROP
+  #slideshow-back
+    +absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: 2000
+    +transparent-dark(100)
+
+
+    // SLIDESHOW
+    #slideshow
+      +relative
+      margin: 0 auto
+      width: 1280px
+      height: 100%
+      overflow: hidden
+
+      &:hover .close
+        +block
+
+      .close
+        +hidden
+        +pointer
+        +absolute
+        +alpha(30)
+        top: 20px
+        right: 80px
+        width: 24px
+        height: 24px
+        z-index: 2002
+        background: url(/images/icons/x-24-white.png) no-repeat center center transparent
+        &:hover
+          +alpha(50)
+
+
+
+
+
+      // LEFT & RIGHT GRADIENTS
+      .gradient-left, .gradient-right
+        +block
+        +absolute
+        +pointer
+        +user-select
+        top: 0
+        width: 280px
+        height: 820px
+        z-index: 2000
+
+        &:hover .arrow
+          +block
+
+        .arrow
+          +absolute
+          +font(200)
+          +center
+          +bold
+          width: 180px
+          top: 240px
+          color: #fff
+          color: rgba(250,250,250,0.5)
+
+        .text
+          +font(18)
+          font-weight: normal
+          margin: -40px 0 0
+
+      .gradient-left
+        left: 0
+        background:     rgba(0,0,0,1.0)
+        background:     -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)), color-stop(65%,rgba(0,0,0,0.8)))
+        background:     -moz-linear-gradient(left, rgba(0,0,0,1.0), rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.0))
+        background:     -o-linear-gradient(left, rgba(0,0,0,1.0), rgba(0,0,0,0.8) 65%, rgba(0,0,0,0.0))
+
+        .arrow
+          left: 0
+
+      .gradient-right
+        right: 0
+        background:     rgba(0,0,0,1.0)
+        background:     -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,0.0)), to(rgba(0,0,0,1.0)), color-stop(65%,rgba(0,0,0,0.8)))
+        background:     -moz-linear-gradient(left, rgba(0,0,0,0.0), rgba(0,0,0,0.8) 65%, rgba(0,0,0,1.0))
+        background:     -o-linear-gradient(left, rgba(0,0,0,0.0), rgba(0,0,0,0.8) 65%, rgba(0,0,0,1.0))
+
+        .arrow
+          right: 0
+
+      #gallery
+        +absolute
+        top: 0
+        left: 280px
+        width: auto
+        height: 640px
+
+
+      // IMAGE
+      .imageContainer
+        +relative
+        +left
+        width: 720px
+        height: 100%
+        margin: 0 100px 0 0
+
+        .image_data
+          +absolute
+          +overflow
+          top: 0
+          left: 0
+          width: 720px
+          height: 640px
+
+          .image
+            width: 100%
+            height: 100%
+            border: none
+            tr
+              td
+                padding: 0
+                vertical-align: bottom
+                text-align: center
+
+                // temporary, until resize
+                img
+                  max-height: 640px
+
+
+          // TAGGING & INFO
+          .tagging, .info
+            +hidden
+            +absolute
+            bottom: 4px
+            left: 0
+            width: 696px
+            padding: 12px
+            background: rgba(0,0,0,0.7)
+
+
+          // TAGGING
+          .tagging
+            height: 80px
+
+            // (taken almost directly from new_entry)
+            .tagInputWrap
+              height: 40px
+              margin: 0 16px
+              background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left center transparent
+              img
+                +left
+                margin: 0
+              .tagInput
+                +left
+                height: 40px
+                margin: 0 0 0 26px
+                background: url(/images/slices/inputContent-Dark-40.png) repeat-x 0 0 transparent
+                input
+                  +left
+                  +font(18)
+                  +transparent
+                  +outline
+                  color: #ddd
+                  width: 500px
+                  height: 32px
+                  margin: 4px 0
+                  border: 0
+              .tagAdd
+                +round(4)
+                +center
+                +right
+                +bold
+                width: 62px
+                height: 28px
+                line-height: 30px
+                margin: 5px 0
+                color: #ddd
+                +button-dark
+                +shine-dark-alpha(13)
+                span
+                  color: #009933
+              .tagInputRight
+                +left
+                width: 14px
+                height: 40px
+                background: url(/images/slices/inputRight-Dark-40.png) no-repeat right center transparent
+
+          // INFO
+          .info
+            height: 28px
+
+            .name, .author, .year
+              +left
+              +round(16)
+              +font(14)
+              height: 28px
+              line-height: 28px
+              margin: 0 8px 0 0
+              padding: 0 14px
+              text-transform: uppercase
+              color: #777
+              background: #1c1c1c
+            span
+              text-transform: lowercase
+              margin: 0 0 0 8px
+              color: #ddd
+
+
+        // IMAGE REFLECT
+        .imageReflect
+          +absolute
+          +overflow
+          +alpha(20)
+          top: 660px
+          left: 0
+          width: 720px
+          height: 80px
+
+          .image
+            width: 100%
+            height: 100%
+            border: none
+            tr
+              td
+                padding: 0
+                vertical-align: top
+                text-align: center
+
+                img
+                  +flip(Y)
+
+                  // temporary, until resize
+                  max-height: 640px
+
+
+
+
+      // BOTTOM GRADIENT
+      .gradient-bottom
+        +absolute
+        top: 660px
+        left: 0
+        width: 100%
+        height: 80px
+        +gradient(rgba(0,0,0,0.0), rgba(0,0,0,1.0))
+
+
+
+
+      // CONTROLS
+      .controls
+        +absolute
+        top: 660px
+        left: 280px
+        padding: 12px
+        width: 696px
+        height: 56px
+
+        &:hover
+          .info, .tagging, .download, .comment
+            +alpha(100)
+
+        .info, .tagging, .download
+          +pointer
+          +user-select
+          +left
+          +alpha(40)
+          width: 24px
+          height: 24px
+          margin: 0 12px 0 0
+
+        .info
+          background: url(/images/icons/info-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/info-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/info-24-active.png) no-repeat center center transparent
+
+        .tagging
+          background: url(/images/icons/tag-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/tag-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/tag-24-active.png) no-repeat center center transparent
+
+        .download
+          background: url(/images/icons/download-24.png) no-repeat center center transparent
+          &:hover
+            background: url(/images/icons/download-24-hover.png) no-repeat center center transparent
+          &:active
+            background: url(/images/icons/download-24-active.png) no-repeat center center transparent
+
+
+
+
+      // COMMENT COUNT - (taken almost directly from thumb_1d.sass)
+
+      // NEW COMMENT
+      .comment.new .count, .comment.new:hover .count
+        +alpha(100)
+        background:     #e35f5f
+        background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
+        background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
+        background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
+        color: #fff
+
+
+
+
+      .comment
+        +pointer
+        +user-select
+        +alpha(40)
+        +right
+        +block
+        height: 26px
+        color: #ddd
+        border: 1px solid transparent
+        .count .img
+          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+
+        &:hover .count .img
+          background: url(/images/icons/comment-16-hover.png) no-repeat center center transparent
+        &:active .count .img
+          background: url(/images/icons/comment-16-active.png) no-repeat center center transparent
+
+        &:hover, &.expanded .comment
+          +transparent
+          color: #ddd
+          .arrow
+            background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+        &.expanded .arrow
+          background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+
+        &.new
+          +block
+
+        .img
+          +left
+          width: 16px
+          height: 16px
+
+        span
+          +left
+          padding: 0 6px 0 10px
+          line-height: 24px
+
+        .count
+          +left
+          +round(12)
+          +center
+          +bold
+          +font(14)
+          margin: 4px
+          height: 16px
+          line-height: 17px
+          padding: 2px 10px
+          color: #222
+          +transparent-light(80)
+
+          span
+            padding: 0
+            line-height: 17px
+            margin-left: 6px
+            &.empty
+              margin: 0px
+
+        .arrow
+          +left
+          width: 16px
+          height: 26px
+          margin-left: 8px
+          background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+        &.ipad
+          +block
+          .text
+            +block
+      &.expanded .details
+        .comment, .text
+          display: block
+        .arrow
+          background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+
+
+  // .commentsPanel
+  // SEE _COMMENT.SASS
+  // SEE _COMMENT_SLIDESHOW.SASS (slideshow specific)
+
+
+
+
+
+// COLORS - COMMENTS
+.light, .dark
+  #slideshow
+    .comment.new .count, .comment.new:hover .count
+      +alpha(100)
+      background:     #e35f5f
+      background:     -webkit-gradient(linear, center top, center bottom, from(#e35f5f), to(#b32f2f)) !important
+      background:     -moz-linear-gradient(#e35f5f, #b32f2f) !important
+      background:     -o-linear-gradient(#e35f5f, #b32f2f) !important
+      color: #fff
+
+
+.light #slideshow
+  .count
+    +transparent-dark(80)
+    color: #ddd
+
+  &.expanded .comment:hover
+    border: 1px solid #999
+
+  .comment:hover, &.expanded .comment
+    +gradient(#c5c5c5, #a4a4a4)
+    .arrow
+      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+
+
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
+
+    background: #ccc
+    background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#f3f3f3))
+    background: -moz-linear-gradient(top, #ccc, #f3f3f3)
+
+
+.dark #slideshow
+  .count
+    +transparent-light(80)
+    color: #222
+
+  &.expanded .comment:hover
+    border: 1px solid #575757
+
+  .comment:hover, &.expanded .comment
+    +gradient(#575757, #323232)
+    color: #fff
+    .arrow
+      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+  &.expanded .details .arrow
+    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+
+  .commentsPanel
+    box-shadow:         0 0 0 #fff
+    -moz-box-shadow:    0 0 0 #fff
+    -webkit-box-shadow: 0 0 0 #fff
+
+    background: #000
+    background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#111))
+    background: -moz-linear-gradient(top, #000, #111)
+
+

@@ -75,23 +75,26 @@ class ImagesController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { render(partial:"images/browser/album") }
+      format.html { render(partial:"images/browser/albums") }
       format.json { render :json => @albums }
     end
   end
-
-
-  def manage
+  
+  def slideshow
     respond_to do |format|
-      format.html # manage.html.erb
-      # format.json  { render :json => @images }
+      format.html { render(partial:"images/browser/slideshow") }
+    end
+  end
+  
+  def manager
+    respond_to do |format|
+      format.html { render(partial:"images/browser/manage") }
     end
   end
 
-
   def show
     @image = Image.find(params[:id])
-
+  
     respond_to do |format|
       format.html # show.html.erb
       format.json  { render :json => @image }
@@ -100,26 +103,33 @@ class ImagesController < ApplicationController
 
 
   def create
-    @image = Image.new(params[:image].merge({
+    image_data = {
       incoming_filename: params[:qqfile],
       uploaded_by: current_user
-    }))
+    }
+    
+    if params.has_key?(:id)
+      @image = Image.find(params[:id])
+      @image.update_attributes(image_data.merge(enabled: true))
+    
+    elsif params.has_key?(:image)
+      @image = Image.new(params[:image].merge(image_data))
+      
+    end
 
-    if !@image.save
-      respond_to do |format|
-        format.html { render :action => "new", :alert => "Could not upload the file." }
-        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
-      end
-    else
+    if @image.save
       @image.write(request.body.read)
+      
       respond_to do |format|
         format.html { render :text => 'Image was successfully created.' }
         format.json  { 
-          #thumb_size = '120x120'
-          thumb_size = :thumb
-          # @image.resize(thumb_size)
-          render :json => {image_url: @image.url(thumb_size), image: @image}.to_json, :status => :created
+          render :json => {image_url: @image.url(:thumb), image: @image}.to_json, :status => :created
         }
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => "new", :alert => "Could not upload the file." }
+        format.json  { render :json => @image.errors, :status => :unprocessable_entity }
       end
     end
   rescue => e
@@ -143,6 +153,37 @@ class ImagesController < ApplicationController
       respond_to do |format|
         format.html { render :action => "edit" }
         format.json  { render :json => { type: 'error', errors: @image.errors, status: :unprocessable_entity } }
+      end
+    end
+  end
+  
+  def updatefield    
+    image_finder = Image.enabled
+    image_finder = image_finder.where(section: params[:section]) if params.has_key?(:section)
+    image_finder = image_finder.where(category: params[:category]) if params.has_key?(:category)
+    image_finder = image_finder.where(artist: params[:artist]) if params.has_key?(:artist)
+    image_finder = image_finder.where(album: params[:album]) if params.has_key?(:album)
+    
+    errors = ''
+    image_finder.each do |image|
+      if params.has_key?(:new_album)
+        if not image.update_attribute(:album, params[:new_album]) 
+          errors += image.errors
+        end
+      elsif params.has_key?(:new_artist)
+        if not image.update_attribute(:artist, params[:new_artist])
+          errors += image.errors
+        end
+      end
+    end
+    
+    respond_to do |format|
+      if errors == ''
+        format.html { render :text => 'Images were successfully updated.' }
+        format.json  { render json: {type: 'ok', message: 'Images were successfully updated.'} }
+      else
+        format.html { render :action => "edit" }
+        format.json  { render :json => { type: 'error', errors: errors, status: :unprocessable_entity } }
       end
     end
   end
