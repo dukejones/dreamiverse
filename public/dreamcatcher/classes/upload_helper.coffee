@@ -9,10 +9,10 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
       classes: {
-        button: 'browse'
-        drop: 'dropArea'
+        button: if attr.button? then attr.button else 'browse'
+        drop: if attr.drop? then attr.drop else 'dropArea'
         dropActive: 'active'
-        list: 'imagelist'
+        list: if attr.list then attr.list else 'imagelist'
         progress: 'progress'
         file: 'file'
         spinner: 'spinner'
@@ -22,10 +22,10 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
         fail: 'fail'
       }
       
-      element: $(attr.elementId).get(0)
+      element: attr.element.get(0)
       action: attr.url
-      template: $(attr.elementId).html()
-      fileTemplate: attr.fileTemplate
+      template: attr.element.html()
+      fileTemplate: $.View('//dreamcatcher/views/image_upload.ejs')
       
       onSubmit: submit
       onComplete: complete

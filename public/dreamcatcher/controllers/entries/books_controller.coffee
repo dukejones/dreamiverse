@@ -17,6 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     bookEl = el.closest '.book'
     $('.open', bookEl).children().hide()
     $(".#{page}-panel", bookEl).show()
+    @createUploader bookEl if page is 'cover'
     
   closeBook: (el) ->
     bookEl = el.closest '.book'
@@ -90,10 +91,45 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
         title: $('.titleInput', el).val()
         user_id: $('.userInfo').data 'id'
         color: el.attr('class').replace('book','').trim()
+        cover_image_id: el.data('image') if el.data('image')
         #viewing_level: $('.viewing-menu',bookEl).val()
         #commenting_level: $('.commenting-menu',bookEl).val()
       }
     }
+    
+  createUploader: (el) ->
+    @uploader = Dreamcatcher.Classes.UploadHelper.createUploader {
+      element: $('.cover-panel', el)
+      url: '/images.json'
+      button: 'add'
+      drop: 'dropbox'
+      list: 'dropbox-field-shine'
+    }, @callback('uploadSubmit'), @callback('uploadComplete', el), @callback('uploadCancel'), @callback('uploadProgress')
+    
+  uploadSubmit: ->
+    @uploader.setParams {
+      image: {
+        section: 'book covers'
+        category: 'all'
+        genre: ''
+      }
+    }
+  uploadComplete: (el, id, fileName, result) ->
+    if result.image?
+      image = result.image
+      el.data 'image', image.id
+      $('.cover', el).css 'background-image', "url(/images/uploads/#{image.id}-252x252.#{image.format})"
+      $('.dropbox-field-shine', el).css 'background', "transparent url(/images/uploads/#{image.id}-252x252.#{image.format}) no-repeat center center"
+
+  uploadCancel: ->
+    log 'cancelled'
+  
+  uploadProgress: ->
+    log 'progress'
+    
+  #todo: add mask to flat (styles)
+  
+  
     
     
 

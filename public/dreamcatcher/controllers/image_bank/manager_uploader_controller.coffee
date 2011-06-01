@@ -7,9 +7,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
     @filesUploaded = 0
     
     @fileUploader = Dreamcatcher.Classes.UploadHelper.createUploader {
-      elementId: '#uploader'
+      element: $('#uploader')
       url: '/images.json'
-      fileTemplate: @getView 'image_upload'
     }, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
   
   setDefaultUploadParams: ->
