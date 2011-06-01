@@ -32,6 +32,10 @@ class BooksController < ApplicationController
   end
   
   def show
+    @entries = Entry.where(book_id: params[:id]) if params[:id]
+    respond_to do |format|
+      format.html { render(partial:"books/show") }
+    end
   end
   
   def new

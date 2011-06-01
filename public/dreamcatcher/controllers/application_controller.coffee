@@ -9,7 +9,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @comment = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.Entries $("#entryField") if $("#entryField").exists()
+    @entries = new Dreamcatcher.Controllers.Entries $("#entryField .matrix") if $("#entryField .matrix").exists()
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
@@ -63,11 +63,23 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         @userModel.update {'user[default_entry_type]': value}
       when 'sharing'
         @userModel.update {'user[default_sharing_level]': value}
-        
+  ###
+  '#new-post-menu a click': (el) ->
+    log el.data 'value'
+    switch el.data 'value'
+      when 'entry'
+        @entries.newEntry()
+      when 'book'
+        @entries.newBook(
+  ###
   '#new-post change': (el) ->
-    switch el.val()
+    value = el.val()
+    switch value
+      when 'entry'
+        @entries.newEntry()
       when 'book'
         @entries.newBook()
+        
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
