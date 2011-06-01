@@ -1,0 +1,8 @@
+/ TODO: also need new and edit entry to use this.
+- level = 69 if not level
+%option.everyone{ value: Entry::Sharing[:everyone], selected: Entry::Sharing[:everyone] == level } everyone
+%option.list{ value: Entry::Sharing[:friends], selected: Entry::Sharing[:friends] == level } friends
+%option.followers{ value: Entry::Sharing[:followers], selected: Entry::Sharing[:followers] == level } followers
+/ %option.list.trigger.showHide{value: 'list'           } list of users
+%option.anon{ value: Entry::Sharing[:anonymous], selected: Entry::Sharing[:anonymous] == level } anonymous
+%option.private{ value: Entry::Sharing[:private], selected: Entry::Sharing[:private] == level } private
