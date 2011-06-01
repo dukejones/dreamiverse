@@ -147,7 +147,17 @@ class AdminController < ApplicationController
           user = User.find_by_username(data['slices'][num])
           val = user.nil? ? '' : user.entries.count
           data = append_pie_chart_data(data,num,label,val)
-        end           
+        end  
+
+    elsif title == 'top 32 users by starlight'
+        data['slices'] = User.includes(:entries).order("sum(entries.uniques) DESC").group('users.id').limit(32).map(&:username)
+        (0..data['slices'].count).each do |num|        
+          label = data['slices'][num]
+          user = User.find_by_username(data['slices'][num])
+          val = user.nil? ? '' : user.starlight
+          data = append_pie_chart_data(data,num,label,val)
+        end        
+                 
     end
 
     if request.xhr?
