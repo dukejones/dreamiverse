@@ -35,29 +35,38 @@ steal.plugins(
 		  'classes/cookie_helper',
 		  'classes/upload_helper',
 			'models/settings',
-			'models/appearance',
-			'models/bedsheet',
-			'models/comment',
-			'models/image',
-			'models/image_bank',
 	    'models/user',
 			'controllers/application_controller',
 			'controllers/meta_menu_controller',
-			//'controllers/settings_controller',
-			//'controllers/appearance_controller',
-			//'controllers/bedsheets_controller',
-			//'controllers/comments_controller',
-			'controllers/entries_controller',
-			'controllers/image_bank/image_bank_controller',
-			'controllers/image_bank/browser_controller',
-			'controllers/image_bank/slideshow_controller',
-			'controllers/image_bank/dropbox_controller',
-			'controllers/image_bank/search_options_controller',
-			'controllers/image_bank/manager_controller',
-			'controllers/image_bank/manager_uploader_controller',
-			'controllers/image_bank/manager_selector_controller',
-			'controllers/image_bank/manager_meta_controller'
+			'controllers/settings_controller'
 		);
+		if (window.location.href.split('/').pop() == 'images') {
+		  steal.coffee(
+  		  'models/image',
+  			'models/image_bank',
+  			'controllers/image_bank/image_bank_controller',
+  			'controllers/image_bank/browser_controller',
+  			'controllers/image_bank/slideshow_controller',
+  			'controllers/image_bank/dropbox_controller',
+  			'controllers/image_bank/search_options_controller',
+  			'controllers/image_bank/manager_controller',
+  			'controllers/image_bank/manager_uploader_controller',
+  			'controllers/image_bank/manager_selector_controller',
+  			'controllers/image_bank/manager_meta_controller'
+	    );
+	  } else {
+	    steal.coffee(
+  	    'models/appearance',
+  			'models/bedsheet',
+  			'models/comment',
+  			'models/stream',
+  	    'controllers/appearance_controller',
+  			'controllers/bedsheets_controller',
+  			'controllers/comments_controller',
+  			'controllers/entries_controller',
+  			'controllers/stream_controller'
+  		);
+	  }
 	})
 	.views(
 	);
