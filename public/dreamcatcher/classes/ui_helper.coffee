@@ -35,9 +35,9 @@ $.Class 'Dreamcatcher.Classes.UiHelper',{
       
     if offset
       $.extend options, {
-        menuWidth: '174px'
+        menuWidth: '164px'
         positionOptions: {
-          offset: '-136px -35px'
+          offset: '-126px -35px'
         }
       }
     
