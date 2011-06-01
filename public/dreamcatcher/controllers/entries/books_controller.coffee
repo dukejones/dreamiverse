@@ -11,7 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     
     $('#entryField .book').each (i, el) =>
       @closeBook $(el)
-      $(el).droppable {  
+      $(el).droppable {         
         drop: (ev, ui) =>
           entryMeta = {
             entry: {
@@ -22,6 +22,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
           @entryModel.update entryId, entryMeta, =>
             notice 'successful moved'
             ui.draggable.remove()
+
+        over: (ev, ui) =>
+          bookEl = $(ev.target)
+          @openBook bookEl
+          $('.entryDrop-active', bookEl).show()
       }
       
     $('#entryField .thumb-2d').each (i, el) =>
