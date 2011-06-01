@@ -1,13 +1,16 @@
 / BOOKS
 .book{:'data-id' => book ? book.id : 'new', class: (book && book.color) ? book.color : 'blue'}
-  - coverUrl = (book && book.cover_image_id) ? Image.find(book.cover_image_id).url('252x252') : '/images/avatars/default-avatar-full.jpg'
+  - backgroundStyle = ''
+  - if (book && book.cover_image_id)
+    - coverUrl = Image.find(book.cover_image_id).url('252x252')
+    - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
   - title = (book && book.title) ? book.title : 'Title of Book Goes Here'
   / CLOSED BOOK
   .closed.hidden
 
     .entryDrop
 
-    .cover{style: "background: url(#{coverUrl}) no-repeat center center"}
+    .cover{style: backgroundStyle}
 
     .flat{class: (book && book.cover_image_id) ? 'mask' : ''} 
 
@@ -109,7 +112,7 @@
         %span cover image
 
       .dropbox-field
-        .dropbox-field-shine{:'style' => "background-image: url(#{coverUrl})"}
+        .dropbox-field-shine{style: backgroundStyle}
 
           .add click or drag images here to upload
 
