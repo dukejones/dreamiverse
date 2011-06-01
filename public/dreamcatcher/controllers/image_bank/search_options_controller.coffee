@@ -1,13 +1,12 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
 
-  imageModel: Dreamcatcher.Models.Image
-  ibModel: Dreamcatcher.Models.ImageBank
+  model: Dreamcatcher.Models.Image
   
   getView: (url, data) ->
     return @view "//dreamcatcher/views/image_bank/search_options/#{url}.ejs", data
   
   init: ->
-    $('#searchOptions .type').html @getView('types', {types: @ibModel.types})
+    $('#searchOptions .type').html @getView('types', {types: @model.types})
 
   show: (params) ->
     $("#searchOptions .type li").removeClass 'selected'

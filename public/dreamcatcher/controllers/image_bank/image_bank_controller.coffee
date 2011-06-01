@@ -1,7 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank',
 
-  ibModel: Dreamcatcher.Models.ImageBank
-  imageModel: Dreamcatcher.Models.Image
+  model: Dreamcatcher.Models.Image
   
   init: ->
     @showWidget 'browser'
@@ -70,7 +69,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       
   lazyLoad: (selector, path, widget, images, params) ->
     if not $(selector).exists()
-      @ibModel.getHtml path, {}, (html) =>
+      @model.getHtml path, {}, (html) =>
         $('body').append html
         @showWidget widget, images, params, true
     else
@@ -97,7 +96,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
   
   'image.updated subscribe': (called, imageId) ->
     imageId = parseInt imageId
-    @imageModel.get imageId, {}, @callback('updateImageMeta', imageId)
+    @model.get imageId, {}, @callback('updateImageMeta', imageId)
     
   ###
   'image.started subscribe': (called) ->

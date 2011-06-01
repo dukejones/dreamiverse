@@ -1,8 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
 
-  ibModel: Dreamcatcher.Models.ImageBank
-  imageModel: Dreamcatcher.Models.Image
-  
+  model: Dreamcatcher.Models.Image
   
   #- gets a specific browser view
   getView: (url, data) ->
@@ -53,14 +51,14 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
         
   #- show the browse view
   showBrowse: ->
-    @displayView 'browse', @getView 'types', { types: @ibModel.types }
+    @displayView 'browse', @getView 'types', { types: @model.types }
     
   showArtists: ->
-    @ibModel.getHtml 'artists', {category: @category, section: @section}, (html) =>
+    @model.artists {category: @category, section: @section}, (html) =>
       @displayView 'artistList', html
       
   showAlbums: ->
-     @ibModel.getHtml 'albums', {artist: @artist, section: @section, category: @category}, (html) =>
+     @model.albums {artist: @artist, section: @section, category: @category}, (html) =>
         @displayView 'albumList', html
         @parent.registerDroppable $('#albumList .images td')
         @parent.registerDraggable $("#albumList .images .img"), false
@@ -208,7 +206,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     else if field is 'album'
       params.album = el.closest('tr').data 'album'
       params.new_album = el.val()
-    @imageModel.updateField params, @callback('refreshView'), @callback('rollbackUpdateField', el)
+    @model.updatefield params, @callback('refreshView'), @callback('rollbackUpdateField', el)
     
   rollbackUpdateField: (el) ->
     field = el.closest('table').attr('id').replace('List','')
@@ -222,7 +220,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
 
   '.searchField .search click': (el) ->
     options = @parent.getSearchOptions()
-    @imageModel.search options, (images) =>
+    @model.search options, (images) =>
       @displayView 'searchResults', @getView('search_results',{ images : images } )
       @parent.registerDraggable $("#searchResults ul li")
   

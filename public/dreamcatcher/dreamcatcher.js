@@ -36,21 +36,22 @@ steal.plugins(
     
   )              // 3rd party script's (like jQueryUI), in resources folder
   .then(function() {
-    imageBank = window.location.href.split('/').pop() == 'images';
+    page = window.location.href.split('/').pop();
+    imageBank = (page == 'images');
+    stream = (page == "stream")
     //TODO: StealJS fix: don't forget to contribute!
     steal.coffee(
       'classes/cookie_helper',
       'classes/upload_helper',
       'classes/ui_helper',
       'models/settings',
-      'models/image_bank',
+      'models/image',
       'controllers/application_controller',
       'controllers/meta_menu_controller',
       'controllers/settings_controller'
     );
     if (imageBank) {
       steal.coffee(
-        'models/image',
         'controllers/image_bank/image_bank_controller',
 			  'controllers/image_bank/browser_controller',
 			  'controllers/image_bank/slideshow_controller',
@@ -61,20 +62,23 @@ steal.plugins(
 			  'controllers/image_bank/manager_selector_controller',
 			  'controllers/image_bank/manager_meta_controller'
 			);
+    } else if (stream) {
+      steal.coffee(
+        'models/stream',
+        'controllers/stream_controller',
+        'models/comment',
+        'controllers/comments_controller'
+      );
     } else {
       steal.coffee(
         'models/appearance',
         'models/bedsheet',
-        'models/comment',
         'models/user',
         'models/entry',
         'models/user',
-        'models/stream',
-        //'models/book',
+        'models/book',
         'controllers/appearance_controller',
         'controllers/bedsheets_controller',
-        //'controllers/comments_controller',
-        'controllers/stream_controller',
         'controllers/entries/entries_controller',
         'controllers/entries/new_controller',
         'controllers/entries/books_controller'

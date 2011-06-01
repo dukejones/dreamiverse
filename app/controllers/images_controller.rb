@@ -60,6 +60,7 @@ class ImagesController < ApplicationController
   def albums
     image_finder = Image.enabled
     image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(category: params[:category]) if params[:category]
     image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
 
     if params.has_key?(:artist)

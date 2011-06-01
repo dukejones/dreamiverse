@@ -16,6 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#entryField .thumb-2d').draggable {
         containment: 'document'
         zIndex: 100
+        revert: true
       }
       
       $('#entryField .book').each (i, el) =>
