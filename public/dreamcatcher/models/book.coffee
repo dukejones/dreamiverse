@@ -39,6 +39,16 @@ $.Model 'Dreamcatcher.Models.Book', {
       error: error
       data: attrs
     }
+    
+  show: (id, attrs, success, error ) ->
+    $.ajax {
+      url: "/books/#{id}"
+      type: 'get'
+      dataType: 'html'
+      success: @callback success
+      error: error
+      data: attrs
+    }
 
 },
 {}

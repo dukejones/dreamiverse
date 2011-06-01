@@ -9,6 +9,16 @@ $.Model 'Dreamcatcher.Models.Entry', {
       success: @callback success
       error: error
     }
+    
+  update: ( entryId, params, success, error ) ->
+    $.ajax {
+      url: "/entries/#{entryId}"
+      type: 'put'
+      dataType: 'json'
+      data: params
+      success: @callback success
+      error: error
+    }
 
 },
 {}

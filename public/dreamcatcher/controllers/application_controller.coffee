@@ -63,11 +63,23 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         @userModel.update {'user[default_entry_type]': value}
       when 'sharing'
         @userModel.update {'user[default_sharing_level]': value}
-        
+  ###
+  '#new-post-menu a click': (el) ->
+    log el.data 'value'
+    switch el.data 'value'
+      when 'entry'
+        @entries.newEntry()
+      when 'book'
+        @entries.newBook(
+  ###
   '#new-post change': (el) ->
-    switch el.val()
+    value = el.val()
+    switch value
+      when 'entry'
+        @entries.newEntry()
       when 'book'
         @entries.newBook()
+        
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

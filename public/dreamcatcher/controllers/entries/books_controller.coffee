@@ -1,12 +1,43 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.Books',
 
   model: Dreamcatcher.Models.Book
+  entryModel: Dreamcatcher.Models.Entry
   
   init: ->
     @model.get {}, (html) =>
+      #todo: refactor
       $('#entryField .matrix').prepend html
       $('.book').each (i, el) =>
         @closeBook $(el)
+        
+      $('#entryField .thumb-2d').each (i, el) =>
+        $('a.link',el).remove()
+
+      $('#entryField .thumb-2d').draggable {
+        containment: 'document'
+        zIndex: 100
+      }
+      
+      $('#entryField .book').each (i, el) =>
+        $(el).droppable {  
+          drop: (ev, ui) =>
+            entryMeta = {
+              entry: {
+                book_id: $(ev.target).data 'id'
+              }
+            }
+            entryId = ui.draggable.data 'id'
+            @entryModel.update entryId, entryMeta, =>
+              notice 'successful moved'
+              ui.draggable.remove()
+        }
+        
+
+  showBookById: (bookId) ->
+    @model.show bookId, {}, (html) =>
+      $('#entryField').children().hide()
+      $('#entryField').append html
+      $('#contextPanel').prepend $("#entryField .book[data-id=#{bookId}]").clone()
       
   newBook: ->
     @model.new {}, (html) =>
@@ -45,6 +76,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     bookEl = el.closest '.book'
     $('.more-settings', bookEl).toggle()
     
+  '.book .flat click': (el) ->
+    bookEl = el.closest '.book'
+    bookId = bookEl.data 'id'
+    $.history.load "b=#{bookId}"
     
   '.book .control-panel .color click': (el) ->
     @showPage el, 'color'

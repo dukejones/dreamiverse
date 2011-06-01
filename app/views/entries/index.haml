@@ -26,13 +26,6 @@
     .pageSize{:'data-id' => @filters[:page_size]}
 
 
-    / BOOKS (for testing)
-    /= render :partial => '/books/book'
-
-    / BOOKS (for testing)
-    /= render :partial => '/books/book'
-
-
     - @entries.each do |entry|
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}

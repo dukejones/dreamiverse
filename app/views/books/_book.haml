@@ -1,22 +1,23 @@
 / BOOKS
 .book{:'data-id' => book ? book.id : 'new', class: (book && book.color) ? book.color : 'blue'}
-
+  - coverUrl = (book && book.cover_image_id) ? Image.find(book.cover_image_id).url('252x252') : '/images/avatars/default-avatar-full.jpg'
+  - title = (book && book.title) ? book.title : 'Title of Book Goes Here'
   / CLOSED BOOK
   .closed.hidden
 
     .entryDrop
 
-    - imageUrl = (book && book.cover_image_id) ? Image.find(book.cover_image_id).url('252x252') : '/images/avatars/default-avatar-full.jpg'
-    .cover{style: "background: url(#{imageUrl}) no-repeat center center"}
+    .cover{style: "background: url(#{coverUrl}) no-repeat center center"}
 
-    .flat
+    .flat{class: (book && book.cover_image_id) ? 'mask' : ''} 
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
 
     .edit edit
-    .title 
-      = book ? book.title : 'Title of Book Goes Here'
+    .title
+      = title
+      
     / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
 
     .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
@@ -34,7 +35,7 @@
     .control-panel
 
       .settings-basic
-        %input.titleInput{type: 'text', value: book ? book.title : 'Title of Book Goes Here'}
+        %input.titleInput{type: 'text', value: title}
         
         .color
           color
@@ -108,7 +109,7 @@
         %span cover image
 
       .dropbox-field
-        .dropbox-field-shine
+        .dropbox-field-shine{:'style' => "background-image: url(#{coverUrl})"}
 
           .add click or drag images here to upload
 

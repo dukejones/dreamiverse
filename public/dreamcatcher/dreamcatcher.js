@@ -76,7 +76,6 @@ steal.plugins(
         'controllers/comments_controller',
         'controllers/stream_controller',
         'controllers/entries/entries_controller',
-        'controllers/entries/index_controller',
         'controllers/entries/new_controller',
         'controllers/entries/books_controller'
       );
