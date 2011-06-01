@@ -187,9 +187,8 @@
       background: url(/images/icons/settings-24-hover.png) no-repeat center center transparent
 
     .arrow
-      +relative
-      +left
-      margin: 6px 0 0
+      +absolute
+      bottom: 4px
       width: 30px
       .up, .down
         +absolute
@@ -204,8 +203,9 @@
       +confirm(16)
       +font(18)
       +bold
-      +right
-      margin: 6px 0 0
+      +absolute
+      right: 8px
+      bottom: 4px
       padding: 0 16px
 
     .more-settings
