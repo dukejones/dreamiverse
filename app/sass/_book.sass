@@ -9,7 +9,6 @@
   width: 200px
   height: 266px
   margin: 0 10px 10px 0
-  z-index: 81
 
   .closed, .mask, .flat
     +absolute
@@ -21,7 +20,6 @@
 
   // CLOSED BOOK
   .closed
-    z-index: 2
 
     .entryDrop
       +absolute
@@ -100,7 +98,7 @@
     width: 335px
     height: 334px
     color: #444
-    z-index: 2
+    z-index: 82
 
     .entryDrop-active
       +hidden
@@ -124,7 +122,7 @@
       width: 148px
       height: 224px
 
-    .titleInput, .header, .color, .coverImage, .access, .settings, .more, .confirm
+    .titleInput, .header, .color, .coverImage, .access, .settings, .more, .confirm, .remove, .delete
       +round(4)
       height: 30px
       line-height: 30px
@@ -212,6 +210,17 @@
       width: 148px
       margin: 8px 0 0
 
+      .remove, .delete
+        +shine-light(15)
+        +delete(15)
+        +center
+        padding: 0 0 0 8px
+
+      .label
+        +font(12)
+        +bold
+        margin: 0 0 8px 8px
+        line-height: 12px
 
     // COLOR PANEL ONLY
     .color-panel
@@ -340,7 +349,7 @@
         height: 172px
         background: #000
         background: rgba(0,0,0,0.5)
-        z-index: 5
+        z-index: 83
 
     // ACCESS PANEL ONLY
     .access-panel
