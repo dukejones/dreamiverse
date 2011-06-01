@@ -400,6 +400,7 @@
 // NEW ENTRY BOOKS HTML MENU & BUTTON
 #newEntry
   #books-list-button
+    +user-select
     width: 32px !important
 
   #books-list, #books-list-button
@@ -416,29 +417,31 @@
 // NEW ENTRY BOOKS MENU DROPDOWN
 .light, .dark
   #books-list-menu
+    +user-select
     left: 259px !important
     width: 208px !important
 
     li
+      +user-select
       +round(7)
       +overflow
       +font(16)
       margin: 0
       height: 32px
-      // // Fallback color
-      // background-color:     #245a91
-      // // Fallback image
-      // background-image:     url(/images/books/spine-blue-64.png)
-      // background-repeat: repeat-x
-      // background-position: left
-      // background-size: 100% 100%
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat: repeat-x
+      background-position: left
+      background-size: 100% 100%
       background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
-      // background:     -webkit-gradient(linear, left top, right top, from(rgba(0,0,0,1.0)), to(rgba(0,0,0,0.0)), color-stop(65%,rgba(0,0,0,0.8)))
       background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       border: 1px solid #00305c !important
 
       a
+        +user-select
         color: #ddd
         line-height: 1.1em !important
         &:hover
