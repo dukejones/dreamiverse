@@ -26,111 +26,132 @@ class AdminController < ApplicationController
     end          
   end
 
-  def charts
-    scope = params[:scope] || 'none'
+  def load_line_chart
+    title = params[:title] || 'none'
     data = {}
+    data['title'] = title
     
-    if scope == 'last_7_days_in_users'
+    if title == 'last 7 days in users'
+      data['lines'] = ['users']
+      data['max_range'] = 5 # account for zeros
+            
       (0..6).each do |num|
+        vals = []
         label = Time.now - num.days
         label = label.strftime('%a')
-        val = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_chart_data(data,num,label,val)
+        vals[0] = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        data = append_chart_data(data,num,label,vals)
       end
       
-    elsif scope == 'last_8_weeks_in_users'
+    elsif title == 'last 8 weeks in users'
+      data['lines'] = ['users']
+      data['max_range'] = 5 # account for zeros      
+      
       (0..7).each do |num|
+        vals = []
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
-        val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_chart_data(data,num,label,val)
+        vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
+        data = append_chart_data(data,num,label,vals)
       end
       
-    elsif scope == 'last_6_months_in_users'
+    elsif title == 'last 6 months in users'
+      data['lines'] = ['users']
+      data['max_range'] = 5 # account for zeros
+          
       (0..5).each do |num|
+        vals = []
         label = Time.now - num.months
         label = label.strftime('%b %d')
-        val = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_chart_data(data,num,label,val)        
+        vals[0] = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+        data = append_chart_data(data,num,label,vals)        
       end
 
-    elsif scope == 'last_7_days_in_entries'
+    elsif title == 'last 7 days in entries'
+      data['lines'] = ['entries']
+      data['max_range'] = 5 # account for zeros
+      
       (0..6).each do |num|
+        vals = []
         label = Time.now - num.days
         label = label.strftime('%a')
-        val = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_chart_data(data,num,label,val)
+        vals[0] = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        data = append_chart_data(data,num,label,vals)
       end
 
-    elsif scope == 'last_8_weeks_in_entries'
+    elsif title == 'last 8 weeks in entries'
+      data['lines'] = ['entries']
+      data['max_range'] = 5 # account for zeros
+      
       (0..7).each do |num|
+        vals = []
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
-        val = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_chart_data(data,num,label,val)
+        vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
+        data = append_chart_data(data,num,label,vals)
       end
+         
+    elsif title == 'last 6 months in entries'
+      data['lines'] = ['entries']
+      data['max_range'] = 5 # account for zeros
       
-    elsif scope == 'last_6_months_in_entries_old'
-      (0..5).each do |num|
-        label = Time.now - num.months
-        label = label.strftime('%b %d')
-        val = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_chart_data(data,num,label,val)        
-      end      
-
-    elsif scope == 'last_6_months_in_entries'
-      (0..5).each do |num|
+      (0..5).each do |num|   
         vals = [] 
         label = Time.now - num.months
         label = label.strftime('%b %d')
+              
         vals[0] = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
         data = append_chart_data(data,num,label,vals)        
       end
 
-    elsif scope == 'last_6_months_in_entry_types'
-      max_range = 5
-      entry_types = ['dream','vision','experience','article','journal']
-      data['columns'] = entry_types
-      data['num_cols'] = (entry_types.size - 1) # account for zero's
-      data['max_range'] = max_range
+    elsif title == 'last 6 months in entry types' 
+      data['lines'] = ['dream','vision','experience','article','journal']
+      data['max_range'] = 5 # account for zeros
       
-      (0..max_range).each do |num|
+      (0..data['max_range']).each do |num|
         vals = [] 
         label = Time.now - num.months
         label = label.strftime('%b %d')
-        entry_types.each_with_index do |type,i|
-          vals[i] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
-        end
         
-        data = append_chart_data2(data,num,label,vals)
-    
-      end 
-           
-  end
-     
+        data['lines'].each_with_index do |type,i|
+          vals[i] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
+        end       
+        data = append_chart_data(data,num,label,vals)    
+      end  
+    end  
+  
     if request.xhr?
       render :json => {type: 'ok', data: data}
-    end          
-  end
-  
-  # params = data hash, index, value, label, value
-  def append_chart_data(data,i,label,val)
-    data[i] = ({
-      label: {pos: i, bar: i, val: label},
-      data: {pos: i, bar: (i + 1), val: val}
-    })     
-    data['total'] = i
-    data
+    end            
   end
 
 
+  def load_pie_chart
+    title = params[:title] || 'none'
+    data = {}
+    data['title'] = title
+    
+    if title == 'seed codes'
+      data['lines'] = ['users']
+      data['max_range'] = 5 # account for zeros
+            
+      (0..6).each do |num|
+        vals = []
+        label = Time.now - num.days
+        label = label.strftime('%a')
+        vals[0] = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
+        data = append_chart_data(data,num,label,vals)
+      end
+    end
+  end
+
+     
   # params = data hash, index, value, label, value
-  def append_chart_data2(data,i,label,vals)
+  def append_chart_data(data,i,label,vals)
     data[i] = ({
       label: label,
       data: {vals: vals}
     })     
-    data['total'] = i
     data
   end
   
@@ -142,7 +163,6 @@ class AdminController < ApplicationController
     @entries_created_last_month = Entry.where(:created_at.gt => 1.month.ago).count
     user_list
   end
-
 
   
   protected

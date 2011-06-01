@@ -1,69 +1,63 @@
 $.Controller 'Dreamcatcher.Controllers.Charts',
-  
-  init: ->
-    # dlog 'running charts controllers scope: ' + scope
-    @scope = 'test'
-    
+
   drawLineChart: (json) ->
-
     data = new google.visualization.DataTable()
-    data.addColumn('string', 'Date')
-    data.addColumn('number', 'New Users')
-    data.addColumn('number', 'New Users2')
-    
-    numKeys = parseInt json.data['total']
-    log 'numKeys: ' + numKeys
+  
+    numLines = json.data['lines'].length - 1 # account for zero's
+    maxRange = parseInt json.data['max_range']  
+    range_keys = [0..maxRange] # for date ranges
+    line_keys = [0..numLines]  # for data lines
 
-    keys = [numKeys..0]
-    data.addRows(keys.length) 
-    for num in keys
-      num = parseInt num 
-      # log 'label: ' + json.data[num]['label']['val']
-      # log 'data: ' + json.data[num]['data']['val']
-
-      data.setValue(numKeys-num, 0, json.data[num]['label']['val'])
-      data.setValue(numKeys-num, 1, json.data[num]['data']['val'])
-
-    chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 600, height: 240, title: "test #{@scope}"})
-
-  drawMultiLineChart: (json) ->
-    data = new google.visualization.DataTable()
-    
     # Add columns
     data.addColumn('string', 'Date')
-    for column in json.data['columns']
-      data.addColumn('number', column)
-  
-    numCols = parseInt json.data['num_cols']
-    maxRange = parseInt json.data['max_range']  
-    ranges = [0..maxRange]
-    cols = [0..numCols]
-   
-    log "numCols: #{numCols} maxRange: #{maxRange} cols: #{cols}"
-
-    data.addRows(ranges.length)
-     
-    for range in ranges # for each date range    
-      for col in cols # add label + values for each column         
-        data.setValue(maxRange-range, 0, json.data[range]['label']) if col is 0 
-        data.setValue(maxRange-range, col+1, json.data[range]['data']['vals'][col])
-
+    for line in json.data['lines']
+      data.addColumn('number', line)
+    
+    # Add rows
+    data.addRows(range_keys.length)
+    
+    # Add labels & values
+    for range_key in range_keys # for each date range    
+      for line_key in line_keys # add labels & values for each column/line  
+        # setValue paramaters are: range_position, line_num, value)      
+        data.setValue(maxRange-range_key, 0, json.data[range_key]['label']) if line_key is 0 
+        data.setValue(maxRange-range_key, line_key+1, json.data[range_key]['data']['vals'][line_key])
+        
+    # Generate chart
     chart = new google.visualization.LineChart(document.getElementById('chart-div'))
-    chart.draw(data, {width: 600, height: 240, title: "test #{@scope}"})
+    chart.draw(data, {width: 600, height: 240, title: "#{json.data['title']}"})
 
+    log "numLines: #{numLines} maxRange: #{maxRange} line_keys: #{line_keys}"
 
-  getChartData: (scope) ->
-    @scope = scope
-    log 'running getChartData ' + @scope
-    # Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart  
-    if scope is 'last_6_months_in_entry_types' # or if scope is 'last_6_months_in_entries' 
-      Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawMultiLineChart
-    else 
-      Dreamcatcher.Models.Admin.loadChart @getChartOptions(scope), @drawLineChart
+  drawPieChart: (json) ->
+    dataTable = new google.visualization.DataTable()
+    dataTable.addRows(4)
 
+    dataTable.addColumn('number')
+    dataTable.setValue(0, 0, 32.78688524590164)
+    dataTable.setValue(1, 0, 50.81967213114754)
+    dataTable.setValue(2, 0, 100)
+    dataTable.setValue(3, 0, 42.622950819672134)
+    vis = new google.visualization.ImageChart(document.getElementById('chart-div'))
+    options = {
+      chs: '300x150',
+      cht: 'p3',
+      chco: '7777CC|76A4FB|3399CC|3366CC',
+      chd: 's:Uf9a',
+      chdl: 'January|February|March|April',
+      chl: '|||'
+    }
+    vis.draw(dataTable, options)
+    
+
+  getLineChartData: (title) ->
+    
+    Dreamcatcher.Models.Chart.loadLineChart @getChartOptions(title), @drawLineChart  
+
+  getPieChartData: (title) ->
+    Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @drawPieChart
     
   # Generate model options   
-  getChartOptions: (scope) ->
-    scope: scope
+  getChartOptions: (title) ->
+    title: title
      
