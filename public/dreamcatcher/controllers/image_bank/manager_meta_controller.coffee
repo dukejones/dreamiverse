@@ -30,7 +30,6 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
     commonMeta = {}
     $('#imagelist li.selected').each (i, el) =>
       imageMeta = $(el).data 'image' 
-
       #- special cases, such as date and user (i.e. needs to be converted from raw json)
       imageMeta.date = $.format.date imageMeta['created_at'].replace('T',' '), 'MMM dd, yyyy'
       imageMeta.user = 'phong'
@@ -44,9 +43,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerMeta',
     @displayImageMeta commonMeta
 
   #- display's the meta data for a particular image object
-  displayImageMeta: (image) ->
+  displayImageMeta: (imageMeta) ->
     for attribute in @ibModel.attributes
-      @displayAttribute attribute, image[attribute] 
+      @displayAttribute attribute, imageMeta[attribute] 
 
   #- checks if an attribute is of type "text"
   isText: (attr) ->

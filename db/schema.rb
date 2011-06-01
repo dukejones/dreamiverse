@@ -166,9 +166,9 @@ ActiveRecord::Schema.define(:version => 20110531232327) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-    t.integer "intensity"
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
+    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|

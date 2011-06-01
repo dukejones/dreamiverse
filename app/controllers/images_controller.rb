@@ -5,7 +5,7 @@ class ImagesController < ApplicationController
   def index
     image_scope = Image.enabled
     image_scope = image_scope.where(section: params[:section]) if params.has_key?(:section)
-    
+    image_scope = image_scope.where(category: params[:category]) if params.has_key?(:category)
     image_scope = image_scope.where(genre: params[:genre]) if params.has_key?(:genre)
     
     if params.has_key?(:artist) && params.has_key?(:album)

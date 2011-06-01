@@ -1,5 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.Appearance',
 
+  ibModel: Dreamcatcher.Models.ImageBank
+
   init: ->
     @newEntry = $("#entry_view_preference_attributes_theme").exists()
     @entryId = $('#showEntry').data 'id' if $('#showEntry').exists()
@@ -10,9 +12,8 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
     if not @bedsheets?
       @bedsheets = new Dreamcatcher.Controllers.Bedsheets $('#bedsheetScroller'),{parent: this}
       @bedsheets.loadGenre @defaultGenre
-      
-      # if @defaultGenre?
-      #  $('#genreSelector').val(@defaultGenre)
+      $('#genreSelector').append "<option>#{category}</option>" for category in @ibModel.types[0].categories
+      $('#genreSelector').val @defaultGenre if @defaultGenre?
       
 
   updateAppearanceModel: (data) ->
@@ -32,3 +33,6 @@ $.Controller 'Dreamcatcher.Controllers.Appearance',
     theme = el.attr 'id'
     $('#body').removeClass('light dark').addClass theme
     @updateAppearanceModel {theme: theme}
+    
+  '#genreSelector change': (el) ->
+    @bedsheets.loadGenre el.val()

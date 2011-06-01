@@ -51,7 +51,6 @@ class Image < ActiveRecord::Base
     results = results.where(title: params[:title]) if params[:title]
     results = results.where(year: params[:year]) if params[:year]
     results = results.where(tags: params[:tags]) if params[:tags]
-    # categories - replaces genre
     results = results.where(category: params[:categories].split(',')) if params[:categories]
     results
   end
