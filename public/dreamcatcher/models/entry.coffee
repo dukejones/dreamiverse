@@ -1,8 +1,18 @@
 $.Model 'Dreamcatcher.Models.Entry', {
   
-  getHtml: ( params, success, error ) ->
+  show: ( params, success, error ) ->
     $.ajax {
       url: '/entries/show_entry'
+      type: 'get'
+      dataType: 'html'
+      data: params
+      success: @callback success
+      error: error
+    }
+    
+  new: ( params, success, error ) ->
+    $.ajax {
+      url: '/entries/new_entry'
       type: 'get'
       dataType: 'html'
       data: params

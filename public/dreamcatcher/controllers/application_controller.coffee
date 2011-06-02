@@ -11,12 +11,15 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
   initUi: (parentEl) ->
-    parentEl = $('body') if not parent?
+    parentEl = $('body') if not parentEl?
     $('.tooltip', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    #todo -live query
+      
+  'dom subscribe': (called, data) ->
+    log data.element
+    @initUi data.element
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
   # NOTE: this is not currently working, see fit_to_content.coffee
@@ -65,22 +68,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
 
-  ###
-  '#new-post-menu a click': (el) ->
-    log el.data 'value'
-    switch el.data 'value'
-      when 'entry'
-        @entries.newEntry()
-      when 'book'
-        @entries.newBook(
-  ###
   '#new-post change': (el) ->
-    value = el.val()
-    switch value
-      when 'entry'
-        @entries.newEntry()
-      when 'book'
-        @entries.newBook()
+    @historyAdd {
+      controller: el.val()
+      action: 'new'
+    }
+    $("options",el).removeAttr 'selected'
         
 
 $(document).ready ->

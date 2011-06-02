@@ -179,6 +179,7 @@ class Entry < ActiveRecord::Base
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
+    entry_scope = entry_scope.where(book_id: nil) #added by carl
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
