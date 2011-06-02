@@ -23,6 +23,8 @@ class EntriesController < ApplicationController
     session[:filters] = @filters
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
+    
+    @books = Book.where(user_id: @user.id)
 
     @entries = entry_list(:home)
     @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count

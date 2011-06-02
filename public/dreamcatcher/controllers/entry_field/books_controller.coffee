@@ -4,12 +4,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   entryModel: Dreamcatcher.Models.Entry
   
   init: ->
-    @model.get {}, @callback('populate')
+    @initDragAndDrop()
     
-    
-  populate: (html) ->
-    $('#entryField .matrix').prepend html
-    
+  initDragAndDrop: ->
     $('#entryField .book').each (i, el) =>
       @closeBook $(el)
       $(el).droppable {         
@@ -29,25 +26,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
           @openBook bookEl
           $('.entryDrop-active', bookEl).show()
       }
-      
-    $('#entryField .thumb-2d').each (i, el) =>
-      $('a.link',el).remove()
 
     $('#entryField .thumb-2d').draggable {
       containment: 'document'
       zIndex: 100
       revert: true
     }
-    
 
   getBookElement: (el) ->
     return el.closest '.book'
-
-          
-  newBook: ->
-    @model.new {}, (html) =>
-      $('#entryField .matrix').prepend html
-      @openBook $('#entryField .matrix .book:first')
       
   #book close book
           
@@ -75,20 +62,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     
   '.closeClick, .confirm click': (el) ->
     @closeBook @getBookElement el
-            
-        
-  # go into book
-  
-  showBookById: (bookId) ->
-    @model.show bookId, {}, (html) =>
-      $('#entryField').children().hide()
-      $('#entryField').append html
-      $('#contextPanel').prepend $("#entryField .book[data-id=#{bookId}]").clone()
-    
-  '.book .flat click': (el) ->
-    bookEl = el.closest '.book'
-    bookId = bookEl.data 'id'
-    $.history.load "b=#{bookId}"
         
         
   # book control-panel
@@ -140,13 +113,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     @saveBook el, book
     
   '.titleInput blur': (el) ->
-    @saveBook el, { title: el.val() }
+    bookEl = @getBookElement el
+    title = el.val()
+    $('.title', bookEl).text title
+    @saveBook el, { title: title }
     
   '.titleInput keypress': (el, ev) ->
-    if ev.keyCode is 13 #enter
-      @saveBook el, { title: el.val() }
+    el.blur() if ev.keyCode is 13 #enter
       
-
   saveBook: (el, bookMeta) ->
     bookEl = @getBookElement el
     bookId = bookEl.data 'id'

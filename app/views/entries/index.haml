@@ -24,12 +24,13 @@
   .matrix
     .entryCount{:'data-id' => @entry_count}
     .pageSize{:'data-id' => @filters[:page_size]}
-
+    
+    - @books.each do |book|
+      = render :partial => 'books/book', :locals => {:book => book}
 
     - @entries.each do |entry|
       / DREAM THUMBS 2D
       = render :partial => 'thumb_2d', :locals => {:entry => entry}
-
 
 
     - if !@entries.empty? && @entry_count > @filters[:page_size]
