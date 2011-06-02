@@ -1,21 +1,27 @@
 $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   
-  models: Dreamcatcher.Models.Entry
+  entryModel: Dreamcatcher.Models.Entry
   bookModel: Dreamcatcher.Models.Book
   
+  
   'history.book.new subscribe': (called, data) ->
+    @newBook()
     
+  'history.entry.new subscribe': (called, data) ->
+    @newEntry()
     
   'history.entry.show subscribe': (called, data) ->
     @showEntryById data.id
     
   'history.book.show subscribe': (called, data) ->
-    @books.showBookById data.id
-  
+    @showBookById data.id
+    
+  'history subscribe': (called, data) ->
+    alert 'x'
+
   
   init: ->
-    alert 'x'
-    @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix')
+    @books = new Dreamcatcher.Controllers.EntryField.Books $('#entryField .matrix')
       
   closeEverythingOpen: ->
     @books.closeAllBooks()
@@ -53,22 +59,25 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
       @hideAllEntries()
       entryEl.show()
     else
-      @model.getHtml { id: entryId }, @callback('showEntryHtml')
+      @entryModel.show { id: entryId }, @callback('showEntryHtml')
 
   showEntryHtml: (html) ->
     @hideAllEntries()
     $('#entryField').append html
-    #@bindAjaxLinks '#entryField .entry:last'
     
-
 
   showBookById: (bookId) ->
-    @model.show bookId, {}, @callback('showBookHtml')
+    bookHtml = $("#entryField .book[data-id=#{bookId}]").clone().css 'z-index', 2000
+    if $('#contextPanel .book').exists()
+      $('#contextPanel .book').replaceWith bookHtml
+    else
+      $('#contextPanel').prepend bookHtml
+    #$('#contextPanel .avatar').hide()
+    @bookModel.show bookId, {}, @callback('showBookEntries')
     
-  showBookHtml: (html) ->
+  showBookEntries: (html) ->
     $('#entryField').children().hide()
     $('#entryField').append html
-    $('#contextPanel').prepend $("#entryField .book[data-id=#{bookId}]").clone()
     
   newBook: ->
     @bookModel.new {}, @callback('showBookThumbHtml')
@@ -76,7 +85,19 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   showBookThumbHtml: (html) ->
     $('#entryField .matrix').prepend html
     bookEl = $('#entryField .matrix .book:first')
-    @openBook bookEl
+    @books.openBook bookEl
+    @publish 'dom', {element: bookEl}
     
+  newEntry: ->
+    @entryModel.new {}, @callback('showNewEntry')
+
+  showNewEntry: (html) ->
+    $('#entryField').children().hide()
+    if $('#new_entry').exists()
+      $('#new_entry').replaceWith html
+    else
+      $('#entryField').prepend html
+    $('#new_entry').show()
+    @publish 'dom', {element: $('#new_entry')}
 }
 

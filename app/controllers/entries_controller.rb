@@ -27,6 +27,7 @@ class EntriesController < ApplicationController
     @books = Book.where(user_id: @user.id)
 
     @entries = entry_list(:home)
+    
     @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
@@ -85,7 +86,6 @@ class EntriesController < ApplicationController
     
     respond_to do |format|
       format.html { render(partial:"entries/show") }
-      format.json { render :json => @albums }
     end
   end
   
@@ -93,6 +93,16 @@ class EntriesController < ApplicationController
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
+  end
+  
+  def new_entry
+    #todo: refactor (see above)
+    @entry = Entry.new
+    @entry.type = current_user.default_entry_type || 'dream'
+    @entry_mode = 'new'
+    respond_to do |format|
+      format.html { render(partial:"entries/new") }
+    end
   end
   
   def edit

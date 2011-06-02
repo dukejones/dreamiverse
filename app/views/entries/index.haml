@@ -41,7 +41,7 @@
         - @pagesize
 
 
-    - if !@filters[:type] && (@user == current_user) && @entries.empty?
+    - if !@filters[:type] && (@user == current_user) && @entries.empty? && @books.empty?
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 

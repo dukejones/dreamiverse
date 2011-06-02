@@ -1,7 +1,7 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Books',
+$.Controller 'Dreamcatcher.Controllers.EntryField.Books',
 
-  model: Dreamcatcher.Models.Book
   entryModel: Dreamcatcher.Models.Entry
+  bookModel: Dreamcatcher.Models.Book
   
   init: ->
     @initDragAndDrop()
@@ -11,20 +11,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @closeBook $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
-          entryMeta = {
-            entry: {
-              book_id: $(ev.target).data 'id'
-            }
-          }
-          entryId = ui.draggable.data 'id'
-          @entryModel.update entryId, entryMeta, =>
-            notice 'successful moved'
-            ui.draggable.remove()
+          @addEntryToBook ui.draggable, $(ev.target)
 
         over: (ev, ui) =>
           bookEl = $(ev.target)
           @openBook bookEl
           $('.entryDrop-active', bookEl).show()
+          
+        out: (ev, ui) =>
+          log 'x'
+          bookEl = $(ev.target)
+
       }
 
     $('#entryField .thumb-2d').draggable {
@@ -32,7 +29,18 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       zIndex: 100
       revert: true
     }
-
+    
+  addEntryToBook: (entryEl, bookEl) ->
+    entryId = entryEl.data 'id'
+    bookId = bookEl.data 'id'
+    
+    entryMeta = { book_id: bookId }
+    entryEl.hide()
+    @entryModel.update entryId, { entry: entryMeta }
+    
+    @closeBook bookEl
+    $('.entryDrop-active', bookEl).hide()
+    
   getBookElement: (el) ->
     return el.closest '.book'
       
@@ -125,12 +133,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     bookEl = @getBookElement el
     bookId = bookEl.data 'id'
     if bookId is 'new'
-      @model.create { book: bookMeta }, (data) =>
+      @bookModel.create { book: bookMeta }, (data) =>
         if data.book?
           bookEl.data 'id', data.book.id
     else
       bookId = parseInt bookId
-      @model.update bookId, { book: bookMeta }
+      @bookModel.update bookId, { book: bookMeta }
       
   createUploader: (el) ->
     @uploader = Dreamcatcher.Classes.UploadHelper.createUploader {
