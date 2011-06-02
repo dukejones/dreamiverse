@@ -47,7 +47,14 @@
         .img
 
         %select#books-list.select-menu.dropdown
+          %option.label{value: 'Add to Book:'} Add to Book:
           = render :partial => "books/book_list"
+          %option.newBook{value: '+ new book'} + new book
+          
+
+        %input.newBook-input{type: 'text', value: '+ new book'} + new book
+
+        .close
 
 
       = f.submit :value => 'post', :'data-disable-with' => "posting       "
