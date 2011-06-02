@@ -174,10 +174,34 @@ class AdminController < ApplicationController
 
     if request.xhr?
       render :json => {type: 'ok', data: data}
-    end    
-    
+    end        
   end
 
+
+  def load_bedsheets
+    @data = {}
+    top_bedsheet_ids = ViewPreference.scoped.where(:image_id ^ nil).order("count(image_id) DESC").group(:image_id).limit(32).map(&:image_id)
+    
+    num = 0
+    nodes_html = ''
+    top_bedsheet_ids.each do |bedsheet_id|  
+
+      image = Image.find_by_id(bedsheet_id)
+      unless image.nil?
+        @data['id'] = image.id
+        @data['filename'] = image.original_filename
+        @data['user_count'] = ViewPreference.scoped.where({image_id: image.id} & {viewable_type: 'User'}).count
+        @data['entry_count'] = ViewPreference.scoped.where({image_id: image.id} & {viewable_type: 'Entry'}).count
+
+        nodes_html += render_to_string(partial: 'bedsheet_node', object: @data)
+      end
+      num += 1
+    end
+    
+    if request.xhr?
+      render :json => {type: 'ok', html: nodes_html}
+    end      
+  end
      
   # params = data hash, index, value, label, value
   def append_line_chart_data(data,i,label,vals)

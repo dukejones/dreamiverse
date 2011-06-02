@@ -106,33 +106,33 @@
 
 
     .bedsheets.panel
-      .header
+      .header#bedsheetsHeader
         .img
         %h1 bedsheets
         / .total= Entry.count
       .clear
 
-      .module
+      .module#bedsheet-nodes
 
 
 
 
-        / DOK - here's the bedsheet node for you, 
-        .bedsheet-node
-          .bedsheet{style: "background: url(/path/to/bedsheet/thumb.jpg) no-repeat center center transparent"}
-
-          / link to the hi-res version of the bedsheet
-          .url
-
-          / number of users with this bedsheet
-          .users
-            .total 268
-            users
-
-          / number of entries with this bedsheet
-          .entries
-            .total 1,280
-            entries
+        / / DOK - here's the bedsheet node for you, 
+        / .bedsheet-node
+        /   .bedsheet{style: "background: url(/path/to/bedsheet/thumb.jpg) no-repeat center center transparent"}
+        / 
+        /   / link to the hi-res version of the bedsheet
+        /   .url
+        / 
+        /   / number of users with this bedsheet
+        /   .users
+        /     .total 268
+        /     users
+        / 
+        /   / number of entries with this bedsheet
+        /   .entries
+        /     .total 1,280
+        /     entries
 
 
 
@@ -140,8 +140,3 @@
         .clear
 
 
-
-    
-    / - content_for :foot do
-    /   %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
-      

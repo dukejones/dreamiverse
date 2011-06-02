@@ -18,6 +18,7 @@ $.Model 'Dreamcatcher.Models.Chart',{
       dataType:'json'
       success: success
       error: error
-    }    
+    }  
+  
 },
 {}
