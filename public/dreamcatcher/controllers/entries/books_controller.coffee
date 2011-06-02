@@ -6,6 +6,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   init: ->
     @model.get {}, @callback('populate')
     
+  getBookElement: (el) ->
+    return el.closest '.book'
+    
   populate: (html) ->
     $('#entryField .matrix').prepend html
     
@@ -73,12 +76,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     $('.open', bookEl).show()
     $('.closed', bookEl).hide()
     
-    $('#bodyClick').show()
-    bookEl.css 'z-index', '1200' #todo: should be a style
+    $('.closeClick').show()
+    
+  '.closeClick click': (el) ->
+    @closeBook @getBookElement el
     
   changeBookColor: (el) ->
     color = el.attr 'class'
-    bookEl = el.closest '.book'
+
     bookEl.attr 'class', 'book'
     bookEl.addClass color
     bookEl.data 'color', color
