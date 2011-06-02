@@ -10,11 +10,12 @@
 
     = include_stylesheets :shared, :media => 'all'
     
-    = yield :head
+    = yield :headBefore
     - if Rails.env == 'development'
       %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
     - else 
       %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    = yield :head
 
     = include_javascripts :shared
         

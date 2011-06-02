@@ -120,16 +120,23 @@ class AdminController < ApplicationController
       end 
       
     elsif title == 'last 6 months in comments'
-      data['lines'] = ['comments']
-      data['max_range'] = 5 # account for zeros
-          
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.months
-        label = label.strftime('%b %d')
-        vals[0] = Comment.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_line_chart_data(data,num,label,vals)        
-      end      
+      opts = {}
+      opts['lines'] = ['comments']
+      opts['max_range'] = 5 # account for zeros
+      opts['span'] = 'months'
+      opts['model'] = 'Comment'
+      generate_graph_data(opts)
+      
+      # data['lines'] = ['comments']
+      # data['max_range'] = 5 # account for zeros
+      #     
+      # (0..data['max_range']).each do |num|
+      #   vals = []
+      #   label = Time.now - num.months
+      #   label = label.strftime('%b %d')
+      #   vals[0] = Comment.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+      #   data = append_line_chart_data(data,num,label,vals)        
+      # end      
        
     end  
   
@@ -138,6 +145,25 @@ class AdminController < ApplicationController
     end            
   end
 
+
+  def generate_graph_data(opts)
+    data = {}
+    data['lines'] = opts['lines']
+    data['max_range'] = opts['max_range']
+    model = opts['model'].capitalize
+    span = opts['span']
+
+    (0..data['max_range']).each do |num|
+      vals = []
+      label = Time.now - num.span
+      label = label.strftime('%b %d')
+      data['lines'].each_with_index do |type,i|
+        vals[i] = model.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
+      end
+      data = append_line_chart_data(data,num,label,vals)        
+    end    
+    return data
+  end
 
   def load_pie_chart 
     data = {}

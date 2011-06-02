@@ -54,19 +54,16 @@ steal.plugins(
   			'controllers/image_bank/manager_selector_controller',
   			'controllers/image_bank/manager_meta_controller'
 	    );
-    // } else if (window.location.href.split('/').pop() == 'admin') {
-    //     steal.coffee(
-    //      'resources/google.charts',
-    //      'models/admin',
-    //      'models/charts',
-    //      'controllers/admin_controller',
-    //      'controllers/charts_controller'
-    //     );  	  	    
+    } else if (window.location.href.split('/').pop() == 'admin') {
+        steal.coffee(
+         'resources/google.charts',
+         'models/admin',
+         'models/charts',
+         'controllers/admin_controller',
+         'controllers/charts_controller'
+        );      	    
 	  } else {
 	    steal.coffee(
-	      'resources/google.charts',
-  		  'models/admin',
-  		  'models/charts',
   	    'models/appearance',
   			'models/bedsheet',
   			'models/comment',
@@ -75,9 +72,7 @@ steal.plugins(
   			'controllers/bedsheets_controller',
   			'controllers/comments_controller',
   			'controllers/entries_controller',
-  			'controllers/stream_controller',
-  			'controllers/admin_controller',
-        'controllers/charts_controller'
+  			'controllers/stream_controller'
   		);
 	  }
 	})

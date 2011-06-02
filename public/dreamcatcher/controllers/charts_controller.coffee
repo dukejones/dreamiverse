@@ -31,6 +31,19 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       legendTextStyle: {color: 'black'},
       titleTextStyle: {color: 'black'}
     })
+    
+    
+  getOptions1: (title) ->
+    return {
+      title: title
+      width: 600
+      height: 300
+      cht: 'p3'
+      is3D: true
+      backgroundColor: 'black'
+      legendTextStyle: {color: 'white'}
+      titleTextStyle: {color: 'white'}
+    }
 
 
   drawPieChart: (json) ->
@@ -52,17 +65,10 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
      
     # Generate Chart
     chart = new google.visualization.PieChart(document.getElementById('chart-div'))
-    chart.draw(data, {
-      title: "#{json.data['title']}",
-      width: 600, height: 300, 
-      cht: 'p3', 
-      is3D: true,  
-      backgroundColor: 'black',
-      legendTextStyle: {color: 'white'},
-      titleTextStyle: {color: 'white'}
-    })
-    
-    
+    options = @getOptions1(json.data.title)
+    chart.draw(data, options)
+
+     
   getLineChartData: (title) ->               
     Dreamcatcher.Models.Chart.loadLineChart @getChartOptions(title), @drawLineChart  
 
