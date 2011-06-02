@@ -27,9 +27,9 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
     chart.draw(data, {
       title: "#{json.data['title']}",
       width: 600, height: 300, 
-      backgroundColor: 'black',
-      legendTextStyle: {color: 'white'},
-      titleTextStyle: {color: 'white'}
+      backgroundColor: 'white',
+      legendTextStyle: {color: 'black'},
+      titleTextStyle: {color: 'black'}
     })
 
 
