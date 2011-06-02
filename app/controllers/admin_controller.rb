@@ -240,6 +240,7 @@ class AdminController < ApplicationController
     @entries_created_last_week = Entry.where(:created_at.gt => 1.week.ago).count
     @entries_created_last_month = Entry.where(:created_at.gt => 1.month.ago).count
     @total_bedsheets = Image.scoped.where(section: 'Bedsheets').count
+    
     entry_totals = []
     User.all.each_with_index do |u,i|
       entry_totals[i] = u.entries.count
