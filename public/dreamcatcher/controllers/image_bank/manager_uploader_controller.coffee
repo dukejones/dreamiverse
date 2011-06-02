@@ -65,7 +65,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
       @replaceImageId = null
     
     percent = loaded / total * 100
-    progressEl = $('.progress-bar',uploadEl)
+    progressEl = $('.progress-bar', uploadEl)
     progressEl.animate {
       width: "#{percent}%"
     }, 'fast'

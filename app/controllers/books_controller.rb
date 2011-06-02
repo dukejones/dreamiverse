@@ -14,7 +14,7 @@ class BooksController < ApplicationController
     }))
     respond_to do |format|
       format.html { render :text => "new book has been created" }
-      format.json  { render json: {type: 'ok', message: "new book has been created"} }
+      format.json { render :json => { :book => book } }
     end
   end
   

@@ -1,10 +1,10 @@
 $.Class 'Dreamcatcher.Classes.UploadHelper', {  
 
   createUploader: (attr, submit, complete, cancel, progress) ->
-    return new qq.FileUploader {
+    fileUploader = new qq.FileUploader {
       
       maxConnections: 1
-      params: {}
+      params: if attr.params? then attr.params else {}
       debug: false # todo: false
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
@@ -29,9 +29,9 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       
       onSubmit: submit
       onComplete: complete
-      onCancel: cancel
-      onProgress: progress
     }
+    fileUploader.onProgress = progress if progress?
+    fileUploader.onCancel = cancel if cancel?
 
 }, {}
 
