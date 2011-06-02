@@ -35,7 +35,7 @@ class AdminController < ApplicationController
       data['lines'] = ['users']
       data['max_range'] = 5 # account for zeros
             
-      (0..6).each do |num|
+      (0..data['max_range']).each do |num|
         vals = []
         label = Time.now - num.days
         label = label.strftime('%a')
@@ -47,7 +47,7 @@ class AdminController < ApplicationController
       data['lines'] = ['users']
       data['max_range'] = 5 # account for zeros      
       
-      (0..7).each do |num|
+      (0..data['max_range']).each do |num|
         vals = []
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
@@ -59,7 +59,7 @@ class AdminController < ApplicationController
       data['lines'] = ['users']
       data['max_range'] = 5 # account for zeros
           
-      (0..5).each do |num|
+      (0..data['max_range']).each do |num|
         vals = []
         label = Time.now - num.months
         label = label.strftime('%b %d')
@@ -71,7 +71,7 @@ class AdminController < ApplicationController
       data['lines'] = ['entries']
       data['max_range'] = 5 # account for zeros
       
-      (0..6).each do |num|
+      (0..data['max_range']).each do |num|
         vals = []
         label = Time.now - num.days
         label = label.strftime('%a')
@@ -83,7 +83,7 @@ class AdminController < ApplicationController
       data['lines'] = ['entries']
       data['max_range'] = 5 # account for zeros
       
-      (0..7).each do |num|
+      (0..data['max_range']).each do |num|
         vals = []
         label = Time.now - num.weeks
         label = label.strftime('%b %d')
@@ -95,7 +95,7 @@ class AdminController < ApplicationController
       data['lines'] = ['entries']
       data['max_range'] = 5 # account for zeros
       
-      (0..5).each do |num|   
+      (0..data['max_range']).each do |num|   
         vals = [] 
         label = Time.now - num.months
         label = label.strftime('%b %d')
@@ -117,7 +117,20 @@ class AdminController < ApplicationController
           vals[i] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
         end       
         data = append_line_chart_data(data,num,label,vals)    
-      end  
+      end 
+      
+    elsif title == 'last 6 months in comments'
+      data['lines'] = ['comments']
+      data['max_range'] = 5 # account for zeros
+          
+      (0..data['max_range']).each do |num|
+        vals = []
+        label = Time.now - num.months
+        label = label.strftime('%b %d')
+        vals[0] = Comment.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
+        data = append_line_chart_data(data,num,label,vals)        
+      end      
+       
     end  
   
     if request.xhr?
@@ -226,9 +239,9 @@ class AdminController < ApplicationController
     @users_created_last_month = User.where(:created_at.gt => 1.month.ago).count
     @entries_created_last_week = Entry.where(:created_at.gt => 1.week.ago).count
     @entries_created_last_month = Entry.where(:created_at.gt => 1.month.ago).count
+    @total_bedsheets = Image.scoped.where(section: 'Bedsheets').count
     entry_totals = []
-    all_users = User.all
-    all_users.each_with_index do |u,i|
+    User.all.each_with_index do |u,i|
       entry_totals[i] = u.entries.count
       @average_entries_per_user = entry_totals.instance_eval { reduce(:+) / size.to_f }.round(2)
     end
