@@ -35,13 +35,14 @@
 
       / .entryType
       /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
-
-      %select#entryType-list.select-menu.radio.dropdown{'data-id' => "#{@entry.type ? @entry.type : current_user.default_entry_type}", name: 'entry[type]'}
-        %option.dream{      :value => 'dream',      :selected => @entry.type == 'dream'}      dream
-        %option.vision{     :value => 'vision',     :selected => @entry.type == 'vision'}     vision
-        %option.experience{ :value => 'experience', :selected => @entry.type == 'experience'} experience
-        %option.article{    :value => 'article',    :selected => @entry.type == 'article'}    article
-        %option.journal{    :value => 'journal',    :selected => @entry.type == 'journal'}    journal
+      
+      - entry_type = @entry.type ? @entry.type : current_user.default_entry_type
+      %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}  
+        %option.dream{      :value => 'dream',      :selected => entry_type == 'dream'}      dream
+        %option.vision{     :value => 'vision',     :selected => entry_type == 'vision'}     vision
+        %option.experience{ :value => 'experience', :selected => entry_type == 'experience'} experience
+        %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
+        %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
 
 
       / TITLE AND BODY
@@ -59,21 +60,16 @@
           .img
 
           %select#books-list.select-menu.dropdown
-            %option{value: 'My Book of Dreams'} My Book of Dreams
-            %option{value: 'Autobiography of a yogi'} Autobiography of a yogi
-            %option{value: 'Another book'} Another book
+            = render :partial => "books/book_list"
 
 
         = f.submit :value => 'post', :'data-disable-with' => "posting       "
         #postSpinner.hidden
 
         / SHARING PANEL
-        
-        %select#sharing-list.select-menu.radio{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}", name: "entry[sharing_level]"}
-          = render :partial => "entries/sharing_level"
-
-
-
+        - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
+        %select#sharing-list.select-menu.radio{name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
+          = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
 
         / .sharingWrap.wrapper
         /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}

@@ -1,7 +1,5 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  userModel: Dreamcatcher.Models.User
-
   init: ->
     @initUi()
     
@@ -46,6 +44,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   '#entry-appearance click': (el) ->
     @metaMenu.selectPanel 'appearance'
     
+    
   'label.ui-selectmenu-default mouseover': (el) ->
     el.parent().addClass 'default-hover'
 
@@ -54,15 +53,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   # radio button check for select-menu
   '.ui-selectmenu-default input[type=radio] click': (el) ->
-    $('li',$(el).closest('ul')).removeClass 'default'
+    ul = $(el).closest 'ul'
+    $('li', ul).removeClass 'default'
     $(el).closest('li').addClass 'default'
+    
+    name = el.attr 'name'
     value = $('a:first',el.closest('li')).data 'value'
-    type = el.closest('ul').attr('id').replace('-menu','')
-    switch type.replace('-list','')
-      when 'entryType'
-        @userModel.update {'user[default_entry_type]': value}
-      when 'sharing'
-        @userModel.update {'user[default_sharing_level]': value}
+    
+    user = {}
+    user[name] = value
+    Dreamcatcher.Models.User.update {user: user}
+
   ###
   '#new-post-menu a click': (el) ->
     log el.data 'value'

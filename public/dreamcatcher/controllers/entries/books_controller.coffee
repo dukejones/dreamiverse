@@ -183,7 +183,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       el.data 'image', image.id
       $('.cover', el).css 'background-image', "url(/images/uploads/#{image.id}-252x252.#{image.format})"
       $('.dropbox-field-shine', el).css 'background', "transparent url(/images/uploads/#{image.id}-252x252.#{image.format}) no-repeat center center"
-      $('.flat', el).addClass 'mask' if not $('.flat',el).hasClass 'mask'
       $('.dropbox-field-shine li', el).remove()
       @saveBook el, { cover_image_id: image.id }
       

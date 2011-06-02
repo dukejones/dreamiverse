@@ -2,14 +2,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
   interval: 5000
-  userModel: Dreamcatcher.Models.User
- 
+
   init: ->
     @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
     @currentEntryType = $('#entryMode').data 'id'
     @posted = false
     @retrieveState()
-    @initSelectMenu()
     @saveState()
        
   saveState: ->

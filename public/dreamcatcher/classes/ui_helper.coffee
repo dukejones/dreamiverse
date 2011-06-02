@@ -14,7 +14,6 @@ $.Class 'Dreamcatcher.Classes.UiHelper',{
     
   registerSelectMenu: (el) ->
     id = el.attr 'id'
-    defaultValue = el.data 'id'
     
     dropdown = el.hasClass 'dropdown'
     radio = el.hasClass 'radio'
@@ -42,21 +41,23 @@ $.Class 'Dreamcatcher.Classes.UiHelper',{
       }
     
     if radio
+      defaultName = el.data 'default-name'
+            
       $.extend options, {
         menuWidth: '156px'
         format: (text) =>
           return $.View '//dreamcatcher/views/select_menu_format.ejs', {
             text: text
             value: text
-            name: id
+            name: defaultName
           }
       }  
-      $(el).val defaultValue
     
     el.selectmenu options
 
     if radio
-      $("##{id}-menu label.ui-selectmenu-default").each (i,el) ->
+      defaultValue = el.data 'default-value'
+      $("##{id}-menu label.ui-selectmenu-default").each (i, el) ->
         li = $(el).closest('li')
         value = $('a',li).data 'value'
         isDefault = value is defaultValue
