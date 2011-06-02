@@ -40,7 +40,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
     
     # Add columns
     data.addColumn('string', 'seed code')
-    data.addColumn('number', 'val')
+    data.addColumn('number', 'value')
     
     # Add rows
     data.addRows(sliceKeys.length)
