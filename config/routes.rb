@@ -68,9 +68,11 @@ Dreamcatcher::Application.routes.draw do
     constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
   resources :images do
     collection do
-      get 'manage'
+      get 'manager'
+      get 'slideshow'
       get 'artists'
       get 'albums'
+      post 'updatefield'
     end
     member do
       post 'disable'

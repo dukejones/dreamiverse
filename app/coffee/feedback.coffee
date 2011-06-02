@@ -13,6 +13,9 @@ class FeedbackController
     $('#bugOptions').change =>
       @feedbackView.setBugOptions($('#bugOptions').val())
 
+    $('#userAgent').val(navigator.userAgent) # save client os/browser ver
+    log $('#userAgent').val()
+
 
 class FeedbackView
   constructor: (feedbackModel) ->

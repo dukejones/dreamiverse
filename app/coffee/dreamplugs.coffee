@@ -17,23 +17,23 @@ window.setupDreamplugs = ->
   
   # Setup slide w/ arrows to work
   # Used for Stream filtering
-  $('.trigger.slideArrow').click( (event) ->
-    $newTargetSlideArrow = $(event.currentTarget).parent().find('.target.slideArrow')
-    $toggleText = $(event.currentTarget).find('.value')
-    $toggleIcon = $(event.currentTarget).find('.icon')
+  $('.trigger.slideArrow').mouseenter( (event) ->
+    $newTargetSlideArrow = $(event.currentTarget).parent().parent().find('.target.slideArrow')
+    $toggleText = $(event.currentTarget).parent().find('.value')
+    $toggleIcon = $(event.currentTarget).parent().find('.icon')
     
     offsetSize = 30
     
     if $newTargetSlideArrow.css('display') is 'none'
-      $newTargetSlideArrow.fadeIn(250)
+      $newTargetSlideArrow.fadeIn(150)
       
       # Create bodyclick
-      $('#bodyClick').show()
-    
-      $('#bodyClick').click( (event) =>
-        $newTargetSlideArrow.hide()
-        $('#bodyClick').hide()
-      )
+      # $('#bodyClick').show()
+      #     
+      # $('#bodyClick').click( (event) =>
+      #   $newTargetSlideArrow.hide()
+      #   $('#bodyClick').hide()
+      # )
       
       $newTargetSlideArrow.find('.type').unbind()
       $newTargetSlideArrow.find('.type').click( (event) ->
@@ -49,6 +49,7 @@ window.setupDreamplugs = ->
         # Publish event for the Stream (or wherever its used) to listen to
         $.publish 'filter:change'
         
+        # GEOFF - I updated the mouseenter / mouseleave stuff, commented out the body click, this section no longer seems to do anything:
         index = $(event.currentTarget).index()
         newPosition = index * offsetSize
         newPositionString = -newPosition + 'px'
@@ -61,7 +62,11 @@ window.setupDreamplugs = ->
       $newTargetSlideArrow.hide()
       
   )
-  
+  $('.target.slideArrow').mouseleave( (event) ->
+    $(event.currentTarget).hide()
+  )
+
+
   # Setup showhide triggers
   $('.trigger.showhide').live( 'click', (event)->
     $newTargetShowHide = $(event.currentTarget).parent().find('.target.showhide')
