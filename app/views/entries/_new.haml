@@ -56,7 +56,12 @@
       / SHARING PANEL
       - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
       %select#sharing-list.select-menu.radio{name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
+        %option.label{value: 'add to book'}
+        %option.book{value: 'My Book'}
+        %option.book{value: 'Book With a Long Title'}
+        %option.book{value: 'Another Sweet Book'}
+        %option.newBook{value: '+ new book'}
+        /= render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
 
       / .sharingWrap.wrapper
       /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
