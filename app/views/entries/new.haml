@@ -60,12 +60,16 @@
           .img
 
           %select#books-list.select-menu.dropdown
-            %option.label{value: 'add to book'}
-            %option.book{value: 'My Book'}
-            %option.book{value: 'Book With a Long Title'}
-            %option.book{value: 'Another Sweet Book'}
-            %option.newBook{value: '+ new book'}
+            %option.label{value: 'Add to Book:'} Add to Book:
+            %option.book{value: 'My Book'} My Book
+            %option.book{value: 'Book With a Long Title'} Book With a Long Title
+            %option.book{value: 'Another Sweet Book'} Another Sweet Book
+            %option.newBook{value: '+ new book'} + new book
             / = render :partial => "books/book_list"
+
+          %input.newBook-input{type: 'text', value: '+ new book'} + new book
+
+          .close
 
 
         = f.submit :value => 'post', :'data-disable-with' => "posting       "

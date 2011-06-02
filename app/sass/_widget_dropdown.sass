@@ -412,20 +412,27 @@
 
     .ui-selectmenu-status
       +hidden
+      margin-right: 36px
+      padding: .405em 0 !important
 
 
 // NEW ENTRY BOOKS MENU DROPDOWN
 .light, .dark
   #books-list-menu
-    +user-select
+    +round(16)
+    +font(16)
     left: 259px !important
-    width: 208px !important
+    width: 202px !important
+    padding: 1px 2px
+    overflow-x: hidden
+    overflow-y: hidden
+    +indent-light
 
-    li
+    .book
       +user-select
       +round(7)
       +overflow
-      +font(16)
+      +center
       margin: 0
       height: 32px
       // Fallback color
@@ -440,11 +447,35 @@
       background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       border: 1px solid #00305c !important
 
-    .label
-
       a
         +user-select
         color: #ddd
         line-height: 1.1em !important
         &:hover
           color: #fff
+
+    .label
+      +user-select
+      height: 34px
+      background-color: transparent
+      background-image: url(/images/icons/books-24.png)
+      background-repeat: no-repeat
+      background-position: 10px center
+      &:hover
+        background-color: transparent !important
+      a
+        color: #444 !important
+        padding-left: 48px
+
+    .newBook
+      +round(16)
+      +center
+      display: inline-block
+      width: 194px
+      margin: 2px 4px
+      +indent-light
+      +button-light
+      a
+        color: #444 !important
+        &:hover
+          color: #000 !important
