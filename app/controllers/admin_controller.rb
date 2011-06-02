@@ -226,6 +226,12 @@ class AdminController < ApplicationController
     @users_created_last_month = User.where(:created_at.gt => 1.month.ago).count
     @entries_created_last_week = Entry.where(:created_at.gt => 1.week.ago).count
     @entries_created_last_month = Entry.where(:created_at.gt => 1.month.ago).count
+    entry_totals = []
+    all_users = User.all
+    all_users.each_with_index do |u,i|
+      entry_totals[i] = u.entries.count
+      @average_entries_per_user = entry_totals.instance_eval { reduce(:+) / size.to_f }.round(2)
+    end
     user_list
   end
 
