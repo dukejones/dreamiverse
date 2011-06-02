@@ -193,7 +193,7 @@ class AdminController < ApplicationController
         @data['user_count'] = ViewPreference.scoped.where({image_id: image.id} & {viewable_type: 'User'}).count
         @data['entry_count'] = ViewPreference.scoped.where({image_id: image.id} & {viewable_type: 'Entry'}).count
 
-        nodes_html += render_to_string(partial: 'bedsheet_node', object: @data)
+        nodes_html += render_to_string(partial: 'bedsheet_node')
       end
       num += 1
     end
