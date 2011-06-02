@@ -74,6 +74,13 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       action: 'new'
     }
     $("options",el).removeAttr 'selected'
+    
+  '#metaMenu .newEntry click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'new'
+    }
+  
         
 
 $(document).ready ->

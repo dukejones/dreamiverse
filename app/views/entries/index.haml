@@ -45,7 +45,7 @@
       / NEW LOGIN SPLASH
       = render :partial => "new_login", :locals => {:user => @user}
 
-    - elsif @entries.empty?
+    - elsif @entries.empty? && @books.empty?
       / NO DREAMS TO DISPLAY
       .noEntrys
         - if @filters[:type]

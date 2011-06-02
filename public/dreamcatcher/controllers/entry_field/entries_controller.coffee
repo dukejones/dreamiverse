@@ -98,6 +98,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
     else
       $('#entryField').prepend html
     $('#new_entry').show()
+    #$('#new_entry').removeAttr 'method'
+    #$('#new_entry').removeAttr 'action'
     @publish 'dom', {element: $('#new_entry')}
 }
 
