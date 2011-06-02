@@ -1,4 +1,4 @@
-$.Model 'Dreamcatcher.Models.Book', {
+$.Model.extend 'Dreamcatcher.Models.Book', {
   
   new: ( params, success, error ) ->
     $.ajax {

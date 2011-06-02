@@ -2,6 +2,7 @@ steal.plugins(
 	'steal/coffee',
 	'jquery/controller',			// a widget factory
 	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
+	'jquery/controller/history',
 	'jquery/view/ejs',				// client side templates
 	'jquery/controller/view',	// lookup views with the controller's name
 	'jquery/model',					  // Ajax wrappers
@@ -22,7 +23,7 @@ steal.plugins(
 	  'jquery.tooltip.js',
 	  'jquery.timeago',
 		'jquery.exists',
-		'jquery.history',
+
 		'jquery.cookie',
 		'jquery.dateFormat-1.0',
 		'jquery.query-2.1.7',
@@ -65,8 +66,8 @@ steal.plugins(
     } else if (stream) {
       steal.coffee(
         'models/stream',
-        'controllers/stream_controller',
         'models/comment',
+        'controllers/stream_controller',
         'controllers/comments_controller'
       );
     } else {
@@ -79,9 +80,9 @@ steal.plugins(
         'models/book',
         'controllers/appearance_controller',
         'controllers/bedsheets_controller',
-        'controllers/entries/entries_controller',
-        'controllers/entries/new_controller',
-        'controllers/entries/books_controller'
+        'controllers/entry_field/entries_controller',
+        'controllers/entry_field/new_controller',
+        'controllers/entry_field/books_controller'
       );
     }
   })

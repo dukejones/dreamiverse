@@ -6,14 +6,15 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('#metaMenu') if $('#metaMenu').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     #@comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.Entries $("#entryField .matrix") if $("#entryField .matrix").exists()
+    @entries = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField .matrix") if $("#entryField .matrix").exists()
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
-  initUi: ->
-    $('.tooltip').each (i, el) =>
+  initUi: (parentEl) ->
+    parentEl = $('body') if not parent?
+    $('.tooltip', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-    $('.select-menu').each (i, el) =>
+    $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
     #todo -live query
 
