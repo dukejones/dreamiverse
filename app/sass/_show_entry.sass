@@ -27,7 +27,8 @@
       +cancel(16)
     .stream
       +flat-all
-    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry
+
+    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .bookSpine
       +block
       +center
       +bold
@@ -36,12 +37,14 @@
       padding: 0 18px
       height: 32px
       line-height: 34px
+
     .entryType, .postTime
       +round(16)
       +left
       +cursor
       +user-select
       margin-right: 8px
+
     .entryType
       .img
         width: 32px
@@ -62,14 +65,31 @@
           background-image: url(/images/icons/article-24.png)
       span
         +left
+
     .postTime
       font-weight: normal
       line-height: 32px
-    .next, .stream, .prev, .books, .editEntry, .deleteEntry
+
+    .next, .stream, .prev, .books, .editEntry, .deleteEntry, .bookSpine
       +right
-    .books
-      +round(8)
-      margin-right: 8px
+
+    .bookSpine
+      +round(7)
+      +overflow
+      +center
+      height: 32px
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat:    repeat-x
+      background-position:  left
+      background-size:      100% 100%
+      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      border: 1px solid #00305c !important
+
     .editEntry
       +alpha(60)
       +round(16)

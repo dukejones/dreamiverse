@@ -240,7 +240,7 @@ hr
 
 
 
-  // NEW ENTRY INPUT PANEL
+// NEW ENTRY INPUT PANEL
 #newEntry
   +round(16)
   width: 662px 
@@ -267,40 +267,6 @@ hr
     height: 34px
     line-height: 34px
     margin: 8px 0 0 8px
-
-  .books-list
-    +left
-    +relative
-
-    .img
-      +left
-      background: url('/images/icons/books-24.png') center center no-repeat
-
-    .newBook-input
-      +hidden
-      +round(7)
-      +outline
-      margin: 0
-      height: 32px
-      width: 198px
-      // Fallback color
-      background-color:     #245a91
-      // Fallback image
-      background-image:     url(/images/books/spine-blue-64.png)
-      background-repeat: repeat-x
-      background-position: left
-      background-size: 100% 100%
-      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
-      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      border: 1px solid #00305c !important
-
-    .close
-      +hidden
-      +close-24
-      +absolute
-      top: 4px
-      right: 4px
 
   #entry-appearance, #entry-date, #entry-location
     width: 42px
@@ -360,6 +326,111 @@ hr
       border: 1px solid #777 !important
       cursor: default !important
 
+
+  // BOOKS LIST CONTAINER
+  .books-list
+    +left
+    +relative
+
+    .img
+      +left
+      background: url('/images/icons/books-24.png') center center no-repeat
+
+    .newBook-input
+      +hidden
+      +round(7)
+      +outline
+      margin: 0
+      height: 32px
+      width: 198px
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat: repeat-x
+      background-position: left
+      background-size: 100% 100%
+      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      border: 1px solid #00305c !important
+
+
+// BOOKS LIST HTML MENU & BUTTON
+#newEntry
+  #books-list-button
+    +user-select
+    width: 32px !important
+
+  #books-list, #books-list-button
+    +outline
+    margin: 0
+    padding: 0
+    // line-height for chrome / webkit height
+    line-height: 18px
+
+    .ui-selectmenu-status
+      +hidden
+      margin-right: 36px
+      padding: .405em 0 !important
+
+
+// BOOKS LIST MENU DROPDOWN
+#books-list-menu
+  +round(16)
+  +font(16)
+  left: 259px !important
+  width: 202px !important
+  padding: 1px 2px
+  overflow-x: hidden
+  overflow-y: hidden
+
+  .book
+    +user-select
+    +round(7)
+    +overflow
+    +center
+    margin: 0
+    height: 32px
+    // Fallback color
+    background-color:     #245a91
+    // Fallback image
+    background-image:     url(/images/books/spine-blue-64.png)
+    background-repeat:    repeat-x
+    background-position:  left
+    background-size:      100% 100%
+    background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+    background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+    background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+    border: 1px solid #00305c !important
+
+    a
+      +user-select
+      color: #ddd
+      line-height: 1.1em !important
+      &:hover
+        color: #fff
+
+  .label
+    +user-select
+    height: 34px
+    background-color: transparent
+    background-image: url(/images/icons/books-24.png)
+    background-repeat: no-repeat
+    background-position: 10px center
+    &:hover
+      background-color: transparent !important
+    a
+      padding-left: 48px
+
+  .newBook, .removeBook
+    +round(16)
+    +center
+    display: inline-block
+    width: 194px
+    margin: 2px 4px
+    a
+      +bold
 
 
 #entryField .edit_entry, #entryField .new_entry
@@ -814,7 +885,7 @@ hr
 
 
 // NEW ENTRY
-// COLORS
+// LIGHT
 .light #entryField
 
   #newEntry
@@ -824,6 +895,24 @@ hr
   // SHARED PANEL STYLES
   .entryPanels
     +shine-light-alpha(27)
+
+// BOOKS LIST MENU DROPDOWN
+.light #books-list-menu
+  +indent-light
+
+  .label a
+    color: #444 !important
+
+  .newBook, .removeBook
+    +indent-light
+    +button-light
+
+    a
+      color: #444 !important
+      &:hover
+        color: #000 !important
+
+.light #entryField
 
   // NEW ENTRY OPTIONS
   #entryOptions
@@ -1038,6 +1127,7 @@ hr
       +button-light
 
 
+// DARK
 .dark #entryField
 
   #entry_body, #entry_title
@@ -1051,6 +1141,23 @@ hr
     +flat-dark
     +glow-dark(40)
 
+// BOOKS LIST MENU DROPDOWN
+.dark #books-list-menu
+  +indent-dark
+
+  .label a
+    color: #ddd !important
+
+  .newBook, .removeBook
+    +indent-dark
+    +button-dark
+
+    a
+      color: #ddd !important
+      &:hover
+        color: #fff !important
+
+.dark #entryField
 
   // NEW ENTRY OPTIONS
   #entryOptions
