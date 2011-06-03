@@ -28,7 +28,7 @@
     .stream
       +flat-all
 
-    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .bookSpine
+    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .spine
       +block
       +center
       +bold
@@ -70,14 +70,16 @@
       font-weight: normal
       line-height: 32px
 
-    .next, .stream, .prev, .books, .editEntry, .deleteEntry, .bookSpine
+    .next, .stream, .prev, .books, .editEntry, .deleteEntry, .spine
       +right
 
-    .bookSpine
-      +round(7)
+    .spine
       +overflow
       +center
+      +font(14)
       height: 32px
+      line-height: 34px
+      width: 90px
       // Fallback color
       background-color:     #245a91
       // Fallback image

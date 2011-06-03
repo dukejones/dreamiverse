@@ -12,12 +12,12 @@
   %a.next.history{href: user_entry_path(@next.user.username, @next)}
     %span &rsaquo;
 
-  - if session[:lens] == :stream
-    %a.stream.history{href: stream_path} stream
-  - else
-    %a.stream.history{href: user_entries_path(@user.username)} entries
+  / - if session[:lens] == :stream
+  /   %a.stream.history{href: stream_path} stream
+  / - else
+  /   %a.stream.history{href: user_entries_path(@user.username)} entries
 
-  %a.bookSpine Title of Book
+  %a.spine Title of Book
 
   %a.prev.history{href: user_entry_path(@previous.user.username, @previous)}
     %span &lsaquo;
