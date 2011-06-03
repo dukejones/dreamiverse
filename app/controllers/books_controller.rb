@@ -1,7 +1,12 @@
 class BooksController < ApplicationController
   
   def index
-    @books = Book.where(user_id: current_user.id)
+    if params[:user_id]
+      @books = Book.where(user_id: @params.user_id)
+    else
+      @books = Book.where(user_id: current_user.id)
+    end
+    @book = @books.where(enabled: true)
     respond_to do |format|
       format.html { render(partial: 'books/books') }
       format.json { render :json => { :book => book } }
@@ -10,7 +15,8 @@ class BooksController < ApplicationController
   
   def create
     book = Book.create!(params[:book].merge({
-      user_id: current_user.id
+      user_id: current_user.id,
+      enabled: true
     }))
     respond_to do |format|
       format.html { render :text => "new book has been created" }
@@ -48,8 +54,16 @@ class BooksController < ApplicationController
   end
   
   def destroy
-    @book = Book.find params[:id]
-    @book.destroy
+    book = Book.find params[:id]
+    respond_to do |format|
+      if book.update_attributes({enabled: false})
+        format.html { render :text => 'book has been disabled' }
+        format.json  { render json: {type: 'ok', message: 'book has been disabled'} }
+      else
+        format.html { render :action => 'delete' }
+        format.json  { render :json => { type: 'error', errors: book.errors, status: :unprocessable_entity } }
+      end
+    end
   end
 
 end

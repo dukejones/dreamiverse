@@ -24,7 +24,11 @@ class EntriesController < ApplicationController
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
     
-    @books = Book.where(user_id: @user.id)
+    @books = Book.where({
+      user_id: @user.id,
+      enabled: true
+    })
+    #TODO: check viewing permissions depending on user
 
     @entries = entry_list(:home)
     
@@ -62,8 +66,7 @@ class EntriesController < ApplicationController
   end
   
   def show_entry
-    
-    #start: refactor (see above)
+    # TODO: refactor (see above)
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
     #flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
@@ -82,7 +85,6 @@ class EntriesController < ApplicationController
     @entry.update_attribute(:new_comment_count, 0) if user_can_write?
     
     hit( @entry )
-    #end: refactor
     
     respond_to do |format|
       format.html { render(partial:"entries/show") }
@@ -96,7 +98,7 @@ class EntriesController < ApplicationController
   end
   
   def new_entry
-    #todo: refactor (see above)
+    # TODO: refactor (see above)
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
