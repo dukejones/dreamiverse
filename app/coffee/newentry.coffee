@@ -41,15 +41,15 @@ $(document).ready ->
   
   # If there are tags or images, expand them!
   if $('#currentImages').children().length > 1
-    $('.entryAttach .images').hide()
+    $('#attach-images').hide()
     $('.entryImages').slideDown(250)
   
   if $('#tag-list').children().length > 2
-    $('.entryAttach .tag').hide()
+    $('#attach-tags').hide()
     $('.entryTags').slideDown(250)
   
   if $('#linkHolder').children().length > 0
-    $('.entryAttach .links').hide()
+    $('#attach-links').hide()
     $('.entryLinks').slideDown(250)
   
   # Check if location has been set and expand if so
@@ -66,7 +66,7 @@ $(document).ready ->
       $(el).parent().addClass('selected')
 
   if radioSelected
-    $('.entryAttach .emotions').hide()
+    $('#attach-emotions').hide()
     $('.entryEmotions').slideDown(250)
   
   # Check for youtube videos & get thumb/desc
