@@ -434,7 +434,7 @@
       +hidden
 
 // NEW POST MENU DROPDOWN
-#new-post-menu
+.light #new-post-menu, .dark #new-post-menu
   z-index: 1100 !important
   +bevel-dark
   +round(20)
@@ -442,12 +442,15 @@
   border: 1px solid #fff
   color: #ddd
 
-  li a
-    +font(16)
-    +bold
-    line-height: 18px
-    padding-left: 38px
-    color: white !important
+  li
+    a
+      +font(16)
+      +bold
+      line-height: 18px
+      padding-left: 38px
+      color: white !important
+    &:hover
+      background-color: #333 !important
 
   // ICONS
   li.new-entry
