@@ -1,11 +1,11 @@
 $.Model.extend 'Dreamcatcher.Models.Book', {
   
-  new: ( params, success, error ) ->
+  new: ( attrs, success, error ) ->
     $.ajax {
       url: '/books/new'
       type: 'get'
       dataType: 'html'
-      data: params
+      data: attrs
       success: @callback success
       error: error
     }
@@ -15,19 +15,19 @@ $.Model.extend 'Dreamcatcher.Models.Book', {
       url: "/books"
       type: 'post'
       dataType: 'json'
+      data: attrs
       success: @callback success
       error: error
-      data: attrs
     }
     
-  update: ( id, data, success, error ) ->
+  update: ( id, attrs, success, error ) ->
     $.ajax {
       url: "/books/#{id}"
       type: 'put'
       dataType: 'json'
+      data: attrs
       success: @callback success
       error: error
-      data: data
     }
 
   get: ( attrs, success, error ) ->
@@ -35,19 +35,29 @@ $.Model.extend 'Dreamcatcher.Models.Book', {
       url: '/books'
       type: 'get'
       dataType: 'html'
+      data: attrs
       success: @callback success
       error: error
-      data: attrs
     }
     
-  show: (id, attrs, success, error ) ->
+  show: ( id, attrs, success, error ) ->
     $.ajax {
       url: "/books/#{id}"
       type: 'get'
       dataType: 'html'
+      data: attrs
       success: @callback success
       error: error
+    }
+    
+  disable: ( id, attrs, success, error ) ->
+    $.ajax {
+      url: "/books/#{id}"
+      type: 'delete'
+      dataType: 'json'
       data: attrs
+      success: @callback success
+      error: error
     }
 
 },

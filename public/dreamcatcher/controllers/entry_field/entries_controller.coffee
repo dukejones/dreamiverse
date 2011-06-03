@@ -26,8 +26,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   closeEverythingOpen: ->
     @books.closeAllBooks()
 
-  newBook: ->
-    @books.newBook()
       
   '.thumb-2d click': (el) ->
     @historyAdd {
@@ -83,6 +81,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
     @bookModel.new {}, @callback('showBookThumbHtml')
   
   showBookThumbHtml: (html) ->
+    $('#welcomePanel').hide()
     $('#entryField .matrix').prepend html
     bookEl = $('#entryField .matrix .book:first')
     @books.openBook bookEl
