@@ -1,169 +1,110 @@
-// NEW ENTRY
-// COLORS
-.light #entryField
-
-  // SHARED PANEL STYLES
-  .entryPanels
-    background-color: #f5f5f5
-
-  // NEW ENTRY OPTIONS
-  #entryOptions
-    +shine-light(24)
-    +border-light
-
-    // SHARING
-    .sharing
-
-      .listOfUsers
-        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
-          +indent-light
-          +button-light
-          border: 1px solid #777
-
-        .searchWrap
-          input.searchField
-            +input-light(small)
-            &:focus
-              color: #777
-              box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
-              -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
-              -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
-
-        .userResults
-          .user
-            +bevel-light
-            border: 1px solid #777
-
-        .buzz
-          +button-light
-          +shine-light(16)
-
-    #entry_submit
-      +button-light
-      +shine-light(16)
-      +gradient(#b9b9b9, #1a1a1a)
-      +save(16)
-      color: #fff
-      border: 1px solid #a9a9a9
-
-    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
-      +indent-light
-      +button-light
-      border: 1px solid #fff
-
-
-// BOOKS LIST MENU DROPDOWN
-.light #books-list-menu
-  +indent-light
-
-  .label a
-    color: #444 !important
-
-  .newBook, .removeBook
-    +indent-light
-    +button-light
-
-    a
-      color: #444 !important
-      &:hover
-        color: #000 !important
 
 
 
+#entryOptions
+  border-radius:            16px 16px 2px 2px
+  -moz-border-radius:       16px 16px 2px 2px
+  -webkit-border-radius:    16px 16px 2px 2px
+  +relative
+  height: 36px
+  width: 660px
+  margin: 0 auto 2px
+  bottom: 0
+  padding: 8px
+
+
+  #entry-date
+    +left
+
+  .books-list, #entry-appearance, #entry-date, #entry-location, #entry_submit
+    +round(20)
+    +center
+    +pointer
+
+    height: 34px
+    line-height: 34px
+    margin: 0 0 0 8px
+
+  #entry-appearance, #entry-date, #entry-location
+    width: 42px
+
+
+
+  .books-list .img, #entry-appearance .img, #entry-date .img, #entry-location .img
+    width: 42px
+    height: 34px
+
+
+
+  #entry-location
+    .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/location-24.png') center center no-repeat
+  #entry-location.selected
+    .img
+      background: url('/images/icons/location-24-hover.png') center center no-repeat !important
+
+
+  #entry-appearance
+    +left
+    .img
+      background: url('/images/icons/appearance-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/appearance-24-active.png') center center no-repeat
+
+
+  #entry-date
+    .img
+      background: url('/images/icons/date-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/date-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/date-24.png') center center no-repeat
+
+
+  #postSpinner
+    +right
+    margin: 0 -95px
+    width: 32px
+    height: 55px
+    background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
 
 
 
 
-// DARK
-.dark #entryField
-
-  // SHARED PANEL STYLES
-  .entryPanels
-    background-color: #111
-
-  // NEW ENTRY OPTIONS
-  #entryOptions
-    +shine-dark-alpha(24)
-    border: 1px solid rgba(0, 0, 0, 0.75)
-
-    // SHARING
-    .sharing
-
-      #sharing_select
-        color: #ddd
-        option
-          color: #ddd
-
-      .listOfUsers
-        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
-          +indent-dark
-          +button-dark
-          border: 1px solid #444
-
-        .searchWrap
-          input.searchField
-            +input-dark(small)
-            color: #ccc
-            &:focus
-              color: #ddd
-              box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
-              -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
-              -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
-
-        .userResults
-          .user
-            +bevel-dark
-            border: 1px solid #444
-
-        .buzz
-          +button-dark
-          +shine-dark(16)
-
-    #entry_submit
-      +button-dark
-      color: #fff
-      +save(16)
-      box-shadow:         inset 0 16px rgba(255,255,255,0.2)
-      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
-      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
+  #entry_submit
+    +bold
+    +right
+    +font(12)
+    +round(12)
+    width: 100px
+    height: 38px
+    +save(14)
+    &.disabled
+      +alpha(20)
+    &.disabled, &.selected, &.selected:hover, &.selected:active
+      box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
       background: #aaa
-      +gradient(#222, #aaa)
-
-    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
-      +indent-dark
-      +button-dark
-      border: 1px solid #000
-
-
-// BOOKS LIST MENU DROPDOWN
-.dark #books-list-menu
-  +indent-dark
-
-  .label a
-    color: #ddd !important
-
-  .newBook, .removeBook
-    +indent-dark
-    +button-dark
-
-    a
-      color: #ddd !important
-      &:hover
-        color: #fff !important
+      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
+      background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
+      color: #fff !important
+      border: 1px solid #777 !important
+      cursor: default !important
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+// ENTRY TYPE
+// DATE TIME
+// APPEARANCE
+// BOOK
+// POST
 
 
 
@@ -225,12 +166,14 @@
 
 // WIDGET
 #entryType-list-button, #sharing-list-button
-  +right
   label
     +hidden
 
+#entryType-list-button
+  +left
 #sharing-list-button
-  margin: 8px
+  +right
+  margin: 0 0 0 8px
 
 
 #entryType-list-button, #entryType-list-menu, #sharing-list-button, #sharing-list-menu
@@ -372,26 +315,14 @@
 
 
 
-// ENTRY OPTIONS
+
+
+
+
+
+
+
 #entryOptions
-  +round(16)
-  +relative
-  width: 678px 
-  height: 52px
-  margin: 0 auto
-  bottom: 0
-
-
-
-
-
-
-
-
-
-
-
-
   // BOOKS LIST CONTAINER
   .books-list
     +left
@@ -440,86 +371,6 @@
       padding: .405em 0 !important
 
 
-  .books-list, #entry-appearance, #entry-date, #entry-location, #entry_submit
-    +round(20)
-    +center
-    +pointer
-    +right
-    height: 34px
-    line-height: 34px
-    margin: 8px 0 0 8px
-
-  #entry-appearance, #entry-date, #entry-location
-    width: 42px
-
-
-
-  .books-list .img, #entry-appearance .img, #entry-date .img, #entry-location .img
-    width: 42px
-    height: 34px
-
-
-
-  #entry-location
-    .img
-      background: url('/images/icons/location-24.png') center center no-repeat
-    &:hover .img
-      background: url('/images/icons/location-24-hover.png') center center no-repeat
-    &:active .img
-      background: url('/images/icons/location-24.png') center center no-repeat
-  #entry-location.selected
-    .img
-      background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-
-
-  #entry-appearance
-    .img
-      background: url('/images/icons/appearance-24.png') center center no-repeat
-    &:hover .img
-      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
-    &:active .img
-      background: url('/images/icons/appearance-24-active.png') center center no-repeat
-
-
-  #entry-date
-    .img
-      background: url('/images/icons/date-24.png') center center no-repeat
-    &:hover .img
-      background: url('/images/icons/date-24-hover.png') center center no-repeat
-    &:active .img
-      background: url('/images/icons/date-24.png') center center no-repeat
-
-
-  #postSpinner
-    +right
-    margin: 0 -95px
-    width: 32px
-    height: 55px
-    background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
-
-
-
-
-  #entry_submit
-    +bold
-    +font(12)
-    +round(12)
-    width: 100px
-    height: 38px
-    margin: 8px 8px 0 0
-    +save(14)
-    &.disabled
-      +alpha(20)
-    &.disabled, &.selected, &.selected:hover, &.selected:active
-      box-shadow:         inset 0 16px rgba(255,255,255,0.2) !important
-      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2) !important
-      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2) !important
-      background: #aaa
-      background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.86)), to(rgba(157,157,157,0.86))) !important
-      background: -moz-linear-gradient(top, rgba(0,0,0,0.86), rgba(157,157,157,0.86)) !important
-      color: #fff !important
-      border: 1px solid #777 !important
-      cursor: default !important
 
 
 
@@ -791,3 +642,185 @@
               font-size: 11px
             span.shared
               text-transform: uppercase
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NEW ENTRY
+// COLORS
+.light #entryField
+
+  // SHARED PANEL STYLES
+  .entryPanels
+    background-color: #f5f5f5
+
+  // NEW ENTRY OPTIONS
+  #entryOptions
+    +transparent-light(50)
+    +border-light
+
+    // SHARING
+    .sharing
+
+      .listOfUsers
+        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
+          +indent-light
+          +button-light
+          border: 1px solid #777
+
+        .searchWrap
+          input.searchField
+            +input-light(small)
+            &:focus
+              color: #777
+              box-shadow:         5px 5px 10px rgba(0,0,0,0.6)
+              -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
+              -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
+
+        .userResults
+          .user
+            +bevel-light
+            border: 1px solid #777
+
+        .buzz
+          +button-light
+          +shine-light(16)
+
+    #entry_submit
+      +button-light
+      +shine-light(16)
+      +gradient(#b9b9b9, #1a1a1a)
+      +save(16)
+      color: #fff
+      border: 1px solid #a9a9a9
+
+    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
+      +indent-light
+      +button-light
+      border: 1px solid #fff
+
+
+// BOOKS LIST MENU DROPDOWN
+.light #books-list-menu
+  +indent-light
+
+  .label a
+    color: #444 !important
+
+  .newBook, .removeBook
+    +indent-light
+    +button-light
+
+    a
+      color: #444 !important
+      &:hover
+        color: #000 !important
+
+
+
+
+
+
+
+// DARK
+.dark #entryField
+
+  // SHARED PANEL STYLES
+  .entryPanels
+    background-color: #111
+
+  // NEW ENTRY OPTIONS
+  #entryOptions
+    +shine-dark-alpha(24)
+    border: 1px solid rgba(0, 0, 0, 0.75)
+
+    // SHARING
+    .sharing
+
+      #sharing_select
+        color: #ddd
+        option
+          color: #ddd
+
+      .listOfUsers
+        label.taggedUsers, label.hideShared, .url, .facebook, .twitter
+          +indent-dark
+          +button-dark
+          border: 1px solid #444
+
+        .searchWrap
+          input.searchField
+            +input-dark(small)
+            color: #ccc
+            &:focus
+              color: #ddd
+              box-shadow:         5px 5px 10px rgba(250,250,250,0.6)
+              -moz-box-shadow:    5px 5px 10px rgba(250,250,250,0.6)
+              -webkit-box-shadow: 5px 5px 10px rgba(250,250,250,0.6)
+
+        .userResults
+          .user
+            +bevel-dark
+            border: 1px solid #444
+
+        .buzz
+          +button-dark
+          +shine-dark(16)
+
+    #entry_submit
+      +button-dark
+      color: #fff
+      +save(16)
+      box-shadow:         inset 0 16px rgba(255,255,255,0.2)
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.2)
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.2)
+      background: #aaa
+      +gradient(#222, #aaa)
+
+    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
+      +indent-dark
+      +button-dark
+      border: 1px solid #000
+
+
+// BOOKS LIST MENU DROPDOWN
+.dark #books-list-menu
+  +indent-dark
+
+  .label a
+    color: #ddd !important
+
+  .newBook, .removeBook
+    +indent-dark
+    +button-dark
+
+    a
+      color: #ddd !important
+      &:hover
+        color: #fff !important

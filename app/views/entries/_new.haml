@@ -33,22 +33,15 @@
       %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
       %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
 
-
-    #entry-location.hidden.tooltip{title: "add your location"}
-      .img
-    / renamed from entry-date to entry-schmentry as "date", "time", "chronos", etc. seem to be reserved words. DO NOT ADJUST
     #entry-date.tooltip{title: "date and time"}
       .img
+
     #entry-appearance.tooltip{title: "appearance"}
       .img
 
+    #entry-location.hidden.tooltip{title: "add your location"}
+      .img
 
-
-
-
-    / POST BUTTON
-    = f.submit :value => 'post', :'data-disable-with' => "posting       "
-    #postSpinner.hidden
 
 
     / BOOKS LIST
@@ -60,14 +53,39 @@
         = render :partial => "books/book_list"
         %option.removeBook{value: 'remove from book'} remove from book
         %option.newBook{value: '+ new book'} + new book
-        
+
       %input.newBook-input{type: 'text', value: '+ new book'}
 
-      .close
+
+    / POST BUTTON
+    = f.submit :value => 'post', :'data-disable-with' => "posting       "
+    #postSpinner.hidden
 
 
 
 
+  / .wrapper
+  /   MOOD ICON
+  /   = render :partial => "mood_icon"
+
+
+
+
+  / NEW ENTRY DATE TIME
+  = render :partial => "entries/new/date_time"
+
+  / NEW ENTRY LOCATION
+  = render :partial => "entries/new/location",locals: {f: f}
+
+
+
+
+
+
+
+
+  / NEW ENTRY INPUT PANEL
+  #newEntry
     / SHARING PANEL
     - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
     %select#sharing-list.select-menu.radio{name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
@@ -141,32 +159,6 @@
     /           %span.shared shared:
     /           %span.sharedWhen 10 hours ago
     /       .clear
-
-
-
-
-
-
-
-
-
-  / .wrapper
-  /   MOOD ICON
-  /   = render :partial => "mood_icon"
-
-
-
-
-
-
-
-
-
-
-
-
-  / NEW ENTRY INPUT PANEL
-  #newEntry
     = f.text_field :title, :maxlength => '72', :placeholder => "title"
     = f.text_area :body, :placeholder => "My dream..."
 
@@ -175,11 +167,6 @@
 
   / MODULES
 
-  / NEW ENTRY DATE TIME
-  = render :partial => "entries/new/date_time"
-
-  / NEW ENTRY LOCATION
-  = render :partial => "entries/new/location",locals: {f: f}
 
   / NEW ENTRY IMAGES
   - unless is_ipad?
