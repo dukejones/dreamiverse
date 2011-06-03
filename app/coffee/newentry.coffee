@@ -74,6 +74,19 @@ $(document).ready ->
     # Pass the url and the element it came from
     getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))
   
+  $('#entry_title').live "mouseenter", (event) =>
+    $('#entry_title').attr(value: 'title', style: 'opacity: 0.4')
+
+  $('#entry_title').live "focus", (event) =>
+    $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+  $('#entry_title').live "mouseleave", (event) =>
+    $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+
+  # 
+  # $('#entry_title').mouseenter(attr(value: 'title:')).mouseleave
+
   $('#entry_body').css('overflow','hidden')  
   
   # doing the focus stuff to make sure fitToContent gets called once on load 
