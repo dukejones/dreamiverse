@@ -52,6 +52,23 @@
       border: 1px solid #fff
 
 
+// BOOKS LIST MENU DROPDOWN
+.light #books-list-menu
+  +indent-light
+
+  .label a
+    color: #444 !important
+
+  .newBook, .removeBook
+    +indent-light
+    +button-light
+
+    a
+      color: #444 !important
+      &:hover
+        color: #000 !important
+
+
 
 
 
@@ -118,7 +135,21 @@
       border: 1px solid #000
 
 
+// BOOKS LIST MENU DROPDOWN
+.dark #books-list-menu
+  +indent-dark
 
+  .label a
+    color: #ddd !important
+
+  .newBook, .removeBook
+    +indent-dark
+    +button-dark
+
+    a
+      color: #ddd !important
+      &:hover
+        color: #fff !important
 
 
 
@@ -360,7 +391,6 @@
 
   .books-list
     +left
-    +relative
 
     .img
       +left
@@ -384,13 +414,6 @@
       background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
       border: 1px solid #00305c !important
-
-    .close
-      +hidden
-      +close-24
-      +absolute
-      top: 4px
-      right: 4px
 
 
 
