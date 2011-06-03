@@ -44,8 +44,8 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
   getBookElement: (el) ->
     return el.closest '.book'
       
-  #book close book
-          
+  #- open/close
+  
   closeBook: (el) ->
     bookEl = el.closest '.book'
     $('.open', bookEl).hide()
@@ -72,8 +72,8 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     @closeBook @getBookElement el
         
         
-  # book control-panel
-
+  #- control-panel
+  
   showPage: (el, page) ->
     bookEl = el.closest '.book'
     $('.open', bookEl).children().hide()
@@ -103,16 +103,10 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     @showMore el
 
   #book saving
-  
-  changeBookColor: (el, color) ->
-    bookEl = @getBookElement el
-    bookEl.attr 'class', 'book'
-    bookEl.addClass color
-    bookEl.data 'color', color
-
   '.book .color-panel .swatches li click': (el) ->
     color = el.attr 'class'
-    @changeBookColor el, color
+    bookEl = @getBookElement el
+    bookEl.attr 'class', "book #{color}"
     @saveBook el, { color: color }
   
   '.select-menu change': (el) ->
@@ -120,14 +114,20 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     book[el.attr('name')] = el.val()
     @saveBook el, book
     
-  '.titleInput blur': (el) ->
+  saveTitle: (el) ->
     bookEl = @getBookElement el
     title = el.val()
     $('.title', bookEl).text title
     @saveBook el, { title: title }
     
+  '.titleInput blur': (el) ->
+    @saveTitle el
+    
   '.titleInput keypress': (el, ev) ->
-    el.blur() if ev.keyCode is 13 #enter
+    @saveTitle el if ev.keyCode is 13 # enter key
+    
+  '.more-settings .remove click': (el) ->
+    @disableBook el
       
   saveBook: (el, bookMeta) ->
     bookEl = @getBookElement el
@@ -140,6 +140,15 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
       bookId = parseInt bookId
       @bookModel.update bookId, { book: bookMeta }
       
+  disableBook: (el) ->
+    if confirm 'are you sure?'
+      bookEl = @getBookElement el
+      bookId = bookEl.data 'id'
+      @bookModel.disable bookId
+      bookEl.remove()
+      
+  # uploader
+    
   createUploader: (el) ->
     @uploader = Dreamcatcher.Classes.UploadHelper.createUploader {
       element: $('.cover-panel', el)
