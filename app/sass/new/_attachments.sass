@@ -1,0 +1,114 @@
+.light #entryField
+
+  .entryAttach
+    +transparent-light(50)
+
+    p
+      color: #555
+
+
+    .images, .tag, .links, .emotions
+      border: 1px solid transparent
+      &:hover
+        +bevel-light
+        +button-light
+
+
+
+// DARK
+.dark #entryField
+
+  .entryAttach
+    +transparent-dark(50)
+    p
+      color: #8a8a8a
+
+    .images, .tag, .links, .emotions
+      +bevel-dark
+      +button-dark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NEW ENTRY ATTACH
+.entryAttach
+  border-radius:            2px 2px 16px 16px
+  -moz-border-radius:       2px 2px 16px 16px
+  -webkit-border-radius:    2px 2px 16px 16px
+  +block
+  padding: 4px
+  height: 38px
+  line-height: 38px
+  margin-bottom: 2px
+
+  p
+    +user-select
+    +left
+    +cursor
+    +bold
+    line-height: 42px
+    +font(32)
+    margin: 0 40px
+
+  .attach
+    +center
+    +left
+    +pointer
+    +round(20)
+    +user-select
+    +block
+    height: 34px
+    line-height: 32px
+    margin: 0 0 0 8px
+    padding: 0 12px
+    .img
+      +left
+      width: 16px
+      height: 34px
+      margin-right: 8px
+
+  .attach.images
+    .img
+      background: url(/images/icons/images-16.png) no-repeat left center transparent
+    &:hover .img
+      background: url(/images/icons/images-16-hover.png) no-repeat left center transparent
+    &:active .img
+      background: url(/images/icons/images-16-active.png) no-repeat left center transparent
+
+  .attach.tag
+    .img
+      background: url(/images/icons/tag-16.png) no-repeat center transparent
+    &:hover .img
+      background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+    &:active .img
+      background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+
+  .attach.links
+    .img
+      background: url(/images/icons/link-16.png) no-repeat left center transparent
+    &:hover .img
+      background: url(/images/icons/link-16-hover.png) no-repeat left center transparent
+    &:active .img
+      background: url(/images/icons/link-16-active.png) no-repeat left center transparent
+
+  .attach.emotions
+    .img
+      width: 19px
+      background: url(/images/icons/emotions-16.png) no-repeat left center transparent
+    &:hover .img
+      background: url(/images/icons/emotions-16-hover.png) no-repeat left center transparent
+    &:active .img
+      background: url(/images/icons/emotions-16-active.png) no-repeat left center transparent

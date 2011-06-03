@@ -12,17 +12,19 @@
   
   - @entry.images.each do |image|
     = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
-  
-  / NEW ENTRY INPUT PANEL
-  #newEntry
 
-    / .wrapper
-    /   MOOD ICON
-    /   = render :partial => "mood_icon"
 
-    / .entryType
-    /   .typeSelection{style: "background: url('/images/icons/dream-24-active.png') no-repeat center"}
-    
+
+
+
+
+
+
+
+  / ENTRY OPTIONS
+  #entryOptions
+
+
     - entry_type = @entry.type ? @entry.type : current_user.default_entry_type
     %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}  
       %option.dream{      :value => 'dream',      :selected => entry_type == 'dream'}      dream
@@ -31,127 +33,144 @@
       %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
       %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
 
+    #entry-date.tooltip{title: "date and time"}
+      .img
 
-    / TITLE AND BODY
-    = f.text_field :title, :maxlength => '72', :placeholder => "title"
-    %hr
-    = f.text_area :body, :placeholder => "My dream..."
-    
+    #entry-appearance.tooltip{title: "appearance"}
+      .img
 
-
-    #entryOptions
-
-
-      / BOOKS LIST
-      .books-list
-        .img
-
-        %select#books-list.select-menu.dropdown
-          %option.label{value: 'Add to Book:'} Add to Book:
-          = render :partial => "books/book_list"
-          %option.removeBook{value: 'remove from book'} remove from book
-          %option.newBook{value: '+ new book'} + new book
-          
-
-        %input.newBook-input{type: 'text', value: '+ new book'}
-
-        .close
+    #entry-location.hidden.tooltip{title: "add your location"}
+      .img
 
 
-      = f.submit :value => 'post', :'data-disable-with' => "posting       "
-      #postSpinner.hidden
 
-      / SHARING PANEL
-      - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
-      %select#sharing-list.select-menu.radio{name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
+    / BOOKS LIST
+    .books-list
+      .img
 
-      / .sharingWrap.wrapper
-      /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
-      / 
-      /     .listSelection{style: "background: url('/images/icons/sharing-24-hover.png') no-repeat center"}
-      / 
-      /     %select#sharing_select{name: "entry[sharing_level]"}
-      /       %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
-      /       %option.list{       value: Entry::Sharing[:friends]   } friends only
-      /       %option.followers{  value: Entry::Sharing[:followers] } followers only
-      /       %option.list.trigger.showHide{value: 'list'           } list of users
-      /       %option.anon{       value: Entry::Sharing[:anonymous] } anonymous
-      /       %option.private{    value: Entry::Sharing[:private]   } private
-      / 
-      / 
-      /     / SHARING - LIST OF USERS
-      /     .listOfUsers.target.showHide.hidden
-      /       .searchWrap
-      /         / %form.searchForm  !!! This form was breaking all other form elements on the page. tried ruby form and tried unique classes from meta-menu search == no way
-      /         %input.searchField{value: 'username...'}
-      /         %input.search{type: 'submit', value: ''}
-      / 
-      /       .userResults
-      /         .user
-      /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
-      /           .username username
-      /           .statusIcon.friends
-      /           .close
-      /         .user
-      /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
-      /           .username username
-      /           .statusIcon.friends
-      /           .close
-      /         .user
-      /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
-      /           .username username
-      /           .statusIcon.friends
-      /           .close
-      / 
-      /       %label.taggedUsers
-      /         .img
-      /         %span share with tagged..
-      /         %input{type: 'checkbox', name: 'taggedUsers'}
-      / 
-      /       %label.hideShared
-      /         .img
-      /         %span hide shared users
-      /         %input{type: 'checkbox', name: 'hide'}
-      / 
-      /     .everyone.target.hidden
-      /       .facebook.hidden
-      /         %label
-      /           %img{src: '/images/icons/facebook-16-hover.png', width: '16', height: '16'}
-      /           %span.shareOn share on
-      /           %span facebook
-      /           %input{type: 'checkbox', name: 'facebook'}
-      /       .twitter.hidden
-      /         %label
-      /           %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
-      /           %span.shareOn share on
-      /           %span twitter
-      /           %input{type: 'checkbox', name: 'twitter'}
-      /       .buzz.hidden
-      /         %label
-      /           %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
-      /           %span buzz
-      /           %span.shared shared:
-      /           %span.sharedWhen 10 hours ago
-      /       .clear
+      %select#books-list.select-menu.dropdown
+        %option.label{value: 'Add to Book:'} Add to Book:
+        = render :partial => "books/book_list"
+        %option.removeBook{value: 'remove from book'} remove from book
+        %option.newBook{value: '+ new book'} + new book
 
-      #entry-location.hidden.tooltip{title: "add your location"}
-        .img
-      / renamed from entry-date to entry-schmentry as "date", "time", "chronos", etc. seem to be reserved words. DO NOT ADJUST
-      #entry-date.tooltip{title: "date and time"}
-        .img
-      #entry-appearance.tooltip{title: "appearance"}
-        .img
+      %input.newBook-input{type: 'text', value: '+ new book'}
+
+
+    / POST BUTTON
+    = f.submit :value => 'post', :'data-disable-with' => "posting       "
+    #postSpinner.hidden
+
+
+
+
+  / .wrapper
+  /   MOOD ICON
+  /   = render :partial => "mood_icon"
+
+
+
 
   / NEW ENTRY DATE TIME
-  = render :partial => "date_time"
+  = render :partial => "entries/new/date_time"
 
   / NEW ENTRY LOCATION
-  = render :partial => "location",locals: {f: f}
+  = render :partial => "entries/new/location",locals: {f: f}
+
+
+
+
+
+
+
+
+  / NEW ENTRY INPUT PANEL
+  #newEntry
+    / SHARING PANEL
+    - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
+    %select#sharing-list.select-menu.radio{name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
+      = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
+
+    / .sharingWrap.wrapper
+    /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
+    / 
+    /     .listSelection{style: "background: url('/images/icons/sharing-24-hover.png') no-repeat center"}
+    / 
+    /     %select#sharing_select{name: "entry[sharing_level]"}
+    /       %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
+    /       %option.list{       value: Entry::Sharing[:friends]   } friends only
+    /       %option.followers{  value: Entry::Sharing[:followers] } followers only
+    /       %option.list.trigger.showHide{value: 'list'           } list of users
+    /       %option.anon{       value: Entry::Sharing[:anonymous] } anonymous
+    /       %option.private{    value: Entry::Sharing[:private]   } private
+    / 
+    / 
+    /     / SHARING - LIST OF USERS
+    /     .listOfUsers.target.showHide.hidden
+    /       .searchWrap
+    /         / %form.searchForm  !!! This form was breaking all other form elements on the page. tried ruby form and tried unique classes from meta-menu search == no way
+    /         %input.searchField{value: 'username...'}
+    /         %input.search{type: 'submit', value: ''}
+    / 
+    /       .userResults
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    / 
+    /       %label.taggedUsers
+    /         .img
+    /         %span share with tagged..
+    /         %input{type: 'checkbox', name: 'taggedUsers'}
+    / 
+    /       %label.hideShared
+    /         .img
+    /         %span hide shared users
+    /         %input{type: 'checkbox', name: 'hide'}
+    / 
+    /     .everyone.target.hidden
+    /       .facebook.hidden
+    /         %label
+    /           %img{src: '/images/icons/facebook-16-hover.png', width: '16', height: '16'}
+    /           %span.shareOn share on
+    /           %span facebook
+    /           %input{type: 'checkbox', name: 'facebook'}
+    /       .twitter.hidden
+    /         %label
+    /           %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
+    /           %span.shareOn share on
+    /           %span twitter
+    /           %input{type: 'checkbox', name: 'twitter'}
+    /       .buzz.hidden
+    /         %label
+    /           %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
+    /           %span buzz
+    /           %span.shared shared:
+    /           %span.sharedWhen 10 hours ago
+    /       .clear
+    = f.text_field :title, :maxlength => '72', :placeholder => "title"
+    = f.text_area :body, :placeholder => "My dream..."
+
+
+
+
+  / MODULES
+
 
   / NEW ENTRY IMAGES
   - unless is_ipad?
-    = render :partial => "image_panel", locals: {images: @entry.images}
+    = render :partial => "entries/new/image_panel", locals: {images: @entry.images}
 
 
 
@@ -241,9 +260,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   / NEW ENTRY ATTACHMENTS
-  .entryAttach.entryPanels
-    %p attach:
+  .entryAttach
+    %p +
     - unless is_ipad?
       .attach.images
         .img
@@ -259,3 +292,7 @@
       .img
       emotions
     .clear
+
+
+
+
