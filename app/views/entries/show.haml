@@ -33,9 +33,11 @@
       %span &rsaquo;
 
     - if session[:lens] == :stream
-      %a.stream{href: stream_path} stream
+      %a.stream-nav{href: stream_path}
+        .img
+        %span stream
     - else
-      %a.stream{href: user_entries_path(@user.username)} entries
+      %a.entries-nav{href: user_entries_path(@user.username)} entries
 
     %a.prev{href: user_entry_path(@previous.user.username, @previous)}
       %span &lsaquo;
