@@ -43,3 +43,6 @@
       .tagCloud
         - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
           %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+
+    .add-active
