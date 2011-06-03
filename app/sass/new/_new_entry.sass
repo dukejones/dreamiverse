@@ -1,0 +1,83 @@
+// NEW ENTRY
+// COLORS
+.light #entryField
+
+  #newEntry
+    +flat-light
+    +glow-light(40)
+
+
+.dark #entryField
+
+  #entry_body, #entry_title
+    color: #ddd
+
+  #newEntry
+    +flat-dark
+    +glow-dark(40)
+
+
+
+
+
+
+
+// SHARED PANEL STYLES
+
+
+
+// NEW ENTRY INPUT PANEL
+#newEntry
+  +round(2)
+  width: 662px 
+  padding: 8px
+  margin-bottom: 2px
+
+
+  // MOOD ICON
+  .moodIcon
+    +absolute
+    right: -26px
+    top: -26px
+  .moodIcon-picker
+    +absolute
+    right: -8px
+    top: -8px
+
+
+
+
+
+
+.entryPanels
+  +hidden
+  +round(2)
+  width: 662px
+  padding: 8px
+  margin-bottom: 2px
+
+
+#entry_title, #entry_body
+  +outline
+  +transparent
+  margin: 10px 0 0 10px
+  border: none
+  font-family: Calibri, Arial, Helvetica, sans-serif
+
+#entry_title
+  width: 480px
+  padding-bottom: 4px
+
+#entry_body
+  width: 640px
+  min-width: 640px
+  max-width: 640px
+  min-height: 134px
+  height: 134px
+  padding-bottom: 20px
+
+
+
+
+
+
