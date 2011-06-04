@@ -43,20 +43,10 @@
       background: url('/images/icons/location-24-hover.png') center center no-repeat
     &:active .img
       background: url('/images/icons/location-24.png') center center no-repeat
+
   #entry-location.selected
     .img
       background: url('/images/icons/location-24-hover.png') center center no-repeat !important
-
-
-  #entry-appearance
-    +left
-    .img
-      background: url('/images/icons/appearance-24.png') center center no-repeat
-    &:hover .img
-      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
-    &:active .img
-      background: url('/images/icons/appearance-24-active.png') center center no-repeat
-
 
   #entry-date
     .img
@@ -69,20 +59,19 @@
 
   #postSpinner
     +right
-    margin: 0 -95px
+    margin: -10px -58px
     width: 32px
-    height: 55px
+    height: 38px
     background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
 
 
 
 
   #entry_submit
-    +bold
     +right
-    +font(12)
-    +round(12)
-    width: 100px
+    +font(17)
+    +round(8)
+    width: 66px
     height: 38px
     +save(14)
     &.disabled
@@ -109,10 +98,139 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+#entryOptions
+  // BOOKS LIST CONTAINER
+  .books-list
+    +left
+    +relative
+
+    .img
+      +left
+      background: url('/images/icons/books-24.png') center center no-repeat
+
+    .newBook-input
+      +hidden
+      +round(7)
+      +outline
+      margin: 0
+      height: 32px
+      width: 198px
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat: repeat-x
+      background-position: left
+      background-size: 100% 100%
+      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      border: 1px solid #00305c !important
+
+
+// BOOKS LIST HTML MENU & BUTTON
+#entryOptions
+  #books-list-button
+    +user-select
+    width: 32px !important
+
+  #books-list, #books-list-button
+    +outline
+    margin: 0
+    padding: 0
+    // line-height for chrome / webkit height
+    line-height: 18px
+
+    .ui-selectmenu-status
+      +hidden
+      margin-right: 36px
+      padding: .405em 0 !important
+
+
+
+
+
+
+
+
+
+// BOOKS LIST MENU DROPDOWN
+#books-list-menu
+  +round(16)
+  +font(16)
+  left: 259px !important
+  width: 202px !important
+  padding: 1px 2px
+  overflow-x: hidden
+  overflow-y: hidden
+
+  .book
+    +user-select
+    +round(7)
+    +overflow
+    +center
+    margin: 0
+    height: 32px
+    // Fallback color
+    background-color:     #245a91
+    // Fallback image
+    background-image:     url(/images/books/spine-blue-64.png)
+    background-repeat:    repeat-x
+    background-position:  left
+    background-size:      100% 100%
+    background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+    background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+    background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+    border: 1px solid #00305c !important
+
+    a
+      +user-select
+      color: #ddd
+      line-height: 1.1em !important
+      &:hover
+        color: #fff
+
+  .label
+    +user-select
+    height: 34px
+    background-color: transparent
+    background-image: url(/images/icons/books-24.png)
+    background-repeat: no-repeat
+    background-position: 10px center
+    &:hover
+      background-color: transparent !important
+    a
+      padding-left: 48px
+
+  .newBook, .removeBook
+    +round(16)
+    +center
+    display: inline-block
+    width: 194px
+    margin: 2px 4px
+    a
+      +bold
+
+
+
+
+
+
 // ENTRY TYPE - html select menu
 // for degredation when JS doesnt load new technique
-#sharing-list
-  margin: 8px
 
 #entryType-list, #sharing-list
   +block
@@ -310,136 +428,6 @@
 .dark #entryType-list-menu, .dark #sharing-list-menu
   li.default, li.default-hover
     background-color: #333 
-
-
-
-
-
-
-
-
-
-
-
-
-#entryOptions
-  // BOOKS LIST CONTAINER
-  .books-list
-    +left
-    +relative
-
-    .img
-      +left
-      background: url('/images/icons/books-24.png') center center no-repeat
-
-    .newBook-input
-      +hidden
-      +round(7)
-      +outline
-      margin: 0
-      height: 32px
-      width: 198px
-      // Fallback color
-      background-color:     #245a91
-      // Fallback image
-      background-image:     url(/images/books/spine-blue-64.png)
-      background-repeat: repeat-x
-      background-position: left
-      background-size: 100% 100%
-      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
-      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      border: 1px solid #00305c !important
-
-
-// BOOKS LIST HTML MENU & BUTTON
-#entryOptions
-  #books-list-button
-    +user-select
-    width: 32px !important
-
-  #books-list, #books-list-button
-    +outline
-    margin: 0
-    padding: 0
-    // line-height for chrome / webkit height
-    line-height: 18px
-
-    .ui-selectmenu-status
-      +hidden
-      margin-right: 36px
-      padding: .405em 0 !important
-
-
-
-
-
-
-
-
-
-// BOOKS LIST MENU DROPDOWN
-#books-list-menu
-  +round(16)
-  +font(16)
-  left: 259px !important
-  width: 202px !important
-  padding: 1px 2px
-  overflow-x: hidden
-  overflow-y: hidden
-
-  .book
-    +user-select
-    +round(7)
-    +overflow
-    +center
-    margin: 0
-    height: 32px
-    // Fallback color
-    background-color:     #245a91
-    // Fallback image
-    background-image:     url(/images/books/spine-blue-64.png)
-    background-repeat:    repeat-x
-    background-position:  left
-    background-size:      100% 100%
-    background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
-    background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-    background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-    border: 1px solid #00305c !important
-
-    a
-      +user-select
-      color: #ddd
-      line-height: 1.1em !important
-      &:hover
-        color: #fff
-
-  .label
-    +user-select
-    height: 34px
-    background-color: transparent
-    background-image: url(/images/icons/books-24.png)
-    background-repeat: no-repeat
-    background-position: 10px center
-    &:hover
-      background-color: transparent !important
-    a
-      padding-left: 48px
-
-  .newBook, .removeBook
-    +round(16)
-    +center
-    display: inline-block
-    width: 194px
-    margin: 2px 4px
-    a
-      +bold
-
-
-
-
-
-
 
 
 
@@ -719,7 +707,7 @@
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
+    #sharing-list, .books-list, #entry-location, #entry-date
       +indent-light
       +button-light
       border: 1px solid #fff
@@ -801,7 +789,7 @@
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, .books-list, #entry-appearance, #entry-location, #entry-date
+    #sharing-list, .books-list, #entry-location, #entry-date
       +indent-dark
       +button-dark
       border: 1px solid #000

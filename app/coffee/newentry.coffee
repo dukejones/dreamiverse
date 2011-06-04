@@ -73,19 +73,26 @@ $(document).ready ->
   $('#linkHolder .youtube').each (i, el) =>
     # Pass the url and the element it came from
     getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))
-  
+
+
+
+
+
   $('#entry_title').live "mouseenter", (event) =>
-    $('#entry_title').attr(value: 'title', style: 'opacity: 0.4')
+    if $('#entry_title').val() == ''
+      $('#entry_title').attr(value: 'title', style: 'opacity: 0.4')
 
   $('#entry_title').live "focus", (event) =>
-    $('#entry_title').attr(value: '', style: 'opacity: 1')
+    if $('#entry_title').val() == 'title'
+      $('#entry_title').attr(value: '', style: 'opacity: 1')
 
   $('#entry_title').live "mouseleave", (event) =>
-    $('#entry_title').attr(value: '', style: 'opacity: 1')
+    if $('#entry_title').val() == 'title'
+      $('#entry_title').attr(value: '', style: 'opacity: 1')
 
 
-  # 
-  # $('#entry_title').mouseenter(attr(value: 'title:')).mouseleave
+
+
 
   $('#entry_body').css('overflow','hidden')  
   
@@ -96,6 +103,31 @@ $(document).ready ->
   
   $('#entry_body').keyup ->
     window.fitToContent(this, 0)
+
+
+
+
+  $('#entry_body').live "blur", (event) =>
+    if $('#entry_body').val() == ''
+      $('#title-hr').fadeOut('fast')
+      $('#entry_body').slideUp('fast')
+      $('#attach-text').show()
+
+  $('#attach-text').live "click", (event) =>
+    $('#entry_body').slideDown('fast')
+    $('#title-hr').fadeIn('fast')
+
+
+
+  # $('#entry_body').live "focus", (event) =>
+  #   if $('#entry_title').val() == 'title'
+  #     $('#entry_title').attr(value: '', style: 'opacity: 1')
+  # 
+  # $('#entry_body').live "mouseleave", (event) =>
+  #   if $('#entry_title').val() == 'title'
+  #     $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+
 
   ### disabled until update entry ordering is working again
   # Setup tag re-ordering
