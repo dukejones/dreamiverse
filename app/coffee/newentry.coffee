@@ -18,25 +18,25 @@ $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
   # Setup icon type changing
-  $('#entryType-list').unbind();
-  $('#entryType-list').change( ->
-    newSelection = $('#entryType-list').val()
-    
-    switch newSelection
-      when "dream"
-        iconFileSource = 'dream-24-active.png'
-      when "vision"
-        iconFileSource = 'vision-24-active.png'
-      when "experience"
-        iconFileSource = 'experience-24-active.png'
-      when "article"
-        iconFileSource = 'article-24-active.png'
-        
-    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
-    
-    $(this).prev().css('background', iconSource)
-  )
-  $('#entryType-list').change()
+  # $('#entryType-list').unbind();
+  #   $('#entryType-list').change( ->
+  #     newSelection = $('#entryType-list').val()
+  #     
+  #     switch newSelection
+  #       when "dream"
+  #         iconFileSource = 'dream-24-active.png'
+  #       when "vision"
+  #         iconFileSource = 'vision-24-active.png'
+  #       when "experience"
+  #         iconFileSource = 'experience-24-active.png'
+  #       when "article"
+  #         iconFileSource = 'article-24-active.png'
+  #         
+  #     iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
+  #     
+  #     $(this).prev().css('background', iconSource)
+  #   )
+  #$('#entryType-list').change()
   
   
   # If there are tags or images, expand them!

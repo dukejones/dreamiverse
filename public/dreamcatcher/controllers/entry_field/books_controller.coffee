@@ -2,37 +2,10 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
 
   entryModel: Dreamcatcher.Models.Entry
   bookModel: Dreamcatcher.Models.Book
-  
-  init: ->
-    @initDragAndDrop()
-    
-  initDragAndDrop: ->
-    $('#entryField .book').each (i, el) =>
-      @closeBook $(el)
-      $(el).droppable {         
-        drop: (ev, ui) =>
-          @addEntryToBook ui.draggable, $(ev.target)
-
-        over: (ev, ui) =>
-          bookEl = $(ev.target)
-          @openBook bookEl
-          $('.entryDrop-active', bookEl).show()
-          
-        out: (ev, ui) =>
-          log 'x'
-          bookEl = $(ev.target)
-
-      }
-
-    $('#entryField .thumb-2d').draggable {
-      containment: 'document'
-      zIndex: 100
-      revert: true
-    }
-    
+      
   addEntryToBook: (entryEl, bookEl) ->
     entryId = entryEl.data 'id'
-    bookId = bookEl.data 'id'
+    bookId = if bookEl? then bookEl.data 'id' else null
     
     entryMeta = { book_id: bookId }
     entryEl.hide()
