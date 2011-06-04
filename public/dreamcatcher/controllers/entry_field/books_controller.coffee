@@ -23,45 +23,81 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     return el.data 'id' if el?
     return null
   
-  #- move
+  #- new book
   
-  addEntryToBook: (entryEl, bookEl) ->
-    entryId = @data entryEl
-    bookId = @data bookEl
-    entryMeta = {book_id: bookId}
+  newBook: ->
+    @model.book.new {}, (html) =>
+      $('#welcomePanel').hide()
+      $('#entryField .matrix.books').prepend html
+      bookEl = $('#entryField .matrix.books .book:first')
+      @books.openBook bookEl
+      @publish 'dom', {el: bookEl}
+    
+  'history.book.new subscribe': (called, data) ->
+    @newBook()
+    
+  #- show book
+  
+  showBook: (bookId) ->
+    bookEl = @el.book bookId
+    html = bookEl.clone().css 'z-index', 2000
+    if $('#contextPanel .book').exists()
+      $('#contextPanel .book').replaceWith html
+    else
+      $('#contextPanel').prepend html
+    @publish 'drop', { el: $('#contextPanel') }
 
-    @model.entry.update entryId, {entry: entryMeta}, =>
-      @closeBook bookEl
-      entryEl.appendTo @el.bookMatrix bookEl
-
-    $('.entryDrop-active', bookEl).hide()
+    @model.book.show bookId, {}, (html) =>
+      $('#entryField').children().hide()
+      bookFieldEl = @el.bookField bookId
+      if bookFieldEl.exists()
+        bookFieldEl.replaceWith html
+      else
+        $('#entryField').append html
+      @publish 'drag', { el: @el.bookField }
+    
+  'history.book.show subscribe': (called, data) ->
+    @showBook data.id
+    
+  '.book .mask, .spine click': (el) ->
+    #sameple
+    @publish 'history', {
+      controller:
+      action: 'show'
+      id: @data el.closest '.book, .spine'
+    }
       
-  #- open/close
+  #- open book
   
   openBook: (el) ->
     @closeAllBooks()
-    log el
     bookEl = @el.book el
-    log bookEl
     $('.open, .closeClick', bookEl).show()
     $('.closed', bookEl).hide()
     
     
   '.closed .edit click': (el) ->
     @openBook el
+    
+  #- close book
       
   closeBook: (el) ->
     bookEl = @el.book el
     $('.open', bookEl).hide()
     $('.closed', bookEl).show()
 
+  '.closeClick, .confirm click': (el) ->
+    @closeBook @el.book el
+  
+  #-- all
+  
   closeAllBooks: (el) ->
     @closeBook()
   
-  '.closeClick, .confirm click': (el) ->
-    @closeBook @el.book el
-        
-  #- pages
+  'bodyClick subscribe': (called, data) ->
+    @closeAllBooks()
+      
+  #- paging
   
   showPage: (el, page) ->
     bookEl = @el.book el
@@ -71,6 +107,8 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
         
     @createUploader bookEl if page is 'cover'
 
+  #-- panels
+  
   '.book .control-panel .color click': (el) ->
     @showPage el, 'color'
 
@@ -82,16 +120,18 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
 
   '.book .open .back click': (el) ->
     @showPage el, 'control'
+    
+  #-- more settings
 
   showMore: (el) ->
-    bookEl = el.closest '.book'
+    bookEl = el.book el
     $('.settings-basic', bookEl).toggle()
     $('.more-settings', bookEl).toggle()
 
   '.book .arrow click': (el) ->
     @showMore el    
 
-  #- book saving
+  #- save book
   
   saveBook: (el, meta) ->
     bookEl = @el.book el
@@ -103,15 +143,21 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     else
       @model.book.update bookId, params
   
+  #-- color
+  
   '.color-panel .swatches li click': (el) ->
     color = el.attr 'class'
     bookEl = @el.book(el).attr 'class', "book #{color}"
     @saveBook el, {color: color}
   
+  #-- access
+  
   '.access-panel .select-menu change': (el) ->
     meta = {}
     meta[el.attr('name')] = el.val()
     @saveBook el, meta
+    
+  #-- title
     
   saveTitle: (el) ->
     bookEl = @getBookElement el
@@ -124,6 +170,8 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     
   '.titleInput keypress': (el, ev) ->
     @saveTitle el if ev.keyCode is 13 # enter key
+    
+  #- disable book
     
   disableBook: (el) ->
     if confirm 'are you sure?'

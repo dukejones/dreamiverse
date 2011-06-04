@@ -1,50 +1,71 @@
 $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
+
+  model: {
+    entry : Dreamcatcher.Models.Entry
+    book : Dreamcatcher.Models.Book
+  }
   
-  entryModel: Dreamcatcher.Models.Entry
-  bookModel: Dreamcatcher.Models.Book
+  el: {
+    bookField: (id) ->
+      return $("#entryField .matrix.book[data-id=#{id}]")
+    book: (id) ->
+      return $("#entryField .matrix.books .book[data-id=#{id}]")
+    entry: (id) ->
+      return $("#entryField .entry[data-id=#{id}]")
+  }
+  
+  data: (el) ->
+    return el.data type if type?
+    return el.data 'id' if el?
+    return null
+    
+  #- constructor
+  
+  init: ->
+    @books = new Dreamcatcher.Controllers.EntryField.Books $('#entryField .matrix.books')
+    @publish 'drop', { el: $('#entryField .matrix.books') }
+    @publish 'drag', { el: $('#entryField .matrix.field') }
+    
+  #- history
   
   history: (controller, action, id) ->
-    @historyAdd {
+    params = {
       controller: controller
       action: action
-      id: id
     }
+    $.extend params, {id: id} if id?
+    @historyAdd params
+    
+  'history subscribe': (called, data) ->
+    @history 'book', 'show', @data bookEl
   
-  'history.book.new subscribe': (called, data) ->
-    @newBook()
-    
-  'history.entry.new subscribe': (called, data) ->
-    @newEntry()
-    
-  'history.entry.show subscribe': (called, data) ->
-    @showEntryById data.id
-    
-  'history.book.show subscribe': (called, data) ->
-    @showBookById data.id
-    
-  'history.entry.field subscribe': (called, data) ->
-    @showField()
-
-    
   '.thumb-2d, .prev, .next click': (el) ->
-    @history 'entry', 'show', el.data 'id'
-
-  '.book .mask, .spine click': (el) ->
-    @history 'book', 'show', el.closest('.book, .spine').data 'id'
-    
+    @history 'entry', 'show', @data el
+  
   '.stream click': ->
     @history 'entry', 'field'
     
+  #- move entry to book (drag & drop)
+
+  moveEntryToBook: (entryEl, bookEl) ->
+    entryId = @data entryEl
+    bookId = @data bookEl
+    entryMeta = {book_id: bookId}
+
+    @model.entry.update entryId, {entry: entryMeta}, =>
+      @closeBook bookEl
+      entryEl.appendTo @el.bookMatrix bookEl
+
+    $('.entryDrop-active', bookEl).hide()
 
   'drop subscribe': (called, data) ->
-    $('.book', data.element).each (i, el) =>
+    $('.book', data.el).each (i, el) =>
       @books.closeBook $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
-          isContext = data.element.attr('id') is 'contextPanel'
           dropEl = null
-          dropEl = $(ev.target) if not isContext
-          @books.addEntryToBook ui.draggable, dropEl
+          dropEl = $(ev.target) if data.el.closest('#contextPanel')?
+          @books.moveEntryToBook ui.draggable, dropEl
 
         over: (ev, ui) =>
           bookEl = $(ev.target)
@@ -55,12 +76,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
           bookEl = $(ev.target)
           @books.closeBook bookEl
           $('.entryDrop-active', bookEl).hide()
-
       }
       
   'drag subscribe': (called, data) ->
-    log data.element
-    $('.thumb-2d', data.element).draggable {
+    $('.thumb-2d', data.el).draggable {
       containment: 'document'
       zIndex: 100
       revert: true
@@ -70,84 +89,53 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
       stop: (ev, ui) ->
         $('.add-active', ev.target).hide()
     }
-
+       
+  #- entry field
   
-  init: ->
-    @books = new Dreamcatcher.Controllers.EntryField.Books $('#entryField .matrix.books')
-    @publish 'drop', { element: $('#entryField .matrix.books') }
-    @publish 'drag', { element: $('#entryField .matrix.field') }
-      
-  closeEverythingOpen: ->
-    @books.closeAllBooks()
-    
-  hideAllEntries: ->
-    $('#entryField').children().hide()
-
-  showField: ->
-    @hideAllEntries()
+  #-- hide
+  
+  hideEntryField: ->
+    $('#entryField').children().fadeOut 1000
+  
+  #-- show
+  
+  showEntryField: ->
+    @hideEntryField()
     $('#contextPanel .book').remove()
     $('#entryField .matrix.field, #entryField .matrix.books').show()
-    
-
-  showEntryById: (entryId) ->
-    entryEl = $(".entry[data-id=#{entryId}]")
-    if entryEl.exists()
-      @hideAllEntries()
-      entryEl.show()
-    else
-      @entryModel.show { id: entryId }, @callback('showEntryHtml')
-
-  showEntryHtml: (html) ->
-    @hideAllEntries()
-    $('#entryField').append html
-    
-
-  showBookById: (bookId) ->
-    bookHtml = $("#entryField .book[data-id=#{bookId}]").clone().css 'z-index', 2000
-    if $('#contextPanel .book').exists()
-      $('#contextPanel .book').replaceWith bookHtml
-    else
-      $('#contextPanel').prepend bookHtml
-      
-    @publish 'drop', { element: $('#contextPanel') }
-    #$('#contextPanel .avatar').hide()
-    @bookModel.show bookId, {}, @callback('showBookEntries', bookId)
-    
-  showBookEntries: (bookId, html) ->
-    $('#entryField').children().hide()
-    bookFieldEl = $("#entryField .matrix.book[data-id=#{bookId}]")
-    if bookFieldEl.exists()
-      bookFieldEl.replaceWith html
-    else
-      $('#entryField').append html
-    
-    @publish 'drag', { element: $("#entryField .matrix.book[data-id=#{bookId}]") }
-      
-    
-
-    
-  newBook: ->
-    @bookModel.new {}, @callback('showBookThumbHtml')
   
-  showBookThumbHtml: (html) ->
-    $('#welcomePanel').hide()
-    $('#entryField .matrix.books').prepend html
-    bookEl = $('#entryField .matrix.books .book:first')
-    @books.openBook bookEl
-    @publish 'dom', {element: bookEl}
+  'history.entry.field subscribe': (called, data) ->
+    @showEntryField()
+    
+  #- new entry
     
   newEntry: ->
     # TODO: if new already showing, just bring up
-    @entryModel.new {}, @callback('showNewEntry')
-
-  showNewEntry: (html) ->
-    $('#entryField').children().hide()
-    if $('#new_entry').exists()
-      $('#new_entry').replaceWith html
+    @model.entry.new {}, (html) =>
+      $('#entryField').children().hide()
+      if $('#new_entry').exists()
+        $('#new_entry').replaceWith html
+      else
+        $('#entryField').prepend html
+      $('#new_entry').show()
+      @publish 'dom', { el: $('#new_entry') }
+  
+  'history.entry.new subscribe': (called, data) ->
+    @newEntry()
+  
+  #- show entry
+  
+  showEntry: (id) ->
+    entryEl = @el.entry id 
+    if entryEl.exists()
+      @hideEntryField()
+      entryEl.show()
     else
-      $('#entryField').prepend html
-    $('#new_entry').show()
-    @publish 'dom', { element: $('#new_entry') }
+      @model.entry.show {id: id}, (html) =>
+        @hideEntryField()
+        $('#entryField').append html
+  
+  'history.entry.show subscribe': (called, data) ->
+    @showEntry data.id
     
 }
-
