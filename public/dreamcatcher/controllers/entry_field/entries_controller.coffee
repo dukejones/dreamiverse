@@ -23,28 +23,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   
   init: ->
     @books = new Dreamcatcher.Controllers.EntryField.Books $('#entryField .matrix.books')
-    @publish 'drop', { el: $('#entryField .matrix.books') }
-    @publish 'drag', { el: $('#entryField .matrix.field') }
-    
-  #- history
-  
-  history: (controller, action, id) ->
-    params = {
-      controller: controller
-      action: action
-    }
-    $.extend params, {id: id} if id?
-    @historyAdd params
-    
-  'history subscribe': (called, data) ->
-    @history 'book', 'show', @data bookEl
-  
-  '.thumb-2d, .prev, .next click': (el) ->
-    @history 'entry', 'show', @data el
-  
-  '.stream click': ->
-    @history 'entry', 'field'
-    
+    @publish 'drop', $('#entryField .matrix.books')
+    @publish 'drag', $('#entryField .matrix.field')
+          
   #- move entry to book (drag & drop)
 
   moveEntryToBook: (entryEl, bookEl) ->
@@ -59,12 +40,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
     $('.entryDrop-active', bookEl).hide()
 
   'drop subscribe': (called, data) ->
-    $('.book', data.el).each (i, el) =>
+    parentEl = data
+    $('.book', parentEl).each (i, el) =>
       @books.closeBook $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
           dropEl = null
-          dropEl = $(ev.target) if data.el.closest('#contextPanel')?
+          dropEl = $(ev.target) if parentEl.closest('#contextPanel')?
           @books.moveEntryToBook ui.draggable, dropEl
 
         over: (ev, ui) =>
@@ -79,7 +61,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
       }
       
   'drag subscribe': (called, data) ->
-    $('.thumb-2d', data.el).draggable {
+    parentEl = data.el
+    $('.thumb-2d', parentEl).draggable {
       containment: 'document'
       zIndex: 100
       revert: true
@@ -106,6 +89,12 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   
   'history.entry.field subscribe': (called, data) ->
     @showEntryField()
+
+  '.stream click': ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'field'
+    }
     
   #- new entry
     
@@ -118,7 +107,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
       else
         $('#entryField').prepend html
       $('#new_entry').show()
-      @publish 'dom', { el: $('#new_entry') }
+      @publish 'dom', $('#new_entry')
   
   'history.entry.new subscribe': (called, data) ->
     @newEntry()
@@ -137,5 +126,12 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   
   'history.entry.show subscribe': (called, data) ->
     @showEntry data.id
+    
+  '.thumb-2d, .prev, .next click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'show'
+      id: @data el
+    }
     
 }

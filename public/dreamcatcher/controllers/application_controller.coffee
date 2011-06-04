@@ -1,15 +1,22 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
+  #- constructor
+  
   init: ->
-    @initUi()
+    @publish 'dom', $('#body') 
     
-    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('#metaMenu') if $('#metaMenu').exists()
-    @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
-    #@comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField") if $("#entryField").exists()
-    @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
-    @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
+  #- controllers
+  
+  setupControllers: ->
+    @metaMenu   = new Dreamcatcher.Controllers.MetaMenu   $('#metaMenu')            if $('#metaMenu').exists()
+    @imageBank  = new Dreamcatcher.Controllers.ImageBank  $("#frame.browser")       if $("#frame.browser").exists()
+    @comments   = new Dreamcatcher.Controllers.Comments   $('#entryField')          if $('#entryField .comments').exists()
+    @entries    = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField")  if $("#entryField").exists()
+    @stream     = new Dreamcatcher.Controllers.Stream     $("#streamContextPanel")  if $("#streamContextPanel").exists()    
+    @admin      = new Dreamcatcher.Controllers.Admin      $('#adminPage')           if $('#adminPage').exists()
     
+  #- setup ui elements
+  
   initUi: (parentEl) ->
     parentEl = $('body') if not parentEl?
     $('.tooltip', parentEl).each (i, el) =>
@@ -18,35 +25,24 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
       
   'dom subscribe': (called, data) ->
-    @initUi data.element
-
-  # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
-  # NOTE: this is not currently working, see fit_to_content.coffee
-  fitToContent: (id, maxHeight) ->
-    text = if id and id.style then id else document.getElementById(id)
-    return 0 if not text
-    adjustedHeight = text.clientHeight
-    if not maxHeight or maxHeight > adjustedHeight
-      adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
-      adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-      $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
-
-
+    @initUi data
 
   '#bodyClick click': ->
     @publish 'bodyClick'
-    @metaMenu.hideAllPanels() if @metaMenu? #todo
+    @metaMenu.hideAllPanels() if @metaMenu? #todo: publish
     
-  #TODO: eventually remove '.comment_body' to apply to all 'textarea's
-  '.comment_body keyup': (el) ->
-    @fitToContent el.attr("id"),0
+  #- fit to content event
+  
+  'textarea keyup': (el) ->
+    fitToContent el.attr('id'), 0
     
-  '.button.appearance click': (el) ->
-    @metaMenu.selectPanel 'appearance'
+  #- appearance menu
+  #todo: checkout where used
     
-  '#entry-appearance click': (el) ->
-    @metaMenu.selectPanel 'appearance'
-    
+  '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
+    @metaMenu.selectPanel 'appearance' #todo: publish?
+  
+  #- select-menu events - move into own controller?
     
   'label.ui-selectmenu-default mouseover': (el) ->
     el.parent().addClass 'default-hover'
@@ -54,8 +50,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   'label.ui-selectmenu-default mouseout': (el) ->
     el.parent().removeClass 'default-hover'  
   
-  # radio button check for select-menu
   '.ui-selectmenu-default input[type=radio] click': (el) ->
+    # radio button check for select-menu
+    #todo: publish
     ul = $(el).closest 'ul'
     $('li', ul).removeClass 'default'
     $(el).closest('li').addClass 'default'
@@ -67,12 +64,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
 
+  #meta Menu - mov?
+
   '#new-post change': (el) ->
     @historyAdd {
       controller: el.val()
       action: 'new'
     }
-    $("options",el).removeAttr 'selected'
+    #todo: issue with selecting same again
     
   '#metaMenu .newEntry click': (el) ->
     @historyAdd {
@@ -80,12 +79,14 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       action: 'new'
     }
     
+  #own context panel one?
+    
   '#contextPanel .avatar, #contextPanel .book click': (el) ->
+    #todo: could make same class
     @historyAdd {
       controller: 'entry'
       action: 'field'
     }
-        
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

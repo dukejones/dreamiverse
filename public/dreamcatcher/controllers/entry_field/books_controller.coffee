@@ -60,9 +60,8 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     @showBook data.id
     
   '.book .mask, .spine click': (el) ->
-    #sameple
-    @publish 'history', {
-      controller:
+    @historyAdd {
+      controller: 'book'
       action: 'show'
       id: @data el.closest '.book, .spine'
     }
