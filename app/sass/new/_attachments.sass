@@ -7,7 +7,7 @@
       color: #555
 
 
-    #attach-text, #attach-images, #attach-tag, #attach-links, #attach-emotions
+    #attach-text, #attach-images, #attach-tag, #attach-links, #attach-emotions, #entry-appearance
       border: 1px solid transparent
       &:hover
         +bevel-light
@@ -23,7 +23,7 @@
     p
       color: #8a8a8a
 
-    #attach-text, #attach-images, #attach-tag, #attach-links, #attach-emotions
+    #attach-text, #attach-images, #attach-tag, #attach-links, #attach-emotions, #entry-appearance
       border: 1px solid transparent
       &:hover
         +bevel-dark
@@ -83,6 +83,7 @@
       margin-right: 8px
 
   #attach-text
+    +hidden
     .img
       background: url(/images/icons/images-16.png) no-repeat left center transparent
     &:hover .img
@@ -122,3 +123,16 @@
       background: url(/images/icons/emotions-16-hover.png) no-repeat left center transparent
     &:active .img
       background: url(/images/icons/emotions-16-active.png) no-repeat left center transparent
+
+
+  #entry-appearance
+    +right
+    margin-right: 4px
+    .img
+      width: 24px
+      margin-right: 0px
+      background: url('/images/icons/appearance-24.png') center center no-repeat
+    &:hover .img
+      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+    &:active .img
+      background: url('/images/icons/appearance-24-active.png') center center no-repeat
