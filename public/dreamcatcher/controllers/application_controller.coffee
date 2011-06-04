@@ -6,7 +6,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('#metaMenu') if $('#metaMenu').exists()
     @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
     #@comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField .matrix") if $("#entryField .matrix").exists()
+    @entries = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField") if $("#entryField").exists()
     @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     
@@ -18,7 +18,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
       
   'dom subscribe': (called, data) ->
-    log data.element
     @initUi data.element
 
   # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
@@ -80,7 +79,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       controller: 'entry'
       action: 'new'
     }
-  
+    
+  '#contextPanel .avatar, #contextPanel .book click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'field'
+    }
         
 
 $(document).ready ->

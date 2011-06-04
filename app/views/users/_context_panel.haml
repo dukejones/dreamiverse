@@ -19,7 +19,8 @@
 
 
       / IMAGE
-      %a.avatar{href: user_entries_path(user.username), style: "background:url(#{avatar_image(user)}) no-repeat center center"}
+      %a.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center"}
+        /href: user_entries_path(user.username),
         - if (user == current_user) && !is_ipad?
 
 
