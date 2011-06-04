@@ -108,7 +108,7 @@
           +bold
           color: #68b800
       .uploadAvatar:hover
-        +inner-glow(20)
+        +inner-glow(10)
         border: 1px solid #fff
         color: #fff
 
@@ -149,7 +149,6 @@
     +overflow
     +relative
     +center
-    +bold
     +block
     +font(21)
     margin: 4px 0 2px
@@ -491,7 +490,9 @@
     .avatar
       border: 1px solid transparent
       &:hover
-        border: 1px solid #000
+        +pointer
+        border: 1px solid #aaa
+        border: 1px solid rgba(255, 255, 255, 0.8)
 
     .context, .label
       border: 1px solid #8a8a8a
@@ -499,12 +500,18 @@
       border: 1px solid #111
       +pointer
     .context
+      color: #444
       +shine-light-alpha(16)
+      &:hover
+        color: #000
     .label
       +shine-light-alpha(16)
       &.selected
         +shine-dark-alpha(16)
         color: #fff !important
+
+    .trigger .label:hover
+      color: #000
 
 
 
@@ -596,7 +603,8 @@
     .avatar
       border: 1px solid transparent
       &:hover
-        border: 1px solid #fff
+        border: 1px solid #333
+        border: 1px solid rgba(0,0,0,0.6)
 
     .context, .label
       +shine-dark-alpha(16)
