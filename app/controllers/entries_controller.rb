@@ -3,6 +3,8 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream, :random]
 
   def entry_list(lens=nil, filters=nil)
+    return Entry.where(book_id: params[:id]) if params[:id] #todo: refactor
+    
     session[:lens] = lens unless lens.nil?
     
     filters ||= session[:filters] || {}
@@ -69,6 +71,10 @@ class EntriesController < ApplicationController
     # TODO: refactor (see above)
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
+    
+    if @entry.book_id
+      @book = Book.find @entry.book_id 
+    end
     #flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
 
     @entries = entry_list

@@ -19,14 +19,14 @@
     .clear
   
 
-
+  .matrix.books
+    - @books.each do |book|
+      = render :partial => 'books/book', :locals => {:book => book}
   / DREAM MATRIX
-  .matrix
+  .matrix.field
     .entryCount{:'data-id' => @entry_count}
     .pageSize{:'data-id' => @filters[:page_size]}
     
-    - @books.each do |book|
-      = render :partial => 'books/book', :locals => {:book => book}
 
     - @entries.each do |entry|
       / DREAM THUMBS 2D
