@@ -45,7 +45,7 @@
 
 
     / BOOKS LIST
-    .books-list
+    .books-list.tooltip{title: "add to book"}
       .img
 
       %select#books-list.select-menu.dropdown
@@ -275,20 +275,22 @@
 
 
   / NEW ENTRY ATTACHMENTS
-  .entryAttach
+  #entryAttach
     %p +
+    #attach-text.attach
+      .img
+      text
     - unless is_ipad?
-      .attach.images
+      #attach-images.attach
         .img
         images
-    .attach.tag
+    #attach-tags.attach
       .img
       tag
-    .attach.links
+    #attach-links.attach
       .img
       links
-
-    .attach.emotions
+    #attach-emotions.attach
       .img
       emotions
     .clear
