@@ -55,44 +55,42 @@ steal.plugins(
       'classes/cookie_helper',
       'classes/upload_helper',
       'classes/ui_helper',
-      'models/settings',
+      'models/users',
       'models/image',
       'controllers/application_controller',
-      'controllers/meta_menu_controller',
-      'controllers/settings_controller'
+      'controllers/users/meta_menu_controller',
+      'controllers/users/settings_controller'
     );
     if (imageBank) {
       steal.coffee(
-        'controllers/image_bank/image_bank_controller',
-			  'controllers/image_bank/browser_controller',
-			  'controllers/image_bank/slideshow_controller',
-			  'controllers/image_bank/dropbox_controller',
-			  'controllers/image_bank/search_options_controller',	
-			  'controllers/image_bank/manager_controller',
-			  'controllers/image_bank/manager_uploader_controller',
-			  'controllers/image_bank/manager_selector_controller',
-			  'controllers/image_bank/manager_meta_controller'
+        'controllers/images/image_bank_controller',
+			  'controllers/images/browser_controller',
+			  'controllers/images/slideshow_controller',
+			  'controllers/images/dropbox_controller',
+			  'controllers/images/search_options_controller',	
+			  'controllers/images/manager_controller',
+			  'controllers/images/manager_uploader_controller',
+			  'controllers/images/manager_selector_controller',
+			  'controllers/images/manager_meta_controller'
 			);
     } else if (stream) {
       steal.coffee(
         'models/stream',
-        'models/comment',
-        'controllers/stream_controller',
-        'controllers/comments_controller'
+        'controllers/entries/stream_controller'
       );
     } else {
       steal.coffee(
-        'models/appearance',
-        'models/bedsheet',
         'models/user',
         'models/entry',
-        'models/user',
         'models/book',
-        'controllers/appearance_controller',
-        'controllers/bedsheets_controller',
-        'controllers/entry_field/entries_controller',
-        'controllers/entry_field/new_controller',
-        'controllers/entry_field/books_controller'
+        'models/image',
+        'models/comment',
+        'controllers/users/appearance_controller',
+        'controllers/users/bedsheets_controller',
+        'controllers/entries/entries_controller',
+        'controllers/entries/new_controller',
+        'controllers/entries/books_controller',
+        'controllers/entries/comments_controller'
       );
     }
   })

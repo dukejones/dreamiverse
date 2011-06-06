@@ -10,12 +10,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   setupControllers: ->
     
-    @metaMenu   = new Dreamcatcher.Controllers.MetaMenu   $('#metaMenu')            if $('#metaMenu').exists()
+    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')            if $('#metaMenu').exists()
     
-    @imageBank  = new Dreamcatcher.Controllers.ImageBank  $("#frame.browser")       if $("#frame.browser").exists()
+    @imageBank  = new Dreamcatcher.Controllers.Images  $("#frame.browser")       if $("#frame.browser").exists()
     
-    @entries    = new Dreamcatcher.Controllers.EntryField.Entries $("#entryField")  if $("#entryField").exists()
-    @comments   = new Dreamcatcher.Controllers.Comments   $('#entryField')          if $('#entryField .comments').exists()
+    @entries    = new Dreamcatcher.Controllers.Entries $("#entryField")  if $("#entryField").exists()
+    @comments   = new Dreamcatcher.Controllers.Comments   $('#entryField .matrix .stream')  if $('#entryField .comments').exists()
     @stream     = new Dreamcatcher.Controllers.Stream     $("#streamContextPanel")  if $("#streamContextPanel").exists()    
     
     @admin      = new Dreamcatcher.Controllers.Admin      $('#adminPage')           if $('#adminPage').exists()
