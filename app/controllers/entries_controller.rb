@@ -152,6 +152,8 @@ class EntriesController < ApplicationController
       @entry.set_links(params[:links])
       @entry.set_emotions(params[:emotions])
     end
+    
+    params[:entry][:book_id] = nil if params[:entry][:book_id] == 'null'
 
     if @entry.update_attributes(params[:entry].merge({updated_at: Time.now}))
       respond_to do |format|

@@ -1,11 +1,10 @@
 $.Class 'Dreamcatcher.Classes.UploadHelper', {  
 
-  createUploader: (attr, submit, complete, cancel, progress) ->
-    fileUploader = new qq.FileUploader {
-      
+  create: (attr, submit, complete, cancel, progress) ->
+    uploader = new qq.FileUploader {  
       maxConnections: 1
       params: if attr.params? then attr.params else {}
-      debug: false # todo: false
+      debug: true # todo: false
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
       classes: {
@@ -25,13 +24,16 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       element: attr.element.get(0)
       action: attr.url
       template: attr.element.html()
-      fileTemplate: $.View('//dreamcatcher/views/image_upload.ejs')
+      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
       
       onSubmit: submit
       onComplete: complete
     }
-    fileUploader.onProgress = progress if progress?
-    fileUploader.onCancel = cancel if cancel?
+    $('input[type=file]', attr.element).removeAttr 'multiple' if attr.multiple
+    uploader.onProgress = progress if progress?
+    uploader.onCancel = cancel if cancel?
+    
+    return uploader
 
 }, {}
 

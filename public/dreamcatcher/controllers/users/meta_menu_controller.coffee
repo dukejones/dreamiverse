@@ -1,5 +1,4 @@
-
-$.Controller 'Dreamcatcher.Controllers.MetaMenu',
+$.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
 
   init: ->
     @setupiOSfix()
@@ -29,10 +28,10 @@ $.Controller 'Dreamcatcher.Controllers.MetaMenu',
   
     switch name
       when "settings"
-        @settingsPanel = new Dreamcatcher.Controllers.Settings $("#settingsPanel") if not @settingsPanel?
+        @settingsPanel = new Dreamcatcher.Controllers.Users.Settings $("#settingsPanel") if not @settingsPanel?
         @currentPanel = @settingsPanel
       when "appearance"
-        @appearancePanel = new Dreamcatcher.Controllers.Appearance $("#appearancePanel") if not @appearancePanel?
+        @appearancePanel = new Dreamcatcher.Controllers.Users.Appearance $("#appearancePanel") if not @appearancePanel?
         @currentPanel = @appearancePanel
       
     @expandSelectedPanel()
