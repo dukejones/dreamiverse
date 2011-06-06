@@ -37,6 +37,16 @@ steal.plugins(
     
   )              // 3rd party script's (like jQueryUI), in resources folder
   .then(function() {
+    /* TODO: dream components (separate folder)
+      entries : books, stream, entry, field, comments [entry, book]
+      images : image bank, browser, search, dropbox, slideshow, manager (merge back into 1) [image, user]
+      
+      menu : meta menu, appearance, settings [user, image, entry]
+      comments (future) : entry, stream, images [comment]
+      tags (future) : entry, images (or move into separate components)
+      
+      admin : 
+    */
     page = window.location.href.split('/').pop();
     imageBank = (page == 'images');
     stream = (page == "stream")

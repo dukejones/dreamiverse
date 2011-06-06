@@ -1,5 +1,6 @@
 $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
 
+  #use across all controllers
   model: {
     entry : Dreamcatcher.Models.Entry
     book : Dreamcatcher.Models.Book
@@ -13,7 +14,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
     entry: (id) ->
       return $("#entryField .entry[data-id=#{id}]")
   }
-  
+
   data: (el) ->
     return el.data type if type?
     return el.data 'id' if el?
