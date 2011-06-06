@@ -1,97 +1,84 @@
-steal.plugins(
-	'steal/coffee',
-	'jquery/controller',			// a widget factory
-	'jquery/controller/subscribe',	// subscribe to OpenAjax.hub
-	'jquery/controller/history',
-	'jquery/view/ejs',				// client side templates
-	'jquery/controller/view',	// lookup views with the controller's name
-	'jquery/model',					  // Ajax wrappers
-	'jquery/dom/fixture',			// simulated Ajax requests
-	'jquery/dom/form_params'
-	)	// form data helper
-	.resources(
-	  'ui/jquery.ui.core',
-		'ui/jquery.ui.widget',
-		'ui/jquery.ui.mouse',
-    'ui/jquery.ui.position',
-    'ui/jquery.ui.selectmenu',
-    'ui/jquery.ui.draggable',
-		'ui/jquery.ui.droppable',		
-		
-		'jquery.tooltip.js',
-	  'jquery-lightbox-0.5',
-	  'jquery.tooltip.js',
-	  'jquery.timeago',
-		'jquery.exists',
+/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 19:01:21 GMT from
+ * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
+ */
 
-		'jquery.cookie',
-		'jquery.dateFormat-1.0',
-		'jquery.query-2.1.7',
-		'jquery.livequery',
-		
-		'fileuploader',
-		
-		'jquery.linkify',
-		'jquery.videolink',
-		'dream.plugs'
-    
-  )              // 3rd party script's (like jQueryUI), in resources folder
-  .then(function() {
-    /* TODO: dream components (separate folder)
-      entries : books, stream, entry, field, comments [entry, book]
-      images : image bank, browser, search, dropbox, slideshow, manager (merge back into 1) [image, user]
-      
-      menu : meta menu, appearance, settings [user, image, entry]
-      comments (future) : entry, stream, images [comment]
-      tags (future) : entry, images (or move into separate components)
-      
-      admin : 
-    */
-    page = window.location.href.split('/').pop();
-    imageBank = (page == 'images');
-    stream = (page == "stream")
-    //TODO: StealJS fix: don't forget to contribute!
-    steal.coffee(
-      'classes/cookie_helper',
-      'classes/upload_helper',
-      'classes/ui_helper',
-      'models/users',
-      'models/image',
-      'controllers/application_controller',
-      'controllers/users/meta_menu_controller',
-      'controllers/users/settings_controller'
-    );
-    if (imageBank) {
-      steal.coffee(
-        'controllers/images/image_bank_controller',
-			  'controllers/images/browser_controller',
-			  'controllers/images/slideshow_controller',
-			  'controllers/images/dropbox_controller',
-			  'controllers/images/search_options_controller',	
-			  'controllers/images/manager_controller',
-			  'controllers/images/manager_uploader_controller',
-			  'controllers/images/manager_selector_controller',
-			  'controllers/images/manager_meta_controller'
-			);
-    } else if (stream) {
-      steal.coffee(
-        'models/stream',
-        'controllers/entries/stream_controller'
-      );
-    } else {
-      steal.coffee(
-        'models/user',
-        'models/entry',
-        'models/book',
-        'models/image',
-        'models/comment',
-        'controllers/users/appearance_controller',
-        'controllers/users/bedsheets_controller',
-        'controllers/entries/entries_controller',
-        'controllers/entries/new_controller',
-        'controllers/entries/books_controller',
-        'controllers/entries/comments_controller'
-      );
+(function() {
+  var controllers, helpers, models, page;
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  steal.plugins('steal/coffee', 'jquery/controller', 'jquery/controller/subscribe', 'jquery/controller/history', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/model', 'jquery/dom/fixture', 'jquery/dom/form_params').resources('ui/jquery.ui.core', 'ui/jquery.ui.widget', 'ui/jquery.ui.mouse', 'ui/jquery.ui.position', 'ui/jquery.ui.selectmenu', 'ui/jquery.ui.draggable', 'ui/jquery.ui.droppable', 'jquery.tooltip.js', 'jquery-lightbox-0.5', 'jquery.tooltip.js', 'jquery.timeago', 'jquery.exists', 'jquery.cookie', 'jquery.dateFormat-1.0', 'jquery.query-2.1.7', 'jquery.livequery', 'fileuploader', 'jquery.linkify', 'jquery.videolink', 'dream.plugs').then(__bind(function() {
+    helpers('cookie', 'upload', 'ui');
+    models('user', 'image');
+    controllers('application', 'users/meta_menu', 'users/settings');
+    switch (page()) {
+      case 'images':
+        return controllers({
+          group: 'images',
+          elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
+        });
+      case 'stream':
+        models('stream', 'entry', 'comment');
+        return controllers({
+          group: 'entries',
+          elements: ['stream', 'entries', 'comments']
+        });
+      case 'carboes':
+        models('entry', 'book', 'comment');
+        return controllers({
+          group: 'entries',
+          elements: ['entries', 'new', 'books', 'comments']
+        }, {
+          group: 'users',
+          elements: ['appearance', 'bedsheets']
+        });
     }
-  })
-  .views();
+  }, this)).views();
+  controllers = function() {
+    var arg, el, group, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = arguments.length; _i < _len; _i++) {
+      arg = arguments[_i];
+      _results.push((function() {
+        var _j, _k, _len2, _len3, _ref, _results2, _results3;
+        if (arg.group != null) {
+          group = arg.group;
+          _ref = arg.elements;
+          _results2 = [];
+          for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
+            el = _ref[_j];
+            _results2.push(steal.coffee("controllers/" + group + "/" + el + "_controller"));
+          }
+          return _results2;
+        } else {
+          _results3 = [];
+          for (_k = 0, _len3 = arguments.length; _k < _len3; _k++) {
+            arg = arguments[_k];
+            _results3.push(steal.coffee("controllers/" + arg + "_controller"));
+          }
+          return _results3;
+        }
+      }).apply(this, arguments));
+    }
+    return _results;
+  };
+  models = function() {
+    var arg, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = arguments.length; _i < _len; _i++) {
+      arg = arguments[_i];
+      _results.push(steal.coffee("models/" + arg));
+    }
+    return _results;
+  };
+  helpers = function() {
+    var arg, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = arguments.length; _i < _len; _i++) {
+      arg = arguments[_i];
+      _results.push(steal.coffee("classes/" + arg + "_helper"));
+    }
+    return _results;
+  };
+  page = function() {
+    return window.location.href.split('/').pop();
+  };
+}).call(this);
