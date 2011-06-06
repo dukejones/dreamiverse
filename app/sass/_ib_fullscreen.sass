@@ -5,6 +5,34 @@
   height: 100%
 
 
+  // LEFT AND RIGHT ARROWS
+  .left, .right
+    +absolute
+    +center
+    width: 10%
+    height: 80%
+    top: 20%
+    &:hover .arrow
+      +block
+
+  .left
+    left: 0
+
+  .right
+    right: 0
+
+  .arrow
+    +hidden
+    +font(200)
+    +bold
+    color: #fff
+    color: rgba(250,250,250,0.5)
+
+  .text
+    +font(18)
+    font-weight: normal
+    margin: -40px 0 0
+
 
   // IMAGE
   .imageContainer
@@ -35,6 +63,7 @@
             // temporary, until resize
             img
               max-height: 100%
+              width: 100%
 
 
       // TAGGING & INFO
