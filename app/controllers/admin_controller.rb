@@ -27,142 +27,126 @@ class AdminController < ApplicationController
   end
 
   def load_line_chart
-    title = params[:title] || 'none'
-    data = {}
+    data,opts = {},{}
+    title = params[:title] ||= ''
     data['title'] = title
     
     if title == 'last 7 days in users'
-      data['lines'] = ['users']
-      data['max_range'] = 5 # account for zeros
-            
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.days
-        label = label.strftime('%a')
-        vals[0] = User.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_line_chart_data(data,num,label,vals)
-      end
+      opts['model'] = 'User'
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 7 
+      opts['date_span'] = 'days'
+     
+      data = generate_line_chart_data(opts) 
       
     elsif title == 'last 8 weeks in users'
-      data['lines'] = ['users']
-      data['max_range'] = 5 # account for zeros      
+      opts['model'] = 'User'
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 8 
+      opts['date_span'] = 'weeks'
       
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.weeks
-        label = label.strftime('%b %d')
-        vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_line_chart_data(data,num,label,vals)
-      end
+      data = generate_line_chart_data(opts)
       
     elsif title == 'last 6 months in users'
-      data['lines'] = ['users']
-      data['max_range'] = 5 # account for zeros
-          
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.months
-        label = label.strftime('%b %d')
-        vals[0] = User.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_line_chart_data(data,num,label,vals)        
-      end
-
+      opts['model'] = 'User'     
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 6 
+      opts['date_span'] = 'months'
+      
+      data = generate_line_chart_data(opts)
+  
     elsif title == 'last 7 days in entries'
-      data['lines'] = ['entries']
-      data['max_range'] = 5 # account for zeros
+      opts['model'] = 'Entry'
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 7 
+      opts['date_span'] = 'days'
+      opts['date_format'] = '%a'
       
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.days
-        label = label.strftime('%a')
-        vals[0] = Entry.where(:created_at => (num.days.ago.beginning_of_day)..(num.days.ago.end_of_day)).count
-        data = append_line_chart_data(data,num,label,vals)
-      end
-
+      data = generate_line_chart_data(opts)      
+  
     elsif title == 'last 8 weeks in entries'
-      data['lines'] = ['entries']
-      data['max_range'] = 5 # account for zeros
+      opts['model'] = 'Entry'
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 8
+      opts['date_span'] = 'weeks'
       
-      (0..data['max_range']).each do |num|
-        vals = []
-        label = Time.now - num.weeks
-        label = label.strftime('%b %d')
-        vals[0] = User.where(:created_at => (num.weeks.ago.beginning_of_week)..(num.weeks.ago.end_of_week)).count
-        data = append_line_chart_data(data,num,label,vals)
-      end
+      data = generate_line_chart_data(opts)      
          
     elsif title == 'last 6 months in entries'
-      data['lines'] = ['entries']
-      data['max_range'] = 5 # account for zeros
-      
-      (0..data['max_range']).each do |num|   
-        vals = [] 
-        label = Time.now - num.months
-        label = label.strftime('%b %d')
-              
-        vals[0] = Entry.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-        data = append_line_chart_data(data,num,label,vals)        
-      end
-
-    elsif title == 'last 6 months in entry types' 
-      data['lines'] = ['dream','vision','experience','article','journal']
-      data['max_range'] = 5 # account for zeros
-      
-      (0..data['max_range']).each do |num|
-        vals = [] 
-        label = Time.now - num.months
-        label = label.strftime('%b %d')
+      opts['model'] = 'Entry'
+      opts['title'] = title
+      opts['lines'] = ['entries']
+      opts['date_max_range'] = 6
+      opts['date_span'] = 'months'
+           
+      data = generate_line_chart_data(opts)
         
+    elsif title == 'last 6 months in comments'
+      opts['title'] = title
+      opts['lines'] = ['comments']
+      opts['date_max_range'] = 6
+      opts['date_span'] = 'months'
+      opts['model'] = 'Comment'
+
+      data = generate_line_chart_data(opts)
+    
+    elsif title == 'last 6 months in entry types'
+      # opts['title'] = title
+      # opts['lines'] = ['dream','vision','experience','article','journal']
+      # opts['date_max_range'] = 5 # account for zeros
+      # opts['date_span'] = 'months'
+      # opts['model'] = 'Entry'
+      # opts['conditions'] = "{:type => type}"
+      # 
+      # data = generate_line_chart_data(opts)      
+     
+      data['lines'] = ['dream','vision','experience','article','journal']
+      data['date_max_range'] = 6 
+    
+      (0..data['date_max_range']).each do |num|
+        vals = [] 
+        label = Time.now - num.months
+        label = label.strftime('%b %d')
+      
         data['lines'].each_with_index do |type,i|
           vals[i] = Entry.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
-        end       
-        data = append_line_chart_data(data,num,label,vals)    
-      end 
-      
-    elsif title == 'last 6 months in comments'
-      opts = {}
-      opts['lines'] = ['comments']
-      opts['max_range'] = 5 # account for zeros
-      opts['span'] = 'months'
-      opts['model'] = 'Comment'
-      generate_graph_data(opts)
-      
-      # data['lines'] = ['comments']
-      # data['max_range'] = 5 # account for zeros
-      #     
-      # (0..data['max_range']).each do |num|
-      #   vals = []
-      #   label = Time.now - num.months
-      #   label = label.strftime('%b %d')
-      #   vals[0] = Comment.where(:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)).count
-      #   data = append_line_chart_data(data,num,label,vals)        
-      # end      
-       
-    end  
-  
-    if request.xhr?
-      render :json => {type: 'ok', data: data}
-    end            
+        end              
+       data = append_line_chart_data(data,num,label,vals)  
+      end  
+    end   
+        
+    render :json => {type: 'ok', data: data} 
   end
+     
 
-
-  def generate_graph_data(opts)
+  def generate_line_chart_data(opts)
     data = {}
+    data['title'] = opts['title']
     data['lines'] = opts['lines']
-    data['max_range'] = opts['max_range']
+    data['date_max_range'] = opts['date_max_range'] - 1 # account for zero's
     model = opts['model'].capitalize
-    span = opts['span']
+    date_span = opts['date_span']
+    date_format = opts['date_format'] ||= '%b %d'
+    date_range_begin = "beginning_of_#{date_span.singularize}"
+    date_range_end ="end_of_#{date_span.singularize}"
 
-    (0..data['max_range']).each do |num|
+    (0..data['date_max_range']).each do |num|
       vals = []
-      label = Time.now - num.span
-      label = label.strftime('%b %d')
-      data['lines'].each_with_index do |type,i|
-        vals[i] = model.where({:created_at => (num.months.ago.beginning_of_month)..(num.months.ago.end_of_month)} & {:type => type}).count
-      end
+      label = num.send(date_span).ago.strftime(date_format)
+      # vals[0] = model.camelcase.constantize.where({:created_at => (num.send(date_span).ago.send(date_range_begin))..(num.send(date_span).ago.send(date_range_end))}).count  
+      vals[0] = get_date_range_count(model,num,date_range_begin,date_range_end,date_span)  
       data = append_line_chart_data(data,num,label,vals)        
     end    
     return data
+  end
+  
+  def get_date_range_count(model,num,range_begin,range_end,span)
+    model.camelcase.constantize.where({:created_at => (num.send(span).ago.send(range_begin))..(num.send(span).ago.send(range_end))}).count
   end
 
   def load_pie_chart 

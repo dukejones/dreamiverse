@@ -1,6 +1,6 @@
 $.Model 'Dreamcatcher.Models.Chart',{
   
-  loadLineChart: ( params, success, error ) ->
+  loadSimpleLineChart: ( params, success, error ) ->
     $.ajax {
       url: "/admin/load_line_chart"
       type: 'get'
@@ -9,7 +9,7 @@ $.Model 'Dreamcatcher.Models.Chart',{
       success: success
       error: error
     }
-
+      
   loadPieChart: ( params, success, error ) ->
     $.ajax {
       url: "/admin/load_pie_chart"

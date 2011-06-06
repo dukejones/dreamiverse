@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
   drawLineChart: (json) ->
     data = new google.visualization.DataTable() 
     numLines = json.data['lines'].length - 1 # account for zero's
-    maxRange = parseInt json.data['max_range']  
+    maxRange = parseInt json.data['date_max_range']  
     rangeKeys = [0..maxRange] # for date ranges
     lineKeys = [0..numLines]  # for data lines
 
@@ -31,20 +31,49 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       legendTextStyle: {color: 'black'},
       titleTextStyle: {color: 'black'}
     })
-    
-    
-  getOptions1: (title) ->
-    return {
-      title: title
-      width: 600
-      height: 300
-      cht: 'p3'
-      is3D: true
-      backgroundColor: 'black'
-      legendTextStyle: {color: 'white'}
-      titleTextStyle: {color: 'white'}
-    }
 
+
+  drawSparklineChart: (json) ->
+    data = new google.visualization.DataTable() 
+    numLines = json.data['lines'].length - 1 # account for zero's
+    maxRange = parseInt json.data['date_max_range']  
+    rangeKeys = [0..maxRange] # for date ranges
+    lineKeys = [0..numLines]  # for data lines
+
+
+    
+    data.addRows(maxRange + 1)
+    
+    # Add labels & values
+    for day in [0..1]
+
+       
+      for hour in [0..23] # for each date range  
+           
+        # setValue paramaters are: range_position, line_num, value)  
+        data.addColumn('number','test')
+        data.addColumn('number','entries per hour')     
+        data.setValue(maxRange-hour, 0, day) # if range_key is 0   
+        data.setValue(maxRange-hour, 1, json.data[hour]['vals'][0])
+      
+    #     
+    # data.addRows(100);
+    # data.setValue(0,0,435);
+    # data.setValue(1,0,438);
+    # data.setValue(2,0,512);
+    # data.setValue(3,0,460);
+    # data.setValue(4,0,491);
+    # data.setValue(5,0,487);
+    # data.setValue(6,0,552);
+    # data.setValue(7,0,511);
+    # data.setValue(8,0,505);
+    # data.setValue(9,0,509);
+
+    
+    chart = new google.visualization.ImageSparkLine(document.getElementById('chart-div'));
+    chart.draw(data, {width: 600, height: 200, titleTextStyle: {color: 'black'}, fill: true, showAxisLines: true,  showValueLabels: true, labelPosition: 'left', axisRanges: 0,0,500,1,0,200,2,1000,0});
+      
+          
 
   drawPieChart: (json) ->
     data = new google.visualization.DataTable()   
@@ -65,13 +94,23 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
      
     # Generate Chart
     chart = new google.visualization.PieChart(document.getElementById('chart-div'))
-    options = @getOptions1(json.data.title)
-    chart.draw(data, options)
+    chart.draw(data, {
+      title: "#{json.data.title}"
+      width: 600
+      height: 300
+      cht: 'p3'
+      is3D: true
+      backgroundColor: 'black'
+      legendTextStyle: {color: 'white'}
+      titleTextStyle: {color: 'white'}})
 
      
   getLineChartData: (title) ->               
-    Dreamcatcher.Models.Chart.loadLineChart @getChartOptions(title), @drawLineChart  
+    Dreamcatcher.Models.Chart.loadSimpleLineChart @getChartOptions(title), @drawLineChart  
 
+  getSparklineChartData: (title) ->               
+    Dreamcatcher.Models.Chart.loadFancyLineChart @getChartOptions(title), @drawSparklineChart
+      
   getPieChartData: (title) ->
     Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @drawPieChart
     

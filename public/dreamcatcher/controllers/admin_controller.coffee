@@ -90,10 +90,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'chart-f' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries')
     if ev.currentTarget.id is 'chart-g' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types')
     if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments')
-    if ev.currentTarget.id is 'chart-i' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries')
-    if ev.currentTarget.id is 'chart-j' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight')
-    if ev.currentTarget.id is 'chart-k' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags')
-    if ev.currentTarget.id is 'chart-l' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages')
+    if ev.currentTarget.id is 'chart-j' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries')
+    if ev.currentTarget.id is 'chart-k' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight')
+    if ev.currentTarget.id is 'chart-l' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags')
+    if ev.currentTarget.id is 'chart-m' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages')
+
     
   '#bedsheetsHeader click': (el,ev) ->
     Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @displayBedsheets
