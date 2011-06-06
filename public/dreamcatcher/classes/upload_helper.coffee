@@ -4,7 +4,7 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
     uploader = new qq.FileUploader {  
       maxConnections: 1
       params: if attr.params? then attr.params else {}
-      debug: false # todo: false
+      debug: true # todo: false
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
       classes: {
@@ -24,7 +24,7 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       element: attr.element.get(0)
       action: attr.url
       template: attr.element.html()
-      fileTemplate: $.View('//dreamcatcher/views/image_upload.ejs')
+      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
       
       onSubmit: submit
       onComplete: complete

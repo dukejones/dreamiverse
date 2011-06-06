@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 19:01:21 GMT from
+/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 19:36:48 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
@@ -16,13 +16,13 @@
           elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
         });
       case 'stream':
-        models('stream', 'entry', 'comment');
+        models('stream', 'entry', 'comment', 'bedsheet');
         return controllers({
           group: 'entries',
           elements: ['stream', 'entries', 'comments']
         });
       case 'carboes':
-        models('entry', 'book', 'comment');
+        models('entry', 'book', 'comment', 'bedsheet');
         return controllers({
           group: 'entries',
           elements: ['entries', 'new', 'books', 'comments']

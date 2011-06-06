@@ -1,11 +1,14 @@
 $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
+
+  getView: (name, args) ->
+    return @view "//dreamcatcher/views/bedsheets/#{name}.ejs", args
   
   load: (category) ->
     $("#bedsheetScroller .spinner").show()
     Dreamcatcher.Models.Bedsheet.findAll { category: category }, @callback('populate')
   
   populate: (bedsheets) ->
-    $("#bedsheetScroller ul").html @view 'list', { bedsheets: bedsheets }
+    $("#bedsheetScroller ul").html @getView 'list', { bedsheets: bedsheets }
     $("#bedsheetScroller ul").show()
     $("#bedsheetScroller .spinner").hide()
     

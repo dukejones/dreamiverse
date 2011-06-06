@@ -14,7 +14,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Appearance',
     $('#appearancePanel').show()
     if not @bedsheets?
       @bedsheets = new Dreamcatcher.Controllers.Users.Bedsheets $('#bedsheetScroller')
-      @bedsheets.loadCategory @defaultCategory
+      @bedsheets.load @defaultCategory
       $('#genreSelector').append "<option>#{category}</option>" for category in @model.image.types[0].categories
       $('#genreSelector').val @defaultGenre if @defaultGenre?
       

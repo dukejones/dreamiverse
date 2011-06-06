@@ -47,13 +47,13 @@ steal.plugins(
         elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
       }
     when 'stream'
-      models 'stream', 'entry', 'comment'
+      models 'stream', 'entry', 'comment', 'bedsheet'
       controllers {
         group: 'entries'
         elements: ['stream', 'entries', 'comments']
       }
     when 'carboes'
-      models 'entry', 'book', 'comment'
+      models 'entry', 'book', 'comment', 'bedsheet'
       controllers {
         group: 'entries'
         elements: ['entries', 'new', 'books', 'comments']

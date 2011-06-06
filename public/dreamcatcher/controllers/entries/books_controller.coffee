@@ -6,11 +6,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   }
   
   el: {    
-    bookMatrix: (el) ->
-      return $('#entryField .matrix.books[id=#{bookId}]') if el?
+    bookMatrix: (id) ->
+      return $("#entryField .matrix.books[id=#{id}]") if id?
       return $('#entryField .matrix.dreamfield') 
-    book: (el) ->
-      return el.closest '.book' if el?
+    book: (arg) ->
+      return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
+      return arg.closest '.book' if arg?
       return null
   }
   
@@ -30,8 +31,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#welcomePanel').hide()
       $('#entryField .matrix.books').prepend html
       bookEl = $('#entryField .matrix.books .book:first')
-      @books.openBook bookEl
-      @publish 'dom', {el: bookEl}
+      @openBook bookEl
+      @publish 'dom', bookEl
     
   'history.book.new subscribe': (called, data) ->
     @newBook()
@@ -45,25 +46,26 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
-    @publish 'drop', { el: $('#contextPanel') }
+    @publish 'drop', $('#contextPanel')
 
     @model.book.show bookId, {}, (html) =>
       $('#entryField').children().hide()
-      bookFieldEl = @el.bookField bookId
-      if bookFieldEl.exists()
-        bookFieldEl.replaceWith html
+      bookMatrixEl = @el.bookMatrix bookId
+      if bookMatrixEl.exists()
+        bookMatrixEl.replaceWith html
       else
         $('#entryField').append html
-      @publish 'drag', { el: @el.bookField }
+      @publish 'drag', @el.bookMatrix()
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
     
   '.book .mask, .spine click': (el) ->
+    bookEl = el.closest '.book, .spine'
     @historyAdd {
       controller: 'book'
       action: 'show'
-      id: @data el.closest '.book, .spine'
+      id: @data bookEl
     }
       
   #- open book
@@ -194,7 +196,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
           genre: ''
         }
       }
-      url: '/images'#.json
+      url: '/images.json'
       button: 'add'
       drop: 'dropbox'
       list: 'dropbox-field-shine'
