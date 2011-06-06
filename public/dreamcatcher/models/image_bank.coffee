@@ -1,6 +1,0 @@
-$.Model 'Dreamcatcher.Models.ImageBank', {
-  
-
-
-},
-{}

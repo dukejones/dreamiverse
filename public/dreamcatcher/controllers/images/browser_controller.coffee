@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   
   #- gets a specific browser view
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/image_bank/browser/#{url}.ejs", data
+    return @view "//dreamcatcher/views/images/browser/#{url}.ejs", data
   
   #- constructor
   init: ->

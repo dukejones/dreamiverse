@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   model: Dreamcatcher.Models.Image
   
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
+    return @view "//dreamcatcher/views/images/manager/#{url}.ejs", data
 
   init: ->
     @uploader = new Dreamcatcher.Controllers.ImageBank.ManagerUploader $("#uploader")

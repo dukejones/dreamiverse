@@ -10,7 +10,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   setupControllers: ->
     @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.Images           $("#frame.browser")         if $("#frame.browser").exists()
+    @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
     @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
     @comments   = new Dreamcatcher.Controllers.Comments         $('#entryField .stream')    if $('#entryField .comments').exists()
     @stream     = new Dreamcatcher.Controllers.Stream           $("#streamContextPanel")    if $("#streamContextPanel").exists()    

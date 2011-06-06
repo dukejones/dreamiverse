@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 19:36:48 GMT from
+/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 20:38:33 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
@@ -12,51 +12,45 @@
     switch (page()) {
       case 'images':
         return controllers({
-          group: 'images',
-          elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
+          package: 'images',
+          classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
         });
       case 'stream':
         models('stream', 'entry', 'comment', 'bedsheet');
         return controllers({
-          group: 'entries',
-          elements: ['stream', 'entries', 'comments']
+          package: 'entries',
+          classes: ['stream', 'entries', 'comments']
         });
-      case 'carboes':
+      default:
         models('entry', 'book', 'comment', 'bedsheet');
         return controllers({
-          group: 'entries',
-          elements: ['entries', 'new', 'books', 'comments']
+          package: 'entries',
+          classes: ['entries', 'new', 'books', 'comments']
         }, {
-          group: 'users',
-          elements: ['appearance', 'bedsheets']
+          package: 'users',
+          classes: ['appearance', 'bedsheets']
         });
     }
   }, this)).views();
   controllers = function() {
-    var arg, el, group, _i, _len, _results;
+    var arg, className, _i, _len, _results;
     _results = [];
     for (_i = 0, _len = arguments.length; _i < _len; _i++) {
       arg = arguments[_i];
       _results.push((function() {
-        var _j, _k, _len2, _len3, _ref, _results2, _results3;
-        if (arg.group != null) {
-          group = arg.group;
-          _ref = arg.elements;
+        var _j, _len2, _ref, _results2;
+        if (arg.package != null) {
+          _ref = arg.classes;
           _results2 = [];
           for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
-            el = _ref[_j];
-            _results2.push(steal.coffee("controllers/" + group + "/" + el + "_controller"));
+            className = _ref[_j];
+            _results2.push(steal.coffee("controllers/" + arg.package + "/" + className + "_controller"));
           }
           return _results2;
         } else {
-          _results3 = [];
-          for (_k = 0, _len3 = arguments.length; _k < _len3; _k++) {
-            arg = arguments[_k];
-            _results3.push(steal.coffee("controllers/" + arg + "_controller"));
-          }
-          return _results3;
+          return steal.coffee("controllers/" + arg + "_controller");
         }
-      }).apply(this, arguments));
+      })());
     }
     return _results;
   };
