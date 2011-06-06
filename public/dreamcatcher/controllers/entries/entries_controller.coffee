@@ -87,7 +87,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #-- hide
   
   hideEntryField: ->
-    $('#entryField').children().fadeOut 1000
+    $('#entryField').children().hide()
   
   #-- show
   
