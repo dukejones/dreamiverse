@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.EntryField.Books',
+$.Controller 'Dreamcatcher.Controllers.Entries.Books',
 
   model: {
     entry : Dreamcatcher.Models.Entry
@@ -103,9 +103,9 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     $('.open', bookEl).children().hide()
     $('.closeClick', bookEl).show()
     $(".#{page}-panel", bookEl).show() if page?
-        
+    
     @createUploader bookEl if page is 'cover'
-
+        
   #-- panels
   
   '.book .control-panel .color click': (el) ->
@@ -123,7 +123,7 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
   #-- more settings
 
   showMore: (el) ->
-    bookEl = el.book el
+    bookEl = @el.book el
     $('.settings-basic', bookEl).toggle()
     $('.more-settings', bookEl).toggle()
 
@@ -134,13 +134,28 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
   
   saveBook: (el, meta) ->
     bookEl = @el.book el
-    bookId = @data el
+    bookId = @data bookEl
     params = {book: meta}
     if bookId is 'new'
       @model.book.create params, (data) =>
         bookEl.data 'id', data.book.id if data.book?
     else
       @model.book.update bookId, params
+  
+  #-- title
+
+  saveTitle: (el) ->
+    bookEl = @el.book el
+    title = el.val()
+    $('.title', bookEl).text title
+    @saveBook el, { title: title }
+
+  '.titleInput blur': (el) ->
+    @saveTitle el
+
+  '.titleInput keypress': (el, ev) ->
+    @saveTitle el if ev.keyCode is 13 # enter key
+
   
   #-- color
   
@@ -156,20 +171,6 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
     meta[el.attr('name')] = el.val()
     @saveBook el, meta
     
-  #-- title
-    
-  saveTitle: (el) ->
-    bookEl = @getBookElement el
-    title = el.val()
-    $('.title', bookEl).text title
-    @saveBook el, { title: title }
-    
-  '.titleInput blur': (el) ->
-    @saveTitle el
-    
-  '.titleInput keypress': (el, ev) ->
-    @saveTitle el if ev.keyCode is 13 # enter key
-    
   #- disable book
     
   disableBook: (el) ->
@@ -184,7 +185,7 @@ $.Controller 'Dreamcatcher.Controllers.EntryField.Books',
   #- uploader
     
   createUploader: (el) ->
-    @uploader = @helper.upload.create {
+    return @helper.upload.create {
       element: $('.cover-panel', el)
       params: {
         image: {

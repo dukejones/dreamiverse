@@ -11,6 +11,7 @@
     = include_stylesheets :shared, :media => 'all'
     
     - if Rails.env == 'development'
+      /%script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
       %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
     - else 
       %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}

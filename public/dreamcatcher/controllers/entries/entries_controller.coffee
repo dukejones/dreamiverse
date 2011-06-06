@@ -1,5 +1,6 @@
-$.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
+$.Controller.extend 'Dreamcatcher.Controllers.Entries', {
 
+  #use across all controllers
   model: {
     entry : Dreamcatcher.Models.Entry
     book : Dreamcatcher.Models.Book
@@ -13,7 +14,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
     entry: (id) ->
       return $("#entryField .entry[data-id=#{id}]")
   }
-  
+
   data: (el) ->
     return el.data type if type?
     return el.data 'id' if el?
@@ -22,7 +23,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.EntryField.Entries', {
   #- constructor
   
   init: ->
-    @books = new Dreamcatcher.Controllers.EntryField.Books $('#entryField .matrix.books')
+    @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
     @publish 'drop', $('#entryField .matrix.books')
     @publish 'drag', $('#entryField .matrix.field')
           
