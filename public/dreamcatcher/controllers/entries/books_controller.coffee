@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   el: {    
     bookMatrix: (id) ->
       return $("#entryField .matrix.books[id=#{id}]") if id?
-      return $('#entryField .matrix.dreamfield') 
+      return $('#entryField .matrix.field') 
     book: (arg) ->
       return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
       return arg.closest '.book' if arg?

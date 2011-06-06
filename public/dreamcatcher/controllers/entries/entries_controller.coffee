@@ -7,8 +7,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   }
   
   el: {
-    bookField: (id) ->
-      return $("#entryField .matrix.book[data-id=#{id}]")
+    bookMatrix: (id) ->
+      return $("#entryField .matrix.book[data-id=#{id}]") if id?
+      return $("#entryField .matrix.field")
     book: (id) ->
       return $("#entryField .matrix.books .book[data-id=#{id}]")
     entry: (id) ->
@@ -32,12 +33,19 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   moveEntryToBook: (entryEl, bookEl) ->
     entryId = @data entryEl
     bookId = @data bookEl
+    bookId = null if bookEl.parent().attr('id') is 'contextPanel'
     entryMeta = {book_id: bookId}
 
-    @model.entry.update entryId, {entry: entryMeta}, =>
-      @closeBook bookEl
-      entryEl.appendTo @el.bookMatrix bookEl
+    @model.entry.update entryId, {entry: entryMeta}
 
+    #could move back if error
+    @books.closeBook bookEl
+    bookMatrixEl = @el.bookMatrix bookId
+    if bookMatrixEl.exists()
+      entryEl.appendTo bookMatrixEl
+    else
+      entryEl.hide()
+      
     $('.entryDrop-active', bookEl).hide()
 
   'drop subscribe': (called, data) ->
@@ -47,8 +55,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       $(el).droppable {         
         drop: (ev, ui) =>
           dropEl = null
-          dropEl = $(ev.target) if parentEl.closest('#contextPanel')?
-          @books.moveEntryToBook ui.draggable, dropEl
+          dropEl = $(ev.target)
+          @moveEntryToBook ui.draggable, dropEl
 
         over: (ev, ui) =>
           bookEl = $(ev.target)
