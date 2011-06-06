@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Comments',
+$.Controller 'Dreamcatcher.Controllers.Entries.Comments',
 
   #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting. 
 

@@ -69,7 +69,7 @@ steal.plugins(
       
     else # e.g. page = username / 'carboes'
     
-      models 'entry', 'book', 'comment', 'bedsheet'
+      models 'entry', 'book', 'comment', 'appearance', 'bedsheet'
       
       controllers {
         package: 'entries'

@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 20:38:33 GMT from
+/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 21:19:14 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
@@ -22,7 +22,7 @@
           classes: ['stream', 'entries', 'comments']
         });
       default:
-        models('entry', 'book', 'comment', 'bedsheet');
+        models('entry', 'book', 'comment', 'appearance', 'bedsheet');
         return controllers({
           package: 'entries',
           classes: ['entries', 'new', 'books', 'comments']

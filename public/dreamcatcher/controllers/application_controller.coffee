@@ -12,7 +12,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
     @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
     @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
-    @comments   = new Dreamcatcher.Controllers.Comments         $('#entryField .stream')    if $('#entryField .comments').exists()
+    @comments   = new Dreamcatcher.Controllers.Entries.Comments         $('#entryField .comments')    if $('#entryField .comments').exists()
     @stream     = new Dreamcatcher.Controllers.Stream           $("#streamContextPanel")    if $("#streamContextPanel").exists()    
     @admin      = new Dreamcatcher.Controllers.Admin            $('#adminPage')             if $('#adminPage').exists()
     
@@ -68,10 +68,13 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #meta Menu - mov?
 
   '#new-post change': (el) ->
-    @historyAdd {
-      controller: el.val()
-      action: 'new'
-    }
+    log el.val()
+    if el.val() isnt 'empty'
+      @historyAdd {
+        controller: el.val()
+        action: 'new'
+      }
+    el.val 'empty'
     #todo: issue with selecting same again
     
   '#metaMenu .newEntry click': (el) ->
