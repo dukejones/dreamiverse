@@ -47,7 +47,6 @@
     margin-left: 22px
 
 
-
   .header, .last-week, .last-month
     +left
     padding: 4px 8px 4px 16px
@@ -73,6 +72,10 @@
     height: 32px
     margin: 0 8px 8px 0
 
+
+
+
+// USER PANEL ONLY
 .user.panel
   .img
     background-image: url('/images/icons/sharing-24-hover.png')
@@ -116,8 +119,6 @@
     
     #allUsersHeader
       margin-bottom: 8px
-
-
 
 
   #user-filter, #user-filter-button
@@ -179,9 +180,52 @@
     color: #ccc
 
 
+
+
+// ENTRIES PANEL ONLY
 .entries.panel
+
   .img
     background-image: url('/images/icons/dream-24-hover.png')
+
+  // CHART FILTERS
+  .chartButtons
+    +left
+    width: 120px
+    margin: 20px 0 0 8px
+
+    .button-Wrap
+      +indent-dark
+      +round(12)
+      width: 110px
+      padding: 1px
+      margin: 0 0 8px
+      border: none
+
+      .button
+        +bevel-dark
+        +round(12)
+        +center
+        padding: 4px 0
+
+    hr
+      +alpha(20)
+      width: 94px
+      margin: 4px 0 12px 8px
+
+
+  // CHART
+  .chart-Wrap
+    +right
+    +round(16)
+    +indent-dark
+    width: 610px
+    height: 316px
+
+    .chart
+
+
+
 
 
 .bedsheets.panel
