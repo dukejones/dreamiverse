@@ -18,4 +18,5 @@
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
 
-  = render :partial => 'entries/show'
+  #showEntry
+    = render :partial => 'entries/show'

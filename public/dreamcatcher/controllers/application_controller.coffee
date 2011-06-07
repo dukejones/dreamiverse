@@ -41,7 +41,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #todo: checkout where used
   
   'bedsheet.change subscribe': (called, data) ->
-    bedsheetUrl = data
+    bedsheetUrl = "/images/uploads/#{data}-bedsheet.jpg"
+    return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
+     
     img = $("<img src='#{bedsheetUrl}' style='display:none' />")
   
     $(img).load ->
@@ -101,11 +103,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #own context panel one?
     
   '#contextPanel .avatar, #contextPanel .book click': (el) ->
-    #todo: could make same class
-    @historyAdd {
-      controller: 'entry'
-      action: 'field'
-    }
+    if el.hasClass('book') and $('#showEntry').is(':visible')
+      @historyAdd {
+        controller: 'book'
+        action: 'show'
+        id: el.data 'id'
+      }
+    else
+      @historyAdd {
+        controller: 'entry'
+        action: 'field'
+      }
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

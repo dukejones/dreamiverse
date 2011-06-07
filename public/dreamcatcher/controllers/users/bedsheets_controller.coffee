@@ -18,11 +18,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
 
   '.bedsheet click': (el) ->
     bedsheetId = el.data 'id'
-    bedsheetUrl = "/images/uploads/#{bedsheetId}-bedsheet.jpg"
-    
     el.prepend '<div class="spinner"></div>'
-    
-    @publish 'bedsheet.change', bedsheetUrl
     
     @highlight el 
     @publish 'appearance.update', { bedsheet_id: bedsheetId }

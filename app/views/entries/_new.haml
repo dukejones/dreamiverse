@@ -1,13 +1,12 @@
-%form#new_entry
-   = form_for @entry do |f|
-     / HIDDEN FORM ELEMENTS
-     = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
-       = v.hidden_field 'image_id' # Bedsheet
-       = v.hidden_field 'theme'    # Currently 'light' or 'dark'
-       = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
-       - if @entry_mode == 'new' 
-         = hidden_field_tag :new_entry_mode, 1 
-  
+= form_for @entry do |f|
+  / HIDDEN FORM ELEMENTS
+  = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
+    = v.hidden_field 'image_id' # Bedsheet
+    = v.hidden_field 'theme'    # Currently 'light' or 'dark'
+    = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
+    - if @entry_mode == 'new' 
+      = hidden_field_tag :new_entry_mode, 1 
+
   #entryId{:'data-id' => @entry.id}
   #entryMode{:'data-id' => @entry_mode}
   

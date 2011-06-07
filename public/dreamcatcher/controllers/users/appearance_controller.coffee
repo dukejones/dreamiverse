@@ -4,10 +4,15 @@ $.Controller 'Dreamcatcher.Controllers.Users.Appearance',
     image: Dreamcatcher.Models.Image
     appearance: Dreamcatcher.Models.Appearance
   } 
-
+  
+  data: {
+    entryId: ->
+      return $('#showEntry .entry:visible:first').data 'id'
+    isNewEntry: ->
+      return $("#new_entry").exists() and $('#new_entry').is ':visible'
+  } 
+    
   init: ->
-    @newEntry = $("#entry_view_preference_attributes_theme").exists()
-    @entryId = $('#showEntry').data 'id' if $('#showEntry').exists()
     @defaultCategory = $('#defaultGenre').val() #todo: update dom to category
 
   showPanel: ->
@@ -19,13 +24,18 @@ $.Controller 'Dreamcatcher.Controllers.Users.Appearance',
       $('#genreSelector').val @defaultCategory if @defaultCategory?
       
 
-  'appearance.update subscribe': (data) ->
-    if @newEntry
+  'appearance.update subscribe': (called, data) ->
+    if @data.isNewEntry()
       $("#entry_view_preference_attributes_image_id").val(data.bedsheet_id) if data.bedsheet_id?
       $("#entry_view_preference_attributes_bedsheet_attachment").val(data.scrolling) if data.scrolling?
       $("#entry_view_preference_attributes_theme").val(data.theme) if data.theme?
     else
-      @model.appearance.update @entryId, data
+      @model.appearance.update @data.entryId(), data
+      if data.bedsheet_id?
+        bedsheetId = data.bedsheet_id
+        $('#showEntry .entry:visible:first').data 'imageid', bedsheetId
+        @publish 'bedsheet.change', bedsheetId
+
 
   '#scroll,#fixed click': (el) ->    
     scrolling = el.attr 'id'

@@ -24,9 +24,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #- constructor
   
   init: ->
-    $('#showEntry').hide()
     @show = new Dreamcatcher.Controllers.Entries.Show $('#showEntry') if $('#showEntry').exists() # todo: #showEntry
     @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
+    if $('#entryField .matrix').exists()
+      @historyAdd {
+        controller: 'entry'
+        action: 'field'
+      }
     @publish 'drop', $('#entryField .matrix.books')
     @publish 'drag', $('#entryField .matrix.field')
           
@@ -89,14 +93,18 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #-- hide
   
   hideEntryField: ->
-    $('#entryField').children().hide()
+    $('#entryField').children().hide()#fadeOut 'fast'
   
   #-- show
   
   showEntryField: ->
     @hideEntryField()
+    $('#contextPanel .avatar').show()
     $('#contextPanel .book').remove()
     $('#entryField .matrix.field, #entryField .matrix.books').show()
+    
+    bedsheetId = $('#entryField').data 'imageid'
+    @publish 'bedsheet.change', bedsheetId if bedsheetId?
   
   'history.entry.field subscribe': (called, data) ->
     @showEntryField()
@@ -122,21 +130,26 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   
   #- show entry
   
-  showEntry: (id) ->
-    entryEl = @el.entry id 
-    log entryEl
+  showEntryById: (id) ->
+    entryEl = @el.entry id
     if entryEl.exists()
-      @hideEntryField()
-      entryEl.show()
-      $('#showEntry').show()
+      @showEntryElement entryEl
     else
       @model.entry.show {id: id}, (html) =>
-        @hideEntryField()
         $('#showEntry').append html
-        $('#showEntry').show()
+        @showEntryElement @el.entry id
+  
+  showEntryElement: (entryEl) ->
+    $('#showEntry').children().hide()
+    @hideEntryField()
+    $('#showEntry').show()
+    entryEl.show()
+    
+    bedsheetId = entryEl.data 'imageid'
+    @publish 'bedsheet.change', bedsheetId if bedsheetId?
   
   'history.entry.show subscribe': (called, data) ->
-    @showEntry data.id
+    @showEntryById data.id
     
   '.thumb-2d click': (el) ->
     @historyAdd {

@@ -46,6 +46,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
+    $('#contextPanel .avatar').hide()
     @publish 'drop', $('#contextPanel')
     
     bookMatrixEl = @el.bookMatrix bookId
@@ -65,6 +66,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
+    #todo: reused from entries (refactor)
+    bedsheetId = $('#entryField').data 'imageid'
+    @publish 'bedsheet.change', bedsheetId if bedsheetId?
     
   '.book .mask click': (el) ->
     bookEl = el.closest '.book'
