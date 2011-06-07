@@ -188,6 +188,14 @@
   .img
     background-image: url('/images/icons/dream-24-hover.png')
 
+  .entryCharts
+    +clear
+    +font(18)
+    +bold
+    padding: 0 0 0 32px
+    margin: 8px 0 16px 24px
+    background: url(/images/icons/dream-24-hover.png) no-repeat center center
+
   // CHART FILTERS
   .chartButtons
     +left
@@ -195,18 +203,40 @@
     margin: 20px 0 0 8px
 
     .button-Wrap
-      +indent-dark
-      +round(12)
+      +round(8)
       width: 110px
       padding: 1px
       margin: 0 0 8px
       border: none
+      +gradient(#0e0e0e, #3c3b3b)
+      &:hover
+        +gradient(#3c3b3b, #3c3b3b)
+      &:active
+        +gradient(#3c3b3b, #0e0e0e)
 
       .button
-        +bevel-dark
-        +round(12)
+        +round(8)
         +center
-        padding: 4px 0
+        padding: 6px 0
+        color: #999
+        +gradient(#2c2c2c, #151515)
+        &:hover
+          color: #fff
+        &:active
+          +gradient(#151515, #2c2c2c)
+
+    .button-Wrap.select
+      +cursor
+      +gradient(#3c3b3b, #0e0e0e)
+      &:hover
+        +gradient(#3c3b3b, #0e0e0e)
+      .button
+        +cursor
+        color: #fff
+        +gradient(#151515, #2c2c2c)
+        &:hover
+          color: #fff
+          +gradient(#151515, #2c2c2c)
 
     hr
       +alpha(20)
