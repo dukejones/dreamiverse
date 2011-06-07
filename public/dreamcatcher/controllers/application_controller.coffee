@@ -33,12 +33,27 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu.hideAllPanels() if @metaMenu? #todo: publish
     
   #- fit to content event
-  
+    
   'textarea keyup': (el) ->
     fitToContent el.attr('id'), 0
     
   #- appearance menu
   #todo: checkout where used
+  
+  'bedsheet.change subscribe': (called, data) ->
+    bedsheetUrl = data
+    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
+  
+    $(img).load ->
+      $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
+      #todo: make style
+      $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
+      $('#backgroundReplace').fadeIn 1000, =>
+        $('#backgroundReplace').hide()
+        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
+  
+    $('body').append img
+    
     
   '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
     @metaMenu.selectPanel 'appearance' #todo: publish?

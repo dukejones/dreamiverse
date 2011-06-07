@@ -73,7 +73,7 @@ steal.plugins(
       
       controllers {
         package: 'entries'
-        classes: ['entries', 'new', 'books', 'comments']
+        classes: ['entries', 'new', 'books', 'comments', 'show']
       }, {
         package: 'users'
         classes: ['appearance', 'bedsheets']

@@ -13,7 +13,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     book: (id) ->
       return $("#entryField .matrix.books .book[data-id=#{id}]")
     entry: (id) ->
-      return $("#entryField .entry[data-id=#{id}]")
+      return $("#showEntry .entry[data-id=#{id}]")
   }
 
   data: (el) ->
@@ -24,6 +24,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #- constructor
   
   init: ->
+    $('#showEntry').hide()
+    @show = new Dreamcatcher.Controllers.Entries.Show $('#showEntry') if $('#showEntry').exists() # todo: #showEntry
     @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
     @publish 'drop', $('#entryField .matrix.books')
     @publish 'drag', $('#entryField .matrix.field')
@@ -98,12 +100,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   
   'history.entry.field subscribe': (called, data) ->
     @showEntryField()
-
-  '.stream click': ->
-    @historyAdd {
-      controller: 'entry'
-      action: 'field'
-    }
     
   #- new entry
     
@@ -116,6 +112,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       else
         $('#entryField').prepend html
       $('#new_entry').show()
+      
+      @new = new Dreamcatcher.Controllers.Entries.New $('#new_entry')
+      
       @publish 'dom', $('#new_entry')
   
   'history.entry.new subscribe': (called, data) ->
@@ -125,18 +124,21 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   
   showEntry: (id) ->
     entryEl = @el.entry id 
+    log entryEl
     if entryEl.exists()
       @hideEntryField()
       entryEl.show()
+      $('#showEntry').show()
     else
       @model.entry.show {id: id}, (html) =>
         @hideEntryField()
-        $('#entryField').append html
+        $('#showEntry').append html
+        $('#showEntry').show()
   
   'history.entry.show subscribe': (called, data) ->
     @showEntry data.id
     
-  '.thumb-2d, .prev, .next click': (el) ->
+  '.thumb-2d click': (el) ->
     @historyAdd {
       controller: 'entry'
       action: 'show'

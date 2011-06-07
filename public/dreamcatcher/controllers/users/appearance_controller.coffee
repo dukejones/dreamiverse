@@ -16,7 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Appearance',
       @bedsheets = new Dreamcatcher.Controllers.Users.Bedsheets $('#bedsheetScroller')
       @bedsheets.load @defaultCategory
       $('#genreSelector').append "<option>#{category}</option>" for category in @model.image.types[0].categories
-      $('#genreSelector').val @defaultGenre if @defaultGenre?
+      $('#genreSelector').val @defaultCategory if @defaultCategory?
       
 
   'appearance.update subscribe': (data) ->
@@ -38,4 +38,4 @@ $.Controller 'Dreamcatcher.Controllers.Users.Appearance',
     @publish 'appearance.update', {scrolling: scrolling}
       
   '#genreSelector change': (el) ->
-    @bedsheets.loadGenre el.val()
+    @bedsheets.load el.val()

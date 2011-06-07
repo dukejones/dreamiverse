@@ -24,6 +24,8 @@
     = yield :head
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
+    #backgroundReplace
+
 
     - unless current_user.blank?
       #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}

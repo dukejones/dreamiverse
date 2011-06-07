@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 21:19:14 GMT from
+/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 22:28:01 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
@@ -25,7 +25,7 @@
         models('entry', 'book', 'comment', 'appearance', 'bedsheet');
         return controllers({
           package: 'entries',
-          classes: ['entries', 'new', 'books', 'comments']
+          classes: ['entries', 'new', 'books', 'comments', 'show']
         }, {
           package: 'users',
           classes: ['appearance', 'bedsheets']

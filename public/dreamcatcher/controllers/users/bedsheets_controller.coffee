@@ -20,13 +20,9 @@ $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
     bedsheetId = el.data 'id'
     bedsheetUrl = "/images/uploads/#{bedsheetId}-bedsheet.jpg"
     
-    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
-    $(img).load ->
-      $('#body').prepend '<div id="backgroundReplace" style="width:100%; height: 100%; position: absolute; display: none; background-image: url('+bedsheetUrl+')"></div>'
-      $('#backgroundReplace').fadeIn 2000, =>
-        $('#backgroundReplace').remove()
-        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
-    $('body').append img
+    el.prepend '<div class="spinner"></div>'
+    
+    @publish 'bedsheet.change', bedsheetUrl
     
     @highlight el 
     @publish 'appearance.update', { bedsheet_id: bedsheetId }

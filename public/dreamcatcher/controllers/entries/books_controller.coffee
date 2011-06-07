@@ -7,7 +7,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   
   el: {    
     bookMatrix: (id) ->
-      return $("#entryField .matrix.books[id=#{id}]") if id?
+      return $("#entryField .matrix.book[data-id=#{id}]") if id?
       return $('#entryField .matrix.field') 
     book: (arg) ->
       return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
@@ -47,21 +47,27 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     else
       $('#contextPanel').prepend html
     @publish 'drop', $('#contextPanel')
+    
+    bookMatrixEl = @el.bookMatrix bookId
 
-    @model.book.show bookId, {}, (html) =>
+    if bookMatrixEl.exists()
       $('#entryField').children().hide()
-      bookMatrixEl = @el.bookMatrix bookId
-      if bookMatrixEl.exists()
-        bookMatrixEl.replaceWith html
-      else
-        $('#entryField').append html
-      @publish 'drag', @el.bookMatrix()
+      bookMatrixEl.show()      
+    else
+      @model.book.show bookId, {}, (html) =>
+        $('#entryField').children().hide()
+        bookMatrixEl = @el.bookMatrix bookId
+        if bookMatrixEl.exists()
+          bookMatrixEl.replaceWith html
+        else
+          $('#entryField').append html
+        @publish 'drag', @el.bookMatrix()
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
     
-  '.book .mask, .spine click': (el) ->
-    bookEl = el.closest '.book, .spine'
+  '.book .mask click': (el) ->
+    bookEl = el.closest '.book'
     @historyAdd {
       controller: 'book'
       action: 'show'

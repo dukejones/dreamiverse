@@ -47,6 +47,21 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   '#entry_submit click': ->
     @posted = true
     @clearState()
+  
+  '#books-list change': (el) ->
+    if el.val() is '+ new book'
+      $('input.newBook-input', el.parent()).show()
+      $('.ui-selectmenu-status', el.parent()).hide()
+    else
+      $('input.newBook-input', el.parent()).hide()
+      $('.ui-selectmenu-status', el.parent()).show()
+  
+  '#entryAttach .attach click': (el) ->
+    name = (el.attr 'id').replace('attach-','')
+    $(".entry-#{name}").show()
+    
+  '.headers click': (el) ->
+    el.parent().hide()
     
 
 
