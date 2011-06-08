@@ -54,33 +54,74 @@
         %option.traffic{       value: 'traffic'      } traffic
 
 
+      / USER LIST
       .module.allUsers
-        #allUsersIcon.img
-        #pageLoading.spinner
-        %h2#allUsersHeader user list
+
+        .userList
+          user list
+          .arrow.spinner
 
         .clear
 
 
-        / USER LIST
         #userList
           = render(partial: 'user', collection: @users)
+          .clear
+
+
+
+          #nextPageEnd ›
+          #nextPage ›
+
+          #pages
+          #prevPage ‹
+          #prevPageEnd ‹
+
+
+          #totalUsers{:'data-id' => @users.count}
+          #pageSize{:'data-id' => @page_size}
+          .clear
+
+
+      / USER CHARTS
+      .module
+
+        .userCharts
+          user charts
+          .arrow.up
+
         .clear
 
 
+      / USER CHART BUTTONS
+      .chartButtons
 
-        #nextPageEnd ›
-        #nextPage ›
+        .button-Wrap.select
+          .button this week
 
-        #pages
-        #prevPage ‹
-        #prevPageEnd ‹
+        .button-Wrap
+          .button 8 weeks
+
+        .button-Wrap
+          .button 6 months
+
+        %hr
+
+        .button-Wrap
+          .button entries
+
+        .button-Wrap
+          .button starlight
+
+        .button-Wrap
+          .button seed codes
 
 
-        #totalUsers{:'data-id' => @users.count}
-        #pageSize{:'data-id' => @page_size}
-        .clear
+      / CHART
+      .chart-Wrap
+        .chart
 
+      .clear
 
 
 
@@ -116,7 +157,8 @@
 
       .entryCharts entry charts
 
-      / CHART BUTTONS
+
+      / ENTRY CHART BUTTONS
       .chartButtons
 
         .button-Wrap.select

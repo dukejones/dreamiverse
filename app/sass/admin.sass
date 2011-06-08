@@ -10,8 +10,6 @@
 
 
   .module
-    +indent-dark
-    +round(12)
 
 
   h1
@@ -61,142 +59,7 @@
 
 
 
-
-// SPINNER styling to accomodate light / dark user theme prefs to render the same +spinner-dark
-.light, .dark
-  .user.panel .spinner
-    +spinner-dark
-    +left
-    +hidden
-    width: 32px
-    height: 32px
-    margin: 0 8px 8px 0
-
-
-
-
-// USER PANEL ONLY
-.user.panel
-  .img
-    background-image: url('/images/icons/sharing-24-hover.png')
-  .module .img
-    background-image: url('/images/icons/friend-24.png')
-    margin: 4px 12px 12px 4px
-
-  .userNode
-    +block
-    +left
-    +button-dark
-    +flat-dark
-    +relative
-    width: 157px
-    height: 33px
-    line-height: 33px
-    padding: 0px 8px
-    margin: 0 8px 8px 0
-    +round(16)
-    color: #fff
-    border: 1px solid #333
-    whitespace: nowrap
-    +overflow
-
-    .postCount
-      +flat-dark
-      +round(8)
-      color: #ccc
-      +absolute
-      right: 8px
-      top: 0px
-
-  .newUsers
-    +clear
-    padding: 8px 0 0 8px
-
-
-  .allUsers
-    padding: 8px 0 0 8px
-    +clear
-    
-    #allUsersHeader
-      margin-bottom: 8px
-
-
-  #user-filter, #user-filter-button
-    width: 200px
-    +round(20)
-    +right
-    +input-dark(large)
-
-#user-filter-menu
-  +flat-dark
-  +round(20)
-  +glow-dark(20)
-
-
-
-
-// PAGINATION
-#prevPage, #nextPage, #pages, #prevPageEnd, #nextPageEnd
-  +right
-  +block
-  +round(12)
-  +user-select
-  padding: 4px 8px
-  margin-bottom: 6px
-  a:focus, a:hover, a.current
-    text-decoration: underline
-
-#prevPage, #nextPage
-  +button-dark
-  +cancel(12)
-
-#prevPage, #nextPage, #prevPageEnd, #nextPageEnd
-  +shine-light-alpha(12)
-  +bold
-  font-size: 25px
-  line-height: 29px
-  padding: 0px 24px
-#prevPageEnd, #nextPageEnd
-  +alpha(50)
-  color: #000
-  border: 1px solid #000
-  +cursor
-
-#prevPage, #prevPageEnd
-  +flat-right
-#nextPage, #nextPageEnd
-  +flat-left
-  margin-right: 8px
-
-#pages
-  +indent-dark
-  +center
-  margin: 0 4px
-  +round(2)
-  +font(18)
-  line-height: 21px
-  width: 580px
-  a
-    color: #ccc
-
-
-
-
-// ENTRIES PANEL ONLY
-.entries.panel
-
-  .img
-    background-image: url('/images/icons/dream-24-hover.png')
-
-  .entryCharts
-    +clear
-    +font(18)
-    +bold
-    padding: 0 0 0 32px
-    margin: 8px 0 16px 24px
-    background: url(/images/icons/dream-24-hover.png) no-repeat center center
-
-  // CHART FILTERS
+  // CHART BUTTONS
   .chartButtons
     +left
     width: 120px
@@ -253,6 +116,163 @@
     height: 316px
 
     .chart
+
+
+// SPINNER styling to accomodate light / dark user theme prefs to render the same +spinner-dark
+.light, .dark
+  .user.panel .spinner
+    +spinner-dark
+    +left
+    +hidden
+    width: 32px
+    height: 32px
+    margin: 0 8px 8px 0
+
+
+
+
+// USER PANEL ONLY
+.user.panel
+  .img
+    background-image: url('/images/icons/sharing-24-hover.png')
+  .module .img
+    background-image: url('/images/icons/friend-24.png')
+    margin: 4px 12px 12px 4px
+
+  .userNode
+    +block
+    +left
+    +button-dark
+    +flat-dark
+    +relative
+    width: 157px
+    height: 33px
+    line-height: 33px
+    padding: 0px 8px
+    margin: 0 8px 8px 0
+    +round(16)
+    color: #fff
+    border: 1px solid #333
+    whitespace: nowrap
+    +overflow
+
+    .postCount
+      +flat-dark
+      +round(8)
+      color: #ccc
+      +absolute
+      right: 8px
+      top: 0px
+
+  .newUsers
+    +clear
+    padding: 8px 0 0 8px
+
+
+  .userList, .userCharts
+    +left
+    +clear
+    +font(18)
+    +bold
+    height: 26px
+    padding: 0 0 0 32px
+    margin: 8px 0 16px 10px
+    background: url(/images/icons/friend-24.png) no-repeat left center
+
+    .arrow
+      +right
+      height: 26px
+      width: 32px
+      margin-left: 4px
+    .arrow.up
+      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+    .arrow.down
+      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+    .arrow.spinner
+      background: url(/images/icons/spinner-grey-32.gif) no-repeat center center transparent
+
+  #userList
+    +indent-dark
+    +round(12)
+    padding: 8px 8px 0
+
+
+  #user-filter, #user-filter-button
+    width: 200px
+    +round(20)
+    +right
+    +input-dark(large)
+
+#user-filter-menu
+  +flat-dark
+  +round(20)
+  +glow-dark(20)
+
+
+
+
+// PAGINATION
+#prevPage, #nextPage, #pages, #prevPageEnd, #nextPageEnd
+  +right
+  +block
+  +round(12)
+  +user-select
+  padding: 4px 8px
+  margin-bottom: 6px
+  a:focus, a:hover, a.current
+    text-decoration: underline
+
+#prevPage, #nextPage
+  +button-dark
+  +cancel(12)
+
+#prevPage, #nextPage, #prevPageEnd, #nextPageEnd
+  +shine-light-alpha(12)
+  +bold
+  font-size: 25px
+  line-height: 29px
+  padding: 0px 24px
+#prevPageEnd, #nextPageEnd
+  +alpha(50)
+  color: #000
+  border: 1px solid #000
+  +cursor
+
+#prevPage, #prevPageEnd
+  +flat-right
+#nextPage, #nextPageEnd
+  +flat-left
+  margin-right: 8px
+
+#pages
+  +indent-dark
+  +center
+  margin: 0 4px
+  +round(2)
+  +font(18)
+  line-height: 21px
+  width: 574px
+  a
+    color: #ccc
+
+
+
+
+// ENTRIES PANEL ONLY
+.entries.panel
+
+  .img
+    background-image: url('/images/icons/dream-24-hover.png')
+
+  .entryCharts
+    +clear
+    +font(18)
+    +bold
+    padding: 0 0 0 32px
+    margin: 8px 0 16px 10px
+    background: url(/images/icons/dream-24-hover.png) no-repeat left center
+
+
 
 
 
