@@ -79,21 +79,23 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  
     @updateNav()    
 
-  '.chart-select click': (el,ev) ->
+  '.button click': (el,ev) ->
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it loads before this controller loads
     # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
-    if ev.currentTarget.id is 'chart-a' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users')
-    if ev.currentTarget.id is 'chart-b' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users')    
-    if ev.currentTarget.id is 'chart-c' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users')
+    if ev.currentTarget.id is 'users-chart_a' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users')
+    if ev.currentTarget.id is 'users-chart_b' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users')    
+    if ev.currentTarget.id is 'users-chart_c' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users')
+    if ev.currentTarget.id is 'users-chart_d' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries')
+    if ev.currentTarget.id is 'users-chart_e' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight')
+    if ev.currentTarget.id is 'users-chart_f' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages')
+    if ev.currentTarget.id is 'users-chart_g' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags')
     if ev.currentTarget.id is 'chart-d' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in entries')
     if ev.currentTarget.id is 'chart-e' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in entries')
     if ev.currentTarget.id is 'chart-f' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries')
     if ev.currentTarget.id is 'chart-g' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types')
     if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments')
-    if ev.currentTarget.id is 'chart-j' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries')
-    if ev.currentTarget.id is 'chart-k' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight')
-    if ev.currentTarget.id is 'chart-l' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags')
-    if ev.currentTarget.id is 'chart-m' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages')
+
+    
 
     
   '#bedsheetsHeader click': (el,ev) ->

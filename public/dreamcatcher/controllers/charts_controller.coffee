@@ -23,7 +23,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
         data.setValue(maxRange-range_key, line_key+1, json.data[range_key]['vals'][line_key])
         
     # Generate chart
-    chart = new google.visualization.LineChart(document.getElementById('chart-div'))
+    chart = new google.visualization.LineChart(document.getElementById('chart'))
     chart.draw(data, {
       title: "#{json.data['title']}",
       width: 600, height: 300, 
@@ -93,7 +93,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       data.setValue(key, 1, json.data[key]['val'])
      
     # Generate Chart
-    chart = new google.visualization.PieChart(document.getElementById('chart-div'))
+    chart = new google.visualization.PieChart(document.getElementById('chart'))
     chart.draw(data, {
       title: "#{json.data.title}"
       width: 600
