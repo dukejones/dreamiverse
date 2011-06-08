@@ -54,6 +54,7 @@ $.Class 'Dreamcatcher.Classes.UiHelper',{
       }  
     
     el.selectmenu options
+    log options
 
     if radio
       defaultValue = el.data 'default-value'

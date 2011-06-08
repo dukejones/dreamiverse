@@ -7,7 +7,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   
   el: {    
     bookMatrix: (id) ->
-      return $("#entryField .matrix.books[id=#{id}]") if id?
+      return $("#entryField .matrix.book[data-id=#{id}]") if id?
       return $('#entryField .matrix.field') 
     book: (arg) ->
       return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
@@ -34,9 +34,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @openBook bookEl
       @publish 'dom', bookEl
     
-  'history.book.new subscribe': (called, data) ->
-    @newBook()
-    
   #- show book
   
   showBook: (bookId) ->
@@ -46,22 +43,32 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
+    $('#contextPanel .avatar').hide()
     @publish 'drop', $('#contextPanel')
+    
+    bookMatrixEl = @el.bookMatrix bookId
 
-    @model.book.show bookId, {}, (html) =>
+    if bookMatrixEl.exists()
       $('#entryField').children().hide()
-      bookMatrixEl = @el.bookMatrix bookId
-      if bookMatrixEl.exists()
-        bookMatrixEl.replaceWith html
-      else
-        $('#entryField').append html
-      @publish 'drag', @el.bookMatrix()
+      bookMatrixEl.show()      
+    else
+      @model.book.show bookId, {}, (html) =>
+        $('#entryField').children().hide()
+        bookMatrixEl = @el.bookMatrix bookId
+        if bookMatrixEl.exists()
+          bookMatrixEl.replaceWith html
+        else
+          $('#entryField').append html
+        @publish 'drag', @el.bookMatrix()
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
+    #todo: reused from entries (refactor)
+    bedsheetId = $('#entryField').data 'imageid'
+    @publish 'bedsheet.change', bedsheetId if bedsheetId?
     
-  '.book .mask, .spine click': (el) ->
-    bookEl = el.closest '.book, .spine'
+  '.book .mask click': (el) ->
+    bookEl = el.closest '.book'
     @historyAdd {
       controller: 'book'
       action: 'show'
@@ -85,6 +92,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   closeBook: (el) ->
     bookEl = @el.book el
     $('.open', bookEl).hide()
+    $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
 
   '.closeClick, .confirm click': (el) ->

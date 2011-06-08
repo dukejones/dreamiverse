@@ -10,12 +10,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   setupControllers: ->
     @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.Images           $("#frame.browser")         if $("#frame.browser").exists()
+    @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
     @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
-    @comments   = new Dreamcatcher.Controllers.Comments         $('#entryField .stream')    if $('#entryField .comments').exists()
-    @stream     = new Dreamcatcher.Controllers.Stream           $("#streamContextPanel")    if $("#streamContextPanel").exists()    
+    #@comments   = new Dreamcatcher.Controllers.Entries.Comments         $('#entryField .comments')    if $('#entryField .comments').exists()
     @admin      = new Dreamcatcher.Controllers.Admin            $('#adminPage')             if $('#adminPage').exists()
-    
+        
   #- setup ui elements
   
   initUi: (parentEl) ->
@@ -33,12 +32,43 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu.hideAllPanels() if @metaMenu? #todo: publish
     
   #- fit to content event
-  
+    
   'textarea keyup': (el) ->
+    #alert 'x'
+    #notice 'y'
     fitToContent el.attr('id'), 0
     
   #- appearance menu
   #todo: checkout where used
+  
+  'appearance.change subscribe': (called, data) ->
+    #if no data is passed, then use the user default settings
+    if not data?
+      data = $('#userInfo').data 'viewpreference'
+    
+    return if not data.image_id?
+    
+    bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
+    return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
+
+    #todo: should include font size & float?
+    if data.bedsheet_attachment?
+      $('#body').removeClass('scroll fixed')
+      $('#body').addClass data.bedsheet_attachment
+    if data.theme?
+      $('#body').removeClass('light dark')
+      $('#body').addClass data.theme
+           
+    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
+    $(img).load ->
+      $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
+      #todo: make style
+      $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
+      $('#backgroundReplace').fadeIn 1000, =>
+        $('#backgroundReplace').hide()
+        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
+    $('body').append img
+    
     
   '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
     @metaMenu.selectPanel 'appearance' #todo: publish?
@@ -68,10 +98,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #meta Menu - mov?
 
   '#new-post change': (el) ->
-    @historyAdd {
-      controller: el.val()
-      action: 'new'
-    }
+    if el.val() isnt 'empty'
+      @historyAdd {
+        controller: el.val()
+        action: 'new'
+      }
+    el.val 'empty'
     #todo: issue with selecting same again
     
   '#metaMenu .newEntry click': (el) ->
@@ -83,11 +115,17 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #own context panel one?
     
   '#contextPanel .avatar, #contextPanel .book click': (el) ->
-    #todo: could make same class
-    @historyAdd {
-      controller: 'entry'
-      action: 'field'
-    }
+    if el.hasClass('book') and $('#showEntry').is(':visible')
+      @historyAdd {
+        controller: 'book'
+        action: 'show'
+        id: el.data 'id'
+      }
+    else
+      @historyAdd {
+        controller: 'entry'
+        action: 'field'
+      }
 
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

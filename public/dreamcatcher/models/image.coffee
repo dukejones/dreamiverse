@@ -93,6 +93,19 @@ $.Model 'Dreamcatcher.Models.Image',{
       error: error
     }
     
+  ###
+  findAll: ( params, success, error ) ->
+    params.ids_only = true
+    $.ajax {
+      url: '/images?section=Bedsheets'
+      type: 'get'
+      dataType: 'json'
+      data: params
+      success: @callback success
+      error: error
+    }
+  ###
+    
   
   
   #json constants  

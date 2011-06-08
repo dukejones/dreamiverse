@@ -1,7 +1,7 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerSelector',
 
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
+    return @view "//dreamcatcher/views/images/manager/#{url}.ejs", data
 
   init: ->
     @enableShiftKey()

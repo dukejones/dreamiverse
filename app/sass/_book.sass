@@ -98,7 +98,7 @@
     width: 335px
     height: 334px
     color: #444
-    z-index: 82
+    z-index: 85
 
     .closeClick
       +absolute
@@ -140,7 +140,7 @@
 
       .icon,
         +left
-        +round(4)
+        +round(3)
         +flat-right
         height: 30px
         width: 30px
@@ -170,9 +170,15 @@
       +center
       width: 30px
       height: 30px
+      line-height: 28px
       margin: 0 4px
       border: 1px solid #888
       +bevel-light
+
+    .color, .coverImage, .access, .settings, .arrow, .back
+      &:hover
+        color: #000
+        border: 1px solid #222
 
 
     // CONTROL PANEL ONLY
@@ -305,7 +311,7 @@
         background-color: #000
 
 
-    // COLOR IMAGE PANEL
+    // COVER IMAGE PANEL
     .cover-panel
       +hidden
       +font(14)
@@ -347,6 +353,7 @@
             background: url(/images/icons/plus-24-greenBlue.png) no-repeat top center transparent
 
       .close
+        +hidden
         +absolute
         +close-16
         top: 8px
@@ -362,7 +369,7 @@
         height: 172px
         background: #000
         background: rgba(0,0,0,0.5)
-        z-index: 83
+        z-index: 87
 
     // ACCESS PANEL ONLY
     .access-panel
@@ -406,7 +413,7 @@
         // ICONS
         &.everyone .ui-selectmenu-status, .everyone a
           background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
-        &.friends .ui-selectmenu-status, .friends a
+        &.list .ui-selectmenu-status, .list a
           background: url(/images/icons/friend-16.png) no-repeat 10px center
         &.followers .ui-selectmenu-status, .followers a
           background: url(/images/icons/friend-16-follower.png) no-repeat 10px center
@@ -425,11 +432,12 @@
 
   li a
     padding-left: 38px
+    color: #222
 
   // ICONS
   .everyone a
     background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
-  .friends a
+  .list a
     background: url(/images/icons/friend-16.png) no-repeat 10px center
   .followers a
     background: url(/images/icons/friend-16-follower.png) no-repeat 10px center

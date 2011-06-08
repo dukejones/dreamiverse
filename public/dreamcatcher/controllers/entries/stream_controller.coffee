@@ -2,7 +2,7 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
 
   init: ->
     @page = 1
-    @container = $('#entryField .matrix')
+    @container = $('#entryField .matrix.stream')
     @activateLightBox()   
     @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
@@ -33,6 +33,9 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
       $('#noMoreEntries').show() # No more entries to load.
       
     $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
+    
+    log json.html
+    log @page
     
     if @page > 1
       @container.append json.html

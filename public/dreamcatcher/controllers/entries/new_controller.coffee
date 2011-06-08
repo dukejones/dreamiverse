@@ -4,6 +4,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   interval: 5000
 
   init: ->
+    #$('#new_entry').removeAttr 'method'
+    #$('#new_entry').removeAttr 'action'
+    #$('#new_entry').removeAttr 'accept-charset'
+    
     @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
     @currentEntryType = $('#entryMode').data 'id'
     @posted = false
@@ -47,6 +51,28 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   '#entry_submit click': ->
     @posted = true
     @clearState()
+  
+  '#books-list change': (el) ->
+    if el.val() is '+ new book'
+      $('input.newBook-input', el.parent()).show()
+      $('.ui-selectmenu-status', el.parent()).hide()
+    else
+      $('input.newBook-input', el.parent()).hide()
+      $('.ui-selectmenu-status', el.parent()).show()
+      
+    $('#books-list-button').css 'width',''
+  
+  '#entryAttach .attach click': (el) ->
+    name = (el.attr 'id').replace('attach-','')
+    $(".entry-#{name}").show()
+    
+  '.headers click': (el) ->
+    el.parent().hide()
+    
+  'form#new_entry submit': (el) ->
+    log 'x'
+    #log el.formParams()
+
     
 
 

@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
   
   load: (category) ->
     $("#bedsheetScroller .spinner").show()
-    Dreamcatcher.Models.Bedsheet.findAll { category: category }, @callback('populate')
+    Dreamcatcher.Models.Image.search { ids_only: true, section: 'bedsheets', category: category }, @callback('populate')
   
   populate: (bedsheets) ->
     $("#bedsheetScroller ul").html @getView 'list', { bedsheets: bedsheets }
@@ -18,6 +18,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
 
   '.bedsheet click': (el) ->
     bedsheetId = el.data 'id'
-    $('#body').css 'background-image', "url('/images/uploads/#{bedsheetId}-bedsheet.jpg')"
+    el.prepend '<div class="spinner"></div>'
+    
     @highlight el 
     @publish 'appearance.update', { bedsheet_id: bedsheetId }

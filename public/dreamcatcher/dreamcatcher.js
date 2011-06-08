@@ -1,62 +1,50 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 19:36:48 GMT from
+/* DO NOT MODIFY. This file was compiled Wed, 08 Jun 2011 00:44:41 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
 (function() {
   var controllers, helpers, models, page;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-  steal.plugins('steal/coffee', 'jquery/controller', 'jquery/controller/subscribe', 'jquery/controller/history', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/model', 'jquery/dom/fixture', 'jquery/dom/form_params').resources('ui/jquery.ui.core', 'ui/jquery.ui.widget', 'ui/jquery.ui.mouse', 'ui/jquery.ui.position', 'ui/jquery.ui.selectmenu', 'ui/jquery.ui.draggable', 'ui/jquery.ui.droppable', 'jquery.tooltip.js', 'jquery-lightbox-0.5', 'jquery.tooltip.js', 'jquery.timeago', 'jquery.exists', 'jquery.cookie', 'jquery.dateFormat-1.0', 'jquery.query-2.1.7', 'jquery.livequery', 'fileuploader', 'jquery.linkify', 'jquery.videolink', 'dream.plugs').then(__bind(function() {
+  steal.plugins('steal/coffee', 'jquery/controller', 'jquery/controller/subscribe', 'jquery/controller/history', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/model', 'jquery/dom/fixture', 'jquery/dom/form_params').resources('ui/jquery.ui.core', 'ui/jquery.ui.widget', 'ui/jquery.ui.mouse', 'ui/jquery.ui.position', 'ui/jquery.ui.selectmenu', 'ui/jquery.ui.draggable', 'ui/jquery.ui.droppable', 'jquery.tooltip.js', 'jquery-lightbox-0.5', 'jquery.tooltip.js', 'jquery.timeago', 'jquery.exists', 'jquery.cookie', 'jquery.dateFormat-1.0', 'jquery.query-2.1.7', 'jquery.livequery', 'fileuploader', 'jquery.linkify', 'videolink', 'dream.plugs').then(__bind(function() {
     helpers('cookie', 'upload', 'ui');
     models('user', 'image');
     controllers('application', 'users/meta_menu', 'users/settings');
     switch (page()) {
       case 'images':
         return controllers({
-          group: 'images',
-          elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
+          package: 'images',
+          classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
         });
-      case 'stream':
-        models('stream', 'entry', 'comment', 'bedsheet');
+      default:
+        models('entry', 'book', 'stream', 'comment');
         return controllers({
-          group: 'entries',
-          elements: ['stream', 'entries', 'comments']
-        });
-      case 'carboes':
-        models('entry', 'book', 'comment', 'bedsheet');
-        return controllers({
-          group: 'entries',
-          elements: ['entries', 'new', 'books', 'comments']
+          package: 'entries',
+          classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
         }, {
-          group: 'users',
-          elements: ['appearance', 'bedsheets']
+          package: 'users',
+          classes: ['appearance', 'bedsheets']
         });
     }
   }, this)).views();
   controllers = function() {
-    var arg, el, group, _i, _len, _results;
+    var arg, className, _i, _len, _results;
     _results = [];
     for (_i = 0, _len = arguments.length; _i < _len; _i++) {
       arg = arguments[_i];
       _results.push((function() {
-        var _j, _k, _len2, _len3, _ref, _results2, _results3;
-        if (arg.group != null) {
-          group = arg.group;
-          _ref = arg.elements;
+        var _j, _len2, _ref, _results2;
+        if (arg.package != null) {
+          _ref = arg.classes;
           _results2 = [];
           for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
-            el = _ref[_j];
-            _results2.push(steal.coffee("controllers/" + group + "/" + el + "_controller"));
+            className = _ref[_j];
+            _results2.push(steal.coffee("controllers/" + arg.package + "/" + className + "_controller"));
           }
           return _results2;
         } else {
-          _results3 = [];
-          for (_k = 0, _len3 = arguments.length; _k < _len3; _k++) {
-            arg = arguments[_k];
-            _results3.push(steal.coffee("controllers/" + arg + "_controller"));
-          }
-          return _results3;
+          return steal.coffee("controllers/" + arg + "_controller");
         }
-      }).apply(this, arguments));
+      })());
     }
     return _results;
   };

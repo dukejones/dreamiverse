@@ -10,6 +10,15 @@ $.Model 'Dreamcatcher.Models.User',{
       success: success
       error: error
     }
+    
+  setViewPreferences: ( params, success, error ) ->
+    $.ajax {
+      type: 'post'
+      url: "/user/set_view_preferences"
+      data: params
+      success: success
+      error: error
+    }
      
 },
 {}

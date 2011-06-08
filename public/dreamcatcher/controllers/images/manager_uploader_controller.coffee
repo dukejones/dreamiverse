@@ -1,12 +1,12 @@
 $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
 
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/image_bank/manager/#{url}.ejs", data
+    return @view "//dreamcatcher/views/images/manager/#{url}.ejs", data
 
   init: ->
     @filesUploaded = 0
     
-    @fileUploader = Dreamcatcher.Classes.UploadHelper.createUploader {
+    @fileUploader = Dreamcatcher.Classes.UploadHelper.create {
       element: $('#uploader')
       url: '/images.json'
     }, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')

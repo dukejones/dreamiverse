@@ -6,7 +6,7 @@
     = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
     - if @entry_mode == 'new' 
       = hidden_field_tag :new_entry_mode, 1 
-  
+
   #entryId{:'data-id' => @entry.id}
   #entryMode{:'data-id' => @entry_mode}
   
@@ -57,7 +57,7 @@
 
 
     / POST BUTTON
-    = f.submit :value => 'post', :'data-disable-with' => "    "
+    = f.submit:value => 'post'#, :'data-disable-with' => "    "
     #postSpinner.hidden
 
 
@@ -183,7 +183,7 @@
 
 
   / NEW ENTRY TAG
-  .entryTags.entryPanels
+  .entry-tags.entryPanels
     .tagHeader.headers
       .img
       tag
@@ -215,7 +215,7 @@
 
 
   / NEW ENTRY LINK
-  .entryLinks.entryPanels
+  .entry-links.entryPanels
     .linksHeader.headers
       .img
       links
@@ -242,7 +242,7 @@
 
 
   / NEW ENTRY EMOTIONS
-  .entryEmotions.entryPanels.hidden
+  .entry-emotions.entryPanels.hidden
     .emotionsHeader.headers
       .img
       emotions

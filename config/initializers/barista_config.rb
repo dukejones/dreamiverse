@@ -2,10 +2,12 @@
 Barista.configure do |c|
   
   # Change the root to use app/scripts
-  #c.root = Rails.root.join("app", "coffee", "jmvc")
+  
+  #c.root = Rails.root.join("app", "coffee")
   c.root = Rails.root.join("app", "coffee", "jmvc")
-  c.output_root = Rails.root.join("public", "dreamcatcher")
+  
   #c.output_root = Rails.root.join("public", "javascripts", "compiled")
+  c.output_root = Rails.root.join("public", "dreamcatcher")
 
   c.embedded_interpreter = false
   # Set the compiler

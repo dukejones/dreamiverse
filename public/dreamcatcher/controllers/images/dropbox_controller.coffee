@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
   
   getView: (url, data, type) ->
     type = 'dropbox' if not type?
-    return @view "//dreamcatcher/views/image_bank/#{type}/#{url}.ejs", data
+    return @view "//dreamcatcher/views/images/#{type}/#{url}.ejs", data
 
   init: ->
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'

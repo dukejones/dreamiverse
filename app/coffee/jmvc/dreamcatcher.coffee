@@ -10,8 +10,10 @@ steal.plugins(
 	'jquery/dom/fixture' # simulated Ajax requests
 	'jquery/dom/form_params' # form data helper
 	
-).resources(	  
-
+).resources(
+	  
+	# jQuery plug-ins
+	
 	'ui/jquery.ui.core'
 	'ui/jquery.ui.widget'
 	'ui/jquery.ui.mouse'
@@ -32,34 +34,38 @@ steal.plugins(
 	
 	'fileuploader'
 	'jquery.linkify'
-	'jquery.videolink'
-	'dream.plugs' 
+	'videolink'
+	'dream.plugs'
 	
 ).then( =>  
-
+  #resources 'dream.plugs'
+  #commonly-used helpers, models and controllers
+  
   helpers 'cookie', 'upload', 'ui'
   models 'user', 'image'
   controllers 'application', 'users/meta_menu', 'users/settings'
+  
   switch page()
+  
+    #load specific models and controllers dependant on page
+  
     when 'images'
+    
       controllers {
-        group: 'images'
-        elements: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
+        package: 'images'
+        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
       }
-    when 'stream'
-      models 'stream', 'entry', 'comment', 'bedsheet'
+    
+    else
+    
+      models 'entry', 'book', 'stream', 'comment'
+      
       controllers {
-        group: 'entries'
-        elements: ['stream', 'entries', 'comments']
-      }
-    when 'carboes'
-      models 'entry', 'book', 'comment', 'bedsheet'
-      controllers {
-        group: 'entries'
-        elements: ['entries', 'new', 'books', 'comments']
+        package: 'entries'
+        classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
       }, {
-        group: 'users'
-        elements: ['appearance', 'bedsheets']
+        package: 'users'
+        classes: ['appearance', 'bedsheets']
       }
       
 ).views()
@@ -69,11 +75,10 @@ steal.plugins(
 
 controllers = ->
   for arg in arguments
-    if arg.group?
-      group = arg.group
-      steal.coffee "controllers/#{group}/#{el}_controller" for el in arg.elements
+    if arg.package?
+      steal.coffee "controllers/#{arg.package}/#{className}_controller" for className in arg.classes
     else
-      steal.coffee "controllers/#{arg}_controller" for arg in arguments
+      steal.coffee "controllers/#{arg}_controller"
     
 models = ->
   steal.coffee "models/#{arg}" for arg in arguments
