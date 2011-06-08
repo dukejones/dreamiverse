@@ -28,7 +28,7 @@
 
 
     - unless current_user.blank?
-      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id}
+      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id, :'data-viewpreference' => current_user.view_preference.to_json}
 
     = render :partial => "layouts/alert"
 

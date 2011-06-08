@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.Bedsheets',
   
   load: (category) ->
     $("#bedsheetScroller .spinner").show()
-    Dreamcatcher.Models.Bedsheet.findAll { category: category }, @callback('populate')
+    Dreamcatcher.Models.Image.search { ids_only: true, section: 'bedsheets', category: category }, @callback('populate')
   
   populate: (bedsheets) ->
     $("#bedsheetScroller ul").html @getView 'list', { bedsheets: bedsheets }

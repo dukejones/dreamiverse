@@ -12,10 +12,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
     @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
     @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
-    @comments   = new Dreamcatcher.Controllers.Entries.Comments         $('#entryField .comments')    if $('#entryField .comments').exists()
-    @stream     = new Dreamcatcher.Controllers.Stream           $("#streamContextPanel")    if $("#streamContextPanel").exists()    
+    #@comments   = new Dreamcatcher.Controllers.Entries.Comments         $('#entryField .comments')    if $('#entryField .comments').exists()
     @admin      = new Dreamcatcher.Controllers.Admin            $('#adminPage')             if $('#adminPage').exists()
-    
+        
   #- setup ui elements
   
   initUi: (parentEl) ->
@@ -35,17 +34,32 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- fit to content event
     
   'textarea keyup': (el) ->
+    #alert 'x'
+    #notice 'y'
     fitToContent el.attr('id'), 0
     
   #- appearance menu
   #todo: checkout where used
   
-  'bedsheet.change subscribe': (called, data) ->
-    bedsheetUrl = "/images/uploads/#{data}-bedsheet.jpg"
+  'appearance.change subscribe': (called, data) ->
+    #if no data is passed, then use the user default settings
+    if not data?
+      data = $('#userInfo').data 'viewpreference'
+    
+    return if not data.image_id?
+    
+    bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
-     
+
+    #todo: should include font size & float?
+    if data.bedsheet_attachment?
+      $('#body').removeClass('scroll fixed')
+      $('#body').addClass data.bedsheet_attachment
+    if data.theme?
+      $('#body').removeClass('light dark')
+      $('#body').addClass data.theme
+           
     img = $("<img src='#{bedsheetUrl}' style='display:none' />")
-  
     $(img).load ->
       $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
       #todo: make style
@@ -53,7 +67,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       $('#backgroundReplace').fadeIn 1000, =>
         $('#backgroundReplace').hide()
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
-  
     $('body').append img
     
     
@@ -85,7 +98,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #meta Menu - mov?
 
   '#new-post change': (el) ->
-    log el.val()
     if el.val() isnt 'empty'
       @historyAdd {
         controller: el.val()

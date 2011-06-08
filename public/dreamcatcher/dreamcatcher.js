@@ -1,11 +1,11 @@
-/* DO NOT MODIFY. This file was compiled Mon, 06 Jun 2011 22:28:01 GMT from
+/* DO NOT MODIFY. This file was compiled Wed, 08 Jun 2011 00:44:41 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
 (function() {
   var controllers, helpers, models, page;
   var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-  steal.plugins('steal/coffee', 'jquery/controller', 'jquery/controller/subscribe', 'jquery/controller/history', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/model', 'jquery/dom/fixture', 'jquery/dom/form_params').resources('ui/jquery.ui.core', 'ui/jquery.ui.widget', 'ui/jquery.ui.mouse', 'ui/jquery.ui.position', 'ui/jquery.ui.selectmenu', 'ui/jquery.ui.draggable', 'ui/jquery.ui.droppable', 'jquery.tooltip.js', 'jquery-lightbox-0.5', 'jquery.tooltip.js', 'jquery.timeago', 'jquery.exists', 'jquery.cookie', 'jquery.dateFormat-1.0', 'jquery.query-2.1.7', 'jquery.livequery', 'fileuploader', 'jquery.linkify', 'jquery.videolink', 'dream.plugs').then(__bind(function() {
+  steal.plugins('steal/coffee', 'jquery/controller', 'jquery/controller/subscribe', 'jquery/controller/history', 'jquery/view/ejs', 'jquery/controller/view', 'jquery/model', 'jquery/dom/fixture', 'jquery/dom/form_params').resources('ui/jquery.ui.core', 'ui/jquery.ui.widget', 'ui/jquery.ui.mouse', 'ui/jquery.ui.position', 'ui/jquery.ui.selectmenu', 'ui/jquery.ui.draggable', 'ui/jquery.ui.droppable', 'jquery.tooltip.js', 'jquery-lightbox-0.5', 'jquery.tooltip.js', 'jquery.timeago', 'jquery.exists', 'jquery.cookie', 'jquery.dateFormat-1.0', 'jquery.query-2.1.7', 'jquery.livequery', 'fileuploader', 'jquery.linkify', 'videolink', 'dream.plugs').then(__bind(function() {
     helpers('cookie', 'upload', 'ui');
     models('user', 'image');
     controllers('application', 'users/meta_menu', 'users/settings');
@@ -15,17 +15,11 @@
           package: 'images',
           classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
         });
-      case 'stream':
-        models('stream', 'entry', 'comment', 'bedsheet');
-        return controllers({
-          package: 'entries',
-          classes: ['stream', 'entries', 'comments']
-        });
       default:
-        models('entry', 'book', 'comment', 'appearance', 'bedsheet');
+        models('entry', 'book', 'stream', 'comment');
         return controllers({
           package: 'entries',
-          classes: ['entries', 'new', 'books', 'comments', 'show']
+          classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
         }, {
           package: 'users',
           classes: ['appearance', 'bedsheets']

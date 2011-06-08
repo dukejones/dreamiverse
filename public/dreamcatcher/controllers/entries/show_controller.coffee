@@ -9,7 +9,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries.Show',
   '.stream click': ->
     @historyAdd {
       controller: 'entry'
-      action: 'field'
+      action: 'stream'
     }
     
   '.prev, .next click': (el) ->
@@ -17,6 +17,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries.Show',
       controller: 'entry'
       action: 'show'
       id: el.data 'id'
+    }
+    
+  '.editEntry click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'edit'
+      id: el.closest('.entry').data 'id'
     }
   
   

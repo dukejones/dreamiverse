@@ -34,13 +34,11 @@ steal.plugins(
 	
 	'fileuploader'
 	'jquery.linkify'
-	'jquery.videolink'
+	'videolink'
 	'dream.plugs'
 	
-
-	
 ).then( =>  
-
+  #resources 'dream.plugs'
   #commonly-used helpers, models and controllers
   
   helpers 'cookie', 'upload', 'ui'
@@ -57,23 +55,14 @@ steal.plugins(
         package: 'images'
         classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
       }
-      
-    when 'stream'
     
-      models 'stream', 'entry', 'comment', 'bedsheet'
+    else
+    
+      models 'entry', 'book', 'stream', 'comment'
       
       controllers {
         package: 'entries'
-        classes: ['stream', 'entries', 'comments']
-      }
-      
-    else # e.g. page = username / 'carboes'
-    
-      models 'entry', 'book', 'comment', 'appearance', 'bedsheet'
-      
-      controllers {
-        package: 'entries'
-        classes: ['entries', 'new', 'books', 'comments', 'show']
+        classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
       }, {
         package: 'users'
         classes: ['appearance', 'bedsheets']

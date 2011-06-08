@@ -45,3 +45,18 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
     @selectPanel panelName
     
 
+  #- entry field / stream
+    
+  '.item.stream2 click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'stream'
+    }
+
+  '.item.home2 click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'field'
+    }
+    
+

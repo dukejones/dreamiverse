@@ -1,34 +1,38 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
 
-  #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting. 
+  #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting.
+  getView: (name, args) ->
+    return @view "//dreamcatcher/views/comments/#{name}.ejs", args
 
   init: ->
     @currentUserId = if $("#userInfo").exists() then parseInt $("#userInfo").data 'id' else null
     @currentUserImageId = parseInt $("#userInfo").data 'imageid'
-    @entryView = $("#showEntry").exists()
+        
+  isEntryView: ->
+    return $("#showEntry").is ':visible'
     
-    if @entryView #single entry view
-      @entryId = $('#showEntry').data 'id'
-      @loadComments $('#showEntry'),@entryId
+  load: (parentEl) ->
+    if @isEntryView() #single entry view
+      @loadComments parentEl, parentEl.data 'id'
     else #stream view
-      $(".thumb-1d").each (index,element) =>
+      $(".thumb-1d", parentEl).each (index,element) =>
         entry = $(element)
         newCount = @getNewCommentCount(entry)
         entryId = entry.data('id') 
-        @loadComments entry,entryId if newCount > 0
+        @loadComments entry, entryId if newCount > 0
 
   #Helper Methods
   getEntry: (id) ->
-    return $("#showEntry") if @entryView 
+    return $("#showEntry .entry[data-id=#{id}]") if @isEntryView() 
     return $(".thumb-1d[data-id='#{id}']")
     
   getEntryId: (el) ->
-    return @entryId if @entryView
-    return el.data('id') if el.hasClass("thumb-1d")
-    return $(el.closest(".thumb-1d")).data('id')
+    return el.closest('.entry').data 'id' if @isEntryView()
+    return el.data 'id' if el.hasClass("thumb-1d")
+    return el.closest(".thumb-1d").data 'id'
     
   getEntryFromElement: (el) ->
-    return $("#showEntry") if @entryView
+    return el.closest('.entry') if @isEntryView()
     return el.closest(".thumb-1d")
     
   getNewCommentCount: (entry) ->
@@ -59,7 +63,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
 
   loadComments: (entry, entryId) -> 
     $(".commentsTarget",entry).addClass("commentsPanel wrapper").html(
-      @view 'init',{
+      @getView 'init',{
         imageId: @currentUserImageId
         entryId: entryId
         userId: @currentUserId
@@ -69,7 +73,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
     
   populateComments: (entry, entryId, comments) ->
     totalCount = comments.length
-    if @entryView
+    if @isEntryView()
       if totalCount is 0 and @currentUserId is null
         $(".commentsTarget",entry).html("").removeClass("commentsPanel wrapper")
       else  
@@ -86,7 +90,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
         $(".showAll",entry).show()
         
     $(".comments",entry).html(
-      @view 'list',{
+      @getView 'list',{
         comments: comments
         userId: @currentUserId
         entryUserId: entry.data("userid")
@@ -106,7 +110,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
     entryId = comment.entry_id
     entry = @getEntry entryId
     $(".comments",entry).append(
-      @view 'show',{
+      @getView 'show',{
         comment: comment
         showDelete: true
         hidden: false
@@ -133,6 +137,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
 
   '.comment click': (el) ->
     entry = @getEntryFromElement el
+    
+    log entry
+    
     entryId = @getEntryId entry
     
     if entry.hasClass("expanded")                 #currently expanded -> collapse

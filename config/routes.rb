@@ -99,6 +99,10 @@ Dreamcatcher::Application.routes.draw do
       get 'random'
       get 'show_entry'
       get 'new_entry'
+      get 'edit_entry'
+      get 'show_context'
+      get 'show_stream'
+      get 'show_field'
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'

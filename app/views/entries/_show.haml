@@ -1,5 +1,5 @@
 / SHOW ENTRY
-.entry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :'data-imageid' => @entry.view_preference.image_id, :class => @entry.images.blank? ? "noImage" : "" }
+.entry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :'data-viewpreference' => "#{@entry.view_preference.to_json}", :class => @entry.images.blank? ? "noImage" : "" }
 
   .entryType
     .img{class: @entry.type}

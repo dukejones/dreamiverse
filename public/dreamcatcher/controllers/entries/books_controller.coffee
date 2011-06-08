@@ -34,9 +34,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @openBook bookEl
       @publish 'dom', bookEl
     
-  'history.book.new subscribe': (called, data) ->
-    @newBook()
-    
   #- show book
   
   showBook: (bookId) ->
@@ -95,6 +92,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   closeBook: (el) ->
     bookEl = @el.book el
     $('.open', bookEl).hide()
+    $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
 
   '.closeClick, .confirm click': (el) ->
