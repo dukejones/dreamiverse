@@ -1,5 +1,8 @@
 @import mixins
 
+// ADMIN
+
+// SHARED STYLES
 .panel
   +shine-dark(21)
   +round(16)
@@ -57,6 +60,24 @@
     padding-left: 8px
 
 
+  .arrow
+    +left
+    height: 26px
+    width: 32px
+    margin-left: 4px
+  .bedsheets-arrow
+    +left
+    height: 32px
+    width: 32px
+    margin-left: 8px
+  .up
+    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+  .down
+    background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+  .spinner
+    background: url(/images/icons/spinner-grey-32.gif) no-repeat center center transparent
+
+
   .chart-select
     +pointer
 
@@ -65,9 +86,9 @@
   .chartButtons
     +left
     width: 110px
-    margin: 20px 0 0 8px
+    margin: 20px 0 0 4px
 
-    .userButton-Wrap, .entryButton-Wrap
+    .userButton-border, .entryButton-border
       +round(8)
       width: 110px
       padding: 1px
@@ -90,7 +111,7 @@
         &:active
           +gradient(#151515, #2c2c2c)
 
-    .userButton-Wrap.select, .entryButton-Wrap.select
+    .userButton-border.select, .entryButton-border.select
       +cursor
       +gradient(#3c3b3b, #0e0e0e)
       &:hover
@@ -157,7 +178,8 @@
     padding: 8px 0 0 8px
 
 
-  .userList, .userCharts
+  #userList, #userCharts
+    +pointer
     +left
     +clear
     +font(18)
@@ -166,20 +188,12 @@
     padding: 0 0 0 32px
     margin: 16px 0 16px 10px
     background: url(/images/icons/friend-24.png) no-repeat left center
+  #userCharts
+    width: 100%
+  #userList
+    width: 310px
 
-    #chart-arrow, #list-arrow
-      +right
-      height: 26px
-      width: 32px
-      margin-left: 4px
-    .up
-      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
-    .down
-      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
-    .spinner
-      background: url(/images/icons/spinner-grey-32.gif) no-repeat center center transparent
-
-  #userList-Wrap
+  #userList-wrap
     +indent-dark
     +round(12)
     padding: 8px 8px 0
@@ -221,6 +235,12 @@
   +flat-dark
   +round(20)
   +glow-dark(20)
+
+  li
+    color: #ddd
+    &:hover
+      background: #ddd
+      color: #222
 
 
 

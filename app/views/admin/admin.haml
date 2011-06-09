@@ -25,36 +25,36 @@
 
 
       / USER CHARTS
-      .userCharts
-        user charts
-        #chart-arrow.up
+      #userCharts
+        %h2 user charts
+        .arrow.up
 
       .clear
 
 
-      #userCharts-Wrap
+      #userCharts-wrap
 
         / USER CHART BUTTONS
         .chartButtons
 
-          .userButton-Wrap.select
+          .userButton-border.select
             #users-this.button this week
 
-          .userButton-Wrap
+          .userButton-border
             #users-8wks.button 8 weeks
 
-          .userButton-Wrap
+          .userButton-border
             #users-6months.button 6 months
 
           %hr
 
-          .userButton-Wrap
+          .userButton-border
             #users-entries.button entries
 
-          .userButton-Wrap
+          .userButton-border
             #users-starlight.button starlight
 
-          .userButton-Wrap
+          .userButton-border
             #users-seeds.button seed codes
 
 
@@ -65,9 +65,9 @@
 
 
       / USER LIST
-      .userList
-        user list
-        #list-arrow.up
+      #userList
+        %h2 user list
+        .arrow.up
 
       .searchWrap
         %input.search{type: 'submit', value: ''}
@@ -84,9 +84,9 @@
       .clear
 
 
-      #userList-Wrap
+      #userList-wrap
 
-        #userList.clearfix
+        #users.clearfix
           = render(partial: 'user', collection: @users)
           .clear
 
@@ -134,36 +134,36 @@
       .clear
 
 
-      #entryCharts-Wrap
+      #entryCharts-wrap
 
         .entryCharts entry charts
 
         / ENTRY CHART BUTTONS
         .chartButtons
 
-          .entryButton-Wrap.select
+          .entryButton-border.select
             #entries-this.button this week
 
-          .entryButton-Wrap
+          .entryButton-border
             #entries-8wks.button 8 weeks
 
-          .entryButton-Wrap
+          .entryButton-border
             #entries-6months.button 6 months
 
           %hr
 
-          .entryButton-Wrap
+          .entryButton-border
             #entries-entries.button entry types
 
-          .entryButton-Wrap
+          .entryButton-border
             #entries-comments.button comments
 
-          .entryButton-Wrap
+          .entryButton-border
             #entries-tags.button tags
 
 
         / CHART
-        .chart-Wrap
+        .chart-wrap
           #entry-chart.chart
 
         .clear
@@ -178,6 +178,9 @@
         .img
         %h1 bedsheets
         .total= @total_bedsheets
+
+      .bedsheets-arrow.down
+
       .clear
 
       .module#bedsheet-nodes.clearfix
