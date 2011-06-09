@@ -41,20 +41,17 @@
 
         .clear
 
-
         #userList
           = render(partial: 'user', collection: @users)
           .clear
-
-
 
           #nextPageEnd ›
           #nextPage ›
 
           #pages
+          
           #prevPage ‹
           #prevPageEnd ‹
-
 
           #totalUsers{:'data-id' => @users.count}
           #pageSize{:'data-id' => @page_size}
@@ -100,8 +97,6 @@
         #user-chart.chart
 
       .clear
-
-
 
 
 
