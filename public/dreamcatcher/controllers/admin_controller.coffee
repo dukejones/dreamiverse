@@ -40,12 +40,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $(".userPage").css("text-decoration", "none") # reset
     $("#userPage-#{@page}").css("text-decoration", "underline")   
   
-  displayBedsheets: ( bedsheetsLoaded, json) ->
-    log "bedsheetsLoaded #{bedsheetsLoaded}"   
+  displayBedsheets: ( bedsheetsLoaded, json) ->  
     $('#bedsheet-nodes').toggle('showOrHide')
     
     unless @bedsheetsLoaded
-      $('#bedsheet-nodes').html(json.html) unless @bedsheetsLoaded
+      $('#bedsheet-nodes').html(json.html)
       @bedsheetsLoaded = true
     
   # Add numbered page links  
@@ -87,8 +86,8 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @updateNav()    
 
   '.button click': (el,ev) ->
-    # the google.load command needs to be loaded in resources/google.charts.coffee so that it loads before this controller loads
-    # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
+    # the google.load command needs to be loaded in resources/google.charts.coffee so that it gets loaded before this controller
+
     if ev.currentTarget.id is 'users-chart_a' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users','user')
     if ev.currentTarget.id is 'users-chart_b' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users','user')    
     if ev.currentTarget.id is 'users-chart_c' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users','user')
@@ -103,9 +102,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'entries-chart_k' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments','entry')
     if ev.currentTarget.id is 'entries-chart_l' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags','entry')
 
-    
-
-    
+       
   '#bedsheetsHeader click': (el,ev) ->
     Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets',@bedsheetsLoaded)
 
