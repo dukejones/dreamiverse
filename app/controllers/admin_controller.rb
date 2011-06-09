@@ -9,8 +9,10 @@ class AdminController < ApplicationController
     order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
     direction = 'DESC' 
     direction = 'ASC' if @order_by == 'username'
-
-    case @order_by
+    
+    # debugger
+    # 1
+    case order_by
       when 'traffic' then @users = User.includes(:entries).order("sum(entries.uniques) #{direction}").group('users.id')
       when 'entries' then @users = User.includes(:entries).order("count(entries.id) #{direction}").group('users.id')
       else
