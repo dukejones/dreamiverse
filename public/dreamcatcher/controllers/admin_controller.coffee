@@ -16,7 +16,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
    
   updateUsersPage: (json) ->  
     $('#userList').html(json.html)
-    # @updateNav()
     $('#allUsersIcon').show()
     $('#pageLoading').hide()
 

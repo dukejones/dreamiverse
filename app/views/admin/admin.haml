@@ -23,6 +23,16 @@
         .total= @users_created_last_month
         .clear
 
+      %select#user-filter.select-menu.dropdown
+        %option.orderBy{       value: ''             } ordered by:
+        %option.age{           value: 'created_at'   } age
+        %option.alphabetical{  value: 'username'     } username
+        %option.entries{       value: 'entries'      } entries
+        %option.starlight{     value: 'starlight'    } starlight
+        %option.traffic{       value: 'traffic'      } traffic
+
+
+
 
       / USER CHARTS
       .module

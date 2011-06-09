@@ -73,7 +73,6 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
   getPieChartData: (title,type) ->
     Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @callback('drawPieChart',type)
     
-  # Generate model options   
   getChartOptions: (title) ->
     title: title
      
