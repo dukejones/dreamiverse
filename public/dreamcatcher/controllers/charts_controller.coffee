@@ -1,11 +1,13 @@
 $.Controller 'Dreamcatcher.Controllers.Charts',
 
-  drawLineChart: (json) ->
+  drawLineChart: (type, json) ->
     data = new google.visualization.DataTable() 
     numLines = json.data['lines'].length - 1 # account for zero's
     maxRange = parseInt json.data['date_max_range']  
     rangeKeys = [0..maxRange] # for date ranges
     lineKeys = [0..numLines]  # for data lines
+    log "type #{type}"
+    chartDivId = "#{type}-chart"
 
     # Add columns
     data.addColumn('string', 'Date')
@@ -23,7 +25,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
         data.setValue(maxRange-range_key, line_key+1, json.data[range_key]['vals'][line_key])
         
     # Generate chart
-    chart = new google.visualization.LineChart(document.getElementById('chart'))
+    chart = new google.visualization.LineChart(document.getElementById(chartDivId))
     chart.draw(data, {
       title: "#{json.data['title']}",
       width: 600, height: 300, 
@@ -77,10 +79,11 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       
           
 
-  drawPieChart: (json) ->
+  drawPieChart: (type, json) ->
     data = new google.visualization.DataTable()   
     numSlices = json.data['slices'].length - 1 # account for zero's
     sliceKeys = [0..numSlices]  
+    chartDivId = "#{type}-chart"
     
     # Add columns
     data.addColumn('string', 'seed code')
@@ -95,7 +98,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       data.setValue(key, 1, json.data[key]['val'])
      
     # Generate Chart
-    chart = new google.visualization.PieChart(document.getElementById('chart'))
+    chart = new google.visualization.PieChart(document.getElementById(chartDivId))
     chart.draw(data, {
       title: "#{json.data.title}"
       width: 600
@@ -107,14 +110,11 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       titleTextStyle: {color: 'white'}})
 
      
-  getLineChartData: (title) ->               
-    Dreamcatcher.Models.Chart.loadSimpleLineChart @getChartOptions(title), @drawLineChart  
+  getLineChartData: (title,type) ->               
+    Dreamcatcher.Models.Chart.loadSimpleLineChart @getChartOptions(title), @callback('drawLineChart',type) 
 
-  getSparklineChartData: (title) ->               
-    Dreamcatcher.Models.Chart.loadFancyLineChart @getChartOptions(title), @drawSparklineChart
-      
-  getPieChartData: (title) ->
-    Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @drawPieChart
+  getPieChartData: (title,type) ->
+    Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @callback('drawPieChart',type)
     
   # Generate model options   
   getChartOptions: (title) ->

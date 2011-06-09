@@ -1,7 +1,8 @@
 $.Controller 'Dreamcatcher.Controllers.Admin',
   
   init: -> 
-    @page = 1   
+    @page = 1
+    @bedsheetsLoaded = false   
     @totalUsers = parseInt $('#totalUsers').data 'id'
     @pageSize = $('#pageSize').data 'id'
     @totalPages = Math.ceil(@totalUsers / @pageSize)    
@@ -9,8 +10,10 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @updateNav()
     @scope = 'None'
     @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
+    @charts.getLineChartData('last 7 days in users','user')
+    @charts.getLineChartData('last 7 days in entries','entry')
    
-        
+   
   updateUsersPage: (json) ->  
     $('#userList').html(json.html)
     # @updateNav()
@@ -38,8 +41,11 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $("#userPage-#{@page}").css("text-decoration", "underline")   
   
   displayBedsheets: (json) ->
-    log 'displayBedsheets'
-    $('#bedsheet-nodes').html(json.html)
+    log "bedsheetsLoaded #{@bedsheetsLoaded}"
+    log @page
+    @bedsheetsLoaded = true
+    $('#bedsheet-nodes').toggle('showOrHide')
+    $('#bedsheet-nodes').html(json.html) unless @bedsheetsLoaded
     
   # Add numbered page links  
   addPageLinks: ->
@@ -82,18 +88,19 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   '.button click': (el,ev) ->
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it loads before this controller loads
     # @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),@scope,{parent: this}
-    if ev.currentTarget.id is 'users-chart_a' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users')
-    if ev.currentTarget.id is 'users-chart_b' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users')    
-    if ev.currentTarget.id is 'users-chart_c' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users')
-    if ev.currentTarget.id is 'users-chart_d' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries')
-    if ev.currentTarget.id is 'users-chart_e' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight')
-    if ev.currentTarget.id is 'users-chart_f' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages')
-    if ev.currentTarget.id is 'users-chart_g' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags')
-    if ev.currentTarget.id is 'chart-d' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in entries')
-    if ev.currentTarget.id is 'chart-e' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in entries')
-    if ev.currentTarget.id is 'chart-f' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries')
-    if ev.currentTarget.id is 'chart-g' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types')
-    if ev.currentTarget.id is 'chart-h' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments')
+    if ev.currentTarget.id is 'users-chart_a' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users','user')
+    if ev.currentTarget.id is 'users-chart_b' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users','user')    
+    if ev.currentTarget.id is 'users-chart_c' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users','user')
+    if ev.currentTarget.id is 'users-chart_d' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries','user')
+    if ev.currentTarget.id is 'users-chart_e' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight','user')
+    if ev.currentTarget.id is 'users-chart_f' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages','user')
+
+    if ev.currentTarget.id is 'entries-chart_g' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in entries','entry')
+    if ev.currentTarget.id is 'entries-chart_h' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in entries','entry')
+    if ev.currentTarget.id is 'entries-chart_i' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries','entry')
+    if ev.currentTarget.id is 'entries-chart_j' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types','entry')
+    if ev.currentTarget.id is 'entries-chart_k' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments','entry')
+    if ev.currentTarget.id is 'entries-chart_l' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags','entry')
 
     
 
