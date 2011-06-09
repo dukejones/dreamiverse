@@ -61,7 +61,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
      @model.albums {artist: @artist, section: @section, category: @category}, (html) =>
         @displayView 'albumList', html
         @parent.registerDroppable $('#albumList .images td')
-        @parent.registerDraggable $("#albumList .images .img"), false
+        @publish 'image.browser.drag', $("#albumList .images .img")
     
   displayView: (viewId, html) ->
     switch viewId
@@ -92,7 +92,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     backArrow.attr 'name', previousId if previousId?
     $(".content span", backArrow).text previousName if previousName?
     $('.content .img', backArrow).toggle previousName is 'browse'
-    $('#frame.browser h1').text currentName if currentName
+    $('#frame.browser h1').text currentName if currentName?
 
     @hideAllViews()
 
@@ -212,6 +212,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     field = el.closest('table').attr('id').replace('List','')
     el.val el.closest('tr').data field
     alert 'could not update '+field
+    
       
   #- Search Results -#
   
@@ -222,7 +223,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     options = @parent.getSearchOptions()
     @model.search options, (images) =>
       @displayView 'searchResults', @getView('search_results',{ images : images } )
-      @parent.registerDraggable $("#searchResults ul li")
+      @publish 'image.browser.drag', $("#searchResults ul li")
   
   '.searchField .options click': (el) ->    
     if not $('#searchOptions').is ':visible'
@@ -236,3 +237,12 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   
   '#searchResults li dblclick': (el) ->
     @parent.showSlideshow 'searchResults', el.data 'id'
+    
+    
+  'image.browser.drag subscribe': (called, el) ->
+    el.draggable {
+      containment: 'document'
+      helper: 'clone'
+      #cursor: 'grabbing' # todo
+      zIndex: 100
+    }

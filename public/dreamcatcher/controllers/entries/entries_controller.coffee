@@ -30,8 +30,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     
     if $('#entryField .matrix').exists()
       @showEntryField()
-    @publish 'drop', $('#entryField .matrix.books')
-    @publish 'drag', $('#entryField .matrix.field')
+    @publish 'book.drop', $('#entryField .matrix.books')
+    @publish 'entry.drag', $('#entryField .matrix.field')
           
   #- move entry to book (drag & drop)
 
@@ -53,28 +53,28 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       
     $('.entryDrop-active', bookEl).hide()
 
-  'drop subscribe': (called, data) ->
+
+  'book.drop subscribe': (called, data) ->
     parentEl = data
-    $('.book', parentEl).each (i, el) =>
+    $('.book, .avatar', parentEl).each (i, el) =>
       @books.closeBook $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
-          dropEl = null
           dropEl = $(ev.target)
           @moveEntryToBook ui.draggable, dropEl
 
         over: (ev, ui) =>
-          bookEl = $(ev.target)
-          @books.openBook bookEl
-          $('.entryDrop-active', bookEl).show()
+          el = $(ev.target)
+          @books.openBook el, true if el.hasClass 'book' 
+          $('.entryDrop-active', el).show()
 
         out: (ev, ui) =>
-          bookEl = $(ev.target)
-          @books.closeBook bookEl
-          $('.entryDrop-active', bookEl).hide()
+          el = $(ev.target)
+          @books.closeBook el if el.hasClass 'book' 
+          $('.entryDrop-active', el).hide()
       }
-      
-  'drag subscribe': (called, data) ->
+
+  'entry.drag subscribe': (called, data) ->
     parentEl = data.el
     $('.thumb-2d', parentEl).draggable {
       containment: 'document'
@@ -82,19 +82,29 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       revert: false
       helper: 'clone'
       revertDuration: 100
-      start: (ev, ui) ->
+      start: (ev, ui) =>
         $(ui.helper).css 'opacity', 0.5
         $('.add-active', ui.helper).show()
-      stop: (ev, ui) ->
+        @toggleBookContext true
+        
+      stop: (ev, ui) =>
         $(ui.helper).css 'opacity', 1
         $('.add-active', ui.helper).hide()
+        @toggleBookContext false
+        
     }
-       
+  
+  #- hides the book if it sits in the context menu
+  toggleBookContext: (start) ->
+    if not $('#entryField .matrix.field').is ':visible'
+      $('#contextPanel .book').toggle not start
+      $('#contextPanel .avatar').toggle start
+
   #- context panels
   
   showEntryContext: (userId) ->    
     #todo: should only get context panel if for the user it doesn't exist in the dom.
-    params = { type:'entry' }
+    params = { type: 'entry' }
     if not userId?
       $.extend params, { user_id: userId }
     @model.entry.showContext params, (html) =>
@@ -110,7 +120,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       @model.entry.showContext {type:'stream'}, (html) =>
         $('#contextPanel').hide()
         $('#totem').after html
-        @publish 'dom', $('#streamContextPanel')
+        @publish 'dom.added', $('#streamContextPanel')
         @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel")
   
   #- entry field
@@ -167,8 +177,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       $('#new_entry').show()
       
       @new = new Dreamcatcher.Controllers.Entries.New $('#new_entry')
-      
-      @publish 'dom', $('#new_entry')
+      @publish 'dom.added', $('#new_entry')
   
   'history.entry.new subscribe': (called, data) ->
     @showEntryContext()
@@ -189,8 +198,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       $('#entryField').prepend html
       entryEl = $('#entryField .edit_entry:first')
       entryEl.show()
-      #to do: fitToContent()
-      @publish 'dom', entryEl
+      # TODO: fitToContent()
+      @publish 'dom.added', entryEl
 
   'history.entry.edit subscribe': (called, data) ->
     @showEntryContext data.user_id if data.user_id?

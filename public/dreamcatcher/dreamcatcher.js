@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Wed, 08 Jun 2011 00:44:41 GMT from
+/* DO NOT MODIFY. This file was compiled Thu, 09 Jun 2011 00:09:08 GMT from
  * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
  */
 
@@ -14,6 +14,12 @@
         return controllers({
           package: 'images',
           classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
+        });
+      case 'admin':
+        models('admin');
+        return controllers({
+          package: 'admin',
+          classes: ['admin']
         });
       default:
         models('entry', 'book', 'stream', 'comment');

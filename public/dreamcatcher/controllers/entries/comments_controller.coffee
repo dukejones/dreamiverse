@@ -137,9 +137,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Comments',
 
   '.comment click': (el) ->
     entry = @getEntryFromElement el
-    
-    log entry
-    
     entryId = @getEntryId entry
     
     if entry.hasClass("expanded")                 #currently expanded -> collapse

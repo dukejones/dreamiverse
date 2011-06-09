@@ -32,7 +32,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       $('#entryField .matrix.books').prepend html
       bookEl = $('#entryField .matrix.books .book:first')
       @openBook bookEl
-      @publish 'dom', bookEl
+      @publish 'dom.added', bookEl
     
   #- show book
   
@@ -44,7 +44,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     else
       $('#contextPanel').prepend html
     $('#contextPanel .avatar').hide()
-    @publish 'drop', $('#contextPanel')
+    
+    @publish 'book.drop', $('#contextPanel')
     
     bookMatrixEl = @el.bookMatrix bookId
 
@@ -59,7 +60,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
           bookMatrixEl.replaceWith html
         else
           $('#entryField').append html
-        @publish 'drag', @el.bookMatrix()
+        @publish 'entry.drag', @el.bookMatrix()
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
@@ -77,10 +78,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       
   #- open book
   
-  openBook: (el) ->
+  openBook: (el, empty) ->
     @closeAllBooks()
     bookEl = @el.book el
     $('.open, .closeClick', bookEl).show()
+    $('.control-panel', bookEl).toggle(not empty)
     $('.closed', bookEl).hide()
     
     
@@ -103,7 +105,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   closeAllBooks: (el) ->
     @closeBook()
   
-  'bodyClick subscribe': (called, data) ->
+  'body.clicked subscribe': (called, data) ->
     @closeAllBooks()
       
   #- paging

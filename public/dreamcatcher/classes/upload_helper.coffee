@@ -28,9 +28,10 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
       
       onSubmit: submit
       onComplete: complete
+      onProgress: progress
     }
     $('input[type=file]', attr.element).removeAttr 'multiple' if attr.multiple
-    uploader.onProgress = progress if progress?
+    #uploader.onProgress = progress if progress?
     uploader.onCancel = cancel if cancel?
     
     return uploader

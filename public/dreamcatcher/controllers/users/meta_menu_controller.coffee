@@ -22,6 +22,10 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
     $('#settingsPanel,#appearancePanel').fadeOut 250
     $('#bodyClick').hide()
     $('.item.settings,.item.appearance').removeClass 'selected'
+  
+  'body.clicked subscribe': (data) ->
+    @hideAllPanels()
+    
     
   selectPanel: (name) ->
     $(".item.trigger.#{name}").addClass 'selected'
@@ -35,7 +39,9 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
         @currentPanel = @appearancePanel
       
     @expandSelectedPanel()
-
+    
+  'menu.show subscribe': (data) ->
+    @selectPanel data
 
   '.item.settings,.item.appearance click': (el) ->
     expanded = el.hasClass('selected')
@@ -46,6 +52,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
     
 
   #- entry field / stream
+  # todo: remove and replace
     
   '.item.stream2 click': (el) ->
     @historyAdd {
@@ -57,6 +64,22 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
     @historyAdd {
       controller: 'entry'
       action: 'field'
+    }
+    
+    
+  '#new-post change': (el) ->
+    #todo: fix so empty is never showing (style)
+    if el.val() isnt 'empty'
+      @historyAdd {
+        controller: el.val()
+        action: 'new'
+      }
+    el.val 'empty'
+    
+  '.newEntry click': (el) ->
+    @historyAdd {
+      controller: 'entry'
+      action: 'new'
     }
     
 

@@ -68,23 +68,23 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
   showImage: (imageId, imageMeta) ->
     if imageMeta?
       $("#dropbox .imagelist").append @getView 'image', { image: imageMeta }
-      @registerDraggable $('#dropbox .imagelist li:last'), true
+      @publish 'image.dropbox.drag', $('#dropbox .imagelist li:last')
     else
       @model.get imageId, {}, @callback('showImage', imageId)
-      
-  #- registers an element as draggable  
-  registerDraggable: (el, fromDropbox) ->
+  
+  
+
+    
+  'image.dropbox.drag subscribe': (called, el) ->
     el.draggable {
       containment: 'document'
       helper: 'clone'
       #cursor: 'grabbing' # todo
       zIndex: 100
       start: (ev, ui) =>
-        if fromDropbox
-          $("#bodyClick").show()
+        $("#bodyClick").show()
       stop: (ev, ui) =>
-        if fromDropbox
-          $("#bodyClick").hide()
+        $("#bodyClick").hide()
     }
   
   #- registers an element as droppable
@@ -102,7 +102,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
           imageMeta = ui.draggable.data 'image'
           imageMeta.album = album
           ui.draggable.data 'image', imageMeta
-          @registerDraggable ui.draggable, false
+          @publish 'image.browser.drag', ui.draggable
     }
     
     
