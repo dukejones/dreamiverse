@@ -86,11 +86,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       helper: 'clone'
       revertDuration: 100
       start: (ev, ui) =>
-        $(ui.helper).css 'opacity', 0.5
+        #$(ui.helper).css 'opacity', 0.5
         @toggleBookContext true
         
       stop: (ev, ui) =>
-        $(ui.helper).css 'opacity', 1
+        #$(ui.helper).css 'opacity', 1
         @toggleBookContext false
         
     }
