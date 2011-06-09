@@ -7,6 +7,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
     rangeKeys = [0..maxRange] # for date ranges
     lineKeys = [0..numLines]  # for data lines
     chartDivId = "#{type}-chart"
+    
 
     # Add columns
     data.addColumn('string', 'Date')
@@ -35,6 +36,7 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       vAxis: {textStyle: {color: 'white'}}
     })
       
+    $("##{type}-chartLoading").hide()
 
   drawPieChart: (type, json) ->
     data = new google.visualization.DataTable()   
@@ -64,13 +66,18 @@ $.Controller 'Dreamcatcher.Controllers.Charts',
       is3D: true
       backgroundColor: 'black'
       legendTextStyle: {color: 'white'}
-      titleTextStyle: {color: 'white'}})
+      titleTextStyle: {color: 'white'}
+    })
 
-     
-  getLineChartData: (title,type) ->               
+    $("##{type}-chartLoading").hide() 
+      
+  getLineChartData: (title,type) ->  
+    $("##{type}-chartLoading").show()           
     Dreamcatcher.Models.Chart.loadSimpleLineChart @getChartOptions(title), @callback('drawLineChart',type) 
+    
 
   getPieChartData: (title,type) ->
+    $("##{type}-chartLoading").show() 
     Dreamcatcher.Models.Chart.loadPieChart @getChartOptions(title), @callback('drawPieChart',type)
     
   getChartOptions: (title) ->

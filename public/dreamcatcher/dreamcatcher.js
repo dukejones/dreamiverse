@@ -54,7 +54,7 @@ steal.plugins(
   			'controllers/image_bank/manager_selector_controller',
   			'controllers/image_bank/manager_meta_controller'
 	    );
-    } else if (window.location.href.split('/').pop() == 'admin') {
+    } else if ((window.location.href.split('/').pop() == 'admin') || (window.location.href.split('/').pop() == 'admin#')) {
         steal.coffee(
          'resources/google.charts',
          'models/admin',

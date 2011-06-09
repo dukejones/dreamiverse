@@ -17,7 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   updateUsersPage: (json) ->  
     $('#userList').html(json.html)
     $('#allUsersIcon').show()
-    $('#pageLoading').hide()
+    $('#user-pageLoading').hide()
 
   
   # Show or hide next/prev buttons
@@ -65,7 +65,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   '.userPage click': (el,ev) ->
     @page = parseInt el.text()
     $('#allUsersIcon').hide()
-    $('#pageLoading').show()
+    $('#user-pageLoading').show()
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage
     @updateNav()     
 
@@ -73,14 +73,14 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @page = 1 if !@page? 
     @page = if ev.currentTarget.id is 'nextPage' then @page += 1 else @page -= 1 
     $('#allUsersIcon').hide()
-    $('#pageLoading').show()
+    $('#user-pageLoading').show()
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  
     @updateNav() 
     
   '#user-filter change': (el) ->
     log 'user-filter changed to: ' + el.val()
     @page = 1 
-    $('#pageLoading').show()
+    $('#user-pageLoading').show()
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  
     @updateNav()    
 
