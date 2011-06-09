@@ -100,8 +100,9 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'entries-chart_j' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types','entry')
     if ev.currentTarget.id is 'entries-chart_k' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments','entry')
     if ev.currentTarget.id is 'entries-chart_l' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags','entry')
-
-       
+    
+    $("##{ev.currentTarget.id}").parent().addClass('select')
+     
   '#bedsheetsHeader click': (el,ev) ->
     Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets',@bedsheetsLoaded)
 
