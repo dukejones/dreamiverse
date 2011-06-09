@@ -197,8 +197,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   #- uploader
     
   createUploader: (el) ->
-    return @helper.upload.create {
-      element: $('.cover-panel', el)
+    return @helper.upload.create $('.cover-panel', el), true, {
       params: {
         image: {
           section: 'book covers'
@@ -206,10 +205,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
           genre: ''
         }
       }
-      url: '/images.json'
-      button: 'add'
-      drop: 'dropbox'
-      list: 'dropbox-field-shine'
+      classes: {
+        button: 'add'
+        drop: 'dropbox'
+        list: 'dropbox-field-shine'
+      }
     }, @callback('uploadSubmit', el), @callback('uploadComplete', el)
     
   uploadSubmit: (el, id, fileName) ->

@@ -1,5 +1,5 @@
-/* DO NOT MODIFY. This file was compiled Thu, 09 Jun 2011 00:09:08 GMT from
- * /Users/carboes/Sites/dreamcatcher/app/coffee/jmvc/dreamcatcher.coffee
+/* DO NOT MODIFY. This file was compiled Thu, 09 Jun 2011 18:13:20 GMT from
+ * /Users/carboes/Sites/dreamcatcher/public/dreamcatcher/coffee/dreamcatcher.coffee
  */
 
 (function() {
@@ -12,23 +12,23 @@
     switch (page()) {
       case 'images':
         return controllers({
-          package: 'images',
+          module: 'images',
           classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
         });
       case 'admin':
         models('admin');
         return controllers({
-          package: 'admin',
+          module: 'admin',
           classes: ['admin']
         });
       default:
         models('entry', 'book', 'stream', 'comment');
         return controllers({
-          package: 'entries',
+          module: 'entries',
           classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
         }, {
-          package: 'users',
-          classes: ['appearance', 'bedsheets']
+          module: 'users',
+          classes: ['appearance', 'bedsheets', 'context_panel']
         });
     }
   }, this)).views();
@@ -39,12 +39,12 @@
       arg = arguments[_i];
       _results.push((function() {
         var _j, _len2, _ref, _results2;
-        if (arg.package != null) {
+        if (arg.module != null) {
           _ref = arg.classes;
           _results2 = [];
           for (_j = 0, _len2 = _ref.length; _j < _len2; _j++) {
             className = _ref[_j];
-            _results2.push(steal.coffee("controllers/" + arg.package + "/" + className + "_controller"));
+            _results2.push(steal.coffee("controllers/" + arg.module + "/" + className + "_controller"));
           }
           return _results2;
         } else {

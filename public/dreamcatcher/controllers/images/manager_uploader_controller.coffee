@@ -5,11 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.ManagerUploader',
 
   init: ->
     @filesUploaded = 0
-    
-    @fileUploader = Dreamcatcher.Classes.UploadHelper.create {
-      element: $('#uploader')
-      url: '/images.json'
-    }, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
+    @fileUploader = Dreamcatcher.Classes.UploadHelper.create $('#uploader'), false, {}, @callback('uploadSubmit'), @callback('uploadComplete'), @callback('uploadCancel'), @callback('uploadProgress')
   
   setDefaultUploadParams: ->
     @fileUploader.setParams @manager.getMeta 'organization' if not @replaceImageId?

@@ -9,10 +9,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- controllers
   
   setupControllers: ->
-    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
-    @admin      = new Dreamcatcher.Controllers.Admin            $('#adminPage')             if $('#adminPage').exists()
+    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
+    @images     = new Dreamcatcher.Controllers.ImageBank          $("#frame.browser")   if $("#frame.browser").exists()
+    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField").exists()
+    @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
         
   #- setup ui elements
   

@@ -24,9 +24,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #- constructor
   
   init: ->
-    @show = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')# if $('#showEntry').exists() # todo: #showEntry
-    @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField')# .matrix.books if $('#entryField .matrix.books').exists()
+    @showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
+    @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books')
     @comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
+    @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
     
     if $('#entryField .matrix').exists()
       @showEntryField()
@@ -110,6 +111,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     @model.entry.showContext params, (html) =>
       $('#streamContextPanel').hide()
       $('#totem').replaceWith html
+      @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
       $('#totem').show()
 
   showStreamContext: ->

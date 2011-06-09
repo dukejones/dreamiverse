@@ -1,17 +1,18 @@
 $.Class 'Dreamcatcher.Classes.UploadHelper', {  
 
-  create: (attr, submit, complete, cancel, progress) ->
-    uploader = new qq.FileUploader {  
+  #- cancel & progress are optional arguments
+  create: (el, singleOnly, customOptions, submit, complete, cancel, progress) ->
+    options = {  
       maxConnections: 1
-      params: if attr.params? then attr.params else {}
+      params: {}
       debug: true # todo: false
       allowedExtensions: ['jpg', 'jpeg', 'png', 'gif']
 
       classes: {
-        button: if attr.button? then attr.button else 'browse'
-        drop: if attr.drop? then attr.drop else 'dropArea'
+        button: 'browse'
+        drop: 'dropArea'
         dropActive: 'active'
-        list: if attr.list then attr.list else 'imagelist'
+        list: 'imagelist'
         progress: 'progress'
         file: 'file'
         spinner: 'spinner'
@@ -21,19 +22,27 @@ $.Class 'Dreamcatcher.Classes.UploadHelper', {
         fail: 'fail'
       }
       
-      element: attr.element.get(0)
-      action: attr.url
-      template: attr.element.html()
+      element: el.get(0)
+      action: '/images.json'
+      template: el.html()
       fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
       
       onSubmit: submit
       onComplete: complete
-      onProgress: progress
     }
-    $('input[type=file]', attr.element).removeAttr 'multiple' if attr.multiple
-    #uploader.onProgress = progress if progress?
-    uploader.onCancel = cancel if cancel?
     
+    #extend existing options (without overridding classes completely)
+    customClasses = customOptions.classes
+    delete customOptions.classes
+    $.extend options, customOptions
+    $.extend options.classes, customClasses
+    options.onProgress = progress if progress?
+    options.onCancel = cancel if cancel?
+    
+    log options
+    
+    uploader = new qq.FileUploader options
+    $('input[type=file]', el).removeAttr 'multiple' if singleOnly
     return uploader
 
 }, {}
