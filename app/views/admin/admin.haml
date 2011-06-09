@@ -59,8 +59,8 @@
 
 
       / CHART
-      .chart-Wrap
-        #user-chart.chart
+      #user-chart.chart
+
 
       .clear
 
@@ -87,9 +87,11 @@
         .clear
 
 
-        #userList.clearfix
-          = render(partial: 'user', collection: @users)
-          .clear
+        .userList-Wrap
+
+          #userList.clearfix
+            = render(partial: 'user', collection: @users)
+            .clear
 
 
           #nextPageEnd ›
