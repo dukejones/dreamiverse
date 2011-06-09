@@ -6,14 +6,26 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
     return @view "//dreamcatcher/views/images/manager/#{url}.ejs", data
 
   init: ->
-    @uploader = new Dreamcatcher.Controllers.ImageBank.ManagerUploader $("#uploader")
-    @selector = new Dreamcatcher.Controllers.ImageBank.ManagerSelector $("#uploader")
     @meta = new Dreamcatcher.Controllers.ImageBank.ManagerMeta $("form#manager")
-    
-    @uploader.manager = this
-    @selector.manager = this
     @meta.manager = this
-    @uploader.setDefaultUploadParams()
+
+    @upload = new Dreamcatcher.Controllers.Common.Upload $('#uploader')
+    @upload.load()
+    @setDefaultUploadParams()
+
+    @enableShiftKey()
+  
+  enableShiftKey: ->
+    @shiftDown = false
+    @ctrlDown = false
+    $(document).keydown (event) =>
+      @shiftDown = event.shiftKey
+      @ctrlDown = event.altKey
+      return
+    $(document).keyup (event) =>
+      @shiftDown = event.shiftKey
+      @ctrlDown = event.altKey
+      return
       
   close: (showSearch) ->
     @parent.showBrowser true, showSearch
@@ -49,12 +61,75 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   getMeta: (type) ->
     return @meta.get type
     
-    
   '.browseWrap click': ->
     @close()
     
   '.searchWrap click': ->
     @close true
+    
+    
+  ##-- SELECTOR --##
+
+  #- select all/select none
+  '.all click': (el) ->
+
+    #todo: have both all and none
+    if el.text().indexOf 'all' isnt -1
+      $('#imagelist li').addClass 'selected'
+      el.text 'select none'
+    else
+      $('#imagelist li').removeClass 'selected'
+      el.text 'select all'
+
+    @updateMeta()
+
+  '.clearImages click': (el) ->
+    $('#imagelist').html ''
+
+  #- select individual images
+
+  '#imagelist li click': (el) ->
+    return if el.hasClass 'uploading'
+
+    if @shiftDown
+      @selectRange el 
+
+    else if @ctrlDown
+      if el.hasClass 'selected'
+        el.removeClass 'selected'
+      else
+        el.addClass 'selected'
+
+    else
+      if el.hasClass 'selected'
+        el.removeClass 'selected'
+      else
+        $('#imagelist li').removeClass 'selected'
+        el.addClass 'selected'
+
+    @updateMeta()
+
+  selectRange: (el) ->
+    firstIndex = $('#imagelist li.selected:first').index()
+    lastIndex = $('#imagelist li.selected:last').index()
+    currentIndex = el.index()
+    fromIndex = Math.min firstIndex, currentIndex
+    toIndex = Math.max lastIndex, currentIndex
+    $('#imagelist li').removeClass 'selected'
+    $('#imagelist li').each (i, el) =>
+      $(el).addClass 'selected' if i >= fromIndex and i <= toIndex  
+
+  #- delete individual image
+  '#imagelist .close click': (el) ->
+    if el.parent().hasClass 'delete'
+      imageId = el.parent().data 'id'
+      el.parent().hide()
+    else
+      el.parent().addClass 'delete'
+
+  '.dontDelete click': (el) ->
+    el.closest('li').removeClass 'delete'
+  
   
   ##--- BUTTONS ---##
 
@@ -112,3 +187,9 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Manager',
   '.cancel click': (el) ->
     $('#imagelist').html ''
     @close()
+
+  setDefaultUploadParams: ->
+    @upload.setParams @getMeta 'organization' #if not @replaceImageId?
+    
+
+  

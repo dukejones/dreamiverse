@@ -66,13 +66,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
 
         over: (ev, ui) =>
           el = $(ev.target)
-          @books.openBook el, true if el.hasClass 'book' 
-          $('.entryDrop-active', el).show()
+          @books.openBook el, true if el.hasClass 'book'
+          $('.add-active', ui.helper).show()
+          $('.entryDrop-active, .entryRemove', el).show()
 
         out: (ev, ui) =>
           el = $(ev.target)
           @books.closeBook el if el.hasClass 'book' 
-          $('.entryDrop-active', el).hide()
+          $('.add-active', ui.helper).hide()
+          $('.entryDrop-active, .entryRemove', el).hide()
       }
 
   'entry.drag subscribe': (called, data) ->
@@ -85,12 +87,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       revertDuration: 100
       start: (ev, ui) =>
         $(ui.helper).css 'opacity', 0.5
-        $('.add-active', ui.helper).show()
         @toggleBookContext true
         
       stop: (ev, ui) =>
         $(ui.helper).css 'opacity', 1
-        $('.add-active', ui.helper).hide()
         @toggleBookContext false
         
     }

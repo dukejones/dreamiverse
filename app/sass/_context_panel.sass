@@ -11,6 +11,7 @@
 // STRUCTURE
 
 #contextPanel
+  +relative
   +round(16)
   +cursor
   width: 200px
@@ -19,6 +20,25 @@
 
   .book
     +relative
+
+
+  .entryRemove
+    +hidden
+    +absolute
+    +round(12)
+    top: -1px
+    left: -1px
+    width: 200px
+    height: 266px
+    background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+
+    div
+      +absolute
+      +center
+      +bold
+      top: 186px
+      left: 0
+      width: 200px
 
 
   #avatarDrop

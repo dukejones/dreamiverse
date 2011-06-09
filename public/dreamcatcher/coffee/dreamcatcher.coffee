@@ -40,16 +40,23 @@ steal.plugins(
 ).then( =>  
 
   # common jmvc files
-  helpers 'cookie', 'upload', 'ui'
+  helpers 'cookie', 'ui'
   models 'user', 'image'
-  controllers 'application', 'users/meta_menu', 'users/settings'
+  controllers 'application', {
+    module: 'common'
+    classes: ['upload']
+  }, {
+    module: 'users',
+    classes: ['meta_menu', 'settings']
+  }
   
   # page-specific jmvc files
   switch page()
+  
     when 'images'
       controllers {
         module: 'images'
-        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
+        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_meta']
       }
       
     when 'admin'

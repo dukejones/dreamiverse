@@ -90,7 +90,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user = {}
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
-    
-
+  
+  
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
