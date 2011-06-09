@@ -94,22 +94,26 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
   '.button click': (el,ev) ->
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it gets loaded before this controller
 
-    if ev.currentTarget.id is 'users-1wk' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users','user')
-    if ev.currentTarget.id is 'users-8wks' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users','user')    
-    if ev.currentTarget.id is 'users-6months' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users','user')
-    if ev.currentTarget.id is 'users-entries' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries','user')
-    if ev.currentTarget.id is 'users-starlight' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight','user')
-    if ev.currentTarget.id is 'users-seeds' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages','user')
+    $buttonParent = $("##{ev.currentTarget.id}").parent()
+    buttonType = 'user' if $buttonParent.hasClass('userButton-Wrap') 
+    buttonType = 'entry' if $buttonParent.hasClass('entryButton-Wrap')
 
-    if ev.currentTarget.id is 'entries-1wk' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in entries','entry')
-    if ev.currentTarget.id is 'entries-8wks' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in entries','entry')
-    if ev.currentTarget.id is 'entries-6months' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries','entry')
-    if ev.currentTarget.id is 'entries-entry_types' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types','entry')
-    if ev.currentTarget.id is 'entries-comments' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments','entry')
-    if ev.currentTarget.id is 'entries-tags' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags','entry')
+    if ev.currentTarget.id is 'users-1wk' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users', buttonType)
+    if ev.currentTarget.id is 'users-8wks' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users', buttonType)    
+    if ev.currentTarget.id is 'users-6months' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in users', buttonType)
+    if ev.currentTarget.id is 'users-entries' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by entries', buttonType)
+    if ev.currentTarget.id is 'users-starlight' then google.setOnLoadCallback @charts.getPieChartData('top 32 users by starlight', buttonType)
+    if ev.currentTarget.id is 'users-seeds' then google.setOnLoadCallback @charts.getPieChartData('seed codes usages', buttonType)
+
+    if ev.currentTarget.id is 'entries-1wk' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in entries', buttonType)
+    if ev.currentTarget.id is 'entries-8wks' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in entries', buttonType)
+    if ev.currentTarget.id is 'entries-6months' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entries', buttonType)
+    if ev.currentTarget.id is 'entries-entry_types' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in entry types', buttonType)
+    if ev.currentTarget.id is 'entries-comments' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments', buttonType)
+    if ev.currentTarget.id is 'entries-tags' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags', buttonType)
     
-    $("##{ev.currentTarget.id}").parent().addClass('select')
-    log "##{ev.currentTarget.id}"
+    $(".#{buttonType}Button-Wrap").removeClass('select') # reset all buttons for this buttonType
+    $buttonParent.addClass('select')
      
   '#bedsheetsHeader click': (el,ev) ->
     Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets', @bedsheetsLoaded)
