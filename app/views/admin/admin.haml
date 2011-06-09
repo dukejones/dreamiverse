@@ -25,87 +25,83 @@
 
 
       / USER CHARTS
-      .module
-
-        .userCharts
-          user charts
-          #user-chartLoading.arrow.spinner
-          .arrow.up
-
-        .clear
-
-
-      / USER CHART BUTTONS
-      .chartButtons
-
-        .button-Wrap.select
-          #users-chart_a.button this week
-
-        .button-Wrap
-          #users-chart_b.button 8 weeks
-
-        .button-Wrap
-          #users-chart_c.button 6 months
-
-        %hr
-
-        .button-Wrap
-          #users-chart_d.button entries
-
-        .button-Wrap
-          #users-chart_e.button starlight
-
-        .button-Wrap
-          #users-chart_f.button seed codes
-
-
-      / CHART
-      #user-chart.chart
-
+      .userCharts
+        user charts
+        #chart-arrow.up
 
       .clear
 
 
-      / USER LIST
-      .module.allUsers
+      #userCharts-Wrap
 
-        .userList
-          user list
-          #user-pageLoading.arrow.spinner
+        / USER CHART BUTTONS
+        .chartButtons
 
-        .searchWrap
-          %input.search{type: 'submit', value: ''}
-          %input.search-input{type: 'text', value: 'search users'}
+          .userButton-Wrap.select
+            #users-this.button this week
 
-        %select#user-filter.select-menu.dropdown
-          %option.orderBy{       value: ''             } ordered by:
-          %option.age{           value: 'created_at'   } age
-          %option.alphabetical{  value: 'username'     } username
-          %option.entries{       value: 'entries'      } entries
-          %option.starlight{     value: 'starlight'    } starlight
-          %option.traffic{       value: 'traffic'      } traffic
+          .userButton-Wrap
+            #users-8wks.button 8 weeks
+
+          .userButton-Wrap
+            #users-6months.button 6 months
+
+          %hr
+
+          .userButton-Wrap
+            #users-entries.button entries
+
+          .userButton-Wrap
+            #users-starlight.button starlight
+
+          .userButton-Wrap
+            #users-seeds.button seed codes
+
+
+        / CHART
+        #user-chart.chart
 
         .clear
 
 
-        .userList-Wrap
+      / USER LIST
+      .userList
+        user list
+        #list-arrow.spinner
 
-          #userList.clearfix
-            = render(partial: 'user', collection: @users)
-            .clear
+      .searchWrap
+        %input.search{type: 'submit', value: ''}
+        %input.search-input{type: 'text', value: 'search users'}
+
+      %select#user-filter.select-menu.dropdown
+        %option.orderBy{       value: ''             } ordered by:
+        %option.age{           value: 'created_at'   } age
+        %option.alphabetical{  value: 'username'     } username
+        %option.entries{       value: 'entries'      } entries
+        %option.starlight{     value: 'starlight'    } starlight
+        %option.traffic{       value: 'traffic'      } traffic
+
+      .clear
 
 
-          #nextPageEnd ›
-          #nextPage ›
+      #userList-Wrap
 
-          #pages
-          #prevPage ‹
-          #prevPageEnd ‹
-
-
-          #totalUsers{:'data-id' => @users.count}
-          #pageSize{:'data-id' => @page_size}
+        #userList.clearfix
+          = render(partial: 'user', collection: @users)
           .clear
+
+
+        #nextPageEnd ›
+        #nextPage ›
+
+        #pages
+        #prevPage ‹
+        #prevPageEnd ‹
+
+
+        #totalUsers{:'data-id' => @users.count}
+        #pageSize{:'data-id' => @page_size}
+        .clear
 
 
 
@@ -118,9 +114,6 @@
         .img
         %h1 entries
         .total= Entry.count
-
-      / entries last week
-      / entries last month
 
 
       .last-week
@@ -140,38 +133,40 @@
 
       .clear
 
-      .entryCharts entry charts
+
+      #entryCharts-Wrap
+
+        .entryCharts entry charts
+
+        / ENTRY CHART BUTTONS
+        .chartButtons
+
+          .entryButton-Wrap.select
+            #entries-this.button this week
+
+          .entryButton-Wrap
+            #entries-8wks.button 8 weeks
+
+          .entryButton-Wrap
+            #entries-6months.button 6 months
+
+          %hr
+
+          .entryButton-Wrap
+            #entries-entries.button entry types
+
+          .entryButton-Wrap
+            #entries-comments.button comments
+
+          .entryButton-Wrap
+            #entries-tags.button tags
 
 
-      / ENTRY CHART BUTTONS
-      .chartButtons
+        / CHART
+        .chart-Wrap
+          #entry-chart.chart
 
-        .button-Wrap.select
-          #entries-chart_g.button this week
-
-        .button-Wrap
-          #entries-chart_h.button 8 weeks
-
-        .button-Wrap
-          #entries-chart_i.button 6 months
-
-        %hr
-
-        .button-Wrap
-          #entries-chart_j.button entry types
-
-        .button-Wrap
-          #entries-chart_k.button comments
-
-        .button-Wrap
-          #entries-chart_l.button tags
-
-
-      / CHART
-      .chart-Wrap
-        #entry-chart.chart
-
-      .clear
+        .clear
 
 
 
