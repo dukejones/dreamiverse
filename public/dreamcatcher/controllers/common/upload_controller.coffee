@@ -3,7 +3,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
   init: (element) ->
     @element = element
 
-  load: (singleOnly, customOptions, complete) ->
+  load: (customOptions, singleOnly, complete) ->
     @filesUploaded = 0
 
     options = {  
@@ -70,7 +70,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
     }
 
     #extend existing options (without overridding classes completely)
-    if customClasses?
+    if customOptions?
       customClasses = customOptions.classes
       delete customOptions.classes
       $.extend options, customOptions

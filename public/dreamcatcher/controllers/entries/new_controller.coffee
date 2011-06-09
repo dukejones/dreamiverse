@@ -77,10 +77,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   'form#new_entry submit': (el) ->
     log 'x'
     
-    
   createUploader: ->
     @upload = new Dreamcatcher.Controllers.Common.Upload $('#imageDropArea')
-    @upload.load $('#imageDropArea'), false, {
+    @upload.load {
       listElement: null
       params: {
         image: {
@@ -96,10 +95,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
         list: 'dropboxImages'
       }
     }
-    ###
-    @filesUploaded = 0
-    return @helper.upload.create $('#imageDropArea'), false, 
-    ###
 
 
   
