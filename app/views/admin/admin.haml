@@ -4,28 +4,6 @@
 
 #adminPage
   #entryField
-    
-    .charts.panel
-      %h1 stats
-      %br
-      %br
-      #chart-a.chart-select 'last 7 days in users'
-      #chart-b.chart-select 'last 8 weeks in users'
-      #chart-c.chart-select 'last 6 months in users'
-      #chart-d.chart-select 'last 7 days in entries'
-      #chart-e.chart-select 'last 8 weeks in entries'
-      #chart-f.chart-select 'last 6 months in entries'
-      #chart-g.chart-select 'last 6 months in entry types'
-      #chart-h.chart-select 'last 6 months in comments'
-      #chart-j.chart-select 'top 32 users by entries'
-      #chart-k.chart-select 'top 32 users by starlight'
-      #chart-l.chart-select 'top 32 tags'
-      #chart-m.chart-select 'seed codes usages' 
-             
-      #chart-div{align: 'center'}
-
-
-
 
     / USERS PANEL
     .user.panel
@@ -60,29 +38,29 @@
       .chartButtons
 
         .button-Wrap.select
-          .button this week
+          #users-chart_a.button this week
 
         .button-Wrap
-          .button 8 weeks
+          #users-chart_b.button 8 weeks
 
         .button-Wrap
-          .button 6 months
+          #users-chart_c.button 6 months
 
         %hr
 
         .button-Wrap
-          .button entries
+          #users-chart_d.button entries
 
         .button-Wrap
-          .button starlight
+          #users-chart_e.button starlight
 
         .button-Wrap
-          .button seed codes
+          #users-chart_f.button seed codes
 
 
       / CHART
       .chart-Wrap
-        .chart
+        #user-chart.chart
 
       .clear
 
@@ -166,29 +144,29 @@
       .chartButtons
 
         .button-Wrap.select
-          .button this week
+          #entries-chart_g.button this week
 
         .button-Wrap
-          .button 8 weeks
+          #entries-chart_h.button 8 weeks
 
         .button-Wrap
-          .button 6 months
+          #entries-chart_i.button 6 months
 
         %hr
 
         .button-Wrap
-          .button entry types
+          #entries-chart_j.button entry types
 
         .button-Wrap
-          .button comments
+          #entries-chart_k.button comments
 
         .button-Wrap
-          .button tags
+          #entries-chart_l.button tags
 
 
       / CHART
       .chart-Wrap
-        .chart
+        #entry-chart.chart
 
       .clear
 
