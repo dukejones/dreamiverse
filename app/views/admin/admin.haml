@@ -45,43 +45,6 @@
         .total= @users_created_last_month
         .clear
 
-      %select#user-filter.select-menu.dropdown
-        %option.orderBy{       value: ''             } ordered by:
-        %option.age{           value: 'created_at'   } age
-        %option.alphabetical{  value: 'username'     } username
-        %option.entries{       value: 'entries'      } entries
-        %option.starlight{     value: 'starlight'    } starlight
-        %option.traffic{       value: 'traffic'      } traffic
-
-
-      / USER LIST
-      .module.allUsers
-
-        .userList
-          user list
-          .arrow.spinner
-
-        .clear
-
-
-        #userList
-          = render(partial: 'user', collection: @users)
-          .clear
-
-
-
-          #nextPageEnd ›
-          #nextPage ›
-
-          #pages
-          #prevPage ‹
-          #prevPageEnd ‹
-
-
-          #totalUsers{:'data-id' => @users.count}
-          #pageSize{:'data-id' => @page_size}
-          .clear
-
 
       / USER CHARTS
       .module
@@ -122,6 +85,47 @@
         .chart
 
       .clear
+
+
+      / USER LIST
+      .module.allUsers
+
+        .userList
+          user list
+          .arrow.spinner
+
+        .searchWrap
+          %input.search{type: 'submit', value: ''}
+          %input.search-input{type: 'text', value: 'search users'}
+
+        %select#user-filter.select-menu.dropdown
+          %option.orderBy{       value: ''             } ordered by:
+          %option.age{           value: 'created_at'   } age
+          %option.alphabetical{  value: 'username'     } username
+          %option.entries{       value: 'entries'      } entries
+          %option.starlight{     value: 'starlight'    } starlight
+          %option.traffic{       value: 'traffic'      } traffic
+
+        .clear
+
+
+        #userList.clearfix
+          = render(partial: 'user', collection: @users)
+          .clear
+
+
+          #nextPageEnd ›
+          #nextPage ›
+
+          #pages
+          #prevPage ‹
+          #prevPageEnd ‹
+
+
+          #totalUsers{:'data-id' => @users.count}
+          #pageSize{:'data-id' => @page_size}
+          .clear
+
 
 
 

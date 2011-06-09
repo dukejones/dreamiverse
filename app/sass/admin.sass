@@ -9,9 +9,6 @@
   width: 744px
 
 
-  .module
-
-
   h1
     +left
     +font(21)
@@ -57,6 +54,9 @@
     margin-left: 0px
     padding-left: 8px
 
+
+  .chart-select
+    +pointer
 
 
   // CHART BUTTONS
@@ -186,12 +186,36 @@
     +round(12)
     padding: 8px 8px 0
 
+  .searchWrap
 
-  #user-filter, #user-filter-button
-    width: 200px
+    .search
+      +outline
+      border: none
+      height: 32px
+      width: 24px
+      margin: 0 8px 0
+      background: url(/images/icons/search-24-active.png) no-repeat center transparent
+
+    .search-input
+      +outline
+      +transparent
+      +font(14)
+      height: 24px
+      width: 130px
+      border: none
+      color: #ddd
+
+
+  #user-filter, #user-filter-button, .searchWrap
+    +pointer
     +round(20)
     +right
-    +input-dark(large)
+    +font(14)
+    height: 32px
+    padding: 0 8px 0 0
+    width: 180px
+    margin: 16px 0 16px 10px
+    +indent-dark
 
 #user-filter-menu
   +flat-dark

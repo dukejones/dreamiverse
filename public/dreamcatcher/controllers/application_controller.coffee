@@ -11,7 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     @charts = new Dreamcatcher.Controllers.Charts $('#adminPage') if $('#adminPage').exists()
     
-    #@initSelectMenu()     
+    @initSelectMenu()     
     @initTooltips()
 
   initTooltips: ->
