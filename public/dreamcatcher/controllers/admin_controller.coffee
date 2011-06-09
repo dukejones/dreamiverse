@@ -40,12 +40,13 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $(".userPage").css("text-decoration", "none") # reset
     $("#userPage-#{@page}").css("text-decoration", "underline")   
   
-  displayBedsheets: (json) ->
-    log "bedsheetsLoaded #{@bedsheetsLoaded}"
-    log @page
-    @bedsheetsLoaded = true
+  displayBedsheets: ( bedsheetsLoaded, json) ->
+    log "bedsheetsLoaded #{bedsheetsLoaded}"   
     $('#bedsheet-nodes').toggle('showOrHide')
-    $('#bedsheet-nodes').html(json.html) unless @bedsheetsLoaded
+    
+    unless @bedsheetsLoaded
+      $('#bedsheet-nodes').html(json.html) unless @bedsheetsLoaded
+      @bedsheetsLoaded = true
     
   # Add numbered page links  
   addPageLinks: ->
@@ -106,7 +107,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
 
     
   '#bedsheetsHeader click': (el,ev) ->
-    Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @displayBedsheets
+    Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets',@bedsheetsLoaded)
 
 
     
