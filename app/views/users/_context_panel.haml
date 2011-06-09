@@ -17,7 +17,6 @@
       / BOOKS (for testing)
       /= render :partial => '/entries/book'
 
-
       / IMAGE
       %a.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center"}
         /href: user_entries_path(user.username),
@@ -36,6 +35,9 @@
                   browse
                   %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
 
+
+      .entryRemove
+        %div remove entry from book and return it to dreamfield
 
 
 
