@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
+$.Controller 'Dreamcatcher.Controllers.Images.Slideshow',
 
   model: Dreamcatcher.Models.Image
 

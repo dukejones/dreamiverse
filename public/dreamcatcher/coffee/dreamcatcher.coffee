@@ -56,7 +56,7 @@ steal.plugins(
     when 'images'
       controllers {
         module: 'images'
-        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_meta']
+        classes: ['images', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
       }
       
     when 'admin'

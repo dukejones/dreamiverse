@@ -85,11 +85,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
     name = (el.attr 'id').replace('attach-','')
     el.hide()
     $(".entry-#{name}").show()
-    initUploader() if name is 'images'
+    @initUploader() if name is 'images'
       
   initUploader: ->
-    @upload = new Dreamcatcher.Controllers.Common.Upload $('#imageDropArea')
-    @upload.load {
+    $('#imageDropArea').uploader {
       listElement: null
       params: {
         image: {
