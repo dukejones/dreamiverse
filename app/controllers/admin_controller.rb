@@ -3,7 +3,7 @@ class AdminController < ApplicationController
 
   def user_list
     @filters = session[:admin_filters] = params[:filters] || {}
-    @page_size = @filters[:page_size] || 40
+    @page_size = @filters[:page_size] || 30
     @page = @filters[:page].to_i 
     @page = 1 if @page < 1
     order_by = @filters[:order_by].blank? ? 'created_at' : @filters[:order_by] 
