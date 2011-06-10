@@ -93,7 +93,7 @@ class EntriesController < ApplicationController
       @entry.set_emotions(params[:emotions])
       respond_to do |format|
         format.html { redirect_to user_entry_path(current_user.username, @entry) }
-        format.json { type: 'ok', message: 'Entry created', data: { entry_id: @entry.id } }
+        format.json { render :json => { type: 'ok', message: 'Entry created', data: { entry_id: @entry.id } } }
       end
 
     else
