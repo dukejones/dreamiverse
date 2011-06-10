@@ -18,7 +18,10 @@
 
     = form_tag feedback_path, id: 'feedbackWrap' do
       .feedback
-
+        
+        %input#dreamcatcherVersion{ name: 'feedback[dreamcatcherVersion]', type: 'hidden', value: "#{VERSION}"}
+        %input#userAgent{      name: 'feedback[userAgent]', type: 'hidden', value: 'none'}
+         
         %select#type{name: 'feedback[type]'}
           %option{value: "none"} Type of feedback...
           %option{value: "bug" } Report a bug

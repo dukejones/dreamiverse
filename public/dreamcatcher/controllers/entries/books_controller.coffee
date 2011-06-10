@@ -15,10 +15,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       return null
   }
   
-  helper: {
-    upload: Dreamcatcher.Classes.UploadHelper
-  }
-  
   data: (el) ->
     return el.data type if type?
     return el.data 'id' if el?
@@ -197,12 +193,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
   #- uploader
     
   createUploader: (el) ->
-    return @helper.upload.create $('.cover-panel', el), true, {
+    log el
+    upload = new Dreamcatcher.Controllers.Common.Upload $('.cover-panel', el)
+    upload.load {
       params: {
         image: {
           section: 'book covers'
           category: 'all'
-          genre: ''
+          genre: 'all'
         }
       }
       classes: {
@@ -210,11 +208,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
         drop: 'dropbox'
         list: 'dropbox-field-shine'
       }
-    }, @callback('uploadSubmit', el), @callback('uploadComplete', el)
-    
+      onSubmit: @callback('uploadSubmit', el)
+      onComplete: @callback('uploadComplete', el)
+    }, true
+  
   uploadSubmit: (el, id, fileName) ->
     $('.dropbox-field-shine .add', el).hide()
-
+  
   uploadComplete: (el, id, fileName, result) ->
     image = result.image
     if image?
@@ -222,6 +222,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       background = "url(/images/uploads/#{image.id}-252x252.#{image.format})"
       $('.cover, .dropbox-field-shine', el).css 'background-image', background
       $('.dropbox-field-shine li', el).remove() #todo: remove upload progress
-      @saveBook el, {cover_image_id: image.id}
+      @saveBook el, { cover_image_id: image.id }
       
     $('.dropbox-field-shine .add', el).show()

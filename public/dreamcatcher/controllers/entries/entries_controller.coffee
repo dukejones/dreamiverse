@@ -1,10 +1,11 @@
-$.Controller.extend 'Dreamcatcher.Controllers.Entries', {
+$.Controller 'Dreamcatcher.Controllers.Entries',
 
   #use across all controllers
   model: {
     entry : Dreamcatcher.Models.Entry
     book : Dreamcatcher.Models.Book
   }
+  controller: {}
   
   el: {
     bookMatrix: (id) ->
@@ -24,10 +25,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   #- constructor
   
   init: ->
-    @showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
-    @books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books')
-    @comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
-    @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
+    @controller.showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
+    @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEntry $('#newEditEntry')
+    @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books')
+    @controller.comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
+    @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
     
     if $('#entryField .matrix').exists()
       @showEntryField()
@@ -45,7 +47,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     @model.entry.update entryId, {entry: entryMeta}
 
     #could move back if error
-    @books.closeBook bookEl
+    @controller.books.closeBook bookEl
     bookMatrixEl = @el.bookMatrix bookId
     if bookMatrixEl.exists()
       entryEl.appendTo bookMatrixEl
@@ -58,7 +60,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   'book.drop subscribe': (called, data) ->
     parentEl = data
     $('.book, .avatar', parentEl).each (i, el) =>
-      @books.closeBook $(el)
+      @controller.books.closeBook $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
           dropEl = $(ev.target)
@@ -66,13 +68,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
 
         over: (ev, ui) =>
           el = $(ev.target)
-          @books.openBook el, true if el.hasClass 'book'
+          @controller.books.openBook el, true if el.hasClass 'book'
           $('.add-active', ui.helper).show()
           $('.entryDrop-active, .entryRemove', el).show()
 
         out: (ev, ui) =>
           el = $(ev.target)
-          @books.closeBook el if el.hasClass 'book' 
+          @controller.books.closeBook el if el.hasClass 'book' 
           $('.add-active', ui.helper).hide()
           $('.entryDrop-active, .entryRemove', el).hide()
       }
@@ -86,11 +88,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       helper: 'clone'
       revertDuration: 100
       start: (ev, ui) =>
-        #$(ui.helper).css 'opacity', 0.5
         @toggleBookContext true
         
       stop: (ev, ui) =>
-        #$(ui.helper).css 'opacity', 1
         @toggleBookContext false
         
     }
@@ -111,7 +111,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     @model.entry.showContext params, (html) =>
       $('#streamContextPanel').hide()
       $('#totem').replaceWith html
-      @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
+      @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
       $('#totem').show()
 
   showStreamContext: ->
@@ -123,7 +123,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
         $('#contextPanel').hide()
         $('#totem').after html
         @publish 'dom.added', $('#streamContextPanel')
-        @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel")
+        @stream = new Dreamcatcher.Controllers.Entries.Stream $("#streamContextPanel")
   
   #- entry field
   
@@ -158,7 +158,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
         $('#entryField').append html
         $('#entryField .matrix.stream a.left').removeAttr 'href'
         $('#entryField .matrix.stream a.tagCloud').removeAttr 'href'
-        @comments.load $('entryField .matrix.stream')
+        @controller.comments.load $('entryField .matrix.stream')
     @publish 'appearance.change'
   
   'history.entry.stream subscribe': (called, data) ->
@@ -166,20 +166,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
     @showEntryStream()
     
   #- new entry
+  
+  showNewEditEntry: (html) ->
+    $('#entryField').children().hide()
+    $('#newEditEntry').html html
+    @publish 'dom.added', $('#newEditEntry')
+    $('#newEditEntry').show()
     
   newEntry: ->
-    $('#showEntry').hide() #todo ?
-    # TODO: if new already showing, just bring up
-    @model.entry.new {}, (html) =>
-      $('#entryField').children().hide()
-      if $('#new_entry').exists()
-        $('#new_entry').replaceWith html
-      else
-        $('#entryField').prepend html
-      $('#new_entry').show()
-      
-      @new = new Dreamcatcher.Controllers.Entries.New $('#new_entry')
-      @publish 'dom.added', $('#new_entry')
+    @model.entry.new {}, @callback('showNewEditEntry')
   
   'history.entry.new subscribe': (called, data) ->
     @showEntryContext()
@@ -190,18 +185,12 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
   'history.book.new subscribe': (called, data) ->
     @showEntryContext()
     @showEntryField()
-    @books.newBook()
+    @controller.books.newBook()
     
   #- edit entry
   
   editEntry: (id) ->
-    $('#entryField').children().hide()
-    @model.entry.edit {id: id}, (html) =>
-      $('#entryField').prepend html
-      entryEl = $('#entryField .edit_entry:first')
-      entryEl.show()
-      # TODO: fitToContent()
-      @publish 'dom.added', entryEl
+    @model.entry.edit {id: id}, @callback('showNewEditEntry')
 
   'history.entry.edit subscribe': (called, data) ->
     @showEntryContext data.user_id if data.user_id?
@@ -218,7 +207,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
         $('#showEntry').append html
         @showEntryElement @el.entry id
         showEntryEl = $('#showEntry .entry:last')
-        @comments.load showEntryEl
+        @controller.comments.load showEntryEl
         showEntryEl.linkify().videolink()
   
   showEntryElement: (entryEl) ->
@@ -247,5 +236,3 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       id: thumbEl.data 'id'
       user_id: thumbEl.data 'userid'
     }
-    
-}

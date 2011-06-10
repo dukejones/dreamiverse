@@ -1,24 +1,32 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.New',
+$.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
   
+  init: ->
+    @initCookieSaver()
+      
+      
+  'form#new_entry submit': (el, ev) ->
+    ev.preventDefault()
+    new Dreamcatcher.Models.Entry(el.formParams()).save()
+   
+  'entry.created subscribe': (called, response) ->
+    if response.type is 'error'
+      log 'oh no!'
+    #else if response.type = 'ok'
+    #show entry with response.data.entry_id
+
+
+  #- Cookie Saver
+      
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
   interval: 5000
   
-  helper: {
-    upload: Dreamcatcher.Classes.UploadHelper
-  }
-
-  init: ->
-    #$('#new_entry').removeAttr 'method'
-    #$('#new_entry').removeAttr 'action'
-    #$('#new_entry').removeAttr 'accept-charset'
-    
+  initCookieSaver: ->
     @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
     @currentEntryType = $('#entryMode').data 'id'
     @posted = false
     @retrieveState()
-    @saveState()
-    @createUploader()
-       
+    @saveState()  
+  
   saveState: ->
     return if @posted
     if @currentEntryType is 'new' 
@@ -56,28 +64,30 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   '#entry_submit click': ->
     @posted = true
     @clearState()
-  
+    
+      
   '#books-list change': (el) ->
+    $('#books-list-button').css {
+      #width: 'auto !important'
+      'width': '160px !important' # TODO: remove
+    }
     if el.val() is '+ new book'
       $('input.newBook-input', el.parent()).show()
       $('.ui-selectmenu-status', el.parent()).hide()
     else
       $('input.newBook-input', el.parent()).hide()
       $('.ui-selectmenu-status', el.parent()).show()
-      
-    $('#books-list-button').css 'width',''
-  
-  '#entryAttach .attach click': (el) ->
-    name = (el.attr 'id').replace('attach-','')
-    $(".entry-#{name}").show()
     
   '.headers click': (el) ->
     el.parent().hide()
-    
-  'form#new_entry submit': (el) ->
-    log 'x'
-    
-  createUploader: ->
+  
+  '#entryAttach .attach click': (el) ->
+    name = (el.attr 'id').replace('attach-','')
+    el.hide()
+    $(".entry-#{name}").show()
+    initUploader() if name is 'images'
+      
+  initUploader: ->
     @upload = new Dreamcatcher.Controllers.Common.Upload $('#imageDropArea')
     @upload.load {
       listElement: null
@@ -95,6 +105,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
         list: 'dropboxImages'
       }
     }
+    
+
+
+
 
 
   

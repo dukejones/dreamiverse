@@ -22,6 +22,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
+    $('textarea', parentEl).each (i, el) =>
+      fitToContent $(el).attr('id'), 0
       
   'dom.added subscribe': (called, data) ->
     @initUi data
