@@ -95,8 +95,8 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it gets loaded before this controller
 
     $buttonParent = $("##{ev.currentTarget.id}").parent()
-    buttonType = 'user' if $buttonParent.hasClass('userButton-Wrap') 
-    buttonType = 'entry' if $buttonParent.hasClass('entryButton-Wrap')
+    buttonType = 'user' if $buttonParent.hasClass('userButton-border') 
+    buttonType = 'entry' if $buttonParent.hasClass('entryButton-border')
 
     if ev.currentTarget.id is 'users-1wk' then google.setOnLoadCallback @charts.getLineChartData('last 7 days in users', buttonType)
     if ev.currentTarget.id is 'users-8wks' then google.setOnLoadCallback @charts.getLineChartData('last 8 weeks in users', buttonType)    
@@ -112,7 +112,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     if ev.currentTarget.id is 'entries-comments' then google.setOnLoadCallback @charts.getLineChartData('last 6 months in comments', buttonType)
     if ev.currentTarget.id is 'entries-tags' then google.setOnLoadCallback @charts.getPieChartData('top 32 tags', buttonType)
     
-    $(".#{buttonType}Button-Wrap").removeClass('select') # reset all buttons for this buttonType
+    $(".#{buttonType}Button-border").removeClass('select') # reset all buttons for this buttonType
     $buttonParent.addClass('select')
      
   '#bedsheetsHeader click': (el,ev) ->
