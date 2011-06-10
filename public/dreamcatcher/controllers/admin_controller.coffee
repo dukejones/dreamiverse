@@ -39,9 +39,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $(".userPage").css("text-decoration", "none") # reset
     $("#userPage-#{@page}").css("text-decoration", "underline")   
   
-  displayBedsheets: ( bedsheetsLoaded, json) ->  
-    $('#bedsheet-nodes').toggle('showOrHide')
-    
+  displayBedsheets: ( bedsheetsLoaded, json) ->   
     unless @bedsheetsLoaded
       $('#bedsheet-nodes').html(json.html)
       @bedsheetsLoaded = true
@@ -60,8 +58,17 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
       order_by: $('#user-filter').val()
     }
 
- 
-  # Dom listeners
+  togglePanel: (wrapperId,arrowId) ->
+    $("##{wrapperId}").toggle('showHide')
+
+    $userChartArrow = $("##{arrowId}")   
+    if $userChartArrow.hasClass('up')
+      $userChartArrow.removeClass('up').addClass('down')
+    else
+      $userChartArrow.removeClass('down').addClass('up')    
+    
+  # --- DOM listeners ---
+  
   '.userPage click': (el,ev) ->
     @page = parseInt el.text()
     $('#allUsersIcon').hide()
@@ -84,12 +91,18 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  
     @updateNav()    
     
-  '#user-chart-arrow click': (el) ->
-  # $userChartArrow = $('#user-chart-arrow')
-  # $('#userCharts-Wrap').toggle('showHide')
-  # if $userChartArrow.hasClass('up')
-  #   $userChartArrow.removeClass('up').addClass('down')
-      
+  '#userCharts click': ->
+    @togglePanel('userCharts-wrap','userCharts-arrow')
+
+  '#userList click': ->
+    @togglePanel('userList-wrap','userList-arrow')
+    
+  '#entryCharts click': ->
+    @togglePanel('entryCharts-wrap','entryCharts-arrow')   
+
+  '#bedsheets.panel click': ->
+    Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets', @bedsheetsLoaded)
+    @togglePanel('bedsheet-nodes','bedsheets-arrow')
 
   '.button click': (el,ev) ->
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it gets loaded before this controller
@@ -115,8 +128,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     $(".#{buttonType}Button-border").removeClass('select') # reset all buttons for this buttonType
     $buttonParent.addClass('select')
      
-  '#bedsheetsHeader click': (el,ev) ->
-    Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets', @bedsheetsLoaded)
 
 
     
