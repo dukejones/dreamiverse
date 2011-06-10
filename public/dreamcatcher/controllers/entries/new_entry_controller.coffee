@@ -68,8 +68,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
       
   '#books-list change': (el) ->
     $('#books-list-button').css {
-      width: 'auto !important'
-      'max-width': '160px'
+      #width: 'auto !important'
+      'width': '160px !important' # TODO: remove
     }
     if el.val() is '+ new book'
       $('input.newBook-input', el.parent()).show()

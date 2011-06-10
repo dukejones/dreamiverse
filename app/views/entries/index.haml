@@ -1,9 +1,9 @@
 - content_for :head do
-  = include_javascripts :entries
-  :coffeescript
-    $( ->
-      dreamfieldController = new DreamfieldController('#{@user.username}')
-    )
+  / = include_javascripts :entries
+  / :coffeescript
+  /   $( ->
+  /     dreamfieldController = new DreamfieldController('#{@user.username}')
+  /   )
   
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
@@ -17,11 +17,11 @@
       .img{class: @filters[:type]}
       %h1= @filters[:type].pluralize
     .clear
-  
 
   = render :partial => "field"
 
-  #showEntry
+  #showEntry{style: 'display:none'}
+  #newEditEntry{style: 'display:none'}
 
 - content_for :foot do
   / APPLIES SELECTED CLASS TO META MENU
