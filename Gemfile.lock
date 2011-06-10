@@ -57,8 +57,6 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
-    coffee-haml-filter (0.4.0)
-      haml
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -215,8 +213,6 @@ DEPENDENCIES
   barista
   capistrano
   capistrano-ext
-  coffee-haml-filter
-  coffee-script
   exception_notification
   faker
   haml
