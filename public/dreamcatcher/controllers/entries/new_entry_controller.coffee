@@ -19,8 +19,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
     ev.preventDefault()
     new Dreamcatcher.Models.Entry(el.formParams()).save()
    
-  'entry.created subscribe': ( called, entry ) ->
-    log entry
+  'entry.created subscribe': ( called, response ) ->
+    #log entry
+    if response.type == 'error'
+      log 'oh no!'
+      
+    
        
   saveState: ->
     return if @posted
