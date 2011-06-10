@@ -104,6 +104,12 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     Dreamcatcher.Models.Admin.loadBedsheets @getOptions(), @callback('displayBedsheets', @bedsheetsLoaded)
     @togglePanel('bedsheet-nodes','bedsheets-arrow')
 
+  '#searchButton click': (el)->
+    el.val('') if el.val() is 'search users'
+
+  '#searchButton mouseout': (el)->
+    el.val('search users') if el.val() is ''
+
   '.button click': (el,ev) ->
     # the google.load command needs to be loaded in resources/google.charts.coffee so that it gets loaded before this controller
 
