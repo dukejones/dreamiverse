@@ -9,8 +9,12 @@
       %a.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
         .img
 
+      .item.home2
+
       %a.item.stream.tooltip{href: stream_path, title: "stream"}
         .img
+        
+      .item.stream2
 
       %a.item.dreamstars.tooltip{href: '/dreamstars', title: "dreamstars"}
         .img
@@ -29,7 +33,7 @@
 
 
   / LOG OUT
-  %a.logOut.tooltip-left{href: '/logout', title: "log out"}
+  %a.logOut.tooltip.left{href: '/logout', title: "log out"}
     .img
 
 
@@ -42,7 +46,7 @@
       %span= current_user.username
 
     .settingsPanel.wrapper
-      .item.settings.trigger.tooltip-left{title: "settings"}
+      .item.settings.trigger.tooltip.left{title: "settings"}
         .img
 
       / SETTINGS PANEL
@@ -52,7 +56,7 @@
 
     - if page_is_mine?
       .appearancePanel.wrapper
-        .item.appearance.trigger.tooltip-left{title: "appearance"}
+        .item.appearance.trigger.tooltip.left{title: "appearance"}
           .img
 
         / APPEARANCE PANEL
@@ -98,7 +102,13 @@
 
 
 
-  / NEW ENTRY LINK
-  %a.newEntry{href: new_entry_path}
+  / / NEW ENTRY MENU
+  %select#new-post.select-menu.dropdown.offset
+    %option.empty{value: 'empty'}
+    %option.new-entry{value: 'entry'} entry
+    %option.new-book{value: 'book'} book
+
+  %a.newEntry
+    /{href: new_entry_path}
     .img
     new entry

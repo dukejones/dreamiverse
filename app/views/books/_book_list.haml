@@ -1,0 +1,4 @@
+- @books = Book.where(user_id: current_user.id)
+- @books._?.each do |book|
+  %option.book{value: book.id}
+    = book.title

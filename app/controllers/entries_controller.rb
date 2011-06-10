@@ -3,6 +3,8 @@ class EntriesController < ApplicationController
   before_filter :query_username, :except => [:stream, :random]
 
   def entry_list(lens=nil, filters=nil)
+    return Entry.where(book_id: params[:id]) if params[:id] #todo: refactor
+    
     session[:lens] = lens unless lens.nil?
     
     filters ||= session[:filters] || {}
@@ -23,8 +25,15 @@ class EntriesController < ApplicationController
     session[:filters] = @filters
     
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
+    
+    @books = Book.where({
+      user_id: @user.id,
+      enabled: true
+    })
+    #TODO: check viewing permissions depending on user
 
     @entries = entry_list(:home)
+    
     @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
@@ -82,7 +91,11 @@ class EntriesController < ApplicationController
       @entry.set_whats(params[:what_tags])
       @entry.set_links(params[:links])
       @entry.set_emotions(params[:emotions])
-      redirect_to user_entry_path(current_user.username, @entry)
+      respond_to do |format|
+        format.html { redirect_to user_entry_path(current_user.username, @entry) }
+        format.json { render :json => { type: 'ok', message: 'Entry created', data: { entry_id: @entry.id } } }
+      end
+
     else
       @entry_mode = 'new'
       flash.now[:alert] = @entry.errors.full_messages.first
@@ -94,13 +107,17 @@ class EntriesController < ApplicationController
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
     
-    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-    params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
+    if not params[:entry][:book_id]
+      params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
+      params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
-    @entry.set_whats(params[:what_tags])
-    @entry.location = Where.for params[:entry].delete(:location_attributes)
-    @entry.set_links(params[:links])
-    @entry.set_emotions(params[:emotions])
+      @entry.set_whats(params[:what_tags])
+      @entry.location = Where.for params[:entry].delete(:location_attributes)
+      @entry.set_links(params[:links])
+      @entry.set_emotions(params[:emotions])
+    end
+    
+    params[:entry][:book_id] = nil if params[:entry][:book_id] == 'null'
 
     if @entry.update_attributes(params[:entry].merge({updated_at: Time.now}))
       respond_to do |format|
@@ -159,6 +176,113 @@ class EntriesController < ApplicationController
     random_entry = Entry.random
     redirect_to user_entry_path(random_entry.user.username, random_entry.id)
   end
+  
+  
+  ## New methods - partials for AJAX
+  
+  def show_entry
+    # TODO: refactor (see show)
+    @entry = Entry.find params[:id]
+    @entry_mode = 'show'
+    
+    if @entry.book_id
+      @book = Book.find @entry.book_id 
+    end
+    #flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
+
+    @entries = entry_list
+    
+    i = (@entries.index {|e| e == @entry }) || 0
+    @previous = @entries[i-1]
+    @next = @entries[i+1] || @entries[0]
+    # TODO: Remove this.
+    @next = @entry unless @next
+    @previous = @entry unless @previous
+    deny and return unless user_can_access?
+
+    @page_title = @entry.title
+    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
+    
+    hit( @entry )
+    
+    respond_to do |format|
+      format.html { render(partial:"entries/show") }
+    end
+  end
+  
+  def new_entry
+    # TODO: refactor (see new)
+    @entry = Entry.new
+    @entry.type = current_user.default_entry_type || 'dream'
+    @entry_mode = 'new'
+    respond_to do |format|
+      format.html { render(partial:"entries/new") }
+    end
+  end
+  
+  def show_context
+    if params[:user_id]
+      @user = User.find params[:user_id]
+    else
+      @user = current_user
+    end
+    
+    if params[:type] == 'entry'
+      partialPath = "users/context_panel"  
+    elsif params[:type] == 'stream'
+      @user = current_user
+      partialPath = "entries/stream_context_panel"
+      @filters = session[:filters] = @user.update_stream_filter(params[:filters])
+    end
+      
+    respond_to do |format|
+      format.html { render(:partial => partialPath, :locals => {:user => @user}) }
+    end
+  end
+  
+  def show_stream
+    # TODO: refactor (see stream)
+    @user = current_user
+    @filters = session[:filters] = @user.update_stream_filter(params[:filters])
+    @entries = entry_list(:stream, @filters)
+    respond_to do |format|
+      format.html { render(:partial => "entries/stream", :locals => {:user => @user}) }
+    end
+  end
+  
+  def edit_entry
+    # TODO: refactor (see new)
+    @entry = Entry.find params[:id]
+    @entry_mode = 'edit'
+    deny and return unless user_can_write?
+    respond_to do |format|
+      format.html { render(partial:"entries/new") }
+    end
+  end
+  
+  def show_field
+    # TODO: refactor (see index)
+    @filters = params[:filters] || {}
+    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
+    @filters[:page] ||= params[:page]
+    @filters[:page_size] ||= 24
+    session[:filters] = @filters
+    
+    @books = Book.where({
+      user_id: @user.id,
+      enabled: true
+    })
+    #TODO: check viewing permissions depending on user
+
+    @entries = entry_list(:home)
+    
+    @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
+    
+    respond_to do |format|
+      format.html { render(partial:"entries/field") }
+    end
+  end
+  
 
   protected
 
@@ -191,5 +315,5 @@ class EntriesController < ApplicationController
       redirect_to :root, :alert => "Access denied to this entry."
     end
   end
-    
+      
 end

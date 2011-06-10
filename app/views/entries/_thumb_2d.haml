@@ -1,12 +1,12 @@
 - cache([entry, (current_user==entry.user), "thumb2d"]) do
-  .thumb-2d
+  .thumb-2d{:'data-id' => entry.id}
 
     / TITLE WATERMARK  (IF NO IMAGE - USE TITLE WATERMARK)
     - unless entry.main_image
       .watermark= entry.title
 
     / LINK
-    %a.link{:href => user_entry_path(entry.user.username, entry)}
+    /%a.link.history{:href => user_entry_path(entry.user.username, entry)}
 
     .fadedBack
 
@@ -43,3 +43,6 @@
       .tagCloud
         - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
           %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+
+    .add-active

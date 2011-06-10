@@ -1,0 +1,20 @@
+/ ENTRY LOCATION
+.entry-location.entryPanels{"data-id" => "#{@entry.location ? true : false}"}
+  .locationHeader.headers
+    .img
+    location    
+  
+  .data.hidden
+    = f.fields_for :location_attributes,(@entry.location) do |loc|
+      .name
+        = loc.text_field(:name, {placeholder: 'Location name', class: 'input'})
+      .city
+        = loc.text_field(:city, {placeholder: 'City', class: 'input'})
+      .state
+        = loc.text_field(:province, {placeholder: 'Province', class: 'input'})
+      .country
+        = loc.text_field(:country, {placeholder: 'Country', class: 'input'})
+      .more.hidden
+        = loc.hidden_field(:longitude, {class: 'input',id: 'location_longitude'})
+        = loc.hidden_field(:latitude, {class: 'input',id: 'location_latitude'})
+      .clear

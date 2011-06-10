@@ -2,6 +2,12 @@
 
 .matrix
 
+  // thumb-2d clone
+  .ui-draggable-dragging
+    z-index: 100
+    +alpha(50)
+
+
   // HOVER
   .thumb-2d:hover
     z-index: 84
@@ -41,6 +47,20 @@
         top: 0px
         width: 200px
         height: 100px
+
+    .add-active
+      +hidden
+      +absolute
+      +round(16)
+      top: 0
+      left: 0
+      width: 200px
+      height: 266px
+      z-index: 2000
+      background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+      border-radius:          4px 16px 16px 4px
+      -moz-border-radius:     4px 16px 16px 4px
+      -webkit-border-radius:  4px 16px 16px 4px
 
     .watermark
       +round(16)

@@ -62,37 +62,48 @@
       +overflow
       +clear
       height: 346px
-      .spinner
+      
+      div.spinner
         +relative
         +alpha(90)
         height: 346px
         width: 100%
-    ul
-      +absolute
-      +hidden
-      top: 0px
-      bottom: 12px
-      padding: 4px 0 4px 4px
-      list-style: none
-      overflow-y: scroll
-      li
-        +left
-        +pointer
-        +overflow
-        margin: 0 8px 8px 0
-        height: 128px
-        width: 128px
-        -moz-box-shadow: 2px 5px 10px #111
-        border: 4px solid #CCCCCC
-        img
-          border: 4px solid #333
-        img:hover
-          border: 4px solid #fff
-      li.selected
-        +round(4)
-        border: 4px solid #427ee8
-        img
-          border: 4px solid #fff
+        
+      ul
+        +absolute
+        +hidden
+        top: 0px
+        bottom: 12px
+        padding: 4px 0 4px 4px
+        list-style: none
+        overflow-y: scroll
+        li
+          +left
+          +pointer
+          +overflow
+          margin: 0 8px 8px 0
+          height: 128px
+          width: 128px
+          -moz-box-shadow: 2px 5px 10px #111
+          border: 4px solid #CCCCCC
+          img
+            border: 4px solid #333
+          img:hover
+            border: 4px solid #fff
+            
+        .spinner
+          +absolute
+          +alpha(20)
+          width: 128px
+          height: 128px  
+          
+        li.selected
+          +round(4)
+          border: 4px solid #427ee8
+          img
+            border: 4px solid #fff
+          
+
     .attachment
       .fixed, .scroll
         +round(4)

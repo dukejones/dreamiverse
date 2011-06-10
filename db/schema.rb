@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518020744) do
+ActiveRecord::Schema.define(:version => 20110603190322) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -30,6 +30,18 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
   end
 
   add_index "blacklist_words", ["word"], :name => "index_black_list_words_on_word"
+
+  create_table "books", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "cover_image_id"
+    t.string   "color"
+    t.integer  "viewing_level"
+    t.integer  "commenting_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.binary   "enabled",          :limit => 1, :default => "b'1'"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -76,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
     t.integer  "new_comment_count",    :default => 0
+    t.integer  "book_id"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -154,9 +167,9 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
+    t.integer "intensity"
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
-    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|

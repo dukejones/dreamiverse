@@ -1,0 +1,167 @@
+// NEW ENTRY
+// COLORS
+.light #entryField
+
+  .entryLinks
+
+    #linkInputWrap
+      +input-light(large)
+      #linkValue
+        color: #333
+      .linkAdd
+        +button-light
+        +shine-light-alpha(13)
+
+    .linkContainer
+      +border-light
+      +transparent-light(40)
+
+      .url, .title
+        +input-light(small)
+        input
+          color: #555
+
+
+
+
+.dark #entryField
+
+  .entryLinks
+
+    #linkInputWrap
+      +input-dark(large)
+      #linkValue
+        color: #ddd
+      .linkAdd
+        +button-dark
+        +shine-dark-alpha(13)
+
+    .linkContainer
+      +border-dark
+      +transparent-dark(20)
+
+      .url, .title
+        +input-dark(small)
+        input
+          color: #ccc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#entryField
+  // NEW ENTRY LINKS
+  .entryLinks
+    #linkInputWrap
+      +right
+      +round(8)
+      margin: 0 0 8px 8px
+      height: 38px
+      line-height: 38px
+      #linkValue
+        +left
+        +font(16)
+        +transparent
+        +outline
+        width: 420px
+        height: 28px
+        margin: 6px 0 4px 8px
+        border: 0
+      .linkAdd
+        +round(4)
+        +center
+        +right
+        +bold
+        width: 62px
+        height: 28px
+        line-height: 30px
+        margin: 4px 12px 0 0
+        span
+          color: #009933
+    .linkContainer
+      +round(12)
+      +clear
+      +overflow
+      margin: 8px 0 0
+      padding: 8px
+      width: 644px
+      height: 32px
+      line-height: 38px
+      &.youtube
+        height: 120px
+        .thumb
+          +round(8)
+          +left
+          margin: 10px 10px 6px 6px
+          width: 94px
+          height: 72px
+        .description
+          +left
+          height: 64px
+          +overflow
+          width: 500px
+          line-height: 16px
+          margin-top: 10px
+
+      input
+        +outline
+        +transparent
+
+      .url, .title
+        +round(8)
+        padding: 0 8px
+        height: 32px
+
+      .title
+        +left
+        width: 220px
+        margin: 0
+
+
+      .linkTitleValue, .linkUrlValue
+        +font(14)
+        +bold
+        border: none
+
+      .url
+        +left
+        +overflow
+        text-align: left
+        margin: 0 0 0 8px
+        width: 348px
+
+        .linkTitleValue, .linkUrlValue
+          font-weight: normal
+          border: none
+
+      .icon
+        +right
+        +center
+        width: 32px
+        height: 30px
+        line-height: 30px
+        margin: 5px -4px 0 0
+
+      .close
+        +close-24
+        +right
+        margin: 5px 4px 0 0

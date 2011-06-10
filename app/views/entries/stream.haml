@@ -4,23 +4,8 @@
 
 / ENTRY FIELD
 #entryField
+  = render :partial => "stream"
 
-  / DREAM MATRIX
-  .matrix.stream
-
-    / ENTRY THUMBS 1D
-    - @entries.each do |entry|
-      = render :partial => 'thumb_1d', :locals => {:entry => entry}
-
-  / STREAM PAGINATION
-  #nextPageLoading.hidden
-    .spinner
-
-  / END OF STREAM
-  #noMoreEntries.hidden you've reached the end of the stream
-
-  / NO ENTRIES TO DISPLAY
-  .noEntrys.hidden there are no entries to display
 
 
 - content_for :foot do

@@ -1,108 +1,98 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  userModel: Dreamcatcher.Models.User
-
-  init: ->
-    @metaMenu = new Dreamcatcher.Controllers.MetaMenu $('.rightPanel') if $('.rightPanel').exists()
-    @imageBank = new Dreamcatcher.Controllers.ImageBank $("#frame.browser") if $("#frame.browser").exists()
-    @comments = new Dreamcatcher.Controllers.Comments $('#entryField') if $('#entryField').exists()
-    @entries = new Dreamcatcher.Controllers.Entries $("#newEntry") if $("#newEntry").exists()
-    @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel") if $("#streamContextPanel").exists()    
-    @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
-    
-    #@initSelectMenu()     
-    @initTooltips()
-
-  initTooltips: ->
-    $('.tooltip').tooltip {
-      track: true
-      delay: 0
-      showURL: false
-      showBody: ' - '
-      fade: 250
-    }
-    $('.tooltip-left').tooltip {
-      track: true
-      delay: 0
-      showURL: false
-      showBody: ' - '
-      positionLeft: true
-      fade: 250
-      top: 20
-    }
+  #- constructor
   
-  initSelectMenu: ->
-    $('.select-menu').selectmenu(
-      style: 'dropdown'
-      menuWidth: "200px"
-      positionOptions:
-        offset: "0px -37px"
-    )
+  init: ->
+    @setupControllers()
+    @publish 'dom.added', $('#body') 
     
-    $('.select-menu-radio').each (i, el) =>
-      $(el).selectmenu {
-        style: if $(el).hasClass('dropdown') then 'dropdown' else 'popup'
-        menuWidth: '200px'
-        format: (text) =>
-          return @view("selectMenuFormat",text)
-      }
-    
-    $('.ui-selectmenu-menu label.ui-selectmenu-default').each (i,el) ->
-      $(el).appendTo $(el).parent().parent()
+  #- controllers
+  
+  setupControllers: ->
+    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
+    @images     = new Dreamcatcher.Controllers.ImageBank          $("#frame.browser")   if $("#frame.browser").exists()
+    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField").exists()
+    @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
+        
+  #- setup ui elements
+  
+  initUi: (parentEl) ->
+    parentEl = $('body') if not parentEl?
+    $('.tooltip', parentEl).each (i, el) =>
+      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
+    $('.select-menu', parentEl).each (i, el) =>
+      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
+    $('textarea', parentEl).each (i, el) =>
+      fitToContent $(el).attr('id'), 0
       
+  'dom.added subscribe': (called, data) ->
+    @initUi data
+    
+  #- appearance (bedsheet, scroll  & theme) change
+  
+  'appearance.change subscribe': (called, data) ->
+    #if no data is passed, then use the user default settings
+    if not data?
+      data = $('#userInfo').data 'viewpreference'
 
-  '.ui-selectmenu-default input click': (el) ->
-    value = el.closest('li').attr('class')
-    data = {}
-    switch el.closest('ul').attr('id').replace('-list-menu','')
-      when 'entryType'
-        data['user[default_entry_type]'] = value
-      when 'sharing'
-        data['user[default_sharing_level]'] = value
-    @userModel.update { data }
+    return if not data.image_id?
 
-  # TODO: Possibly refactor into jQuery syntax, and remove all other versions.
-  # NOTE: this is not currently working, see fit_to_content.coffee
-  fitToContent: (id, maxHeight) ->
-    text = if id and id.style then id else document.getElementById(id)
-    return 0 if not text
-    adjustedHeight = text.clientHeight
-    if not maxHeight or maxHeight > adjustedHeight
-      adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
-      adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
-      $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
+    bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
+    return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
 
+    #todo: should include font size & float?
+    if data.bedsheet_attachment?
+      $('#body').removeClass('scroll fixed')
+      $('#body').addClass data.bedsheet_attachment
+    if data.theme?
+      $('#body').removeClass('light dark')
+      $('#body').addClass data.theme
 
+    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
+    $(img).load ->
+      $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
+      #todo: make style
+      $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
+      $('#backgroundReplace').fadeIn 1000, =>
+        $('#backgroundReplace').hide()
+        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
+    $('body').append img
+    
+  #- catch any body click event
 
   '#bodyClick click': ->
-    @metaMenu.hideAllPanels() if @metaMenu? #use subscribe/publish?
+    @publish 'body.clicked'
     
-  #TODO: eventually remove '.comment_body' to apply to all 'textarea's
-  '.comment_body keyup': (el) ->
-    @fitToContent el.attr("id"),0
+  #- fit to content event
     
-  '.button.appearance click': (el) ->
-    @metaMenu.selectPanel 'appearance'
+  'textarea keyup': (el) ->
+    fitToContent el.attr('id'), 0
     
-  '#entry-appearance click': (el) ->
-    @metaMenu.selectPanel 'appearance'
+  '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
+    @publish 'menu.show', 'appearance'
+  
+  #- select-menu events - todo: move into own controller?
     
   'label.ui-selectmenu-default mouseover': (el) ->
     el.parent().addClass 'default-hover'
 
   'label.ui-selectmenu-default mouseout': (el) ->
-    el.parent().removeClass 'default-hover'
-
-  '.ui-selectmenu-default input click': (el) ->
-    $('li',$(el).closest('ul')).removeClass 'default'
+    el.parent().removeClass 'default-hover'  
+  
+  '.ui-selectmenu-default input[type=radio] click': (el) ->
+    # radio button check for select-menu
+    #todo: publish
+    ul = $(el).closest 'ul'
+    $('li', ul).removeClass 'default'
     $(el).closest('li').addClass 'default'
+    
+    name = el.attr 'name'
     value = $('a:first',el.closest('li')).data 'value'
-    type = el.closest('ul').attr('id').replace('-menu','')
-    switch type.replace('-list','')
-      when 'entryType'
-        @userModel.update {'user[default_entry_type]': value}
-      when 'sharing'
-        @userModel.update {'user[default_sharing_level]': value}
-
+    
+    user = {}
+    user[name] = value
+    Dreamcatcher.Models.User.update {user: user}
+  
+  
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
