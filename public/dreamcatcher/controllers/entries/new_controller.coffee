@@ -2,6 +2,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
   interval: 5000
+  
+  helper: {
+    upload: Dreamcatcher.Classes.UploadHelper
+  }
 
   init: ->
     #$('#new_entry').removeAttr 'method'
@@ -13,6 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
     @posted = false
     @retrieveState()
     @saveState()
+    @createUploader()
        
   saveState: ->
     return if @posted
@@ -71,9 +76,28 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
     
   'form#new_entry submit': (el) ->
     log 'x'
-    #log el.formParams()
-
     
+  createUploader: ->
+    @upload = new Dreamcatcher.Controllers.Common.Upload $('#imageDropArea')
+    @upload.load {
+      listElement: null
+      params: {
+        image: {
+          section: 'entry'
+          category: ''
+          genre: ''
+        }
+      }
+      classes: {
+        button: 'clickToBrowse'
+        drop: 'dropboxBrowse'
+        active: 'qq-upload-drop-area-active'
+        list: 'dropboxImages'
+      }
+    }
+
+
+  
 
 
 

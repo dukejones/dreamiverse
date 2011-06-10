@@ -1,6 +1,6 @@
 steal.plugins(
 
-  'steal/coffee',
+  'steal/coffee'
 	'jquery/controller' # a widget factory
 	'jquery/controller/subscribe' #subscribe to OpenAjax.hub
 	'jquery/controller/history'
@@ -38,45 +38,52 @@ steal.plugins(
 	'dream.plugs'
 	
 ).then( =>  
-  #resources 'dream.plugs'
-  #commonly-used helpers, models and controllers
-  
-  helpers 'cookie', 'upload', 'ui'
+
+  # common jmvc files
+  helpers 'cookie', 'ui'
   models 'user', 'image'
-  controllers 'application', 'users/meta_menu', 'users/settings'
+  controllers 'application', {
+    module: 'common'
+    classes: ['upload']
+  }, {
+    module: 'users',
+    classes: ['meta_menu', 'settings']
+  }
   
+  # page-specific jmvc files
   switch page()
   
-    #load specific models and controllers dependant on page
-  
     when 'images'
-    
       controllers {
-        package: 'images'
-        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_uploader', 'manager_meta', 'manager_selector']
+        module: 'images'
+        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_meta']
+      }
+      
+    when 'admin'
+      models 'admin'
+      controllers {
+        module: 'admin'
+        classes: ['admin']
       }
     
     else
-    
       models 'entry', 'book', 'stream', 'comment'
-      
       controllers {
-        package: 'entries'
+        module: 'entries'
         classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
       }, {
-        package: 'users'
-        classes: ['appearance', 'bedsheets']
+        module: 'users'
+        classes: ['appearance', 'bedsheets', 'context_panel']
       }
       
 ).views()
 
 
-#- helper functions
-
+#- helper functions (used within steal 'then')
 controllers = ->
   for arg in arguments
-    if arg.package?
-      steal.coffee "controllers/#{arg.package}/#{className}_controller" for className in arg.classes
+    if arg.module?
+      steal.coffee "controllers/#{arg.module}/#{className}_controller" for className in arg.classes
     else
       steal.coffee "controllers/#{arg}_controller"
     

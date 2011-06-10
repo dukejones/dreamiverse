@@ -3,17 +3,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- constructor
   
   init: ->
-    @publish 'dom', $('#body') 
     @setupControllers()
+    @publish 'dom.added', $('#body') 
     
   #- controllers
   
   setupControllers: ->
-    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu   $('#metaMenu')              if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.ImageBank        $("#frame.browser")         if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries          $("#entryField")            if $("#entryField").exists()
-    #@comments   = new Dreamcatcher.Controllers.Entries.Comments         $('#entryField .comments')    if $('#entryField .comments').exists()
-    @admin      = new Dreamcatcher.Controllers.Admin            $('#adminPage')             if $('#adminPage').exists()
+    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
+    @images     = new Dreamcatcher.Controllers.ImageBank          $("#frame.browser")   if $("#frame.browser").exists()
+    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField").exists()
+    @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
         
   #- setup ui elements
   
@@ -24,30 +23,18 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
       
-  'dom subscribe': (called, data) ->
+  'dom.added subscribe': (called, data) ->
     @initUi data
-
-  '#bodyClick click': ->
-    @publish 'bodyClick'
-    @metaMenu.hideAllPanels() if @metaMenu? #todo: publish
     
-  #- fit to content event
-    
-  'textarea keyup': (el) ->
-    #alert 'x'
-    #notice 'y'
-    fitToContent el.attr('id'), 0
-    
-  #- appearance menu
-  #todo: checkout where used
+  #- appearance (bedsheet, scroll  & theme) change
   
   'appearance.change subscribe': (called, data) ->
     #if no data is passed, then use the user default settings
     if not data?
       data = $('#userInfo').data 'viewpreference'
-    
+
     return if not data.image_id?
-    
+
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
 
@@ -58,7 +45,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     if data.theme?
       $('#body').removeClass('light dark')
       $('#body').addClass data.theme
-           
+
     img = $("<img src='#{bedsheetUrl}' style='display:none' />")
     $(img).load ->
       $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
@@ -69,11 +56,20 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
     
+  #- catch any body click event
+
+  '#bodyClick click': ->
+    @publish 'body.clicked'
+    
+  #- fit to content event
+    
+  'textarea keyup': (el) ->
+    fitToContent el.attr('id'), 0
     
   '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
-    @metaMenu.selectPanel 'appearance' #todo: publish?
+    @publish 'menu.show', 'appearance'
   
-  #- select-menu events - move into own controller?
+  #- select-menu events - todo: move into own controller?
     
   'label.ui-selectmenu-default mouseover': (el) ->
     el.parent().addClass 'default-hover'
@@ -94,38 +90,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user = {}
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
-
-  #meta Menu - mov?
-
-  '#new-post change': (el) ->
-    if el.val() isnt 'empty'
-      @historyAdd {
-        controller: el.val()
-        action: 'new'
-      }
-    el.val 'empty'
-    #todo: issue with selecting same again
-    
-  '#metaMenu .newEntry click': (el) ->
-    @historyAdd {
-      controller: 'entry'
-      action: 'new'
-    }
-    
-  #own context panel one?
-    
-  '#contextPanel .avatar, #contextPanel .book click': (el) ->
-    if el.hasClass('book') and $('#showEntry').is(':visible')
-      @historyAdd {
-        controller: 'book'
-        action: 'show'
-        id: el.data 'id'
-      }
-    else
-      @historyAdd {
-        controller: 'entry'
-        action: 'field'
-      }
-
+  
+  
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
