@@ -23,12 +23,23 @@
       +round(16)
       +flat-left
       +font(24)
-    .prev:hover, .stream:hover, .next:hover
+    .prev:hover, .stream-nav:hover, .entries-nav:hover, .next:hover
       +cancel(16)
-    .stream
-      +flat-all
+    .stream-nav
+      .img
+        +left
+        width: 24px
+        height: 32px
+        margin: 0 8px 0 0
+        background: url(/images/icons/stream-24.png) no-repeat center center transparent
+      &:hover .img
+        background: url(/images/icons/stream-24-hover.png) no-repeat center center transparent
+      &:active .img
+        background: url(/images/icons/stream-24-active.png) no-repeat center center transparent
 
-    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .spine-nav
+    .stream-nav, .entries-nav
+      +flat-all
+    .next, .prev, .stream-nav, .entries-nav, .books, .entryType, .postTime, .editEntry, .deleteEntry, .spine-nav
       +block
       +center
       +bold
@@ -37,7 +48,6 @@
       padding: 0 18px
       height: 32px
       line-height: 34px
-
     .entryType, .postTime
       +round(16)
       +left
@@ -70,7 +80,7 @@
       font-weight: normal
       line-height: 32px
 
-    .next, .stream, .prev, .books, .editEntry, .deleteEntry, .spine-nav
+    .next, .prev, .stream-nav, .entries-nav, .books, .editEntry, .deleteEntry, .spine-nav
       +right
 
     .spine-nav
@@ -404,7 +414,7 @@
         +indent-light
         +border-light
 
-      .next, .stream, .prev
+      .next, .stream-nav, .entries-nav, .prev
         color: #555
         +button-light
         +shine-light(16)
@@ -512,7 +522,7 @@
         +indent-dark
         +border-dark
 
-      .next, .stream, .prev
+      .next, .stream-nav, .entries-nav, .prev
         color: #ddd
         +button-dark
         +shine-dark(15)
