@@ -3,6 +3,7 @@
   type: 'ok'
   message: 'user updated'
   html: '<b>some html</b>'
+  data: { json: 'object' }
 }
 
 # redirect

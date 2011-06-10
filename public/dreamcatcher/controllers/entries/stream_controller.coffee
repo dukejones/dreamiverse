@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Stream',
+$.Controller 'Dreamcatcher.Controllers.Entries.Stream',
 
   init: ->
     @page = 1

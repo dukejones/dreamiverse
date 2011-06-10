@@ -217,6 +217,7 @@ class Entry < ActiveRecord::Base
   end
 
   def set_emotions(emotion_params)
+    return if emotion_params.blank?
     emotion_params.each do |emotion_name, intensity|
       if emotion_tag = self.tags.emotion.named(emotion_name).first
         emotion_tag.update_attribute(:intensity, intensity)

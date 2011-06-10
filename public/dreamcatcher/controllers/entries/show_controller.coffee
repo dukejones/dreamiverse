@@ -1,4 +1,4 @@
-$.Controller.extend 'Dreamcatcher.Controllers.Entries.Show',
+$.Controller 'Dreamcatcher.Controllers.Entries.Show',
 
   'a.spine-nav click': (el) ->
     @historyAdd

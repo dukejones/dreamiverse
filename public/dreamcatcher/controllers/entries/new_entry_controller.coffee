@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.New',
+$.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
   
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
   interval: 5000
@@ -7,17 +7,20 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
     upload: Dreamcatcher.Classes.UploadHelper
   }
 
-  init: ->
-    #$('#new_entry').removeAttr 'method'
-    #$('#new_entry').removeAttr 'action'
-    #$('#new_entry').removeAttr 'accept-charset'
-    
+  init: ->    
     @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
     @currentEntryType = $('#entryMode').data 'id'
     @posted = false
     @retrieveState()
     @saveState()
     @createUploader()
+      
+  'form#new_entry submit': ( el, ev ) ->
+    ev.preventDefault()
+    new Dreamcatcher.Models.Entry(el.formParams()).save()
+   
+  'entry.created subscribe': ( called, entry ) ->
+    log entry
        
   saveState: ->
     return if @posted
@@ -74,9 +77,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
   '.headers click': (el) ->
     el.parent().hide()
     
-  'form#new_entry submit': (el) ->
-    log 'x'
-    
   createUploader: ->
     @upload = new Dreamcatcher.Controllers.Common.Upload $('#imageDropArea')
     @upload.load {
@@ -95,6 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.New',
         list: 'dropboxImages'
       }
     }
+
 
 
   

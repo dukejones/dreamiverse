@@ -91,7 +91,11 @@ class EntriesController < ApplicationController
       @entry.set_whats(params[:what_tags])
       @entry.set_links(params[:links])
       @entry.set_emotions(params[:emotions])
-      redirect_to user_entry_path(current_user.username, @entry)
+      respond_to do |format|
+        format.html { redirect_to user_entry_path(current_user.username, @entry) }
+        format.json { type: 'ok', message: 'Entry created', data: { entry_id: @entry.id } }
+      end
+
     else
       @entry_mode = 'new'
       flash.now[:alert] = @entry.errors.full_messages.first

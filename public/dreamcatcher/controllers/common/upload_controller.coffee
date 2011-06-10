@@ -3,7 +3,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
   init: (element) ->
     @element = element
 
-  load: (customOptions, singleOnly, complete) ->
+  load: (customOptions, singleOnly) ->
+    @singleOnly = singleOnly
     @filesUploaded = 0
 
     options = {  
@@ -32,7 +33,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
       fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
 
       onSubmit: (id, fileName) =>
-        log id
+        #log id
 
       onComplete: (id, fileName, result) =>
         if result.image?
@@ -47,8 +48,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
           notice message
           @filesUploaded = 0
 
-        @callback complete
-
       onCancel: (id, fileName) =>
         uploadEl = @getUploadElement fileName
         uploadEl.remove()
@@ -58,7 +57,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
         uploadEl.show()
 
         if @replaceImageId? and fileName?
-          imageEl = @getImageElement @replaceImageId ##
+          imageEl = @getImageElement @replaceImageId
           imageEl.replaceWith @getUploadElement fileName
           @clearReplaceImage()
 
@@ -69,13 +68,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
         }, 'fast'
     }
 
-    #extend existing options (without overridding classes completely)
+    #extend existing options
     if customOptions?
+      #need to extract the custom classes out, so that the 'classes' varible is not overridden completely.
       customClasses = customOptions.classes
       delete customOptions.classes
       $.extend options, customOptions
       $.extend options.classes, customClasses
-    #options.onComplete = complete if complete?
 
     @uploader = new qq.FileUploader options
     $('input[type=file]', el).removeAttr 'multiple' if singleOnly
@@ -84,11 +83,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
     return $("li .file:contains('#{fileName}')", @element).closest 'li'
     
   getImageElement: (imageId) ->
-    return $("li[data-id=#{imageId}]",@element)
+    return $("li[data-id=#{imageId}]", @element)
 
   clearReplaceImage: ->
     @replaceImageId = null
-    $('#upload input[type=file]').attr 'multiple', 'multiple'  
+    $('input[type=file]', @element).attr 'multiple', 'multiple' if not @singleOnly
     #$('#imagelist').removeClass 'imageReplace'
 
   setReplaceImage: (imageId) ->

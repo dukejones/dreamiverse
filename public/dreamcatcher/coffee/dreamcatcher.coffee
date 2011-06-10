@@ -70,7 +70,7 @@ steal.plugins(
       models 'entry', 'book', 'stream', 'comment'
       controllers {
         module: 'entries'
-        classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
+        classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
       }, {
         module: 'users'
         classes: ['appearance', 'bedsheets', 'context_panel']

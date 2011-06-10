@@ -1,4 +1,4 @@
-$.Controller.extend 'Dreamcatcher.Controllers.Entries', {
+$.Controller 'Dreamcatcher.Controllers.Entries',
 
   #use across all controllers
   model: {
@@ -86,11 +86,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       helper: 'clone'
       revertDuration: 100
       start: (ev, ui) =>
-        #$(ui.helper).css 'opacity', 0.5
         @toggleBookContext true
         
       stop: (ev, ui) =>
-        #$(ui.helper).css 'opacity', 1
         @toggleBookContext false
         
     }
@@ -123,7 +121,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
         $('#contextPanel').hide()
         $('#totem').after html
         @publish 'dom.added', $('#streamContextPanel')
-        @stream = new Dreamcatcher.Controllers.Stream $("#streamContextPanel")
+        @stream = new Dreamcatcher.Controllers.Entries.Stream $("#streamContextPanel")
   
   #- entry field
   
@@ -178,7 +176,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
         $('#entryField').prepend html
       $('#new_entry').show()
       
-      @new = new Dreamcatcher.Controllers.Entries.New $('#new_entry')
+      @newEntry = new Dreamcatcher.Controllers.Entries.NewEntry($('#entryField'))
       @publish 'dom.added', $('#new_entry')
   
   'history.entry.new subscribe': (called, data) ->
@@ -247,5 +245,3 @@ $.Controller.extend 'Dreamcatcher.Controllers.Entries', {
       id: thumbEl.data 'id'
       user_id: thumbEl.data 'userid'
     }
-    
-}

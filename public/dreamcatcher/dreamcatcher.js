@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Thu, 09 Jun 2011 21:52:57 GMT from
+/* DO NOT MODIFY. This file was compiled Fri, 10 Jun 2011 01:33:23 GMT from
  * /Users/carboes/Sites/dreamcatcher/public/dreamcatcher/coffee/dreamcatcher.coffee
  */
 
@@ -31,7 +31,7 @@
         models('entry', 'book', 'stream', 'comment');
         return controllers({
           module: 'entries',
-          classes: ['entries', 'new', 'books', 'stream', 'comments', 'show']
+          classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
         }, {
           module: 'users',
           classes: ['appearance', 'bedsheets', 'context_panel']
