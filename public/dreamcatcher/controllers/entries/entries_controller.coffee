@@ -167,14 +167,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     
   #- new entry
   
-  showNewEditEntry: (html) ->
+  displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
     $('#newEditEntry').html html
+    
+    entryMode = $('#entryMode').data 'id'
+    $('#newEditEntry .entry-tags').tags entryMode  # invoke the tags controller
     @publish 'dom.added', $('#newEditEntry')
     $('#newEditEntry').show()
     
   newEntry: ->
-    @model.entry.new {}, @callback('showNewEditEntry')
+    @model.entry.new {}, @callback('displayNewEditEntry')
   
   'history.entry.new subscribe': (called, data) ->
     @showEntryContext()

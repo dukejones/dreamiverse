@@ -30,7 +30,8 @@ $.Controller 'Dreamcatcher.Controllers.Images.Manager',
       return
       
   close: (showSearch) ->
-    @parent.showBrowser true, showSearch
+    @publish 'browser.show', true
+    #@parent.showBrowser true, showSearch
     $("#frame.manager").fadeOut 'fast'
     
   show: (images, title) ->
