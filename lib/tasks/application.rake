@@ -37,6 +37,10 @@ namespace :fix do
         i.import_from_file(i.path, i.original_filename)
       rescue => e
         log("Error!! Image #{i.id}: #{e}")
+        unless i.enabled
+          log("deleting image #{i.id}")
+          i.destroy
+        end
       end
     end
   end
