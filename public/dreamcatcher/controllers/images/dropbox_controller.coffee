@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.Dropbox',
+$.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
 
   model: Dreamcatcher.Models.Image  
   

@@ -1,11 +1,17 @@
-$.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', 
+$.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
+  pluginName: 'uploader'
+},{
 
-  init: (element) ->
-    @element = element
+  init: (element, customOptions) ->
+    @element = $(element)
+    @load customOptions if customOptions?
 
-  load: (customOptions, singleOnly) ->
-    @singleOnly = singleOnly
+  load: (customOptions) ->
     @filesUploaded = 0
+
+    if customOptions and customOptions.singleFile?
+      @singleFile = customOptions.singleFile 
+      delete customOptions.singleFile
 
     options = {  
       maxConnections: 1
@@ -30,10 +36,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
       element: @element.get(0)
       action: '/images.json'
       template: @element.html()
-      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
+      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
 
       onSubmit: (id, fileName) =>
-        #log id
+        log id
 
       onComplete: (id, fileName, result) =>
         if result.image?
@@ -77,7 +83,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
       $.extend options.classes, customClasses
 
     @uploader = new qq.FileUploader options
-    $('input[type=file]', el).removeAttr 'multiple' if singleOnly
+    $('input[type=file]', el).removeAttr 'multiple' if @singleFile
 
   getUploadElement: (fileName) ->
     return $("li .file:contains('#{fileName}')", @element).closest 'li'
@@ -104,5 +110,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
 
   '.replace click': (el) ->
     @setReplaceImage el.parent().data 'id'
+
+}
 
     

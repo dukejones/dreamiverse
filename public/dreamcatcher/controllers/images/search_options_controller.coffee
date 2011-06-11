@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
+$.Controller 'Dreamcatcher.Controllers.Images.SearchOptions',
 
   model: Dreamcatcher.Models.Image
   

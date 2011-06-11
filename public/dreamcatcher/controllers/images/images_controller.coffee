@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank',
+$.Controller 'Dreamcatcher.Controllers.Images.Images',
 
   model: Dreamcatcher.Models.Image
   
@@ -13,28 +13,28 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
     switch widget
     
       when 'browser'
-        @browser = new Dreamcatcher.Controllers.ImageBank.Browser $("#frame.browser") if not @browser
+        @browser = new Dreamcatcher.Controllers.Images.Browser $("#frame.browser") if not @browser
         @browser.parent = this
         @browser.show params.refresh, params.showSearch if params?
     
       when 'dropbox'
-        @dropbox = new Dreamcatcher.Controllers.ImageBank.Dropbox $("#dropbox") if not @dropbox
+        @dropbox = new Dreamcatcher.Controllers.Images.Dropbox $("#dropbox") if not @dropbox
         @dropbox.parent = this
         @dropbox.show()
         
       when 'slideshow'
-        @slideshow = new Dreamcatcher.Controllers.ImageBank.Slideshow $("#slideshow-back") if not @slideshow?
+        @slideshow = new Dreamcatcher.Controllers.Images.Slideshow $("#slideshow-back") if not @slideshow?
         @slideshow.parent = this
         imageId = params.imageId if params? and params.imageId?
         @slideshow.show images, imageId
       
       when 'searchOptions'
-        @searchOptions = new Dreamcatcher.Controllers.ImageBank.SearchOptions $("#searchOptions") if not @searchOptions?
+        @searchOptions = new Dreamcatcher.Controllers.Images.SearchOptions $("#searchOptions") if not @searchOptions?
         @searchOptions.parent = this
         @searchOptions.show params
       
       when 'manager'
-        @manager = new Dreamcatcher.Controllers.ImageBank.Manager $("#frame.manager") if not @manager?
+        @manager = new Dreamcatcher.Controllers.Images.Manager $("#frame.manager") if not @manager?
         @manager.parent = this
         title = params.title if params? and params.title?
         @manager.show images, title
@@ -121,4 +121,3 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank',
       when 'dropbox' then return $('#dropbox li')
       when 'searchResults' then return $('#searchResults li')
     return $('#albumList .img,#dropbox li,#searchResults li')
-    
