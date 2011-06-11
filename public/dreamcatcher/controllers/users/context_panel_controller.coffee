@@ -25,7 +25,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel',
         image: {
           section: 'user uploaded'
           category: 'avatars'
-          artist: $('#metaMenu .item.user span').text().trim()
         }
       }
       classes: {

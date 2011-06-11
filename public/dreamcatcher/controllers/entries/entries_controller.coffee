@@ -172,6 +172,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     $('#newEditEntry').html html
     @publish 'dom.added', $('#newEditEntry')
     $('#newEditEntry').show()
+    log 'y'
+    @tagsController = new window.TagsController('#newEditEntry .entry-tags', 'edit')
     
   newEntry: ->
     @model.entry.new {}, @callback('showNewEditEntry')
