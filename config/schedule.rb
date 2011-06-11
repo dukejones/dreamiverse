@@ -20,7 +20,7 @@ set :output, "log/cron.log"
 job_type :rake, "cd :path && RAILS_ENV=:environment /usr/local/bin/rake :task :output"
 
 every 1.day, :at => '3:00 am' do
-  rake "app:starlight"
+  rake "starlight"
 end
 
 every 3.days, :at => '4:30 am' do
