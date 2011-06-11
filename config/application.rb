@@ -3,6 +3,29 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require 'net/http'
 require 'open-uri'
+require 'digest/sha1'
+
+
+def sha1(string)
+  Digest::SHA1.hexdigest string if string.is_a? String
+end
+
+# Console Only #
+def show_sql
+  ActiveRecord::Base.logger = Logger.new(STDOUT)
+end
+
+if Object.const_defined?(:Wirble)
+  Wirble.init
+  Wirble.colorize
+end
+
+class DreamLogFormatter < Logger::Formatter
+  def call(severity, time, progname, msg)
+    "[%s(%d)%5s] %s\n" % [time.to_s(:short), $$, severity, msg2str(msg)]
+  end
+end
+
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.

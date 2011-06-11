@@ -15,7 +15,8 @@ class Image < ActiveRecord::Base
   has_many :view_preferences
   has_many :whats
   belongs_to :uploaded_by, :class_name => "User"
-
+  has_many :users
+  
   #
   # Callbacks 
   #

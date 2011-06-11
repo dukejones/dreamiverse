@@ -4,11 +4,15 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-def log(msg)
-  @rake_logger ||= ActiveSupport::BufferedLogger.new Rails.root.join('log', 'rake.log')
-  @rake_logger.info "(#{Time.zone.now.to_s(:short)}) #{msg}"
+@rake_logger = Logger.new(Rails.root.join('log', 'rake.log'), 10, 30*1024*1024)
+@rake_logger.formatter = DreamLogFormatter.new
+
+def log(msg, level=:info)
+  @rake_logger.send(level, msg)
+  # @rake_logger.info "(#{Time.zone.now.to_s(:short)}) #{msg}"
   # Rails.logger.info("(#{Time.zone.now.to_s(:short)}) #{msg}")
   puts msg
 end
 
 Dreamcatcher::Application.load_tasks
+
