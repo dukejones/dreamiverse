@@ -5,7 +5,7 @@ namespace :long_usernames do
     User.all.each do |user| 
       if user.username.length > 15 and  user.email == 'doktorj@dreamcatcher.net'
         log "sending warning email for user: #{user.username} to #{user.email}" 
-        UserMailer.warn_long_username_email(user) #.deliver 
+        UserMailer.warn_long_username_email(user).deliver 
         sleep 1
       end
     end
