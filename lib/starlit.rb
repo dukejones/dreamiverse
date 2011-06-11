@@ -1,6 +1,5 @@
 module Starlit
   Entropy = 6.18
-  @cascade_to = []
   
   def hit
     add_starlight( 1 )
