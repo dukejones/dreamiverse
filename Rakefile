@@ -9,8 +9,6 @@ require 'rake'
 
 def log(msg, level=:info)
   @rake_logger.send(level, msg)
-  # @rake_logger.info "(#{Time.zone.now.to_s(:short)}) #{msg}"
-  # Rails.logger.info("(#{Time.zone.now.to_s(:short)}) #{msg}")
   puts msg
 end
 
