@@ -41,12 +41,12 @@ steal.plugins(
 
   # common jmvc files
   helpers 'cookie', 'ui'
-  models 'user', 'image'
+  models 'user', 'image', 'tag'
   controllers 'application', {
     module: 'common'
-    classes: ['upload']
+    classes: ['upload', 'tags']
   }, {
-    module: 'users',
+    module: 'users'
     classes: ['meta_menu', 'settings']
   }
   
@@ -73,7 +73,7 @@ steal.plugins(
         classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
       }, {
         module: 'users'
-        classes: ['appearance', 'bedsheets', 'context_panel']
+        classes: ['context_panel']#'appearance', 'bedsheets', 
       }
       
 ).views()
@@ -83,7 +83,8 @@ steal.plugins(
 controllers = ->
   for arg in arguments
     if arg.module?
-      steal.coffee "controllers/#{arg.module}/#{className}_controller" for className in arg.classes
+      for className in arg.classes
+        steal.coffee "controllers/#{arg.module}/#{className}_controller" 
     else
       steal.coffee "controllers/#{arg}_controller"
     
