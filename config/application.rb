@@ -21,8 +21,9 @@ if Object.const_defined?(:Wirble)
 end
 
 class DreamLogFormatter < Logger::Formatter
+  Format = "[%s(%d)%5s] %s\n" #.encode("ASCII")
   def call(severity, time, progname, msg)
-    "[%s(%d)%5s] %s\n" % [time.to_s(:short), $$, severity, msg2str(msg)]
+    Format % [time.to_s(:short), $$, severity, msg2str(msg)]
   end
 end
 

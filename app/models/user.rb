@@ -38,21 +38,20 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  # usernames must be lowercase
-  before_create -> { username.downcase! }
-  before_create -> { email.downcase! }
   before_create :create_view_preference
   before_create :set_defaults
   before_validation(:on => :create) do
-    username.strip! 
+    username.strip!
+    username.downcase! 
     email.strip!
+    email.downcase!
   end  
   after_validation :encrypt_password
 
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
   validates_presence_of :username
-  validates_uniqueness_of :username
+  # (db constraint) validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
   validates_format_of :username, :without => /[^a-zA-Z\d*_\-]/, 
     :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"
