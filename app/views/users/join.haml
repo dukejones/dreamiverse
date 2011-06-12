@@ -54,11 +54,18 @@
                 Join Now &rsaquo;
                 %input.button{tabindex: '6', type: 'submit', name: 'loginButton', value: 'Join Now &rsaquo;'}
                 :coffeescript
-                  # XXX: This is a hack.  Put this in the JMVC for this page.
+                  # XXX: Put this in the JMVC for this page.
                   $('input[name="loginButton"]').click ->
-                    setTimeout(=>
-                      log $(this)
-                      $(this).attr('disabled','disabled').attr('value', 'registering...')
+                    $this = $(this)
+                    setTimeout(->
+                      $this.attr 'disabled', 'disabled'
+                      textNode = $this.parent()
+                      textNode.data 'old-html', textNode.html()
+                      textNode.html 'registering...'
+                      setTimeout(->
+                        textNode.html textNode.data('old-html')
+                        $this.removeAttr 'disabled'
+                      ,20000) # after 20 seconds it will re-enable
                     ,13)
 
           %a.terms{href: terms_path} by joining, I agree to the “terms of service”
