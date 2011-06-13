@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       format.json { render :json => { :comment => @comment } }
     end
     
-    @entry.add_starlight!(5) if @comment.starlight_worthy?
+    @entry.add_starlight!(3) if @entry.user != current_user && @comment.starlight_worthy?
   rescue
     redirect_to user_entry_path(@entry.user.username, @entry), :alert => 'You must enter a comment.'
   end

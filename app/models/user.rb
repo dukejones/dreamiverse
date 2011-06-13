@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   serialize :stream_filter
   
   has_many :authentications
-  has_many :entries
+  has_many :entries, :dependent => :destroy
   has_many :hits
   has_many :entry_accesses
   has_one :link, :as => :owner
