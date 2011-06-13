@@ -81,6 +81,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
       delete customOptions.classes
       $.extend options, customOptions
       $.extend options.classes, customClasses
+        
+      if options.params.image? and not options.params.image.artist?
+        options.params.image.artist = $('#metaMenu .item.user span').text().trim()
 
     @uploader = new qq.FileUploader options
     $('input[type=file]', el).removeAttr 'multiple' if @singleFile
