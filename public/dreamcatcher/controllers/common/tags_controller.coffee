@@ -50,7 +50,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         #   what_name: tagName
         # }, @callback('appendTag', tagName)
     
-  $('#tag-list').find('.tag .close').live @clickEvent, (ev) =>
+  # $('#tag-list').find('.tag .close').live @clickEvent, (ev) =>
     # @removeTagFromDom($(ev.currentTarget).parent().data('id'))    
   
 }
