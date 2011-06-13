@@ -9,8 +9,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   init: (el, mode='edit') ->
     @element = el
     @mode = mode
-    @clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"  
-  
 
   alreadyExists: (tagName) ->
     exists = false
@@ -49,9 +47,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         #   entry_id: entryId
         #   what_name: tagName
         # }, @callback('appendTag', tagName)
-    
+
+  # @clickEvent = if (navigator.userAgent.match(/iPad/i)) then "touchstart" else "click"  
   # $('#tag-list').find('.tag .close').live @clickEvent, (ev) =>
-    # @removeTagFromDom($(ev.currentTarget).parent().data('id'))    
+  #   @removeTagFromDom($(ev.currentTarget).parent().data('id'))    
+  '#tag-list .tag .close click': (el) ->
+    @removeTagFromDom($(el).parent().data('id'))
+
+  '#tag-list .tag .close touchstart': (el) ->
+    @removeTagFromDom($(el).parent().data('id'))
   
 }
 
