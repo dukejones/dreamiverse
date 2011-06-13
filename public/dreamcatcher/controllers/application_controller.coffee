@@ -11,7 +11,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   setupControllers: ->
     @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
     @images     = new Dreamcatcher.Controllers.Images.Images      $("#frame.browser")   if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField").exists()
+    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField .matrix.field").exists()
+    @stream     = new Dreamcatcher.Controllers.Stream             $("#entryField")      if $("#entryField .matrix.stream").exists() 
+    #Duke - new stream controller goes here!
     @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
         
   #- setup ui elements
