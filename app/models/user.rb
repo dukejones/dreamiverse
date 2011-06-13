@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   # follows are the follows this user has
-  has_many :follows
+  has_many :follows, :dependent => :destroy
   # following are the users this user is following
   has_many :following, :through => :follows
   # followings are the follows that point to this user
-  has_many :followings, :class_name => "Follow", :foreign_key => :following_id
+  has_many :followings, :class_name => "Follow", :foreign_key => :following_id, :dependent => :destroy
   # followers are the users that follow this user
   has_many :followers, :through => :followings, :source => :user
   belongs_to :default_location, :class_name => "Where"
