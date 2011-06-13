@@ -27,11 +27,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   init: ->
     @controller.showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
     @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEntry $('#newEditEntry')
-    @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books')
+    @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
     @controller.comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
-    @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
+    @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel') if $('#contextPanel').exists()
     
-    if $('#entryField .matrix').exists()
+    if $('#entryField .matrix.field').exists()
       @showEntryField()
     @publish 'book.drop', $('#entryField .matrix.books')
     @publish 'entry.drag', $('#entryField .matrix.field')
@@ -175,6 +175,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     $('#newEditEntry .entry-tags').tags entryMode  # invoke the tags controller
     @publish 'dom.added', $('#newEditEntry')
     $('#newEditEntry').show()
+    log 'y'
+    @tagsController = new window.TagsController('#newEditEntry .entry-tags', 'edit')
     
   newEntry: ->
     @model.entry.new {}, @callback('displayNewEditEntry')

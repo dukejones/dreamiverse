@@ -1,7 +1,7 @@
 .bundle
 vendor/bundle
 db/*.sqlite3
-log/*.log
+log/*.log*
 tmp/*
 tmp/**/*
 .DS_Store

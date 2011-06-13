@@ -54,7 +54,7 @@ steal.plugins(
   switch page()
   
     when 'images'
-      controllers {
+      controllers { 
         module: 'images'
         classes: ['images', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
       }
@@ -71,7 +71,8 @@ steal.plugins(
       controllers {
         module: 'entries'
         classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
-      }, {
+      }
+      controllers {
         module: 'users'
         classes: ['context_panel']#'appearance', 'bedsheets', 
       }
@@ -93,6 +94,9 @@ models = ->
   
 helpers = ->
   steal.coffee "classes/#{arg}_helper" for arg in arguments
+    
+scotts = ->
+  steal.coffee "scott/#{arg}" for arg in arguments
     
 page = ->
   window.location.href.split('/').pop()

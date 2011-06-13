@@ -21,8 +21,9 @@ if Object.const_defined?(:Wirble)
 end
 
 class DreamLogFormatter < Logger::Formatter
+  Format = "[%s(%d)%5s] %s\n" #.encode("ASCII")
   def call(severity, time, progname, msg)
-    "[%s(%d)%5s] %s\n" % [time.to_s(:short), $$, severity, msg2str(msg)]
+    Format % [time.to_s(:db), $$, severity, msg2str(msg)]
   end
 end
 
@@ -30,6 +31,24 @@ end
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
+GmailSmtpSettings = {
+  address: "smtp.gmail.com",
+  port: 587,
+  domain: "dreamcatcher.net",
+  user_name: "mailer@dreamcatcher.net",
+  password: "G9%Ln8(qtmZ3N3FZ5aTr",
+  authentication: "plain",
+  enable_starttls_auto: true
+}
+
+MailJetSmtpSettings = {
+  address: "in.mailjet.com",
+  port: 587,
+  user_name: "bd8679e217fe4e656961aebb32796048",
+  password: "636774df5eea9a680e0f717666c6cf3d",
+  enable_starttls_auto: true
+}
 
 
 module Dreamcatcher
@@ -69,5 +88,11 @@ module Dreamcatcher
     
     config.time_zone = "Pacific Time (US & Canada)"
     
+    # config.action_mailer.smtp_settings = GmailSmtpSettings
+    config.action_mailer.smtp_settings = MailJetSmtpSettings
+
+
+    config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 10, 30*1024*1024)
+    config.logger.formatter = DreamLogFormatter.new
   end
 end

@@ -1,6 +1,3 @@
-  
-
-
 class window.TagsController
   constructor: (containerSelector, mode='edit')->
     @$container = $(containerSelector)
