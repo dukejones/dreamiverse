@@ -24,12 +24,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     $('#tag-list').append html
     $('#newTag').val ''
      
-  removeTagFromDom: (tagId = null, tagEl) ->
-    # log "tagId #{tagId} tagName: #{tagName}"
-    @tag = if tagId? then $("##{tagId}") else tagEl # tagName.find('.tag-name').text() 
+  removeTagFromDom: (el) ->
+    @tag = el
     @tag.css('backgroundColor', '#ff0000')  
     @tag.fadeOut 'fast', =>
-      @tag.remove()
+      @tag.parent().remove()
     
   getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()
   
@@ -53,13 +52,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         # }, @callback('appendTag', tagName)
 
   '#tag-list .tag .close click': (el) ->
-    @removeTagFromDom(null,el.parent())
-        
-  # '#tag-list .tag .close click': (el) ->
-  #   @removeTagFromDom($(el).parent().data('id'))
-  # 
-  # '#tag-list .tag .close touchstart': (el) ->
-  #   @removeTagFromDom($(el).parent().data('id'))
-   
+    @removeTagFromDom(el.parent())
+  
+  '#tag-list .tag .close click': (el) ->
+    @removeTagFromDom(el.parent())
+       
   
 }
