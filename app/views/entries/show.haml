@@ -1,6 +1,6 @@
 - content_for :head do
   = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
-  = coffeescript_include_tag 'tag', 'showentry', 'fit_to_content'
+  = coffeescript_include_tag 'showentry', 'fit_to_content'
   
   - if !@entry.body.blank?
     %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}

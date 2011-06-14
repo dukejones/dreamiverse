@@ -3,5 +3,8 @@
     <div class="tag-name"><%= tagName %></div>
   </div>
   <div class="close"></div>
+  <% if (mode == 'edit') { %>
+    <input type="hidden" value="<%= tagName %>" name="what_tags[]" />
+  <% } %>
 </div>
 <!-- newEntry emptyTag hidden -->
