@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Stream',
+$.Controller 'Dreamcatcher.Controllers.Stream'
 
   init: ->
     Stream.page = 1
@@ -7,7 +7,8 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
     @bind window, 'scroll', 'scrollEvent'
-    
+    @bind $('#entry-filter, #users-filter'), 'change', 'dropdownChange'
+
   scrollEvent: ->
     if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
       @loadNextPage()
@@ -23,16 +24,11 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
     @clear()
     
     if !json.html? || json.html == ""
-      Stream.currentlyLoading = true
+      Stream.noMore()
       $('#noMoreEntries').show() # No more entries to load.
-      
-    $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
     
-    if Stream.page > 1
-      @container.append json.html
-    else
-      @container.html json.html
-      
+    @container.empty() if Stream.page == 1
+    @container.append json.html
     @activateLightBox()     
   
   getOptions: ->
@@ -43,14 +39,15 @@ $.Controller 'Dreamcatcher.Controllers.Stream',
   activateLightBox: ->
     $('a.lightbox').each((i, el) ->
       $(this).lightBox({containerResizeSpeed: 0});
-    )    
+    )
     
   clear: ->
-    $('#noMoreEntries, .noEntrys, #nextPageLoading').hide()    
+    $('#noMoreEntries, .noEntrys, #nextPageLoading, #entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()    
   
   # Form listeners    
-  '#entry-filter, #users-filter change': (el) ->
-    Stream.page = 1
-    $("##{el.attr('id')}-wrap .spinner").show()
+  dropdownChange: (el)->
+    Stream.reset()
+
+    el.prev(".spinner").show()
     Stream.load @getOptions(), @callback('updateStream')
     
