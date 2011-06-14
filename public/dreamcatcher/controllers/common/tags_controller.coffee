@@ -11,20 +11,28 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @mode = mode
     @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
+    switch mode
+      when 'show'
+        $('.tagAnalysis .trigger').live( 'click', (event ) ->
+          $(this).parent().toggleClass('expanded')
+        )
 
-  alreadyExists: (tagName) ->
-    exists = false
-    $('#tag-list .tag-name').each (i, el) =>
-      tag = $(el).text().trim()
-      if (tagName is tag)
-        exists = true
-    return exists
   
-  appendTag: (tagName) ->
-    unless @alreadyExists tagName
+  appendTag: (tagName) ->     
+    tagCount = @tagCount()
+    if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
       html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
       $('#tag-list').append html
       $('#newTag').val ''
+
+  alreadyExists: (tagName) ->
+    exists = false
+    # Check both custom and auto tag lists
+    $('.tag-list .tag-name').each (i, el) =>
+      tag = $(el).text().trim()
+      if (tagName is tag)
+        exists = true  
+    return exists
      
   removeTagFromDom: (el) ->
     @tag = el
@@ -51,7 +59,14 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     $('.tagThisEntry').removeClass 'selected'
     $('.tagInput').animate {width: '0px'}
     $('#newTag').blur()
-  
+
+  tagCount: ->
+    count = 0
+    for el in $('#tag-list .tag')
+      count = count + 1
+    log "tagCount #{count}"
+    return count
+      
   # DOM Listeners
   
   '.tagThisEntry click': ->
@@ -66,7 +81,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
       $('#addTag').click()
 
-  #'.tagAdd click': (el) ->
   '#addTag click': (el) ->
     tagName = @getTag()
     log "tagAdd click mode #{@mode}"
@@ -88,5 +102,4 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   '#tag-list .tag .close click': (el) ->
     @removeTagFromDom(el.parent())
        
-  
 }
