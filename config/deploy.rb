@@ -20,11 +20,8 @@ set :use_sudo, false
 
 after "deploy", "deploy:cleanup"
 before "deploy:symlink", "uploads:symlink"
-# before "deploy:symlink", "barista:brew"
-# before "deploy:symlink", "jmvc:compile"
-# before "deploy:symlink", "jammit:package"
-# before "deploy:restart", "compile_all"
-before "deploy:symlink", "compile_all"
+before "deploy:restart", "compile:the_rest"
+before "deploy:restart", "compile:jmvc"
 
 
 namespace :deploy do
@@ -50,22 +47,8 @@ namespace :compile do
   end
 end
 
-# namespace :barista do
-#   task :brew do
-#     run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
-#   end
-# end
-# 
-# 
-# namespace :jammit do
-#   task :package do
-#     run("cd #{current_release}; /usr/bin/env bundle exec jammit")
-#   end
-# end
-
 def rake(cmd, options={}, &block)
-  # options.merge {:env => {'RAILS_ENV' => rails_env}}
-  command = "cd #{current_release} && /usr/bin/env bundle exec rake " + cmd
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
   run(command, options, &block)
 end
 
