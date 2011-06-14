@@ -19,10 +19,13 @@ set :use_sudo, false
 
 
 after "deploy", "deploy:cleanup"
-before "deploy:symlink", "barista:brew"
 before "deploy:symlink", "uploads:symlink"
-before "deploy:symlink", "jmvc:compile"
-before "deploy:symlink", "jammit:package"
+# before "deploy:symlink", "barista:brew"
+# before "deploy:symlink", "jmvc:compile"
+# before "deploy:symlink", "jammit:package"
+# before "deploy:restart", "compile_all"
+before "deploy:symlink", "compile_all"
+
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -37,20 +40,32 @@ namespace :deploy do
 end
 
 
-namespace :barista do
-  task :brew do
-    run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
-  end
-end
-
-namespace :jmvc do
-  task :compile do
+namespace :compile do
+  task :jmvc do
     run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
   end
-end
-
-namespace :jammit do
-  task :package do
-    Jammit.package!
+  
+  task :the_rest do
+    rake 'compile'
   end
 end
+
+# namespace :barista do
+#   task :brew do
+#     run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+#   end
+# end
+# 
+# 
+# namespace :jammit do
+#   task :package do
+#     run("cd #{current_release}; /usr/bin/env bundle exec jammit")
+#   end
+# end
+
+def rake(cmd, options={}, &block)
+  # options.merge {:env => {'RAILS_ENV' => rails_env}}
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake " + cmd
+  run(command, options, &block)
+end
+
