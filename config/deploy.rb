@@ -22,6 +22,7 @@ after "deploy", "deploy:cleanup"
 before "deploy:symlink", "barista:brew"
 before "deploy:symlink", "uploads:symlink"
 before "deploy:symlink", "jmvc:compile"
+before "deploy:symlink", "jammit:package"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -45,5 +46,12 @@ end
 namespace :jmvc do
   task :compile do
     run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+  end
+end
+
+namespace :jammit do
+  task :package do
+    require 'jammit'
+    Jammit.package!
   end
 end
