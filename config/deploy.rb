@@ -51,7 +51,6 @@ end
 
 namespace :jammit do
   task :package do
-    require 'jammit'
     Jammit.package!
   end
 end
