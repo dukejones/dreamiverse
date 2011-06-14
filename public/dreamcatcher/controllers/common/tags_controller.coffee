@@ -9,6 +9,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   init: (el, mode='edit') ->
     @element = el
     @mode = mode
+    @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
 
   alreadyExists: (tagName) ->
@@ -20,9 +21,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     return exists
   
   appendTag: (tagName) ->
-    html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
-    $('#tag-list').append html
-    $('#newTag').val ''
+    unless @alreadyExists tagName
+      html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
+      $('#tag-list').append html
+      $('#newTag').val ''
      
   removeTagFromDom: (el) ->
     @tag = el
@@ -32,19 +34,48 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     
   getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()
   
+  expandContractInputField: ->
+    if @buttonMode is 'expand'
+      @expandInputField()
+    else
+      @contractInputField()
+        
+  expandInputField: ->
+    @buttonMode = 'submit'
+    $('.tagThisEntry').addClass 'selected'
+    $('.tagInput').animate {width: '200px'}
+    $('#newTag').focus()
+    
+  contractInputField: ->
+    @buttonMode = 'expand'
+    $('.tagThisEntry').removeClass 'selected'
+    $('.tagInput').animate {width: '0px'}
+    $('#newTag').blur()
+  
   # DOM Listeners
+  
+  '.tagThisEntry click': ->
+    if @buttonMode is 'expand'
+      @expandInputField()
+    else
+      $('.tagAdd').click()
+  
+  '.tagHeader click': -> @expandContractInputField()
+  
   '#newTag keyup': (el, ev) ->
     if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
-      $('.tagAdd').click()
+      $('#addTag').click()
 
-  '.tagAdd click': (el) ->
+  #'.tagAdd click': (el) ->
+  '#addTag click': (el) ->
     tagName = @getTag()
+    log "tagAdd click mode #{@mode}"
     switch @mode
-      when 'edit'
-        log 'edit mode'
-        @appendTag tagName unless @alreadyExists tagName
+      when 'edit' 
+        @appendTag tagName
       when 'show'
         log 'show mode'
+        @appendTag tagName
         # entryId = $('#showEntry').data 'id' 
         # @model.tag.create {
         #   entry_id: entryId
