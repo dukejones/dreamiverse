@@ -10,11 +10,8 @@
 
     = include_stylesheets :shared, :media => 'all'
     
-    - if Rails.env == 'development'
-      /%script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
-      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
-    - else 
-      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
+    %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
 
     = include_javascripts :shared
         
@@ -37,7 +34,7 @@
 
     = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
 
-    - if Rails.env == 'production' || Rails.env == 'theta'
+    - if Rails.env.production? || Rails.env.theta?
       = javascript_include_tag 'google_analytics'
 
     = yield :foot

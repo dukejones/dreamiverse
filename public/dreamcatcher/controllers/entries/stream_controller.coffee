@@ -1,56 +1,43 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Stream',
+$.Controller 'Dreamcatcher.Controllers.Stream',
 
   init: ->
-    @page = 1
+    Stream.page = 1
     @container = $('#entryField .matrix.stream')
     @activateLightBox()   
     @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
-    # infinite scrolling
-    $(window).scroll =>
-      if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
-        # log 'window scroll'
-        @loadNextPage()
- 
+    @bind window, 'scroll', 'scrollEvent'
+    
+  scrollEvent: ->
+    if ($(window).scrollTop() > $(document).height() - $(window).height() - 200)
+      @loadNextPage()
     
   loadNextPage: ->
-    return if @currentlyLoading
-    # log 'running loadNextPage'
-    @currentlyLoading = true
-    @page += 1
+    Stream.page += 1
+    Stream.load(@getOptions(), @callback('updateStream'))
+
     @clear()
-    
     $('#nextPageLoading').show()
-    
-    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
     
   updateStream: (json) ->
     @clear()
-    @currentlyLoading = false   
     
     if !json.html? || json.html == ""
-      @currentlyLoading = true
+      Stream.currentlyLoading = true
       $('#noMoreEntries').show() # No more entries to load.
       
     $("#entry-filter-wrap .spinner, #users-filter-wrap .spinner").hide()
     
-    log json.html
-    log @page
-    
-    if @page > 1
+    if Stream.page > 1
       @container.append json.html
     else
       @container.html json.html
       
     @activateLightBox()     
   
-  # Generate model options   
   getOptions: ->
-    filters: {
-      page: @page
-      type: $('#entry-filter').val()
-      users: $('#users-filter').val()
-    }
+    type: $('#entry-filter').val()
+    users: $('#users-filter').val()
   
   # Setup lightbox for stream  
   activateLightBox: ->
@@ -63,7 +50,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Stream',
   
   # Form listeners    
   '#entry-filter, #users-filter change': (el) ->
-    @page = 1
+    Stream.page = 1
     $("##{el.attr('id')}-wrap .spinner").show()
-    Dreamcatcher.Models.Stream.load @getOptions(), @callback('updateStream')
+    Stream.load @getOptions(), @callback('updateStream')
     
