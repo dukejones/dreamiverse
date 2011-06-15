@@ -4,7 +4,18 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     @setupControllers()
-    @publish 'dom.added', $('#body') 
+    @publish 'dom.added', $('#body')
+    
+    @bind window, 'popstate', =>
+      @publish 'dream_field.show'
+      ###
+      switch window.location.pathname
+        when 'stream'
+          @publish 'dream_stream.show'
+        when 'carboes'
+          log 'a'
+      ###
+          
     
   #- controllers
   
@@ -12,11 +23,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#metaMenu').metaMenu()
     $('#entryField.field').dreamField()
     $('#entryField.stream').dreamStream()
-    
-    @bind window, 'popstate', (e) ->
-      log e
-      log window.location.href
-    
+        
     @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
     @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
         

@@ -111,20 +111,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
         $('#entryField').append html
     @publish 'appearance.change'
     
-  'dream_field.show subscribe': ->
-    @publish 'context_panel.show', data.user_id if data.user_id?
+    
+  'dream_field.show subscribe': (called, userId) ->
+    #@publish 'context_panel.show', user_id
     @showEntryField()
-  
-  'history.entry.field subscribe': ->
-    @publish 'dream_field.show'
     
   #- show entry
-  '.thumb-2d click': (el) ->
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: @data el
-    }
+  'a.link click': (el, ev) ->
+    ev.preventDefault()
+    @publish 'entry.show', el.attr 'href'
     
 }
   

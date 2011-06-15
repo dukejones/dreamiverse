@@ -31,9 +31,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     entryEl.show()
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
-  'history.entry.show subscribe': (called, data) ->
-    @publish 'context_panel.show', data.user_id if data.user_id?
-    @showEntryById data.id
+  'entry.show subscribe': (called, href) ->
+    window.history.pushState null, null, href
+    hrefSplit = href.split '/'
+    username = hrefSplit[1]
+    entryId = hrefSplit[2]
+    #@publish 'context_panel.show', username
+    @showEntryById entryId
 
   'a.spine-nav click': (el, ev) ->
     ev.preventDefault()
@@ -58,19 +62,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     
   '.prev, .next click': (el, ev) ->
     ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: el.data 'id'
-    }
     
   '.editEntry click': (el, ev) ->
     ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'edit'
-      id: el.closest('.entry').data 'id'
-    }
+    @publish 'entry.edit', el.attr 'href'
+
     
 }
   
