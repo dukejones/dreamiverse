@@ -1,5 +1,5 @@
 // ENTRY IMAGES
-.entry-images.entryPanels
+.entryImages.entryPanels{title: 'images'}
   .imagesHeader.headers
     .img
     images
@@ -17,7 +17,8 @@
     .dropboxImages
 
   .clear
-  #currentImages
+  
+  #currentImages.currentImages
     - images.each do |image|
       .entryImageContainer{:'data-id' => image.id}
         .entryImage{style: "background: url(#{image.url(:thumb)}) no-repeat scroll center center transparent"}

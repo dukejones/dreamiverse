@@ -49,7 +49,7 @@
         %option.label{value: 'Add to Book:'} Add to Book:
         = render :partial => "books/book_list"
         %option.removeBook{value: 'remove from book'} remove from book
-        %option.newBook{value: '+ new book'} + new book
+        %option.newBook{value: 'new'} + new book
 
       %input.newBook-input{type: 'text', value: '+ new book'}
 
@@ -183,7 +183,7 @@
 
 
   / NEW ENTRY TAG
-  .entry-tags.entryPanels
+  .entryTags.entryPanels{title: 'tags'}
     .tagHeader.headers
       .img
       tag
@@ -210,7 +210,7 @@
 
 
   / NEW ENTRY LINK
-  .entry-links.entryPanels
+  .entryLinks.entryPanels{title: 'links'}
     .linksHeader.headers
       .img
       links
@@ -237,7 +237,7 @@
 
 
   / NEW ENTRY EMOTIONS
-  .entry-emotions.entryPanels.hidden
+  .entryEmotions.entryPanels.hidden{title: 'emotions'}
     .emotionsHeader.headers
       .img
       emotions
@@ -280,20 +280,20 @@
   / NEW ENTRY ATTACHMENTS
   #entryAttach
     %p +
-    #attach-text.attach
+    #attach-text.attach{title: 'text'}
       .img
       text
     - unless is_ipad?
-      #attach-images.attach
+      #attach-images.attach{title: 'images'}
         .img
         images
-    #attach-tags.attach
+    #attach-tags.attach{title: 'tags'}
       .img
       tag
-    #attach-links.attach
+    #attach-links.attach{title: 'links'}
       .img
       links
-    #attach-emotions.attach
+    #attach-emotions.attach{title: 'emotions'}
       .img
       emotions
     #entry-appearance.attach.tooltip{title: "appearance"}

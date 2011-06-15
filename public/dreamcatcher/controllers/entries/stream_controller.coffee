@@ -1,22 +1,20 @@
-$.Controller 'Dreamcatcher.Controllers.Stream'
+$.Controller 'Dreamcatcher.Controllers.Entries.Stream'
 
   model: {
     entry : Dreamcatcher.Models.Entry
   }
 
   init: (el) ->
-    @comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
-    @comments.load $('#entryField')
-    @showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
+    @showEntry = new Dreamcatcher.Controllers.Entries.ShowEntry $('#showEntry')
     @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#totem') if $('#totem').exists()
+    @newEditEntry = new Dreamcatcher.Controllers.Entries.NewEditEntry $('#newEditEntry')
     
     Stream.page = 1
     @container = $('.matrix', el)
-    @activateLightBox()   
+    @activateLightBoxAndComments()   
     @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
     @bind window, 'scroll', 'scrollEvent'
-    @bind $('#entry-filter, #users-filter'), 'change', 'dropdownChange'
 
   scrollEvent: (window)->
     return unless $('#entryField .matrix.stream').is ':visible'
@@ -40,23 +38,22 @@ $.Controller 'Dreamcatcher.Controllers.Stream'
     
     @container.empty() if Stream.page == 1
     @container.append json.html
-    @activateLightBox()
+    @activateLightBoxAndComments()
   
   getOptions: ->
     type: $('#entry-filter').val()
     users: $('#users-filter').val()
   
   # Setup lightbox for stream
-  activateLightBox: ->
+  activateLightBoxAndComments: ->
     $('a.lightbox').each -> $(this).lightBox {containerResizeSpeed: 0}
+    $('.thumb-1d').each -> $(this).comments() unless $(this).hasClass 'dreamcatcher_common_comments' 
     
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading, #entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
   
-  # Form listeners    
-  dropdownChange: (el)->
+  '#entry-filter, #users-filter change': (el)->
     Stream.reset()
-
     el.prev(".spinner").show()
     Stream.load @getOptions(), @callback('updateStream')
 
@@ -72,19 +69,9 @@ $.Controller 'Dreamcatcher.Controllers.Stream'
         @stream = new Dreamcatcher.Controllers.Entries.Stream $("#streamContextPanel")
         
   showEntryStream: ->
-    #if $('#entryField .matrix.stream').exists()
     $('#entryField').children().hide()
     $('#entryField .matrix.stream').show()
     @publish 'appearance.change'
-    ###
-    else
-      @model.entry.showStream {}, (html) =>
-        @hideEntryField()
-        $('#entryField').append html
-        $('#entryField .matrix.stream a.left').removeAttr 'href'
-        $('#entryField .matrix.stream a.tagCloud').removeAttr 'href'
-        @controller.comments.load $('entryField .matrix.stream')
-    ###
 
   'history.entry.stream subscribe': (called, data) ->
     @showStreamContext()

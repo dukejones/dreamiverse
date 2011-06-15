@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Users.Settings',
+$.Controller 'Dreamcatcher.Controllers.Users.SettingsPanel',
 
   model: Dreamcatcher.Models.Settings
   

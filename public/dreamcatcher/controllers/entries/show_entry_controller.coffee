@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Show',
+$.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry',
 
   controller: {}
   
@@ -12,9 +12,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Show',
       return $("#showEntry .entry[data-id=#{id}]")
   }
 
-  init: ->
-    @controller.comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
-
   showEntryById: (id) ->
     entryEl = @el.entry id
     log 'showEntryById'
@@ -26,7 +23,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Show',
         $('#showEntry').append html
         @showEntryElement @el.entry id
         showEntryEl = $('#showEntry .entry:last')
-        @controller.comments.load showEntryEl
+        showEntryEl.comments()
         showEntryEl.linkify().videolink()
 
   showEntryElement: (entryEl) ->
@@ -39,7 +36,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Show',
   'history.entry.show subscribe': (called, data) ->
     @publish 'context_panel.show', data.user_id if data.user_id?
     @showEntryById data.id
-    
 
   'a.spine-nav click': (el, ev) ->
     ev.preventDefault()
@@ -71,7 +67,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Show',
     }
     
   '.editEntry click': (el, ev) ->
-    ev.preventDefault() #todo: uncomment href in haml
+    ev.preventDefault()
     @historyAdd {
       controller: 'entry'
       action: 'edit'

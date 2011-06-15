@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Entries',
+$.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
 
   #use across all controllers
   model: {
@@ -23,8 +23,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   #- constructor
   
   init: ->
-    @controller.showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
-    @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEntry $('#newEditEntry')
+    @controller.showEntry = new Dreamcatcher.Controllers.Entries.ShowEntry $('#showEntry')
+    @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEditEntry $('#newEditEntry')
     @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
     @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel') if $('#contextPanel').exists()
     
@@ -116,26 +116,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     @publish 'appearance.change'
   
   'history.entry.field subscribe': (called, data) ->
-    @showEntryContext()
+    @publish 'context_panel.show', data.user_id if data.user_id?
     @showEntryField()
-      
-  #- new entry
-  
-  displayNewEditEntry: (html) ->
-    $('#entryField').children().hide()
-    $('#newEditEntry').html html
-    
-    # entryMode = $('#entryMode').data 'id'
-    $('#newEditEntry .entry-tags').tags 'edit' # invoke the tags controller
-    @publish 'dom.added', $('#newEditEntry')
-    $('#newEditEntry').show()
-    
-  newEntry: ->
-    @model.entry.new {}, @callback('displayNewEditEntry')
-  
-  'history.entry.new subscribe': (called, data) ->
-    @showEntryContext()
-    @newEntry()
   
   #- new book
     
@@ -144,15 +126,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     @showEntryField()
     @controller.books.newBook()
     
-  #- edit entry
-  
-  editEntry: (id) ->
-    @model.entry.edit {id: id}, @callback('showNewEditEntry')
-
-  'history.entry.edit subscribe': (called, data) ->
-    @showEntryContext data.user_id if data.user_id?
-    @editEntry data.id
-    
   #- show entry
   '.thumb-2d click': (el) ->
     @historyAdd {
@@ -160,8 +133,4 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
       action: 'show'
       id: @data el
     }
-  ###
-  'comments.load subscribe': (called, el) ->
-    @controller.comments.load showEntryEl
-  ###
   

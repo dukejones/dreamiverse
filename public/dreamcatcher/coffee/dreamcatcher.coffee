@@ -41,13 +41,13 @@ steal.plugins(
 
   # common jmvc files
   helpers 'cookie', 'ui'
-  models 'user', 'image', 'tag'
+  models 'user', 'image', 'tag', 'comment'
   controllers 'application', {
     module: 'common'
-    classes: ['upload', 'tags']
+    classes: ['upload', 'tags', 'comments']
   }, {
     module: 'users'
-    classes: ['meta_menu', 'settings']
+    classes: ['meta_menu']#, 'settings_panel']
   }
   
   # page-specific jmvc files
@@ -67,14 +67,14 @@ steal.plugins(
       }
     
     else
-      models 'entry', 'book', 'stream', 'comment'
+      models 'entry', 'book', 'stream'
       controllers {
         module: 'entries'
-        classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
+        classes: ['entry_field', 'stream', 'newedit_entry', 'books', 'show_entry']
       }
       controllers {
         module: 'users'
-        classes: ['context_panel']#'appearance', 'bedsheets', 
+        classes: ['context_panel', 'appearance_panel']
       }
       
 ).views()

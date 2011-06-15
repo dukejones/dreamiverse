@@ -13,8 +13,8 @@
     %span &rsaquo;
 
   - if @book
-    %a.spine-nav{:'data-id' => @book.id}
-      = @book.title if @book
+    %a.spine-nav{:'data-id' => @book.id, class: @book.color}
+      = @book.title
   - elsif session[:lens] == :stream
     %a.stream{href: stream_path} stream
   - else
@@ -25,9 +25,9 @@
     %span &lsaquo;
 
   - if @entry.user == current_user
-    /todo: bring back!
-    %a.editEntry
-    /{href: edit_entry_path(@entry)} edit
+    %a.editEntry{href: edit_entry_path(@entry)} edit
+    %a.deleteEntry delete
+    /todo: bring back
     /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 
 

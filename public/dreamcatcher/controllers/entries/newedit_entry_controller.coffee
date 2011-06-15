@@ -1,18 +1,54 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
-  
+$.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
+
+  model: {
+    entry : Dreamcatcher.Models.Entry
+    book : Dreamcatcher.Models.Book
+  }
+  controller: {}
+
   init: ->
     @initCookieSaver()
-      
-      
-  'form#new_entry submit': (el, ev) ->
+    
+  #-
+  displayNewEditEntry: (html) ->
+    $('#entryField').children().hide()
+    $('#newEditEntry').html html
+
+    # entryMode = $('#entryMode').data 'id'
+    $('#newEditEntry .entry-tags').tags 'edit' # invoke the tags controller
+    if $('#contextPanel .book').exists()
+      bookId = $('#contextPanel .book').data 'id'
+      log 'bookId: '+bookId
+      $('#books-list').val bookId
+    
+    @publish 'dom.added', $('#newEditEntry')
+    $('#newEditEntry').show()
+
+  newEntry: ->
+    @model.entry.new {}, @callback('displayNewEditEntry')
+
+  'history.entry.new subscribe': (called, data) ->
+    @publish 'context_panel.show', data.user_id if data.user_id?
+    @newEntry()
+
+  editEntry: (id) ->
+    @model.entry.edit {id: id}, @callback('displayNewEditEntry')
+
+  'history.entry.edit subscribe': (called, data) ->
+    @publish 'context_panel.show', data.user_id if data.user_id?
+    @editEntry data.id
+    
+  #- 
+  'form#new_entry, form.edit_entry submit': (el, ev) ->
     ev.preventDefault()
     new Dreamcatcher.Models.Entry(el.formParams()).save()
    
   'entry.created subscribe': (called, response) ->
+    log response.type
     if response.type is 'error'
       log 'oh no!'
-    #else if response.type = 'ok'
-    #show entry with response.data.entry_id
+    else if response.type is 'ok'
+      @publish 'entry.show', response.data.id #check
 
 
   #- Cookie Saver
@@ -65,26 +101,31 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
     @posted = true
     @clearState()
     
-      
+  #-  
   '#books-list change': (el) ->
     $('#books-list-button').css {
       #width: 'auto !important'
-      'width': '160px !important' # TODO: remove
+      'width': '160px' # TODO: remove
     }
-    if el.val() is '+ new book'
-      $('input.newBook-input', el.parent()).show()
+    if el.val() is 'new'
+      inputEl = $('input.newBook-input', el.parent())
+      inputEl.val ''
+      inputEl.show()
       $('.ui-selectmenu-status', el.parent()).hide()
     else
       $('input.newBook-input', el.parent()).hide()
       $('.ui-selectmenu-status', el.parent()).show()
     
-  '.headers click': (el) ->
-    el.parent().hide()
+  '.entryPanels .headers click': (el) ->
+    entryPanelEl = el.closest '.entryPanels'
+    name = entryPanelEl.attr 'title'
+    entryPanelEl.hide()
+    $("#entryAttach .attach[title=#{name}]").show()
   
   '#entryAttach .attach click': (el) ->
-    name = (el.attr 'id').replace('attach-','')
+    name = el.attr 'title'
     el.hide()
-    $(".entry-#{name}").show()
+    $(".entryPanels[title=#{name}]").show()
     @initUploader() if name is 'images'
       
   initUploader: ->
@@ -101,7 +142,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEntry',
         button: 'clickToBrowse'
         drop: 'dropboxBrowse'
         active: 'qq-upload-drop-area-active'
-        list: 'dropboxImages'
+        list: 'currentImages'
       }
     }
     
