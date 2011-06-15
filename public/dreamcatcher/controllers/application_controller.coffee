@@ -9,10 +9,15 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- controllers
   
   setupControllers: ->
-    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu       $('#metaMenu')        if $('#metaMenu').exists()
+    $('#metaMenu').metaMenu()
+    $('#entryField.field').dreamField()
+    $('#entryField.stream').dreamStream()
+    
+    @bind window, 'popstate', (e) ->
+      log e
+      log window.location.href
+    
     @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries.EntryField   $("#entryField")      if $("#entryField .matrix.field").exists()
-    @stream     = new Dreamcatcher.Controllers.Entries.Stream       $("#entryField")      if $("#entryField .matrix.stream").exists()
     @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
         
   #- setup ui elements
@@ -30,7 +35,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @initUi data
     
   #- appearance (bedsheet, scroll  & theme) change
-  
   'appearance.change subscribe': (called, data) ->
     #if no data is passed, then use the user default settings
     if not data?
@@ -93,7 +97,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user = {}
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
-  
   
 $(document).ready ->
   @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')

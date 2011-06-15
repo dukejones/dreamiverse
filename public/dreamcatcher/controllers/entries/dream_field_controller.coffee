@@ -1,11 +1,10 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
+$.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
+  pluginName: 'dreamField'
+}, {
 
-  #use across all controllers
   model: {
     entry : Dreamcatcher.Models.Entry
-    book : Dreamcatcher.Models.Book
   }
-  controller: {}
   
   el: {
     bookMatrix: (id) ->
@@ -23,13 +22,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
   #- constructor
   
   init: ->
-    @controller.showEntry = new Dreamcatcher.Controllers.Entries.ShowEntry $('#showEntry')
-    @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEditEntry $('#newEditEntry')
-    @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
-    @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel') if $('#contextPanel').exists()
+    $('#showEntry').showEntry()
+    $('#newEditEntry').newEditEntry()
+    $('#entryField .matrix.books').books()
+    $('#totem').contextPanel()
     
-    if $('#entryField .matrix.field').exists()
-      @showEntryField()
     @publish 'book.drop', $('#entryField .matrix.books')
     @publish 'entry.drag', $('#entryField .matrix.field')
           
@@ -43,8 +40,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
 
     @model.entry.update entryId, {entry: entryMeta}
 
-    #could move back if error
-    @controller.books.closeBook bookEl
+    @publish 'book.close', bookEl
     bookMatrixEl = @el.bookMatrix bookId
     if bookMatrixEl.exists()
       entryEl.appendTo bookMatrixEl
@@ -57,7 +53,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
   'book.drop subscribe': (called, data) ->
     parentEl = data
     $('.book, .avatar', parentEl).each (i, el) =>
-      @controller.books.closeBook $(el)
+      @publish 'book.close', $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
           dropEl = $(ev.target)
@@ -65,13 +61,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
 
         over: (ev, ui) =>
           el = $(ev.target)
-          @controller.books.openBook el, true if el.hasClass 'book'
+          @publish 'book.open', el if el.hasClass 'book'
           $('.add-active', ui.helper).show()
           $('.entryDrop-active, .entryRemove', el).show()
 
         out: (ev, ui) =>
           el = $(ev.target)
-          @controller.books.closeBook el if el.hasClass 'book' 
+          @publish 'book.close', el if el.hasClass 'book' 
           $('.add-active', ui.helper).hide()
           $('.entryDrop-active, .entryRemove', el).hide()
       }
@@ -114,17 +110,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
         @hideEntryField()
         $('#entryField').append html
     @publish 'appearance.change'
-  
-  'history.entry.field subscribe': (called, data) ->
+    
+  'dream_field.show subscribe': ->
     @publish 'context_panel.show', data.user_id if data.user_id?
     @showEntryField()
   
-  #- new book
-    
-  'history.book.new subscribe': (called, data) ->
-    @showEntryContext()
-    @showEntryField()
-    @controller.books.newBook()
+  'history.entry.field subscribe': ->
+    @publish 'dream_field.show'
     
   #- show entry
   '.thumb-2d click': (el) ->
@@ -133,4 +125,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.EntryField',
       action: 'show'
       id: @data el
     }
+    
+}
   

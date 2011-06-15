@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel',
+$.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
+  pluginName: 'appearancePanel'
+}, {
 
   model: {
     image: Dreamcatcher.Models.Image
@@ -78,3 +80,5 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel',
     $(".bedsheet").removeClass 'selected'
     el.addClass 'selected'
     @publish 'appearance.update', { bedsheet_id: bedsheetId }
+    
+}

@@ -1,13 +1,15 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Stream'
+$.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
+  pluginName: 'dreamStream'
+}, {
 
   model: {
     entry : Dreamcatcher.Models.Entry
   }
 
-  init: (el) ->
-    @showEntry = new Dreamcatcher.Controllers.Entries.ShowEntry $('#showEntry')
-    @contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#totem') if $('#totem').exists()
-    @newEditEntry = new Dreamcatcher.Controllers.Entries.NewEditEntry $('#newEditEntry')
+  init: (el) ->    
+    $('#showEntry').showEntry()
+    $('#newEditEntry').newEditEntry()
+    $('#totem').contextPanel()
     
     Stream.page = 1
     @container = $('.matrix', el)
@@ -57,25 +59,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Stream'
     el.prev(".spinner").show()
     Stream.load @getOptions(), @callback('updateStream')
 
-  showStreamContext: ->
-    if $('#streamContextPanel').exists()
-      $('#contextPanel').hide()
-      $('#streamContextPanel').show()
-    else    
-      @model.entry.showContext {type:'stream'}, (html) =>
-        $('#contextPanel').hide()
-        $('#totem').after html
-        @publish 'dom.added', $('#streamContextPanel')
-        @stream = new Dreamcatcher.Controllers.Entries.Stream $("#streamContextPanel")
-        
-  showEntryStream: ->
+
+  'dream_stream.show subscribe': ->
     $('#entryField').children().hide()
     $('#entryField .matrix.stream').show()
+    $('#totem').hide()
+    $('#streamContextPanel').show()
     @publish 'appearance.change'
-
-  'history.entry.stream subscribe': (called, data) ->
-    @showStreamContext()
-    @showEntryStream()
+    
+  'history.entry.stream subscribe': ->
+    @publish 'dream_stream.show'
     
   '.thumb-1d a.left, .thumb-1d a.tagCloud click': (el, ev) ->
     ev.preventDefault()
@@ -86,6 +79,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Stream'
       id: thumbEl.data 'id'
       user_id: thumbEl.data 'userid'
     }
+    
+}
     
     
     

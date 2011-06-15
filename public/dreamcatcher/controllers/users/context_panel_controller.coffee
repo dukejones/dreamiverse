@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Users.ContextPanel',
+$.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
+  pluginName: 'contextPanel'
+}, {
 
   model: {
     entry : Dreamcatcher.Models.Entry
@@ -53,3 +55,5 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel',
       $('#contextPanel .avatar').css 'background-image', "url(/images/uploads/#{image.id}-avatar_main.#{image.format})"
       $('#avatarDrop').remove()
       @model.user.update { "user[image_id]": image.id }
+
+}

@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Users.SettingsPanel',
+$.Controller 'Dreamcatcher.Controllers.Users.SettingsPanel',{
+  pluginName: 'settingsPanel'
+}, {
 
   model: Dreamcatcher.Models.Settings
   
@@ -81,4 +83,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.SettingsPanel',
         $('#user_old_password, #user_password, #user_password_confirmation').val ''
 
     $('form#change_password').bind 'ajax:error', (xhr, status, error)->
-      log xhr.errors    
+      log xhr.errors
+      
+}

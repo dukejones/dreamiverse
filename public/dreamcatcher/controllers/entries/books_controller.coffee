@@ -1,7 +1,8 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Books',
+$.Controller 'Dreamcatcher.Controllers.Entries.Books', {
+  pluginName: 'books'
+}, {
 
   model: {
-    entry : Dreamcatcher.Models.Entry
     book : Dreamcatcher.Models.Book
   }
   
@@ -21,14 +22,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     return null
   
   #- new book
+    
+  'book.new subscribe': ->
+    @publish 'dream_field.show'
   
-  newBook: ->
     @model.book.new {}, (html) =>
       $('#welcomePanel').hide()
       $('#entryField .matrix.books').prepend html
       bookEl = $('#entryField .matrix.books .book:first')
       @openBook bookEl
       @publish 'dom.added', bookEl
+      
+  'history.book.new subscribe': ->
+    @publish 'book.new'
     
   #- show book
   
@@ -60,9 +66,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
     
   'history.book.show subscribe': (called, data) ->
     @showBook data.id
-    #todo: reused from entries (refactor)
-    bedsheetId = $('#entryField').data 'imageid'
-    @publish 'bedsheet.change', bedsheetId if bedsheetId?
+    @publish 'appearance.change'
     
   '.book .mask click': (el) ->
     bookEl = el.closest '.book'
@@ -71,27 +75,37 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       action: 'show'
       id: @data bookEl
     }
-      
-  #- open book
   
-  openBook: (el, empty) ->
+  #- open for edit
+  openBookForEdit: (el) ->
+    @openBook el, true
+    
+  'book.open subscribe': (called, el) ->
+    @openBookForEdit el
+      
+  '.closed .edit click': (el) ->
+    @openBookForEdit el
+  
+  #- open 
+  openBook: (el, controlPanel) ->
     @closeAllBooks()
     bookEl = @el.book el
     $('.open, .closeClick', bookEl).show()
-    $('.control-panel', bookEl).toggle(not empty)
+    $('.control-panel', bookEl).toggle controlPanel
     $('.closed', bookEl).hide()
     
-    
-  '.closed .edit click': (el) ->
+  'book.open subscribe': (called, el) ->
     @openBook el
     
-  #- close book
-      
+  #- close
   closeBook: (el) ->
     bookEl = @el.book el
     $('.open', bookEl).hide()
     $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
+  
+  'book.close subscribe': (called, el) ->
+    @closeBook @el.book el
 
   '.closeClick, .confirm click': (el) ->
     @closeBook @el.book el
@@ -224,3 +238,5 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books',
       @saveBook el, { cover_image_id: image.id }
       
     $('.dropbox-field-shine .add', el).show()
+    
+}

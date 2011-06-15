@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
+$.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
+  pluginName: 'metaMenu'
+}, {
 
   init: ->
     @setupiOSfix()
@@ -51,18 +53,19 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu',
 
 
   '#new-post change': (el) ->
-    #todo: fix so empty is never showing (style)
-    if el.val() isnt 'empty'
-      @historyAdd {
-        controller: el.val()
-        action: 'new'
-      }
+    return if el.val() is 'empty'
+    @publish el.val()+'.new'
     el.val 'empty'
     
   '.newEntry click': (el) ->
+    @publish 'entry.new'
+    ###
     @historyAdd {
       controller: 'entry'
       action: 'new'
     }
+    ###
+    
+}
     
 

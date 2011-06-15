@@ -70,7 +70,7 @@ steal.plugins(
       models 'entry', 'book', 'stream'
       controllers {
         module: 'entries'
-        classes: ['entry_field', 'stream', 'newedit_entry', 'books', 'show_entry']
+        classes: ['dream_field', 'dream_stream', 'newedit_entry', 'books', 'show_entry']
       }
       controllers {
         module: 'users'

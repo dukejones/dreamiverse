@@ -1,10 +1,9 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry',
-
-  controller: {}
+$.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
+  pluginName: 'showEntry'
+}, {
   
   model: {
     entry : Dreamcatcher.Models.Entry
-    #user: Dreamcatcher.Models.User
   }
 
   el: { 
@@ -72,6 +71,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry',
       action: 'edit'
       id: el.closest('.entry').data 'id'
     }
+    
+}
   
   
   

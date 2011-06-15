@@ -1,11 +1,10 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
+$.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
+  pluginName: 'newEditEntry'
+}, {
 
   model: {
     entry : Dreamcatcher.Models.Entry
-    book : Dreamcatcher.Models.Book
   }
-  controller: {}
-  
 
   init: ->
     @initCookieSaver()
@@ -34,9 +33,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
     @mode = 'new'
     @model.entry.new {}, @callback('displayNewEditEntry')
 
-  'history.entry.new subscribe': (called, data) ->
-    @publish 'context_panel.show', data.user_id if data.user_id?
+  'entry.new subscribe': ->
+    window.history.pushState 'entry.new', 'New Entry', '/entries/new'
+    @publish 'context_panel.show'
     @newEntry()
+
+  #'history.entry.new subscribe': (called, data) ->
 
   editEntry: (id) ->
     @mode = 'edit'
@@ -152,6 +154,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
         list: 'currentImages'
       }
     }, '//dreamcatcher/views/images/entry/image_show.ejs'
+    
+}
     
 
 
