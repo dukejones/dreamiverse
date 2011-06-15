@@ -17,19 +17,61 @@ javascripts:
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
 
-  entries:
-    - public/javascripts/geo.js
-    - public/javascripts/dreams.js
-    - public/javascripts/compiled/follow_hover.js
-    - public/javascripts/compiled/dreamfield.js
-    - public/javascripts/tag_stream.js
+  # entries:
+  #   - public/javascripts/geo.js
+  #   - public/javascripts/dreams.js
+  #   - public/javascripts/compiled/follow_hover.js
+  #   - public/javascripts/compiled/dreamfield.js
+  #   - public/javascripts/tag_stream.js
     
   home:
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/publicstream.js
+  
+  friends:
+    - public/javascripts/compiled/follow_hover.js
+  
+  new_entry:
+    - public/javascripts/browserdetect.js
+    - public/javascripts/pubsub.js
+    - public/javascripts/compiled/sharing.js
+    - public/javascripts/compiled/cookies.js
+    
+
+  show_entry:
+    - public/javascripts/browserdetect.js
+    - public/javascripts/jquery-ui.js
+    - public/javascripts/swfobject.js
+    - public/javascripts/compiled/showentry.js
+    - public/javascripts/compiled/fit_to_content.js
+
+  context_panel:
+    - public/javascripts/compiled/context_panel.js
+    - public/javascripts/browserdetect.js
+    - public/javascripts/dreams.js
+
+  join:
+    - public/javascripts/compiled/seedcode.js
+
+  login:
+    - public/javascripts/compiled/loginpanel.js
+    
+  feedback:
+    - public/javascripts/compiled/fit_to_content.js
+    - public/javascripts/compiled/feedback.js
+
+  jmvc:
     
     
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css
     - public/stylesheets/jquery.lightbox-0.5.css
+    
+  dictionaries:
+    - public/stylesheets/compiled/dictionaries.css
+    
+  imagebank:
+    - public/stylesheets/compiled/ib.css
+    
+    

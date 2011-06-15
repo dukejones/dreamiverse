@@ -1,17 +1,11 @@
 - content_for :head do
-  = javascript_include_tag 'browserdetect', 'jquery-ui.min', 'swfobject'
-  = coffeescript_include_tag 'showentry', 'fit_to_content'
+  = include_javascripts 'show_entry'
   
   - if !@entry.body.blank?
     %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
     
   - if @entry._?.main_image
     %meta{name:"og:image", content:"http://dreamcatcher.net#{@entry.main_image.url(:facebook)}"}
-
-/ :coffeescript
-/   require({baseUrl: "/javascripts"}, [ 'autoresize.jquery.min' ])
-/   require({baseUrl: "/javascripts/compiled"}, [ 'tag', 'showentry', 'entries' ] )
-
 
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @entry.user}

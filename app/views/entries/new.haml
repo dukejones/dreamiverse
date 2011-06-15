@@ -1,9 +1,5 @@
 - content_for :head do
-  = javascript_include_tag 'browserdetect', 'pubsub'#, 'userfileuploader', 'geo'
-  = coffeescript_include_tag 'sharing', 'cookies' # 'tag', 'fit_to_content', 'newentry'
-
-/- content_for :foot do
-/  = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
+  = include_javascripts 'new_entry'
 
 
 / CONTEXT PANEL

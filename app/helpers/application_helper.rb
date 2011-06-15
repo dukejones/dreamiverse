@@ -42,14 +42,6 @@ module ApplicationHelper
     request.user_agent._?.match(/iPad/)
   end
   
-  def coffeescript_include_tag(*sources)
-    javascript_include_tag(*(sources.map { |js| "compiled/#{js}" }))
-  end
-  
-  def sass_link_tag(*sources)
-    stylesheet_link_tag(*(sources.map { |css| "compiled/#{css}" }))
-  end
-
   # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
 
