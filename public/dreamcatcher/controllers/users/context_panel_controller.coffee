@@ -1,8 +1,19 @@
 $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel',
 
   model: {
+    entry : Dreamcatcher.Models.Entry
     user: Dreamcatcher.Models.User
   }
+  
+  'context_panel.show subscribe': (called, userId) ->    
+    #todo: should only get context panel if for the user it doesn't exist in the dom.
+    params = { type: 'entry' }
+    if not userId?
+      $.extend params, { user_id: userId }
+    @model.entry.showContext params, (html) =>
+      $('#streamContextPanel').hide()
+      $('#totem').replaceWith html
+      $('#totem').show()
 
   '.avatar, .book click': (el) ->
     if el.hasClass('book') and $('#showEntry').is(':visible')
@@ -34,7 +45,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel',
       }
       onComplete: @callback 'uploadComplete'
     }
-
     
   uploadComplete: (id, fileName, result) ->
     $('#avatarDrop .uploading').remove()

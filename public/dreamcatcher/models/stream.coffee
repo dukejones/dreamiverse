@@ -1,5 +1,5 @@
 $.Model 'Stream',{
-    
+  
   load: (filters, success) ->
     return if @currentlyLoading
     $.extend(filters, {page: @page})
