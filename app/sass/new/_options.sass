@@ -20,13 +20,12 @@
     +round(20)
     +center
     +pointer
-
     height: 34px
-    line-height: 34px
     margin: 0 0 0 8px
 
   #entry-appearance, #entry-date, #entry-location
     width: 42px
+    line-height: 34px
 
 
 
@@ -116,6 +115,7 @@
   .books-list
     +left
     +relative
+    line-height: 34px
 
     .img
       +left
@@ -125,23 +125,26 @@
       +hidden
       +round(7)
       +outline
-      margin: 0
-      height: 32px
-      width: 198px !important
+      +transparent
+      +font(14)
+      border: none
+      margin: 0 8px 0 0
+      height: 24px
+      width: 142px !important
 
 
 // BOOKS LIST HTML MENU & BUTTON
 #entryOptions
   #books-list-button
     +user-select
-    width: 32px !important
+    width: 32px
 
   #books-list, #books-list-button
     +outline
     margin: 0
     padding: 0
     // line-height for chrome / webkit height
-    line-height: 18px
+    line-height: 32px
 
     .ui-selectmenu-status
       +hidden
@@ -374,6 +377,19 @@
         +pointer
 
 
+
+// GENERAL COLORS
+.light
+  .newBook-input
+    color: #222
+
+.dark
+  .newBook-input
+    color: #ddd
+
+
+
+
 // WIDGET COLORS
 .light
   #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
@@ -407,9 +423,6 @@
 .dark #entryType-list-menu, .dark #sharing-list-menu
   li.default, li.default-hover
     background-color: #333 
-
-
-
 
 
 
