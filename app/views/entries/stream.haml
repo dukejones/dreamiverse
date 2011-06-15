@@ -1,13 +1,13 @@
 
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
+#totem
 
 / ENTRY FIELD
 #entryField
   = render :partial => "stream"
 
   #showEntry{style: 'display:none'}
-  #newEditEntry{style: 'display:none'}
 
 - content_for :foot do
   / APPLIES SELECTED CLASS TO META MENU

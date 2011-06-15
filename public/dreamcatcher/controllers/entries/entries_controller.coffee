@@ -13,8 +13,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
       return $("#entryField .matrix.field")
     book: (id) ->
       return $("#entryField .matrix.books .book[data-id=#{id}]")
-    entry: (id) ->
-      return $("#showEntry .entry[data-id=#{id}]")
   }
 
   data: (el) ->
@@ -28,7 +26,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     @controller.showEntry = new Dreamcatcher.Controllers.Entries.Show $('#showEntry')
     @controller.newEditEntry = new Dreamcatcher.Controllers.Entries.NewEntry $('#newEditEntry')
     @controller.books = new Dreamcatcher.Controllers.Entries.Books $('#entryField .matrix.books') if $('#entryField .matrix.books').exists()
-    @controller.comments = new Dreamcatcher.Controllers.Entries.Comments $('#entryField')
     @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel') if $('#contextPanel').exists()
     
     if $('#entryField .matrix.field').exists()
@@ -100,35 +97,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     if not $('#entryField .matrix.field').is ':visible'
       $('#contextPanel .book').toggle not start
       $('#contextPanel .avatar').toggle start
-
-  #- context panels
-  
-  showEntryContext: (userId) ->    
-    #todo: should only get context panel if for the user it doesn't exist in the dom.
-    params = { type: 'entry' }
-    if not userId?
-      $.extend params, { user_id: userId }
-    @model.entry.showContext params, (html) =>
-      $('#streamContextPanel').hide()
-      $('#totem').replaceWith html
-      @controller.contextPanel = new Dreamcatcher.Controllers.Users.ContextPanel $('#contextPanel')
-      $('#totem').show()
-
-  showStreamContext: ->
-    if $('#streamContextPanel').exists()
-      $('#contextPanel').hide()
-      $('#streamContextPanel').show()
-    else    
-      @model.entry.showContext {type:'stream'}, (html) =>
-        $('#contextPanel').hide()
-        $('#totem').after html
-        @publish 'dom.added', $('#streamContextPanel')
-        @stream = new Dreamcatcher.Controllers.Entries.Stream $("#streamContextPanel")
   
   #- entry field
   
   hideEntryField: ->
-    $('#entryField').children().hide()#fadeOut 'fast'
+    $('#entryField').children().hide()
   
   showEntryField: ->
     $('#contextPanel .avatar').show()
@@ -145,26 +118,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
   'history.entry.field subscribe': (called, data) ->
     @showEntryContext()
     @showEntryField()
-    
-  #- stream
-        
-  showEntryStream: ->
-    if $('#entryField .matrix.stream').exists()
-      @hideEntryField()
-      $('#entryField .matrix.stream').show()
-    else
-      @model.entry.showStream {}, (html) =>
-        @hideEntryField()
-        $('#entryField').append html
-        $('#entryField .matrix.stream a.left').removeAttr 'href'
-        $('#entryField .matrix.stream a.tagCloud').removeAttr 'href'
-        @controller.comments.load $('entryField .matrix.stream')
-    @publish 'appearance.change'
-  
-  'history.entry.stream subscribe': (called, data) ->
-    @showStreamContext()
-    @showEntryStream()
-    
+      
   #- new entry
   
   displayNewEditEntry: (html) ->
@@ -200,44 +154,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries',
     @editEntry data.id
     
   #- show entry
-  
-  showEntryById: (id) ->
-    entryEl = @el.entry id
-    log 'showEntryById'
-    $('#showEntry').tags 'show' # invoke the tags controller
-    if entryEl.exists()
-      @showEntryElement entryEl
-    else
-      @model.entry.show {id: id}, (html) =>
-        $('#showEntry').append html
-        @showEntryElement @el.entry id
-        showEntryEl = $('#showEntry .entry:last')
-        @controller.comments.load showEntryEl
-        showEntryEl.linkify().videolink()
-  
-  showEntryElement: (entryEl) ->
-    $('#showEntry').children().hide()
-    @hideEntryField()
-    $('#showEntry').show()
-    entryEl.show()
-    @publish 'appearance.change', entryEl.data 'viewpreference'
-    
-  'history.entry.show subscribe': (called, data) ->
-    @showEntryContext data.user_id if data.user_id?
-    @showEntryById data.id
-    
   '.thumb-2d click': (el) ->
     @historyAdd {
       controller: 'entry'
       action: 'show'
       id: @data el
     }
-    
-  '.thumb-1d a.left, .thumb-1a a.tagCloud click': (el) ->
-    thumbEl = el.closest('.thumb-1d')
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: thumbEl.data 'id'
-      user_id: thumbEl.data 'userid'
-    }
+  ###
+  'comments.load subscribe': (called, el) ->
+    @controller.comments.load showEntryEl
+  ###
+  
