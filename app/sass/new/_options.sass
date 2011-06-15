@@ -20,13 +20,12 @@
     +round(20)
     +center
     +pointer
-
     height: 34px
-    line-height: 34px
     margin: 0 0 0 8px
 
   #entry-appearance, #entry-date, #entry-location
     width: 42px
+    line-height: 34px
 
 
 
@@ -116,6 +115,7 @@
   .books-list
     +left
     +relative
+    line-height: 34px
 
     .img
       +left
@@ -126,16 +126,17 @@
       +round(7)
       +outline
       +transparent
-      margin: 0
-      height: 32px
-      width: 154px !important
+      border: none
+      margin: 0 8px 0 0
+      height: 24px
+      width: 142px !important
 
 
 // BOOKS LIST HTML MENU & BUTTON
 #entryOptions
   #books-list-button
     +user-select
-    width: 32px !important
+    width: 32px
 
   #books-list, #books-list-button
     +outline
