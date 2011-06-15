@@ -9,11 +9,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- controllers
   
   setupControllers: ->
-    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.Images.Images      $("#frame.browser")   if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField .matrix.field").exists()
-    @stream     = new Dreamcatcher.Controllers.Stream             $("#entryField")      if $("#entryField .matrix.stream").exists()
-    @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
+    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu       $('#metaMenu')        if $('#metaMenu').exists()
+    @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
+    @entries    = new Dreamcatcher.Controllers.Entries.EntryField   $("#entryField")      if $("#entryField .matrix.field").exists()
+    @stream     = new Dreamcatcher.Controllers.Entries.Stream       $("#entryField")      if $("#entryField .matrix.stream").exists()
+    @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
         
   #- setup ui elements
   
@@ -23,8 +23,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    $('textarea', parentEl).each (i, el) =>
-      fitToContent $(el).attr('id'), 0
+    $('textarea', parentEl).each (i, el) ->
+      fitToContent $(this).attr('id'), 0
       
   'dom.added subscribe': (called, data) ->
     @initUi data
@@ -54,7 +54,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
       #todo: make style
       $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
-      $('#backgroundReplace').fadeIn 1000, =>
+      $('#backgroundReplace').fadeIn 500, =>
         $('#backgroundReplace').hide()
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
@@ -62,7 +62,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- catch any body click event
 
   '#bodyClick click': ->
-    @publish 'body.clicked'
+    @publish 'body.clicked' 
     
   #- fit to content event
     
