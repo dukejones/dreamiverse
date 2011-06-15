@@ -1,11 +1,5 @@
 - content_for :head do
-  = coffeescript_include_tag 'context_panel'
-  = javascript_include_tag 'browserdetect', 'dreams'
-/ :coffeescript
-/'avatar', 
-/'avataruploader', 
-/   require(['/javascripts/avataruploader.js'])
-/   require(['/javascripts/compiled/avatar.js', '/javascripts/compiled/context_panel.js'])
+  = include_javascripts 'context_panel'
 
 
 #totem

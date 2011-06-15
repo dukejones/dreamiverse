@@ -24,7 +24,7 @@ namespace :compile do
   desc "Build all application sass"
   task :sass => :environment do
     Sass::Plugin.on_updating_stylesheet {|template, css| puts "compiling #{template} to #{css}" }
-    Sass::Plugin.force_update_stylesheets
+    Sass::Plugin.update_stylesheets
   end
 
   desc "Compile and compress all assets with Jammit"

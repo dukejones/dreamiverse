@@ -1,5 +1,6 @@
 - content_for :head do
-  = coffeescript_include_tag 'fit_to_content', 'feedback'
+  = include_javascripts 'feedback'
+  
 
 :coffeescript
   # require({baseUrl: "/javascripts"}, ['feedback', 'autoresize.jquery.min.js'])

@@ -1,11 +1,3 @@
-- content_for :head do
-  / = include_javascripts :entries
-  / :coffeescript
-  /   $( ->
-  /     dreamfieldController = new DreamfieldController('#{@user.username}')
-  /   )
-  = coffeescript_include_tag 'tag'
-  
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
