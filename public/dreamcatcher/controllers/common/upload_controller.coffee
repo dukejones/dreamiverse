@@ -2,8 +2,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
   pluginName: 'uploader'
 },{
 
-  init: (element, customOptions) ->
+  init: (element, customOptions, viewUrl) ->
     @element = $(element)
+    @viewUrl = if viewUrl then viewUrl else '//dreamcatcher/views/images/manager/image_show.ejs'
     @load customOptions if customOptions?
 
   load: (customOptions) ->
@@ -43,7 +44,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
 
       onComplete: (id, fileName, result) =>
         if result.image?
-          @getUploadElement(fileName).replaceWith $.View('//dreamcatcher/views/images/manager/image_show.ejs', result.image)
+          @getUploadElement(fileName).replaceWith $.View(@viewUrl, result.image)
           @filesUploaded++
 
         filesRemaining = $('li.uploading:not(.fail)', @element).length

@@ -5,6 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
     book : Dreamcatcher.Models.Book
   }
   controller: {}
+  
 
   init: ->
     @initCookieSaver()
@@ -14,17 +15,23 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
     $('#entryField').children().hide()
     $('#newEditEntry').html html
 
-    # entryMode = $('#entryMode').data 'id'
     $('#newEditEntry .entry-tags').tags 'edit' # invoke the tags controller
-    if $('#contextPanel .book').exists()
+    
+    if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
-      log 'bookId: '+bookId
-      $('#books-list').val bookId
+      $('#contextPanel .book').remove()
+      $('#books-list').val bookId  
     
     @publish 'dom.added', $('#newEditEntry')
+    log 'book val'+$('#books-list').val()
+    $('#book-list-button').css {
+      width: '32px'
+    }
     $('#newEditEntry').show()
+    
 
   newEntry: ->
+    @mode = 'new'
     @model.entry.new {}, @callback('displayNewEditEntry')
 
   'history.entry.new subscribe': (called, data) ->
@@ -32,6 +39,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
     @newEntry()
 
   editEntry: (id) ->
+    @mode = 'edit'
     @model.entry.edit {id: id}, @callback('displayNewEditEntry')
 
   'history.entry.edit subscribe': (called, data) ->
@@ -104,14 +112,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
   #-  
   '#books-list change': (el) ->
     $('#books-list-button').css {
-      #width: 'auto !important'
-      'width': '160px' # TODO: remove
+      'width': '150px'
     }
     if el.val() is 'new'
       inputEl = $('input.newBook-input', el.parent())
       inputEl.val ''
       inputEl.show()
-      $('.ui-selectmenu-status', el.parent()).hide()
+      $('.books-list-button').hide()
     else
       $('input.newBook-input', el.parent()).hide()
       $('.ui-selectmenu-status', el.parent()).show()
@@ -144,7 +151,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry',
         active: 'qq-upload-drop-area-active'
         list: 'currentImages'
       }
-    }
+    }, '//dreamcatcher/views/images/entry/image_show.ejs'
     
 
 
