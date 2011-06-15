@@ -6,20 +6,18 @@
     %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
     = include_stylesheets :shared, :media => 'all'
     
-    - if Rails.env == 'production' || Rails.env == 'theta'
-      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
-    - else 
-      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+    - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
+    %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
+
+    = include_javascripts :jmvc
     
-    = include_javascripts :shared
+    = include_javascripts :shared, :home
+    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+    -# %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
     
-    / = javascript_include_tag 'jquery.min', 'rails', 'pubsub', 'jquery.lightbox-0.5.min', 'jquery.placeholder'
-    / = coffeescript_include_tag 'dreamplugs', 'cookies', 'publicstream'
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
-    %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
 
     = yield :head
 

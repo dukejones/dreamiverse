@@ -9,11 +9,11 @@
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = include_stylesheets :shared, :media => 'all'
+    = include_javascripts :shared
     
     - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
     %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
 
-    = include_javascripts :shared
         
     :coffeescript
       $(document).ready ->
