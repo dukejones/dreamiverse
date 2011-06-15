@@ -13,7 +13,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     log "loaded tags controller @mode: #{@mode}"
     switch mode
       when 'show'
-        $('.tagAnalysis .trigger').live( 'click', (event ) ->
+        $('.tagAnalysis .trigger').live('click', (event) ->
           $(this).parent().toggleClass('expanded')
         )
 
@@ -63,7 +63,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   tagCount: ->
     count = 0
     for el in $('#tag-list .tag')
-      count = count + 1
+      count += 1
     log "tagCount #{count}"
     return count
       
