@@ -7,6 +7,44 @@ template_function: off
 
 
 javascripts:
+
+  jmvc_plugins:
+    - public/jquery/jquery.js
+    - public/compiled/steal_proxy.js
+    - public/jquery/class/class.js
+    - public/jquery/lang/lang.js
+    - public/jquery/event/destroyed/destroyed.js
+    - public/jquery/controller/controller.js
+    - public/jquery/lang/openajax/openajax.js
+    - public/jquery/controller/subscribe/subscribe.js
+    - public/jquery/event/hashchange/hashchange.js
+    - public/jquery/controller/history/history.js
+    - public/jquery/view/view.js
+    - public/jquery/lang/rsplit/rsplit.js
+    - public/jquery/view/ejs/ejs.js
+    - public/jquery/controller/view/view.js
+    - public/jquery/model/model.js
+    - public/jquery/dom/dom.js
+    - public/jquery/dom/fixture/fixture.js
+    - public/jquery/dom/formparams/formparams.js
+  
+  jmvc_resources:
+    - public/compiled/resources/ui/jquery.ui.core.js
+    - public/compiled/resources/ui/jquery.ui.widget.js
+    - public/compiled/resources/ui/jquery.ui.mouse.js
+    - public/compiled/resources/ui/jquery.ui.position.js
+    - public/compiled/resources/ui/jquery.ui.selectmenu.js
+    - public/compiled/resources/ui/jquery.ui.draggable.js
+    - public/compiled/resources/ui/jquery.ui.droppable.js
+    - public/compiled/resources/*.js
+
+      
+  dreamcatcher_app:
+    - public/compiled/controllers/**/*.js
+    - public/compiled/models/**/*.js
+    - public/compiled/classes/*.js
+    
+    
   shared:
     #- public/javascripts/jquery.hoverIntent.minified.js
     #- public/javascripts/pubsub.js
@@ -59,9 +97,6 @@ javascripts:
     - public/javascripts/compiled/fit_to_content.js
     - public/javascripts/compiled/feedback.js
 
-  # jmvc:
-    
-    
 stylesheets:
   shared:
     - public/stylesheets/compiled/shared.css
