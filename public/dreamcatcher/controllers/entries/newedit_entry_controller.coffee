@@ -8,15 +8,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
 
   init: (el) ->
     @element = $(el)
+    @element.tags 'edit' # invoke the tags controller
     @initCookieSaver()
-
 
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
-
     @element.html html
-
-    $('#newEditEntry', @element).tags 'edit' # invoke the tags controller
+    #@element.tags 'edit'
     
     if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
@@ -124,7 +122,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     entryPanelEl.hide()
     $("#entryAttach .attach[title=#{name}]").show()
   
-  '#entryAttach .attach click': (el) ->
+  ##entryAttach 
+  '.attach click': (el) ->
+    log 'entryAttchEvent'
     name = el.attr 'title'
     el.hide()
     $(".entryPanels[title=#{name}]").show()

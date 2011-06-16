@@ -10,11 +10,27 @@
 
     = include_stylesheets :shared, :media => 'all'
     
+    / - if Rails.env == 'development'
+    /       %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
+    /     - else 
+    /       %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    /     = yield :head
+    / 
+    /     = include_javascripts :shared
+    /         
+    /     :coffeescript
+    /       $(document).ready ->
+    /         $('input[placeholder], textarea[placeholder]').placeholder()
+    
+
+    = yield :headBefore
+
     - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
     %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
     = include_javascripts :shared
-        
+
     = yield :head
+
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
     #backgroundReplace

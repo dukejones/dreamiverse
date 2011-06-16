@@ -51,9 +51,8 @@ steal.plugins(
     classes: ['meta_menu']#, 'settings_panel']
   }
   
-  # page-specific jmvc files
   switch page()
-  
+    
     when 'images'
       controllers { 
         module: 'images'
@@ -61,13 +60,12 @@ steal.plugins(
       }
       
     when 'admin'
-      models 'admin'
-      controllers {
-        module: 'admin'
-        classes: ['admin']
-      }
+      resources 'google.charts'
+      models 'admin', 'chart'
+      controllers 'admin', 'charts'
     
     else
+      # page-specific jmvc files
       models 'entry', 'book', 'stream'
       controllers {
         module: 'entries'
@@ -77,6 +75,7 @@ steal.plugins(
         module: 'users'
         classes: ['context_panel', 'appearance_panel']
       }
+  
       
 ).views()
 
@@ -95,9 +94,9 @@ models = ->
   
 helpers = ->
   steal.coffee "classes/#{arg}_helper" for arg in arguments
-    
-scotts = ->
-  steal.coffee "scott/#{arg}" for arg in arguments
-    
+
+resources = ->
+  steal.coffee "resources/#{arg}" for arg in arguments
+        
 page = ->
   window.location.href.split('/').pop()
