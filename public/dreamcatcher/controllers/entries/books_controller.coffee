@@ -65,8 +65,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
           $('#entryField').append html
         @publish 'entry.drag', @el.bookMatrix()
 
-  'books.show subscribe': (called, id) ->
-    @showBook id
+  'books.show subscribe': (called, data) ->
+    @showBook data.id
     @publish 'appearance.change'
 
   #- open for edit

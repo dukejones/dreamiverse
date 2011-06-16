@@ -10,27 +10,13 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
     }
   
   show: ( id, success ) ->
-    $.get "/entries/#{id}", @callback(success)
+    $.get "/entries/#{id}", @callback success
 
   new: ( params, success, error ) ->
-    $.ajax {
-      url: '/entries/new_entry'
-      type: 'get'
-      dataType: 'html'
-      data: params
-      success: @callback success
-      error: error
-    }
-        
-  edit: ( params, success, error ) ->
-    $.ajax {
-      url: "/entries/edit_entry"
-      type: 'get'
-      dataType: 'html'
-      data: params
-      success: @callback success
-      error: error
-    }    
+    $.get '/entries/new', @callback success
+    
+  edit: ( id, success ) ->
+    $.get "/entries/#{id}/edit", @callback success
     
   update: ( entryId, params, success, error ) ->
     $.ajax {
@@ -46,16 +32,6 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
   showContext: ( params, success, error ) ->
     $.ajax {
       url: '/entries/show_context'
-      type: 'get'
-      dataType: 'html'
-      data: params
-      success: @callback success
-      error: error
-    }
-    
-  showStream: ( params, success, error ) ->
-    $.ajax {
-      url: '/entries/show_stream'
       type: 'get'
       dataType: 'html'
       data: params

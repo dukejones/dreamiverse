@@ -37,7 +37,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   'entries.edit subscribe': (called, id) ->
     @publish 'context_panel.show'
     @mode = 'edit'
-    @model.entry.edit {id: id}, @callback('displayNewEditEntry')
+    @model.entry.edit id, @callback('displayNewEditEntry')
     
   #- 
   'form#new_entry, form.edit_entry submit': (el, ev) ->

@@ -57,7 +57,6 @@ class EntriesController < ApplicationController
     
     @book = Book.find @entry.book_id if @entry.book_id
 
-
     @entries = entry_list
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
@@ -83,13 +82,22 @@ class EntriesController < ApplicationController
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
+    
+    if request.xhr?
+      render(partial:"entries/new")
+    end
   end
   
   def edit
     @entry = Entry.find params[:id]
     @entry_mode = 'edit'
     deny and return unless user_can_write?
-    render :new
+    
+    if request.xhr?
+      render(partial:"entries/new")
+    else
+      render :new
+    end
   end
 
   def create
@@ -192,18 +200,6 @@ class EntriesController < ApplicationController
   
   ## New methods - partials for AJAX
   
-  def new_entry
-    # TODO: refactor (see new)
-    @entry = Entry.new
-    @entry.type = current_user.default_entry_type || 'dream'
-    @entry_mode = 'new'
-    respond_to do |format|
-      format.html { render(partial:"entries/new") }
-    end
-  end
-  
-  
-  
   # XHR Only
   def show_context
     @user = if params[:user_id]
@@ -218,26 +214,6 @@ class EntriesController < ApplicationController
       render(:partial => "users/context_panel", :locals => {:user => @user})
     else
       render :text => "Could not find this user.", :status => 403
-    end
-  end
-  
-  def show_stream
-    # TODO: refactor (see stream)
-    @user = current_user
-    @filters = session[:filters] = @user.update_stream_filter(params[:filters])
-    @entries = entry_list(:stream, @filters)
-    respond_to do |format|
-      format.html { render(:partial => "entries/stream", :locals => {:user => @user}) }
-    end
-  end
-  
-  def edit_entry
-    # TODO: refactor (see new)
-    @entry = Entry.find params[:id]
-    @entry_mode = 'edit'
-    deny and return unless user_can_write?
-    respond_to do |format|
-      format.html { render(partial:"entries/new") }
     end
   end
   
