@@ -1,5 +1,5 @@
 - content_for :head do
-  = include_javascripts 'show_entry'
+  /= include_javascripts 'show_entry'
   
   - if !@entry.body.blank?
     %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}

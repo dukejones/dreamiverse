@@ -112,14 +112,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @publish 'appearance.change'
     
     
-  'dream_field.show subscribe': (called, userId) ->
-    #@publish 'context_panel.show', user_id
+  'entries.index subscribe': (called, username) ->
+    @publish 'context_panel.show', username
     @showEntryField()
-    
-  #- show entry
-  'a.link click': (el, ev) ->
-    ev.preventDefault()
-    @publish 'entry.show', el.attr 'href'
     
 }
   

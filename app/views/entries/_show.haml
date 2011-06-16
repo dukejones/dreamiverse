@@ -9,24 +9,23 @@
     - time = (@entry.dreamed_at || @entry.created_at)
     = time_ago_in_words(time)
 
-  %a.next{href: user_entry_path(@next.user.username, @next), :'data-id' => @next.id}
+  %a.history.next{href: user_entry_path(@next.user.username, @next)}
     %span &rsaquo;
 
   - if @book
-    %a.spine-nav{:'data-id' => @book.id, class: @book.color}
-      = @book.title
+    %a.history.spine-nav{href: "/books/#{bookId}", class: @book.color} @book.title
   - elsif session[:lens] == :stream
-    %a.stream{href: stream_path} stream
+    %a.history.stream{href: stream_path} stream
   - else
-    %a.entries{href: user_entries_path(@user.username)} entries
+    %a.history.entries{href: user_entries_path(@user.username)} entries
     
 
-  %a.prev{href: user_entry_path(@previous.user.username, @previous), :'data-id' => @previous.id}
+  %a.history.prev{href: user_entry_path(@previous.user.username, @previous)}
     %span &lsaquo;
 
   - if @entry.user == current_user
-    %a.editEntry{href: edit_entry_path(@entry)} edit
-    %a.deleteEntry delete
+    %a.history.editEntry{href: edit_entry_path(@entry)} edit
+    %a.history.deleteEntry delete
     /todo: bring back
     /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 

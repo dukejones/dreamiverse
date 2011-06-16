@@ -32,9 +32,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       bookEl = $('#entryField .matrix.books .book:first')
       @openBook bookEl
       @publish 'dom.added', bookEl
-      
-  'history.book.new subscribe': ->
-    @publish 'book.new'
     
   #- show book
   
@@ -45,10 +42,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
+    $('#contextPanel .book a.mask').attr 'href', '/carboes'
+      
     $('#contextPanel .avatar').hide()
     
     @publish 'book.drop', $('#contextPanel')
-    
     bookMatrixEl = @el.bookMatrix bookId
 
     if bookMatrixEl.exists()
@@ -63,19 +61,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
         else
           $('#entryField').append html
         @publish 'entry.drag', @el.bookMatrix()
-    
-  'history.book.show subscribe': (called, data) ->
-    @showBook data.id
+
+  'books.show subscribe': (called, id) ->
+    @showBook id
     @publish 'appearance.change'
-    
-  '.book .mask click': (el) ->
-    bookEl = el.closest '.book'
-    @historyAdd {
-      controller: 'book'
-      action: 'show'
-      id: @data bookEl
-    }
   
+  ###
+  '.book .mask click': (el) ->
+    href = '/carboes/books/'+@data bookEl
+    @publish 'book.show', href
+  ###
+
   #- open for edit
   openBookForEdit: (el) ->
     @openBook el, true

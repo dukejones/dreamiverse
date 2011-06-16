@@ -4,19 +4,36 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     @setupControllers()
-    @publish 'dom.added', $('#body')
+    @publish 'dom.added', $('#body')    
+    @bind window, 'popstate', => @publishHistory window.location.pathname
+      
+  #.spine-nav, a.stream, a.entries, a.prev, a.next, a.editEntry 
+  'a.history click': (el, ev) ->
+    ev.preventDefault()
+    href = el.attr 'href'
+    window.history.pushState null, null, href
+    @publishHistory href
     
-    @bind window, 'popstate', =>
-      @publish 'dream_field.show'
-      ###
-      switch window.location.pathname
-        when 'stream'
-          @publish 'dream_stream.show'
-        when 'carboes'
-          log 'a'
-      ###
-          
+  publishHistory: (href) ->
+    hrefSplit = href.split '/'
+    controller = 'entries'
+    action = 'show'
+    data = null
     
+    if hrefSplit.length > 1 
+      controller = hrefSplit[1] if hrefSplit[1] in ['books']
+      action = hrefSplit[1] if hrefSplit[1] in ['stream']
+      
+    if hrefSplit.length > 2
+      data = hrefSplit[2]
+      action = 'show'
+    else if hrefSplit.length > 3
+      action = hrefSplit[3] if hrefSplit.length > 3
+    else
+      action = 'index'
+    log "#{controller}.#{action}  "+data
+    @publish "#{controller}.#{action}", data
+      
   #- controllers
   
   setupControllers: ->

@@ -29,24 +29,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     $('#newEditEntry').show()
     
 
-  'entry.new subscribe': ->
-    window.history.pushState null, null, '/entries/new'
+  'entries.new subscribe': ->
     @publish 'context_panel.show'
     @mode = 'new'
     @model.entry.new {}, @callback('displayNewEditEntry')
 
-  #editEntry: (id) ->
-
-
-  'entry.edit subscribe': (called, href) ->
-    window.history.pushState null, null, href
-    hrefSplit = href.split '/'
-    username = hrefSplit[0]
-    entryId = hrefSplit[1]
-    
-    @publish 'context_panel.show', username
+  'entries.edit subscribe': (called, id) ->
+    @publish 'context_panel.show'
     @mode = 'edit'
-    @model.entry.edit {id: entryId}, @callback('displayNewEditEntry')
+    @model.entry.edit {id: id}, @callback('displayNewEditEntry')
     
   #- 
   'form#new_entry, form.edit_entry submit': (el, ev) ->

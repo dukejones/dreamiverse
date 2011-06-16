@@ -60,26 +60,18 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     Stream.load @getOptions(), @callback('updateStream')
 
 
-  'dream_stream.show subscribe': ->
+  'entries.stream subscribe': ->
     $('#entryField').children().hide()
     $('#entryField .matrix.stream').show()
     $('#totem').hide()
     $('#streamContextPanel').show()
     @publish 'appearance.change'
     
-  'history.entry.stream subscribe': ->
-    @publish 'dream_stream.show'
-    
+  ###  
   '.thumb-1d a.left, .thumb-1d a.tagCloud click': (el, ev) ->
     ev.preventDefault()
-    thumbEl = el.closest('.thumb-1d')
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: thumbEl.data 'id'
-      user_id: thumbEl.data 'userid'
-    }
-    
+    @publish 'entry.show', el.attr 'href'
+  ###
 }
     
     
