@@ -1,0 +1,94 @@
+.entryImage
+
+  .replace
+    +hidden
+    +absolute
+    top: 4px
+    left: 4px
+    width: 24px
+    height: 24px
+    background: url(/images/icons/reload-24.png)
+    &:hover
+      background: url(/images/icons/reload-24-hover.png)
+    &:active
+      background: url(/images/icons/reload-24-active.png)
+
+  .message
+    +hidden
+
+  .spinner
+    +hidden
+    +absolute
+    top: 0
+    height: 128px
+    width: 128px
+
+  .uploading
+
+    .progress-bar
+      height: 20px
+      +flat-light
+      +alpha(40)
+      width: 0%
+      height: 100%
+      position: absolute
+      top: 0px
+    
+    .file, .size, .failed, .progress
+      position: relative
+    .file
+      +font(11)
+    .size
+      +absolute
+      +center
+      width: 120px
+      bottom: 54px
+      right: 4px
+
+    .cancel
+      +absolute
+      +center
+      +round(4)
+      +shine-light-alpha(10)
+      +cancel(10)
+      bottom: 4px
+      left: 4px
+      width: 120px
+
+  .uploading.fail
+    +alpha(50)
+    border-color: red
+
+  .selected
+    border: 4px solid #427ee8
+
+  .delete
+    +alpha(50)
+    border: 4px solid #971313
+
+    .message
+      +absolute
+      +font(14)
+      display: block
+      top: 0px
+      width: 112px
+      height: 114px
+      padding: 6px 8px 8px
+      color: #ddd
+      background: #555
+      background: rgba(0,0,0,0.3)
+
+      .dontDelete
+        +absolute
+        +round(4)
+        +center
+        +alpha(70)
+        bottom: 8px
+        padding: 2px
+        width: 106px
+        color: #222
+        border: 1px solid transparent
+        +gradient(#6e6e6e, #fff)
+        +cancel(10)
+        &:hover
+          +alpha(100)
