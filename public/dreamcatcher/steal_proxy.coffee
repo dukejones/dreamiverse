@@ -10,6 +10,8 @@ steal = {
   coffee: -> return steal
   dev: {
     isHappyName: ->
+    log: ->
+    warn: ->
   }
   root:
     join: ->

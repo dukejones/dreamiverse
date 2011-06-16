@@ -26,7 +26,7 @@ javascripts:
     - public/jquery/model/model.js
     - public/jquery/dom/dom.js
     - public/jquery/dom/fixture/fixture.js
-    - public/jquery/dom/formparams/formparams.js
+    - public/jquery/dom/form_params/form_params.js
   
   jmvc_resources:
     - public/compiled/resources/ui/jquery.ui.core.js
@@ -40,9 +40,22 @@ javascripts:
 
       
   dreamcatcher_app:
-    - public/compiled/controllers/**/*.js
     - public/compiled/models/**/*.js
     - public/compiled/classes/*.js
+    # - public/compiled/controllers/**/*.js
+    - public/compiled/controllers/application_controller.js
+    - public/compiled/controllers/common/upload_controller.js
+    - public/compiled/controllers/common/tags_controller.js
+    - public/compiled/controllers/common/comments_controller.js
+    - public/compiled/controllers/users/meta_menu_controller.js
+    - public/compiled/controllers/entries/dream_field_controller.js
+    - public/compiled/controllers/entries/dream_stream_controller.js
+    - public/compiled/controllers/entries/newedit_entry_controller.js
+    - public/compiled/controllers/entries/books_controller.js
+    - public/compiled/controllers/entries/show_entry_controller.js
+    - public/compiled/controllers/users/context_panel_controller.js
+    - public/compiled/controllers/users/appearance_panel_controller.js
+    
     
     
   shared:

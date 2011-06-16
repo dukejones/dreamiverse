@@ -7,15 +7,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
   }
 
   init: (el) ->
-    Stream.page = 1
-    @container = $(el)
-    @bind window, 'scroll', 'scrollEvent'
-    @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
+    log 'init stream controller'
+    # Stream.page = 1
+    # @container = $(el)
+    # @bind window, 'scroll', 'scrollEvent'
+    # @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
     
-    @activateLightBoxAndComments()   
-    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
+    # @activateLightBoxAndComments()   
+    # @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
     
   filterChange: (el) ->
+    log 'filterChange'
     Stream.reset()
     el.prev(".spinner").show()
     Stream.load @getOptions(), @callback('updateStream')
