@@ -9,7 +9,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#entryField .matrix.stream').dreamStream()
     $('#entryField #showEntry').showEntry()
     $('#entryField #newEditEntry').newEditEntry()
-    
     $('#totem').contextPanel()
         
     @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
@@ -32,9 +31,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     data = {}
     
     if hrefSplit.length > 1
-      if hrefSplit[1] in ['books']
+      if hrefSplit[1] is 'books'
         controller = hrefSplit[1]
-      else if hrefSplit[1] in ['stream']
+      else if hrefSplit[1] is 'stream'
         action = hrefSplit[1]
       else
         data.username = hrefSplit[1]
@@ -50,8 +49,15 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
     else
       action = 'index'
+      
+    log "#{controller}.#{action}"
+    log data
+    
+    if action is 'show' and data.id?
+      $('.book, .thumb-2d').each (i, el) =>
+        unless parseInt($(el).data('id')) is parseInt(data.id)
+          $(el).fadeOut '750'
   
-    log "#{controller}.#{action}  "+data
     @publish "#{controller}.#{action}", data
       
   #- setup ui elements
@@ -71,13 +77,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- appearance (bedsheet, scroll  & theme) change
   'appearance.change subscribe': (called, data) ->
     #if no data is passed, then use the user default settings
-    if not data?
-      data = $('#userInfo').data 'viewpreference'
-
-    return if not data.image_id?
+    data = $('#userInfo').data 'viewpreference' unless data?
+    return unless data.image_id?
 
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
-    return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
+    return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
 
     #todo: should include font size & float?
     if data.bedsheet_attachment?
@@ -92,7 +96,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
       #todo: make style
       $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
-      $('#backgroundReplace').fadeIn 500, =>
+      $('#backgroundReplace').fadeIn 750, =>
         $('#backgroundReplace').hide()
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img

@@ -10,7 +10,7 @@
     = render :partial => 'books/book', :locals => {:book => book}
     
 / DREAM MATRIX
-.matrix.index
+.matrix.index{:'data-username' => @user.username}
   .entryCount{:'data-id' => @entry_count}
   .pageSize{:'data-id' => @filters[:page_size]}
   

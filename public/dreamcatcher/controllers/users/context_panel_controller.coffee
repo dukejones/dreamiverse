@@ -8,27 +8,12 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   }
   
   'context_panel.show subscribe': (called, username) ->
-    params = {}
-    params = { username: username } if username?
     log username
-    @model.user.contextPanel params, (html) =>
+    @model.user.contextPanel username, (html) =>
       $('#streamContextPanel').hide()
       $('#totem').replaceWith html
       $('#totem').show()
 
-  '.avatar, .book click': (el) ->
-    if el.hasClass('book') and $('#showEntry').is(':visible')
-      @historyAdd {
-        controller: 'book'
-        action: 'show'
-        id: el.data 'id'
-      }
-    else
-      @historyAdd {
-        controller: 'entry'
-        action: 'field'
-      }
-      
   '.uploadAvatar click': (el) ->
     $('#contextPanel').prepend $.View('//dreamcatcher/views/users/context_panel/avatar_upload.ejs')
     $('#avatarDrop').uploader {
