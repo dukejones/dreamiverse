@@ -21,12 +21,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('#contextPanel .book').remove()
       $('#books-list').val bookId  
     
-    @publish 'dom.added', $('#newEditEntry')
+    @publish 'dom.added', @element
     log 'book val'+$('#books-list').val()
     $('#book-list-button').css {
       width: '32px'
     }
-    $('#newEditEntry').fadeIn '500'
+    @element.fadeIn '500', =>
+      fitToContent $('textarea', @element).attr('id'), 0
     
 
   'entries.new subscribe': ->
@@ -39,19 +40,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @mode = 'edit'
     @model.entry.edit data.id, @callback('displayNewEditEntry')
     
-  #- 
-  'form#new_entry, form.edit_entry submit': (el, ev) ->
-    ev.preventDefault()
-    new Dreamcatcher.Models.Entry(el.formParams()).save()
-   
-  'entry.created subscribe': (called, response) ->
-    log response.type
-    if response.type is 'error'
-      log 'oh no!'
-    else if response.type is 'ok'
-      @publish 'entry.show', response.data.id #check
-
-
   #- Cookie Saver
       
   fields: ['#entry_title','#entry_body','#sharing-list','#entryType-list']
@@ -102,7 +90,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @posted = true
     @clearState()
     
-  #-  
   '#books-list change': (el) ->
     $('#books-list-button').css {
       'width': '150px'
@@ -115,8 +102,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     else
       $('input.newBook-input', el.parent()).hide()
       $('.ui-selectmenu-status', el.parent()).show()
+      
+  '#entry-date click': (el) ->
+    $('.entry-dateTime', @element).show()
     
-  '.entryPanels .headers click': (el) ->
+  '.headers click': (el) ->
     entryPanelEl = el.closest '.entryPanels'
     name = entryPanelEl.attr 'title'
     entryPanelEl.hide()
@@ -126,7 +116,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   '.attach click': (el) ->
     log 'entryAttchEvent'
     name = el.attr 'title'
-    el.hide()
+    el.slideDown()
     $(".entryPanels[title=#{name}]").show()
     @initUploader() if name is 'images'
       
@@ -147,6 +137,22 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
         list: 'currentImages'
       }
     }, '//dreamcatcher/views/images/entry/image_show.ejs'
+    
+    
+  ###
+  'form#new_entry, form.edit_entry submit': (el, ev) ->
+    ev.preventDefault()
+    new Dreamcatcher.Models.Entry(el.formParams()).save()
+
+
+  'entry.created subscribe': (called, response) ->
+    log response.type
+    if response.type is 'error'
+      log 'oh no!'
+    else if response.type is 'ok'
+      @publish 'entry.show', response.data.id #check
+  ###
+    
     
 }
     

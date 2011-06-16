@@ -2,12 +2,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     $('#metaMenu').metaMenu()
-    $('#entryField .matrix.index').dreamField() if $('#entryField .matrix.index').exists()
-    $('#entryField .matrix.books').books() if $('#entryField .matrix.books').exists()
-    $('#entryField .matrix.stream').dreamStream() if $('#entryField .matrix.stream').exists()
-    $('#entryField #showEntry').showEntry() if $('#entryField #showEntry').exists()
-    $('#entryField #newEditEntry').newEditEntry() if $('#entryField #showEntry').exists()
     $('#totem').contextPanel() if $('#totem').exists()
+    
+    $('#entriesIndex').dreamField() if $('#entriesIndex').exists()
+    $('#entriesStream').dreamStream() if $('#entriesStream').exists()
+    $('#showEntry').showEntry() if $('#showEntry').exists()
+    $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
         
     @images = new Dreamcatcher.Controllers.Images.Images $("#frame.browser") if $("#frame.browser").exists()
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
@@ -51,14 +51,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       
     log "#{controller}.#{action}"
     log data
-    ###
-    if action is 'show' and data.id?
-      $('.book, .thumb-2d').each (i, el) =>
-        
-        if (controller is 'books' and $(el).hasClass 'book') or (controller is 'entries' and $(el).hasClass 'thumb-2d')
-        unless parseInt($(el).data('id')) is parseInt(data.id)
-          $(el).fadeOut '750'
-    ###
     @publish "#{controller}.#{action}", data
       
   #- setup ui elements
@@ -69,8 +61,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    $('textarea', parentEl).each (i, el) ->
-      fitToContent $(this).attr('id'), 0
+    #$('textarea', parentEl).each (i, el) ->
+    #  fitToContent $(this).attr('id'), 0
       
   'dom.added subscribe': (called, data) ->
     @initUi data

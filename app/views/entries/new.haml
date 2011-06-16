@@ -1,12 +1,13 @@
-- content_for :head do
-  = include_javascripts 'new_entry'
+/- content_for :head do
+/  = include_javascripts 'new_entry'
 
 
 / CONTEXT PANEL
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
 #entryField
-  .matrix.index{style: 'display:none'}
+  #entriesIndex{style: 'display:none'}
+    .matrix.books
   #showEntry{style: 'display:none'}
   #newEditEntry
     = render :partial => 'entries/new'
