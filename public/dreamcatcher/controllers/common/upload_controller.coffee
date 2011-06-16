@@ -43,8 +43,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
         log id
 
       onComplete: (id, fileName, result) =>
-        return
-        
+        #return
+      
         if result.image?
           @getUploadElement(fileName).replaceWith $.View(@viewUrl, result.image)
           @filesUploaded++
