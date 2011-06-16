@@ -5,7 +5,7 @@ set :whenever_environment, 'theta'
 
 set :deploy_to, "/var/www/#{application}"
 
-server "dev.dreamcatcher.net", :web, :app, :db, :primary => true
+server "dev.dreamcatcher.net", :web, :app, :db, :primary => true, :memcached => true
 
 before 'uploads:symlink', 'uploads:create_shared'
 namespace :uploads do

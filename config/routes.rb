@@ -37,8 +37,10 @@ Dreamcatcher::Application.routes.draw do
 
   match '/admin' => 'admin#admin', :as => :admin
   get '/admin/user_list' => 'admin#user_list', :as => :admin
-
-  
+  get '/admin/load_line_chart' => 'admin#load_line_chart', :as => :admin
+  get '/admin/load_pie_chart' => 'admin#load_pie_chart', :as => :admin
+  get '/admin/load_bedsheets' => 'admin#load_bedsheets', :as => :admin
+   
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random

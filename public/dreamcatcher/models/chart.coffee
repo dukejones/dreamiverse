@@ -1,24 +1,24 @@
-$.Model 'Dreamcatcher.Models.Admin',{
+$.Model 'Dreamcatcher.Models.Chart',{
   
-  loadUsers: ( params, success, error ) ->
+  loadSimpleLineChart: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/user_list"
+      url: "/admin/load_line_chart"
       type: 'get'
       data: params
       dataType:'json'
       success: success
       error: error
-    } 
-
-  loadBedsheets: ( params, success, error ) ->
+    }
+      
+  loadPieChart: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/load_bedsheets"
+      url: "/admin/load_pie_chart"
       type: 'get'
       data: params
       dataType:'json'
       success: success
       error: error
-    }    
-    
+    }  
+  
 },
 {}
