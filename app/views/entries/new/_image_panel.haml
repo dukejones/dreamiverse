@@ -17,15 +17,25 @@
           %span
             click to browse, or drag files here
 
-    #currentImages.currentImages
-      - images.each do |image|
-        .entryImageContainer.clearfix{:'data-id' => image.id}
-          .entryImage{style: "background: url(#{image.url(:thumb)}) no-repeat scroll center center transparent"}
-            .close
-            %label.radio{class: (@entry.main_image==image) ? 'selected' : ''}
-              %input{type: 'radio', name: "entry[main_image_id]", value: image.id, checked: (@entry.main_image==image)}
-              %span default
-            .radioWrap
+    %ul#currentImages.currentImages
+      / - images.each do |image|
+      /   %li.entryImageContainer.clearfix{:'data-id' => image.id}
+      /     .entryImage{style: "background: url(#{image.url(:thumb)}) no-repeat scroll center center transparent"}
+      /       .close
+      /       %label.radio{class: (@entry.main_image==image) ? 'selected' : ''}
+      /         %input{type: 'radio', name: "entry[main_image_id]", value: image.id, checked: (@entry.main_image==image)}
+      /         %span default
+      /       .radioWrap
+
+      / .uploading
+      /   .progress-bar
+      /   .file
+      /   .size
+      /   %a.cancel cancel
+      /   .failed.hidden failed
+      /   .progress
+      /   .spinner
+      /   .close.hidden
 
 
   .clear
