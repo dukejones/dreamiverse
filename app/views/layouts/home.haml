@@ -9,8 +9,6 @@
     - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
     %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
 
-    = include_javascripts :jmvc
-    
     = include_javascripts :shared, :home
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     -# %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}

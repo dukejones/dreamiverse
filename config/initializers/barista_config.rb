@@ -1,4 +1,5 @@
-Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher", "coffee")
+Barista::Framework.register 'jmvc_load', Rails.root.join("public", "dreamcatcher", "coffee")
+#Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
 
 Barista.configure do |c|
   
@@ -20,9 +21,9 @@ Barista.configure do |c|
   
   # Change the output root for a framework:
   
-  # c.change_output_prefix! 'framework-name', 'output-prefix'
-  c.change_output_root! 'jmvc', 'public/dreamcatcher'
-  
+  c.change_output_root! 'jmvc_load', 'public/dreamcatcher'
+  c.change_output_root! 'jmvc', 'public/dreamcatcher/compiled'
+
   # or for all frameworks...
   
   # c.each_framework do |framework|
