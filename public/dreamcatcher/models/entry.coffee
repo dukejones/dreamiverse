@@ -28,17 +28,6 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
       error: error
     }
 
-    
-  showContext: ( params, success, error ) ->
-    $.ajax {
-      url: '/entries/show_context'
-      type: 'get'
-      dataType: 'html'
-      data: params
-      success: @callback success
-      error: error
-    }
-
   showField: ( params, success, error ) ->
     $.ajax {
       url: '/entries/show_field'

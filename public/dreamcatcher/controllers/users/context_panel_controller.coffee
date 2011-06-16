@@ -10,7 +10,8 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   'context_panel.show subscribe': (called, username) ->
     params = {}
     params = { username: username } if username?
-    @model.entry.showContext params, (html) =>
+    log username
+    @model.user.contextPanel params, (html) =>
       $('#streamContextPanel').hide()
       $('#totem').replaceWith html
       $('#totem').show()
