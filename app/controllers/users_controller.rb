@@ -114,4 +114,22 @@ class UsersController < ApplicationController
     
     render :json => { :avatar_path => @image.url('avatar_main'), :avatar_thumb_path => @image.url(:avatar, :size => 32), :avatar_image => @image }
   end
+  
+  # XHR Only
+  def context_panel
+    @user = if params[:user_id]
+      User.find_by_id params[:user_id]
+    elsif params[:username]
+      User.find_by_username params[:username]
+    else
+      current_user
+    end
+    
+    if @user
+      render(:partial => "users/context_panel", :locals => {:user => @user})
+    else
+      render :text => "Could not find this user.", :status => 403
+    end
+  end
+  
 end

@@ -200,23 +200,6 @@ class EntriesController < ApplicationController
   
   ## New methods - partials for AJAX
   
-  # XHR Only
-  def show_context
-    @user = if params[:user_id]
-      User.find_by_id params[:user_id]
-    elsif params[:username]
-      User.find_by_username params[:username]
-    else
-      current_user
-    end
-    
-    if @user
-      render(:partial => "users/context_panel", :locals => {:user => @user})
-    else
-      render :text => "Could not find this user.", :status => 403
-    end
-  end
-  
   def show_field
     # TODO: refactor (see index)
     @filters = params[:filters] || {}
