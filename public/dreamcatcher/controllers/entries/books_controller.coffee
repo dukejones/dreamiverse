@@ -5,12 +5,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   # Don't forget permissions on books
 
   model: {
-    book : Dreamcatcher.Models.Book
+    book: Dreamcatcher.Models.Book
+    entry: Dreamcatcher.Models.Entry
   }
   
   el: {    
     bookMatrix: (id) ->
-      return $("#entryField .matrix.book[data-id=#{id}]") if id?
+      return $("#entryField .matrix.bookIndex[data-id=#{id}]") if id?
       return $('#entryField .matrix.index') 
     book: (arg) ->
       return $(".book[data-id=#{arg}]", @element) if parseInt(arg) > 0
@@ -26,7 +27,47 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     
   init: (el) ->
     @element = $(el)
-    @closeAllBooks()
+    @publish 'book.drop', @element
+    
+    
+  moveEntryToBook: (entryEl, bookEl) ->
+    entryId = @data entryEl
+    bookId = @data bookEl
+    bookId = null if bookEl.parent().attr('id') is 'contextPanel'
+    entryMeta = {book_id: bookId}
+
+    @model.entry.update entryId, {entry: entryMeta}
+
+    @publish 'book.close', bookEl
+    bookMatrixEl = @el.bookMatrix bookId
+    if bookMatrixEl.exists()
+      entryEl.appendTo bookMatrixEl
+    else
+      entryEl.hide()
+
+    $('.entryDrop-active', bookEl).hide()
+
+
+  'book.drop subscribe': (called, parent) ->
+    $('.book, .avatar', parent).each (i, el) =>
+      @publish 'books.close', $(el)
+      $(el).droppable {         
+        drop: (ev, ui) =>
+          dropEl = $(ev.target)
+          @moveEntryToBook ui.draggable, dropEl
+
+        over: (ev, ui) =>
+          el = $(ev.target)
+          @publish 'books.hover', el if el.hasClass 'book'
+          $('.add-active', ui.helper).show()
+          $('.entryDrop-active, .entryRemove', el).show()
+
+        out: (ev, ui) =>
+          el = $(ev.target)
+          @publish 'book.close', el if el.hasClass 'book' 
+          $('.add-active', ui.helper).hide()
+          $('.entryDrop-active, .entryRemove', el).hide()
+      }
   
   #- new book
     
@@ -43,7 +84,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   showBook: (bookId) ->
     bookEl = @el.book bookId
     html = bookEl.clone().css 'z-index', 2000
-    #@openBook bookEl, false
     if $('#contextPanel .book').exists()
       $('#contextPanel .book').replaceWith html
     else
@@ -60,14 +100,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       bookMatrixEl.show()      
     else
       @model.book.show bookId, {}, (html) =>
-        #@closeBook bookEl
         $('#entryField').children().hide()
         bookMatrixEl = @el.bookMatrix bookId
         if bookMatrixEl.exists()
           bookMatrixEl.replaceWith html
         else
           $('#entryField').append html
-        @publish 'entry.drag', @el.bookMatrix()
+        @publish 'entry.drag', bookMatrixEl
 
   'books.show subscribe': (called, data) ->
     @showBook data.id
