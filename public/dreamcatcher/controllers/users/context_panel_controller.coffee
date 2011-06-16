@@ -7,12 +7,11 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     user: Dreamcatcher.Models.User
   }
   
-  'context_panel.show subscribe': (called, userId) ->    
-    #todo: should only get context panel if for the user it doesn't exist in the dom.
-    params = { type: 'entry' }
-    if not userId?
-      $.extend params, { user_id: userId }
-    @model.entry.showContext params, (html) =>
+  'context_panel.show subscribe': (called, username) ->
+    params = {}
+    params = { username: username } if username?
+    log username
+    @model.user.contextPanel params, (html) =>
       $('#streamContextPanel').hide()
       $('#totem').replaceWith html
       $('#totem').show()

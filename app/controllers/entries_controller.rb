@@ -57,7 +57,6 @@ class EntriesController < ApplicationController
     
     @book = Book.find @entry.book_id if @entry.book_id
 
-
     @entries = entry_list
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
@@ -83,13 +82,22 @@ class EntriesController < ApplicationController
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
     @entry_mode = 'new'
+    
+    if request.xhr?
+      render(partial:"entries/new")
+    end
   end
   
   def edit
     @entry = Entry.find params[:id]
     @entry_mode = 'edit'
     deny and return unless user_can_write?
-    render :new
+    
+    if request.xhr?
+      render(partial:"entries/new")
+    else
+      render :new
+    end
   end
 
   def create
@@ -191,56 +199,6 @@ class EntriesController < ApplicationController
   
   
   ## New methods - partials for AJAX
-  
-  def new_entry
-    # TODO: refactor (see new)
-    @entry = Entry.new
-    @entry.type = current_user.default_entry_type || 'dream'
-    @entry_mode = 'new'
-    respond_to do |format|
-      format.html { render(partial:"entries/new") }
-    end
-  end
-  
-  def show_context
-    if params[:user_id]
-      @user = User.find params[:user_id]
-    else
-      @user = current_user
-    end
-    
-    if params[:type] == 'entry'
-      partialPath = "users/context_panel"  
-    elsif params[:type] == 'stream'
-      @user = current_user
-      partialPath = "entries/stream_context_panel"
-      @filters = session[:filters] = @user.update_stream_filter(params[:filters])
-    end
-      
-    respond_to do |format|
-      format.html { render(:partial => partialPath, :locals => {:user => @user}) }
-    end
-  end
-  
-  def show_stream
-    # TODO: refactor (see stream)
-    @user = current_user
-    @filters = session[:filters] = @user.update_stream_filter(params[:filters])
-    @entries = entry_list(:stream, @filters)
-    respond_to do |format|
-      format.html { render(:partial => "entries/stream", :locals => {:user => @user}) }
-    end
-  end
-  
-  def edit_entry
-    # TODO: refactor (see new)
-    @entry = Entry.find params[:id]
-    @entry_mode = 'edit'
-    deny and return unless user_can_write?
-    respond_to do |format|
-      format.html { render(partial:"entries/new") }
-    end
-  end
   
   def show_field
     # TODO: refactor (see index)

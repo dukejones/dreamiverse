@@ -1,5 +1,5 @@
 - content_for :head do
-  = include_javascripts 'show_entry'
+  /= include_javascripts 'show_entry'
   
   - if !@entry.body.blank?
     %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
@@ -11,7 +11,10 @@
 = render :partial => "users/context_panel", :locals => {:user => @entry.user}
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
-
+  .matrix.index{style: 'display:none'}
+  .matrix.stream{style: 'display:none'}
   #showEntry
     = render :partial => 'entries/show'
+  #newEditEntry{style: 'display:none'}
+    
 

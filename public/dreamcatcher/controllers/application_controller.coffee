@@ -3,23 +3,57 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- constructor
   
   init: ->
-    @setupControllers()
-    @publish 'dom.added', $('#body') 
-    
-  #- controllers
-  
-  setupControllers: ->
     $('#metaMenu').metaMenu()
-    $('#entryField.field').dreamField()
-    $('#entryField.stream').dreamStream()
+    $('#entryField .matrix.index').dreamField()
+    $('#entryField .matrix.books').books()
+    $('#entryField .matrix.stream').dreamStream()
+    $('#entryField #showEntry').showEntry()
+    $('#entryField #newEditEntry').newEditEntry()
     
-    @bind window, 'popstate', (e) ->
-      log e
-      log window.location.href
-    
+    $('#totem').contextPanel()
+        
     @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
     @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
-        
+    
+    @publish 'dom.added', $('#body')    
+    @bind window, 'popstate', => @publishHistory window.location.pathname
+      
+  #.spine-nav, a.stream, a.entries, a.prev, a.next, a.editEntry 
+  'a.history click': (el, ev) ->
+    ev.preventDefault()
+    href = el.attr 'href'
+    window.history.pushState null, null, href
+    @publish 'history.change', href
+    
+  'history.change subscribe': (called, href) ->
+    hrefSplit = href.split '/'
+    controller = 'entries'
+    action = 'show'
+    data = {}
+    
+    if hrefSplit.length > 1
+      if hrefSplit[1] in ['books']
+        controller = hrefSplit[1]
+      else if hrefSplit[1] in ['stream']
+        action = hrefSplit[1]
+      else
+        data.username = hrefSplit[1]
+      
+    if hrefSplit.length > 2
+      if hrefSplit[2] is 'new'
+        action = 'new' 
+      else
+        data.id = hrefSplit[2]
+      
+      if hrefSplit.length > 3
+        action = hrefSplit[3] if hrefSplit.length > 3
+  
+    else
+      action = 'index'
+  
+    log "#{controller}.#{action}  "+data
+    @publish "#{controller}.#{action}", data
+      
   #- setup ui elements
   
   initUi: (parentEl) ->

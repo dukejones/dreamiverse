@@ -2,17 +2,9 @@
 = render :partial => "users/context_panel", :locals => {:user => @user}
 
 / ENTRY FIELD
-#entryField.field
-
-  / PAGE HEADER
-  - if @filters[:type]
-    .pageHeader
-      .img{class: @filters[:type]}
-      %h1= @filters[:type].pluralize
-    .clear
-
+#entryField
   = render :partial => "field"
-
+  .matrix.stream{style: 'display:none'}
   #showEntry{style: 'display:none'}
   #newEditEntry{style: 'display:none'}
 

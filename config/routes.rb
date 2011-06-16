@@ -47,6 +47,7 @@ Dreamcatcher::Application.routes.draw do
   # Resources
 
   resource :user do
+    get  'context_panel'
     post 'follow'
     post 'bedsheet'
     post 'set_view_preferences'
@@ -97,12 +98,6 @@ Dreamcatcher::Application.routes.draw do
   resources :entries do
     collection do
       get 'random'
-      get 'show_entry'
-      get 'new_entry'
-      get 'edit_entry'
-      get 'show_context'
-      get 'show_stream'
-      get 'show_field'
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'

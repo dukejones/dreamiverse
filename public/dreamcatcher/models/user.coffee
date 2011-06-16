@@ -19,6 +19,9 @@ $.Model 'Dreamcatcher.Models.User',{
       success: success
       error: error
     }
+    
+  contextPanel: ( params, success ) ->
+    $.get '/user/context_panel', params, @callback success
      
 },
 {}

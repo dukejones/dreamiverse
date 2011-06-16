@@ -6,24 +6,26 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     entry : Dreamcatcher.Models.Entry
   }
 
-  init: (el) ->    
-    $('#showEntry').showEntry()
-    $('#newEditEntry').newEditEntry()
-    $('#totem').contextPanel()
-    
+  init: (el) ->
     Stream.page = 1
-    @container = $('.matrix', el)
-    @activateLightBoxAndComments()   
-    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
-    
+    @container = $(el)
     @bind window, 'scroll', 'scrollEvent'
+    @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
+    
+    @activateLightBoxAndComments()   
+    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
+    
+  filterChange: (el) ->
+    Stream.reset()
+    el.prev(".spinner").show()
+    Stream.load @getOptions(), @callback('updateStream')
 
   scrollEvent: (window)->
     return unless $('#entryField .matrix.stream').is ':visible'
     
     if (window.scrollTop() > $(document).height() - window.height() - 200)
       @loadNextPage()
-    
+        
   loadNextPage: ->
     Stream.page += 1
     Stream.load(@getOptions(), @callback('updateStream'))
@@ -53,33 +55,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading, #entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
-  
-  '#entry-filter, #users-filter change': (el)->
-    Stream.reset()
-    el.prev(".spinner").show()
-    Stream.load @getOptions(), @callback('updateStream')
 
-
-  'dream_stream.show subscribe': ->
+  'entries.stream subscribe': ->
     $('#entryField').children().hide()
     $('#entryField .matrix.stream').show()
     $('#totem').hide()
     $('#streamContextPanel').show()
     @publish 'appearance.change'
-    
-  'history.entry.stream subscribe': ->
-    @publish 'dream_stream.show'
-    
-  '.thumb-1d a.left, .thumb-1d a.tagCloud click': (el, ev) ->
-    ev.preventDefault()
-    thumbEl = el.closest('.thumb-1d')
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: thumbEl.data 'id'
-      user_id: thumbEl.data 'userid'
-    }
-    
+
 }
     
     

@@ -1,14 +1,19 @@
-/ DREAM MATRIX
-
+/ PAGE HEADER
+- if @filters[:type]
+  .pageHeader
+    .img{class: @filters[:type]}
+    %h1= @filters[:type].pluralize
+  .clear
+  
 .matrix.books
   - @books.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
-
-.matrix.field
+    
+/ DREAM MATRIX
+.matrix.index
   .entryCount{:'data-id' => @entry_count}
   .pageSize{:'data-id' => @filters[:page_size]}
   
-
   - @entries.each do |entry|
     / DREAM THUMBS 2D
     = render :partial => 'thumb_2d', :locals => {:entry => entry}

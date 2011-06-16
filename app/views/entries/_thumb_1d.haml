@@ -9,7 +9,7 @@
           %p.name= entry.user.username
         .entryType{class: entry.type}
 
-      %a.left{href: user_entry_path(entry.user.username, entry)}
+      %a.history.left{href: user_entry_path(entry.user.username, entry)}
         / STARLIGHT
         .starlight
           .img
@@ -25,7 +25,7 @@
         .divider
 
       / RIGHT SIDE
-      %a.tagCloud{href: user_entry_path(entry.user.username, entry)}
+      %a.history.tagCloud{href: user_entry_path(entry.user.username, entry)}
         - entry.tags.join_to(What).limit(16).shuffle.each do |tag|
           %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 

@@ -6,10 +6,10 @@
   .leftPanelWrap
     .leftPanel
 
-      %a.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
+      %a.history.item.home.tooltip{href: user_entries_path(current_user.username), title: "home"}
         .img
 
-      %a.item.stream.tooltip{href: stream_path, title: "stream"}
+      %a.history.item.stream.tooltip{href: stream_path, title: "stream"}
         .img
 
       %a.item.dreamstars.tooltip{href: '/dreamstars', title: "dreamstars"}
@@ -101,10 +101,9 @@
   / / NEW ENTRY MENU
   %select#new-post.select-menu.dropdown.offset
     %option.empty{value: 'empty'}
-    %option.new-entry{value: 'entry'} entry
-    %option.new-book{value: 'book'} book
+    %option.new-entry{value: new_entry_path} entry
+    %option.new-book{value: '/books/new'} book
 
-  %a.newEntry
-    /{href: new_entry_path}
+  %a.history.newEntry{href: new_entry_path}
     .img
     new entry

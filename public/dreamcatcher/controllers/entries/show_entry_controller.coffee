@@ -32,47 +32,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     entryEl.show()
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
-  'history.entry.show subscribe': (called, data) ->
-    @publish 'context_panel.show', data.user_id if data.user_id?
-    @showEntryById data.id
+  'entries.show subscribe': (called, data) ->
+    @publish 'context_panel.show', data.username
+    @showEntryById id
 
-  'a.spine-nav click': (el, ev) ->
-    ev.preventDefault()
-    @historyAdd
-      controller: 'book'
-      action: 'show'
-      id: el.data 'id'
-
-  '.stream click': (el, ev) ->
-    ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'stream'
-    }
-    
-  '.entries click': (el, ev) ->
-    ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'field'
-    }
-    
-  '.prev, .next click': (el, ev) ->
-    ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'show'
-      id: el.data 'id'
-    }
-    
-  '.editEntry click': (el, ev) ->
-    ev.preventDefault()
-    @historyAdd {
-      controller: 'entry'
-      action: 'edit'
-      id: el.closest('.entry').data 'id'
-    }
-    
 }
   
   

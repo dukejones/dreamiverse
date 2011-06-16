@@ -203,7 +203,7 @@ function linkify(text)
     return text;
   }
 
-function setup2dThumbIPadClick(){
+/*function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
   var ua = navigator.userAgent;
   var clickEvent;
@@ -217,7 +217,7 @@ function setup2dThumbIPadClick(){
     event.preventDefault();
     window.location = $(event.currentTarget).attr('href');
   })
-}
+}*/
 
 
 
