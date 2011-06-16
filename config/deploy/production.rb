@@ -6,7 +6,7 @@ set :branch, 'production'
 
 set :deploy_to, "/var/www/#{application}"
 
-server "dreamcatcher.net", :web, :app, :db, :primary => true
+server "dreamcatcher.net", :web, :app, :db, :primary => true, :memcached => true
 
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
