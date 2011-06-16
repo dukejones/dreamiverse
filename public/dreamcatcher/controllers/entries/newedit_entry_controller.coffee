@@ -13,9 +13,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   #-
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
+
     @element.html html
 
-    $('.entry-tags', @element).tags 'edit' # invoke the tags controller
+    $('#newEditEntry', @element).tags 'edit' # invoke the tags controller
     
     if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
