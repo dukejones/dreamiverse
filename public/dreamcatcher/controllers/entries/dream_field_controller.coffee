@@ -92,24 +92,27 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   hideEntryField: ->
     $('#entryField').children().hide()
   
-  showEntryField: ->
-    $('#contextPanel .avatar').show()
-    $('#contextPanel .book').remove()
-    if @element.hasChildren()
+  showEntryField: (username) ->
+    if @element.data('username') is username
       @hideEntryField()
-      @element.show()
-    else
-      @model.entry.showField {}, (html) =>
-        @hideEntryField()
-        @element.replaceWith html
-        $('.books', @element).books()
-    @publish 'appearance.change'
+      $('.book, .thumb-2d', @element).show().css 'opacity',''
+      $('.matrix.books, .matrix.index').fadeIn 500
+      @publish 'appearance.change'
+      return
+      
+    @model.entry.index username, (html) =>
+      @hideEntryField()
+      $('.matrix.books').remove()
+      @element.replaceWith html
+      $('.matrix.books').books() 
+      $('.matrix.books, .matrix.index').fadeIn 500
+      @publish 'appearance.change'
     
     
   'entries.index subscribe': (called, data) ->
     username = if data.username? then data.username else null
     @publish 'context_panel.show', username
-    @showEntryField()
+    @showEntryField username
     
 }
   

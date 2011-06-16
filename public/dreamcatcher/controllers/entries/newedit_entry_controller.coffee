@@ -6,16 +6,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     entry : Dreamcatcher.Models.Entry
   }
 
-  init: ->
+  init: (el) ->
+    @element = $(el)
     @initCookieSaver()
     
   #-
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
-    $('#newEditEntry').html html
-    
-    log 'feh123'
-    $('#newEditEntry').tags 'edit' # invoke the tags controller
+
+    @element.html html
+
+    $('#newEditEntry', @element).tags 'edit' # invoke the tags controller
     
     if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
@@ -27,7 +28,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     $('#book-list-button').css {
       width: '32px'
     }
-    $('#newEditEntry').show()
+    $('#newEditEntry').fadeIn '500'
     
 
   'entries.new subscribe': ->
@@ -35,10 +36,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @mode = 'new'
     @model.entry.new {}, @callback('displayNewEditEntry')
 
-  'entries.edit subscribe': (called, id) ->
+  'entries.edit subscribe': (called, data) ->
     @publish 'context_panel.show'
     @mode = 'edit'
-    @model.entry.edit id, @callback('displayNewEditEntry')
+    @model.entry.edit data.id, @callback('displayNewEditEntry')
     
   #- 
   'form#new_entry, form.edit_entry submit': (el, ev) ->

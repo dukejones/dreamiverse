@@ -12,7 +12,6 @@
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
   .matrix.index{style: 'display:none'}
-  .matrix.stream{style: 'display:none'}
   #showEntry
     = render :partial => 'entries/show'
   #newEditEntry{style: 'display:none'}

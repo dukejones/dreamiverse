@@ -28,13 +28,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   showEntryElement: (entryEl) ->
     $('#showEntry').children().hide()
     $('#entryField').children().hide()
-    $('#showEntry').show()
+    $('#showEntry').fadeIn '500'
     entryEl.show()
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
   'entries.show subscribe': (called, data) ->
     @publish 'context_panel.show', data.username
-    @showEntryById id
+    @showEntryById data.id
 
 }
   

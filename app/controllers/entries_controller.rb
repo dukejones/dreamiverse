@@ -39,9 +39,11 @@ class EntriesController < ApplicationController
     hit( @user )
 
     if request.xhr?
-      thumbs_html = ""
-      @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
-      render :json => {type: 'ok', html: thumbs_html}
+      render(partial: "entries/field")
+      #format.html { render(partial:"entries/field") }
+      # thumbs_html = ""
+      # @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
+      # render :json => {type: 'ok', html: thumbs_html}
     end
 
   end
@@ -195,32 +197,6 @@ class EntriesController < ApplicationController
   def random
     random_entry = Entry.random
     redirect_to user_entry_path(random_entry.user.username, random_entry.id)
-  end
-  
-  
-  ## New methods - partials for AJAX
-  
-  def show_field
-    # TODO: refactor (see index)
-    @filters = params[:filters] || {}
-    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
-    @filters[:page] ||= params[:page]
-    @filters[:page_size] ||= 24
-    session[:filters] = @filters
-    
-    @books = Book.where({
-      user_id: @user.id,
-      enabled: true
-    })
-    #TODO: check viewing permissions depending on user
-
-    @entries = entry_list(:home)
-    
-    @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
-    
-    respond_to do |format|
-      format.html { render(partial:"entries/field") }
-    end
   end
   
 

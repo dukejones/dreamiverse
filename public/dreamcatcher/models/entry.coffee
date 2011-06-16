@@ -9,14 +9,18 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
       data: params
     }
   
-  show: ( id, success ) ->
+  show: (id, success) ->
     $.get "/entries/#{id}", @callback success
 
-  new: ( params, success, error ) ->
+  new: (params, success, error) ->
     $.get '/entries/new', @callback success
     
-  edit: ( id, success ) ->
+  edit: (id, success) ->
     $.get "/entries/#{id}/edit", @callback success
+    
+  index: (username, success) ->
+    params = {username: username} if username?
+    $.get "/entries", params, @callback success
     
   update: ( entryId, params, success, error ) ->
     $.ajax {
@@ -27,7 +31,7 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
       success: @callback success
       error: error
     }
-
+  ###
   showField: ( params, success, error ) ->
     $.ajax {
       url: '/entries/show_field'
@@ -37,6 +41,7 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
       success: @callback success
       error: error
     }
+  ###
     
   setViewPreferences: ( entryId, params, success, error ) ->
     $.ajax {
