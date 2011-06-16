@@ -1,18 +1,17 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  #- constructor
-  
   init: ->
     $('#metaMenu').metaMenu()
-    $('#entryField .matrix.index').dreamField()
-    $('#entryField .matrix.books').books()
-    $('#entryField .matrix.stream').dreamStream()
-    $('#entryField #showEntry').showEntry()
-    $('#entryField #newEditEntry').newEditEntry()
-    $('#totem').contextPanel()
+    $('#entryField .matrix.index').dreamField() if $('#entryField .matrix.index').exists()
+    $('#entryField .matrix.books').books() if $('#entryField .matrix.books').exists()
+    $('#entryField .matrix.stream').dreamStream() if $('#entryField .matrix.stream').exists()
+    $('#entryField #showEntry').showEntry() if $('#entryField #showEntry').exists()
+    $('#entryField #newEditEntry').newEditEntry() if $('#entryField #showEntry').exists()
+    $('#totem').contextPanel() if $('#totem').exists()
         
-    @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
-    @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
+    @images = new Dreamcatcher.Controllers.Images.Images $("#frame.browser") if $("#frame.browser").exists()
+    @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
+    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage') if $('#adminPage').exists()
     
     @publish 'dom.added', $('#body')    
     @bind window, 'popstate', => @publishHistory window.location.pathname

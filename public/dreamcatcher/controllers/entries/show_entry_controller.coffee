@@ -10,11 +10,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     entry: (id) ->
       return $("#showEntry .entry[data-id=#{id}]")
   }
+  
+  init: (el) ->
+    @element = $(el)
+    @element.tags 'show' # invoke the tags controller
 
   showEntryById: (id) ->
     entryEl = @el.entry id
-    log 'showEntryById'
-    $('#showEntry').tags 'show' # invoke the tags controller
     if entryEl.exists()
       @showEntryElement entryEl
     else

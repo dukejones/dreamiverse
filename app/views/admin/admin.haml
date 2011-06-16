@@ -1,10 +1,13 @@
-- content_for :head do
+- content_for :headBefore do
   = stylesheet_link_tag 'compiled/admin'
-  = javascript_include_tag 'jquery-ui.min'
-
+  %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
+  /- content_for :head do
+  /= sass_link_tag 'admin'
+  
 #adminPage
   #entryField
 
+    / USERS PANEL
     .user.panel
       .header
         .img
@@ -22,35 +25,80 @@
         .total= @users_created_last_month
         .clear
 
-      / %select#user-filter.select-menu.dropdown
-      /   %option.sortBy{       value: ''             } ordered by:
-      /   %option.age{          value: 'age'          } age
-      /   %option.alphabetical{ value: 'alphabetical' } alphabetical
-      /   %option.entries{      value: 'entries'      } entries
-      /   %option.starlight{    value: 'starlight'    } starlight
-      /   %option.traffic{      value: 'traffic'      } traffic
+
+      / USER CHARTS
+      #userCharts
+        %h2 user charts
+        #userCharts-arrow.up
+
+      .clear
 
 
-      .module.allUsers
-        #allUsersIcon.img
-        #pageLoading.spinner
-        %h2#allUsersHeader user list
+      #userCharts-wrap
+
+        / USER CHART BUTTONS
+        .chartButtons
+
+          .userButton-border.select
+            #users-1wk.button this week
+
+          .userButton-border
+            #users-8wks.button 8 weeks
+
+          .userButton-border
+            #users-6months.button 6 months
+
+          %hr
+
+          .userButton-border
+            #users-entries.button entries
+
+          .userButton-border
+            #users-starlight.button starlight
+
+          .userButton-border
+            #users-seeds.button seed codes
+
+
+        / CHART
+        #user-chart.chart
 
         .clear
 
 
-        / USER LIST
-        #userList
+      / USER LIST
+      #userList
+        %h2 user list
+        #userList-arrow.down
+
+      .searchWrap
+        %input.search{type: 'submit', value: ''}
+        %input.search-input#searchButton{type: 'text', value: 'search users'}
+
+      %select#user-filter.select-menu.dropdown
+        %option.orderBy{       value: ''             } ordered by:
+        %option.age{           value: 'created_at'   } age
+        %option.alphabetical{  value: 'username'     } username
+        %option.entries{       value: 'entries'      } entries
+        %option.starlight{     value: 'starlight'    } starlight
+        %option.traffic{       value: 'traffic'      } traffic
+
+      .clear
+
+
+      #userList-wrap
+
+        %a{name: 'users'}
+        #users.clearfix
           = render(partial: 'user', collection: @users)
-        .clear
-
+          .clear
 
 
         #nextPageEnd ›
-        %a#nextPage{href: "#"} ›
+        #nextPage ›
 
         #pages
-        %a#prevPage{href: "#"} ‹
+        #prevPage ‹
         #prevPageEnd ‹
 
 
@@ -60,18 +108,15 @@
 
 
 
-    
 
-        
-      
+
+
+    / ENTRIES PANEL
     .entries.panel
       .header
         .img
         %h1 entries
         .total= Entry.count
-
-      / entries last week
-      / entries last month
 
 
       .last-week
@@ -84,16 +129,66 @@
         .total= @entries_created_last_month
         .clear
 
+      .last-month
+        %h2 avg / user
+        .total= @average_entries_per_user
+        .clear
+
       .clear
 
-      / .module.activeUsers
-      /   %h2 most active users
-      / .clear
-      / 
-      / .module.seedCodes
-      /   %h2 seed codes
-      / .clear
-      / 
-      / .module.sharing
-      /   %h2 sharing
-      / .clear
+
+      #entryCharts-wrap
+
+        .entryCharts entry charts
+        #entryCharts-arrow.up
+
+        / ENTRY CHART BUTTONS
+        .chartButtons
+
+          .entryButton-border.select
+            #entries-1wk.button this week
+
+          .entryButton-border
+            #entries-8wks.button 8 weeks
+
+          .entryButton-border
+            #entries-6months.button 6 months
+
+          %hr
+
+          .entryButton-border
+            #entries-entry_types.button entry types
+
+          .entryButton-border
+            #entries-comments.button comments
+
+          .entryButton-border
+            #entries-tags.button tags
+
+
+        / CHART
+        .chart-wrap
+          #entry-chart.chart
+
+        .clear
+
+
+
+
+
+    / BEDSHEETS PANEL
+    #bedsheets.panel
+      .header#bedsheetsHeader
+        .img
+        %h1 bedsheets
+        .total= @total_bedsheets
+
+      #bedsheets-arrow.down
+
+      .clear
+
+      .module#bedsheet-nodes.clearfix
+        / the bedsheet_node partial gets injected here
+        .clear
+
+
