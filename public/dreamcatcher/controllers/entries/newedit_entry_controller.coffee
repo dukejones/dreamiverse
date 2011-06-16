@@ -10,7 +10,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @element = $(el)
     @initCookieSaver()
     
-  #-
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
 
