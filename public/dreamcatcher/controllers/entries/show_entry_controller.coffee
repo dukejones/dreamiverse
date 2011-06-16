@@ -13,7 +13,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
 
   showEntryById: (id) ->
     entryEl = @el.entry id
-    log 'showEntryById'
     $('#showEntry').tags 'show' # invoke the tags controller
     if entryEl.exists()
       @showEntryElement entryEl

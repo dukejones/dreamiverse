@@ -16,8 +16,23 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     #     $('.tagAnalysis .trigger').live('click', (event) ->
     #       $(this).parent().toggleClass('expanded')
     #     )
+    
+  addTag: ->
+    log "tagAdd click mode #{@mode}"
+    tagName = @getTag()
 
-  
+    switch @mode
+      when 'edit' 
+        @appendTag tagName
+      when 'show'
+        log 'show mode'
+        @appendTag tagName
+        # entryId = $('#showEntry').data 'id' 
+        # @model.tag.create {
+        #   entry_id: entryId
+        #   what_name: tagName
+        # }, @callback('appendTag', tagName)
+          
   appendTag: (tagName) ->    
     log 'appendTag' 
     tagCount = @tagCount()
@@ -39,7 +54,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @tag = el
     @tag.css('backgroundColor', '#ff0000')  
     @tag.fadeOut 'fast', =>
-      @tag.parent().remove()
+      @tag.remove()
     
   getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()
   
@@ -68,40 +83,40 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
       @expandInputField()
     else
       @contractInputField()
+
  
             
   # DOM Listeners
   
-  '#addTag click': (el) ->
-    log "tagAdd click mode #{@mode}"
-    tagName = @getTag()
-
-    switch @mode
-      when 'edit' 
-        @appendTag tagName
-      when 'show'
-        log 'show mode'
-        @appendTag tagName
-        # entryId = $('#showEntry').data 'id' 
-        # @model.tag.create {
-        #   entry_id: entryId
-        #   what_name: tagName
-        # }, @callback('appendTag', tagName)
+  '#addTag click': ->
+    @addTag()
+    # log "tagAdd click mode #{@mode}"
+    # tagName = @getTag()
+    # 
+    # switch @mode
+    #   when 'edit' 
+    #     @appendTag tagName
+    #   when 'show'
+    #     log 'show mode'
+    #     @appendTag tagName
+    #     # entryId = $('#showEntry').data 'id' 
+    #     # @model.tag.create {
+    #     #   entry_id: entryId
+    #     #   what_name: tagName
+    #     # }, @callback('appendTag', tagName)
           
   
   '.tagThisEntry click': ->
     if @buttonMode is 'expand'
       @expandInputField()
     else
-      $('#addTag').click()
+      @addTag()
   
   '.tagHeader click': -> @expandContractInputField()
   
   '#newTag keyup': (el, ev) ->
     if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
       $('#addTag').click()
-
-
 
   '#tag-list .tag .close click': (el) ->
     @removeTagFromDom(el.parent())
