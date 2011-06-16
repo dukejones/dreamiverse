@@ -202,23 +202,22 @@ class EntriesController < ApplicationController
     end
   end
   
+  
+  
+  # XHR Only
   def show_context
-    if params[:user_id]
-      @user = User.find params[:user_id]
+    @user = if params[:user_id]
+      User.find_by_id params[:user_id]
+    elsif params[:username]
+      User.find_by_username params[:username]
     else
-      @user = current_user
+      current_user
     end
     
-    if params[:type] == 'entry'
-      partialPath = "users/context_panel"  
-    elsif params[:type] == 'stream'
-      @user = current_user
-      partialPath = "entries/stream_context_panel"
-      @filters = session[:filters] = @user.update_stream_filter(params[:filters])
-    end
-      
-    respond_to do |format|
-      format.html { render(:partial => partialPath, :locals => {:user => @user}) }
+    if @user
+      render(:partial => "users/context_panel", :locals => {:user => @user})
+    else
+      render :text => "Could not find this user.", :status => 403
     end
   end
   
