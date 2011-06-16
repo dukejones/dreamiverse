@@ -223,10 +223,9 @@
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
 
   background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(120,120,120,0.75)))
-  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(120,120,120,0.75))
-  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(120,120,120,0.75))
-
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(200, 200, 200,0.75)))
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(200, 200, 200,0.75))
+  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(200, 200, 200,0.75))
 
 =shine-dark-alpha($px)
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.06)
@@ -628,7 +627,9 @@
 // IE 8 only
 // -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)"
 
-// IE 6+ gradient filter - vertical
-// filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr=#1471da, endColorstr=#1C85FB)
-// IE 8 only
-// -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=1, startColorstr=#1471da, endColorstr=#1C85FB)"
+// IE 6+ rgba filter
+// background: transparent
+// filter:progid:DXImageTransform.Microsoft.gradient(startColorStr=#BF6464B7,endColorStr=#BF6464B7)
+// -ms-filter:"progid:DXImageTransform.Microsoft.gradient(startColorstr=#BF6464B7,endColorstr=#BF6464B7)"
+// zoom: 1
+

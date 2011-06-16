@@ -203,7 +203,7 @@ function linkify(text)
     return text;
   }
 
-function setup2dThumbIPadClick(){
+/*function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
   var ua = navigator.userAgent;
   var clickEvent;
@@ -217,7 +217,7 @@ function setup2dThumbIPadClick(){
     event.preventDefault();
     window.location = $(event.currentTarget).attr('href');
   })
-}
+}*/
 
 
 
@@ -354,7 +354,7 @@ var tagHeight;
 
 function checkAttachButtons(){
   var buttonVisible = false;
-  $('.entryAttach .attach').each(function(i, el){
+  $('#entryAttach .attach').each(function(i, el){
     // Go thru each button and see if they are all hidden
     if($(this).css('display') != 'none'){
       buttonVisible = true
@@ -362,16 +362,16 @@ function checkAttachButtons(){
   })
   
   if(!buttonVisible){
-    $('.entryAttach').fadeOut();
+    $('#entryAttach').fadeOut();
   } else {
-    $('.entryAttach').fadeIn()
+    $('#entryAttach').fadeIn()
   }
 }
 
 function setupEvents(){
   // Listen for attach toggles
-  $('.entryAttach .images').unbind();
-  $('.entryAttach .images').click(function(){
+  $('#attach-images').unbind();
+  $('#attach-images').click(function(){
     $('.entryImages').slideDown();
     $(this).hide();
 
@@ -385,7 +385,7 @@ function setupEvents(){
     // and show button
     if($('#currentImages').children().length == 1){
       $('.entryImages').slideUp();
-      $('.entryAttach .images').show();
+      $('#attach-images').show();
     } else {
       // if content added, minimize panel
       if($('#currentImages').css('display') != 'none'){
@@ -397,8 +397,8 @@ function setupEvents(){
     checkAttachButtons();
   })
   
-  $('.entryAttach .tag').unbind();
-  $('.entryAttach .tag').click(function(){
+  $('#attach-tags').unbind();
+  $('#attach-tags').click(function(){
     $('.entryTags').slideDown();
     //$('#newDream-tag').height(0);
     //$('#newDream-tag').css('display', 'block');
@@ -414,7 +414,7 @@ function setupEvents(){
     if($('#tag-list').children().length == 2){
       // No tags added hide it all
       $('.entryTags').slideUp();
-      $('.entryAttach .tag').show();
+      $('#attach-tags').show();
     } else {
       // tags added only minimize
       if($('#tag-list').css('display') != 'none'){
@@ -444,8 +444,8 @@ function setupEvents(){
     $(this).parent().addClass('selected')
   })
   
-  $('.entryAttach .emotions').unbind();
-  $('.entryAttach .emotions').click(function(){
+  $('#attach-emotions').unbind();
+  $('#attach-emotions').click(function(){
     $('.entryEmotions').slideDown();
     $(this).hide();
     checkAttachButtons();
@@ -469,14 +469,14 @@ function setupEvents(){
       }
     } else {
       $('.entryEmotions').slideUp();
-      $('.entryAttach .emotions').show();
+      $('#attach-emotions').show();
     }
     
     checkAttachButtons();
   })
   
-  $('.entryAttach .links').unbind();
-  $('.entryAttach .links').click(function(){
+  $('#attach-links').unbind();
+  $('#attach-links').click(function(){
     $('.entryLinks').slideDown();
     $(this).hide();
     checkAttachButtons();
@@ -488,7 +488,7 @@ function setupEvents(){
     if($('#linkHolder').children().length < 1){
       // No tags added hide it all
       $('.entryLinks').slideUp();
-      $('.entryAttach .links').show();
+      $('#attach-links').show();
     } else {
       // tags added only minimize
       if($('#linkHolder').css('display') != 'none'){
@@ -567,7 +567,7 @@ function checkForPastedLink(newText){
 function addLink(newText){
   if($('.entryLinks').css('display') == 'none'){
     $('.entryLinks').slideDown();
-    $('.entryAttach .links').hide();
+    $('#attach-links').hide();
     
     // Set newly displayed header click
     $('.entryLinks .headers').unbind();
@@ -575,7 +575,7 @@ function addLink(newText){
       if($('#linkHolder').children().length < 1){
         // No tags added hide it all
         $('.entryLinks').slideUp();
-        $('.entryAttach .links').show();
+        $('#attach-links').show();
       } else {
         // tags added only minimize
         if($('#linkHolder').css('display') != 'none'){

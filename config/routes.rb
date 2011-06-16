@@ -49,6 +49,7 @@ Dreamcatcher::Application.routes.draw do
   # Resources
 
   resource :user do
+    get  'context_panel'
     post 'follow'
     post 'bedsheet'
     post 'set_view_preferences'
@@ -98,7 +99,7 @@ Dreamcatcher::Application.routes.draw do
   
   resources :entries do
     collection do
-      get 'random' 
+      get 'random'
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
@@ -106,6 +107,8 @@ Dreamcatcher::Application.routes.draw do
     end
     resources :comments
   end
+  
+  resources :books
 
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new

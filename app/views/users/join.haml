@@ -1,5 +1,5 @@
 - content_for :head do
-  = coffeescript_include_tag 'seedcode'
+  = include_javascripts 'join'
 
 / DREAMCATCHER LOGO
 %a.dcLogo{href: root_path}
@@ -34,19 +34,17 @@
           .clear
           %span.username username
           %span.label.url http://dreamcatcher.net/
-          = f.text_field :username, class: 'inputField', tabindex: '4'
+          = f.text_field :username, class: 'inputField', tabindex: '4', maxlength: '15'
           .clear
 
           .label.seed.trigger.showhideremove have a seed code?
           .target.hidden.showhideremove
             %span.label enter seed code
-            /= f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || 'theta'
-            = f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code] || ''
+            = f.text_field :seed_code, class: 'inputField',  :value => session[:seed_code]
           .clear
 
           .relative
             .recaptchaWrap
-
               = raw recaptcha_tags(:display => {:theme => 'clean', :tabindex => 5})
 
             %span.label.recaptcha enter text as shown
@@ -55,6 +53,20 @@
               .text
                 Join Now &rsaquo;
                 %input.button{tabindex: '6', type: 'submit', name: 'loginButton', value: 'Join Now &rsaquo;'}
+                :coffeescript
+                  # XXX: Put this in the JMVC for this page.
+                  $('input[name="loginButton"]').click ->
+                    $this = $(this)
+                    setTimeout(->
+                      $this.attr 'disabled', 'disabled'
+                      textNode = $this.parent()
+                      textNode.data 'old-html', textNode.html()
+                      textNode.html 'registering...'
+                      setTimeout(->
+                        textNode.html textNode.data('old-html')
+                        $this.removeAttr 'disabled'
+                      ,20000) # after 20 seconds it will re-enable
+                    ,13)
 
           %a.terms{href: terms_path} by joining, I agree to the “terms of service”
           %a.forgot{href: forgot_password_path} have an account and need to reset your password?

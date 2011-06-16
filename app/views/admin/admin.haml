@@ -1,7 +1,9 @@
 - content_for :headBefore do
-  = sass_link_tag 'admin'
+  = stylesheet_link_tag 'compiled/admin'
   %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
-
+  /- content_for :head do
+  /= sass_link_tag 'admin'
+  
 #adminPage
   #entryField
 

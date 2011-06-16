@@ -17,10 +17,10 @@ set :output, "log/cron.log"
 
 # Learn more: http://github.com/javan/whenever
 
-job_type :rake, "cd :path && RAILS_ENV=:environment /usr/local/bin/rake :task :output"
+job_type :rake, "cd :path && RAILS_ENV=:environment /usr/bin/env bundle exec rake :task :output"
 
 every 1.day, :at => '3:00 am' do
-  rake "app:starlight"
+  rake "starlight"
 end
 
 every 3.days, :at => '4:30 am' do

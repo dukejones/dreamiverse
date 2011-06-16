@@ -1,0 +1,305 @@
+= form_for @entry do |f|
+  / HIDDEN FORM ELEMENTS
+  = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
+    = v.hidden_field 'image_id' # Bedsheet
+    = v.hidden_field 'theme'    # Currently 'light' or 'dark'
+    = v.hidden_field 'bedsheet_attachment'    # Currently 'light' or 'dark'
+    - if @entry_mode == 'new' 
+      = hidden_field_tag :new_entry_mode, 1 
+
+  #entryId{:'data-id' => @entry.id}
+  #entryMode{:'data-id' => @entry_mode}
+  
+  - @entry.images.each do |image|
+    = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
+
+
+
+
+
+
+
+
+
+  / ENTRY OPTIONS
+  #entryOptions
+
+
+    - entry_type = @entry.type ? @entry.type : current_user.default_entry_type
+    %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}  
+      %option.dream{      :value => 'dream',      :selected => entry_type == 'dream'}      dream
+      %option.vision{     :value => 'vision',     :selected => entry_type == 'vision'}     vision
+      %option.experience{ :value => 'experience', :selected => entry_type == 'experience'} experience
+      %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
+      %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
+
+    #entry-date.tooltip{title: "date and time"}
+      .img
+
+    #entry-location.hidden.tooltip{title: "add your location"}
+      .img
+
+
+
+    / BOOKS LIST
+    .books-list.tooltip{title: "add to book"}
+      .img
+
+      %select#books-list.select-menu.dropdown
+        %option.label{value: 'Add to Book:'} Add to Book:
+        = render :partial => "books/book_list"
+        %option.removeBook{value: 'remove from book'} remove from book
+        %option.newBook{value: 'new'} + new book
+
+      %input.newBook-input{type: 'text', value: '+ new book'}
+
+
+
+
+    / POST BUTTON
+    = f.submit:value => 'post'#, :'data-disable-with' => "    "
+    #postSpinner.hidden
+
+
+    / SHARING PANEL
+    - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
+    %select#sharing-list.select-menu.radio{ name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
+      = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
+
+    / .sharingWrap.wrapper
+    /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
+    / 
+    /     .listSelection{style: "background: url('/images/icons/sharing-24-hover.png') no-repeat center"}
+    / 
+    /     %select#sharing_select{name: "entry[sharing_level]"}
+    /       %option.everyone{   value: Entry::Sharing[:everyone]  } everyone
+    /       %option.list{       value: Entry::Sharing[:friends]   } friends only
+    /       %option.followers{  value: Entry::Sharing[:followers] } followers only
+    /       %option.list.trigger.showHide{value: 'list'           } list of users
+    /       %option.anon{       value: Entry::Sharing[:anonymous] } anonymous
+    /       %option.private{    value: Entry::Sharing[:private]   } private
+    / 
+    / 
+    /     / SHARING - LIST OF USERS
+    /     .listOfUsers.target.showHide.hidden
+    /       .searchWrap
+    /         / %form.searchForm  !!! This form was breaking all other form elements on the page. tried ruby form and tried unique classes from meta-menu search == no way
+    /         %input.searchField{value: 'username...'}
+    /         %input.search{type: 'submit', value: ''}
+    / 
+    /       .userResults
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    /         .user
+    /           .avatar{style: "background: url('/images/avatars/default-avatar-32.jpg') no-repeat center"}
+    /           .username username
+    /           .statusIcon.friends
+    /           .close
+    / 
+    /       %label.taggedUsers
+    /         .img
+    /         %span share with tagged..
+    /         %input{type: 'checkbox', name: 'taggedUsers'}
+    / 
+    /       %label.hideShared
+    /         .img
+    /         %span hide shared users
+    /         %input{type: 'checkbox', name: 'hide'}
+    / 
+    /     .everyone.target.hidden
+    /       .facebook.hidden
+    /         %label
+    /           %img{src: '/images/icons/facebook-16-hover.png', width: '16', height: '16'}
+    /           %span.shareOn share on
+    /           %span facebook
+    /           %input{type: 'checkbox', name: 'facebook'}
+    /       .twitter.hidden
+    /         %label
+    /           %img{src: '/images/icons/twitter-16.png', width: '16', height: '16'}
+    /           %span.shareOn share on
+    /           %span twitter
+    /           %input{type: 'checkbox', name: 'twitter'}
+    /       .buzz.hidden
+    /         %label
+    /           %img{src: '/images/icons/buzz-16.png', width: '16', height: '15'}
+    /           %span buzz
+    /           %span.shared shared:
+    /           %span.sharedWhen 10 hours ago
+    /       .clear
+    / = f.text_field :title, :maxlength => '72', :placeholder => "title"
+
+
+
+
+
+
+
+  / .wrapper
+  /   MOOD ICON
+  /   = render :partial => "mood_icon"
+
+
+
+
+  / NEW ENTRY DATE TIME
+  = render :partial => "entries/new/date_time"
+
+  / NEW ENTRY LOCATION
+  = render :partial => "entries/new/location",locals: {f: f}
+
+
+
+
+
+
+
+
+  / NEW ENTRY INPUT PANEL
+  #newEntry
+
+    = f.text_field :title, :maxlength => '72'
+    %hr#title-hr
+    = f.text_area :body, :placeholder => "My dream..."
+    .clear
+
+
+
+
+  / MODULES
+
+
+  / NEW ENTRY IMAGES
+  - unless is_ipad?
+    = render :partial => "entries/new/image_panel", locals: {images: @entry.images}
+
+
+
+  / NEW ENTRY TAG
+  .entryTags.entryPanels{title: 'tags'}
+    .tagHeader.headers
+      .img
+      tag
+    .tagInputWrap
+      .tagInput
+        %input#newTag{placeholder: 'who / what / where'}
+        #addTag.tagAdd
+          %span +
+          add
+      .tagInputRight
+
+    #tag-list.tag-list.ui-sortable
+
+      - @entry.tags.custom.whats.each do |what|
+        .tag.tagWhat.newEntry
+          .header.trigger
+            .tag-name= what.name
+          .close
+          %input{type: 'hidden', name: 'what_tags[]', value: what.name}
+
+    #sorting.clear
+
+
+
+
+  / NEW ENTRY LINK
+  .entryLinks.entryPanels{title: 'links'}
+    .linksHeader.headers
+      .img
+      links
+    #linkInputWrap
+      %input#linkValue{:placeholder => "http://yourlink.com"}
+      .linkAdd
+        %span +
+        add
+    #linkHolder
+      - @entry.links.each do |link|
+        .linkContainer{class: link.youtube? ? 'youtube' : '', id: link.id}
+          .title
+            %input.linkTitleValue{:value => "#{link.title}", name: 'links[][title]', style: "width: 220px"}
+          .url
+            %input.linkUrlValue{:value => "#{link.url}", name: 'links[][url]', style: "width: 320px"}
+            .icon
+              %img{:src => "http://www.google.com/s2/favicons?domain_url=#{link.url}"}
+          .close
+          - if link.youtube?
+            .thumb{style: "background: url('') no-repeat center center transparent"}
+            .description
+    .clear
+
+
+
+  / NEW ENTRY EMOTIONS
+  .entryEmotions.entryPanels.hidden{title: 'emotions'}
+    .emotionsHeader.headers
+      .img
+      emotions
+  
+    / EMOTION PANEL
+    .emotionPanel
+      - Emotion.all.each do |emotion|
+        %div{class: emotion.name}
+          - default = @entry.tags.where(noun: emotion).first._?.intensity || 0
+          - (0..4).each do |i|
+            - number_word = case i
+              - when 0 then 'zero'
+              - when 1 then 'one'
+              - when 2 then 'two'
+              - when 3 then 'three'
+              - when 4 then 'four'
+            
+            %label{class: number_word}
+              - if i == 0
+                %span= emotion.name
+              = radio_button_tag "emotions[#{emotion.name}]", i, (i == default)
+    .clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  / NEW ENTRY ATTACHMENTS
+  #entryAttach
+    %p +
+    #attach-text.attach{title: 'text'}
+      .img
+      text
+    - unless is_ipad?
+      #attach-images.attach{title: 'images'}
+        .img
+        images
+    #attach-tags.attach{title: 'tags'}
+      .img
+      tag
+    #attach-links.attach{title: 'links'}
+      .img
+      links
+    #attach-emotions.attach{title: 'emotions'}
+      .img
+      emotions
+    #entry-appearance.attach.tooltip{title: "appearance"}
+      .img
+    .clear
+
+
+
+

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   serialize :stream_filter
   
   has_many :authentications
-  has_many :entries
+  has_many :entries, :dependent => :destroy
   has_many :hits
   has_many :entry_accesses
   has_one :link, :as => :owner
@@ -21,11 +21,11 @@ class User < ActiveRecord::Base
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true
   # follows are the follows this user has
-  has_many :follows
+  has_many :follows, :dependent => :destroy
   # following are the users this user is following
   has_many :following, :through => :follows
   # followings are the follows that point to this user
-  has_many :followings, :class_name => "Follow", :foreign_key => :following_id
+  has_many :followings, :class_name => "Follow", :foreign_key => :following_id, :dependent => :destroy
   # followers are the users that follow this user
   has_many :followers, :through => :followings, :source => :user
   belongs_to :default_location, :class_name => "Where"
@@ -38,21 +38,20 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   #attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  # usernames must be lowercase
-  before_create -> { username.downcase! }
-  before_create -> { email.downcase! }
   before_create :create_view_preference
   before_create :set_defaults
   before_validation(:on => :create) do
-    username.strip! 
+    username.strip!
+    username.downcase! 
     email.strip!
+    email.downcase!
   end  
   after_validation :encrypt_password
 
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validate :password_confirmation_matches
   validates_presence_of :username
-  validates_uniqueness_of :username
+  # (db constraint) validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
   validates_format_of :username, :without => /[^a-zA-Z\d*_\-]/, 
     :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"

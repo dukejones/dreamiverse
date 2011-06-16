@@ -179,6 +179,7 @@ class Entry < ActiveRecord::Base
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
+    entry_scope = entry_scope.where(book_id: nil) #added by carl
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
@@ -216,6 +217,7 @@ class Entry < ActiveRecord::Base
   end
 
   def set_emotions(emotion_params)
+    return if emotion_params.blank?
     emotion_params.each do |emotion_name, intensity|
       if emotion_tag = self.tags.emotion.named(emotion_name).first
         emotion_tag.update_attribute(:intensity, intensity)

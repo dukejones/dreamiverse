@@ -15,7 +15,8 @@ class Image < ActiveRecord::Base
   has_many :view_preferences
   has_many :whats
   belongs_to :uploaded_by, :class_name => "User"
-
+  has_many :users
+  
   #
   # Callbacks 
   #
@@ -51,7 +52,6 @@ class Image < ActiveRecord::Base
     results = results.where(title: params[:title]) if params[:title]
     results = results.where(year: params[:year]) if params[:year]
     results = results.where(tags: params[:tags]) if params[:tags]
-    # categories - replaces genre
     results = results.where(category: params[:categories].split(',')) if params[:categories]
     results
   end

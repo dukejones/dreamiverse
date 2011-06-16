@@ -23,11 +23,23 @@
       +round(16)
       +flat-left
       +font(24)
-    .prev:hover, .stream:hover, .next:hover
+    .prev:hover, .stream-nav:hover, .entries-nav:hover, .next:hover
       +cancel(16)
-    .stream
+    .stream-nav
+      .img
+        +left
+        width: 24px
+        height: 32px
+        margin: 0 8px 0 0
+        background: url(/images/icons/stream-24.png) no-repeat center center transparent
+      &:hover .img
+        background: url(/images/icons/stream-24-hover.png) no-repeat center center transparent
+      &:active .img
+        background: url(/images/icons/stream-24-active.png) no-repeat center center transparent
+
+    .stream-nav, .entries-nav
       +flat-all
-    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry
+    .next, .prev, .stream-nav, .entries-nav, .books, .entryType, .postTime, .editEntry, .deleteEntry, .spine-nav
       +block
       +center
       +bold
@@ -42,6 +54,7 @@
       +cursor
       +user-select
       margin-right: 8px
+
     .entryType
       .img
         width: 32px
@@ -62,14 +75,33 @@
           background-image: url(/images/icons/article-24.png)
       span
         +left
+
     .postTime
       font-weight: normal
       line-height: 32px
-    .next, .stream, .prev, .books, .editEntry, .deleteEntry
+
+    .next, .prev, .stream-nav, .entries-nav, .books, .editEntry, .deleteEntry, .spine-nav
       +right
-    .books
-      +round(8)
-      margin-right: 8px
+
+    .spine-nav
+      +overflow
+      +center
+      +font(14)
+      height: 32px
+      line-height: 34px
+      width: 90px
+      // Fallback color
+      background-color:     #245a91
+      // Fallback image
+      background-image:     url(/images/books/spine-blue-64.png)
+      background-repeat:    repeat-x
+      background-position:  left
+      background-size:      100% 100%
+      background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
+      background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
+      border: 1px solid #00305c !important
+
     .editEntry
       +alpha(60)
       +round(16)
@@ -163,9 +195,9 @@
       .love.selected
         background: url(/images/icons/love-16-hover.png) no-repeat center
       .share
-        background: url(/images/icons/share-16.png) no-repeat center
+        background: url(/images/icons/sharing-16.png) no-repeat center
       .share.selected
-        background: url(/images/icons/share-16-hover.png) no-repeat center
+        background: url(/images/icons/sharing-16-hover.png) no-repeat center
       .repost
         background: url(/images/icons/repost-24.png) no-repeat center
       .repost.selected
@@ -382,7 +414,7 @@
         +indent-light
         +border-light
 
-      .next, .stream, .prev
+      .next, .stream-nav, .entries-nav, .prev
         color: #555
         +button-light
         +shine-light(16)
@@ -490,7 +522,7 @@
         +indent-dark
         +border-dark
 
-      .next, .stream, .prev
+      .next, .stream-nav, .entries-nav, .prev
         color: #ddd
         +button-dark
         +shine-dark(15)

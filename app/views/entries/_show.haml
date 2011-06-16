@@ -1,0 +1,176 @@
+/ SHOW ENTRY
+.entry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :'data-viewpreference' => "#{@entry.view_preference.to_json}", :class => @entry.images.blank? ? "noImage" : "" }
+
+  .entryType
+    .img{class: @entry.type}
+    %span= @entry.type
+
+  .postTime
+    - time = (@entry.dreamed_at || @entry.created_at)
+    = time_ago_in_words(time)
+
+  %a.history.next{href: user_entry_path(@next.user.username, @next)}
+    %span &rsaquo;
+
+  - if @book
+    %a.history.spine-nav{href: "/books/#{@book.id}", class: @book.color} @book.title
+  - elsif session[:lens] == :stream
+    %a.history.stream{href: stream_path} stream
+  - else
+    %a.history.entries{href: user_entries_path(@user.username)} entries
+    
+
+  %a.history.prev{href: user_entry_path(@previous.user.username, @previous)}
+    %span &lsaquo;
+
+  - if @entry.user == current_user
+    %a.history.editEntry{href: edit_entry_path(@entry)} edit
+    %a.history.deleteEntry delete
+    /todo: bring back
+    /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
+
+
+  .wrapper
+    / HEADER IMAGE & TITLE
+    - if @entry.main_image
+      .imageHeader.target.fade{style: "background: url(#{dream_header_url(@entry.main_image)}) no-repeat center center transparent"}
+      .tagToggle.trigger.fade
+    - if location = @entry.location
+      #entryLocationMap{style: "position: absolute; display: none; top: 50px; height: 200px;-moz-user-select: none; border-radius: 16px 16px 0 0; clear: both; height: 200px; margin: 0; overflow: hidden; padding: 0px; width: 662px;", 'data-lng'=> "#{location.longitude}", 'data-lat'=> "#{location.latitude}", 'data-city'=> "#{location.city}", 'data-province'=> "#{location.province}"}
+
+
+    / TAG CLOUD
+    .tagCloud
+      .toggleWrap
+      - @entry.tags.what.limit(16).shuffle.each do |tag|
+        %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
+
+
+  / MOOD ICON
+  .moodIcon.hidden
+    %img{src: '/images/moods/plants/Fungi.png'}
+
+
+  / STARLIGHT COUNT & SHARE OPTIONS
+  .starlight
+    .img
+    %span= @entry.starlight
+
+
+    /
+      SAVE FOR LATER
+      %hr
+      .option.love
+      .option.share
+      .option.repost.selected
+
+
+
+  .content
+    - unless @entry.title.blank?
+      .title= @entry.title
+
+
+
+    /EMOTIONS DETAILS & THUMBS
+    - if @entry.tags.emotion.first._?.intensity.to_i > 0
+      .emotionsWrap.wrapper
+
+        / EMOTIONS DETAILS
+        .emotions-details.target.emotionshowhide.hidden
+          .emotionsHeader
+            .img
+            emotions
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
+
+        / EMOTIONS THUMB
+        .emotions-thumb.trigger.emotionshowhide
+          = render :partial => "emotions", :locals => {emotion_tags: @entry.tags.emotion}
+
+
+
+    .body{class: @entry.body.blank? ? 'blank' : ''}= simple_format(@entry.body)
+
+    / IMAGE GALLERY
+    %ul.gallery
+      - @entry.images.each do |image|
+        = gallery_list_item(image)
+      - @entry.links.youtube.each do |link|
+        = youtube_link(link)
+    .clear
+
+    / VIDEO PANEL
+    - @entry.links.youtube.each do |link|
+      = render :partial => "video", :locals => {:link => link}
+
+    / ENTRY LINKS
+    - if (@entry.links - @entry.links.youtube).count >= 1
+      .entryLinks
+        - (@entry.links - @entry.links.youtube).each do |link|
+          .link
+            %span
+              %a{href: "#{link.url}", target: "_blank"}= link.title
+        .clear
+
+    / / ENTRY LINKS - NEW SYNTAX
+    / - if (@entry.links - @entry.links.youtube).count >= 1
+    /   .entryLinks
+    /     - (@entry.links - @entry.links.youtube).each do |link|
+    /       %a.link{href: "#{link.url}", target: "_blank"}
+    /         %span= link.title
+    /     .clear
+
+
+    / TAG
+    .showTags
+      .wrapper
+
+        .tagInputWrap
+          - if @entry.user == current_user
+            .tagHeader.headers
+              .img
+              tag
+
+            .tagInput.target
+              %input#newTag{placeholder: 'who / what / where'}
+            .tagThisEntry.trigger
+              + add
+
+        / POST INFO - TIME, LOCATION & SHARE LEVEL
+        .postInfo
+
+          - if !@entry.everyone?
+            .shareLevel
+              .img{class: @entry.sharing}
+              %span= @entry.sharing
+
+          - if location = @entry.location
+            .postLocation= "#{location.city}, #{location.province}"
+
+
+
+
+        / TAGS
+        / CUSTOM TAGS
+        #tag-list.tag-list.ui-sortable.target
+
+          - @entry.what_tags.custom.whats.each do |what|
+            = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
+            
+        / ANALYSIS TAGS
+        .tag-list.ui-sortable.target
+          - @entry.what_tags.auto.whats.each do |what|
+            - unless what.dictionary_words.blank?
+              = render partial: 'tag', locals: {what: what, close_button: false, kind: 'auto'}
+
+
+        #sorting
+        .clear
+
+
+  / HIDDEN FIELD FOR SHOW ENTRY MODE 
+  .commentsTarget
+  = form_tag do 
+    = hidden_field_tag(:show_entry_mode, 1) 
+
+

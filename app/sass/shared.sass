@@ -15,6 +15,11 @@ body.dark
 body.fixed
   // background-position: center top
   background-attachment: fixed !important
+  // -webkit-background-size: cover
+  // -moz-background-size: cover
+  // -o-background-size: cover
+  // background-size: cover
+
 body.float
   #metaMenu
     z-index: 1100
@@ -49,6 +54,12 @@ select
 .dark
   .spinner
     background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
+
+#backgroundReplace
+  +hidden
+  +absolute
+  width: 100%
+  height: 100%
 
 // BODY CLICK
 #bodyClick
@@ -121,12 +132,34 @@ select
 
 @import thumb_1d
 @import thumb_2d
+@import book
+@import book_shelf
 @import tag
 @import tag_cloud
+@import image_upload
 
 @import dreamstars
 @import entries
+@import new/attachments
+@import new/date
+@import new/emotions
+@import new/images
+@import new/links
+@import new/location
+
+
 @import new_entry
+
+
+@import new/options
+@import new/tags
+
+
+
+
+
+
+
 @import show_entry
 @import friends
 

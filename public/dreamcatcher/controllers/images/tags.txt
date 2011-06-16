@@ -1,0 +1,1 @@
+integrating scottt's tag controller into jmvc.

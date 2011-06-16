@@ -1,18 +1,44 @@
+// TOTEM (wrapper for context panel & elements beneath)
+#totem
+  +absolute
+  +cursor
+  top: 83px
+  left: 13px
+  width: 208px
+
 
 // CONTEXT PANEL
 // STRUCTURE
 
 #contextPanel
+  +relative
   +round(16)
-  +absolute
   +cursor
-  top: 83px
-  left: 13px
   width: 200px
-  padding: 4px 4px 0
+  padding: 4px 4px 2px
 
 
+  .book
+    +relative
 
+
+  .entryRemove
+    +hidden
+    +absolute
+    +round(12)
+    top: -1px
+    left: -1px
+    width: 200px
+    height: 266px
+    background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+
+    div
+      +absolute
+      +center
+      +bold
+      top: 186px
+      left: 0
+      width: 200px
 
 
   #avatarDrop
@@ -100,7 +126,7 @@
           +bold
           color: #68b800
       .uploadAvatar:hover
-        +inner-glow(20)
+        +inner-glow(10)
         border: 1px solid #fff
         color: #fff
 
@@ -141,7 +167,6 @@
     +overflow
     +relative
     +center
-    +bold
     +block
     +font(21)
     margin: 4px 0 2px
@@ -483,7 +508,9 @@
     .avatar
       border: 1px solid transparent
       &:hover
-        border: 1px solid #000
+        +pointer
+        border: 1px solid #aaa
+        border: 1px solid rgba(255, 255, 255, 0.8)
 
     .context, .label
       border: 1px solid #8a8a8a
@@ -491,12 +518,18 @@
       border: 1px solid #111
       +pointer
     .context
+      color: #444
       +shine-light-alpha(16)
+      &:hover
+        color: #000
     .label
       +shine-light-alpha(16)
       &.selected
         +shine-dark-alpha(16)
         color: #fff !important
+
+    .trigger .label:hover
+      color: #000
 
 
 
@@ -588,7 +621,8 @@
     .avatar
       border: 1px solid transparent
       &:hover
-        border: 1px solid #fff
+        border: 1px solid #333
+        border: 1px solid rgba(0,0,0,0.6)
 
     .context, .label
       +shine-dark-alpha(16)

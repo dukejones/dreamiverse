@@ -19,9 +19,10 @@ set :use_sudo, false
 
 
 after "deploy", "deploy:cleanup"
-before "deploy:symlink", "barista:brew"
 before "deploy:symlink", "uploads:symlink"
-before "deploy:symlink", "jmvc:compile"
+before "deploy:restart", "compile:the_rest"
+before "deploy:restart", "compile:jmvc"
+
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -36,14 +37,18 @@ namespace :deploy do
 end
 
 
-namespace :barista do
-  task :brew do
-    run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+namespace :compile do
+  task :jmvc do
+    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+  end
+  
+  task :the_rest do
+    rake 'compile'
   end
 end
 
-namespace :jmvc do
-  task :compile do
-    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
-  end
+def rake(cmd, options={}, &block)
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
+  run(command, options, &block)
 end
+

@@ -1,11 +1,11 @@
 class ImagesController < ApplicationController
   protect_from_forgery :except => :create
-  before_filter :require_moderator, :only => :manage
+  #before_filter :require_moderator, :only => :manager
 
   def index
     image_scope = Image.enabled
     image_scope = image_scope.where(section: params[:section]) if params.has_key?(:section)
-    
+    image_scope = image_scope.where(category: params[:category]) if params.has_key?(:category)
     image_scope = image_scope.where(genre: params[:genre]) if params.has_key?(:genre)
     
     if params.has_key?(:artist) && params.has_key?(:album)
@@ -60,6 +60,7 @@ class ImagesController < ApplicationController
   def albums
     image_finder = Image.enabled
     image_finder = image_finder.where(section: params[:section]) if params[:section]
+    image_finder = image_finder.where(category: params[:category]) if params[:category]
     image_finder = image_finder.where(genre: params[:genre]) if params[:genre]
 
     if params.has_key?(:artist)

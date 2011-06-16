@@ -1,0 +1,64 @@
+.light #entryField
+  .entryLocation
+
+    .finding, .name, .city, .state, .country
+      +input-light(small)
+
+.dark #entryField
+  .entryLocation
+
+    .finding, .name, .city, .state, .country
+      +input-dark(small)
+    input, select, option
+      color: #ccc
+
+
+
+
+
+#entryField
+  // ENTRY LOCATION
+  .entryLocation
+    height: 70px
+
+    .finding
+      +relative
+      +left
+      left: 126px
+      padding: 8px 0
+      +font(16)
+      left: -1px
+      +round(8)
+      margin: 4px 0 0 8px
+      +font(16)
+      padding: 4px
+      width: 240px
+
+
+    .spinner
+      +absolute
+      width: 32px
+      height: 32px
+      margin-bottom: -32px
+      right: 4px
+      top: -1px
+
+    .data
+      +absolute
+      left: 112px
+      width: 520px
+      .name, .city, .state, .country
+        +round(8)
+        +left
+        margin: 4px 0 0 8px
+        input
+          +font(16)
+          +transparent
+          +outline
+          border: none
+          padding: 4px
+          width: 238px
+
+    .close
+      +close-24
+      +right

@@ -1,0 +1,646 @@
+// BOOKS
+
+
+// BOOK STRUCTURE
+.book
+  +pointer
+  +left
+  +relative
+  width: 200px
+  height: 266px
+  margin: 0 10px 10px 0
+
+  .closed, .mask
+    +absolute
+    top: 0
+    right: 0
+    width: 200px
+    height: 266px
+
+
+  // CLOSED BOOK
+  .closed
+
+    .entryDrop
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 200px
+      height: 266px
+
+    &:hover
+      .entries, .edit, .comments, .sharing
+        +block
+
+    .entries, .edit, .title, .comments, .sharing
+      +absolute
+      +round(12)
+      +font(14)
+      +bold
+
+    .entries, .comments, .sharing
+      +hidden
+      height: 24px
+      line-height: 24px
+      padding: 0 8px 0 28px
+      background-position: 4px center
+      background-repeat: no-repeat
+
+    .entries
+      top: 24px
+      left: 4px
+
+    .edit
+      +hidden
+      top: 24px
+      right: 36px
+      height: 24px
+      line-height: 24px
+      padding: 0 12px
+      &:hover
+        +inner-glow(4)
+
+    .title
+      +font(18)
+      +center
+      bottom: 32px
+      left: 0
+      margin: 0 4px
+      width: 146px
+      height: auto
+      line-height: 18px
+      padding: 8px
+
+    .comments
+      bottom: 4px
+      left: 4px
+
+    .sharing
+      bottom: 4px
+      right: 36px
+
+    .cover, .flatColor
+      +absolute
+      +overflow
+      +round(16)
+      left: 0
+      bottom: 0
+      width: 170px
+      height: 248px
+
+
+  // OPEN BOOK
+  .open
+    +absolute
+    top: 0
+    right: 0
+    width: 335px
+    height: 334px
+    color: #444
+    z-index: 85
+
+    .closeClick
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 100%
+      height: 100%
+
+    .entryDrop-active
+      +hidden
+      +absolute
+      top: 19px
+      right: 33px
+      padding: 8px
+      width: 146px
+      height: 224px
+      background: rgba(0,0,0,0.7) url(/images/icons/plus-48.png) no-repeat center center
+      border-radius:          4px 16px 16px 4px
+      -moz-border-radius:     4px 16px 16px 4px
+      -webkit-border-radius:  4px 16px 16px 4px
+
+    // PANEL SHARED STYLES
+    .control-panel, .color-panel, .cover-panel, .dropbox, .access-panel
+      +absolute
+      top: 19px
+      right: 32px
+      padding: 8px
+      width: 148px
+      height: 224px
+
+    .titleInput, .header, .color, .coverImage, .access, .settings, .arrow, .confirm, .remove, .delete
+      +round(4)
+      height: 30px
+      line-height: 30px
+      margin: 0 0 4px
+      border: 1px solid #888
+      +bevel-light
+
+      .icon,
+        +left
+        +round(3)
+        +flat-right
+        height: 30px
+        width: 30px
+        margin: 0 8px 0 0
+
+    .titleInput, .header
+      +indent-light
+      height: 32px
+      line-height: 32px
+      padding: 2px 0
+      border: none
+      border-bottom: 2px solid #000
+
+    .titleInput
+      +outline
+      +font(12)
+      padding: 2px 8px
+      width: 132px
+      border-bottom: 2px solid #000
+
+    .back
+      +user-select
+      +left
+      +round(4)
+      +font(24)
+      +bold
+      +center
+      width: 30px
+      height: 30px
+      line-height: 28px
+      margin: 0 4px
+      border: 1px solid #888
+      +bevel-light
+
+    .color, .coverImage, .access, .settings, .arrow, .back
+      &:hover
+        color: #000
+        border: 1px solid #222
+
+
+    // CONTROL PANEL ONLY
+    .control-panel
+      .header, .color, .coverImage, .access, .settings
+        +user-select
+        +center
+
+    .color .icon
+      background: #123d66
+      box-shadow:         inset 0 16px rgba(255,255,255,0.5)
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.5)
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.5)
+
+    .coverImage .icon
+      background: url(/images/icons/images-16-hover.png) no-repeat center center transparent
+
+    .access .icon
+      background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
+
+    .settings .icon
+      background: url(/images/icons/settings-24-hover.png) no-repeat center center transparent
+
+    .arrow
+      +absolute
+      bottom: 4px
+      width: 30px
+      .up, .down
+        +absolute
+        width: 30px
+        height: 30px
+      .up
+        background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center transparent
+      .down
+        background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center transparent
+
+    .confirm
+      +confirm(16)
+      +font(18)
+      +bold
+      +absolute
+      right: 8px
+      bottom: 4px
+      padding: 0 16px
+
+    .more-settings
+      +hidden
+      width: 148px
+      margin: 8px 0 0
+
+      .remove, .delete
+        +shine-light(15)
+        +delete(15)
+        +center
+        padding: 0 0 0 8px
+
+      .label
+        +font(12)
+        +bold
+        margin: 0 0 8px 8px
+        line-height: 12px
+
+    // COLOR PANEL ONLY
+    .color-panel
+      +hidden
+
+      .header
+        text-align: left
+
+      .back
+        +font(24)
+        +bold
+        +center
+        width: 30px
+        margin: 0 4px
+        border: 1px solid #888
+        +bevel-light
+
+      .icon
+        background: url(/images/icons/appearance-24-hover.png) no-repeat center center transparent
+
+      .swatches
+        margin: 0 0 0 4px
+
+      li
+        +left
+        +round(4)
+        width: 30px
+        height: 30px
+        line-height: 30px
+        margin: 0 4px 4px 0
+        border: 1px solid #fff
+
+        &:hover
+          box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+          -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+          -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+
+      .blue
+        background-color: #123d66
+      .purple
+        background-color: #5b2e87
+      .pink
+        background-color: #912487
+      .red
+        background-color: #912425
+      .aqua
+        background-color: #2e8786
+      .green
+        background-color: #5a9223
+      .yellow
+        background-color: #b88400
+      .orange
+        background-color: #aa5009
+      .blue-deep
+        background-color: #27335c
+      .green-deep
+        background-color: #3f6254
+      .brown
+        background-color: #53412e
+      .maroon
+        background-color: #661c27
+      .white
+        background-color: #fff
+      .grey-light
+        background-color: #bebebe
+      .grey-dark
+        background-color: #4b4b4b
+      .black
+        background-color: #000
+
+
+    // COVER IMAGE PANEL
+    .cover-panel
+      +hidden
+      +font(14)
+
+      .icon
+        margin: 0 2px 0 0
+        background: url(/images/icons/images-16-hover.png) no-repeat center center transparent
+
+      .dropbox-field
+        +absolute
+        +round(12)
+        top: 58px
+        right: 16px
+        width: 134px
+        height: 170px
+        box-shadow:         5px 5px 2.8px #444
+        -moz-box-shadow:    5px 5px 2px #444
+        -webkit-box-shadow: 5px 5px 2.8px #444
+
+        .dropbox-field-shine
+          +round(12)
+          width: 134px
+          height: 170px
+          border: 1px solid #fff
+          background: #123d66
+          box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+          -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+          -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+
+          &:hover .close
+            +block
+
+          .add
+            +center
+            margin: 60px auto 0
+            width: 80px
+            padding: 28px 0 0
+            color: #fff
+            background: url(/images/icons/plus-24-greenBlue.png) no-repeat top center transparent
+
+      .close
+        +hidden
+        +absolute
+        +close-16
+        top: 8px
+        right: 8px
+
+      .active
+        +hidden
+        +absolute
+        +round(12)
+        top: 58px
+        right: 14px
+        width: 136px
+        height: 172px
+        background: #000
+        background: rgba(0,0,0,0.5)
+        z-index: 87
+
+    // ACCESS PANEL ONLY
+    .access-panel
+      +hidden
+
+      .icon
+        background: url(/images/icons/private-24-hover.png) no-repeat center center transparent
+
+      .viewing, .commenting
+        height: 20px
+        line-height: 20px
+        padding: 0 0 0 20px
+
+      .viewing
+        background: url(/images/icons/viewing-16.png) no-repeat left center transparent
+
+      .commenting
+        background: url(/images/icons/comment-16-active.png) no-repeat left center transparent
+
+
+      // VIEWING & COMMENTING MENU DROPDOWNS
+      .viewing-menu, .commenting-menu
+        width: 148px
+        margin: 2px 0 8px
+        padding: 2px 0
+        // line-height for chrome / webkit height
+        line-height: 18px
+        +font(14)
+        +round(4)
+        color: #333
+        outline: none
+        background-color: #fff
+        border: 1px solid #666
+        box-shadow:         inset 2px 2px 5px #ccc
+        -moz-box-shadow:    inset 2px 2px 5px #ccc
+        -webkit-box-shadow: inset 2px 2px 5px #ccc
+
+        .ui-selectmenu-status, li a
+          padding-left: 38px
+
+        // ICONS
+        &.everyone .ui-selectmenu-status, .everyone a
+          background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
+        &.list .ui-selectmenu-status, .list a
+          background: url(/images/icons/friend-16.png) no-repeat 10px center
+        &.followers .ui-selectmenu-status, .followers a
+          background: url(/images/icons/friend-16-follower.png) no-repeat 10px center
+        &.private .ui-selectmenu-status, .private a
+          background: url(/images/icons/private-16-hover.png) no-repeat 10px center
+        &.anon .ui-selectmenu-status, .anon a
+          background: url(/images/icons/anon-16-hover.png) no-repeat 10px center
+
+.ui-selectmenu-menu.viewing-menu, .ui-selectmenu-menu.commenting-menu
+  z-index: 100 !important
+  width: 146px !important
+  +flat-light
+  +round(4)
+  +glow-light(10)
+  +border-light
+
+  li a
+    padding-left: 38px
+    color: #222
+
+  // ICONS
+  .everyone a
+    background: url(/images/icons/sharing-16-hover.png) no-repeat 10px center
+  .list a
+    background: url(/images/icons/friend-16.png) no-repeat 10px center
+  .followers a
+    background: url(/images/icons/friend-16-follower.png) no-repeat 10px center
+  .private a
+    background: url(/images/icons/private-16-hover.png) no-repeat 10px center
+  .anon a
+    background: url(/images/icons/anon-16-hover.png) no-repeat 10px center
+
+
+
+
+
+
+// BOOK COLOR VARIATIONS
+.book.blue
+  .flatColorColor
+    background-color: #123d66
+  .mask
+    background: url(/images/books/mask-blue.png) no-repeat center center
+  .open
+    background: url(/images/books/open-blue.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #123d66
+    background-color: rgba(18,61,102,0.5)
+
+.book.purple
+  .flatColor
+    background-color: #3b1a5e
+  .mask
+    background: url(/images/books/mask-purple.png) no-repeat center center
+  .open
+    background: url(/images/books/open-purple.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5b2e87
+    background-color: rgba(91,46,135,0.5)
+
+.book.pink
+  .flatColor
+    background-color: #661260
+  .mask
+    background: url(/images/books/mask-pink.png) no-repeat center center
+  .open
+    background: url(/images/books/open-pink.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912487
+    background-color: rgba(145,36,135,0.5)
+
+.book.red
+  .flatColor
+    background-color: #661215
+  .mask
+    background: url(/images/books/mask-red.png) no-repeat center center
+  .open
+    background: url(/images/books/open-red.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912425
+    background-color: rgba(145,36,37,0.5)
+
+.book.aqua
+  .flatColor
+    background-color: #1a5e5c
+  .mask
+    background: url(/images/books/mask-aqua.png) no-repeat center center
+  .open
+    background: url(/images/books/open-aqua.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #2e8786
+    background-color: rgba(46,135,134,0.5)
+
+.book.green
+  .flatColor
+    background-color: #3b5125
+  .mask
+    background: url(/images/books/mask-green.png) no-repeat center center
+  .open
+    background: url(/images/books/open-green.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5a9223
+    background-color: rgba(90,146,35,0.5)
+
+.book.yellow
+  .flatColor
+    background-color: #785400
+  .mask
+    background: url(/images/books/mask-yellow.png) no-repeat center center
+  .open
+    background: url(/images/books/open-yellow.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #b88400
+    background-color: rgba(184,132,0,0.5)
+
+.book.orange
+  .flatColor
+    background-color: #783200
+  .mask
+    background: url(/images/books/mask-orange.png) no-repeat center center
+  .open
+    background: url(/images/books/open-orange.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #aa500a
+    background-color: rgba(170,80,10,0.5)
+
+.book.blue-deep
+  .flatColor
+    background-color: #1a2548
+  .mask
+    background: url(/images/books/mask-blue-deep.png) no-repeat center center
+  .open
+    background: url(/images/books/open-blue-deep.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #27335c
+    background-color: rgba(39,51,92,0.5)
+
+.book.green-deep
+  .flatColor
+    background-color: #283a33
+  .mask
+    background: url(/images/books/mask-green-deep.png) no-repeat center center
+  .open
+    background: url(/images/books/open-green-deep.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #3f6254
+    background-color: rgba(63,98,84,0.5)
+
+.book.brown
+  .flatColor
+    background-color: #392a1c
+  .mask
+    background: url(/images/books/mask-brown.png) no-repeat center center
+  .open
+    background: url(/images/books/open-brown.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #53412e
+    background-color: rgba(83,65,46,0.5)
+
+.book.maroon
+  .flatColor
+    background-color: #481019
+  .mask
+    background: url(/images/books/mask-maroon.png) no-repeat center center
+  .open
+    background: url(/images/books/open-maroon.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #661c27
+    background-color: rgba(102,28,39,0.5)
+
+.book.white
+  .flatColor
+    background-color: #c5c5c5
+  .mask
+    background: url(/images/books/mask-white.png) no-repeat center center
+  .open
+    background: url(/images/books/open-white.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #fff
+    background-color: rgba(250,250,250,0.5)
+
+.book.grey-light
+  .flatColor
+    background-color: #696969
+  .mask
+    background: url(/images/books/mask-grey-light.png) no-repeat center center
+  .open
+    background: url(/images/books/open-grey-light.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #bebebe
+    background-color: rgba(190,190,190,0.5)
+
+.book.grey-dark
+  .flatColor
+    background-color: #282828
+  .mask
+    background: url(/images/books/mask-grey-dark.png) no-repeat center center
+  .open
+    background: url(/images/books/open-grey-dark.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #4b4b4b
+    background-color: rgba(75,75,75,0.5)
+
+.book.black
+  .flatColor
+    background-color: #000
+  .mask
+    background: url(/images/books/mask-black.png) no-repeat center center
+  .open
+    background: url(/images/books/open-black.png) no-repeat center center
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #000
+    background-color: rgba(0,0,0,0.5)
+

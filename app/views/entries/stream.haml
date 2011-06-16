@@ -1,27 +1,14 @@
 
 / CONTEXT PANEL
 = render :partial => "stream_context_panel", :locals => {:user => @user}
+#totem
 
 / ENTRY FIELD
 #entryField
-
-  / DREAM MATRIX
-  .matrix.stream
-
-    / ENTRY THUMBS 1D
-    - @entries.each do |entry|
-      = render :partial => 'thumb_1d', :locals => {:entry => entry}
-
-  / STREAM PAGINATION
-  #nextPageLoading.hidden
-    .spinner
-
-  / END OF STREAM
-  #noMoreEntries.hidden you've reached the end of the stream
-
-  / NO ENTRIES TO DISPLAY
-  .noEntrys.hidden there are no entries to display
-
+  .matrix.index{style: 'display:none'}
+  = render :partial => "stream"
+  #showEntry{style: 'display:none'}
+  #newEditEntry{style: 'display:none'}
 
 - content_for :foot do
   / APPLIES SELECTED CLASS TO META MENU

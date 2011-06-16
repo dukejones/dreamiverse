@@ -2,6 +2,7 @@
 
 .matrix
 
+
   // HOVER
   .thumb-2d:hover
     z-index: 84
@@ -41,6 +42,20 @@
         top: 0px
         width: 200px
         height: 100px
+
+    // .add-active
+    //   +hidden
+    //   +absolute
+    //   +round(16)
+    //   top: 0
+    //   left: 0
+    //   width: 200px
+    //   height: 266px
+    //   z-index: 2000
+    //   background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+    //   border-radius:          4px 16px 16px 4px
+    //   -moz-border-radius:     4px 16px 16px 4px
+    //   -webkit-border-radius:  4px 16px 16px 4px
 
     .watermark
       +round(16)
@@ -194,6 +209,32 @@
 
 
 
+  // thumb-2d clone
+  .ui-draggable-dragging
+    z-index: 100
+    +alpha(50)
+    width: 100px
+    height: 133px
+    .watermark
+      +font(22)
+      width: 100px
+      height: 90px
+      line-height: 24px
+    .title
+      +font(8)
+      top: 54px
+      width: 100px
+      margin-left: 0
+    .detailsTop, .detailsBottom
+      +hidden
+    .fadedBack
+      width: 100px
+      height: 133px
+      .image
+        width: 100px
+        height: 50px
+
+
 // COLORS
 .light .matrix
   .thumb-2d
@@ -234,7 +275,6 @@
       +shine-light-alpha(15)
       &:active
         +gradient(#aaa, #fff)
-
 
 
 

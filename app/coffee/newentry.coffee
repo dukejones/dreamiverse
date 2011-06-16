@@ -18,38 +18,38 @@ $(document).ready ->
   tagsController = new TagsController('.entryTags', 'edit')
   
   # Setup icon type changing
-  $('#entryType-list').unbind();
-  $('#entryType-list').change( ->
-    newSelection = $('#entryType-list').val()
-    
-    switch newSelection
-      when "dream"
-        iconFileSource = 'dream-24-active.png'
-      when "vision"
-        iconFileSource = 'vision-24-active.png'
-      when "experience"
-        iconFileSource = 'experience-24-active.png'
-      when "article"
-        iconFileSource = 'article-24-active.png'
-        
-    iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
-    
-    $(this).prev().css('background', iconSource)
-  )
-  $('#entryType-list').change()
+  # $('#entryType-list').unbind();
+  #   $('#entryType-list').change( ->
+  #     newSelection = $('#entryType-list').val()
+  #     
+  #     switch newSelection
+  #       when "dream"
+  #         iconFileSource = 'dream-24-active.png'
+  #       when "vision"
+  #         iconFileSource = 'vision-24-active.png'
+  #       when "experience"
+  #         iconFileSource = 'experience-24-active.png'
+  #       when "article"
+  #         iconFileSource = 'article-24-active.png'
+  #         
+  #     iconSource = 'url(/images/icons/' + iconFileSource + ') no-repeat center'
+  #     
+  #     $(this).prev().css('background', iconSource)
+  #   )
+  #$('#entryType-list').change()
   
   
   # If there are tags or images, expand them!
   if $('#currentImages').children().length > 1
-    $('.entryAttach .images').hide()
+    $('#attach-images').hide()
     $('.entryImages').slideDown(250)
   
   if $('#tag-list').children().length > 2
-    $('.entryAttach .tag').hide()
+    $('#attach-tags').hide()
     $('.entryTags').slideDown(250)
   
   if $('#linkHolder').children().length > 0
-    $('.entryAttach .links').hide()
+    $('#attach-links').hide()
     $('.entryLinks').slideDown(250)
   
   # Check if location has been set and expand if so
@@ -66,14 +66,34 @@ $(document).ready ->
       $(el).parent().addClass('selected')
 
   if radioSelected
-    $('.entryAttach .emotions').hide()
+    $('#attach-emotions').hide()
     $('.entryEmotions').slideDown(250)
   
   # Check for youtube videos & get thumb/desc
   $('#linkHolder .youtube').each (i, el) =>
     # Pass the url and the element it came from
     getYoutubeEditData($(el).find('.linkUrlValue').val(), $(el))
-  
+
+
+
+
+
+  $('#entry_title').live "mouseenter", (event) =>
+    if $('#entry_title').val() == ''
+      $('#entry_title').attr(value: 'title', style: 'opacity: 0.4')
+
+  $('#entry_title').live "focus", (event) =>
+    if $('#entry_title').val() == 'title'
+      $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+  $('#entry_title').live "mouseleave", (event) =>
+    if $('#entry_title').val() == 'title'
+      $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+
+
+
+
   $('#entry_body').css('overflow','hidden')  
   
   # doing the focus stuff to make sure fitToContent gets called once on load 
@@ -83,6 +103,31 @@ $(document).ready ->
   
   $('#entry_body').keyup ->
     window.fitToContent(this, 0)
+
+
+
+
+  $('#entry_body').live "blur", (event) =>
+    if $('#entry_body').val() == ''
+      $('#title-hr').fadeOut('fast')
+      $('#entry_body').slideUp('fast')
+      $('#attach-text').show()
+
+  $('#attach-text').live "click", (event) =>
+    $('#entry_body').slideDown('fast')
+    $('#title-hr').fadeIn('fast')
+
+
+
+  # $('#entry_body').live "focus", (event) =>
+  #   if $('#entry_title').val() == 'title'
+  #     $('#entry_title').attr(value: '', style: 'opacity: 1')
+  # 
+  # $('#entry_body').live "mouseleave", (event) =>
+  #   if $('#entry_title').val() == 'title'
+  #     $('#entry_title').attr(value: '', style: 'opacity: 1')
+
+
 
   ### disabled until update entry ordering is working again
   # Setup tag re-ordering
