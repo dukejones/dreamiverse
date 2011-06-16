@@ -106,8 +106,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @publish 'appearance.change'
     
     
-  'entries.index subscribe': (called, username) ->
-    #@publish 'context_panel.show', username
+  'entries.index subscribe': (called, data) ->
+    username = if data.username? then data.username else null
+    @publish 'context_panel.show', username
     @showEntryField()
     
 }

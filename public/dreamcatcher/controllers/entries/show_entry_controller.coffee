@@ -32,8 +32,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     entryEl.show()
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
-  'entries.show subscribe': (called, id) ->
-    @publish 'context_panel.show'#, username
+  'entries.show subscribe': (called, data) ->
+    @publish 'context_panel.show', data.username
     @showEntryById id
 
 }

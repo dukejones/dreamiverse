@@ -29,18 +29,21 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
-    data = null
+    data = {}
     
-    if hrefSplit.length > 1 
-      controller = hrefSplit[1] if hrefSplit[1] in ['books']
-      action = hrefSplit[1] if hrefSplit[1] in ['stream']
+    if hrefSplit.length > 1
+      if hrefSplit[1] in ['books']
+        controller = hrefSplit[1]
+      else if hrefSplit[1] in ['stream']
+        action = hrefSplit[1]
+      else
+        data.username = hrefSplit[1]
       
     if hrefSplit.length > 2
       if hrefSplit[2] is 'new'
         action = 'new' 
       else
-        action = 'show'
-        data = hrefSplit[2]
+        data.id = hrefSplit[2]
       
       if hrefSplit.length > 3
         action = hrefSplit[3] if hrefSplit.length > 3
