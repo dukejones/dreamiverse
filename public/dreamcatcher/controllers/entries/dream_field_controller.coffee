@@ -21,7 +21,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   init: (el) ->
     @element = $(el)    
-    @publish 'book.drop', $('.books', @element)
+    @publish 'book.drop', $('.matrix.books', @element)
     @publish 'entry.drag', @element
           
   #- move entry to book (drag & drop)
@@ -46,13 +46,18 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
 
   'book.drop subscribe': (called, parent) ->
     $('.book, .avatar', parent).each (i, el) =>
+      log $(el)
       @publish 'book.close', $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
           dropEl = $(ev.target)
+          #log dropEl
+          #log ui.draggable
           @moveEntryToBook ui.draggable, dropEl
 
         over: (ev, ui) =>
+          #log ev.target
+          
           el = $(ev.target)
           @publish 'book.open', el if el.hasClass 'book'
           $('.add-active', ui.helper).show()
@@ -65,15 +70,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
           $('.entryDrop-active, .entryRemove', el).hide()
       }
 
-  'entry.drag subscribe': (called, data) ->
-    parentEl = data.el
-    $('.thumb-2d', parentEl).draggable {
+  'entry.drag subscribe': (called, parent) ->
+    $('.thumb-2d', parent).draggable {
       containment: 'document'
       zIndex: 100
       revert: false
       helper: 'clone'
       revertDuration: 100
       start: (ev, ui) =>
+        log 'x'
         @toggleBookContext true
         
       stop: (ev, ui) =>

@@ -43,14 +43,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   showBook: (bookId) ->
     bookEl = @el.book bookId
     html = bookEl.clone().css 'z-index', 2000
-    @openBook bookEl, false
+    #@openBook bookEl, false
     if $('#contextPanel .book').exists()
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
     $('#contextPanel .book a.mask').attr 'href', $('#contextPanel a.avatar').attr 'href'
     
-      
     $('#contextPanel .avatar').hide()
     
     @publish 'book.drop', $('#contextPanel')
@@ -61,7 +60,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       bookMatrixEl.show()      
     else
       @model.book.show bookId, {}, (html) =>
-        @closeBook bookEl
+        #@closeBook bookEl
         $('#entryField').children().hide()
         bookMatrixEl = @el.bookMatrix bookId
         if bookMatrixEl.exists()
