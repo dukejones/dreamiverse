@@ -11,27 +11,26 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @mode = mode
     @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
-    # switch mode
-    #   when 'show'
-    #     $('.tagAnalysis .trigger').live('click', (event) ->
-    #       $(this).parent().toggleClass('expanded')
-    #     )
+    
+    ###
+    if @mode is 'show'
+      $('.tagAnalysis .trigger').live 'click', (event) ->
+        $(this).parent().toggleClass('expanded')
+    ###
     
   addTag: ->
-    log "tagAdd click mode #{@mode}"
+    log "running addTag() mode #{@mode}"
     tagName = @getTag()
-
     switch @mode
       when 'edit' 
         @appendTag tagName
       when 'show'
         log 'show mode'
-        @appendTag tagName
-        # entryId = $('#showEntry').data 'id' 
-        # @model.tag.create {
-        #   entry_id: entryId
-        #   what_name: tagName
-        # }, @callback('appendTag', tagName)
+        entryId = $('#showEntry').data 'id' 
+        @model.tag.create {
+          entry_id: entryId
+          what_name: tagName
+        }, @callback('appendTag', tagName)  
           
   appendTag: (tagName) ->    
     log 'appendTag' 
@@ -84,28 +83,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     else
       @contractInputField()
 
- 
-            
+        
   # DOM Listeners
   
   '#addTag click': ->
+    log "#tagAdd click"
     @addTag()
-    # log "tagAdd click mode #{@mode}"
-    # tagName = @getTag()
-    # 
-    # switch @mode
-    #   when 'edit' 
-    #     @appendTag tagName
-    #   when 'show'
-    #     log 'show mode'
-    #     @appendTag tagName
-    #     # entryId = $('#showEntry').data 'id' 
-    #     # @model.tag.create {
-    #     #   entry_id: entryId
-    #     #   what_name: tagName
-    #     # }, @callback('appendTag', tagName)
           
-  
   '.tagThisEntry click': ->
     if @buttonMode is 'expand'
       @expandInputField()
@@ -123,5 +107,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   '#tag-list .tag .close touchstart': (el) -> 
     @removeTagFromDom(el.parent())
+    
+  '.tagAnalysis .trigger click': (el) ->
+    if @mode is 'show'
+      $(el).parent().toggleClass('expanded')
+      $()
        
 }

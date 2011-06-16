@@ -52,8 +52,18 @@ steal.plugins(
   }
   
   # page-specific jmvc files
+  models 'entry', 'book', 'stream'
+  controllers {
+    module: 'entries'
+    classes: ['dream_field', 'dream_stream', 'newedit_entry', 'books', 'show_entry']
+  }
+  controllers {
+    module: 'users'
+    classes: ['context_panel', 'appearance_panel']
+  }
+  ###
   switch page()
-  
+    
     when 'images'
       controllers { 
         module: 'images'
@@ -68,15 +78,8 @@ steal.plugins(
       }
     
     else
-      models 'entry', 'book', 'stream'
-      controllers {
-        module: 'entries'
-        classes: ['dream_field', 'dream_stream', 'newedit_entry', 'books', 'show_entry']
-      }
-      controllers {
-        module: 'users'
-        classes: ['context_panel', 'appearance_panel']
-      }
+  ###
+
       
 ).views()
 
