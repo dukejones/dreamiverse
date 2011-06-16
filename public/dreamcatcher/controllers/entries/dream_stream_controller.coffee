@@ -7,20 +7,25 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
   }
 
   init: (el) ->
-    if $(el).html().trim().length > 0    
-      Stream.page = 1
-      @container = $('.matrix', el)
-      @activateLightBoxAndComments()   
-      @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
+    Stream.page = 1
+    @container = $(el)
+    @bind window, 'scroll', 'scrollEvent'
+    @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
     
-      @bind window, 'scroll', 'scrollEvent'
+    @activateLightBoxAndComments()   
+    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
+    
+  filterChange: (el) ->
+    Stream.reset()
+    el.prev(".spinner").show()
+    Stream.load @getOptions(), @callback('updateStream')
 
   scrollEvent: (window)->
     return unless $('#entryField .matrix.stream').is ':visible'
     
     if (window.scrollTop() > $(document).height() - window.height() - 200)
       @loadNextPage()
-    
+        
   loadNextPage: ->
     Stream.page += 1
     Stream.load(@getOptions(), @callback('updateStream'))
@@ -50,12 +55,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading, #entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
-  
-  '#entry-filter, #users-filter change': (el)->
-    Stream.reset()
-    el.prev(".spinner").show()
-    Stream.load @getOptions(), @callback('updateStream')
-
 
   'entries.stream subscribe': ->
     $('#entryField').children().hide()
@@ -63,12 +62,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     $('#totem').hide()
     $('#streamContextPanel').show()
     @publish 'appearance.change'
-    
-  ###  
-  '.thumb-1d a.left, .thumb-1d a.tagCloud click': (el, ev) ->
-    ev.preventDefault()
-    @publish 'entry.show', el.attr 'href'
-  ###
+
 }
     
     
