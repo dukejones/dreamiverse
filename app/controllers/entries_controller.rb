@@ -49,10 +49,16 @@ class EntriesController < ApplicationController
   def show
     @entry = Entry.find params[:id]
     @entry_mode = 'show'
-    flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
+    
+    if !request.xhr? && !params[:username]
+      flash.keep 
+      redirect_to(user_entry_path(@entry.user.username, @entry)) and return 
+    end
+    
+    @book = Book.find @entry.book_id if @entry.book_id
+
 
     @entries = entry_list
-    
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1]
     @next = @entries[i+1] || @entries[0]
@@ -65,6 +71,12 @@ class EntriesController < ApplicationController
     @entry.update_attribute(:new_comment_count, 0) if user_can_write?
     
     hit( @entry )
+    
+    
+    if request.xhr?
+      render(partial: "entries/show")
+    end
+    # else default render
   end
   
   def new
@@ -179,36 +191,6 @@ class EntriesController < ApplicationController
   
   
   ## New methods - partials for AJAX
-  
-  def show_entry
-    # TODO: refactor (see show)
-    @entry = Entry.find params[:id]
-    @entry_mode = 'show'
-    
-    if @entry.book_id
-      @book = Book.find @entry.book_id 
-    end
-    #flash.keep and redirect_to(user_entry_path(@entry.user.username, @entry)) and return unless params[:username]
-
-    @entries = entry_list
-    
-    i = (@entries.index {|e| e == @entry }) || 0
-    @previous = @entries[i-1]
-    @next = @entries[i+1] || @entries[0]
-    # TODO: Remove this.
-    @next = @entry unless @next
-    @previous = @entry unless @previous
-    deny and return unless user_can_access?
-
-    @page_title = @entry.title
-    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
-    
-    hit( @entry )
-    
-    respond_to do |format|
-      format.html { render(partial:"entries/show") }
-    end
-  end
   
   def new_entry
     # TODO: refactor (see new)

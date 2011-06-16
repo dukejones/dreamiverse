@@ -18,11 +18,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     if entryEl.exists()
       @showEntryElement entryEl
     else
-      @model.entry.show {id: id}, (html) =>
+      @model.entry.show id, (html) =>
         $('#showEntry').append html
         @showEntryElement @el.entry id
         showEntryEl = $('#showEntry .entry:last')
-        showEntryEl.linkify().videolink().comments()
+        showEntryEl.linkify().videolink()
+        showEntryEl.comments()
 
   showEntryElement: (entryEl) ->
     $('#showEntry').children().hide()

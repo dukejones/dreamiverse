@@ -9,16 +9,9 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
       data: params
     }
   
-  show: ( params, success, error ) ->
-    $.ajax {
-      url: '/entries/show_entry'
-      type: 'get'
-      dataType: 'html'
-      data: params
-      success: @callback success
-      error: error
-    }
-    
+  show: ( id, success ) ->
+    $.get "/entries/#{id}", @callback(success)
+
   new: ( params, success, error ) ->
     $.ajax {
       url: '/entries/new_entry'

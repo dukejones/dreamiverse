@@ -37,7 +37,6 @@ javascripts:
     - public/javascripts/compiled/sharing.js
     - public/javascripts/compiled/cookies.js
     
-
   show_entry:
     - public/javascripts/browserdetect.js
     - public/javascripts/jquery-ui.js
@@ -60,7 +59,7 @@ javascripts:
     - public/javascripts/compiled/fit_to_content.js
     - public/javascripts/compiled/feedback.js
 
-  jmvc:
+  # jmvc:
     
     
 stylesheets:
