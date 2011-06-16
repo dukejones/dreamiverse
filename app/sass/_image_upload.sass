@@ -1,4 +1,4 @@
-.entryImage
+#currentImages
 
   .replace
     +hidden
@@ -24,26 +24,39 @@
     width: 128px
 
   .uploading
+    +round(8)
+    +relative
+    +left
+    margin: 0px 8px 8px 0px
+    height: 120px
+    width: 120px
+    background-color: #000
+    background-color: rgba(0,0,0,0.8)
 
     .progress-bar
-      height: 20px
-      +flat-light
+      +absolute
+      +round(8)
       +alpha(40)
+      top: 0
+      left: 0
+      height: 20px
       width: 0%
       height: 100%
-      position: absolute
-      top: 0px
+      +flat-light
     
     .file, .size, .failed, .progress
       position: relative
     .file
+      +absolute
       +font(11)
+      top: 4px
+      left: 4px
     .size
       +absolute
       +center
-      width: 120px
-      bottom: 54px
-      right: 4px
+      width: 100%
+      bottom: 50%
+      right: 0
 
     .cancel
       +absolute
@@ -53,7 +66,7 @@
       +cancel(10)
       bottom: 4px
       left: 4px
-      width: 120px
+      width: 112px
 
   .uploading.fail
     +alpha(50)
