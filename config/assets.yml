@@ -8,13 +8,13 @@ template_function: off
 
 javascripts:
   shared:
-    - public/javascripts/jquery.hoverIntent.minified.js
-    - public/javascripts/pubsub.js
-    - public/javascripts/rails.js
-    - public/javascripts/jquery.cookie.js
-    - public/javascripts/jquery.placeholder.js
-    - public/javascripts/compiled/modal.js
-    - public/javascripts/compiled/dreamplugs.js
+    #- public/javascripts/jquery.hoverIntent.minified.js
+    #- public/javascripts/pubsub.js
+    #- public/javascripts/rails.js
+    #- public/javascripts/jquery.cookie.js
+    #- public/javascripts/jquery.placeholder.js
+    #- public/javascripts/compiled/modal.js
+    #- public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
 
   # entries:
@@ -46,9 +46,9 @@ javascripts:
     - public/javascripts/compiled/fit_to_content.js
 
   context_panel:
-    - public/javascripts/compiled/context_panel.js
-    - public/javascripts/browserdetect.js
-    - public/javascripts/dreams.js
+  #  - public/javascripts/compiled/context_panel.js
+  #  - public/javascripts/browserdetect.js
+  #  - public/javascripts/dreams.js
 
   join:
     - public/javascripts/compiled/seedcode.js

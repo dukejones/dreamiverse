@@ -22,7 +22,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
         $('#showEntry').append html
         @showEntryElement @el.entry id
         showEntryEl = $('#showEntry .entry:last')
-        showEntryEl.linkify().videolink().comments()
+        showEntryEl.linkify().videolink()
+        showEntryEl.comments()
 
   showEntryElement: (entryEl) ->
     $('#showEntry').children().hide()

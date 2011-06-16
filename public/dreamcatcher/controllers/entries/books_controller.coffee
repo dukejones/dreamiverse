@@ -9,9 +9,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   el: {    
     bookMatrix: (id) ->
       return $("#entryField .matrix.book[data-id=#{id}]") if id?
-      return $('#entryField .matrix.field') 
+      return $('#entryField .matrix.index') 
     book: (arg) ->
-      return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
+      return $(".book[data-id=#{arg}]", @element) if parseInt(arg) > 0
       return arg.closest '.book' if arg?
       return null
   }
@@ -20,17 +20,20 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return el.data type if type?
     return el.data 'id' if el?
     return null
+    
+    
+  init: (el) ->
+    @element = el
+    @closeAllBooks()
   
   #- new book
     
-  'book.new subscribe': ->
-    @publish 'dream_field.show'
-  
+  'books.new subscribe': ->
     @model.book.new {}, (html) =>
       $('#welcomePanel').hide()
-      $('#entryField .matrix.books').prepend html
-      bookEl = $('#entryField .matrix.books .book:first')
-      @openBook bookEl
+      @element.prepend html
+      bookEl = $('.book:first', @element)
+      @editBook bookEl
       @publish 'dom.added', bookEl
     
   #- show book
@@ -42,7 +45,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#contextPanel .book').replaceWith html
     else
       $('#contextPanel').prepend html
-    $('#contextPanel .book a.mask').attr 'href', '/carboes'
+    $('#contextPanel .book a.mask').attr 'href', '/carboes'#todo: look at .context
       
     $('#contextPanel .avatar').hide()
     
@@ -65,32 +68,26 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   'books.show subscribe': (called, id) ->
     @showBook id
     @publish 'appearance.change'
-  
-  ###
-  '.book .mask click': (el) ->
-    href = '/carboes/books/'+@data bookEl
-    @publish 'book.show', href
-  ###
 
   #- open for edit
-  openBookForEdit: (el) ->
+  editBook: (el) ->
     @openBook el, true
     
-  'book.open subscribe': (called, el) ->
-    @openBookForEdit el
+  'books.edit subscribe': (called, el) ->
+    @editBook el
       
   '.closed .edit click': (el) ->
-    @openBookForEdit el
+    @editBook el
   
   #- open 
-  openBook: (el, controlPanel) ->
+  openBook: (el, edit) ->
     @closeAllBooks()
     bookEl = @el.book el
     $('.open, .closeClick', bookEl).show()
-    $('.control-panel', bookEl).toggle controlPanel
+    $('.control-panel', bookEl).toggle edit
     $('.closed', bookEl).hide()
     
-  'book.open subscribe': (called, el) ->
+  'books.hover subscribe': (called, el) ->
     @openBook el
     
   #- close
@@ -100,7 +97,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
   
-  'book.close subscribe': (called, el) ->
+  'books.close subscribe': (called, el) ->
     @closeBook @el.book el
 
   '.closeClick, .confirm click': (el) ->

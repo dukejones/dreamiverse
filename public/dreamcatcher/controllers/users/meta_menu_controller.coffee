@@ -54,17 +54,12 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
 
   '#new-post change': (el) ->
     return if el.val() is 'empty'
-    @publish el.val()+'.new'
+    @publish 'history.change', el.val()
     el.val 'empty'
     
   '.newEntry click': (el) ->
     @publish 'entry.new'
-    ###
-    @historyAdd {
-      controller: 'entry'
-      action: 'new'
-    }
-    ###
+    
     
 }
     

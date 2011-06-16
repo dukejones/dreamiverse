@@ -6,17 +6,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     entry : Dreamcatcher.Models.Entry
   }
 
-  init: (el) ->    
-    $('#showEntry').showEntry()
-    $('#newEditEntry').newEditEntry()
-    $('#totem').contextPanel()
+  init: (el) ->
+    if $(el).html().trim().length > 0    
+      Stream.page = 1
+      @container = $('.matrix', el)
+      @activateLightBoxAndComments()   
+      @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
     
-    Stream.page = 1
-    @container = $('.matrix', el)
-    @activateLightBoxAndComments()   
-    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)
-    
-    @bind window, 'scroll', 'scrollEvent'
+      @bind window, 'scroll', 'scrollEvent'
 
   scrollEvent: (window)->
     return unless $('#entryField .matrix.stream').is ':visible'

@@ -3,7 +3,18 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- constructor
   
   init: ->
-    @setupControllers()
+    $('#metaMenu').metaMenu()
+    $('#entryField .matrix.index').dreamField()
+    $('#entryField .matrix.books').books()
+    $('#entryField .matrix.stream').dreamStream()
+    $('#entryField #showEntry').showEntry()
+    $('#entryField #newEditEntry').newEditEntry()
+    
+    $('#totem').contextPanel()
+        
+    @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
+    @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
+    
     @publish 'dom.added', $('#body')    
     @bind window, 'popstate', => @publishHistory window.location.pathname
       
@@ -12,9 +23,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     ev.preventDefault()
     href = el.attr 'href'
     window.history.pushState null, null, href
-    @publishHistory href
+    @publish 'history.change', href
     
-  publishHistory: (href) ->
+  'history.change subscribe': (called, href) ->
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
@@ -25,25 +36,21 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       action = hrefSplit[1] if hrefSplit[1] in ['stream']
       
     if hrefSplit.length > 2
-      data = hrefSplit[2]
-      action = 'show'
-    else if hrefSplit.length > 3
-      action = hrefSplit[3] if hrefSplit.length > 3
+      if hrefSplit[2] is 'new'
+        action = 'new' 
+      else
+        action = 'show'
+        data = hrefSplit[2]
+      
+      if hrefSplit.length > 3
+        action = hrefSplit[3] if hrefSplit.length > 3
+  
     else
       action = 'index'
+  
     log "#{controller}.#{action}  "+data
     @publish "#{controller}.#{action}", data
       
-  #- controllers
-  
-  setupControllers: ->
-    $('#metaMenu').metaMenu()
-    $('#entryField.field').dreamField()
-    $('#entryField.stream').dreamStream()
-        
-    @images     = new Dreamcatcher.Controllers.Images.Images        $("#frame.browser")   if $("#frame.browser").exists()
-    @admin      = new Dreamcatcher.Controllers.Admin                $('#adminPage')       if $('#adminPage').exists()
-        
   #- setup ui elements
   
   initUi: (parentEl) ->

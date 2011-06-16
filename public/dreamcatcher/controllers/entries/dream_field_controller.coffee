@@ -8,10 +8,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   el: {
     bookMatrix: (id) ->
-      return $("#entryField .matrix.book[data-id=#{id}]") if id?
-      return $("#entryField .matrix.field")
-    book: (id) ->
-      return $("#entryField .matrix.books .book[data-id=#{id}]")
+      return $(".matrix.book[data-id=#{id}]", @element) if id?
+      return @element
   }
 
   data: (el) ->
@@ -21,14 +19,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     
   #- constructor
   
-  init: ->
-    $('#showEntry').showEntry()
-    $('#newEditEntry').newEditEntry()
-    $('#entryField .matrix.books').books()
-    $('#totem').contextPanel()
-    
-    @publish 'book.drop', $('#entryField .matrix.books')
-    @publish 'entry.drag', $('#entryField .matrix.field')
+  init: (el) ->
+    @element = $(el)    
+    @publish 'book.drop', $('.books', @element)
+    @publish 'entry.drag', @element
           
   #- move entry to book (drag & drop)
 
@@ -50,9 +44,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     $('.entryDrop-active', bookEl).hide()
 
 
-  'book.drop subscribe': (called, data) ->
-    parentEl = data
-    $('.book, .avatar', parentEl).each (i, el) =>
+  'book.drop subscribe': (called, parent) ->
+    $('.book, .avatar', parent).each (i, el) =>
       @publish 'book.close', $(el)
       $(el).droppable {         
         drop: (ev, ui) =>
@@ -90,7 +83,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   #- hides the book if it sits in the context menu
   toggleBookContext: (start) ->
-    if not $('#entryField .matrix.field').is ':visible'
+    unless @element.is ':visible'
       $('#contextPanel .book').toggle not start
       $('#contextPanel .avatar').toggle start
   
@@ -102,18 +95,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   showEntryField: ->
     $('#contextPanel .avatar').show()
     $('#contextPanel .book').remove()
-    if $('#entryField .matrix.field').exists()
+    if @element.hasChildren()
       @hideEntryField()
-      $('#entryField .matrix.field, #entryField .matrix.books').show()
+      @element.show()
     else
       @model.entry.showField {}, (html) =>
         @hideEntryField()
-        $('#entryField').append html
+        @element.replaceWith html
+        $('.books', @element).books()
     @publish 'appearance.change'
     
     
   'entries.index subscribe': (called, username) ->
-    @publish 'context_panel.show', username
+    #@publish 'context_panel.show', username
     @showEntryField()
     
 }

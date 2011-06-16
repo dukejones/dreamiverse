@@ -6,5 +6,8 @@
 = render :partial => "users/context_panel", :locals => {:user => current_user}
 
 #entryField
-
+  .matrix.index{style: 'display:none'}
+  .matrix.stream{style: 'display:none'}
+  #showEntry{style: 'display:none'}
+  #newEditEntry
   = render :partial => 'entries/new'
