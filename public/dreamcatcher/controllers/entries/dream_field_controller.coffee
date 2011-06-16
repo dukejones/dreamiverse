@@ -95,7 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   showEntryField: (username) ->
     if @element.data('username') is username
       @hideEntryField()
-      $('.book, .thumb-2d').css 'opacity',''
+      $('.book, .thumb-2d', @element).show().css 'opacity',''
       $('.matrix.books, .matrix.index').fadeIn 500
       @publish 'appearance.change'
       return

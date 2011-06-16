@@ -2,8 +2,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   pluginName: 'books'
 }, {
 
-###PERMISSIONS ON BOOKS
-###
+  # Don't forget permissions on books
 
   model: {
     book : Dreamcatcher.Models.Book

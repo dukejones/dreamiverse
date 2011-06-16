@@ -31,6 +31,7 @@ steal.plugins(
 	'jquery.dateFormat-1.0'
 	'jquery.query-2.1.7'
 	'jquery.livequery'
+	'jquery.placeholder'
 	
 	'fileuploader'
 	'jquery.linkify'
