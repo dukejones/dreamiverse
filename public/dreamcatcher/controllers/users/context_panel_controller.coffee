@@ -8,11 +8,16 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   }
   
   'context_panel.show subscribe': (called, username) ->
-    log username
-    @model.user.contextPanel username, (html) =>
-      $('#streamContextPanel').hide()
-      $('#totem').replaceWith html
-      $('#totem').show()
+    if $('#contextPanel .context').text().trim() is username
+      $('#streamContextPanel').fadeOut()
+      $("#contextPanel .book").remove()
+      $('#totem, #contextPanel, #contextPanel .avatar').show()
+      
+    else
+      @model.user.contextPanel username, (html) =>
+        $('#streamContextPanel').hide()
+        $('#totem').replaceWith html
+        $('#totem').show()
 
   '.uploadAvatar click': (el) ->
     $('#contextPanel').prepend $.View('//dreamcatcher/views/users/context_panel/avatar_upload.ejs')
