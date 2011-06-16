@@ -11,14 +11,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @mode = mode
     @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
-    switch mode
-      when 'show'
-        $('.tagAnalysis .trigger').live('click', (event) ->
-          $(this).parent().toggleClass('expanded')
-        )
+    # switch mode
+    #   when 'show'
+    #     $('.tagAnalysis .trigger').live('click', (event) ->
+    #       $(this).parent().toggleClass('expanded')
+    #     )
 
   
-  appendTag: (tagName) ->     
+  appendTag: (tagName) ->    
+    log 'appendTag' 
     tagCount = @tagCount()
     if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
       html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
@@ -42,48 +43,39 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     
   getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()
   
-  expandContractInputField: ->
-    if @buttonMode is 'expand'
-      @expandInputField()
-    else
-      @contractInputField()
-        
-  expandInputField: ->
-    @buttonMode = 'submit'
-    $('.tagThisEntry').addClass 'selected'
-    $('.tagInput').animate {width: '200px'}
-    $('#newTag').focus()
-    
-  contractInputField: ->
-    @buttonMode = 'expand'
-    $('.tagThisEntry').removeClass 'selected'
-    $('.tagInput').animate {width: '0px'}
-    $('#newTag').blur()
-
   tagCount: ->
     count = 0
     for el in $('#tag-list .tag')
       count += 1
     log "tagCount #{count}"
     return count
-      
-  # DOM Listeners
-  
-  '.tagThisEntry click': ->
+
+  expandInputField: ->
+    @buttonMode = 'submit'
+    $('.tagThisEntry').addClass 'selected'
+    $('.tagInput').animate {width: '200px'}
+    $('#newTag').focus()
+
+  contractInputField: ->
+    @buttonMode = 'expand'
+    $('.tagThisEntry').removeClass 'selected'
+    $('.tagInput').animate {width: '0px'}
+    $('#newTag').blur()
+
+  expandContractInputField: ->
+    log 'expandContract'
     if @buttonMode is 'expand'
       @expandInputField()
     else
-      $('.tagAdd').click()
+      @contractInputField()
+ 
+            
+  # DOM Listeners
   
-  '.tagHeader click': -> @expandContractInputField()
-  
-  '#newTag keyup': (el, ev) ->
-    if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
-      $('#addTag').click()
-
   '#addTag click': (el) ->
-    tagName = @getTag()
     log "tagAdd click mode #{@mode}"
+    tagName = @getTag()
+
     switch @mode
       when 'edit' 
         @appendTag tagName
@@ -95,11 +87,26 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         #   entry_id: entryId
         #   what_name: tagName
         # }, @callback('appendTag', tagName)
+          
+  
+  '.tagThisEntry click': ->
+    if @buttonMode is 'expand'
+      @expandInputField()
+    else
+      $('#addTag').click()
+  
+  '.tagHeader click': -> @expandContractInputField()
+  
+  '#newTag keyup': (el, ev) ->
+    if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
+      $('#addTag').click()
+
+
 
   '#tag-list .tag .close click': (el) ->
     @removeTagFromDom(el.parent())
   
-  '#tag-list .tag .close click': (el) ->
+  '#tag-list .tag .close touchstart': (el) -> 
     @removeTagFromDom(el.parent())
        
 }
