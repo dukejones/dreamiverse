@@ -15,12 +15,8 @@
 
     / - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
     / %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
-    = include_javascripts :jmvc_plugins, :jmvc_resources, :dreamcatcher_app
-    = include_javascripts :shared
+    = include_javascripts :jmvc, :shared
 
-    / :coffeescript
-    /   $(document).ready ->
-    /     $('input[placeholder], textarea[placeholder]').placeholder()
     = yield :head
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
