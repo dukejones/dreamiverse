@@ -392,11 +392,13 @@
     +relative
     +round(20)
     top: 8px
-    height: 36px
+    height: 32px
     +glow-light(20)
     +bevel-dark
     border: 2px solid #888
     color: #ddd
+  #new-post
+    height: 36px
 
   // NEW ENTRY LINK ONLY
   .newEntry
@@ -406,7 +408,6 @@
     font-weight: normal
     +center
     padding: 0 4px 0 10px
-    height: 32px
     width: 110px
     letter-spacing: -0.5
     line-height: 30px
@@ -442,7 +443,7 @@
   +bevel-dark
   +round(20)
   +glow-light(20)
-  border: 1px solid #fff
+  border: 2px solid #fff
   color: #ddd
 
   li
@@ -461,9 +462,12 @@
   // ICONS
   li.new-entry
     background: url(/images/icons/add-15.png) no-repeat 10px center
+    +round(20)
+    +flat-bottom
   li.new-book
     background: url(/images/icons/books-16-hover.png) no-repeat 10px center
-
+    +round(20)
+    +flat-top
 
 
 
