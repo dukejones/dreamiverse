@@ -124,9 +124,12 @@ class UsersController < ApplicationController
     else
       current_user
     end
+    @bookContext = if params[:book_id]
+      Book.find_by_id params[:book_id]
+    end
     
     if @user
-      render(:partial => "users/context_panel", :locals => {:user => @user})
+      render(:partial => "users/context_panel", :locals => {:user => @user, :book => @bookContext})
     else
       render :text => "Could not find this user.", :status => 403
     end

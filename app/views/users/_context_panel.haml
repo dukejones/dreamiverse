@@ -11,11 +11,11 @@
 
 
       / BOOKS (for testing)
-      /= render :partial => '/entries/book'
-
+      - if @bookContext
+        = render :partial => 'books/book', :locals => {:book => @bookContext}
+      
       / IMAGE
       %a.history.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center", href: user_entries_path(user.username)}
-        /
 
         - if (user == current_user) && !is_ipad?
 

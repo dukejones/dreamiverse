@@ -45,7 +45,7 @@
     .books-list.tooltip{title: "add to book"}
       .img
 
-      %select#books-list.select-menu.dropdown.offset
+      %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
         %option.label{value: 'Add to Book:'} Add to Book:
         = render :partial => "books/book_list"
         %option.removeBook{value: 'remove from book'} remove from book
