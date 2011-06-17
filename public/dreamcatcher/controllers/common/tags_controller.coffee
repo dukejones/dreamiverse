@@ -12,34 +12,32 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
     
-    ###
-    if @mode is 'show'
-      $('.tagAnalysis .trigger').live 'click', (event) ->
-        $(this).parent().toggleClass('expanded')
-    ###
-    
   addTag: ->
     log "running addTag() mode #{@mode}"
     tagName = @getTag()
-    switch @mode
-      when 'edit' 
-        @appendTag tagName
-      when 'show'
-        log 'show mode'
-        entryId = $('#showEntry').data 'id' 
-        @model.tag.create {
-          entry_id: entryId
-          what_name: tagName
-        }, @callback('appendTag', tagName)  
+    
+    if @mode is 'edit' 
+      @appendTag tagName
+    else if @mode is 'show'
+      
+      entryId = $('.entry').data 'id' 
+      log "show mode entryId: #{entryId}"
+      @model.tag.create {
+        entry_id: entryId
+        what_name: tagName
+      }, @callback('appendTag', tagName)  
           
-  appendTag: (tagName) ->    
-    log 'appendTag' 
+  appendTag: (tagName, json=null) ->    
+    log "appendTag #{json.what_id}"
     tagCount = @tagCount()
+    tagId = if json? then json.what_id else 0 
+    log "tagId: #{tagId}"
     if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
-      html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
+      html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
       $('#tag-list').append html
       $('#newTag').val ''
-
+    
+      
   alreadyExists: (tagName) ->
     exists = false
     # Check both custom and auto tag lists
@@ -48,12 +46,26 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
       if (tagName is tag)
         exists = true  
     return exists
+    
+  removeTag: (el) ->
+    tagId = $(el).parent().data 'id' 
+    entryId = $('.entry').data 'id'    
+    log "removeTag tagId: #{tagId} entryId: #{entryId}"
+    if @mode is 'edit' 
+      @removeTagFromDom(el)    
+    else if @mode is 'show'
+      @model.tag.delete {
+        entry_id: entryId
+        what_id: tagId
+      }, @callback('removeTagFromDom', el)
+
      
   removeTagFromDom: (el) ->
-    @tag = el
+    @tag = el.parent()
     @tag.css('backgroundColor', '#ff0000')  
     @tag.fadeOut 'fast', =>
       @tag.remove()
+     
     
   getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()
   
@@ -100,17 +112,21 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   '#newTag keyup': (el, ev) ->
     if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', 'enter' and '/'
-      $('#addTag').click()
+      @addTag()
 
   '#tag-list .tag .close click': (el) ->
-    @removeTagFromDom(el.parent())
+    @removeTag el
+    # if @mode is 'show'
+    #   tagId = $(el).parent().data 'id' 
+    #   log "destroy tagId: #{tagId}"
+    #   @removeTag(tagId)
+    # #@removeTagFromDom el.parent()
   
   '#tag-list .tag .close touchstart': (el) -> 
-    @removeTagFromDom(el.parent())
+    @removeTagFromDom el.parent()
     
   '.tagAnalysis .trigger click': (el) ->
     if @mode is 'show'
       $(el).parent().toggleClass('expanded')
-      $()
-       
+            
 }
