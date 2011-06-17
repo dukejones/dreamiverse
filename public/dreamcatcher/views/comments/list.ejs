@@ -1,7 +1,9 @@
-<% for(var i = 0; i < comments.length; i++){ %>
-  <%= $.View('//dreamcatcher/views/comments/show', {
+<% var str = "" %>
+<% for(var i = 0; i < comments.length; i++){
+  str += $.View('/dreamcatcher/views/comments/show', {
     comment: comments[i],
     showDelete: (userId == entryUserId || userId == comments[i].user_id),
     hidden: i < (comments.length - numberToShow)
-  }) %>
-<% } %>
+  });
+}
+return str; %>

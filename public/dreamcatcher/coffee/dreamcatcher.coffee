@@ -1,6 +1,6 @@
 steal.plugins(
 
-  'steal/coffee'
+  # 'steal/coffee'
 	'jquery/controller' # a widget factory
 	'jquery/controller/subscribe' #subscribe to OpenAjax.hub
 	'jquery/controller/history'
@@ -24,7 +24,6 @@ steal.plugins(
 			
 	'jquery.tooltip.js'
   'jquery-lightbox-0.5'
-  'jquery.tooltip.js'
   'jquery.timeago'
 	'jquery.exists'
 	'jquery.cookie'
@@ -39,7 +38,7 @@ steal.plugins(
 	'dream.plugs'
 	
 ).then( =>  
-
+  
   # common jmvc files
   helpers 'cookie', 'ui'
   models 'user', 'image', 'tag', 'comment'
@@ -97,6 +96,6 @@ helpers = ->
 
 resources = ->
   steal.coffee "resources/#{arg}" for arg in arguments
-        
+
 page = ->
   window.location.href.split('/').pop()
