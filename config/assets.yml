@@ -2,9 +2,10 @@
 
 embed_assets: datauri
 
-# javascript template pre-compiler
-template_function: off
+
+# javascript_compressor: closure
 # template_namespace: JST
+template_function: off
 template_extension: ejs
 
 javascripts:
