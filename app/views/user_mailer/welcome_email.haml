@@ -8,7 +8,7 @@
     / BLUE BACKGROUND
     %table{width: "98%", border: "0", cellspacing: "0", cellpadding: "0"}
       %tr
-        %td{align: "center", valign: "middle", bgcolor: "#e6ebf1", style: "padding: 30px 0 30px 0"}
+        %td{align: "center", bgcolor: "#e6ebf1", style: "padding: 30px 0 30px 0"}
 
 
           / EMAIL CONTENTS
@@ -25,77 +25,89 @@
               %td{background: "http://localhost:3000/images/email/email-center.gif", bgcolor: "#fff", style: "font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px; padding: 0 30px 0 45px"}
 
                 / WELCOME
-                %h1{style: "color: #000; font-size: 28px; font-weight: normal; margin: 28px 0 0 4px;"}
-                  welcome to Dreamcatcher, 
-                  %a{href: "http://dreamcatcher.net/#{@user.username}", style: "color: #0B3F6F; font-weight: normal; text-decoration: none;"}= @user.username
-
-                %p{style: "color: #555; font-size: 19px; margin: -14px 0 0 4px"}
-                  discover a deeper part of yourself<br>
-                  explore your subconscious mind<br>
-                  share your creative journey with the world
+                %table{style: "padding-top: 28px"}
+                  %tr
+                    %td{style: "vertical-align: middle;", align: "left"}
+                      %h1{style: "color: #000; font-size: 28px; font-weight: normal; margin: 0"}
+                        welcome to Dreamcatcher, 
+                        %a{href: "http://dreamcatcher.net/#{@user.username}", style: "color: #6383a5; font-weight: normal; text-decoration: none;"}= @user.username
+                  %tr
+                    %td{style: "padding-top: 4px"}
+                      %p{style: "color: #555; font-size: 18px; margin: 0"}
+                        discover a deeper part of yourself<br>
+                        explore your subconscious mind<br>
+                        share your creative journey with the world
 
 
                 / LIFE IS A DREAM
-                %table{style: "padding-top: 4px"}
+                %table{style: "padding-top: 24px"; width: "100%"}
                   %tr
-                    %td{valign: "middle", align: "left"}
-                      %h2{style: "color: #000; font-size: 23px; font-weight: normal; margin: 0px"} Life is a dream...
-                    %td{valign: "middle"}
-                      %img{src: "http://localhost:3000/images/email/line.gif", width: "100%", height: "2"}
+                    %td{style: "padding-right: 30px", align: "left"}
+                      %h2{style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px"} Life is a dream...
+                    %td
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/line.gif", width: "100%", height: "2"}
 
                 %table{style: "padding: 10px 0 0 20px"}
+
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/dream.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/dream.png", width: "24", height: "24"}
+                    %td{align: "left",  style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       explore your <b style="color: #333;">dreams</b> with other dreamers
+
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/vision.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/vision.png", width: "24", height: "24"}
+                    %td{align: "left",  style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       share your <b style="color: #333;">vision</b> with the world
+
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/experience.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/experience.png", width: "24", height: "24"}
+                    %td{align: "left",  style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       chart your peak <b style="color: #333;">experiences</b>
+
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/article.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
-                      compose <b style="color: #333;">articles</b> to share with your network
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/article.png", width: "24", height: "24"}
+                    %td{align: "left",  style: "vertical-align: middle, color:#555; font-size: 18px; padding-left: 6px;"}
+                      write <b style="color: #333;">articles</b> to share with your network
+
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/journal.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/journal.png", width: "24", height: "24"}
+                    %td{align: "left",  style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       use as your multi-media diary and <b style="color: #333;">journal</b>
 
 
 
                 / USING DREAMCATCHER
-                %table{style: "padding: 15px 0 22px 0"}
+                %table{width: "100%", style: "padding: 15px 0 8px 0"}
                   %tr
-                    %td{valign: "middle", align: "left"}
-                      %h2{style: "color: #000; font-size: 23px; font-weight: normal; margin: 0px"} using Dreamcatcher
-                    %td{valign: "middle"}
-                      %img{src: "http://localhost:3000/images/email/line.gif", width: "100%", height: "2"}
+                    %td{align: "left", style: "padding-right: 30px"}
+                      %h2{  style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px"} Using Dreamcatcher
+                    %td
+                      %img{ style: "vertical-align: middle", src: "http://localhost:3000/images/email/line.gif", width: "100%", height: "2"}
 
-                %table{style: "padding-left: 20px"}
+                %table{style: "padding: 0 0 20px 20px"}
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/home.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
-                      improve your dream recall and <b style="color: #0b3f6f;">log last night's dream ›</b>
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/home.png", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/entries/new", target: "_blank"}
+                        improve your dream recall and <b style="color: #6383a5;">log last night's dream ›</b>
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/stream.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
-                      build networks and follow other dreamers in the <b style="color: #0b3f6f;">Dream Stream ›</b>
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/stream.png", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/stream", target: "_blank"}
+                        build networks and follow other dreamers in the <b style="color: #6383a5;">Dream Stream ›</b>
                   %tr
-                    %td{valign: "middle", align: "right"}
-                      %img{src: "http://localhost:3000/images/email/icons/quasm.png", width: "24", height: "24"}
-                    %td{valign: "middle", align: "left", style: "color:#555; font-size: 18px;"}
-                      check out what's trending at <b style="color: #0b3f6f;">Today in Dreams ›</b>
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "http://localhost:3000/images/email/icons/quasm.png", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/today", target: "_blank"}
+                        check out what's trending at <b style="color: #6383a5;">Today in Dreams ›</b>
 
 
 
@@ -103,13 +115,13 @@
 
             / FOOTER
             %tr
-              %td{valign: "top", background: "http://localhost:3000/images/email/email-footer.gif", bgcolor: "#fff", style: "padding: 20px 30px 0 45px"}
+              %td{valign: "top", height: "85", background: "http://localhost:3000/images/email/email-footer.gif", bgcolor: "#fff", style: "padding: 10px 30px 0 45px"}
 
                 %table{width: "100%"}
                   %tr
 
                     / LINK
-                    %td{align: "left", height: "85"}
+                    %td{align: "left"}
                       %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #0b3f6f; font-size: 27px; text-shadow: #bbb 0 1px 1px; text-decoration: none;"}
                         http://dreamcatcher.net/#{@user.username}
 
