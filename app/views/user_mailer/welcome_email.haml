@@ -22,17 +22,18 @@
 
             / BODY
             %tr
-              %td{background: "http://theta.dreamcatcher.net/images/email/email-center.gif", style: "background-color: #fff; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px; padding: 0 30px 0 45px", align: "left"}
+              %td{align: "left", background: "http://theta.dreamcatcher.net/images/email/email-center.gif", style: "background-color: #fff; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px; padding: 0 30px 0 45px"}
+
 
                 / WELCOME
                 %table{style: "padding-top: 28px"}
                   %tr
-                    %td
+                    %td{align: "left"}
                       %h1{  style: "font-weight: normal; color: #000; font-size: 28px; margin: 0"}
                         welcome to Dreamcatcher, 
                         %a{ style: "font-weight: normal; color: #49abe5; text-decoration: none;", href: "http://dreamcatcher.net/#{@user.username}"}= @user.username
                   %tr
-                    %td{style: "padding-top: 4px"}
+                    %td{align: "left", style: "padding-top: 4px"}
                       %p{style: "color: #555; font-size: 18px; margin: 0"}
                         discover a deeper part of yourself<br>
                         explore your subconscious mind<br>
@@ -42,9 +43,9 @@
                 / LIFE IS A DREAM
                 %table{style: "padding-top: 24px", width: "100%"}
                   %tr
-                    %td{style: "padding-right: 30px"}
+                    %td{align: "left", style: "padding-right: 30px"}
                       %h2{style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px; white-space: nowrap"} Life is a dream...
-                    %td{width: "100%"}
+                    %td{align: "left", width: "100%"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/line.gif", width: "100%", height: "2"}
 
                 %table{style: "padding: 10px 0 0 20px"}
@@ -52,31 +53,31 @@
                   %tr
                     %td{align: "right"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/dream.png", width: "24", height: "24"}
-                    %td{style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       explore your <b style="color: #333;">dreams</b> with other dreamers
 
                   %tr
                     %td{align: "right"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/vision.png", width: "24", height: "24"}
-                    %td{style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       share your <b style="color: #333;">vision</b> with the world
 
                   %tr
                     %td{align: "right"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/experience.png", width: "24", height: "24"}
-                    %td{style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       chart your peak <b style="color: #333;">experiences</b>
 
                   %tr
                     %td{align: "right"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/article.png", width: "24", height: "24"}
-                    %td{style: "vertical-align: middle, color:#555; font-size: 18px; padding-left: 6px;"}
+                    %td{align: "left", style: "vertical-align: middle, color:#555; font-size: 18px; padding-left: 6px;"}
                       write <b style="color: #333;">articles</b> to share with your network
 
                   %tr
                     %td{align: "right"}
                       %img{style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/journal.png", width: "24", height: "24"}
-                    %td{style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
                       use as your multi-media diary and <b style="color: #333;">journal</b>
 
 
@@ -84,9 +85,9 @@
                 / USING DREAMCATCHER
                 %table{width: "100%", style: "padding: 15px 0 8px 0"}
                   %tr
-                    %td{style: "padding-right: 30px"}
+                    %td{align: "left", style: "padding-right: 30px"}
                       %h2{  style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px; white-space: nowrap"} Using Dreamcatcher
-                    %td{width: "100%"}
+                    %td{align: "left", width: "100%"}
                       %img{ style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/line.gif", width: "100%", height: "2"}
 
 
@@ -94,21 +95,21 @@
                   %tr
                     %td{align: "right"}
                       %img{ style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/home.png", width: "24", height: "24"}
-                    %td{style: "padding-left: 6px;"}
+                    %td{align: "left", style: "padding-left: 6px;"}
                       %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/entries/new", target: "_blank"}
                         improve your dream recall and <b style="color: #49abe5;">log last night's dream ›</b>
 
                   %tr
                     %td{align: "right"}
                       %img{ style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/stream.png", width: "24", height: "24"}
-                    %td{style: "padding-left: 6px;"}
+                    %td{align: "left", style: "padding-left: 6px;"}
                       %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/stream", target: "_blank"}
                         build networks and follow other dreamers in the <b style="color: #49abe5;">Dream Stream ›</b>
 
                   %tr
                     %td{align: "right"}
                       %img{ style: "vertical-align: middle", src: "http://theta.dreamcatcher.net/images/email/icons/quasm.png", width: "24", height: "24"}
-                    %td{style: "padding-left: 6px;"}
+                    %td{align: "left", style: "padding-left: 6px;"}
                       %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/today", target: "_blank"}
                         check out what's trending at <b style="color: #49abe5;">Today in Dreams ›</b>
 
@@ -118,13 +119,13 @@
 
             / FOOTER
             %tr
-              %td{background: "http://theta.dreamcatcher.net/images/email/email-footer.gif", style: "background-color: #f2f5f8; vertical-align: top; padding: 0 20px 0 45px", height: "85"}
+              %td{align: "left", background: "http://theta.dreamcatcher.net/images/email/email-footer.gif", style: "background-color: #f2f5f8; vertical-align: top; padding: 0 20px 0 45px", height: "85"}
 
                 %table{width: "100%", style: "padding-top: 4px"}
                   %tr
 
                     / LINK
-                    %td
+                    %td{align: "left"}
                       %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #244171; font-size: 25px; text-decoration: none; line-height: 0; font-family: calibri, Lucida Sans Unicode, Lucida Grande, sans-serif"}
                         http://dreamcatcher.net/#{@user.username}
 
