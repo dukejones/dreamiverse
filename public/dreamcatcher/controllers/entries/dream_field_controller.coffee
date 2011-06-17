@@ -21,7 +21,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
           
   #- move entry to book (drag & drop)
   
-  'entry.drag subscribe': (called, parent) ->
+  'entries.drag subscribe': (called, parent) ->
     $('.thumb-2d', parent).draggable {
       containment: 'document'
       zIndex: 100

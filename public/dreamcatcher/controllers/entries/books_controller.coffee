@@ -82,31 +82,18 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- show book
   
   showBook: (bookId) ->
-    bookEl = @el.book bookId
-    html = bookEl.clone().css 'z-index', 2000
-    if $('#contextPanel .book').exists()
-      $('#contextPanel .book').replaceWith html
-    else
-      $('#contextPanel').prepend html
-    $('#contextPanel .book a.mask').attr 'href', $('#contextPanel a.avatar').attr 'href'
-    
-    $('#contextPanel .avatar').hide()
-    
+    bookEl = @el.book bookId    
+    @publish 'context_panel.book', bookEl.clone().css 'z-index', 2000
     @publish 'book.drop', $('#contextPanel')
-    bookMatrixEl = @el.bookMatrix bookId
 
-    if bookMatrixEl.exists()
+    @model.book.show bookId, {}, (html) =>
       $('#entryField').children().hide()
-      bookMatrixEl.show()      
-    else
-      @model.book.show bookId, {}, (html) =>
-        $('#entryField').children().hide()
-        bookMatrixEl = @el.bookMatrix bookId
-        if bookMatrixEl.exists()
-          bookMatrixEl.replaceWith html
-        else
-          $('#entryField').append html
-        @publish 'entry.drag', bookMatrixEl
+      bookMatrixEl = @el.bookMatrix bookId
+      if bookMatrixEl.exists()
+        bookMatrixEl.replaceWith html
+      else
+        $('#entryField').append html
+      @publish 'entries.drag', bookMatrixEl
 
   'books.show subscribe': (called, data) ->
     @showBook data.id
