@@ -101,11 +101,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   editBook: (el) ->
     @openBook el, true
     
-  'books.edit subscribe': (called, el) ->
+  'books.modify subscribe': (called, el) ->
     @editBook el
-      
+  
+  ### 
   '.closed .edit click': (el) ->
     @editBook el
+  ###
   
   #- open 
   openBook: (el, edit) ->

@@ -26,8 +26,8 @@
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
-
-    .edit edit
+    - if current_user == book.user
+      %a.history.edit{href: "/books/#{bookId}/edit"} edit
     
     .title 
       = title ? title : 'Untitled Book'
@@ -42,134 +42,134 @@
 
   / OPEN BOOK
   .open
+    - if current_user == book.user
+      / BODY CLICK FOR OPEN BOOK
+      .closeClick
 
-    / BODY CLICK FOR OPEN BOOK
-    .closeClick
+
+      / CONTROL PANEL
+      .control-panel
+
+        .settings-basic
+          - if title
+            %input.titleInput{type: 'text', value: title}
+          - else
+            %input.titleInput{type: 'text', placeholder: 'title of book'}
+
+          .color
+            color
+            .icon
+
+          .coverImage
+            cover image
+            .icon
+
+          .access
+            access
+            .icon
+
+          .settings
+            settings
+            .icon
+
+          .arrow
+            .down
+
+          .confirm OK
+
+        .clear
+
+        .more-settings
+
+          .remove
+            remove book
+          .label
+            entries will not be deleted
+
+          .delete
+            delete book
+          .label
+            this book and its entries will be deleted
+
+          .arrow
+            .up
 
 
-    / CONTROL PANEL
-    .control-panel
+      / COLOR PANEL
+      .color-panel
 
-      .settings-basic
-        - if title
-          %input.titleInput{type: 'text', value: title}
-        - else
-          %input.titleInput{type: 'text', placeholder: 'title of book'}
+        .header
 
-        .color
-          color
+          .back &lsaquo;
+
           .icon
 
-        .coverImage
-          cover image
+          %span color
+
+        %ul.swatches
+
+          %li.blue
+          %li.purple
+          %li.pink
+          %li.red
+          %li.aqua
+          %li.green
+          %li.yellow
+          %li.orange
+          %li.blue-deep
+          %li.green-deep
+          %li.brown
+          %li.maroon
+          %li.white
+          %li.grey-light
+          %li.grey-dark
+          %li.black
+
+
+      / COVER IMAGE PANEL
+      .cover-panel
+
+        .dropbox
+
+        .header
+
+          .back &lsaquo;
+
           .icon
 
-        .access
-          access
+          %span cover image
+
+        .dropbox-field
+
+          .dropbox-field-shine{style: backgroundStyle}
+
+            .close
+
+            .add click or drag images here to upload
+
+        .active
+
+
+      / ACCESS PANEL
+      .access-panel
+
+        .header
+
+          .back &lsaquo;
+
           .icon
 
-        .settings
-          settings
-          .icon
+          %span access
 
-        .arrow
-          .down
+        .viewing viewing
 
-        .confirm OK
+        %select.select-menu.viewing-menu{name: 'viewing_level'}
+          = render :partial => "entries/sharing_level", :locals => {:level => viewingLevel}
 
-      .clear
+        .commenting commenting
 
-      .more-settings
-
-        .remove
-          remove book
-        .label
-          entries will not be deleted
-
-        .delete
-          delete book
-        .label
-          this book and its entries will be deleted
-
-        .arrow
-          .up
-
-
-    / COLOR PANEL
-    .color-panel
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span color
-
-      %ul.swatches
-
-        %li.blue
-        %li.purple
-        %li.pink
-        %li.red
-        %li.aqua
-        %li.green
-        %li.yellow
-        %li.orange
-        %li.blue-deep
-        %li.green-deep
-        %li.brown
-        %li.maroon
-        %li.white
-        %li.grey-light
-        %li.grey-dark
-        %li.black
-
-
-    / COVER IMAGE PANEL
-    .cover-panel
-
-      .dropbox
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span cover image
-
-      .dropbox-field
-
-        .dropbox-field-shine{style: backgroundStyle}
-
-          .close
-
-          .add click or drag images here to upload
-
-      .active
-
-
-    / ACCESS PANEL
-    .access-panel
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span access
-
-      .viewing viewing
-
-      %select.select-menu.viewing-menu{name: 'viewing_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => viewingLevel}
-
-      .commenting commenting
-
-      %select.select-menu.commenting-menu{name: 'commenting_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => commentingLevel}
+        %select.select-menu.commenting-menu{name: 'commenting_level'}
+          = render :partial => "entries/sharing_level", :locals => {:level => commentingLevel}
 
     / ENTRY DROP ACTIVE
     .entryDrop-active

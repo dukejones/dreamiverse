@@ -113,16 +113,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     
   '.headers click': (el) ->
     entryPanelEl = el.closest '.entryPanels'
-    name = entryPanelEl.attr 'title'
+    name = entryPanelEl.attr 'name'
     entryPanelEl.hide()
     $("#entryAttach .attach[title=#{name}]").show()
   
   ##entryAttach 
   '.attach click': (el) ->
-    name = el.attr 'title'
-    el.slideDown()
-    $(".entryPanels[title=#{name}]").show()
-    @initUploader() if name is 'images'
+    name = el.attr 'name'
+    if name? and name.length > 0
+      $(".entryPanels[title=#{name}]").slideDown 'fast', => el.hide()
+      @initUploader() if name is 'images'
       
   initUploader: ->
     $('#imageUpload').uploader {
