@@ -17,6 +17,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
     
     @bind window, 'popstate', => @publishHistory window.location.pathname
+    # FF 3.6
+    $('input[placeholder], textarea[placeholder]').placeholder()
       
   #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
   'a.history click': (el, ev) ->

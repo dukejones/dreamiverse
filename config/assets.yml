@@ -9,7 +9,7 @@ template_extension: ejs
 
 javascripts:
 
-  jmvc_plugins:
+  jmvc:
     - public/jquery/jquery.js
     - public/compiled/steal_proxy.js
     - public/jquery/class/class.js
@@ -28,8 +28,6 @@ javascripts:
     - public/jquery/dom/dom.js
     - public/jquery/dom/fixture/fixture.js
     - public/jquery/dom/form_params/form_params.js
-  
-  jmvc_resources:
     - public/compiled/resources/ui/jquery.ui.core.js
     - public/compiled/resources/ui/jquery.ui.widget.js
     - public/compiled/resources/ui/jquery.ui.mouse.js
@@ -38,9 +36,6 @@ javascripts:
     - public/compiled/resources/ui/jquery.ui.draggable.js
     - public/compiled/resources/ui/jquery.ui.droppable.js
     - public/compiled/resources/*.js
-
-      
-  dreamcatcher_app:
     - public/compiled/models/**/*.js
     - public/compiled/classes/*.js
     # - public/compiled/controllers/**/*.js
@@ -62,22 +57,13 @@ javascripts:
     
   shared:
     #- public/javascripts/jquery.hoverIntent.minified.js
-    #- public/javascripts/pubsub.js
     #- public/javascripts/rails.js
-    #- public/javascripts/jquery.cookie.js
     #- public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
 
-  # entries:
-  #   - public/javascripts/geo.js
-  #   - public/javascripts/dreams.js
-  #   - public/javascripts/compiled/follow_hover.js
-  #   - public/javascripts/compiled/dreamfield.js
-  #   - public/javascripts/tag_stream.js
-    
   home:
-    - public/javascripts/compiled/dreamplugs.js
+    - public/javascripts/pubsub.js
     - public/javascripts/compiled/publicstream.js
   
   friends:
@@ -96,11 +82,6 @@ javascripts:
     - public/javascripts/compiled/showentry.js
     - public/javascripts/compiled/fit_to_content.js
 
-  context_panel:
-  #  - public/javascripts/compiled/context_panel.js
-  #  - public/javascripts/browserdetect.js
-  #  - public/javascripts/dreams.js
-
   join:
     - public/javascripts/compiled/seedcode.js
 
@@ -110,6 +91,18 @@ javascripts:
   feedback:
     - public/javascripts/compiled/fit_to_content.js
     - public/javascripts/compiled/feedback.js
+
+  context_panel:
+  #  - public/javascripts/compiled/context_panel.js
+  #  - public/javascripts/browserdetect.js
+  #  - public/javascripts/dreams.js
+
+  # entries:
+  #   - public/javascripts/geo.js
+  #   - public/javascripts/dreams.js
+  #   - public/javascripts/compiled/follow_hover.js
+  #   - public/javascripts/compiled/dreamfield.js
+  #   - public/javascripts/tag_stream.js
 
 stylesheets:
   shared:

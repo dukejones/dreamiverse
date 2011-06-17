@@ -13,7 +13,7 @@
     %span &rsaquo;
 
   - if @book
-    %a.history.spine{href: "/books/#{@book.id}", class: @book.color}
+    %a.history.bookSpine.spine{href: "/books/#{@book.id}", class: @book.color}
       = @book.title
   - elsif session[:lens] == :stream
     %a.history.stream{href: stream_path} stream
@@ -57,13 +57,6 @@
     .img
     %span= @entry.starlight
 
-
-    /
-      SAVE FOR LATER
-      %hr
-      .option.love
-      .option.share
-      .option.repost.selected
 
 
 

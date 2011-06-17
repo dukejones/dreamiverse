@@ -21,7 +21,7 @@ set :use_sudo, false
 after "deploy", "deploy:cleanup"
 before "deploy:symlink", "uploads:symlink"
 before "deploy:restart", "compile:the_rest"
-before "deploy:restart", "compile:jmvc"
+# before "deploy:restart", "compile:jmvc"
 before "deploy:symlink", "memcached:restart"
 
 namespace :deploy do
