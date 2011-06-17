@@ -27,7 +27,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
       }, @callback('appendTag', tagName)  
           
   appendTag: (tagName, json=null) ->    
-    tagCount = @tagCount()
+    tagCount = @countTags()
     tagId = if json? then json.what_id else '' 
 
     if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
@@ -62,7 +62,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @tag.fadeOut 'fast', =>
       @tag.remove()
   
-  tagCount: ->
+  countTags: ->
     count = 0
     for el in $('#tag-list .tag')
       count += 1
