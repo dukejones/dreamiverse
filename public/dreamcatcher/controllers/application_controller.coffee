@@ -18,7 +18,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
     @bind window, 'popstate', => @publishHistory window.location.pathname
       
-  #.spine-nav, a.stream, a.entries, a.prev, a.next, a.editEntry 
+  #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
   'a.history click': (el, ev) ->
     ev.preventDefault()
     href = el.attr 'href'
