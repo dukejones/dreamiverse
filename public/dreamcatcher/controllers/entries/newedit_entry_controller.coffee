@@ -100,10 +100,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     }
     $('#books-list-button').removeClass('book bookSpine')
     if el.val() is 'new'
-      inputEl = $('input.newBook-input', el.parent())
-      inputEl.val ''
-      inputEl.show()
-      $('.books-list-button').hide()
+      $('input.newBook-input', el.parent()).val('').show().focus()
+      $('#books-list-button').hide()
     else
       $('input.newBook-input', el.parent()).hide()
       $('.ui-selectmenu-status', el.parent()).show()
