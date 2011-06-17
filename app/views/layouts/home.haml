@@ -6,17 +6,12 @@
     %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
     = include_stylesheets :shared, :media => 'all'
     
-    - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
-    %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
+    / - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
+    / %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
 
-    = include_javascripts :shared, :home
+    = include_javascripts :jmvc, :shared, :home
     = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
-    -# %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
     
-    :coffeescript
-      $(document).ready ->
-        $('input[placeholder], textarea[placeholder]').placeholder()
-
     = yield :head
 
   %body#body.home{class: appearance_classes}

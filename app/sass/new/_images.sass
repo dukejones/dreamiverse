@@ -99,72 +99,79 @@
         +relative
         margin: 12px 0 0 12px
         +user-select
+        list-style: none
 
-        .entryImageContainer, .entryImage
-          +round(8)
         .entryImageContainer
           +left
+          +round(8)
           +overflow
           +relative
           margin: 0px 8px 8px 0px
           height: 120px
           width: 120px
-          .entryImage
-            +relative
-            +user-select
-            +round(7)
-            +left
-            +overflow
-            +pointer
-            width: 120px
-            height: 120px
-            &:hover
-              label.radio
-                background: rgba(255,255,255,0.5)
-                span
-                  +block
-            label.radio.selected
-              background: rgba(255,255,255,1.0)
+          background-repeat: no-repeat
+          background-position: center center
+          background-color: #a4a6a8
+          // .entryImage
+          //   +relative
+          //   +user-select
+          //   +round(7)
+          //   +left
+          //   +overflow
+          //   +pointer
+          //   width: 120px
+          //   height: 120px
+          &:hover
+            .close
+              +block
+          &:hover
+            label.radio
+              background: rgba(255,255,255,0.5)
               span
                 +block
-            label.radio
-              +round(6)
-              +flat-top
-              +absolute
+          label.radio.selected
+            background: rgba(255,255,255,1.0)
+            span
               +block
+          label.radio
+            +round(6)
+            +flat-top
+            +absolute
+            +block
+            +pointer
+            bottom: 0
+            width: 100%
+            height: 28px
+            line-height: 28px
+            color: #333
+            background: rgba(255,255,255,0.0)
+            z-index: 100
+            span
+              +hidden
+              +right
+              +bold
+              margin-left: 8px
+            input
+              margin: 8px 8px 0
+              +right
               +pointer
-              bottom: 0
-              width: 100%
-              height: 28px
-              line-height: 28px
-              color: #333
-              background: rgba(255,255,255,0.0)
-              z-index: 100
-              span
-                +hidden
-                +right
-                +bold
-                margin-left: 8px
-              input
-                margin: 8px 8px 0
-                +right
-                +pointer
-              &:hover
-                background: rgba(255,255,255,0.8)
-            .radioWrap
-              +absolute
-              +round(12)
-              right: 4px
-              bottom: 4px
-              width: 10px
-              height: 10px
-              padding: 5px
-              background: rgba(255,255,255,0.3)
-            .close
-              +close-24
-              +absolute
-              top: 2px
-              right: 2px
+            &:hover
+              background: rgba(255,255,255,0.8)
+
+          .radioWrap
+            +absolute
+            +round(12)
+            right: 4px
+            bottom: 4px
+            width: 10px
+            height: 10px
+            padding: 5px
+            background: rgba(255,255,255,0.3)
+          .close
+            +close-24
+            +absolute
+            top: 2px
+            right: 2px
           .entryImageCaption
             +absolute
             +font(16)

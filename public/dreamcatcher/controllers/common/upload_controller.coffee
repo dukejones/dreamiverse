@@ -37,12 +37,14 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
       element: @element.get(0)
       action: '/images.json'
       template: @element.html()
-      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
+      fileTemplate: $.View('/dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
 
       onSubmit: (id, fileName) =>
         log id
 
       onComplete: (id, fileName, result) =>
+        #return
+      
         if result.image?
           @getUploadElement(fileName).replaceWith $.View(@viewUrl, result.image)
           @filesUploaded++
@@ -54,6 +56,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
           message += " (#{filesFailed} failed)" if filesFailed > 0
           notice message
           @filesUploaded = 0
+        
 
       onCancel: (id, fileName) =>
         uploadEl = @getUploadElement fileName

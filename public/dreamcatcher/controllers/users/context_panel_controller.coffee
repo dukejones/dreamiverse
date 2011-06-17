@@ -7,6 +7,19 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     user: Dreamcatcher.Models.User
   }
   
+  init: (el) ->
+    @element = $(el)
+  
+  'context_panel.book subscribe': (called, html) ->
+    if $('.book', @element).exists()
+      $('.book', @element).replaceWith html
+    else
+      $('#contextPanel', @element).prepend html
+      
+    href = $('a.avatar', @element).attr 'href'
+    $('.book a.mask', @element).attr 'href', href 
+    $('.avatar', @element).fadeOut()
+  
   'context_panel.show subscribe': (called, username) ->
     if $('#contextPanel .context').text().trim() is username
       $('#streamContextPanel').fadeOut()
@@ -20,7 +33,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         $('#totem').show()
 
   '.uploadAvatar click': (el) ->
-    $('#contextPanel').prepend $.View('//dreamcatcher/views/users/context_panel/avatar_upload.ejs')
+    $('#contextPanel').prepend $.View('/dreamcatcher/views/users/context_panel/avatar_upload.ejs')
     $('#avatarDrop').uploader {
       singleFile: true
       params: {
