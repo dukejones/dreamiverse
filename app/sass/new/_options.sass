@@ -29,7 +29,7 @@
 
 
 
-  .books-list .img, #entry-appearance .img, #entry-date .img, #entry-location .img
+  #entry-appearance .img, #entry-date .img, #entry-location .img
     width: 42px
     height: 34px
 
@@ -85,6 +85,7 @@
       color: #fff !important
       border: 1px solid #777 !important
       cursor: default !important
+    @extend .font-dc
 
 
 
@@ -119,6 +120,8 @@
 
     .img
       +left
+      width: 24px
+      margin: 0 8px 0 12px
       background: url('/images/icons/books-24.png') center center no-repeat
 
     .newBook-input
@@ -129,7 +132,7 @@
       +transparent
       +font(14)
       border: none
-      margin: 0 8px 0 0
+      margin: 5px 8px 0 0
       height: 24px
       width: 116px !important
 
@@ -149,9 +152,9 @@
 
     .ui-selectmenu-status
       +hidden
+      text-align: left
       margin-right: 36px
       padding: .405em 0 !important
-
 
 
 
@@ -377,16 +380,6 @@
       input
         +pointer
 
-
-
-// GENERAL COLORS
-.light
-  .newBook-input
-    color: #222
-
-.dark
-  .newBook-input
-    color: #ddd
 
 
 
@@ -700,13 +693,22 @@
       color: #fff
       border: 1px solid #a9a9a9
 
-    #sharing-list, .books-list, #entry-location, #entry-date
+    #sharing-list, #entry-location, #entry-date
       +indent-light
       +button-light
       border: 1px solid #fff
 
+    .books-list
+      +indent-light
+      +pointer
+      border: 1px solid #fff
+      &:hover
+        +pointer
+        border: 1px solid #8c8c8c
+
 
 // BOOKS LIST MENU DROPDOWN
+// LIGHT
 .light #books-list-menu
   +indent-light
 
@@ -722,6 +724,8 @@
       &:hover
         color: #000 !important
 
+  .newBook-input
+    color: #222
 
 
 
@@ -782,10 +786,18 @@
       background: #aaa
       +gradient(#222, #aaa)
 
-    #sharing-list, .books-list, #entry-location, #entry-date
+    #sharing-list, #entry-location, #entry-date
       +indent-dark
       +button-dark
       border: 1px solid #000
+
+    .books-list
+      +indent-dark
+      +pointer
+      border: 1px solid #000
+      &:hover
+        +pointer
+        border: 1px solid #777
 
 
 // BOOKS LIST MENU DROPDOWN
@@ -803,3 +815,6 @@
       color: #ddd !important
       &:hover
         color: #fff !important
+
+  .newBook-input
+    color: #ddd
