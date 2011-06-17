@@ -52,14 +52,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @model.entry.index username, (html) =>
       @displayEntryField html, newBook
       
-  displayEntryField: (html, newBook) ->
-    $('#entryField').children().hide()
+  displayEntryField: (html, newBook, editBookId) ->
+    $('#entryField').children().each ->
+      $(this).hide() if $(this) isnt @element
     @element.children().show()
     $('.matrix.bookIndex',@element).hide()
     if html?
       @element.html html
       $('.matrix.books', @element).books()
     @publish 'books.create' if newBook
+    @publish 'books.modify', editBookId if editBookId?
     @element.fadeIn 500
     @publish 'appearance.change'
     
@@ -70,11 +72,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   'entries.index subscribe': (called, data) ->
     username = if data? and data.username? then data.username else $('#userInfo').data 'username'
     newBook = if data? and data.newBook? then data.newBook else false
+    editBook = data.editBook if data? and data.editBook?
     @publish 'context_panel.show', username
     @showEntryField username, newBook
     
   'books.new subscribe': ->
     @publish 'entries.index', { newBook: true }
+  
+  'books.edit subscribe': (called, data) ->
+    @publish 'entries.index', { editBook: data.id }
     
 }
   

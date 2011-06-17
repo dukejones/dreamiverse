@@ -51,6 +51,8 @@ javascripts:
     - public/compiled/controllers/entries/show_entry_controller.js
     - public/compiled/controllers/users/context_panel_controller.js
     - public/compiled/controllers/users/appearance_panel_controller.js
+    - public/compiled/controllers/admin/admin_controller.js
+    - public/compiled/controllers/admin/charts_controller.js
     # - public/dreamcatcher/views/comments/*.ejs
     
     
@@ -71,15 +73,15 @@ javascripts:
   
   new_entry:
     - public/javascripts/browserdetect.js
-    - public/javascripts/pubsub.js
+    #- public/javascripts/pubsub.js
     - public/javascripts/compiled/sharing.js
     - public/javascripts/compiled/cookies.js
     
   show_entry:
     - public/javascripts/browserdetect.js
-    - public/javascripts/jquery-ui.js
+    #- public/javascripts/jquery-ui.js
     - public/javascripts/swfobject.js
-    - public/javascripts/compiled/showentry.js
+    #- public/javascripts/compiled/showentry.js
     - public/javascripts/compiled/fit_to_content.js
 
   join:
