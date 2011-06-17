@@ -118,20 +118,20 @@
 
             / FOOTER
             %tr
-              %td{height: "85", background: "http://localhost:3000/images/email/email-footer.gif", bgcolor: "#fff", style: "padding: 10px 30px 0 45px"}
+              %td{style: "vertical-align: top; padding: 0 30px 0 45px", height: "85", background: "http://localhost:3000/images/email/email-footer.gif", bgcolor: "#fff"}
 
                 %table{width: "100%"}
                   %tr
 
                     / LINK
                     %td
-                      %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #244171; font-size: 27px; text-decoration: none; line-height: 0"}
+                      %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #244171; font-size: 25px; text-decoration: none; line-height: 0"}
                         http://dreamcatcher.net/#{@user.username}
 
                     / POST BUTTON
-                    %td{align: "right", width: "68"}
+                    %td{align: "right", width: "148"}
                       %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
-                        %img{src: "http://localhost:3000/images/email/post-button.gif",  width: "66", height: "36", border: "0", alt: "post a dream on Dreamcatcher.net!", style: "border: 0px;"}
+                        %img{src: "http://localhost:3000/images/email/post-button.gif",  width: "148", height: "52", border: "0", alt: "post a dream on Dreamcatcher.net!", style: "border: 0px;"}
 
 
 
