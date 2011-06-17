@@ -13,7 +13,8 @@
     %span &rsaquo;
 
   - if @book
-    %a.history.spine-nav{href: "/books/#{@book.id}", class: @book.color} @book.title
+    %a.history.spine{href: "/books/#{@book.id}", class: @book.color}
+      = @book.title
   - elsif session[:lens] == :stream
     %a.history.stream{href: stream_path} stream
   - else

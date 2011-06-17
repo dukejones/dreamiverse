@@ -43,6 +43,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
         log id
 
       onComplete: (id, fileName, result) =>
+        #return
+      
         if result.image?
           @getUploadElement(fileName).replaceWith $.View(@viewUrl, result.image)
           @filesUploaded++
@@ -54,6 +56,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
           message += " (#{filesFailed} failed)" if filesFailed > 0
           notice message
           @filesUploaded = 0
+        
 
       onCancel: (id, fileName) =>
         uploadEl = @getUploadElement fileName

@@ -38,7 +38,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
 
     @model.entry.update entryId, {entry: entryMeta}
 
-    @publish 'book.close', bookEl
+    @publish 'books.close', bookEl
     bookMatrixEl = @el.bookMatrix bookId
     if bookMatrixEl.exists()
       entryEl.appendTo bookMatrixEl
@@ -64,14 +64,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
 
         out: (ev, ui) =>
           el = $(ev.target)
-          @publish 'book.close', el if el.hasClass 'book' 
+          @publish 'books.close', el if el.hasClass 'book' 
           $('.add-active', ui.helper).hide()
           $('.entryDrop-active, .entryRemove', el).hide()
       }
   
   #- new book
     
-  'books.new subscribe': ->
+  'books.create subscribe': ->
     @model.book.new {}, (html) =>
       $('#welcomePanel').hide()
       @element.prepend html
@@ -82,31 +82,18 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- show book
   
   showBook: (bookId) ->
-    bookEl = @el.book bookId
-    html = bookEl.clone().css 'z-index', 2000
-    if $('#contextPanel .book').exists()
-      $('#contextPanel .book').replaceWith html
-    else
-      $('#contextPanel').prepend html
-    $('#contextPanel .book a.mask').attr 'href', $('#contextPanel a.avatar').attr 'href'
-    
-    $('#contextPanel .avatar').hide()
-    
+    bookEl = @el.book bookId    
+    @publish 'context_panel.book', bookEl.clone().css 'z-index', 2000
     @publish 'book.drop', $('#contextPanel')
-    bookMatrixEl = @el.bookMatrix bookId
 
-    if bookMatrixEl.exists()
+    @model.book.show bookId, {}, (html) =>
       $('#entryField').children().hide()
-      bookMatrixEl.show()      
-    else
-      @model.book.show bookId, {}, (html) =>
-        $('#entryField').children().hide()
-        bookMatrixEl = @el.bookMatrix bookId
-        if bookMatrixEl.exists()
-          bookMatrixEl.replaceWith html
-        else
-          $('#entryField').append html
-        @publish 'entry.drag', bookMatrixEl
+      bookMatrixEl = @el.bookMatrix bookId
+      if bookMatrixEl.exists()
+        bookMatrixEl.replaceWith html
+      else
+        $('#entryField').append html
+      @publish 'entries.drag', bookMatrixEl
 
   'books.show subscribe': (called, data) ->
     @showBook data.id
@@ -131,7 +118,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.closed', bookEl).hide()
     
   'books.hover subscribe': (called, el) ->
-    @openBook el
+    @openBook el, false
     
   #- close
   closeBook: (el) ->
