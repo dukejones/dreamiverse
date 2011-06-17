@@ -8,13 +8,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 
   init: (el) ->
     log 'init stream controller'
-    # Stream.page = 1
-    # @container = $(el)
-    # @bind window, 'scroll', 'scrollEvent'
-    # @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
+    Stream.page = 1
+    @container = $(el)
+    @bind window, 'scroll', 'scrollEvent'
+    @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
     
-    # @activateLightBoxAndComments()   
-    # @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
+    @activateLightBox()
+    @activateComments()   
+    @loadNextPage() # we want to load 2 pages on load (the first page was loaded with ruby)  
     
   filterChange: (el) ->
     log 'filterChange'
@@ -24,7 +25,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 
   scrollEvent: (window)->
     return unless $('#entryField .matrix.stream').is ':visible'
-    
     if (window.scrollTop() > $(document).height() - window.height() - 200)
       @loadNextPage()
         
@@ -44,15 +44,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     
     @container.empty() if Stream.page == 1
     @container.append json.html
-    @activateLightBoxAndComments()
+    @activateLightBox()
+    # @activateComments()
   
   getOptions: ->
     type: $('#entry-filter').val()
     users: $('#users-filter').val()
   
-  # Setup lightbox for stream
-  activateLightBoxAndComments: ->
+  activateLightBox: ->
     $('a.lightbox').each -> $(this).lightBox {containerResizeSpeed: 0}
+  
+  activateComments: ->
     $('.thumb-1d').each -> $(this).comments() unless $(this).hasClass 'dreamcatcher_common_comments' 
     
   clear: ->

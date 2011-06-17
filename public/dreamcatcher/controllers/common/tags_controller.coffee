@@ -21,7 +21,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   appendTag: (tagName) ->     
     tagCount = @tagCount()
     if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
-      html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
+      html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, mode: @mode})
       $('#tag-list').append html
       $('#newTag').val ''
 

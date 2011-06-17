@@ -2,9 +2,10 @@
 
 embed_assets: datauri
 
-# No javascript template pre-compiler
+# javascript template pre-compiler
 template_function: off
-
+# template_namespace: JST
+template_extension: ejs
 
 javascripts:
 
@@ -55,6 +56,7 @@ javascripts:
     - public/compiled/controllers/entries/show_entry_controller.js
     - public/compiled/controllers/users/context_panel_controller.js
     - public/compiled/controllers/users/appearance_panel_controller.js
+    # - public/dreamcatcher/views/comments/*.ejs
     
     
     
