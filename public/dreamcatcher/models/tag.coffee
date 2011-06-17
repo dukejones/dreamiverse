@@ -9,6 +9,15 @@ $.Model 'Dreamcatcher.Models.Tag',{
       success: success
       error: error
     }
+    
+  delete: (params, success, error) ->
+    $.ajax {
+      type: 'delete'
+      url: '/tags/what'
+      data: params
+      success: success
+      error: error
+    } 
      
 },
 {}
