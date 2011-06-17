@@ -13,7 +13,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @initBooksListButton()
     
   initBooksListButton: ->
-    log 'm'
     $('#books-list-button').css {
       width: '32px'
     }
@@ -28,7 +27,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('#books-list').val bookId  
     
     @publish 'dom.added', @element
-    #log 'book val'+$('#books-list').val()
     @initBooksListButton()
     @element.fadeIn '500', =>
       fitToContent $('textarea', @element).attr('id'), 0
@@ -142,7 +140,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
         active: 'qq-upload-drop-area-active'
         list: 'currentImages'
       }
-    }, '//dreamcatcher/views/images/entry/image_show.ejs'
+    }, '/dreamcatcher/views/images/entry/image_show.ejs'
     
     
   ###
