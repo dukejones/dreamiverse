@@ -213,30 +213,38 @@
   .ui-draggable-dragging
     z-index: 100
     +alpha(50)
-    width: 100px
-    height: 133px
+    width: 150px
+    height: 200px
     .watermark
       +font(22)
-      width: 100px
-      height: 90px
+      width: 150px
+      height: 80px
       line-height: 24px
     .title
-      +font(8)
-      top: 54px
-      width: 100px
+      +font(14)
+      line-height: 15px
+      top: 88px
+      width: 150px
       margin-left: 0
     .detailsTop, .detailsBottom
       +hidden
     .fadedBack
-      width: 100px
-      height: 133px
+      width: 150px
+      height: 200px
       .image
-        width: 100px
-        height: 50px
+        width: 150px
+        height: 80px
+  .ui-draggable-dragging.thumb-2d:hover
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +hidden
 
 
 // COLORS
 .light .matrix
+  .ui-draggable-dragging.thumb-2d:hover
+    +glow-light(0)
+
   .thumb-2d
     background: #fff
     background: -moz-linear-gradient(top, #fff, #fff 100px, #e3e3e3)
@@ -280,6 +288,9 @@
 
 
 .dark .matrix
+  .ui-draggable-dragging.thumb-2d:hover
+    +glow-dark(0)
+
   .thumb-2d
     background: #3a3a3a
     background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #111 160px, #000)
