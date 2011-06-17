@@ -395,8 +395,13 @@
     height: 32px
     +glow-light(20)
     +bevel-dark
-    border: 2px solid #888
+    border: 1px solid #888
     color: #ddd
+    &:hover
+      border: 1px solid #fff
+    &:active
+      color: #555
+
   #new-post
     height: 36px
 
@@ -412,10 +417,6 @@
     letter-spacing: -0.5
     line-height: 30px
     margin-right: 4px
-    &:hover
-      border: 2px solid #fff
-    &:active
-      color: #000
 
     .img
       +left
@@ -443,7 +444,7 @@
   +bevel-dark
   +round(20)
   +glow-light(20)
-  border: 2px solid #fff
+  border: 1px solid #fff
   color: #ddd
 
   li
