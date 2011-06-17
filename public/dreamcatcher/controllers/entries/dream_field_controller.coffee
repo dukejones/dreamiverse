@@ -1,5 +1,6 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
-  pluginName: 'dreamField'
+  
+  pluginName: 'dreamField'  
 }, {
 
   model: {
@@ -14,8 +15,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   #- constructor
   
   init: (el) ->
-    @element = $(el)    
-    @publish 'entry.drag', @element
+    @element = $(el)
+    $('.matrix.books', @element).books()
+    @publish 'entries.drag', @element
           
   #- move entry to book (drag & drop)
   
@@ -42,30 +44,31 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   #- entry field
   
-  hideEntryField: ->
-    $('#entryField').children().hide()
-  
-  showEntryField: (username) ->
-    if @element.data('username') is username
-      @hideEntryField()
-      $('.book, .thumb-2d', @element).show().css 'opacity',''
-      $('.matrix.books, .matrix.index').fadeIn 500
-      @publish 'appearance.change'
+  showEntryField: (username, newBook) ->
+    if $('.matrix.index',@element).data('username') is username
+      @displayEntryField null, newBook
       return
-      
     @model.entry.index username, (html) =>
-      @hideEntryField()
-      $('.matrix.books').remove()
-      @element.replaceWith html
-      $('.matrix.books').books() 
-      $('.matrix.books, .matrix.index').fadeIn 500
-      @publish 'appearance.change'
+      @displayEntryField html, newBook
+      
+  displayEntryField: (html, newBook) ->
+    $('#entryField').children().hide()
+    if html?
+      @element.html html
+      $('.matrix.books', @element).books()
+    @publish 'books.create' if newBook
+    @element.fadeIn 500
+    @publish 'appearance.change'
     
     
   'entries.index subscribe': (called, data) ->
-    username = if data.username? then data.username else null
+    username = if data? and data.username? then data.username else $('#userInfo').data 'username'
+    newBook = if data? and data.newBook? then data.newBook else false
     @publish 'context_panel.show', username
-    @showEntryField username
+    @showEntryField username, newBook
+    
+  'books.new subscribe': ->
+    @publish 'entries.index', { newBook: true }
     
 }
   

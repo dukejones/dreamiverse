@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 
   init: (el) ->
     Stream.page = 1
-    @container = $(el)
+    @container = $('.matrix.stream', el)
     @bind window, 'scroll', 'scrollEvent'
     @bind $('#entry-filter, #users-filter'), 'change', 'filterChange'
     

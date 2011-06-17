@@ -54,7 +54,9 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
 
   '#new-post change': (el) ->
     return if el.val() is 'empty'
-    @publish 'history.change', el.val()
+    href = el.val()
+    window.history.pushState null, null, href
+    @publish 'history.change', href
     el.val 'empty'
     
   '.newEntry click': (el) ->

@@ -11,7 +11,8 @@
 = render :partial => "users/context_panel", :locals => {:user => @entry.user}
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
-  .matrix.index{style: 'display:none'}
+  #entriesIndex{style: 'display:none'}
+    .matrix.books
   #showEntry
     = render :partial => 'entries/show'
   #newEditEntry{style: 'display:none'}

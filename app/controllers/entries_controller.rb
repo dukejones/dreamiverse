@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
     hit( @user )
 
     if request.xhr?
-      render(partial: "entries/field")
+      render(partial: "entries/index")
       #format.html { render(partial:"entries/field") }
       # thumbs_html = ""
       # @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }

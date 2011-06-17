@@ -38,7 +38,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
 
     @model.entry.update entryId, {entry: entryMeta}
 
-    @publish 'book.close', bookEl
+    @publish 'books.close', bookEl
     bookMatrixEl = @el.bookMatrix bookId
     if bookMatrixEl.exists()
       entryEl.appendTo bookMatrixEl
@@ -64,14 +64,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
 
         out: (ev, ui) =>
           el = $(ev.target)
-          @publish 'book.close', el if el.hasClass 'book' 
+          @publish 'books.close', el if el.hasClass 'book' 
           $('.add-active', ui.helper).hide()
           $('.entryDrop-active, .entryRemove', el).hide()
       }
   
   #- new book
     
-  'books.new subscribe': ->
+  'books.create subscribe': ->
     @model.book.new {}, (html) =>
       $('#welcomePanel').hide()
       @element.prepend html
@@ -131,7 +131,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.closed', bookEl).hide()
     
   'books.hover subscribe': (called, el) ->
-    @openBook el
+    @openBook el, false
     
   #- close
   closeBook: (el) ->

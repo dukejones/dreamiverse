@@ -5,8 +5,10 @@
 
 / ENTRY FIELD
 #entryField
-  .matrix.index{style: 'display:none'}
-  = render :partial => "stream"
+  #entriesIndex{style: 'display:none'}
+    .matrix.books
+  #entriesStream
+    = render :partial => "stream"
   #showEntry{style: 'display:none'}
   #newEditEntry{style: 'display:none'}
 
