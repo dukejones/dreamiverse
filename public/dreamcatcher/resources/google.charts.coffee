@@ -1,1 +1,1 @@
-google.load("visualization", "1", {packages:["corechart"]})
+google.load("visualization", "1", {packages:["corechart"]}) if google?

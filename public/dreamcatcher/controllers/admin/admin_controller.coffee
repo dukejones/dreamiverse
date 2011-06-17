@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Admin',
+$.Controller 'Dreamcatcher.Controllers.Admin.Admin',
   
   init: -> 
     @page = 1
@@ -9,7 +9,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin',
     @addPageLinks()
     @updateNav()
     @scope = 'None'
-    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage'),{parent: this}
+    @charts = new Dreamcatcher.Controllers.Admin.Charts $('#adminPage'),{parent: this}
     @charts.getLineChartData('last 7 days in users','user')
     @charts.getLineChartData('last 7 days in entries','entry')
    

@@ -33,7 +33,7 @@
       %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
       %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
 
-    #entry-date.tooltip{title: "date and time"}
+    #entry-date.tooltip.attach{title: "date and time", name: 'dateTime'}
       .img
 
     #entry-location.hidden.tooltip{title: "add your location"}
@@ -237,7 +237,7 @@
 
 
   / NEW ENTRY EMOTIONS
-  .entryEmotions.entryPanels.hidden{title: 'emotions'}
+  .entryEmotions.entryPanels.hidden{title: 'emotions', , name: 'dateTime'}
     .emotionsHeader.headers
       .img
       emotions

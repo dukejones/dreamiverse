@@ -400,7 +400,9 @@
     &:hover
       border: 1px solid #fff
     &:active
-      color: #555
+      +gradient(#aaa, #eee)
+      color: #000
+      border: 1px solid #000
 
   #new-post
     height: 36px
@@ -409,20 +411,22 @@
   .newEntry
     +block
     +flat-right
-    +font(19)
+    +font(23)
+    +overflow
+    white-space: nowrap
     font-weight: normal
     +center
-    padding: 0 4px 0 10px
-    width: 110px
-    letter-spacing: -0.5
-    line-height: 30px
+    padding: 0 6px 0 10px
+    width: 112px
+    letter-spacing: -0.6px
+    line-height: 28px
     margin-right: 4px
 
     .img
       +left
       width: 15px
       height: 32px
-      margin: 0
+      margin: 0 4px 0 0
       background: url(/images/icons/add-15.png) no-repeat center center transparent
 
   // NEW POST HTML MENU & BUTTON

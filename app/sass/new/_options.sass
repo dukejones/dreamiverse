@@ -29,7 +29,7 @@
 
 
 
-  .books-list .img, #entry-appearance .img, #entry-date .img, #entry-location .img
+  #entry-appearance .img, #entry-date .img, #entry-location .img
     width: 42px
     height: 34px
 
@@ -120,6 +120,9 @@
 
     .img
       +left
+      width: 24px
+      height: 34px
+      margin: 0 8px 0 12px
       background: url('/images/icons/books-24.png') center center no-repeat
 
     .newBook-input
@@ -150,9 +153,9 @@
 
     .ui-selectmenu-status
       +hidden
+      text-align: left
       margin-right: 36px
       padding: .405em 0 !important
-
 
 
 
@@ -378,16 +381,6 @@
       input
         +pointer
 
-
-
-// GENERAL COLORS
-.light
-  .newBook-input
-    color: #222
-
-.dark
-  .newBook-input
-    color: #ddd
 
 
 
@@ -714,8 +707,12 @@
         +pointer
         border: 1px solid #8c8c8c
 
+  .newBook-input
+    color: #222
+
 
 // BOOKS LIST MENU DROPDOWN
+// LIGHT
 .light #books-list-menu
   +indent-light
 
@@ -730,7 +727,6 @@
       color: #444 !important
       &:hover
         color: #000 !important
-
 
 
 
@@ -803,6 +799,9 @@
       &:hover
         +pointer
         border: 1px solid #777
+
+  .newBook-input
+    color: #ddd
 
 
 // BOOKS LIST MENU DROPDOWN

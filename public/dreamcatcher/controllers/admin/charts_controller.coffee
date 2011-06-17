@@ -1,4 +1,4 @@
-$.Controller 'Dreamcatcher.Controllers.Charts',
+$.Controller 'Dreamcatcher.Controllers.Admin.Charts',
 
   drawLineChart: (type, json) ->
     data = new google.visualization.DataTable() 
