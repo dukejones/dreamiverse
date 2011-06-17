@@ -26,6 +26,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   init: (el) ->
     @element = $(el)
     @publish 'book.drop', @element
+    @publish 'book.drop', $('#contextPanel')
     
     
   moveEntryToBook: (entryEl, bookEl) ->
@@ -72,20 +73,27 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- show book
   
   showBook: (bookId) ->
-    bookEl = @el.book bookId    
-    @publish 'context_panel.book', bookEl.clone().css 'z-index', 2000
+    bookEl = @el.book bookId
+    #log bookEl
+    if bookEl.exists()
+      @publish 'context_panel.book.element', bookEl.clone()#bookEl.clone()#.css 'z-index', 2000
+    else
+      @publish 'context_panel.book.id', bookId
     @publish 'book.drop', $('#contextPanel')
 
     @model.book.show bookId, {}, (html) =>
-      $('#entriesIndex').children().hide()
+      $('#entryField, #entriesIndex').children().hide()
       bookMatrixEl = @el.bookMatrix
       if bookMatrixEl.exists()
         bookMatrixEl.replaceWith html
       else
         $('#entriesIndex').append html
+        $('#entriesIndex').fadeIn 500
+      log @el.bookMatrix
       @publish 'entries.drag', @el.bookMatrix
 
   'books.show subscribe': (called, data) ->
+    log data.id
     @showBook data.id
     @publish 'appearance.change'
 

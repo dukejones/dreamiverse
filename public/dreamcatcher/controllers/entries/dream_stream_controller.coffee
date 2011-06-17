@@ -45,7 +45,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
     @container.empty() if Stream.page == 1
     @container.append json.html
     @activateLightBox()
-    # @activateComments()
+    @activateComments()
   
   getOptions: ->
     type: $('#entry-filter').val()

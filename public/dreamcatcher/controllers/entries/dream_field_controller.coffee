@@ -22,7 +22,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   #- move entry to book (drag & drop)
   
   'entries.drag subscribe': (called, parent) ->
-    log 'm'
+    log parent
     $('.thumb-2d', parent).draggable {
       containment: 'document'
       zIndex: 100
@@ -54,12 +54,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
       
   displayEntryField: (html, newBook) ->
     $('#entryField').children().hide()
+    @element.children().show()
+    $('.matrix.bookIndex',@element).hide()
     if html?
       @element.html html
       $('.matrix.books', @element).books()
     @publish 'books.create' if newBook
     @element.fadeIn 500
     @publish 'appearance.change'
+    
+    $('.item.stream').removeClass('selected')
+    $('.item.home').addClass('selected')
     
     
   'entries.index subscribe': (called, data) ->

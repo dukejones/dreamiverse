@@ -118,7 +118,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   
   ##entryAttach 
   '.attach click': (el) ->
-    log 'entryAttchEvent'
     name = el.attr 'title'
     el.slideDown()
     $(".entryPanels[title=#{name}]").show()

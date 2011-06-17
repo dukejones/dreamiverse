@@ -20,9 +20,7 @@ $.Model 'Dreamcatcher.Models.User',{
       error: error
     }
     
-  contextPanel: ( username, success ) ->
-    params = {}
-    params = { username: username } if username?
+  contextPanel: ( params, success ) ->
     $.get '/user/context_panel', params, @callback success
      
 },

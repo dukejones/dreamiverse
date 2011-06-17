@@ -1,4 +1,4 @@
-/* DO NOT MODIFY. This file was compiled Fri, 17 Jun 2011 01:02:22 GMT from
+/* DO NOT MODIFY. This file was compiled Fri, 17 Jun 2011 08:28:32 GMT from
  * /Users/carboes/Sites/dreamcatcher/public/dreamcatcher/coffee/dreamcatcher.coffee
  */
 
