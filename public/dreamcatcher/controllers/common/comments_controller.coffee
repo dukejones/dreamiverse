@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.Common.Comments', {
 
   #TODO: [Architectual] Could abstract into Abstract class Comment, with StreamComment, and EntryComment inheriting.
   getView: (name, args) ->
-    return @view "//dreamcatcher/views/comments/#{name}.ejs", args
+    return $.View "/dreamcatcher/views/comments/#{name}.ejs", args
 
   init: (element) ->
     @element = $(element)
@@ -40,12 +40,8 @@ $.Controller 'Dreamcatcher.Controllers.Common.Comments', {
       
 
   loadComments: -> 
-    $(".commentsTarget", @element).addClass("commentsPanel wrapper").html(
-      @getView 'init',{
-        imageId: @currentUserImageId
-        entryId: @entryId
-        userId: @currentUserId
-      })
+    comments_html = @getView 'init', {imageId: @currentUserImageId, entryId: @entryId, userId: @currentUserId}
+    $(".commentsTarget", @element).addClass("commentsPanel wrapper").html(comments_html)
     $(".comments", @element).addClass("spinner") if @getTotalCommentCount() > 0
     Dreamcatcher.Models.Comment.findEntryComments @entryId, {}, @callback('populateComments')
     
@@ -67,14 +63,8 @@ $.Controller 'Dreamcatcher.Controllers.Common.Comments', {
         $(".showAll span", @element).text totalCount
         $(".showAll", @element).show()
         
-    $(".comments", @element).html(
-      @getView 'list',{
-        comments: comments
-        userId: @currentUserId
-        entryUserId: @element.data("userid")
-        numberToShow: numberToShow
-      }
-    )#.linkify().videolink()
+    list_html = @getView 'list',{ comments: comments, userId: @currentUserId, entryUserId: @element.data("userid"), numberToShow: numberToShow }
+    $(".comments", @element).html(list_html)#.linkify().videolink()
     
     $(".comments", @element).removeClass("spinner")
     

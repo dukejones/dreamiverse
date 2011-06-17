@@ -20,7 +20,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         $('#totem').show()
 
   '.uploadAvatar click': (el) ->
-    $('#contextPanel').prepend $.View('//dreamcatcher/views/users/context_panel/avatar_upload.ejs')
+    $('#contextPanel').prepend $.View('/dreamcatcher/views/users/context_panel/avatar_upload.ejs')
     $('#avatarDrop').uploader {
       singleFile: true
       params: {

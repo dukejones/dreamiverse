@@ -52,4 +52,7 @@ Dreamcatcher::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.logger.level = Logger::INFO
+  
 end
