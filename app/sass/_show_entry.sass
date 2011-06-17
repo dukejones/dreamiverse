@@ -15,16 +15,36 @@
     width: 662px 
     padding: 8px
 
+
+    .next, .prev, .stream.history, .entries.history, .entryType, .postTime, .editEntry, .deleteEntry, .spine.history
+      +block
+      +center
+      +bold
+      +user-select
+      margin: 0 0 8px 1px
+      padding: 0 18px
+
+    .next, .prev, .stream.history, .entries.history, .editEntry, .deleteEntry, .spine.history
+      +right
+      +pointer
+
+
+    .prev, .next
+      +round(16)
+      +font(24)
+      height: 34px
+      line-height: 36px
+
     .prev
-      +round(16)
       +flat-right
-      +font(24)
     .next
-      +round(16)
       +flat-left
-      +font(24)
-    .prev:hover, .stream.history:hover, .entries.history:hover, .next:hover
-      +cancel(16)
+
+    .stream.history, .entries.history
+      +flat-all
+      height: 34px
+      line-height: 36px
+
     .stream.history
       .img
         +left
@@ -37,22 +57,12 @@
       &:active .img
         background: url(/images/icons/stream-24-active.png) no-repeat center center transparent
 
-    .stream.history, .entries.history
-      +flat-all
-    .next, .prev, .stream.history, .entries.history, .books, .entryType, .postTime, .editEntry, .deleteEntry, .spine.history
-      +block
-      +center
-      +bold
-      +user-select
-      margin: 0 0 8px
-      padding: 0 18px
-      height: 32px
-      line-height: 34px
     .entryType, .postTime
       +round(16)
       +left
       +cursor
-      +user-select
+      height: 32px
+      line-height: 34px
       margin-right: 8px
 
     .entryType
@@ -80,41 +90,33 @@
       font-weight: normal
       line-height: 32px
 
-    .next, .prev, .stream.history, .entries.history, .books, .editEntry, .deleteEntry, .spine.history
-      +right
-
-    .spine.history
+    .bookSpine.spine.history
+      +flat-all
       +overflow
       +center
       +font(14)
       height: 32px
       line-height: 34px
       width: 90px
-      // // Fallback color
-      // background-color:     #245a91
-      // // Fallback image
-      // background-image:     url(/images/books/spine-blue-64.png)
-      // background-repeat:    repeat-x
-      // background-position:  left
-      // background-size:      100% 100%
-      // background-image:     -webkit-gradient(linear, left top, left bottom, color-stop(0%, #60A6E7), color-stop(10%, #60A6E7), color-stop(16%, #2D71B0), color-stop(84%, #17558D), color-stop(92%, #00305C), color-stop(100%, #00305C))
-      // background-image:     -moz-linear-gradient(center top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      // background-image:     -o-linear-gradient(top, #60A6E7, #60A6E7 10%, #2D71B0 16%, #17558D 84%, #00305C 92%, #00305C)
-      // border: 1px solid #00305c !important
+
+    .editEntry, .deleteEntry
+      +alpha(60)
+      +round(16)
+      +font(14)
+      height: 32px
+      line-height: 34px
+      &:hover
+        +alpha(100)
 
     .editEntry
-      +alpha(60)
-      +round(16)
-      +font(14)
       +flat-left
       margin-right: 12px
+
     .deleteEntry
-      +alpha(60)
-      +round(16)
-      +font(14)
       +flat-right
-    .editEntry:hover, .deleteEntry:hover
-      +alpha(100)
+
+
+
 
     // HEADER IMAGE & TITLE
     .imageHeader
@@ -416,8 +418,21 @@
 
       .next, .stream.history, .entries.history, .prev
         color: #555
-        +button-light
         +shine-light(16)
+        &:hover
+          +bg-shine(16)
+          +gradient(#4e4e4e, #979797)
+          color: #fff
+        &:active
+          +bg-shine(0)
+          +gradient(#3e3e3e, #7e7e7e)
+          color: #fff
+
+      .bookSpine.spine.history
+        &:hover
+          border: 1px solid #222 !important
+        &:active
+          border: 1px solid #222
 
       .editEntry
         +button-light
@@ -524,8 +539,21 @@
 
       .next, .stream.history, .entries.history, .prev
         color: #ddd
-        +button-dark
         +shine-dark(15)
+        &:hover
+          +bg-shine(16)
+          +gradient(#4e4e4e, #979797)
+          color: #fff
+        &:active
+          +bg-shine(0)
+          +gradient(#3e3e3e, #7e7e7e)
+          color: #fff
+
+      .bookSpine.spine.history
+        &:hover
+          border: 1px solid #555 !important
+        &:active
+          border: 1px solid #222
 
       .editEntry
         +button-dark
