@@ -44,24 +44,21 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   #- entry field
   
-  hideEntryField: ->
-    $('#entryField').children().hide()
-  
   showEntryField: (username, newBook) ->
     if $('.matrix.index',@element).data('username') is username
-      @hideEntryField()
-      @publish 'books.create'
-      @element.fadeIn 500
-      @publish 'appearance.change'
+      @displayEntryField null, newBook
       return
-      
     @model.entry.index username, (html) =>
-      @hideEntryField()
+      @displayEntryField html, newBook
+      
+  displayEntryField: (html, newBook) ->
+    $('#entryField').children().hide()
+    if html?
       @element.html html
       $('.matrix.books', @element).books()
-      @publish 'books.create'
-      @element.fadeIn 500
-      @publish 'appearance.change'
+    @publish 'books.create' if newBook
+    @element.fadeIn 500
+    @publish 'appearance.change'
     
     
   'entries.index subscribe': (called, data) ->

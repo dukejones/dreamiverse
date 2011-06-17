@@ -1,6 +1,8 @@
 $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
+    @publish 'dom.added', $('#body')    
+    
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
     
@@ -13,7 +15,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
     @charts = new Dreamcatcher.Controllers.Charts $('#adminPage') if $('#adminPage').exists()
     
-    @publish 'dom.added', $('#body')    
+    
     @bind window, 'popstate', => @publishHistory window.location.pathname
       
   #.spine-nav, a.stream, a.entries, a.prev, a.next, a.editEntry 
@@ -61,8 +63,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    #$('textarea', parentEl).each (i, el) ->
-    #  fitToContent $(this).attr('id'), 0
+    $('textarea', parentEl).each (i, el) ->
+      fitToContent $(this).attr('id'), 0
       
   'dom.added subscribe': (called, data) ->
     @initUi data

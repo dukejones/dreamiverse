@@ -10,11 +10,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @element = $(el)
     @element.tags 'edit' # invoke the tags controller
     @initCookieSaver()
+    @initBooksListButton()
+    
+  initBooksListButton: ->
+    log 'm'
+    $('#books-list-button').css {
+      width: '32px'
+    }
 
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
     @element.html html
-    #@element.tags 'edit'
     
     if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
@@ -22,10 +28,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('#books-list').val bookId  
     
     @publish 'dom.added', @element
-    log 'book val'+$('#books-list').val()
-    $('#book-list-button').css {
-      width: '32px'
-    }
+    #log 'book val'+$('#books-list').val()
+    @initBooksListButton()
     @element.fadeIn '500', =>
       fitToContent $('textarea', @element).attr('id'), 0
     
@@ -94,6 +98,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     $('#books-list-button').css {
       'width': '150px'
     }
+    $('#books-list-button').removeClass('book bookSpine')
     if el.val() is 'new'
       inputEl = $('input.newBook-input', el.parent())
       inputEl.val ''
