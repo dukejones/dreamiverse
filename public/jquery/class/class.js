@@ -4,7 +4,6 @@
 // It provides class level inheritance and callbacks.
 //@steal-clean
 steal.plugins("jquery").then(function( $ ) {
-
 	// if we are initializing a new class
 	var initializing = false,
 

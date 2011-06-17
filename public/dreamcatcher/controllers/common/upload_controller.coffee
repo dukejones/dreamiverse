@@ -37,7 +37,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
       element: @element.get(0)
       action: '/images.json'
       template: @element.html()
-      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
+      fileTemplate: $.View('/dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
 
       onSubmit: (id, fileName) =>
         log id

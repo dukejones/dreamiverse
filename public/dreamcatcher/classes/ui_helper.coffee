@@ -46,7 +46,7 @@ $.Class 'Dreamcatcher.Classes.UiHelper',{
       $.extend options, {
         menuWidth: '156px'
         format: (text) =>
-          return $.View '//dreamcatcher/views/common/select_menu_format.ejs', {
+          return $.View '/dreamcatcher/views/common/select_menu_format.ejs', {
             text: text
             value: text
             name: defaultName
