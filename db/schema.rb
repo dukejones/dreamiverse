@@ -103,8 +103,10 @@ ActiveRecord::Schema.define(:version => 20110603190322) do
   end
 
   create_table "follows", :force => true do |t|
-    t.integer "user_id"
-    t.integer "following_id"
+    t.integer  "user_id"
+    t.integer  "following_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "follows", ["user_id", "following_id"], :name => "index_follows_on_user_id_and_following_id", :unique => true
@@ -186,13 +188,14 @@ ActiveRecord::Schema.define(:version => 20110603190322) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false,        :null => false
+    t.boolean  "ubiquity",              :default => false,                 :null => false
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
     t.string   "stream_filter",         :default => "--- {}\n\n"
     t.string   "default_landing_page",  :default => "stream"
     t.string   "default_entry_type",    :default => "dream"
+    t.datetime "followers_newer_than",  :default => '2011-05-24 19:17:43'
   end
 
   add_index "users", ["seed_code"], :name => "index_users_on_seed_code"

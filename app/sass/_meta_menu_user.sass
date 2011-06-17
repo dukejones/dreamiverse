@@ -411,20 +411,22 @@
   .newEntry
     +block
     +flat-right
-    +font(19)
-    font-weight: normal
     +center
-    padding: 0 4px 0 10px
-    width: 110px
-    letter-spacing: -0.5
-    line-height: 30px
+    padding: 0 6px 0 10px
+    width: 112px
+    +font(23)
+    letter-spacing: -0.6px
+    line-height: 28px
+    +overflow
+    white-space: nowrap
+    font-weight: normal
     margin-right: 4px
 
     .img
       +left
       width: 15px
       height: 32px
-      margin: 0
+      margin: 0 4px 0 0
       background: url(/images/icons/add-15.png) no-repeat center center transparent
 
   // NEW POST HTML MENU & BUTTON
@@ -432,13 +434,16 @@
     +outline
     +flat-left
     margin-right: 12px
-    width: 38px !important
+    width: 32px !important
     padding: 0
     // line-height for chrome / webkit height
     line-height: 18px
 
     .ui-selectmenu-status
       +hidden
+    .ui-icon-triangle-1-s
+      margin-top: -7px
+      right: 9px
 
 // NEW POST MENU DROPDOWN
 .light #new-post-menu, .dark #new-post-menu
@@ -451,9 +456,10 @@
 
   li
     a
-      +font(16)
-      +bold
-      line-height: 18px
+      +font(23)
+      letter-spacing: -0.6px
+      line-height: 12px
+      // line-height: 18px
       padding-left: 38px
       color: white !important
     &:hover
