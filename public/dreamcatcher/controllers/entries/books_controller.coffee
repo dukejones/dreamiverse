@@ -10,9 +10,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   }
   
   el: {    
-    bookMatrix: (id) ->
-      return $("#entryField .matrix.bookIndex[data-id=#{id}]") if id?
-      return $('#entryField .matrix.index') 
+    bookMatrix: $("#entriesIndex .matrix.bookIndex")
     book: (arg) ->
       return $(".book[data-id=#{arg}]", @element) if parseInt(arg) > 0
       return arg.closest '.book' if arg?
@@ -28,6 +26,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   init: (el) ->
     @element = $(el)
     @publish 'book.drop', @element
+    @publish 'book.drop', $('#contextPanel')
     
     
   moveEntryToBook: (entryEl, bookEl) ->
@@ -37,16 +36,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     entryMeta = {book_id: bookId}
 
     @model.entry.update entryId, {entry: entryMeta}
-
     @publish 'books.close', bookEl
-    bookMatrixEl = @el.bookMatrix bookId
-    if bookMatrixEl.exists()
-      entryEl.appendTo bookMatrixEl
-    else
-      entryEl.hide()
-
     $('.entryDrop-active', bookEl).hide()
-
 
   'book.drop subscribe': (called, parent) ->
     $('.book, .avatar', parent).each (i, el) =>
@@ -82,20 +73,27 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- show book
   
   showBook: (bookId) ->
-    bookEl = @el.book bookId    
-    @publish 'context_panel.book', bookEl.clone().css 'z-index', 2000
+    bookEl = @el.book bookId
+    #log bookEl
+    if bookEl.exists()
+      @publish 'context_panel.book.element', bookEl.clone()#bookEl.clone()#.css 'z-index', 2000
+    else
+      @publish 'context_panel.book.id', bookId
     @publish 'book.drop', $('#contextPanel')
 
     @model.book.show bookId, {}, (html) =>
-      $('#entryField').children().hide()
-      bookMatrixEl = @el.bookMatrix bookId
+      $('#entryField, #entriesIndex').children().hide()
+      bookMatrixEl = @el.bookMatrix
       if bookMatrixEl.exists()
         bookMatrixEl.replaceWith html
       else
-        $('#entryField').append html
-      @publish 'entries.drag', bookMatrixEl
+        $('#entriesIndex').append html
+        $('#entriesIndex').fadeIn 500
+      log @el.bookMatrix
+      @publish 'entries.drag', @el.bookMatrix
 
   'books.show subscribe': (called, data) ->
+    log data.id
     @showBook data.id
     @publish 'appearance.change'
 

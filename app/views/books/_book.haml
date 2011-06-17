@@ -1,6 +1,6 @@
 - backgroundStyle = ''
 - if (book && book.cover_image_id)
-  - coverUrl = Image.find(book.cover_image_id).url('252x252')
+  - coverUrl = Image.find(book.cover_image_id).url('bookcover')
   - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
 - bookId = book ? book.id : 'new'
 - title = book.title if book && book.title

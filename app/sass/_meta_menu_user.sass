@@ -272,7 +272,7 @@
 
   // FLOATING BUTTONS
 
-  .newEntry, .logOut, .adminLink
+  .logOut, .adminLink
     +transparent-dark(50)
     +round(30)
     +button-light
@@ -391,34 +391,38 @@
     +right
     +relative
     +round(20)
-    +bold
     top: 8px
     height: 32px
     +glow-light(20)
     +bevel-dark
-    border: 1px solid #888
+    border: 2px solid #888
     color: #ddd
-    &:hover
-      border: 1px solid #fff
+  #new-post
+    height: 36px
 
   // NEW ENTRY LINK ONLY
   .newEntry
     +block
     +flat-right
-    +font(16)
+    +font(19)
+    font-weight: normal
     +center
     padding: 0 4px 0 10px
-    width: 100px
-    line-height: 32px
+    width: 110px
+    letter-spacing: -0.5
+    line-height: 30px
     margin-right: 4px
+    &:hover
+      border: 2px solid #fff
+    &:active
+      color: #000
+
     .img
       +left
       width: 15px
       height: 32px
       margin: 0
       background: url(/images/icons/add-15.png) no-repeat center center transparent
-    &:active
-      color: #000
 
   // NEW POST HTML MENU & BUTTON
   #new-post, #new-post-button
@@ -439,7 +443,7 @@
   +bevel-dark
   +round(20)
   +glow-light(20)
-  border: 1px solid #fff
+  border: 2px solid #fff
   color: #ddd
 
   li
@@ -458,9 +462,12 @@
   // ICONS
   li.new-entry
     background: url(/images/icons/add-15.png) no-repeat 10px center
+    +round(20)
+    +flat-bottom
   li.new-book
     background: url(/images/icons/books-16-hover.png) no-repeat 10px center
-
+    +round(20)
+    +flat-top
 
 
 

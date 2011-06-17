@@ -4,7 +4,7 @@
     .entry
       / LEFT SIDE
       .detailsTop
-        %a.user{href: user_entries_path(entry.user.username)}
+        %a.history.user{href: user_entries_path(entry.user.username)}
           .avatar{style: "background-image: url(#{avatar_image(entry.user, 32)}); background-repeat: no-repeat"}
           %p.name= entry.user.username
         .entryType{class: entry.type}
