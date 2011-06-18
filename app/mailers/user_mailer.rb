@@ -1,5 +1,13 @@
 class UserMailer < ActionMailer::Base
   default :from => "dreamcatcher.net <accounts@dreamcatcher.net>"
+
+  helper do
+    # TODO: patch Rails' url_for to work correctly with a string & :only_path => false
+    def host_url_for(url_path)
+      host = url_path[0] == '/' ? root_url.chop : root_url
+      host + url_path
+    end
+  end
   
   def welcome_email(user)
     @user = user
