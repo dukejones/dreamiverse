@@ -2,7 +2,7 @@
 
 embed_assets: datauri
 
-
+# compress_assets: off
 # javascript_compressor: closure
 # template_namespace: JST
 template_function: off
@@ -10,7 +10,7 @@ template_extension: ejs
 
 javascripts:
 
-  jmvc:
+  jmvc_framework:
     - public/jquery/jquery.js
     - public/compiled/steal_proxy.js
     - public/jquery/class/class.js
@@ -29,6 +29,8 @@ javascripts:
     - public/jquery/dom/dom.js
     - public/jquery/dom/fixture/fixture.js
     - public/jquery/dom/form_params/form_params.js
+
+  jmvc_resources:
     - public/compiled/resources/ui/jquery.ui.core.js
     - public/compiled/resources/ui/jquery.ui.widget.js
     - public/compiled/resources/ui/jquery.ui.mouse.js
@@ -36,7 +38,21 @@ javascripts:
     - public/compiled/resources/ui/jquery.ui.selectmenu.js
     - public/compiled/resources/ui/jquery.ui.draggable.js
     - public/compiled/resources/ui/jquery.ui.droppable.js
-    - public/compiled/resources/*.js
+    - public/compiled/resources/jquery.tooltip.js
+    - public/compiled/resources/jquery-lightbox-0.5.js
+    - public/compiled/resources/jquery.timeago.js
+    - public/compiled/resources/jquery.exists.js
+    - public/compiled/resources/jquery.cookie.js
+    - public/compiled/resources/jquery.dateFormat-1.0.js
+    - public/compiled/resources/jquery.query-2.1.7.js
+    - public/compiled/resources/jquery.livequery.js
+    - public/compiled/resources/jquery.placeholder.js
+    - public/compiled/resources/fileuploader.js
+    - public/compiled/resources/jquery.linkify.js
+    - public/compiled/resources/videolink.js
+    - public/compiled/resources/dream.plugs.js
+    
+  jmvc_application:
     - public/compiled/models/**/*.js
     - public/compiled/classes/*.js
     # - public/compiled/controllers/**/*.js
