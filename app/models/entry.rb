@@ -17,6 +17,7 @@ class Entry < ActiveRecord::Base
   attr_accessor :skip_auto_tags
   
   belongs_to :user
+  belongs_to :book
   belongs_to :location, :class_name => "Where" 
   accepts_nested_attributes_for :location, :reject_if => :all_blank 
 
@@ -179,7 +180,7 @@ class Entry < ActiveRecord::Base
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
-    entry_scope = entry_scope.where(book_id: nil) #added by carl
+    entry_scope = entry_scope.where(book_id: nil)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
@@ -321,7 +322,7 @@ protected
 
   def pre_generate_images
     self.main_image._?.pre_generate(:facebook)
-    self.main_image._?.pre_generate(:stream_header)
-    self.main_image._?.pre_generate(:dreamfield_header)
+    # self.main_image._?.pre_generate(:stream_header)
+    # self.main_image._?.pre_generate(:dreamfield_header)
   end
 end

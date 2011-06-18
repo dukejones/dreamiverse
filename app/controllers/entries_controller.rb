@@ -1,40 +1,43 @@
 class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream, :random]
-
-  def entry_list(lens=nil, filters=nil)
-    return Entry.where(book_id: params[:id]) if params[:id] #todo: refactor
-    
-    session[:lens] = lens unless lens.nil?
+  before_filter :set_entry_mode
+  
+  def entry_list(entries_context=nil, filters=nil)
+    entries_context ||= session[:entries_context]
+    session[:entries_context] = entries_context
     
     filters ||= session[:filters] || {}
+    session[:filters] = filters
     
-    return case session[:lens]
-    when :stream
+    return case entries_context
+    when :dreamstream
       current_user ? Entry.dreamstream(current_user, filters) : []
-    else
-      Entry.dreamfield(current_user, @user, filters)
+    when :dreamfield
+      if @entry._?.book_id
+        Entry.where(book_id: @entry.book_id) 
+      else
+        Entry.dreamfield(current_user, @user, filters)
+      end
     end
   end
   
   def index
-    @filters = params[:filters] || {}
-    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
-    @filters[:page] ||= params[:page]
-    @filters[:page_size] ||= 24
-    session[:filters] = @filters
-    
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
-    
+
+    # TODO: check viewing permissions depending on user
     @books = Book.where({
       user_id: @user.id,
       enabled: true
     })
-    #TODO: check viewing permissions depending on user
 
-    @entries = entry_list(:home)
-    
-    @entry_count = entry_list(nil, {type: @filters[:type], show_all: "true"}).count
+    @filters = params[:filters] || {}
+    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
+    @filters[:page] ||= params[:page]
+    @filters[:page_size] ||= 24
+
+    @entries = entry_list(:dreamfield, @filters)
+    @entry_count = entry_list(:dreamfield, {type: @filters[:type], show_all: "true"}).count
     
     hit( @user )
 
@@ -45,34 +48,23 @@ class EntriesController < ApplicationController
       # @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_2d', :locals => {:entry => entry}) }
       # render :json => {type: 'ok', html: thumbs_html}
     end
-
   end
 
   def show
     @entry = Entry.find params[:id]
-    @entry_mode = 'show'
+    @book = @entry.book
+    @page_title = @entry.title
     
-    if !request.xhr? && !params[:username]
+    unless request.xhr? || params[:username]
       flash.keep 
       redirect_to(user_entry_path(@entry.user.username, @entry)) and return 
     end
-    
-    @book = Book.find @entry.book_id if @entry.book_id
 
-    @entries = entry_list
-    i = (@entries.index {|e| e == @entry }) || 0
-    @previous = @entries[i-1]
-    @next = @entries[i+1] || @entries[0]
-    # TODO: Remove this.
-    @next = @entry unless @next
-    @previous = @entry unless @previous
     deny and return unless user_can_access?
 
-    @page_title = @entry.title
-    @entry.update_attribute(:new_comment_count, 0) if user_can_write?
+    @entry.update_attribute(:new_comment_count, 0) if @entry.user == current_user
     
     hit( @entry )
-    
     
     if request.xhr?
       render(partial: "entries/show")
@@ -80,10 +72,25 @@ class EntriesController < ApplicationController
     # else default render
   end
   
+  def previous
+    @entry = Entry.find params[:id]
+    @entries = entry_list
+    i = (@entries.index {|e| e == @entry }) || 0
+    @previous = @entries[i-1] || @entry
+    redirect_to user_entry_path(@previous.user.username, @previous)
+  end
+  
+  def next
+    @entry = Entry.find params[:id]
+    @entries = entry_list
+    i = (@entries.index {|e| e == @entry }) || 0
+    @next = @entries[i+1] || @entries[0] || @entry
+    redirect_to user_entry_path(@next.user.username, @next)
+  end
+  
   def new
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
-    @entry_mode = 'new'
     
     if request.xhr?
       render(partial:"entries/new")
@@ -92,7 +99,6 @@ class EntriesController < ApplicationController
   
   def edit
     @entry = Entry.find params[:id]
-    @entry_mode = 'edit'
     deny and return unless user_can_write?
     
     if request.xhr?
@@ -124,7 +130,6 @@ class EntriesController < ApplicationController
       end
 
     else
-      @entry_mode = 'new'
       flash.now[:alert] = @entry.errors.full_messages.first
       render :new
     end
@@ -172,7 +177,7 @@ class EntriesController < ApplicationController
   def stream
     @user = current_user
     @filters = session[:filters] = @user.update_stream_filter(params[:filters])
-    @entries = entry_list(:stream, @filters)
+    @entries = entry_list(:dreamstream, @filters)
     
     if request.xhr?
       thumbs_html = ""
@@ -237,6 +242,11 @@ class EntriesController < ApplicationController
     else
       redirect_to :root, :alert => "Access denied to this entry."
     end
+  end
+  
+  def set_entry_mode
+    @entry_mode = 'new' if %w(new create).include? action_name
+    @entry_mode = 'show' if %w(show update).include? action_name
   end
       
 end

@@ -17,21 +17,31 @@ namespace :app do
     end
   end
 
+  task :ping => :environment do
+    host = ActionMailer::Base.default_url_options[:host]
+    port = ActionMailer::Base.default_url_options[:port]
+    url = "http://#{host}"
+    url += ":#{port}" unless port.blank? || port == 80
+    puts "Pinging the app #{url}."
+    open(url)
+  end
+
 end
 
 task :compile => ['barista:brew', 'compile:sass', 'compile:jammit']
 namespace :compile do
   desc "Build all application sass"
   task :sass => :environment do
-    log "Compiling Sass Stylesheets..."
+    log "Compiling Sass Stylesheets."
     # Sass::Plugin.on_updating_stylesheet {|template, css| puts "compiling #{template} to #{css}" }
     Sass::Plugin.update_stylesheets
   end
 
   desc "Compile and compress all assets with Jammit"
   task :jammit => :environment do
-    log "Packaging assets with Jammit..."
+    log "Packaging assets with Jammit."
     Jammit.package!
   end
-  
+
 end
+
