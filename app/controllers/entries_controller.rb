@@ -59,13 +59,6 @@ class EntriesController < ApplicationController
     
     @book = Book.find @entry.book_id if @entry.book_id
 
-    @entries = entry_list
-    i = (@entries.index {|e| e == @entry }) || 0
-    @previous = @entries[i-1]
-    @next = @entries[i+1] || @entries[0]
-    # TODO: Remove this.
-    @next = @entry unless @next
-    @previous = @entry unless @previous
     deny and return unless user_can_access?
 
     @page_title = @entry.title
@@ -78,6 +71,23 @@ class EntriesController < ApplicationController
       render(partial: "entries/show")
     end
     # else default render
+  end
+  
+  def previous
+    @entry = Entry.find params[:id]
+    @entries = entry_list
+    i = (@entries.index {|e| e == @entry }) || 0
+    @previous = @entries[i-1] || @entry
+    redirect_to user_entry_path(@previous.user.username, @previous)
+  end
+  
+  def next
+    @entry = Entry.find params[:id]
+    @entries = entry_list
+    i = (@entries.index {|e| e == @entry }) || 0
+    @previous = @entries[i-1]
+    @next = @entries[i+1] || @entries[0] || @entry
+    redirect_to user_entry_path(@next.user.username, @next)
   end
   
   def new

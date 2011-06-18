@@ -9,7 +9,7 @@
     - time = (@entry.dreamed_at || @entry.created_at)
     = time_ago_in_words(time)
 
-  %a.history.next{href: user_entry_path(@next.user.username, @next)}
+  %a.history.next{href: next_entry_path(@entry)}
     %span &rsaquo;
 
   - if @book
@@ -21,7 +21,7 @@
     %a.history.entries{href: user_entries_path(@user.username)} entries
     
 
-  %a.history.prev{href: user_entry_path(@previous.user.username, @previous)}
+  %a.history.prev{href: previous_entry_path(@entry)}
     %span &lsaquo;
 
   - if @entry.user == current_user

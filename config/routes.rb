@@ -104,8 +104,8 @@ Dreamcatcher::Application.routes.draw do
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
       post 'set_view_preferences', :to => 'entries#set_view_preferences'
-      get  ':id/next', :to => 'entries#next'
-      get  ':id/previous', :to => 'entries#previous'
+      get  'next', :to => 'entries#next', :as => 'next'
+      get  'previous', :to => 'entries#previous', :as => 'previous'
     end
     resources :comments
   end
