@@ -25,7 +25,7 @@
 
     .cover{style: backgroundStyle}
 
-    %a.history.mask{href: (defined? is_context && is_context)}
+    %a.history.mask{href: (defined? is_context) ? "/#{user.username}" : "/books/#{book_id}"}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82

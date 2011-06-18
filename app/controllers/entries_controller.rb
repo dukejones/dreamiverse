@@ -122,7 +122,7 @@ class EntriesController < ApplicationController
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     if params[:entry][:book_id] == 'new'
-      @book = Book.create(params[:book].merge({user: current_user}))
+      @book = Book.create(params[:book].merge({user: current_user, enabled: true}))
       params[:entry][:book_id] = @book.id
     end
 
@@ -157,7 +157,7 @@ class EntriesController < ApplicationController
     @entry.set_emotions(params[:emotions])
 
     if params[:entry][:book_id] == 'new'
-      @book = Book.create(params[:book].merge({user: current_user}))
+      @book = Book.create(params[:book].merge({user: current_user, enabled: true}))
       params[:entry][:book_id] = @book.id
     end
 

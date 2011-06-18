@@ -11,6 +11,12 @@ $.Model.extend 'Dreamcatcher.Models.Entry', {
   
   show: (id, success) ->
     $.get "/entries/#{id}", @callback success
+    
+  next: (id, success) ->
+    $.get "/entries/#{id}/next", @callback success
+  
+  previous: (id, success) ->
+    $.get "/entries/#{id}/previous", @callback success
 
   new: (params, success, error) ->
     $.get '/entries/new', @callback success
