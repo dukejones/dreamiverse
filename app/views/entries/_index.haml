@@ -7,7 +7,7 @@
   
 .matrix.books
   - @books.each do |book|
-    = render :partial => 'books/book', :locals => {:book => book}
+    = render :partial => 'books/book', :locals => {:book => book, :isContext => false}
     
 / DREAM MATRIX
 .matrix.index{:'data-username' => @user.username}

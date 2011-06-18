@@ -109,19 +109,20 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('.ui-selectmenu-status', el.parent()).show()
       
   '#entry-date click': (el) ->
-    $('.entry-dateTime', @element).show()
+    $('.entry-dateTime', @element).slideDown()
+  
     
   '.headers click': (el) ->
     entryPanelEl = el.closest '.entryPanels'
     name = entryPanelEl.attr 'name'
     entryPanelEl.hide()
-    $("#entryAttach .attach[title=#{name}]").show()
+    $("#entryAttach .attach[name=#{name}]").show()
   
   ##entryAttach 
   '.attach click': (el) ->
     name = el.attr 'name'
     if name? and name.length > 0
-      $(".entryPanels[title=#{name}]").slideDown 'fast', => el.hide()
+      $(".entryPanels[name=#{name}]").slideDown 'fast', => el.hide()
       @initUploader() if name is 'images'
       
   initUploader: ->

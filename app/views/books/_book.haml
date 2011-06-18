@@ -7,6 +7,8 @@
 - color = (book && book.color) ? book.color : 'blue' 
 - viewingLevel = book.viewing_level if book && book.viewing_level
 - commentingLevel = book.commenting_level if book && book.commenting_level
+- editable = false
+- editable = !book || current_user == book.user 
 
 
 / BOOKS
@@ -14,7 +16,7 @@
 
 
   / CLOSED BOOK
-  .closed.hidden
+  .closed
 
     .entryDrop
 
@@ -22,11 +24,11 @@
 
     .cover{style: backgroundStyle}
 
-    %a.history.mask{href: "/books/#{bookId}"}
+    %a.history.mask{href: isContext ? "/#{book.user.username}" : "/books/#{bookId}"}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
-    - if current_user == book.user
+    - if editable
       %a.history.edit{href: "/books/#{bookId}/edit"} edit
     
     .title 
@@ -41,8 +43,8 @@
 
 
   / OPEN BOOK
-  .open
-    - if current_user == book.user
+  .open.hidden
+    - if editable
       / BODY CLICK FOR OPEN BOOK
       .closeClick
 

@@ -107,6 +107,11 @@ class EntriesController < ApplicationController
     params[:entry][:location_id] = where.id if where
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
+    if params[:entry][:book_id] == 'new'
+      @book = Book.create(params[:book].merge({user: current_user}))
+      params[:entry][:book_id] = @book.id
+    end
+
     @entry = current_user.entries.create(params[:entry])
 
     if @entry.valid?
@@ -129,17 +134,19 @@ class EntriesController < ApplicationController
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
     
-    if not params[:entry][:book_id]
-      params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-      params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
     
-      @entry.set_whats(params[:what_tags])
-      @entry.location = Where.for params[:entry].delete(:location_attributes)
-      @entry.set_links(params[:links])
-      @entry.set_emotions(params[:emotions])
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
+    params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
+  
+    @entry.set_whats(params[:what_tags])
+    @entry.location = Where.for params[:entry].delete(:location_attributes)
+    @entry.set_links(params[:links])
+    @entry.set_emotions(params[:emotions])
+
+    if params[:entry][:book_id] == 'new'
+      @book = Book.create(params[:book].merge({user: current_user}))
+      params[:entry][:book_id] = @book.id
     end
-    
-    params[:entry][:book_id] = nil if params[:entry][:book_id] == 'null'
 
     if @entry.update_attributes(params[:entry].merge({updated_at: Time.now}))
       respond_to do |format|

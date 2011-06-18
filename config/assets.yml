@@ -112,9 +112,9 @@ javascripts:
     - public/javascripts/compiled/feedback.js
 
   context_panel:
-  #  - public/javascripts/compiled/context_panel.js
-  #  - public/javascripts/browserdetect.js
-  #  - public/javascripts/dreams.js
+    - public/javascripts/compiled/context_panel.js
+    #- public/javascripts/browserdetect.js
+    #- public/javascripts/dreams.js
 
   # entries:
   #   - public/javascripts/geo.js

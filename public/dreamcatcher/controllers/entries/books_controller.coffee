@@ -22,6 +22,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return el.data 'id' if el?
     return null
     
+  resetUrl: -> 
+    username = $('#userInfo').data 'username'
+    window.history.pushState null, null, "/#{username}"
+    
     
   init: (el) ->
     @element = $(el)
@@ -73,29 +77,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- show book
   
   showBook: (bookId) ->
-    bookEl = @el.book bookId
-    #log bookEl
-    if bookEl.exists()
-      @publish 'context_panel.book.element', bookEl.clone()#bookEl.clone()#.css 'z-index', 2000
-    else
-      @publish 'context_panel.book.id', bookId
-    @publish 'book.drop', $('#contextPanel')
-
+    @publish 'context_panel.book', bookId
     @model.book.show bookId, {}, (html) =>
       $('#entryField, #entriesIndex').children().hide()
       bookMatrixEl = @el.bookMatrix
-      if bookMatrixEl.exists()
-        bookMatrixEl.replaceWith html
-      else
-        $('#entriesIndex').append html
-        $('#entriesIndex').fadeIn 500
-      log @el.bookMatrix
-      @publish 'entries.drag', @el.bookMatrix
+      $('#entriesIndex').append html
+      $('#entriesIndex').fadeIn 500
+      @publish 'appearance.change'
+      #@publish 'entries.drag', @el.bookMatrix
 
   'books.show subscribe': (called, data) ->
-    log data.id
     @showBook data.id
-    @publish 'appearance.change'
 
   #- open for edit
   editBook: (el) ->
@@ -103,11 +95,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     
   'books.modify subscribe': (called, el) ->
     @editBook el
-  
-  ### 
-  '.closed .edit click': (el) ->
-    @editBook el
-  ###
   
   #- open 
   openBook: (el, edit) ->
@@ -129,9 +116,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   'books.close subscribe': (called, el) ->
     @closeBook @el.book el
+    @resetUrl()
 
   '.closeClick, .confirm click': (el) ->
     @closeBook @el.book el
+    @resetUrl()
   
   #-- all
   
@@ -221,8 +210,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   disableBook: (el) ->
     if confirm 'are you sure?'
       bookEl = @el.book el
-      @model.book.disable @data bookEl
-      bookEl.remove()
+      @model.book.disable @data bookEl, =>
+        bookEl.remove()
+        @resetUrl()
   
   '.more-settings .remove click': (el) ->
     @disableBook el

@@ -48,7 +48,7 @@ class BooksController < ApplicationController
   
   def new
     respond_to do |format|
-      format.html { render(partial:"books/book") }
+      format.html { render(partial:"books/book", :locals => {:isContext => false}) }
     end
   end
   
