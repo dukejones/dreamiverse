@@ -11,8 +11,7 @@
 
 
       / BOOKS (for testing)
-      - if @bookContext
-        = render :partial => 'books/book', :locals => {:book => @bookContext}
+      = render :partial => 'books/book', :locals => {:book => @book, :is_context => true} if @book
       
       / IMAGE
       %a.history.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center", href: user_entries_path(user.username)}

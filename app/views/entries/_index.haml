@@ -6,8 +6,10 @@
   .clear
   
 .matrix.books
+  = render :partial => 'books/book' if defined? new_book && new_book
   - @books.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
+
     
 / DREAM MATRIX
 .matrix.index{:'data-username' => @user.username}

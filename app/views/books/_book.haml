@@ -2,19 +2,22 @@
 - if (book && book.cover_image_id)
   - coverUrl = Image.find(book.cover_image_id).url('bookcover')
   - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
-- bookId = book ? book.id : 'new'
+- book_id = book ? book.id : 'new'
 - title = book.title if book && book.title
 - color = (book && book.color) ? book.color : 'blue' 
-- viewingLevel = book.viewing_level if book && book.viewing_level
-- commentingLevel = book.commenting_level if book && book.commenting_level
+- viewingLevel = book.viewing_level if book && book.viewing_level #update
+- commentingLevel = book.commenting_level if book && book.commenting_level #update
+- editable = false
+- editable = !book || current_user == book.user 
+- user = book ? book.user : current_user
 
 
 / BOOKS
-.book{:'data-id' => bookId, class: color, :'data-color' => color}
+.book{:'data-id' => book_id, class: color, :'data-color' => color}
 
 
   / CLOSED BOOK
-  .closed.hidden
+  .closed
 
     .entryDrop
 
@@ -22,12 +25,12 @@
 
     .cover{style: backgroundStyle}
 
-    %a.history.mask{href: "/books/#{bookId}"}
+    %a.history.mask{href: (defined? is_context && is_context)}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
-    - if current_user == book.user
-      %a.history.edit{href: "/books/#{bookId}/edit"} edit
+    - if editable
+      %a.history.edit{href: (book_id == 'new') ? "/books/new" : "/books/#{book_id}/edit"} edit
     
     .title 
       = title ? title : 'Untitled Book'
@@ -41,8 +44,8 @@
 
 
   / OPEN BOOK
-  .open
-    - if current_user == book.user
+  .open.hidden
+    - if editable
       / BODY CLICK FOR OPEN BOOK
       .closeClick
 

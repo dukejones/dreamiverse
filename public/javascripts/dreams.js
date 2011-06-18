@@ -5,7 +5,7 @@ $(document).ready(function() {
   setupImagebank();
   setupUploader();
   setupLinkButtons();
-  setup2dThumbIPadClick();
+  //setup2dThumbIPadClick();
 });
 
 function checkForLinksShowEntry(){
@@ -203,7 +203,7 @@ function linkify(text)
     return text;
   }
 
-/*function setup2dThumbIPadClick(){
+function setup2dThumbIPadClick(){
   // make iPad 1 click work on thumbs
   var ua = navigator.userAgent;
   var clickEvent;
@@ -217,7 +217,7 @@ function linkify(text)
     event.preventDefault();
     window.location = $(event.currentTarget).attr('href');
   })
-}*/
+}
 
 
 

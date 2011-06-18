@@ -46,12 +46,12 @@
       .img
 
       %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
-        %option.label{value: 'Add to Book:'} Add to Book:
+        %option.label{value: ''} Add to Book:
         = render :partial => "books/book_list"
-        %option.removeBook{value: 'remove from book'} remove from book
+        %option.removeBook{value: ''} remove from book
         %option.newBook{value: 'new'} + new book
 
-      %input.newBook-input{type: 'text', value: '+ new book'}
+      %input.newBook-input{type: 'text', value: '', name: 'book[title]'}
 
 
 
@@ -183,7 +183,7 @@
 
 
   / NEW ENTRY TAG
-  .entryTags.entryPanels{title: 'tags'}
+  .entryTags.entryPanels{name: 'tags'}
     .tagHeader.headers
       .img
       tag
@@ -210,7 +210,7 @@
 
 
   / NEW ENTRY LINK
-  .entryLinks.entryPanels{title: 'links'}
+  .entryLinks.entryPanels{name: 'links'}
     .linksHeader.headers
       .img
       links
@@ -237,7 +237,7 @@
 
 
   / NEW ENTRY EMOTIONS
-  .entryEmotions.entryPanels.hidden{title: 'emotions', , name: 'dateTime'}
+  .entryEmotions.entryPanels.hidden{name: 'emotions'}
     .emotionsHeader.headers
       .img
       emotions
@@ -280,20 +280,20 @@
   / NEW ENTRY ATTACHMENTS
   #entryAttach
     %p +
-    #attach-text.attach{title: 'text'}
+    #attach-text.attach{name: 'text'}
       .img
       text
     - unless is_ipad?
-      #attach-images.attach{title: 'images'}
+      #attach-images.attach{name: 'images'}
         .img
         images
-    #attach-tags.attach{title: 'tags'}
+    #attach-tags.attach{name: 'tags'}
       .img
       tag
-    #attach-links.attach{title: 'links'}
+    #attach-links.attach{name: 'links'}
       .img
       links
-    #attach-emotions.attach{title: 'emotions'}
+    #attach-emotions.attach{name: 'emotions'}
       .img
       emotions
     #entry-appearance.attach.tooltip{title: "appearance"}
