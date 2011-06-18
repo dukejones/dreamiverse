@@ -21,7 +21,7 @@ namespace :app do
     host = ActionMailer::Base.default_url_options[:host]
     port = ActionMailer::Base.default_url_options[:port]
     url = "http://#{host}"
-    url += ":#{port}" unless port == 80
+    url += ":#{port}" unless port.blank? || port == 80
     puts "Pinging the app #{url}."
     open(url)
   end
