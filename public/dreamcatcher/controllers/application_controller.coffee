@@ -22,6 +22,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       
   #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
   'a.history click': (el, ev) ->
+    return unless $('#entryField').exists()
     ev.preventDefault()
     href = el.attr 'href'
     window.history.pushState null, null, href

@@ -47,12 +47,21 @@ class BooksController < ApplicationController
   end
   
   def new
-    respond_to do |format|
-      format.html { render(partial:"books/book", :locals => {:isContext => false}) }
+    if request.xhr?
+      render(partial:"books/book")
+    else
+      redirect_to user_entries_path(current_user.username)
     end
   end
   
   def edit
+    if request.xhr?
+      @book = Entry.find params[:id]
+      @book_mode = 'edit'
+      render(partial:"books/book")
+    else
+      redirect_to user_entries_path(current_user.username)
+    end
   end
   
   def destroy

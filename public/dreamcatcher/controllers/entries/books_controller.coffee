@@ -67,6 +67,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- new book
     
   'books.create subscribe': ->
+    newBookEl = $(".book[data-id='new']", @element)
+    if newBookEl.exists()
+      @editBook newBookEl
+      return
+      
     @model.book.new {}, (html) =>
       $('#welcomePanel').hide()
       @element.prepend html
