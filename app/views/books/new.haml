@@ -1,0 +1,15 @@
+/ CONTEXT PANEL
+/= render :partial => "users/context_panel", :locals => {:user => @user}
+
+/ ENTRY FIELD
+#entryField
+  #entriesIndex
+    = render :partial => "entries/index", :locals => {:new_book => true}
+  #showEntry{style: 'display:none'}
+  #newEditEntry{style: 'display:none'}
+
+- content_for :foot do
+  / APPLIES SELECTED CLASS TO META MENU
+  - if @user == current_user
+    :coffeescript
+      $('.item.home').addClass('selected')
