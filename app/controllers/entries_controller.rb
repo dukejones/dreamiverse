@@ -77,7 +77,11 @@ class EntriesController < ApplicationController
     @entries = entry_list
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1] || @entry
-    redirect_to user_entry_path(@previous.user.username, @previous)
+    if request.xhr?
+      render :json => {:entry_id => @previous.id}
+    else
+      redirect_to user_entry_path(@previous.user.username, @previous)
+    end
   end
   
   def next
@@ -85,7 +89,11 @@ class EntriesController < ApplicationController
     @entries = entry_list
     i = (@entries.index {|e| e == @entry }) || 0
     @next = @entries[i+1] || @entries[0] || @entry
-    redirect_to user_entry_path(@next.user.username, @next)
+    if request.xhr?
+      render :json => {:entry_id => @next.id}
+    else
+      redirect_to user_entry_path(@next.user.username, @next)
+    end
   end
   
   def new
