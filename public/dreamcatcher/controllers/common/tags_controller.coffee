@@ -6,13 +6,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     tag: Dreamcatcher.Models.Tag
   }
    
-  init: (el, mode='edit') ->
-    @element = $(el)
+  init: (scope, mode='edit') ->
+    @scope = $(scope)
     @mode = mode
     @buttonMode = 'expand'
     #log "loaded tags controller @mode: #{@mode}"
     
-  getTag: -> $('.newTag:first', @element).val().replace('/','').replace(',','').trim()    
+  getTag: -> $('.newTag:first', @scope).val().replace('/','').replace(',','').trim()    
     
   addTag: ->
     tagName = @getTag()
@@ -22,7 +22,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
-      entryId = $('.entry', @element).data 'id' 
+      entryId = $('.entry', @scope).data 'id' 
       @model.tag.create {
         entry_id: entryId
         what_name: tagName
@@ -30,23 +30,24 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
           
   appendTag: (tagName, json=null) ->
     tagId = if json? then json.what_id else -1
-
     html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
-    $('.custom.tag-list', @element).append html
-    $('.newTag', @element).val ''
+    $('.custom.tag-list', @scope).append html
+    $('.newTag', @scope).val ''
        
+  # Check both custom and analysis tag lists
   alreadyExists: (tagName) ->
     exists = false
     # Check both custom and auto tag lists
-    $('.tag-list .tag-name', @element).each (i, el) =>
+    $('.tag-list .tag-name', @scope).each (i, el) =>
       tag = $(el).text().trim()
       if tagName is tag
-        exists = true  
+        exists = true 
+        $('.newTag:first', @scope).val '' 
     return exists
     
   removeTag: (el) ->
     tagId = $(el).parent().data 'id' 
-    entryId = $('.entry', @element).data 'id'    
+    entryId = $('.entry', @scope).data 'id'    
 
     if @mode is 'edit' 
       @removeTagFromDom(el)    
@@ -64,21 +65,21 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   countTags: ->
     count = 0
-    for el in $('.tag-list .tag', @element)
+    for el in $('.tag-list .tag', @scope)
       count += 1
     return count
 
   expandInputField: ->
     @buttonMode = 'submit'
-    $('.tagThisEntry', @element).addClass 'selected'
-    $('.tagInput', @element).animate {width: '200px'}
-    $('.newTag', @element).focus()
+    $('.tagThisEntry', @scope).addClass 'selected'
+    $('.tagInput', @scope).animate {width: '200px'}
+    $('.newTag', @scope).focus()
 
   contractInputField: ->
     @buttonMode = 'expand'
-    $('.tagThisEntry', @element).removeClass 'selected'
-    $('.tagInput', @element).animate {width: '0px'}
-    $('.newTag', @element).blur()
+    $('.tagThisEntry', @scope).removeClass 'selected'
+    $('.tagInput', @scope).animate {width: '0px'}
+    $('.newTag', @scope).blur()
 
   expandContractInputField: ->
     if @buttonMode is 'expand'

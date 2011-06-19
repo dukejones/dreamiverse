@@ -26,10 +26,7 @@ class EntriesController < ApplicationController
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
 
     # TODO: check viewing permissions depending on user
-    @books = Book.where({
-      user_id: @user.id,
-      enabled: true
-    })
+    @books = Book.where({user_id: @user.id})
 
     @filters = params[:filters] || {}
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
@@ -122,7 +119,7 @@ class EntriesController < ApplicationController
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
 
     if params[:entry][:book_id] == 'new'
-      @book = Book.create(params[:book].merge({user: current_user, enabled: true}))
+      @book = Book.create(params[:book].merge({user: current_user}))
       params[:entry][:book_id] = @book.id
     end
 
@@ -161,7 +158,7 @@ class EntriesController < ApplicationController
     @entry.set_emotions(params[:emotions])
 
     if params[:entry][:book_id] == 'new'
-      @book = Book.create(params[:book].merge({user: current_user, enabled: true}))
+      @book = Book.create(params[:book].merge({user: current_user}))
       params[:entry][:book_id] = @book.id
     end
 

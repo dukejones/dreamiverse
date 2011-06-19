@@ -272,7 +272,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       background = "url(/images/uploads/#{image.id}-252x252.#{image.format})"
       $('.cover, .dropbox-field-shine', el).css 'background-image', background
       $('.dropbox-field-shine li', el).remove() #todo: remove upload progress
-      @saveBook el, { cover_image_id: image.id }
+      @saveBook el, { image_id: image.id }
       
     $('.dropbox-field-shine .add', el).show()
   
