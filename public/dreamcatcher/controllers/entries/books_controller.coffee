@@ -44,23 +44,26 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   'book.drop subscribe': (called, parent) ->
     $('.book, .avatar', parent).each (i, el) =>
       @publish 'books.close', $(el)
-      $(el).droppable {         
-        drop: (ev, ui) =>
-          dropEl = $(ev.target)
-          @moveEntryToBook ui.draggable, dropEl
+      @makeDroppable $(el)
 
-        over: (ev, ui) =>
-          el = $(ev.target)
-          @publish 'books.hover', el if el.hasClass 'book'
-          $('.add-active', ui.helper).show()
-          $('.entryDrop-active, .entryRemove', el).show()
+  makeDroppable: (el) ->
+    $(el).droppable {         
+      drop: (ev, ui) =>
+        dropEl = $(ev.target)
+        @moveEntryToBook ui.draggable, dropEl
 
-        out: (ev, ui) =>
-          el = $(ev.target)
-          @publish 'books.close', el if el.hasClass 'book' 
-          $('.add-active', ui.helper).hide()
-          $('.entryDrop-active, .entryRemove', el).hide()
-      }
+      over: (ev, ui) =>
+        el = $(ev.target)
+        @publish 'books.hover', el if el.hasClass 'book'
+        $('.add-active', ui.helper).show()
+        $('.entryDrop-active, .entryRemove', el).show()
+
+      out: (ev, ui) =>
+        el = $(ev.target)
+        @publish 'books.close', el if el.hasClass 'book' 
+        $('.add-active', ui.helper).hide()
+        $('.entryDrop-active, .entryRemove', el).hide()
+    }
   
   #- new book
   
@@ -76,6 +79,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       bookEl = $('.book:first', @element)
       @editBook bookEl
       @publish 'dom.added', bookEl
+      @makeDroppable bookEl
     
   #- show book
   

@@ -7,7 +7,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   }
 
   init: (el) ->
-    alert 'newedit entry controller'
     @element = $(el)
     @element.tags 'edit' # invoke the tags controller
     @initCookieSaver()
