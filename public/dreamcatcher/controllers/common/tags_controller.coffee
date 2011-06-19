@@ -6,13 +6,12 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     tag: Dreamcatcher.Models.Tag
   }
    
-  init: (el, mode='edit') ->
-    @element = $(el)
+  init: (scope, mode='edit') ->
+    @scope = $(scope)
     @mode = mode
     @buttonMode = 'expand'
-    log "loaded tags controller @mode: #{@mode}"
     
-  getTag: -> $('.newTag:first', @element).val().replace('/','').replace(',','').trim()    
+  getTag: -> $('.newTag:first', @scope).val().replace('/','').replace(',','').trim()    
     
   addTag: ->
     tagName = @getTag()
@@ -30,18 +29,18 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
           
   appendTag: (tagName, json=null) ->
     tagId = if json? then json.what_id else -1
-
     html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
-    $('.custom.tag-list', @element).append html
-    $('.newTag', @element).val ''
+    $('.custom.tag-list', @scope).append html
+    $('.newTag', @scope).val ''
        
+  # Check both custom and analysis tag lists
   alreadyExists: (tagName) ->
     exists = false
-    # Check both custom and auto tag lists
     $('.tag-list .tag-name').each (i, el) =>
       tag = $(el).text().trim()
       if tagName is tag
-        exists = true  
+        exists = true 
+        $('.newTag:first', @scope).val '' 
     return exists
     
   removeTag: (el) ->
