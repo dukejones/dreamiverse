@@ -148,8 +148,12 @@ class EntriesController < ApplicationController
     deny and return unless user_can_write?
     
     
-    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at])
-    params[:entry][:image_ids] = [] unless params[:entry].has_key?(:image_ids)
+    params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:dreamed_at]
+    
+    
+    # unless params[:entry].has_key?(:image_ids)
+    #   params[:entry][:image_ids] = [] 
+    # end
   
     @entry.set_whats(params[:what_tags])
     @entry.location = Where.for params[:entry].delete(:location_attributes)
