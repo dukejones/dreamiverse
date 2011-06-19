@@ -2,6 +2,7 @@
 - cover_style = (book.image_id) ? "background: url(#{book.image.url('bookcover')}) no-repeat center center" : ""
 - editable = current_user == book.user 
 -# default new book color == 'blue' 
+- book.color ||= 'blue'
 
 
 / BOOKS
@@ -17,7 +18,7 @@
 
     .cover{style: cover_style}
 
-    %a.history.mask{href: (defined? is_context) ? "/#{book.user.username}" : "/books/#{book_id}"}
+    %a.history.mask{href: (defined? is_context) ? user_entries_path(book.user.username) : book_path(book)}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
@@ -156,12 +157,12 @@
         .viewing viewing
 
         %select.select-menu.viewing-menu{name: 'sharing_level'}
-          = render :partial => "entries/sharing_level", :locals => {:level => book.sharing_level}
+          = render :partial => "common/sharing_level_options", :locals => {:level => book.sharing_level}
 
         .commenting commenting
 
         %select.select-menu.commenting-menu{name: 'commenting_level'}
-          = render :partial => "entries/sharing_level", :locals => {:level => book.commenting_level}
+          = render :partial => "common/sharing_level_options", :locals => {:level => book.commenting_level}
 
     / ENTRY DROP ACTIVE
     .entryDrop-active

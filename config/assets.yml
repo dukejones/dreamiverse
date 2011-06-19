@@ -113,7 +113,7 @@ javascripts:
 
   context_panel:
     - public/javascripts/pubsub.js
-    - public/javascripts/compiled/context_panel.js
+    #- public/javascripts/compiled/context_panel.js
     - public/javascripts/browserdetect.js
     - public/javascripts/dreams.js
 

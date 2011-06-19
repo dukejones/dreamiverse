@@ -6,7 +6,7 @@
   .clear
   
 .matrix.books
-  - @books.each do |book|
+  - @books._?.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
 
     
@@ -31,7 +31,7 @@
     / NEW LOGIN SPLASH
     = render :partial => "new_login", :locals => {:user => @user}
 
-  - elsif @entries.empty? && @books.empty?
+  - elsif @entries._?.empty? && @books._?.empty?
     / NO DREAMS TO DISPLAY
     .noEntrys
       - if @filters[:type]

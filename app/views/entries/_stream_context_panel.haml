@@ -1,5 +1,5 @@
 / STREAM CONTEXT PANEL
-#streamContextPanel{'data-filters' => "#{@filters }"}
+#streamContextPanel{'data-filters' => "#{@filters}"}
 
   / USER INFO
   .userInfo
@@ -24,12 +24,7 @@
   #entry-filter-wrap.tooltip{title: "entry type filter"}
     .spinner
     %select#entry-filter.select-menu.dropdown
-      %option.allEntries{   value: '',           :selected => (@filters[:type].blank?)          } all entries
-      %option.dreams{       value: 'dream',      :selected => (@filters[:type] == 'dream')      } dreams
-      %option.visions{      value: 'vision',     :selected => (@filters[:type] == 'vision')     } visions
-      %option.experiences{  value: 'experience', :selected => (@filters[:type] == 'experience') } experiences
-      %option.articles{     value: 'article',    :selected => (@filters[:type] == 'article')    } articles
-      %option.journals{     value: 'journal',    :selected => (@filters[:type] == 'journal')    } journals
+      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: @filters[:type], show_all_option: true}
 
   #users-filter-wrap.tooltip{title: "sharing level filter"}
     .spinner

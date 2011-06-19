@@ -25,14 +25,14 @@ class EntriesController < ApplicationController
   def index
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
 
-    # TODO: check viewing permissions depending on user
-    @books = Book.where({user_id: @user.id})
-
     @filters = params[:filters] || {}
     @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
     @filters[:page] ||= params[:page]
     @filters[:page_size] ||= 24
 
+    # TODO: check viewing permissions depending on user
+    @books = Book.where({user_id: @user.id}) unless @filters[:type]
+    
     @entries = entry_list(:dreamfield, @filters)
     @entry_count = entry_list(:dreamfield, {type: @filters[:type], show_all: "true"}).count
     

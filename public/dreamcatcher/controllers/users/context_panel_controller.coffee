@@ -61,5 +61,12 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       $('#contextPanel .avatar').css 'background-image', "url(/images/uploads/#{image.id}-avatar_main.#{image.format})"
       $('#avatarDrop').hide()
       @model.user.update { "user[image_id]": image.id }
+      
+  '#entry-filter change': (el) ->
+    # username = el.data 'username'
+    entryType = el.val()
+    log entryType
+    # window.location.href = "/#{username}/#{entryType}s"
+    window.location.href = "/entries/?entry_type=#{entryType}"
 
 }
