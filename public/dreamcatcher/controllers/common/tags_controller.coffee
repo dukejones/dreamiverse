@@ -7,16 +7,18 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   }
    
   init: (el, mode='edit') ->
-    @element = el
+    @element = $(el)
     @mode = mode
     @buttonMode = 'expand'
     log "loaded tags controller @mode: #{@mode}"
     
-  getTag: -> $('#newTag').val().replace('/','').replace(',','').trim()    
+  getTag: -> $('.newTag:first', @element).val().replace('/','').replace(',','').trim()    
     
   addTag: ->
     tagName = @getTag()
-    
+    tagCount = @countTags()
+    return if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
+
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
@@ -26,15 +28,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         what_name: tagName
       }, @callback('appendTag', tagName)  
           
-  appendTag: (tagName, json=null) ->    
-    tagCount = @countTags()
-    tagId = if json? then json.what_id else '' 
+  appendTag: (tagName, json=null) ->
+    tagId = if json? then json.what_id else -1
 
-    if tagName.length > 1 and tagCount < 16 and !@alreadyExists tagName
-      html = $.View('//dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
-      $('#tag-list').append html
-      $('#newTag').val ''
-         
+    html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
+    $('.custom.tag-list', @element).append html
+    $('.newTag', @element).val ''
+       
   alreadyExists: (tagName) ->
     exists = false
     # Check both custom and auto tag lists
@@ -89,7 +89,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
         
   # DOM Listeners
   
-  '#addTag click': ->
+  '.tagAdd click': (el, ev) ->
     @addTag()
           
   '.tagThisEntry click': ->
@@ -100,14 +100,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   '.tagHeader click': -> @expandContractInputField()
   
-  '#newTag keyup': (el, ev) ->
+  '.newTag keyup': (el, ev) ->
     if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', '/' and 'enter'
       @addTag()
+      return false
 
-  '#tag-list .tag .close click': (el) ->
+  '.tag-list .tag .close click': (el) ->
     @removeTag el
   
-  '#tag-list .tag .close touchstart': (el) -> 
+  '.tag-list .tag .close touchstart': (el) -> 
     @removeTagFromDom el.parent()
     
   '.tagAnalysis .trigger click': (el) ->

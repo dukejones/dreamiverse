@@ -126,7 +126,7 @@
               tag
 
             .tagInput.target
-              %input#newTag{placeholder: 'who / what / where'}
+              %input#newTag.newTag{placeholder: 'who / what / where'}
             .tagThisEntry.trigger
               + add
 
@@ -146,7 +146,7 @@
 
         / TAGS
         / CUSTOM TAGS
-        #tag-list.tag-list.ui-sortable.target
+        #tag-list.tag-list.custom.ui-sortable.target
 
           - @entry.what_tags.custom.whats.each do |what|
             = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
