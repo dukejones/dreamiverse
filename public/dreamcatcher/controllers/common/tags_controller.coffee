@@ -10,6 +10,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @scope = $(scope)
     @mode = mode
     @buttonMode = 'expand'
+    #log "loaded tags controller @mode: #{@mode}"
     
   getTag: -> $('.newTag:first', @scope).val().replace('/','').replace(',','').trim()    
     
@@ -21,7 +22,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
-      entryId = $('.entry').data 'id' 
+      entryId = $('.entry', @scope).data 'id' 
       @model.tag.create {
         entry_id: entryId
         what_name: tagName
@@ -36,7 +37,8 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   # Check both custom and analysis tag lists
   alreadyExists: (tagName) ->
     exists = false
-    $('.tag-list .tag-name').each (i, el) =>
+    # Check both custom and auto tag lists
+    $('.tag-list .tag-name', @scope).each (i, el) =>
       tag = $(el).text().trim()
       if tagName is tag
         exists = true 
@@ -45,7 +47,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     
   removeTag: (el) ->
     tagId = $(el).parent().data 'id' 
-    entryId = $('.entry').data 'id'    
+    entryId = $('.entry', @scope).data 'id'    
 
     if @mode is 'edit' 
       @removeTagFromDom(el)    
@@ -63,21 +65,21 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   countTags: ->
     count = 0
-    for el in $('#tag-list .tag')
+    for el in $('.tag-list .tag', @scope)
       count += 1
     return count
 
   expandInputField: ->
     @buttonMode = 'submit'
-    $('.tagThisEntry').addClass 'selected'
-    $('.tagInput').animate {width: '200px'}
-    $('#newTag').focus()
+    $('.tagThisEntry', @scope).addClass 'selected'
+    $('.tagInput', @scope).animate {width: '200px'}
+    $('.newTag', @scope).focus()
 
   contractInputField: ->
     @buttonMode = 'expand'
-    $('.tagThisEntry').removeClass 'selected'
-    $('.tagInput').animate {width: '0px'}
-    $('#newTag').blur()
+    $('.tagThisEntry', @scope).removeClass 'selected'
+    $('.tagInput', @scope).animate {width: '0px'}
+    $('.newTag', @scope).blur()
 
   expandContractInputField: ->
     if @buttonMode is 'expand'
