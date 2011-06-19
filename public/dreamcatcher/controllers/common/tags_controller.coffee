@@ -99,8 +99,9 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   
   '.tagHeader click': -> @expandContractInputField()
   
-  '.newTag keyup': (el, ev) ->
-    if ev.keyCode is 188 or ev.keyCode is 13 or ev.keyCode is 191 # ',', '/' and 'enter'
+  '.newTag keypress': (el, ev) ->
+    keyCode = ev.which
+    if keyCode is 44 or keyCode is 47 or keyCode is 13 # ',', '/' and 'enter'
       @addTag()
       return false
 
