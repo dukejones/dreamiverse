@@ -40,7 +40,7 @@
   .open.hidden
     - if editable
       / BODY CLICK FOR OPEN BOOK
-      .closeClick
+      %a.history.closeClick{href: user_entries_path(book.user.username)}
 
 
       / CONTROL PANEL
@@ -68,7 +68,7 @@
           .arrow
             .down
 
-          .confirm OK
+          %a.history.confirm{href: user_entries_path(book.user.username)} OK
 
         .clear
 
@@ -77,13 +77,13 @@
           .remove
             remove book
           .label
-            entries will not be deleted
+            this book will be deleted but entries will remain
 
-          .delete
-            delete book
-          .label
-            this book and its entries will be deleted
-
+          / .delete
+          /             delete book
+          /           .label
+          /             this book and its entries will be deleted
+          
           .arrow
             .up
 

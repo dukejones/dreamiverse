@@ -123,7 +123,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   #- open 
   openBook: (el, edit) ->
-    @closeAllBooks()
+    @closeBook()
     bookEl = @el.book el
     $('.open, .closeClick', bookEl).show()
     $('.control-panel', bookEl).toggle edit
@@ -134,26 +134,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     
   #- close
   closeBook: (el) ->
-    bookEl = @el.book el
+    bookEl = if el? then @el.book el else @element
     $('.open', bookEl).hide()
     $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
   
   'books.close subscribe': (called, el) ->
-    @closeBook @el.book el
-    @resetUrl()
-
-  '.closeClick, .confirm click': (el) ->
-    @closeBook @el.book el
-    @resetUrl()
-  
-  #-- all
-  
-  closeAllBooks: (el) ->
-    @closeBook()
+    @closeBook el
   
   'body.clicked subscribe': (called, data) ->
-    @closeAllBooks()
+    @closeBook()
       
   #- paging
   
@@ -234,10 +224,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   disableBook: (el) ->
     if confirm 'are you sure?'
       bookEl = @el.book el
-      @model.book.disable @data bookEl, =>
+      bookId = @data bookEl
+      @model.book.destroy bookId, =>
         bookEl.remove()
         @resetUrl()
-  
+      
   '.more-settings .remove click': (el) ->
     @disableBook el
       

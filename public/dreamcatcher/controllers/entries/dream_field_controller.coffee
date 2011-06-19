@@ -55,6 +55,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     username = if data? and data.username? then data.username else $('#userInfo').data 'username'
     newBook = if data? and data.newBook? then data.newBook else false
     editBook = data.editBook if data? and data.editBook?
+    
+    @publish 'books.close'
     @publish 'context_panel.show', username
     @showEntryField username, newBook, editBook
     
