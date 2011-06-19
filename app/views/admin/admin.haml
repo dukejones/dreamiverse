@@ -1,8 +1,6 @@
 - content_for :headBefore do
   = stylesheet_link_tag 'compiled/admin'
   %script{ :src => 'https://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
-  /- content_for :head do
-  /= sass_link_tag 'admin'
   
 #adminPage
   #entryField
@@ -71,9 +69,9 @@
         %h2 user list
         #userList-arrow.down
 
-      .searchWrap
-        %input.search{type: 'submit', value: ''}
-        %input.search-input#searchButton{type: 'text', value: 'search users'}
+      / .searchWrap
+      /   %input.search{type: 'submit', value: ''}
+      /   %input.search-input#searchButton{type: 'text', value: 'search users'}
 
       %select#user-filter.select-menu.dropdown
         %option.orderBy{       value: ''             } ordered by:

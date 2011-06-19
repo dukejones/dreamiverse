@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Admin.Charts',
+$.Controller 'Dreamcatcher.Controllers.Admin.Charts', {
+  pluginName: 'charts'
+}, {
 
   drawLineChart: (type, json) ->
     data = new google.visualization.DataTable() 
@@ -31,7 +33,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Charts',
       width: 600, height: 300, 
       backgroundColor: 'black',
       legendTextStyle: {color: 'white'},
-      titleTextStyle: {color: 'white'},
+      titleTextStyle: {cƒolor: 'white'},
       hAxis: {textStyle: {color: 'white'}},
       vAxis: {textStyle: {color: 'white'}}
     })
@@ -83,3 +85,4 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Charts',
   getChartOptions: (title) ->
     title: title
      
+}

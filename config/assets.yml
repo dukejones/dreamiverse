@@ -51,6 +51,7 @@ javascripts:
     - public/compiled/resources/jquery.linkify.js
     - public/compiled/resources/videolink.js
     - public/compiled/resources/dream.plugs.js
+    - public/compiled/resources/google.charts.js
     
   jmvc_application:
     - public/compiled/models/**/*.js
