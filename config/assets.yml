@@ -77,7 +77,7 @@ javascripts:
     
   shared:
     #- public/javascripts/jquery.hoverIntent.minified.js
-    #- public/javascripts/rails.js
+    - public/javascripts/rails.js
     #- public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
