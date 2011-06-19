@@ -117,16 +117,20 @@ class UsersController < ApplicationController
   
   # XHR Only
   def context_panel
-    @user = if params[:user_id]
+    @book = if params[:book_id]
+      Book.find_by_id params[:book_id]
+    end
+    
+    @user = if @book
+      @book.user
+    elsif params[:user_id]
       User.find_by_id params[:user_id]
     elsif params[:username]
       User.find_by_username params[:username]
     else
       current_user
     end
-    @book = if params[:book_id]
-      Book.find_by_id params[:book_id]
-    end
+    
     
     if @user
       render(:partial => "users/context_panel", :locals => {:user => @user, :book => @book})

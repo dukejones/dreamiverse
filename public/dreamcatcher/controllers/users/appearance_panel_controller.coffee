@@ -14,7 +14,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
       return $("#new_entry").exists() and $('#new_entry').is ':visible'
   }
   getView: (name, args) ->
-    return @view "/dreamcatcher/views/bedsheets/#{name}.ejs", args
+    return $.View "/dreamcatcher/views/bedsheets/#{name}.ejs", args
     
   init: ->
     @defaultCategory = $('#defaultGenre').val() #todo: update dom to category
