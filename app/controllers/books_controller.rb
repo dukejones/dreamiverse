@@ -6,7 +6,6 @@ class BooksController < ApplicationController
     else
       @books = Book.where(user_id: current_user.id)
     end
-    @book = @books.where(enabled: true)
     respond_to do |format|
       format.html { render(partial: 'books/books') }
       format.json { render :json => { :book => book } }
@@ -14,10 +13,7 @@ class BooksController < ApplicationController
   end
   
   def create
-    book = Book.create!(params[:book].merge({
-      user_id: current_user.id,
-      enabled: true
-    }))
+    book = Book.create!(params[:book].merge({user_id: current_user.id}))
     respond_to do |format|
       format.html { render :text => "new book has been created" }
       format.json { render :json => { :book => book } }
@@ -39,7 +35,7 @@ class BooksController < ApplicationController
   
   def show
     @entries = Entry.where(book_id: params[:id]) if params[:id]
-    @bookContext = @book = Book.find_by_id(params[:id]) if params[:id]
+    @book = Book.find_by_id(params[:id]) if params[:id]
     @user = @book.user
     if request.xhr?
       render(partial: "books/show")
@@ -66,8 +62,9 @@ class BooksController < ApplicationController
   
   def destroy
     book = Book.find params[:id]
+    book.entries.each { |entry| entry.update_attribute(:book_id, nil) }
     respond_to do |format|
-      if book.update_attributes({enabled: false})
+      if book.destroy
         format.html { render :text => 'book has been disabled' }
         format.json  { render json: {type: 'ok', message: 'book has been disabled'} }
       else
