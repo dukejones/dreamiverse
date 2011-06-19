@@ -1,4 +1,6 @@
-$.Controller 'Dreamcatcher.Controllers.Admin.Admin',
+$.Controller 'Dreamcatcher.Controllers.Admin.Admin', {
+  pluginName: 'admin'
+}, {
   
   init: -> 
     @page = 1
@@ -49,7 +51,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Admin',
     num = 0
     while num < @totalPages
       num += 1
-      $('#pages').append @view 'page_number', {page: num}    
+      $('#pages').append $.View '/dreamcatcher/views/admin/page_number.ejs', {page: num}    
 
   # Generate model options   
   getOptions: ->
@@ -133,7 +135,8 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Admin',
     
     $(".#{buttonType}Button-border").removeClass('select') # reset all buttons for this buttonType
     $buttonParent.addClass('select')
-     
+
+}
 
 
     

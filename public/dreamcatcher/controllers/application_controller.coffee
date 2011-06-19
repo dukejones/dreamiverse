@@ -10,11 +10,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#entriesStream').dreamStream() if $('#entriesStream').exists()
     $('#showEntry').showEntry() if $('#showEntry').exists()
     $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
+    
+    $('#adminPage').admin() if $('#adminPage').exists()
+    #$('#adminPage').charts() if $('#adminPage').exists()
         
     @images = new Dreamcatcher.Controllers.Images.Images $("#frame.browser") if $("#frame.browser").exists()
-    @admin = new Dreamcatcher.Controllers.Admin $('#adminPage') if $('#adminPage').exists()
-    @charts = new Dreamcatcher.Controllers.Charts $('#adminPage') if $('#adminPage').exists()
-    
     
     @bind window, 'popstate', => @publishHistory window.location.pathname
     # FF 3.6
