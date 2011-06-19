@@ -3,7 +3,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 }, {
 
   init: (el) ->
-    log 'init stream controller'
     Stream.page = 1
     @container = $('.matrix.stream', el)
     @bind window, 'scroll', 'scrollEvent'

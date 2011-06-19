@@ -59,10 +59,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
     @publish 'history.change', href
     el.val 'empty'
     
-  '.newEntry click': (el) ->
-    @publish 'entry.new'
-    
-    
 }
     
 

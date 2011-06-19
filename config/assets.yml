@@ -56,7 +56,6 @@ javascripts:
   jmvc_application:
     - public/compiled/models/**/*.js
     - public/compiled/classes/*.js
-    # - public/compiled/controllers/**/*.js
     - public/compiled/controllers/application_controller.js
     - public/compiled/controllers/common/upload_controller.js
     - public/compiled/controllers/common/tags_controller.js

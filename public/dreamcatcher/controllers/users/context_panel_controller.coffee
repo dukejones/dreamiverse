@@ -31,30 +31,35 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         $('#totem').replaceWith html
         $('#totem').show().contextPanel()
 
-  '.uploadAvatar click': (el) ->
-    $('#contextPanel').prepend $.View('/dreamcatcher/views/users/context_panel/avatar_upload.ejs')
-    $('#avatarDrop').uploader {
-      singleFile: true
-      params: {
-        image: {
-          section: 'user uploaded'
-          category: 'avatars'
+  '.uploadAvatar click': (el, ev) ->
+    ev.preventDefault()
+    unless $('#avatarDrop').hasClass 'dreamcatcher_common_upload'
+      $('#avatarDrop').uploader {
+        singleFile: true
+        params: {
+          image: {
+            section: 'user uploaded'
+            category: 'avatars'
+          }
         }
+        classes: {
+          button: 'dropboxBrowse'
+          drop: 'dropbox'
+          list: 'imagelist'
+        }
+        onComplete: @callback 'uploadComplete'
       }
-      classes: {
-        button: 'dropboxBrowse'
-        drop: 'image'
-        list: 'image'
-      }
-      onComplete: @callback 'uploadComplete'
-    }
+    $('#avatarDrop, #avatarDropContainer').show()
     
+  '#avatarDrop .cancel click': (el) ->
+    $('#avatarDrop').hide()
+  
   uploadComplete: (id, fileName, result) ->
     $('#avatarDrop .uploading').remove()
     image = result.image
     if image?
       $('#contextPanel .avatar').css 'background-image', "url(/images/uploads/#{image.id}-avatar_main.#{image.format})"
-      $('#avatarDrop').remove()
+      $('#avatarDrop').hide()
       @model.user.update { "user[image_id]": image.id }
 
 }

@@ -28,16 +28,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   init: (el) ->
     @element = $(el)
     @publish 'book.drop', @element
-    @publish 'book.drop', $('#contextPanel')
-    
   
   moveEntryToBook: (entryEl, bookEl) ->
     entryId = @data entryEl
     bookId = @data bookEl
-    bookId = null if bookEl.parent().attr('id') is 'contextPanel'
+    bookId = '' if bookEl.parent().attr('id') is 'contextPanel'
     entryMeta = {book_id: bookId}
 
-    @model.entry.update entryId, {entry: entryMeta}, => entryEl.remove()
+    @model.entry.update entryId, {entry: entryMeta}, =>
+      if bookId is ''
+        entryEl.appendTo('#entriesIndex .matrix.index') 
+      else
+        entryEl.remove()
+        
     @publish 'books.close', bookEl
     $('.entryDrop-active', bookEl).hide()
   
@@ -92,6 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#entriesIndex').fadeIn 500
       @publish 'appearance.change'
       @setupEntryDragging()
+      @publish 'book.drop', $('#contextPanel')
 
   'books.show subscribe': (called, data) ->
     @showBook data.id
