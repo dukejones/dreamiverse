@@ -8,33 +8,28 @@
 
   - cache([user, current_user._?.relationship_with(user), @mode, @entry_count, user.friends.count, "context_panel"]) do
     #contextPanel
-
+      - if (user == current_user) && !is_ipad?        
+        #avatarDrop.uploader.hidden
+          #avatarDropContainer.dropbox
+            .imagelist
+            .text drag image here
+            .browse
+              .toggle browse for a file
+              .cancel cancel
+              .dropboxBrowse browse
 
       / BOOKS (for testing)
       = render :partial => 'books/book', :locals => {:book => @book, :is_context => true} if @book
       
       / IMAGE
       %a.history.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center", href: user_entries_path(user.username)}
-
-        - if (user == current_user) && !is_ipad?
-
-
+        - if (user == current_user) && !is_ipad?     
           .uploadAvatarWrap
             .uploadAvatar
               <span>+</span> upload new avatar
-          #avatarDrop.uploader.hidden
-            #avatarDropContainer.qq-upload-drop-area
-              .text drag image here
-              .browse
-                .cancel cancel
-                .dropboxBrowse{style: "overflow: hidden; direction: ltr;"}
-                  browse
-                  %input{type: "file", name: "file", style: "position: absolute; right: 0; top: 0; margin: 0; padding: 0; opacity: 0;"}
 
-          .entryRemove
-            %div remove entry from book and return it to dreamfield
-
-
+        .entryRemove
+          %div remove entry from book and return it to dreamfield
       - if user == current_user
         / LABEL
         .context

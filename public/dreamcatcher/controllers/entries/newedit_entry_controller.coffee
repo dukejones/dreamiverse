@@ -7,7 +7,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   }
 
   init: (el) ->
-    alert 'newedit entry controller'
     @element = $(el)
     @element.tags 'edit' # invoke the tags controller
     @initCookieSaver()
@@ -99,7 +98,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     }
     $('#books-list-button').removeClass('book bookSpine')
     if el.val() is 'new'
-      $('input.newBook-input', el.parent()).val('').show().focus()
+      inputEl = $('input.newBook-input', el.parent())
+      inputEl.show()
+      inputEl.focus()
       $('#books-list-button').css {
         'width': '28px'
       }

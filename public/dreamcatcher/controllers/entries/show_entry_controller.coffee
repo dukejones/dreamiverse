@@ -37,6 +37,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   'entries.show subscribe': (called, data) ->
     @publish 'context_panel.show', data.username
     @showEntryById data.id
+    
+  'entries.next subscribe': (called, data) ->
+    @model.entry.next data.id, (response) =>
+      @showEntryById response.entry_id
+      
+  'entries.previous subscribe': (called, data) ->
+    @model.entry.previous data.id, (response) =>
+      @showEntryById response.entry_id
 
 }
   

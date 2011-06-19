@@ -1,16 +1,8 @@
 class Entry < ActiveRecord::Base
   self.inheritance_column = nil
 
-  Sharing = {
-    private:              0,
-    anonymous:           50,
-    users:              100,
-    followers:          150,
-    friends:            200,
-    friends_of_friends: 300,
-    everyone:           500
-  }
-
+  include SharingLevels
+  
   include Starlit
   cascade_starlight_to :user
   
@@ -62,23 +54,6 @@ class Entry < ActiveRecord::Base
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
   after_commit :pre_generate_images
-  
-  # Sharing scopes
-  def self.everyone
-    where(sharing_level: Entry::Sharing[:everyone])
-  end
-  def self.friends
-    where(sharing_level: Entry::Sharing[:friends])
-  end
-  def self.private 
-    where(sharing_level: Entry::Sharing[:private])
-  end
-  def self.followers 
-    where(sharing_level: Entry::Sharing[:followers])
-  end
-  def self.anonymous
-    where(sharing_level: Entry::Sharing[:anonymous])
-  end
   
   # Friends and Following scopes
   def self.friends_with(user)
@@ -258,15 +233,7 @@ class Entry < ActiveRecord::Base
       tags.create(noun: where, position: tags.count, kind: kind)     
     end
   end
- 
-  def sharing
-    self.class::Sharing.invert[sharing_level]
-  end
 
-  def everyone?
-    (sharing_level == self.class::Sharing[:everyone])
-  end
-  
   def create_view_preference
     return if view_preference
     self.view_preference = user.view_preference.clone!
@@ -304,10 +271,6 @@ protected
     unless self.images.include?(self.main_image)
       self.main_image = self.images.first
     end
-  end
-
-  def set_sharing_level
-    self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
   end
 
   # def set_user_defaults
