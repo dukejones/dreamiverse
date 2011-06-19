@@ -2,10 +2,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
   pluginName: 'dreamStream'
 }, {
 
-  model: {
-    entry : Dreamcatcher.Models.Entry
-  }
-
   init: (el) ->
     log 'init stream controller'
     Stream.page = 1

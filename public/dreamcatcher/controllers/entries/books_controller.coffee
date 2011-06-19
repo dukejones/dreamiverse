@@ -1,16 +1,14 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   pluginName: 'books'
 }, {
-
-  # Don't forget permissions on books
-
+  
   model: {
     book: Dreamcatcher.Models.Book
     entry: Dreamcatcher.Models.Entry
   }
   
   el: {    
-    bookMatrix: $("#entriesIndex .matrix.bookIndex")
+    bookMatrix: -> return $("#entriesIndex .bookIndex")
     book: (arg) ->
       return $(".book[data-id=#{arg}]", @element) if parseInt(arg) > 0
       return arg.closest '.book' if arg?
@@ -32,17 +30,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     @publish 'book.drop', @element
     @publish 'book.drop', $('#contextPanel')
     
-    
+  
   moveEntryToBook: (entryEl, bookEl) ->
     entryId = @data entryEl
     bookId = @data bookEl
     bookId = null if bookEl.parent().attr('id') is 'contextPanel'
     entryMeta = {book_id: bookId}
 
-    @model.entry.update entryId, {entry: entryMeta}
+    @model.entry.update entryId, {entry: entryMeta}, => entryEl.remove()
     @publish 'books.close', bookEl
     $('.entryDrop-active', bookEl).hide()
-
+  
   'book.drop subscribe': (called, parent) ->
     $('.book, .avatar', parent).each (i, el) =>
       @publish 'books.close', $(el)
@@ -65,7 +63,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       }
   
   #- new book
-    
+  
   'books.create subscribe': ->
     newBookEl = $(".book[data-id='new']", @element)
     if newBookEl.exists()
@@ -89,11 +87,25 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#entriesIndex').append html
       $('#entriesIndex').fadeIn 500
       @publish 'appearance.change'
-      #@publish 'entries.drag', @el.bookMatrix
+      @setupEntryDragging()
 
   'books.show subscribe': (called, data) ->
     @showBook data.id
-
+    
+  setupEntryDragging: ->
+    $('#entriesIndex .bookIndex .thumb-2d').draggable {
+      containment: 'document'
+      zIndex: 100
+      revert: false
+      helper: 'clone'
+      start: (ev, ui) =>
+        $('#contextPanel .book').hide()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').show()
+      stop: (ev, ui) =>
+        $('#contextPanel .book').show()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').hide()
+    }
+    
   #- open for edit
   editBook: (el) ->
     @openBook el, true
@@ -146,7 +158,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     @createUploader bookEl if page is 'cover'
         
   #-- panels
-  
   '.book .control-panel .color click': (el) ->
     @showPage el, 'color'
 
@@ -256,5 +267,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       @saveBook el, { cover_image_id: image.id }
       
     $('.dropbox-field-shine .add', el).show()
-    
+  
+  
 }
