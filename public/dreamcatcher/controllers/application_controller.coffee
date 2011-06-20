@@ -12,9 +12,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
     
     $('#adminPage').admin() if $('#adminPage').exists()
-    #$('#adminPage').charts() if $('#adminPage').exists()
-        
-    @images = new Dreamcatcher.Controllers.Images.Images $("#frame.browser") if $("#frame.browser").exists()
+    $('#frame.browser').imageBank() if $("#frame.browser").exists()
     
     @bind window, 'popstate', => @publish 'history.change', window.location.pathname
     # FF 3.6

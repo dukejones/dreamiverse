@@ -1,37 +1,24 @@
-$.Controller 'Dreamcatcher.Controllers.Images.Images',
+$.Controller 'Dreamcatcher.Controllers.Images.Images', {
+  pluginName: 'imageBank'
+}, {
 
   model: Dreamcatcher.Models.Image
   
-  init: ->
-    @showWidget 'browser'
-    @showWidget 'dropbox'
-  
+  init: (el) ->
+    @scope = $(el)
+    $('#frame.browser').browser this
+    $('#dropbox').dropbox this
+    @searchOptions = $("#searchOptions").searchOptions this
     
   showWidget: (widget, images, params, hideBrowser) ->
     $('#frame.browser').hide() if hideBrowser
     
     switch widget
-    
-      when 'browser'
-        @browser = new Dreamcatcher.Controllers.Images.Browser $("#frame.browser") if not @browser
-        @browser.parent = this
-        @browser.show params.refresh, params.showSearch if params?
-    
-      when 'dropbox'
-        @dropbox = new Dreamcatcher.Controllers.Images.Dropbox $("#dropbox") if not @dropbox
-        @dropbox.parent = this
-        @dropbox.show()
-        
       when 'slideshow'
         @slideshow = new Dreamcatcher.Controllers.Images.Slideshow $("#slideshow-back") if not @slideshow?
         @slideshow.parent = this
         imageId = params.imageId if params? and params.imageId?
         @slideshow.show images, imageId
-      
-      when 'searchOptions'
-        @searchOptions = new Dreamcatcher.Controllers.Images.SearchOptions $("#searchOptions") if not @searchOptions?
-        @searchOptions.parent = this
-        @searchOptions.show params
       
       when 'manager'
         @manager = new Dreamcatcher.Controllers.Images.Manager $("#frame.manager") if not @manager?
@@ -44,24 +31,14 @@ $.Controller 'Dreamcatcher.Controllers.Images.Images',
     elements.each (i,el) =>
       images[i] = $(el).data 'image'
     return images
-      
-  showBrowser: (refresh, showSearch) ->
-    @showWidget 'browser', null, {
-      refresh: refresh
-      showSearch: showSearch
-    }
-  
-  showDropbox: ->
-    @showWidget 'dropbox'
     
-  showSearchOptions: (params) ->
-    @showWidget 'searchOptions', null, params
-    
+  #'images.slideshow.show subscribe': (called, data) ->
   showSlideshow: (type, imageId, album) ->
     elements = @getImageElements type, album
     images = @getImagesFromElements elements
     @lazyLoad '#slideshow-back', 'images/slideshow', 'slideshow', images, { imageId: imageId }
-    
+  
+  #'images.manager.show subscribe': (called, data)
   showManager: (type, title, album) ->
     elements = @getImageElements type, album
     images = @getImagesFromElements elements
@@ -74,37 +51,17 @@ $.Controller 'Dreamcatcher.Controllers.Images.Images',
         @showWidget widget, images, params, true
     else
       @showWidget widget, images, params, true
-      
-  #called from within browser
-  addImageToDropbox: (el) ->
-    @dropbox.addImage el
-    
-  setDropboxImages: (elements) ->
-    @dropbox.setImages elements
-    
-  registerDroppable: (el) ->
-    @dropbox.registerDroppable el
-  
-  registerDraggable: (el, fromDropbox) ->
-    @dropbox.registerDraggable el, fromDropbox
-    
+  ###
   getSearchOptions: ->
     options = {}
     options = @searchOptions.get() if @searchOptions?
     options['q'] = $(".searchField input[type='text']").val()
     return options
+  ###
   
   'image.updated subscribe': (called, imageId) ->
     imageId = parseInt imageId
     @model.get imageId, {}, @callback('updateImageMeta', imageId)
-    
-  ###
-  'image.started subscribe': (called) ->
-    @browser.showSpinner()
-  
-  'image.stopped subscribe': (called) ->
-    @browser.hideSpinner()
-  ###
   
   #todo refactor
   
@@ -121,3 +78,4 @@ $.Controller 'Dreamcatcher.Controllers.Images.Images',
       when 'dropbox' then return $('#dropbox li')
       when 'searchResults' then return $('#searchResults li')
     return $('#albumList .img,#dropbox li,#searchResults li')
+}

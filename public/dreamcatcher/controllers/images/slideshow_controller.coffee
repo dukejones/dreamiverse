@@ -1,5 +1,7 @@
-$.Controller 'Dreamcatcher.Controllers.Images.Slideshow',
-
+$.Controller 'Dreamcatcher.Controllers.Images.Slideshow', {
+  pluginName: 'slideshow'
+}, {
+ 
   model: Dreamcatcher.Models.Image
 
   init: ->
@@ -32,7 +34,7 @@ $.Controller 'Dreamcatcher.Controllers.Images.Slideshow',
     
   close: ->
     $('#slideshow-back').fadeOut()
-    @parent.showBrowser()
+    @publish 'images.browser.show'
     
   showImage: (parent, image) ->
     $('img', parent).attr 'src', @getLarge image 
@@ -102,5 +104,7 @@ $.Controller 'Dreamcatcher.Controllers.Images.Slideshow',
 
   '.controls .download click': (el) ->
     window.open @getOriginal @images[@index]
+    
+}
     
 

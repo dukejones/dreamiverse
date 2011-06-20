@@ -1,9 +1,11 @@
-$.Controller 'Dreamcatcher.Controllers.Images.Manager',
+$.Controller 'Dreamcatcher.Controllers.Images.Manager', {
+  pluginName: 'manager'
+}, {
 
   model: Dreamcatcher.Models.Image
   
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/images/manager/#{url}.ejs", data
+    return $.View "/dreamcatcher/views/images/manager/#{url}.ejs", data
 
   init: ->
     $('#uploader').uploader {
@@ -30,8 +32,10 @@ $.Controller 'Dreamcatcher.Controllers.Images.Manager',
       return
       
   close: (showSearch) ->
-    @publish 'browser.show', true
-    #@parent.showBrowser true, showSearch
+    @publish 'images.browser.show', {
+      refresh: true
+      showSearch: showSearch
+    }
     $("#frame.manager").fadeOut 'fast'
     
   show: (images, title) ->
@@ -53,7 +57,7 @@ $.Controller 'Dreamcatcher.Controllers.Images.Manager',
       replaceElement.replaceWith html
       
       if @isDropbox
-        @parent.addImageToDropbox @getImageElement image.id
+        @publish 'dropbox.image.add', @getImageElement image.id
       
     else
       $("#imagelist").append html
@@ -279,11 +283,8 @@ $.Controller 'Dreamcatcher.Controllers.Images.Manager',
   '.cancel click': (el) ->
     $('#imagelist').html ''
     @close()
-
-  ###
-  setDefaultUploadParams: ->
-    @upload.setParams @getMeta 'organization' #if not @replaceImageId?
-  ###
+    
+}
     
     
     

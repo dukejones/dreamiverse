@@ -70,6 +70,12 @@ javascripts:
     - public/compiled/controllers/users/appearance_panel_controller.js
     - public/compiled/controllers/admin/admin_controller.js
     - public/compiled/controllers/admin/charts_controller.js
+    - public/compiled/controllers/images/images_controller.js
+    - public/compiled/controllers/images/browser_controller.js
+    - public/compiled/controllers/images/dropbox_controller.js
+    - public/compiled/controllers/images/search_options_controller.js
+    - public/compiled/controllers/images/slideshow_controller.js
+    - public/compiled/controllers/images/manager_controller.js
     # - public/dreamcatcher/views/comments/*.ejs
     
     

@@ -17,6 +17,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       @publish 'books.close', $('.book', @element)
       $('a.avatar', @element).hide()
       $('#totem').show().contextPanel()
+      @publish 'dom.added', $('#totem')
   
   'context_panel.show subscribe': (called, username) ->
     username = $('#userInfo').data 'username' unless username?
@@ -30,6 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         $('#streamContextPanel').hide()
         $('#totem').replaceWith html
         $('#totem').show().contextPanel()
+        @publish 'dom.added', $('#totem')
 
   '.uploadAvatar click': (el, ev) ->
     ev.preventDefault()
@@ -65,7 +67,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   '#entry-filter change': (el) ->
     # username = el.data 'username'
     entryType = el.val()
-    log entryType
+    #log entryType
     # window.location.href = "/#{username}/#{entryType}s"
     window.location.href = "/entries/?entry_type=#{entryType}"
 

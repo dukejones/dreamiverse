@@ -1,12 +1,16 @@
-$.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
+$.Controller 'Dreamcatcher.Controllers.Images.Dropbox', {
+  pluginName: 'dropbox'
+}, {
 
   model: Dreamcatcher.Models.Image  
   
   getView: (url, data, type) ->
     type = 'dropbox' if not type?
-    return @view "//dreamcatcher/views/images/#{type}/#{url}.ejs", data
+    return $.View "/dreamcatcher/views/images/#{type}/#{url}.ejs", data
 
-  init: ->
+  init: (el, parent) ->
+    @scope = $(el)
+    @parent = parent
     @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
     @stateCookie = new Dreamcatcher.Classes.CookieHelper 'ib_state', true
     $('#dropbox .imagelist').html ''
@@ -15,7 +19,7 @@ $.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
     $("#dropbox").offset @stateCookie.get() if @stateCookie.get()?
     @initDragAndDrop()
   
-  show: ->
+  'images.dropbox.show subscribe': ->
     $('#dropbox').show()
     
   initDragAndDrop: ->
@@ -43,6 +47,9 @@ $.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
     $('#dropbox .imagelist').html ''
   
   #- adding image to UI and cookie
+  'dropbox.image.add': (called, el) ->
+    @addImage el
+  
   addImage: (el) ->
     imageId = el.data 'id'
     imageMeta = el.data 'image'
@@ -88,7 +95,7 @@ $.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
     }
   
   #- registers an element as droppable
-  registerDroppable: (el) ->
+  'dropbox.image.drop': (called, el) ->
     el.droppable {  
       drop: (ev, ui) =>  
         dropTo = $(ev.target).parent()
@@ -123,3 +130,5 @@ $.Controller 'Dreamcatcher.Controllers.Images.Dropbox',
   'li img dblclick': (el) ->
     imageId = el.parent().data 'id'
     @parent.showSlideshow 'dropbox', imageId
+    
+}
