@@ -17,6 +17,11 @@ namespace :app do
     end
   end
 
+  desc "Clear out the hits table"
+  task :clear_hits => :environment do
+    num Hit.delete_all(["created_at < ?", 1.week.ago])
+    log "#{num} old hits deleted."
+  end
 end
 
 namespace :fix do

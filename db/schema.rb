@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518020744) do
+ActiveRecord::Schema.define(:version => 20110620201844) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -30,6 +30,17 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
   end
 
   add_index "blacklist_words", ["word"], :name => "index_black_list_words_on_word"
+
+  create_table "books", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.integer  "image_id"
+    t.string   "color"
+    t.integer  "sharing_level"
+    t.integer  "commenting_level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -103,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "hits", ["url_path", "ip_address"], :name => "index_hits_on_url_path_and_ip_address"
 
   create_table "images", :force => true do |t|
     t.string   "section"

@@ -26,3 +26,7 @@ end
 every 3.days, :at => '4:30 am' do
   rake "image:resize"
 end
+
+every 5.days, :at => '5:00 am' do
+  rake "app:clear_hits"
+end
