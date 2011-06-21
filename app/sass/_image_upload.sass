@@ -1,4 +1,8 @@
-#currentImages
+
+// NEW ENTRY IMAGE UPLOAD - #currentImages
+// NEW AVATAR IMAGE UPLOAD - #contextPanel
+// SHARED STYLES
+#currentImages, #contextPanel
 
   .replace
     +hidden
@@ -26,10 +30,6 @@
   .uploading
     +round(8)
     +relative
-    +left
-    margin: 0px 8px 8px 0px
-    height: 120px
-    width: 120px
     background-color: #000
     background-color: rgba(0,0,0,0.8)
 
@@ -46,16 +46,9 @@
     .file, .size, .failed, .progress
       position: relative
     .file
-      +absolute
       +font(11)
-      top: 4px
-      left: 4px
     .size
-      +absolute
       +center
-      width: 100%
-      bottom: 50%
-      right: 0
 
     .cancel
       +absolute
@@ -64,8 +57,6 @@
       +shine-light-alpha(10)
       +cancel(10)
       bottom: 4px
-      left: 4px
-      width: 112px
 
   .uploading.fail
     +alpha(50)
@@ -83,7 +74,6 @@
       +font(14)
       display: block
       top: 0px
-      width: 112px
       height: 114px
       padding: 6px 8px 8px
       color: #ddd
@@ -104,3 +94,58 @@
         +cancel(10)
         &:hover
           +alpha(100)
+
+
+// NEW AVATAR IMAGE UPLOAD
+#contextPanel
+  .uploading
+    top: -1px
+    left: -1px
+    margin: 0px
+    height: 266px
+    width: 200px
+
+    .cancel
+      left: 32px
+      width: 135px
+      height: 26px
+      line-height: 24px
+
+  .message
+    width: 206px
+
+  .file
+    +center
+  .size
+    +center
+    display: block !important
+    margin: 8px 0
+
+  .progress
+    +center
+
+// NEW ENTRY IMAGE UPLOAD
+#currentImages
+  .uploading
+    +left
+    margin: 0px 8px 8px 0px
+    height: 120px
+    width: 120px
+
+  .message
+    width: 112px
+
+  .cancel
+    left: 4px
+    width: 112px
+
+  .file
+    +absolute
+    top: 4px
+    left: 4px
+  .size
+    +absolute
+    width: 100%
+    bottom: 50%
+    right: 0
+
