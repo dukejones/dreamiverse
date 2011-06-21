@@ -38,7 +38,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     if html?
       $('#entryField').children().hide()
       @element.html html
-      @publish 'entries.drag', @element
+      @setupEntryDragging()
+      #@publish 'entries.drag', @element
       $('.matrix.books', @element).books()
     
     @publish 'books.create' if newBook
