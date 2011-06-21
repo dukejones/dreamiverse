@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518020744) do
+ActiveRecord::Schema.define(:version => 20110620201844) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.integer  "cumulative_starlight", :default => 0
     t.integer  "uniques",              :default => 0
     t.integer  "new_comment_count",    :default => 0
+    t.integer  "book_id"
   end
 
   create_table "entries_images", :id => false, :force => true do |t|
@@ -114,6 +115,8 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "hits", ["url_path", "ip_address"], :name => "index_hits_on_url_path_and_ip_address"
 
   create_table "images", :force => true do |t|
     t.string   "section"
@@ -184,11 +187,11 @@ ActiveRecord::Schema.define(:version => 20110518020744) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false,        :null => false
+    t.boolean  "ubiquity",              :default => false,      :null => false
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
-    t.string   "stream_filter",         :default => "--- {}\n\n"
+    t.string   "stream_filter",         :default => "--- {}\n"
     t.string   "default_landing_page",  :default => "stream"
     t.string   "default_entry_type",    :default => "dream"
   end
