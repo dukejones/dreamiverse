@@ -26,6 +26,12 @@ namespace :app do
     open(url)
   end
 
+  desc "Clear out the hits table"
+  task :clear_hits => :environment do
+    num Hit.delete_all(["created_at < ?", 1.week.ago])
+    log "#{num} old hits deleted."
+  end
+
 end
 
 task :compile => ['barista:brew', 'compile:sass', 'compile:jammit']
