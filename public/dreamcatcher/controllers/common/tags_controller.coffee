@@ -19,6 +19,12 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     tagCount = @countTags()
     return if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
 
+    # entryId = $('.entry', @scope).data 'id' 
+    # @model.tag.create {
+    #   entry_id: entryId
+    #   what_name: tagName
+    # }, @callback('appendTag', tagName)
+
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
@@ -29,8 +35,13 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
       }, @callback('appendTag', tagName)  
           
   appendTag: (tagName, json=null) ->
-    tagId = if json? then json.what_id else -1
-    html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
+    if json?
+      tagId = json.what_id
+      html = json.html
+    else
+      tagId = -1
+      html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
+    
     $('.custom.tag-list', @scope).append html
     $('.newTag', @scope).val ''
        
@@ -52,10 +63,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     if @mode is 'edit' 
       @removeTagFromDom(el)    
     else if @mode is 'show'
+      @removeTagFromDom el
       @model.tag.delete {
         entry_id: entryId
         what_id: tagId
-      }, @callback('removeTagFromDom', el)
+      }
    
   removeTagFromDom: (el) ->
     @tag = el.parent()
