@@ -19,12 +19,6 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     tagCount = @countTags()
     return if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
 
-    # entryId = $('.entry', @scope).data 'id' 
-    # @model.tag.create {
-    #   entry_id: entryId
-    #   what_name: tagName
-    # }, @callback('appendTag', tagName)
-
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
