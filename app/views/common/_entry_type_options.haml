@@ -1,8 +1,5 @@
 - selected_entry_type ||= nil
-- show_all_option ||= false
 - plural ||= true
-- if show_all_option
-  %option.allEntries{ value: '', :selected => (selected_entry_type.blank?) } all entries
 
 - %w(dream vision experience article journal).each do |entry_type|
   display_entry_type = plural ? entry_type.pluralize : entry_type

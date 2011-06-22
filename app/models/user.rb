@@ -195,6 +195,7 @@ class User < ActiveRecord::Base
   
   def set_defaults
     self.auth_level ||= AuthLevel[:basic]
+    # TODO: Make this default to :followers
     self.default_sharing_level ||= Entry::Sharing[:everyone]
     self.default_landing_page ||= 'stream'
     self.default_entry_type ||= 'dream'
