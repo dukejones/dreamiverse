@@ -18,7 +18,7 @@ class EntryTest < ActiveSupport::TestCase
     accessible = Entry.accessible_by(users[:duke])
     # where dream is public or i am friends with entry.user
     assert Entry.everyone.all?{|e| accessible.include?(e) }, "all public dreams are accessible"
-    assert Entry.private.none?{|e| accessible.include?(e) }, "no private dreams are accessible"
+    assert Entry.private_sharing.none?{|e| accessible.include?(e) }, "no private dreams are accessible"
 
     assert_equal Entry.friends.where(user: users[:phong]).map(&:id), Entry.friends.accessible_by(users[:duke]).map(&:id)
     assert_equal Entry.followers.where(user: users[:phong]).map(&:id), Entry.followers.accessible_by(users[:duke]).map(&:id)
