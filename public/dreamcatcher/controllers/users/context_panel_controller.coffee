@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
 }, {
 
   model: {
-    entry : Dreamcatcher.Models.Entry
+    entry : Entry
     user: Dreamcatcher.Models.User
   }
   
