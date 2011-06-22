@@ -87,7 +87,6 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Admin', {
     @updateNav() 
     
   '#user-filter change': (el) ->
-    log 'user-filter changed to: ' + el.val()
     @page = 1 
     $('#user-pageLoading').show()
     Dreamcatcher.Models.Admin.loadUsers @getOptions(), @updateUsersPage  

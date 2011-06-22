@@ -28,15 +28,6 @@
             .uploadAvatar
               <span>+</span> upload new avatar
 
-        / .uploading
-        /   .progress-bar
-        /   .file file_name.jpg
-        /   .size 70.5MB
-        /   .cancel cancel
-        /   .failed
-        /   .progress
-        /   .spinner
-        /   .close.hidden
 
         .entryRemove
           %div remove entry from book and return it to dreamfield
@@ -134,10 +125,10 @@
 
       / FILTER BY ENTRY TYPE
       .wrapper
-        .item.entryFilter.entries.trigger.slideArrow
+        .item.entryFilter.entries
 
           %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
-            = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'journal'}
+            = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'dream'}
 
           .image
             %img.dream{src: '/images/icons/entries-24.png'}
@@ -145,29 +136,19 @@
             = @entry_count || user.entries.count
           .clear
 
-          / .filterList.entries.target.slideArrow.hidden
-          /   %a.type.top{href: user_entries_path(user.username)}
-          /     %span all entries
-          /   %a.type{href: user_entries_filter_path(user.username, 'dreams')}
-          /     %span dreams
-          /   %a.type{href: user_entries_filter_path(user.username, 'visions')}
-          /     %span visions
-          /   %a.type{href: user_entries_filter_path(user.username, 'experiences')}
-          /     %span experiences
-          /   %a.type{href: user_entries_filter_path(user.username, 'articles')}
-          /     %span articles
-          /   %a.type.bottom{href: user_entries_filter_path(user.username, 'journals')}
-          /     %span journals
 
 
 
       / FILTER BY FRIENDS
       .wrapper
 
-        .item.entryFilter.friends.trigger.slideArrow
-          .label
-            %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-            %span.value= (@mode || 'friends')
+        .item.usersFilter.friends
+
+          %select#users-filter.select-menu.dropdown.label{:'data-username' => user.username}
+            %option.allUsers{value: 'all users'} all users
+            %option.friends{value: 'friends'} friends
+            %option.following{value: 'following'} following
+
           .image
             %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
           .detail

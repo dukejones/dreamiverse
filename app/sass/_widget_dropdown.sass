@@ -131,25 +131,30 @@
   +relative
   border: 1px solid #7a7a7a
 
-// STREAM FILTERS - icons
-#entry-filter-button, #users-filter-button, #entry-filter-menu, #users-filter-menu
+// CONTEXT PANEL & STREAM CONTEXT PANEL FILTERS
+#entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
 
-  .ui-selectmenu-status, li a
+  .ui-selectmenu-status, li
     padding-left: 44px
+    background-position: 10px center
+    background-repeat: no-repeat
+
+  li
+    padding-left: 32px
 
   // ENTRY FILTER
-  &.allEntries .ui-selectmenu-status, .allEntries a
-    background: url(/images/icons/entries-24.png) no-repeat 10px center
-  &.dreams .ui-selectmenu-status, .dreams a
-    background: url(/images/icons/dream-24-hover.png) no-repeat 10px center
-  &.visions .ui-selectmenu-status, .visions a
-    background: url(/images/icons/vision-24-hover.png) no-repeat 10px center
-  &.experiences .ui-selectmenu-status, .experiences a
-    background: url(/images/icons/experience-24-hover.png) no-repeat 10px center
-  &.articles .ui-selectmenu-status, .articles a
-    background: url(/images/icons/article-24-hover.png) no-repeat 10px center
-  &.journals .ui-selectmenu-status, .journals a
-    background: url(/images/icons/journal-24-hover.png) no-repeat 10px center
+  &.allEntries .ui-selectmenu-status, .allEntries
+    background-image: url(/images/icons/entries-24.png)
+  &.dream .ui-selectmenu-status, .dream
+    background-image: url(/images/icons/dream-24-hover.png)
+  &.vision .ui-selectmenu-status, .vision
+    background-image: url(/images/icons/vision-24-hover.png)
+  &.experience .ui-selectmenu-status, .experience
+    background-image: url(/images/icons/experience-24-hover.png)
+  &.article .ui-selectmenu-status, .article
+    background-image: url(/images/icons/article-24-hover.png)
+  &.journal .ui-selectmenu-status, .journal
+    background-image: url(/images/icons/journal-24-hover.png)
 
   // chrome fix hovers
   .allEntries.ui-selectmenu-item-focus
@@ -161,12 +166,12 @@
 
 
   // USERS FILTER
-  &.allUsers .ui-selectmenu-status, .allUsers a
-    background: url(/images/icons/sharing-24-hover.png) no-repeat 10px center
-  &.friends .ui-selectmenu-status, .friends a
-    background: url(/images/icons/friend-24.png) no-repeat 10px center
-  &.following .ui-selectmenu-status, .following a
-    background: url(/images/icons/friend-24-follow.png) no-repeat 10px center
+  &.allUsers .ui-selectmenu-status, .allUsers
+    background-image: url(/images/icons/sharing-24-hover.png)
+  &.friends .ui-selectmenu-status, .friends
+    background-image: url(/images/icons/friend-24.png)
+  &.following .ui-selectmenu-status, .following
+    background-image: url(/images/icons/friend-24-follow.png)
 
   // chrome fix hovers
   .allUsers.ui-selectmenu-item-focus
@@ -178,12 +183,12 @@
 
 
 .light 
-  #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+  #contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
     +flat-light
     &:hover
       +glow-light(10)
 .dark
-  #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+  #contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
     +flat-dark
     &:hover
       +glow-dark(10)
