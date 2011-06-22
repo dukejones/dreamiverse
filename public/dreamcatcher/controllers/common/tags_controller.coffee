@@ -10,15 +10,20 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @scope = $(scope)
     @mode = mode
     @buttonMode = 'expand'
-    #log "loaded tags controller @mode: #{@mode}"
+    @loadingTag = false
     
   getTag: -> $('.newTag:first', @scope).val().replace('/','').replace(',','').trim()    
     
   addTag: ->
+    return if @loadingTag
+    @loadingTag = true
     tagName = @getTag()
     tagCount = @countTags()
-    return if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
-
+    
+    if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
+      @loadingTag = false
+      return
+    
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
@@ -38,6 +43,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     
     $('.custom.tag-list', @scope).append html
     $('.newTag', @scope).val ''
+    @loadingTag = false
        
   # Check both custom and analysis tag lists
   alreadyExists: (tagName) ->
@@ -97,7 +103,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   # DOM Listeners
   
   '.tagAdd click': (el, ev) ->
-    @addTag()
+    @addTag() 
           
   '.tagThisEntry click': ->
     if @buttonMode is 'expand'
@@ -117,7 +123,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @removeTag el
   
   '.tag-list .tag .close touchstart': (el) -> 
-    @removeTagFromDom el.parent()
+    @removeTag el
     
   '.tagAnalysis .trigger click': (el) ->
     if @mode is 'show'
