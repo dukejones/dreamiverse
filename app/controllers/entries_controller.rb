@@ -33,6 +33,7 @@ class EntriesController < ApplicationController
     # TODO: check viewing permissions depending on user
     @books = Book.where({user_id: @user.id}) unless @filters[:type]
     
+    # TODO: Make this one query.
     @entries = entry_list(:dreamfield, @filters)
     @entry_count = entry_list(:dreamfield, {type: @filters[:type], show_all: "true"}).count
     
@@ -75,7 +76,10 @@ class EntriesController < ApplicationController
     i = (@entries.index {|e| e == @entry }) || 0
     @previous = @entries[i-1] || @entry
     if request.xhr?
-      render :json => {:entry_id => @previous.id}
+      render :json => {
+        :entry_id => @previous.id, :username => @previous.user.username, 
+        :redirect_to => user_entry_path(@previous.user.username, @previous)
+      }
     else
       redirect_to user_entry_path(@previous.user.username, @previous)
     end
@@ -87,7 +91,10 @@ class EntriesController < ApplicationController
     i = (@entries.index {|e| e == @entry }) || 0
     @next = @entries[i+1] || @entries[0] || @entry
     if request.xhr?
-      render :json => {:entry_id => @next.id}
+      render :json => {
+        :entry_id => @next.id, :username => @next.user.username, 
+        :redirect_to => user_entry_path(@next.user.username, @next)
+      }
     else
       redirect_to user_entry_path(@next.user.username, @next)
     end
