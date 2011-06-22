@@ -232,6 +232,7 @@ class EntriesController < ApplicationController
   # Redirect to / if neither param nor current_user.
   def query_username
     @user = params[:username] ? User.find_by_username( params[:username] ) : current_user
+    @user ||= Entry.find(params[:id]).user if request.xhr? and params[:id]
     redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
   end
   

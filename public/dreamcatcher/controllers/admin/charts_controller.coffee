@@ -33,7 +33,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Charts', {
       width: 600, height: 300, 
       backgroundColor: 'black',
       legendTextStyle: {color: 'white'},
-      titleTextStyle: {cƒolor: 'white'},
+      titleTextStyle: {color: 'white'},
       hAxis: {textStyle: {color: 'white'}},
       vAxis: {textStyle: {color: 'white'}}
     })
@@ -61,7 +61,7 @@ $.Controller 'Dreamcatcher.Controllers.Admin.Charts', {
     # Generate Chart
     chart = new google.visualization.PieChart(document.getElementById(chartDivId))
     chart.draw(data, {
-      title: "#{json.data.title}"
+      title: "#{json.data['title']}"
       width: 600
       height: 300
       cht: 'p3'
