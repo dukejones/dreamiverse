@@ -24,7 +24,8 @@
   #entry-filter-wrap.tooltip{title: "entry type filter"}
     .spinner
     %select#entry-filter.select-menu.dropdown
-      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: @filters[:type], show_all_option: true}
+      %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: @filters[:type]}
 
   #users-filter-wrap.tooltip{title: "sharing level filter"}
     .spinner

@@ -26,8 +26,7 @@
 
 
     %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}
-      - locals = {selected_entry_type: (@entry.type), plural: false}
-      = render :partial => 'common/entry_type_options', :locals => locals
+      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: (@entry.type), plural: false}
 
     #entry-date.tooltip.attach{title: "date and time", name: 'dateTime'}
       .img
