@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
 }, {
 
   model: {
-    entry : Dreamcatcher.Models.Entry
+    entry : Entry
   }
 
   init: (el) ->
@@ -148,7 +148,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   ###
   'form#new_entry, form.edit_entry submit': (el, ev) ->
     ev.preventDefault()
-    new Dreamcatcher.Models.Entry(el.formParams()).save()
+    new Entry(el.formParams()).save()
 
 
   'entry.created subscribe': (called, response) ->

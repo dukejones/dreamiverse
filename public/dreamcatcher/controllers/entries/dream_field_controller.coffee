@@ -25,7 +25,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     if $('.matrix.index', @element).data('username') is username
       @displayEntryField null, newBook, editBookId
       return
-    Dreamcatcher.Models.Entry.index username, (html) =>
+    Entry.index username, (html) =>
       @displayEntryField html, newBook, editBookId
       
   displayEntryField: (html, newBook, editBookId) ->
