@@ -205,7 +205,7 @@ class AdminController < ApplicationController
 
   def load_bedsheets
     @data = {}
-    top_bedsheet_ids = ViewPreference.scoped.where(:image_id ^ nil).order("count(image_id) DESC").group(:image_id).limit(32).map(&:image_id)
+    top_bedsheet_ids = ViewPreference.scoped.where(:image_id ^ nil).order("count(image_id) DESC").group(:image_id).limit(30).map(&:image_id)
     
     num = 0
     nodes_html = ''

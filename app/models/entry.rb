@@ -2,7 +2,6 @@ class Entry < ActiveRecord::Base
   self.inheritance_column = nil
 
   include SharingLevels
-  
   include Starlit
   cascade_starlight_to :user
   

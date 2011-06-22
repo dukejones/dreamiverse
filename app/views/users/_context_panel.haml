@@ -28,6 +28,16 @@
             .uploadAvatar
               <span>+</span> upload new avatar
 
+        / .uploading
+        /   .progress-bar
+        /   .file file_name.jpg
+        /   .size 70.5MB
+        /   .cancel cancel
+        /   .failed
+        /   .progress
+        /   .spinner
+        /   .close.hidden
+
         .entryRemove
           %div remove entry from book and return it to dreamfield
       - if user == current_user
@@ -125,31 +135,29 @@
       / FILTER BY ENTRY TYPE
       .wrapper
         .item.entryFilter.entries.trigger.slideArrow
-          .label
-            %img.arrow{src: '/images/icons/arrow-down-16.png'} 
-            %span.value entries
+
+          %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
+            = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'journal'}
+
           .image
             %img.dream{src: '/images/icons/entries-24.png'}
           .detail
             = @entry_count || user.entries.count
           .clear
 
-        %select#entry-filter.select-menu.dropdown{:'data-username' => user.username}
-          = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'journal'}
-
-        / .filterList.entries.target.slideArrow.hidden
-        /   %a.type.top{href: user_entries_path(user.username)}
-        /     %span all entries
-        /   %a.type{href: user_entries_filter_path(user.username, 'dreams')}
-        /     %span dreams
-        /   %a.type{href: user_entries_filter_path(user.username, 'visions')}
-        /     %span visions
-        /   %a.type{href: user_entries_filter_path(user.username, 'experiences')}
-        /     %span experiences
-        /   %a.type{href: user_entries_filter_path(user.username, 'articles')}
-        /     %span articles
-        /   %a.type.bottom{href: user_entries_filter_path(user.username, 'journals')}
-        /     %span journals
+          / .filterList.entries.target.slideArrow.hidden
+          /   %a.type.top{href: user_entries_path(user.username)}
+          /     %span all entries
+          /   %a.type{href: user_entries_filter_path(user.username, 'dreams')}
+          /     %span dreams
+          /   %a.type{href: user_entries_filter_path(user.username, 'visions')}
+          /     %span visions
+          /   %a.type{href: user_entries_filter_path(user.username, 'experiences')}
+          /     %span experiences
+          /   %a.type{href: user_entries_filter_path(user.username, 'articles')}
+          /     %span articles
+          /   %a.type.bottom{href: user_entries_filter_path(user.username, 'journals')}
+          /     %span journals
 
 
 

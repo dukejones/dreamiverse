@@ -2,7 +2,7 @@ $.Model 'Dreamcatcher.Models.Chart',{
   
   loadSimpleLineChart: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/load_line_chart"
+      url: "/admin/line_chart"
       type: 'get'
       data: params
       dataType:'json'
@@ -12,7 +12,7 @@ $.Model 'Dreamcatcher.Models.Chart',{
       
   loadPieChart: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/load_pie_chart"
+      url: "/admin/pie_chart"
       type: 'get'
       data: params
       dataType:'json'
