@@ -2,7 +2,7 @@ $.Model 'Dreamcatcher.Models.Admin',{
   
   loadUsers: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/user_list"
+      url: "/admin/users"
       type: 'get'
       data: params
       dataType:'json'
@@ -12,7 +12,7 @@ $.Model 'Dreamcatcher.Models.Admin',{
 
   loadBedsheets: ( params, success, error ) ->
     $.ajax {
-      url: "/admin/load_bedsheets"
+      url: "/admin/bedsheets"
       type: 'get'
       data: params
       dataType:'json'
