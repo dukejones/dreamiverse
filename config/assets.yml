@@ -98,7 +98,7 @@ javascripts:
     - public/javascripts/browserdetect.js
     #- public/javascripts/pubsub.js
     - public/javascripts/compiled/sharing.js
-    - public/javascripts/compiled/cookies.js
+    # - public/javascripts/compiled/cookies.js
     
   show_entry:
     - public/javascripts/browserdetect.js
