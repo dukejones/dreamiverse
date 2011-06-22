@@ -47,7 +47,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         data.id = hrefSplit[2]
       
       if hrefSplit.length > 3
-        action = hrefSplit[3] if hrefSplit.length > 3
+        action = hrefSplit[3]
   
     else
       action = 'index'
@@ -76,6 +76,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     data = $('#userInfo').data 'viewpreference' unless data?
     return unless data.image_id?
 
+    # TODO: Make this an Image model lookup.   new Image(data.image_id).url('bedsheet')
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
 
