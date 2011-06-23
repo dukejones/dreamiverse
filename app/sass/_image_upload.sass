@@ -153,7 +153,10 @@
 // NEW BOOK COVER IMAGE UPLOAD
 .dropbox-field-shine
   .uploading
+    +absolute
     +round(12)
+    top: 0
+    left: 0
     width: 134px
     height: 170px
 
@@ -164,13 +167,11 @@
   .message
     width: 134px
 
-  .file
+  .file, .size, .progress
     +center
+    color: #fff
+
   .size
-    +center
     display: block !important
     margin: 8px 0
-
-  .progress
-    +center
 
