@@ -61,7 +61,7 @@
       +relative
       +overflow
       +clear
-      height: 346px
+      min-height: 346px
       
       div.spinner
         +relative
@@ -275,3 +275,18 @@
     +glow-dark(0)
 
 
+
+
+
+
+
+
+// MEDIA QUERIES
+// if viewing area is 1000px or greater
+@media screen and (min-height: 790px)
+  #bedsheetScroller
+    height: 540px
+
+@media screen and (min-height: 1000px)
+  #bedsheetScroller
+    height: 760px
