@@ -2,7 +2,7 @@
 
 embed_assets: datauri
 
-# compress_assets: off
+compress_assets: off
 # javascript_compressor: closure
 # template_namespace: JST
 template_function: off
