@@ -8,6 +8,8 @@ set :deploy_to, "/var/www/#{application}"
 
 server "dreamcatcher.net", :web, :app, :db, :primary => true, :memcached => true
 
+after "deploy:restart", "compile:haml"
+
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
