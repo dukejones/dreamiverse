@@ -1,8 +1,9 @@
 
 // NEW ENTRY IMAGE UPLOAD - #currentImages
 // NEW AVATAR IMAGE UPLOAD - #contextPanel
+// NEW BOOK COVER IMAGE UPLOAD - .dropbox-field-shine
 // SHARED STYLES
-#currentImages, #contextPanel
+#currentImages, #contextPanel, .dropbox-field-shine
 
   .replace
     +hidden
@@ -148,4 +149,28 @@
     width: 100%
     bottom: 50%
     right: 0
+
+// NEW BOOK COVER IMAGE UPLOAD
+.dropbox-field-shine
+  .uploading
+    +round(12)
+    width: 134px
+    height: 170px
+
+    .cancel
+      left: 12px
+      width: 112px
+
+  .message
+    width: 134px
+
+  .file
+    +center
+  .size
+    +center
+    display: block !important
+    margin: 8px 0
+
+  .progress
+    +center
 
