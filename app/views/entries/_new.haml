@@ -58,7 +58,7 @@
 
     / SHARING PANEL
     - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
-    %select#sharing-list.select-menu.radio{ name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
+    %select#sharing-list.select-menu.radio.dropdown{ name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
       = render :partial => "common/sharing_level_options", :locals => {:level => sharing_level}
 
     / .sharingWrap.wrapper
