@@ -35,12 +35,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   'entries.new subscribe': ->
     @publish 'context_panel.show'
     @mode = 'new'
-    @model.entry.new {}, @callback('displayNewEditEntry')
+    Entry.new {}, @callback('displayNewEditEntry')
 
   'entries.edit subscribe': (called, data) ->
     @publish 'context_panel.show'
     @mode = 'edit'
-    @model.entry.edit data.id, @callback('displayNewEditEntry')
+    Entry.edit data.id, @callback('displayNewEditEntry')
     
   #- Cookie Saver
       

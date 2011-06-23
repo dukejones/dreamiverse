@@ -15,7 +15,7 @@
   - if @book
     %a.history.bookSpine.spine{href: "/books/#{@book.id}", class: @book.color}
       = @book.title
-  - elsif session[:lens] == :stream
+  - elsif session[:entries_context] == :dreamstream
     %a.history.stream{href: stream_path} stream
   - else
     %a.history.entries{href: user_entries_path(@user.username)} entries
