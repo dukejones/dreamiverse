@@ -1,4 +1,4 @@
-$.Model.extend 'Dreamcatcher.Models.Entry', {
+$.Model.extend 'Entry', {
   
   
   create: (params) ->

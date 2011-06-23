@@ -10,15 +10,20 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @scope = $(scope)
     @mode = mode
     @buttonMode = 'expand'
-    #log "loaded tags controller @mode: #{@mode}"
+    @loadingTag = false
     
   getTag: -> $('.newTag:first', @scope).val().replace('/','').replace(',','').trim()    
     
   addTag: ->
+    return if @loadingTag
+    @loadingTag = true
     tagName = @getTag()
     tagCount = @countTags()
-    return if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
-
+    
+    if tagName.length < 2 or tagCount > 16 or @alreadyExists tagName
+      @loadingTag = false
+      return
+    
     if @mode is 'edit' 
       @appendTag tagName
     else if @mode is 'show'     
@@ -29,10 +34,16 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
       }, @callback('appendTag', tagName)  
           
   appendTag: (tagName, json=null) ->
-    tagId = if json? then json.what_id else -1
-    html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
+    if json?
+      tagId = json.what_id
+      html = json.html
+    else
+      tagId = -1
+      html = $.View('/dreamcatcher/views/common/tags/show.ejs', {tagName: tagName, tagId: tagId, mode: @mode})
+    
     $('.custom.tag-list', @scope).append html
     $('.newTag', @scope).val ''
+    @loadingTag = false
        
   # Check both custom and analysis tag lists
   alreadyExists: (tagName) ->
@@ -52,10 +63,11 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     if @mode is 'edit' 
       @removeTagFromDom(el)    
     else if @mode is 'show'
+      @removeTagFromDom el
       @model.tag.delete {
         entry_id: entryId
         what_id: tagId
-      }, @callback('removeTagFromDom', el)
+      }
    
   removeTagFromDom: (el) ->
     @tag = el.parent()
@@ -91,7 +103,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
   # DOM Listeners
   
   '.tagAdd click': (el, ev) ->
-    @addTag()
+    @addTag() 
           
   '.tagThisEntry click': ->
     if @buttonMode is 'expand'
@@ -111,7 +123,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Tags', {
     @removeTag el
   
   '.tag-list .tag .close touchstart': (el) -> 
-    @removeTagFromDom el.parent()
+    @removeTag el
     
   '.tagAnalysis .trigger click': (el) ->
     if @mode is 'show'

@@ -4,7 +4,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   model: {
     book: Dreamcatcher.Models.Book
-    entry: Dreamcatcher.Models.Entry
+    entry: Entry
   }
   
   el: {    

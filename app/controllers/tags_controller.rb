@@ -8,6 +8,7 @@ class TagsController < ApplicationController
     @entry.reorder_tags
     
     tag_html = render_to_string(partial: 'entries/tag', locals: {what: what, close_button: true })
+
     render :json => { type: 'ok', what_id: what.id, html: tag_html }
   rescue => e
     render :json => { type: 'error', message: e.message }
