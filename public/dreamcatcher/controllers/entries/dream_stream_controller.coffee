@@ -55,7 +55,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
   clear: ->
     $('#noMoreEntries, .noEntrys, #nextPageLoading, #entry-filter-wrap .spinner, #users-filter-wrap .spinner').hide()
 
-  'entries.stream subscribe': ->
+  'stream.index subscribe': ->
     $('#entryField').children().hide()
     $('#entryField .matrix.stream').show()
     $('#totem').hide()

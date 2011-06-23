@@ -27,6 +27,19 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @publish 'history.change', href
     
   'history.change subscribe': (called, href) ->
+    # entries_show = /^\/(\w+)\/(\d+)$/
+    # stream = /^\/stream$/
+    # books = /^\/books\/?(\w*)/
+    # if (match = entries_show.exec(href))?
+    #   @publish 'entries.show', {username: match[1], id: match[2]}
+    # if (match = books.exec(href))?
+    #   if (action = match[1])?
+    #   else
+    #     action = 'index'
+    #   @publish "books.#{action}", data
+    # if (match = stream.exec(href))?
+    #   @publish 'dreamstream'
+
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
@@ -36,7 +49,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
       if hrefSplit[1] is 'books'
         controller = hrefSplit[1]
       else if hrefSplit[1] is 'stream'
-        action = hrefSplit[1]
+        controller = hrefSplit[1]
       else
         data.username = hrefSplit[1]
       
