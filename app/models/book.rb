@@ -10,6 +10,6 @@ class Book < ActiveRecord::Base
   protected
   
   def set_defaults
-    self.color = 'blue'
+    self.color ||= 'blue'
   end
 end

@@ -1,0 +1,5 @@
+
+rails dbconsole
+show innodb status;
+("LATEST DETECTED DEADLOCK")
+
