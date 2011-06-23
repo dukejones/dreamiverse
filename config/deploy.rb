@@ -23,7 +23,6 @@ before "deploy:symlink", "uploads:symlink"
 before "deploy:restart", "compile:the_rest"
 # before "deploy:restart", "compile:jmvc"
 after "deploy:restart", "memcached:restart"
-after "deploy:restart", "compile:haml"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"

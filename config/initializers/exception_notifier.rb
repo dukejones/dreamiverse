@@ -1,3 +1,5 @@
+ExceptionNotifier::Notifier.prepend_view_path File.join(Rails.root, 'app/views')
+
 unless Rails.env == 'development'
   require 'exception_notifier'
   Dreamcatcher::Application.config.middleware.use ExceptionNotifier,

@@ -44,7 +44,7 @@ class BooksController < ApplicationController
   
   def new
     if request.xhr?
-      render(partial:"books/book")
+      render(partial:"books/book", object: Book.new)
     else
       redirect_to user_entries_path(current_user.username)
     end
@@ -53,8 +53,8 @@ class BooksController < ApplicationController
   def edit
     if request.xhr?
       @book = Entry.find params[:id]
-      @book_mode = 'edit'
-      render(partial:"books/book")
+      # @book_mode = 'edit'
+      render(partial:"books/book", object: @book)
     else
       redirect_to user_entries_path(current_user.username)
     end

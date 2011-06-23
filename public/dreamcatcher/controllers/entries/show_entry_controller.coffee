@@ -42,13 +42,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     @model.entry.next data.id, (response) =>
       window.history.replaceState null, null, response.redirect_to
       @publish 'entries.show', {id: response.entry_id, username: response.username}
-      # @showEntryById response.entry_id
       
   'entries.previous subscribe': (called, data) ->
     @model.entry.previous data.id, (response) =>
       window.history.replaceState null, null, response.redirect_to
       @publish 'entries.show', {id: response.entry_id, username: response.username}
-      # @showEntryById response.entry_id
 
 }
   
