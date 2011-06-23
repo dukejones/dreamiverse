@@ -140,6 +140,14 @@
   li
     padding-left: 32px
 
+  // li rounded corners for chrome
+  .allEntries, .dream, .allUsers
+    +round(10)
+    +flat-bottom
+  .journal, .following
+    +round(10)
+    +flat-top
+
   // ENTRY FILTER
   &.allEntries .ui-selectmenu-status, .allEntries
     background-image: url(/images/icons/entries-24.png)
