@@ -57,7 +57,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 
   'stream.index subscribe': ->
     $('#entryField').children().hide()
-    $('#entryField .matrix.stream').show()
+    $('#entriesStream').show()
     $('#totem').hide()
     $('#streamContextPanel').show()
     @publish 'appearance.change'
