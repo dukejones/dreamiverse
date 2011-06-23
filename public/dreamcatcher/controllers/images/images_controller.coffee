@@ -8,7 +8,8 @@ $.Controller 'Dreamcatcher.Controllers.Images.Images', {
     @scope = $(el)
     $('#frame.browser').browser this
     $('#dropbox').dropbox this
-    @searchOptions = $("#searchOptions").searchOptions this
+    @searchOptions = new Dreamcatcher.Controllers.Images.SearchOptions $("#searchOptions")
+    @searchOptions.parent = this
     
   showWidget: (widget, images, params, hideBrowser) ->
     $('#frame.browser').hide() if hideBrowser
@@ -51,13 +52,13 @@ $.Controller 'Dreamcatcher.Controllers.Images.Images', {
         @showWidget widget, images, params, true
     else
       @showWidget widget, images, params, true
-  ###
+
   getSearchOptions: ->
     options = {}
     options = @searchOptions.get() if @searchOptions?
+    log @searchOptions
     options['q'] = $(".searchField input[type='text']").val()
     return options
-  ###
   
   'image.updated subscribe': (called, imageId) ->
     imageId = parseInt imageId

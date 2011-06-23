@@ -61,13 +61,14 @@ javascripts:
     - public/compiled/controllers/common/tags_controller.js
     - public/compiled/controllers/common/comments_controller.js
     - public/compiled/controllers/users/meta_menu_controller.js
+    - public/compiled/controllers/users/settings_panel_controller.js
+    - public/compiled/controllers/users/appearance_panel_controller.js
+    - public/compiled/controllers/users/context_panel_controller.js
     - public/compiled/controllers/entries/dream_field_controller.js
     - public/compiled/controllers/entries/dream_stream_controller.js
     - public/compiled/controllers/entries/newedit_entry_controller.js
     - public/compiled/controllers/entries/books_controller.js
     - public/compiled/controllers/entries/show_entry_controller.js
-    - public/compiled/controllers/users/context_panel_controller.js
-    - public/compiled/controllers/users/appearance_panel_controller.js
     - public/compiled/controllers/admin/admin_controller.js
     - public/compiled/controllers/admin/charts_controller.js
     - public/compiled/controllers/images/images_controller.js
