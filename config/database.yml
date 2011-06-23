@@ -2,6 +2,7 @@
 development:
   adapter: mysql2
   database: dreamcatcher_development
+  username: root
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
