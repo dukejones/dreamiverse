@@ -1,7 +1,6 @@
 
 - cover_style = (book.image_id) ? "background: url(#{book.image.url('bookcover')}) no-repeat center center" : ""
-- editable = current_user == book.user 
-
+- editable = current_user == book.user || book.new_record?
 
 / BOOKS
 .book{:'data-id' => (book.new_record? ? 'new' : book.id), class: book.color, :'data-color' => book.color}
@@ -38,7 +37,7 @@
   .open.hidden
     - if editable
       / BODY CLICK FOR OPEN BOOK
-      %a.history.closeClick{href: user_entries_path(book.user.username)}
+      %a.history.closeClick{href: user_entries_path(current_user.username)}
 
 
       / CONTROL PANEL
@@ -66,7 +65,7 @@
           .arrow
             .down
 
-          %a.history.confirm{href: user_entries_path(book.user.username)} OK
+          %a.history.confirm{href: user_entries_path(current_user.username)} OK
 
         .clear
 
