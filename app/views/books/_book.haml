@@ -1,8 +1,6 @@
 
 - cover_style = (book.image_id) ? "background: url(#{book.image.url('bookcover')}) no-repeat center center" : ""
 - editable = current_user == book.user 
--# default new book color == 'blue' 
-- book.color ||= 'blue'
 
 
 / BOOKS
@@ -18,7 +16,7 @@
 
     .cover{style: cover_style}
 
-    %a.history.mask{href: (defined? is_context) ? user_entries_path(book.user.username) : book_path(book)}
+    %a.history.mask{href: (defined? context_panel) ? user_entries_path(book.user.username) : (book.new_record? ? '' : book_path(book))}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
