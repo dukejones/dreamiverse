@@ -108,7 +108,7 @@
 
 
 // STREAM FILTERS - html dropdown
-#streamContextPanel select
+#contextPanel select, #streamContextPanel select
   width: 200px
   padding: 6px 0
   // line-height for chrome / webkit height
@@ -124,15 +124,13 @@
   z-index: 2 !important
   width: 198px !important
 
-// STREAM FILTERS - widget
-#streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+
+// CONTEXT PANEL & STREAM CONTEXT PANEL FILTERS
+#contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
   +pointer
   +round(12)
   +relative
   border: 1px solid #7a7a7a
-
-// CONTEXT PANEL & STREAM CONTEXT PANEL FILTERS
-#entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
 
   .ui-selectmenu-status, li
     padding-left: 44px
