@@ -535,11 +535,13 @@
     .context:hover, .entryFilter .label:hover
       border: 1px solid #111
       +pointer
+
     .context
       color: #222
       +shine-light-alpha(16)
       &:hover
         color: #000
+
     .label
       +shine-light-alpha(16)
       &.selected
@@ -643,20 +645,21 @@
         border: 1px solid rgba(0,0,0,0.6)
 
     .context, .label
-      +shine-dark-alpha(16)
-    .label
-      border: 1px solid #090909
-    .label.selected
-      +shine-light-alpha(16)
-      color: #000 !important
-    .context, .entryFilter .label
       border: 1px solid #333
+      +shine-dark-alpha(16)
+
+    .context, .entryFilter .label
       &:hover
         +button-dark
+
     .context
       color: #ccc
       &:hover
         color: #fff
+
+    .label.selected
+      +shine-light-alpha(16)
+      color: #000 !important
 
 
     .relation

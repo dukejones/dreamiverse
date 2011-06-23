@@ -142,7 +142,7 @@
       / FILTER BY FRIENDS
       .wrapper
 
-        .item.usersFilter.friends
+        .item.entryFilter.friends
 
           %select#users-filter.select-menu.dropdown.label{:'data-username' => user.username}
             %option.allUsers{value: 'all users'} all users
@@ -166,7 +166,7 @@
 
       / STARLIGHT
       .item
-        .label.starlight
+        .label.entryFilter.starlight
           %span.value starlight
         .image
           %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
