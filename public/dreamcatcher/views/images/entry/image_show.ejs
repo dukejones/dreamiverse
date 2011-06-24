@@ -1,4 +1,8 @@
-<li class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center #A4A6A8'>
+
+
+<li class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center transparent'>
+
+  <!-- <div class="placeholder"></div> -->
 
   <div class="message">
     <span>confirm delete</span>
@@ -16,3 +20,14 @@
 </li>
 
 <input type="hidden" id="entry_image_ids_" name="entry[image_ids][]" value="<%= this.id %>" class="image_upload">
+
+<!-- <div class="uploading">
+  <div class="progress-bar"></div>
+  <div class="file">fileName.jpg</div>
+  <div class="size">568 MB</div>
+  <div class="cancel">cancel</div>
+  <div class="failed">failed</div>
+  <div class="progress">75% of 50 MB</div>
+  <div class="spinner"></div>
+  <div class="close"></div>
+</div> -->
