@@ -8,7 +8,7 @@
     %meta{name:"og:image", content:"http://dreamcatcher.net#{@entry.main_image.url(:facebook)}"}
 
 / CONTEXT PANEL
-= render :partial => "users/context_panel", :locals => {:user => @entry.user}
+= render :partial => "layouts/context_panel", :locals => {:user => @entry.user}
 
 #entryField{:'data-owner' => @entry.user == current_user ? 'true' : 'false'}
   #entriesIndex{style: 'display:none'}
