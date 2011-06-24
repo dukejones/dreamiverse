@@ -9,7 +9,7 @@
 
     .fadedBack
       .detailsTop, .detailsBottom, .comments, .sharing
-        +block
+        +alpha(100)
 
 
 
@@ -23,6 +23,11 @@
     z-index: 80
 
   .thumb-2d
+
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +alpha(0)
+
     .link
       +block
       +absolute
@@ -84,7 +89,6 @@
 
     .detailsTop
       +absolute
-      +hidden
       width: 200px
       z-index: 100
       table
@@ -136,7 +140,6 @@
 
       .comments
         +left
-        +hidden
         &.new
           +gradient(#e35f5f, #b32f2f)
           display: block !important
@@ -144,7 +147,6 @@
 
       .sharing
         +right
-        +hidden
 
     .title
       +absolute
@@ -249,6 +251,7 @@
     background: #fff
     background: -moz-linear-gradient(top, #fff, #fff 100px, #e3e3e3)
     background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(.37,#fff), to(#e3e3e3))
+    +glow-light(0)
 
     &:hover
       +glow-light(40)
@@ -295,6 +298,7 @@
     background: #3a3a3a
     background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #111 160px, #000)
     background: -webkit-gradient(linear, center top, center bottom, from(#3a3a3a), color-stop(0.37,#3a3a3a), color-stop(0.53,#3a3a3a), to(#000))
+    +glow-dark(0)
 
     &:hover
       +glow-dark(40)
