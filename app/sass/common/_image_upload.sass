@@ -59,6 +59,11 @@
       +cancel(10)
       bottom: 4px
 
+    &:hover .close
+      +alpha(100)
+    .close
+      +alpha(0)
+
   .uploading.fail
     +alpha(50)
     border-color: red
@@ -139,6 +144,7 @@
   .cancel
     left: 4px
     width: 112px
+  .progress
 
   .file
     +absolute

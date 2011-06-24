@@ -1,18 +1,17 @@
-<li class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background-image: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>)'>
+<li class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center #A4A6A8'>
 
   <div class="message">
     <span>confirm delete</span>
     <div class="dontDelete">cancel</div>
   </div>
 
-  <div class="close hidden"></div>
+  <div class="close"></div>
 
   <label class="radio">
-    <input type="radio" name="entry[main_image_id]" data-id="<%= this.id %>">
     <span>default</span>
+    <div class="input-wrap"></div>
+    <input class="radio-input" type="radio" name="entry[main_image_id]" data-id="<%= this.id %>">
   </label>
-
-  <div class="radioWrap"></div>
 
 </li>
 

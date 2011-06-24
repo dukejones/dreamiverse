@@ -109,35 +109,26 @@
           margin: 0px 8px 8px 0px
           height: 120px
           width: 120px
-          background-repeat: no-repeat
-          background-position: center center
-          background-color: #a4a6a8
-          // .entryImage
-          //   +relative
-          //   +user-select
-          //   +round(7)
-          //   +left
-          //   +overflow
-          //   +pointer
-          //   width: 120px
-          //   height: 120px
+          // background-repeat: no-repeat
+          // background-position: center center
+          // background-color: #a4a6a8
+
           &:hover
+            .radio .input-wrap, .radio .radio-input
+              +alpha(100)
             .close
-              +block
-          &:hover
-            label.radio
-              background: rgba(255,255,255,0.5)
-              span
-                +block
-          label.radio.selected
+              +alpha(60)
+
+          .radio.selected
             background: rgba(255,255,255,1.0)
             span
-              +block
-          label.radio
+              +alpha(100)
+
+          .radio
+            +block
             +round(6)
             +flat-top
             +absolute
-            +block
             +pointer
             bottom: 0
             width: 100%
@@ -146,19 +137,28 @@
             color: #333
             background: rgba(255,255,255,0.0)
             z-index: 100
-            span
-              +hidden
-              +right
-              +bold
-              margin-left: 8px
-            input
-              margin: 8px 8px 0
-              +right
-              +pointer
             &:hover
               background: rgba(255,255,255,0.8)
+              span
+                +alpha(100)
+              .input-wrap
+                background: rgba(0,0,0,0.3)
 
-          .radioWrap
+            span
+              +alpha(0)
+              +bold
+              margin-left: 30px
+
+            .radio-input
+              +absolute
+              +pointer
+              +alpha(0)
+              top: 8px
+              right: 8px
+              margin: 0
+
+          .input-wrap
+            +alpha(0)
             +absolute
             +round(12)
             right: 4px
@@ -167,11 +167,14 @@
             height: 10px
             padding: 5px
             background: rgba(255,255,255,0.3)
+
           .close
-            +close-24
             +absolute
+            +close-24
+            +alpha(0)
             top: 2px
             right: 2px
+
           .entryImageCaption
             +absolute
             +font(16)
