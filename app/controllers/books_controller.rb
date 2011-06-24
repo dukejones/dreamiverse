@@ -34,8 +34,8 @@ class BooksController < ApplicationController
   end
   
   def show
-    @entries = Entry.where(book_id: params[:id]) if params[:id]
-    @book = Book.find_by_id(params[:id]) if params[:id]
+    @book = Book.find_by_id(params[:id])
+    @entries = @book.entries
     @user = @book.user
     if request.xhr?
       render(partial: "books/show")
