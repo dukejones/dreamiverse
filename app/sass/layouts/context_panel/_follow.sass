@@ -5,21 +5,26 @@
   +user-select
   +round(12)
   +flat-top
+  +relative
   width: 100%
   margin-bottom: 2px
 
   .relation
     +bold
     +center
-    padding: 4px
+    padding: 3px
     margin: 0
 
 
   .icon
+    +absolute
     right: 22px
-    top: -23px
+    top: 0px
+    width: 24px
+    height: 24px
 
-  &.following
+  &.following .icon
+    @extend .friend-24-follow
   &.friend
 
 
