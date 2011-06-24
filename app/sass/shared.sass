@@ -1,18 +1,11 @@
 @import mixins
+@import common/fonts
 
 body
-  font-family: Calibri, Arial, Helvetica, sans-serif
   margin: 0
   padding: 0
 
-// CUSTOM FONTS
-@font-face
-  font-family: RNSSERIAL
-  src: url('/fonts/rnsserial/rns-s___-webfont.eot')
-  src: url('/fonts/rnsserial/rns-s___-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/rnsserial/rns-s___-webfont.woff') format('woff'), url('/fonts/rnsserial/RNS-S___.TTF') format('truetype'), url('/fonts/rnsserial/rns-s___-webfont.svg#RNSSERIALRegular') format('svg')
 
-.font-dc
-  font-family: RNSSERIAL
 
 // USER PREFERENCES
 
@@ -131,7 +124,6 @@ select
 
 // COMMON
 @import common/dropdown
-@import common/font_size
 @import common/headers
 @import common/image_upload
 @import common/modal_window
@@ -142,7 +134,8 @@ select
 // LAYOUTS
 @import layouts/user_info
 @import layouts/context_panel
-@import layouts/stream_context_panel
+@import layouts/context_panel/follow
+@import layouts/context_panel_stream
 // META MENU
 @import layouts/meta_menu/alert
 @import layouts/meta_menu/appearance_panel
