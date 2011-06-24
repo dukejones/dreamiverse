@@ -8,7 +8,9 @@
   height: 80px
   z-index: -1
 
+
 #logo
+  pointer-events: auto
   +block
   +user-select
   z-index: 1201
@@ -32,8 +34,10 @@
 
 #metaMenu
   min-width: 940px
+  pointer-events: none
 
   .randomDream
+    pointer-events: auto
     +left
     +transparent-dark(50)
     +round(30)

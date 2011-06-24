@@ -45,6 +45,7 @@
 
 
   .leftPanel, .rightPanel
+    pointer-events: auto
     +round(16)
     +flat-top
     background-color: #fff
@@ -273,6 +274,7 @@
   // FLOATING BUTTONS
 
   .logOut, .adminLink
+    pointer-events: auto
     +transparent-dark(50)
     +round(30)
     +button-light
@@ -325,7 +327,7 @@
 
 
 
-  // NOTIFICATIONS PANEL
+  // NOTIFICATIONS PANEL - probably deprecated, kept for now
   .notificationsPanel
     +round(16)
     +absolute
@@ -389,6 +391,7 @@
 
   // NEW ENTRY LINK, NEW POST HTML MENU & BUTTON
   .newEntry, #new-post, #new-post-button
+    pointer-events: auto
     +right
     +relative
     +round(20)

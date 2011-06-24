@@ -8,8 +8,8 @@
 
 - if current_user.blank?
   / META MENU - PUBLIC
-  = render :partial => "users/meta_menu_public"
+  = render :partial => "layouts/meta_menu/meta_menu_public"
 
 - else
   / META MENU - USER
-  = render :partial => "users/meta_menu_user"
+  = render :partial => "layouts/meta_menu/meta_menu_user"

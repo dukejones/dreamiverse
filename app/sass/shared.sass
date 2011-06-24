@@ -125,19 +125,22 @@ select
   background-color: #111
 
 
-@import home
 @import user_info
 
+// LAYOUTS
+@import layouts/home
+@import layouts/context_panel
+@import layouts/stream_context_panel
+@import layouts/font_size
 // META MENU
-@import meta_menu/alert
-@import meta_menu/appearance_panel
-@import meta_menu/login
-@import meta_menu/meta_menu
-@import meta_menu/meta_menu_public
-@import meta_menu/meta_menu_user
-@import meta_menu/settings_panel
+@import layouts/meta_menu
+@import layouts/meta_menu_public
+@import layouts/meta_menu_user
+@import layouts/settings_panel
+@import layouts/alert
+@import layouts/appearance_panel
+@import layouts/login
 
-@import context_panel
 @import headers
 
 @import tag
@@ -180,8 +183,7 @@ select
 
 @import friends
 
-@import widget_dropdown
-@import font_size
+@import dropdown
 @import new_user_welcome
 @import feedback
 @import modal_window
