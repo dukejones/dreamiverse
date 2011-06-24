@@ -122,7 +122,7 @@
       -webkit-border-radius:  4px 16px 16px 4px
 
     // PANEL SHARED STYLES
-    .control-panel, .color-panel, .cover-panel, .dropbox, .access-panel
+    .control-panel, .color-panel, .cover-panel, .access-panel
       +absolute
       top: 19px
       right: 32px
@@ -356,20 +356,31 @@
       .close
         +hidden
         +absolute
-        +close-16
-        top: 8px
-        right: 8px
+        +close-24
+        top: 4px
+        right: 2px
+
+      .dropbox
+        +absolute
+        top: 0
+        right: 0
+        width: 163px
+        height: 240px
 
       .active
         +hidden
         +absolute
-        +round(12)
+        +round(11)
         top: 58px
         right: 14px
-        width: 136px
-        height: 172px
-        background: #000
-        background: rgba(0,0,0,0.5)
+        width: 128px
+        height: 164px
+        background: url(/images/icons/plus-24-greenBlue.png) no-repeat center 57px #000
+        background: url(/images/icons/plus-24-greenBlue.png) no-repeat center 57px rgba(0,0,0,0.8)
+        border: 4px solid #B6D342
+        box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+        -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
         z-index: 87
 
     // ACCESS PANEL ONLY
