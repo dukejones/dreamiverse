@@ -1,0 +1,63 @@
+#contextPanel
+
+  // FRIEND AND FOLLOWING
+  #relationship
+    +clear
+    +user-select
+    +round(12)
+    +flat-top
+    width: 100%
+    margin-bottom: 2px
+
+    .relation
+      +bold
+      +center
+      padding: 4px
+      margin: 0
+
+
+    .icon
+      right: 22px
+      top: -23px
+
+    &.following
+    &.friend
+
+
+
+
+    .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
+      +block
+      +round(12)
+      +flat-top
+      color: #fff
+
+    .changeRelation.follow, .changeRelation.befriend
+      +bg-shine(16)
+      +gradient(#70d03b, #235b1b)
+      +pointer
+      color: #fff
+      border: 1px solid #54943d
+      &:active
+        +gradient(#235b1b, #70d03b)
+    .changeRelation.unfollow, .changeRelation.unfriend
+      +unfollow(16)
+
+
+
+
+.light #contextPanel #relationship
+  +button-light
+  +transparent-light(50)
+
+.dark #contextPanel #relationship
+  +button-dark
+  +transparent-dark(50)
+
+
+
+
+
+
+
+

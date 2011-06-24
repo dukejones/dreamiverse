@@ -349,10 +349,6 @@
     +user-select
     margin-bottom: 4px
 
-    .relation
-      +round(12)
-      +flat-top
-
     .label
       +round(12)
       +flat-right
@@ -413,58 +409,15 @@
 
 
 
-#contextPanel
 
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
   .filterList
     +font(14)
     +center
     width: 80px !important
 
 
-
-  // FRIEND AND FOLLOWING
-  .relationship
-    .relation, .changeRelation
-      +bold
-      +center
-      padding: 6px
-      height: 16px
-      margin: 0
-      .icon
-        right: 22px
-        top: -23px      
-
-
-    .changeRelation.follow.hidden, .changeRelation.unfollow.hidden, .changeRelation.unfriend.hidden, .changeRelation.befriend.hidden
-      +hidden
-
-    .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
-      +block
-      +round(12)
-      +flat-top
-      color: #fff
-
-    .changeRelation.follow, .changeRelation.befriend
-      +bg-shine(16)
-      +gradient(#70d03b, #235b1b)
-      +pointer
-      color: #fff
-      border: 1px solid #54943d
-      &:active
-        +gradient(#235b1b, #70d03b)
-    .changeRelation.unfollow, .changeRelation.unfriend
-      +unfollow(16)
-
-    &.relationship
-      margin-bottom: 2px
-
-
-
-
-
-
-
-  // VIEW FILTERS - FAVORITES, REPOST, TAG
   .viewFilters
     +round(12)
     height: 28px
@@ -518,95 +471,78 @@
 
 // CONTEXT PANEL
 // COLORS
-.light
-  #contextPanel
-    +transparent-light(50)
-    +glow-light(40)
+.light #contextPanel
+  +transparent-light(50)
+  +glow-light(40)
 
-    .avatar
-      border: 1px solid transparent
-      &:hover
-        +pointer
-        border: 1px solid #aaa
-        border: 1px solid rgba(255, 255, 255, 0.8)
-
-    .context, .label
-      border: 1px solid #8a8a8a
-    .context:hover, .entryFilter .label:hover
-      border: 1px solid #111
+  .avatar
+    border: 1px solid transparent
+    &:hover
       +pointer
+      border: 1px solid #aaa
+      border: 1px solid rgba(255, 255, 255, 0.8)
 
-    .context
-      color: #222
-      +shine-light-alpha(16)
-      &:hover
-        color: #000
+  .context, .label
+    border: 1px solid #8a8a8a
+  .context:hover, .entryFilter .label:hover
+    border: 1px solid #111
+    +pointer
 
-    .label
-      +shine-light-alpha(16)
-      &.selected
-        +shine-dark-alpha(16)
-        color: #fff !important
-
-    .trigger .label:hover
+  .context
+    color: #222
+    +shine-light-alpha(16)
+    &:hover
       color: #000
 
+  .label
+    +shine-light-alpha(16)
+    &.selected
+      +shine-dark-alpha(16)
+      color: #fff !important
+
+  .trigger .label:hover
+    color: #000
 
 
-    .relation
-      +button-light
 
 
+  // PROFILE
+  .profile
 
+    // VIEW PROFILE
+    .view, .edit
+      +transparent-light(40)
 
-    // PROFILE
-    .profile
+      .alert
+        +flat-dark
+        .message
+          color: #ddd
 
+      .details
+        .website, .email, .phone, .skype
 
-      // VIEW PROFILE
-      .view, .edit
-        +transparent-light(40)
-
-        .alert
-          +flat-dark
-          .message
-            color: #ddd
-
-        .details
-          .website, .email, .phone, .skype
-
-          .facebook, .twitter
-            +flat-light
-            +button-light
-          .change
-            +bevel-light
-            +button-light
-            +confirm(11)
-
-
-        #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
-          +input-light(small)
-        .cancel, .save
+        .facebook, .twitter
+          +flat-light
+          +button-light
+        .change
           +bevel-light
           +button-light
-        .cancel
-          +cancel(14)
-        .save
-          +save(14)
-          color: #333
-
-    .item
-      .relation
-        +transparent-light(50)
-        .label
-          border: 1px solid #848484
-      .detail
-        background: rgba(255,255,255,0.8)
+          +confirm(11)
 
 
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +input-light(small)
+      .cancel, .save
+        +bevel-light
+        +button-light
+      .cancel
+        +cancel(14)
+      .save
+        +save(14)
+        color: #333
 
-
-
+  .item .detail
+    background: rgba(255,255,255,0.8)
 
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
@@ -633,84 +569,73 @@
     .tagWrap
       .tag
 
-.dark
-  #contextPanel
-    +transparent-dark(50)
-    +glow-dark(40)
 
-    .avatar
-      border: 1px solid transparent
-      &:hover
-        border: 1px solid #333
-        border: 1px solid rgba(0,0,0,0.6)
+.dark #contextPanel
+  +transparent-dark(50)
+  +glow-dark(40)
 
-    .context, .label
+  .avatar
+    border: 1px solid transparent
+    &:hover
       border: 1px solid #333
-      +shine-dark-alpha(16)
+      border: 1px solid rgba(0,0,0,0.6)
 
-    .context, .entryFilter .label
-      &:hover
-        +button-dark
+  .context, .label
+    border: 1px solid #333
+    +shine-dark-alpha(16)
 
-    .context
-      color: #ccc
-      &:hover
-        color: #fff
-
-    .label.selected
-      +shine-light-alpha(16)
-      color: #000 !important
-
-
-    .relation
+  .context, .entryFilter .label
+    &:hover
       +button-dark
-      border: 1px solid #333 !important
 
-    // PROFILE
-    .profile
+  .context
+    color: #ccc
+    &:hover
+      color: #fff
 
-      // VIEW PROFILE
-      .view, .edit
-        +transparent-dark(40)
-        border: 1px solid #222
+  .label.selected
+    +shine-light-alpha(16)
+    color: #000 !important
 
-        .alert
+
+  // PROFILE
+  .profile
+
+    // VIEW PROFILE
+    .view, .edit
+      +transparent-dark(40)
+      border: 1px solid #222
+
+      .alert
+        +flat-light
+        .message
+          color: #333
+
+      .details
+        .website, .email, .phone, .skype
+
+        .facebook, .twitter
           +flat-light
-          .message
-            color: #333
-
-        .details
-          .website, .email, .phone, .skype
-
-          .facebook, .twitter
-            +flat-light
-            +button-dark
-            color: #333
-          .change
-            +bevel-dark
-            +button-dark
-            +confirm(11)
-
-        #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
-          +input-dark(small)
-        .cancel, .save
+          +button-dark
+          color: #333
+        .change
           +bevel-dark
           +button-dark
-        .cancel
-          +cancel(14)
-        .save
-          +save(14)
-          color: #ddd
+          +confirm(11)
 
-    .item
-      .relation
-        +transparent-dark(50)
-        .label
-          border: 1px solid #555
-      .detail
-        background: rgba(50,50,50,0.9)
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +input-dark(small)
+      .cancel, .save
+        +bevel-dark
+        +button-dark
+      .cancel
+        +cancel(14)
+      .save
+        +save(14)
+        color: #ddd
 
-
+  .item .detail
+    background: rgba(50,50,50,0.9)
 
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
@@ -734,6 +659,10 @@
 
     .tagWrap
       .tag
+
+
+
+
 
 
 // ENSURES BOTTOM PADDING CLEARANCE

@@ -39,19 +39,13 @@
       - else
         / LABEL
         .context
-          - if current_user && current_user.relationship_with(user) != :none
-            .icon
-              = friend_icon_tag( current_user.relationship_with(user), 24, {class: 'following'} )
-          - else
-            .icon
-              %img{src: "/images/icons/clear.png"}
           = user.username
 
 
 
         / FOLLOW
         - if current_user
-          = render partial: 'layouts/context_panel_follow', locals: { relationship: current_user.relationship_with(user), user: user }
+          = render partial: 'layouts/context_panel/follow', locals: { relationship: current_user.relationship_with(user), user: user }
 
       .divider
 
