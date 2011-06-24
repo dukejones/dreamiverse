@@ -9,6 +9,10 @@ class AdminMailer < ActionMailer::Base
     feedback_type = feedback[:type]  
     feedback_type += " // #{feedback[:bug_type]}" if (feedback[:type]=='bug')
 
-    mail(from: user._?.email, reply_to: user._?.email, subject: "Feedback: #{feedback_type}")
+    mail(
+      from: "dreamcatcher.net feedback <mailer@dreamcatcher.net>", 
+      reply_to: user._?.email, 
+      subject: "Feedback: #{feedback_type}"
+    )
   end
 end
