@@ -125,29 +125,31 @@ select
   background-color: #111
 
 
-@import user_info
+
+
+// SHARED
+@import shared/dropdown
+@import shared/font_size
+@import shared/headers
+@import shared/image_upload
+@import shared/modal_window
+@import shared/reset
+@import shared/tag
+@import shared/tag_cloud
 
 // LAYOUTS
-@import layouts/home
+@import layouts/user_info
 @import layouts/context_panel
 @import layouts/stream_context_panel
-@import layouts/font_size
 // META MENU
-@import layouts/meta_menu
-@import layouts/meta_menu_public
-@import layouts/meta_menu_user
-@import layouts/settings_panel
-@import layouts/alert
-@import layouts/appearance_panel
-@import layouts/login
+@import layouts/meta_menu/alert
+@import layouts/meta_menu/appearance_panel
+@import layouts/meta_menu/login_panel
+@import layouts/meta_menu/meta_menu
+@import layouts/meta_menu/meta_menu_public
+@import layouts/meta_menu/meta_menu_user
+@import layouts/meta_menu/settings_panel
 
-@import headers
-
-@import tag
-@import tag_cloud
-@import image_upload
-
-@import dreamstars
 
 // ENTRIES
 @import entries/entries
@@ -160,6 +162,7 @@ select
 @import entries/links
 @import entries/video
 @import entries/starlight
+@import entries/new_user_welcome
 // NEW ENTRY
 @import entries/new/new_entry
 @import entries/new/bottom_bar
@@ -171,23 +174,22 @@ select
 @import entries/new/location_panel
 @import entries/new/tag_panel
 
+
 // BOOKS
 @import books/book
 @import books/book_shelf
 
 
+// USERS
+@import users/dreamstars
+@import users/friends
 
 
+// HOME
+@import home/dreamstars_mini
+@import home/feedback
+@import home/home
 
-
-
-@import friends
-
-@import dropdown
-@import new_user_welcome
-@import feedback
-@import modal_window
-@import reset
 
 
 // webkit placeholder

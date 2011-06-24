@@ -29,7 +29,7 @@
 
   - if !@filters[:type] && (@user == current_user) && @entries.empty? && @books.empty?
     / NEW LOGIN SPLASH
-    = render :partial => "new_login", :locals => {:user => @user}
+    = render :partial => "new_user_welcome", :locals => {:user => @user}
 
   - elsif @entries._?.empty? && @books._?.empty?
     / NO DREAMS TO DISPLAY
