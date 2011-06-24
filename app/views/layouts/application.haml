@@ -5,6 +5,10 @@
       = truncate(@page_title, length: 72) + ' - ' if @page_title
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
+
+    / ENABLE CHROME FRAME FOR IE
+    %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
+
     - if !@entry._?.main_image
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
