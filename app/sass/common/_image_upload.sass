@@ -59,6 +59,11 @@
       +cancel(10)
       bottom: 4px
 
+    &:hover .close
+      +alpha(100)
+    .close
+      +alpha(0)
+
   .uploading.fail
     +alpha(50)
     border-color: red
@@ -129,6 +134,7 @@
 #currentImages
   .uploading
     +left
+    +center
     margin: 0px 8px 8px 0px
     height: 120px
     width: 120px
@@ -140,15 +146,12 @@
     left: 4px
     width: 112px
 
-  .file
-    +absolute
-    top: 4px
-    left: 4px
-  .size
-    +absolute
-    width: 100%
-    bottom: 50%
-    right: 0
+  .size, .file, .progress
+    +font(12)
+    margin: 8px 0 0
+
+  .progress
+    +font(14)
 
 // NEW BOOK COVER IMAGE UPLOAD
 .dropbox-field-shine
