@@ -36,7 +36,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
         $(this).hide() unless $(this).attr('id') is 'entriesIndex'
       $('.matrix.bookIndex', @element).remove()
       @element.children().fadeIn '500' 
-    if html?
+    else
       $('#entryField').children().hide()
       @element.html html
       @setupEntryDragging()

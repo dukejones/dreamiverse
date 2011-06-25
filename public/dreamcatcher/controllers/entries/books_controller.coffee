@@ -19,9 +19,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return el.data 'id' if el?
     return null
     
-  # resetUrl: -> 
-  #   username = $('#userInfo').data 'username'
-  #   window.history.pushState null, null, "/#{username}"
+  resetUrl: -> 
+    username = $('#userInfo').data 'username'
+    window.history.pushState null, null, "/#{username}"
     
     
   init: (el) ->
@@ -226,9 +226,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       bookEl = @el.book el
       bookId = @data bookEl
       @model.book.destroy bookId, =>
+        bookEl.remove()
+        @resetUrl()
         @publish 'entries.index', {reload: true}
-        # bookEl.remove()
-        # @resetUrl()
       
   '.more-settings .remove click': (el) ->
     @deleteBook el
