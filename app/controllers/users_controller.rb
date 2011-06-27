@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user # User.find params[:id]
     # raise "access denied" unless @user == current_user
-
+    Rails.logger.error "Update attempted without a user" and return if @user.nil?
+    
     if @user.link && params[:user][:link_attributes]._?[:url].blank?
       @user.link.destroy
       @user.link = nil
