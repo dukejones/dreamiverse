@@ -4,17 +4,18 @@
     .img{class: @filters[:type]}
     %h1= @filters[:type].pluralize
   .clear
-  
+
 .matrix.books
   - @books._?.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
 
-    
+= render :partial => 'common/loading_ajax'
+
 / DREAM MATRIX
 .matrix.index{:'data-username' => @user.username}
   .entryCount{:'data-id' => @entry_count}
   .pageSize{:'data-id' => @filters[:page_size]}
-  
+
   - @entries.each do |entry|
     / DREAM THUMBS 2D
     = render :partial => 'thumb_2d', :locals => {:entry => entry}
