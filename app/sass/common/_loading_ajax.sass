@@ -1,0 +1,37 @@
+// LOADING AJAX
+#loading_ajax
+  +hidden
+  +round(24)
+  position: fixed
+  top: 160px
+  left: 300px
+  padding: 30px 50px
+
+  .spinner
+    +left
+    margin: 0 30px 0 0
+    width: 32px
+    height: 32px
+
+  span
+    @extend .font-dc
+    +font(32)
+
+
+
+// COLORS
+.light #loading_ajax
+  +transparent-dark(90)
+  +glow-light(20)
+  color: #fff
+
+  .spinner
+    background: url(/images/icons/spinner-dark-32.gif) no-repeat scroll center center transparent
+
+.dark #loading_ajax
+  +transparent-light(90)
+  +glow-dark(20)
+  color: #000
+
+  .spinner
+    background: url(/images/icons/spinner-light-grey-32.gif) no-repeat scroll center center transparent
