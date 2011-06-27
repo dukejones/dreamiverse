@@ -1,8 +1,12 @@
+  
+$(document).ready ->
+  @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
+  
 $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: ->
     @publish 'dom.added', $('#body')    
-    
+
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
     
@@ -15,8 +19,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#frame.browser').imageBank() if $("#frame.browser").exists()
     
     @bind window, 'popstate', => @publish 'history.change', window.location.pathname
-    # FF 3.6
-    $('input[placeholder], textarea[placeholder]').placeholder()
+    
+    $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
       
   #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
   'a.history click': (el, ev) ->
@@ -145,7 +149,4 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     user = {}
     user[name] = value
     Dreamcatcher.Models.User.update {user: user}
-  
-$(document).ready ->
-  @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
-  $('input[placeholder], textarea[placeholder]').placeholder()
+
