@@ -54,16 +54,16 @@ javascripts:
     - public/compiled/resources/google.charts.js
     
   jmvc_application:
-    - public/compiled/models/**/*.js
+    - public/compiled/models/*.js
     - public/compiled/classes/*.js
     - public/compiled/controllers/application_controller.js
     - public/compiled/controllers/common/upload_controller.js
-    - public/compiled/controllers/common/tags_controller.js
-    - public/compiled/controllers/common/comments_controller.js
-    - public/compiled/controllers/users/meta_menu_controller.js
-    - public/compiled/controllers/users/settings_panel_controller.js
-    - public/compiled/controllers/users/appearance_panel_controller.js
-    - public/compiled/controllers/users/context_panel_controller.js
+    - public/compiled/controllers/entries/tags_controller.js
+    - public/compiled/controllers/entries/comments_controller.js
+    - public/compiled/controllers/common/meta_menu_controller.js
+    - public/compiled/controllers/common/meta_menu/settings_panel_controller.js
+    - public/compiled/controllers/common/meta_menu/appearance_panel_controller.js
+    - public/compiled/controllers/common/context_panel_controller.js
     - public/compiled/controllers/entries/dream_field_controller.js
     - public/compiled/controllers/entries/dream_stream_controller.js
     - public/compiled/controllers/entries/newedit_entry_controller.js
