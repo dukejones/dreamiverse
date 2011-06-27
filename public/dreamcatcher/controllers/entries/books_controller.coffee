@@ -43,11 +43,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     @publish 'books.close', bookEl
     $('.entryDrop-active', bookEl).hide()
   
-  'book.drop subscribe': (called, parent) ->
-    $('.book, .avatar', parent).each (i, el) =>
-      @publish 'books.close', $(el)
-      @makeDroppable $(el)
-
   makeDroppable: (el) ->
     $(el).droppable {         
       drop: (ev, ui) =>
@@ -69,20 +64,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   #- new book
   
-  'books.create subscribe': ->
-    newBookEl = $(".book[data-id='new']", @element)
-    if newBookEl.exists()
-      @editBook newBookEl
-      return
-      
-    @model.book.new {}, (html) =>
-      $('#welcomePanel').hide()
-      @element.prepend html
-      bookEl = $('.book:first', @element)
-      @editBook bookEl
-      @publish 'dom.added', bookEl
-      @makeDroppable bookEl
-    
   #- show book
   
   showBook: (bookId) ->
@@ -96,8 +77,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       @setupEntryDragging()
       @publish 'book.drop', $('#contextPanel')
 
-  'books.show subscribe': (called, data) ->
-    @showBook data.id
     
   setupEntryDragging: ->
     $('#entriesIndex .bookIndex .thumb-2d').draggable {
@@ -118,9 +97,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   editBook: (el) ->
     @openBook el, true
     
-  'books.modify subscribe': (called, el) ->
-    @editBook el
-  
   #- open 
   openBook: (el, edit) ->
     @closeBook()
@@ -129,21 +105,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.control-panel', bookEl).toggle edit
     $('.closed', bookEl).hide()
     
-  'books.hover subscribe': (called, el) ->
-    @openBook el, false
-    
   #- close
   closeBook: (el) ->
     bookEl = if el? then @el.book el else @element
     $('.open', bookEl).hide()
     $('.open', bookEl).children().hide()
     $('.closed', bookEl).show()
-  
-  'books.close subscribe': (called, el) ->
-    @closeBook el
-  
-  'body.clicked subscribe': (called, data) ->
-    @closeBook()
       
   #- paging
   
@@ -155,28 +122,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     
     @createUploader bookEl if page is 'cover'
         
-  #-- panels
-  '.book .control-panel .color click': (el) ->
-    @showPage el, 'color'
 
-  '.book .control-panel .coverImage click': (el) ->
-    @showPage el, 'cover'
-
-  '.book .control-panel .access click': (el) ->
-    @showPage el, 'access'
-
-  '.book .open .back click': (el) ->
-    @showPage el, 'control'
-    
   #-- more settings
 
   showMore: (el) ->
     bookEl = @el.book el
     $('.settings-basic', bookEl).toggle()
     $('.more-settings', bookEl).toggle()
-
-  '.book .arrow click': (el) ->
-    @showMore el    
 
   #- save book
   
@@ -198,27 +150,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.title', bookEl).text title
     @saveBook el, { title: title }
 
-  '.titleInput blur': (el) ->
-    @saveTitle el
-
-  '.titleInput keypress': (el, ev) ->
-    @saveTitle el if ev.keyCode is 13 # enter key
-
-  
-  #-- color
-  
-  '.color-panel .swatches li click': (el) ->
-    color = el.attr 'class'
-    bookEl = @el.book(el).attr 'class', "book #{color}"
-    @saveBook el, {color: color}
-  
-  #-- access
-  
-  '.access-panel .select-menu change': (el) ->
-    meta = {}
-    meta[el.attr('name')] = el.val()
-    @saveBook el, meta
-    
   #- disable book
     
   deleteBook: (el) ->
@@ -229,9 +160,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
         bookEl.remove()
         @resetUrl()
         @publish 'entries.index', {reload: true}
-      
-  '.more-settings .remove click': (el) ->
-    @deleteBook el
       
   #- uploader
     
@@ -268,5 +196,84 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       
     $('.dropbox-field-shine .add', el).show()
   
+  ## Event Binding ##
+  #-- panels
+  '.book .control-panel .color click': (el) ->
+    @showPage el, 'color'
+
+  '.book .control-panel .coverImage click': (el) ->
+    @showPage el, 'cover'
+
+  '.book .control-panel .access click': (el) ->
+    @showPage el, 'access'
+
+  '.book .open .back click': (el) ->
+    @showPage el, 'control'
+
+  '.book .arrow click': (el) ->
+    @showMore el    
+
+  '.titleInput blur': (el) ->
+    @saveTitle el
+
+  '.titleInput keypress': (el, ev) ->
+    @saveTitle el if ev.keyCode is 13 # enter key
+
+
+  #-- color
+
+  '.color-panel .swatches li click': (el) ->
+    color = el.attr 'class'
+    bookEl = @el.book(el).attr 'class', "book #{color}"
+    @saveBook el, {color: color}
+
+  #-- access
+
+  '.access-panel .select-menu change': (el) ->
+    meta = {}
+    meta[el.attr('name')] = el.val()
+    @saveBook el, meta
+
+  '.more-settings .remove click': (el) ->
+    @deleteBook el
+
+
   
+  ## Subscriptions ##
+  'book.drop subscribe': (called, parent) ->
+    $('.book, .avatar', parent).each (i, el) =>
+      @publish 'books.close', $(el)
+      @makeDroppable $(el)
+
+  'books.create subscribe': ->
+    newBookEl = $(".book[data-id='new']", @element)
+    if newBookEl.exists()
+      @editBook newBookEl
+      return
+
+    @model.book.new {}, (html) =>
+      $('#welcomePanel').hide()
+      @element.prepend html
+      bookEl = $('.book:first', @element)
+      @editBook bookEl
+      @publish 'dom.added', bookEl
+      @makeDroppable bookEl
+
+  
+  'books.close subscribe': (called, el) ->
+    @closeBook el
+  
+  'body.clicked subscribe': (called, data) ->
+    @closeBook()
+
+  'books.modify subscribe': (called, el) ->
+    @editBook el
+
+  'books.show subscribe': (called, data) ->
+    @showBook data.id
+
+  'books.hover subscribe': (called, el) ->
+    @openBook el, false
+
+ 
 }

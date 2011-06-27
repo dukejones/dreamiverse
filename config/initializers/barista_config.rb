@@ -1,4 +1,4 @@
-Barista::Framework.register 'jmvc_load', Rails.root.join("public", "dreamcatcher", "coffee")
+#Barista::Framework.register 'jmvc_load', Rails.root.join("public", "dreamcatcher", "coffee")
 Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
 
 Barista.configure do |c|
