@@ -15,18 +15,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     $('.matrix.index .thumb-2d', @element).draggable {
       containment: 'document'
       zIndex: 100
-      revert: false
-      helper: 'clone'
+      revert: 'invalid'
+      distance: 15
+      # helper: 'clone'
     }
   
   #- entry field
   
-  showEntryField: (username, newBook, editBookId) ->
-    if $('.matrix.index', @element).data('username') is username
+  showEntryField: (username, newBook, editBookId, reload) ->
+    if (not reload) and ($('.matrix.index', @element).data('username') is username)
       @displayEntryField null, newBook, editBookId
-      return
-    Entry.index username, (html) =>
-      @displayEntryField html, newBook, editBookId
+    else
+      Entry.index username, (html) =>
+        @displayEntryField html, newBook, editBookId
       
   displayEntryField: (html, newBook, editBookId) ->
     # TODO: have a good look at this
@@ -35,7 +36,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
         $(this).hide() unless $(this).attr('id') is 'entriesIndex'
       $('.matrix.bookIndex', @element).remove()
       @element.children().fadeIn '500' 
-    if html?
+    else
       $('#entryField').children().hide()
       @element.html html
       @setupEntryDragging()
@@ -53,13 +54,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     
     
   'entries.index subscribe': (called, data) ->
-    username = if data? and data.username? then data.username else $('#userInfo').data 'username'
-    newBook = if data? and data.newBook? then data.newBook else false
-    editBook = data.editBook if data? and data.editBook?
+    data ?= {}
+    username = data.username ? $('#userInfo').data('username')
+    newBook = data.newBook?
+    editBook = data.editBook
+    reload = data.reload?
     
     @publish 'books.close'
     @publish 'context_panel.show', username
-    @showEntryField username, newBook, editBook
+    @showEntryField username, newBook, editBook, reload
     
   'books.new subscribe': ->
     @publish 'entries.index', { newBook: true }

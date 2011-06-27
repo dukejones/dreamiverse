@@ -4,7 +4,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   model: {
     book: Dreamcatcher.Models.Book
-    entry: Entry
   }
   
   el: {    
@@ -35,7 +34,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     bookId = '' if bookEl.parent().attr('id') is 'contextPanel'
     entryMeta = {book_id: bookId}
 
-    @model.entry.update entryId, {entry: entryMeta}, =>
+    Entry.update entryId, {entry: entryMeta}, =>
       if bookId is ''
         entryEl.appendTo('#entriesIndex .matrix.index') 
       else
@@ -104,8 +103,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('#entriesIndex .bookIndex .thumb-2d').draggable {
       containment: 'document'
       zIndex: 100
-      revert: false
-      helper: 'clone'
+      revert: 'invalid'
+      # helper: 'clone'
+      distance: 15
       start: (ev, ui) =>
         $('#contextPanel .book').hide()
         $('.avatar, .avatar .entryRemove', '#contextPanel').show()
@@ -221,16 +221,17 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     
   #- disable book
     
-  disableBook: (el) ->
+  deleteBook: (el) ->
     if confirm 'are you sure?'
       bookEl = @el.book el
       bookId = @data bookEl
       @model.book.destroy bookId, =>
         bookEl.remove()
         @resetUrl()
+        @publish 'entries.index', {reload: true}
       
   '.more-settings .remove click': (el) ->
-    @disableBook el
+    @deleteBook el
       
   #- uploader
     
