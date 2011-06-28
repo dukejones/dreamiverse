@@ -9,8 +9,6 @@
   - @books._?.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
 
-= render :partial => 'common/loading_ajax'
-
 / DREAM MATRIX
 .matrix.index{:'data-username' => @user.username}
   .entryCount{:'data-id' => @entry_count}
