@@ -24,7 +24,7 @@
     height: 24px
 
 
-  // 
+  // ICONS
   &.none .icon
     // NO ICON
   &.none:hover .icon
@@ -45,25 +45,33 @@
   &.followed_by:hover .icon
     @extend .friend-24
 
-
-
-
-  .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
-    +block
-    +round(12)
-    +flat-top
-    color: #fff
-
-  .changeRelation.follow, .changeRelation.befriend
+  // BACKGROUNDS
+  &.none:hover, &.followed_by:hover
     +bg-shine(16)
     +gradient(#70d03b, #235b1b)
-    +pointer
     color: #fff
     border: 1px solid #54943d
     &:active
       +gradient(#235b1b, #70d03b)
-  .changeRelation.unfollow, .changeRelation.unfriend
+
+  &.friends:hover, &.following:hover
     +unfollow(16)
+
+
+
+
+  .changeRelation.follow, .changeRelation.befriend
+  .changeRelation.unfollow, .changeRelation.unfriend
+
+
+
+  // .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
+  //   +block
+  //   +round(12)
+  //   +flat-top
+  //   color: #fff
+
+
 
 
 
@@ -75,6 +83,7 @@
 .dark #relationship
   +button-dark
   +transparent-dark(50)
+  color: #fff
 
 
 
