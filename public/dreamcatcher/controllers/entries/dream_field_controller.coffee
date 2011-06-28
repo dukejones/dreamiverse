@@ -60,11 +60,5 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @publish 'context_panel.show', username
     @showEntryField username, newBook, editBook, reload
     
-  'books.new subscribe': ->
-    @publish 'entries.index', { newBook: true }
-  
-  'books.edit subscribe': (called, data) ->
-    @publish 'entries.index', { editBook: data.id }
-    
 }
   
