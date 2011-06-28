@@ -134,7 +134,7 @@ class UsersController < ApplicationController
     
     
     if @user
-      render(:partial => "layouts/context_panel", :locals => {:user => @user, :book => @book})
+      render(:partial => "common/context_panel", :locals => {:user => @user, :book => @book})
     else
       render :text => "Could not find this user.", :status => 403
     end
