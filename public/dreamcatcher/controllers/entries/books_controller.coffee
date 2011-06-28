@@ -20,7 +20,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return null
     
   resetUrl: -> 
-    username = $('#userInfo').data 'username'
+    username = $('#currentUserInfo').data 'username'
     window.history.pushState null, null, "/#{username}"
     
     

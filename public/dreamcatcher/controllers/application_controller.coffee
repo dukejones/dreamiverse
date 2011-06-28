@@ -115,7 +115,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   #- appearance (bedsheet, scroll  & theme) change
   'appearance.change subscribe': (called, data) ->
     #if no data is passed, then use the user default settings
-    data = $('#userInfo').data 'viewpreference' unless data?
+    data = $('#currentUserInfo').data 'viewpreference' unless data?
     return unless data.image_id?
 
     # TODO: Make this an Image model lookup.   new Image(data.image_id).url('bedsheet')
