@@ -31,24 +31,20 @@
 
         .entryRemove
           %div remove entry from book and return it to dreamfield
-      - if user == current_user
-        / LABEL
-        .context
-          = user.username
-
-      - else
-        / LABEL
-        %button.context{type: "button"}
-          = user.username
 
 
 
-        / FOLLOW
+
+      / CONTEXT LABEL
+      %button.context{type: "button"}= user.username
+
+      / RELATIONSHIP
+      / IF user is logged in AND user is looking at someone else's page, display the #relationship button
+      - if current_user && user != current_user
         - if current_user
           = render partial: 'common/context_panel/relationship', locals: { relationship: current_user.relationship_with(user), user: user }
 
       .divider
-
 
 
 
