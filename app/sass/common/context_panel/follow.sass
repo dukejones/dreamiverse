@@ -23,9 +23,27 @@
     width: 24px
     height: 24px
 
+
+  // 
+  &.none .icon
+    // NO ICON
+  &.none:hover .icon
+    @extend .friend-24-follow
+
+  &.friends .icon
+    @extend .friend-24
+  &.friends:hover .icon
+    @extend .friend-24-follower
+
   &.following .icon
     @extend .friend-24-follow
-  &.friend
+  &.following:hover .icon
+    @extend .friend-24-none
+
+  &.followed_by .icon
+    @extend .friend-24-follower
+  &.followed_by:hover .icon
+    @extend .friend-24
 
 
 
