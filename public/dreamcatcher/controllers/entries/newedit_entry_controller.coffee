@@ -26,7 +26,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('#contextPanel .book').remove()
       $('#books-list').val bookId  
     
-    @publish 'dom.added', @element
+    @publish 'app.initUi', @element
     @initBooksListButton()
     @element.fadeIn '500', =>
       fitToContent $('textarea', @element).attr('id'), 0

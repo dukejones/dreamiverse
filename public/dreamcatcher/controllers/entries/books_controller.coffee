@@ -256,7 +256,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       @element.prepend html
       bookEl = $('.book:first', @element)
       @editBook bookEl
-      @publish 'dom.added', bookEl
+      @publish 'app.initUi', bookEl
       @makeDroppable bookEl
 
   

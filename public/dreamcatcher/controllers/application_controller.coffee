@@ -6,7 +6,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: (el)->
     @element = $(el)
-    @publish 'dom.added', @element
+    @publish 'app.initUi'
 
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
@@ -24,15 +24,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
 
 
-  #- setup ui elements
-  initUi: (parentEl) ->
-    $('textarea').each (i, el) ->
-      fitToContent $(this).attr('id'), 0
-    $('.tooltip').each (i, el) =>
-      UiHelper.registerTooltip $(el)
-    $('.select-menu').each (i, el) =>
-      UiHelper.registerSelectMenu $(el)
-  
 
   ## Event Binding ##
   
@@ -81,19 +72,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   ## Subscriptions ##
   
   'history.change subscribe': (called, href) ->
-    # entries_show = /^\/(\w+)\/(\d+)$/
-    # stream = /^\/stream$/
-    # books = /^\/books\/?(\w*)/
-    # if (match = entries_show.exec(href))?
-    #   @publish 'entries.show', {username: match[1], id: match[2]}
-    # if (match = books.exec(href))?
-    #   if (action = match[1])?
-    #   else
-    #     action = 'index'
-    #   @publish "books.#{action}", data
-    # if (match = stream.exec(href))?
-    #   @publish 'dreamstream'
-
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
@@ -124,8 +102,15 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @publish "#{controller}.#{action}", data
       
       
-  'dom.added subscribe': (called, data) ->
-    @initUi data
+  'app.initUi subscribe': (called, parentEl) ->
+    parentEl = @element if not parentEl?
+    $('textarea', parentEl).each (i, el) ->
+      fitToContent $(this).attr('id'), 0
+    $('.tooltip', parentEl).each (i, el) =>
+      UiHelper.registerTooltip $(el)
+    $('.select-menu', parentEl).each (i, el) =>
+      UiHelper.registerSelectMenu $(el)
+
     
   #- appearance (bedsheet, scroll  & theme) change
   'appearance.change subscribe': (called, data) ->
