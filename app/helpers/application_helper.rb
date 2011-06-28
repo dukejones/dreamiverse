@@ -16,7 +16,7 @@ module ApplicationHelper
     when :none
       'follow'
     when :friends
-      'unfollow'
+      'friends'
     when :following
       'following'
     when :followed_by
