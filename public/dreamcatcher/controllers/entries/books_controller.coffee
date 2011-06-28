@@ -275,5 +275,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   'books.hover subscribe': (called, el) ->
     @openBook el, false
 
+  'books.new subscribe': ->
+    @publish 'entries.index', { newBook: true }
+
+  'books.edit subscribe': (called, data) ->
+    @publish 'entries.index', { editBook: data.id }
+
  
 }
