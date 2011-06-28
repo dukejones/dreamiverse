@@ -8,6 +8,13 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   
   init: (el) ->
     @element = $(el)
+    @currentRelationship = '' 
+    @currentText = ''
+    @followButtonState = {currentClass: '', hoverClass: ''}
+    @polarFollowClass = {none: 'follow', following: 'unfollow', followed_by: 'befriend', friends: 'unfriend'}
+    @polarFollowText = {none: 'followed_by', followed_by: 'befriend', following: 'unfollow', friends: 'unfriend'}
+    # @polarFollowText['followed by'] = 'befriend' # above line syntax doesn't support spaces in keys   
+
     
   'context_panel.book subscribe': (called, bookId) ->
     @model.user.contextPanel {book_id: bookId}, (html) =>
@@ -69,5 +76,36 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     #log entryType
     # window.location.href = "/#{username}/#{entryType}s"
     window.location.href = "/entries/?entry_type=#{entryType}"
+
+
+  '#relationship mouseover': (el) ->
+    @currentRelationship = $("#userDetails").data 'relationship'
+    @currentText = el.children(':first').html()
+    @hoverText = @polarFollowText[@currentRelationship]   
+    @followButtonState['currentText'] = @currentText
+    @followButtonState['hoverText'] = @hoverText
+    
+    log("@currentRelationship: #{@currentRelationship} @currentText: #{@currentText} @hoverText #{@hoverText}  @followButtonState[hoverClass] #{@followButtonState['hoverClass']}")
+    @updateFollowButton(el,@hoverText)
+
+  '#relationship mouseout': (el) ->
+    #el.removeClass(@followButtonState['prevClass']).addClass @followButtonState['currentClass']
+    el.children(':first').text @followButtonState['currentText']
+
+  # '#relationship click': (el) ->
+  #   @currentRelationship = $("#userDetails").data 'relationship'  
+  #   @newRelationship = @polarFollowRelationships[@currentRelationship]  
+  #   @username = $("#userDetails").data 'username'
+  #   
+  #   log("@username: #{@username} @newRelationship:#{@newRelationship} @currentRelationship: #{@currentRelationship}")
+  # 
+  #   if @currentRelationship is 'none' or @currentRelationship is 'followed_by'
+  #     @model.user.follow({username: @username, verb: "#{@newRelationship}"},@callback('relationshipUpdated', el))
+  #   else if @currentRelationship is 'friends' or @currentRelationship is 'following'
+  #     @model.user.unfollow({username: @username, verb: "#{@newRelationship}"},@callback('relationshipUpdated', el))
+
+  updateFollowButton: (el,text) ->
+    log "updateFollowButton text: #{text} @followButtonState[hoverClass] #{@followButtonState['hoverClass']}"  
+    el.children(':first').text('').text text
 
 }

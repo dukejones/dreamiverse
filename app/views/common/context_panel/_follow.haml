@@ -56,9 +56,9 @@
 
 
 
-
+#userDetails{:'date-username' => current_user.username, :'data-relationship' => relationship}
 %button#relationship{type: "button", class: relationship.to_s.humanize.downcase}
-  .relation= relationship.to_s.humanize.downcase
+  .relation= follow_action(relationship)
   .icon
 
 
