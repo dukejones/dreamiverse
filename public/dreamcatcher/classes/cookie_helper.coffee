@@ -1,4 +1,4 @@
-$.Class 'Dreamcatcher.Classes.CookieHelper', {
+$.Class 'CookieHelper', {
   
 }, {
 
