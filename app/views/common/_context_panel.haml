@@ -45,7 +45,7 @@
 
         / FOLLOW
         - if current_user
-          = render partial: 'common/context_panel/follow', locals: { relationship: current_user.relationship_with(user), user: user }
+          = render partial: 'common/context_panel/relationship', locals: { relationship: current_user.relationship_with(user), user: user }
 
       .divider
 
