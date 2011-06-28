@@ -19,6 +19,26 @@ $.Model 'Dreamcatcher.Models.User',{
       success: success
       error: error
     }
+
+  follow: ( params, success, error ) ->
+    $.ajax {
+      type: 'put'
+      url: "/#{params.username}/follow"
+      dataType: 'json'
+      data: params
+      success: success
+      error: error
+    }
+    
+  unfollow: ( params, success, error ) ->
+    $.ajax {
+      type: 'put'
+      url: "/#{params.username}/unfollow"
+      dataType: 'json'
+      data: params
+      success: success
+      error: error
+    }      
     
   contextPanel: ( params, success ) ->
     $.get '/user/context_panel', params, @callback success

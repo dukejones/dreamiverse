@@ -54,7 +54,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render :json => {type: 'ok', message: 'success'} }
+      format.json { render :json => {type: 'ok', message: 'success', new_relationship: "#{current_user.relationship_with(user)}"} }
     end
   end
   
