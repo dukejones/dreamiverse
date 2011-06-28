@@ -17,8 +17,6 @@
 
     = yield :headBefore
 
-    / - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
-    / %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
     = include_javascripts :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
 
     = yield :head
@@ -27,7 +25,7 @@
     #backgroundReplace
 
     - unless current_user.blank?
-      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id, :'data-viewpreference' => current_user.view_preference.to_json, :'data-username' => current_user.username}
+      #currentUserInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id, :'data-viewpreference' => current_user.view_preference.to_json, :'data-username' => current_user.username}
 
     = render :partial => "common/meta_menu/alert"
     = render :partial => 'common/loading_ajax'

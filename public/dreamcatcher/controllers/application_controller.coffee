@@ -4,8 +4,9 @@ $(document).ready ->
   
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  init: ->
-    @publish 'dom.added', $('#body')    
+  init: (el)->
+    @element = $(el)
+    @publish 'app.initUi'
 
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
@@ -18,21 +19,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#adminPage').admin() if $('#adminPage').exists()
     $('#frame.browser').imageBank() if $("#frame.browser").exists()
     
-    @bind window, 'popstate', => @publish 'history.change', window.location.pathname
+    @bind window, 'popstate', => @publish 'location.change', window.location.pathname
     
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
 
 
-  #- setup ui elements
-  initUi: (parentEl) ->
-    parentEl = $('body') if not parentEl?
-    $('.tooltip', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-    $('.select-menu', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    $('textarea', parentEl).each (i, el) ->
-      fitToContent $(this).attr('id'), 0
-  
 
   ## Event Binding ##
   
@@ -42,7 +33,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     ev.preventDefault()
     href = el.attr 'href'
     window.history.pushState null, null, href
-    @publish 'history.change', href
+    @publish 'location.change', href
     
   #- catch any body click event
   '#bodyClick click': ->
@@ -80,20 +71,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   ## Subscriptions ##
   
-  'history.change subscribe': (called, href) ->
-    # entries_show = /^\/(\w+)\/(\d+)$/
-    # stream = /^\/stream$/
-    # books = /^\/books\/?(\w*)/
-    # if (match = entries_show.exec(href))?
-    #   @publish 'entries.show', {username: match[1], id: match[2]}
-    # if (match = books.exec(href))?
-    #   if (action = match[1])?
-    #   else
-    #     action = 'index'
-    #   @publish "books.#{action}", data
-    # if (match = stream.exec(href))?
-    #   @publish 'dreamstream'
-
+  'location.change subscribe': (called, href) ->
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
@@ -124,20 +102,27 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @publish "#{controller}.#{action}", data
       
       
-  'dom.added subscribe': (called, data) ->
-    @initUi data
+  'app.initUi subscribe': (called, parentEl) ->
+    parentEl = @element if not parentEl?
+    $('textarea', parentEl).each (i, el) ->
+      fitToContent $(this).attr('id'), 0
+    $('.tooltip', parentEl).each (i, el) =>
+      UiHelper.registerTooltip $(el)
+    $('.select-menu', parentEl).each (i, el) =>
+      UiHelper.registerSelectMenu $(el)
+
     
   #- appearance (bedsheet, scroll  & theme) change
   'appearance.change subscribe': (called, data) ->
     #if no data is passed, then use the user default settings
-    data = $('#userInfo').data 'viewpreference' unless data?
+    data = $('#currentUserInfo').data 'viewpreference' unless data?
     return unless data.image_id?
 
     # TODO: Make this an Image model lookup.   new Image(data.image_id).url('bedsheet')
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
 
-    #todo: should include font size & float?
+    # todo: should include font size & float?
     if data.bedsheet_attachment?
       $('#body').removeClass('scroll fixed')
       $('#body').addClass data.bedsheet_attachment
@@ -155,4 +140,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
     
-
+  'app.loading subscribe': (called, enable=yes) ->
+    if enable
+      $('#ajax_loading').show()
+    else
+      $('#ajax_loading').hide()

@@ -43,7 +43,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
         el = $('#showEntry .entry:visible:first')
       else
         @model.user.setViewPreferences data
-        el = $('#userInfo')
+        el = $('#currentUserInfo')
         
       existingData = el.data 'viewpreference'
       $.extend existingData, newData

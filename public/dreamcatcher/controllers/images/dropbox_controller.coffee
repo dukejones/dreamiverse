@@ -11,8 +11,8 @@ $.Controller 'Dreamcatcher.Controllers.Images.Dropbox', {
   init: (el, parent) ->
     @scope = $(el)
     @parent = parent
-    @imageCookie = new Dreamcatcher.Classes.CookieHelper 'ib_dropbox'
-    @stateCookie = new Dreamcatcher.Classes.CookieHelper 'ib_state', true
+    @imageCookie = new CookieHelper 'ib_dropbox'
+    @stateCookie = new CookieHelper 'ib_state', true
     $('#dropbox .imagelist').html ''
     
     @showImage imageId for imageId in @imageCookie.getAll() if @imageCookie.getAll()?

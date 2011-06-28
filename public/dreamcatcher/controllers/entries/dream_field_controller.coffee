@@ -2,15 +2,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   pluginName: 'dreamField'  
 }, {
   
-  #- constructor
-  
   init: (el) ->
     @element = $(el)
     $('.matrix.books', @element).books()
     @setupEntryDragging()
           
   #- move entry to book (drag & drop)
-  
   setupEntryDragging: ->
     $('.matrix.index .thumb-2d', @element).draggable {
       containment: 'document'
@@ -21,7 +18,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     }
   
   #- entry field
-  
   showEntryField: (username, newBook, editBookId, reload) ->
     if (not reload) and ($('.matrix.index', @element).data('username') is username)
       @displayEntryField null, newBook, editBookId
@@ -63,12 +59,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @publish 'books.close'
     @publish 'context_panel.show', username
     @showEntryField username, newBook, editBook, reload
-    
-  'books.new subscribe': ->
-    @publish 'entries.index', { newBook: true }
-  
-  'books.edit subscribe': (called, data) ->
-    @publish 'entries.index', { editBook: data.id }
     
 }
   

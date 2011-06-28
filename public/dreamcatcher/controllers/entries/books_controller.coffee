@@ -20,7 +20,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return null
     
   resetUrl: -> 
-    username = $('#userInfo').data 'username'
+    username = $('#currentUserInfo').data 'username'
     window.history.pushState null, null, "/#{username}"
     
     
@@ -256,7 +256,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       @element.prepend html
       bookEl = $('.book:first', @element)
       @editBook bookEl
-      @publish 'dom.added', bookEl
+      @publish 'app.initUi', bookEl
       @makeDroppable bookEl
 
   
@@ -274,6 +274,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
 
   'books.hover subscribe': (called, el) ->
     @openBook el, false
+
+  'books.new subscribe': ->
+    @publish 'entries.index', { newBook: true }
+
+  'books.edit subscribe': (called, data) ->
+    @publish 'entries.index', { editBook: data.id }
 
  
 }

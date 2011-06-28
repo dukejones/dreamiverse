@@ -26,7 +26,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       $('#contextPanel .book').remove()
       $('#books-list').val bookId  
     
-    @publish 'dom.added', @element
+    @publish 'app.initUi', @element
     @initBooksListButton()
     @element.fadeIn '500', =>
       fitToContent $('textarea', @element).attr('id'), 0
@@ -48,7 +48,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   interval: 5000
   
   initCookieSaver: ->
-    @entryCookie = new Dreamcatcher.Classes.CookieHelper "dc_new_entry",true
+    @entryCookie = new CookieHelper "dc_new_entry", true
     @currentEntryType = $('#entryMode').data 'id'
     @posted = false
     @retrieveState()
