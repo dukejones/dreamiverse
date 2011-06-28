@@ -4,8 +4,9 @@ $(document).ready ->
   
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  init: ->
-    @publish 'dom.added', $('#body')    
+  init: (el)->
+    @element = $(el)
+    @publish 'dom.added', @element
 
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
@@ -25,13 +26,12 @@ $.Controller 'Dreamcatcher.Controllers.Application',
 
   #- setup ui elements
   initUi: (parentEl) ->
-    parentEl = $('body') if not parentEl?
-    $('.tooltip', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-    $('.select-menu', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    $('textarea', parentEl).each (i, el) ->
+    $('textarea').each (i, el) ->
       fitToContent $(this).attr('id'), 0
+    $('.tooltip').each (i, el) =>
+      UiHelper.registerTooltip $(el)
+    $('.select-menu').each (i, el) =>
+      UiHelper.registerSelectMenu $(el)
   
 
   ## Event Binding ##
@@ -137,7 +137,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
 
-    #todo: should include font size & float?
+    # todo: should include font size & float?
     if data.bedsheet_attachment?
       $('#body').removeClass('scroll fixed')
       $('#body').addClass data.bedsheet_attachment
@@ -155,4 +155,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
     
-
+  'app.loading subscribe': (called, enable=yes) ->
+    if enable
+      $('#ajax_loading').show()
+    else
+      $('#ajax_loading').hide()
