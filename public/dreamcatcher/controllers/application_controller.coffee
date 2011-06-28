@@ -4,8 +4,9 @@ $(document).ready ->
   
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  init: ->
-    @publish 'dom.added', $('#body')    
+  init: (el)->
+    @element = $(el)
+    @publish 'app.initUi'
 
     $('#metaMenu').metaMenu()
     $('#totem').contextPanel() if $('#totem').exists()
@@ -21,7 +22,11 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @bind window, 'popstate', => @publish 'history.change', window.location.pathname
     
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
-      
+
+
+
+  ## Event Binding ##
+  
   #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
   'a.history click': (el, ev) ->
     return unless $('#entryField').exists()
@@ -30,20 +35,43 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     window.history.pushState null, null, href
     @publish 'history.change', href
     
-  'history.change subscribe': (called, href) ->
-    # entries_show = /^\/(\w+)\/(\d+)$/
-    # stream = /^\/stream$/
-    # books = /^\/books\/?(\w*)/
-    # if (match = entries_show.exec(href))?
-    #   @publish 'entries.show', {username: match[1], id: match[2]}
-    # if (match = books.exec(href))?
-    #   if (action = match[1])?
-    #   else
-    #     action = 'index'
-    #   @publish "books.#{action}", data
-    # if (match = stream.exec(href))?
-    #   @publish 'dreamstream'
+  #- catch any body click event
+  '#bodyClick click': ->
+    @publish 'body.clicked' 
+    
+  #- fit to content event
+  'textarea keyup': (el) ->
+    fitToContent el.attr('id'), 0
+    
+  '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
+    @publish 'menu.show', 'appearance'
+  
+  #- select-menu events - todo: move into own controller?
+    
+  'label.ui-selectmenu-default mouseover': (el) ->
+    el.parent().addClass 'default-hover'
 
+  'label.ui-selectmenu-default mouseout': (el) ->
+    el.parent().removeClass 'default-hover'  
+  
+  '.ui-selectmenu-default input[type=radio] click': (el) ->
+    # radio button check for select-menu
+    #todo: publish
+    ul = $(el).closest 'ul'
+    $('li', ul).removeClass 'default'
+    $(el).closest('li').addClass 'default'
+    
+    name = el.attr 'name'
+    value = $('a:first',el.closest('li')).data 'value'
+    
+    user = {}
+    user[name] = value
+    Dreamcatcher.Models.User.update {user: user}
+  
+  
+  ## Subscriptions ##
+  
+  'history.change subscribe': (called, href) ->
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'
@@ -73,19 +101,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     log data
     @publish "#{controller}.#{action}", data
       
-  #- setup ui elements
-  
-  initUi: (parentEl) ->
-    parentEl = $('body') if not parentEl?
-    $('.tooltip', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-    $('.select-menu', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
+      
+  'app.initUi subscribe': (called, parentEl) ->
+    parentEl = @element if not parentEl?
     $('textarea', parentEl).each (i, el) ->
       fitToContent $(this).attr('id'), 0
-      
-  'dom.added subscribe': (called, data) ->
-    @initUi data
+    $('.tooltip', parentEl).each (i, el) =>
+      UiHelper.registerTooltip $(el)
+    $('.select-menu', parentEl).each (i, el) =>
+      UiHelper.registerSelectMenu $(el)
+
     
   #- appearance (bedsheet, scroll  & theme) change
   'appearance.change subscribe': (called, data) ->
@@ -97,7 +122,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
     return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
 
-    #todo: should include font size & float?
+    # todo: should include font size & float?
     if data.bedsheet_attachment?
       $('#body').removeClass('scroll fixed')
       $('#body').addClass data.bedsheet_attachment
@@ -115,38 +140,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
     
-  #- catch any body click event
-
-  '#bodyClick click': ->
-    @publish 'body.clicked' 
-    
-  #- fit to content event
-    
-  'textarea keyup': (el) ->
-    fitToContent el.attr('id'), 0
-    
-  '.button.appearance, #entry-appearance click': (el) -> #todo: merge class name
-    @publish 'menu.show', 'appearance'
-  
-  #- select-menu events - todo: move into own controller?
-    
-  'label.ui-selectmenu-default mouseover': (el) ->
-    el.parent().addClass 'default-hover'
-
-  'label.ui-selectmenu-default mouseout': (el) ->
-    el.parent().removeClass 'default-hover'  
-  
-  '.ui-selectmenu-default input[type=radio] click': (el) ->
-    # radio button check for select-menu
-    #todo: publish
-    ul = $(el).closest 'ul'
-    $('li', ul).removeClass 'default'
-    $(el).closest('li').addClass 'default'
-    
-    name = el.attr 'name'
-    value = $('a:first',el.closest('li')).data 'value'
-    
-    user = {}
-    user[name] = value
-    Dreamcatcher.Models.User.update {user: user}
-
+  'app.loading subscribe': (called, enable=yes) ->
+    if enable
+      $('#ajax_loading').show()
+    else
+      $('#ajax_loading').hide()

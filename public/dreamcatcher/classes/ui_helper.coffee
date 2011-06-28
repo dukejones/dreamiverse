@@ -1,4 +1,4 @@
-$.Class 'Dreamcatcher.Classes.UiHelper',{
+$.Class 'UiHelper',{
   
   registerTooltip: (el) ->
     left = el.hasClass 'left'
