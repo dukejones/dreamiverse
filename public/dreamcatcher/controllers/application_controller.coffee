@@ -19,7 +19,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#adminPage').admin() if $('#adminPage').exists()
     $('#frame.browser').imageBank() if $("#frame.browser").exists()
     
-    @bind window, 'popstate', => @publish 'history.change', window.location.pathname
+    @bind window, 'popstate', => @publish 'location.change', window.location.pathname
     
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
 
@@ -33,7 +33,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     ev.preventDefault()
     href = el.attr 'href'
     window.history.pushState null, null, href
-    @publish 'history.change', href
+    @publish 'location.change', href
     
   #- catch any body click event
   '#bodyClick click': ->
@@ -71,7 +71,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
   
   ## Subscriptions ##
   
-  'history.change subscribe': (called, href) ->
+  'location.change subscribe': (called, href) ->
     hrefSplit = href.split '/'
     controller = 'entries'
     action = 'show'

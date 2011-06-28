@@ -56,7 +56,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
     return if el.val() is 'empty'
     href = el.val()
     window.history.pushState null, null, href
-    @publish 'history.change', href
+    @publish 'location.change', href
     el.val 'empty'
     
 }
