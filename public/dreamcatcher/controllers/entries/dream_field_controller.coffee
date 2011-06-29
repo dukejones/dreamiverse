@@ -4,8 +4,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   init: (el) ->
     @element = $(el)
-    $('.matrix.books', @element).books()
+    @activate()
+
+  activate: ->
     @setupEntryDragging()
+    $('.matrix.books', @element).books()
 
   #- move entry to book (drag & drop)
   setupEntryDragging: ->
@@ -21,27 +24,25 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
 
   #- entry field
   showEntryField: (username, forceReload) ->
-    # if (not forceReload) and (@username is username)
-    #   # Hide everything within #entryField
-    #   $('#entryField').children().each ->
-    #     $(this).hide()
-    #   # $('.matrix.bookIndex', @element).remove()
-    #   # @element.children().fadeIn '500' 
-    #   # @displayEntryField null, newBook, editBookId
-    #   $.Deferred().resolve()
-    # 
-    # else
-
     @element.siblings().hide()
-    @publish 'app.loading'
-    Entry.index username, (html) =>
-      @publish 'app.loading', false
-      @element.html html
-      @setupEntryDragging()
-      $('.matrix.books', @element).books()
-      @element.fadeIn 500 unless @element.is ':visible'
-      @publish 'appearance.change'
-      
+    
+    if (@username() is username) and not forceReload
+      promise = $.Deferred().resolve()
+    else
+      @publish 'app.loading'
+      promise = Entry.index username, (html) =>
+        @publish 'app.loading', false
+        @element.html html
+
+    promise.done => 
+      @show()
+      @activate()
+    return promise
+
+  show: ->
+    @element.fadeIn 500 unless @element.is ':visible'
+    @publish 'appearance.change'
+    
       
   displayEntryField: (html, newBook, editBookId) ->
     
