@@ -14,8 +14,9 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#entriesIndex').dreamField() if $('#entriesIndex').exists()
     $('#entriesStream').dreamStream() if $('#entriesStream').exists()
     $('#showEntry').showEntry() if $('#showEntry').exists()
-    $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
-    
+    if $('#newEditEntry').exists()
+      $('#newEditEntry').newEditEntry() 
+      log 's'
     $('#adminPage').admin() if $('#adminPage').exists()
     $('#frame.browser').imageBank() if $("#frame.browser").exists()
     

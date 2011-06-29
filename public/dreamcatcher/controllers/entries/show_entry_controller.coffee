@@ -14,6 +14,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   init: (el) ->
     @element = $(el)
     @element.tags 'show' # invoke the tags controller
+    @activatePlugins $('.entry', @element)
+    
 
   showEntryById: (id) ->
     entryEl = @el.entry id
@@ -24,9 +26,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
         $('#showEntry').append html
         @showEntryElement @el.entry id
         showEntryEl = $('#showEntry .entry:last')
-        showEntryEl.linkify().videolink()
-        showEntryEl.comments()
-
+        @activatePlugins showEntryEl
+  
+  activatePlugins: (el) ->
+    el.linkify()
+    el.videolink() #check if this is ok... might need to uncomment somewhere else
+    $('.lightbox', el).each -> $(this).lightBox {containerResizeSpeed: 0}
+    el.comments()
+        
   showEntryElement: (entryEl) ->
     $('#showEntry').children().hide()
     $('#entryField').children().hide()
