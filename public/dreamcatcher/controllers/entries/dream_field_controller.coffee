@@ -4,61 +4,58 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   init: (el) ->
     @element = $(el)
-    $('.matrix.books', @element).books()
+    @activate()
+
+  activate: ->
     @setupEntryDragging()
-          
+    $('.matrix.books', @element).books()
+
   #- move entry to book (drag & drop)
   setupEntryDragging: ->
     $('.matrix.index .thumb-2d', @element).draggable {
-      containment: 'document'
-      zIndex: 100
-      revert: 'invalid'
-      distance: 15
-      # helper: 'clone'
+      containment: 'document', zIndex: 100, revert: 'invalid', distance: 15
     }
   
+  username: -> $('.matrix.index', @element).data('username')
+
   #- entry field
-  showEntryField: (username, newBook, editBookId, reload) ->
-    if (not reload) and ($('.matrix.index', @element).data('username') is username)
-      @displayEntryField null, newBook, editBookId
+  showEntryField: (username, forceReload) ->
+    @element.siblings().hide()
+    
+    if (@username() is username) and not forceReload
+      promise = $.Deferred().resolve()
     else
-      Entry.index username, (html) =>
-        @displayEntryField html, newBook, editBookId
+      @publish 'app.loading'
+      promise = Entry.index username, (html) =>
+        @publish 'app.loading', false
+        @element.html html
+
+
+    promise.done => 
+      @show()
+      @activate()
+      nav = if (dreamcatcher.currentUser().username is @username()) then 'home' else null
+      @publish 'navigation.select', nav
       
-  displayEntryField: (html, newBook, editBookId) ->
-    # TODO: have a good look at this
-    if not html?
-      $('#entryField').children().each ->
-        $(this).hide() unless $(this).attr('id') is 'entriesIndex'
-      $('.matrix.bookIndex', @element).remove()
-      @element.children().fadeIn '500' 
-    else
-      $('#entryField').children().hide()
-      @element.html html
-      @setupEntryDragging()
-      #@publish 'entries.drag', @element
-      $('.matrix.books', @element).books()
-    
-    @publish 'books.create' if newBook
-    @publish 'books.modify', editBookId if editBookId?
-    
+    return promise
+
+  show: ->
     @element.fadeIn 500 unless @element.is ':visible'
     @publish 'appearance.change'
     
-    $('.item.stream').removeClass('selected')
-    $('.item.home').addClass('selected')
-    
-    
-  'entries.index subscribe': (called, data) ->
-    data ?= {}
-    username = data.username ? $('#userInfo').data('username')
+  'entries.index subscribe': (called, data={}) ->
+    username = data.username ? dreamcatcher.currentUser().username
     newBook = data.newBook?
-    editBook = data.editBook
+    editBookId = data.editBook
     reload = data.reload?
     
     @publish 'books.close'
     @publish 'context_panel.show', username
-    @showEntryField username, newBook, editBook, reload
+    
+    # @showEntryField username, newBook, editBookId, reload
+    @showEntryField(username, reload).then (html) =>
+      @publish 'books.create' if newBook
+      @publish 'books.modify', editBookId if editBookId?
     
 }
   

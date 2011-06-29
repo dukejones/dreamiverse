@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
   model: {
     image: Dreamcatcher.Models.Image
     entry: Entry
-    user: Dreamcatcher.Models.User
+    user: User
   }
   data: {
     entryId: ->
@@ -23,7 +23,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
 
   showPanel: ->
     $('#appearancePanel').show()
-    @loadBedsheets @defaultCategirt
+    @loadBedsheets @defaultCategory
 
   'appearance.update subscribe': (called, data) ->
     #todo: consistency bedsheet_id, bedsheet_attachement should be image_id & scrolling.
@@ -39,11 +39,11 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
     else
       entryId = @data.entryId()
       if entryId?
-        @model.entry.setViewPreferences entryId, data
+        Entry.setViewPreferences entryId, data
         el = $('#showEntry .entry:visible:first')
       else
-        @model.user.setViewPreferences data
-        el = $('#userInfo')
+        User.setViewPreferences data
+        el = $('#currentUserInfo')
         
       existingData = el.data 'viewpreference'
       $.extend existingData, newData
