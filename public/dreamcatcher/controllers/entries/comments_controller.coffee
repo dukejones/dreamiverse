@@ -10,8 +10,8 @@ $.Controller 'Dreamcatcher.Controllers.Common.Comments', {
     @element = $(element)
     @entryId = @element.data 'id'
     @entryView = @element.hasClass 'entry'
-    @currentUserId = if $("#userInfo").exists() then parseInt $("#userInfo").data 'id' else null
-    @currentUserImageId = parseInt $("#userInfo").data 'imageid'
+    @currentUserId = if $("#currentUserInfo").exists() then parseInt $("#currentUserInfo").data 'id' else null
+    @currentUserImageId = parseInt $("#currentUserInfo").data 'imageid'
     @loadComments() if @entryView or @getNewCommentCount() > 0
     
   getNewCommentCount: ->
