@@ -12,7 +12,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   }
   
   init: (el) ->
-    @element = el
+    @element = $(el)
     @element.tags 'show' # invoke the tags controller
     @activatePlugins $('.entry', @element)
     

@@ -8,7 +8,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   
   init: (el) ->
     @element = $(el)
-    @loadingRelationship = false
     @followButtonState = {}
     @polarFollowText = {none: 'follow', followed_by: 'befriend', following: 'unfollow', friends: 'unfriend'}
     @polarFollowRelationships = {none: 'following', followed_by: 'friends', following: 'follow', friends: 'following you'}
@@ -29,7 +28,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     
     $("#relationship").removeClass(prevClass).addClass(newClass)
     $("#relationship").data('status', json.new_relationship)
-    log "updated relationship to: #{json.new_relationship}" 
+    log "updated relationship to: #{json.new_relationship} prevClass: #{prevClass} newClass #{newClass}" 
         
   # DOM Listeners       
   
@@ -97,7 +96,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     el.children(':first').text @followButtonState['currentText'] 
      
   '#relationship click': (el) ->
-    @loadingRelationship = true
     currentRelationship = $("#relationship").data 'status'  
     followUsername = $("#relationship").data 'username'
     newRelationship = @polarFollowRelationships[currentRelationship]
@@ -109,8 +107,5 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       @model.user.follow({username: followUsername},@callback('updateFollowRelationship', el))
     else if currentRelationship is 'friends' or currentRelationship is 'following'
       @model.user.unfollow({username: followUsername},@callback('updateFollowRelationship', el))
-    
-    @loadingRelationship = false
-  
-    
+   
 }
