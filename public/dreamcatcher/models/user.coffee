@@ -1,4 +1,4 @@
-$.Model 'Dreamcatcher.Models.User',{
+$.Model 'User',{
 
   #todo: copied from settings model - refactor later
   update: ( params, success, error ) ->
