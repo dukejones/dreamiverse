@@ -8,13 +8,11 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   
   init: (el) ->
     @element = $(el)
-    @currentRelationship = '' 
-    @currentText = ''
-    @followButtonState = {currentClass: '', hoverClass: ''}
+    @loadingRelationship = false
+    @followButtonState = {}
     @polarFollowText = {none: 'follow', followed_by: 'befriend', following: 'unfollow', friends: 'unfriend'}
-    @polarFollowRelationships = {none: 'following', following: 'follow', followed_by: 'friends', friends: 'following you'}
-
-
+    @polarFollowRelationships = {none: 'following', followed_by: 'friends', following: 'follow', friends: 'following you'}
+ 
   # Methods
   
   uploadComplete: (id, fileName, result) ->
@@ -25,18 +23,18 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       $('#avatarDrop').hide()
       @model.user.update { "user[image_id]": image.id }
 
-  updateFollowButton: (el,text, className=null) ->
-    log "updateFollowButton text: #{text} @followButtonState[hoverClass] #{@followButtonState['hoverClass']}"  
-    el.children(':first').text('').text text
-
-  updateFollowRelationship: (el,json) -> 
-    log 'updated relationship to: ' + json.new_relationship
-    $("#relationship").data('status', json.new_relationship)
-    @prevClass = $("#relationship").attr('className')
-    $("#relationship").removeClass(@prevClass).addClass(json.new_relationship)
+  updateFollowRelationship: (el,json) ->     
+    prevClass = $("#relationship").attr('className')
+    newClass = json.new_relationship
+    newText = json.new_relationship
+    newText = 'follow' if newText is 'none'
+    newText = 'following you' if newText is 'followed_by'
+    newText = @polarFollowText[@followButtonState['currentText']] if @loadingRelationship
     
-    @newText = if json.new_relationship is 'none' then 'follow' else json.new_relationship
-    el.children(':first').text('').text @newText
+    $("#relationship").removeClass(prevClass).addClass(newClass)
+    el.children(':first').text newText
+    $("#relationship").data('status', json.new_relationship)
+    log "updated relationship to: #{json.new_relationship} newText: #{newText}" 
         
   # DOM Listeners       
   
@@ -92,28 +90,32 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
 
 
   '#relationship mouseover': (el) ->
-    @currentRelationship = $("#relationship").data 'status'
-    @currentText = el.children(':first').text()
-    @hoverText = @polarFollowText[@currentRelationship]   
-    @followButtonState['currentText'] = @currentText
-    log("@currentRelationship: #{@currentRelationship} @currentText: #{@currentText} @hoverText #{@hoverText} ")
-    @updateFollowButton(el,@hoverText)
+    currentRelationship = $("#relationship").data 'status'
+    currentText = el.children(':first').text()
+    hoverText = @polarFollowText[currentRelationship]   
+    @followButtonState['currentText'] = currentText
+    
+    el.children(':first').text hoverText
+    log("currentRelationship: #{currentRelationship} currentText: #{currentText} hoverText #{hoverText} ")
 
   '#relationship mouseout': (el) ->
-    el.children(':first').text @followButtonState['currentText']
-
+    el.children(':first').text @followButtonState['currentText'] unless @loadingRelationship
+     
   '#relationship click': (el) ->
-    @currentRelationship = $("#relationship").data 'status'  
-    @followUsername = $("#relationship").data 'username'
-    @newRelationship = @polarFollowRelationships[@currentRelationship]  
-    @followButtonState['newText']
+    @loadingRelationship = true
+    currentRelationship = $("#relationship").data 'status'  
+    followUsername = $("#relationship").data 'username'
+    newRelationship = @polarFollowRelationships[currentRelationship]
+    @followButtonState['currentText'] = newRelationship
     
-    log("@username: #{@username} @newRelationship:#{@newRelationship} @currentRelationship: #{@currentRelationship}")
+    log("folowUsername: #{followUsername} newRelationship:#{newRelationship} currentRelationship: #{currentRelationship}")
   
-    if @currentRelationship is 'none' or @currentRelationship is 'followed_by'     
-      @model.user.follow({username: @followUsername},@callback('updateFollowRelationship', el))
-    else if @currentRelationship is 'friends' or @currentRelationship is 'following'
-      @model.user.unfollow({username: @followUsername},@callback('updateFollowRelationship', el))
+    if currentRelationship is 'none' or currentRelationship is 'followed_by'     
+      @model.user.follow({username: followUsername},@callback('updateFollowRelationship', el))
+    else if currentRelationship is 'friends' or currentRelationship is 'following'
+      @model.user.unfollow({username: followUsername},@callback('updateFollowRelationship', el))
+    
+    @loadingRelationship = false
   
     
 }
