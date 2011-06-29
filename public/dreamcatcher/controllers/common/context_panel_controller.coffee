@@ -26,15 +26,10 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   updateFollowRelationship: (el,json) ->     
     prevClass = $("#relationship").attr('className')
     newClass = json.new_relationship
-    newText = json.new_relationship
-    newText = 'follow' if newText is 'none'
-    newText = 'following you' if newText is 'followed_by'
-    newText = @polarFollowText[@followButtonState['currentText']] if @loadingRelationship
     
     $("#relationship").removeClass(prevClass).addClass(newClass)
-    el.children(':first').text newText
     $("#relationship").data('status', json.new_relationship)
-    log "updated relationship to: #{json.new_relationship} newText: #{newText}" 
+    log "updated relationship to: #{json.new_relationship}" 
         
   # DOM Listeners       
   
@@ -99,7 +94,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     log("currentRelationship: #{currentRelationship} currentText: #{currentText} hoverText #{hoverText} ")
 
   '#relationship mouseout': (el) ->
-    el.children(':first').text @followButtonState['currentText'] unless @loadingRelationship
+    el.children(':first').text @followButtonState['currentText'] 
      
   '#relationship click': (el) ->
     @loadingRelationship = true

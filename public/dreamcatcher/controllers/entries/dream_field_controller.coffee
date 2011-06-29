@@ -30,7 +30,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
         @publish 'app.loading', false
         @element.html html
 
-
     promise.done => 
       @show()
       @activate()
@@ -52,8 +51,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @publish 'books.close'
     @publish 'context_panel.show', username
     
-    # @showEntryField username, newBook, editBookId, reload
-    @showEntryField(username, reload).then (html) =>
+    @showEntryField(username, reload).done (html) =>
       @publish 'books.create' if newBook
       @publish 'books.modify', editBookId if editBookId?
     
