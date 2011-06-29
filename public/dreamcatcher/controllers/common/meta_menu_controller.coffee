@@ -21,9 +21,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
     $('#bodyClick').hide()
     $('.item.settings,.item.appearance').removeClass 'selected'
   
-  'body.clicked subscribe': (data) ->
-    @hideAllPanels()
-    
     
   selectPanel: (name) ->
     $(".item.trigger.#{name}").addClass 'selected'
@@ -40,9 +37,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
     @currentPanel.showPanel()
     $('#bodyClick').show()
     
-  'menu.show subscribe': (called, panelName) ->
-    @selectPanel panelName
-
 
   '.item.settings,.item.appearance click': (el) ->
     expanded = el.hasClass('selected')
@@ -51,13 +45,24 @@ $.Controller 'Dreamcatcher.Controllers.Users.MetaMenu', {
     panelName = $('.target:first',el.parent()).attr('id').replace('Panel','')
     @selectPanel panelName
 
-
   '#new-post change': (el) ->
     return if el.val() is 'empty'
     href = el.val()
     window.history.pushState null, null, href
     @publish 'location.change', href
     el.val 'empty'
+
+
+  'body.clicked subscribe': (data) ->
+    @hideAllPanels()
+
+  'menu.show subscribe': (called, panelName) ->
+    @selectPanel panelName
+
+  'navigation.select subscribe': (called, navClass) ->
+    # navClass is home, stream, dreamstars
+    $("a.item.selected").removeClass("selected") # is this selector too broad?
+    $("a.item.#{navClass}").addClass("selected") if navClass?
     
 }
     

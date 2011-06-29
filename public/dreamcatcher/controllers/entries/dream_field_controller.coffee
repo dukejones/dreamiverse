@@ -13,14 +13,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   #- move entry to book (drag & drop)
   setupEntryDragging: ->
     $('.matrix.index .thumb-2d', @element).draggable {
-      containment: 'document'
-      zIndex: 100
-      revert: 'invalid'
-      distance: 15
+      containment: 'document', zIndex: 100, revert: 'invalid', distance: 15
     }
   
-  username: ->
-    $('.matrix.index', @element).data('username')
+  username: -> $('.matrix.index', @element).data('username')
 
   #- entry field
   showEntryField: (username, forceReload) ->
@@ -37,25 +33,19 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     promise.done => 
       @show()
       @activate()
+      if dreamcatcher.currentUser().username is @username()
+        @publish 'navigation.select', 'home'
+      else
+        @publish 'navigation.select'
+      
     return promise
 
   show: ->
     @element.fadeIn 500 unless @element.is ':visible'
     @publish 'appearance.change'
     
-      
-  displayEntryField: (html, newBook, editBookId) ->
-    
-    # @publish 'books.create' if newBook
-    # @publish 'books.modify', editBookId if editBookId?
-    # 
-    # 
-    # $('.item.stream').removeClass('selected')
-    # $('.item.home').addClass('selected')
-    
-    
   'entries.index subscribe': (called, data={}) ->
-    username = data.username ? $('#currentUserInfo').data('username')
+    username = data.username ? dreamcatcher.currentUser().username
     newBook = data.newBook?
     editBookId = data.editBook
     reload = data.reload?
@@ -67,7 +57,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @showEntryField(username, reload).then (html) =>
       @publish 'books.create' if newBook
       @publish 'books.modify', editBookId if editBookId?
-
     
 }
   
