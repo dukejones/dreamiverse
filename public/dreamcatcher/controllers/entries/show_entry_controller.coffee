@@ -12,7 +12,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   }
   
   init: (el) ->
-    @element = $(el)
+    @element = el
     @element.tags 'show' # invoke the tags controller
 
   showEntryById: (id) ->
@@ -28,9 +28,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
         showEntryEl.comments()
 
   showEntryElement: (entryEl) ->
-    $('#showEntry').children().hide()
-    $('#entryField').children().hide()
-    $('#showEntry').fadeIn '500'
+    @element.siblings().hide()
+    @element.fadeIn '500'
     entryEl.show()
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
