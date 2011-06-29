@@ -30,13 +30,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
         @publish 'app.loading', false
         @element.html html
 
+
     promise.done => 
       @show()
       @activate()
-      if dreamcatcher.currentUser().username is @username()
-        @publish 'navigation.select', 'home'
-      else
-        @publish 'navigation.select'
+      nav = if (dreamcatcher.currentUser().username is @username()) then 'home' else null
+      @publish 'navigation.select', nav
       
     return promise
 
