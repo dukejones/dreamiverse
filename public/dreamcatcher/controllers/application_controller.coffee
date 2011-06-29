@@ -1,6 +1,6 @@
   
 $(document).ready ->
-  @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
+  window.dreamcatcher = new Dreamcatcher.Controllers.Application $('body')
   
 $.Controller 'Dreamcatcher.Controllers.Application',
   
@@ -24,7 +24,16 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
 
 
-
+  currentUser: ->
+    userInfo = $('#currentUserInfo')
+    return null unless userInfo?
+    new User {
+      id:       userInfo.data('id')
+      username: userInfo.data('username')
+      imageId:  userInfo.data('imageid')
+      viewPreference: userInfo.data('viewpreference')
+    }
+    
   ## Event Binding ##
   
   #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
@@ -66,7 +75,7 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
     user = {}
     user[name] = value
-    Dreamcatcher.Models.User.update {user: user}
+    User.update {user: user}
   
   
   ## Subscriptions ##
@@ -140,8 +149,8 @@ $.Controller 'Dreamcatcher.Controllers.Application',
         $('#body').css 'background-image', "url('#{bedsheetUrl}')"
     $('body').append img
     
-  'app.loading subscribe': (called, enable=yes) ->
-    if enable
-      $('#ajax_loading').show()
+  'app.loading subscribe': (called, loading=yes) ->
+    if loading
+      $('#loading_ajax').show()
     else
-      $('#ajax_loading').hide()
+      $('#loading_ajax').hide()

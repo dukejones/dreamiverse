@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
 }, {
 
   model: {
-    user: Dreamcatcher.Models.User
+    user: User
   }
   
   init: (el) ->
@@ -13,8 +13,8 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
     @followButtonState = {currentClass: '', hoverClass: ''}
     @polarFollowText = {none: 'follow', followed_by: 'befriend', following: 'unfollow', friends: 'unfriend'}
     @polarFollowRelationships = {none: 'following', following: 'follow', followed_by: 'friends', friends: 'following you'}
- 
- 
+
+
   # Methods
   
   uploadComplete: (id, fileName, result) ->

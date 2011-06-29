@@ -5,7 +5,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.AppearancePanel', {
   model: {
     image: Dreamcatcher.Models.Image
     entry: Entry
-    user: Dreamcatcher.Models.User
+    user: User
   }
   data: {
     entryId: ->
