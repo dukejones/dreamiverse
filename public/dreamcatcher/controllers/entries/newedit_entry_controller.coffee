@@ -3,7 +3,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
 }, {
 
   init: (el) ->
-    log 'y'
     @element = $(el)
     @element.tags 'edit' # invoke the tags controller
     @initCookieSaver()
