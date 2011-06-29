@@ -14,7 +14,7 @@
 
     %table{width: "639", border: "0", cellspacing: "0", cellpadding: "0", style: "border-top-left-radius: 20px; -moz-border-radius-topleft: 20px; -webkit-border-radius-topleft: 20px; border-top-right-radius: 20px; -moz-border-radius-topright: 20px; -webkit-border-radius-topright: 20px; border-bottom-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-radius-bottomright: 20px; border-bottom-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-radius-bottomleft: 20px; margin-top: 20px; margin-left: auto; margin-right: auto; box-shadow: 0 0 20px black; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; "}
       %tr
-        %td{height: "92", valign: "bottom", background: "http://localhost:3000/images/email/emailHeader.jpg", style: "border-bottom: 8px solid #0b3f6f; border-radius: 20px 20px 0 0; -moz-border-radius: 20px 20px 0 0; -webkit-border-radius: 20px 20px 0 0; "}
+        %td{height: "92", valign: "bottom", background: "#{host_url_for '/images/email/email-header.jpg'}", style: "border-bottom: 8px solid #0b3f6f; border-radius: 20px 20px 0 0; -moz-border-radius: 20px 20px 0 0; -webkit-border-radius: 20px 20px 0 0; "}
 
       %tr
         %td{bgcolor: "#e6ebf0", style: "color: #0b3f6f; padding: 10px 29px; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px;"}
@@ -27,7 +27,8 @@
             We are making some changes to the Dreamcatcher system - one of the changes includes a new maximum username length of 15 characters! You seem to have a username longer than that. <br />
 
             username : 
-              #{@user.username} <br />
+            ="#{@user.username}" 
+            %br
 
             This is a warning that you have 30 days to respond to this email with your new username (under 15 characters.) If you do not respond after 30 days, then your username will be automatically truncated (reduced to the first 15 characters.)<br />
 
