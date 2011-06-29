@@ -7,10 +7,3 @@
     = render :partial => "entries/index"
   #showEntry{style: 'display:none'}
   #newEditEntry{style: 'display:none'}
-
-- content_for :foot do
-  / APPLIES SELECTED CLASS TO META MENU
-  - if @user == current_user
-    :coffeescript
-      $('.item.home').addClass('selected')
-
