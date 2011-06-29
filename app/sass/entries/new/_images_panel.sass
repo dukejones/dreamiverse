@@ -3,8 +3,6 @@
 .light #entryField
 
   .entryImages
-    .entryImageContainer
-      background: url(/images/icons/spinner-light-32.gif) no-repeat center center white
 
     #addFromImageBank
       +bevel-light
@@ -17,8 +15,6 @@
 .dark #entryField
 
   .entryImages
-    .entryImageContainer
-      background: url(/images/icons/spinner-dark-32.gif) no-repeat center center black
 
     #addFromImageBank
       +bevel-dark
@@ -101,25 +97,25 @@
         +user-select
         list-style: none
 
-        .entryImageContainer
-          +left
-          +round(8)
-          +overflow
+        .imageBackground
+          +round(9)
           +relative
+          +left
+          top: 0
+          left: 0
           margin: 0px 8px 8px 0px
           height: 120px
           width: 120px
-          z-index: 2
+          background-color: #a4a6a8
 
-          // .placeholder
-          //   +round(9)
-          //   +absolute
-          //   top: 0
-          //   left: 0
-          //   margin: 0
-          //   height: 120px
-          //   width: 120px
-          //   background-color: #a4a6a8
+        .entryImageContainer
+          +round(8)
+          +overflow
+          +relative
+          margin: 0
+          height: 120px
+          width: 120px
+          z-index: 2
 
           &:hover
             .radio .input-wrap, .radio .radio-input

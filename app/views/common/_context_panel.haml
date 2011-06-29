@@ -8,7 +8,7 @@
 
   - cache([user, current_user._?.relationship_with(user), @mode, @entry_count, user.friends.count, "context_panel"]) do
     #contextPanel
-      - if (user == current_user) && !is_ipad?        
+      - if (user == current_user) && !is_ipad?
         #avatarDrop.uploader.hidden
           #avatarDropContainer.dropbox
             .imagelist
@@ -22,8 +22,8 @@
       = render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
       
       / IMAGE
-      %a.history.avatar{style: "background:url(#{avatar_image(user)}) no-repeat center center", href: user_entries_path(user.username)}
-        - if (user == current_user) && !is_ipad?     
+      %a.history.avatar{style: "background: url(#{avatar_image(user)}) no-repeat center center #a4a6a8", href: user_entries_path(user.username)}
+        - if (user == current_user) && !is_ipad?
           .uploadAvatarWrap
             .uploadAvatar
               <span>+</span> upload new avatar
