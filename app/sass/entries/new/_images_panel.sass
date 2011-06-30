@@ -55,20 +55,25 @@
     #imageUpload
       +relative
 
+      .clickToBrowse
+        +round(8)
+        +right
+        +center
+        width: 504px
+        height: 38px
+        line-height: 38px
+
+        img
+          margin: 0px 4px -5px
+
       #imageDropArea
         +relative
         +bold
         +font(13)
-        height: 38px
-        line-height: 38px
+        height: auto
         img
           +left
           margin: 10px 8px 0 150px
-
-        .clickToBrowse
-          +round(8)
-          +right
-          width: 504px
 
         .dropboxBrowse
           +overflow
