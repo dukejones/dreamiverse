@@ -12,7 +12,7 @@
     - if !@entry._?.main_image
       %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
-    = include_stylesheets :shared, :media => 'all'
+    = include_stylesheets :shared, :embedded_images, :media => 'all'
 
 
     = yield :headBefore
@@ -22,6 +22,7 @@
     = yield :head
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
+    
     #backgroundReplace
 
     - unless current_user.blank?
