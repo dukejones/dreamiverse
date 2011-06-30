@@ -38,15 +38,17 @@
     padding: 0 8px 0 42px
     height: 33px
     line-height: 33px
+    @extend .shuffle-24
     background-position: 10px 4px !important
     background-repeat: no-repeat !important
-    background-image: url('/images/icons/shuffle-24.png') !important
 
     &:hover
+      @extend .shuffle-24-hover
       background-position: 10px 4px !important
       background-repeat: no-repeat !important
-      background-image: url('/images/icons/shuffle-24-hover.png') !important
+
     &:active
+      @extend .shuffle-24-active
       background-position: 10px 4px !important
       background-repeat: no-repeat
-      background-image: url('/images/icons/shuffle-24-active.png') !important
+

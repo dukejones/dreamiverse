@@ -132,13 +132,10 @@ javascripts:
   #   - public/javascripts/tag_stream.js
 
 stylesheets:
-  shared:
-    - public/stylesheets/compiled/shared.css
+  common:
+    - public/stylesheets/compiled/common.css
     - public/stylesheets/jquery.lightbox-0.5.css
     
-  embedded_images:
-    - public/stylesheets/compiled/common/embedded_images.css
-
   dictionaries:
     - public/stylesheets/compiled/dictionaries.css
     
