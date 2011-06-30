@@ -85,9 +85,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   clearState: ->
     @entryCookie.clear()
   
-  '#entry_submit click': ->
+  '#entry_submit click': (el) ->
     @posted = true
     @clearState()
+    el.attr('disabled',true)
     
   '#books-list change': (el) ->
     $('#books-list-button').css {

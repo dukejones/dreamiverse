@@ -94,10 +94,17 @@
   background-color: #333
   a
     color: white
+.light .ui-selectmenu-menu .ui-selectmenu-item-focus.default
+  a
+    color: black
+
 .dark .ui-selectmenu-menu .ui-selectmenu-item-focus
   background-color: #ccc
   a
     color: black
+.dark .ui-selectmenu-menu .ui-selectmenu-item-focus.default
+  a
+    color: white
 
 
 
@@ -188,7 +195,7 @@
   .allUsers.ui-selectmenu-item-focus
     +round(11)
     +flat-bottom
-  .following.ui-selectmenu-item-focus
+  .followers.ui-selectmenu-item-focus
     +round(11)
     +flat-top
 

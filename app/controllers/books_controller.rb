@@ -2,9 +2,9 @@ class BooksController < ApplicationController
   
   def index
     if params[:user_id]
-      @books = Book.where(user_id: @params.user_id)
+      @books = Book.where(user_id: @params.user_id).order(:created_at.desc)
     else
-      @books = Book.where(user_id: current_user.id)
+      @books = Book.where(user_id: current_user.id).order(:created_at.desc)
     end
     respond_to do |format|
       format.html { render(partial: 'books/books') }
