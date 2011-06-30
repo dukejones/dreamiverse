@@ -138,9 +138,9 @@
         .item.entryFilter.friends
 
           %select#users-filter.select-menu.dropdown.label{:'data-username' => user.username}
-            %option.allUsers{value: 'all users'} all users
             %option.friends{value: 'friends'} friends
             %option.following{value: 'following'} following
+            %option.followers{value: 'followers'} followers
 
           .image
             %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
