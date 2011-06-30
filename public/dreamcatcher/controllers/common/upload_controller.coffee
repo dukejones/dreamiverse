@@ -93,7 +93,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
     $('input[type=file]', @element).removeAttr 'multiple' if @singleFile
 
   getUploadElement: (fileName) ->
-    return $("li .file:contains('#{fileName}')", @element).closest 'li'
+    return $(".file:contains('#{fileName}')", @element).closest '.uploading'
     
   getImageElement: (imageId) ->
     return $("li[data-id=#{imageId}]", @element)

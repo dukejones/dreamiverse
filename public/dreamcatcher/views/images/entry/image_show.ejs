@@ -1,25 +1,26 @@
+<!-- imageBackground  was created to contain the image loading background color. The color was originally applied to entryImageContainer, but since this div shares the image, it was creating a rounded corner border glitch. imageBackground has rounded corners 1px greater to account for this-->
+<li class="imageBackground">
 
+  <div class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center transparent'>
 
-<li class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center #a4a6a8'>
+    <div class="message">
+      <span>confirm delete</span>
+      <div class="dontDelete">cancel</div>
+    </div>
 
-  <!-- <div class="placeholder"></div> -->
+    <div class="close"></div>
 
-  <div class="message">
-    <span>confirm delete</span>
-    <div class="dontDelete">cancel</div>
+    <label class="radio">
+      <span>default</span>
+      <div class="input-wrap"></div>
+      <input class="radio-input" type="radio" name="entry[main_image_id]" data-id="<%= this.id %>">
+    </label>
+
   </div>
-
-  <div class="close"></div>
-
-  <label class="radio">
-    <span>default</span>
-    <div class="input-wrap"></div>
-    <input class="radio-input" type="radio" name="entry[main_image_id]" data-id="<%= this.id %>">
-  </label>
-
 </li>
 
 <input type="hidden" id="entry_image_ids_" name="entry[image_ids][]" value="<%= this.id %>" class="image_upload">
+
 
 <!-- <div class="uploading">
   <div class="progress-bar"></div>

@@ -15,7 +15,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     $('#entriesStream').dreamStream() if $('#entriesStream').exists()
     $('#showEntry').showEntry() if $('#showEntry').exists()
     $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
-    
     $('#adminPage').admin() if $('#adminPage').exists()
     $('#frame.browser').imageBank() if $("#frame.browser").exists()
     

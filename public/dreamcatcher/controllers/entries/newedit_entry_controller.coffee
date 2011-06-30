@@ -2,10 +2,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   pluginName: 'newEditEntry'
 }, {
 
-  model: {
-    entry : Entry
-  }
-
   init: (el) ->
     @element = $(el)
     @element.tags 'edit' # invoke the tags controller
@@ -20,7 +16,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   displayNewEditEntry: (html) ->
     $('#entryField').children().hide()
     @element.html html
-
+    
     if @mode is 'new' and $('#contextPanel .book').exists()
       bookId = $('#contextPanel .book').data 'id'
       $('#contextPanel .book').remove()
@@ -38,6 +34,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     Entry.new {}, @callback('displayNewEditEntry')
 
   'entries.edit subscribe': (called, data) ->
+    log 'x'
     @publish 'context_panel.show'
     @mode = 'edit'
     Entry.edit data.id, @callback('displayNewEditEntry')
