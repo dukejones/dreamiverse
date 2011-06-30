@@ -1,6 +1,6 @@
 - selected_entry_type ||= nil
 - plural ||= true
 
-- %w(allentries dream vision experience article journal).each do |entry_type|
+- %w(allEntries dream vision experience article journal).each do |entry_type|
   %option{:class => entry_type, :value => entry_type, :selected => (entry_type == selected_entry_type)}
     = plural ? entry_type.pluralize : entry_type
