@@ -1,0 +1,13 @@
+
+
+- content_for :foot do
+
+  = javascript_include_tag "http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"
+
+  %script
+    // You may want to place these lines inside an onload handler
+
+    / CFInstall.check({
+    /   mode: "overlay"
+    /   destination: "http://www.waikiki.com"
+    / });
