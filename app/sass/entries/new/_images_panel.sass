@@ -39,6 +39,7 @@
 #entryField
 
   .entryImages
+    +relative
 
     #addFromImageBank
       +round(8)
@@ -52,149 +53,158 @@
         +left
         margin: 6px 8px 6px 0
 
-    #imageUpload
-      +relative
+    #uploader, .dropArea
+      +absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
 
-      .clickToBrowse
-        +round(8)
-        +right
-        +center
-        width: 504px
-        height: 38px
-        line-height: 38px
+    #uploader.active
+      +alpha(70)
+      @extend .dropboxIconText
+      background: #000
 
-        img
-          margin: 0px 4px -5px
+    .browse
+      +round(8)
+      +right
+      +center
+      width: 504px
+      height: 38px
+      line-height: 38px
 
-      #imageDropArea
-        +relative
-        +bold
-        +font(13)
-        height: auto
-        img
-          +left
-          margin: 10px 8px 0 150px
+      img
+        margin: 0px 4px -5px
 
-        .dropboxBrowse
-          +overflow
-          +center
-          +pointer
-          width: 100%
-          +round(8)
-          direction: ltr
-          height: 36px
-          margin: 0 0 -34px
-          input
-            background: transparent
-            border: none
-            +outline
-          &.qq-upload-drop-area
-            +cursor
-            +user-select
-            height: 36px
-            +round(7)
-            &.qq-upload-drop-area-active
-              background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
+    // #imageDropArea
+    //   +relative
+    //   +bold
+    //   +font(13)
+    //   height: auto
+    //   img
+    //     +left
+    //     margin: 10px 8px 0 150px
 
-      #currentImages
-        +relative
-        margin: 12px 0 0 12px
+    .dropboxBrowse
+      +overflow
+      +center
+      +pointer
+      width: 100%
+      +round(8)
+      direction: ltr
+      height: 36px
+      margin: 0 0 -34px
+      input
+        background: transparent
+        border: none
+        +outline
+      &.qq-upload-drop-area
+        +cursor
         +user-select
-        list-style: none
+        height: 36px
+        +round(7)
+        &.qq-upload-drop-area-active
+          background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
 
-        .imageBackground
-          +round(9)
-          +relative
-          +left
-          top: 0
-          left: 0
-          margin: 0px 8px 8px 0px
-          height: 120px
-          width: 120px
-          background-color: #a4a6a8
+    #currentImages
+      +relative
+      margin: 12px 0 0 12px
+      +user-select
+      list-style: none
 
-        .entryImageContainer
-          +round(8)
-          +overflow
-          +relative
-          margin: 0
-          height: 120px
-          width: 120px
-          z-index: 2
+      .imageBackground
+        +round(9)
+        +relative
+        +left
+        top: 0
+        left: 0
+        margin: 0px 8px 8px 0px
+        height: 120px
+        width: 120px
+        background-color: #a4a6a8
 
+      .entryImageContainer
+        +round(8)
+        +overflow
+        +relative
+        margin: 0
+        height: 120px
+        width: 120px
+        z-index: 2
+
+        &:hover
+          .radio .input-wrap, .radio .radio-input
+            +alpha(100)
+          .close
+            +alpha(60)
+
+        .radio.selected
+          background: rgba(255,255,255,1.0)
+          span
+            +alpha(100)
+
+        .radio
+          +block
+          +round(6)
+          +flat-top
+          +absolute
+          +pointer
+          bottom: 0
+          width: 100%
+          height: 28px
+          line-height: 28px
+          color: #333
+          background: rgba(255,255,255,0.0)
+          z-index: 100
           &:hover
-            .radio .input-wrap, .radio .radio-input
-              +alpha(100)
-            .close
-              +alpha(60)
-
-          .radio.selected
-            background: rgba(255,255,255,1.0)
+            background: rgba(255,255,255,0.8)
             span
               +alpha(100)
+            .input-wrap
+              background: rgba(0,0,0,0.3)
 
-          .radio
-            +block
-            +round(6)
-            +flat-top
+          span
+            +alpha(0)
+            +bold
+            margin-left: 30px
+
+          .radio-input
             +absolute
             +pointer
-            bottom: 0
-            width: 100%
-            height: 28px
-            line-height: 28px
-            color: #333
-            background: rgba(255,255,255,0.0)
-            z-index: 100
-            &:hover
-              background: rgba(255,255,255,0.8)
-              span
-                +alpha(100)
-              .input-wrap
-                background: rgba(0,0,0,0.3)
-
-            span
-              +alpha(0)
-              +bold
-              margin-left: 30px
-
-            .radio-input
-              +absolute
-              +pointer
-              +alpha(0)
-              top: 8px
-              right: 8px
-              margin: 0
-
-          .input-wrap
             +alpha(0)
-            +absolute
-            +round(12)
-            right: 4px
-            bottom: 4px
-            width: 10px
-            height: 10px
-            padding: 5px
-            background: rgba(255,255,255,0.3)
+            top: 8px
+            right: 8px
+            margin: 0
 
-          .close
-            +absolute
-            +close-24
-            +alpha(0)
-            top: 2px
-            right: 2px
+        .input-wrap
+          +alpha(0)
+          +absolute
+          +round(12)
+          right: 4px
+          bottom: 4px
+          width: 10px
+          height: 10px
+          padding: 5px
+          background: rgba(255,255,255,0.3)
 
-          .entryImageCaption
-            +absolute
-            +font(16)
-            +bold
-            color: #333333
-            height: 94px
-            margin: 4px
-            padding: 8px
-            width: 184px
-            border: 0px
-            background: none
-            right: 0px
+        .close
+          +absolute
+          +close-24
+          +alpha(0)
+          top: 2px
+          right: 2px
+
+        .entryImageCaption
+          +absolute
+          +font(16)
+          +bold
+          color: #333333
+          height: 94px
+          margin: 4px
+          padding: 8px
+          width: 184px
+          border: 0px
+          background: none
+          right: 0px
 
 
