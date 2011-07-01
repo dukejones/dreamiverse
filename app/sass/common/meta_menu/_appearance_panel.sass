@@ -23,7 +23,7 @@
       width: 24px
       height: 36px
       margin: 0 8px 0 2px
-      background: url(/images/icons/bedsheets-24-hover.png) no-repeat center transparent
+      @extend .bedsheets-24
     h2
       +block
       height: 32px
@@ -42,7 +42,7 @@
     
       option
         padding: 8px 0 9px 50px
-        background: url(/images/icons/delete-me.jpg) no-repeat left center transparent
+        // background: url(/add/image/here.jpg) no-repeat left center transparent
       .city
       .design
       .earth
@@ -145,7 +145,7 @@
       width: 24px
       height: 36px
       margin: 0
-      background: url(/images/icons/color-24-hover.png) no-repeat center transparent
+      @extend .color-24-hover
 
     h2
       margin: 0 0 0 8px
@@ -187,7 +187,8 @@
 // COLORS
 .light #appearancePanel
   .arrow
-    background: url(/images/icons/arrow-up-27-light.png) no-repeat 302px
+    @extend .arrow-up-27-light
+    background-position: 304px center
   .spinner
     background-color: #eee
   .bedsheets, .theme
@@ -234,7 +235,8 @@
 
 .dark #appearancePanel
   .arrow
-    background: url(/images/icons/arrow-up-27-dark.png) no-repeat 302px
+    @extend .arrow-up-27-dark
+    background-position: 304px center
   .spinner
     background-color: #111
   .bedsheets, .theme
