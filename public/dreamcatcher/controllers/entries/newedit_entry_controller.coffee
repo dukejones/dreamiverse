@@ -128,7 +128,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       @initUploader() if name is 'images'
       
   initUploader: ->
-    $('#imageUpload').uploader {
+    $('.uploader').uploader {
       listElement: null
       params: {
         image: {
@@ -137,12 +137,12 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
           genre: ''
         }
       }
-      classes: {
-        button: 'clickToBrowse'
-        drop: 'dropboxBrowse'
-        active: 'qq-upload-drop-area-active'
-        list: 'currentImages'
-      }
+      #classes: {
+      #button: 'clickToBrowse'
+      #drop: 'dropboxBrowse'
+      #active: 'qq-upload-drop-area-active'
+      #list: 'currentImages'
+      #}
     }, '/dreamcatcher/views/images/entry/image_show.ejs'
     
     
