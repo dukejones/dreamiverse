@@ -439,11 +439,11 @@
     .favoritesWrap
       +flat-right
       .favorites
-        background: url(/images/icons/love-16.png) no-repeat center
+        @extend .love-16
         &:hover
-          background: url(/images/icons/love-16-hover.png) no-repeat center
+          @extend .love-16-hover
       .favorites.selected
-        background: url(/images/icons/love-16-hover.png) no-repeat center
+        @extend .love-16-hover.png
 
     .rePostWrap
       +flat-all
@@ -452,11 +452,11 @@
     .tagWrap
       +flat-left
       .tag
-        background: url(/images/icons/tag-16.png) no-repeat center
+        @extend .tag-16.png
         &:hover
-          background: url(/images/icons/tag-16-hover.png) no-repeat center
+          @extend .tag-16-hover.png
       .tag.selected
-        background: url(/images/icons/tag-16-hover.png) no-repeat center
+        @extend .tag-16-hover.png
 
 
 

@@ -15,7 +15,7 @@
   top: 50%
   width: 16px
   height: 16px
-  background: url(/images/icons/arrow-down-16.png) no-repeat center center
+    @extend .arrow-down-16
 .ui-selectmenu-menu
   padding: 0
   margin: 0
@@ -160,17 +160,17 @@
 
   // ENTRY FILTER
   &.allEntries .ui-selectmenu-status, .allEntries
-    background-image: url(/images/icons/entries-24.png)
+    @extend .entries-24
   &.dream .ui-selectmenu-status, .dream
-    background-image: url(/images/icons/dream-24-hover.png)
+    @extend .dream-24-hover
   &.vision .ui-selectmenu-status, .vision
-    background-image: url(/images/icons/vision-24-hover.png)
+    @extend .vision-24-hover
   &.experience .ui-selectmenu-status, .experience
-    background-image: url(/images/icons/experience-24-hover.png)
+    @extend .experience-24-hover
   &.article .ui-selectmenu-status, .article
-    background-image: url(/images/icons/article-24-hover.png)
+    @extend .article-24-hover
   &.journal .ui-selectmenu-status, .journal
-    background-image: url(/images/icons/journal-24-hover.png)
+    @extend .journal-24-hover
 
   // chrome fix hovers
   .allEntries.ui-selectmenu-item-focus
@@ -183,13 +183,13 @@
 
   // USERS FILTER
   &.allUsers .ui-selectmenu-status, .allUsers
-    background-image: url(/images/icons/sharing-24-hover.png)
+    @extend .sharing-24-hover
   &.friends .ui-selectmenu-status, .friends
-    background-image: url(/images/icons/friend-24.png)
+    @extend .friend-24
   &.following .ui-selectmenu-status, .following
-    background-image: url(/images/icons/friend-24-follow.png)
+    @extend .friend-24-follow
   &.followers .ui-selectmenu-status, .followers
-    background-image: url(/images/icons/friend-24-follower.png)
+    @extend .friend-24-follower
 
   // chrome fix hovers
   .allUsers.ui-selectmenu-item-focus

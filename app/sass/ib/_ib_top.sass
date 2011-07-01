@@ -44,7 +44,8 @@
     margin: 12px 0 0 8px
     padding: 0 0 0 44px
     color: #ddd
-    background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat left center transparent
+    @extend .browseBars-36-light
+    background-position: left center
 
 
   // BROWSE BUTTON
@@ -52,11 +53,14 @@
     +left
 
     .browse
-      background: #232323 url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+      @extend .browseBars-36
+      background: #232323
       &:hover
-        background: #333 url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+        @extend .browseBars-36-over
+        background: #333
       &:active
-        background: #232323 url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+        @extend .browseBars-36
+        background: #232323
 
 
   // SEARCH
@@ -128,11 +132,11 @@
         border: none
         width: 38px
         height: 36px
-        background: url(/images/icons/search-32.png) no-repeat center center transparent
+        @extend .search-32
         &:hover
-          background: url(/images/icons/search-32-hover.png) no-repeat center center transparent
+          @extend .search-32-hover
         &:active
-          background: url(/images/icons/search-32-active.png) no-repeat center center transparent
+          @extend .search-32-active
 
 
   // BACK ARROW
@@ -147,11 +151,13 @@
     &:hover
       color: #ddd
     &:active .left
-      background: url(/images/slices/browseArrowLeft-active.png) no-repeat center center transparent
+      @extend .browseArrowLeft-active
     &:active .content
-      background: url(/images/slices/browseArrowContent-active.png) repeat-x left transparent
+      @extend .browseArrowContent-active
+      background-repeat: repeat-x
+      background-position: left
     &:active .right
-      background: url(/images/slices/browseArrowRight-active.png) no-repeat center center transparent
+      @extend .browseArrowRight-active
 
     .left, .content, .right
       +left
@@ -159,21 +165,23 @@
       height: 51px
     .left
       width: 32px
-      background: url(/images/slices/browseArrowLeft.png) no-repeat center center transparent
+      @extend .browseArrowLeft
     .content
       width: auto
       padding: 0 8px
       line-height: 49px
-      background: url(/images/slices/browseArrowContent.png) repeat-x left transparent
+      @extend .browseArrowContent
+      background-repeat: repeat-x
+      background-position: left
       .img
         +left
         width: 36px
         height: 51px
         margin: 0 8px 0 -8px
-        background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat center center transparent
+        @extend .browseBars-36-light
     .right
       width: 12px
-      background: url(/images/slices/browseArrowRight.png) no-repeat center center transparent
+      @extend .browseArrowRight
 
 
   // HEADER
@@ -190,11 +198,14 @@
     +right
 
     .search
-      background: #232323 url(/images/icons/search-32.png) no-repeat center center
+      @extend .search-32
+      background: #232323
       &:hover
-        background: #333 url(/images/icons/search-32-hover.png) no-repeat center center
+        @extend .search-32-hover
+        background: #333
       &:active
-        background: #232323 url(/images/icons/search-32-active.png) no-repeat center center
+        @extend .search-32-active
+        background: #232323
 
 
   // TOOLS & INFO
@@ -218,19 +229,19 @@
   a.manage
     +pointer
     +block
-    background: url(/images/icons/manage-32.png) no-repeat center center transparent
+    @extend .manage-32
     &:hover
-      background: url(/images/icons/manage-32-hover.png) no-repeat center center transparent
+      @extend .manage-32-hover
     &:active
-      background: url(/images/icons/manage-32-active.png) no-repeat center center transparent
+      @extend .manage-32-active
 
   .play
     +pointer
-    background: url(/images/icons/play-32.png) no-repeat center center transparent
+    @extend .play-32
     &:hover
-      background: url(/images/icons/play-32-hover.png) no-repeat center center transparent
+      @extend .play-32-hover
     &:active
-      background: url(/images/icons/play-32-active.png) no-repeat center center transparent
+      @extend .play-32-active
 
 
 

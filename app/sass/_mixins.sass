@@ -326,10 +326,10 @@
   +alpha(50)
   width: 16px
   height: 16px
-  background: url(/images/icons/close-16.png) no-repeat center transparent
+  @extend .close-16
   &:hover
     +alpha(100)
-    background: url(/images/icons/close-16-hover.png) no-repeat center transparent
+    @extend .close-16-hover
   &:active
     +alpha(40)
 =close-24
@@ -338,33 +338,32 @@
   +alpha(60)
   width: 24px
   height: 24px
-  background: url(/images/icons/close-24.png) no-repeat center transparent
+  @extend .close-24
   &:hover
     +alpha(100)
-    background: url(/images/icons/close-24-hover.png) no-repeat center transparent
+    @extend .close-24-hover
   &:active
     +alpha(40)
 =check-16
   +pointer
   width: 16px
   height: 16px
-  background: url(/images/icons/check-16.png) no-repeat center transparent
+  @extend .check-16
 =check-31
-  background: url(/images/icons/check-31.png) no-repeat center
   +pointer
   width: 31px
   height: 31px
-  background: url(/images/icons/check-31.png) no-repeat center transparent
+  @extend .check-31
 
-
-=spinner-light
-  background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
-=spinner-light-grey
-  background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
-=spinner-grey
-  background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
-=spinner-dark
-  background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
+// No need for these mixins, so long as every reference now has @extend  Will need to do a global search for these
+// =spinner-light
+//   @extend .spinner-light-32
+// =spinner-light-grey
+//   @extend .spinner-light-grey-32
+// =spinner-grey
+//   @extend .spinner-grey-32
+// =spinner-dark
+//   @extend .spinner-dark-32
 
 // BACKGROUNDS
 =flat-light

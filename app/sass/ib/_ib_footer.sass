@@ -49,14 +49,14 @@
       width: 32px
       height: 28px
       display: inline-block
-      background: url(/images/icons/dropbox-26.png) no-repeat center center transparent
+      @extend .dropbox-26
 
   .add-collection, .add-album, .add-artist
     .img
-      background: url(/images/icons/add-15.png) no-repeat center center transparent
+      @extend .add-15
 
   .set .img
-    background: url(/images/icons/check-16.png) no-repeat center center transparent
+    @extend .check-16
 
   .next, .prev
     +font(32)
@@ -81,16 +81,16 @@
     height: 28px
 
   .info
-    background: url(/images/icons/info-24.png) no-repeat center center transparent
+    @extend .info-24
     &:hover
-      background: url(/images/icons/info-24-hover.png) no-repeat center center transparent
+      @extend .info-24-hover
     &:active
-      background: url(/images/icons/info-24-active.png) no-repeat center center transparent
+      @extend .info-24-active
 
   .tag
-    background: url(/images/icons/tag-24.png) no-repeat center center transparent
+    @extend .tag-24
     &:hover
-      background: url(/images/icons/tag-24-hover.png) no-repeat center center transparent
+      @extend .tag-24-hover
     &:active
-      background: url(/images/icons/tag-24-active.png) no-repeat center center transparent
+      @extend .tag-24-active
 

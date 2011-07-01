@@ -51,11 +51,11 @@
         width: 24px
         height: 32px
         margin: 0 8px 0 0
-        background: url(/images/icons/stream-24.png) no-repeat center center transparent
+        @extend .stream-24
       &:hover .img
-        background: url(/images/icons/stream-24-hover.png) no-repeat center center transparent
+        @extend .stream-24-hover
       &:active .img
-        background: url(/images/icons/stream-24-active.png) no-repeat center center transparent
+        @extend .stream-24-active
 
     .entryType, .postTime
       +round(16)
@@ -74,15 +74,15 @@
         background-position: left center !important
         background-repeat: no-repeat !important
         &.dream
-          background-image: url(/images/icons/dream-24.png)
+          @extend .dream-24
         &.vision
-          background-image: url(/images/icons/vision-24.png)
+          @extend .vision-24
         &.experience
-          background-image: url(/images/icons/experience-24.png)
+          @extend .experience-24
         &.journal
-          background-image: url(/images/icons/journal-24.png)
+          @extend .journal-24
         &.article
-          background-image: url(/images/icons/article-24.png)
+          @extend .article-24
       span
         +left
 
@@ -176,7 +176,7 @@
         width: 24px
         height: 32px
         margin: 0 4px 0 0
-        background: url(/images/icons/starlight-24.png) no-repeat center
+        @extend .starlight-24
       span
         padding-right: 4px
       hr
@@ -191,19 +191,19 @@
         width: 28px
         height: 32px
       .love
-        background: url(/images/icons/love-16.png) no-repeat center
+        @extend .love-16
         &:hover
-          background: url(/images/icons/love-16-hover.png) no-repeat center
+          @extend .love-16-hover
       .love.selected
-        background: url(/images/icons/love-16-hover.png) no-repeat center
+        @extend .love-16-hover
       .share
-        background: url(/images/icons/sharing-16.png) no-repeat center
+        @extend .sharing-16
       .share.selected
-        background: url(/images/icons/sharing-16-hover.png) no-repeat center
+        @extend .sharing-16-hover
       .repost
-        background: url(/images/icons/repost-24.png) no-repeat center
+        @extend .repost-24
       .repost.selected
-        background: url(/images/icons/repost-24-hover.png) no-repeat center
+        @extend .repost-24-hover
 
 
     .content
@@ -392,13 +392,13 @@
               width: 16px
               height: 34px
               &.friends
-                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+                @extend .friend-16-none
               &.followers
-                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+                @extend .friend-16-none
               &.anonymous
-                background: url(/images/icons/anon-16.png) no-repeat center center transparent
+                @extend .anon-16
               &.private
-                background: url(/images/icons/private-16.png) no-repeat center center transparent
+                @extend .private-16
 
 
 

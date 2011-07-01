@@ -32,7 +32,7 @@
         width: 24px
         height: 24px
         z-index: 2002
-        background: url(/images/icons/x-24-white.png) no-repeat center center transparent
+        @extend .x-24-white
         &:hover
           +alpha(50)
 
@@ -147,7 +147,8 @@
             .tagInputWrap
               height: 40px
               margin: 0 16px
-              background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left center transparent
+              @extend .inputLeft-Dark-40
+              background-position: left center
               img
                 +left
                 margin: 0
@@ -155,7 +156,9 @@
                 +left
                 height: 40px
                 margin: 0 0 0 26px
-                background: url(/images/slices/inputContent-Dark-40.png) repeat-x 0 0 transparent
+                @extend .inputContent-Dark-40
+                background-repeat: repeat-x
+                background-position: 0 0
                 input
                   +left
                   +font(18)
@@ -184,7 +187,8 @@
                 +left
                 width: 14px
                 height: 40px
-                background: url(/images/slices/inputRight-Dark-40.png) no-repeat right center transparent
+                @extend .inputRight-Dark-40
+                background-position: right center
 
           // INFO
           .info
@@ -271,25 +275,25 @@
           margin: 0 12px 0 0
 
         .info
-          background: url(/images/icons/info-24.png) no-repeat center center transparent
+          @extend .info-24
           &:hover
-            background: url(/images/icons/info-24-hover.png) no-repeat center center transparent
+            @extend .info-24-hover
           &:active
-            background: url(/images/icons/info-24-active.png) no-repeat center center transparent
+            @extend .info-24-active
 
         .tagging
-          background: url(/images/icons/tag-24.png) no-repeat center center transparent
+          @extend .tag-24
           &:hover
-            background: url(/images/icons/tag-24-hover.png) no-repeat center center transparent
+            @extend .tag-24-hover
           &:active
-            background: url(/images/icons/tag-24-active.png) no-repeat center center transparent
+            @extend .tag-24-active
 
         .download
-          background: url(/images/icons/download-24.png) no-repeat center center transparent
+          @extend .download-24
           &:hover
-            background: url(/images/icons/download-24-hover.png) no-repeat center center transparent
+            @extend .download-24-hover
           &:active
-            background: url(/images/icons/download-24-active.png) no-repeat center center transparent
+            @extend .download-24-active
 
 
 
@@ -318,20 +322,20 @@
         color: #ddd
         border: 1px solid transparent
         .count .img
-          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+          @extend .comment-16
 
         &:hover .count .img
-          background: url(/images/icons/comment-16-hover.png) no-repeat center center transparent
+          @extend .comment-16-hover
         &:active .count .img
-          background: url(/images/icons/comment-16-active.png) no-repeat center center transparent
+          @extend .comment-16-active
 
         &:hover, &.expanded .comment
           +transparent
           color: #ddd
           .arrow
-            background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+            @extend .arrow-down-16-light
         &.expanded .arrow
-          background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+          @extend .arrow-up-16-light
 
         &.new
           +block
@@ -371,7 +375,7 @@
           width: 16px
           height: 26px
           margin-left: 8px
-          background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+          @extend .arrow-down-16-light
         &.ipad
           +block
           .text
@@ -380,7 +384,7 @@
         .comment, .text
           display: block
         .arrow
-          background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+          @extend .arrow-up-16-light
 
 
   // .commentsPanel
@@ -414,9 +418,9 @@
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
-      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+      @extend .arrow-down-16-dark
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+    @extend .arrow-up-16-dark
 
 
   .commentsPanel
@@ -441,9 +445,9 @@
     +gradient(#575757, #323232)
     color: #fff
     .arrow
-      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      @extend .arrow-down-16-light
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+    @extend .arrow-up-16-light
 
   .commentsPanel
     box-shadow:         0 0 0 #fff

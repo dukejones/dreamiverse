@@ -106,7 +106,7 @@
         +left
         width: 34px
         height: 34px
-        background: url(/images/icons/emotions-16.png) no-repeat center
+        @extend .emotions-16
 
     table.container
       border-collapse: separate
@@ -162,7 +162,7 @@
   .emotions-details, .emotions-thumb
 
     .arrow
-      background: url(/images/icons/arrow-right-16-dark.png) no-repeat center
+      @extend .arrow-right-16-dark
 
   // DETAILS ONLY
   .emotions-details
@@ -190,7 +190,7 @@
 .dark
   .emotions-details, .emotions-thumb
     .arrow
-      background: url(/images/icons/arrow-right-16-light.png) no-repeat center
+      @extend .arrow-right-16-light
 
   // DETAILS ONLY
   .emotions-details

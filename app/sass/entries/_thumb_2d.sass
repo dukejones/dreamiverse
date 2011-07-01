@@ -103,18 +103,18 @@
         +left
         width: 16px
         height: 16px
+        &.dream
+          @extend .dream-16
+        &.vision
+          @extend .vision-16
+        &.experience
+          @extend .experience-16
+        &.journal
+          @extend .journal-16
+        &.article
+          @extend .article-16
         background-position: left center !important
         background-repeat: no-repeat !important
-        &.dream
-          background-image: url(/images/icons/dream-16.png)
-        &.vision
-          background-image: url(/images/icons/vision-16.png)
-        &.experience
-          background-image: url(/images/icons/experience-16.png)
-        &.journal
-          background-image: url(/images/icons/journal-16.png)
-        &.article
-          background-image: url(/images/icons/article-16.png)
 
     .detailsBottom
       +absolute
@@ -127,15 +127,15 @@
         height: 16px
         margin-right: 5px
         &.comment
-          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+          @extend .comment-16
         &.friends
-          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+          @extend .friend-16-none
         &.followers
-          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+          @extend .friend-16-none
         &.anonymous
-          background: url(/images/icons/anon-16.png) no-repeat center center transparent
+          @extend .anon-16
         &.private
-          background: url(/images/icons/private-16.png) no-repeat center center transparent
+          @extend .private-16
 
 
       .comments
@@ -267,7 +267,6 @@
       background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 37%, #e3e3e3)
       background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(37%, #fff), to(#e3e3e3))
       background: -o-linear-gradient(top, rgba(255,255,255,0.0), #fff 37%, #e3e3e3)
-      // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
 
 
 
@@ -279,12 +278,13 @@
       +glow-light(0)
 
     .next
-      background: url('/images/icons/arrow-right-55-light.png') no-repeat center 47% transparent
+      @extend .arrow-right-55-light
+      background-position: center 47%
       &.loading
-        +spinner-light-grey
+        @extend .spinner-light-grey
     .all
       border: 1px solid #8a8a8a
-      +shine-light-alpha(15)
+      @extend .shine-light-alpha(15)
       &:active
         +gradient(#aaa, #fff)
 
@@ -325,9 +325,10 @@
       +glow-light(0)
 
     .next
-      background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
+      @extend .arrow-right-55-dark
+      background-position: center 47%
       &.loading
-        +spinner-dark
+        @extend .spinner-dark
     .all
       border: 1px solid #262626
       +bg-shine(15)

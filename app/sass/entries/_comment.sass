@@ -170,16 +170,16 @@
         +alpha(40)
         +pointer
         +absolute
-        background: url("/images/icons/close-24.png") no-repeat center center transparent
+        @extend .close-24
         width: 24px
         height: 24px
         right: 16px
         margin-top: 6px
         &:hover
-          background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+          @extend .close-24-hover
           +alpha(100)
         &:active
-          background: url("/images/icons/close-24-active.png") no-repeat center center transparent
+          @extend .close-24-active
           +alpha(100)
 
 
