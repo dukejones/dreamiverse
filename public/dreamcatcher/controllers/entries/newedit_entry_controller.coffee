@@ -128,7 +128,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       @initUploader() if name is 'images'
       
   initUploader: ->
-    $('#imageUpload.uploader').uploader {
+    $('#uploader').uploader {
       #listElement: null
       params: {
         image: {
