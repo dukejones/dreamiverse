@@ -39,6 +39,7 @@
 #entryField
 
   .entryImages
+    +relative
 
     #addFromImageBank
       +round(8)
@@ -52,49 +53,58 @@
         +left
         margin: 6px 8px 6px 0
 
-    #imageUpload
-      +relative
+    #uploader, .dropArea
+      +absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
 
-      .clickToBrowse
-        +round(8)
-        +right
-        +center
-        width: 504px
-        height: 38px
-        line-height: 38px
+    #uploader.active
+      +alpha(70)
+      @extend .dropboxIconText
+      background: #000
 
-        img
-          margin: 0px 4px -5px
+    .browse
+      +round(8)
+      +right
+      +center
+      width: 504px
+      height: 38px
+      line-height: 38px
 
-      #imageDropArea
-        +relative
-        +bold
-        +font(13)
-        height: auto
-        img
-          +left
-          margin: 10px 8px 0 150px
+      img
+        margin: 0px 4px -5px
 
-        .dropboxBrowse
-          +overflow
-          +center
-          +pointer
-          width: 100%
-          +round(8)
-          direction: ltr
-          height: 36px
-          margin: 0 0 -34px
-          input
-            background: transparent
-            border: none
-            +outline
-          &.qq-upload-drop-area
-            +cursor
-            +user-select
-            height: 36px
-            +round(7)
-            &.qq-upload-drop-area-active
-              background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
+    // #imageDropArea
+    //   +relative
+    //   +bold
+    //   +font(13)
+    //   height: auto
+    //   img
+    //     +left
+    //     margin: 10px 8px 0 150px
+
+    .dropboxBrowse
+      +overflow
+      +center
+      +pointer
+      width: 100%
+      +round(8)
+      direction: ltr
+      height: 36px
+      margin: 0 0 -34px
+      input
+        background: transparent
+        border: none
+        +outline
+      &.qq-upload-drop-area
+        +cursor
+        +user-select
+        height: 36px
+        +round(7)
+        &.qq-upload-drop-area-active
+          background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
 
       #currentImages
         +relative
