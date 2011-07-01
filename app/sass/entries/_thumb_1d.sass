@@ -98,15 +98,15 @@
       background-position: center center !important
       background-repeat: no-repeat !important
       &.dream
-        background-image: url(/images/icons/dream-24.png)
+        @extend .dream-24
       &.vision
-        background-image: url(/images/icons/vision-24.png)
+        @extend .vision-24
       &.experience
-        background-image: url(/images/icons/experience-24.png)
+        @extend .experience-24
       &.journal
-        background-image: url(/images/icons/journal-24.png)
+        @extend .journal-24
       &.article
-        background-image: url(/images/icons/article-24.png)
+        @extend .article-24
 
   // LEFT SIDE
   .left
@@ -134,7 +134,7 @@
       line-height: 26px
       .img
         +left
-        background: url(/images/icons/starlight-16.png) no-repeat center transparent
+        @extend .starlight-16
         width: 16px
         height: 24px
         margin: 0 4px 0 0
@@ -229,7 +229,8 @@
       padding-left: 24px
       height: 16px
       line-height: 14px
-      background: url(/images/icons/repost-24.png) no-repeat 4px center
+      @extend .repost-24
+      background-position:  4px center
     .date
       +bold
       +font(11)
@@ -258,7 +259,7 @@
         +left
         width: 16px
         height: 16px
-        background: url(/images/icons/comment-16.png) no-repeat center center
+        @extend .comment-16
 
       span
         +left
@@ -288,7 +289,7 @@
         width: 16px
         height: 26px
         margin-left: 8px
-        background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+        @extend .arrow-down-16-light
       &.ipad
         +block
         .text
@@ -297,7 +298,7 @@
     .comment, .text
       display: block
     .arrow
-      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+      @extend .arrow-up-16-light
 
 
 
@@ -371,9 +372,9 @@
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
-      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+      @extend .arrow-down-16-dark
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+    @extend .arrow-up-16-dark
 
 
   .commentsPanel
@@ -423,9 +424,9 @@
     +gradient(#575757, #323232)
     color: #fff
     .arrow
-      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      @extend .arrow-down-16-light
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+    @extend .arrow-up-16-light
 
   .commentsPanel
     +gradient(#000, #111)

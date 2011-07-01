@@ -71,14 +71,16 @@
     -webkit-border-radius-topright: 8px
 
     .ui-dialog-titlebar-close
-      background: url('/images/icons/close-24.png') top center no-repeat
+      @extend .close-24
+      background-position: top center
       position: absolute
       left: 6px
       top: 6px
       width: 24px
       height: 24px
     .ui-dialog-titlebar-close.ui-state-hover
-      background: url('/images/icons/close-24-hover.png') top center no-repeat
+      @extend .close-24-hover
+      background-position: top center
 
   .ui-dialog-content
     font-size: 17px

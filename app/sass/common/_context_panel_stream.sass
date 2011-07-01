@@ -92,7 +92,7 @@
       height: 26px
       width: 24px
       margin: 0 8px 0 42px
-      background: url(/images/icons/stream-24-hover.png) no-repeat center transparent
+      @extend .stream-24-hover.png
 
 
 
@@ -214,7 +214,7 @@
 .light #contextPanel, .light #streamContextPanel
 
   .spinner
-    +spinner-light
+    @extend .spinner-light-32
     background-color: white
 
   .filterList
@@ -234,7 +234,7 @@
 .dark #contextPanel, .dark #streamContextPanel
 
   .spinner
-    +spinner-dark
+    @extend .spinner-dark-32
     background-color: black
 
   .filterList

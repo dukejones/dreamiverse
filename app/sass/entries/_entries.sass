@@ -16,54 +16,54 @@
     height: 34px
 .dateTimeHeader
   .img, &:active .img
-    background: url(/images/icons/date-16.png) no-repeat center
+    @extend .date-16
   &:hover .img
-    background: url(/images/icons/date-16-hover.png) no-repeat center
+    @extend .date-16-hover
 .locationHeader
   .img
-    background: url(/images/icons/location-16.png) no-repeat center
+    @extend .location-16
   &:hover .img
-    background: url(/images/icons/location-16-hover.png) no-repeat center
+    @extend .location-16-hover
   &:active .img
-    background: url(/images/icons/location-16-active.png) no-repeat center
+    @extend .location-16-active
 .imagesHeader
   .img
-    background: url(/images/icons/images-16.png) no-repeat center
+    @extend .images-16
   &:hover .img
-    background: url(/images/icons/images-16-hover.png) no-repeat center
+    @extend .images-16-hover
   &:active .img
-    background: url(/images/icons/images-16-active.png) no-repeat center
+    @extend .images-16-active
 .tagHeader
   margin-bottom: 12px
   .img
-    background: url(/images/icons/tag-16.png) no-repeat center
+    @extend .tag-16
   &:hover .img
-    background: url(/images/icons/tag-16-hover.png) no-repeat center
+    @extend .tag-16-hover
   &:active .img
-    background: url(/images/icons/tag-16-active.png) no-repeat center
+    @extend .tag-16-active
 .analysisHeader
   .img
 .linksHeader
   .img
-    background: url(/images/icons/link-16.png) no-repeat center
+    @extend .link-16
   &:hover .img
-    background: url(/images/icons/link-16-hover.png) no-repeat center
+    @extend .link-16-hover
   &:active .img
-    background: url(/images/icons/link-16-active.png) no-repeat center
+    @extend .link-16-active
 .emotionsHeader
   .img
-    background: url(/images/icons/emotions-16.png) no-repeat center
+    @extend .emotions-16
   &:hover .img
-    background: url(/images/icons/emotions-16-hover.png) no-repeat center
+    @extend .emotions-16-hover
   &:active .img
-    background: url(/images/icons/emotions-16-active.png) no-repeat center
+    @extend .emotions-16-active
 .commentsHeader
   .img
-    background: url(/images/icons/comment-16.png) no-repeat center
+    @extend .comment-16
   &:hover .img
-    background: url(/images/icons/comment-16-hover.png) no-repeat center
+    @extend .comment-16-hover
   &:active .img
-    background: url(/images/icons/comment-16-active.png) no-repeat center
+    @extend .comment-16-active
 
 // SHARED HEADER STYLES
 // COLORS
@@ -239,7 +239,7 @@
   #noMoreEntries, #nextPageLoading
     +gradient(#ccc, #fff)
     .spinner
-      background: url(/images/icons/spinner-light-grey-32.gif) no-repeat scroll center center transparent
+      @extend .spinner-light-grey-32
 
 
 .dark 
@@ -251,5 +251,5 @@
   #noMoreEntries, #nextPageLoading
     +gradient(#000, #252525)
     .spinner
-      background: url(/images/icons/spinner-dark-32.gif) no-repeat scroll center center transparent
+      @extend .spinner-dark-32
 

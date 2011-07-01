@@ -17,7 +17,7 @@
     width: 32px
     height: 26px
     margin: 8px
-    background: url(/images/icons/dropbox-26.png) no-repeat center center
+    @extend .dropbox-26
 
   h2
     +grab
@@ -39,11 +39,11 @@
     right: 4px
     width: 36px
     height: 36px
-    background: url(/images/icons/play-24.png) no-repeat center center transparent
+    @extend .play-24
     &:hover
-      background: url(/images/icons/play-24-hover.png) no-repeat center center transparent
+      @extend .play-24-hover
     &:active
-      background: url(/images/icons/play-24-active.png) no-repeat center center transparent
+      @extend .play-24-active
 
   .active
     +absolute
@@ -53,7 +53,8 @@
     left: 0
     width: 100%
     height: 100%
-    background: #000 url(/images/icons/ib-icons/dropboxIconText.png) no-repeat center center
+    @extend .dropboxIconText
+    background: #000
     z-index: 2
 
   ul.imagelist
@@ -121,16 +122,16 @@
     +confirm(12)
 
     &:hover .img
-      background: url(/images/icons/manage-16-hover.png) no-repeat center center transparent
+      @extend .manage-16-hover
     &:active .img
-      background: url(/images/icons/manage-16-active.png) no-repeat center center transparent
+      @extend .manage-16-active
 
     .img
       display: inline-block
       height: 16px
       width: 16px
       margin: 0 0 -3px 4px
-      background: url(/images/icons/manage-16.png) no-repeat center center transparent
+      @extend .manage-16
 
   .cancel
     +cancel(12)

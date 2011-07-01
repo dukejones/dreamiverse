@@ -173,11 +173,11 @@
             height: 48px
             width: 32px
             margin: 0 16px 0 -16px
-            background: url(/images/icons/login-32.png) no-repeat center transparent
+            @extend .login-32
           &:hover .img
-            background: url(/images/icons/login-32-hover.png) no-repeat center transparent
+            @extend .login-32-hover
           &:active .img
-            background: url(/images/icons/login-32-active.png) no-repeat center transparent
+            @extend .login-32-active
 
           input.button
             border: none
@@ -229,9 +229,9 @@
             +right
             width: 16px
             height: 22px
-            background: url(/images/icons/facebook-16.png) no-repeat center
+            @extend .facebook-16
           &:hover .img
-            background: url(/images/icons/facebook-16-hover.png) no-repeat center
+            @extend .facebook-16-hover
 
 
       .stay
@@ -460,20 +460,20 @@
           width: 46px
           height: 28px
           margin: 0 -30px 0 50px
-          background: url(/images/icons/input_teaser.gif) no-repeat center center transparent
+          @extend .input_teaser
 
       .home
         width: 97px
         &:hover .icon
-          background: url(/images/icons/home-16-hover.png) no-repeat center center transparent
+          @extend .home-16-hover
         &:active .icon
-          background: url(/images/icons/home-16-active.png) no-repeat center center transparent
+          @extend .home-16-active
         .icon
           +left
           height: 24px
           width: 24px
           margin: 0 -12px 0 16px
-          background: url(/images/icons/home-16.png) no-repeat center center transparent
+          @extend .home-16
 
 
 

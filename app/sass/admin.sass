@@ -68,11 +68,11 @@
     width: 32px
     margin-left: 8px
   .up
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+    @extend .arrow-up-16-light
   .down
-    background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+    @extend .arrow-down-16-light
   .spinner
-    background: url(/images/icons/spinner-grey-32.gif) no-repeat center center transparent
+    @extend .spinner-grey-32
 
 
   .chart-select
@@ -143,7 +143,7 @@
 // USER PANEL ONLY
 .user.panel
   .img
-    background-image: url(/images/icons/sharing-24-hover.png)
+    @extend .sharing-24-hover
 
   .userNode
     +block
@@ -184,7 +184,8 @@
     height: 26px
     padding: 0 0 0 32px
     margin: 16px 0 16px 10px
-    background: url(/images/icons/friend-24.png) no-repeat left center
+    @extend .friend-24
+    background-position: left center
   #userCharts
     width: 100%
   #userList
@@ -205,7 +206,7 @@
       height: 32px
       width: 24px
       margin: 0 8px 0
-      background: url(/images/icons/search-24-active.png) no-repeat center transparent
+      @extend .search-24-active
 
     .search-input
       +outline
@@ -294,7 +295,7 @@
 .entries.panel
 
   .img
-    background-image: url('/images/icons/dream-24-hover.png')
+    @extend .dream-24-hover
 
   .entryCharts
     +clear
@@ -302,7 +303,8 @@
     +bold
     padding: 0 0 0 32px
     margin: 16px 0 16px 10px
-    background: url(/images/icons/dream-24-hover.png) no-repeat left center
+    @extend .dream-24-hover
+    background-position: left center
 
 
 
@@ -314,7 +316,7 @@
   +pointer
 
   .img
-    background-image: url('/images/icons/bedsheets-24-hover.png')
+    @extend .bedsheets-24-hover
 
   #bedsheet-nodes
     +hidden

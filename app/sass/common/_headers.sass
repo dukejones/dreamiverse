@@ -22,22 +22,22 @@
     background-position: center center !important
     background-repeat: no-repeat !important
     &.dream
-      background-image: url(/images/icons/dream-32-hover.png)
+      @extend .dream-32-hover
     &.vision
-      background-image: url(/images/icons/vision-32-hover.png)
+    @extend .vision-32-hover
     &.experience
-      background-image: url(/images/icons/experience-32-hover.png)
+      @extend .experience-32-hover
     &.journal
-      background-image: url(/images/icons/journal-32-hover.png)
+      @extend .journal-32-hover
     &.article
-      background-image: url(/images/icons/article-32-hover.png)
-    
+      @extend .article-32-hover
+
     &.friends
-      background-image: url(/images/icons/friend-32.png)
+      @extend .friend-32
     &.following
-      background-image: url(/images/icons/friend-32-follow.png)
+      @extend .friend-32-follow
     &.followers
-      background-image: url(/images/icons/friend-32-follower.png)
+      @extend .friend-32-follower
     
   h1
     +left

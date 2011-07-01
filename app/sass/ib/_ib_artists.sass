@@ -51,11 +51,11 @@ table#artistList
           right: 8px
           width: 24px
           height: 62px
-          background: url(/images/icons/edit-24.png) no-repeat center center transparent
+          @extend .edit-24
           &:hover
-            background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+            @extend .edit-24-hover
           &:active
-            background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+            @extend .edit-24-active
 
         .editable
           +pointer
@@ -91,7 +91,8 @@ table#artistList
     +alpha(70)
     height: 64px
     width: 384px
-    background: #000 url('/images/icons/spinner-grey-32.gif') no-repeat center center
+    @extend .spinner-grey-32
+    background: #000
 
 
 

@@ -51,10 +51,10 @@ select
     outline: none
 .light
   .spinner
-    background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
+    @extend .spinner-light-32
 .dark
   .spinner
-    background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
+    @extend .spinner-dark-32
 
 #backgroundReplace
   +hidden
@@ -93,7 +93,7 @@ select
 #lightbox-container-image-data-box
   display: none !important
 #lightbox-loading
-  background: url(/images/icons/spinner-dark-32.gif) no-repeat center center transparent
+  @extend .spinner-dark-32
 #lightbox-loading-link
   display: none !important
 #jquery-overlay
