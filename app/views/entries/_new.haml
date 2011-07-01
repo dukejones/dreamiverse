@@ -1,3 +1,5 @@
+#uploader
+
 = form_for @entry do |f|
   / HIDDEN FORM ELEMENTS
   = f.fields_for :view_preference_attributes, (@entry.view_preference||current_user.view_preference) do |v|
@@ -12,7 +14,6 @@
   
   - @entry.images.each do |image|
     = hidden_field_tag 'entry[image_ids][]', image.id, :class => 'image_upload'
-
 
 
 
