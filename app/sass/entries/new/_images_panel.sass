@@ -8,7 +8,7 @@
       +bevel-light
       +button-light
 
-    .clickToBrowse
+    .browse
       +input-light(large)
 
 
@@ -20,7 +20,7 @@
       +bevel-dark
       +button-dark
 
-    .clickToBrowse
+    .browse
       +input-dark(large)
 
 
@@ -40,75 +40,55 @@
 
   .entryImages
     +relative
+    padding: 0
+    width: 678px
+    min-height: 52px
 
-    #addFromImageBank
-      +round(8)
-      +left
-      +pointer
-      height: 32px
-      line-height: 32px
-      padding: 0 8px
-      margin-left: 8px
-      img
-        +left
-        margin: 6px 8px 6px 0
+    .imagesHeader
+      float: none
+      +absolute
+      margin: 8px 0 8px 8px
 
-    #uploader, .dropArea
+    #uploader
+      +relative
+      top: 0
+      width: 100%
+      height: auto
+
+    .dropArea
       +absolute
       top: 0
       left: 0
       width: 100%
+      min-height: 52px
       height: 100%
 
-    #uploader.active
-      +alpha(70)
-      @extend .dropboxIconText
-      background: #000
+    .dropArea.active
+      +round(2)
+      z-index: 4
+      @extend .dropbox-26
+      background-color: rgba(0,0,0,0.8)
 
     .browse
       +round(8)
-      +right
       +center
-      width: 504px
+      position: absolute !important
+      top: 6px
+      right: 6px
+      width: 540px
       height: 38px
       line-height: 38px
 
       img
         margin: 0px 4px -5px
 
-    // #imageDropArea
-    //   +relative
-    //   +bold
-    //   +font(13)
-    //   height: auto
-    //   img
-    //     +left
-    //     margin: 10px 8px 0 150px
 
-    .dropboxBrowse
-      +overflow
-      +center
-      +pointer
-      width: 100%
-      +round(8)
-      direction: ltr
-      height: 36px
-      margin: 0 0 -34px
-      input
-        background: transparent
-        border: none
-        +outline
-      &.qq-upload-drop-area
-        +cursor
-        +user-select
-        height: 36px
-        +round(7)
-        &.qq-upload-drop-area-active
-          background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
-
+    // .clearfix
+    //   display: block !important
+    //   // to overwrite clearfix display: inline-block which causes bad positioning
     #currentImages
       +relative
-      margin: 12px 0 0 12px
+      margin: 58px 0 0 22px
       +user-select
       list-style: none
 
@@ -206,5 +186,4 @@
           border: 0px
           background: none
           right: 0px
-
 
