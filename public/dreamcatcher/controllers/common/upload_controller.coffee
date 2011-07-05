@@ -63,6 +63,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
         uploadEl.remove()
 
       onProgress: (id, fileName, loaded, total) =>
+        log "#{id} #{fileName} #{loaded} #{total}"
         uploadEl = @getUploadElement fileName
         uploadEl.show()
 
