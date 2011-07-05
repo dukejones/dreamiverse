@@ -34,7 +34,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     Entry.new {}, @callback('displayNewEditEntry')
 
   'entries.edit subscribe': (called, data) ->
-    log 'x'
     @publish 'context_panel.show'
     @mode = 'edit'
     Entry.edit data.id, @callback('displayNewEditEntry')
@@ -129,7 +128,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       
   initUploader: ->
     $('#uploader').uploader {
-      #listElement: null
       params: {
         image: {
           section: 'entry'
@@ -137,12 +135,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
           genre: ''
         }
       }
-      #classes: {
-      #button: 'clickToBrowse'
-      #drop: 'dropboxBrowse'
-      #active: 'qq-upload-drop-area-active'
-      #list: 'currentImages'
-      #}
     }, '/dreamcatcher/views/images/entry/image_show.ejs'
     
     
