@@ -31,7 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   activatePlugins: (el) ->
     el.linkify()
     el.videolink() #check if this is ok... might need to uncomment somewhere else
-    $('.lightbox', el).each -> $(this).lightBox {containerResizeSpeed: 0}
+    $('.lightbox a', el).each -> $(this).lightBox {containerResizeSpeed: 0}
     el.comments()
         
   showEntryElement: (entryEl) ->
