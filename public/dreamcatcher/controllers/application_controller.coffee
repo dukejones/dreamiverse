@@ -8,7 +8,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @element = $(el)
     @publish 'app.initUi'
     
-    log 'doing chrome frame check'
     CFInstall.check { mode: "overlay", destination: "http://dreamcatcher.net" }
     
     $('#metaMenu').metaMenu()
