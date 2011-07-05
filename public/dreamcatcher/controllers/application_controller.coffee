@@ -114,10 +114,10 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     parentEl = @element if not parentEl?
     $('textarea', parentEl).each (i, el) ->
       fitToContent $(this).attr('id'), 0
-    $('.tooltip', parentEl).each (i, el) =>
-      UiHelper.registerTooltip $(el)
     $('.select-menu', parentEl).each (i, el) =>
       UiHelper.registerSelectMenu $(el)
+    $('.tooltip', parentEl).each (i, el) =>
+      UiHelper.registerTooltip $(el)
 
     
   #- appearance (bedsheet, scroll  & theme) change
