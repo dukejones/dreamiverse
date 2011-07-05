@@ -107,5 +107,21 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       @model.user.follow({username: followUsername},@callback('updateFollowRelationship', el))
     else if currentRelationship is 'friends' or currentRelationship is 'following'
       @model.user.unfollow({username: followUsername},@callback('updateFollowRelationship', el))
+      
+      
+  '.context click': (el) ->
+    detailsEl = $('.view .details', @element)
+    if detailsEl.is ':visible'
+      detailsEl.slideDown 'fast'
+    else 
+      detailsEl.slideDown 'fast'
+      
+  '.change click': (el) ->
+    $('.view', @element).hide()
+    $('.edit', @element).show()
+    
+  '.cancel click': (el) ->
+    $('.edit', @element).hide()
+    $('.view', @element).show()
    
 }
