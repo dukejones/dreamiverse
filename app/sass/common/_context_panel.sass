@@ -30,7 +30,8 @@
     left: -1px
     width: 200px
     height: 266px
-    background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+    @extend .plus-48
+    background-color: rgba(0,0,0,0.5)
 
     div
       +absolute
@@ -58,7 +59,8 @@
 
 
       &.qq-upload-drop-area-active
-        background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.6)
+        @extend .dropbox-26
+        background-color: rgba(0,0,0,0.6)
 
       .text
         +font(18)
@@ -263,7 +265,8 @@
       +cursor
 
     .skype
-      background: url('/images/icons/skype-16.png') no-repeat 0 2px transparent
+      @extend .skype-16
+      background-position: 0 2px
       padding: 0 0 2px 20px
       display: inline-block
 
@@ -443,7 +446,7 @@
         &:hover
           @extend .love-16-hover
       .favorites.selected
-        @extend .love-16-hover.png
+        @extend .love-16-hover
 
     .rePostWrap
       +flat-all
@@ -452,11 +455,11 @@
     .tagWrap
       +flat-left
       .tag
-        @extend .tag-16.png
+        @extend .tag-16
         &:hover
-          @extend .tag-16-hover.png
+          @extend .tag-16-hover
       .tag.selected
-        @extend .tag-16-hover.png
+        @extend .tag-16-hover
 
 
 

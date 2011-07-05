@@ -4,10 +4,12 @@
 
   .entryTags
     .tagInputWrap
-      background: url(/images/slices/inputLeftLight-40.png) no-repeat left
+      @extend .inputLeftLight-40
+      background-position: left
 
       .tagInput
-        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        @extend .inputContentLight-40
+        background-repeat: repeat-x
 
         input
           color: #333
@@ -17,7 +19,8 @@
           +shine-light-alpha(13)
 
       .tagInputRight
-        background: url(/images/slices/inputRightLight-40.png) no-repeat right
+        @extend .inputRightLight-40
+        background-position: right
 
 
 
@@ -26,10 +29,12 @@
 
   .entryTags
     .tagInputWrap
-      background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
+      @extend .inputLeft-Dark-40
+      background-position: left
 
       .tagInput
-        background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+        @extend .inputContent-Dark-40
+        background-repeat: repeat-x
 
         input
           color: #ddd
@@ -39,7 +44,8 @@
           +shine-dark-alpha(13)
 
       .tagInputRight
-        background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
+        @extend .inputRight-Dark-40
+        background-position: right
 
 
 
