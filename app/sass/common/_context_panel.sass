@@ -190,8 +190,10 @@
       margin: -16px
 
 
-  .label, .image, .detail
+  .label, .img
     +left
+  .detail
+    +right
 
   .divider
     height: 2px
@@ -313,10 +315,13 @@
         +relative
         width: 180px
         margin: 0 0 4px
-        img
+        .img
           +absolute
+          width: 16px
+          height: 16px
           left: 8px
           top: 5px
+          @extend .skype-16
         #user_skype
           width: 160px
           padding-left: 28px
@@ -370,17 +375,25 @@
         +absolute
         right: 4px
 
-    .image
-      +center
+    .img
       width: 38px
       height: 38px
       padding: 0
       margin: 0
-      .dream, .follow
-        margin: 6px 0
-      .starlight
-        margin: -11px -16px
-        z-index: 1004
+
+    .img.dream
+      @extend .entries-24
+
+    .img.follow
+      @extend .friend-24
+
+    .img.starlight
+      +absolute
+      left: 72px
+      bottom: -7px
+      width: 64px
+      height: 64px
+      @extend .starlight-64
 
 
     .detail
