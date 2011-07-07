@@ -16,21 +16,22 @@
   .getStartedButtons
 
     %a.button{href: new_entry_path}
-      %img.dream{src: '/images/icons/dream-32-hover.png'}
-      <span class="green">+</span> add a dream
+      .img.dream
+      %span.green +
+      %span add a dream
 
     .button.appearance
-      %img.appearance{src: '/images/icons/appearance-24-hover.png'}
-      set your default theme
+      .img.appearance
+      %span set your default theme
 
     .button.profile{onclick: "window.contextController.toggleProfile()"}
-      %span &lsaquo;
-      customize your profile
+      %span.arrow &lsaquo;
+      %span customize your profile
 
     %a.button.dreamButton{href: user_entries_path(@user.username)}
-      %img.dreamfield{src: '/images/icons/dream-32-hover.png'}
-      view your dream field
+      .img.dreamfield
+      %span view your dream field
 
     %a.button{href: "/dreamstars"}
-      %img.starlight{src: '/images/icons/starlight-32.png'}
-      find other dreamers
+      .img.starlight
+      %span find other dreamers
