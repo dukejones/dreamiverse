@@ -106,7 +106,7 @@
                 %span skype username
                 .skypeWrap
                   = f.text_field :skype, :placeholder => 'skype.username'
-                  %img{src: '/images/icons/skype-16.png', width: '16', height: '16'}
+                  .img
                 .cancel cancel
                 = f.submit :save, :class => 'save'
                 .clear
@@ -121,11 +121,11 @@
         .item.entryFilter.entries
 
           %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
-            / %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+            %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
             = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'dream'}
 
-          .image
-            %img.dream{src: '/images/icons/entries-24.png'}
+          .img.dream
+
           .detail
             = @entry_count || user.entries.count
           .clear
@@ -143,8 +143,8 @@
             %option.following{value: 'following'} following
             %option.followers{value: 'followers'} followers
 
-          .image
-            %img.follow{src: '/images/icons/friend-24.png', width: '24', height: '24'}
+          .img.follow
+
           .detail
             = @mode ? user.send(@mode).count : user.friends.count
           .clear
@@ -162,8 +162,9 @@
       .item
         .label.entryFilter.starlight
           %span.value starlight
-        .image
-          %img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+
+        .img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+
         .detail
           = user.starlight
         .clear

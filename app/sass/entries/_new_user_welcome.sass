@@ -47,33 +47,42 @@
       +center
       width: 223px
       height: 42px
-      line-height: 40px
+      line-height: 41px
       margin: 0 4px 4px 0
+      color: #222
       +shine-light(20)
       +button-light
 
+      .img
+        display: inline-block
+        height: 41px
+        width: 32px
+        margin: 0 8px -16px 0
+
       .dream
-        margin: 4px 2px -10px
+        @extend .dream-32-hover
+
       .green
         +bold
         +font(18)
         color: #009933
 
       .appearance
-        margin: 2px 8px -8px -8px
+        @extend .appearance-24-hover
 
-      &.profile span
-        +left
+      &.profile .arrow
         +alpha(30)
-        margin-left: 26px
         +font(36)
         +bold
+        +block
+        +left
+        margin: 0 -20px 0 28px
 
       .dreamfield
-        margin: 4px 2px -10px
+        @extend .dream-32-hover
 
       .starlight
-        margin: 4px 10px -10px -10px
+        @extend .starlight-32
 
 
 
@@ -137,6 +146,10 @@
       .button
         +shine-light(20)
         +button-light
+        color: #222
+
+        a
+          color: #222
 
 
 .dark
@@ -153,6 +166,10 @@
       .button
         +shine-dark-alpha(20)
         +button-dark
+        color: #ddd
+
+        a
+          color: #ddd
 
 
 

@@ -30,7 +30,8 @@
     left: -1px
     width: 200px
     height: 266px
-    background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+    @extend .plus-48
+    background-color: rgba(0,0,0,0.5)
 
     div
       +absolute
@@ -58,7 +59,8 @@
 
 
       &.qq-upload-drop-area-active
-        background: url('/images/icons/dropbox-26.png') center center no-repeat rgba(0,0,0,0.6)
+        @extend .dropbox-26
+        background-color: rgba(0,0,0,0.6)
 
       .text
         +font(18)
@@ -188,8 +190,10 @@
       margin: -16px
 
 
-  .label, .image, .detail
+  .label, .img
     +left
+  .detail
+    +right
 
   .divider
     height: 2px
@@ -263,7 +267,8 @@
       +cursor
 
     .skype
-      background: url('/images/icons/skype-16.png') no-repeat 0 2px transparent
+      @extend .skype-16
+      background-position: 0 2px
       padding: 0 0 2px 20px
       display: inline-block
 
@@ -310,10 +315,13 @@
         +relative
         width: 180px
         margin: 0 0 4px
-        img
+        .img
           +absolute
+          width: 16px
+          height: 16px
           left: 8px
           top: 5px
+          @extend .skype-16
         #user_skype
           width: 160px
           padding-left: 28px
@@ -367,17 +375,25 @@
         +absolute
         right: 4px
 
-    .image
-      +center
+    .img
       width: 38px
       height: 38px
       padding: 0
       margin: 0
-      .dream, .follow
-        margin: 6px 0
-      .starlight
-        margin: -11px -16px
-        z-index: 1004
+
+    .img.dream
+      @extend .entries-24
+
+    .img.follow
+      @extend .friend-24
+
+    .img.starlight
+      +absolute
+      left: 72px
+      bottom: -7px
+      width: 64px
+      height: 64px
+      @extend .starlight-64
 
 
     .detail
@@ -443,7 +459,7 @@
         &:hover
           @extend .love-16-hover
       .favorites.selected
-        @extend .love-16-hover.png
+        @extend .love-16-hover
 
     .rePostWrap
       +flat-all
@@ -452,11 +468,11 @@
     .tagWrap
       +flat-left
       .tag
-        @extend .tag-16.png
+        @extend .tag-16
         &:hover
-          @extend .tag-16-hover.png
+          @extend .tag-16-hover
       .tag.selected
-        @extend .tag-16-hover.png
+        @extend .tag-16-hover
 
 
 

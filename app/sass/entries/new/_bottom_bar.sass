@@ -86,44 +86,56 @@
   #attach-text
     +hidden
     .img
-      background: url(/images/icons/images-16.png) no-repeat left center transparent
+      @extend .images-16
+      background-position: left center
     &:hover .img
-      background: url(/images/icons/images-16-hover.png) no-repeat left center transparent
+      @extend .images-16-hover
+      background-position: left center
     &:active .img
-      background: url(/images/icons/images-16-active.png) no-repeat left center transparent
+      @extend .images-16-active
+      background-position: left center
 
   #attach-images
     .img
-      background: url(/images/icons/images-16.png) no-repeat left center transparent
+      @extend .images-16
+      background-position: left center
     &:hover .img
-      background: url(/images/icons/images-16-hover.png) no-repeat left center transparent
+      @extend .images-16-hover
+      background-position: left center
     &:active .img
-      background: url(/images/icons/images-16-active.png) no-repeat left center transparent
+      @extend .images-16-active
+      background-position: left center
 
   #attach-tags
     .img
-      background: url(/images/icons/tag-16.png) no-repeat center transparent
+      @extend .tag-16
     &:hover .img
-      background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+      @extend .tag-16-hover
     &:active .img
-      background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+      @extend .tag-16-active
 
   #attach-links
     .img
-      background: url(/images/icons/link-16.png) no-repeat left center transparent
+      @extend .link-16
+      background-position: left center
     &:hover .img
-      background: url(/images/icons/link-16-hover.png) no-repeat left center transparent
+      @extend .link-16-hover
+      background-position: left center
     &:active .img
-      background: url(/images/icons/link-16-active.png) no-repeat left center transparent
+      @extend .link-16-active
+      background-position: left center
 
   #attach-emotions
     .img
       width: 19px
-      background: url(/images/icons/emotions-16.png) no-repeat left center transparent
+      @extend .emotions-16
+      background-position: left center
     &:hover .img
-      background: url(/images/icons/emotions-16-hover.png) no-repeat left center transparent
+      @extend .emotions-16-hover
+      background-position: left center
     &:active .img
-      background: url(/images/icons/emotions-16-active.png) no-repeat left center transparent
+      @extend .emotions-16-active
+      background-position: left center
 
 
   #entry-appearance
@@ -132,8 +144,8 @@
     .img
       width: 24px
       margin-right: 0px
-      background: url('/images/icons/appearance-24.png') center center no-repeat
+      @extend .appearance-24
     &:hover .img
-      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+      @extend .appearance-24-hover
     &:active .img
-      background: url('/images/icons/appearance-24-active.png') center center no-repeat
+      @extend .appearance-24-active
