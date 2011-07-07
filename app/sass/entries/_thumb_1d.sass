@@ -356,7 +356,8 @@
     .name
       color: #333
 
-  .entryType, .starlight, .count
+  // NOTE: had to list out entryType classes because of specificity due to image embeds above
+  .entryType.dream, .entryType.vision, .entryType.experience, .entryType.article, .entryType.journal, .starlight, .count
     +transparent-dark(80)
     color: #ddd
 
@@ -407,7 +408,8 @@
     .name
       color: #ddd
 
-  .entryType, .starlight, .count
+  // NOTE: had to list out entryType classes because of specificity due to image embeds above
+  .entryType.dream, .entryType.vision, .entryType.experience, .entryType.article, .entryType.journal, .starlight, .count
     +transparent-light(80)
     color: #222
 
