@@ -38,7 +38,8 @@
 
 #entryField
 
-  .entryImages
+  // NOTE: dbl class for specificity, was overwriting .entryImages absolute in 1d-thumbs
+  .entryImages.entryPanels
     +relative
     padding: 0
     width: 678px

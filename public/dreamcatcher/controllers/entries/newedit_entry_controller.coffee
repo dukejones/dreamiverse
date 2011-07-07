@@ -127,6 +127,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
       @initUploader() if name is 'images'
       
   initUploader: ->
+    return if $('#uploader').hasClass 'dreamcatcher_common_upload'
     $('#uploader').uploader {
       params: {
         image: {
