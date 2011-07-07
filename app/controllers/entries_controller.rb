@@ -52,6 +52,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find params[:id]
     @book = @entry.book
     @page_title = @entry.title
+    @filters = {}
     
     unless request.xhr? || params[:username]
       flash.keep 
