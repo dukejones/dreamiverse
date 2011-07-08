@@ -13,7 +13,7 @@
   / WELCOME
   - unless session[:thank_you]
     .welcomeWrap.hidden
-      %img.dreamstar{src: '/images/icons/dreamstar-148.png', width: '148', height: '148', alt: 'dreamstar'}
+      .dreamstar
       %h1 Welcome
       .welcome
         %p.one <span class="cap">D</span>reamcatcher is a digital journaling and social life-sharing service that lets you <i>'catch'</i> your dreams and most cherished life experiences, keeping them organized and easy to share.
@@ -23,7 +23,7 @@
         %br
 
         = link_to thank_you_path, remote: true, class: 'thankyou' do
-          %img{src: '/images/icons/check-31.png', width: '31', height: '31'}
+          .img
           %span ok
 
   / PUBLIC STREAM

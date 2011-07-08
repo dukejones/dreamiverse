@@ -116,7 +116,7 @@
           +clear
           margin-bottom: 4px
  
-          .label, .image, .detail
+          .label, .image
             +left
 
           .label
@@ -130,21 +130,33 @@
             margin-left: 6px
 
           .image
-            width: 34px
-            height: 24px
-            padding: 7px 3px
+            +relative
+            width: 44px
+            height: 37px
             margin: 0
-            img.dream
-              margin: -12px 1px
-            img.follow
-              margin: -7px 6px
-            img.starlight
-              margin: -18px -16px
+
+            .dream, .follow
+              width: 44px
+              height: 37px
+              margin: 0
+
+            .dream
+              @extend .dream-32-hover
+            .follow
+              @extend .friend-24
+            .starlight
+              +absolute
+              width: 64px
+              height: 64px
+              top: -13px
+              left: -10px
               z-index: 1004
+              @extend .starlight-64
 
 
           .detail
             +bold
+            +right
             +round(12)
             +flat-left
             +inner-shadow(10)

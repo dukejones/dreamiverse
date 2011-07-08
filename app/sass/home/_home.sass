@@ -99,11 +99,14 @@ a.dcLogo
     width: 686px
     margin-bottom: 20px
 
-    img.dreamstar
+    .dreamstar
       +absolute
       top: -73px
       left: -76px
+      width: 148px
+      height: 148px
       z-index: 100
+      @extend .dreamstar-148
 
     h1
       +absolute
@@ -153,9 +156,12 @@ a.dcLogo
         padding: 0 12px
         +button-blue
         +shine-blue-alpha(20)
-        img
+        .img
           +left
+          width: 31px
+          height: 31px
           margin: 4px 8px 0 0
+          @extend .check-31
         span
           +left
           padding: 0 8px

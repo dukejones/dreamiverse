@@ -121,7 +121,7 @@
         .item.entryFilter.entries
 
           %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
-            %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+            / %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
             = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'dream'}
 
           .img.dream

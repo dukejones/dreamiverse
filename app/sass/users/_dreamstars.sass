@@ -6,10 +6,16 @@
 
   // HEADER
   .header
-    img, .date
+    .dreamstarsLogo, .date
       +left
       +user-select
       +cursor
+
+    .dreamstarsLogo
+      width: 450px
+      height: 128px
+      @extend .dreamstars-logo
+
     .date
       +transparent-dark(50)
       +round(16)

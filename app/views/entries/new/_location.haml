@@ -2,8 +2,8 @@
 .entry-location.entryPanels{"data-id" => "#{@entry.location ? true : false}"}
   .locationHeader.headers
     .img
-    location    
-  
+    location
+
   .data.hidden
     = f.fields_for :location_attributes,(@entry.location) do |loc|
       .name
