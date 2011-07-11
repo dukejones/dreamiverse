@@ -40,6 +40,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     $('.matrix.bookIndex', @element).remove()
     el = $(".matrix.index, .matrix.books", @element)
     el.fadeIn 500 unless el.is ':visible'
+    @element.fadeIn()
     @publish 'appearance.change'
     #TODO: contextPanel
     
