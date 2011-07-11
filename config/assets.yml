@@ -122,7 +122,7 @@ javascripts:
     - public/javascripts/pubsub.js
     #- public/javascripts/compiled/context_panel.js
     - public/javascripts/browserdetect.js
-    - public/javascripts/dreams.js
+    # - public/javascripts/dreams.js
 
   # entries:
   #   - public/javascripts/geo.js
