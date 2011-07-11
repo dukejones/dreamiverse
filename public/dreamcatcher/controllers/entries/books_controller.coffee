@@ -24,25 +24,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#entriesIndex').append html
       $('#entriesIndex').fadeIn 500
       @publish 'appearance.change'
-      #@setupEntryDragging()
+      @setupEntryDragging()
       #@publish 'book.drop', $('#contextPanel')
-
-  ###
-  setupEntryDragging: ->
-    $('#entriesIndex .bookIndex .thumb-2d').draggable {
-      containment: 'document'
-      zIndex: 100
-      revert: 'invalid'
-      # helper: 'clone'
-      distance: 15
-      start: (ev, ui) =>
-        $('#contextPanel .book').hide()
-        $('.avatar, .avatar .entryRemove', '#contextPanel').show()
-      stop: (ev, ui) =>
-        $('#contextPanel .book').show()
-        $('.avatar, .avatar .entryRemove', '#contextPanel').hide()
-    }
-  ###
     
   edit: -> @open true
      
@@ -114,11 +97,26 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return unless data.id.toString() is @bookId().toString()
     @field.show()
     @edit()
+    
+    
+  setupEntryDragging: ->
+    $('#entriesIndex .bookIndex .thumb-2d').draggable {
+      containment: 'document'
+      zIndex: 100
+      revert: 'invalid'
+      distance: 15
+      start: (ev, ui) =>
+        $('#contextPanel .book').hide()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').show()
+      stop: (ev, ui) =>
+        $('#contextPanel .book').show()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').hide()
+    }
 
   setupDroppable: ->
     @element.droppable {         
       drop: (ev, ui) =>
-        @moveEntryToBook ui.draggable
+        @moveEntryToBook ui.draggable, false
       over: (ev, ui) =>
         $('.add-active', ui.helper).show()
         @open false
@@ -129,14 +127,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
         $('.entryDrop-active, .entryRemove', @element).hide()
     }
 
-  moveEntryToBook: (entryEl) ->
+  moveEntryToBook: (entryEl, remove) ->
     entryId = entryEl.data 'id'
-    entryMeta = {book_id: @bookId()}
+    bookId = if remove then '' else @bookId()
+    entryMeta = {book_id: bookId}
     Entry.update entryId, {entry: entryMeta}, => entryEl.remove()
-    @close()
-    $('.entryDrop-active', bookEl).hide()
-
-
+    unless remove
+      @close()
+      $('.entryDrop-active', bookEl).hide()
 
   #- uploader
 

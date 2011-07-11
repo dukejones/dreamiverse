@@ -7,18 +7,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @activate()
 
   activate: ->
-    @setupEntryDragging()
+    @setupEntryDragging 
     $('.book', @element).books this
 
-  #- move entry to book (drag & drop)
-  setupEntryDragging: ->
+  setupEntryDragging: () ->
     $('.matrix.index .thumb-2d', @element).draggable {
       containment: 'document', zIndex: 100, revert: 'invalid', distance: 15
     }
   
   username: -> $('.matrix.index', @element).data('username')
 
-  #- entry field
   showEntryField: (username, forceReload) ->
     @element.siblings().hide()
     
