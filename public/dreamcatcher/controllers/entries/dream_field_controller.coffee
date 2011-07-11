@@ -39,8 +39,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     return promise
 
   show: ->
-    el = $('.index', @element)
-    log el
+    el = $(".matrix.index,.matrix.books", @element)
     el.fadeIn 500 unless el.is ':visible'
     @publish 'appearance.change'
     #TODO: contextPanel
@@ -49,16 +48,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     username = data.username ? dreamcatcher.currentUser().username
     @publish 'books.close'
     @publish 'context_panel.show', username
-    #@show()#EntryField(username, false)
+    @showEntryField username
 
   'books.new subscribe': ->
     Book.new {}, (html) =>
       $('#welcomePanel').hide()
       @element.prepend html
       $('.book:first', @element).books this, true
-      #@editBook bookEl
-      #@publish 'app.initUi', bookEl
-      #@makeDroppable bookEl
     
 }
   

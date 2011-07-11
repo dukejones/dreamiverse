@@ -5,7 +5,7 @@
     %h1= @filters[:type].pluralize
   .clear
 
-.matrix.books
+.matrix.books{:'data-username' => @user.username}
   - @books._?.each do |book|
     = render :partial => 'books/book', :locals => {:book => book}
 
