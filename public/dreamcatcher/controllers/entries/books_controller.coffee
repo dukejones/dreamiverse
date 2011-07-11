@@ -22,11 +22,14 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     username = $('#currentUserInfo').data 'username'
     window.history.pushState null, null, "/#{username}"
     
-  init: (el, field) ->
+  init: (el, field, creating) ->
     @element = $(el)
-    log field
     @field = field
+    if creating
+      @edit()
+      @publish 'app.initUi', @element
     #@publish 'book.drop', @element
+  
   ###
   moveEntryToBook: (entryEl, bookEl) ->
     entryId = @data entryEl
@@ -67,7 +70,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   
   #- show book
   
-  showEntries: (bookId) ->
+  show: ->
+    bookId = @bookId()
+    log bookId
     @publish 'context_panel.book', bookId
     Book.show bookId, {}, (html) =>
       $('#entryField, #entriesIndex').children().hide()
@@ -218,34 +223,27 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       @publish 'books.close', $(el)
       @makeDroppable $(el)
 
-  'books.create subscribe': ->
-    newBookEl = $(".book[data-id='new']", @element)
-    if newBookEl.exists()
-      @editBook newBookEl
-      return
 
-    Book.new {}, (html) =>
-      $('#welcomePanel').hide()
-      @element.prepend html
-      bookEl = $('.book:first', @element)
-      @editBook bookEl
-      @publish 'app.initUi', bookEl
-      @makeDroppable bookEl
   ###
 
   
   'books.close subscribe': -> @close()
   'body.clicked subscribe': -> @close()
+  'books.show subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @show()
+  
+  'books.hover subscribe': -> @open false  
+  
+  #@publish 'entries.index', { newBook: true }
+  'books.edit subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @field.show()
+    @edit()
+  ###
   'books.modify subscribe': (called, data) ->
     @edit() if data.id is @bookId()
-    
-  'books.show subscribe': (called, data) -> @show() if data.id is @bookId()
-  'books.hover subscribe': -> @open false
-  'books.new subscribe': -> @publish 'entries.index', { newBook: true }
-  'books.edit subscribe': (called, data) ->
-    if parseInt(data.id) is parseInt(@bookId())
-      log 'x'
-      @field.show().done -> @edit()
     #@publish 'entries.index', { editBook: data.id }
+  ###
 
 }
