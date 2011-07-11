@@ -7,10 +7,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @activate()
 
   activate: ->
-    @setupEntryDragging 
-    $('.book', @element).books this
+    @setupEntryDragging() 
+    $('.book', @element).each (i, el) => $(el).books(this) unless $(el).hasClass 'dreamcatcher_entries_books'
 
-  setupEntryDragging: () ->
+  setupEntryDragging: ->
     $('.matrix.index .thumb-2d', @element).draggable {
       containment: 'document', zIndex: 100, revert: 'invalid', distance: 15
     }
@@ -37,7 +37,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     return promise
 
   show: ->
-    el = $(".matrix.index,.matrix.books", @element)
+    $('.matrix.bookIndex', @element).remove()
+    el = $(".matrix.index, .matrix.books", @element)
     el.fadeIn 500 unless el.is ':visible'
     @publish 'appearance.change'
     #TODO: contextPanel
