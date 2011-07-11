@@ -8,7 +8,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
 
   activate: ->
     @setupEntryDragging()
-    $('.matrix.books', @element).books()
+    $('.book', @element).books this
 
   #- move entry to book (drag & drop)
   setupEntryDragging: ->
