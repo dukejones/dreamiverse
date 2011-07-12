@@ -1,7 +1,12 @@
 /*
 checkForLinksShowEntry -> linkify (body & comments), embedYoutubeLinks
+.linkAdd, #linkValue keypress -> checkForPastedLink
 
 
+Breaks:
+embed youtube links
+linkify
+Minimize when clicking pills if anything has been added
 
 */
 
@@ -9,8 +14,8 @@ $(document).ready(function() {
   checkForLinksShowEntry();
   
   setupEvents();
-  setupImagebank();
-  setupUploader();
+  // setupImagebank();
+  // setupUploader();
   setupLinkButtons();
   //setup2dThumbIPadClick();
 });
@@ -268,12 +273,14 @@ function setupEvents(){
   })
   
   // Setup mood picker
-  $('.emotionPanel input').change(function(event){
-    $(this).parent().parent().find('label').removeClass('selected')
-    $(this).parent().addClass('selected')
-  })
+  // This does not seem to have an effect
+  // $('.emotionPanel input').change(function(event){
+  //   $(this).parent().parent().find('label').removeClass('selected')
+  //   $(this).parent().addClass('selected')
+  // })
   
   
+  // Something about if the emotions header is clicked and a radio button is selected just minimize it
   $('.entryEmotions .headers').unbind()
   $('.entryEmotions .headers').click(function(){
     var radioSelected = false;

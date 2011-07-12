@@ -116,9 +116,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     entryPanelEl.hide()
     $("#entryAttach .attach[name=#{name}]").show()
   
-  '.imagesHeader click': ->
-    $('.entryImages').slideUp()
-  
   ##entryAttach 
   '.attach click': (el) ->
     name = el.attr 'name'

@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
   end
 
   def self.authenticate(auth_params)
+    return nil unless auth_params.kind_of? Hash
     self.where(:encrypted_password => sha1(auth_params[:password]))
       .where("username=:username OR email=:username", {username: auth_params[:username]})
       .first
