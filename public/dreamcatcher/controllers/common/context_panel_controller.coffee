@@ -77,8 +77,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         singleFile: true
         params: {
           image: {
-            section: 'user uploaded'
-            category: 'avatars'
+            section: 'Avatar'
           }
         }
         classes: {
