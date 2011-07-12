@@ -131,9 +131,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     $('#uploader').uploader {
       params: {
         image: {
-          section: 'entry'
-          category: ''
-          genre: ''
+          section: 'user_uploaded'
         }
       }
     }, '/dreamcatcher/views/images/entry/image_show.ejs'

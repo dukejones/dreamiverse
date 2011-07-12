@@ -7,10 +7,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     @activate()
 
   activate: ->
-    @setupEntryDragging()
-    $('.matrix.books', @element).books()
+    @setupEntryDragging() 
+    $('.book', @element).each (i, el) => $(el).books(this) unless $(el).hasClass 'dreamcatcher_entries_books'
 
-  #- move entry to book (drag & drop)
   setupEntryDragging: ->
     $('.matrix.index .thumb-2d', @element).draggable {
       containment: 'document', zIndex: 100, revert: 'invalid', distance: 15
@@ -18,7 +17,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
   
   username: -> $('.matrix.index', @element).data('username')
 
-  #- entry field
   showEntryField: (username, forceReload) ->
     @element.siblings().hide()
     
@@ -39,21 +37,23 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     return promise
 
   show: ->
-    @element.fadeIn 500 unless @element.is ':visible'
+    $('.matrix.bookIndex', @element).remove()
+    el = $(".matrix.index, .matrix.books", @element)
+    el.fadeIn 500 unless el.is ':visible'
     @publish 'appearance.change'
+    #TODO: contextPanel
     
   'entries.index subscribe': (called, data={}) ->
     username = data.username ? dreamcatcher.currentUser().username
-    newBook = data.newBook?
-    editBookId = data.editBook
-    reload = data.reload?
-    
     @publish 'books.close'
     @publish 'context_panel.show', username
-    
-    @showEntryField(username, reload).done (html) =>
-      @publish 'books.create' if newBook
-      @publish 'books.modify', editBookId if editBookId?
+    @showEntryField username
+
+  'books.new subscribe': ->
+    Book.new {}, (html) =>
+      $('#welcomePanel').hide()
+      @element.prepend html
+      $('.book:first', @element).books this, true
     
 }
   

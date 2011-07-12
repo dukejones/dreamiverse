@@ -2,88 +2,108 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   pluginName: 'books'
 }, {
   
-  model: {
-    book: Dreamcatcher.Models.Book
-  }
-  
-  el: {    
-    bookMatrix: -> return $("#entriesIndex .bookIndex")
-    book: (arg) ->
-      return $(".book[data-id=#{arg}]", @element) if parseInt(arg) > 0
-      return arg.closest '.book' if arg?
-      return null
-  }
-  
-  data: (el) ->
-    return el.data type if type?
-    return el.data 'id' if el?
-    return null
+  bookId: -> @element.data 'id'
     
   resetUrl: -> 
     username = $('#currentUserInfo').data 'username'
     window.history.pushState null, null, "/#{username}"
     
-    
-  init: (el) ->
+  init: (el, field, creating) ->
     @element = $(el)
-    @publish 'book.drop', @element
+    @field = field
+    @setupDroppable()
+    if creating
+      @edit()
+      @publish 'app.initUi', @element
   
-  moveEntryToBook: (entryEl, bookEl) ->
-    entryId = @data entryEl
-    bookId = @data bookEl
-    bookId = '' if bookEl.parent().attr('id') is 'contextPanel'
-    entryMeta = {book_id: bookId}
-
-    Entry.update entryId, {entry: entryMeta}, =>
-      if bookId is ''
-        entryEl.appendTo('#entriesIndex .matrix.index') 
-      else
-        entryEl.remove()
-        
-    @publish 'books.close', bookEl
-    $('.entryDrop-active', bookEl).hide()
-  
-  makeDroppable: (el) ->
-    $(el).droppable {         
-      drop: (ev, ui) =>
-        dropEl = $(ev.target)
-        @moveEntryToBook ui.draggable, dropEl
-
-      over: (ev, ui) =>
-        el = $(ev.target)
-        @publish 'books.hover', el if el.hasClass 'book'
-        $('.add-active', ui.helper).show()
-        $('.entryDrop-active, .entryRemove', el).show()
-
-      out: (ev, ui) =>
-        el = $(ev.target)
-        @publish 'books.close', el if el.hasClass 'book' 
-        $('.add-active', ui.helper).hide()
-        $('.entryDrop-active, .entryRemove', el).hide()
-    }
-  
-  #- new book
-  
-  #- show book
-  
-  showBook: (bookId) ->
+  show: ->
+    bookId = @bookId()
     @publish 'context_panel.book', bookId
-    @model.book.show bookId, {}, (html) =>
+    Book.show bookId, {}, (html) =>
       $('#entryField, #entriesIndex').children().hide()
-      bookMatrixEl = @el.bookMatrix
       $('#entriesIndex').append html
       $('#entriesIndex').fadeIn 500
       @publish 'appearance.change'
       @setupEntryDragging()
-      @publish 'book.drop', $('#contextPanel')
+      #@publish 'book.drop', $('#contextPanel')
+    
+  edit: -> @open true
+     
+  open: (edit) ->
+    @publish 'books.close' #closes all books
+    $('.open, .closeClick', @element).show()
+    $('.control-panel', @element).toggle edit
+    $('.closed', @element).hide()
+    
+  close: ->
+    $('.open', @element).hide()
+    $('.open', @element).children().hide()
+    $('.closed', @element).show()
+  
+  showPage: (page) ->
+    if page is 'more'
+      $('.settings-basic', @element).toggle()
+      $('.more-settings', @element).toggle()
+    else
+      $('.open', @element).children().hide()
+      $('.closeClick', @element).show()
+      $(".#{page}-panel", @element).show() if page?
+      @initUploader() if page is 'cover'
 
+  saveMeta: (name, value) ->
+    meta = {}
+    meta[name] = value
+    @save meta
+    @element.attr 'class', "book #{value}" if name is 'color'
+    $('.title', @element).text value if name is 'title'
+    
+  save: (meta) ->
+    params = {book: meta}
+    if @bookId() is 'new'
+      Book.create params, (data) =>
+        @element.data 'id', data.book.id if data.book?
+    else
+      Book.update @bookId(), params
+    
+  delete: ->
+    return unless confirm 'are you sure?'
+    Book.destroy @bookId(), =>
+      @element.remove()
+      @resetUrl()
+        
+  #- showPage
+  '.control-panel .color click': -> @showPage 'color'
+  '.control-panel .coverImage click': -> @showPage 'cover'
+  '.control-panel .access click': -> @showPage 'access'
+  '.open .back click': -> @showPage 'control'
+  '.arrow click': -> @showPage 'more'    
+
+  #- delete
+  '.more-settings .remove click': (el) -> @delete()
+  
+  #- saveMeta
+  '.titleInput blur': -> @saveMeta 'title', el.val()
+  '.titleInput keypress': (el, ev) -> @saveMeta('title', el.val()) if ev.keyCode is 13 # enter key
+  '.color-panel .swatches li click': (el) -> @saveMeta 'color', el.attr 'class'
+  '.access-panel .select-menu change': (el) -> @saveMeta el.attr('name'), el.val()
+  
+  #- close, show, edit
+  'books.close subscribe': -> @close()
+  'body.clicked subscribe': -> @close()
+  'books.show subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @show()
+  'books.edit subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @field.show()
+    @edit()
+    
     
   setupEntryDragging: ->
     $('#entriesIndex .bookIndex .thumb-2d').draggable {
       containment: 'document'
       zIndex: 100
       revert: 'invalid'
-      # helper: 'clone'
       distance: 15
       start: (ev, ui) =>
         $('#contextPanel .book').hide()
@@ -92,79 +112,34 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
         $('#contextPanel .book').show()
         $('.avatar, .avatar .entryRemove', '#contextPanel').hide()
     }
-    
-  #- open for edit
-  editBook: (el) ->
-    @openBook el, true
-    
-  #- open 
-  openBook: (el, edit) ->
-    @closeBook()
-    bookEl = @el.book el
-    $('.open, .closeClick', bookEl).show()
-    $('.control-panel', bookEl).toggle edit
-    $('.closed', bookEl).hide()
-    
-  #- close
-  closeBook: (el) ->
-    bookEl = if el? then @el.book el else @element
-    $('.open', bookEl).hide()
-    $('.open', bookEl).children().hide()
-    $('.closed', bookEl).show()
-      
-  #- paging
-  
-  showPage: (el, page) ->
-    bookEl = @el.book el
-    $('.open', bookEl).children().hide()
-    $('.closeClick', bookEl).show()
-    $(".#{page}-panel", bookEl).show() if page?
-    
-    @createUploader bookEl if page is 'cover'
-        
 
-  #-- more settings
+  setupDroppable: ->
+    @element.droppable {         
+      drop: (ev, ui) =>
+        @moveEntryToBook ui.draggable, false
+      over: (ev, ui) =>
+        $('.add-active', ui.helper).show()
+        @open false
+        $('.entryDrop-active, .entryRemove', @element).show()
+      out: (ev, ui) =>
+        @close()
+        $('.add-active', ui.helper).hide()
+        $('.entryDrop-active, .entryRemove', @element).hide()
+    }
 
-  showMore: (el) ->
-    bookEl = @el.book el
-    $('.settings-basic', bookEl).toggle()
-    $('.more-settings', bookEl).toggle()
+  moveEntryToBook: (entryEl, remove) ->
+    entryId = entryEl.data 'id'
+    bookId = if remove then '' else @bookId()
+    entryMeta = {book_id: bookId}
+    Entry.update entryId, {entry: entryMeta}, => entryEl.remove()
+    unless remove
+      @close()
+      $('.entryDrop-active', bookEl).hide()
 
-  #- save book
-  
-  saveBook: (el, meta) ->
-    bookEl = @el.book el
-    bookId = @data bookEl
-    params = {book: meta}
-    if bookId is 'new'
-      @model.book.create params, (data) =>
-        bookEl.data 'id', data.book.id if data.book?
-    else
-      @model.book.update bookId, params
-  
-  #-- title
-
-  saveTitle: (el) ->
-    bookEl = @el.book el
-    title = el.val()
-    $('.title', bookEl).text title
-    @saveBook el, { title: title }
-
-  #- disable book
-    
-  deleteBook: (el) ->
-    if confirm 'are you sure?'
-      bookEl = @el.book el
-      bookId = @data bookEl
-      @model.book.destroy bookId, =>
-        bookEl.remove()
-        @resetUrl()
-        @publish 'entries.index', {reload: true}
-      
   #- uploader
-    
-  createUploader: (el) ->
-    $('.cover-panel', el).uploader {
+
+  initUploader: ->
+    $('.cover-panel', @element).uploader {
       singleFile: true
       params: {
         image: {
@@ -172,7 +147,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
           category: 'all'
         }
       }
-      classes: {
+      classes: { #TODO: remove
         button: 'add'
         drop: 'dropbox'
         list: 'dropbox-field-shine'
@@ -180,10 +155,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       onSubmit: @callback('uploadSubmit', el)
       onComplete: @callback('uploadComplete', el)
     }
-  
+
   uploadSubmit: (el, id, fileName) ->
     $('.dropbox-field-shine .add', el).hide()
-  
+
   uploadComplete: (el, id, fileName, result) ->
     image = result.image
     if image?
@@ -193,93 +168,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('.cover, .dropbox-field-shine', el).css 'background-image', background
       $('.dropbox-field-shine li', el).remove() #todo: remove upload progress
       @saveBook el, { image_id: image.id }
-      
+
     $('.dropbox-field-shine .add', el).show()
-  
-  ## Event Binding ##
-  #-- panels
-  '.book .control-panel .color click': (el) ->
-    @showPage el, 'color'
 
-  '.book .control-panel .coverImage click': (el) ->
-    @showPage el, 'cover'
-
-  '.book .control-panel .access click': (el) ->
-    @showPage el, 'access'
-
-  '.book .open .back click': (el) ->
-    @showPage el, 'control'
-
-  '.book .arrow click': (el) ->
-    @showMore el    
-
-  '.titleInput blur': (el) ->
-    @saveTitle el
-
-  '.titleInput keypress': (el, ev) ->
-    @saveTitle el if ev.keyCode is 13 # enter key
-
-
-  #-- color
-
-  '.color-panel .swatches li click': (el) ->
-    color = el.attr 'class'
-    bookEl = @el.book(el).attr 'class', "book #{color}"
-    @saveBook el, {color: color}
-
-  #-- access
-
-  '.access-panel .select-menu change': (el) ->
-    meta = {}
-    meta[el.attr('name')] = el.val()
-    @saveBook el, meta
-
-  '.more-settings .remove click': (el) ->
-    @deleteBook el
-
-
-  
-  ## Subscriptions ##
-  'book.drop subscribe': (called, parent) ->
-    $('.book, .avatar', parent).each (i, el) =>
-      @publish 'books.close', $(el)
-      @makeDroppable $(el)
-
-  'books.create subscribe': ->
-    newBookEl = $(".book[data-id='new']", @element)
-    if newBookEl.exists()
-      @editBook newBookEl
-      return
-
-    @model.book.new {}, (html) =>
-      $('#welcomePanel').hide()
-      @element.prepend html
-      bookEl = $('.book:first', @element)
-      @editBook bookEl
-      @publish 'app.initUi', bookEl
-      @makeDroppable bookEl
-
-  
-  'books.close subscribe': (called, el) ->
-    @closeBook el
-  
-  'body.clicked subscribe': (called, data) ->
-    @closeBook()
-
-  'books.modify subscribe': (called, el) ->
-    @editBook el
-
-  'books.show subscribe': (called, data) ->
-    @showBook data.id
-
-  'books.hover subscribe': (called, el) ->
-    @openBook el, false
-
-  'books.new subscribe': ->
-    @publish 'entries.index', { newBook: true }
-
-  'books.edit subscribe': (called, data) ->
-    @publish 'entries.index', { editBook: data.id }
-
- 
 }

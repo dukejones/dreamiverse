@@ -41,6 +41,20 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       $('a.avatar', @element).hide()
       $('#totem').show().contextPanel()
       @publish 'app.initUi', $('#totem')
+      $('.entryRemove', @element).droppable {         
+        drop: (ev, ui) =>
+          #maybe this could be tidier
+          entryMeta = {book_id: ''}
+          entryEl = ui.draggable
+          entryEl.hide()
+          Entry.update entryEl.data('id'), {entry: entryMeta}, => entryEl.remove()
+        over: (ev, ui) =>
+          $('.add-active', ui.helper).show()
+          $('.entryRemove', @element).show()
+        out: (ev, ui) =>
+          $('.add-active', ui.helper).hide()
+          $('.entryRemove', @element).hide()
+      }
   
   'context_panel.show subscribe': (called, username) ->
     username = $('#currentUserInfo').data 'username' unless username?
@@ -63,8 +77,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         singleFile: true
         params: {
           image: {
-            section: 'user uploaded'
-            category: 'avatars'
+            section: 'Avatar'
           }
         }
         classes: {

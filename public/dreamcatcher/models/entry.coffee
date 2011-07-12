@@ -1,6 +1,5 @@
 $.Model.extend 'Entry', {
-  
-  
+    
   create: (params) ->
     $.ajax {
       url: '/entries'
