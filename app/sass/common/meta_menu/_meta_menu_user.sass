@@ -45,7 +45,7 @@
 
 
   .leftPanel, .rightPanel
-    pointer-events: auto
+    +clickable
     +round(16)
     +flat-top
     background-color: #fff
@@ -275,7 +275,7 @@
   // FLOATING BUTTONS
 
   .logOut, .adminLink
-    pointer-events: auto
+    +clickable
     +transparent-dark(50)
     +round(30)
     +button-light
@@ -389,7 +389,7 @@
 
   // NEW ENTRY LINK, NEW POST HTML MENU & BUTTON
   .newEntry, #new-post, #new-post-button
-    pointer-events: auto
+    +clickable
     +right
     +relative
     +round(20)

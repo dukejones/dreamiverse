@@ -10,7 +10,7 @@
 
 
 #logo
-  pointer-events: auto
+  +clickable
   +block
   +user-select
   z-index: 1201
@@ -36,10 +36,10 @@
 
 #metaMenu
   min-width: 940px
-  pointer-events: none
+  +click-through
 
   .randomDream
-    pointer-events: auto
+    +clickable
     +left
     +transparent-dark(50)
     +round(30)
