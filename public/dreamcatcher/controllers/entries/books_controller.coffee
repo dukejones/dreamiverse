@@ -84,10 +84,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   '.arrow click': -> @showPage 'more'    
 
   #- delete
-  '.more-settings .remove click': (el) -> @delete()
+  '.more-settings .remove click': -> @delete()
   
   #- saveMeta
   '.titleInput blur': -> @saveMeta 'title', el.val()
+  '.titleInput focus': (el) -> el.select()
   '.titleInput keypress': (el, ev) -> @saveMeta('title', el.val()) if ev.keyCode is 13 # enter key
   '.color-panel .swatches li click': (el) -> @saveMeta 'color', el.attr 'class'
   '.access-panel .select-menu change': (el) -> @saveMeta el.attr('name'), el.val()
@@ -104,7 +105,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     return unless data.id.toString() is @bookId().toString()
     @field.show()
     @edit()
-    
     
   setupEntryDragging: ->
     $('#entriesIndex .bookIndex .thumb-2d').draggable {
