@@ -34,16 +34,16 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
   # DOM Listeners       
   
   'context_panel.book subscribe': (called, bookId) ->
+    #this whole method needs to be looked at.
     @model.user.contextPanel {book_id: bookId}, (html) =>
       $('#streamContextPanel').hide()
-      $('#totem').replaceWith html
+      $('#totem').replaceWith(html)
       @publish 'books.close', $('.book', @element)
       $('a.avatar', @element).hide()
-      $('#totem').show().contextPanel()
+      $('#totem').fadeIn(500).contextPanel()
       @publish 'app.initUi', $('#totem')
       $('.entryRemove', @element).droppable {         
         drop: (ev, ui) =>
-          #maybe this could be tidier
           entryMeta = {book_id: ''}
           entryEl = ui.draggable
           entryEl.hide()

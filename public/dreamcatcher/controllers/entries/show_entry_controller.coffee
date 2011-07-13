@@ -1,32 +1,24 @@
 $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
   pluginName: 'showEntry'
 }, {
-  
-  model: {
-    entry : Entry
-  }
 
-  el: { 
-    entry: (id) ->
-      return $("#showEntry .entry[data-id=#{id}]")
-  }
-  
   init: (el) ->
     @element = $(el)
     @element.tags 'show' # invoke the tags controller
-    @activatePlugins $('.entry', @element)
-    
+    @activatePlugins $('.entry', @element)    
 
   showEntryById: (id) ->
-    entryEl = @el.entry id
+    entryEl = $("#showEntry .entry[data-id=#{id}]")
     if entryEl.exists()
       @showEntryElement entryEl
     else
-      @model.entry.show id, (html) =>
+      @publish 'app.loading'
+      Entry.show id, (html) =>
+        @publish 'app.loading', false
         $('#showEntry').append html
-        @showEntryElement @el.entry id
-        showEntryEl = $('#showEntry .entry:last')
-        @activatePlugins showEntryEl
+        entryEl = $('#showEntry .entry:last')
+        @showEntryElement entryEl
+        @activatePlugins entryEl
   
   activatePlugins: (el) ->
     el.linkify()
@@ -36,8 +28,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
         
   showEntryElement: (entryEl) ->
     @element.siblings().hide()
-    @element.fadeIn '500'
+    @element.children().hide()
     entryEl.show()
+    @element.fadeIn '500'
     @publish 'appearance.change', entryEl.data 'viewpreference'
   
   'entries.show subscribe': (called, data) ->
@@ -45,12 +38,16 @@ $.Controller 'Dreamcatcher.Controllers.Entries.ShowEntry', {
     @showEntryById data.id
     
   'entries.next subscribe': (called, data) ->
-    @model.entry.next data.id, (response) =>
+    @publish 'app.loading'
+    Entry.next data.id, (response) =>
+      @publish 'app.loading', false
       window.history.replaceState null, null, response.redirect_to
       @publish 'entries.show', {id: response.entry_id, username: response.username}
       
   'entries.previous subscribe': (called, data) ->
-    @model.entry.previous data.id, (response) =>
+    @publish 'app.loading'
+    Entry.previous data.id, (response) =>
+      @publish 'app.loading', false
       window.history.replaceState null, null, response.redirect_to
       @publish 'entries.show', {id: response.entry_id, username: response.username}
 

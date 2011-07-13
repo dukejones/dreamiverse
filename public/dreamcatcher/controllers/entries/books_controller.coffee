@@ -11,7 +11,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   init: (el, field, creating) ->
     @element = $(el)
     @field = field
-    @setupDroppable()
+    @setupDroppable() unless @bookId() is 'new'
     if creating
       @edit()
       @publish 'app.initUi', @element
@@ -19,7 +19,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   show: ->
     bookId = @bookId()
     @publish 'context_panel.book', bookId
+    @publish 'app.loading'
     Book.show bookId, {}, (html) =>
+      @publish 'app.loading', false
       $('#entryField, #entriesIndex').children().hide()
       $('#entriesIndex').append html
       $('#entriesIndex').fadeIn 500
@@ -39,6 +41,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.open', @element).hide()
     $('.open', @element).children().hide()
     $('.closed', @element).show()
+    #@saveMeta('title', 'Untitled') if @bookId() is 'new'
   
   showPage: (page) ->
     if page is 'more'
@@ -61,7 +64,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     params = {book: meta}
     if @bookId() is 'new'
       Book.create params, (data) =>
-        @element.data 'id', data.book.id if data.book?
+        log data.book.id
+        @element.data('id', data.book.id)
+        log @bookId()
     else
       Book.update @bookId(), params
     
@@ -90,9 +95,11 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   #- close, show, edit
   'books.close subscribe': -> @close()
   'body.clicked subscribe': -> @close()
+  
   'books.show subscribe': (called, data) ->
     return unless data.id.toString() is @bookId().toString()
     @show()
+    
   'books.edit subscribe': (called, data) ->
     return unless data.id.toString() is @bookId().toString()
     @field.show()

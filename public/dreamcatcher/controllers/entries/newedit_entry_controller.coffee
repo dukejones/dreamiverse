@@ -14,6 +14,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     }
 
   displayNewEditEntry: (html) ->
+    @publish 'app.loading', false
     $('#entryField').children().hide()
     @element.html html
     
@@ -31,11 +32,13 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
   'entries.new subscribe': ->
     @publish 'context_panel.show'
     @mode = 'new'
+    @publish 'app.loading'
     Entry.new {}, @callback('displayNewEditEntry')
 
   'entries.edit subscribe': (called, data) ->
     @publish 'context_panel.show'
     @mode = 'edit'
+    @publish 'app.loading'
     Entry.edit data.id, @callback('displayNewEditEntry')
     
   #- Cookie Saver
