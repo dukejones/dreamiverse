@@ -47,7 +47,8 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
           entryMeta = {book_id: ''}
           entryEl = ui.draggable
           entryEl.hide()
-          Entry.update entryEl.data('id'), {entry: entryMeta}, => entryEl.remove()
+          Entry.update entryEl.data('id'), {entry: entryMeta}, =>
+            entryEl.remove()#appendTo('.matrix.index:first') #TODO: check
         over: (ev, ui) =>
           $('.add-active', ui.helper).show()
           $('.entryRemove', @element).show()
