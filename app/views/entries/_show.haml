@@ -26,9 +26,9 @@
 
   - if @entry.user == current_user
     %a.history.editEntry{href: edit_entry_path(@entry)} edit
-    %a.history.deleteEntry delete
+    /%a.history.deleteEntry delete
     /todo: bring back
-    /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
+    = link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 
 
   .wrapper

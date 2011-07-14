@@ -27,7 +27,6 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $('#entriesIndex').fadeIn 500
       @publish 'appearance.change'
       @setupEntryDragging()
-      #@publish 'book.drop', $('#contextPanel')
     
   edit: -> @open true
      
@@ -53,22 +52,28 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       $(".#{page}-panel", @element).show() if page?
       @initUploader() if page is 'cover'
 
-  saveMeta: (name, value) ->
+  saveMeta: (name, value, format) ->
     meta = {}
     meta[name] = value
-    @save meta
-    @element.attr 'class', "book #{value}" if name is 'color'
-    $('.title', @element).text value if name is 'title'
+    promise = @save meta
+    switch name
+      when 'color'
+        promise.done => @element.attr 'class', "book #{value}"
+      when 'title'
+        promise.done => $('.title', @element).text value
+      when 'image_id'
+        bg = if format? then "url(/images/uploads/#{value}-bookcover.#{format})" else ''
+        promise.done => $('.cover, .dropbox-field-shine', @element).css {
+          'background-image': bg
+        }
     
   save: (meta) ->
     params = {book: meta}
     if @bookId() is 'new'
-      Book.create params, (data) =>
-        log data.book.id
+      return Book.create params, (data) =>
         @element.data('id', data.book.id)
-        log @bookId()
     else
-      Book.update @bookId(), params
+      return Book.update @bookId(), params
     
   delete: ->
     return unless confirm 'are you sure?'
@@ -92,6 +97,9 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
   '.titleInput keypress': (el, ev) -> @saveMeta('title', el.val()) if ev.keyCode is 13 # enter key
   '.color-panel .swatches li click': (el) -> @saveMeta 'color', el.attr 'class'
   '.access-panel .select-menu change': (el) -> @saveMeta el.attr('name'), el.val()
+  '.cover-panel .close click': ->
+    @saveMeta 'image_id',''
+    $('.cover, .dropbox-field-shine', @element).css 'background-image', ''
   
   #- close, show, edit
   'books.close subscribe': -> @close()
@@ -159,23 +167,15 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
         drop: 'dropbox'
         list: 'dropbox-field-shine'
       }
-      onSubmit: @callback('uploadSubmit', el)
-      onComplete: @callback('uploadComplete', el)
+      onSubmit: => $('.add', @element).hide()
+      onComplete: @callback('uploadComplete')
     }
 
-  uploadSubmit: (el, id, fileName) ->
-    $('.dropbox-field-shine .add', el).hide()
-
-  uploadComplete: (el, id, fileName, result) ->
+  uploadComplete: (id, fileName, result) ->
     image = result.image
     if image?
-      $('.uploading', el).remove()
-      el.data 'image', image.id
-      background = "url(/images/uploads/#{image.id}-252x252.#{image.format})"
-      $('.cover, .dropbox-field-shine', el).css 'background-image', background
-      $('.dropbox-field-shine li', el).remove() #todo: remove upload progress
-      @saveBook el, { image_id: image.id }
-
-    $('.dropbox-field-shine .add', el).show()
+      $('.add', @element).show()
+      $('.uploading').remove()
+      @saveMeta 'image_id', image.id, image.format
 
 }
