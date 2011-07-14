@@ -40,7 +40,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     $('.open', @element).hide()
     $('.open', @element).children().hide()
     $('.closed', @element).show()
-    #@saveMeta('title', 'Untitled') if @bookId() is 'new'
+    @saveMeta('title', 'Untitled') if @bookId() is 'new'
   
   showPage: (page) ->
     if page is 'more'
@@ -71,7 +71,10 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
     params = {book: meta}
     if @bookId() is 'new'
       return Book.create params, (data) =>
-        @element.data('id', data.book.id)
+        bookId = data.book.id
+        @element.attr 'data-id', bookId
+        $('.mask', @element).attr 'href', "/books/#{bookId}"
+        $('.edit', @element).attr 'href', "/books/#{bookId}/edit"
     else
       return Book.update @bookId(), params
     

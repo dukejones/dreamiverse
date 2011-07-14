@@ -84,7 +84,6 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
         classes: {
           button: 'dropboxBrowse'
           drop: 'dropbox'
-          #list: 'imagelist'
         }
         onComplete: @callback 'uploadComplete'
       }
