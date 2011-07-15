@@ -21,8 +21,8 @@
 
 
 // COLORS
-.light #loading_ajax
-  +transparent-dark(90)
+#loading_ajax
+  +transparent-dark(80)
   +glow-light(20)
   color: #fff
 
@@ -30,9 +30,8 @@
     @extend .spinner-dark-32
 
 .dark #loading_ajax
-  +transparent-light(90)
   +glow-dark(20)
-  color: #000
 
-  .spinner
-    @extend .spinner-light-grey-32
+
+  // .spinner
+  //   @extend .spinner-light-grey-32
