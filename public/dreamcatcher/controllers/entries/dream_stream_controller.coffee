@@ -3,7 +3,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 }, {
 
   init: (el) ->
-    @element = el
+    @element = $(el)
     Stream.page = 1
     @container = $('.matrix.stream', el)
     @bind window, 'scroll', 'scrollEvent'
@@ -58,7 +58,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamStream', {
 
   'stream.index subscribe': ->
     @publish 'navigation.select', 'stream'
-    @element.siblings.hide()
+    @element.siblings().hide()
     @element.show()
     $('#totem').hide()
     $('#streamContextPanel').show()
