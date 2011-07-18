@@ -20,6 +20,7 @@ gem 'nokogiri'
 gem 'whenever', :require => false
 gem 'jammit'
 gem 'memcache-client'
+gem 'resque'
 
 # Bundle the extra gems:
 # gem 'bj'
