@@ -45,7 +45,9 @@ Dreamcatcher::Application.routes.draw do
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
 
-
+  # Mounts
+  mount Resque::Server, :at => '/resque'
+  
   # Resources
 
   resource :user do
