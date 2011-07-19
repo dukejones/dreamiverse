@@ -252,13 +252,8 @@ class Entry < ActiveRecord::Base
   
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
-    Rails.logger.warn('processing all tags...')
     return if @skip_auto_tags
-    if @changed
-      # Resque.enqueue(ProcessAllTags,self.id)
-      Tag.auto_generate_tags(self)
-      reorder_tags
-    end
+    Resque.enqueue(ProcessAllTags, self.id) if @changed
   end
    
   def replace_blank_titles
