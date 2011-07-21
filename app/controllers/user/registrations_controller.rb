@@ -19,6 +19,9 @@ class User::RegistrationsController < ApplicationController
     @user = User.where(email: params[:email]).first
     if @user
       UserMailer.password_reset_email( @user ).deliver
+      reset_email = Marshal::dump( UserMailer.password_reset_email( @user ) )
+      debugger
+      Resque.enqueue(Emailer, reset_email)
       flash.notice = "password reset request sent to #{params[:email]}."
       redirect_to root_path
     else
