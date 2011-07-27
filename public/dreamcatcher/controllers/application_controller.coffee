@@ -2,6 +2,23 @@
 $(document).ready ->
   window.dreamcatcher = new Dreamcatcher.Controllers.Application $('body')
   
+
+# top-level helpers.  Normally this would go into the controller superclass, but jmvc doesn't use inheritance.
+# Is there a better place for these functions?
+DC = {
+  currentUser: ->
+    return @currentUser if @currentUser? # DC.currentUser() queries for it, DC.currentUser is the saved object
+    userInfo = $('#currentUserInfo')
+    return null unless userInfo?
+    @currentUser = new User {
+      id:       userInfo.data('id')
+      username: userInfo.data('username')
+      imageId:  userInfo.data('imageid')
+      viewPreference: userInfo.data('viewpreference')
+    }
+    @currentUser
+}
+
 $.Controller 'Dreamcatcher.Controllers.Application',
   
   init: (el)->
@@ -23,17 +40,6 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     @bind window, 'popstate', => @publish 'location.change', window.location.pathname
     
     $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
-
-
-  currentUser: ->
-    userInfo = $('#currentUserInfo')
-    return null unless userInfo?
-    new User {
-      id:       userInfo.data('id')
-      username: userInfo.data('username')
-      imageId:  userInfo.data('imageid')
-      viewPreference: userInfo.data('viewpreference')
-    }
     
   ## Event Binding ##
   

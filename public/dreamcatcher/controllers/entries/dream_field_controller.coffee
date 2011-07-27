@@ -31,7 +31,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     promise.done => 
       @show()
       @activate()
-      nav = if (dreamcatcher.currentUser().username is @username()) then 'home' else null
+      nav = if (DC.currentUser().username is @username()) then 'home' else null
       @publish 'navigation.select', nav
       
     return promise
@@ -45,7 +45,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.DreamField', {
     #TODO: contextPanel
     
   'entries.index subscribe': (called, data={}) ->
-    username = data.username ? dreamcatcher.currentUser().username
+    username = data.username ? DC.currentUser().username
     @publish 'books.close'
     @publish 'context_panel.show', username
     @showEntryField username
