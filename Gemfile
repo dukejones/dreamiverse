@@ -30,6 +30,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'wirble'
+  gem 'active_reload'
 end
 
 group :test do
