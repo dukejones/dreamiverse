@@ -6,7 +6,7 @@
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
     - if !@entry._?.main_image
-      %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
+      %meta{property:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = include_stylesheets :shared, :media => 'all'
     
@@ -39,3 +39,4 @@
 
     = yield :foot
 
+    =# render "shared/facebook_sdk"

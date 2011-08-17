@@ -18,7 +18,6 @@
     :coffeescript
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
     %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
 
     = yield :head
@@ -42,3 +41,4 @@
     - if Rails.env == 'production'
       = javascript_include_tag 'google_analytics'
 
+    =# render 'shared/facebook_sdk'
