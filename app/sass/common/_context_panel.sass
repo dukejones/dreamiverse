@@ -214,6 +214,17 @@
       +round(8)
       padding: 4px 0
 
+    #toggle-profile
+      width: 100%
+      .arrow
+        +user-select
+        @extend .arrow-down-16
+        width: 16px
+        height: 8px
+        +absolute
+        right: 12px
+        top: 12px
+
     // PROFILE UPDATE ALERT
     .alert
       +absolute
@@ -623,6 +634,7 @@
 
     // VIEW PROFILE
     .view, .edit
+      +button-dark
       +transparent-dark(40)
       border: 1px solid #222
 
