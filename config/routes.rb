@@ -45,8 +45,6 @@ Dreamcatcher::Application.routes.draw do
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
 
-  match "/facebook_channel", :to => proc {|env| [200, {}, ['<script src="//connect.facebook.net/en_US/all.js"></script>']] }, :as => :facebook_channel
-
 
   # Resources
 
