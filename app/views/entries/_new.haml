@@ -35,17 +35,17 @@
 
 
 
-    / BOOKS LIST
-    .books-list.tooltip{title: "add to book"}
-      .img
-
-      %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
-        %option.label{value: ''} Add to Book:
-        = render :partial => "books/book_list"
-        %option.removeBook{value: ''} remove from book
-        %option.newBook{value: 'new'} + new book
-
-      %input.newBook-input{type: 'text', placeholder: 'enter book title', value: '', name: 'book[title]'}
+    / / BOOKS LIST
+    / .books-list.tooltip{title: "add to book"}
+    /   .img
+    / 
+    /   %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
+    /     %option.label{value: ''} Add to Book:
+    /     = render :partial => "books/book_list"
+    /     %option.removeBook{value: ''} remove from book
+    /     %option.newBook{value: 'new'} + new book
+    / 
+    /   %input.newBook-input{type: 'text', placeholder: 'enter book title', value: '', name: 'book[title]'}
 
 
 

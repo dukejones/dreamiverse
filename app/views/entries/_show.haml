@@ -12,10 +12,10 @@
   %a.history.next{href: next_entry_path(@entry)}
     %span &rsaquo;
 
-  - if @book
-    %a.history.bookSpine.spine{href: "/books/#{@book.id}", class: @book.color}
-      = @book.title
-  - elsif session[:entries_context] == :dreamstream
+  / - if @book
+  /   %a.history.bookSpine.spine{href: "/books/#{@book.id}", class: @book.color}
+  /     = @book.title
+  - if session[:entries_context] == :dreamstream
     %a.history.stream{href: stream_path} stream
   - else
     %a.history.entries{href: user_entries_path(@user.username)} entries
@@ -114,7 +114,12 @@
     /         %span= link.title
     /     .clear
 
-
+    / LIKE
+    .facebookLike
+      :plain
+        <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=#{FB_APP_ID}&amp;xfbml=1"></script>
+        <fb:like send="false" layout="button_count" show_faces="false" action="like"></fb:like>
+    
     / TAG
     .showTags
       .wrapper
