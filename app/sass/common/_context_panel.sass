@@ -216,14 +216,27 @@
 
     #toggle-profile
       width: 100%
-      .arrow
-        +user-select
-        @extend .arrow-down-16
-        width: 16px
-        height: 8px
+      +user-select
+      +alpha(60)
+      &:hover
+        +alpha(100)
+
+      .arrow-down, .arrow-up
+        border-color: #58595a transparent  transparent
+        border-style: solid
+        border-width: 7px
+        width: 0
+        height: 0
+        // @extend .arrow-down-16
         +absolute
         right: 12px
         top: 12px
+
+      .arrow-up
+        +hidden
+        +rotate(180)
+        margin-top: -7px
+
 
     // PROFILE UPDATE ALERT
     .alert
@@ -255,7 +268,6 @@
 
     .name
       +font(21)
-      +pointer
 
     .location
       +font(12)
@@ -539,9 +551,10 @@
 
     // VIEW PROFILE
     .view, .edit
-      +button-light
       +border-light
       +transparent-light(40)
+      &:hover
+        border: 1px solid #8c8c8c
 
       .alert
         +flat-dark
@@ -634,9 +647,10 @@
 
     // VIEW PROFILE
     .view, .edit
-      +button-dark
       +transparent-dark(40)
       border: 1px solid #222
+      &:hover
+        border: 1px solid #777
 
       .alert
         +flat-light
