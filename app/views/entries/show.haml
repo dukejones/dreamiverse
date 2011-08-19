@@ -2,10 +2,13 @@
   /= include_javascripts 'show_entry'
   
   - if !@entry.body.blank?
-    %meta{name: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
+    %meta{property: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
     
-  - if @entry._?.main_image
-    %meta{name:"og:image", content:"http://dreamcatcher.net#{@entry.main_image.url(:facebook)}"}
+  %meta{property: "og:title", content: "Dreamcatcher: #{@entry.title.blank? ? @entry.body[0..100] : @entry.title}"}
+  %meta{property: "og:type", content: "article"}
+  %meta{property: "og:url", content: request.url}
+  - @entry.images.each do |image|
+    %meta{property: "og:image", content: "http://#{request.url}#{image.url(:facebook)}"}
 
 / CONTEXT PANEL
 = render :partial => "common/context_panel", :locals => {:user => @entry.user}

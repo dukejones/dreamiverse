@@ -8,11 +8,13 @@
   -khtml-user-select: none
   -o-user-select: none
 
+
 // CLICK-THROUGH
 =clickable
   pointer-events: auto
 =click-through
   pointer-events: none
+
 
 // DISPLAY
 =block
@@ -37,6 +39,12 @@
   outline:  none
 
 
+// ROTATION
+=rotate($angle)
+  -moz-transform: rotate($angle + deg)
+  -webkit-transform: rotate($angle + deg)
+  -o-transform: rotate($angle + deg)
+  -ms-transform: rotate($angle + deg)
 
 
 // FONTS

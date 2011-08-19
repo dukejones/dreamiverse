@@ -123,8 +123,8 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       @model.user.unfollow({username: followUsername},@callback('updateFollowRelationship', el))
       
       
-  '.context click': (el) ->
-    $('.view .details, .view .name', @element).toggle()
+  '#toggle-profile click': (el) ->
+    $('.view .details, .view .name, #toggle-profile .arrow-down, #toggle-profile .arrow-up', @element).toggle()
       
   '.change click': (el) ->
     $('.view', @element).hide()
