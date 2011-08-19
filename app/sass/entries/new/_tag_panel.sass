@@ -5,8 +5,8 @@
   .entryTags
 
     .tagInputWrap
-      +input-light(large)
       #newTag
+        +input-light(large)
         color: #333
       .tagAdd
         +button-light
@@ -19,8 +19,8 @@
   .entryTags
 
     .tagInputWrap
-      +input-dark(large)
       #newTag
+        +input-dark(large)
         color: #ddd
       .tagAdd
         +button-dark
@@ -39,29 +39,36 @@
 #entryField
   // NEW ENTRY TAGS
   .entryTags
+    +relative
+
     .tagInputWrap
-      +right
-      +round(8)
-      margin: 0 0 8px 8px
-      height: 38px
-      line-height: 38px
+      +absolute
+      top: 8px
+      right: 18px
+      width: 532px
+
       #newTag
-        +left
         +font(16)
         +transparent
         +outline
-        width: 456px
-        height: 28px
-        margin: 6px 0 4px 8px
+        +absolute
+        +round(8)
+        top: 0
+        left: 0
+        width: 458px
+        height: 38px
+        padding: 0 74px 0 8px
         border: 0
+
       .tagAdd
         +round(4)
         +center
-        +right
         +bold
+        +absolute
+        right: -4px
+        top: 5px
         width: 62px
         height: 28px
         line-height: 30px
-        margin: 4px 12px 0 0
         span
           color: #009933
