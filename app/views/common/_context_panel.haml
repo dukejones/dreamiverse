@@ -36,7 +36,7 @@
 
 
       / CONTEXT LABEL
-      %a.context{href: user_entries_path(user.username)}= user.username
+      %a.history.context{href: user_entries_path(user.username)}= user.username
 
       / RELATIONSHIP
       / IF user is logged in AND user is looking at someone else's page, display the #relationship button
@@ -68,12 +68,10 @@
             .check.hidden
             .close
 
-          / .prompt{onclick: "window.contextController.toggleProfile()"} edit your profile
-          .name.hidden{onclick: "window.contextController.toggleProfile()"}
-            = user.name
-
-          / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
           .details.hidden
+
+            .name= user.name
+            / .location San Francisco, USA
 
             .website
               - if user.link
