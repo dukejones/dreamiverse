@@ -124,7 +124,7 @@ $.Controller 'Dreamcatcher.Controllers.Users.ContextPanel', {
       
       
   '#toggle-profile click': (el) ->
-    $('.view .details, .view .name, #toggle-profile .arrow-down, #toggle-profile .arrow-up', @element).toggle()
+    $('.view .details, #toggle-profile .arrow-down, #toggle-profile .arrow-up', @element).toggle()
       
   '.change click': (el) ->
     $('.view', @element).hide()
