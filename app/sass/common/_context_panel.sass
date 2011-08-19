@@ -275,12 +275,11 @@
     .location
       +font(12)
       +center
-      +user-select
-      +pointer
 
     .details
       +overflow
       margin: 0 4px
+      cursor: text
 
     .website, .email, .phone, .skype
       +block
@@ -288,9 +287,6 @@
 
     .website:hover
       text-decoration: underline
-
-    .email, .phone, .skype
-      +cursor
 
     .skype
       @extend .skype-16
