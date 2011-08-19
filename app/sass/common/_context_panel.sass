@@ -216,11 +216,20 @@
 
     #toggle-profile
       width: 100%
-      .arrow
+
+      .arrow-up
+        +hidden
+        +rotate(180)
+
+      .arrow-down, .arrow-up
+        border-color: transparent transparent #58595a transparent
+        border-style: solid
+        border-width: 7px
+        width: 0
+        height: 0
+        margin-top: -7px
+        // @extend .arrow-down-16
         +user-select
-        @extend .arrow-down-16
-        width: 16px
-        height: 8px
         +absolute
         right: 12px
         top: 12px
