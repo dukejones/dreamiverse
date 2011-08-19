@@ -22,7 +22,7 @@
       = render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
       
       / IMAGE
-      %a.history.avatar{style: "background: url(#{avatar_image(user)}) no-repeat center center #a4a6a8", href: user_entries_path(user.username)}
+      %a.history.avatar{style: "background-image: url(#{avatar_image(user)})", href: user_entries_path(user.username)}
         - if (user == current_user) && !is_ipad?
           .uploadAvatarWrap
             .uploadAvatar
@@ -36,7 +36,7 @@
 
 
       / CONTEXT LABEL
-      %button.context{type: "button"}= user.username
+      %a.context{href: user_entries_path(user.username)}= user.username
 
       / RELATIONSHIP
       / IF user is logged in AND user is looking at someone else's page, display the #relationship button
