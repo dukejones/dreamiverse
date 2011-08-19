@@ -1,12 +1,11 @@
 
 // DROP BOX
 #dropbox
-  +relative
+  +absolute
   +round(16)
   +cursor
-  position: fixed
-  top: 83px
-  left: 13px
+  top: 0 !important
+  left: -224px !important
   width: 200px
   padding: 0 4px 28px
   color: #ddd
@@ -140,15 +139,15 @@
 
 
 // MEDIA QUERIES
-@media screen and (max-device-height: 900px)
-  #frame.browser
-    left: 254px
-  #dropbox
-    max-height: 638px
-    width: 214px
-    ul.imagelist
-      width: 212px
-      max-height: 580px
-      overflow-y: scroll
+// @media screen and (max-device-height: 900px)
+//   #frame.browser
+//     left: 254px
+//   #dropbox
+//     max-height: 638px
+//     width: 214px
+//     ul.imagelist
+//       width: 212px
+//       max-height: 580px
+//       overflow-y: scroll
 
 
