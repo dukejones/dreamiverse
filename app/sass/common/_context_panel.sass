@@ -105,6 +105,10 @@
     width: 198px
     height: 264px
     background-clip: border-box !important
+    background-repeat: no-repeat
+    background-position: center center
+    background-color: #a4a6a8
+
     &:hover .uploadAvatarWrap
       +block
     .uploadAvatarWrap
@@ -224,7 +228,7 @@
       .arrow-down, .arrow-up
         border-color: #58595a transparent  transparent
         border-style: solid
-        border-width: 7px
+        border-width: 7px 7px 0
         width: 0
         height: 0
         // @extend .arrow-down-16
@@ -235,7 +239,6 @@
       .arrow-up
         +hidden
         +rotate(180)
-        margin-top: -7px
 
 
     // PROFILE UPDATE ALERT
