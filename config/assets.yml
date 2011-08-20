@@ -87,6 +87,7 @@ javascripts:
     #- public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
+    - public/javascripts/jquery.animate-enhanced.js
 
   home:
     - public/javascripts/pubsub.js
