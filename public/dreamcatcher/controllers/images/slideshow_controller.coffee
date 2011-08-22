@@ -30,7 +30,6 @@ $.Controller 'Dreamcatcher.Controllers.Images.Slideshow', {
     
     $('.comment,.commentTarget,.commentsPanel').hide() #hide for now
     $('#slideshow-back').fadeIn 'slow'
-    $('#slideshow-back').height "1000px" #todo
     
   close: ->
     $('#slideshow-back').fadeOut()
