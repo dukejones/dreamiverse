@@ -225,18 +225,14 @@
       &:hover
         +alpha(100)
 
-      .arrow-down
-        +arrow-dark(down, 7)
+      .arrow-down, .arrow-up
+        +absolute
         +alpha(60)
         right: 12px
         top: 12px
 
       .arrow-up
-        +arrow-dark(up, 7)
         +hidden
-        +alpha(60)
-        right: 12px
-        top: 12px
 
 
     // PROFILE UPDATE ALERT
@@ -546,6 +542,13 @@
   // PROFILE
   .profile
 
+    .view
+      .arrow-down
+        +arrow-light(down, 7)
+
+      .arrow-up
+        +arrow-light(up, 7)
+
     // VIEW PROFILE
     .view, .edit
       +border-light
@@ -641,6 +644,13 @@
 
   // PROFILE
   .profile
+
+    .view
+      .arrow-down
+        +arrow-dark(down, 7)
+
+      .arrow-up
+        +arrow-dark(up, 7)
 
     // VIEW PROFILE
     .view, .edit
