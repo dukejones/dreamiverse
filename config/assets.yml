@@ -1,3 +1,7 @@
+# TODO
+# Move all vendor libraries to a vendor/ directory.
+
+
 # package_assets: always # To test this in development
 
 embed_assets: datauri
@@ -9,9 +13,36 @@ template_function: off
 template_extension: ejs
 
 javascripts:
+  vendor:
+    - public/javascripts/vendor/jquery.min.js
+    - public/javascripts/vendor/rails.js
+    - public/javascripts/vendor/json2.js
+    - public/javascripts/vendor/underscore.js
+    - public/javascripts/vendor/backbone.js
+    - public/javascripts/vendor/jquery.animate-enhanced.js
+    - public/javascripts/vendor/jquery.tooltip.js
+    - public/javascripts/vendor/jquery-lightbox-0.5.js
+    - public/javascripts/vendor/jquery.timeago.js
+    - public/javascripts/vendor/jquery.exists.js
+    - public/javascripts/vendor/jquery.cookie.js
+    - public/javascripts/vendor/jquery.dateFormat-1.0.js
+    - public/javascripts/vendor/jquery.query-2.1.7.js
+    - public/javascripts/vendor/jquery.livequery.js
+    - public/javascripts/vendor/jquery.placeholder.js
+    - public/javascripts/vendor/jquery.linkify.js
+    - public/javascripts/vendor/jquery.easing.1.3.js
+    - public/javascripts/vendor/jquery.hoverIntent.minified.js
+    - public/javascripts/vendor/ui/jquery.ui.core.js
+    - public/javascripts/vendor/ui/jquery.ui.widget.js
+    - public/javascripts/vendor/ui/jquery.ui.mouse.js
+    - public/javascripts/vendor/ui/jquery.ui.position.js
+    - public/javascripts/vendor/ui/jquery.ui.selectmenu.js
+    - public/javascripts/vendor/ui/jquery.ui.draggable.js
+    - public/javascripts/vendor/ui/jquery.ui.droppable.js
+    - public/javascripts/vendor/fileuploader.js
 
   jmvc_framework:
-    - public/jquery/jquery.js
+    # - public/jquery/jquery.js
     - public/compiled/steal_proxy.js
     - public/jquery/class/class.js
     - public/jquery/lang/lang.js
@@ -31,24 +62,6 @@ javascripts:
     - public/jquery/dom/form_params/form_params.js
 
   jmvc_resources:
-    - public/compiled/resources/ui/jquery.ui.core.js
-    - public/compiled/resources/ui/jquery.ui.widget.js
-    - public/compiled/resources/ui/jquery.ui.mouse.js
-    - public/compiled/resources/ui/jquery.ui.position.js
-    - public/compiled/resources/ui/jquery.ui.selectmenu.js
-    - public/compiled/resources/ui/jquery.ui.draggable.js
-    - public/compiled/resources/ui/jquery.ui.droppable.js
-    - public/compiled/resources/jquery.tooltip.js
-    - public/compiled/resources/jquery-lightbox-0.5.js
-    - public/compiled/resources/jquery.timeago.js
-    - public/compiled/resources/jquery.exists.js
-    - public/compiled/resources/jquery.cookie.js
-    - public/compiled/resources/jquery.dateFormat-1.0.js
-    - public/compiled/resources/jquery.query-2.1.7.js
-    - public/compiled/resources/jquery.livequery.js
-    - public/compiled/resources/jquery.placeholder.js
-    - public/compiled/resources/fileuploader.js
-    - public/compiled/resources/jquery.linkify.js
     - public/compiled/resources/videolink.js
     - public/compiled/resources/dream.plugs.js
     - public/compiled/resources/google.charts.js
@@ -83,14 +96,12 @@ javascripts:
     
   shared:
     #- public/javascripts/jquery.hoverIntent.minified.js
-    - public/javascripts/rails.js
     #- public/javascripts/compiled/modal.js
     - public/javascripts/compiled/dreamplugs.js
     - public/javascripts/compiled/application.js
-    - public/javascripts/jquery.animate-enhanced.js
 
   home:
-    - public/javascripts/pubsub.js
+    - public/javascripts/vendor/pubsub.js
     - public/javascripts/compiled/publicstream.js
   
   friends:
