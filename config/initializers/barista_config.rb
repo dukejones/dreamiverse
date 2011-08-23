@@ -1,5 +1,5 @@
-# Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
-Barista::Framework.register 'backbone', Rails.root.join("public", "backbone")
+Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
+# Barista::Framework.register 'backbone', Rails.root.join("public", "backbone")
 
 Barista.configure do |c|
   

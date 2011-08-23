@@ -43,23 +43,23 @@ javascripts:
 
   jmvc_framework:
     # - public/jquery/jquery.js
-    # - public/compiled/steal_proxy.js
-    # - public/jquery/class/class.js
-    # - public/jquery/lang/lang.js
-    # - public/jquery/event/destroyed/destroyed.js
-    # - public/jquery/controller/controller.js
-    # - public/jquery/lang/openajax/openajax.js
-    # - public/jquery/controller/subscribe/subscribe.js
-    # - public/jquery/event/hashchange/hashchange.js
-    # - public/jquery/controller/history/history.js
-    # - public/jquery/view/view.js
-    # - public/jquery/lang/rsplit/rsplit.js
-    # - public/jquery/view/ejs/ejs.js
-    # - public/jquery/controller/view/view.js
-    # - public/jquery/model/model.js
-    # - public/jquery/dom/dom.js
-    # - public/jquery/dom/fixture/fixture.js
-    # - public/jquery/dom/form_params/form_params.js
+    - public/compiled/steal_proxy.js
+    - public/jquery/class/class.js
+    - public/jquery/lang/lang.js
+    - public/jquery/event/destroyed/destroyed.js
+    - public/jquery/controller/controller.js
+    - public/jquery/lang/openajax/openajax.js
+    - public/jquery/controller/subscribe/subscribe.js
+    - public/jquery/event/hashchange/hashchange.js
+    - public/jquery/controller/history/history.js
+    - public/jquery/view/view.js
+    - public/jquery/lang/rsplit/rsplit.js
+    - public/jquery/view/ejs/ejs.js
+    - public/jquery/controller/view/view.js
+    - public/jquery/model/model.js
+    - public/jquery/dom/dom.js
+    - public/jquery/dom/fixture/fixture.js
+    - public/jquery/dom/form_params/form_params.js
 
   jmvc_resources:
     - public/compiled/resources/videolink.js
@@ -67,30 +67,30 @@ javascripts:
     - public/compiled/resources/google.charts.js
     
   jmvc_application:
-    # - public/compiled/models/*.js
-    # - public/compiled/classes/*.js
-    # - public/compiled/controllers/application_controller.js
-    # - public/compiled/controllers/common/upload_controller.js
-    # - public/compiled/controllers/entries/tags_controller.js
-    # - public/compiled/controllers/entries/comments_controller.js
-    # - public/compiled/controllers/common/meta_menu_controller.js
-    # - public/compiled/controllers/common/meta_menu/settings_panel_controller.js
-    # - public/compiled/controllers/common/meta_menu/appearance_panel_controller.js
-    # - public/compiled/controllers/common/context_panel_controller.js
-    # - public/compiled/controllers/entries/dream_field_controller.js
-    # - public/compiled/controllers/entries/dream_stream_controller.js
-    # - public/compiled/controllers/entries/newedit_entry_controller.js
-    # - public/compiled/controllers/entries/books_controller.js
-    # - public/compiled/controllers/entries/show_entry_controller.js
-    # - public/compiled/controllers/admin/admin_controller.js
-    # - public/compiled/controllers/admin/charts_controller.js
-    # - public/compiled/controllers/images/images_controller.js
-    # - public/compiled/controllers/images/browser_controller.js
-    # - public/compiled/controllers/images/dropbox_controller.js
-    # - public/compiled/controllers/images/search_options_controller.js
-    # - public/compiled/controllers/images/slideshow_controller.js
-    # - public/compiled/controllers/images/manager_controller.js
-    # # - public/dreamcatcher/views/comments/*.ejs
+    - public/compiled/models/*.js
+    - public/compiled/classes/*.js
+    - public/compiled/controllers/application_controller.js
+    - public/compiled/controllers/common/upload_controller.js
+    - public/compiled/controllers/entries/tags_controller.js
+    - public/compiled/controllers/entries/comments_controller.js
+    - public/compiled/controllers/common/meta_menu_controller.js
+    - public/compiled/controllers/common/meta_menu/settings_panel_controller.js
+    - public/compiled/controllers/common/meta_menu/appearance_panel_controller.js
+    - public/compiled/controllers/common/context_panel_controller.js
+    - public/compiled/controllers/entries/dream_field_controller.js
+    - public/compiled/controllers/entries/dream_stream_controller.js
+    - public/compiled/controllers/entries/newedit_entry_controller.js
+    - public/compiled/controllers/entries/books_controller.js
+    - public/compiled/controllers/entries/show_entry_controller.js
+    - public/compiled/controllers/admin/admin_controller.js
+    - public/compiled/controllers/admin/charts_controller.js
+    - public/compiled/controllers/images/images_controller.js
+    - public/compiled/controllers/images/browser_controller.js
+    - public/compiled/controllers/images/dropbox_controller.js
+    - public/compiled/controllers/images/search_options_controller.js
+    - public/compiled/controllers/images/slideshow_controller.js
+    - public/compiled/controllers/images/manager_controller.js
+    # - public/dreamcatcher/views/comments/*.ejs
     
     
     
