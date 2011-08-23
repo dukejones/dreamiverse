@@ -9,6 +9,7 @@
     height: 100%
     z-index: 2000
     +transparent-dark(100)
+    background-size: cover
 
 
     // SLIDESHOW
@@ -194,7 +195,7 @@
           .info
             height: 28px
 
-            .name, .author, .year
+            .title, .author, .year
               +left
               +round(16)
               +font(14)
@@ -209,6 +210,9 @@
               text-transform: lowercase
               margin: 0 0 0 8px
               color: #ddd
+
+            .title-input, .author-input, .year-input
+              +hidden
 
 
         // IMAGE REFLECT
