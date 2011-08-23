@@ -23,6 +23,7 @@ class UserMailer < ActionMailer::Base
   end
   
   # Give a 30 day warning that their username is too long
+
   def warn_long_username_email(user)
     @user = user
     mail(to: "#{user.name} <#{user.email}>", subject: "Dreamcatcher.net account update")
@@ -40,6 +41,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: "#{user.name} <#{user.email}>", subject: "Dreamcatcher.net account update")
   end  
-  
+
 end
 
