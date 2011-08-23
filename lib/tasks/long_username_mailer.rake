@@ -16,9 +16,9 @@ namespace :long_usernames do
       if user.username.length > 15 
         old_username = user.username
         user.username = user.username.truncate(15, :omission => '')
-        # user.save!
+        # user.save! 
         log "auto updated long username from #{old_username} to: #{user.username} and emailed: #{user.email}" 
-        UserMailer.long_username_auto_updated_email(user,old_username) #.deliver  # keep .deliver commented out for testing
+        UserMailer.long_username_auto_updated_email(user,old_username) #.deliver  # keep .deliver commented out to prevent mailing for tests
         sleep 1
       end
     end
