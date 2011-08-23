@@ -39,6 +39,44 @@
   outline:  none
 
 
+// ARROWS
+=arrow-dark($dir, $px)
+  border-style: solid
+  height: 0
+  width: 0
+  +absolute
+
+  @if $dir == down
+    border-color: #fff transparent transparent
+    border-width: $px + px $px + px 0
+
+  @else if $dir == up
+    border-color: transparent transparent #fff
+    border-width: 0 $px + px $px + px
+
+  @else if $dir == right
+    border-color: transparent transparent transparent #fff
+    border-width: $px + px
+
+=arrow-light($dir, $px)
+  border-style: solid
+  height: 0
+  width: 0
+  +absolute
+
+  @if $dir == down
+    border-color: #0f0f0f transparent transparent
+    border-width: $px + px $px + px 0
+
+  @else if $dir == up
+    border-color: transparent transparent #0f0f0f
+    border-width: 0 $px + px $px + px
+
+  @else if $dir == right
+    border-color: transparent transparent transparent #0f0f0f
+    border-width: $px + px
+
+
 // ROTATION
 =rotate($angle)
   -moz-transform: rotate($angle + deg)

@@ -225,20 +225,18 @@
       &:hover
         +alpha(100)
 
-      .arrow-down, .arrow-up
-        border-color: #58595a transparent  transparent
-        border-style: solid
-        border-width: 7px 7px 0
-        width: 0
-        height: 0
-        // @extend .arrow-down-16
-        +absolute
+      .arrow-down
+        +arrow-dark(down, 7)
+        +alpha(60)
         right: 12px
         top: 12px
 
       .arrow-up
+        +arrow-dark(up, 7)
         +hidden
-        +rotate(180)
+        +alpha(60)
+        right: 12px
+        top: 12px
 
 
     // PROFILE UPDATE ALERT
