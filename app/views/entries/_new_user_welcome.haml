@@ -1,0 +1,37 @@
+/ NEW LOGIN SPLASH
+#welcomePanel
+  .image
+
+
+  %p.dream-message <span>welcome</span> to your dream field
+  %p.dream-message Store and share your dreams, visions and experiences <br> with your friends and followers
+
+  %p.stream-message <span>welcome</span> to the stream
+  %p.stream-message Here you can see the dreams, visions and experiences <br> of your friends and people you follow
+  %p.stream-message Use the filters to the left to expand or narrow your scope
+
+
+
+
+  .getStartedButtons
+
+    %a.button{href: new_entry_path}
+      .img.dream
+      %span.green +
+      %span add a dream
+
+    .button.appearance
+      .img.appearance
+      %span set your default theme
+
+    .button.profile
+      .arrow &lsaquo;
+      %span customize your profile
+
+    %a.button.dreamButton{href: user_entries_path(@user.username)}
+      .img.dreamfield
+      %span view your dream field
+
+    %a.button{href: "/dreamstars"}
+      .img.starlight
+      %span find other dreamers

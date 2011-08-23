@@ -1,0 +1,342 @@
+
+
+.matrix
+
+
+  // HOVER
+  .thumb-2d:hover
+    z-index: 84
+
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +alpha(100)
+
+
+
+  .thumb-2d, #pagination
+    +round(16)
+    +pointer
+    +left
+    +relative
+    +overflow
+    margin: 0 10px 10px 0
+    z-index: 80
+
+  .thumb-2d
+
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +alpha(0)
+
+    .link
+      +block
+      +absolute
+      width: 200px
+      height: 266px
+      z-index: 1000
+
+    .fadedBack
+      +round(15)
+      width: 200px
+      height: 266px
+      z-index: 82
+      .image
+        +absolute
+        +round(15)
+        +flat-bottom
+        top: 0px
+        width: 200px
+        height: 100px
+
+    // .add-active
+    //   +hidden
+    //   +absolute
+    //   +round(16)
+    //   top: 0
+    //   left: 0
+    //   width: 200px
+    //   height: 266px
+    //   z-index: 2000
+    //   background: rgba(0,0,0,0.5) url(/images/icons/plus-48.png) no-repeat center center
+    //   border-radius:          4px 16px 16px 4px
+    //   -moz-border-radius:     4px 16px 16px 4px
+    //   -webkit-border-radius:  4px 16px 16px 4px
+
+    .watermark
+      +round(16)
+      +alpha(10)
+      +georgia
+      +absolute
+      +center
+      +font(45)
+      text-transform: uppercase
+      width: 200px
+      height: 180px
+      line-height: 30px
+      top: 0
+      z-index: -1
+
+    .detailsTop, .detailsBottom, .title
+      z-index: 84
+    .date, .location, .comments, .sharing
+      +round(12)
+      +center
+      +font(11)
+      line-height: 16px
+      margin: 4px
+      padding: 4px 8px
+
+
+    .detailsTop
+      +absolute
+      width: 200px
+      z-index: 100
+      table
+        +right
+        width: 100%
+        border-collapse: separate
+        border-spacing: 4px
+      .date
+        +overflow
+        white-space: nowrap
+      .entryType
+        +left
+        width: 16px
+        height: 16px
+        &.dream
+          @extend .dream-16
+        &.vision
+          @extend .vision-16
+        &.experience
+          @extend .experience-16
+        &.journal
+          @extend .journal-16
+        &.article
+          @extend .article-16
+        background-position: left center !important
+        background-repeat: no-repeat !important
+
+    .detailsBottom
+      +absolute
+      bottom: 0
+      width: 100%
+
+      .img
+        +left
+        width: 16px
+        height: 16px
+        margin-right: 5px
+        &.comment
+          @extend .comment-16
+        &.friends
+          @extend .friend-16-none
+        &.followers
+          @extend .friend-16-none
+        &.anonymous
+          @extend .anon-16
+        &.private
+          @extend .private-16
+
+
+      .comments
+        +left
+        &.new
+          +gradient(#e35f5f, #b32f2f)
+          display: block !important
+          color: #fff !important
+
+      .sharing
+        +right
+
+    .title
+      +absolute
+      +center
+      +font(17)
+      line-height: 16px
+      +bold
+      top: 111px
+      width: 195px
+      margin-left: 5px
+
+    .tagCloud
+      +absolute
+      z-index: 20
+      top: 160px
+      padding: 0 16px
+      max-height: 140px
+
+
+
+  // PAGINATION
+  #pagination
+    width: 196px
+    height: 262px
+
+    .next, .all
+      +block
+      +absolute
+
+    .next
+      z-index: 10
+      width: 196px
+      height: 262px
+      +alpha(25)
+      +center
+      .text
+        +absolute
+        +center
+        bottom: 60px
+        width: 196px
+        +font(18)
+      &:hover, &.loading
+        +alpha(100)
+      &.loading
+        background-position: center 45% !important
+        .text
+          display: none !important
+
+    .all
+      display: none
+      z-index: 100
+      +round(8)
+      +center
+      +alpha(60)
+      bottom: 10px
+      left: 10px
+      width: 176px
+      height: 30px
+      line-height: 30px
+      &:hover
+        +alpha(100)
+
+
+
+  // thumb-2d clone
+  .ui-draggable-dragging
+    z-index: 100
+    +alpha(50)
+    width: 150px
+    height: 200px
+    .watermark
+      +font(22)
+      width: 150px
+      height: 80px
+      line-height: 24px
+    .title
+      +font(14)
+      line-height: 15px
+      top: 88px
+      width: 150px
+      margin-left: 0
+    .detailsTop, .detailsBottom
+      +hidden
+    .fadedBack
+      width: 150px
+      height: 200px
+      .image
+        width: 150px
+        height: 80px
+  .ui-draggable-dragging.thumb-2d:hover
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +hidden
+
+
+// COLORS
+.light .matrix
+  .ui-draggable-dragging.thumb-2d:hover
+    +glow-light(0)
+
+  .thumb-2d
+    background: #fff
+    background: -moz-linear-gradient(top, #fff, #fff 37%, #e3e3e3)
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(37%, #fff), to(#e3e3e3))
+    background: -o-linear-gradient(top, #fff, #fff 37%, #e3e3e3)
+
+    &:hover
+      +glow-light(40)
+
+    .date, .location, .comments, .sharing
+      +transparent-dark(70)
+      color: #fff
+    .entryType
+      background-repeat: no-repeat
+      background-position: center
+
+    .fadedBack
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 37%, #e3e3e3)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(37%, #fff), to(#e3e3e3))
+      background: -o-linear-gradient(top, rgba(255,255,255,0.0), #fff 37%, #e3e3e3)
+
+
+
+  #pagination
+    +gradient(#fff, #ccc)
+    border: 2px solid #fff
+    &:hover
+      border: 2px solid #000
+      +glow-light(0)
+
+    .next
+      @extend .arrow-right-55-light
+      background-position: center 47%
+      &.loading
+        @extend .spinner-light-grey
+    .all
+      border: 1px solid #8a8a8a
+      +shine-light-alpha(15)
+      &:active
+        +gradient(#aaa, #fff)
+
+
+
+
+.dark .matrix
+  .ui-draggable-dragging.thumb-2d:hover
+    +glow-dark(0)
+
+  .thumb-2d
+    background-color: #3a3a3a
+    background-image: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 37%, #111 60%, #000)
+    background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0%, #3a3a3a), color-stop(37%, #3a3a3a), color-stop(60%, #3a3a3a), color-stop(100%, #000))
+    background-image: -o-linear-gradient(top, #3a3a3a, #3a3a3a 37%, #111 60%, #000)
+
+    &:hover
+      +glow-dark(40)
+
+    .date, .location, .comments, .sharing
+      +transparent-light(70)
+      color: #000
+    .entryType
+      background-repeat: no-repeat
+      background-position: center
+
+    .fadedBack
+      background-image: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 37%, #111 60%, #000)
+      background-image: -webkit-gradient(linear, center top, center bottom, color-stop(0%, rgba(58,58,58,0.0)), color-stop(37%, #3a3a3a), color-stop(60%, #111), color-stop(100%, #000))
+      background-image: -o-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 37%, #111 60%, #000)
+
+
+  #pagination
+    +gradient(#363636, #000)
+    border: 2px solid #363636
+    &:hover
+      border: 2px solid #fff
+      +glow-light(0)
+
+    .next
+      @extend .arrow-right-55-dark
+      background-position: center 47%
+      &.loading
+        @extend .spinner-dark
+    .all
+      border: 1px solid #262626
+      +bg-shine(15)
+      +gradient(#262626, #000)
+      &:active
+        +gradient(#000, #565656)
+
+
+
+
+

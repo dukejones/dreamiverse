@@ -20,20 +20,14 @@
 
 
 
-
   / ENTRY OPTIONS
   #entryOptions
 
 
-    - entry_type = @entry.type ? @entry.type : current_user.default_entry_type
-    %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}  
-      %option.dream{      :value => 'dream',      :selected => entry_type == 'dream'}      dream
-      %option.vision{     :value => 'vision',     :selected => entry_type == 'vision'}     vision
-      %option.experience{ :value => 'experience', :selected => entry_type == 'experience'} experience
-      %option.article{    :value => 'article',    :selected => entry_type == 'article'}    article
-      %option.journal{    :value => 'journal',    :selected => entry_type == 'journal'}    journal
+    %select#entryType-list.select-menu.radio.dropdown{name: 'entry[type]', :'data-default-value' => current_user.default_entry_type, :'data-default-name' => 'default_entry_type'}
+      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: (@entry.type), plural: false}
 
-    #entry-date.tooltip{title: "date and time"}
+    #entry-date.tooltip.attach{title: "date and time", name: 'dateTime'}
       .img
 
     #entry-location.hidden.tooltip{title: "add your location"}
@@ -41,30 +35,30 @@
 
 
 
-    / BOOKS LIST
-    .books-list.tooltip{title: "add to book"}
-      .img
-
-      %select#books-list.select-menu.dropdown
-        %option.label{value: 'Add to Book:'} Add to Book:
-        = render :partial => "books/book_list"
-        %option.removeBook{value: 'remove from book'} remove from book
-        %option.newBook{value: '+ new book'} + new book
-
-      %input.newBook-input{type: 'text', value: '+ new book'}
+    / / BOOKS LIST
+    / .books-list.tooltip{title: "add to book"}
+    /   .img
+    / 
+    /   %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
+    /     %option.label{value: ''} Add to Book:
+    /     = render :partial => "books/book_list"
+    /     %option.removeBook{value: ''} remove from book
+    /     %option.newBook{value: 'new'} + new book
+    / 
+    /   %input.newBook-input{type: 'text', placeholder: 'enter book title', value: '', name: 'book[title]'}
 
 
 
 
     / POST BUTTON
-    = f.submit:value => 'post'#, :'data-disable-with' => "    "
-    #postSpinner.hidden
+    = f.submit:value => 'post', :'data-disable-with' => "    "
+    #postSpinner
 
 
     / SHARING PANEL
     - sharing_level = @entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level
-    %select#sharing-list.select-menu.radio{ name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
-      = render :partial => "entries/sharing_level", :locals => {:level => sharing_level}
+    %select#sharing-list.select-menu.radio.dropdown{ name: "entry[sharing_level]", :'data-default-value' => current_user.default_sharing_level, :'data-default-name' => 'default_sharing_level'}
+      = render :partial => "common/sharing_level_options", :locals => {:level => sharing_level}
 
     / .sharingWrap.wrapper
     /   .sharing{'data-id' => "#{@entry.sharing_level ? @entry.sharing_level : current_user.default_sharing_level}"}
@@ -165,7 +159,7 @@
   / NEW ENTRY INPUT PANEL
   #newEntry
 
-    = f.text_field :title, :maxlength => '72'
+    = f.text_field :title, :placeholder => "title", :maxlength => '72'
     %hr#title-hr
     = f.text_area :body, :placeholder => "My dream..."
     .clear
@@ -183,25 +177,17 @@
 
 
   / NEW ENTRY TAG
-  .entry-tags.entryPanels
+  .entryTags.entryPanels{name: 'tags'}
     .tagHeader.headers
       .img
       tag
     .tagInputWrap
-      .tagInput
-        %input#newTag
-        .tagAdd
-          %span +
-          add
-      .tagInputRight
+      %input#newTag.newTag{placeholder: 'who / what / where'}
+      #addTag.tagAdd
+        %span +
+        add
 
-    #tag-list.tag-list.ui-sortable
-
-      .tag.wrapper.tagWhat.newEntry.emptyTag.hidden
-        .header.trigger
-          .tag-name
-        .close
-
+    #tag-list.custom.tag-list.ui-sortable
       - @entry.tags.custom.whats.each do |what|
         .tag.tagWhat.newEntry
           .header.trigger
@@ -215,7 +201,7 @@
 
 
   / NEW ENTRY LINK
-  .entry-links.entryPanels
+  .entryLinks.entryPanels{name: 'links'}
     .linksHeader.headers
       .img
       links
@@ -242,7 +228,7 @@
 
 
   / NEW ENTRY EMOTIONS
-  .entry-emotions.entryPanels.hidden
+  .entryEmotions.entryPanels.hidden{name: 'emotions'}
     .emotionsHeader.headers
       .img
       emotions
@@ -285,20 +271,20 @@
   / NEW ENTRY ATTACHMENTS
   #entryAttach
     %p +
-    #attach-text.attach
+    #attach-text.attach{name: 'text'}
       .img
       text
     - unless is_ipad?
-      #attach-images.attach
+      #attach-images.attach{name: 'images'}
         .img
         images
-    #attach-tags.attach
+    #attach-tags.attach{name: 'tags'}
       .img
       tag
-    #attach-links.attach
+    #attach-links.attach{name: 'links'}
       .img
       links
-    #attach-emotions.attach
+    #attach-emotions.attach{name: 'emotions'}
       .img
       emotions
     #entry-appearance.attach.tooltip{title: "appearance"}

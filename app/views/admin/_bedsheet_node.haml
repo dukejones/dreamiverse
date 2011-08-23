@@ -1,0 +1,14 @@
+.bedsheet-node
+  .url
+    %a{href: "/images/uploads/#{@data['id']}-bedsheet.jpg", target: "_new"}
+      .bedsheet{style: "background: url(/images/uploads/#{@data['id']}-thumb.jpg) no-repeat center center transparent"}
+
+  / number of users with this bedsheet
+  .users
+    .count= @data['user_count']
+    users
+
+  / number of entries with this bedsheet
+  .entries
+    .count= @data['entry_count']
+    entries

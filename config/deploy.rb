@@ -19,9 +19,10 @@ set :use_sudo, false
 
 
 after "deploy", "deploy:cleanup"
-before "deploy:symlink", "barista:brew"
 before "deploy:symlink", "uploads:symlink"
-before "deploy:symlink", "jmvc:compile"
+before "deploy:restart", "compile:the_rest"
+# before "deploy:restart", "compile:jmvc"
+after "deploy:restart", "memcached:restart"
 
 namespace :deploy do
   desc "Restarting mod_rails with restart.txt"
@@ -36,14 +37,44 @@ namespace :deploy do
 end
 
 
-namespace :barista do
-  task :brew do
-    run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+namespace :compile do
+  task :jmvc do
+    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+  end
+  
+  task :the_rest do
+    rake 'compile'
+  end
+  
+  task :haml do
+    rake 'app:ping'
   end
 end
 
-namespace :jmvc do
-  task :compile do
-    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+def rake(cmd, options={}, &block)
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
+  run(command, options, &block)
+end
+
+namespace :memcached do 
+  desc "Start memcached"
+  task :start, :roles => [:app], :only => {:memcached => true} do
+    sudo "/etc/init.d/memcached start"
+  end
+  desc "Stop memcached"
+  task :stop, :roles => [:app], :only => {:memcached => true} do
+    sudo "/etc/init.d/memcached stop"
+  end
+  desc "Restart memcached"
+  task :restart, :roles => [:app], :only => {:memcached => true} do
+    sudo "/etc/init.d/memcached restart"
+  end        
+  desc "Flush memcached - this assumes memcached is on port 11211"
+  task :flush, :roles => [:app], :only => {:memcached => true} do
+    sudo "echo 'flush_all' | nc localhost 11211"
+  end        
+  desc "Symlink the memcached.yml file into place if it exists"
+  task :symlink_configs, :roles => [:app], :only => {:memcached => true }, :except => { :no_release => true } do
+    run "if [ -f #{shared_path}/config/memcached.yml ]; then ln -nfs #{shared_path}/config/memcached.yml #{latest_release}/config/memcached.yml; fi"
   end
 end

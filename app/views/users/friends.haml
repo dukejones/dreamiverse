@@ -1,9 +1,9 @@
 - content_for :head do
-  = coffeescript_include_tag 'follow_hover', 'modal'
+  = include_javascripts 'friends'
 
 
 / CONTEXT PANEL
-= render :partial => "context_panel", :locals => {:user => @user}
+= render :partial => "/common/context_panel", :locals => {:user => @user}
 
 / USER FIELD
 #friendField{"data-id" => 100}

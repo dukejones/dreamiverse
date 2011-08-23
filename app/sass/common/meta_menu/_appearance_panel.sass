@@ -1,0 +1,301 @@
+
+#appearancePanel
+  +user-select
+  padding: 8px
+
+  .bedsheets, .theme
+    +round(8)
+    +cursor
+    padding: 8px
+    
+    h2
+      +bold
+      +left
+      +font(16)
+
+
+  .bedsheets
+    +clear
+    padding: 8px
+    margin: 0 0 8px
+    .img
+      +left
+      width: 24px
+      height: 36px
+      margin: 0 8px 0 2px
+      @extend .bedsheets-24-hover
+    h2
+      +block
+      height: 32px
+      line-height: 34px
+      margin: 0 8px
+      width: 110px
+    #genreSelector
+      +round(8)
+      +right
+      +pointer
+      +font(14)
+      height: 36px
+      width: 150px
+      padding: 6px 8px
+      margin-bottom: 4px
+    
+      option
+        padding: 8px 0 9px 50px
+        // background: url(/add/image/here.jpg) no-repeat left center transparent
+      .city
+      .design
+      .earth
+      .farEast
+      .indigenous
+      .landscapes
+      .nightmares
+      .plants
+      .skies
+      .space
+      .textures
+      .travel
+      .water
+
+    #bedsheetScroller
+      +relative
+      +overflow
+      +clear
+      min-height: 346px
+      
+      div.spinner
+        +relative
+        // +alpha(90)
+        height: 346px
+        width: 100%
+        
+      ul
+        +absolute
+        +hidden
+        top: 0px
+        bottom: 12px
+        padding: 4px 0 4px 4px
+        list-style: none
+        overflow-y: scroll
+        li
+          +left
+          +pointer
+          +overflow
+          margin: 0 8px 8px 0
+          height: 128px
+          width: 128px
+          -moz-box-shadow: 2px 5px 10px #111
+          border: 4px solid #CCCCCC
+          img
+            border: 4px solid #333
+          img:hover
+            border: 4px solid #fff
+
+        .spinner
+          +absolute
+          +alpha(20)
+          width: 128px
+          height: 128px
+
+        li.selected
+          +round(4)
+          border: 4px solid #427ee8
+          img
+            border: 4px solid #fff
+
+
+    .attachment
+      .fixed, .scroll
+        +round(4)
+        +block
+        +center
+        width: 148px
+        padding: 2px
+        +cancel(8)
+        input
+          +pointer
+          +outline
+      .fixed
+        +left
+      .scroll
+        margin-left: 4px
+        +right
+    .more
+      +round(80)
+      +alpha(60)
+      +center
+      height: 32px
+      line-height: 32px
+      +confirm(16)
+      &:hover
+        +alpha(100)
+
+
+  .theme
+    +clear
+    +bold
+    padding: 8px
+    margin: 4px 0 2px
+    height: 36px
+
+    .img, #sun, #moon
+      +left
+
+    .img
+      width: 24px
+      height: 36px
+      margin: 0
+      @extend .color-24-hover
+
+    h2
+      margin: 0 0 0 8px
+      line-height: 38px
+
+    .buttons
+      +inner-shadow(10)
+      +round(8)
+      +right
+      width: 225px
+      padding: 3px 3px 3px 0
+
+      .sun, .moon
+        +left
+        +round(6)
+        +font(14)
+        +center
+        margin-left: 3px
+        padding: 0 5px
+        width: 95px
+        height: 28px
+        line-height: 28px
+        .img
+          width: 24px
+          height: 28px
+          margin: 0 0 0 4px
+
+      .sun
+        color: #555
+        .img
+          @extend .sun-24
+      .moon
+        color: #ccc
+        .img
+          @extend .moon-24
+
+
+
+
+
+
+
+
+
+// COLORS
+.light #appearancePanel
+  .arrow
+    @extend .arrow-up-27-light
+    background-position: 304px center
+  .spinner
+    background-color: #eee
+  .bedsheets, .theme
+    +panel-light
+  .attachment
+    .fixed, .scroll
+      +button-light
+      +bevel-light
+      +cancel(12)
+      border: 2px solid #bbb
+      &:hover
+        border: 2px solid #777
+  .more
+    +button-light
+
+  .sun, .sun:hover
+    border: 2px solid #111 !important
+    +indent-light
+    +glow-light(0)
+  .moon
+    +shine-dark(14)
+    +button-dark
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #fff
+
+
+
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.light.fixed #appearancePanel .attachment .fixed, .light.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #777 !important
+  +indent-light
+  +cursor
+  &:hover
+    +indent-light
+    +glow-light(0)
+    color: #111
+
+
+
+
+
+.dark #appearancePanel
+  .arrow
+    @extend .arrow-up-27-dark
+    background-position: 304px center
+  .spinner
+    background-color: #111
+  .bedsheets, .theme
+    +panel-dark
+  .attachment
+    .fixed, .scroll
+      +button-dark
+      +bevel-dark
+      +cancel(12)
+      border: 2px solid #222
+      &:hover
+        border: 2px solid #333
+  .more
+    +button-dark
+
+  .sun
+    +shine-light(14)
+    +button-light
+    border: 0px solid transparent !important
+    margin-top: 2px
+    margin-left: 5px !important
+    &:hover
+      color: #000
+  .moon, .moon:hover
+    border: 2px solid #777 !important
+    +indent-dark
+    +glow-dark(0)
+    margin-left: 5px !important
+
+
+// SELECTED STATES FOR BACKGROUND ATTACHMENT
+.dark.fixed #appearancePanel .attachment .fixed, .dark.scroll #appearancePanel .attachment .scroll
+  border: 2px solid #333 !important
+  +indent-dark
+  +cursor
+  &:hover
+    +indent-dark
+    +glow-dark(0)
+
+
+
+
+
+
+
+
+// MEDIA QUERIES
+// if viewing area is 790px or greater
+@media screen and (min-height: 790px)
+  #bedsheetScroller
+    height: 540px
+
+// if viewing area is 1000px or greater
+@media screen and (min-height: 1000px)
+  #bedsheetScroller
+    height: 760px

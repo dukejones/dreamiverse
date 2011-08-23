@@ -1,9 +1,9 @@
 <div class="prevCommentWrap <%= hidden ? 'hidden': '' %>">
 
   <% if (comment.image_id) { %>
-    <a style="background-image: url('/images/uploads/<%= comment.image_id %>-avatar-64.jpg')" href="/<%= comment.username %>" class="avatar"></a>
+    <a style="background-image: url('/images/uploads/<%= comment.image_id %>-avatar-64.jpg')" href="/<%= comment.username %>" class="history avatar"></a>
   <% } else { %>
-    <a href="/<%= comment.username %>" class="avatar"></a>
+    <a href="/<%= comment.username %>" class="history avatar"></a>
   <% } %>
     
   <div class="prevComment">

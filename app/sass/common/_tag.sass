@@ -1,0 +1,221 @@
+
+// SHARED TAG STYLES
+#entryField, #infoTags
+
+  #tagsLive
+    +clear
+  #tag-list
+    clear: left
+    margin-top: 28px
+
+
+
+  // TAG STRUCTURE
+  .tag
+    +relative
+    +round(8)
+    +left
+    +overflow
+    +cursor
+    margin: 8px 8px 0 0
+    height: 32px
+
+    &.auto
+      border: 1px solid #5c99e1 !important
+      .tag-name
+        color: #99daf1 !important
+      &:hover
+        border: 1px solid #fff !important
+        .tag-name
+          color: #fff !important
+
+    .close
+      +close-16
+      +right
+      margin: 8px 4px 0 0
+
+
+    // HEADER
+    .header
+      height: 32px
+      +left
+
+      .tag-icon
+        @extend .tag-24
+        width: 42px
+        height: 32px
+        +left
+        margin: 0
+        +hidden
+
+      .tag-name
+        +user-select
+        +font(16)
+        line-height: 30px
+        padding: 0 8px
+        +left
+
+      .dictionaries
+        +right
+        +user-select
+        padding: 0 10px
+        +round(12)
+        line-height: 21px
+        margin: 3px 8px
+        +hidden
+
+    &.tagAnalysis .header
+      +pointer
+
+      .analysis-icon
+        +right
+        width: 16px
+        height: 32px
+        margin: 0 8px 0 0
+        @extend .analysis-16
+
+    &.auto.tagAnalysis .header .analysis-icon
+      @extend .analysis-16-blue
+    &.auto.expanded .header .analysis-icon
+      @extend .analysis-16
+
+
+    // ANALYSIS
+    .analysis
+      padding: 20px 42px
+
+      .gradient
+        height: 14px
+        +absolute
+        top: 32px
+        left: 0
+        width: 100%
+        +gradient(rgba(0,0,0,0.3), rgba(0,0,0,0))
+      .source
+        +user-select
+        +round(18)
+        +bold
+        padding: 3px 16px
+        box-shadow:         5px 5px 10px rgba(0,0,0,0.4)
+        -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.4)
+        -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.4)
+
+      .description p
+        +clear
+        cursor: text
+        margin-top: 14px
+
+      .divider
+        height: 2px
+        width: 100%
+        margin: 20px 0
+
+
+
+
+    // EXPANDED VIEW
+    &.tagAnalysis.expanded
+      height: auto
+      margin: 8px 0 0
+      width: 636px
+
+      .header
+        +round(6)
+        +flat-bottom
+        width: 100%
+        .tag-icon
+          display: block
+        .tag-name
+          +bold
+          +font(24)
+          margin-left: 8px
+        .dictionaries
+          display: block
+
+      .close
+        +hidden
+
+
+    // NEW ENTRY DELETE STYLING
+    &.newEntry:hover
+      +pointer
+      border: 1px solid #971313
+      .close
+        +close-16
+        +alpha(100)
+
+
+
+
+
+
+
+
+
+
+
+
+
+// SHARED TAG COLORS
+.light #entryField
+
+  .tag
+    +flat-light-medium
+    border: 1px solid #8c8c8c
+    color: #333
+    &.tagAnalysis:hover
+      border: 1px solid #000
+    &.expanded, &.expanded:hover
+      border: 1px solid #000 !important
+    &.auto
+      +transparent-dark(90)
+
+    &.expanded
+      +bevel-light
+      .header, .tag-name
+        color: #ddd !important
+      .header
+        +gradient(#4b4b4b, #000)
+      .dictionaries
+        // border: 2px solid #6b6b6b
+        border: 2px solid transparent
+      .divider
+        background-color: #ccc
+
+  .source
+    +gradient(#535353, #000)
+    +button-dark
+    color: #ccc
+
+
+.dark #entryField
+  .tag
+    background: #121212
+    color: #ddd
+    border: 1px solid #777
+    &.tagAnalysis:hover
+      border: 1px solid #fff
+    &.expanded, &.expanded:hover
+      border: 1px solid #404040 !important
+    &.auto
+      +transparent-dark(90)
+
+    &.expanded
+      +bevel-dark
+      .header, .tag-name
+        color: #333 !important
+      .header
+        +gradient(#fff, #b4b4b4)
+      .dictionaries
+        // border: 2px solid #949494
+        border: 2px solid transparent
+      .divider
+        background-color: #2b2b2b
+
+
+  .source
+    +gradient(#fff, #a8a8a8)
+    border: 1px solid black
+    color: #333
+    &:hover
+      border: 1px solid white

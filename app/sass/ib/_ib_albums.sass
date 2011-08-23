@@ -19,11 +19,11 @@ table#albumList
         margin: 0 12px 0 0
         width: 32px
         height: 60px
-        background: url(/images/icons/manage-32.png) no-repeat center center transparent
+        @extend .manage-32
         &:hover
-          background: url(/images/icons/manage-32-hover.png) no-repeat center center transparent
+          @extend .manage-32-hover
         &:active
-          background: url(/images/icons/manage-32-active.png) no-repeat center center transparent
+          @extend .manage-32-active
 
       .editableWrap
         +left
@@ -43,11 +43,11 @@ table#albumList
           right: 12px
           width: 24px
           height: 60px
-          background: url(/images/icons/edit-24.png) no-repeat center center transparent
+          @extend .edit-24
           &:hover
-            background: url(/images/icons/edit-24-hover.png) no-repeat center center transparent
+            @extend .edit-24-hover
           &:active
-            background: url(/images/icons/edit-24-active.png) no-repeat center center transparent
+            @extend .edit-24-active
 
       .editable
         +transparent
@@ -112,7 +112,8 @@ table#albumList
     +alpha(70)
     height: 100%
     width: 668px
-    background: #000 url('/images/icons/spinner-grey-32.gif') no-repeat center center
+    @extend .spinner-grey-32
+    background-color: #000
     z-index: 2
 
 

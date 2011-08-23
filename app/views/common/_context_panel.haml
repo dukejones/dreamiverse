@@ -1,0 +1,192 @@
+- content_for :head do
+  = include_javascripts 'context_panel'
+
+
+#totem
+
+  / CONTEXT PANEL
+
+  - cache([user, current_user._?.relationship_with(user), @mode, @entry_count, user.friends.count, "context_panel"]) do
+    #contextPanel
+      - if (user == current_user) && !is_ipad?
+        #avatarDrop.uploader.hidden
+          #avatarDropContainer.dropbox
+            .imagelist
+            .text drag image here
+            .browse
+              .toggle browse for a file
+              .cancel cancel
+              .dropboxBrowse browse
+
+      / BOOKS (for testing)
+      = render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
+      
+      / IMAGE
+      %a.history.avatar{style: "background-image: url(#{avatar_image(user)})", href: user_entries_path(user.username)}
+        - if (user == current_user) && !is_ipad?
+          .uploadAvatarWrap
+            .uploadAvatar
+              <span>+</span> upload new avatar
+
+
+        .entryRemove
+          %div remove entry from book and return it to dreamfield
+
+
+
+
+      / CONTEXT LABEL
+      %a.history.context{href: user_entries_path(user.username)}= user.username
+
+      / RELATIONSHIP
+      / IF user is logged in AND user is looking at someone else's page, display the #relationship button
+      - if current_user && user != current_user
+        - if current_user
+          - relationship = current_user.relationship_with(user)
+          %button#relationship{type: "button", class: relationship.to_s, :'data-status' => relationship, :'data-username' => user.username }
+            .relation= follow_action(relationship)
+            .icon
+            
+      .divider
+
+
+
+
+      / PROFILE
+      .profile
+
+        .view
+
+          %button#toggle-profile{type: "button"}
+            profile
+            .arrow-down
+            .arrow-up
+
+          .alert.hidden
+            %span.message
+              update message
+            .check.hidden
+            .close
+
+          .details.hidden
+
+            .name= user.name
+            / .location San Francisco, USA
+
+            .website
+              - if user.link
+                - proper_url = assure_http(user.link.url)
+              %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
+                = "#{(user.link.blank?) ? ' ' : user.link.url}" 
+
+            - if user.friends_with?(current_user) || user == current_user
+              .email= user.email
+              .phone= user.phone
+              .skype= user.skype
+
+            / .facebook facebook
+            / .twitter twitter
+            .clear
+
+            - if user == current_user
+              .change edit profile
+
+            .clear
+
+        - if user == current_user
+          .edit.hidden
+            = form_tag :user, :method => :put, :remote => true, :'data-type' => 'json', :id => 'update_profile' do
+              = fields_for current_user do |f|
+                %span full name
+                = f.text_field :name, :placeholder => 'full name'
+                %span website url
+                = f.fields_for :link, current_user.link || Link.new do |l|
+                  = l.text_field :url, :placeholder => 'http://yoursite.com'
+                %span email address
+                = f.text_field :email, :placeholder => 'email@address.com'
+                %span phone number
+                = f.text_field :phone, :placeholder => '(123) 456-7890'
+                %span skype username
+                .skypeWrap
+                  = f.text_field :skype, :placeholder => 'skype.username'
+                  .img
+                .cancel cancel
+                = f.submit :save, :class => 'save'
+                .clear
+
+
+
+
+
+
+      / FILTER BY ENTRY TYPE
+      .wrapper
+        .item.entryFilter.entries
+
+          %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
+            %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+            = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'dream'}
+
+          .img.dream
+
+          .detail
+            = @entry_count || user.entries.count
+          .clear
+
+
+
+
+      / FILTER BY FRIENDS
+      .wrapper
+
+        .item.entryFilter.friends
+
+          %select#users-filter.select-menu.dropdown.label{:'data-username' => user.username}
+            %option.friends{value: 'friends'} friends
+            %option.following{value: 'following'} following
+            %option.followers{value: 'followers'} followers
+
+          .img.follow
+
+          .detail
+            = @mode ? user.send(@mode).count : user.friends.count
+          .clear
+
+        .filterList.friends.target.slideArrow.hidden
+          %a.type.top{href: friends_path(user.username)}
+            %span friends
+          %a.type{href: following_path(user.username)}
+            %span following
+          %a.type.bottom{href: followers_path(user.username)}
+            %span followers
+
+
+      / STARLIGHT
+      .item
+        .label.entryFilter.starlight
+          %span.value starlight
+
+        .img.starlight{src: '/images/icons/starlight-64.png', width: '64', height: '64'}
+
+        .detail
+          = user.starlight
+        .clear
+
+      / VIEW FILTERS - FAVORITES, REPOST, TAG
+      / .viewFilters
+      /   .favoritesWrap
+      /     .favorites
+      /   .rePostWrap
+      /     .rePost
+      /   .tagWrap
+      /     .tag.hidden
+
+
+    / / BOOK SHELF - (to appear only on entries)
+    / = render partial: 'entries/book_shelf'
+
+
+
+
+
+    .pagePadding

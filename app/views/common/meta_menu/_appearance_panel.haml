@@ -1,0 +1,38 @@
+/ APPEARANCE PANEL
+#appearancePanel.hidden.target
+  .arrow
+  / %input#defaultGenre{:type => 'hidden', :'value' => current_user.view_preference.default_genre}
+  / BEDSHEETS
+  .bedsheets
+    .img
+    %h2 bedsheets
+
+    %select#genreSelector
+    
+    #bedsheetScroller
+      %ul
+      .spinner
+
+    - unless is_ipad?
+      .attachment 
+        %span#fixed.fixed
+          fixed
+        %span#scroll.scroll
+          scroll  
+        .clear
+    /
+      .more + browse more...
+
+  / COLOR PICKER
+  .theme
+    .img
+    %h2 theme
+    .buttons
+      %a#light.sun.span
+        sun
+        .img
+      %a#dark.moon.span
+        moon
+        .img
+
+        

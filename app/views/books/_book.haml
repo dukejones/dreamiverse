@@ -1,37 +1,30 @@
-- backgroundStyle = ''
-- if (book && book.cover_image_id)
-  - coverUrl = Image.find(book.cover_image_id).url('252x252')
-  - backgroundStyle = "background: url(#{coverUrl}) no-repeat center center"
-- bookId = book ? book.id : 'new'
-- title = book.title if book && book.title
-- color = (book && book.color) ? book.color : 'blue' 
-- viewingLevel = book.viewing_level if book && book.viewing_level
-- commentingLevel = book.commenting_level if book && book.commenting_level
 
+- cover_style = (book.image_id) ? "background: url(#{book.image.url('bookcover')}) no-repeat center center" : ""
+- editable = current_user == book.user || book.new_record?
 
 / BOOKS
-.book{:'data-id' => bookId, class: color, :'data-color' => color}
-
+.book{:'data-id' => (book.new_record? ? 'new' : book.id), class: book.color, :'data-color' => book.color}
 
   / CLOSED BOOK
-  .closed.hidden
+  .closed
 
     .entryDrop
 
     .flatColor
 
-    .cover{style: backgroundStyle}
+    .cover{style: cover_style}
 
-    .mask
+    %a.history.mask{href: (defined? context_panel) ? user_entries_path(book.user.username) : (book.new_record? ? '' : book_path(book))}
 
     .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
       82
-
-    .edit edit
+    - if editable
+      %a.history.edit{href: book.new_record? ? new_book_path : edit_book_path(book)} edit
     
     .title 
-      = title ? title : 'Untitled Book'
-    / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
+      = book.title
+      / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
+      / .editTitle
 
     .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
       4
@@ -41,135 +34,130 @@
 
 
   / OPEN BOOK
-  .open
+  .open.hidden
+    - if editable
+      / BODY CLICK FOR OPEN BOOK
+      %a.history.closeClick{href: user_entries_path(current_user.username)}
 
-    / BODY CLICK FOR OPEN BOOK
-    .closeClick
+
+      / CONTROL PANEL
+      .control-panel
+
+        .settings-basic
+          %input.titleInput{type: 'text', value: book.title, placeholder: "enter a title"}
+
+          .color
+            color
+            .icon
+
+          .coverImage
+            cover image
+            .icon
+
+          .access
+            access
+            .icon
+
+          / .settings
+          /   settings
+          /   .icon
+
+          .arrow
+            .down
+
+          %a.history.confirm{href: user_entries_path(current_user.username)} OK
+
+        .clear
+
+        .more-settings
+
+          .remove
+            delete book
+          .label
+            this book will be deleted but entries will remain
+
+          / .delete
+          /             delete book
+          /           .label
+          /             this book and its entries will be deleted
+          
+          .arrow
+            .up
 
 
-    / CONTROL PANEL
-    .control-panel
+      / COLOR PANEL
+      .color-panel
 
-      .settings-basic
-        - if title
-          %input.titleInput{type: 'text', value: title}
-        - else
-          %input.titleInput{type: 'text', placeholder: 'title of book'}
+        .header
 
-        .color
-          color
+          .back &lsaquo;
+
           .icon
 
-        .coverImage
-          cover image
+          %span color
+
+        %ul.swatches
+
+          %li.blue
+          %li.purple
+          %li.pink
+          %li.red
+          %li.aqua
+          %li.green
+          %li.yellow
+          %li.orange
+          %li.blue-deep
+          %li.green-deep
+          %li.brown
+          %li.maroon
+          %li.white
+          %li.grey-light
+          %li.grey-dark
+          %li.black
+
+
+      / COVER IMAGE PANEL
+      .cover-panel
+
+        .dropbox
+
+        .header
+
+          .back &lsaquo;
+
           .icon
 
-        .access
-          access
+          %span cover image
+
+        .dropbox-field
+
+          .dropbox-field-shine{style: cover_style}
+
+            .close
+
+            .add click or drag images here to upload
+
+
+      / ACCESS PANEL
+      .access-panel
+
+        .header
+
+          .back &lsaquo;
+
           .icon
 
-        .settings
-          settings
-          .icon
+          %span access
 
-        .arrow
-          .down
+        .viewing viewing
 
-        .confirm OK
+        %select.select-menu.viewing-menu{name: 'sharing_level'}
+          = render :partial => "common/sharing_level_options", :locals => {:level => book.sharing_level}
 
-      .clear
+        .commenting commenting
 
-      .more-settings
-
-        .remove
-          remove book
-        .label
-          entries will not be deleted
-
-        .delete
-          delete book
-        .label
-          this book and its entries will be deleted
-
-        .arrow
-          .up
-
-
-    / COLOR PANEL
-    .color-panel
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span color
-
-      %ul.swatches
-
-        %li.blue
-        %li.purple
-        %li.pink
-        %li.red
-        %li.aqua
-        %li.green
-        %li.yellow
-        %li.orange
-        %li.blue-deep
-        %li.green-deep
-        %li.brown
-        %li.maroon
-        %li.white
-        %li.grey-light
-        %li.grey-dark
-        %li.black
-
-
-    / COVER IMAGE PANEL
-    .cover-panel
-
-      .dropbox
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span cover image
-
-      .dropbox-field
-
-        .dropbox-field-shine{style: backgroundStyle}
-
-          .close
-
-          .add click or drag images here to upload
-
-      .active
-
-
-    / ACCESS PANEL
-    .access-panel
-
-      .header
-
-        .back &lsaquo;
-
-        .icon
-
-        %span access
-
-      .viewing viewing
-
-      %select.select-menu.viewing-menu{name: 'viewing_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => viewingLevel}
-
-      .commenting commenting
-
-      %select.select-menu.commenting-menu{name: 'commenting_level'}
-        = render :partial => "entries/sharing_level", :locals => {:level => commentingLevel}
+        %select.select-menu.commenting-menu{name: 'commenting_level'}
+          = render :partial => "common/sharing_level_options", :locals => {:level => book.commenting_level}
 
     / ENTRY DROP ACTIVE
     .entryDrop-active

@@ -1,0 +1,732 @@
+// TOTEM (wrapper for context panel & elements beneath)
+#totem
+  +absolute
+  +cursor
+  top: 83px
+  left: 13px
+  width: 208px
+
+
+// CONTEXT PANEL
+// STRUCTURE
+
+#contextPanel
+  +relative
+  +round(16)
+  +cursor
+  width: 200px
+  padding: 4px 4px 2px
+
+
+  .book
+    +relative
+
+
+  .entryRemove
+    +hidden
+    +absolute
+    +round(12)
+    top: -1px
+    left: -1px
+    width: 200px
+    height: 266px
+    @extend .plus-48
+    background-color: rgba(0,0,0,0.5)
+
+    div
+      +absolute
+      +center
+      +bold
+      top: 186px
+      left: 0
+      width: 200px
+
+
+  #avatarDrop
+    +absolute
+    +round(12)
+    width: 200px
+    height: 266px
+    z-index: 1200
+
+    #avatarDropContainer
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      color: #fff
+      z-index: 1200
+
+
+      &.qq-upload-drop-area-active
+        @extend .dropbox-26
+        background-color: rgba(0,0,0,0.6)
+
+      .text
+        +font(18)
+        +center
+        padding-top: 20px
+        z-index: 1200
+
+      .browse
+        +font(14)
+        +center
+        +relative
+        top: 184px
+        left: 0
+        z-index: 1200
+
+        .cancel, .dropboxBrowse
+          +absolute
+          +round(4)
+          +button-dark
+          +bevel-dark
+          padding: 4px 8px
+          z-index: 1200
+        .cancel
+          top: 0px
+          left: 8px
+          +cancel(12)
+        .dropboxBrowse
+          top: 0px
+          right: 8px
+          width: 90px
+          position: absolute !important
+          +confirm(12)
+          +pointer
+        .toggle
+          +hidden
+
+
+  .avatar
+    +round(12)
+    +block
+    +relative
+    width: 198px
+    height: 264px
+    background-clip: border-box !important
+    background-repeat: no-repeat
+    background-position: center center
+    background-color: #a4a6a8
+
+    &:hover .uploadAvatarWrap
+      +block
+    .uploadAvatarWrap
+      +hidden
+      +absolute
+      bottom: 0
+      width: 100%
+      padding: 20px 0 8px
+      .uploadAvatar
+        +block
+        +round(8)
+        +center
+        +pointer
+        +transparent-dark(50)
+        +glow-light(20)
+        +font(12)
+        color: #ccc
+        padding: 2px 6px
+        width: 120px
+        margin: 0 auto
+        border: 1px solid #ccc
+        span
+          +bold
+          color: #68b800
+      .uploadAvatar:hover
+        +inner-glow(10)
+        border: 1px solid #fff
+        color: #fff
+
+    .uploader
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      .text, .browse
+        +center
+        +absolute
+        width: 100%
+        color: #fff
+      .text
+        +font(21)
+        top: 20px
+      .browse
+        +alpha(80)
+        +overflow
+        bottom: 20px
+        input
+          +right
+          +outline
+        &:hover
+          +alpha(100)
+        .cancel
+          cursor: pointer
+      .dropboxBrowse
+        color: #fff
+
+
+
+  // USERNAME and CONTEXT
+
+  .context
+    +round(12)
+    +flat-bottom
+    +overflow
+    +relative
+    +center
+    +block
+    +font(21)
+    margin: 4px 0 2px
+    padding: 4px 0
+    width: 199px
+    .icon
+      +absolute
+      right: 20px
+      top: 18px
+
+
+  .relation, .changeRelation, .context
+    +user-select
+    .icon
+      +right
+      +relative
+      margin: -16px
+
+
+  .label, .img
+    +left
+  .detail
+    +right
+
+  .divider
+    height: 2px
+
+
+
+
+
+
+  // PROFILE
+  .profile
+    margin-bottom: 4px
+
+    // VIEW PROFILE
+    .view
+      +relative
+      +center
+      +round(8)
+      padding: 4px 0
+
+    #toggle-profile
+      width: 100%
+      +user-select
+      +alpha(60)
+      &:hover
+        +alpha(100)
+
+      .arrow-down, .arrow-up
+        border-color: #58595a transparent  transparent
+        border-style: solid
+        border-width: 7px 7px 0
+        width: 0
+        height: 0
+        // @extend .arrow-down-16
+        +absolute
+        right: 12px
+        top: 12px
+
+      .arrow-up
+        +hidden
+        +rotate(180)
+
+
+    // PROFILE UPDATE ALERT
+    .alert
+      +absolute
+      +round(4)
+      +pointer
+      +center
+      left: 4px
+      bottom: 4px
+      width: 192px
+      height: 24px
+      line-height: 24px
+      border-spacing: 0
+      border-collapse: separate
+
+      span.message
+        +font(14)
+        +bold
+
+      .check, .close
+        +right
+        margin: 5px 4px 0 -4px
+      .check
+        +check-16
+      .close
+        +close-16
+        +alpha(100)
+
+
+    .name
+      +font(21)
+
+    .location
+      +font(12)
+      +center
+
+    .details
+      +overflow
+      margin: 0 4px
+      cursor: text
+
+    .website, .email, .phone, .skype
+      +block
+      +font(14)
+
+    .website:hover
+      text-decoration: underline
+
+    .skype
+      @extend .skype-16
+      background-position: 0 2px
+      padding: 0 0 2px 20px
+      display: inline-block
+
+    .facebook, .twitter
+      +round(4)
+      +center
+      +font(11)
+      padding: 0 12px
+      margin: 8px 2px 0
+    .facebook
+      +left
+    .twitter
+      +right
+
+
+    .change
+      +user-select
+      +clear
+      +center
+      +round(4)
+      height: 22px
+      line-height: 22px
+      margin-top: 6px
+
+
+
+    // EDIT PROFILE
+    .edit
+      +round(8)
+      padding: 4px
+
+      span
+        +font(11)
+        margin-left: 4px
+
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +round(8)
+        +font(12)
+        width: 180px
+        height: 24px
+        margin-bottom: -4px
+        padding: 0 0 0 8px
+      .skypeWrap
+        +relative
+        width: 180px
+        margin: 0 0 4px
+        .img
+          +absolute
+          width: 16px
+          height: 16px
+          left: 8px
+          top: 5px
+          @extend .skype-16
+        #user_skype
+          width: 160px
+          padding-left: 28px
+          margin: 0
+
+      .cancel, .save
+        +round(4)
+        +user-select
+        +center
+        width: auto
+        margin: 4px 0 0
+      .cancel
+        +left
+        +delete(14)
+        width: 75px
+        height: 26px
+        line-height: 26px
+      .save
+        +bold
+        +right
+        +save(14)
+        +font(14)
+        height: 28px
+        width: 110px
+
+
+
+
+
+  // GENERAL ITEM
+
+  .item
+    +clear
+    +user-select
+    margin-bottom: 4px
+
+    .label
+      +round(12)
+      +flat-right
+      +font(14)
+      +relative
+      text-align: right
+      width: 80px
+      height: 24px
+      line-height: 24px
+      padding: 6px 0
+      img.arrow
+        +left
+        margin: 4px 4px 0 6px
+      .value
+        +absolute
+        right: 4px
+
+    .img
+      width: 38px
+      height: 38px
+      padding: 0
+      margin: 0
+
+    .img.dream
+      @extend .entries-24
+
+    .img.follow
+      @extend .friend-24
+
+    .img.starlight
+      +absolute
+      left: 72px
+      bottom: -7px
+      width: 64px
+      height: 64px
+      @extend .starlight-64
+
+
+    .detail
+      +inner-shadow(12)
+      +round(12)
+      +flat-left
+      +bold
+      +center
+      +overflow
+      width: 78px
+      height: 24px
+      padding: 6px 0
+      line-height: 26px
+      border: 0
+
+
+  // ENTRY TYPE & FRIENDS FILTERS - for more see _dropdown.sass
+  #entry-filter-button, #users-filter-button
+    width: 80px !important
+
+    .ui-selectmenu-status
+      padding: 0 4px 0 0 !important
+      line-height: 24px !important
+      background-image: none
+    .ui-selectmenu-icon
+      left: 5px
+
+
+
+
+
+
+
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .filterList
+    +font(14)
+    +center
+    width: 80px !important
+
+
+  .viewFilters
+    +round(12)
+    height: 28px
+    padding: 4px
+    margin: 4px 0
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +relative
+      +round(12)
+      +left
+      height: 26px
+      width: 62px
+
+      .favorites, .rePost, .tag
+        +absolute
+        height: 26px
+        width: 62px
+
+    .favoritesWrap
+      +flat-right
+      .favorites
+        @extend .love-16
+        &:hover
+          @extend .love-16-hover
+      .favorites.selected
+        @extend .love-16-hover
+
+    .rePostWrap
+      +flat-all
+      .rePost
+
+    .tagWrap
+      +flat-left
+      .tag
+        @extend .tag-16
+        &:hover
+          @extend .tag-16-hover
+      .tag.selected
+        @extend .tag-16-hover
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CONTEXT PANEL
+// COLORS
+.light #contextPanel
+  +transparent-light(50)
+  +glow-light(40)
+
+  .avatar
+    border: 1px solid transparent
+    &:hover
+      +pointer
+      border: 1px solid #aaa
+      border: 1px solid rgba(255, 255, 255, 0.8)
+
+  .context, .label
+    border: 1px solid #8a8a8a
+  .context:hover, .entryFilter .label:hover
+    border: 1px solid #111
+    +pointer
+
+  .context
+    color: #222
+    +shine-light-alpha(16)
+    &:hover
+      color: #000
+
+  .label
+    +shine-light-alpha(16)
+    &.selected
+      +shine-dark-alpha(16)
+      color: #fff !important
+
+  .trigger .label:hover
+    color: #000
+
+
+
+
+  // PROFILE
+  .profile
+
+    // VIEW PROFILE
+    .view, .edit
+      +border-light
+      +transparent-light(40)
+      &:hover
+        border: 1px solid #8c8c8c
+
+      .alert
+        +flat-dark
+        .message
+          color: #ddd
+
+      .details
+        .website, .email, .phone, .skype
+
+        .facebook, .twitter
+          +flat-light
+          +button-light
+        .change
+          +bevel-light
+          +button-light
+          +confirm(11)
+
+
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +input-light(small)
+      .cancel, .save
+        +bevel-light
+        +button-light
+      .cancel
+        +cancel(14)
+      .save
+        +save(14)
+        color: #333
+
+  .item .detail
+    +border-light
+    background: white
+
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    background: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9a9a9a))
+    background: -moz-linear-gradient(top, #fff, #9a9a9a) // CUSTOM LIGHT BEVEL
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-light
+      +shine-light(13)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #bbb
+      .rePost
+
+    .tagWrap
+      .tag
+
+
+.dark #contextPanel
+  +transparent-dark(50)
+  +glow-dark(40)
+
+  .avatar
+    border: 1px solid transparent
+    &:hover
+      border: 1px solid #333
+      border: 1px solid rgba(0,0,0,0.6)
+
+  .context, .label
+    border: 1px solid #333
+    +shine-dark-alpha(16)
+
+  .context, .entryFilter .label
+    &:hover
+      +button-dark
+
+  .context
+    color: #ccc
+    &:hover
+      color: #fff
+
+  .label.selected
+    +shine-light-alpha(16)
+    color: #000 !important
+
+
+  // PROFILE
+  .profile
+
+    // VIEW PROFILE
+    .view, .edit
+      +transparent-dark(40)
+      border: 1px solid #222
+      &:hover
+        border: 1px solid #777
+
+      .alert
+        +flat-light
+        .message
+          color: #333
+
+      .details
+        .website, .email, .phone, .skype
+
+        .facebook, .twitter
+          +flat-light
+          +button-dark
+          color: #333
+        .change
+          +bevel-dark
+          +button-dark
+          +confirm(11)
+
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +input-dark(small)
+      .cancel, .save
+        +bevel-dark
+        +button-dark
+      .cancel
+        +cancel(14)
+      .save
+        +save(14)
+        color: #ddd
+
+  .item .detail
+    background: rgba(50,50,50,0.9)
+
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +bevel-dark
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-dark
+      +shine-dark(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #444
+      .rePost
+
+    .tagWrap
+      .tag
+
+
+
+
+
+
+// ENSURES BOTTOM PADDING CLEARANCE
+
+.pagePadding
+  +absolute
+  top: 684px
+  height: 1px
+  width: 1px
+
+
+
+
+
+
+
+
+
+
+
+
+

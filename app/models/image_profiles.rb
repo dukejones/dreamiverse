@@ -24,7 +24,7 @@ module ImageProfiles
       :avatar_main, :avatar_medium, :avatar, 
       :thumb,
       :bedsheet, :bedsheet_small,
-      :tag, :facebook
+      :tag, :facebook, :bookcover
     ]
   end
 
@@ -115,11 +115,12 @@ module ImageProfiles
   def avatar_main(options)
     img = magick_image
 
-    img.resize "200x266^" # minimum dimensions
-
-    x_offset = (img[:width] - 200) / 2
-    y_offset = (img[:height] - 266) / 2
-    img.crop "200x266+#{x_offset}+#{y_offset}"
+    # img.resize "200x266^" # minimum dimensions
+    # 
+    # x_offset = (img[:width] - 200) / 2
+    # y_offset = (img[:height] - 266) / 2
+    # img.crop "200x266+#{x_offset}+#{y_offset}"
+    shave(img, 200, 266)
     
     img.write(path(:avatar_main))
   end
@@ -167,5 +168,14 @@ module ImageProfiles
   def facebook(options={})
     img = profile_magick_image(:thumb, :size => 256)
     img.write(path(:facebook))
+  end
+  
+  # 170x248
+  def bookcover(options={})
+    img = magick_image
+
+    shave(img, 170, 248)
+    
+    img.write(path(:bookcover))
   end
 end

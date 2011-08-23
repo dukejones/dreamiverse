@@ -1,0 +1,74 @@
+// NEW ENTRY
+// COLORS
+.light #entryField
+
+  .entryTags
+
+    .tagInputWrap
+      #newTag
+        +input-light(large)
+        color: #333
+      .tagAdd
+        +button-light
+        +shine-light-alpha(13)
+
+
+
+.dark #entryField
+
+  .entryTags
+
+    .tagInputWrap
+      #newTag
+        +input-dark(large)
+        color: #ddd
+      .tagAdd
+        +button-dark
+        +shine-dark-alpha(13)
+
+
+
+
+
+
+
+
+
+
+
+#entryField
+  // NEW ENTRY TAGS
+  .entryTags
+    +relative
+
+    .tagInputWrap
+      +absolute
+      top: 8px
+      right: 18px
+      width: 532px
+
+      #newTag
+        +font(16)
+        +transparent
+        +outline
+        +absolute
+        +round(8)
+        top: 0
+        left: 0
+        width: 458px
+        height: 38px
+        padding: 0 74px 0 8px
+        border: 0
+
+      .tagAdd
+        +round(4)
+        +center
+        +bold
+        +absolute
+        right: -4px
+        top: 5px
+        width: 62px
+        height: 28px
+        line-height: 30px
+        span
+          color: #009933

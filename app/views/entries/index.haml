@@ -1,31 +1,9 @@
-- content_for :head do
-  / = include_javascripts :entries
-  / :coffeescript
-  /   $( ->
-  /     dreamfieldController = new DreamfieldController('#{@user.username}')
-  /   )
-  
 / CONTEXT PANEL
-= render :partial => "users/context_panel", :locals => {:user => @user}
+= render :partial => "common/context_panel", :locals => {:user => @user}
 
 / ENTRY FIELD
 #entryField
-
-  / PAGE HEADER
-  - if @filters[:type]
-    .pageHeader
-      .img{class: @filters[:type]}
-      %h1= @filters[:type].pluralize
-    .clear
-
-  = render :partial => "field"
-
+  #entriesIndex
+    = render :partial => "entries/index"
   #showEntry{style: 'display:none'}
   #newEditEntry{style: 'display:none'}
-
-- content_for :foot do
-  / APPLIES SELECTED CLASS TO META MENU
-  - if @user == current_user
-    :coffeescript
-      $('.item.home').addClass('selected')
-

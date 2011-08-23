@@ -1,13 +1,15 @@
-# Configure barista.
+#Barista::Framework.register 'jmvc_load', Rails.root.join("public", "dreamcatcher", "coffee")
+Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
+
 Barista.configure do |c|
   
   # Change the root to use app/scripts
   
-  #c.root = Rails.root.join("app", "coffee")
-  c.root = Rails.root.join("public", "dreamcatcher", "coffee")
+  c.root = Rails.root.join("app", "coffee")
+  # c.root = Rails.root.join("public", "dreamcatcher", "coffee")
   
-  #c.output_root = Rails.root.join("public", "javascripts", "compiled")
-  c.output_root = Rails.root.join("public", "dreamcatcher")
+  c.output_root = Rails.root.join("public", "javascripts", "compiled")
+  # c.output_root = Rails.root.join("public", "dreamcatcher")
 
   c.embedded_interpreter = false
   # Set the compiler
@@ -19,7 +21,10 @@ Barista.configure do |c|
   
   # Change the output root for a framework:
   
-  # c.change_output_prefix! 'framework-name', 'output-prefix'
+  c.change_output_root! 'jmvc_load', 'public/dreamcatcher'
+  c.change_output_root! 'jmvc', 'public/compiled'
+
+  c.bare = true
   
   # or for all frameworks...
   

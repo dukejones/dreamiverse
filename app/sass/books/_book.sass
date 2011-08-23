@@ -1,0 +1,688 @@
+// BOOKS
+
+
+// BOOK STRUCTURE
+.book
+  +pointer
+  +left
+  +relative
+  width: 200px
+  height: 266px
+  margin: 0 10px 10px 0
+
+  .closed, .mask
+    +absolute
+    top: 0
+    right: 0
+    width: 200px
+    height: 266px
+
+
+  // CLOSED BOOK
+  .closed
+
+    .entryDrop
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 200px
+      height: 266px
+
+    &:hover
+      .entries, .edit, .comments, .sharing
+        +alpha(100)
+
+    .entries, .edit, .title, .comments, .sharing
+      +absolute
+      +round(12)
+      +font(14)
+      +bold
+
+    .entries, .comments, .sharing
+      +alpha(0)
+      height: 24px
+      line-height: 24px
+      padding: 0 8px 0 28px
+      background-position: 4px center
+      background-repeat: no-repeat
+
+    .entries
+      top: 24px
+      left: 4px
+
+    .edit
+      +alpha(0)
+      top: 24px
+      right: 36px
+      height: 24px
+      line-height: 24px
+      padding: 0 12px
+      &:hover
+        +inner-glow(4)
+
+    .title
+      +font(18)
+      +center
+      bottom: 32px
+      left: 0
+      margin: 0 4px
+      width: 146px
+      height: auto
+      line-height: 18px
+      padding: 8px
+      // &:hover .editTitle
+      //   +alpha(100)
+      // 
+      // .editTitle
+      //   +alpha(0)
+      //   +absolute
+      //   top: 4px
+      //   right: 4px
+      //   width: 16px
+      //   height: 16px
+      //   @extend .edit-16
+      //   &:hover
+      //     @extend .edit-16-hover
+
+    .comments
+      bottom: 4px
+      left: 4px
+
+    .sharing
+      bottom: 4px
+      right: 36px
+
+    .cover, .flatColor
+      +absolute
+      +overflow
+      +round(16)
+      left: 0
+      bottom: 0
+      width: 170px
+      height: 248px
+
+
+  // OPEN BOOK
+  .open
+    +absolute
+    top: 0
+    right: 0
+    width: 335px
+    height: 334px
+    color: #444
+    z-index: 85
+
+    .closeClick
+      +absolute
+      +transparent
+      top: 0
+      right: 0
+      width: 100%
+      height: 100%
+
+    .entryDrop-active
+      +hidden
+      +absolute
+      top: 19px
+      right: 33px
+      padding: 8px
+      width: 146px
+      height: 224px
+      border-radius:          4px 16px 16px 4px
+      -moz-border-radius:     4px 16px 16px 4px
+      -webkit-border-radius:  4px 16px 16px 4px
+      @extend .plus-48
+      background-color: rgba(0,0,0,0.7)
+
+    // PANEL SHARED STYLES
+    .control-panel, .color-panel, .cover-panel, .access-panel
+      +absolute
+      top: 19px
+      right: 32px
+      padding: 8px
+      width: 148px
+      height: 224px
+
+    .titleInput, .header, .color, .coverImage, .access, .settings, .arrow, .confirm, .remove, .delete
+      +round(4)
+      height: 30px
+      line-height: 30px
+      margin: 0 0 4px
+      color: #444
+      border: 1px solid #888
+      +bevel-light
+
+      .icon,
+        +left
+        +round(3)
+        +flat-right
+        height: 30px
+        width: 30px
+        margin: 0 8px 0 0
+
+    .titleInput, .header
+      +indent-light
+      height: 32px
+      line-height: 32px
+      padding: 2px 0
+      border: none
+      border-bottom: 2px solid #000
+
+    .titleInput
+      +outline
+      +font(12)
+      padding: 2px 8px
+      width: 132px
+      border-bottom: 2px solid #000
+
+    .back
+      +user-select
+      +left
+      +round(4)
+      +font(24)
+      +bold
+      +center
+      width: 30px
+      height: 30px
+      line-height: 28px
+      margin: 0 4px
+      border: 1px solid #888
+      +bevel-light
+
+    .color, .coverImage, .access, .settings, .arrow, .back
+      &:hover
+        color: #000
+        border: 1px solid #222
+
+
+    // CONTROL PANEL ONLY
+    .control-panel
+      .header, .color, .coverImage, .access, .settings
+        +user-select
+        +center
+
+    .color .icon
+      background: #123d66
+      box-shadow:         inset 0 16px rgba(255,255,255,0.5)
+      -moz-box-shadow:    inset 0 16px rgba(255,255,255,0.5)
+      -webkit-box-shadow: inset 0 16px rgba(255,255,255,0.5)
+
+    .coverImage .icon
+      @extend .images-16-hover
+
+    .access .icon
+      @extend .private-24-hover
+
+    .settings .icon
+      @extend .settings-24-hover
+
+    .arrow
+      +absolute
+      bottom: 4px
+      width: 30px
+      .up, .down
+        +absolute
+        width: 30px
+        height: 30px
+      .up
+        @extend .arrow-up-16-dark
+      .down
+        @extend .arrow-down-16-dark
+
+    .confirm
+      +confirm(16)
+      +font(18)
+      +bold
+      +absolute
+      right: 8px
+      bottom: 4px
+      padding: 0 16px
+
+    .more-settings
+      +hidden
+      width: 148px
+      margin: 8px 0 0
+
+      .remove, .delete
+        +shine-light(15)
+        +delete(15)
+        +center
+        padding: 0 0 0 8px
+
+      .label
+        +font(12)
+        +bold
+        margin: 0 0 8px 8px
+        line-height: 12px
+
+    // COLOR PANEL ONLY
+    .color-panel
+      +hidden
+
+      .header
+        text-align: left
+
+      .back
+        +font(24)
+        +bold
+        +center
+        width: 30px
+        margin: 0 4px
+        border: 1px solid #888
+        +bevel-light
+
+      .icon
+        @extend .appearance-24-hover
+
+      .swatches
+        margin: 0 0 0 4px
+
+      li
+        +left
+        +round(4)
+        width: 30px
+        height: 30px
+        line-height: 30px
+        margin: 0 4px 4px 0
+        border: 1px solid #fff
+
+        &:hover
+          box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+          -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+          -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+
+      .blue
+        background-color: #123d66
+      .purple
+        background-color: #5b2e87
+      .pink
+        background-color: #912487
+      .red
+        background-color: #912425
+      .aqua
+        background-color: #2e8786
+      .green
+        background-color: #5a9223
+      .yellow
+        background-color: #b88400
+      .orange
+        background-color: #aa5009
+      .blue-deep
+        background-color: #27335c
+      .green-deep
+        background-color: #3f6254
+      .brown
+        background-color: #53412e
+      .maroon
+        background-color: #661c27
+      .white
+        background-color: #fff
+      .grey-light
+        background-color: #bebebe
+      .grey-dark
+        background-color: #4b4b4b
+      .black
+        background-color: #000
+
+
+    // COVER IMAGE PANEL
+    .cover-panel
+      +hidden
+      +font(14)
+
+      .icon
+        margin: 0 2px 0 0
+        @extend .images-16-hover
+
+      .dropbox-field
+        +absolute
+        +round(12)
+        top: 58px
+        right: 16px
+        width: 134px
+        height: 170px
+        box-shadow:         5px 5px 2.8px #444
+        -moz-box-shadow:    5px 5px 2px #444
+        -webkit-box-shadow: 5px 5px 2.8px #444
+
+        .dropbox-field-shine
+          +round(12)
+          width: 134px
+          height: 170px
+          border: 1px solid #fff
+          background: #123d66
+          box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+          -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+          -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+
+          &:hover .close
+            +block
+
+          .add
+            +center
+            margin: 60px auto 0
+            width: 80px
+            padding: 28px 0 0
+            color: #fff
+            @extend .plus-24-greenBlue
+            background-position: top center
+
+      .close
+        +hidden
+        +absolute
+        +close-24
+        top: 4px
+        right: 2px
+
+      .dropbox
+        +absolute
+        top: 0
+        right: 0
+        width: 163px
+        height: 240px
+
+      .active
+        +hidden
+        +absolute
+        +round(11)
+        top: 58px
+        right: 14px
+        width: 128px
+        height: 164px
+        z-index: 87
+        border: 4px solid #B6D342
+        box-shadow:         inset 0 14px rgba(255,255,255,0.2)
+        -moz-box-shadow:    inset 0 14px rgba(255,255,255,0.2)
+        -webkit-box-shadow: inset 0 14px rgba(255,255,255,0.2)
+        @extend .plus-24-greenBlue
+        background-position: center 57px
+        background-color: #000
+        background-color: rgba(0,0,0,0.8)
+
+    // ACCESS PANEL ONLY
+    .access-panel
+      +hidden
+
+      .icon
+        @extend .private-24-hover
+
+      .viewing, .commenting
+        height: 20px
+        line-height: 20px
+        padding: 0 0 0 20px
+
+      .viewing
+        @extend .viewing-16
+        background-position: left center
+
+      .commenting
+        @extend .comment-16-active
+        background-position: left center
+
+
+      // VIEWING & COMMENTING MENU DROPDOWNS
+      .viewing-menu, .commenting-menu
+        width: 148px
+        margin: 2px 0 8px
+        padding: 2px 0
+        // line-height for chrome / webkit height
+        line-height: 18px
+        +font(14)
+        +round(4)
+        color: #333
+        outline: none
+        background-color: #fff
+        border: 1px solid #666
+        box-shadow:         inset 2px 2px 5px #ccc
+        -moz-box-shadow:    inset 2px 2px 5px #ccc
+        -webkit-box-shadow: inset 2px 2px 5px #ccc
+
+        .ui-selectmenu-status, li a
+          padding-left: 38px
+
+        // ICONS
+        &.everyone .ui-selectmenu-status, .everyone a
+          @extend .sharing-16-hover
+          background-position: 10px center
+        &.list .ui-selectmenu-status, .list a
+          @extend .friend-16
+          background-position: 10px center
+        &.followers .ui-selectmenu-status, .followers a
+          @extend .friend-16-follower
+          background-position: 10px center
+        &.private .ui-selectmenu-status, .private a
+          @extend .private-16-hover
+          background-position: 10px center
+        &.anon .ui-selectmenu-status, .anon a
+          @extend .anon-16-hover
+          background-position: 10px center
+
+.ui-selectmenu-menu.viewing-menu, .ui-selectmenu-menu.commenting-menu
+  z-index: 100 !important
+  width: 146px !important
+  +flat-light
+  +round(4)
+  +glow-light(10)
+  +border-light
+
+  li a
+    padding-left: 38px
+    color: #222
+
+  // ICONS
+  .everyone a
+    @extend .sharing-16-hover
+    background-position: 10px center
+  .list a
+    @extend .friend-16
+    background-position: 10px center
+  .followers a
+    @extend .friend-16-follower
+    background-position: 10px center
+  .private a
+    @extend .private-16-hover
+    background-position: 10px center
+  .anon a
+    @extend .anon-16-hover
+    background-position: 10px center
+
+
+
+
+
+
+// BOOK COLOR VARIATIONS
+
+.book.aqua
+  .flatColor, .color .icon
+    background-color: #1a5e5c
+  .mask
+    @extend .mask-aqua
+  .open
+    @extend .open-aqua
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #2e8786
+    background-color: rgba(46,135,134,0.5)
+
+.book.black
+  .flatColor, .color .icon
+    background-color: #000
+  .mask
+    @extend .mask-black
+  .open
+    @extend .open-black
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #2c2c2c
+    background-color: rgba(44,44,44,0.5)
+
+.book.blue
+  .flatColor, .color .icon
+    background-color: #123d66
+  .mask
+    @extend .mask-blue
+  .open
+    @extend .open-blue
+  .entries, .edit, .title, .comments, .sharing,
+    color: #fff
+    background-color: #245a91
+    background-color: rgba(36,90,145,0.5)
+
+.book.blue-deep
+  .flatColor, .color .icon
+    background-color: #1a2548
+  .mask
+    @extend .mask-blue-deep
+  .open
+    @extend .open-blue-deep
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #27335c
+    background-color: rgba(39,51,92,0.5)
+
+.book.brown
+  .flatColor, .color .icon
+    background-color: #392a1c
+  .mask
+    @extend .mask-brown
+  .open
+    @extend .open-brown
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #53412e
+    background-color: rgba(83,65,46,0.5)
+
+.book.green
+  .flatColor, .color .icon
+    background-color: #3b5125
+  .mask
+    @extend .mask-green
+  .open
+    @extend .open-green
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5a9223
+    background-color: rgba(90,146,35,0.5)
+
+.book.green-deep
+  .flatColor, .color .icon
+    background-color: #283a33
+  .mask
+    @extend .mask-green-deep
+  .open
+    @extend .open-green-deep
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #3f6254
+    background-color: rgba(63,98,84,0.5)
+
+.book.grey-dark
+  .flatColor, .color .icon
+    background-color: #282828
+  .mask
+    @extend .mask-grey-dark
+  .open
+    @extend .open-grey-dark
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #4b4b4b
+    background-color: rgba(75,75,75,0.5)
+
+.book.grey-light
+  .flatColor, .color .icon
+    background-color: #696969
+  .mask
+    @extend .mask-grey-light
+  .open
+    @extend .open-grey-light
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #bebebe
+    background-color: rgba(190,190,190,0.5)
+
+.book.maroon
+  .flatColor, .color .icon
+    background-color: #481019
+  .mask
+    @extend .mask-maroon
+  .open
+    @extend .open-maroon
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #661c27
+    background-color: rgba(102,28,39,0.5)
+
+.book.orange
+  .flatColor, .color .icon
+    background-color: #783200
+  .mask
+    @extend .mask-orange
+  .open
+    @extend .open-orange
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #aa500a
+    background-color: rgba(170,80,10,0.5)
+
+.book.pink
+  .flatColor, .color .icon
+    background-color: #661260
+  .mask
+    @extend .mask-pink
+  .open
+    @extend .open-pink
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912487
+    background-color: rgba(145,36,135,0.5)
+
+.book.purple
+  .flatColor, .color .icon
+    background-color: #3b1a5e
+  .mask
+    @extend .mask-purple
+  .open
+    @extend .open-purple
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #5b2e87
+    background-color: rgba(91,46,135,0.5)
+
+.book.red
+  .flatColor, .color .icon
+    background-color: #661215
+  .mask
+    @extend .mask-red
+  .open
+    @extend .open-red
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #912425
+    background-color: rgba(145,36,37,0.5)
+
+.book.white
+  .flatColor, .color .icon
+    background-color: #c5c5c5
+  .mask
+    @extend .mask-white
+  .open
+    @extend .open-white
+  .entries, .edit, .title, .comments, .sharing
+    color: #222
+    background-color: #fff
+    background-color: rgba(250,250,250,0.5)
+
+.book.yellow
+  .flatColor, .color .icon
+    background-color: #785400
+  .mask
+    @extend .mask-yellow
+  .open
+    @extend .open-yellow
+  .entries, .edit, .title, .comments, .sharing
+    color: #fff
+    background-color: #b88400
+    background-color: rgba(184,132,0,0.5)
+

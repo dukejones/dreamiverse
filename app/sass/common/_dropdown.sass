@@ -1,0 +1,252 @@
+// Selectmenu
+.ui-selectmenu
+  +block
+  display: inline-block
+  +relative
+  height: 2.2em
+  vertical-align: middle
+  text-decoration: none
+  +overflow
+  zoom: 1
+.ui-selectmenu-icon
+  +absolute
+  right: 12px
+  margin-top: -8px
+  top: 50%
+  width: 16px
+  height: 16px
+  @extend .arrow-down-16
+.ui-selectmenu-menu
+  padding: 0
+  margin: 0
+  list-style: none
+  +absolute
+  top: 0
+  display: none
+  overflow: auto
+  // z-index: 1005 to make selectmenu work with dialog
+  z-index: 1005
+.ui-selectmenu-open
+  +block
+.ui-selectmenu-menu-popup
+  margin-top: -1px
+.ui-selectmenu-menu-dropdown
+  height: auto !important
+.ui-selectmenu-menu li
+  padding: 1px 0
+  margin: 0
+  +block
+  // border-top: 1px dotted transparent
+  // border-bottom: 1px dotted transparent
+  border-right-width: 0 !important
+  border-left-width: 0 !important
+  font-weight: normal !important
+.ui-selectmenu-menu li a, .ui-selectmenu-status
+  line-height: 1.4em
+  +block
+  padding: .405em 1em
+  outline: none
+  text-decoration: none
+.ui-selectmenu-menu li.ui-state-disabled a
+  cursor: default
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a, .ui-selectmenu-hasIcon .ui-selectmenu-status
+  padding-left: 20px
+  +relative
+  margin-left: 5px
+.ui-selectmenu-menu li .ui-icon, .ui-selectmenu-status .ui-icon
+  +absolute
+  top: 1em
+  margin-top: -8px
+  left: 0
+.ui-selectmenu-status
+  line-height: 1.4em
+.ui-selectmenu-open li.ui-selectmenu-item-focus a
+.ui-selectmenu-open li.ui-selectmenu-item-selected
+.ui-selectmenu-menu li span,.ui-selectmenu-status span
+  +block
+  margin-bottom: .2em
+.ui-selectmenu-menu li .ui-selectmenu-item-header
+  +bold
+.ui-selectmenu-menu li .ui-selectmenu-item-content
+.ui-selectmenu-menu li .ui-selectmenu-item-footer
+  +alpha(80)
+// for optgroups
+.ui-selectmenu-menu .ui-selectmenu-group
+  font-size: 1em
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label
+  line-height: 1.4em
+  +block
+  padding: .6em .5em 0
+  +bold
+.ui-selectmenu-menu .ui-selectmenu-group ul
+  margin: 0
+  padding: 0
+// IE6 workaround (dotted transparent borders)
+* html .ui-selectmenu-menu li
+  border-color: pink
+  filter: chroma(color=pink)
+  width: 100%
+* html .ui-selectmenu-menu li a
+  +relative
+
+
+// For mouseover of all items
+.light .ui-selectmenu-menu .ui-selectmenu-item-focus
+  background-color: #333 !important
+  a
+    color: white
+.light .ui-selectmenu-menu .ui-selectmenu-item-focus.default
+  a
+    color: black
+
+.dark .ui-selectmenu-menu .ui-selectmenu-item-focus
+  background-color: #ccc !important
+  a
+    color: black
+.dark .ui-selectmenu-menu .ui-selectmenu-item-focus.default
+  a
+    color: white
+
+
+// For mouseover of default selected item
+.light .ui-selectmenu-menu .ui-selectmenu-item-selected.default.ui-selectmenu-item-focus
+  a
+    color: #ddd !important
+.dark .ui-selectmenu-menu .ui-selectmenu-item-selected.default.ui-selectmenu-item-focus
+  a
+    color: #222 !important
+
+
+
+
+
+
+
+
+// STREAM FILTERS - html dropdown
+#contextPanel select, #streamContextPanel select
+  width: 200px
+  padding: 6px 0
+  // line-height for chrome / webkit height
+  line-height: 20px
+  +font(14)
+
+
+#users-filter-wrap, #entry-filter-wrap
+  margin: 4px 0 1px
+
+// this makes the menus show up over top of the spinners, adjusts width -2px
+#entry-filter-menu, #users-filter-menu
+  z-index: 2 !important
+  width: 198px !important
+
+
+
+
+
+// CONTEXT PANEL & STREAM CONTEXT PANEL FILTERS
+#contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+  +pointer
+  +round(12)
+  +relative
+  border: 1px solid #7a7a7a
+
+  .ui-selectmenu-status, li
+    padding-left: 44px
+    background-position: 10px center
+    background-repeat: no-repeat
+
+  li
+    padding-left: 32px
+
+  // li rounded corners for chrome
+  .allEntries, .allUsers
+    +round(10)
+    +flat-bottom
+  .journal, .following
+    +round(10)
+    +flat-top
+
+  // ENTRY FILTER
+  &.allEntries .ui-selectmenu-status, .allEntries
+    @extend .entries-24
+    background-position: 10px center
+  &.dream .ui-selectmenu-status, .dream
+    @extend .dream-24-hover
+    background-position: 10px center
+  &.vision .ui-selectmenu-status, .vision
+    @extend .vision-24-hover
+    background-position: 10px center
+  &.experience .ui-selectmenu-status, .experience
+    @extend .experience-24-hover
+    background-position: 10px center
+  &.article .ui-selectmenu-status, .article
+    @extend .article-24-hover
+    background-position: 10px center
+  &.journal .ui-selectmenu-status, .journal
+    @extend .journal-24-hover
+    background-position: 10px center
+
+  // chrome fix hovers
+  .allEntries.ui-selectmenu-item-focus
+    +round(11)
+    +flat-bottom
+  .journals.ui-selectmenu-item-focus
+    +round(11)
+    +flat-top
+
+
+  // USERS FILTER
+  &.allUsers .ui-selectmenu-status, .allUsers
+    @extend .sharing-24-hover
+    background-position: 10px center
+  &.friends .ui-selectmenu-status, .friends
+    @extend .friend-24
+    background-position: 10px center
+  &.following .ui-selectmenu-status, .following
+    @extend .friend-24-follow
+    background-position: 10px center
+  &.followers .ui-selectmenu-status, .followers
+    @extend .friend-24-follower
+    background-position: 10px center
+
+  // chrome fix hovers
+  .allUsers.ui-selectmenu-item-focus
+    +round(11)
+    +flat-bottom
+  .followers.ui-selectmenu-item-focus
+    +round(11)
+    +flat-top
+
+
+
+
+
+.light 
+  #contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+    +flat-light
+    &:hover
+      +glow-light(10)
+.dark
+  #contextPanel select, #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+    +flat-dark
+    &:hover
+      +glow-dark(10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

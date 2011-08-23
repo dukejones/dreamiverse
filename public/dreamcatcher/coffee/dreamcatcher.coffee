@@ -1,6 +1,6 @@
 steal.plugins(
 
-  'steal/coffee'
+  # 'steal/coffee'
 	'jquery/controller' # a widget factory
 	'jquery/controller/subscribe' #subscribe to OpenAjax.hub
 	'jquery/controller/history'
@@ -24,13 +24,13 @@ steal.plugins(
 			
 	'jquery.tooltip.js'
   'jquery-lightbox-0.5'
-  'jquery.tooltip.js'
   'jquery.timeago'
 	'jquery.exists'
 	'jquery.cookie'
 	'jquery.dateFormat-1.0'
 	'jquery.query-2.1.7'
 	'jquery.livequery'
+	'jquery.placeholder'
 	
 	'fileuploader'
 	'jquery.linkify'
@@ -38,43 +38,43 @@ steal.plugins(
 	'dream.plugs'
 	
 ).then( =>  
-
+  
   # common jmvc files
   helpers 'cookie', 'ui'
-  models 'user', 'image'
+  models 'user', 'image', 'tag', 'comment'
   controllers 'application', {
     module: 'common'
-    classes: ['upload']
+    classes: ['upload', 'tags', 'comments']
   }, {
-    module: 'users',
-    classes: ['meta_menu', 'settings']
+    module: 'users'
+    classes: ['meta_menu']#, 'settings_panel']
   }
   
-  # page-specific jmvc files
   switch page()
-  
+    
     when 'images'
-      controllers {
+      controllers { 
         module: 'images'
-        classes: ['image_bank', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager', 'manager_meta']
+        classes: ['images', 'browser', 'slideshow', 'dropbox', 'search_options', 'manager']
       }
       
     when 'admin'
-      models 'admin'
-      controllers {
-        module: 'admin'
-        classes: ['admin']
-      }
+      resources 'google.charts'
+      models 'admin', 'chart'
+      controllers 'admin', 'charts'
     
     else
-      models 'entry', 'book', 'stream', 'comment'
+      # page-specific jmvc files
+      models 'entry', 'book', 'stream'
       controllers {
         module: 'entries'
-        classes: ['entries', 'new_entry', 'books', 'stream', 'comments', 'show']
-      }, {
-        module: 'users'
-        classes: ['appearance', 'bedsheets', 'context_panel']
+        classes: ['dream_field', 'dream_stream', 'newedit_entry', 'books', 'show_entry']
       }
+      controllers {
+        module: 'users'
+        classes: ['context_panel', 'appearance_panel']
+      }
+  
       
 ).views()
 
@@ -83,7 +83,8 @@ steal.plugins(
 controllers = ->
   for arg in arguments
     if arg.module?
-      steal.coffee "controllers/#{arg.module}/#{className}_controller" for className in arg.classes
+      for className in arg.classes
+        steal.coffee "controllers/#{arg.module}/#{className}_controller" 
     else
       steal.coffee "controllers/#{arg}_controller"
     
@@ -92,6 +93,9 @@ models = ->
   
 helpers = ->
   steal.coffee "classes/#{arg}_helper" for arg in arguments
-    
+
+resources = ->
+  steal.coffee "resources/#{arg}" for arg in arguments
+
 page = ->
   window.location.href.split('/').pop()

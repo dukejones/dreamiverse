@@ -1,0 +1,200 @@
+@import mixins
+@import common/fonts
+
+body
+  margin: 0
+  padding: 0
+
+
+
+// USER PREFERENCES
+
+body.light
+  background-color: #ccc !important
+body.dark
+  background-color: #202020 !important
+body.fixed
+  // background-position: center top
+  background-attachment: fixed
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  background-size: cover
+  #backgroundReplace
+    // background-position: center top
+    background-attachment: fixed
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    background-size: cover
+
+body.float
+  #metaMenu
+    z-index: 1100
+  #metaMenu, #drop_shadow
+    position: fixed !important
+body.scroll
+  background-attachment: scroll !important
+
+// FIX FOR SAFARI and CHROME SELECT BUBBLES
+select
+  -webkit-appearance: none
+
+.clear
+  clear: both
+.hidden
+  display: none
+
+// LIGHT AND DARK
+.light
+  color: #000
+.dark
+  color: #eee
+.light, .dark
+  .button
+    +pointer
+    +user-select
+    text-decoration: none
+    outline: none
+.light
+  .spinner
+    @extend .spinner-light-32
+.dark
+  .spinner
+    @extend .spinner-dark-32
+
+#backgroundReplace
+  +hidden
+  +absolute
+  width: 100%
+  height: 100%
+
+// BODY CLICK
+#bodyClick
+  +hidden
+  z-index: 1000
+  +pointer
+  width: 100%
+  height: 100%
+  position: fixed
+  top: 0
+  left: 0
+
+// FIELDS
+#entryField, #friendField
+  +absolute
+  top: 82px
+  left: 242px
+  padding-bottom: 280px
+  padding-right: 40px
+.matrix
+  +relative
+  margin-top: 5px
+  &.stream
+    margin-top: 2px
+
+// LIGHTBOX OVERRIDES
+#lightbox-container-image-box
+  +glow-light(20)
+  +round(16)
+#lightbox-container-image-data-box
+  display: none !important
+#lightbox-loading
+  @extend .spinner-dark-32
+#lightbox-loading-link
+  display: none !important
+#jquery-overlay
+  opacity: 0.6 !important
+
+
+
+// TOOLTIP
+#tooltip
+  +absolute
+  z-index: 3000
+  +round(12)
+  padding: 0 8px
+  +alpha(85)
+#tooltip h3, #tooltip div
+  margin: 0
+
+.light #tooltip
+  border: 1px solid #111
+  background-color: #eee
+
+.dark #tooltip
+  border: 1px solid #ccc
+  background-color: #111
+
+
+
+
+// COMMON
+@import common/embedded_images
+@import common/dropdown
+@import common/headers
+@import common/image_upload
+@import common/loading_ajax
+@import common/modal_window
+@import common/reset
+@import common/tag
+@import common/tag_cloud
+@import common/user_info
+// CONTEXT PANELS
+@import common/context_panel
+@import common/context_panel/relationship
+@import common/context_panel_stream
+// META MENU
+@import common/meta_menu/alert
+@import common/meta_menu/appearance_panel
+@import common/meta_menu/login_panel
+@import common/meta_menu/meta_menu
+@import common/meta_menu/meta_menu_public
+@import common/meta_menu/meta_menu_user
+@import common/meta_menu/settings_panel
+
+
+// ENTRIES
+@import entries/entries
+@import entries/show_entry
+@import entries/thumb_1d
+@import entries/thumb_2d
+@import entries/comment
+@import entries/ib_comment_panel
+@import entries/emotions
+@import entries/links
+@import entries/video
+@import entries/starlight
+@import entries/new_user_welcome
+// NEW ENTRY
+@import entries/new/new_entry
+@import entries/new/bottom_bar
+@import entries/new/top_bar
+@import entries/new/date_panel
+@import entries/new/emotions_panel
+@import entries/new/images_panel
+@import entries/new/links_panel
+@import entries/new/location_panel
+@import entries/new/tag_panel
+
+
+// BOOKS
+@import books/book
+@import books/book_shelf
+
+
+// USERS
+@import users/dreamstars
+@import users/friends
+
+
+// HOME
+@import home/dreamstars_mini
+@import home/feedback
+@import home/home
+
+
+
+// webkit placeholder
+input::-webkit-input-placeholder, isindex::-webkit-input-placeholder, textarea::-webkit-input-placeholder
+

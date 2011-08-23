@@ -1,0 +1,151 @@
+.light #entryField
+
+  #entryAttach
+    +transparent-light(60)
+
+    p
+      color: #555
+
+
+    #attach-text, #attach-images, #attach-tags, #attach-links, #attach-emotions, #entry-appearance
+      border: 1px solid transparent
+      &:hover
+        +bevel-light
+        +button-light
+
+
+
+// DARK
+.dark #entryField
+
+  #entryAttach
+    background-color: #191919
+    background-color: rgba(25,25,25,0.6)
+    p
+      color: #8a8a8a
+
+    #attach-text, #attach-images, #attach-tags, #attach-links, #attach-emotions, #entry-appearance
+      border: 1px solid transparent
+      &:hover
+        +bevel-dark
+        +button-dark
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NEW ENTRY ATTACH
+#entryAttach
+  border-radius:            2px 2px 16px 16px
+  -moz-border-radius:       2px 2px 16px 16px
+  -webkit-border-radius:    2px 2px 16px 16px
+  +block
+  padding: 4px
+  height: 38px
+  line-height: 38px
+  margin-bottom: 2px
+
+  p
+    +user-select
+    +left
+    +cursor
+    +bold
+    line-height: 42px
+    +font(32)
+    margin: 0 40px
+
+  .attach
+    +center
+    +left
+    +pointer
+    +round(20)
+    +user-select
+    +block
+    height: 34px
+    line-height: 32px
+    margin: 0 0 0 8px
+    padding: 0 12px
+    .img
+      +left
+      width: 16px
+      height: 34px
+      margin-right: 8px
+
+  #attach-text
+    +hidden
+    .img
+      @extend .images-16
+      background-position: left center
+    &:hover .img
+      @extend .images-16-hover
+      background-position: left center
+    &:active .img
+      @extend .images-16-active
+      background-position: left center
+
+  #attach-images
+    .img
+      @extend .images-16
+      background-position: left center
+    &:hover .img
+      @extend .images-16-hover
+      background-position: left center
+    &:active .img
+      @extend .images-16-active
+      background-position: left center
+
+  #attach-tags
+    .img
+      @extend .tag-16
+    &:hover .img
+      @extend .tag-16-hover
+    &:active .img
+      @extend .tag-16-active
+
+  #attach-links
+    .img
+      @extend .link-16
+      background-position: left center
+    &:hover .img
+      @extend .link-16-hover
+      background-position: left center
+    &:active .img
+      @extend .link-16-active
+      background-position: left center
+
+  #attach-emotions
+    .img
+      width: 19px
+      @extend .emotions-16
+      background-position: left center
+    &:hover .img
+      @extend .emotions-16-hover
+      background-position: left center
+    &:active .img
+      @extend .emotions-16-active
+      background-position: left center
+
+
+  #entry-appearance
+    +right
+    margin-right: 4px
+    .img
+      width: 24px
+      margin-right: 0px
+      @extend .appearance-24
+    &:hover .img
+      @extend .appearance-24-hover
+    &:active .img
+      @extend .appearance-24-active

@@ -1,0 +1,23 @@
+/ LINK PANEL
+.linkContainer.youtube
+
+  .title
+
+    %input.linkTitleValue{style: 'width: 220px' value="' +json.feed.entry[0].title.$t + '" name="links[][title]"}
+
+    .url
+
+    %input.linkUrlValue{value="' + url + '"name="links[][url]" style="width: 320px"}
+
+    .icon
+
+    %img{src: "http://www.google.com/s2/favicons?domain_url=' + url + '"}
+
+  .close
+
+  .thumb{style: "background: url(' +json.feed.entry[0].media$group.media$thumbnail[1].url + ') no-repeat scroll center center transparent"}
+
+  .description' +json.feed.entry[0].content.$t + '
+
+
+

@@ -1,14 +1,13 @@
 
 / CONTEXT PANEL
-= render :partial => "stream_context_panel", :locals => {:user => @user}
+= render :partial => "common/context_panel_stream", :locals => {:user => @user}
+#totem
 
 / ENTRY FIELD
 #entryField
-  = render :partial => "stream"
-
-
-
-- content_for :foot do
-  / APPLIES SELECTED CLASS TO META MENU
-  :coffeescript
-    $('.item.stream').addClass('selected')
+  #entriesIndex{style: 'display:none'}
+    .matrix.books
+  #entriesStream
+    = render :partial => "stream"
+  #showEntry{style: 'display:none'}
+  #newEditEntry{style: 'display:none'}

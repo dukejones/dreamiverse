@@ -3,42 +3,44 @@
   %head
     %title Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
-    %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
-    = include_stylesheets :shared, :media => 'all'
-    
-    - if Rails.env == 'production' || Rails.env == 'theta'
-      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
-    - else 
-      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
-    
-    = include_javascripts :shared
-    
-    / = javascript_include_tag 'jquery.min', 'rails', 'pubsub', 'jquery.lightbox-0.5.min', 'jquery.placeholder'
-    / = coffeescript_include_tag 'dreamplugs', 'cookies', 'publicstream'
-    :coffeescript
-      $(document).ready ->
-        $('input[placeholder], textarea[placeholder]').placeholder()
-    = javascript_include_tag "http://connect.facebook.net/en_US/all.js"
-    %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
 
+    / ENABLE CHROME FRAME FOR IE
+    %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
+
+    / FACEBOOK THUMBNAIL
+    %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
+    = include_stylesheets :common, :media => 'all'
+    
+    / - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
+    / %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
+
+    = include_javascripts :jmvc_framework, :jmvc_resources, :jmvc_application, :shared, :home
+    
     = yield :head
+
+
+
+
+
+
 
   %body#body.home{class: appearance_classes}
 
-    -# render "shared/facebook_sdk"
+    -# render "common/facebook_sdk"
 
-    = render :partial => "layouts/alert"
+    = render :partial => "common/meta_menu/alert"
 
     #drop_shadow
     #home{class: current_user.blank? ? 'public' : ''}
-
       = yield
 
+    = render :partial => "layouts/chrome_frame"
 
     - unless current_user.blank?
       / META MENU - USER
-      = render :partial => "users/meta_menu"
+      = render :partial => "common/meta_menu/meta_menu"
 
-    - if Rails.env == 'production'
+    - if Rails.env.production?
       = javascript_include_tag 'google_analytics'
 
+    = yield :foot

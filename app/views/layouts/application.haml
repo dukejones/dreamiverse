@@ -5,40 +5,42 @@
       = truncate(@page_title, length: 72) + ' - ' if @page_title
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
-    - if !@entry._?.main_image
-      %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
-    = include_stylesheets :shared, :media => 'all'
-    
-    - if Rails.env == 'development'
-      /%script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
-      %script{:type => "text/javascript", src: "/steal/steal.js?dreamcatcher,development"}
-    - else 
-      %script{:type => "text/javascript", src: "/steal/steal.production.js?dreamcatcher"}
+    / ENABLE CHROME FRAME FOR IE
+    %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
 
-    = include_javascripts :shared
-        
-    :coffeescript
-      $(document).ready ->
-        $('input[placeholder], textarea[placeholder]').placeholder()
+    %meta{property: "og:image", content: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
+
+    = include_stylesheets :common, :media => 'all'
+
+
+    = yield :headBefore
+
+    = include_javascripts :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
+
     = yield :head
 
-  %body{id: 'body', class: appearance_classes, style: bedsheet_style}
-    #backgroundReplace
 
+
+  %body{id: 'body', class: appearance_classes, style: bedsheet_style}
+    
+    #backgroundReplace
+    #bodyClick
 
     - unless current_user.blank?
-      #userInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id, :'data-viewpreference' => current_user.view_preference.to_json}
+      #currentUserInfo{:'data-id' => current_user.id, :'data-imageid' => current_user.image_id, :'data-viewpreference' => current_user.view_preference.to_json, :'data-username' => current_user.username}
 
-    = render :partial => "layouts/alert"
+    = render :partial => "common/meta_menu/alert"
+    = render :partial => 'common/loading_ajax'
 
     = yield
 
+    = render :partial => "common/meta_menu/meta_menu", :locals => {:user => @user, :home => false}
+    = render :partial => "layouts/chrome_frame"
 
-    = render :partial => "users/meta_menu", :locals => {:user => @user, :home => false}
-
-    - if Rails.env == 'production' || Rails.env == 'theta'
+    - if Rails.env.production?
       = javascript_include_tag 'google_analytics'
 
     = yield :foot
+    / = render 'common/facebook_sdk'
 

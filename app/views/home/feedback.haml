@@ -1,5 +1,6 @@
 - content_for :head do
-  = coffeescript_include_tag 'fit_to_content', 'feedback'
+  = include_javascripts 'feedback'
+  
 
 :coffeescript
   # require({baseUrl: "/javascripts"}, ['feedback', 'autoresize.jquery.min.js'])
@@ -7,12 +8,11 @@
 - if current_user.blank?
   / DREAMCATCHER LOGO
   %a.dcLogo{href: root_path}
-    %img{src: '/images/logos/dreamcatcher-366.png', width: '366', height: '102', alt: 'Dreamcatcher'}
 
 
 / FEEDBACK PAGE
 #feedbackPage
-  %img.feedbackLogo{src: '/images/logos/header-feedback.png', width: '370', height: '96'}
+  .feedbackLogo
 
   .wrapper
 

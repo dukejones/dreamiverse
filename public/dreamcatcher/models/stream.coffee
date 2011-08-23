@@ -1,14 +1,18 @@
-$.Model 'Dreamcatcher.Models.Stream',{
+$.Model 'Stream',{
+  
+  load: (filters, success) ->
+    return if @currentlyLoading
+    $.extend(filters, {page: @page})
+
+    @currentlyLoading = true
+    $.get('/stream.json', {filters: filters}, success).done =>
+      @currentlyLoading = false
+      
+  noMore: ->
+    @currentlyLoading = true
     
-  load: (data, success, error ) ->
-    $.ajax {
-      url: '/stream.json'
-      type: 'get'
-      data: data
-      dataType: 'json'
-      success: @callback success
-      error: error
-    }
-    
+  reset: ->
+    @page = 1
+    @currentlyLoading = false
 },
 {}

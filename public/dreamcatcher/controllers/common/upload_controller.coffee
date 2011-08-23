@@ -1,11 +1,18 @@
-$.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', 
+$.Controller.extend 'Dreamcatcher.Controllers.Common.Upload', {
+  pluginName: 'uploader'
+},{
 
-  init: (element) ->
-    @element = element
+  init: (element, customOptions, viewUrl) ->
+    @element = $(element)
+    @viewUrl = if viewUrl? then viewUrl else '/dreamcatcher/views/images/manager/image_show.ejs'
+    @load customOptions if customOptions?
 
-  load: (customOptions, singleOnly) ->
-    @singleOnly = singleOnly
+  load: (customOptions) ->
     @filesUploaded = 0
+
+    if customOptions and customOptions.singleFile?
+      @singleFile = customOptions.singleFile 
+      delete customOptions.singleFile
 
     options = {  
       maxConnections: 1
@@ -30,14 +37,16 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
       element: @element.get(0)
       action: '/images.json'
       template: @element.html()
-      fileTemplate: $.View('//dreamcatcher/views/images/image_upload.ejs')
+      fileTemplate: $.View('/dreamcatcher/views/images/image_upload.ejs', {singleFile: @singleFile})
 
       onSubmit: (id, fileName) =>
-        #log id
+        log id
 
       onComplete: (id, fileName, result) =>
+        #return
+      
         if result.image?
-          @getUploadElement(fileName).replaceWith $.View('//dreamcatcher/views/images/manager/image_show.ejs', result.image)
+          @getUploadElement(fileName).replaceWith $.View @viewUrl, result.image
           @filesUploaded++
 
         filesRemaining = $('li.uploading:not(.fail)', @element).length
@@ -47,12 +56,14 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
           message += " (#{filesFailed} failed)" if filesFailed > 0
           notice message
           @filesUploaded = 0
+        
 
       onCancel: (id, fileName) =>
         uploadEl = @getUploadElement fileName
         uploadEl.remove()
 
       onProgress: (id, fileName, loaded, total) =>
+        log "#{id} #{fileName} #{loaded} #{total}"
         uploadEl = @getUploadElement fileName
         uploadEl.show()
 
@@ -75,12 +86,15 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
       delete customOptions.classes
       $.extend options, customOptions
       $.extend options.classes, customClasses
+        
+      if options.params.image? and not options.params.image.artist?
+        options.params.image.artist = $('#metaMenu .item.user span').text().trim()
 
     @uploader = new qq.FileUploader options
-    $('input[type=file]', el).removeAttr 'multiple' if singleOnly
+    $('input[type=file]', @element).removeAttr 'multiple' if @singleFile
 
   getUploadElement: (fileName) ->
-    return $("li .file:contains('#{fileName}')", @element).closest 'li'
+    return $(".file:contains('#{fileName}')", @element).closest '.uploading'
     
   getImageElement: (imageId) ->
     return $("li[data-id=#{imageId}]", @element)
@@ -88,12 +102,10 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
   clearReplaceImage: ->
     @replaceImageId = null
     $('input[type=file]', @element).attr 'multiple', 'multiple' if not @singleOnly
-    #$('#imagelist').removeClass 'imageReplace'
 
   setReplaceImage: (imageId) ->
     @replaceImageId = imageId
     @uploader.setParams { id: @replaceImageId }
-    #$('#imagelist').addClass 'imageReplace'
 
     fileInput = $('input[type=file]', @element)
     fileInput.removeAttr 'multiple'
@@ -104,5 +116,7 @@ $.Controller.extend 'Dreamcatcher.Controllers.Common.Upload',
 
   '.replace click': (el) ->
     @setReplaceImage el.parent().data 'id'
+
+}
 
     

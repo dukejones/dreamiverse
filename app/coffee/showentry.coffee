@@ -51,7 +51,6 @@ getYoutubeData = (video_url, linked_element) ->
 #   return text;
 
 $(document).ready ->
-  tagsController = new TagsController('.showTags', 'show')
   $('.gallery .lightbox a').lightBox({containerResizeSpeed: 0})
   
   $('#comment_submit').hide()

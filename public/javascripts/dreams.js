@@ -1,11 +1,23 @@
+/*
+checkForLinksShowEntry -> linkify (body & comments), embedYoutubeLinks
+.linkAdd, #linkValue keypress -> checkForPastedLink
+
+
+Breaks:
+embed youtube links
+linkify
+Minimize when clicking pills if anything has been added
+
+*/
+
 $(document).ready(function() {
   checkForLinksShowEntry();
   
   setupEvents();
-  setupImagebank();
-  setupUploader();
+  // setupImagebank();
+  // setupUploader();
   setupLinkButtons();
-  setup2dThumbIPadClick();
+  //setup2dThumbIPadClick();
 });
 
 function checkForLinksShowEntry(){
@@ -171,187 +183,28 @@ function embedYoutubeLinks(){
     
 }
 
-function getOffset( el ) {
-    var _x = 0;
-    var _y = 0;
-    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-        _x += el.offsetLeft - el.scrollLeft;
-        _y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { top: _y, left: _x };
-}
 
 
-function linkify(text)
-  {
-    if( !text ) return text;
-    
-    text = text.replace(/(https?\:\/\/|ftp\:\/\/|www\.)[\w\.\-_]+(:[0-9]+)?\/?([\w#!:.?+=&(&amp;)%@!\-\/])*/gi, function(url){
-      nice = url;
-      if( url.match('^https?:\/\/') )
-      {
-        nice = nice.replace(/^https?:\/\//i,'')
-      }
-      else
-        url = 'http://'+url;
-      
-      var urlTitle = nice.replace(/^www./i,'');
-      return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
-    });
-    
-    return text;
-  }
-
-function setup2dThumbIPadClick(){
-  // make iPad 1 click work on thumbs
-  var ua = navigator.userAgent;
-  var clickEvent;
-  if (ua.match(/iPad/i)){
-    clickEvent = "touchstart";
-  } else {
-    clickEvent = "click";
-  } 
+function linkify(text) {
+  if( !text ) return text;
   
-  $('.thumb-2d a.link').bind( clickEvent, function(event){
-    event.preventDefault();
-    window.location = $(event.currentTarget).attr('href');
-  })
-}
-
-
-
-var uploader = null;
-var imageMetaParams = { image: {"section":"user_uploaded", "category": "new_dream"} };
-
-function setupUploader(){      
-  if(document.getElementById('imageDropArea')){
-    // Setup radio button events
-    
-    $('.entryImageContainer input[type=radio]').live('change', function(){
-      $('.entryImageContainer .radio').removeClass('selected')
-      $(this).parent().addClass('selected')
-    })
-    
-    uploader = new qq.FileUploader({
-      element: document.getElementById('imageDropArea'),
-      action: '/images.json',
-      maxConnections: 1,
-      params: imageMetaParams,
-      debug: true,
-      onSubmit: function(id, fileName){
-     
-      },
-      onComplete: function(id, fileName, responseJSON){
-        //setupImageButtons();
-      }
-    });
-  }      
-}
-
-
-function setupImagebank(){
-  $('#addFromImageBank').click(function(){
-    displayImageBank();
-  });
-}
-
-function displayImageBank(){
-  var filePath = '/images';
-  $.ajax({
-    url: filePath,
-    dataType: 'html',
-    success: function(data) {
-      //var newElement = '<div class="linkContainer"><div class="title"><input class="linkTitleValue" value="' + data.feed.entry[0].title.$t + '" /></div><div class="url"><a href="' + newText + '">' + newText + '</a></div><div class="removeicon">X</div><div class="icon"><img src="http://www.google.com/s2/favicons?domain_url=' + newText + '" /></div></div>';
-      $('body').append(data);
-      $('#IB_browser_frame').fadeIn();
-      
-      // Initialize imagebank w/ sectionFilter (Library, Bedsheets, etc...)
-      initImageBank('Library');
+  text = text.replace(/(https?\:\/\/|ftp\:\/\/|www\.)[\w\.\-_]+(:[0-9]+)?\/?([\w#!:.?+=&(&amp;)%@!\-\/])*/gi, function(url){
+    nice = url;
+    if( url.match('^https?:\/\/') )
+    {
+      nice = nice.replace(/^https?:\/\//i,'')
     }
+    else
+      url = 'http://'+url;
+    
+    var urlTitle = nice.replace(/^www./i,'');
+    return '<a target="_blank" rel="nofollow" href="'+ url +'">'+ url +'</a>';
   });
-}
-
-//************************************//
-//            TAG HANDLING            //
-//************************************//
-
-//*********** ADDING TAGS ***********//
-        
-// ADDS DATA TO TAG LIST
-function addTagToListDream(tagToAdd,tagType,tagInputBoxIdd){
-  var tag_selected =  tagToAdd; // set selected city to be the same as contents of the selected city
-  var tag_type =  tagType; // type of tag (tag/thread/emotion/place/person/etc.)
-
-  var randomNumber = Math.round( Math.random() * 100001) ; // Generate ID
-  var tagID = 'tagID_' + randomNumber ; // Define ID for New Region
-  var tagID_element = '#' + tagID ; // Create variable to handle the ID
-
-  if (tag_selected != ''){ // if it's not empty
-    //$('#empty-tag').clone().attr('id', tagID ).appendTo('#tag-list').end; // clone tempty tag box
-
-    var newElement = $('#empty-tag').clone().attr('id', tagID );
-    $('#tag-list br').before(newElement);
-    $(tagID_element).removeClass('hidden') ; // and unhide the new one
-    $(tagID_element).addClass('current-tags');
-    $(tagID_element).find('.tag-name').html( tag_selected ); // populate with tag text
-
-    setTimeout(function() { $(tagID_element).animate({ backgroundColor: "#333" }, 'slow'); }, 200);
-
-    /*var elementHeight = $('#tag-list').height();
-    //$('#tag-list').css('height', elementHeight + 'px');
-
-    var combinedHeight = elementHeight;
-    $('#newDream-tag').animate({height: combinedHeight}, "fast", function(){
-      var elementHeight = $('#tag-list').height();
-    });*/
-
-  }
-
-
-  $(tagInputBoxIdd).val(''); // Clear textbox
-  $(tagInputBoxIdd).focus(); // Focus text input
-
-  //$(tagInputBoxIdd).autocomplete( 'close' );
-
-  activateRemoveDreamTag('.tag_box');
-
-  // Update on server
-  if(tagInputBoxIdd == "#IB_tagText"){
-    //updateCurrentImageTags();
-  }
-
-  //$(tagID_element).addClass('tag_box_pop', 1000);
-
-  return false;
-
-
- };
-
-
-//*********** REMOVING TAGS ***********//
-
-function activateRemoveDreamTag (context) {
-
-}
-
-
-// REMOVES DATA FROM TAG LIST
-function removeTagFromDreamList (idd){
-  /*$(idd).addClass('kill_tag');
-
-  setTimeout(function() { $(idd).addClass('opacity-50', 0 ); }, 250);
-  setTimeout(function() { $(idd).fadeOut('fast'); }, 300);
-  setTimeout(function() { $(idd).remove(); }, 400);*/
   
-  //updateCurrentImageTags();
+  return text;
+}
 
-};
-
-/*** END OF TAGS ***/
-
-var tagHeight;
-
+// ????
 function checkAttachButtons(){
   var buttonVisible = false;
   $('#entryAttach .attach').each(function(i, el){
@@ -369,15 +222,7 @@ function checkAttachButtons(){
 }
 
 function setupEvents(){
-  // Listen for attach toggles
-  $('#attach-images').unbind();
-  $('#attach-images').click(function(){
-    $('.entryImages').slideDown();
-    $(this).hide();
 
-    checkAttachButtons();
-  })
-  
   // Set newly displayed header click
   $('.imagesHeader').unbind()
   $('.imagesHeader').click(function(){
@@ -394,17 +239,6 @@ function setupEvents(){
         $('#currentImages').slideDown();
       }
     }
-    checkAttachButtons();
-  })
-  
-  $('#attach-tags').unbind();
-  $('#attach-tags').click(function(){
-    $('.entryTags').slideDown();
-    //$('#newDream-tag').height(0);
-    //$('#newDream-tag').css('display', 'block');
-    //$('#newDream-tag').animate({height: 42}, "slow");
-    
-    $(this).hide();
     checkAttachButtons();
   })
   
@@ -439,18 +273,14 @@ function setupEvents(){
   })
   
   // Setup mood picker
-  $('.emotionPanel input').change(function(event){
-    $(this).parent().parent().find('label').removeClass('selected')
-    $(this).parent().addClass('selected')
-  })
+  // This does not seem to have an effect
+  // $('.emotionPanel input').change(function(event){
+  //   $(this).parent().parent().find('label').removeClass('selected')
+  //   $(this).parent().addClass('selected')
+  // })
   
-  $('#attach-emotions').unbind();
-  $('#attach-emotions').click(function(){
-    $('.entryEmotions').slideDown();
-    $(this).hide();
-    checkAttachButtons();
-  })
   
+  // Something about if the emotions header is clicked and a radio button is selected just minimize it
   $('.entryEmotions .headers').unbind()
   $('.entryEmotions .headers').click(function(){
     var radioSelected = false;
@@ -472,13 +302,6 @@ function setupEvents(){
       $('#attach-emotions').show();
     }
     
-    checkAttachButtons();
-  })
-  
-  $('#attach-links').unbind();
-  $('#attach-links').click(function(){
-    $('.entryLinks').slideDown();
-    $(this).hide();
     checkAttachButtons();
   })
   
@@ -508,20 +331,6 @@ function setupEvents(){
       $('.entryDateTime').slideUp();
     }
   })
-  
-  // Listen for paste in DREAM field
-  /*$("#entry_body").bind('paste', function(e) {
-    // Get pasted link
-    // THIS NEEDS WORK!
-    setTimeout(function() {
-      var text = $('textarea#entry_body').val()
-      var length = text.length;
-      var index = text.search(/http:(?!.*http:)/);
-      var url = text.slice(index, length);
-      checkForPastedLink(url)
-    }, 100);
-    
-  });*/
   
   // Listen for paste in LINK field
   $('.linkAdd').click(function() {

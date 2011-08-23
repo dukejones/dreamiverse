@@ -1,4 +1,4 @@
-$.Model.extend 'Dreamcatcher.Models.Book', {
+$.Model.extend 'Book', {
   
   new: ( attrs, success, error ) ->
     $.ajax {
@@ -50,12 +50,11 @@ $.Model.extend 'Dreamcatcher.Models.Book', {
       error: error
     }
     
-  disable: ( id, attrs, success, error ) ->
+  destroy: ( id, success, error ) ->
     $.ajax {
       url: "/books/#{id}"
       type: 'delete'
       dataType: 'json'
-      data: attrs
       success: @callback success
       error: error
     }

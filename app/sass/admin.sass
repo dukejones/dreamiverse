@@ -1,5 +1,8 @@
 @import mixins
 
+// ADMIN
+
+// SHARED STYLES
 .panel
   +shine-dark(21)
   +round(16)
@@ -7,11 +10,6 @@
   padding: 8px
   margin-bottom: 28px
   width: 744px
-
-
-  .module
-    +indent-dark
-    +round(12)
 
 
   h1
@@ -35,7 +33,6 @@
 
   h1, h2, .img
     +user-select
-    +cursor
 
 
   .total
@@ -47,13 +44,12 @@
     margin-left: 22px
 
 
-
   .header, .last-week, .last-month
     +left
     padding: 4px 8px 4px 16px
     +round(20)
     +indent-dark
-    margin: 0 0 8px 8px
+    margin: 0 0 0 8px
   .last-week, .last-month
     +alpha(80)
   .header
@@ -61,24 +57,93 @@
     padding-left: 8px
 
 
-
-
-// SPINNER styling to accomodate light / dark user theme prefs to render the same +spinner-dark
-.light, .dark
-  .user.panel .spinner
-    +spinner-dark
+  #userList-arrow, #userCharts-arrow
     +left
-    +hidden
+    height: 26px
     width: 32px
+    margin-left: 4px
+  #bedsheets-arrow
+    +left
     height: 32px
-    margin: 0 8px 8px 0
+    width: 32px
+    margin-left: 8px
+  .up
+    @extend .arrow-up-16-light
+  .down
+    @extend .arrow-down-16-light
+  .spinner
+    @extend .spinner-grey-32
 
+
+  .chart-select
+    +pointer
+
+
+  // CHART BUTTONS
+  .chartButtons
+    +left
+    width: 110px
+    margin: 20px 0 0 4px
+
+    .userButton-border, .entryButton-border
+      +round(8)
+      width: 110px
+      padding: 1px
+      margin: 0 0 8px
+      border: none
+      +gradient(#0e0e0e, #3c3b3b)
+      &:hover
+        +gradient(#3c3b3b, #3c3b3b)
+      &:active
+        +gradient(#3c3b3b, #0e0e0e)
+
+      .button
+        +round(8)
+        +center
+        padding: 6px 0
+        color: #999
+        +gradient(#2c2c2c, #151515)
+        &:hover
+          color: #fff
+        &:active
+          +gradient(#151515, #2c2c2c)
+
+    .userButton-border.select, .entryButton-border.select
+      +cursor
+      +gradient(#3c3b3b, #0e0e0e)
+      &:hover
+        +gradient(#3c3b3b, #0e0e0e)
+      .button
+        +cursor
+        color: #fff
+        +gradient(#151515, #2c2c2c)
+        &:hover
+          color: #fff
+          +gradient(#151515, #2c2c2c)
+
+    hr
+      +alpha(20)
+      width: 94px
+      margin: 4px 0 12px 8px
+
+
+  // CHART
+  .chart
+    +right
+    +round(16)
+    +indent-dark
+    width: 600px
+    height: 300px
+    padding: 8px
+
+
+
+
+
+// USER PANEL ONLY
 .user.panel
   .img
-    background-image: url('/images/icons/sharing-24-hover.png')
-  .module .img
-    background-image: url('/images/icons/friend-24.png')
-    margin: 4px 12px 12px 4px
+    @extend .sharing-24-hover
 
   .userNode
     +block
@@ -90,7 +155,7 @@
     height: 33px
     line-height: 33px
     padding: 0px 8px
-    margin: 0 8px 8px 0
+    margin: 0 6px 6px 0
     +round(16)
     color: #fff
     border: 1px solid #333
@@ -110,26 +175,71 @@
     padding: 8px 0 0 8px
 
 
-  .allUsers
-    padding: 8px 0 0 8px
+  #userList, #userCharts
+    +pointer
+    +left
     +clear
-    
-    #allUsersHeader
-      margin-bottom: 8px
+    +font(18)
+    +bold
+    height: 26px
+    padding: 0 0 0 32px
+    margin: 16px 0 16px 10px
+    @extend .friend-24
+    background-position: left center
+  #userCharts
+    width: 100%
+  #userList
+    width: 310px
+
+  #userList-wrap
+    +hidden
+    +indent-dark
+    +round(12)
+    padding: 8px 8px 0
+
+  .searchWrap
+
+    .search
+      +pointer
+      +outline
+      border: none
+      height: 32px
+      width: 24px
+      margin: 0 8px 0
+      @extend .search-24-active
+
+    .search-input
+      +outline
+      +transparent
+      +font(14)
+      height: 24px
+      width: 130px
+      border: none
+      color: #ddd
 
 
-
-
-  #user-filter, #user-filter-button
-    width: 200px
+  #user-filter, #user-filter-button, .searchWrap
+    +pointer
     +round(20)
     +right
-    +input-dark(large)
+    +font(14)
+    height: 32px
+    padding: 0 8px 0 0
+    width: 180px
+    margin: 16px 0 16px 10px
+    color: #ddd
+    +indent-dark
 
 #user-filter-menu
   +flat-dark
   +round(20)
   +glow-dark(20)
+
+  li
+    color: #ddd
+    &:hover
+      background: #ddd
+      color: #222
 
 
 
@@ -174,18 +284,70 @@
   +round(2)
   +font(18)
   line-height: 21px
-  width: 580px
+  width: 574px
   a
     color: #ccc
 
 
+
+
+// ENTRIES PANEL ONLY
 .entries.panel
+
   .img
-    background-image: url('/images/icons/dream-24-hover.png')
+    @extend .dream-24-hover
+
+  .entryCharts
+    +clear
+    +font(18)
+    +bold
+    padding: 0 0 0 32px
+    margin: 16px 0 16px 10px
+    @extend .dream-24-hover
+    background-position: left center
 
 
 
 
+
+
+
+#bedsheets.panel
+  +pointer
+
+  .img
+    @extend .bedsheets-24-hover
+
+  #bedsheet-nodes
+    +hidden
+    +round(16)
+    padding: 12px
+    margin: 12px 0 0
+    width: 716px
+    +flat-dark
+
+  .bedsheet-node
+    +left
+
+    .bedsheet
+      width: 128px
+      height: 128px
+
+    .users, .entries
+      +center
+      width: 64px
+      color: #555
+      line-height: 16px
+
+      .count
+        +bold
+        color: #999
+
+    .users
+      +left
+
+    .entries
+      +right
 
 
 

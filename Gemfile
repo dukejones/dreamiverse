@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '~>3.0'
+gem 'rails', '3.0.10'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -10,9 +10,9 @@ gem 'mysql2', '~>0.2.7'
 gem 'haml'
 gem 'sass'
 gem 'omniauth'
-gem 'coffee-script'
+# gem 'coffee-script'
 gem 'barista'
-gem 'coffee-haml-filter'
+# gem 'coffee-haml-filter'
 gem 'meta_where'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
@@ -20,6 +20,7 @@ gem 'nokogiri'
 gem 'whenever', :require => false
 gem 'jammit'
 gem 'memcache-client'
+
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'aws-s3', :require => 'aws/s3'
@@ -29,6 +30,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
   gem 'wirble'
+  gem 'active_reload'
 end
 
 group :test do

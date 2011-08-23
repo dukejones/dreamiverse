@@ -1,227 +1,184 @@
-$.Controller 'Dreamcatcher.Controllers.Entries.Books',
-
-  model: {
-    entry : Dreamcatcher.Models.Entry
-    book : Dreamcatcher.Models.Book
-  }
+$.Controller 'Dreamcatcher.Controllers.Entries.Books', {
+  pluginName: 'books'
+}, {
   
-  el: {    
-    bookMatrix: (id) ->
-      return $("#entryField .matrix.book[data-id=#{id}]") if id?
-      return $('#entryField .matrix.field') 
-    book: (arg) ->
-      return $("#entryField .matrix.books .book[data-id=#{arg}]") if parseInt(arg) > 0
-      return arg.closest '.book' if arg?
-      return null
-  }
-  
-  data: (el) ->
-    return el.data type if type?
-    return el.data 'id' if el?
-    return null
-  
-  #- new book
-  
-  newBook: ->
-    @model.book.new {}, (html) =>
-      $('#welcomePanel').hide()
-      $('#entryField .matrix.books').prepend html
-      bookEl = $('#entryField .matrix.books .book:first')
-      @openBook bookEl
-      @publish 'dom.added', bookEl
+  bookId: -> @element.data 'id'
     
-  #- show book
+  resetUrl: -> 
+    username = $('#currentUserInfo').data 'username'
+    window.history.pushState null, null, "/#{username}"
+    
+  init: (el, field, creating) ->
+    @element = $(el)
+    @field = field
+    @setupDroppable() unless @bookId() is 'new'
+    if creating
+      @edit()
+      @publish 'app.initUi', @element
   
-  showBook: (bookId) ->
-    bookEl = @el.book bookId
-    html = bookEl.clone().css 'z-index', 2000
-    if $('#contextPanel .book').exists()
-      $('#contextPanel .book').replaceWith html
+  show: ->
+    bookId = @bookId()
+    @publish 'context_panel.book', bookId
+    @publish 'app.loading'
+    Book.show bookId, {}, (html) =>
+      @publish 'app.loading', false
+      $('#entryField, #entriesIndex').children().hide()
+      $('#entriesIndex').append html
+      $('#entriesIndex').fadeIn 500
+      @publish 'appearance.change'
+      @setupEntryDragging()
+    
+  edit: -> @open true
+     
+  open: (edit) ->
+    @publish 'books.close' #closes all books
+    $('.open, .closeClick', @element).show()
+    $('.control-panel', @element).toggle edit
+    $('.closed', @element).hide()
+    
+  close: ->
+    $('.open', @element).hide()
+    $('.open', @element).children().hide()
+    $('.closed', @element).show()
+    @saveMeta('title', 'Untitled') if @bookId() is 'new'
+  
+  showPage: (page) ->
+    if page is 'more'
+      $('.settings-basic', @element).toggle()
+      $('.more-settings', @element).toggle()
     else
-      $('#contextPanel').prepend html
-    $('#contextPanel .avatar').hide()
-    
-    @publish 'book.drop', $('#contextPanel')
-    
-    bookMatrixEl = @el.bookMatrix bookId
+      $('.open', @element).children().hide()
+      $('.closeClick', @element).show()
+      $(".#{page}-panel", @element).show() if page?
+      @initUploader() if page is 'cover'
 
-    if bookMatrixEl.exists()
-      $('#entryField').children().hide()
-      bookMatrixEl.show()      
-    else
-      @model.book.show bookId, {}, (html) =>
-        $('#entryField').children().hide()
-        bookMatrixEl = @el.bookMatrix bookId
-        if bookMatrixEl.exists()
-          bookMatrixEl.replaceWith html
-        else
-          $('#entryField').append html
-        @publish 'entry.drag', @el.bookMatrix()
-    
-  'history.book.show subscribe': (called, data) ->
-    @showBook data.id
-    #todo: reused from entries (refactor)
-    bedsheetId = $('#entryField').data 'imageid'
-    @publish 'bedsheet.change', bedsheetId if bedsheetId?
-    
-  '.book .mask click': (el) ->
-    bookEl = el.closest '.book'
-    @historyAdd {
-      controller: 'book'
-      action: 'show'
-      id: @data bookEl
-    }
-      
-  #- open book
-  
-  openBook: (el, empty) ->
-    @closeAllBooks()
-    bookEl = @el.book el
-    $('.open, .closeClick', bookEl).show()
-    $('.control-panel', bookEl).toggle(not empty)
-    $('.closed', bookEl).hide()
-    
-    
-  '.closed .edit click': (el) ->
-    @openBook el
-    
-  #- close book
-      
-  closeBook: (el) ->
-    bookEl = @el.book el
-    $('.open', bookEl).hide()
-    $('.open', bookEl).children().hide()
-    $('.closed', bookEl).show()
-
-  '.closeClick, .confirm click': (el) ->
-    @closeBook @el.book el
-  
-  #-- all
-  
-  closeAllBooks: (el) ->
-    @closeBook()
-  
-  'body.clicked subscribe': (called, data) ->
-    @closeAllBooks()
-      
-  #- paging
-  
-  showPage: (el, page) ->
-    bookEl = @el.book el
-    $('.open', bookEl).children().hide()
-    $('.closeClick', bookEl).show()
-    $(".#{page}-panel", bookEl).show() if page?
-    
-    @createUploader bookEl if page is 'cover'
-        
-  #-- panels
-  
-  '.book .control-panel .color click': (el) ->
-    @showPage el, 'color'
-
-  '.book .control-panel .coverImage click': (el) ->
-    @showPage el, 'cover'
-
-  '.book .control-panel .access click': (el) ->
-    @showPage el, 'access'
-
-  '.book .open .back click': (el) ->
-    @showPage el, 'control'
-    
-  #-- more settings
-
-  showMore: (el) ->
-    bookEl = @el.book el
-    $('.settings-basic', bookEl).toggle()
-    $('.more-settings', bookEl).toggle()
-
-  '.book .arrow click': (el) ->
-    @showMore el    
-
-  #- save book
-  
-  saveBook: (el, meta) ->
-    bookEl = @el.book el
-    bookId = @data bookEl
-    params = {book: meta}
-    if bookId is 'new'
-      @model.book.create params, (data) =>
-        bookEl.data 'id', data.book.id if data.book?
-    else
-      @model.book.update bookId, params
-  
-  #-- title
-
-  saveTitle: (el) ->
-    bookEl = @el.book el
-    title = el.val()
-    $('.title', bookEl).text title
-    @saveBook el, { title: title }
-
-  '.titleInput blur': (el) ->
-    @saveTitle el
-
-  '.titleInput keypress': (el, ev) ->
-    @saveTitle el if ev.keyCode is 13 # enter key
-
-  
-  #-- color
-  
-  '.color-panel .swatches li click': (el) ->
-    color = el.attr 'class'
-    bookEl = @el.book(el).attr 'class', "book #{color}"
-    @saveBook el, {color: color}
-  
-  #-- access
-  
-  '.access-panel .select-menu change': (el) ->
+  saveMeta: (name, value, format) ->
     meta = {}
-    meta[el.attr('name')] = el.val()
-    @saveBook el, meta
+    meta[name] = value
+    promise = @save meta
+    switch name
+      when 'color'
+        promise.done => @element.attr 'class', "book #{value}"
+      when 'title'
+        promise.done => $('.title', @element).text value
+      when 'image_id'
+        bg = if format? then "url(/images/uploads/#{value}-bookcover.#{format})" else ''
+        promise.done => $('.cover, .dropbox-field-shine', @element).css {
+          'background-image': bg
+        }
     
-  #- disable book
+  save: (meta) ->
+    params = {book: meta}
+    if @bookId() is 'new'
+      return Book.create params, (data) =>
+        bookId = data.book.id
+        @element.attr 'data-id', bookId
+        $('.mask', @element).attr 'href', "/books/#{bookId}"
+        $('.edit', @element).attr 'href', "/books/#{bookId}/edit"
+    else
+      return Book.update @bookId(), params
     
-  disableBook: (el) ->
-    if confirm 'are you sure?'
-      bookEl = @el.book el
-      @model.book.disable @data bookEl
-      bookEl.remove()
+  delete: ->
+    return unless confirm 'are you sure?'
+    Book.destroy @bookId(), =>
+      @element.remove()
+      @resetUrl()
+        
+  #- showPage
+  '.control-panel .color click': -> @showPage 'color'
+  '.control-panel .coverImage click': -> @showPage 'cover'
+  '.control-panel .access click': -> @showPage 'access'
+  '.open .back click': -> @showPage 'control'
+  '.arrow click': -> @showPage 'more'    
+
+  #- delete
+  '.more-settings .remove click': -> @delete()
   
-  '.more-settings .remove click': (el) ->
-    @disableBook el
-      
-  #- uploader
+  #- saveMeta
+  '.titleInput blur': -> @saveMeta 'title', el.val()
+  '.titleInput focus': (el) -> el.select()
+  '.titleInput keypress': (el, ev) -> @saveMeta('title', el.val()) if ev.keyCode is 13 # enter key
+  '.color-panel .swatches li click': (el) -> @saveMeta 'color', el.attr 'class'
+  '.access-panel .select-menu change': (el) -> @saveMeta el.attr('name'), el.val()
+  '.cover-panel .close click': ->
+    @saveMeta 'image_id',''
+    $('.cover, .dropbox-field-shine', @element).css 'background-image', ''
+  
+  #- close, show, edit
+  'books.close subscribe': -> @close()
+  'body.clicked subscribe': -> @close()
+  
+  'books.show subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @show()
     
-  createUploader: (el) ->
-    log el
-    upload = new Dreamcatcher.Controllers.Common.Upload $('.cover-panel', el)
-    upload.load {
+  'books.edit subscribe': (called, data) ->
+    return unless data.id.toString() is @bookId().toString()
+    @field.show()
+    @edit()
+    
+  setupEntryDragging: ->
+    $('#entriesIndex .bookIndex .thumb-2d').draggable {
+      containment: 'document'
+      zIndex: 100
+      revert: 'invalid'
+      distance: 15
+      start: (ev, ui) =>
+        $('#contextPanel .book').hide()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').show()
+      stop: (ev, ui) =>
+        $('#contextPanel .book').show()
+        $('.avatar, .avatar .entryRemove', '#contextPanel').hide()
+    }
+
+  setupDroppable: ->
+    @element.droppable {         
+      drop: (ev, ui) =>
+        @moveEntryToBook ui.draggable, false
+      over: (ev, ui) =>
+        $('.add-active', ui.helper).show()
+        @open false
+        $('.entryDrop-active, .entryRemove', @element).show()
+      out: (ev, ui) =>
+        @close()
+        $('.add-active', ui.helper).hide()
+        $('.entryDrop-active, .entryRemove', @element).hide()
+    }
+
+  moveEntryToBook: (entryEl, remove) ->
+    entryId = entryEl.data 'id'
+    bookId = if remove then '' else @bookId()
+    entryMeta = {book_id: bookId}
+    Entry.update entryId, {entry: entryMeta}, => entryEl.remove()
+    unless remove
+      @close()
+      $('.entryDrop-active', bookEl).hide()
+
+  #- uploader
+
+  initUploader: ->
+    $('.cover-panel', @element).uploader {
+      singleFile: true
       params: {
         image: {
           section: 'book covers'
           category: 'all'
-          genre: 'all'
         }
       }
-      classes: {
+      classes: { #TODO: remove
         button: 'add'
         drop: 'dropbox'
         list: 'dropbox-field-shine'
       }
-      onSubmit: @callback('uploadSubmit', el)
-      onComplete: @callback('uploadComplete', el)
-    }, true
-  
-  uploadSubmit: (el, id, fileName) ->
-    $('.dropbox-field-shine .add', el).hide()
-  
-  uploadComplete: (el, id, fileName, result) ->
+      onSubmit: => $('.add', @element).hide()
+      onComplete: @callback('uploadComplete')
+    }
+
+  uploadComplete: (id, fileName, result) ->
     image = result.image
     if image?
-      el.data 'image', image.id
-      background = "url(/images/uploads/#{image.id}-252x252.#{image.format})"
-      $('.cover, .dropbox-field-shine', el).css 'background-image', background
-      $('.dropbox-field-shine li', el).remove() #todo: remove upload progress
-      @saveBook el, { cover_image_id: image.id }
-      
-    $('.dropbox-field-shine .add', el).show()
+      $('.add', @element).show()
+      $('.uploading').remove()
+      @saveMeta 'image_id', image.id, image.format
+
+}

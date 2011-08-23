@@ -8,6 +8,14 @@
   -khtml-user-select: none
   -o-user-select: none
 
+
+// CLICK-THROUGH
+=clickable
+  pointer-events: auto
+=click-through
+  pointer-events: none
+
+
 // DISPLAY
 =block
   display: block
@@ -31,6 +39,14 @@
   outline:  none
 
 
+// ROTATION
+=rotate($angle)
+  -moz-transform: rotate($angle + deg)
+  -webkit-transform: rotate($angle + deg)
+  -o-transform: rotate($angle + deg)
+  -ms-transform: rotate($angle + deg)
+
+
 // FONTS
 =bold
   font-weight: bold
@@ -39,35 +55,22 @@
 =font($px)
   font-size: $px + px
 
-// sans serif
-=arial
-  font-family: Arial, Arial, Helvetica, sans-serif
-=calibri
-  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
-=verdana
-  font-family: Verdana, Verdana, Geneva, sans-serif
-=monospace
-  font-family: Lucida Console, Monaco, monospace
-=comic
-  font-family: Comic Sans MS, Comic Sans MS
+=nowrap
+  white-space: nowrap
 
-// serif
-=georgia
-  font-family: Georgia, Georgia, serif
-=garamond
-  font-family: Garamond, serif
-=book
-  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
-=times
-  font-family: "Times New Roman", Times, serif
-
-// long-line text wrapping
+// long-line text wrapping - removed due to extreme paragraph margins
 =wrap
   // white-space: pre-wrap /* css-3 */
   // white-space: -moz-pre-wrap !important /* Mozilla, since 1999 */
   // white-space: -pre-wrap /* Opera 4-6 */
   // white-space: -o-pre-wrap /* Opera 7 */
   // word-wrap: break-word /* Internet Explorer 5.5+ */
+
+// FOR FONT DEFINITIONS, SEE common/_fonts.sass
+// FOR FONT DEFINITIONS, SEE common/_fonts.sass
+// FOR FONT DEFINITIONS, SEE common/_fonts.sass
+
+
 
 
 // CURSORS
@@ -223,10 +226,9 @@
   -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
 
   background: #f0f0f0
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(120,120,120,0.75)))
-  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(120,120,120,0.75))
-  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(120,120,120,0.75))
-
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(200, 200, 200,0.75)))
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(200, 200, 200,0.75))
+  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(200, 200, 200,0.75))
 
 =shine-dark-alpha($px)
   box-shadow:         inset 0 $px + px rgba(255,255,255,0.06)
@@ -338,51 +340,54 @@
   +alpha(50)
   width: 16px
   height: 16px
-  background: url(/images/icons/close-16.png) no-repeat center transparent
+  @extend .close-16
   &:hover
     +alpha(100)
-    background: url(/images/icons/close-16-hover.png) no-repeat center transparent
+    @extend .close-16-hover
+  &:active
+    +alpha(40)
 =close-24
   +pointer
   +round(12)
   +alpha(60)
   width: 24px
   height: 24px
-  background: url(/images/icons/close-24.png) no-repeat center transparent
+  @extend .close-24
   &:hover
     +alpha(100)
-    background: url(/images/icons/close-24-hover.png) no-repeat center transparent
+    @extend .close-24-hover
+  &:active
+    +alpha(40)
 =check-16
   +pointer
   width: 16px
   height: 16px
-  background: url(/images/icons/check-16.png) no-repeat center transparent
+  @extend .check-16
 =check-31
-  background: url(/images/icons/check-31.png) no-repeat center
   +pointer
   width: 31px
   height: 31px
-  background: url(/images/icons/check-31.png) no-repeat center transparent
+  @extend .check-31
 
-
-=spinner-light
-  background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
-=spinner-light-grey
-  background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
-=spinner-grey
-  background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
-=spinner-dark
-  background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
+// No need for these mixins, so long as every reference now has @extend  Will need to do a global search for these
+// =spinner-light
+//   @extend .spinner-light-32
+// =spinner-light-grey
+//   @extend .spinner-light-grey-32
+// =spinner-grey
+//   @extend .spinner-grey-32
+// =spinner-dark
+//   @extend .spinner-dark-32
 
 // BACKGROUNDS
 =flat-light
-  background: #fff
+  background-color: #fff
 =flat-light-medium
-  background: #f5f5f5
+  background-color: #f5f5f5
 =flat-dark
-  background: #000
+  background-color: #000
 =flat-dark-medium
-  background: #444
+  background-color: #444
 
 
 =transparent-light($percent)
@@ -450,9 +455,9 @@
 
 
 =inner-shadow($depth)
-  box-shadow:         inset 0 10px $depth + px rgba(0,0,0,0.4)
-  -moz-box-shadow:    inset 0 10px $depth + px rgba(0,0,0,0.4)
-  -webkit-box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
+  box-shadow:         inset 0 4px $depth + px rgba(0,0,0,0.2)
+  -moz-box-shadow:    inset 0 4px $depth + px rgba(0,0,0,0.2)
+  -webkit-box-shadow: inset 0 4px $depth + px rgba(0,0,0,0.2)
 
 
 

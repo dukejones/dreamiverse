@@ -1,14 +1,13 @@
-- content_for :head do
-  = javascript_include_tag 'browserdetect', 'pubsub', 'userfileuploader', 'geo'
-  = coffeescript_include_tag 'tag', 'sharing', 'cookies', 'fit_to_content', 'newentry'
-
-/- content_for :foot do
-/  = javascript_include_tag 'http://maps.google.com/maps/api/js?sensor=false'
+/- content_for :head do
+/  = include_javascripts 'new_entry'
 
 
 / CONTEXT PANEL
-= render :partial => "users/context_panel", :locals => {:user => current_user}
+= render :partial => "common/context_panel", :locals => {:user => current_user}
 
 #entryField
-
-  = render :partial => 'entries/new'
+  #entriesIndex{style: 'display:none'}
+    .matrix.books
+  #showEntry{style: 'display:none'}
+  #newEditEntry
+    = render :partial => 'entries/new'

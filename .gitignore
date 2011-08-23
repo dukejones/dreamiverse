@@ -1,10 +1,13 @@
 .bundle
 vendor/bundle
 db/*.sqlite3
-log/*.log
+log/*.log*
 tmp/*
 tmp/**/*
 .DS_Store
 public/images/uploads/*
 public/dreamcatcher/production.js
 public/dreamcatcher/dreamcatcher.js
+public/assets
+public/compiled
+

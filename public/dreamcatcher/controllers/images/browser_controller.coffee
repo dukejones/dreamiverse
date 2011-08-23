@@ -1,13 +1,17 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
+$.Controller 'Dreamcatcher.Controllers.Images.Browser', {
+  pluginName: 'browser'
+}, {
 
   model: Dreamcatcher.Models.Image
   
   #- gets a specific browser view
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/images/browser/#{url}.ejs", data
+    return $.View "/dreamcatcher/views/images/browser/#{url}.ejs", data
   
   #- constructor
-  init: ->
+  init: (el, parent) ->
+    @scope = $(el)
+    @parent = parent
     @showBrowse()
     
   getState: ->
@@ -19,9 +23,10 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     }
     
   #- shows the browser, and refreshes the current view
-  show: (refresh, showSearch) ->
-    @refreshView() if refresh
-    $('#frame.browser .searchWrap').click() is showSearch and not $('.searchFieldWrap').is ':visible'
+  'images.browser.show subscribe': (called, data) ->
+    if data?
+      @refreshView() if data.refresh
+      $('#frame.browser .searchWrap').click() if data.showSearch unless $('.searchFieldWrap').is ':visible'
     $('#frame.browser').show()
     
   #- hides all the views, and saves the previous view
@@ -60,7 +65,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   showAlbums: ->
      @model.albums {artist: @artist, section: @section, category: @category}, (html) =>
         @displayView 'albumList', html
-        @parent.registerDroppable $('#albumList .images td')
+        @publish 'dropbox.image.drop', $('#albumList .images td')
         @publish 'image.browser.drag', $("#albumList .images .img")
     
   displayView: (viewId, html) ->
@@ -123,9 +128,11 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       @showIcons '.browseWrap, .searchFieldWrap'
   
   '.top .play click': ->
+    #@publish 'images.slideshow.show', {type: 'artist'}
     @parent.showSlideshow 'artist'
     
   '.top .manage click': ->
+    #@publish 'images.slideshow.show', {type: 'artist', title: @artist}
     @parent.showManager 'artist', @artist
 
   ## VIEW EVENTS
@@ -164,6 +171,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
   '#albumList .manage click': (el) ->
     tr = el.closest 'tr'
     album = tr.data 'album'
+    #@publish 'images.manager.show', {type: title: album:}
     @parent.showManager 'album', album, album
   
   '#albumList .images .img img dblclick': (el) ->
@@ -173,7 +181,8 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     @parent.showSlideshow 'album', imageId, album
     
   '#albumList .images .add click': (el) ->
-    @parent.addImageToDropbox el.parent()
+    @publish 'dropbox.image.add', el.parent()
+    #@parent.addImageToDropbox 
 
   #- Edit (used by both Artist and Album List)
   
@@ -229,7 +238,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
     if not $('#searchOptions').is ':visible'
       @hideAllViews()
       el.addClass 'selected'
-      @parent.showSearchOptions @getState()
+      @publish 'images.search_options.show', @getState()
     else
       el.removeClass 'selected'
       @displayView @currentView
@@ -246,3 +255,5 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Browser',
       #cursor: 'grabbing' # todo
       zIndex: 100
     }
+    
+}

@@ -1,0 +1,56 @@
+/ STREAM CONTEXT PANEL
+#streamContextPanel{'data-filters' => "#{@filters}"}
+
+  / USER INFO
+  .userInfo
+    %a.avatar-64{href: user_entries_path(user.username), style: "background:url(#{avatar_image(current_user, :medium)}) no-repeat center center"}
+
+    .infoRight
+      %a.userName{href: user_entries_path(user.username)}= user.username
+      .clear
+
+      %a.following{href: following_path(user.username)}
+        .count= user.following.count
+        following
+      %a.followers{href: followers_path(user.username)}
+        .count= user.followers.count
+        followers
+
+  / LABEL
+  .myStream
+    .img
+    stream
+
+  #entry-filter-wrap.tooltip{title: "entry type filter"}
+    .spinner
+    %select#entry-filter.select-menu.dropdown
+      %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+      = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: @filters[:type]}
+
+  #users-filter-wrap.tooltip{title: "sharing level filter"}
+    .spinner
+    %select#users-filter.select-menu.dropdown
+      %option.allUsers{   value: '',          :selected => (@filters[:users].blank?)          } all users
+      %option.friends{    value: 'friends',   :selected => (@filters[:users] == 'friends')    } friends
+      %option.following{  value: 'following', :selected => (@filters[:users] == 'following')  } following
+
+  .wrapper
+
+  / .wrapper
+  / 
+  /   .starlightTab.trigger.slideArrow.round-8
+  /     %img.icon{src: '/images/icons/starlight-16.png'}
+  /     %span starlight
+  /     .starlightFilter
+  /       %span.value all
+  /       .filterList.target.slideArrow.hidden
+  /         .type.top
+  /           %span high
+  /         .type
+  /           %span medium
+  /         .type.bottom
+  /           %span none
+
+
+
+

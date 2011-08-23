@@ -1,22 +1,14 @@
 class Entry < ActiveRecord::Base
   self.inheritance_column = nil
 
-  Sharing = {
-    private:              0,
-    anonymous:           50,
-    users:              100,
-    followers:          150,
-    friends:            200,
-    friends_of_friends: 300,
-    everyone:           500
-  }
-
+  include SharingLevels
   include Starlit
   cascade_starlight_to :user
   
   attr_accessor :skip_auto_tags
   
   belongs_to :user
+  belongs_to :book
   belongs_to :location, :class_name => "Where" 
   accepts_nested_attributes_for :location, :reject_if => :all_blank 
 
@@ -61,23 +53,6 @@ class Entry < ActiveRecord::Base
   after_save -> { @changed = (body_changed? || title_changed?) }
   after_commit :process_all_tags
   after_commit :pre_generate_images
-  
-  # Sharing scopes
-  def self.everyone
-    where(sharing_level: Entry::Sharing[:everyone])
-  end
-  def self.friends
-    where(sharing_level: Entry::Sharing[:friends])
-  end
-  def self.private 
-    where(sharing_level: Entry::Sharing[:private])
-  end
-  def self.followers 
-    where(sharing_level: Entry::Sharing[:followers])
-  end
-  def self.anonymous
-    where(sharing_level: Entry::Sharing[:anonymous])
-  end
   
   # Friends and Following scopes
   def self.friends_with(user)
@@ -179,7 +154,7 @@ class Entry < ActiveRecord::Base
  
     entry_scope = entry_scope.where(type: filters[:type].singularize) unless filters[:type].blank?
     entry_scope = entry_scope.where(user_id: viewed.id)
-    entry_scope = entry_scope.where(book_id: nil) #added by carl
+    entry_scope = entry_scope.where(book_id: nil)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
@@ -257,15 +232,7 @@ class Entry < ActiveRecord::Base
       tags.create(noun: where, position: tags.count, kind: kind)     
     end
   end
- 
-  def sharing
-    self.class::Sharing.invert[sharing_level]
-  end
 
-  def everyone?
-    (sharing_level == self.class::Sharing[:everyone])
-  end
-  
   def create_view_preference
     return if view_preference
     self.view_preference = user.view_preference.clone!
@@ -305,10 +272,6 @@ protected
     end
   end
 
-  def set_sharing_level
-    self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
-  end
-
   # def set_user_defaults
   #   self.user._?.default_sharing_level = self.sharing_level
   #   self.user._?.default_entry_type = self.type
@@ -321,7 +284,7 @@ protected
 
   def pre_generate_images
     self.main_image._?.pre_generate(:facebook)
-    self.main_image._?.pre_generate(:stream_header)
-    self.main_image._?.pre_generate(:dreamfield_header)
+    # self.main_image._?.pre_generate(:stream_header)
+    # self.main_image._?.pre_generate(:dreamfield_header)
   end
 end

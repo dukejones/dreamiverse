@@ -40,7 +40,7 @@ Dreamcatcher::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.smtp_settings = GmailSmtpSettings
+  # config.action_mailer.smtp_settings = GmailSmtpSettings
   config.action_mailer.default_url_options = { :host => 'dreamcatcher.net' }
 
   # Enable threaded mode
@@ -52,4 +52,7 @@ Dreamcatcher::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.logger.level = Logger::INFO
+  
 end

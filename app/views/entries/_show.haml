@@ -9,34 +9,26 @@
     - time = (@entry.dreamed_at || @entry.created_at)
     = time_ago_in_words(time)
 
-  %a.next.history{:'data-id' => @next.id}
-    /{href: user_entry_path(@next.user.username, @next)}
+  %a.history.next{href: next_entry_path(@entry)}
     %span &rsaquo;
 
-  / - if session[:lens] == :stream
-  /   %a.stream.history{href: stream_path} stream
-  / - else
-  /   %a.stream.history{href: user_entries_path(@user.username)} entries
-
-  - if @book
-    %a.spine-nav{:'data-id' => @book.id}
-      = @book.title if @book
-  - elsif session[:lens] == :stream
-    %a.stream stream
+  / - if @book
+  /   %a.history.bookSpine.spine{href: "/books/#{@book.id}", class: @book.color}
+  /     = @book.title
+  - if session[:entries_context] == :dreamstream
+    %a.history.stream{href: stream_path} stream
   - else
-    %a.stream entries
+    %a.history.entries{href: user_entries_path(@user.username)} entries
     
 
-  %a.prev{:'data-id' => @previous.id}
-    /{href: user_entry_path(@previous.user.username, @previous)}
-
+  %a.history.prev{href: previous_entry_path(@entry)}
     %span &lsaquo;
 
   - if @entry.user == current_user
-    /todo: bring back!
-    %a.editEntry
-    /{href: edit_entry_path(@entry)} edit
-    /= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
+    %a.history.editEntry{href: edit_entry_path(@entry)} edit
+    /%a.history.deleteEntry delete
+    /todo: bring back
+    = link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 
 
   .wrapper
@@ -55,9 +47,9 @@
         %div{ class: "s#{tag.position.to_s}" }= tag.noun.name
 
 
-  / MOOD ICON
-  .moodIcon.hidden
-    %img{src: '/images/moods/plants/Fungi.png'}
+  / / MOOD ICON
+  / .moodIcon.hidden
+  /   %img{src: '/images/moods/plants/Fungi.png'}
 
 
   / STARLIGHT COUNT & SHARE OPTIONS
@@ -65,13 +57,6 @@
     .img
     %span= @entry.starlight
 
-
-    /
-      SAVE FOR LATER
-      %hr
-      .option.love
-      .option.share
-      .option.repost.selected
 
 
 
@@ -129,6 +114,11 @@
     /         %span= link.title
     /     .clear
 
+    / LIKE
+    / .facebookLike
+    /   :plain
+    /     <fb:like send="false" layout="button_count" show_faces="false" action="like"></fb:like>
+
 
     / TAG
     .showTags
@@ -141,7 +131,7 @@
               tag
 
             .tagInput.target
-              %input#newTag{placeholder: 'who / what / where'}
+              %input#newTag.newTag{placeholder: 'who / what / where'}
             .tagThisEntry.trigger
               + add
 
@@ -161,13 +151,7 @@
 
         / TAGS
         / CUSTOM TAGS
-        #tag-list.tag-list.ui-sortable.target
-
-          / PLACEHOLDER TAG JS
-          .tag.wrapper.custom.tagWhat.emptyTag.hidden
-            .header.trigger
-              .tag-name
-            .close
+        #tag-list.tag-list.custom.ui-sortable.target
 
           - @entry.what_tags.custom.whats.each do |what|
             = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}

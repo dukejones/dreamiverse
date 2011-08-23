@@ -1,0 +1,79 @@
+
+// FRIEND AND FOLLOWING
+#relationship
+  +round(12)
+  +flat-top
+  +relative
+  width: 199px
+  height: 28px
+  margin-bottom: 2px
+
+
+  .relation
+    +bold
+    +center
+    padding: 3px
+    margin: 0
+
+
+  .icon
+    +absolute
+    right: 22px
+    top: 1px
+    width: 24px
+    height: 24px
+
+
+  // ICONS
+  &.none .icon
+    // NO ICON
+  &.none:hover .icon
+    @extend .friend-24-follow
+
+  &.friends .icon
+    @extend .friend-24
+  &.friends:hover .icon
+    @extend .friend-24-follower
+
+  &.following .icon
+    @extend .friend-24-follow
+  &.following:hover .icon
+    @extend .friend-24-none
+
+  &.followed_by .icon
+    @extend .friend-24-follower
+  &.followed_by:hover .icon
+    @extend .friend-24
+
+  // BACKGROUNDS
+  &.none:hover, &.followed_by:hover
+    +bg-shine(16)
+    +gradient(#70d03b, #235b1b)
+    color: #fff
+    border: 1px solid #54943d
+    &:active
+      +gradient(#235b1b, #70d03b)
+
+  &.friends:hover, &.following:hover
+    +unfollow(16)
+
+
+
+// COLORS
+.light #relationship
+  +button-light
+  +transparent-light(50)
+
+.dark #relationship
+  +button-dark
+  +transparent-dark(50)
+  color: #fff
+  border: 1px solid #333333
+
+
+
+
+
+
+
+

@@ -22,7 +22,6 @@ hideGlobalAlert = ->
 # stretch textarea size - originally from alpha site for text area expansion
 # dr. J's first coffee script!
 fitToContent = (id, maxHeight) ->
-  alert 'x'
   text = if id and id.style then id else document.getElementById(id)
   return 0 if not text
   adjustedHeight = text.clientHeight
@@ -30,5 +29,3 @@ fitToContent = (id, maxHeight) ->
     adjustedHeight = Math.max(text.scrollHeight, adjustedHeight)
     adjustedHeight = Math.min(maxHeight, adjustedHeight) if maxHeight
     $(text).animate(height: (adjustedHeight + 80) + "px") if adjustedHeight > text.clientHeight
-    
-alert 'x'

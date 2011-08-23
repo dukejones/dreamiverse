@@ -91,18 +91,21 @@
       height: 42px
       padding: 0
       margin: 2px
-      background: #fff url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+      @extend .browseBars-36
+      background-color: #fff
       &:hover
-        background: #fff url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+        @extend .browseBars-36-over
+      background-color: #fff
       &:active
-        background: #eee url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+        @extend .browseBars-36
+        background-color: #eee
 
   .icon
     +left
     width: 37px
     height: 37px
     margin: 16px 8px 0
-    background: url(/images/icons/ib-icons/editManager-37.png) no-repeat center center transparent
+    @extend .editManager-37
 
   h1
     +user-select
@@ -135,11 +138,14 @@
       height: 34px
       margin: 0 auto
       padding: 6px
-      background: #fff url(/images/icons/search-32.png) no-repeat center center
+      @extend .search-32
+      background-color: #fff
       &:hover
-        background: #fff url(/images/icons/search-32-hover.png) no-repeat center center
+        @extend .search-32-hover
+        background-color: #fff
       &:active
-        background: #eee url(/images/icons/search-32-active.png) no-repeat center center
+        @extend .search-32-active
+        background-color: #eee
 
 
   // DROPBOX
@@ -159,7 +165,8 @@
 
     .active
       +alpha(70)
-      background: #000 url(/images/icons/ib-icons/dropboxIconText.png) no-repeat center center
+      @extend .dropboxIconText
+      background: #000
 
     h2
       +pointer
@@ -184,7 +191,7 @@
       width: 32px
       height: 42px
       margin: 0 12px 0 0
-      background: url(/images/icons/dropbox-26.png) no-repeat center center
+      @extend .dropbox-26
 
     .browse
       +pointer
@@ -257,11 +264,11 @@
             left: 4px
             width: 24px
             height: 24px
-            background: url(/images/icons/reload-24.png)
+            @extend .reload-24
             &:hover
-              background: url(/images/icons/reload-24-hover.png)
+              @extend .reload-24-hover
             &:active
-              background: url(/images/icons/reload-24-active.png)
+              @extend .reload-24-active
 
           &:hover .replace
             +block
@@ -288,9 +295,10 @@
             top: 0px
             
           .file, .size, .failed, .progress
-            position: relative
+            +relative
           .file
             +font(11)
+            margin: 8px 0 0 8px
           .size
             +absolute
             +center
@@ -479,7 +487,7 @@
         height: 38px
         width: 32px
         left: 8px
-        background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
+        @extend .spinner-light-grey-32
         z-index: 2
 
       span.saving

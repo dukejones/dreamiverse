@@ -1,0 +1,73 @@
+
+#drop_shadow
+  +absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 80px
+  z-index: -1
+  @extend .top-shadow
+
+
+#logo
+  +clickable
+  +block
+  +user-select
+  z-index: 1201
+  +absolute
+  top: 0px
+  left: 0
+  margin: 4px 14px 0px 13px
+  width: 230px
+  height: 64px
+  @extend .dcLogo-small
+
+#report_box
+  +user-select
+  +absolute
+  +font(9)
+  +alpha(100)
+  +cursor
+  width: 235px
+  text-align: right
+  color: #666
+  z-index: 1203
+  top: 0
+
+#metaMenu
+  min-width: 940px
+  +click-through
+
+  .randomDream
+    +clickable
+    +left
+    +transparent-dark(50)
+    +round(30)
+    +pointer
+    +block
+    +user-select
+    color: #fff
+    text-decoration: none
+    margin: 8px 0 0 12px
+    height: 33px
+    border: 1px solid rgba(255,255,255,0.4)
+
+    .img
+      +pointer
+      width: 40px
+      height: 26px
+      @extend .shuffle-24
+      background-position: center 4px
+
+    &:hover
+      +glow-dark(8)
+      border: 1px solid transparent
+      .img
+        @extend .shuffle-24-hover
+        background-position: center 4px
+    &:active
+      +gradient(#ddd, #fff)
+      border: 1px solid #fff
+      .img
+        @extend .shuffle-24-active
+        background-position: center 4px

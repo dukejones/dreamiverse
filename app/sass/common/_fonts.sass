@@ -1,0 +1,76 @@
+
+
+
+body
+  font-family: Calibri, Arial, Helvetica, sans-serif
+
+
+
+
+// DC EMBEDDED FONTS
+@font-face
+  font-family: RNSSERIAL
+  src: url('/fonts/rnsserial/rns-s___-webfont.eot')
+  src: url('/fonts/rnsserial/rns-s___-webfont.eot?#iefix') format('embedded-opentype'), url('/fonts/rnsserial/rns-s___-webfont.woff') format('woff'), url('/fonts/rnsserial/RNS-S___.TTF') format('truetype'), url('/fonts/rnsserial/rns-s___-webfont.svg#RNSSERIALRegular') format('svg')
+
+.font-dc
+  font-family: RNSSERIAL
+
+
+
+
+
+// MIXINS
+// sans serif
+=arial
+  font-family: Arial, Arial, Helvetica, sans-serif
+=calibri
+  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
+=verdana
+  font-family: Verdana, Verdana, Geneva, sans-serif
+=monospace
+  font-family: Lucida Console, Monaco, monospace
+=comic
+  font-family: Comic Sans MS, Comic Sans MS
+
+
+// serif
+=georgia
+  font-family: Georgia, Georgia, serif
+=garamond
+  font-family: Garamond, serif
+=book
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
+=times
+  font-family: "Times New Roman", Times, serif
+
+
+
+
+// THE INCREDIBLE FONT SIZER
+#body.fontSmall
+  #entryField #showEntry .content .title, #entry_title
+    +font(18)
+  #entryField #showEntry .content .body, #entry_body
+    +font(14)
+  .commentsPanel .prevCommentWrap .prevComment .body, .commentsPanel .newCommentWrap .newComment textarea
+    +font(13)
+
+
+#body.fontMedium
+  #entryField #showEntry .content .title, #entry_title
+    +font(21)
+  #entryField #showEntry .content .body, #entry_body
+    +font(17)
+  .commentsPanel .prevCommentWrap .prevComment .body, .commentsPanel .newCommentWrap .newComment textarea
+    +font(16)
+
+
+
+#body.fontLarge
+  #entryField #showEntry .content .title, #entry_title
+    +font(24)
+  #entryField #showEntry .content .body, #entry_body
+    +font(20)
+  .commentsPanel .prevCommentWrap .prevComment .body, .commentsPanel .newCommentWrap .newComment textarea
+    +font(19)

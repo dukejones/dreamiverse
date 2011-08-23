@@ -1,4 +1,4 @@
-- @books = Book.where(user_id: current_user.id)
+- @books = Book.where(user_id: current_user.id).order(:created_at.desc)
 - @books._?.each do |book|
-  %option.book{value: book.id}
+  %option.book.bookSpine{value: book.id, class: book.color}
     = book.title

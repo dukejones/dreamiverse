@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110603190322) do
+ActiveRecord::Schema.define(:version => 20110620201844) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -34,13 +34,12 @@ ActiveRecord::Schema.define(:version => 20110603190322) do
   create_table "books", :force => true do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.integer  "cover_image_id"
+    t.integer  "image_id"
     t.string   "color"
-    t.integer  "viewing_level"
+    t.integer  "sharing_level"
     t.integer  "commenting_level"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "enabled",          :limit => 1, :default => "b'1'"
   end
 
   create_table "comments", :force => true do |t|
@@ -117,6 +116,8 @@ ActiveRecord::Schema.define(:version => 20110603190322) do
     t.datetime "updated_at"
   end
 
+  add_index "hits", ["url_path", "ip_address"], :name => "index_hits_on_url_path_and_ip_address"
+
   create_table "images", :force => true do |t|
     t.string   "section"
     t.string   "category"
@@ -167,9 +168,9 @@ ActiveRecord::Schema.define(:version => 20110603190322) do
     t.string  "entry_type", :default => "Dream"
     t.integer "noun_id"
     t.string  "noun_type",  :default => "What"
-    t.integer "intensity"
     t.integer "position",   :default => 0
     t.string  "kind",       :default => "custom", :null => false
+    t.integer "intensity"
   end
 
   create_table "users", :force => true do |t|

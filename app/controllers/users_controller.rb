@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user # User.find params[:id]
     # raise "access denied" unless @user == current_user
-
+    Rails.logger.error "Update attempted without a user" and return if @user.nil?
+    
     if @user.link && params[:user][:link_attributes]._?[:url].blank?
       @user.link.destroy
       @user.link = nil
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
     
     respond_to do |format|
       format.html { redirect_to :back }
-      format.json { render :json => {type: 'ok', message: 'success'} }
+      format.json { render :json => {type: 'ok', message: 'success', new_relationship: "#{current_user.relationship_with(user)}"} }
     end
   end
   
@@ -114,4 +115,29 @@ class UsersController < ApplicationController
     
     render :json => { :avatar_path => @image.url('avatar_main'), :avatar_thumb_path => @image.url(:avatar, :size => 32), :avatar_image => @image }
   end
+  
+  # XHR Only
+  def context_panel
+    @book = if params[:book_id]
+      Book.find_by_id params[:book_id]
+    end
+    
+    @user = if @book
+      @book.user
+    elsif params[:user_id]
+      User.find_by_id params[:user_id]
+    elsif params[:username]
+      User.find_by_username params[:username]
+    else
+      current_user
+    end
+    
+    
+    if @user
+      render(:partial => "common/context_panel", :locals => {:user => @user, :book => @book})
+    else
+      render :text => "Could not find this user.", :status => 403
+    end
+  end
+  
 end

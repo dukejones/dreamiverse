@@ -1,5 +1,7 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
-
+$.Controller 'Dreamcatcher.Controllers.Images.Slideshow', {
+  pluginName: 'slideshow'
+}, {
+ 
   model: Dreamcatcher.Models.Image
 
   init: ->
@@ -28,11 +30,10 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
     
     $('.comment,.commentTarget,.commentsPanel').hide() #hide for now
     $('#slideshow-back').fadeIn 'slow'
-    $('#slideshow-back').height "1000px" #todo
     
   close: ->
     $('#slideshow-back').fadeOut()
-    @parent.showBrowser()
+    @publish 'images.browser.show'
     
   showImage: (parent, image) ->
     $('img', parent).attr 'src', @getLarge image 
@@ -102,5 +103,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.Slideshow',
 
   '.controls .download click': (el) ->
     window.open @getOriginal @images[@index]
+    
+}
     
 

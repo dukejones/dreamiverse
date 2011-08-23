@@ -44,7 +44,8 @@
     margin: 12px 0 0 8px
     padding: 0 0 0 44px
     color: #ddd
-    background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat left center transparent
+    @extend .browseBars-36-light
+    background-position: left center
 
 
   // BROWSE BUTTON
@@ -52,87 +53,100 @@
     +left
 
     .browse
-      background: #232323 url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+      @extend .browseBars-36
+      background-color: #232323
       &:hover
-        background: #333 url(/images/icons/ib-icons/browseBars-36-over.png) no-repeat center center
+        @extend .browseBars-36-over
+        background-color: #333
       &:active
-        background: #232323 url(/images/icons/ib-icons/browseBars-36.png) no-repeat center center
+        @extend .browseBars-36
+        background-color: #232323
 
 
   // SEARCH
   .searchFieldWrap
     +right
+    +relative
     +round(12)
     width: 590px
     height: 52px
     margin: 12px 8px 0 0
     +gradient(#000, #5b5b5b)
 
-    .searchField
+    input.searchField
+      +absolute
       +round(12)
+      +font(24)
+      color: #ddd
       margin: 1px
       height: 38px
-      padding: 6px 10px 6px 12px
+      // width: 428px
+      width: 432px
+      padding: 6px 144px 6px 12px
       background: #232323
       box-shadow:         inset 0 -2px 8px #000
       -moz-box-shadow:    inset 0 -2px 8px #000
       -webkit-box-shadow: inset 0 -2px 8px #000
+      border: none
+      &:focus
+        top: -1px
+        color: #fff
+        border: 1px solid #fff
+        background: #000
+        box-shadow:         0 0 20px #fff
+        -moz-box-shadow:    0 0 20px #fff
+        -webkit-box-shadow: 0 0 20px #fff
 
-      input.input
-        +transparent
-        +left
-        +font(24)
-        border: none
-        margin: 0
-        width: 428px
-        height: 38px
-        color: #ddd
-
-      a.options
-        +left
-        +bold
-        +font(16)
-        +center
-        +round(8)
-        width: 70px
-        height: 28px
-        line-height: 28px
-        margin: 4px 0 0
-        padding: 0 8px
-        color: #777
-        border: 1px solid #333
-        +bevel-dark
-        box-shadow:         0px 2px 10px #000
-        -moz-box-shadow:    0px 2px 10px #000
-        -webkit-box-shadow: 0px 2px 10px #000
-        &:hover
-          color: #999
-          border: 1px solid #777
-        &:active
-          border: 1px solid #000
-          +gradient(#010101, #222)
-          box-shadow:         inset 0px 2px 10px #000
-          -moz-box-shadow:    inset 0px 2px 10px #000
-          -webkit-box-shadow: inset 0px 2px 10px #000
-
-      a.options.selected
+    a.options
+      +pointer
+      +absolute
+      +bold
+      +font(16)
+      +center
+      +round(8)
+      top: 10px
+      right: 50px
+      width: 70px
+      height: 28px
+      line-height: 28px
+      margin: 0
+      padding: 0 8px
+      color: #777
+      border: 1px solid #333
+      +bevel-dark
+      box-shadow:         0px 2px 10px #000
+      -moz-box-shadow:    0px 2px 10px #000
+      -webkit-box-shadow: 0px 2px 10px #000
+      &:hover
+        color: #999
+        border: 1px solid #777
+      &:active
+        border: 1px solid #000
         +gradient(#010101, #222)
         box-shadow:         inset 0px 2px 10px #000
         -moz-box-shadow:    inset 0px 2px 10px #000
         -webkit-box-shadow: inset 0px 2px 10px #000
 
-      input.search
-        +pointer
-        +right
-        +transparent
-        border: none
-        width: 38px
-        height: 36px
-        background: url(/images/icons/search-32.png) no-repeat center center transparent
-        &:hover
-          background: url(/images/icons/search-32-hover.png) no-repeat center center transparent
-        &:active
-          background: url(/images/icons/search-32-active.png) no-repeat center center transparent
+    a.options.selected
+      +gradient(#010101, #222)
+      box-shadow:         inset 0px 2px 10px #000
+      -moz-box-shadow:    inset 0px 2px 10px #000
+      -webkit-box-shadow: inset 0px 2px 10px #000
+
+    input.search
+      +absolute
+      +pointer
+      +absolute
+      top: 0
+      right: 6px
+      border: none
+      width: 38px
+      height: 50px
+      @extend .search-32
+      &:hover
+        @extend .search-32-hover
+      &:active
+        @extend .search-32-active
 
 
   // BACK ARROW
@@ -147,11 +161,13 @@
     &:hover
       color: #ddd
     &:active .left
-      background: url(/images/slices/browseArrowLeft-active.png) no-repeat center center transparent
+      @extend .browseArrowLeft-active
     &:active .content
-      background: url(/images/slices/browseArrowContent-active.png) repeat-x left transparent
+      @extend .browseArrowContent-active
+      background-repeat: repeat-x
+      background-position: left
     &:active .right
-      background: url(/images/slices/browseArrowRight-active.png) no-repeat center center transparent
+      @extend .browseArrowRight-active
 
     .left, .content, .right
       +left
@@ -159,21 +175,23 @@
       height: 51px
     .left
       width: 32px
-      background: url(/images/slices/browseArrowLeft.png) no-repeat center center transparent
+      @extend .browseArrowLeft
     .content
       width: auto
       padding: 0 8px
       line-height: 49px
-      background: url(/images/slices/browseArrowContent.png) repeat-x left transparent
+      @extend .browseArrowContent
+      background-repeat: repeat-x
+      background-position: left
       .img
         +left
         width: 36px
         height: 51px
         margin: 0 8px 0 -8px
-        background: url(/images/icons/ib-icons/browseBars-36-light.png) no-repeat center center transparent
+        @extend .browseBars-36-light
     .right
       width: 12px
-      background: url(/images/slices/browseArrowRight.png) no-repeat center center transparent
+      @extend .browseArrowRight
 
 
   // HEADER
@@ -190,11 +208,14 @@
     +right
 
     .search
-      background: #232323 url(/images/icons/search-32.png) no-repeat center center
+      @extend .search-32
+      background-color: #232323
       &:hover
-        background: #333 url(/images/icons/search-32-hover.png) no-repeat center center
+        @extend .search-32-hover
+        background-color: #333
       &:active
-        background: #232323 url(/images/icons/search-32-active.png) no-repeat center center
+        @extend .search-32-active
+        background-color: #232323
 
 
   // TOOLS & INFO
@@ -218,19 +239,19 @@
   a.manage
     +pointer
     +block
-    background: url(/images/icons/manage-32.png) no-repeat center center transparent
+    @extend .manage-32
     &:hover
-      background: url(/images/icons/manage-32-hover.png) no-repeat center center transparent
+      @extend .manage-32-hover
     &:active
-      background: url(/images/icons/manage-32-active.png) no-repeat center center transparent
+      @extend .manage-32-active
 
   .play
     +pointer
-    background: url(/images/icons/play-32.png) no-repeat center center transparent
+    @extend .play-32
     &:hover
-      background: url(/images/icons/play-32-hover.png) no-repeat center center transparent
+      @extend .play-32-hover
     &:active
-      background: url(/images/icons/play-32-active.png) no-repeat center center transparent
+      @extend .play-32-active
 
 
 

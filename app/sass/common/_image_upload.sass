@@ -1,0 +1,180 @@
+
+// NEW ENTRY IMAGE UPLOAD - #currentImages
+// NEW AVATAR IMAGE UPLOAD - #contextPanel
+// NEW BOOK COVER IMAGE UPLOAD - .dropbox-field-shine
+// SHARED STYLES
+#currentImages, #contextPanel, .dropbox-field-shine
+
+  .replace
+    +hidden
+    +absolute
+    top: 4px
+    left: 4px
+    width: 24px
+    height: 24px
+    @extend .reload-24
+    &:hover
+      @extend .reload-24-hover
+    &:active
+      @extend .reload-24-active
+
+  .message
+    +hidden
+
+  .spinner
+    +hidden
+    +absolute
+    top: 0
+    height: 128px
+    width: 128px
+
+  .uploading
+    +round(8)
+    +relative
+    background-color: #000
+    background-color: rgba(0,0,0,0.8)
+
+    .progress-bar
+      +absolute
+      +round(8)
+      top: 0
+      left: 0
+      height: 20px
+      width: 0%
+      height: 100%
+      background-color: #a4a6a8
+
+    .file, .size, .failed, .progress
+      position: relative
+    .file
+      +font(11)
+    .size
+      +center
+
+    .cancel
+      +absolute
+      +center
+      +round(4)
+      +shine-light-alpha(10)
+      +cancel(10)
+      bottom: 4px
+
+    &:hover .close
+      +alpha(100)
+    .close
+      +alpha(0)
+
+  .uploading.fail
+    +alpha(50)
+    border-color: red
+
+  .selected
+    border: 4px solid #427ee8
+
+  .delete
+    +alpha(50)
+    border: 4px solid #971313
+
+    .message
+      +absolute
+      +font(14)
+      display: block
+      top: 0px
+      height: 114px
+      padding: 6px 8px 8px
+      color: #ddd
+      background: #555
+      background: rgba(0,0,0,0.3)
+
+      .dontDelete
+        +absolute
+        +round(4)
+        +center
+        +alpha(70)
+        bottom: 8px
+        padding: 2px
+        width: 106px
+        color: #222
+        border: 1px solid transparent
+        +gradient(#6e6e6e, #fff)
+        +cancel(10)
+        &:hover
+          +alpha(100)
+
+
+// NEW AVATAR IMAGE UPLOAD
+#contextPanel
+  .uploading
+    top: -1px
+    left: -1px
+    margin: 0px
+    height: 266px
+    width: 200px
+
+    .cancel
+      left: 32px
+      width: 135px
+      height: 26px
+      line-height: 24px
+
+  .message
+    width: 206px
+
+  .file
+    +center
+  .size
+    +center
+    display: block !important
+    margin: 8px 0
+
+  .progress
+    +center
+
+// NEW ENTRY IMAGE UPLOAD
+#currentImages
+  .uploading
+    +left
+    +center
+    margin: 0px 8px 8px 0px
+    height: 120px
+    width: 120px
+
+  .message
+    width: 112px
+
+  .cancel
+    left: 4px
+    width: 112px
+
+  .size, .file, .progress
+    +font(12)
+    margin: 8px 0 0
+
+  .progress
+    +font(14)
+
+// NEW BOOK COVER IMAGE UPLOAD
+.dropbox-field-shine
+  .uploading
+    +absolute
+    +round(12)
+    top: 0
+    left: 0
+    width: 134px
+    height: 170px
+
+    .cancel
+      left: 12px
+      width: 112px
+
+  .message
+    width: 134px
+
+  .file, .size, .progress
+    +center
+    color: #fff
+
+  .size
+    display: block !important
+    margin: 8px 0
+

@@ -2,85 +2,128 @@
 %html
   %head
     %meta{:content => "text/html charset=UTF-8", :'http-equiv' => "Content-Type"}
-
   %body
-
-    / DECLARE VISITED LINK STYLING HERE
-    %style{type: "text/css"}
-      a{text-decoration: none}
-      a:hover{text-decoration: underline}
-      a:visited{color: #6383a5}
-
-
-    %table{width: "639", border: "0", cellspacing: "0", cellpadding: "0", style: "border-top-left-radius: 20px; -moz-border-radius-topleft: 20px; -webkit-border-radius-topleft: 20px; border-top-right-radius: 20px; -moz-border-radius-topright: 20px; -webkit-border-radius-topright: 20px; border-bottom-right-radius: 20px; -moz-border-radius-bottomright: 20px; -webkit-border-radius-bottomright: 20px; border-bottom-left-radius: 20px; -moz-border-radius-bottomleft: 20px; -webkit-border-radius-bottomleft: 20px; margin-top: 20px; margin-left: auto; margin-right: auto; box-shadow: 0 0 20px black; -moz-box-shadow: 0 0 20px black; -webkit-box-shadow: 0 0 20px black; "}
+    / BLUE BACKGROUND
+    %table{width: "98%", border: "0", cellspacing: "0", cellpadding: "0"}
       %tr
-        %td{height: "92", valign: "bottom", background: "http://localhost:3000/images/email/emailHeader.jpg", style: "border-bottom: 8px solid #0b3f6f; border-radius: 20px 20px 0 0; -moz-border-radius: 20px 20px 0 0; -webkit-border-radius: 20px 20px 0 0; "}
-
-      %tr
-        %td{bgcolor: "#e6ebf0", style: "color: #0b3f6f; padding: 10px 29px; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px;"}
-
-          %h1{style: "color: #0b3f6f; font-size: 28px; font-weight: normal; margin: 0;"}
-            welcome to Dreamcatcher, 
-            %a{href: "http://dreamcatcher.net/#{@user.username}", style: "color: #0B3F6F; font-weight: normal;"}= @user.username
-
-          %p{style: "color: #6383a5; font-size: 19px"}
-            discover a deeper part of yourself<br>
-            explore your subconscious mind<br>
-            share your creative journey with the world
-
-          %br
-          %h2{style: "color: #0b3f6f; font-size: 24px; font-weight: normal; margin: 0px"} Life is a dream...
-
-          %ul{style: "font-size: 19px;"}
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
-              explore your <b style="color: #0b3f6f;">dreams</b> with other dreamers
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/vision-24-hover.png')"}
-              share your <b style="color: #0b3f6f;">vision</b> with the world
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/experience-24-hover.png')"}
-              chart your peak <b style="color: #0b3f6f;">experiences</b>
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/article-24-hover.png')"}
-              compose <b style="color: #0b3f6f;">articles</b> to share with your network
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/journal-24-hover.png')"}
-              use as your multi-media diary and <b style="color: #0b3f6f;">journal</b>
-
-
-
-          %h2{style: "color: #0b3f6f; font-size: 24px; font-weight: normal; margin: 0px"} using Dreamcatcher
-
-          %ul{style: "font-size: 19px;"}
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
-              %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
-                improve your dream recall and <b style="color: #0b3f6f;">log last night's dream ›</b>
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
-              %a{href: "http://dreamcatcher.net/stream", target: "_blank"}
-                build networks,
-                %img{src: "http://dreamcatcher.net/images/icons/friend-24-follow.png",  width: "24", height: "24", border: "0", alt: "friends and followers", style: "border: 0px; margin-bottom: -6px; margin-right: 3px; margin-left: 3px"}
-                find other dreamers in the <b style="color: #0b3f6f;">Dream Stream ›</b>
-
-
-            %li{style: "color:#6383a5; list-style-type: none; list-style-image: url('http://dreamcatcher.net/images/icons/dream-24-hover.png')"}
-              %a{href: "http://dreamcatcher.net/today", target: "_blank"}
-                check out what's trending at <b style="color: #0b3f6f;">Today in Dreams ›</b>
-
-
-      %tr
-        %td{bgcolor: "#e6ebf0", style: "padding: 8px"}
-
-          %table{width: "100%", background: "http://localhost:3000/images/email/post-bar.png"}
+        %td{align: "center", style: "background-color: #e6ebf1; padding: 30px 0 30px 0"}
+          / EMAIL CONTENTS
+          %table{width: "677", border: "0", cellspacing: "0", cellpadding: "0"}
+            / HEADER
             %tr
-              %td{height: "52", style: "padding-left: 20px"}
-                %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #0b3f6f; font-size: 28px; text-shadow: #fff 0 1px 1px; text-decoration: none;"}
-                  http://dreamcatcher.net/#{@user.username}
-              %td{width: "100", style: "padding-right: 8px"}
-                %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
-                  %img{src: "http://localhost:3000/images/email/post-button.png",  width: "100", height: "37", border: "0", alt: "friends and followers", style: "border: 0px;"}
+              %td{background: "#{host_url_for '/images/email/email-header.jpg'}", style: "background-color: #f2f5f8;", height: "114"}
+
+            / BODY
+            %tr
+              %td{align: "left", background: "#{host_url_for '/images/email/email-center.gif'}", style: "background-color: #fff; font-family:calibri, Lucida Sans Unicode, Lucida Grande, sans-serif; font-size:16px; padding: 0 30px 0 45px"}
+
+                / WELCOME
+                %table{style: "padding-top: 28px"}
+                  %tr
+                    %td{align: "left"}
+                      %h1{  style: "font-weight: normal; color: #000; font-size: 28px; margin: 0"}
+                        welcome to Dreamcatcher, 
+                        %a{ style: "font-weight: normal; color: #49abe5; text-decoration: none;", href: "http://dreamcatcher.net/#{@user.username}"}= @user.username
+                  %tr
+                    %td{align: "left", style: "padding-top: 4px"}
+                      %p{style: "color: #555; font-size: 18px; margin: 0"}
+                        discover a deeper part of yourself<br>
+                        explore your subconscious mind<br>
+                        share your creative journey with the world
+
+                / LIFE IS A DREAM
+                %table{style: "padding-top: 24px", width: "100%"}
+                  %tr
+                    %td{align: "left", style: "padding-right: 30px"}
+                      %h2{style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px; white-space: nowrap"} Life is a dream...
+                    %td{align: "left", width: "100%"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/line.gif'}", width: "100%", height: "2"}
+
+                %table{style: "padding: 10px 0 0 20px"}
+
+                  %tr
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/dream.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                      explore your <b style="color: #333;">dreams</b> with other dreamers
+
+                  %tr
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/vision.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                      share your <b style="color: #333;">vision</b> with the world
+
+                  %tr
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/experience.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                      chart your peak <b style="color: #333;">experiences</b>
+
+                  %tr
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/article.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "vertical-align: middle, color:#555; font-size: 18px; padding-left: 6px;"}
+                      write <b style="color: #333;">articles</b> to share with your network
+
+                  %tr
+                    %td{align: "right"}
+                      %img{style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/journal.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "vertical-align: middle; color:#555; font-size: 18px; padding-left: 6px;"}
+                      use as your multi-media diary and <b style="color: #333;">journal</b>
+
+
+
+                / USING DREAMCATCHER
+                %table{width: "100%", style: "padding: 15px 0 8px 0"}
+                  %tr
+                    %td{align: "left", style: "padding-right: 30px"}
+                      %h2{  style: "vertical-align: middle; color: #000; font-size: 22px; font-weight: normal; margin: 0px; white-space: nowrap"} Using Dreamcatcher
+                    %td{align: "left", width: "100%"}
+                      %img{ style: "vertical-align: middle", src: "#{host_url_for '/images/email/line.gif'}", width: "100%", height: "2"}
+
+
+                %table{style: "padding: 0 0 40px 20px"}
+                  %tr
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/home.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/entries/new", target: "_blank"}
+                        improve your dream recall and <b style="color: #49abe5;">log last night's dream ›</b>
+
+                  %tr
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/stream.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/stream", target: "_blank"}
+                        build networks and follow other dreamers in the <b style="color: #49abe5;">Dream Stream ›</b>
+
+                  %tr
+                    %td{align: "right"}
+                      %img{ style: "vertical-align: middle", src: "#{host_url_for '/images/email/icons/quasm.png'}", width: "24", height: "24"}
+                    %td{align: "left", style: "padding-left: 6px;"}
+                      %a{   style: "vertical-align: middle; font-size: 18px; color: #555; text-decoration: none;", href: "http://dreamcatcher.net/today", target: "_blank"}
+                        check out what's trending at <b style="color: #49abe5;">Today in Dreams ›</b>
+
+
+
+
+
+            / FOOTER
+            %tr
+              %td{align: "left", background: "#{host_url_for '/images/email/email-footer.gif'}", style: "background-color: #f2f5f8; vertical-align: top; padding: 0 20px 0 45px", height: "85"}
+
+                %table{width: "100%", style: "padding-top: 4px"}
+                  %tr
+
+                    / LINK
+                    %td{align: "left"}
+                      %a{href: "http://dreamcatcher.net/#{@user.username}", target: "_blank", style: "color: #244171; font-size: 25px; text-decoration: none; line-height: 0; font-family: calibri, Lucida Sans Unicode, Lucida Grande, sans-serif"}
+                        http://dreamcatcher.net/#{@user.username}
+
+                    / POST BUTTON
+                    %td{align: "right", width: "148"}
+                      %a{href: "http://dreamcatcher.net/entries/new", target: "_blank"}
+                        %img{src: "#{host_url_for '/images/email/post-button.gif'}",  width: "148", height: "52", border: "0", alt: "post a dream on Dreamcatcher.net!", style: "border: 0px;"}
 
 
 

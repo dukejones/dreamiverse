@@ -1,0 +1,11 @@
+/ CONTEXT PANEL
+= render :partial => "common/context_panel", :locals => {:user => @user, :book => @book}
+
+/ ENTRY FIELD
+#entryField
+  #entriesIndex
+    / = render :partial => "books/show"
+  #showEntry{style: 'display:none'}
+  #newEditEntry{style: 'display:none'}
+
+

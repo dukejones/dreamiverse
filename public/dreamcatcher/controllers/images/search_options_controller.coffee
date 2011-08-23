@@ -1,21 +1,24 @@
-$.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
+$.Controller 'Dreamcatcher.Controllers.Images.SearchOptions', {
+  pluginName: 'searchOptions'
+}, {
 
   model: Dreamcatcher.Models.Image
   
   getView: (url, data) ->
-    return @view "//dreamcatcher/views/images/search_options/#{url}.ejs", data
+    return $.View "/dreamcatcher/views/images/search_options/#{url}.ejs", data
   
-  init: ->
+  init: (el) ->
+    @scope = $(el)
     $('#searchOptions .type').html @getView('types', {types: @model.types})
 
-  show: (params) ->
+  'images.search_options.show subscribe': (called, data) ->
     $("#searchOptions .type li").removeClass 'selected'
     $("#searchOptions .categories li").remove()
     
-    if params?      
-      $("#searchOptions .type li:contains(#{params.type})").click() if params.type?
-      $("#searchOptions .category:contains(#{params.category})").click() if params.category?
-      @setValueForAttribute 'artist', params.artist if params.artist?
+    if data?      
+      $("#searchOptions .type li:contains(#{data.type})").click() if data.type?
+      $("#searchOptions .category:contains(#{data.category})").click() if data.category?
+      @setValueForAttribute 'artist', data.artist if data.artist?
     
     $('#searchOptions').show()
     
@@ -62,5 +65,7 @@ $.Controller 'Dreamcatcher.Controllers.ImageBank.SearchOptions',
     
   '.category click': (el) ->
     if el.hasClass("selected") then el.removeClass("selected") else el.addClass("selected")
+    
+}
 
 

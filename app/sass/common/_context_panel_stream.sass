@@ -1,0 +1,251 @@
+// STREAM CONTEXT PANEL
+// STRUCTURE
+
+
+
+#streamContextPanel
+  +round(16)
+  +absolute
+  +cursor
+  +user-select
+  top: 82px
+  left: 12px
+  width: 200px
+  padding: 4px
+  border: 1px solid #000
+
+
+  // USER INFO
+  .userInfo
+    +round(12)
+    +relative
+    height: 66px
+
+
+    .avatar-64
+      +round(12)
+      +flat-right
+      +absolute
+      border: 1px solid transparent
+      width: 46px
+      height: 62px
+      margin: 1px 8px 1px 1px
+      display: inline-block
+
+    .infoRight
+      +right
+      +overflow
+      +absolute
+      left: 58px
+      margin-right: 4px
+      height: 64px
+      width: 134px
+
+      .userName
+        +block
+        +round(8)
+        margin: 4px 0
+        padding: 0 4px 0 8px
+        border: 1px solid transparent
+        +font(18)
+
+
+      .following
+        left: 0
+      .followers
+        left: 68px
+
+
+      .following, .followers
+        +absolute
+        +font(12)
+        +center
+        +block
+        margin: 0 4px 0 0
+        width: 64px
+        &:hover .count
+          +flat-light
+          color: #000
+        .count
+          +round(4)
+          +center
+          width: 64px
+          height: 14px
+          line-height: 14px
+          color: #fff
+          background: #7a7a7a
+
+
+  .myStream
+    +round(12)
+    +flat-bottom
+    +block
+    +bold
+    +font(21)
+    margin: 4px 0 2px
+    padding: 0
+    height: 26px
+    line-height: 26px
+    padding: 4px 8px
+    .img
+      +left
+      height: 26px
+      width: 24px
+      margin: 0 8px 0 42px
+      @extend .stream-24-hover
+
+
+
+  // STREAM CONTEXT PANEL FILTERS - see _widget_dropdown.sass
+
+  .spinner
+    +relative
+    +round(12)
+    left: 164px
+    top: 3px
+    width: 32px
+    height: 32px
+    margin-bottom: -32px
+    z-index: 1
+    +hidden
+
+
+  .starlightTab
+    .icon
+      margin: 7px 8px 0 0
+
+    .starlightFilter
+      +round(12)
+      +right
+      +relative
+      +center
+      width: 70px
+      margin: 5px 0 0
+      height: 18px
+      line-height: 18px
+      padding: 0
+      span
+        float: none
+
+      .filterList
+        width: 70px
+        top: 0
+        left: 0
+
+
+// SHARED BETWEEN BOTH
+#contextPanel, #streamContextPanel
+  .wrapper
+    +relative
+    .filterList
+      border: 1px solid #7a7a7a
+      +round(12)
+      +absolute
+      +pointer
+      top: 0
+      z-index: 1200
+      width: 198px
+      &:hover
+        +round(12)
+      .type
+        +bold
+        height: 30px
+        line-height: 30px
+        +block
+        &.top:hover
+          +round(10)
+          +flat-bottom
+        &.bottom:hover
+          +round(10)
+          +flat-top
+
+
+
+
+
+// STREAM CONTEXT PANEL
+// COLORS
+.light #streamContextPanel
+  +transparent-light(50)
+  +glow-light(40)
+
+  // USER INFO
+  .userInfo
+    +shine-light(16)
+
+  .avatar-64
+    +pointer
+    &:hover
+      border: 1px solid #000
+
+  .infoRight .userName:hover
+    +button-light
+
+  // LABEL
+  .myStream
+    +shine-dark-alpha(16)
+    color: #fff
+
+
+
+.dark #streamContextPanel
+  +transparent-dark(50)
+  +glow-dark(40)
+
+  .userInfo
+    +shine-dark(16)
+
+  .avatar-64
+    +button-dark
+
+  .infoRight .userName:hover
+    +button-dark
+
+  .myStream
+    +shine-light(16)
+    color: #000
+
+
+
+
+
+// STREAM CONTEXT PANEL FILTERS
+// COLORS
+.light #contextPanel, .light #streamContextPanel
+
+  .spinner
+    @extend .spinner-light-32
+    background-color: white
+
+  .filterList
+    +glow-light(40)
+    +flat-light
+
+  .type
+    &:hover
+      background: #000
+      color: #fff
+
+  .starlightFilter
+    +button-light
+    +flat-light
+
+
+.dark #contextPanel, .dark #streamContextPanel
+
+  .spinner
+    @extend .spinner-dark-32
+    background-color: black
+
+  .filterList
+    +glow-dark(40)
+    +flat-dark
+
+  .type
+    &:hover
+      background: #fff
+      color: #000
+
+  .starlightFilter
+    +button-dark
+    +flat-dark

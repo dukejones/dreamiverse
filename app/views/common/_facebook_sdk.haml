@@ -1,0 +1,12 @@
+<div id="fb-root"></div>
+= javascript_include_tag "http://connect.facebook.net/en_US/all.js"
+:coffeescript
+  $ ->
+    FB.init({ 
+      appId: #{FB_APP_ID}
+      status: true
+      cookie: false
+      xfbml: true
+      channelUrl: "http://#{request.host_with_port}/facebook_channel.html"
+      oauth: true
+    })

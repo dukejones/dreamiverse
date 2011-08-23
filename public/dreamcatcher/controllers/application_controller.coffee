@@ -1,70 +1,55 @@
+  
+$(document).ready ->
+  window.dreamcatcher = new Dreamcatcher.Controllers.Application $('body')
+  
 $.Controller 'Dreamcatcher.Controllers.Application',
   
-  #- constructor
-  
-  init: ->
-    @setupControllers()
-    @publish 'dom.added', $('#body') 
+  init: (el)->
+    @element = $(el)
+    @publish 'app.initUi'
     
-  #- controllers
-  
-  setupControllers: ->
-    @metaMenu   = new Dreamcatcher.Controllers.Users.MetaMenu     $('#metaMenu')        if $('#metaMenu').exists()
-    @images     = new Dreamcatcher.Controllers.ImageBank          $("#frame.browser")   if $("#frame.browser").exists()
-    @entries    = new Dreamcatcher.Controllers.Entries            $("#entryField")      if $("#entryField").exists()
-    @admin      = new Dreamcatcher.Controllers.Admin              $('#adminPage')       if $('#adminPage').exists()
-        
-  #- setup ui elements
-  
-  initUi: (parentEl) ->
-    parentEl = $('body') if not parentEl?
-    $('.tooltip', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerTooltip $(el)
-    $('.select-menu', parentEl).each (i, el) =>
-      Dreamcatcher.Classes.UiHelper.registerSelectMenu $(el)
-    $('textarea', parentEl).each (i, el) =>
-      fitToContent $(el).attr('id'), 0
-      
-  'dom.added subscribe': (called, data) ->
-    @initUi data
+    CFInstall.check { mode: "overlay", destination: "http://dreamcatcher.net" }
     
-  #- appearance (bedsheet, scroll  & theme) change
+    $('#metaMenu').metaMenu()
+    $('#totem').contextPanel() if $('#totem').exists()
+    
+    $('#entriesIndex').dreamField() if $('#entriesIndex').exists()
+    $('#entriesStream').dreamStream() if $('#entriesStream').exists()
+    $('#showEntry').showEntry() if $('#showEntry').exists()
+    $('#newEditEntry').newEditEntry() if $('#newEditEntry').exists()
+    $('#adminPage').admin() if $('#adminPage').exists()
+    $('#frame.browser').imageBank() if $("#frame.browser").exists()
+    
+    @bind window, 'popstate', => @publish 'location.change', window.location.pathname
+    
+    $('input[placeholder], textarea[placeholder]').placeholder() # FF 3.6
+
+
+  currentUser: ->
+    userInfo = $('#currentUserInfo')
+    return null unless userInfo?
+    new User {
+      id:       userInfo.data('id')
+      username: userInfo.data('username')
+      imageId:  userInfo.data('imageid')
+      viewPreference: userInfo.data('viewpreference')
+    }
+    
+  ## Event Binding ##
   
-  'appearance.change subscribe': (called, data) ->
-    #if no data is passed, then use the user default settings
-    if not data?
-      data = $('#userInfo').data 'viewpreference'
-
-    return if not data.image_id?
-
-    bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
-    return if $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) isnt -1
-
-    #todo: should include font size & float?
-    if data.bedsheet_attachment?
-      $('#body').removeClass('scroll fixed')
-      $('#body').addClass data.bedsheet_attachment
-    if data.theme?
-      $('#body').removeClass('light dark')
-      $('#body').addClass data.theme
-
-    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
-    $(img).load ->
-      $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
-      #todo: make style
-      $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
-      $('#backgroundReplace').fadeIn 1000, =>
-        $('#backgroundReplace').hide()
-        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
-    $('body').append img
+  #.spine.history, a.stream, a.entries, a.prev, a.next, a.editEntry 
+  'a.history click': (el, ev) ->
+    return unless $('#entryField').exists()
+    ev.preventDefault()
+    href = el.attr 'href'
+    window.history.pushState null, null, href
+    @publish 'location.change', href
     
   #- catch any body click event
-
   '#bodyClick click': ->
-    @publish 'body.clicked'
+    @publish 'body.clicked' 
     
   #- fit to content event
-    
   'textarea keyup': (el) ->
     fitToContent el.attr('id'), 0
     
@@ -91,8 +76,82 @@ $.Controller 'Dreamcatcher.Controllers.Application',
     
     user = {}
     user[name] = value
-    Dreamcatcher.Models.User.update {user: user}
+    User.update {user: user}
   
   
-$(document).ready ->
-  @dreamcatcher = new Dreamcatcher.Controllers.Application $('#body')
+  ## Subscriptions ##
+  
+  'location.change subscribe': (called, href) ->
+    hrefSplit = href.split '/'
+    controller = 'entries'
+    action = 'show'
+    data = {}
+    
+    if hrefSplit.length > 1
+      if hrefSplit[1] is 'books'
+        controller = hrefSplit[1]
+      else if hrefSplit[1] is 'stream'
+        controller = hrefSplit[1]
+      else
+        data.username = hrefSplit[1]
+      
+    if hrefSplit.length > 2
+      if hrefSplit[2] is 'new'
+        action = 'new' 
+      else
+        data.id = hrefSplit[2]
+      
+      if hrefSplit.length > 3
+        action = hrefSplit[3]
+  
+    else
+      action = 'index'
+      
+    log "#{controller}.#{action}"
+    log data
+    @publish "#{controller}.#{action}", data
+      
+      
+  'app.initUi subscribe': (called, parentEl) ->
+    parentEl = @element if not parentEl?
+    $('textarea', parentEl).each (i, el) ->
+      fitToContent $(this).attr('id'), 0
+    $('.select-menu', parentEl).each (i, el) =>
+      UiHelper.registerSelectMenu $(el)
+    $('.tooltip', parentEl).each (i, el) =>
+      UiHelper.registerTooltip $(el)
+
+    
+  #- appearance (bedsheet, scroll  & theme) change
+  'appearance.change subscribe': (called, data) ->
+    #if no data is passed, then use the user default settings
+    data = $('#currentUserInfo').data 'viewpreference' unless data?
+    return unless data.image_id?
+
+    # TODO: Make this an Image model lookup.   new Image(data.image_id).url('bedsheet')
+    bedsheetUrl = "/images/uploads/#{data.image_id}-bedsheet.jpg"
+    return unless $('#backgroundReplace').css('background-image').indexOf(bedsheetUrl) is -1
+
+    # todo: should include font size & float?
+    if data.bedsheet_attachment?
+      $('#body').removeClass('scroll fixed')
+      $('#body').addClass data.bedsheet_attachment
+    if data.theme?
+      $('#body').removeClass('light dark')
+      $('#body').addClass data.theme
+
+    img = $("<img src='#{bedsheetUrl}' style='display:none' />")
+    $(img).load ->
+      $('#bedsheetScroller .bedsheet .spinner').remove() #remove if exists
+      #todo: make style
+      $('#backgroundReplace').css 'background-image', "url('#{bedsheetUrl}')"
+      $('#backgroundReplace').fadeIn 750, =>
+        $('#backgroundReplace').hide()
+        $('#body').css 'background-image', "url('#{bedsheetUrl}')"
+    $('body').append img
+    
+  'app.loading subscribe': (called, loading=yes) ->
+    if loading
+      $('#loading_ajax').show()
+    else
+      $('#loading_ajax').hide()

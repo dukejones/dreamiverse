@@ -36,9 +36,11 @@ Dreamcatcher::Application.routes.draw do
   match '/dreamstars' => 'users#index', :as => :dreamstars
 
   match '/admin' => 'admin#admin', :as => :admin
-  get '/admin/user_list' => 'admin#user_list', :as => :admin
-
-  
+  get '/admin/users' => 'admin#user_list', :as => :admin
+  get '/admin/line_chart' => 'admin#load_line_chart', :as => :admin
+  get '/admin/pie_chart' => 'admin#load_pie_chart', :as => :admin
+  get '/admin/bedsheets' => 'admin#load_bedsheets', :as => :admin
+   
   match '/stream' => 'entries#stream', :as => :stream
   match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   match '/random' => 'entries#random', :as => :random
@@ -47,6 +49,7 @@ Dreamcatcher::Application.routes.draw do
   # Resources
 
   resource :user do
+    get  'context_panel'
     post 'follow'
     post 'bedsheet'
     post 'set_view_preferences'
@@ -97,16 +100,12 @@ Dreamcatcher::Application.routes.draw do
   resources :entries do
     collection do
       get 'random'
-      get 'show_entry'
-      get 'new_entry'
-      get 'edit_entry'
-      get 'show_context'
-      get 'show_stream'
-      get 'show_field'
     end
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
       post 'set_view_preferences', :to => 'entries#set_view_preferences'
+      get  'next', :to => 'entries#next', :as => 'next'
+      get  'previous', :to => 'entries#previous', :as => 'previous'
     end
     resources :comments
   end

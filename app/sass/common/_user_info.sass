@@ -1,0 +1,529 @@
+
+//// USER INFO PAGES SHARED
+// JOIN, FORGOT, ERROR, RESET PASS, TERMS
+
+// DREAMCATCHER LOGO
+
+
+#home
+  width: 1000px
+  margin: auto
+
+
+#loginPage, #joinPage, #forgotPage, #errorPage, #resetPassword, #terms
+  +relative
+  top: 104px
+  left: 108px
+  width: 694px
+  color: #fff
+  margin-bottom: 280px
+
+  .joinInfo
+    height: 44px
+
+    h1
+      +user-select
+      +font(21)
+      +left
+      margin: 12px 0 0 50px
+      text-transform: uppercase
+      letter-spacing: 4px
+      color: #fff
+
+    .login, .forgot, .join
+      +bold
+      +relative
+      +right
+      +center
+      +round(12)
+      +transparent
+      +glow-blue(20)
+      +button-blue
+      height: 34px
+      margin: 0 0 0 8px
+      &:hover
+        +glow-dark(20)
+      &:active
+        +glow-dark(0)
+      a
+        +user-select
+        +block
+        +absolute
+        +round(11)
+        +shine-blue(17)
+        color: #fff
+        height: 34px
+        line-height: 34px
+        margin: 0
+        &:hover
+          +shine-blue(17)
+          background: #0c2b50
+          +gradient(#0c2b50, #5d80ad)
+        &:active
+          +shine-blue(0)
+          background: #0c2b50
+          +gradient(#5d80ad, #0c2b50)
+
+    .login, .login a
+      width: 60px
+
+    .forgot, .forgot a
+      width: 142px
+
+    .join, .join a
+      width: 112px
+
+  .glowBox
+    +relative
+    +round(12)
+    +transparent
+    +glow-blue(20)
+    +border-blue
+    width: 692px
+
+    .dreamstar
+      +absolute
+      top: -73px
+      left: -76px
+      width: 148px
+      height: 148px
+      z-index: 100
+      @extend .dreamstar-148
+
+    .shineBox
+      +relative
+      +round(11)
+      +shine-blue-alpha(20)
+      width: 692px
+      padding: 10px 0 40px
+
+
+      // FORM ID #new_user
+      #new_user
+        margin: 28px auto 0
+
+      span.label
+        +user-select
+        +left
+        +font(21)
+        +cursor
+        text-align: right
+        color: #fff
+        width: 210px
+        padding: 8px 0
+        margin: 0 0 8px
+
+      input.inputField, input#recaptcha_response_field
+        +outline
+        +input-light(large)
+        +round(8)
+        +right
+        margin: 4px 0 6px
+        +font(18)
+        padding: 8px
+        width: 320px
+        &:focus
+          +glow-blue(30)
+          +border-blue
+
+
+      // SUBMIT - LOGIN & JOIN BLUE BUTTON
+      .submit
+        +user-select
+        +pointer
+        +clear
+        +round(12)
+        +relative
+        +right
+        +overflow
+        width: 334px
+        height: 48px
+        line-height: 48px
+        margin: 16px 0
+        +transparent
+        +glow-blue(20)
+        border: 2px solid #9ae4fd
+        &:hover, &:focus
+          border: 2px solid #fff
+          +glow-dark(20)
+        &:active
+          +glow-dark(0)
+
+        .text
+          +round(11)
+          +pointer
+          +user-select
+          +center
+          +bold
+          top: 0
+          left: 0
+          color: #fff
+          +font(25)
+          +shine-blue(24)
+          &:hover
+            background: #0c2b50
+            +gradient(#0c2b50, #5d80ad)
+          &:active
+            +shine-blue(0)
+            background: #0c2b50
+            +gradient(#5d80ad, #0c2b50)
+
+          span
+            +font(25)
+            margin: 0 0 0 32px
+          .img
+            +right
+            height: 48px
+            width: 32px
+            margin: 0 16px 0 -16px
+            @extend .login-32
+          &:hover .img
+            @extend .login-32-hover
+          &:active .img
+            @extend .login-32-active
+
+          input.button
+            border: none
+            +transparent
+            +absolute
+            top: 0
+            left: 0
+            width: 334px
+            border-width: 20px
+            +font(100)
+            +alpha(00)
+
+
+
+
+
+// LOGIN PAGE ONLY
+#loginPage
+  .glowBox
+    .shineBox
+      .loginForm
+        width: 470px
+        margin: 70px auto 0
+
+        span.label
+          width: 100px
+
+        a.fb_login
+          +user-select
+          +pointer
+          +right
+          +round(4)
+          +font(16)
+          +block
+          +alpha(70)
+          padding: 4px 8px
+          margin: 0
+          color: #fff
+          border: 1px solid transparent
+          &:hover
+            border: 1px solid #fff
+            +alpha(100)
+          .fbText
+            +right
+            height: 22px
+            line-height: 22px
+            margin: 0 8px 0 0
+          .img
+            +right
+            width: 16px
+            height: 22px
+            @extend .facebook-16
+          &:hover .img
+            @extend .facebook-16-hover
+
+
+      .stay
+        +absolute
+        +round(4)
+        padding: 0 6px
+        top: 210px
+        right: 475px
+        border: 1px solid transparent
+        +alpha(60)
+        +pointer
+        & input
+          +pointer
+        &:hover
+          border: 1px solid #fff
+          +alpha(100)
+
+
+// JOIN PAGE ONLY
+#joinPage
+
+  .joinForm
+    width: 570px
+    margin: 60px auto 0
+
+    span.username
+      margin-left: 28px
+
+    span.label.url
+      margin: 24px 0 0
+
+    .seed
+      +user-select
+      +pointer
+      +round(8)
+      +right
+      +center
+      margin: 4px 0 6px
+      +font(18)
+      padding: 8px
+      width: 320px
+      border: 1px solid #fff
+      &:hover
+        color: #9ae4fd
+        +border-blue
+
+
+    // Container for absolutely positioned items in flow
+    .relative
+      +user-select
+      +relative
+      height: 220px
+      margin: 0
+
+
+      // RECAPTCHA WIDGET
+      .recaptchaWrap
+        +absolute
+        +round(8)
+        right: 0
+        margin-top: 4px
+        border: 1px solid #666
+        background: #fff
+
+        #recaptcha_widget_div
+          margin: 0
+          width: 337px
+
+          table#recaptcha_table, .recaptchatable
+            border: none !important
+
+            td
+              padding: 0 !important
+
+            .recaptcha_image_cell
+              +transparent
+
+              #recaptcha_image
+                border: none !important
+                margin: 0
+
+            img#recaptcha_logo, img#recaptcha_tagline
+              +hidden
+
+            .recaptcha_input_area
+              padding: 0 !important
+
+              input#recaptcha_response_field
+                +absolute
+                left: -1px
+                width: 322px !important
+                margin: 10px 0 0
+
+      span.label.recaptcha
+        +absolute
+        margin: 84px 0 0
+
+      .submit
+        +absolute
+        right: 0
+        margin: 146px 0 0
+
+    a.terms, a.forgot
+      +clear
+      +user-select
+      +pointer
+      +round(8)
+      +block
+      +center
+      +alpha(70)
+      padding: 2px 0
+      color: #fff
+      border: 1px solid transparent
+      &:hover
+        +alpha(100)
+        border: 1px solid #fff
+
+    a.terms
+      +font(16)
+      margin: 20px 0 0
+
+    a.forgot
+      +font(12)
+      margin: 0 0 -30px
+
+
+// FORGOT PAGE ONLY
+#forgotPage
+
+  .forgotForm
+    +user-select
+    +clear
+    +cursor
+    width: 390px
+    margin: 60px auto 0
+
+    h1
+      +font(25)
+      color: #fff
+
+    .body
+      +font(16)
+      line-height: 26px
+      margin-bottom: 16px
+      color: #fff
+
+      a
+        color: #fff
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+    #user_email
+      +input-light(small)
+      +round(8)
+      +font(18)
+      margin-bottom: 6px
+      padding: 8px
+      width: 280px
+      &:focus
+        +glow-blue(20)
+
+    .prompt
+      +round(8)
+      +shine-blue(16)
+      +button-blue
+      +font(18)
+      height: 40px
+      padding: 0 8px 4px
+      margin: -1px 0 0 6px
+      +bold
+      &:hover
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
+
+// ERROR PAGE ONLY
+#errorPage
+  +cursor
+  +user-select
+
+  .glowBox
+    width: 532px
+    .shineBox
+      padding: 10px
+      width: 512px
+
+      h2
+        +font(20)
+        margin: 10px 0 0 40px
+
+      p
+        +font(14)
+        margin: 10px 0 30px 40px
+
+      .back, .feedback, .home
+        +pointer
+        +shine-blue(14)
+        +round(8)
+        +left
+        +block
+        +font(16)
+        +center
+        +overflow
+        margin: 0
+        height: 28px
+        line-height: 26px
+        color: #ddd
+        +border-blue
+
+        &:hover
+          color: #fff
+          border: 1px solid #fff
+
+      .back
+        width: 71px
+
+      .feedback
+        width: 317px
+        margin: 0 10px
+        .teaser
+          +left
+          width: 46px
+          height: 28px
+          margin: 0 -30px 0 50px
+          @extend .input_teaser
+
+      .home
+        width: 97px
+        &:hover .icon
+          @extend .home-16-hover
+        &:active .icon
+          @extend .home-16-active
+        .icon
+          +left
+          height: 24px
+          width: 24px
+          margin: 0 -12px 0 16px
+          @extend .home-16
+
+
+
+
+// RESET PASSWORD PAGE ONLY
+#resetPassword
+
+  .glowBox
+    .shineBox
+
+      .resetForm
+        width: 580px
+        margin: 70px auto 0
+
+        span.label
+          width: 200px
+
+        p.error
+          color: red
+
+
+// TERMS PAGE ONLY
+#terms
+
+  .glowBox
+    .shineBox
+
+      .termsContent
+        width: 600px
+        margin: 60px auto 0
+
+        h2
+          margin: 12px 0 8px
+          +font(18)
+          +bold
+
+        p
+          +font(14)
+          color: #D1F2FF
+          line-height: 20px
+          margin: 0 0 12px
+        ul
+          list-style: none
+          margin: 16px 20px
+
+          li
+            +font(13)
+            margin: 4px 0
+
+
