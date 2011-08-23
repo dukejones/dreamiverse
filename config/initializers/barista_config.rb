@@ -1,5 +1,5 @@
-#Barista::Framework.register 'jmvc_load', Rails.root.join("public", "dreamcatcher", "coffee")
 Barista::Framework.register 'jmvc', Rails.root.join("public", "dreamcatcher")
+# Barista::Framework.register 'backbone', Rails.root.join("public", "backbone")
 
 Barista.configure do |c|
   
@@ -21,8 +21,8 @@ Barista.configure do |c|
   
   # Change the output root for a framework:
   
-  c.change_output_root! 'jmvc_load', 'public/dreamcatcher'
   c.change_output_root! 'jmvc', 'public/compiled'
+  c.change_output_root! 'backbone', 'public/compiled'
 
   c.bare = true
   
