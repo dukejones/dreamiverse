@@ -14,7 +14,7 @@
     / - steal_src = Rails.env.development? ? "steal.js?dreamcatcher,development" : "steal.production.js?dreamcatcher"
     / %script{:type => "text/javascript", src: "/steal/#{steal_src}"}
 
-    = include_javascripts :jmvc_framework, :jmvc_resources, :jmvc_application, :shared, :home
+    = include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared, :home
     
     = yield :head
 
