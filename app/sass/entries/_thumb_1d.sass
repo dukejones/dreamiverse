@@ -285,11 +285,11 @@
             margin: 0px
 
       .arrow
+        +arrow-off(10)
         +left
-        +block
-        margin: 6px 0 0 8px
-        width: 16px
-        height: 26px
+        margin: 8px 0 0 8px
+        // width: 16px
+        // height: 26px
         // width & height set for it to take up space so it doesn't jump on hover - gets set back to 0
       &.ipad
         +block
@@ -372,9 +372,9 @@
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
-      +arrow-light(down, 12)
+      +arrow-light(down, 10)
   &.expanded .details .arrow
-    +arrow-light(up, 12)
+    +arrow-light(up, 10)
 
 
   .commentsPanel
@@ -425,9 +425,9 @@
     +gradient(#575757, #323232)
     color: #fff
     .arrow
-      +arrow-dark(down, 12)
+      +arrow-dark(down, 10)
   &.expanded .details .arrow
-    +arrow-dark(up, 12)
+    +arrow-dark(up, 10)
 
   .commentsPanel
     +gradient(#000, #111)
