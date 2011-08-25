@@ -28,34 +28,30 @@
 
 
 
-  / / LOG OUT
-  / %a.logOut.tooltip.left{href: '/logout', title: "log out"}
-  /   .img
+  / LOG OUT
+  %a.logOut.tooltip.left{href: '/logout', title: "log out"}
+    .img
 
 
 
 
-  / RIGHT PANEL (USER MENUS)
+  / SETTINGS MENU
   .rightPanel
 
-    .userWrap
-      %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
-        %span= current_user.username
+    %a.item.user{:'data-id' => current_user.id, href: user_entries_path(current_user.username), style: "background:url(#{avatar_image(current_user, 32)}) no-repeat scroll 0 0 #000;"}
+      %span= current_user.username
 
-      / USER PANEL
-      = render partial: "common/meta_menu/user_menu"
-
-    .wrapper
-      .item.trigger.tooltip.left{title: "settings"}
+    .settingsPanel.wrapper
+      .item.settings.trigger.tooltip.left{title: "settings"}
         .img
 
       / SETTINGS PANEL
-      / = render partial: "common/meta_menu/settings_panel"
+      = render partial: "common/meta_menu/settings_panel"
 
 
 
     - if page_is_mine?
-      .wrapper
+      .appearancePanel.wrapper
         .item.appearance.trigger.tooltip.left{title: "appearance"}
           .img
 

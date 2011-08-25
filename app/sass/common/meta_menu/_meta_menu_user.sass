@@ -211,14 +211,6 @@
     top: -20px
     z-index: 1200
 
-    .userWrap
-      +left
-      height: auto
-      margin: 0 2px -2px
-
-      &:hover #userMenu
-        +block
-
     .user
       +flat-left
       +overflow
@@ -228,13 +220,13 @@
       +user-select
       +bold
       min-width: 80px
+      margin: 0 2px -2px
       line-height: 28px
       height: 26px
       border: 1px solid #000 !important
 
       &:hover
         +glow-light(5)
-
 
       span
         +block
@@ -254,10 +246,10 @@
 
 
 
-    .wrapper
+    .settingsPanel, .appearancePanel
       +left
 
-    .userMenu-trigger
+    .item.settings
       .img
         @extend .settings-24
       &:hover .img, &.selected .img
