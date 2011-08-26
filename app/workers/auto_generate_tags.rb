@@ -1,5 +1,5 @@
 class AutoGenerateTags
-  @queue = :process_entry_tags_queue
+  @queue = :auto_generate_tags_queue
   
   # save auto generated tags + score auto generated & custom tags 
   def self.perform(entry_id)
