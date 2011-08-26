@@ -3,7 +3,7 @@
 // STRUCTURE
 .matrix .thumb-1d:hover
   z-index: 200
-  .detailsTop .entryType, .details .comment, .details .comment .text, .left .starlight
+  .detailsTop .entryType, .details .comment, .details .comment .arrow, .details .comment .text, .left .starlight
     +alpha(100)
 
 .matrix .thumb-1d
@@ -15,7 +15,7 @@
   padding: 0
   width: 670px
 
-  .detailsTop .entryType, .details .comment, .details .comment .text, .left .starlight
+  .detailsTop .entryType, .details .comment, .details .comment .arrow, .details .comment .text, .left .starlight
     +alpha(0)
 
   // NO IMAGE
@@ -285,11 +285,12 @@
             margin: 0px
 
       .arrow
+        +arrow-off(10)
         +left
-        width: 16px
-        height: 26px
-        margin-left: 8px
-        @extend .arrow-down-16-light
+        margin: 8px 0 0 8px
+        // width: 16px
+        // height: 26px
+        // width & height set for it to take up space so it doesn't jump on hover - gets set back to 0
       &.ipad
         +block
         .text
@@ -297,8 +298,6 @@
   &.expanded .details
     .comment, .text
       display: block
-    .arrow
-      @extend .arrow-up-16-light
 
 
 
@@ -373,9 +372,9 @@
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
-      @extend .arrow-down-16-dark
+      +arrow-light(down, 10)
   &.expanded .details .arrow
-    @extend .arrow-up-16-dark
+    +arrow-light(up, 10)
 
 
   .commentsPanel
@@ -426,9 +425,9 @@
     +gradient(#575757, #323232)
     color: #fff
     .arrow
-      @extend .arrow-down-16-light
+      +arrow-dark(down, 10)
   &.expanded .details .arrow
-    @extend .arrow-up-16-light
+    +arrow-dark(up, 10)
 
   .commentsPanel
     +gradient(#000, #111)

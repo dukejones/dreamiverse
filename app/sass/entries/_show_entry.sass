@@ -250,6 +250,7 @@
         margin-left: 12px
         list-style: none
         li
+          +relative
           +round(8)
           +left
           clear: right
@@ -258,7 +259,7 @@
           width: 122px
           &.youtube
             img
-              +relative
+              +absolute
               top: 5px
               left: 5px
             a
@@ -310,6 +311,9 @@
       //       height: 30px
       //       margin: 0 8px 0 0
 
+      .facebookLike
+        float: right
+        margin-top: 20px
 
       // TAG
       .showTags

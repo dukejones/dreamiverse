@@ -3,50 +3,28 @@
 .light #entryField
 
   .entryTags
+
     .tagInputWrap
-      @extend .inputLeftLight-40
-      background-position: left
-
-      .tagInput
-        @extend .inputContentLight-40
-        background-repeat: repeat-x
-
-        input
-          color: #333
-
-        .tagAdd
-          +button-light
-          +shine-light-alpha(13)
-
-      .tagInputRight
-        @extend .inputRightLight-40
-        background-position: right
-
+      #newTag
+        +input-light(large)
+        color: #333
+      .tagAdd
+        +button-light
+        +shine-light-alpha(13)
 
 
 
 .dark #entryField
 
   .entryTags
+
     .tagInputWrap
-      @extend .inputLeft-Dark-40
-      background-position: left
-
-      .tagInput
-        @extend .inputContent-Dark-40
-        background-repeat: repeat-x
-
-        input
-          color: #ddd
-
-        .tagAdd
-          +button-dark
-          +shine-dark-alpha(13)
-
-      .tagInputRight
-        @extend .inputRight-Dark-40
-        background-position: right
-
+      #newTag
+        +input-dark(large)
+        color: #ddd
+      .tagAdd
+        +button-dark
+        +shine-dark-alpha(13)
 
 
 
@@ -61,38 +39,36 @@
 #entryField
   // NEW ENTRY TAGS
   .entryTags
+    +relative
+
     .tagInputWrap
-      +right
-      height: 40px
-      margin: 0 0 8px 8px
-      img
-        +left
-        margin: 0
-      .tagInput
-        +left
-        height: 40px
-        margin: 0 0 0 26px
-        input
-          +left
-          +font(18)
-          +transparent
-          +outline
-          width: 400px
-          height: 32px
-          margin: 4px 0
-          border: 0
+      +absolute
+      top: 8px
+      right: 18px
+      width: 532px
+
+      #newTag
+        +font(16)
+        +transparent
+        +outline
+        +absolute
+        +round(8)
+        top: 0
+        left: 0
+        width: 458px
+        height: 38px
+        padding: 0 74px 0 8px
+        border: 0
+
       .tagAdd
         +round(4)
         +center
-        +right
         +bold
+        +absolute
+        right: -4px
+        top: 5px
         width: 62px
         height: 28px
         line-height: 30px
-        margin: 5px 0
         span
           color: #009933
-      .tagInputRight
-        +right
-        width: 14px
-        height: 40px

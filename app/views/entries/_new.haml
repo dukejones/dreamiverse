@@ -35,24 +35,24 @@
 
 
 
-    / BOOKS LIST
-    .books-list.tooltip{title: "add to book"}
-      .img
-
-      %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
-        %option.label{value: ''} Add to Book:
-        = render :partial => "books/book_list"
-        %option.removeBook{value: ''} remove from book
-        %option.newBook{value: 'new'} + new book
-
-      %input.newBook-input{type: 'text', placeholder: 'enter book title', value: '', name: 'book[title]'}
+    / / BOOKS LIST
+    / .books-list.tooltip{title: "add to book"}
+    /   .img
+    / 
+    /   %select#books-list.select-menu.dropdown.offset{name: 'entry[book_id]'}
+    /     %option.label{value: ''} Add to Book:
+    /     = render :partial => "books/book_list"
+    /     %option.removeBook{value: ''} remove from book
+    /     %option.newBook{value: 'new'} + new book
+    / 
+    /   %input.newBook-input{type: 'text', placeholder: 'enter book title', value: '', name: 'book[title]'}
 
 
 
 
     / POST BUTTON
-    = f.submit:value => 'post'#, :'data-disable-with' => "    "
-    #postSpinner.hidden
+    = f.submit:value => 'post', :'data-disable-with' => "    "
+    #postSpinner
 
 
     / SHARING PANEL
@@ -159,7 +159,7 @@
   / NEW ENTRY INPUT PANEL
   #newEntry
 
-    = f.text_field :title, :maxlength => '72'
+    = f.text_field :title, :placeholder => "title", :maxlength => '72'
     %hr#title-hr
     = f.text_area :body, :placeholder => "My dream..."
     .clear
@@ -182,15 +182,12 @@
       .img
       tag
     .tagInputWrap
-      .tagInput
-        %input#newTag.newTag{placeholder: 'who / what / where'}
-        #addTag.tagAdd
-          %span +
-          add
-      .tagInputRight
+      %input#newTag.newTag{placeholder: 'who / what / where'}
+      #addTag.tagAdd
+        %span +
+        add
 
     #tag-list.custom.tag-list.ui-sortable
-
       - @entry.tags.custom.whats.each do |what|
         .tag.tagWhat.newEntry
           .header.trigger

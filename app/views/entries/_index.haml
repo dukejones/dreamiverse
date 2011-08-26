@@ -5,9 +5,9 @@
     %h1= @filters[:type].pluralize
   .clear
 
-.matrix.books{:'data-username' => @user.username}
-  - @books._?.each do |book|
-    = render :partial => 'books/book', :locals => {:book => book}
+/ .matrix.books{:'data-username' => @user.username}
+/   - @books._?.each do |book|
+/     = render :partial => 'books/book', :locals => {:book => book}
 
 / DREAM MATRIX
 .matrix.index{:'data-username' => @user.username}

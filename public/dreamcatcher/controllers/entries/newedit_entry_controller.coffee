@@ -91,6 +91,8 @@ $.Controller 'Dreamcatcher.Controllers.Entries.NewEditEntry', {
     @posted = true
     @clearState()
     el.attr('disabled',true)
+    el.addClass('disabled')
+    $('#postSpinner').show()
     
   '#books-list change': (el) ->
     $('#books-list-button').css {

@@ -8,11 +8,13 @@
   -khtml-user-select: none
   -o-user-select: none
 
+
 // CLICK-THROUGH
 =clickable
   pointer-events: auto
 =click-through
   pointer-events: none
+
 
 // DISPLAY
 =block
@@ -37,6 +39,52 @@
   outline:  none
 
 
+// ARROWS
+=arrow-off($px)
+  border-color: transparent
+  border-width: $px + px
+
+=arrow-dark($dir, $px)
+  border-style: solid
+  height: 0
+  width: 0
+
+  @if $dir == down
+    border-color: #fff transparent transparent
+    border-width: $px + px $px + px 0
+
+  @else if $dir == up
+    border-color: transparent transparent #fff
+    border-width: 0 $px + px $px + px
+
+  @else if $dir == right
+    border-color: transparent transparent transparent #fff
+    border-width: $px + px
+
+=arrow-light($dir, $px)
+  border-style: solid
+  height: 0
+  width: 0
+
+  @if $dir == down
+    border-color: #0f0f0f transparent transparent
+    border-width: $px + px $px + px 0
+
+  @else if $dir == up
+    border-color: transparent transparent #0f0f0f
+    border-width: 0 $px + px $px + px
+
+  @else if $dir == right
+    border-color: transparent transparent transparent #0f0f0f
+    border-width: $px + px
+
+
+// ROTATION
+=rotate($angle)
+  -moz-transform: rotate($angle + deg)
+  -webkit-transform: rotate($angle + deg)
+  -o-transform: rotate($angle + deg)
+  -ms-transform: rotate($angle + deg)
 
 
 // FONTS
@@ -447,9 +495,9 @@
 
 
 =inner-shadow($depth)
-  box-shadow:         inset 0 10px $depth + px rgba(0,0,0,0.4)
-  -moz-box-shadow:    inset 0 10px $depth + px rgba(0,0,0,0.4)
-  -webkit-box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
+  box-shadow:         inset 0 4px $depth + px rgba(0,0,0,0.2)
+  -moz-box-shadow:    inset 0 4px $depth + px rgba(0,0,0,0.2)
+  -webkit-box-shadow: inset 0 4px $depth + px rgba(0,0,0,0.2)
 
 
 

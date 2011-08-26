@@ -105,6 +105,10 @@
     width: 198px
     height: 264px
     background-clip: border-box !important
+    background-repeat: no-repeat
+    background-position: center center
+    background-color: #a4a6a8
+
     &:hover .uploadAvatarWrap
       +block
     .uploadAvatarWrap
@@ -214,6 +218,23 @@
       +round(8)
       padding: 4px 0
 
+    #toggle-profile
+      width: 100%
+      +user-select
+      +alpha(60)
+      &:hover
+        +alpha(100)
+
+      .arrow-down, .arrow-up
+        +absolute
+        +alpha(60)
+        right: 12px
+        top: 12px
+
+      .arrow-up
+        +hidden
+
+
     // PROFILE UPDATE ALERT
     .alert
       +absolute
@@ -244,17 +265,15 @@
 
     .name
       +font(21)
-      +pointer
 
     .location
       +font(12)
       +center
-      +user-select
-      +pointer
 
     .details
       +overflow
       margin: 0 4px
+      cursor: text
 
     .website, .email, .phone, .skype
       +block
@@ -262,9 +281,6 @@
 
     .website:hover
       text-decoration: underline
-
-    .email, .phone, .skype
-      +cursor
 
     .skype
       @extend .skype-16
@@ -397,14 +413,14 @@
 
 
     .detail
-      +inner-shadow(10)
+      +inner-shadow(12)
       +round(12)
       +flat-left
       +bold
       +center
       +overflow
-      width: 80px
-      height: 26px
+      width: 78px
+      height: 24px
       padding: 6px 0
       line-height: 26px
       border: 0
@@ -526,9 +542,19 @@
   // PROFILE
   .profile
 
+    .view
+      .arrow-down
+        +arrow-light(down, 7)
+
+      .arrow-up
+        +arrow-light(up, 7)
+
     // VIEW PROFILE
     .view, .edit
+      +border-light
       +transparent-light(40)
+      &:hover
+        border: 1px solid #8c8c8c
 
       .alert
         +flat-dark
@@ -559,7 +585,8 @@
         color: #333
 
   .item .detail
-    background: rgba(255,255,255,0.8)
+    +border-light
+    background: white
 
 
   // VIEW FILTERS - FAVORITES, REPOST, TAG
@@ -618,10 +645,19 @@
   // PROFILE
   .profile
 
+    .view
+      .arrow-down
+        +arrow-dark(down, 7)
+
+      .arrow-up
+        +arrow-dark(up, 7)
+
     // VIEW PROFILE
     .view, .edit
       +transparent-dark(40)
       border: 1px solid #222
+      &:hover
+        border: 1px solid #777
 
       .alert
         +flat-light

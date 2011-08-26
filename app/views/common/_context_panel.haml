@@ -22,7 +22,7 @@
       = render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
       
       / IMAGE
-      %a.history.avatar{style: "background: url(#{avatar_image(user)}) no-repeat center center #a4a6a8", href: user_entries_path(user.username)}
+      %a.history.avatar{style: "background-image: url(#{avatar_image(user)})", href: user_entries_path(user.username)}
         - if (user == current_user) && !is_ipad?
           .uploadAvatarWrap
             .uploadAvatar
@@ -36,7 +36,7 @@
 
 
       / CONTEXT LABEL
-      %button.context{type: "button"}= user.username
+      %a.history.context{href: user_entries_path(user.username)}= user.username
 
       / RELATIONSHIP
       / IF user is logged in AND user is looking at someone else's page, display the #relationship button
@@ -57,18 +57,21 @@
 
         .view
 
+          %button#toggle-profile{type: "button"}
+            profile
+            .arrow-down
+            .arrow-up
+
           .alert.hidden
             %span.message
               update message
             .check.hidden
             .close
 
-          / .prompt{onclick: "window.contextController.toggleProfile()"} edit your profile
-          .name.hidden{onclick: "window.contextController.toggleProfile()"}
-            = user.name
-
-          / .location{onclick: "window.contextController.toggleProfile()"} San Francisco, USA
           .details.hidden
+
+            .name= user.name
+            / .location San Francisco, USA
 
             .website
               - if user.link
@@ -121,7 +124,7 @@
         .item.entryFilter.entries
 
           %select#entry-filter.select-menu.dropdown.label{:'data-username' => user.username}
-            / %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
+            %option.allEntries{ value: '', :selected => (@filters[:type].blank?) } all entries
             = render :partial => 'common/entry_type_options', :locals => {selected_entry_type: 'dream'}
 
           .img.dream

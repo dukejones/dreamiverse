@@ -4,10 +4,9 @@
 
   .image_data
 
-    %table.image
-      %tr
-        %td
-          %img{src: '/images/bedsheets/today-in-dreams-med.jpg'}
+    .image
+      .cell
+        %img{src: ''}
 
 
     / TAGGING
@@ -30,20 +29,22 @@
 
     / INFO
     .info
-      .name
-        name:
-        %span Artist Name
+      .title
+        Title:
+        %span Title
+        / %input.title-input{type: "text" value: "Title"}
       .author
         author:
         %span Author Name
+        / %input.author-input{type: "text" value: "Author"}
       .year
         year:
         %span 1912
+        / %input.year-input{type: "text" value: "Author"}
 
   / IMAGE REFLECT
   .imageReflect
 
-    %table.image
-      %tr
-        %td
-          %img{src: '/images/bedsheets/today-in-dreams-med.jpg'}
+    .image
+      .cell
+        %img{src: ''}

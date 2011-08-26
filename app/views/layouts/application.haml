@@ -9,15 +9,14 @@
     / ENABLE CHROME FRAME FOR IE
     %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
 
-    - if !@entry._?.main_image
-      %meta{name:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
+    %meta{property: "og:image", content: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = include_stylesheets :common, :media => 'all'
 
 
     = yield :headBefore
 
-    = include_javascripts :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
+    = include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
 
     = yield :head
 
@@ -43,4 +42,5 @@
       = javascript_include_tag 'google_analytics'
 
     = yield :foot
+    / = render 'common/facebook_sdk'
 

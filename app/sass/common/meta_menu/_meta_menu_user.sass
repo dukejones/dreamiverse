@@ -191,12 +191,11 @@
             -moz-box-shadow:    5px 5px 10px rgba(0,0,0,0.6)
             -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.6)
 
-        input.search
+        .search
           +absolute
-          +transparent
           +pointer
           +alpha(30)
-          left: 8px
+          left: 7px
           border: none
           height: 30px
           width: 24px
@@ -412,9 +411,7 @@
   // NEW ENTRY LINK ONLY
   .newEntry
     +block
-    +flat-right
     +center
-    padding: 0 6px 0 10px
     width: 112px
     +font(23)
     letter-spacing: -0.6px
@@ -422,7 +419,13 @@
     +overflow
     white-space: nowrap
     font-weight: normal
-    margin-right: 4px
+
+    // CUSTOM FOR NO DROPDOWN:
+    // +flat-right
+    // margin-right: 4px
+    // padding: 0 6px 0 10px
+    padding: 0 10px
+    margin-right: 12px
 
     .img
       +left

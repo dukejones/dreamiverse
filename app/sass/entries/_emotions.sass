@@ -20,10 +20,9 @@
 
     .arrow
       +absolute
-      width: 16px
-      height: 16px
+      +alpha(80)
       top: 20px
-      right: -12px
+      right: -24px
 
     table.container
       +clear
@@ -162,7 +161,7 @@
   .emotions-details, .emotions-thumb
 
     .arrow
-      @extend .arrow-right-16-dark
+      +arrow-light(right, 12)
 
   // DETAILS ONLY
   .emotions-details
@@ -190,7 +189,7 @@
 .dark
   .emotions-details, .emotions-thumb
     .arrow
-      @extend .arrow-right-16-light
+      +arrow-dark(right, 12)
 
   // DETAILS ONLY
   .emotions-details
