@@ -253,7 +253,7 @@ class Entry < ActiveRecord::Base
   # save auto generated tags + score auto generated custom tags 
   def process_all_tags
     return if @skip_auto_tags
-    Resque.enqueue(ProcessAllTags, self.id) if @changed
+    Resque.enqueue(AutoGenerateTags, self.id) if @changed
   end
    
   def replace_blank_titles

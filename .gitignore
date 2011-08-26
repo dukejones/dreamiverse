@@ -10,4 +10,5 @@ public/dreamcatcher/production.js
 public/dreamcatcher/dreamcatcher.js
 public/assets
 public/compiled
+config/initializers/dump.rdb
 

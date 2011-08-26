@@ -1,4 +1,4 @@
-class ProcessAllTags
+class AutoGenerateTags
   @queue = :process_entry_tags_queue
   
   # save auto generated tags + score auto generated & custom tags 
