@@ -123,7 +123,7 @@ namespace :fix do
     Entry.all.map do |entry|
       if entry.what_tags.auto.any? { |tag| Tag::BlacklistWords[tag.noun.name] }
         log "Re-processing cloud for entry id: #{entry.id}"
-        Tag.auto_generate_tags(entry) 
+        Resque.enqueue(AutoGenerateTags, entry.id)
         entry.reorder_tags
         fixed += 1
       end                              

@@ -1,3 +1,3 @@
 Resque::Server.use(Rack::Auth::Basic) do |user,pass|
-  pass == 'secret'
+  pass == 'secretness'
 end

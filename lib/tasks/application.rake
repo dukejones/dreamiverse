@@ -5,15 +5,14 @@ namespace :app do
     desc "Generate all tags"
     task :generate => :environment do
       begin_time = Time.now
-      log("---Generating all tag clouds---")
+      log("*** Re-generating all entry tag clouds using rake app:tagcloud:generate ***")
       Entry.all.map do |e| 
         next if e.tags.count >= 15
         pre_tags = e.tags.count
-        Tag.auto_generate_tags(e) 
+        Resque.enqueue(AutoGenerateTags, e.id)
         e.reorder_tags 
-        log("id: #{e.id} pre:#{pre_tags} post:#{e.tags.count}")
       end    
-      log("Total time: #{Time.now - begin_time}")
+      log("Total time: #{Decimal(Time.now - begin_time).round(:places => 2)}")
     end
   end
 
