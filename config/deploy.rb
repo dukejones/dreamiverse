@@ -47,7 +47,7 @@ end
 
 
 def unicorn_pid
-  "#{current_path}/tmp/pids/unicorn.pid"
+  "#{shared_path}/pids/unicorn.pid"
 end
 
 namespace :deploy do
@@ -55,7 +55,7 @@ namespace :deploy do
     run "cd #{current_path} && #{try_sudo} unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "#{try_sudo} kill `cat #{unicorn_pid}`"
+    run "#{try_sudo} kill `cat #{unicorn_pid}`" if File.exists?(unicorn_pid)
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
