@@ -5,6 +5,8 @@ gem 'rails', '~>3.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+gem 'unicorn'
+# gem 'foreman'
 gem 'mini_magick'
 gem 'mysql2', '~>0.2.7'
 gem 'haml'
@@ -14,12 +16,13 @@ gem 'coffee-script'
 gem 'barista'
 gem 'coffee-haml-filter'
 gem 'meta_where'
-gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
 gem 'nokogiri'
-gem 'whenever', :require => false
 gem 'jammit'
 gem 'memcache-client'
+
+gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'whenever', :require => false
 
 # Bundle the extra gems:
 # gem 'bj'

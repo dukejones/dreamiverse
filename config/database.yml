@@ -20,7 +20,7 @@ production:
   adapter: mysql2
   database: dreamcatcher_production
   username: dreamcatcher
-  password: luc1d369
+  password: r41ls
 
 dc-alpha:
   adapter: mysql2
