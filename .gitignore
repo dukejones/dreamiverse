@@ -6,5 +6,4 @@ tmp/*
 tmp/**/*
 .DS_Store
 public/images/uploads/*
-public/dreamcatcher/production.js
 public/compiled

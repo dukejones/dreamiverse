@@ -1,3 +1,5 @@
+set :application, "dreamcatcher"
+
 require "bundler/capistrano"
 
 set :stages, %w(theta production)
@@ -17,38 +19,40 @@ set :user, "capistrano"
 set :use_sudo, false
 
 # may help with ubuntu ssh
-ssh_options[:paranoid] = false
-default_run_options[:pty] = true
+# ssh_options[:paranoid] = false
+# default_run_options[:pty] = true
 
 set :keep_releases, 5
 # after "deploy", "deploy:cleanup"
 
 before "deploy:symlink", "barista:brew"
 before "deploy:symlink", "uploads:symlink"
-before "deploy:symlink", "jmvc:compile"
+# before "deploy:symlink", "jmvc:compile"
 before "deploy:symlink", "memcached:restart"
 
 
 namespace :barista do
   task :brew do
-    run("cd #{current_release}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+    run("cd #{release_path}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
   end
 end
 
 namespace :jmvc do
   task :compile do
-    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+    run("cd #{release_path}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
   end
 end
 
 
-set :unicorn_binary, "unicorn"
-set :unicorn_config, "#{current_path}/config/unicorn.rb"
-set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
+
+
+def unicorn_pid
+  "#{current_path}/tmp/pids/unicorn.pid"
+end
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
-    run "cd #{current_path} && #{try_sudo} #{unicorn_binary} -c #{unicorn_config} -E #{rails_env} -D"
+    run "cd #{current_path} && #{try_sudo} unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
     run "#{try_sudo} kill `cat #{unicorn_pid}`"
@@ -100,3 +104,4 @@ end
 #     task t, :roles => :app do ; end
 #   end
 # end
+
