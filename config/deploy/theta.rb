@@ -17,6 +17,6 @@ namespace :uploads do
   
   desc "Create the shared image uploads directory if it doesn't exist, and set the correct permissions."
   task :create_shared do
-    run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 777 #{shared_path}/images/uploads"
+    run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 775 #{shared_path}/images/uploads"
   end
 end

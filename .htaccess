@@ -1,6 +1,5 @@
-ErrorDocument 503 /maintenance/index.html
-RewriteEngine On
+Options +FollowSymlinks
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !/maintenance/index.html$ 
 RewriteCond %{REQUEST_URI} !.(css|gif|jpg|png)$
-RewriteCond %{DOCUMENT_ROOT}/maintenance/index.html -f
-RewriteCond %{SCRIPT_FILENAME} !index.html
-RewriteRule ^.*$  -  [redirect=503,last]
+RewriteRule $ /maintenance/index.html [R=302,L]
