@@ -35,10 +35,6 @@ timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
 pid APP_PATH + "/tmp/pids/unicorn.pid"
-
-# By default, the Unicorn logger will write to stderr.
-# Additionally, ome applications/frameworks log to stderr or stdout,
-# so prevent them from going to /dev/null when daemonized here:
 stderr_path APP_PATH + "/log/unicorn.stderr.log"
 stdout_path APP_PATH + "/log/unicorn.stdout.log"
 

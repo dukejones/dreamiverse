@@ -52,10 +52,11 @@ end
 
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
-    run "cd #{current_path} && #{try_sudo} unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "#{try_sudo} kill `cat #{unicorn_pid}`" if File.exists?(unicorn_pid)
+    run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{try_sudo} kill `cat #{unicorn_pid}`" +
+        "|| echo No unicorn PID: #{unicorn_pid}"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
