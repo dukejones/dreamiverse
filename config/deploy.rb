@@ -33,13 +33,13 @@ before "deploy:symlink", "memcached:restart"
 
 namespace :barista do
   task :brew do
-    run("cd #{release_path}; /usr/bin/env bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+    run("cd #{release_path}; bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
   end
 end
 
 namespace :jmvc do
   task :compile do
-    run("cd #{release_path}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+    run("cd #{release_path}/public; ./js dreamcatcher/scripts/build.js")
   end
 end
 
@@ -50,6 +50,7 @@ def unicorn_pid
   "#{shared_path}/pids/unicorn.pid"
 end
 
+# Magical Unicorn GO!
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
