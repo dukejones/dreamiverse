@@ -10,17 +10,12 @@ set :deploy_to, "/var/www/#{application}"
 server "50.57.155.246", :web, :app, :db, :primary => true, :memcached => true
 
 
-before 'uploads:symlink', 'uploads:create_shared'
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
+    run "mkdir -p #{shared_path}/imagebank/originals; chmod -R 775 #{shared_path}/imagebank"
     run "rm -rf #{release_path}/public/images/uploads"
-    run "ln -fs #{shared_path}/images/uploads #{current_release}/public/images/"
-  end
-  
-  desc "Create the shared image uploads directory if it doesn't exist, and set the correct permissions."
-  task :create_shared do
-    run "mkdir -p #{shared_path}/images/uploads/originals; chmod -R 777 #{shared_path}/images/uploads"
+    run "ln -fs #{shared_path}/imagebank #{current_release}/public/images/uploads"
   end
 end
 
