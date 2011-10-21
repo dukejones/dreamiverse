@@ -8,7 +8,7 @@ set :whenever_command, "bundle exec whenever"
 require 'whenever/capistrano'
 
 set :scm, :git
-set :repository,  "git@dev.dreamcatcher.net:dreamcatcher"
+set :repository,  "iamgit@vajrasong.com:dreamcatcher.git"
 set :deploy_via, :remote_cache
 set :branch, "master"
 set :scm_verbose, true
