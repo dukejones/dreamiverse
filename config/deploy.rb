@@ -46,27 +46,29 @@ end
 
 
 
+# Magical Unicorn GO!
 def unicorn_pid
   "#{shared_path}/pids/unicorn.pid"
 end
-
-# Magical Unicorn GO!
+def signal_unicorn(signal="")
+  "#{try_sudo} kill -s #{signal} `cat #{unicorn_pid}`"
+end
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{try_sudo} kill `cat #{unicorn_pid}`" +
+    run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}" +
         "|| echo No unicorn PID: #{unicorn_pid}"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s QUIT `cat #{unicorn_pid}`"
+    run signal_unicorn("QUIT")
   end
   task :reload, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} kill -s USR2 `cat #{unicorn_pid}`"
+    run signal_unicorn("USR2")
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    stop
+    graceful_stop
     start
   end
 end
