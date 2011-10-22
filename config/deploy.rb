@@ -83,7 +83,7 @@ namespace :memcached do
   desc "Restart memcached"
   task :restart, :roles => [:app], :only => {:memcached => true} do
     sudo "service memcached restart"
-  end        
+  end
   desc "Flush memcached - this assumes memcached is on port 11211"
   task :flush, :roles => [:app], :only => {:memcached => true} do
     sudo "echo 'flush_all' | nc localhost 11211"
