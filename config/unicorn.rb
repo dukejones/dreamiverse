@@ -1,5 +1,3 @@
-# Sample verbose configuration file for Unicorn (not Rack)
-#
 # This configuration file documents many features of Unicorn
 # that may not be needed for some applications. See
 # http://unicorn.bogomips.org/examples/unicorn.conf.minimal.rb
@@ -19,8 +17,6 @@ worker_processes 4
 # user, do this to switch euid/egid in the workers (also chowns logs):
 # user "unprivileged_user", "unprivileged_group"
 
-# Help ensure your application will always spawn in the symlinked
-# "current" directory that Capistrano sets up.
 APP_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
 working_directory APP_PATH # available in 0.94.0+
@@ -37,6 +33,7 @@ timeout 30
 pid APP_PATH + "/tmp/pids/unicorn.pid"
 stderr_path APP_PATH + "/log/unicorn.stderr.log"
 stdout_path APP_PATH + "/log/unicorn.stdout.log"
+
 
 # combine REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow

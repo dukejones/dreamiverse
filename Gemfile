@@ -6,7 +6,7 @@ gem 'rails', '~>3.0'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'unicorn'
-# gem 'foreman'
+gem 'foreman'
 gem 'mini_magick'
 gem 'mysql2', '~>0.2.7'
 gem 'haml'
@@ -22,6 +22,7 @@ gem 'jammit'
 gem 'memcache-client'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
+# gem 'resque-scheduler'
 gem 'whenever', :require => false
 
 # Bundle the extra gems:
@@ -32,7 +33,8 @@ gem 'whenever', :require => false
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'wirble'
+  gem 'bond'
+  # gem 'wirble'
 end
 
 group :test do
