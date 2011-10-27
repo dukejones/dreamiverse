@@ -18,5 +18,7 @@ theta:
 
 production:
   adapter: mysql2
-  database: dreamcatcher_development
+  database: dreamcatcher_production
+  username: dreamcatcher
+  password: r41ls
 
