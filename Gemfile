@@ -7,7 +7,6 @@ gem 'rails', '~>3.0'
 
 gem 'unicorn'
 gem 'foreman'
-gem 'mini_magick'
 gem 'mysql2', '~>0.2.7'
 gem 'haml'
 gem 'sass'
@@ -20,6 +19,7 @@ gem 'exception_notification'
 gem 'nokogiri'
 gem 'jammit'
 gem 'memcache-client'
+gem 'mini_magick'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
@@ -33,7 +33,6 @@ gem 'whenever', :require => false
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'bond'
   # gem 'wirble'
 end
 
@@ -47,6 +46,11 @@ end
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :production do
+  gem 'syslogger'
+  # gem 'buffered_syslogger'
 end
 
 # http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail

@@ -1,16 +1,24 @@
 APP_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 RAILS_ENV = "production"
 
-Bluepill.application("dreamcatcher") do |app|
-  app.working_dir APP_PATH
-  process("unicorn") do |process|
+Bluepill.application("dreamcatcher") do
+  process("unicorn") do
+    working_dir APP_PATH
     start_command  "bundle exec unicorn -c config/unicorn.rb -E #{RAILS_ENV} -D"
     pid_file       APP_PATH + "/tmp/pids/unicorn.pid"
     stop_signals   [:quit, 30.seconds, :term, 5.seconds, :kill]
+    restart_command "kill -USR2 {{PID}}"
 
-    # process.monitor_children do |children|
-    #   children.stop_command "kill -QUIT {{PID}}"
-    # end
+    start_grace_time    8.seconds
+    stop_grace_time     5.seconds
+    restart_grace_time 10.seconds
+    
+    monitor_children do |child_process|
+      child_process.stop_command = "kill -QUIT {{PID}}"
+
+      child_process.checks :mem_usage, :every => 10.seconds, :below => 150.megabytes, :times => [3,4], :fires => :stop
+      child_process.checks :cpu_usage, :every => 10.seconds, :below => 20, :times => [3,4], :fires => :stop
+    end
   end
 end
 

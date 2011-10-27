@@ -26,7 +26,9 @@ Dreamcatcher::Application.configure do
   # config.log_level = :debug
 
   # Use a different logger for distributed setups
-  # config.logger = SyslogLogger.new
+  config.logger = Syslogger.new("dreamcatcher", Syslog::LOG_PID, Syslog::LOG_LOCAL6)
+  # config.colorize_logging = false
+  # config.logger.formatter = DreamLogFormatter.new
 
   # Use a different cache store in production
   config.cache_store = :mem_cache_store

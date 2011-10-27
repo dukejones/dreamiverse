@@ -23,14 +23,13 @@ end
 class DreamLogFormatter < Logger::Formatter
   Format = "[%s(%d)%5s] %s\n" #.encode("ASCII")
   def call(severity, time, progname, msg)
-    Format % [time.to_s(:db), $$, severity, msg2str(msg)]
+    Format % [time.to_s(:short), $$, severity, msg2str(msg)]
   end
 end
 
 
-# If you have a Gemfile, require the gems listed there, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
 
 GmailSmtpSettings = {
   address: "smtp.gmail.com",
@@ -90,9 +89,5 @@ module Dreamcatcher
     
     # config.action_mailer.smtp_settings = GmailSmtpSettings
     config.action_mailer.smtp_settings = MailJetSmtpSettings
-
-
-    config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 10, 30*1024*1024)
-    config.logger.formatter = DreamLogFormatter.new
   end
 end

@@ -43,7 +43,9 @@ namespace :jmvc do
   end
 end
 
-
+task :tail_log, :roles => :app do
+  run "tail -f #{shared_path}/log/#{rails_env}.log"
+end
 
 
 # Magical Unicorn GO!
