@@ -1,9 +1,9 @@
 APP_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 RAILS_ENV = "production"
 
-Bluepill.application("dreamcatcher") do
-  working_dir APP_PATH
-  process("unicorn") do
+Bluepill.application("dreamcatcher") do |app|
+  app.working_dir APP_PATH
+  process("unicorn") do |process|
     start_command  "bundle exec unicorn -c config/unicorn.rb -E #{RAILS_ENV} -D"
     pid_file       APP_PATH + "/tmp/pids/unicorn.pid"
     stop_signals   [:quit, 30.seconds, :term, 5.seconds, :kill]

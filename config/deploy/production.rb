@@ -2,14 +2,14 @@
 set :application, "dreamcatcher"
 
 set :rails_env, 'production'
-set :branch, 'production-rackspace'
+set :branch, 'production'
 
 set :deploy_to, "/var/www/#{application}"
 
 # server "dreamcatcher.net", :web, :app, :db, :primary => true, :memcached => true
 server "50.57.155.246", :web, :app, :db, :primary => true, :memcached => true
 
-
+# Note: We should just use the public/system directory.
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
