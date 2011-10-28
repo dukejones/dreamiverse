@@ -103,6 +103,7 @@ namespace :bluepill do
   desc "Stop processes that bluepill is monitoring and quit bluepill"
   task :quit, :roles => [:app] do
     run "#{sudo} bluepill stop"
+    sleep 1 # better to wait for pid
     run "#{sudo} bluepill quit"
   end
  
