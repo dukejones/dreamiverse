@@ -19,8 +19,8 @@ set :user, "capistrano"
 set :use_sudo, false
 
 # may help with ubuntu ssh
-# ssh_options[:paranoid] = false
-# default_run_options[:pty] = true
+ssh_options[:paranoid] = false
+default_run_options[:pty] = true
 
 set :keep_releases, 5
 # after "deploy", "deploy:cleanup"
@@ -55,13 +55,14 @@ end
 def signal_unicorn(signal="")
   "#{try_sudo} kill -s #{signal} `cat #{unicorn_pid}`"
 end
+
+after "deploy:start", "bluepill:start"
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
-    run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
+    # run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}" +
-        "|| echo No unicorn PID: #{unicorn_pid}"
+    run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
     run signal_unicorn("QUIT")
@@ -71,7 +72,7 @@ namespace :deploy do
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     graceful_stop
-    start
+    # start
   end
 end
 
@@ -98,16 +99,44 @@ namespace :memcached do
   end
 end
 
-# Passenger tasks
-# namespace :deploy do
-#   desc "Restarting mod_rails with restart.txt"
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "touch #{current_path}/tmp/restart.txt"
-#   end
-# 
-#   [:start, :stop].each do |t|
-#     desc "#{t} task is a no-op with mod_rails"
-#     task t, :roles => :app do ; end
-#   end
-# end
+namespace :bluepill do
+  desc "Stop processes that bluepill is monitoring and quit bluepill"
+  task :quit, :roles => [:app] do
+    run "#{sudo} bluepill stop"
+    run "#{sudo} bluepill quit"
+  end
+ 
+  desc "Load bluepill configuration and start it"
+  task :start, :roles => [:app] do
+    run "APP_PATH='#{current_path}' #{sudo} bluepill load #{current_path}/config/#{rails_env}.pill"
+  end
+ 
+  desc "Prints bluepills monitored processes statuses"
+  task :status, :roles => [:app] do
+    run "#{sudo} bluepill status"
+  end
+end
+
+##########################################
+
+task :install_logrotation, :roles => :app do
+  logrotate = <<-LOGROTATE 
+    #{shared_path}/log/*.log {
+      daily
+      missingok
+      rotate 30
+      compress
+      size 5M
+      delaycompress
+      sharedscripts
+      postrotate
+        #{signal_unicorn("USR2")}
+      endscript
+    }
+  LOGROTATE
+  tmpfile = "/tmp/#{application}.logrotate"
+
+  put(logrotate, tmpfile)
+  run "#{sudo} chown root:root #{tmpfile} && #{sudo} mv -f #{tmpfile} /etc/logrotate.d/#{application}"
+end
 

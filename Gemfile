@@ -48,10 +48,10 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
-group :production do
-  gem 'syslogger'
-  # gem 'buffered_syslogger'
-end
+# group :production do
+#   gem 'syslogger'
+#   # gem 'buffered_syslogger'
+# end
 
 # http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail
 # group :test, :cucumber do

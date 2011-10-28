@@ -30,7 +30,7 @@ Dreamcatcher::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
-  config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 10, 30*1024*1024)
+  config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 3, 5*1024*1024)
   config.logger.formatter = DreamLogFormatter.new
   
   
