@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -187,11 +188,11 @@ ActiveRecord::Schema.define(:version => 20110620201844) do
     t.integer  "default_location_id"
     t.integer  "default_sharing_level"
     t.boolean  "follow_authorization",  :default => false
-    t.boolean  "ubiquity",              :default => false,        :null => false
+    t.boolean  "ubiquity",              :default => false,      :null => false
     t.integer  "auth_level",            :default => 0
     t.integer  "starlight",             :default => 0
     t.integer  "cumulative_starlight",  :default => 0
-    t.string   "stream_filter",         :default => "--- {}\n\n"
+    t.string   "stream_filter",         :default => "--- {}\n"
     t.string   "default_landing_page",  :default => "stream"
     t.string   "default_entry_type",    :default => "dream"
   end
