@@ -56,10 +56,10 @@ def signal_unicorn(signal="")
   "#{try_sudo} kill -s #{signal} `cat #{unicorn_pid}`"
 end
 
-after "deploy:start", "bluepill:start"
+# after "deploy:start", "bluepill:start"
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
-    # run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
     run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}"
@@ -71,8 +71,7 @@ namespace :deploy do
     run signal_unicorn("USR2")
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    graceful_stop
-    # start
+    run signal_unicorn("HUP")
   end
 end
 
@@ -109,9 +108,15 @@ namespace :bluepill do
  
   desc "Load bluepill configuration and start it"
   task :start, :roles => [:app] do
-    run "APP_PATH='#{current_path}' #{sudo} bluepill load #{current_path}/config/#{rails_env}.pill"
+    run "#{sudo} env APP_PATH='#{current_path}' bluepill load #{current_path}/config/#{rails_env}.pill"
   end
- 
+
+  desc "Reload the bluepill configuration"
+  task :reload, :roles => [:app] do
+    quit
+    start
+  end
+
   desc "Prints bluepills monitored processes statuses"
   task :status, :roles => [:app] do
     run "#{sudo} bluepill status"
@@ -120,24 +125,25 @@ end
 
 ##########################################
 
-task :install_logrotation, :roles => :app do
-  logrotate = <<-LOGROTATE 
-    #{shared_path}/log/*.log {
-      daily
-      missingok
-      rotate 30
-      compress
-      size 5M
-      delaycompress
-      sharedscripts
-      postrotate
-        #{signal_unicorn("USR2")}
-      endscript
-    }
-  LOGROTATE
-  tmpfile = "/tmp/#{application}.logrotate"
+namespace :setup do
+  task :install_logrotation, :roles => :app do
+    logrotate = <<-BASH 
+      #{shared_path}/log/*.log {
+        daily
+        missingok
+        rotate 30
+        compress
+        size 5M
+        delaycompress
+        sharedscripts
+        postrotate
+          #{signal_unicorn("USR1")}
+        endscript
+      }
+    BASH
+    tmpfile = "/tmp/#{application}.logrotate"
 
-  put(logrotate, tmpfile)
-  run "#{sudo} chown root:root #{tmpfile} && #{sudo} mv -f #{tmpfile} /etc/logrotate.d/#{application}"
+    put(logrotate, tmpfile)
+    run "#{sudo} chown root:root #{tmpfile} && #{sudo} mv -f #{tmpfile} /etc/logrotate.d/#{application}"
+  end
 end
-
