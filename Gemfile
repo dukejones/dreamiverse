@@ -1,11 +1,12 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mini_magick'
+gem 'unicorn'
+gem 'foreman'
 gem 'mysql2', '~>0.2.7'
 gem 'haml'
 gem 'sass'
@@ -14,13 +15,16 @@ gem 'omniauth'
 gem 'barista'
 # gem 'coffee-haml-filter'
 gem 'meta_where'
-gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'exception_notification'
 gem 'nokogiri'
-gem 'whenever', :require => false
 gem 'jammit'
 gem 'memcache-client'
 gem 'resque', :require => 'resque/server'
+gem 'mini_magick'
+
+gem 'recaptcha', :require => 'recaptcha/rails'
+# gem 'resque-scheduler'
+gem 'whenever', :require => false
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -30,8 +34,8 @@ gem 'resque', :require => 'resque/server'
 group :development do
   gem 'capistrano'
   gem 'capistrano-ext'
-  gem 'wirble'
   gem 'active_reload'
+  # gem 'wirble'
 end
 
 group :test do
@@ -45,6 +49,11 @@ end
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
+
+# group :production do
+#   gem 'syslogger'
+#   # gem 'buffered_syslogger'
+# end
 
 # http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail
 # group :test, :cucumber do
