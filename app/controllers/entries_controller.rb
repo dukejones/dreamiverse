@@ -115,6 +115,34 @@ class EntriesController < ApplicationController
     end
   end
   
+  def download
+    @entry = Entry.find params[:id]
+    deny and return unless user_can_write?
+    
+    entry_dir_name = @entry.title[0..35].parameterize
+    root_dir = File.join(Rails.root, 'tmp', 'entries', current_user.id.to_s)
+    entry_dir = File.join(root_dir, entry_dir_name)
+    entry_zip_name = entry_dir_name + '.zip'
+
+    FileUtils.mkdir_p(entry_dir)
+    File.open(File.join(entry_dir, "#{@entry.type}.txt"), 'w') do |f| 
+      f.write @entry.title + "\n"
+      f.write @entry.created_at.to_s(:long) + "\n\n"
+      f.write @entry.body + "\n\n"
+      f.write "Tags\n----\n"
+      f.write @entry.whats.map(&:name).join("\n")
+    end
+    @entry.images.each do |image|
+      FileUtils.ln(image.path, File.join(entry_dir, image.original_filename), :force => true)
+    end
+
+    # optional: render a pdf
+
+    %x{ cd #{root_dir} && zip -r #{entry_zip_name} #{entry_dir_name} }
+    FileUtils.rm_rf(entry_dir)
+    send_file File.join(root_dir, entry_zip_name)
+  end
+  
   def destroy
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?

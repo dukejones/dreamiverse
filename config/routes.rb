@@ -100,6 +100,7 @@ Dreamcatcher::Application.routes.draw do
     member do
       post 'bedsheet', :to => 'entries#bedsheet'
       post 'set_view_preferences', :to => 'entries#set_view_preferences'
+      get 'download', :to => 'entries#download', :as => 'download'
     end
     resources :comments
   end
