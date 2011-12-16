@@ -5,6 +5,8 @@
       = truncate(@page_title, length: 72) + ' - ' if @page_title
       Dreamcatcher ( Life is a dream. )
     = csrf_meta_tag
+    - if !@entry._?.main_image
+      %meta{property:"og:image", content:"http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     / ENABLE CHROME FRAME FOR IE
     %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
@@ -44,3 +46,4 @@
     = yield :foot
     / = render 'common/facebook_sdk'
 
+    =# render "shared/facebook_sdk"

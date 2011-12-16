@@ -48,6 +48,8 @@ Dreamcatcher::Application.routes.draw do
   # Mounts
   mount Resque::Server, :at => '/resque'
   
+  match "/facebook_channel", :to => proc {|env| [200, {}, ['<script src="//connect.facebook.net/en_US/all.js"></script>']] }, :as => :facebook_channel
+
   # Resources
 
   resource :user do

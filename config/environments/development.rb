@@ -21,10 +21,6 @@ Dreamcatcher::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
-  # Mailtrap
-  # config.action_mailer.smtp_settings = { port: 2525 }
-  # Gmail
-  # config.action_mailer.smtp_settings = GmailSmtpSettings
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -32,7 +28,9 @@ Dreamcatcher::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   
-  config.action_mailer.default_url_options = { :host => 'localhost', :port => 3000 }
-
+  config.action_mailer.default_url_options = { :host => 'localhost', :port => 8080 }
+  
+  config.logger = Logger.new(Rails.root.join('log', "#{Rails.env}.log"), 3, 5*1024*1024)
+  config.logger.formatter = DreamLogFormatter.new
 end
 
