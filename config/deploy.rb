@@ -53,7 +53,7 @@ def unicorn_pid
   "#{shared_path}/pids/unicorn.pid"
 end
 def signal_unicorn(signal="")
-  "#{try_sudo} kill -s #{signal} `cat #{unicorn_pid}`"
+  "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
 end
 
 # after "deploy:start", "bluepill:start"
@@ -86,11 +86,13 @@ namespace :memcached do
   end
   desc "Restart memcached"
   task :restart, :roles => [:app], :only => {:memcached => true} do
-    sudo "service memcached restart"
+    # sudo "service memcached restart"
+    sudo "service memcached stop"
+    sudo "service memcached start"
   end
   desc "Flush memcached - this assumes memcached is on port 11211"
   task :flush, :roles => [:app], :only => {:memcached => true} do
-    sudo "echo 'flush_all' | nc localhost 11211"
+    run "echo 'flush_all' | nc localhost 11211"
   end
   desc "Symlink the memcached.yml file into place if it exists"
   task :symlink_configs, :roles => [:app], :only => {:memcached => true }, :except => { :no_release => true } do
@@ -117,7 +119,7 @@ namespace :bluepill do
     start
   end
 
-  desc "Prints bluepills monitored processes statuses"
+  desc "Prints bluepill's monitored processes' statuses"
   task :status, :roles => [:app] do
     run "#{sudo} bluepill status"
   end

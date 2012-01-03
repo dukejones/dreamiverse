@@ -13,7 +13,9 @@ server "50.57.155.246", :web, :app, :db, :primary => true, :memcached => true
 namespace :uploads do
   desc "Symlink the uploads directory to the shared uploads directory."
   task :symlink do
-    run "mkdir -p #{shared_path}/imagebank/originals; chmod -R 775 #{shared_path}/imagebank" + 
+    # Note: imagemagick is creating new images owned by root & having 644 perms
+    # chmod -R 775 #{shared_path}/imagebank
+    run "mkdir -p #{shared_path}/imagebank/originals" + 
     " && rm -rf #{release_path}/public/images/uploads" + 
     " && ln -fs #{shared_path}/imagebank #{current_release}/public/images/uploads"
   end
