@@ -197,8 +197,9 @@
 
           #sorting
           .clear
-          %a.downloadEntry{href: download_entry_path(@entry.id)} download entry
-          .clear
+          - if @entry.user == current_user && current_user._?.auth_level == 5
+            %a.downloadEntry{href: download_entry_path(@entry.id)} download entry
+            .clear
 
 
     / HIDDEN FIELD FOR SHOW ENTRY MODE 
