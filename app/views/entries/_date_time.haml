@@ -7,7 +7,7 @@
   .date
     = select_month(datetime, {:prefix => :dreamed_at}, :class => 'month')
     = select_day(datetime, {:prefix => :dreamed_at},   :class => 'day')
-    = select_year(datetime, {:prefix => :dreamed_at, :start_year => 2011, :end_year => 1900},  :class => 'year')
+    = select_year(datetime, {:prefix => :dreamed_at, :start_year => Time.now.year, :end_year => 1960},  :class => 'year')
   
   .time
     = dc_select_hour(datetime, {:prefix => :dreamed_at}, :class => 'hour')

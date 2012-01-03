@@ -77,9 +77,10 @@ class UsersController < ApplicationController
   def destroy
     redirect_to :root, :alert => "No user." and return unless current_user
     
+    logger.warn "Destroyed user #{current_user.id}: #{current_user.username} with #{current_user.entries.count} entries."
     current_user.destroy
     session[:user_id] = nil
-    redirect_to :root, :notice => "Goodbye."
+    redirect_to :root, :notice => "Goodbye. Keep on dreaming!"
   end
   
   def wrong_email

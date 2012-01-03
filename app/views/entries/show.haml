@@ -43,7 +43,7 @@
     - if @entry.user == current_user
       %a.editEntry{href: edit_entry_path(@entry)} edit
       = link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
-
+      
     / 
       XXX
       .books My Book of Dreams
@@ -196,8 +196,8 @@
 
 
           #sorting
-          #download
-            %a{href: download_entry_path(@entry.id)} download
+          .clear
+          %a.downloadEntry{href: download_entry_path(@entry.id)} download entry
           .clear
 
 

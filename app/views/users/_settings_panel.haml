@@ -86,10 +86,11 @@
     .clear
 
 
+  %a.feedback{href: user_path, :'data-method' => 'delete', :'data-confirm' => "Are you absolutely sure? This will delete your user account and every entry in it.  Be sure to download your dreams first if you want to keep them!"}
+    permanently delete this account
 
   %a.feedback{href: "/feedback"} send feedback / report a bug
   
-  = button_to("Delete this user account", user_path, {method: 'delete', confirm: "Are you absolutely sure? This will delete your user account and every entry in it.  Be sure to download your dreams first if you want to keep them!", class: 'feedback'})
     
 
 

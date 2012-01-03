@@ -27,7 +27,7 @@
       +cancel(16)
     .stream
       +flat-all
-    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry
+    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .downloadEntry
       +block
       +center
       +bold
@@ -81,7 +81,13 @@
       +round(16)
       +font(14)
       +flat-right
-    .editEntry:hover, .deleteEntry:hover
+    .downloadEntry
+      +alpha(60)
+      +round(16)
+      +font(14)
+      +left
+      margin-top: 8px
+    .editEntry:hover, .deleteEntry:hover, .downloadEntry:hover
       +alpha(100)
 
     // HEADER IMAGE & TITLE
@@ -400,6 +406,10 @@
         +bevel-light
         +delete(15)
 
+      .downloadEntry
+        +button-light
+        +bevel-light
+
       .books
         +button-light
 
@@ -507,6 +517,10 @@
         +button-dark
         +bevel-dark
         +delete(15)
+
+      .downloadEntry
+        +button-dark
+        +bevel-dark
 
       .books
         +button-dark

@@ -133,7 +133,9 @@ class EntriesController < ApplicationController
       f.write @entry.whats.map(&:name).join("\n")
     end
     @entry.images.each do |image|
-      FileUtils.ln(image.path, File.join(entry_dir, image.original_filename), :force => true)
+      if File.exists? image.path
+        FileUtils.ln(image.path, File.join(entry_dir, image.original_filename), :force => true)
+      end
     end
 
     # optional: render a pdf
