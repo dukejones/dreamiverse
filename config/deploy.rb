@@ -56,7 +56,8 @@ def signal_unicorn(signal="")
   "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
 end
 
-after "deploy:start", "bluepill:restart"
+after "deploy:start", "bluepill:start"
+after "deploy:restart", "bluepill:restart"
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
     # run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
@@ -102,7 +103,7 @@ end
 
 namespace :bluepill do
   desc "Stop processes that bluepill is monitoring and quit bluepill"
-  task :quit, :roles => [:app] do
+  task :stop, :roles => [:app] do
     run "#{sudo} bluepill stop"
     sleep 1 # better to wait for pid
     run "#{sudo} bluepill quit"

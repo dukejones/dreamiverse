@@ -131,6 +131,8 @@ class EntriesController < ApplicationController
       f.write @entry.body + "\n\n"
       f.write "Tags\n----\n"
       f.write @entry.whats.map(&:name).join("\n")
+      # f.write "Comments\n--------\n"
+      # f.write @entry.comments.
     end
     @entry.images.each do |image|
       if File.exists? image.path
