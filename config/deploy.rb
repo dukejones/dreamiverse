@@ -56,23 +56,23 @@ def signal_unicorn(signal="")
   "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
 end
 
-after "deploy:start", "bluepill:start"
-after "deploy:restart", "bluepill:restart"
 namespace :deploy do
   task :start, :roles => :app, :except => { :no_release => true } do 
     # run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
+    run "#{sudo} god start dreamcatcher"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do 
     # run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}"
+    run "#{sudo} god stop dreamcatcher"
   end
   task :graceful_stop, :roles => :app, :except => { :no_release => true } do
     # run signal_unicorn("QUIT")
   end
   task :reload, :roles => :app, :except => { :no_release => true } do
-    # run signal_unicorn("USR2")
+    run signal_unicorn("USR2")
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    # run signal_unicorn("HUP")
+    run signal_unicorn("HUP")
   end
 end
 
