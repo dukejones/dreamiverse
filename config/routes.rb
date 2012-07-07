@@ -12,7 +12,8 @@ Dreamcatcher::Application.routes.draw do
     resource :registration
   end
 
-  match '/doktorj:dream' => redirect("/jeremiah%{dream}")
+  match '/doktorj' => redirect("/jeremiah")
+  match '/doktorj/:dream' => redirect("/jeremiah/%{dream}")
   
   # Authorization and Registration Routes
   post  'login'  => 'user/sessions#create', :as => :login
