@@ -12,6 +12,9 @@ Dreamcatcher::Application.routes.draw do
     resource :registration
   end
 
+  match '/doktorj' => redirect("/jeremiah")
+  match '/doktorj/:dream' => redirect("/jeremiah/%{dream}")
+  
   # Authorization and Registration Routes
   post  'login'  => 'user/sessions#create', :as => :login
   get   'login'  => 'user/sessions#new', :as => :login
@@ -110,6 +113,7 @@ Dreamcatcher::Application.routes.draw do
       post 'set_view_preferences', :to => 'entries#set_view_preferences'
       get  'next', :to => 'entries#next', :as => 'next'
       get  'previous', :to => 'entries#previous', :as => 'previous'
+      get 'download', :to => 'entries#download', :as => 'download'
     end
     resources :comments
   end

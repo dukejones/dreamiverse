@@ -1,3 +1,5 @@
+
+
 / SHOW ENTRY
 .entry{:'data-id' => @entry.id, :'data-userid' => @entry.user_id, :'data-viewpreference' => "#{@entry.view_preference.to_json}", :class => @entry.images.blank? ? "noImage" : "" }
 
@@ -165,6 +167,10 @@
 
         #sorting
         .clear
+        - if @entry.user == current_user && current_user._?.auth_level == 5
+          %a.downloadEntry{href: download_entry_path(@entry.id)} download entry
+          .clear
+        
 
 
   / HIDDEN FIELD FOR SHOW ENTRY MODE 

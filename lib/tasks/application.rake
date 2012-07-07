@@ -1,3 +1,21 @@
+task :compile => ['barista:brew', 'compile:sass', 'compile:jammit']
+namespace :compile do
+  desc "Build all application sass"
+  task :sass => :environment do
+    log "Compiling Sass Stylesheets."
+    # Sass::Plugin.on_updating_stylesheet {|template, css| puts "compiling #{template} to #{css}" }
+    Sass::Plugin.update_stylesheets
+  end
+
+  desc "Compile and compress all assets with Jammit"
+  task :jammit => :environment do
+    log "Packaging assets with Jammit."
+    Jammit.package!
+  end
+
+end
+
+
 
 namespace :app do
  

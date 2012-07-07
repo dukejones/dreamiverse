@@ -15,7 +15,7 @@ worker_processes 4
 # as root unless it's from system init scripts.
 # If running the master process as root and the workers as an unprivileged
 # user, do this to switch euid/egid in the workers (also chowns logs):
-# user "unprivileged_user", "unprivileged_group"
+user "capistrano", "capistrano"
 
 APP_PATH = File.expand_path(File.dirname(File.dirname(__FILE__)))
 
