@@ -25,28 +25,43 @@ default_run_options[:pty] = true
 set :keep_releases, 5
 # after "deploy", "deploy:cleanup"
 
-before "deploy:symlink", "barista:brew"
+before "deploy:symlink", "compile:barista"
+after  "compile:barista", "compile:assets"
 before "deploy:symlink", "uploads:symlink"
 # before "deploy:symlink", "jmvc:compile"
 before "deploy:symlink", "memcached:restart"
 
 
-namespace :barista do
-  task :brew do
-    run("cd #{release_path}; bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
-  end
-end
 
-namespace :jmvc do
-  task :compile do
-    run("cd #{release_path}/public; ./js dreamcatcher/scripts/build.js")
-  end
-end
 
 task :tail_log, :roles => :app do
   run "tail -f #{shared_path}/log/#{rails_env}.log"
 end
 
+
+namespace :compile do
+  task :jmvc do
+    run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
+  end
+  
+  task :assets do
+    rake 'compile'
+  end
+  
+  task :haml do
+    rake 'app:ping'
+  end
+
+  task :barista do
+    # run("cd #{release_path}; bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+    rake 'barista:brew'
+  end
+end
+
+def rake(cmd, options={}, &block)
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
+  run(command, options, &block)
+end
 
 # Magical Unicorn GO!
 def unicorn_pid
