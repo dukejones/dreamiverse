@@ -25,8 +25,7 @@ default_run_options[:pty] = true
 set :keep_releases, 5
 # after "deploy", "deploy:cleanup"
 
-before "deploy:symlink", "compile:barista"
-after  "compile:barista", "compile:assets"
+before "deploy:symlink", "compile:assets"
 before "deploy:symlink", "uploads:symlink"
 # before "deploy:symlink", "jmvc:compile"
 before "deploy:symlink", "memcached:restart"
@@ -52,10 +51,10 @@ namespace :compile do
     rake 'app:ping'
   end
 
-  task :barista do
-    # run("cd #{release_path}; bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
-    rake 'barista:brew'
-  end
+  # task :barista do
+  #   # run("cd #{release_path}; bundle exec rake barista:brew RAILS_ENV=#{rails_env}")
+  #   rake 'barista:brew'
+  # end
 end
 
 def rake(cmd, options={}, &block)
