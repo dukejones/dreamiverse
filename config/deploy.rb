@@ -141,27 +141,3 @@ namespace :bluepill do
   end
 end
 
-##########################################
-
-namespace :setup do
-  task :install_logrotation, :roles => :app do
-    logrotate = <<-BASH 
-      #{shared_path}/log/*.log {
-        daily
-        missingok
-        rotate 30
-        compress
-        size 5M
-        delaycompress
-        sharedscripts
-        postrotate
-          #{signal_unicorn("USR1")}
-        endscript
-      }
-    BASH
-    tmpfile = "/tmp/#{application}.logrotate"
-
-    put(logrotate, tmpfile)
-    run "#{sudo} chown root:root #{tmpfile} && #{sudo} mv -f #{tmpfile} /etc/logrotate.d/#{application}"
-  end
-end
