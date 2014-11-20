@@ -29,10 +29,10 @@ class Entry < ActiveRecord::Base
   def what_tags
     self.tags.of_type(What)
   end
-  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What', :order => 'position asc', :uniq => true
-  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who', :uniq => true
-  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where', :uniq => true
-  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion', :uniq => true
+  has_many :whats,  :through => :tags, :source => :noun, :source_type => 'What' # , :uniq => true # , :order => 'position asc'
+  has_many :whos,   :through => :tags, :source => :noun, :source_type => 'Who' # , :uniq => true
+  has_many :wheres, :through => :tags, :source => :noun, :source_type => 'Where' # , :uniq => true
+  has_many :emotions, :through => :tags, :source => :noun, :source_type => 'Emotion' # , :uniq => true
   
   has_one :view_preference, :as => "viewable", :dependent => :destroy
   accepts_nested_attributes_for :view_preference, :update_only => true

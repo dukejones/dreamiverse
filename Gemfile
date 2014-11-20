@@ -1,25 +1,31 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.11'
-
+gem 'rails', '4.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'unicorn'
 gem 'foreman'
-gem 'mysql2', '~>0.2.7'
+gem 'mysql2'
 gem 'haml'
-gem 'sass'
+
+# New asset pipeline
+
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+
+# Asset stuff -- to be decided
+# gem 'jammit'
+# gem 'coffee-script'
+# gem 'barista'
+
 gem 'omniauth'
 gem 'omniauth-facebook'
-# gem 'coffee-script'
-gem 'barista'
-# gem 'coffee-haml-filter'
-gem 'meta_where'
 gem 'exception_notification'
 gem 'nokogiri'
-gem 'jammit'
-gem 'memcache-client'
+#gem 'memcache-client'
+gem 'dalli'
 gem 'resque', :require => 'resque/server'
 gem 'mini_magick'
 # gem 'quick_magick'
@@ -28,15 +34,30 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
 gem 'whenever', :require => false
 
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.0'
+# bundle exec rake doc:rails generates the API under doc/api.
+gem 'sdoc', '~> 0.4.0',          group: :doc
+
+# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+# gem 'spring',        group: :development
+
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
 # Bundle the extra gems:
 # gem 'bj'
 # gem 'aws-s3', :require => 'aws/s3'
 # gem 'rgeo' - when we get into doing lots of geocoding / calculations.
 
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-ext'
-  gem 'active_reload'
+  gem 'capistrano-rails'
+
+  # gem 'capistrano'
+  # gem 'capistrano-ext'
+  # gem 'active_reload'
   # gem 'wirble'
 end
 
@@ -45,11 +66,11 @@ group :test do
   gem 'machinist'
   gem 'faker'
   gem 'mocha'
-  gem 'infinity_test', :git => "git://github.com/tomas-stefano/infinity_test.git"
+  # gem 'infinity_test', :git => "git://github.com/tomas-stefano/infinity_test.git"
 end
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+  #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 # group :production do
@@ -66,3 +87,14 @@ end
 #   gem "treetop"
 #   gem "launchy"
 # end
+
+
+
+## NEW ##
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer',  platforms: :ruby
+
+# Use debugger
+# gem 'debugger', group: [:development, :test]
+

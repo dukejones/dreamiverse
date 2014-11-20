@@ -5,6 +5,7 @@ require 'net/http'
 require 'open-uri'
 require 'digest/sha1'
 
+Bundler.require(*Rails.groups)
 
 def sha1(string)
   Digest::SHA1.hexdigest string if string.is_a? String
@@ -26,9 +27,6 @@ class DreamLogFormatter < Logger::Formatter
     Format % [time.to_s(:short), $$, severity, msg2str(msg)]
   end
 end
-
-
-Bundler.require(:default, Rails.env) if defined?(Bundler)
 
 
 GmailSmtpSettings = {
@@ -91,3 +89,6 @@ module Dreamcatcher
     config.action_mailer.smtp_settings = MailJetSmtpSettings
   end
 end
+
+
+

@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    @entries = Entry.everyone.where(:created_at >= 3.days.ago).order("starlight DESC").limit(8)
+    @entries = Entry.everyone.where(["created_at >= ?", 3.days.ago]).order("starlight DESC").limit(8)
   end
   
   def landing_page

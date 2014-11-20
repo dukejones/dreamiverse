@@ -1,4 +1,4 @@
-dc ?= {}
+dc = {} if dc?
 
 dc.modal = ->
   $("<div>Your web browser is incompatible with Dreamcatcher.net. Please install Google's Chrome Frame to fix the issue.</div>").dialog({

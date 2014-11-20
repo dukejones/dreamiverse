@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   before_filter :set_seed_code, :set_client_timezone
   helper_method :current_user, :page_is_mine?, :is_mobile?
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   def current_user
     if session[:user_id] 
