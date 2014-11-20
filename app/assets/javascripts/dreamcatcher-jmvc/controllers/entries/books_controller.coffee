@@ -62,7 +62,7 @@ $.Controller 'Dreamcatcher.Controllers.Entries.Books', {
       when 'title'
         promise.done => $('.title', @element).text value
       when 'image_id'
-        bg = if format? then "url(/images/uploads/#{value}-bookcover.#{format})" else ''
+        bg = if format? then "url(/assets/uploads/#{value}-bookcover.#{format})" else ''
         promise.done => $('.cover, .dropbox-field-shine', @element).css {
           'background-image': bg
         }
