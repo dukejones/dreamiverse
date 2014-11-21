@@ -61,7 +61,7 @@ class User::RegistrationsController < ApplicationController
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
     @user = User.new(user_params)
-    if !verify_recaptcha && Rails.env != 'development'
+    if !verify_recaptcha && !Rails.env.development
       @user.errors.add :the_captcha, "entered was incorrect"
       raise ActiveRecord::RecordInvalid.new(@user)
     end

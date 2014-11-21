@@ -12,5 +12,5 @@ def log(msg, level=:info)
   puts msg
 end
 
-Dreamcatcher::Application.load_tasks
+Rails.Application.load_tasks
 
