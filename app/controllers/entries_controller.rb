@@ -31,7 +31,7 @@ class EntriesController < ApplicationController
     @filters[:page_size] ||= 24
 
     # TODO: check viewing permissions depending on user
-    @books = Book.where({user_id: @user.id}).order(:created_at.desc) unless @filters[:type]
+    @books = Book.where({user_id: @user.id}).order("created_at desc") unless @filters[:type]
     
     # TODO: Make this one query.
     @entries = entry_list(:dreamfield, @filters)

@@ -60,8 +60,12 @@ class User::RegistrationsController < ApplicationController
     # creates a user with an email / password.
     params[:user][:seed_code] = session[:seed_code] unless params[:user].has_key?(:seed_code)
     
-    @user = User.new(params[:user])
-    raise ActiveRecord::RecordInvalid.new(@user) unless (@captcha = verify_recaptcha)
+    @user = User.new(user_params)
+    if !verify_recaptcha && Rails.env != 'development'
+      @user.errors.add :the_captcha, "entered was incorrect"
+      raise ActiveRecord::RecordInvalid.new(@user)
+    end
+
     @user.save!
   
     set_current_user @user
@@ -82,7 +86,6 @@ class User::RegistrationsController < ApplicationController
     # redirect_to join_path(user: params[:user]), :alert => "could not create the user."
     errors = @user.errors.full_messages
     # Captcha verification & error adding would be cleaner in the model.
-    errors << "captcha error: the captcha entered was incorrect" unless @captcha
     flash.now[:alert] = "we could not create this user:<br>" + errors.join('<br>')
     render "users/join"
   end
@@ -90,4 +93,9 @@ class User::RegistrationsController < ApplicationController
   # def update
   #   # adds email / password to existing user.    
   # end
+
+private
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :username, :seed_code)
+  end
 end

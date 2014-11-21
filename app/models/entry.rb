@@ -46,7 +46,7 @@ class Entry < ActiveRecord::Base
   #validates_presence_of :body
   validates_presence_of :dreamed_at
   
-  after_initialize :init_dreamed_at
+  after_create :init_dreamed_at
   before_save :set_sharing_level, :set_main_image, :replace_blank_titles
   before_create :create_view_preference
   # after_create :set_user_defaults
@@ -93,14 +93,15 @@ class Entry < ActiveRecord::Base
     page = 1 if page <= 0
     
     # Universal scope
-    entry_scope = Entry.order(:created_at.desc)
+    entry_scope = Entry.order("created_at desc")
     entry_scope = entry_scope.where(type: filters[:type]) unless filters[:type].blank?
-    entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private]).where(:sharing_level ^ self::Sharing[:anonymous])
+    entry_scope = entry_scope.where(["sharing_level != ? AND sharing_level != ?", 
+      self::Sharing[:private], self::Sharing[:anonymous]])
 
     # Others' Entries, paged.
     others_entries = entry_scope
 
-    unless filters[:users].blank?
+    if filters[:users]
       user_ids_to_view =  # based on friend filter
         if filters[:users] == "friends"
           viewer.friends
@@ -111,13 +112,18 @@ class Entry < ActiveRecord::Base
     
       others_entries = others_entries.where(:user_id => user_ids_to_view)
     else
-      others_entries = others_entries.where(:user_id ^ viewer.id)
+      others_entries = others_entries.where(["user_id != ?", viewer.id])
     end
 
     others_entries = others_entries.limit(page_size)
     others_entries = others_entries.offset(page_size * (page - 1))
     
-    time_range = Entry.select('count(e.created_at) as num_entries, max(e.created_at) as max_time, min(e.created_at) as min_time').from("(#{others_entries.select(:created_at).to_sql}) as e").first
+    time_range = Entry.select('
+      count(e.created_at) as num_entries, 
+      max(e.created_at) as max_time, 
+      min(e.created_at) as min_time
+    ').from("(#{others_entries.select(:created_at).to_sql}) as e")[0]
+    
     return [] if time_range.num_entries == 0
     
     my_entries = entry_scope.where(:user => viewer)
@@ -146,7 +152,7 @@ class Entry < ActiveRecord::Base
   end
 
   def self.dreamfield(viewer, viewed, filters={})
-    entry_scope = Entry.order(:dreamed_at.desc)
+    entry_scope = Entry.order("dreamed_at desc")
     
     page_size = filters[:page_size] || 24
     page = filters[:page].to_i
@@ -159,10 +165,10 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.offset(page_size * (page - 1))
     
     if viewer
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:private])   unless viewer == viewed
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:anonymous]) unless viewer == viewed
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:followers]) unless viewer.following?(viewed) || viewer == viewed
-      entry_scope = entry_scope.where(:sharing_level ^ self::Sharing[:friends])   unless viewer.friends_with?(viewed) || viewer == viewed
+      entry_scope = entry_scope.where(["sharing_level != ?", self::Sharing[:private]])   unless viewer == viewed
+      entry_scope = entry_scope.where(["sharing_level != ?", self::Sharing[:anonymous]]) unless viewer == viewed
+      entry_scope = entry_scope.where(["sharing_level != ?", self::Sharing[:followers]]) unless viewer.following?(viewed) || viewer == viewed
+      entry_scope = entry_scope.where(["sharing_level != ?", self::Sharing[:friends]]) unless viewer.friends_with?(viewed) || viewer == viewed
       # TODO: Put a log warning here if it eliminates any entries.  So we can get rid of this line eventually.
       entries = entry_scope.select {|e| viewer.can_access?(e) }
     else
@@ -182,7 +188,6 @@ class Entry < ActiveRecord::Base
     new_links = links_attrs.map do |attrs| 
       if link = self.links.where(url: attrs[:url]).first
         link.update_attribute(:title, attrs[:title]) unless attrs[:title] == link.title
-
       else
         link = Link.new(attrs)
       end

@@ -31,12 +31,6 @@ class User < ActiveRecord::Base
   belongs_to :default_location, :class_name => "Where"
   has_and_belongs_to_many :wheres
   belongs_to :image
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  #devise :database_authenticatable, :registerable,
-  #       :recoverable, :rememberable, :trackable, :validatable
-  # Setup accessible (or protected) attributes for your model
-  #attr_accessible :email, :password, :password_confirmation, :remember_me
 
   before_create :create_view_preference
   before_create :set_defaults

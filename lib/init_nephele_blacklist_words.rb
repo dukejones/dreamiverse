@@ -40,7 +40,7 @@
     
     blacklist_words.each do |word|
       word = What.clean(word)
-      BlacklistWord.find_or_create_by_word(:word => word, :kind => 'nephele')
+      BlacklistWord.find_or_create_by(:word => word, :kind => 'nephele')
     end
   end
 end
