@@ -1,7 +1,8 @@
 
 class Image < ActiveRecord::Base
-  UPLOADS_PATH = "images/uploads"
-  include ImageProfiles
+  # include ImageProfiles
+  include ImageFileManager
+
   # This is the syntax we want:
   # profile 'entry_header' do |img|
   #   img.resize '720' # width => 720.
@@ -20,7 +21,7 @@ class Image < ActiveRecord::Base
   #
   # Callbacks 
   #
-  before_destroy :delete_all_files!
+  # before_destroy :delete_all_files!
 
   #
   # Validations
@@ -62,8 +63,10 @@ class Image < ActiveRecord::Base
   attr_accessor :incoming_filename
 
   # This is loaded via seed data.  rake db:seed
-  @@default_avatar = self.where(title: 'Default Avatar').first
-  def self.default_avatar; @@default_avatar; end
+  DEFAULT_AVATAR = self.where(title: 'Default Avatar').first
+  def self.default_avatar
+    DEFAULT_AVATAR
+  end
   
   def self.albums
     select("distinct(album)").map(&:album)
@@ -76,22 +79,6 @@ class Image < ActiveRecord::Base
   #
   # Instance Methods
   #
-  def write(binary_data)
-    delete_all_resized_files!
-    @original_magick = MiniMagick::Image.read(binary_data)
-    set_metadata
-    convert_to_web_format(@original_magick)
-    save!
-    @original_magick.write(path)
-  end
-
-  def import_from_file(filename, original_filename=nil)
-    original_filename ||= filename.split('/').last
-    self.incoming_filename = original_filename
-    file = open(filename, 'rb')
-    self.write( file.read )
-    self.save
-  end
 
   # Generates the crops and resizes necessary for the requested profile.
   def generate(descriptor, options={})
@@ -104,48 +91,18 @@ class Image < ActiveRecord::Base
 
   # Invoked if passed a single descriptor consisting of the dimensions, eg: 64x64
   def resize(dimensions)
-    return if File.exists? path(dimensions)
-    img = magick_image
-    img.resize dimensions
-    img.write path(dimensions) # dimensions is the descriptor.
+    # return if File.exists? path(dimensions)
+    # img = magick_image
+    # img.resize dimensions
+    # img.write path(dimensions) # dimensions is the descriptor.
   end
   
-  # Descriptor is a descriptor of the transformation.
-  # Can be a role name or a resize geometry.
-  def path(descriptor=nil, options={})
-    Rails.public_path + url(descriptor, options)
-  end
-
-  def url(descriptor=nil, options={})
-    path = UPLOADS_PATH
-    path += '/originals' unless descriptor
-    "/#{path}/#{filename(descriptor, options)}"
-  end
   
-  def filename(descriptor=nil, options={})
-    fname = "#{id}"
-    fname += "-#{descriptor}" if descriptor
-    fname += "-#{options[:size]}" if options[:size]
-    "#{fname}.#{options[:format] ? options[:format] : format}"
-  end
+  # def magick_image(descriptor=nil, options={})
+  #   MiniMagick::Image.open(path(descriptor, options))
+  # end
   
-  def magick_image(descriptor=nil, options={})
-    MiniMagick::Image.open(path(descriptor, options))
-  end
-  
-  def magick_info(info)
-    @original_magick ||= MiniMagick::Image.new(path)
-    @original_magick[info]
-  end
-
-  def delete_all_resized_files!
-    Dir["#{Rails.public_path}/#{UPLOADS_PATH}/#{self.id}-*"].each do |filename|
-      File.delete filename
-      Rails.logger.info "Deleted previously resized file: #{filename}."
-    end
-  end
-
-protected
+  protected
   
   def set_metadata
     if @incoming_filename
@@ -155,10 +112,12 @@ protected
       Rails.logger.warn("New image saved with no incoming filename.")
     end
     
-    self.format = magick_info(:format).downcase
-    self.format = 'jpg' if self.format == 'jpeg'
-    self.size = magick_info(:size)
-    self.width, self.height = magick_info(:dimensions)
+    # magick_image = MiniMagick::Image.new(path)
+
+    # self[:format] = magick_image.type.downcase
+    # self.format = 'jpg' if self.format == 'jpeg'
+    # self.size = magick_image.size
+    # self.width, self.height = magick_image.dimensions
     self.save!
   end
   
@@ -169,26 +128,5 @@ protected
     end
   end
 
-  # Side-Effect: changes @incoming_filename if it detects a URL.
-  def pull_url
-    if (url_matches = @incoming_filename.scan(/(^http[\-\:](::|\/\/)[^\s]+)(.*)/).first)
-      slashes, url, extra = url_matches
-      url.gsub!(':','/')
-      url.sub!('http-','http:')
-      self.source_url = url
-      last_bit = url.split('/').last
-      @incoming_filename = last_bit + extra
-    end
-    
-  end
-  def delete_all_files!
-    if File.exists?(self.path)
-      File.delete(self.path) 
-      Rails.logger.info "Deleted #{self.path}."
-    else
-      Rails.logger.info "Could not find file: #{self.path}"
-    end
-    delete_all_resized_files!
-  end
 end
 

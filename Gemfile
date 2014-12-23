@@ -27,8 +27,10 @@ gem 'nokogiri'
 #gem 'memcache-client'
 gem 'dalli'
 gem 'resque', :require => 'resque/server'
-gem 'mini_magick'
-# gem 'quick_magick'
+
+# gem 'mini_magick'
+gem 'rmagick'
+
 gem 'prawn'
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
@@ -62,15 +64,17 @@ group :development do
 end
 
 group :test do
-  gem 'webrat'
-  gem 'machinist'
-  gem 'faker'
-  gem 'mocha'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  # gem 'webrat'
+  # gem 'machinist'
+  # gem 'faker'
+  # gem 'mocha'
   # gem 'infinity_test', :git => "git://github.com/tomas-stefano/infinity_test.git"
 end
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'pry-rails'
   #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 

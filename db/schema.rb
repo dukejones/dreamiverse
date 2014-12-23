@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20110620201844) do
+ActiveRecord::Schema.define(version: 20141201182318) do
 
   create_table "authentications", force: true do |t|
     t.string   "provider"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 20110620201844) do
     t.string   "source_url"
     t.boolean  "enabled",                      default: false
     t.string   "attribution"
+    t.string   "image_path"
   end
 
   create_table "links", force: true do |t|

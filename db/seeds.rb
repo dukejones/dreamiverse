@@ -17,7 +17,7 @@ if Image.where(:title => "Default Avatar").count == 0
     :section => "Avatar",
     :title => "Default Avatar",
     :artist => "Andrew Jones",
-    :incoming_filename => avatar_filename
+    :incoming_filename => AVATAR_FILENAME
   })
   default_avatar_image.import_from_file "#{Rails.root}/db/#{AVATAR_FILENAME}"
 end
