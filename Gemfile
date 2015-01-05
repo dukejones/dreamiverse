@@ -1,3 +1,4 @@
+ruby "2.1.5"
 source 'http://rubygems.org'
 
 gem 'rails', '4.1.0'
@@ -75,6 +76,7 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'guard-rspec', require: false
   #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 

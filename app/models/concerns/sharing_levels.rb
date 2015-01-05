@@ -1,4 +1,5 @@
 module SharingLevels
+  extend ActiveSupport::Concern
 
   Sharing = {
     private:              0,
@@ -10,6 +11,25 @@ module SharingLevels
     everyone:           500
   }
 
+  included do
+    # Sharing scopes
+    def self.everyone
+      where(sharing_level: SharingLevels::Sharing[:everyone])
+    end
+    def self.friends
+      where(sharing_level: SharingLevels::Sharing[:friends])
+    end
+    def self.private_sharing
+      where(sharing_level: SharingLevels::Sharing[:private])
+    end
+    def self.followers 
+      where(sharing_level: SharingLevels::Sharing[:followers])
+    end
+    def self.anonymous
+      where(sharing_level: SharingLevels::Sharing[:anonymous])
+    end
+  end
+
   def sharing
     self.class::Sharing.invert[sharing_level]
   end
@@ -20,32 +40,6 @@ module SharingLevels
   
   def set_sharing_level
     self.sharing_level ||= self.user._?.default_sharing_level || self.class::Sharing[:friends]
-  end
-  
-  module ClassMethods
-    # Sharing scopes
-    def everyone
-      where(sharing_level: SharingLevels::Sharing[:everyone])
-    end
-    def friends
-      where(sharing_level: SharingLevels::Sharing[:friends])
-    end
-    def private_sharing
-      where(sharing_level: SharingLevels::Sharing[:private])
-    end
-    def followers 
-      where(sharing_level: SharingLevels::Sharing[:followers])
-    end
-    def anonymous
-      where(sharing_level: SharingLevels::Sharing[:anonymous])
-    end
-  end
-
-  def self.included(base)
-    base.class_eval do
-    end
-
-    base.extend(ClassMethods)
   end
 
 end

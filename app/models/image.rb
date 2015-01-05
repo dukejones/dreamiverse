@@ -1,23 +1,59 @@
 
 class Image < ActiveRecord::Base
-  # include ImageProfiles
   include ImageFileManager
-
-  # This is the syntax we want:
-  # profile 'entry_header' do |img|
-  #   img.resize '720' # width => 720.
-  #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
-  #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
-  # end
+  include ImageProfiles
 
   #
-  # Assocations
+  # Associations
   # 
   has_many :view_preferences
   has_many :whats
   belongs_to :uploaded_by, :class_name => "User"
   has_many :users
-  
+  # has_and_belongs_to_many :entries  
+
+  #
+  # Profiles
+  # 
+
+  # profile 'entry_header' do |img, options|
+  #   img.resize '720' # width => 720.
+  #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+  #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+  # end
+
+
+  # 200x266 - CROPPED FROM MIDDLE OF IMAGE
+  profile :avatar_main do |img, options|
+    img = self.magick_image
+
+    shave(img, 200, 266)
+    
+    img.write(file_path(:avatar_main))
+  end
+
+  # Resizes to specific dimensions, shaving off any pixels that exceed the given aspect ratio.
+  def shave(img, x, y)
+    img.resize_to_fill(x, y)
+    # img.resize "#{x}x#{y}^"
+    # x_offset = (img[:width] - x) / 2
+    # y_offset = (img[:height] - y) / 2
+    # img.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
+  end
+
+  def header(options={})
+    vertical_offset = options[:vertical_offset]
+
+    img = magick_image
+    # self.magick.combine_options do |i|
+    img.resize '720' # width => 720.
+    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+
+    img.write(path('header'))
+  end
+
+
   #
   # Callbacks 
   #
@@ -80,23 +116,6 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
 
-  # Generates the crops and resizes necessary for the requested profile.
-  def generate(descriptor, options={})
-    if /\d+x\d+/.match(descriptor)
-      resize(descriptor)
-    else
-      generate_profile(descriptor, options)
-    end
-  end
-
-  # Invoked if passed a single descriptor consisting of the dimensions, eg: 64x64
-  def resize(dimensions)
-    # return if File.exists? path(dimensions)
-    # img = magick_image
-    # img.resize dimensions
-    # img.write path(dimensions) # dimensions is the descriptor.
-  end
-  
   
   # def magick_image(descriptor=nil, options={})
   #   MiniMagick::Image.open(path(descriptor, options))

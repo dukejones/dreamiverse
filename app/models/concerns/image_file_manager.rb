@@ -61,14 +61,21 @@ module ImageFileManager
     filename
   end
 
-  def write(binary_data)
-    # delete_all_resized_files!
-    # @original_magick = MiniMagick::Image.read(binary_data)
-    # set_metadata
-    # convert_to_web_format(@original_magick)
-    # save!
-    # @original_magick.write(path)
+
+  def save_profile(rmagick_image, profile_name, options={})
+    profile_file = self.file_path(profile_name, options)
+    FileUtils.mkdir_p File.dirname(profile_file)
+    rmagick_image.write profile_file
   end
+
+  # def write(binary_data)
+  #   delete_all_resized_files!
+  #   @original_magick = MiniMagick::Image.read(binary_data)
+  #   set_metadata
+  #   convert_to_web_format(@original_magick)
+  #   save!
+  #   @original_magick.write(path)
+  # end
 
   # TODO: rename to clear_cached_files!
   def delete_all_resized_files!

@@ -69,5 +69,31 @@ namespace :image do
       log "Added Tag Image: #{image.title}"
     end
   end
+
+  desc 'test out an image profile'
+  task :test_profile => :environment do
+    image_id = ENV['id']
+    profile  = ENV['profile']
+    image    = Image.find image_id
+
+    image.generate(profile)
+
+    `open #{image.file_path(profile)}`
+  end
+
+  desc 'migrate images from old id-based storage to new date-based directories'
+  task :migrate_files => :environment do
+    old_imagebank_dir = ENV['old_imagebank_dir']
+
+    Image.find_each do |image|
+      legacy_filename = "#{image.id}.#{image[:format]}"
+      puts old_imagebank_dir
+      puts legacy_filename
+      orig_file = File.join(old_imagebank_dir, legacy_filename)
+      raise "Could not find file #{orig_file}" unless File.file?(orig_file)
+
+
+    end
+  end
   
 end

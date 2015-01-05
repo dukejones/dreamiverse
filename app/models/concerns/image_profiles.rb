@@ -1,45 +1,63 @@
 
 module ImageProfiles
-  # Options are always optional; defaults will be provided.
-  # Size determines the size to generate. For some profiles, size will be nil because it is always the same size.
-  # We should always generate the nil size profile, then resize to the specified size.
+  extend ActiveSupport::Concern
 
-  module ClassMethods
-    # def profile(name)
-    #   define_method("generate_#{name}") do
-    #     img = magick_image
-    #     yield img
-    #   end
-    # end
+  included do
+    cattr_accessor :profiles
+
+    def self.profile(profile_name, &block)
+      self.profiles ||= {}
+      self.profiles[profile_name.to_sym] = block
+    end
   end
-  def self.included(base)
-    base.extend(ClassMethods)
+
+  def magick_image(profile_name=nil, options={})
+    Magick::ImageList.new(self.file_path(profile_name, options))
+  end
+
+  def generate_profile(profile, options={})
+    raise "Profile #{profile} does not exist." unless self.profiles.keys.include?(profile.to_sym) # && self.respond_to?(profile.to_sym)
+    raise "Ridiculous resize requested" if options[:size].to_i > 15000
+    Rails.logger.info("Generating Profile: #{profile} #{options.inspect}")
+
+    transformed_magick_image = self.profiles[profile.to_sym].call(self.magick_image, options)
+    save_profile(transformed_magick_image, profile, options)
+  end
+
+  # Generates the crops and resizes necessary for the requested profile.
+  def generate(descriptor, options={})
+    if /\d+x\d+/.match(descriptor)
+      resize(descriptor)
+    else
+      generate_profile(descriptor, options)
+    end
+  end
+
+  # Invoked if passed a single descriptor consisting of the dimensions, eg: 64x64
+  def resize(dimensions)
+    # return if File.exists? path(dimensions)
+    # img = magick_image
+    # img.resize dimensions
+    # img.write path(dimensions) # dimensions is the descriptor.
   end
 
   # For every profile, we must define a method with the same name which generates the image for that profile.
-  def profiles
-    [
-      :medium, 
-      :header, :stream_header, :dreamfield_header, 
-      :avatar_main, :avatar_medium, :avatar, 
-      :thumb,
-      :bedsheet, :bedsheet_small,
-      :tag, :facebook, :bookcover
-    ]
-  end
+  # def profiles
+  #   [
+  #     :medium, 
+  #     :header, :stream_header, :dreamfield_header, 
+  #     :avatar_main, :avatar_medium, :avatar, 
+  #     :thumb,
+  #     :bedsheet, :bedsheet_small,
+  #     :tag, :facebook, :bookcover
+  #   ]
+  # end
 
   def pre_generate(profile, options={})
     # options[:format] = "jpg" unless Mime::Type.lookup_by_extension(options[:format] || self.format)
     generate_profile(profile, options) unless profile_generated?(profile, options)
   end
   
-  def generate_profile(profile, options={})
-    raise "Profile #{profile} does not exist." unless profiles.include?(profile.to_sym) && self.respond_to?(profile.to_sym)
-    raise "Ridiculous resize requested" if options[:size].to_i > 15000
-    Rails.logger.info("Generating Profile: #{profile} #{options.inspect}")
-    self.send(profile.to_sym, options)
-  end
-
   def profile_generated?(profile, options={})
     raise "Profile #{profile} does not exist." unless profiles.include?(profile)
 
@@ -51,13 +69,6 @@ module ImageProfiles
     magick_image(profile, options)
   end
 
-  # Resizes to specific dimensions, shaving off any pixels that exceed the given aspect ratio.
-  def shave(img, x, y)
-    img.resize "#{x}x#{y}^"
-    x_offset = (img[:width] - x) / 2
-    y_offset = (img[:height] - y) / 2
-    img.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
-  end
 
   def convert(img, new_format=nil, quality=nil)
     img.quality quality if quality
@@ -74,17 +85,17 @@ module ImageProfiles
     img.write(path('medium'))
   end
   
-  def header(options={})
-    vertical_offset = options[:vertical_offset]
+  # def header(options={})
+  #   vertical_offset = options[:vertical_offset]
 
-    img = magick_image
-    # self.magick.combine_options do |i|
-    img.resize '720' # width => 720.
-    vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
-    img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
+  #   img = magick_image
+  #   # self.magick.combine_options do |i|
+  #   img.resize '720' # width => 720.
+  #   vertical_offset = (img[:height] / 2) - 100 unless vertical_offset
+  #   img.crop "x200+0+#{vertical_offset}" # height = 200px, cropped from the center of the image [by default].
 
-    img.write(path('header'))
-  end
+  #   img.write(path('header'))
+  # end
 
   def stream_header(options={})
     img = profile_magick_image(:header)
@@ -111,19 +122,6 @@ module ImageProfiles
     img.write(path('thumb', options))
   end
   
-  # 200x266 - CROPPED FROM MIDDLE OF IMAGE
-  def avatar_main(options)
-    img = magick_image
-
-    # img.resize "200x266^" # minimum dimensions
-    # 
-    # x_offset = (img[:width] - 200) / 2
-    # y_offset = (img[:height] - 266) / 2
-    # img.crop "200x266+#{x_offset}+#{y_offset}"
-    shave(img, 200, 266)
-    
-    img.write(path(:avatar_main))
-  end
   
   def avatar_medium(options)
     img = profile_magick_image(:avatar_main)
