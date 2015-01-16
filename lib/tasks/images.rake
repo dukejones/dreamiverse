@@ -83,16 +83,28 @@ namespace :image do
 
   desc 'migrate images from old id-based storage to new date-based directories'
   task :migrate_files => :environment do
-    old_imagebank_dir = ENV['old_imagebank_dir']
+    old_imagebank_dir = ENV['old_imagebank']
 
     Image.find_each do |image|
+      # next if image[:format].blank?
       legacy_filename = "#{image.id}.#{image[:format]}"
-      puts old_imagebank_dir
-      puts legacy_filename
       orig_file = File.join(old_imagebank_dir, legacy_filename)
-      raise "Could not find file #{orig_file}" unless File.file?(orig_file)
+      if !File.file?(orig_file)
+        if image.entries.blank?
+          image.destroy
+          puts "Destroyed image ##{image.id}: #{image.original_filename}"
+          next
+        else
+          puts "Could not find file #{orig_file}.  Existing: " + Dir[File.join(old_imagebank_dir, "#{image.id}*")].inspect
+          puts "Image referenced in dreams: " + image.entries.map{|e| [e.id, e.title]}.inspect
+          raise "undealt-with orphan file"
+        end
+      end
 
-
+      tmpfile = "/tmp/#{image.original_filename}"
+      FileUtils.mv orig_file, tmpfile
+      image.intake_file(tmpfile)
+      FileUtils.mv tmpfile, orig_file
     end
   end
   

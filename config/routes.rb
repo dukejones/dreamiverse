@@ -69,8 +69,12 @@ Rails.application.routes.draw do
 
 
   # Images
-  get 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
-    constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+  # get 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
+  #   constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+
+  get "#{Image::CACHE_DIR}/:year/:month/:filename-:descriptor(-:size).:format", to: 'images#resize', 
+    constraints: {year: /\d{4}/, month: /\d{1,2}/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+
   resources :images do
     collection do
       get 'manager'

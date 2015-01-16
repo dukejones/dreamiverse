@@ -3,7 +3,7 @@ class Tag < ActiveRecord::Base
     hash[blacklist_word.word] = true
   end
 
-  default_scope order('position')
+  default_scope { order('position') }
   
   belongs_to :entry
   
@@ -28,9 +28,12 @@ class Tag < ActiveRecord::Base
   def self.of_type(type)
     where(noun_type: type.to_s)
   end
+
+  # FIXME: DO THE JOIN & EAGER LOADING AGAIN
   # Joins to a specific type. Acts like of_type but does a join and eager load.
   def self.join_to(type)
-    joins(:noun.type(type)).includes(:noun)
+    # joins(:noun.type(type)).includes(:noun)
+    of_type(type)
   end
   # Runs the join query and returns an array of nouns. 
   # entry.tags.nouns_of_type(Emotion)  will return all Emotion objects tagged.

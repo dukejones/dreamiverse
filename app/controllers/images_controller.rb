@@ -215,9 +215,9 @@ class ImagesController < ApplicationController
   end
 
   # This method is called when a url for a size image that has not yet been generated is requested.
-  # It responds with a redirect.
   def resize
     image = Image.find params[:id]
+    image = Image.where()
     render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
 
     format = params[:format] || image.format

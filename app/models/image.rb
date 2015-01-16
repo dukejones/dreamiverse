@@ -10,7 +10,9 @@ class Image < ActiveRecord::Base
   has_many :whats
   belongs_to :uploaded_by, :class_name => "User"
   has_many :users
-  # has_and_belongs_to_many :entries  
+  has_and_belongs_to_many :entries  
+
+  # after_file_intake :save_metadata
 
   #
   # Profiles
@@ -25,20 +27,14 @@ class Image < ActiveRecord::Base
 
   # 200x266 - CROPPED FROM MIDDLE OF IMAGE
   profile :avatar_main do |img, options|
-    img = self.magick_image
-
-    shave(img, 200, 266)
-    
-    img.write(file_path(:avatar_main))
+    img.resize_to_fill(200, 266)
   end
 
-  # Resizes to specific dimensions, shaving off any pixels that exceed the given aspect ratio.
-  def shave(img, x, y)
-    img.resize_to_fill(x, y)
-    # img.resize "#{x}x#{y}^"
-    # x_offset = (img[:width] - x) / 2
-    # y_offset = (img[:height] - y) / 2
-    # img.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
+  profile :header do |img, options|
+    y = options[:vertical_offset]
+    img.resize! 720
+    y = (img.rows / 2 - 150) unless y
+
   end
 
   def header(options={})
@@ -116,28 +112,19 @@ class Image < ActiveRecord::Base
   # Instance Methods
   #
 
-  
-  # def magick_image(descriptor=nil, options={})
-  #   MiniMagick::Image.open(path(descriptor, options))
-  # end
-  
   protected
-  
-  def set_metadata
-    if @incoming_filename
-      self.original_filename = @incoming_filename
-      self.title = @incoming_filename.split('.')[0...-1].join(' ').titleize if self.title.blank?
-    else
-      Rails.logger.warn("New image saved with no incoming filename.")
-    end
-    
-    # magick_image = MiniMagick::Image.new(path)
 
-    # self[:format] = magick_image.type.downcase
-    # self.format = 'jpg' if self.format == 'jpeg'
-    # self.size = magick_image.size
-    # self.width, self.height = magick_image.dimensions
-    self.save!
+  def after_file_intake
+    set_metadata
+  end
+
+  def set_metadata
+    image = self.magick_image
+
+    self.width = image.columns
+    self.height = image.rows
+    self[:format] = image.format # format is now a reserved method in ActiveRecord
+    self.size = File.size(self.file_path)
   end
   
   def convert_to_web_format(img)

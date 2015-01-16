@@ -8,6 +8,9 @@ module ImageProfiles
     def self.profile(profile_name, &block)
       self.profiles ||= {}
       self.profiles[profile_name.to_sym] = block
+      define_method(profile_name) do |options={}|
+        generate_profile(profile_name, options || {})
+      end
     end
   end
 
@@ -20,7 +23,9 @@ module ImageProfiles
     raise "Ridiculous resize requested" if options[:size].to_i > 15000
     Rails.logger.info("Generating Profile: #{profile} #{options.inspect}")
 
-    transformed_magick_image = self.profiles[profile.to_sym].call(self.magick_image, options)
+    proc = self.profiles[profile.to_sym]
+    transformed_magick_image = self.instance_exec(self.magick_image, options, &proc)
+    
     save_profile(transformed_magick_image, profile, options)
   end
 

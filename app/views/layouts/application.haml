@@ -13,12 +13,12 @@
 
     %meta{property: "og:image", content: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
-    = include_stylesheets :common, :media => 'all'
+    = stylesheet_link_tag :application, :media => 'all' # :common
 
 
     = yield :headBefore
 
-    = include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
+    = javascript_include_tag :application # :vendor, :shared #, :jmvc_framework, :jmvc_resources, :jmvc_application
 
     = yield :head
 

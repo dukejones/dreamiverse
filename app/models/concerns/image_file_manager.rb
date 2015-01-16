@@ -8,9 +8,10 @@ module ImageFileManager
 
   # give me a filename (or url)
   # i copy it into the proper place
-  # and return the full path for storage in the db
+  # and return the path for storage in the db
   def intake_file(src_file)
-    dest_file = generate_full_upload_path(src_file)
+    relative_upload_path = generate_relative_upload_path(src_file)
+    dest_file = File.join Rails.public_path, UPLOAD_DIR, relative_upload_path
     FileUtils.mkdir_p File.dirname(dest_file)
 
     open(dest_file, 'wb') do |dest|
@@ -18,24 +19,33 @@ module ImageFileManager
         dest.write(src.read)
       end
     end
-    self.image_path = dest_file
+
+    self.image_path = relative_upload_path
+    self.after_file_intake
+
+    return relative_upload_path
   end
 
+  def intake_file!(src_file)
+    self.intake_file(src_file)
+
+    self.save!
+    
+  end
   # generate a path for a file based on its created_at,
   # postfixing numbers to avoid name collisions if necessary.
-  def generate_full_upload_path(src_file)
-    path = File.join Rails.public_path, UPLOAD_DIR, created_at.year.to_s, created_at.month.to_s
-    full_path = File.join path, File.basename(src_file)
+  def generate_relative_upload_path(src_file)
+    path = File.join created_at.year.to_s, created_at.month.to_s, File.basename(src_file)
 
     postfix = 0
-    while File.file?(full_path) do # if filename collision
+    while File.file?(File.join Rails.public_path, UPLOAD_DIR, path) do # if filename collision
       postfix += 1
       # myfile-001.png
-      full_path = File.join path, File.basename(src_file, ".*")+("-%03d" % postfix)+File.extname(src_file) 
+      path = File.join File.dirname(path), 
+                    File.basename(src_file, ".*")+("-%03d" % postfix)+File.extname(src_file)
     end
-    return full_path
+    return path
   end
-
 
   # Gives the full file path to a particular profile of an image
   # Descriptor is the name of the profile.
@@ -49,7 +59,7 @@ module ImageFileManager
   def url(descriptor=nil, options={})
     base_path = descriptor ? CACHE_DIR : UPLOAD_DIR # pointing to original image or resized?
 
-    File.join( base_path, created_at.year.to_s, created_at.month.to_s, filename(descriptor, options) )
+    '/' + File.join( base_path, created_at.year.to_s, created_at.month.to_s, filename(descriptor, options) )
   end
   
   def filename(descriptor=nil, options={})
@@ -83,6 +93,14 @@ module ImageFileManager
     #   File.delete filename
     #   Rails.logger.info "Deleted previously resized file: #{filename}."
     # end
+  end
+
+  ### brought in from previous version of Image
+  def legacy_filename(descriptor=nil, options={})
+    fname = "#{id}"
+    fname += "-#{descriptor}" if descriptor
+    fname += "-#{options[:size]}" if options[:size]
+    "#{fname}.#{options[:format] ? options[:format] : format}"
   end
 
   private

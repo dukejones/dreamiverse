@@ -83,7 +83,7 @@ class Entry < ActiveRecord::Base
   end
 
   def self.random
-    self.everyone.where(:type ^ 'article').order("rand()").limit(1).first
+    self.everyone.where("type != 'article'").order("rand()").limit(1).first
   end
 
   def self.dreamstream(viewer, filters)

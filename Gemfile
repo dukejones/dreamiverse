@@ -57,7 +57,7 @@ gem 'spring',        group: :development
 
 group :development do
   gem 'capistrano-rails'
-
+  gem 'awesome_print'
   # gem 'capistrano'
   # gem 'capistrano-ext'
   # gem 'active_reload'
