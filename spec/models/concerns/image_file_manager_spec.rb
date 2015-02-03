@@ -36,7 +36,15 @@ RSpec.describe ImageFileManager, :type => :model do
       expect( File.basename(image.image_path) ).to match(/\-001\.png/)
     end
 
-    it "adds the proper extension to mac-style files without extension"
+    it "denies a non-image" do
+      @test_file = File.join(TEST_FILE_PATH, 'test.pdf')
+      image = build(:image)
+
+      expect{image.intake_file(@test_file)}.to raise_error ImageException
+
+    end
+
+    it "handles an html file with a relative path"
   end
 
   context "#file_path" do
@@ -65,5 +73,4 @@ RSpec.describe ImageFileManager, :type => :model do
       expect( File.file?(image.file_path(:test_profile)) ).to eq(true)
     end
   end
-  
 end

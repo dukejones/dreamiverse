@@ -10,6 +10,9 @@ module ImageFileManager
   # i copy it into the proper place
   # and return the path for storage in the db
   def intake_file(src_file)
+    raise ImageException.new("Not a file") if !File.file?(src_file) 
+    raise ImageException.new("Not an image file") if Magick::Image::read(src_file).blank?
+
     relative_upload_path = generate_relative_upload_path(src_file)
     dest_file = File.join Rails.public_path, UPLOAD_DIR, relative_upload_path
     FileUtils.mkdir_p File.dirname(dest_file)
@@ -65,7 +68,7 @@ module ImageFileManager
   def filename(descriptor=nil, options={})
     filename = File.basename( self.image_path, ".*" )
     filename += "-#{descriptor}" if descriptor
-    # fname += "-#{options[:size]}" if options[:size]
+    filename += "-#{options[:size]}" if options[:size]
     # "#{fname}.#{options[:format] ? options[:format] : format}"
     filename += File.extname( self.image_path )
     filename
@@ -115,4 +118,7 @@ module ImageFileManager
     delete_all_resized_files!
   end
 
+end
+
+class ImageException < Exception
 end

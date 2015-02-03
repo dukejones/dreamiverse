@@ -28,15 +28,19 @@ RSpec.describe ImageProfiles, :type => :model do
     it "transforms an image according to a profile" do
       @image.generate_profile( :test_profile )
 
-      # get the image, measure its size.
-      img = @image.magick_image(:test_profile)
-      # binding.pry
+      img = @image.magick_image(:test_profile) # get the image, measure its size.
       expect( img.columns ).to eq(32) # half of 64
     end
     it "caches the resized image file" do
       expect( File.file?(@image.file_path(:test_profile)) ).to eq(false)
       @image.generate_profile( :test_profile )
       expect( File.file?(@image.file_path(:test_profile)) ).to eq(true)
+    end
+
+    it "works on a real profile" do
+      expect{ !@image.profile_generated?(:header) }
+      @image.generate_profile( :header )
+      expect{ @image.profile_generated?(:header) }
     end
   end
 

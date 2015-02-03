@@ -73,7 +73,7 @@ Rails.application.routes.draw do
   #   constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
 
   get "#{Image::CACHE_DIR}/:year/:month/:filename-:descriptor(-:size).:format", to: 'images#resize', 
-    constraints: {year: /\d{4}/, month: /\d{1,2}/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+    constraints: {year: /\d{4}/, month: /\d{1,2}/, descriptor: /[^\d]+/, size: /\d+/, format: /\w{2,4}/ }
 
   resources :images do
     collection do

@@ -83,28 +83,40 @@ namespace :image do
 
   desc 'migrate images from old id-based storage to new date-based directories'
   task :migrate_files => :environment do
+    tmp_dir = ENV["tmp_dir"] || "/tmp"
     old_imagebank_dir = ENV['old_imagebank']
 
     Image.find_each do |image|
-      # next if image[:format].blank?
+      next if image.image_path.present? && File.file?(image.file_path)
+
       legacy_filename = "#{image.id}.#{image[:format]}"
       orig_file = File.join(old_imagebank_dir, legacy_filename)
       if !File.file?(orig_file)
+        suspected_files = Dir[File.join(old_imagebank_dir, "#{image.id}*")]
+        puts "Could not find image ##{image.id}: #{image.original_filename}.  Existing: " + suspected_files.inspect
         if image.entries.blank?
-          image.destroy
-          puts "Destroyed image ##{image.id}: #{image.original_filename}"
           next
         else
-          puts "Could not find file #{orig_file}.  Existing: " + Dir[File.join(old_imagebank_dir, "#{image.id}*")].inspect
           puts "Image referenced in dreams: " + image.entries.map{|e| [e.id, e.title]}.inspect
           raise "undealt-with orphan file"
         end
       end
 
-      tmpfile = "/tmp/#{image.original_filename}"
-      FileUtils.mv orig_file, tmpfile
-      image.intake_file(tmpfile)
-      FileUtils.mv tmpfile, orig_file
+      # puts "Processing image: #{image.id} #{image.original_filename}"
+      print "#{image.id} "
+      begin
+        new_filename = image.original_filename || "#{image.id}.#{Magick::ImageList.new(orig_file).format}"
+        tmpfile = File.join(tmp_dir, new_filename)
+        FileUtils.mv orig_file, tmpfile
+        # raise ImageException.new("abort this image") if image.id.in? [1456, 10477]
+        image.intake_file!(tmpfile)
+      rescue ImageException, Magick::ImageMagickError => e
+        puts e.inspect
+        puts "destroying image #{image.id}"
+        image.destroy
+      ensure
+        FileUtils.mv tmpfile, orig_file if tmpfile
+      end
     end
   end
   

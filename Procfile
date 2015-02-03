@@ -1,5 +1,5 @@
 
-unicorn:  bundle exec unicorn
-memcache: memcached -vv
-worker: bundle exec rake resque:work
+puma:  bin/rails server
+memcache: memcached -v
+worker: bin/rake resque:work
 # pubsub: faye or juggernaut

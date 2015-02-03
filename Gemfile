@@ -5,7 +5,8 @@ gem 'rails', '4.1.0'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'unicorn'
+# gem 'unicorn'
+gem 'puma'
 gem 'foreman'
 gem 'mysql2'
 gem 'haml'
@@ -30,7 +31,9 @@ gem 'dalli'
 gem 'resque', :require => 'resque/server'
 
 # gem 'mini_magick'
-gem 'rmagick'
+# gem 'rmagick'
+# gem 'ruby-vips', require: 'vips'
+gem 'micro_magick'
 
 gem 'prawn'
 gem 'recaptcha', :require => 'recaptcha/rails'
