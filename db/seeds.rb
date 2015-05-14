@@ -19,7 +19,7 @@ if Image.where(:title => "Default Avatar").count == 0
     :artist => "Andrew Jones",
     :incoming_filename => AVATAR_FILENAME
   })
-  default_avatar_image.import_from_file "#{Rails.root}/db/#{AVATAR_FILENAME}"
+  default_avatar_image.intake_file "#{Rails.root}/db/#{AVATAR_FILENAME}"
 end
 
 puts "Seeding Emotions..."

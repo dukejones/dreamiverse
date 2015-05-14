@@ -1,7 +1,7 @@
-ruby "2.1.5"
+ruby "2.2.2"
 source 'http://rubygems.org'
 
-gem 'rails', '4.1.0'
+gem 'rails', '~> 4.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -32,7 +32,6 @@ gem 'resque', :require => 'resque/server'
 
 # gem 'mini_magick'
 # gem 'rmagick'
-# gem 'ruby-vips', require: 'vips'
 gem 'micro_magick'
 
 gem 'prawn'
@@ -40,8 +39,6 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
 gem 'whenever', :require => false
 
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

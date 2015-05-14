@@ -146,10 +146,10 @@ class Image < ActiveRecord::Base
   attr_accessor :incoming_filename
 
   # This is loaded via seed data.  rake db:seed
-  DEFAULT_AVATAR = self.where(title: 'Default Avatar').first
   def self.default_avatar
-    DEFAULT_AVATAR
+    @default_avatar ||= self.where(title: 'Default Avatar').first
   end
+
   
   def self.albums
     select("distinct(album)").map(&:album)
