@@ -17,6 +17,7 @@ end
 
 def empty_test_public_dir
   FileUtils.rm_r(TEST_PUBLIC_DIR)
+  # undo public_path stub
 end
 
 

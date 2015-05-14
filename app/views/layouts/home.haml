@@ -11,23 +11,14 @@
     %link{rel: 'image_src', href: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
 
     = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
 
-    / = javascript_include_tag 'jquery.min', 'rails', 'pubsub', 'jquery.lightbox-0.5.min', 'jquery.placeholder'
-    / = coffeescript_include_tag 'dreamplugs', 'cookies', 'publicstream'
     :coffee
       $(document).ready ->
         $('input[placeholder], textarea[placeholder]').placeholder()
 
-    / %script{type: "text/javascript", :'data-main' => "/javascripts/compiled/application", src: "/javascripts/require.js"}
-
     -#= include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared, :home
-    = javascript_include_tag 'application'
     = yield :head
-
-
-
-
-
 
 
   %body#body.home{class: appearance_classes}

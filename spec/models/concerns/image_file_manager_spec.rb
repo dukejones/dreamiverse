@@ -37,6 +37,7 @@ RSpec.describe ImageFileManager, :type => :model do
     end
 
     it "denies a non-image" do
+      pending
       @test_file = File.join(TEST_FILE_PATH, 'test.pdf')
       image = build(:image)
 

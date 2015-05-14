@@ -10,7 +10,14 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//x= require jquery
-//x= require jquery_ujs
+//= require jquery.min
+//= require jquery-lightbox-0.5
+//= require jquery.placeholder
+//= require rails
+//
+//= require pubsub
+//= require original/loginpanel
+//= require original/publicstream
+//
 //x= require turbolinks
-//= require_tree ./original
+//x= require_tree ./original

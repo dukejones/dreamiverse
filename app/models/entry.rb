@@ -15,7 +15,7 @@ class Entry < ActiveRecord::Base
   has_many :entry_accesses
   has_many :authorized_users, :through => :entry_accesses, :source => :user
   has_many :comments
-  has_one :latest_comment, :class_name => 'Comment', :order => 'created_at desc'
+  has_one :latest_comment, -> { order 'created_at desc' }, :class_name => 'Comment'
 
   # Tag associations
   has_many :tags, :dependent => :delete_all
