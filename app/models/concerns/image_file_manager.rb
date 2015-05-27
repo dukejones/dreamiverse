@@ -76,10 +76,10 @@ module ImageFileManager
   end
 
 
-  def save_profile(rmagick_image, profile_name, options={})
+  def save_profile(magick_image, profile_name, options={})
     profile_file = self.file_path(profile_name, options)
     FileUtils.mkdir_p File.dirname(profile_file)
-    rmagick_image.write profile_file
+    magick_image.write profile_file
   end
 
   # def write(binary_data)

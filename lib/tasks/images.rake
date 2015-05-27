@@ -102,15 +102,24 @@ namespace :image do
         end
       end
 
-      # puts "Processing image: #{image.id} #{image.original_filename}"
-      print "#{image.id} "
+      if image.original_filename.blank?
+        if image.entries.blank?
+          next
+        else
+          raise "No original filename: #{image.id}"
+        end
+      end
+
+      print " #{image.id} "
       begin
-        new_filename = image.original_filename || "#{image.id}.#{Magick::ImageList.new(orig_file).format}"
+        new_filename = image.original_filename
+        # print new_filename
         tmpfile = File.join(tmp_dir, new_filename)
         FileUtils.mv orig_file, tmpfile
-        # raise ImageException.new("abort this image") if image.id.in? [1456, 10477]
+        # print " moved. "
         image.intake_file!(tmpfile)
-      rescue ImageException, Magick::ImageMagickError => e
+        # print ":: intake complete.\n"
+      rescue MiniMagick::Invalid => e
         puts e.inspect
         puts "destroying image #{image.id}"
         image.destroy

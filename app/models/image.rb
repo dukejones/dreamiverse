@@ -165,7 +165,13 @@ class Image < ActiveRecord::Base
 
   def magick_image(profile_name=nil, options={})
     # Magick::ImageList.new(self.file_path(profile_name, options))
-    MicroMagick::Image.new(self.file_path(profile_name, options))
+    # MicroMagick::Image.new(self.file_path(profile_name, options))
+    MiniMagick::Image.open(self.file_path(profile_name, options))
+  end
+
+  # WARNING: Edits, resizes, etc. will alter the image file directly!
+  def magick_image_direct(profile_name=nil, options={})
+    MiniMagick::Image.open(self.file_path(profile_name, options))
   end
 
   protected
@@ -175,10 +181,10 @@ class Image < ActiveRecord::Base
   end
 
   def set_metadata
-    image = self.magick_image
+    image = self.magick_image_direct
 
-    self.width = image.columns
-    self.height = image.rows
+    self.width = image.width
+    self.height = image.height
     # resetting the format here messes with idempotency of the file migration, 
     # since this is how the old algorithm determined the file name.
     # self[:format] = image.format # format is now a reserved method in ActiveRecord

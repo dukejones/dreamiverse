@@ -30,9 +30,9 @@ gem 'nokogiri'
 gem 'dalli'
 gem 'resque', :require => 'resque/server'
 
-# gem 'mini_magick'
+gem 'mini_magick'
 # gem 'rmagick'
-gem 'micro_magick'
+# gem 'micro_magick'
 
 gem 'prawn'
 gem 'recaptcha', :require => 'recaptcha/rails'
@@ -57,7 +57,6 @@ gem 'spring',        group: :development
 
 group :development do
   gem 'capistrano-rails'
-  gem 'awesome_print'
   # gem 'capistrano'
   # gem 'capistrano-ext'
   # gem 'active_reload'
@@ -76,8 +75,10 @@ end
 
 group :development, :test do
   gem 'pry-rails'
+  gem 'pry-byebug'
+  gem 'pry-coolline'
+  gem 'awesome_print'
   gem 'guard-rspec', require: false
-  #gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 # group :production do
@@ -94,14 +95,4 @@ end
 #   gem "treetop"
 #   gem "launchy"
 # end
-
-
-
-## NEW ##
-
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer',  platforms: :ruby
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 
