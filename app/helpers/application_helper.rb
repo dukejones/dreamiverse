@@ -10,7 +10,7 @@ module ApplicationHelper
       avatar_image.url('avatar', :size => size)
     end
   end
-  
+
   def follow_action(relationship)
     case relationship
     when :none
@@ -23,16 +23,16 @@ module ApplicationHelper
       'following you'
     end
   end
-  
+
   def is_ipad?
     request.user_agent._?.match(/iPad/)
   end
-  
+
   # Note: this depends on a "global" variable @entry being set
   def bedsheet_style
 
     if request.path == dreamstars_path || request.path == search_user_path
-      bedsheet_url = "/images/bedsheets/dreamstars-aurora-hi.jpg" 
+      bedsheet_url = "/assets/bedsheets/dreamstars-aurora-hi.jpg"
     else
       # if user has ubiquity mode, use user's bedsheet no matter what
       # Not yet implemented.
@@ -45,7 +45,7 @@ module ApplicationHelper
       else
         bedsheet_url = bedsheet_image._?.url(:bedsheet, :format => 'jpg')
       end
-      bedsheet_url ||= "/images/bedsheets/aurora_green-lo.jpg"
+      bedsheet_url ||= "/assets/bedsheets/aurora_green-lo.jpg"
     end
     "background-image: url(#{bedsheet_url})"
   end
@@ -57,12 +57,12 @@ module ApplicationHelper
     bedsheet_attachment ||= "scroll"
     bedsheet_attachment
   end
-  
+
   def menu_style
     return nil unless current_user
     current_user.view_preference.menu_style
   end
-  
+
   def font_size
     return nil unless current_user
 
@@ -72,7 +72,7 @@ module ApplicationHelper
     when 'small' then 'fontSmall'
     end
   end
-  
+
   def theme
     theme ||= @entry._?.view_preference._?.theme
     theme ||= @user._?.view_preference._?.theme
