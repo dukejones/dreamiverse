@@ -5,18 +5,18 @@ class Image < ActiveRecord::Base
 
   #
   # Associations
-  # 
+  #
   has_many :view_preferences
   has_many :whats
   belongs_to :uploaded_by, :class_name => "User"
   has_many :users
-  has_and_belongs_to_many :entries  
+  has_and_belongs_to_many :entries
 
   # after_file_intake :save_metadata
 
   #
   # Profiles
-  # 
+  #
   # NOTE: PROFILE NAMES CANNOT CONTAIN NUMBERS DUE TO THE ROUTES REGEX
 
   # 200x266 - CROPPED FROM MIDDLE OF IMAGE
@@ -25,12 +25,27 @@ class Image < ActiveRecord::Base
   end
 
   # Resizes to specific dimensions, shaving off any pixels that exceed the given aspect ratio.
+  # def shave(img, x, y)
+  #   img.combine_options do |c|
+  #     c.resize("#{x}x#{y}^")
+  #     c.gravity("center")
+  #     c.crop("#{x}x#{y}+0+0")
+  #     c.repage.+
+  #   end
+  # end
   def shave(img, x, y)
-    img.resize("#{x}x#{y}^").gravity("Center").crop("#{x}x#{y}+0+0")
+    img.resize "#{x}x#{y}^"
+    x_offset = (img[:width] - x) / 2
+    y_offset = (img[:height] - y) / 2
+    img.combine_options do |c|
+      c.crop "#{x}x#{y}+#{x_offset}+#{y_offset}"
+      c.repage.+
+    end
   end
 
+
   profile :header do |img, options|
-    vertical_offset = 
+    vertical_offset =
       if options[:vertical_offset]
         options[:vertical_offset]
       else
@@ -38,8 +53,12 @@ class Image < ActiveRecord::Base
         (new_height / 2) - 100 # center of image
       end
 
-    img.resize '720' # width => 720.
-    img.crop "720x200+0+#{vertical_offset}" # height = 200px, cropped.
+    img.resize('720x') # width => 720.
+    img.combine_options do |c|
+      c.crop("720x200+0+#{vertical_offset}")
+      c.repage.+
+    end
+
   end
 
   profile :stream_header do |img, options|
@@ -102,7 +121,7 @@ class Image < ActiveRecord::Base
 
 
   #
-  # Callbacks 
+  # Callbacks
   #
   # before_destroy :delete_all_files!
 
@@ -128,7 +147,7 @@ class Image < ActiveRecord::Base
   # TODO: currently exact match - substring would be better (esp. notes, tags, etc.)
   def self.search(params)
     # search term
-    results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?', 
+    results = where(['title=? OR artist=? OR album=? OR year=? OR category=? OR genre=? OR notes=? OR tags=?',
             params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q], params[:q]])
     # filters
     results = results.where(artist: params[:artist]) if params[:artist]
@@ -150,7 +169,7 @@ class Image < ActiveRecord::Base
     @default_avatar ||= self.where(title: 'Default Avatar').first
   end
 
-  
+
   def self.albums
     select("distinct(album)").map(&:album)
   end
@@ -158,7 +177,7 @@ class Image < ActiveRecord::Base
   def self.artists
     select("distinct(artist)").map(&:artist)
   end
-  
+
   #
   # Instance Methods
   #
@@ -185,12 +204,12 @@ class Image < ActiveRecord::Base
 
     self.width = image.width
     self.height = image.height
-    # resetting the format here messes with idempotency of the file migration, 
+    # resetting the format here messes with idempotency of the file migration,
     # since this is how the old algorithm determined the file name.
     # self[:format] = image.format # format is now a reserved method in ActiveRecord
     self.size = File.size(self.file_path)
   end
-  
+
   def convert_to_web_format(img)
     unless Mime::Type.lookup_by_extension(self.format)
       img.format 'jpg'

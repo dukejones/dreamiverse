@@ -56,11 +56,15 @@ module ImageFileManager
   # If given no arguments, output should be the same as the `image_path` column.
   # x Can also be a resize geometry.
   def file_path(descriptor=nil, options={})
-    File.join( Rails.public_path, url(descriptor, options) )
+    File.join( Rails.public_path, relative_path(descriptor, options) )
+  end
+
+  def url(descriptor=nil, options={})
+    URI.escape relative_path(descriptor, options)
   end
 
   # Returns the relative path from the public directory.
-  def url(descriptor=nil, options={})
+  def relative_path(descriptor=nil, options={})
     base_path = descriptor ? CACHE_DIR : UPLOAD_DIR # pointing to original image or resized?
 
     '/' + File.join( base_path, created_at.year.to_s, created_at.month.to_s, filename(descriptor, options) )
