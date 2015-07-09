@@ -11,13 +11,13 @@
 // about supported directives.
 //
 //= require jquery.min
-//= require jquery-lightbox-0.5
+//= require fancyBox/jquery.fancybox
 //= require jquery.placeholder
 //= require rails
 //
 //= require pubsub
 //= require original/loginpanel
 //= require original/publicstream
+//= require original/showentry
 //
-//x= require turbolinks
 //x= require_tree ./original

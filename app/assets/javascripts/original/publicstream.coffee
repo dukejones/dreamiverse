@@ -50,7 +50,7 @@ $(document).ready ->
     $(el).lightBox({containerResizeSpeed: 0})
   )
   ###
-  $('a.lightbox').lightBox({containerResizeSpeed: 0})
+  $('a.lightbox').fancybox()
 
 
   $.subscribe 'youtube:data', ($element, thumbnail, videoEmbed)=> 
