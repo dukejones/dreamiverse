@@ -59,8 +59,6 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-bundler', require: false
-  # gem 'capistrano'
-  # gem 'capistrano-ext'
   # gem 'active_reload'
   # gem 'wirble'
 end
