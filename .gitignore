@@ -12,4 +12,4 @@ public/dreamcatcher/production.js
 public/dreamcatcher/dreamcatcher.js
 public/compiled
 config/initializers/dump.rdb
-
+config/database.yml
