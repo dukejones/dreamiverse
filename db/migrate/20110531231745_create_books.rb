@@ -1,6 +1,6 @@
 class CreateBooks < ActiveRecord::Migration
   def self.up
-    drop_table :books # somehow this table is in the prod db.  :-(
+    # drop_table :books # somehow this table is in the prod db.  :-(
     create_table :books do |t|
       t.string :title
       t.integer :user_id
