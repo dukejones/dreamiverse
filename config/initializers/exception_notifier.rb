@@ -2,7 +2,7 @@
 
 if !Rails.env.development? && !Rails.env.test?
   Rails.application.config.middleware.use ExceptionNotification::Rack,
-    :sections => %w(user request session environment backtrace),
+    # :sections => %w(user request session environment backtrace),
     :email => {
       :email_prefix => "[ERROR] ",
       :sender_address => %{"dreamcatcher.net" <mailer@dreamcatcher.net>},
