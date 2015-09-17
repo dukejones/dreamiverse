@@ -18,6 +18,8 @@
 //= require pubsub
 //= require original/loginpanel
 //= require original/publicstream
+//= require original/context_panel
+//= require original/stream_context_panel
 //= require original/showentry
 //
 //x= require_tree ./original

@@ -1,12 +1,12 @@
 
-set :application, "dreamcatcher"
+set :application, "dreamcatcher.net"
 
 set :rails_env, 'production'
-set :branch, 'production'
+set :branch, 'rails-4'
 
-set :deploy_to, "/var/www/#{application}"
+set :deploy_to, "/srv/#{fetch(:application)}"
 
-server "dreamcatcher.net", :web, :app, :db, :primary => true, :memcached => true
+server "deploy@dreamcatcher.net", roles: %w{web app db}, primary: true, memcached: false
 
 after "deploy:restart", "compile:haml"
 

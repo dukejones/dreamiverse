@@ -1,4 +1,4 @@
-ruby "2.2.2"
+ruby "2.2.3"
 source 'http://rubygems.org'
 
 gem 'rails', '~> 4.2'
@@ -56,7 +56,9 @@ gem 'spring',        group: :development
 # gem 'rgeo' - when we get into doing lots of geocoding / calculations.
 
 group :development do
-  gem 'capistrano-rails'
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  gem 'capistrano-bundler', require: false
   # gem 'capistrano'
   # gem 'capistrano-ext'
   # gem 'active_reload'

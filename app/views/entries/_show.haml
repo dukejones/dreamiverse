@@ -157,7 +157,7 @@
 
           - @entry.what_tags.custom.whats.each do |what|
             = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
-            
+
         / ANALYSIS TAGS
         .tag-list.ui-sortable.target
           - @entry.what_tags.auto.whats.each do |what|
