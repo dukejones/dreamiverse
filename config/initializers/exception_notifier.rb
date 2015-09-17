@@ -2,7 +2,7 @@
 
 if !Rails.env.development? && !Rails.env.test?
   require 'exception_notifier'
-  Rails.Application.config.middleware.use ExceptionNotifier,
+  Rails.application.config.middleware.use ExceptionNotifier,
     :sections => %w(user request session environment backtrace),
     :email_prefix => "[ERROR] ",
     :sender_address => %{"dreamcatcher.net" <mailer@dreamcatcher.net>},

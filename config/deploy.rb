@@ -12,26 +12,19 @@ set :scm_verbose, true
 set :keep_releases, 5
 
 # set :default_stage, "theta"
-
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
 # set :deploy_to, '/var/www/my_app_name'
-
 # set :log_level, :debug
-
 # set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
 
 namespace :deploy do
 
@@ -70,15 +63,15 @@ require 'whenever/capistrano'
 # end
 
 
-def rake(cmd, options={}, &block)
-  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
-  run(command, options, &block)
-end
+# def rake(cmd, options={}, &block)
+#   command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
+#   run(command, options, &block)
+# end
 
 # Magical Unicorn GO!
-def unicorn_pid
-  "#{shared_path}/pids/unicorn.pid"
-end
-def signal_unicorn(signal="")
-  "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
-end
+# def unicorn_pid
+#   "#{shared_path}/pids/unicorn.pid"
+# end
+# def signal_unicorn(signal="")
+#   "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
+# end
