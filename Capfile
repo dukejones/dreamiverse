@@ -27,34 +27,6 @@ require 'capistrano/rails/migrations'
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 
-namespace :deploy do
-  task :start do
-    on roles(:app) do #, :except => { :no_release => true }
-      # run "cd #{current_path} && #{try_sudo} bundle exec unicorn -c #{current_path}/config/unicorn.rb -E #{rails_env} -D"
-      run "#{sudo} god start dreamcatcher"
-    end
-  end
-  task :stop do
-    on roles(:app) do #, :except => { :no_release => true }
-      # run "[ -e #{unicorn_pid} ] && echo Killing Unicorn PID: `cat #{unicorn_pid}` && #{signal_unicorn}"
-      run "#{sudo} god stop dreamcatcher"
-    end
-  end
-  # task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-  #   # run signal_unicorn("QUIT")
-  # end
-  task :reload do
-    on roles(:app) do #, :except => { :no_release => true }
-      run signal_unicorn("USR2")
-    end
-  end
-  task :restart do
-    on roles(:app) do #, :except => { :no_release => true }
-      run signal_unicorn("HUP")
-    end
-  end
-end
-
 namespace :compile do
   task :jmvc do
     run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")

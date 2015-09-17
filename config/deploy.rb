@@ -67,11 +67,3 @@ require 'whenever/capistrano'
 #   command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
 #   run(command, options, &block)
 # end
-
-# Magical Unicorn GO!
-# def unicorn_pid
-#   "#{shared_path}/pids/unicorn.pid"
-# end
-# def signal_unicorn(signal="")
-#   "#{sudo} kill -s #{signal} `cat #{unicorn_pid}`"
-# end
