@@ -13,12 +13,13 @@ namespace :deploy do
     desc "#{command} Unicorn server."
     task command do
       on roles(:app) do
-        execute "/etc/init.d/#{fetch(:application)}_unicorn #{command}"
+        # execute "/etc/init.d/#{fetch(:application)}_unicorn #{command}"
+        execute "/etc/init.d/dreamcatcher_unicorn #{command}"
       end
     end
   end
 
-  before :deploy, "deploy:check_revision"
+  # before :deploy, "deploy:check_revision"
   after :deploy, "deploy:restart"
   after :rollback, "deploy:restart"
 end

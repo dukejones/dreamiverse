@@ -43,7 +43,7 @@ MailJetSmtpSettings = {
   address: "in.mailjet.com",
   port: 587,
   user_name: "bd8679e217fe4e656961aebb32796048",
-  password: "636774df5eea9a680e0f717666c6cf3d",
+  password: "2246a9925a8909660f1167613810fc43",
   enable_starttls_auto: true
 }
 

@@ -27,6 +27,11 @@ require 'capistrano/rails/migrations'
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 
+def rake(cmd, options={}, &block)
+  command = "cd #{current_release} && /usr/bin/env bundle exec rake #{cmd} RAILS_ENV=#{rails_env}"
+  run(command, options, &block)
+end
+
 namespace :compile do
   task :jmvc do
     run("cd #{current_release}/public; /usr/bin/env ./js dreamcatcher/scripts/build.js")
