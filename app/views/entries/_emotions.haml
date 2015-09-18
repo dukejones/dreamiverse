@@ -7,7 +7,7 @@
 .arrow
 
 %table.container
-  - emotion_tags.order(:noun_id).where(:intensity > 0).each do |tag|
+  - emotion_tags.order(:noun_id).where('intensity > 0').each do |tag|
     - emotion = tag.noun
     %tr{class: emotion.name}
       %td.name= emotion.name

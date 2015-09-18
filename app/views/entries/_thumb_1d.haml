@@ -38,8 +38,9 @@
           - entry.images.limit(5).each do |image|
             = gallery_1d_thumb(image)
 
-      /EMOTIONS DETAILS & THUMBS
-      - if entry.tags.emotion.first._?.intensity.to_i > 0
+      / EMOTIONS DETAILS & THUMBS
+      / XXX: DISABLED
+      - if false && entry.tags.emotion.first._?.intensity.to_i > 0
         .emotionsWrap
           .emotions-details
             .emotionsHeader
