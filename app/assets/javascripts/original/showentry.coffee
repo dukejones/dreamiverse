@@ -167,8 +167,8 @@ $(document).ready ->
       $(this).before '<img class="attachedLink" src="http://' + this.hostname + '/favicon.ico" />'
 
       # Check for favico error
-      $(".attachedLink").bind "error", ->
-        $(this).attr('src', '/images/icons/link-16.png')
+      #$(".attachedLink").bind "error", ->
+      #  $(this).attr('src', '/images/icons/link-16.png')
 
 
 # TODO
