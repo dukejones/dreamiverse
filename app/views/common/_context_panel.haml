@@ -19,8 +19,8 @@
               .dropboxBrowse browse
 
       / BOOKS (for testing)
-      = render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
-      
+      =# render :partial => 'books/book', :locals => {:book => @book, :context_panel => true} if @book
+
       / IMAGE
       %a.history.avatar{style: "background-image: url(#{avatar_image(user)})", href: user_entries_path(user.username)}
         - if (user == current_user) && !is_ipad?
@@ -46,7 +46,7 @@
           %button#relationship{type: "button", class: relationship.to_s, :'data-status' => relationship, :'data-username' => user.username }
             .relation= follow_action(relationship)
             .icon
-            
+
       .divider
 
 
@@ -77,7 +77,7 @@
               - if user.link
                 - proper_url = assure_http(user.link.url)
               %a.href{href: "#{(user.link.blank?) ? '/' : proper_url}", target: "_blank"}
-                = "#{(user.link.blank?) ? ' ' : user.link.url}" 
+                = "#{(user.link.blank?) ? ' ' : user.link.url}"
 
             - if user.friends_with?(current_user) || user == current_user
               .email= user.email
