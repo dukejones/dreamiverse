@@ -107,6 +107,8 @@ class Entry < ActiveRecord::Base
           viewer.friends
         elsif filters[:users] == "following"
           viewer.following.select('users.id')
+        else
+          {}
         end.map(&:id)
       user_ids_to_view.delete(viewer.id)
 
