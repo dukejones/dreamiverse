@@ -63,7 +63,7 @@ class Image < ActiveRecord::Base
 
   profile :stream_header do |img, options|
     img = exec_profile(img, :header, options)
-    img.minify
+    img.resize '50%'
   end
 
   profile :medium do |img, options|
