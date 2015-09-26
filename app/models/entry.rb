@@ -157,6 +157,7 @@ class Entry < ActiveRecord::Base
   def self.dreamfield(viewer, viewed, filters={})
     entry_scope = Entry.order("dreamed_at desc")
 
+    filters[:show_all] = "true"
     page_size = filters[:page_size] || 24
     page = filters[:page].to_i
     page = 1 if page <= 0
@@ -165,7 +166,7 @@ class Entry < ActiveRecord::Base
     entry_scope = entry_scope.where(user_id: viewed.id)
     entry_scope = entry_scope.where(book_id: nil)
     entry_scope = entry_scope.limit(page_size) unless filters[:show_all] == "true"
-    entry_scope = entry_scope.offset(page_size * (page - 1))
+    entry_scope = entry_scope.offset(page_size * (page - 1)) unless filters[:show_all] == "true"
 
     if viewer
       entry_scope = entry_scope.where(["sharing_level != ?", self::Sharing[:private]])   unless viewer == viewed
