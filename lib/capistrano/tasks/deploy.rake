@@ -1,3 +1,12 @@
+
+namespace :deploy do
+  after :deploy, "puma:restart"
+  after :rollback, "puma:restart"
+end
+
+
+=begin
+# Unicorn
 namespace :deploy do
 
   desc "Makes sure local git is in sync with remote."
@@ -23,7 +32,7 @@ namespace :deploy do
   after :deploy, "deploy:restart"
   after :rollback, "deploy:restart"
 end
-
+=end
 
 =begin
 # Magical Unicorn GO!

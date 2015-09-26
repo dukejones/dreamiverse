@@ -18,18 +18,18 @@ end
 
 
 namespace :app do
- 
+
   namespace :tagcloud do
     desc "Generate all tags"
     task :generate => :environment do
       begin_time = Time.now
       log("*** Re-generating all entry tag clouds using rake app:tagcloud:generate ***")
-      Entry.all.map do |e| 
+      Entry.all.map do |e|
         next if e.tags.count >= 15
         pre_tags = e.tags.count
         Resque.enqueue(AutoGenerateTags, e.id)
-        e.reorder_tags 
-      end    
+        e.reorder_tags
+      end
       log("Total time: #{Decimal(Time.now - begin_time).round(:places => 2)}")
     end
   end
@@ -45,7 +45,7 @@ namespace :app do
 
   desc "Clear out the hits table"
   task :clear_hits => :environment do
-    num Hit.delete_all(["created_at < ?", 1.week.ago])
+    num = Hit.delete_all(["created_at < ?", 1.month.ago])
     log "#{num} old hits deleted."
   end
 

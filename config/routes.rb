@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get   'auth/:provider/callback', :to => 'user/authentications#create'
   get   'auth/failure', :to => 'user/authentications#failure'
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
-  
+
   # Universal Routes
   get 'today' => 'home#index', :as => :today
   get 'thank_you' => 'home#thank_you', :as => :thank_you
@@ -40,14 +40,14 @@ Rails.application.routes.draw do
   get '/admin/line_chart' => 'admin#load_line_chart'
   get '/admin/pie_chart' => 'admin#load_pie_chart'
   get '/admin/bedsheets' => 'admin#load_bedsheets'
-   
+
   get '/stream' => 'entries#stream', :as => :stream
   get '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
   get '/random' => 'entries#random', :as => :random
 
   # Mounts
   mount Resque::Server, :at => '/resque'
-  
+
   get "/facebook_channel", :to => proc {|env| [200, {}, ['<script src="//connect.facebook.net/en_US/all.js"></script>']] }, :as => :facebook_channel
 
   # Resources
@@ -69,10 +69,10 @@ Rails.application.routes.draw do
 
 
   # Images
-  # get 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
+  # get 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize',
   #   constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
 
-  get "#{Image::CACHE_DIR}/:year/:month/:filename-:descriptor(-:size).:format", to: 'images#resize', 
+  get "#{Image::CACHE_DIR}/:year/:month/:filename-:descriptor(-:size).:format", to: 'images#resize',
     constraints: {year: /\d{4}/, month: /\d{1,2}/, descriptor: /[^\d]+/, size: /\d+/, format: /\w{2,4}/ }
 
   resources :images do
@@ -94,7 +94,7 @@ Rails.application.routes.draw do
   resources :dictionaries do
     resources :words
   end
-  
+
 
   # Tagging
   resources :tags do
@@ -104,7 +104,7 @@ Rails.application.routes.draw do
       delete '/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
     end
   end
-  
+
   resources :entries do
     collection do
       get 'random'
@@ -118,25 +118,28 @@ Rails.application.routes.draw do
     end
     resources :comments
   end
-  
+
   resources :books
 
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
-       
+
     # Entries
-    get "/:entry_type", :to => 'entries#index', 
+    get "/:entry_type", :to => 'entries#index',
       :constraints => {entry_type: /dreams|visions|experiences|articles|journals/}, :as => 'user_entries_filter'
-    
+
     get '/' => 'entries#index', :as => 'user_entries'
     post '/' => 'entries#create'
     get "/new", :to => 'entries#new', :as => 'new_user_entry'
     get "/:id/edit", :to => 'entries#edit', :constraints => {id: /\d+/}, :as => 'edit_user_entry'
     get "/:id", :to => 'entries#show', :constraints => {id: /\d+/}, :as => 'user_entry'
+    get "/:id/pdf", to: 'entries#pdf_view', :constraints => {id: /\d+/}, :as => 'user_entry_pdf'
     put "/:id", :to => 'entries#update', :constraints => {id: /\d+/}
     delete "/:id", :to => 'entries#delete', :constraints => {id: /\d+/}
-    
+
+    get 'all', to: 'entries#all', as: 'all_entries'
+
     # Friends & Following
     get 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
     get 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
@@ -144,11 +147,11 @@ Rails.application.routes.draw do
     ['friends', 'following', 'followers'].each do |mode|
       get mode => 'users#friends', :mode => mode, :as => mode
     end
-    
-    # route alpha legacy view urls to /username 
+
+    # route alpha legacy view urls to /username
     get '/view/:id' => redirect("/%{username}")
     get '/profile' => redirect("/%{username}")
-    
+
   end
 
 

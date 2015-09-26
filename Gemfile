@@ -5,8 +5,8 @@ gem 'rails', '~> 4.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'unicorn'
-# gem 'puma'
+# gem 'unicorn'
+gem 'puma'
 gem 'foreman'
 gem 'mysql2'
 gem 'haml'
@@ -26,7 +26,6 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'exception_notification'
 gem 'nokogiri'
-#gem 'memcache-client'
 gem 'dalli'
 gem 'resque', :require => 'resque/server'
 
@@ -35,6 +34,9 @@ gem 'mini_magick'
 # gem 'micro_magick'
 
 gem 'prawn'
+gem 'wicked_pdf'
+gem 'pdfkit'
+
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
 gem 'whenever', :require => false
@@ -57,8 +59,11 @@ gem 'spring',        group: :development
 
 group :development do
   gem 'capistrano-rails', require: false
-  gem 'capistrano-rvm', require: false
+  gem 'rvm1-capistrano3', require: false
   gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma', require: false
+  gem 'better_errors'
+  gem 'quiet_assets'
   # gem 'active_reload'
   # gem 'wirble'
 end
