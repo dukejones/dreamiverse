@@ -6,7 +6,7 @@ tmp/*
 tmp/**/*
 .DS_Store
 .idea
-public/imagebank/*
+public/imagebank
 public/imagebank-cache/*
 public/dreamcatcher/production.js
 public/dreamcatcher/dreamcatcher.js
