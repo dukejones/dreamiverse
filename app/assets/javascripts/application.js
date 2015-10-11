@@ -10,34 +10,62 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery.min
-//= require fancyBox/jquery.fancybox
-//= require jquery.placeholder
-//= require rails
-//= require swfobject
-//= require json2
-//= require jquery.animate-enhanced
-//= require jquery.tooltip.js
-//x= require jquery-lightbox-0.5
-//= require jquery.timeago.js
-//= require jquery.exists.js
-//= require jquery.cookie.js
-//= require jquery.dateFormat-1.0.js
-//= require jquery.query-2.1.7.js
-//= require jquery.livequery.js
-//= require jquery.placeholder.js
-//= require jquery.linkify.js
-//= require jquery.easing.1.3.js
-//= require jquery.hoverIntent.minified.js
-//= require ui/jquery.ui.core.js
-//= require ui/jquery.ui.widget.js
-//= require ui/jquery.ui.mouse.js
-//= require ui/jquery.ui.position.js
-//= require ui/jquery.ui.selectmenu.js
-//= require ui/jquery.ui.draggable.js
-//= require ui/jquery.ui.droppable.js
-//= require fileuploader.js
-//= require pubsub
+
+// Old Production Assets:
+//  shared:
+//= require prod/jquery.hoverIntent.minified.js
+//= require prod/pubsub.js
+//= require prod/rails.js
+//= require prod/jquery.cookie.js
+//= require prod/jquery.placeholder.js
+//= require prod/compiled/modal.js
+//= require prod/compiled/dreamplugs.js
+//= require prod/compiled/application.js
+//  entries:
+//= require prod/geo.js
+//= require prod/dreams.js
+//= require prod/compiled/follow_hover.js
+//= require prod/compiled/dreamfield.js
+//= require prod/tag_stream.js
+
+//stylesheets:
+//  shared:
+//    - public/stylesheets/compiled/shared.css
+//    - public/stylesheets/jquery.lightbox-0.5.css
+
+
+
+
+
+
+
+//x= require jquery.min
+//x= require fancyBox/jquery.fancybox
+//x= require jquery.placeholder
+//x= require rails
+//x= require swfobject
+//x= require json2
+//x= require jquery.animate-enhanced
+//x= require jquery.tooltip.js
+//x= require jquery.timeago.js
+//x= require jquery.exists.js
+//x= require jquery.cookie.js
+//x= require jquery.dateFormat-1.0.js
+//x= require jquery.query-2.1.7.js
+//x= require jquery.livequery.js
+//x= require jquery.placeholder.js
+//x= require jquery.linkify.js
+//x= require jquery.easing.1.3.js
+//x= require jquery.hoverIntent.minified.js
+//x= require ui/jquery.ui.core.js
+//x= require ui/jquery.ui.widget.js
+//x= require ui/jquery.ui.mouse.js
+//x= require ui/jquery.ui.position.js
+//x= require ui/jquery.ui.selectmenu.js
+//x= require ui/jquery.ui.draggable.js
+//x= require ui/jquery.ui.droppable.js
+//x= require fileuploader.js
+//x= require pubsub
 //
 //= require original/application
 //= require original/loginpanel
@@ -45,6 +73,10 @@
 //= require original/context_panel
 //= require original/stream_context_panel
 //= require original/showentry
+
+// previously disabled
+
+//x= require jquery-lightbox-0.5
 //x= require original/browserdetect
 //x= require original/sharing
 //x= require original/fit_to_content
