@@ -1,0 +1,576 @@
+// MIXINS
+
+// NON SELECTABLE CONTENTS
+=user-select
+  user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  -khtml-user-select: none
+  -o-user-select: none
+
+// DISPLAY
+=block
+  display: block
+=hidden
+  display: none
+=absolute
+  position: absolute
+=relative
+  position: relative
+=overflow
+  overflow: hidden
+=left
+  float: left
+=right
+  float: right
+=clear
+  clear: both
+=transparent
+  background: transparent
+=outline
+  outline:  none
+
+
+// FONTS
+=bold
+  font-weight: bold
+=center
+  text-align: center
+=font($px)
+  font-size: $px + px
+
+// sans serif
+=arial
+  font-family: Arial, Arial, Helvetica, sans-serif
+=calibri
+  font-family: Calibri, Lucida Sans Unicode, Lucida Grande, sans-serif
+=verdana
+  font-family: Verdana, Verdana, Geneva, sans-serif
+=monospace
+  font-family: Lucida Console, Monaco, monospace
+=comic
+  font-family: Comic Sans MS, Comic Sans MS
+
+// serif
+=georgia
+  font-family: Georgia, Georgia, serif
+=garamond
+  font-family: Garamond, serif
+=book
+  font-family: Palatino Linotype, Book Antiqua, Palatino, serif
+=times
+  font-family: "Times New Roman", Times, serif
+
+// long-line text wrapping
+=wrap
+  // white-space: pre-wrap /* css-3 */
+  // white-space: -moz-pre-wrap !important /* Mozilla, since 1999 */
+  // white-space: -pre-wrap /* Opera 4-6 */
+  // white-space: -o-pre-wrap /* Opera 7 */
+  // word-wrap: break-word /* Internet Explorer 5.5+ */
+
+
+// CURSORS
+=pointer
+  cursor: pointer
+=cursor
+  cursor: default
+
+
+// ROUND
+
+=round($radius)
+  border-radius:            $radius + px
+  -moz-border-radius:       $radius + px
+  -webkit-border-radius:    $radius + px
+
+  background-clip: padding-box !important
+
+
+// FLAT
+
+=flat-top
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+
+=flat-right
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+
+=flat-bottom
+  border-bottom-left-radius:          0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+
+=flat-left
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-bottom-left-radius:          0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
+
+=flat-all
+  border-top-left-radius:             0px
+  -moz-border-radius-topleft:         0px
+  -webkit-border-radius-topleft:      0px
+
+  border-top-right-radius:            0px
+  -moz-border-radius-topright:        0px
+  -webkit-border-radius-topright:     0px
+
+  border-bottom-right-radius:         0px
+  -moz-border-radius-bottomright:     0px
+  -webkit-border-radius-bottomright:  0px
+
+  border-bottom-left-radius:           0px
+  -moz-border-radius-bottomleft:      0px
+  -webkit-border-radius-bottomleft:   0px
+
+
+
+
+
+
+
+
+//  ***  *****  ***  ****  *** 
+//  ***  LIGHT  and  DARK  ***
+//  ***  *****  ***  ****  ***
+
+
+=border-light
+  border: 1px solid #bbb
+=border-dark
+  border: 1px solid #444
+=border-blue
+  border: 1px solid #9ae4fd
+
+
+
+
+=infoTab-light
+  background-color: #e7e7e7
+  border: 1px solid #ccc
+=infoTab-dark
+  background-color: #a1a1a1
+  border: 1px solid #ccc
+
+
+=shine-light($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+  +gradient(#fff, #aaa)
+
+
+
+=shine-dark($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.05)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.05)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.05)
+  +gradient(#333, #010101)
+
+
+=shine-blue($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
+  // written out longhand for IE degredation
+  background:         #0c2b50
+  background:         -webkit-gradient(linear, center top, center bottom, from(#5d80ad), to(#0c2b50))
+  background:         -moz-linear-gradient(#5d80ad, #0c2b50)
+  background:         -o-linear-gradient(#5d80ad, #0c2b50)
+
+=shine-grey($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.1)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.1)
+  +gradient(#979797, #414141)
+
+
+
+=shine-light-alpha($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.15)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.15)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.15)
+
+  background: #f0f0f0
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.75)), to(rgba(120,120,120,0.75)))
+  background: -moz-linear-gradient(top, rgba(255,255,255,0.75), rgba(120,120,120,0.75))
+  background: -o-linear-gradient(rgba(255,255,255,0.75), rgba(120,120,120,0.75))
+
+
+=shine-dark-alpha($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.06)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.06)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.06)
+
+  background: #000
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(34,34,34,0.75)), to(rgba(0,0,0,0.75)))
+  background: -moz-linear-gradient(top, rgba(34,34,34,0.75), rgba(0,0,0,0.75))
+  background: -o-linear-gradient(rgba(34,34,34,0.75), rgba(0,0,0,0.75))
+
+
+=shine-blue-alpha($px)
+  box-shadow:         inset 0 $px + px rgba(255,255,255,0.2)
+  -moz-box-shadow:    inset 0 $px + px rgba(255,255,255,0.2)
+  -webkit-box-shadow: inset 0 $px + px rgba(255,255,255,0.2)
+
+  background: #5b71a4
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(10,31,78,1.0)), to(rgba(14,66,132,0.65)))
+  background: -moz-linear-gradient(top, rgba(10,31,78,1.0), rgba(14,66,132,0.65))
+  background: -o-linear-gradient(rgba(10,31,78,1.0), rgba(14,66,132,0.65))
+
+
+=bevel-light
+  +gradient(#fff, #dcdcdc)
+
+=bevel-dark
+  +gradient(#222, #010101)
+
+=indent-light
+  border: 1px solid #fff
+  background: #e6e6e6
+  background: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#fff))
+  background: -moz-linear-gradient(top, #e6e6e6, #fff)
+  background: -o-linear-gradient(#e6e6e6, #fff)
+
+=indent-dark
+  border: 1px solid #000
+  background: #1a1a1a
+  background: -webkit-gradient(linear, left top, left bottom, from(#090909), to(#1a1a1a))
+  background: -moz-linear-gradient(top, #090909, #1a1a1a)
+  background: -o-linear-gradient(#090909, #1a1a1a)
+
+=indent-blue
+  border: 1px solid #6183a1
+  +gradient(#09233f, #1c4d78)
+
+=panel-light
+  border: 1px solid #bbb
+  +gradient(#fff, #dcdcdc)
+
+=panel-dark
+  border: 1px solid #222
+  +gradient(#222, #010101)
+
+
+=input-light($size)
+  color: #333
+  outline: none
+  background-color: #fff
+
+  @if $size == small
+    border: 1px solid #666
+    box-shadow:         inset 2px 2px 5px #ccc
+    -moz-box-shadow:    inset 2px 2px 5px #ccc
+    -webkit-box-shadow: inset 2px 2px 5px #ccc
+
+  @else if $size == large
+    border: 1px solid #fff
+    box-shadow:         inset 0 8px 5px #ccc
+    -moz-box-shadow:    inset 0 8px 5px #ccc
+    -webkit-box-shadow: inset 0 8px 5px #ccc
+
+  &:focus
+    color: #333
+    border: 1px solid #000
+    +glow-light(20)
+
+
+=input-dark($size)
+  color:      #fff
+  border:     1px solid #444
+  background: #121212
+  outline:    none
+
+  @if $size == small
+    box-shadow:         inset 2px 2px 5px #000
+    -moz-box-shadow:    inset 2px 2px 5px #000
+    -webkit-box-shadow: inset 2px 2px 5px #000
+
+  @else if $size == large
+    box-shadow:         inset 0 8px 10px #000
+    -moz-box-shadow:    inset 0 8px 10px #000
+    -webkit-box-shadow: inset 0 8px 10px #000
+
+  &:focus
+    color: #fff
+    border: 1px solid #fff
+    background: #000
+    box-shadow:         0 0 20px #fff
+    -moz-box-shadow:    0 0 20px #fff
+    -webkit-box-shadow: 0 0 20px #fff
+
+
+// CLOSE ICONS
+=close-16
+  +pointer
+  +round(12)
+  +alpha(50)
+  width: 16px
+  height: 16px
+  background: url(/images/icons/close-16.png) no-repeat center transparent
+  &:hover
+    +alpha(100)
+    background: url(/images/icons/close-16-hover.png) no-repeat center transparent
+=close-24
+  +pointer
+  +round(12)
+  +alpha(60)
+  width: 24px
+  height: 24px
+  background: url(/images/icons/close-24.png) no-repeat center transparent
+  &:hover
+    +alpha(100)
+    background: url(/images/icons/close-24-hover.png) no-repeat center transparent
+=check-16
+  +pointer
+  width: 16px
+  height: 16px
+  background: url(/images/icons/check-16.png) no-repeat center transparent
+=check-31
+  background: url(/images/icons/check-31.png) no-repeat center
+  +pointer
+  width: 31px
+  height: 31px
+  background: url(/images/icons/check-31.png) no-repeat center transparent
+
+
+=spinner-light
+  background: url('/images/icons/spinner-light-32.gif') no-repeat center center transparent
+=spinner-light-grey
+  background: url('/images/icons/spinner-light-grey-32.gif') no-repeat center center transparent
+=spinner-grey
+  background: url('/images/icons/spinner-grey-32.gif') no-repeat center center transparent
+=spinner-dark
+  background: url('/images/icons/spinner-dark-32.gif') no-repeat center center transparent
+
+// BACKGROUNDS
+=flat-light
+  background: #fff
+=flat-light-medium
+  background: #f5f5f5
+=flat-dark
+  background: #000
+=flat-dark-medium
+  background: #444
+
+
+=transparent-light($percent)
+  +flat-light
+  background-color: rgba(255,255,255, $percent / 100 )
+=transparent-dark($percent)
+  +flat-dark
+  background-color: rgba(0,0,0, $percent / 100 )
+
+
+
+
+
+
+
+
+// GLOWS AND SHADOWS
+
+=glow-light($depth)
+  box-shadow:         0 0 $depth + px #000
+  -moz-box-shadow:    0 0 $depth * 0.7 + px #000
+  -webkit-box-shadow: 0 0 $depth + px #000
+
+=glow-light-alpha($depth, $percent)
+  box-shadow:         0 0 $depth + px rgba(0,0,0,$percent)
+  -moz-box-shadow:    0 0 $depth * 0.7 + px rgba(0,0,0,$percent)
+  -webkit-box-shadow: 0 0 $depth + px rgba(0,0,0,$percent)
+
+
+=glow-dark($depth)
+  box-shadow:         0 0 $depth + px #fff
+  -moz-box-shadow:    0 0 $depth * 0.5 + px #fff
+  -webkit-box-shadow: 0 0 $depth + px #fff
+
+=glow-dark-alpha($depth, $percent)
+  box-shadow:         0 0 $depth + px rgba(255,255,255,$percent)
+  -moz-box-shadow:    0 0 $depth * 0.7 + px rgba(255,255,255,$percent)
+  -webkit-box-shadow: 0 0 $depth + px rgba(255,255,255,$percent)
+
+
+=glow-blue($depth)
+  box-shadow:         0 0 $depth + px #1188c0
+  -moz-box-shadow:    0 0 $depth + px #1188c0
+  -webkit-box-shadow: 0 0 $depth + px #1188c0
+
+
+=inner-glow($depth)
+  box-shadow:         inset 0 0 $depth + px #fff
+  -moz-box-shadow:    inset 0 0 $depth + px #fff
+  -webkit-box-shadow: inset 0 0 $depth + px #fff
+
+
+=inner-shadow($depth)
+  box-shadow:         inset 0 10px $depth + px rgba(0,0,0,0.4)
+  -moz-box-shadow:    inset 0 10px $depth + px rgba(0,0,0,0.4)
+  -webkit-box-shadow: inset 0 10px $depth + px rgba(0,0,0,0.4)
+
+
+
+=gradient($color1, $color2)
+  background:     $color1
+  background:     -webkit-gradient(linear, center top, center bottom, from( $color1 ), to( $color2 ))
+  background:     -moz-linear-gradient($color1, $color2)
+  background:     -o-linear-gradient($color1, $color2)
+
+=bg-shine($offset)
+  box-shadow:         inset 0px $offset + px rgba(255,255,255,0.1)
+  -moz-box-shadow:    inset 0px $offset + px rgba(255,255,255,0.1)
+  -webkit-box-shadow: inset 0px $offset + px rgba(255,255,255,0.1)
+
+
+
+
+// ALPHA
+=alpha($percent)
+  filter: alpha(opacity=$percent)
+  -moz-opacity:     $percent / 100
+  -khtml-opacity:   $percent / 100
+  -webkit-opacity:  $percent / 100
+  opacity:          $percent / 100
+
+
+
+
+
+
+
+
+
+
+// BUTTONS
+
+
+
+=button-light
+  +pointer
+  border: 1px solid #e6e6e6
+  &:hover
+    +pointer
+    border: 1px solid #8c8c8c
+  &:active
+    +gradient(#aaa, #eee)
+    border: 1px solid #464646
+
+
+=button-dark
+  +pointer
+  border: 1px solid #090909
+  &:hover
+    +pointer
+    border: 1px solid #777
+  &:active
+    +gradient(#222, #555)
+
+
+=button-blue
+  +pointer
+  border: 1px solid #9ae4fd
+  color: #d1f2ff
+  &:hover
+    +pointer
+    border: 1px solid #fff
+    color: #fff
+
+
+
+
+=confirm($offset)
+  &:hover
+    +bg-shine($offset)
+    +gradient(#0c2b50, #5d80ad)
+    +pointer
+    color: #fff
+    border: 1px solid #5d80ad
+  &:active
+    +bg-shine(0)
+    +gradient(#051f3f, #416799)
+    border: 1px solid #051f3f
+    color: #fff
+
+
+
+
+=save($offset)
+  &:hover
+    +bg-shine($offset)
+    +gradient(#235b1b, #70d03b)
+    +pointer
+    color: #fff
+    border: 1px solid #70d03b
+  &:active
+    +bg-shine(0)
+    +gradient(#15460e, #5bbe25)
+    color: #fff
+    border: 1px solid #15460e
+
+=cancel($offset)
+  &:hover
+    +bg-shine($offset)
+    +gradient(#4e4e4e, #979797)
+    +pointer
+    color: #fff
+    border: 1px solid #979797
+  &:active
+    +bg-shine(0)
+    +gradient(#3e3e3e, #7e7e7e)
+    +pointer
+    color: #fff
+    border: 1px solid #3e3e3e
+
+=delete($offset)
+  &:hover
+    +bg-shine($offset)
+    +gradient(#8b1812, #ee6844)
+    +pointer
+    color: #fff
+    border: 1px solid #b22626
+  &:active
+    +gradient(#ee6844, #8b1812)
+    +pointer
+    color: #fff
+    border: 1px solid #fff
+
+=unfollow($offset)
+  +bg-shine($offset)
+  +gradient(#8b1812, #ee6844)
+  +pointer
+  color: #fff
+  border: 1px solid #b22626
+  &:active
+    +gradient(#8b1812, #ee6844)
+    +pointer
+    color: #fff
+    border: 1px solid #fff
+
+
+// IE 6+ gradient filter
+// filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)
+// -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1471da, endColorstr=#1C85FB)"

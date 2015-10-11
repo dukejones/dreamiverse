@@ -1,0 +1,96 @@
+@import mixins
+
+.container
+  +absolute
+  top: 82px
+  left: 232px
+  width: 600px
+
+  .module
+    +transparent-light(50)
+    +round(16)
+    padding: 8px
+    margin-bottom: 8px
+
+    h1, h2
+      +block
+      +bevel-light
+      +round(12)
+      +cursor
+      padding: 8px
+      +center
+      margin-top: 0
+      height: 36px
+      line-height: 36px
+
+    h1
+      +font(21)
+    h2
+      +font(19)
+
+    h1 a, h2 a
+      +font(21)
+      +button-light
+      +round(8)
+      +shine-light(12)
+      padding: 4px 8px
+      +left
+      margin-right: -80px
+      height: 26px
+      line-height: 26px
+      +cancel(12)
+
+      &.edit
+        +font(14)
+        height: 18px
+        line-height: 18px
+        +right
+        +bevel-light
+        margin: 4px 10px 0 -60px
+        +save(12)
+      &.back
+        +font(17)
+        +shine-light(16)
+        +cancel(16)
+
+    ul
+      list-style-type: none
+      a
+        +transparent-light(50)
+        +block
+        +font(21)
+        +button-light
+        +round(24)
+        padding: 4px 8px
+        margin: 8px
+
+    input
+      +input-light(small)
+      +font(21)
+      +round(12)
+      padding: 6px
+      &.submit
+        +shine-light(16)
+        +font(21)
+        +button-light
+        padding: 8px
+        +block
+        +round(12)
+        +save(16)
+    textarea
+      +input-light(small)
+      +font(14)
+      +round(8)
+      padding: 8px
+
+  .new
+    +block
+    +shine-light(18)
+    +button-light
+    +round(16)
+    +bold
+    +font(21)
+    +center
+    padding: 8px
+    margin-bottom: 20px
+    +save(18)

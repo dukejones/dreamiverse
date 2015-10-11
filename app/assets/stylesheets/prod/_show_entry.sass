@@ -1,0 +1,608 @@
+
+#entryField
+
+
+  #showEntry
+    .content, .tagEntry, .entryAnalysis
+      margin: 0 0 8px
+
+
+  // STRUCTURE
+
+  #showEntry
+    +relative
+    +round(16)
+    width: 662px 
+    padding: 8px
+
+    .prev
+      +round(16)
+      +flat-right
+      +font(24)
+    .next
+      +round(16)
+      +flat-left
+      +font(24)
+    .prev:hover, .stream:hover, .next:hover
+      +cancel(16)
+    .stream
+      +flat-all
+    .next, .stream, .prev, .books, .entryType, .postTime, .editEntry, .deleteEntry, .downloadEntry
+      +block
+      +center
+      +bold
+      +user-select
+      margin: 0 0 8px
+      padding: 0 18px
+      height: 32px
+      line-height: 34px
+    .entryType, .postTime
+      +round(16)
+      +left
+      +cursor
+      +user-select
+      margin-right: 8px
+    .entryType
+      .img
+        width: 32px
+        height: 32px
+        margin-left: -11px
+        +left
+        background-position: left center !important
+        background-repeat: no-repeat !important
+        &.dream
+          background-image: url(/images/icons/dream-24.png)
+        &.vision
+          background-image: url(/images/icons/vision-24.png)
+        &.experience
+          background-image: url(/images/icons/experience-24.png)
+        &.journal
+          background-image: url(/images/icons/journal-24.png)
+        &.article
+          background-image: url(/images/icons/article-24.png)
+      span
+        +left
+    .postTime
+      font-weight: normal
+      line-height: 32px
+    .next, .stream, .prev, .books, .editEntry, .deleteEntry
+      +right
+    .books
+      +round(8)
+      margin-right: 8px
+    .editEntry
+      +alpha(60)
+      +round(16)
+      +font(14)
+      +flat-left
+      margin-right: 12px
+    .deleteEntry
+      +alpha(60)
+      +round(16)
+      +font(14)
+      +flat-right
+    .downloadEntry
+      +alpha(60)
+      +round(16)
+      +font(14)
+      +left
+      margin-top: 8px
+    .editEntry:hover, .deleteEntry:hover, .downloadEntry:hover
+      +alpha(100)
+
+    // HEADER IMAGE & TITLE
+    .imageHeader
+      +round(16)
+      +flat-bottom
+      +absolute
+      margin: 0
+      height: 200px
+      width: 662px
+      top: 50px
+
+    .tagCloud
+      +clear
+      +round(16)
+      +flat-bottom
+      +user-select
+      +overflow
+      top: 0
+      margin: 0
+      padding: 12px
+      height: 176px
+      width: 638px
+      // PLACEHOLDER FOR WRAPPING TAGS AROUND .tagToggle
+      .toggleWrap
+        +right
+        height: 40px
+        width: 90px
+
+    .tagToggle
+      +absolute
+      +user-select
+      +pointer
+      top: 50px
+      height: 200px
+      width: 662px
+      &:hover
+        +alpha(90)
+
+    // MOOD ICON
+    .moodIcon
+      +absolute
+      top: 0
+      right: 0
+
+
+    // STARLIGHT COUNT & SHARE OPTIONS
+    .starlight
+      +round(16)
+      +absolute
+      top: 210px
+      right: 20px
+      height: 32px
+      line-height: 32px
+      padding: 0 8px
+      .img
+        +left
+        width: 24px
+        height: 32px
+        margin: 0 4px 0 0
+        background: url(/images/icons/starlight-24.png) no-repeat center
+      span
+        padding-right: 4px
+      hr
+        +left
+        +alpha(20)
+        height: 28px
+        width: 1px
+        margin: 2px 0 0 8px
+      .love, .share, .repost
+        +left
+        +pointer
+        width: 28px
+        height: 32px
+      .love
+        background: url(/images/icons/love-16.png) no-repeat center
+        &:hover
+          background: url(/images/icons/love-16-hover.png) no-repeat center
+      .love.selected
+        background: url(/images/icons/love-16-hover.png) no-repeat center
+      .share
+        background: url(/images/icons/share-16.png) no-repeat center
+      .share.selected
+        background: url(/images/icons/share-16-hover.png) no-repeat center
+      .repost
+        background: url(/images/icons/repost-24.png) no-repeat center
+      .repost.selected
+        background: url(/images/icons/repost-24-hover.png) no-repeat center
+
+
+    .content
+      +round(16)
+      +relative
+      +flat-top
+      +clear
+
+
+      // EMOTIONS - (See shared.sass)
+
+
+      // TITLE
+      .title
+        +round(8)
+        +flat-bottom
+        +absolute
+        +overflow
+        +font(21)
+        +bold
+        +overflow
+        text-align: left
+        margin: 0 0 0 20px
+        top: -29px
+        padding: 11px 12px 5px
+        min-height: 36px
+        line-height: 18px
+        max-width: 536px
+
+      // BODY
+      .body
+        margin: 0
+        padding: 34px 34px 16px
+        font-size: 17px
+        +wrap
+        p
+          margin-bottom: 18px
+        &.blank
+          padding: 1px
+
+
+      // GALLERY
+      ul.gallery
+        margin-left: 12px
+        list-style: none
+        li
+          +round(8)
+          +left
+          clear: right
+          margin: 0 4px 4px 0
+          height: 122px
+          width: 122px
+          &.youtube
+            img
+              +relative
+              top: 5px
+              left: 5px
+            a
+              +round(8)
+          a
+            height: 122px
+            width: 122px
+            +block
+
+
+      // LINKS
+      .entryLinks
+        +round(12)
+        +clear
+        margin: 0 12px
+        padding: 8px 4px 0
+        .link
+          +overflow
+          +round(16)
+          +left
+          +center
+          margin: 0 8px 8px 0
+          padding: 0 12px
+          height: 30px
+          line-height: 30px
+          img, span
+            +left
+          img
+            margin: 7px 8px 0 0
+
+      // // LINKS - NEW SYNTAX
+      // .entryLinks
+      //   +round(12)
+      //   +clear
+      //   margin: 0 12px
+      //   padding: 8px 4px 0
+      //   a.link
+      //     +overflow
+      //     +round(16)
+      //     +left
+      //     +block
+      //     margin: 0 8px 8px 0
+      //     padding: 0 12px
+      //     height: 30px
+      //     line-height: 30px
+      //     .img
+      //       +left
+      //       width: 30px
+      //       height: 30px
+      //       margin: 0 8px 0 0
+
+      // LIKE
+      .facebookLike
+        float: right
+        margin-top: 20px
+      // TAG
+      .showTags
+        +relative
+        padding: 8px 12px 12px
+        margin: 12px 0 0 0
+
+        .tagInputWrap, .tagInputWrap.selected
+          +round(19)
+          +transparent
+          +absolute
+          top: 0
+          left: 12px
+          height: 36px
+          z-index: 100
+
+          .tagHeader
+            +flat-right
+            +user-select
+            border: none
+            height: 36px
+
+          .tagInput
+            +left
+            +overflow
+            padding: 0
+            width: 0px
+            height: 34px
+            line-height: 34px
+            input
+              +overflow
+              +font(14)
+              +outline
+              width: 180px
+              margin: 0 0 0 8px
+              height: 26px
+              background: transparent
+              border: none
+
+          .tagThisEntry
+            +round(20)
+            +flat-left
+            +left
+            +center
+            +bold
+            +user-select
+            margin: 0
+            padding: 0 12px
+            height: 36px
+            line-height: 36px
+
+            border: none
+            &:hover
+              border: none
+          .tagThisEntry.selected
+            border: none
+            &:hover
+              border: none
+
+        // POST TIME, LOCATION & SHARE LEVEL
+        .postInfo
+          +absolute
+          top: 0
+          right: 12px
+
+          .postLocation, .shareLevel
+            +round(20)
+            +right
+            +center
+            +user-select
+            +cursor
+            margin: 0 0 0 8px
+            height: 34px
+            line-height: 32px
+            padding: 0 12px
+          .shareLevel
+            .img
+              +left
+              margin-right: 6px
+              width: 16px
+              height: 34px
+              &.friends
+                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+              &.followers
+                background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+              &.anonymous
+                background: url(/images/icons/anon-16.png) no-repeat center center transparent
+              &.private
+                background: url(/images/icons/private-16.png) no-repeat center center transparent
+
+
+
+
+
+
+// COLORS
+.light
+  #entryField
+    #showEntry
+      +transparent-light(50)
+      +glow-light(40)
+
+      .entryType, .postTime
+        +indent-light
+        +border-light
+
+      .next, .stream, .prev
+        color: #555
+        +button-light
+        +shine-light(16)
+
+      .editEntry
+        +button-light
+        +bevel-light
+        +confirm(15)
+
+      .deleteEntry
+        +button-light
+        +bevel-light
+        +delete(15)
+
+      .downloadEntry
+        +button-light
+        +bevel-light
+
+      .books
+        +button-light
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight
+        +transparent-light(70)
+
+      // MOOD ICON
+      .moodIcon
+        +glow-light(10)
+        &:hover
+          +cursor
+          border: 1px solid #bbb
+
+
+      // TAG CLOUD
+      .tagCloud
+        +transparent-dark(75)
+
+
+
+
+
+      // CONTENT
+      .content
+        +flat-light
+
+        // TITLE
+        .title
+          +flat-light
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-light
+
+        // ENTRY LINKS
+        .entryLinks
+          background: #eee
+          .link
+            +button-light
+            +bevel-light
+
+        // TAG
+        .showTags
+
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(0,0,0,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(0,0,0,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(0,0,0,0.8)
+
+          .tagInputWrap, .tagInputWrap.selected
+
+            .tagThisEntry
+              +button-light
+              +shine-light(17)
+              +save(17)
+              border: none
+              &:hover
+                border: none
+            .tagThisEntry.selected
+              +save(17)
+              +button-dark
+              +shine-dark(17)
+              color: #ddd
+              border: none
+              &:hover
+                border: none
+
+            .tagInput
+              +input-light(small)
+
+          .postInfo
+            // POST TIME, LOCATION & SHARE LEVEL
+            .postLocation, .shareLevel
+              +indent-light
+              border: 1px solid #f1f1f1
+
+
+
+
+
+// COLORS
+.dark
+  #entryField
+    #showEntry
+      +transparent-dark(50)
+      +glow-dark(40)
+
+      .entryType, .postTime
+        +indent-dark
+        +border-dark
+
+      .next, .stream, .prev
+        color: #ddd
+        +button-dark
+        +shine-dark(15)
+
+      .editEntry
+        +button-dark
+        +bevel-dark
+        +confirm(15)
+
+      .deleteEntry
+        +button-dark
+        +bevel-dark
+        +delete(15)
+
+      .downloadEntry
+        +button-dark
+        +bevel-dark
+
+      .books
+        +button-dark
+
+      // STARLIGHT COUNT & SHARE OPTIONS
+      .starlight
+        +transparent-dark(50)
+
+      // MOOD ICON
+      .moodIcon
+        +glow-light(10)
+        &:hover
+          +cursor
+          border: 1px solid #555
+
+      // TAG CLOUD
+      .tagCloud
+        +transparent-dark(40)
+
+
+
+
+      // CONTENT
+      .content
+        +flat-dark
+
+        // TITLE
+        .title
+          +flat-dark
+
+        // IMAGE GALLERY
+        ul.gallery
+          li
+            +button-dark
+
+        // ENTRY LINKS
+        .entryLinks
+          background: #222
+          .link
+            +button-dark
+            +bevel-dark
+            a
+              color: #ccc
+
+        // TAG
+        .showTags
+
+          .tagInputWrap.selected
+            box-shadow:         8px 8px 20px rgba(250,250,250,0.8)
+            -moz-box-shadow:    8px 8px 20px rgba(250,250,250,0.8)
+            -webkit-box-shadow: 8px 8px 20px rgba(250,250,250,0.8)
+
+          .tagInputWrap, .tagInputWrap.selected
+
+            .tagThisEntry
+              +button-dark
+              +shine-dark(17)
+              +save(17)
+              border: none
+              &:hover
+                border: none
+            .tagThisEntry.selected
+              +button-light
+              +shine-light(17)
+              +save(17)
+              color: #333
+              border: none
+              &:hover
+                border: none
+
+            .tagInput
+              +input-dark(small)
+              input
+                color: #ddd
+
+          .postInfo
+            // POST TIME, LOCATION & SHARE LEVEL
+            .postLocation, .shareLevel
+              +indent-dark
+              border: 1px solid #333
+
+
+
+
+

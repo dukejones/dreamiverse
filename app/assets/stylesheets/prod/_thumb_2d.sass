@@ -1,0 +1,285 @@
+
+
+.matrix
+
+  // HOVER
+  .thumb-2d:hover
+    z-index: 84
+
+    .fadedBack
+      .detailsTop, .detailsBottom, .comments, .sharing
+        +block
+
+
+
+  .thumb-2d, #pagination
+    +round(16)
+    +pointer
+    +left
+    +relative
+    +overflow
+    margin: 0 10px 10px 0
+    z-index: 80
+
+  .thumb-2d
+    .link
+      +block
+      +absolute
+      width: 200px
+      height: 266px
+      z-index: 1000
+
+    .fadedBack
+      +round(15)
+      width: 200px
+      height: 266px
+      z-index: 82
+      .image
+        +absolute
+        +round(15)
+        +flat-bottom
+        top: 0px
+        width: 200px
+        height: 100px
+
+    .watermark
+      +round(16)
+      +alpha(10)
+      +georgia
+      +absolute
+      +center
+      +font(45)
+      text-transform: uppercase
+      width: 200px
+      height: 180px
+      line-height: 30px
+      top: 0
+      z-index: -1
+
+    .detailsTop, .detailsBottom, .title
+      z-index: 84
+    .date, .location, .comments, .sharing
+      +round(12)
+      +center
+      +font(11)
+      line-height: 16px
+      margin: 4px
+      padding: 4px 8px
+
+
+    .detailsTop
+      +absolute
+      +hidden
+      width: 200px
+      z-index: 100
+      table
+        +right
+        width: 100%
+        border-collapse: separate
+        border-spacing: 4px
+      .date
+        +overflow
+        white-space: nowrap
+      .entryType
+        +left
+        width: 16px
+        height: 16px
+        background-position: left center !important
+        background-repeat: no-repeat !important
+        &.dream
+          background-image: url(/images/icons/dream-16.png)
+        &.vision
+          background-image: url(/images/icons/vision-16.png)
+        &.experience
+          background-image: url(/images/icons/experience-16.png)
+        &.journal
+          background-image: url(/images/icons/journal-16.png)
+        &.article
+          background-image: url(/images/icons/article-16.png)
+
+    .detailsBottom
+      +absolute
+      bottom: 0
+      width: 100%
+
+      .img
+        +left
+        width: 16px
+        height: 16px
+        margin-right: 5px
+        &.comment
+          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+        &.friends
+          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+        &.followers
+          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+        &.anonymous
+          background: url(/images/icons/anon-16.png) no-repeat center center transparent
+        &.private
+          background: url(/images/icons/private-16.png) no-repeat center center transparent
+
+
+      .comments
+        +left
+        +hidden
+        &.new
+          +gradient(#e35f5f, #b32f2f)
+          display: block !important
+          color: #fff !important
+
+      .sharing
+        +right
+        +hidden
+
+    .title
+      +absolute
+      +center
+      +font(17)
+      line-height: 16px
+      +bold
+      top: 111px
+      width: 195px
+      margin-left: 5px
+
+    .tagCloud
+      +absolute
+      z-index: 20
+      top: 160px
+      padding: 0 16px
+      max-height: 140px
+
+
+
+  // PAGINATION
+  #pagination
+    width: 196px
+    height: 262px
+
+    .next, .all
+      +block
+      +absolute
+
+    .next
+      z-index: 10
+      width: 196px
+      height: 262px
+      +alpha(25)
+      +center
+      .text
+        +absolute
+        +center
+        bottom: 60px
+        width: 196px
+        +font(18)
+      &:hover, &.loading
+        +alpha(100)
+      &.loading
+        background-position: center 45% !important
+        .text
+          display: none !important
+
+    .all
+      display: none
+      z-index: 100
+      +round(8)
+      +center
+      +alpha(60)
+      bottom: 10px
+      left: 10px
+      width: 176px
+      height: 30px
+      line-height: 30px
+      &:hover
+        +alpha(100)
+
+
+
+// COLORS
+.light .matrix
+  .thumb-2d
+    background: #fff
+    background: -moz-linear-gradient(top, #fff, #fff 100px, #e3e3e3)
+    background: -webkit-gradient(linear, center top, center bottom, from(#fff), color-stop(.37,#fff), to(#e3e3e3))
+
+    &:hover
+      +glow-light(40)
+
+    .date, .location, .comments, .sharing
+      +transparent-dark(70)
+      color: #fff
+    .entryType
+      background-repeat: no-repeat
+      background-position: center
+
+    .fadedBack
+      background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 100px, #e3e3e3)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#fff), to(#e3e3e3))
+      // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
+
+
+
+  #pagination
+    +gradient(#fff, #ccc)
+    border: 2px solid #fff
+    &:hover
+      border: 2px solid #000
+      +glow-light(0)
+
+    .next
+      background: url('/images/icons/arrow-right-55-light.png') no-repeat center 47% transparent
+      &.loading
+        +spinner-light-grey
+    .all
+      border: 1px solid #8a8a8a
+      +shine-light-alpha(15)
+      &:active
+        +gradient(#aaa, #fff)
+
+
+
+
+
+.dark .matrix
+  .thumb-2d
+    background: #3a3a3a
+    background: -moz-linear-gradient(top, #3a3a3a, #3a3a3a 100px, #111 160px, #000)
+    background: -webkit-gradient(linear, center top, center bottom, from(#3a3a3a), color-stop(0.37,#3a3a3a), color-stop(0.53,#3a3a3a), to(#000))
+
+    &:hover
+      +glow-dark(40)
+
+    .date, .location, .comments, .sharing
+      +transparent-light(70)
+      color: #000
+    .entryType
+      background-repeat: no-repeat
+      background-position: center
+
+    .fadedBack
+      background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 100px, #111 160px, #000)
+      background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#3a3a3a), color-stop(0.53,#111), to(#000))
+      // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
+
+
+  #pagination
+    +gradient(#363636, #000)
+    border: 2px solid #363636
+    &:hover
+      border: 2px solid #fff
+      +glow-light(0)
+
+    .next
+      background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
+      &.loading
+        +spinner-dark
+    .all
+      border: 1px solid #262626
+      +bg-shine(15)
+      +gradient(#262626, #000)
+      &:active
+        +gradient(#000, #565656)
+
+
+
+
+

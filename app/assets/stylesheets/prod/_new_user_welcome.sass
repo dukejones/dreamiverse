@@ -1,0 +1,166 @@
+
+
+// NEW LOGIN SPLASH
+// STRUCTURE
+
+
+#welcomePanel
+  +absolute
+  +round(16)
+  top: 0
+  padding: 8px
+  width: 464px
+  +bevel-light
+  +user-select
+
+  .image
+    +round(12)
+    +overflow
+    width: 464px
+    height: 113px
+    background: url(/images/art/astral-eyes-banner.jpg) no-repeat center
+
+  p
+    +cursor
+    +font(16)
+    margin: 0 8px 10px
+    +center
+
+    span
+      +font(32)
+
+
+
+
+
+  .getStartedButtons
+    +round(12)
+    padding: 4px 0 4px 4px
+    height: 92px
+    +input-light(large)
+
+
+    .button
+      +block
+      +round(8)
+      +left
+      +center
+      width: 223px
+      height: 42px
+      line-height: 40px
+      margin: 0 4px 4px 0
+      +shine-light(20)
+      +button-light
+
+      .dream
+        margin: 4px 2px -10px
+      .green
+        +bold
+        +font(18)
+        color: #009933
+
+      .appearance
+        margin: 2px 8px -8px -8px
+
+      &.profile span
+        +left
+        +alpha(30)
+        margin-left: 26px
+        +font(36)
+        +bold
+
+      .dreamfield
+        margin: 4px 2px -10px
+
+      .starlight
+        margin: 4px 10px -10px -10px
+
+
+
+
+
+
+
+// BUTTON TOGGLES on MATRIX and STREAM
+
+.matrix
+  #welcomePanel
+
+    .dream-message
+      display: block !important
+    .stream-message
+      display: none !important
+
+
+    .getStartedButtons
+      .button.profile
+        display: block !important
+      .button.dreamButton
+        display: none !important
+
+.matrix.stream
+  #welcomePanel
+
+    .dream-message
+      display: none !important
+    .stream-message
+      display: block !important
+
+
+    .getStartedButtons
+      .button.profile
+        display: none !important
+      .button.dreamButton
+        display: block !important
+
+
+
+
+
+
+
+
+// NEW LOGIN SPLASH
+// COLORS
+.light
+  #welcomePanel
+    +bevel-light
+    +glow-light(40)
+
+    h1.title
+    p.text
+
+    .getStartedButtons
+      +inner-shadow(10)
+      +flat-light-medium
+
+      .button
+        +shine-light(20)
+        +button-light
+
+
+.dark
+  #welcomePanel
+    +shine-dark-alpha(20)
+    +glow-dark(40)
+
+    h1.title
+    p.text
+
+    .getStartedButtons
+      +input-dark(large)
+
+      .button
+        +shine-dark-alpha(20)
+        +button-dark
+
+
+
+
+
+
+
+
+
+
+

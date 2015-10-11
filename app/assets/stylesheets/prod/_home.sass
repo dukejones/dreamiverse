@@ -1,0 +1,427 @@
+
+body.home
+  background-image: url('/images/bedsheets/today-in-dreams-med.jpg')
+  background-attachment: scroll
+  background-repeat: repeat-x
+  background-position: top center
+  background-color: #05204b !important
+  margin: 0
+  padding: 0
+  height: 100%
+
+#home
+  +relative
+  margin: auto
+  width: 1000px
+
+  .homeAlerts
+    .alert, .notice
+      padding-left: 400px
+      +alpha(90)
+      margin-right: 30px
+
+  p.error
+    +center
+    color: red
+    +font(12)
+    margin: 0px !important
+
+  // DREAMCATCHER LOGO
+  a.dcLogo
+    +block
+    +absolute
+    +user-select
+    top: 10px
+    left: 0
+    width: 366px
+    height: 102px
+
+  .randomDream
+    +block
+    +absolute
+    +flat-dark
+    +round(8)
+    +button-blue
+    +user-select
+    +glow-blue(20)
+    top: 36px
+    left: 380px
+    padding: 0 12px
+    height: 32px
+    line-height: 32px
+    color: #9ae4fd
+    .img
+      +left
+      width: 24px
+      height: 32px
+      margin: 0 8px 0 0
+      background: url(/images/icons/shuffle-24-hover.png) no-repeat center
+    &:hover
+      +glow-dark(20)
+      color: #fff
+      .img
+        background: url(/images/icons/shuffle-24-hover.png) no-repeat center
+    &:active
+      color: #ddd
+      border: 1px solid #ddd
+      +glow-light(0)
+      .img
+        background: url(/images/icons/shuffle-24-active.png) no-repeat center
+
+#home.public
+  // LEFT COLUMN - logged out height
+  #leftColumn
+    top: 160px
+
+#home
+  // LEFT COLUMN
+  #leftColumn
+    width: 730px
+    top: 83px
+    left: 50px
+    +absolute
+
+  // WELCOME
+  .welcomeWrap
+    +relative
+    +clear
+    +round(12)
+    +transparent
+    +glow-blue(40)
+    +border-blue
+    +user-select
+    +cursor
+    width: 686px
+    margin-bottom: 20px
+
+    img.dreamstar
+      +absolute
+      top: -73px
+      left: -76px
+      z-index: 100
+
+    h1
+      +absolute
+      +font(21)
+      letter-spacing: 4px
+      top: -36px
+      left: 46px
+      margin: 0
+      text-transform: uppercase
+      color: #fff
+
+    .welcome
+      +round(11)
+      +shine-blue-alpha(20)
+      top: 0
+      left: 0
+      padding: 30px 40px
+      width: 606px
+
+      p
+        +font(16)
+        line-height: 20px
+        margin: 0 0 18px
+        color: #fff
+      // p.one
+      //   line-height: 22px
+      // p.two
+      //   +font(20)
+      //   margin-left: 40px
+      // p.three
+      //   margin-left: 80px
+      //   font-style: italic
+      //   color: #d1f2ff
+      // p.four
+      //   +font(18)
+      //   margin-left: 120px
+
+      .thankyou
+        +round(8)
+        +absolute
+        +font(22)
+        +bold
+        bottom: 12px
+        right: 12px
+        height: 38px
+        line-height: 38px
+        padding: 0 12px
+        +button-blue
+        +shine-blue-alpha(20)
+        img
+          +left
+          margin: 4px 8px 0 0
+        span
+          +left
+          padding: 0 8px
+        &:hover
+          +shine-blue(20)
+        &:active
+          +gradient(#0c2b50, #5d80ad)
+          +shine-blue(0)
+          +border-blue
+
+  // PUBLIC STREAM
+  #publicStreamGlow
+    +relative
+    +round(12)
+    +glow-blue(40)
+    +border-blue
+    width: 686px
+
+    #publicStream
+      +round(11)
+      +shine-blue-alpha(20)
+      padding: 8px
+      width: 670px
+
+      .today, .todayFilter, .dreamsFilter, h1.in
+        +bold
+        +left
+        +font(28)
+        margin: 0 8px 20px 0
+        padding: 0 12px
+        height: 40px
+        line-height: 40px
+      .todayFilter, .dreamsFilter
+        +transparent-dark(30)
+        +round(8)
+        +border-dark
+        border: 2px solid #555
+        color: #fff
+      h1.in, .today
+        +user-select
+        +cursor
+        color: #000
+      .today
+        +shine-blue-alpha(20)
+        +border-light
+        +round(8)
+        color: #fff
+
+      .matrix
+        margin: 62px 0 0
+
+      .noEntries
+        +round(12)
+        +transparent-dark(60)
+        +border-light
+        +user-select
+        +cursor
+        +center
+        text-transform: uppercase
+        color: #fff
+        margin: 60px 0 0
+        height: 36px
+        line-height: 36px
+
+  #bottomLinks
+    top: 40px
+    width: 700px
+    +relative
+    +center
+    +user-select
+    padding-bottom: 200px
+    a
+      +round(8)
+      +font(12)
+      padding: 2px 6px
+      color: #ccc
+      +button-dark
+      +transparent-dark(60)
+
+
+
+
+
+#home
+
+  // RIGHT COLUMN
+  #rightColumn
+    +absolute
+    top: 0
+    left: 750px
+
+    .topPadding
+      width: 20px
+      height: 83px
+
+
+    .joinPanel
+      +glow-blue(40)
+      +border-blue
+      +flat-light
+      +round(16)
+      +user-select
+      +cursor
+      padding: 12px
+      width: 196px
+      margin: 0 0 48px
+      h1
+        +font(20)
+        +bold
+        color: #5ab7da
+        margin: 0 0 8px
+      p
+        +font(14)
+        margin: 0 0 10px
+
+
+      .joinWrap
+        width: 204px
+        margin: 18px 0 -4px -4px
+        padding: 2px 0
+        a
+          width: 198px
+          margin: 1px auto
+          height: 32px
+          line-height: 32px
+
+
+
+
+    // DREAMSTARS MINI
+    .dreamstarsMiniWrap
+      +relative
+      +round(16)
+      +transparent
+      +glow-blue(40)
+      +user-select
+      width: 220px
+      img.logo
+        +absolute
+        top: -18px
+        z-index: 100
+      span
+        +absolute
+        +font(14)
+        right: 20px
+        top: 24px
+        color: #b9d6f6
+        z-index: 100
+
+      .dreamstarsMini
+        // +transparent-light(50)
+        +shine-blue(16)
+        +border-blue
+        +round(16)
+        +clear
+        +overflow
+        margin: 0
+        padding: 8px
+
+        a
+          +block
+
+        .dreamstar-1:hover
+          box-shadow: 0 0 30px #ff40d9
+          -webkit-box-shadow: 0 0 30px #ff40d9
+          -moz-box-shadow: 0 0 30px #ff40d9
+        .dreamstar-2:hover
+          box-shadow: 0 0 30px #7140ff
+          -webkit-box-shadow: 0 0 30px #7140ff
+          -moz-box-shadow: 0 0 30px #7140ff
+        .dreamstar-3:hover
+          box-shadow: 0 0 30px #4049ff
+          -webkit-box-shadow: 0 0 30px #4049ff
+          -moz-box-shadow: 0 0 30px #4049ff
+        .dreamstar-4:hover
+          box-shadow: 0 0 30px #407aff
+          -webkit-box-shadow: 0 0 30px #407aff
+          -moz-box-shadow: 0 0 30px #407aff
+        .dreamstar-5:hover
+          box-shadow: 0 0 30px #409aff
+          -moz-box-shadow: 0 0 30px #409aff
+          -webkit-box-shadow: 0 0 30px #409aff
+        .dreamstar-6:hover
+          box-shadow: 0 0 30px #40bfff
+          -moz-box-shadow: 0 0 30px #40bfff
+          -webkit-box-shadow: 0 0 30px #40bfff
+        .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
+          +round(32)
+          +pointer
+          width: 196px
+          height: 32px
+          line-height: 32px
+          .badge, .rank, .name
+            +left
+            +bold
+          .name
+            +overflow
+            width: 130px
+            color: #111 !important
+          .badge
+            width: 56px
+            height: 56px
+            margin: -12px 0 -4px -6px
+          .rank
+            margin: 0 8px 0 -8px
+          &:hover
+            border: 4px solid #fff
+            color: #fff
+            +transparent-dark(10)
+          &:hover .rank
+            color: #fff
+        .dreamstar-1
+          margin: 38px 0 0
+          border: 4px solid #FF40D9
+          +gradient(#fff, #fdfcc4)
+          .badge
+            background: url('/images/dreamstars/dreamstars-1-56.png') no-repeat left
+          .rank
+            color: #e7d44d
+        .dreamstar-2
+          border: 4px solid #7140FF
+          +gradient(#fff, #cce5c5)
+          .badge
+            background: url('/images/dreamstars/dreamstars-2-56.png') no-repeat left
+          .rank
+            color: #448e09
+        .dreamstar-3
+          border: 4px solid #4049FF
+          +gradient(#fff, #afe4ca)
+          .badge
+            background: url('/images/dreamstars/dreamstars-3-56.png') no-repeat left
+          .rank
+            color: #419b69
+        .dreamstar-4
+          border: 4px solid #407AFF
+          +gradient(#fff, #9ddbe6)
+          .badge
+            background: url('/images/dreamstars/dreamstars-4-56.png') no-repeat left
+          .rank
+            color: #338c9b
+        .dreamstar-5
+          border: 4px solid #409AFF
+          +gradient(#fff, #9ccbe7)
+          .badge
+            background: url('/images/dreamstars/dreamstars-5-56.png') no-repeat left
+          .rank
+            color: #3375a5
+        .dreamstar-6
+          border: 4px solid #40BFFF
+          +gradient(#fff, #a8c0e6)
+          .badge
+            background: url('/images/dreamstars/dreamstars-6-56.png') no-repeat left
+          .rank
+            color: #365ba6
+
+    .like
+      +glow-dark(40)
+      +flat-dark
+      +round(12)
+      overflow: hidden !important
+      margin-top: 12px
+      width: 220px
+      height: 78px
+      
+      iframe
+        +round(18)
+        border: none
+        overflow: hidden
+        width: 222px
+        height: 74px
+        +relative
+        left: -1px
+        top: -1px
+

@@ -28,12 +28,6 @@
 //= require prod/compiled/dreamfield.js
 //= require prod/tag_stream.js
 
-//stylesheets:
-//  shared:
-//    - public/stylesheets/compiled/shared.css
-//    - public/stylesheets/jquery.lightbox-0.5.css
-
-
 
 
 
@@ -67,12 +61,12 @@
 //x= require fileuploader.js
 //x= require pubsub
 //
-//= require original/application
-//= require original/loginpanel
-//= require original/publicstream
-//= require original/context_panel
-//= require original/stream_context_panel
-//= require original/showentry
+//x= require original/application
+//x= require original/loginpanel
+//x= require original/publicstream
+//x= require original/context_panel
+//x= require original/stream_context_panel
+//x= require original/showentry
 
 // previously disabled
 

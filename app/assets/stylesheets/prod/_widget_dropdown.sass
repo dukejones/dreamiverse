@@ -1,0 +1,394 @@
+// Selectmenu
+.ui-selectmenu
+  +block
+  display: inline-block
+  +relative
+  height: 2.2em
+  vertical-align: middle
+  text-decoration: none
+  +overflow
+  zoom: 1
+.ui-selectmenu-icon
+  +absolute
+  right: 12px
+  margin-top: -8px
+  top: 50%
+  width: 16px
+  height: 16px
+  background: url(/images/icons/arrow-down-16.png) no-repeat center center
+.ui-selectmenu-menu
+  padding: 0
+  margin: 0
+  list-style: none
+  +absolute
+  top: 0
+  display: none
+  overflow: auto
+  // z-index: 1005 to make selectmenu work with dialog
+  z-index: 1005
+.ui-selectmenu-open
+  +block
+.ui-selectmenu-menu-popup
+  margin-top: -1px
+.ui-selectmenu-menu-dropdown
+.ui-selectmenu-menu li
+  padding: 1px 0
+  margin: 0
+  +block
+  // border-top: 1px dotted transparent
+  // border-bottom: 1px dotted transparent
+  border-right-width: 0 !important
+  border-left-width: 0 !important
+  font-weight: normal !important
+.ui-selectmenu-menu li a, .ui-selectmenu-status
+  line-height: 1.4em
+  +block
+  padding: .405em 1em
+  outline: none
+  text-decoration: none
+.ui-selectmenu-menu li.ui-state-disabled a
+  cursor: default
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a, .ui-selectmenu-hasIcon .ui-selectmenu-status
+  padding-left: 20px
+  +relative
+  margin-left: 5px
+.ui-selectmenu-menu li .ui-icon, .ui-selectmenu-status .ui-icon
+  +absolute
+  top: 1em
+  margin-top: -8px
+  left: 0
+.ui-selectmenu-status
+  line-height: 1.4em
+.ui-selectmenu-open li.ui-selectmenu-item-focus a
+.ui-selectmenu-open li.ui-selectmenu-item-selected
+.ui-selectmenu-menu li span,.ui-selectmenu-status span
+  +block
+  margin-bottom: .2em
+.ui-selectmenu-menu li .ui-selectmenu-item-header
+  +bold
+.ui-selectmenu-menu li .ui-selectmenu-item-content
+.ui-selectmenu-menu li .ui-selectmenu-item-footer
+  +alpha(80)
+// for optgroups
+.ui-selectmenu-menu .ui-selectmenu-group
+  font-size: 1em
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label
+  line-height: 1.4em
+  +block
+  padding: .6em .5em 0
+  +bold
+.ui-selectmenu-menu .ui-selectmenu-group ul
+  margin: 0
+  padding: 0
+// IE6 workaround (dotted transparent borders)
+* html .ui-selectmenu-menu li
+  border-color: pink
+  filter: chroma(color=pink)
+  width: 100%
+* html .ui-selectmenu-menu li a
+  +relative
+
+
+.light .ui-selectmenu-item-focus
+  background-color: #333 !important
+  a
+    color: white !important
+.dark .ui-selectmenu-item-focus
+  background-color: #ccc !important
+  a
+    color: black !important
+
+
+
+
+
+
+
+
+
+// STREAM FILTERS - html dropdown
+#streamContextPanel select
+  width: 200px
+  padding: 6px 0
+  // line-height for chrome / webkit height
+  line-height: 20px
+  +font(14)
+
+
+#users-filter-wrap, #entry-filter-wrap
+  margin: 4px 0 1px
+
+// this makes the menus show up over top of the spinners
+#entry-filter-menu, #users-filter-menu
+  z-index: 2 !important
+
+// STREAM FILTERS - widget
+#streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+  +pointer
+  +round(12)
+  +relative
+  border: 1px solid #7a7a7a
+
+// STREAM FILTERS - icons
+#entry-filter-button, #users-filter-button, #entry-filter-menu, #users-filter-menu
+
+  .ui-selectmenu-status, li a
+    padding-left: 44px
+
+  // ENTRY FILTER
+  &.allEntries .ui-selectmenu-status, .allEntries a
+    background: url(/images/icons/entries-24.png) no-repeat 10px center
+  &.dreams .ui-selectmenu-status, .dreams a
+    background: url(/images/icons/dream-24-hover.png) no-repeat 10px center
+  &.visions .ui-selectmenu-status, .visions a
+    background: url(/images/icons/vision-24-hover.png) no-repeat 10px center
+  &.experiences .ui-selectmenu-status, .experiences a
+    background: url(/images/icons/experience-24-hover.png) no-repeat 10px center
+  &.articles .ui-selectmenu-status, .articles a
+    background: url(/images/icons/article-24-hover.png) no-repeat 10px center
+  &.journals .ui-selectmenu-status, .journals a
+    background: url(/images/icons/journal-24-hover.png) no-repeat 10px center
+
+  // chrome fix hovers
+  .allEntries.ui-selectmenu-item-focus
+    +round(11)
+    +flat-bottom
+  .journals.ui-selectmenu-item-focus
+    +round(11)
+    +flat-top
+
+
+  // USERS FILTER
+  &.allUsers .ui-selectmenu-status, .allUsers a
+    background: url(/images/icons/sharing-24-hover.png) no-repeat 10px center
+  &.friends .ui-selectmenu-status, .friends a
+    background: url(/images/icons/friend-24.png) no-repeat 10px center
+  &.following .ui-selectmenu-status, .following a
+    background: url(/images/icons/friend-24-follow.png) no-repeat 10px center
+
+  // chrome fix hovers
+  .allUsers.ui-selectmenu-item-focus
+    +round(11)
+    +flat-bottom
+  .following.ui-selectmenu-item-focus
+    +round(11)
+    +flat-top
+
+
+.light 
+  #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+    +flat-light
+    &:hover
+      +glow-light(10)
+.dark
+  #streamContextPanel select, #entry-filter-button, #entry-filter-menu, #users-filter-button, #users-filter-menu
+    +flat-dark
+    &:hover
+      +glow-dark(10)
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ENTRY TYPE - html select menu
+// for degredation when JS doesnt load new technique
+#sharing-list
+  margin: 8px
+
+#entryType-list, #sharing-list
+  +block
+  padding: 8px 0
+  height: 34px
+  +round(20)
+  +right
+  width: 158px
+  +font(14)
+  +pointer
+  +center
+
+  option
+    padding: 6px 4px 6px 38px
+    text-align: left
+
+  // ENTRY TYPE
+  .dream
+    background: url(/images/icons/dream-24-hover.png) no-repeat 8px center
+  .vision
+    background: url(/images/icons/vision-24-hover.png) no-repeat 8px center
+  .experience
+    background: url(/images/icons/experience-24-hover.png) no-repeat 8px center
+  .article
+    background: url(/images/icons/article-24-hover.png) no-repeat 8px center
+  .journal
+    background: url(/images/icons/journal-24-hover.png) no-repeat 8px center
+
+  // SHARING LEVEL
+  .everyone
+    background: url(/images/icons/sharing-24-hover.png) no-repeat 8px center
+  .list
+    background: url(/images/icons/friend-24.png) no-repeat 8px center
+  .followers
+    background: url(/images/icons/friend-24-follower.png) no-repeat 8px center
+  .anon
+    background: url(/images/icons/anon-24-hover.png) no-repeat 8px center
+  .private
+    background: url(/images/icons/private-24-hover.png) no-repeat 8px center
+
+
+
+
+
+// WIDGET
+#entryType-list-button, #sharing-list-button
+  +right
+  label
+    +hidden
+
+#sharing-list-button
+  margin: 8px
+
+
+#entryType-list-button, #entryType-list-menu, #sharing-list-button, #sharing-list-menu
+  +round(20)
+
+  li
+    +relative
+
+  .ui-selectmenu-status, li a
+    padding-left: 40px
+
+  // ENTRY TYPE - button styling
+  &.dream .ui-selectmenu-status
+    background: url(/images/icons/dream-24-active.png) no-repeat 8px center
+  &.vision .ui-selectmenu-status
+    background: url(/images/icons/vision-24-active.png) no-repeat 8px center
+  &.experience .ui-selectmenu-status
+    background: url(/images/icons/experience-24-active.png) no-repeat 8px center
+  &.article .ui-selectmenu-status
+    background: url(/images/icons/article-24-active.png) no-repeat 8px center
+  &.journal .ui-selectmenu-status
+    background: url(/images/icons/journal-24-active.png) no-repeat 8px center
+
+  // ENTRY TYPE - dropdown menu styling
+  .dream a
+    background: url(/images/icons/dream-24-hover.png) no-repeat 8px center
+  .vision a
+    background: url(/images/icons/vision-24-hover.png) no-repeat 8px center
+  .experience a
+    background: url(/images/icons/experience-24-hover.png) no-repeat 8px center
+  .article a
+    background: url(/images/icons/article-24-hover.png) no-repeat 8px center
+  .journal a
+    background: url(/images/icons/journal-24-hover.png) no-repeat 8px center
+
+  // chrome fix for hovers
+  .dream.ui-selectmenu-item-focus
+    +round(19)
+    +flat-bottom
+  .journal.ui-selectmenu-item-focus
+    +round(19)
+    +flat-top
+
+
+  // SHARING LEVEL
+  &.everyone .ui-selectmenu-status, .everyone a
+    background: url(/images/icons/sharing-24-hover.png) no-repeat 8px center
+  &.list .ui-selectmenu-status, .list a
+    background: url(/images/icons/friend-24.png) no-repeat 8px center
+  &.followers .ui-selectmenu-status, .followers a
+    background: url(/images/icons/friend-24-follower.png) no-repeat 8px center
+  &.anon .ui-selectmenu-status, .anon a
+    background: url(/images/icons/anon-24-hover.png) no-repeat 8px center
+  &.private .ui-selectmenu-status, .private a
+    background: url(/images/icons/private-24-hover.png) no-repeat 8px center
+
+  // chrome fix for hovers
+  .everyone.ui-selectmenu-item-focus
+    +round(19)
+    +flat-bottom
+  .private.ui-selectmenu-item-focus
+    +round(19)
+    +flat-top
+
+
+#entryType-list-menu, #sharing-list-menu
+  li
+    &.default, &.default-hover
+      background-color: rgba(0,170,255,0.25)
+
+      // chrome fix for entry type
+      &.dream
+        +round(19)
+        +flat-bottom
+      &.journal
+        +round(19)
+        +flat-top
+      // chrome fix for sharing level
+      &.everyone
+        +round(19)
+        +flat-bottom
+      &.private
+        +round(19)
+        +flat-top
+
+    &.default label
+      +block
+    &:hover label
+      +block
+    label
+      +hidden
+      +pointer
+      +absolute
+      top: 0
+      right: 0
+      +right
+      width: 16px
+      height: 25px
+      padding: 7px 11px
+      input
+        +pointer
+
+
+// WIDGET COLORS
+.light
+  #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
+    +indent-light
+    +button-light
+
+.dark
+  #entryType-list, #entryType-list-button, #sharing-list, #sharing-list-button
+    +button-dark
+    +indent-dark
+    border: 1px solid #222
+    color: #ddd
+
+// DROPDOWN COLORS
+.light #entryType-list-menu, .light #sharing-list-menu
+  border: 1px solid #ccc
+  background-color: #f5f5f5
+  box-shadow:         0 3px 12px rgba(0,0,0,0.15)
+  -moz-box-shadow:    0 3px 10px rgba(0,0,0,0.15)
+  -webkit-box-shadow: 0 3px 12px rgba(0,0,0,0.15)
+.light #entryType-list-menu, .light #sharing-list-menu
+  li.default, li.default-hover
+    background-color: #dbe9f0
+
+.dark #entryType-list-menu, .dark #sharing-list-menu
+  border: 1px solid #222
+  +flat-dark
+  box-shadow:         0 3px 12px rgba(255,255,255,0.15)
+  -moz-box-shadow:    0 3px 10px rgba(255,255,255,0.15)
+  -webkit-box-shadow: 0 3px 12px rgba(255,255,255,0.15)
+.dark #entryType-list-menu, .dark #sharing-list-menu
+  li.default, li.default-hover
+    background-color: #333 
+
+

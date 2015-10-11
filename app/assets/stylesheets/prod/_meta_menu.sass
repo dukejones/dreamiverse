@@ -1,0 +1,65 @@
+
+#drop_shadow
+  +absolute
+  background: url(/images/gradients/top_shadow-80px.png) repeat-x top
+  top: 0
+  left: 0
+  width: 100%
+  height: 80px
+  z-index: -1
+
+#logo
+  +block
+  +user-select
+  z-index: 1201
+  +absolute
+  top: 0px
+  left: 0
+  margin: 4px 14px 0px 13px
+  width: 230px
+
+#report_box
+  +user-select
+  +absolute
+  +font(9)
+  +alpha(100)
+  +cursor
+  width: 235px
+  text-align: right
+  color: #666
+  z-index: 1203
+  top: 0
+
+#metaMenu
+  min-width: 940px
+
+  .randomDream
+    +left
+    +transparent-dark(50)
+    +round(30)
+    +pointer
+    +block
+    +user-select
+    color: #fff
+    text-decoration: none
+    margin: 8px 0 0 12px
+    height: 33px
+    border: 1px solid rgba(255,255,255,0.4)
+
+    .img
+      background: url(/images/icons/shuffle-24.png) no-repeat center 4px transparent
+      +pointer
+      width: 40px
+      height: 26px
+
+    &:hover
+      +glow-dark(8)
+      border: 1px solid transparent
+      .img
+        background: url(/images/icons/shuffle-24-hover.png) no-repeat center 4px transparent
+    &:active
+      +gradient(#ddd, #fff)
+      border: 1px solid #fff
+      .img
+        background: url(/images/icons/shuffle-24-active.png) no-repeat center 4px transparent
+

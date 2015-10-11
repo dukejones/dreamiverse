@@ -1,0 +1,149 @@
+
+
+
+#starlightBurstGlow
+  +relative
+  +glow-blue(80)
+  +border-blue
+  +transparent
+  +round(12)
+  margin: 200px auto
+  width: 360px
+  height: 214px
+  z-index: 1800
+
+  img.starlight
+    +absolute
+    top: -22px
+    left: -18px
+    z-index: 1801
+
+  #starlightBurst
+    +absolute
+    +round(11)
+    +user-select
+    top: 0
+    left: 0
+    width: 360px
+    height: 214px
+    box-shadow: inset 0 12px rgba(161,201,255,0.33)
+    -moz-box-shadow: inset 0 12px rgba(161,201,255,0.33)
+    -webkit-box-shadow: inset 0 12px rgba(161,201,255,0.33)
+    background: #004296
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1.0)), to(rgba(0,66,150,0.67)))
+    background: -moz-linear-gradient(top, rgba(0,0,0,1.0), rgba(0,66,150,0.67))
+
+    h2
+      +font(16)
+      +bold
+      color: #fff
+      margin: 0 0 0 56px
+    h3
+      +font(14)
+      color: #fff
+      margin: 14px 0 12px 44px
+      
+
+
+    .burstInfo
+      +round(8)
+      +bevel-light
+      +border-light
+      padding: 4px 4px 4px 8px
+      margin: 0 8px 12px
+      height: 32px
+      line-height: 32px
+      p
+        margin: 0
+        +left
+      // Using tag.sass
+      .tagWho
+        +right
+
+    .myStarlight
+      +round(8)
+      +left
+      +shine-blue(12)
+      +center
+      border: 1px solid #285278
+      padding: 6px
+      margin: 0 6px
+      height: 80px
+      color: #fff
+      input.count
+        +transparent
+        +outline
+        +round(4)
+        +font(21)
+        +bold
+        +center
+        +indent-blue
+        color: #fff
+        width: 144px
+        height: 42px
+        line-height: 42px
+      h1
+        +font(14)
+        +bold
+        margin: 12px 0
+        text-transform: uppercase
+
+    .burstWrap
+      +relative
+      +right
+      +input-light(large)
+      +round(8)
+      border: 2px solid #fff
+      +center
+      margin: 0 6px
+      height: 88px
+      width: 162px
+      span
+        +absolute
+        +font(48)
+        color: #9fd53d
+        top: -8px
+        left: 6px
+      .count
+        +glow-dark(40)
+        +round(7)
+        +font(25)
+        color: #333
+        height: 50px
+        line-height: 50px
+        width: 100%
+        color: #333
+      .burstGlow
+        height: 38px
+        line-height: 38px
+        width: 100%
+        box-shadow: 0 0 40px #acff16
+        -moz-box-shadow: 0 0 40px #acff16
+        -webkit-box-shadow: 0 0 40px #acff16
+        input.burst
+          +outline
+          +transparent
+          +round(7)
+          +flat-top
+          +block
+          +bold
+          +pointer
+          color: #fff
+          height: 38px
+          width: 100%
+          border: 1px solid #fff
+          +gradient(#baff00, #66ac54)
+          +bg-shine(19)
+          +font(14)
+          text-transform: uppercase
+          &:hover
+            +bg-shine(0)
+          &:active
+            +gradient(#66ac54, #baff00)
+
+
+
+
+
+
+

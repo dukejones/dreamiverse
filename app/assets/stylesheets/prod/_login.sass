@@ -1,0 +1,206 @@
+// LOGIN ITEMS
+.loginPanelWrap
+  +relative
+  +bevel-light
+  +round(16)
+  +glow-light(20)
+  +flat-top
+  margin-bottom: 10px
+  padding: 8px 8px 0
+  width: 204px
+  z-index: 1200
+
+  .login
+    +right
+    +center
+    +user-select
+    +shine-dark-alpha(14)
+    +button-dark
+    +round(12)
+    +bold
+    color: #fff !important
+    height: 28px
+    line-height: 27px
+    width: 154px
+    &:hover
+      +gradient(#0c2b50, #5d80ad)
+    &:active
+    .img
+      +right
+      height: 28px
+      width: 24px
+      margin: 0 8px 0 8px
+      background: url(/images/icons/login-24.png) no-repeat center transparent
+    &:hover .img
+      background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+    &:active .img
+      background: url(/images/icons/login-24-active.png) no-repeat center transparent
+
+  .facebook
+    +right
+    +center
+    +user-select
+    +pointer
+    +round(12)
+    border: 1px solid #aaa
+    width: 16px
+    height: 28px
+    line-height: 28px
+    padding: 0 8px
+    margin: 0 8px 8px 0
+    background: url('/images/icons/facebook-16-hover.png') no-repeat center center transparent
+    &:hover
+      +glow-light(8)
+      border: 1px solid transparent
+
+
+
+  .login, .submit
+    span
+      +font(18)
+      margin: 0 0 0 34px
+
+.loginPanel
+  +clear
+  +relative
+  top: -10px
+
+  span
+    +font(11)
+    +user-select
+    +cursor
+    margin-left: 8px
+
+  .login-input
+    +clear
+    +block
+    +font(14)
+    +round(12)
+    padding: 0 8px
+    width: 186px
+    height: 32px
+    +input-light(small)
+
+
+  .submit
+    +absolute
+    +pointer
+    +round(12)
+    +overflow
+    +transparent
+    top: -29px
+    right: -1px
+    width: 156px
+    height: 30px
+    border: 1px solid #fff
+    &:hover
+      border: 1px solid #9ae4fd
+      +glow-blue(14)
+    &:active
+      +glow-dark(0)
+
+    .text
+      +absolute
+      +round(11)
+      +pointer
+      +user-select
+      +center
+      +bold
+      top: 0
+      left: 0
+      color: #fff
+      width: 156px
+      line-height: 29px
+      +shine-blue(15)
+
+      &:hover
+        background: #0c2b50
+        +gradient(#0c2b50, #5d80ad)
+      &:active
+        +shine-blue(0)
+        background: #0c2b50
+        +gradient(#5d80ad, #0c2b50)
+
+      .img
+        +right
+        height: 28px
+        width: 24px
+        margin: 1px 9px 0 8px
+        background: url(/images/icons/login-24.png) no-repeat center transparent
+      &:hover .img
+        background: url(/images/icons/login-24-hover.png) no-repeat center transparent
+      &:active .img
+        background: url(/images/icons/login-24-active.png) no-repeat center transparent
+
+      input#loginButton.button
+        +absolute
+        top: 0
+        left: 0
+        border-width: 20px
+        +font(100)
+        +alpha(00)
+        color: #fff
+        width: 154px
+
+
+  .stay, .forgot
+    +button-light
+    +round(4)
+    +center
+    +font(10)
+    +user-select
+    border: 1px solid transparent
+    color: #333 !important
+    margin-top: 2px
+    margin-bottom: -8px
+    padding: 0 4px
+    height: 16px
+    line-height: 16px
+    font-weight: normal
+
+  .stay
+    +right
+    margin-right: 6px
+    +relative
+    padding-right: 18px
+    input
+      +outline
+      +absolute
+      right: 2px
+      top: 2px
+
+  .forgot
+    margin-left: 6px
+    +left
+    +relative
+
+
+
+
+// JOIN
+.joinWrap
+  +pointer
+  +clear
+  +round(12)
+  +transparent
+  +glow-blue(20)
+  +button-blue
+
+  a
+    +block
+    +pointer
+    +center
+    +bold
+    +round(9)
+    +shine-blue(15)
+    whitespace: nowrap
+    color: #fff !important
+
+    &:hover
+      +shine-blue(15)
+      background: #0c2b50
+      +gradient(#0c2b50, #5d80ad)
+    &:active
+      +shine-blue(0)
+      background: #0c2b50
+      +gradient(#0c2b50, #5d80ad)
