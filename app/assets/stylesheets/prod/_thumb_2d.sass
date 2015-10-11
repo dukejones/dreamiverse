@@ -87,15 +87,15 @@
         background-position: left center !important
         background-repeat: no-repeat !important
         &.dream
-          background-image: url(/images/icons/dream-16.png)
+          background-image: asset-url("icons/dream-16.png")
         &.vision
-          background-image: url(/images/icons/vision-16.png)
+          background-image: asset-url("icons/vision-16.png")
         &.experience
-          background-image: url(/images/icons/experience-16.png)
+          background-image: asset-url("icons/experience-16.png")
         &.journal
-          background-image: url(/images/icons/journal-16.png)
+          background-image: asset-url("icons/journal-16.png")
         &.article
-          background-image: url(/images/icons/article-16.png)
+          background-image: asset-url("icons/article-16.png")
 
     .detailsBottom
       +absolute
@@ -108,15 +108,15 @@
         height: 16px
         margin-right: 5px
         &.comment
-          background: url(/images/icons/comment-16.png) no-repeat center center transparent
+          background: asset-url("icons/comment-16.png") no-repeat center center transparent
         &.friends
-          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+          background: asset-url("icons/friend-16-none.png") no-repeat center center transparent
         &.followers
-          background: url(/images/icons/friend-16-none.png) no-repeat center center transparent
+          background: asset-url("icons/friend-16-none.png") no-repeat center center transparent
         &.anonymous
-          background: url(/images/icons/anon-16.png) no-repeat center center transparent
+          background: asset-url("icons/anon-16.png") no-repeat center center transparent
         &.private
-          background: url(/images/icons/private-16.png) no-repeat center center transparent
+          background: asset-url("icons/private-16.png") no-repeat center center transparent
 
 
       .comments
@@ -214,7 +214,7 @@
     .fadedBack
       background: -moz-linear-gradient(top, rgba(255,255,255,0.0), #fff 100px, #e3e3e3)
       background: -webkit-gradient(linear, center top, center bottom, from(rgba(255,255,255,0)), color-stop(.37,#fff), to(#e3e3e3))
-      // background: url("/images/gradients/thumb-2d-light.png") repeat-x top transparent
+      // background: asset-url("gradients/thumb-2d-light.png") repeat-x top transparent
 
 
 
@@ -226,7 +226,7 @@
       +glow-light(0)
 
     .next
-      background: url('/images/icons/arrow-right-55-light.png') no-repeat center 47% transparent
+      background: asset-url("icons/arrow-right-55-light.png") no-repeat center 47% transparent
       &.loading
         +spinner-light-grey
     .all
@@ -258,7 +258,7 @@
     .fadedBack
       background: -moz-linear-gradient(top, rgba(58,58,58,0.0), #3a3a3a 100px, #111 160px, #000)
       background: -webkit-gradient(linear, center top, center bottom, from(rgba(58,58,58,0.0)), color-stop(0.37,#3a3a3a), color-stop(0.53,#111), to(#000))
-      // background: url("/images/gradients/thumb-2d-dark.png") repeat-x top transparent
+      // background: asset-url("gradients/thumb-2d-dark.png") repeat-x top transparent
 
 
   #pagination
@@ -269,7 +269,7 @@
       +glow-light(0)
 
     .next
-      background: url('/images/icons/arrow-right-55-dark.png') no-repeat center 47% transparent
+      background: asset-url("icons/arrow-right-55-dark.png") no-repeat center 47% transparent
       &.loading
         +spinner-dark
     .all

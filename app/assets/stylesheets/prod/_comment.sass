@@ -126,7 +126,7 @@
 
   .spinner
     height: 80px
-    
+
   .showAll
     +round(16)
     +center
@@ -153,7 +153,7 @@
       height: 62px
       width: 62px
       margin: 0 6px
-      background: url(/images/avatars/default-avatar-tiny.jpg) center center transparent
+      background: asset-url("avatars/default-avatar-tiny.jpg") center center transparent
 
   .prevCommentWrap
     .prevComment
@@ -170,16 +170,16 @@
         +alpha(40)
         +pointer
         +absolute
-        background: url("/images/icons/close-24.png") no-repeat center center transparent
+        background: asset-url("icons/close-24.png") no-repeat center center transparent
         width: 24px
         height: 24px
         right: 16px
         margin-top: 6px
         &:hover
-          background: url("/images/icons/close-24-hover.png") no-repeat center center transparent
+          background: asset-url("icons/close-24-hover.png") no-repeat center center transparent
           +alpha(100)
         &:active
-          background: url("/images/icons/close-24-active.png") no-repeat center center transparent
+          background: asset-url("icons/close-24-active.png") no-repeat center center transparent
           +alpha(100)
 
 

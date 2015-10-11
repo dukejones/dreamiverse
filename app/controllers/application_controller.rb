@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_seed_code, :set_client_timezone
   helper_method :current_user, :page_is_mine?, :is_mobile?
   protect_from_forgery with: :exception
-  after_filter :set_message
+  # after_filter :set_message
 
   def set_message
     flash.notice ||= "Dear dreamer, <br>Dreamcatcher is going through some transitions right now and there will be some bumps along the way. Please bear with us."

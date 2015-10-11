@@ -24,12 +24,12 @@
       top: 6px
       width: 16px
       height: 16px
-      background: url(/images/icons/friend-stream-sprite.png) no-repeat
+      background: asset-url("icons/friend-stream-sprite.png") no-repeat
       // These class names correspond to the symbols returned by User#relationship_with.
       &.none
         background-position: 0% 0%
       &.following
-        background-position: 0% 33%        
+        background-position: 0% 33%
       &.followed_by
         background-position: 0% 66%
       &.friends
@@ -83,7 +83,7 @@
       height: 70px
       width: 100%
 
-        
+
 
     // FRIEND'S LIST EXPANDED
     .panel
@@ -115,7 +115,7 @@
         .item
           +clear
           margin-bottom: 4px
- 
+
           .label, .image, .detail
             +left
 

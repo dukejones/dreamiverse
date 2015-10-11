@@ -1,6 +1,6 @@
 
 body.home
-  background-image: url('/images/bedsheets/today-in-dreams-med.jpg')
+  background-image: asset-url("bedsheets/today-in-dreams-med.jpg")
   background-attachment: scroll
   background-repeat: repeat-x
   background-position: top center
@@ -55,18 +55,18 @@ body.home
       width: 24px
       height: 32px
       margin: 0 8px 0 0
-      background: url(/images/icons/shuffle-24-hover.png) no-repeat center
+      background: asset-url("icons/shuffle-24-hover.png") no-repeat center
     &:hover
       +glow-dark(20)
       color: #fff
       .img
-        background: url(/images/icons/shuffle-24-hover.png) no-repeat center
+        background: asset-url("icons/shuffle-24-hover.png") no-repeat center
     &:active
       color: #ddd
       border: 1px solid #ddd
       +glow-light(0)
       .img
-        background: url(/images/icons/shuffle-24-active.png) no-repeat center
+        background: asset-url("icons/shuffle-24-active.png") no-repeat center
 
 #home.public
   // LEFT COLUMN - logged out height
@@ -367,42 +367,42 @@ body.home
           border: 4px solid #FF40D9
           +gradient(#fff, #fdfcc4)
           .badge
-            background: url('/images/dreamstars/dreamstars-1-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-1-56.png") no-repeat left
           .rank
             color: #e7d44d
         .dreamstar-2
           border: 4px solid #7140FF
           +gradient(#fff, #cce5c5)
           .badge
-            background: url('/images/dreamstars/dreamstars-2-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-2-56.png") no-repeat left
           .rank
             color: #448e09
         .dreamstar-3
           border: 4px solid #4049FF
           +gradient(#fff, #afe4ca)
           .badge
-            background: url('/images/dreamstars/dreamstars-3-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-3-56.png") no-repeat left
           .rank
             color: #419b69
         .dreamstar-4
           border: 4px solid #407AFF
           +gradient(#fff, #9ddbe6)
           .badge
-            background: url('/images/dreamstars/dreamstars-4-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-4-56.png") no-repeat left
           .rank
             color: #338c9b
         .dreamstar-5
           border: 4px solid #409AFF
           +gradient(#fff, #9ccbe7)
           .badge
-            background: url('/images/dreamstars/dreamstars-5-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-5-56.png") no-repeat left
           .rank
             color: #3375a5
         .dreamstar-6
           border: 4px solid #40BFFF
           +gradient(#fff, #a8c0e6)
           .badge
-            background: url('/images/dreamstars/dreamstars-6-56.png') no-repeat left
+            background: asset-url("dreamstars/dreamstars-6-56.png") no-repeat left
           .rank
             color: #365ba6
 
@@ -414,7 +414,7 @@ body.home
       margin-top: 12px
       width: 220px
       height: 78px
-      
+
       iframe
         +round(18)
         border: none

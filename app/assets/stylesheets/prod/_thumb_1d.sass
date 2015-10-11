@@ -97,15 +97,15 @@
       background-position: center center !important
       background-repeat: no-repeat !important
       &.dream
-        background-image: url(/images/icons/dream-24.png)
+        background-image: asset-url("icons/dream-24.png")
       &.vision
-        background-image: url(/images/icons/vision-24.png)
+        background-image: asset-url("icons/vision-24.png")
       &.experience
-        background-image: url(/images/icons/experience-24.png)
+        background-image: asset-url("icons/experience-24.png")
       &.journal
-        background-image: url(/images/icons/journal-24.png)
+        background-image: asset-url("icons/journal-24.png")
       &.article
-        background-image: url(/images/icons/article-24.png)
+        background-image: asset-url("icons/article-24.png")
 
   // LEFT SIDE
   .left
@@ -134,7 +134,7 @@
       line-height: 26px
       .img
         +left
-        background: url(/images/icons/starlight-16.png) no-repeat center transparent
+        background: asset-url("icons/starlight-16.png") no-repeat center transparent
         width: 16px
         height: 24px
         margin: 0 4px 0 0
@@ -145,7 +145,7 @@
       width: 330px
     .title
       +font(24)
-      margin: 8px 10px 0 
+      margin: 8px 10px 0
       height: 30px
     .titleWatermark
       display: none
@@ -230,7 +230,7 @@
       padding-left: 24px
       height: 16px
       line-height: 14px
-      background: url(/images/icons/repost-24.png) no-repeat 4px center
+      background: asset-url("icons/repost-24.png") no-repeat 4px center
     .date
       +bold
       +font(11)
@@ -260,7 +260,7 @@
         +left
         width: 16px
         height: 16px
-        background: url(/images/icons/comment-16.png) no-repeat center center
+        background: asset-url("icons/comment-16.png") no-repeat center center
 
       span
         +left
@@ -292,7 +292,7 @@
         width: 16px
         height: 26px
         margin-left: 8px
-        background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+        background: asset-url("icons/arrow-down-16-light.png") no-repeat center center
       &.ipad
         +block
         .text
@@ -301,7 +301,7 @@
     .comment, .text
       display: block
     .arrow
-      background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+      background: asset-url("icons/arrow-up-16-light.png") no-repeat center center
 
 
 
@@ -373,9 +373,9 @@
   .comment:hover, &.expanded .comment
     +gradient(#c5c5c5, #a4a4a4)
     .arrow
-      background: url(/images/icons/arrow-down-16-dark.png) no-repeat center center
+      background: asset-url("icons/arrow-down-16-dark.png") no-repeat center center
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-dark.png) no-repeat center center
+    background: asset-url("icons/arrow-up-16-dark.png") no-repeat center center
 
 
   .commentsPanel
@@ -426,9 +426,9 @@
     +gradient(#575757, #323232)
     color: #fff
     .arrow
-      background: url(/images/icons/arrow-down-16-light.png) no-repeat center center
+      background: asset-url("icons/arrow-down-16-light.png") no-repeat center center
   &.expanded .details .arrow
-    background: url(/images/icons/arrow-up-16-light.png) no-repeat center center
+    background: asset-url("icons/arrow-up-16-light.png") no-repeat center center
 
   .commentsPanel
     box-shadow:         0 0 0 #fff

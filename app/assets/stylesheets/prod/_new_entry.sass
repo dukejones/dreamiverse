@@ -39,7 +39,7 @@ hr
 #entryOptions
   +round(16)
   +relative
-  width: 660px 
+  width: 660px
   height: 52px
   margin: 0 auto
   bottom: 0
@@ -81,15 +81,15 @@ hr
           padding: 8px 0 8px 30px
           text-align: left
         option.everyone
-          background: url(/images/icons/sharing-16-hover.png) no-repeat 8px center
+          background: asset-url("icons/sharing-16-hover.png") no-repeat 8px center
         option.list
-          background: url(/images/icons/friend-16.png) no-repeat 8px center
+          background: asset-url("icons/friend-16.png") no-repeat 8px center
         option.followers
-          background: url(/images/icons/friend-16-follower.png) no-repeat 8px center
+          background: asset-url("icons/friend-16-follower.png") no-repeat 8px center
         option.anon
-          background: url(/images/icons/anon-16-hover.png) no-repeat 8px center
+          background: asset-url("icons/anon-16-hover.png") no-repeat 8px center
         option.private
-          background: url(/images/icons/private-16-hover.png) no-repeat 8px center
+          background: asset-url("icons/private-16-hover.png") no-repeat 8px center
 
       // SHARING - LIST OF USERS
       .listOfUsers
@@ -123,11 +123,11 @@ hr
             border: none
             height: 32px
             width: 24px
-            background: url(/images/icons/search-16.png) no-repeat center transparent
+            background: asset-url("icons/search-16.png") no-repeat center transparent
             &:hover
-              background: url(/images/icons/search-16-hover.png) no-repeat center transparent
+              background: asset-url("icons/search-16-hover.png") no-repeat center transparent
             &:active
-              background: url(/images/icons/search-16-active.png) no-repeat center transparent
+              background: asset-url("icons/search-16-active.png") no-repeat center transparent
 
         .userResults
           +user-select
@@ -155,7 +155,7 @@ hr
               width: 16px
               height: 16px
               margin: 8px 8px 0 0
-              background: url(/images/icons/friend-stream-sprite.png) no-repeat
+              background: asset-url("icons/friend-stream-sprite.png") no-repeat
               &.none
                 background-position: 0% 0%
               &.following
@@ -192,18 +192,18 @@ hr
             margin: 5px 0 0
         label.taggedUsers
           .img
-            background: url(/images/icons/tag-16.png) no-repeat center transparent
+            background: asset-url("icons/tag-16.png") no-repeat center transparent
           &:hover .img
-            background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+            background: asset-url("icons/tag-16-hover.png") no-repeat center transparent
           &:active .img
-            background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+            background: asset-url("icons/tag-16-active.png") no-repeat center transparent
         label.hideShared
           .img
-            background: url(/images/icons/anon-16.png) no-repeat center transparent
+            background: asset-url("icons/anon-16.png") no-repeat center transparent
           &:hover .img
-            background: url(/images/icons/anon-16-hover.png) no-repeat center transparent
+            background: asset-url("icons/anon-16-hover.png") no-repeat center transparent
           &:active .img
-            background: url(/images/icons/anon-16-active.png) no-repeat center transparent
+            background: asset-url("icons/anon-16-active.png") no-repeat center transparent
 
       .everyone
         +relative
@@ -244,7 +244,7 @@ hr
   // NEW ENTRY INPUT PANEL
 #newEntry
   +round(16)
-  width: 662px 
+  width: 662px
   padding: 8px
 
 
@@ -283,35 +283,35 @@ hr
     height: 34px
   #entry-location
     .img
-      background: url('/images/icons/location-24.png') center center no-repeat
+      background: asset-url("icons/location-24.png") center center no-repeat
     &:hover .img
-      background: url('/images/icons/location-24-hover.png') center center no-repeat
+      background: asset-url("icons/location-24-hover.png") center center no-repeat
     &:active .img
-      background: url('/images/icons/location-24.png') center center no-repeat
+      background: asset-url("icons/location-24.png") center center no-repeat
   #entry-location.selected
     .img
-      background: url('/images/icons/location-24-hover.png') center center no-repeat !important
+      background: asset-url("icons/location-24-hover.png") center center no-repeat !important
   #entry-appearance
     .img
-      background: url('/images/icons/appearance-24.png') center center no-repeat
+      background: asset-url("icons/appearance-24.png") center center no-repeat
     &:hover .img
-      background: url('/images/icons/appearance-24-hover.png') center center no-repeat
+      background: asset-url("icons/appearance-24-hover.png") center center no-repeat
     &:active .img
-      background: url('/images/icons/appearance-24-active.png') center center no-repeat
+      background: asset-url("icons/appearance-24-active.png") center center no-repeat
   #entry-date
     .img
-      background: url('/images/icons/date-24.png') center center no-repeat
+      background: asset-url("icons/date-24.png") center center no-repeat
     &:hover .img
-      background: url('/images/icons/date-24-hover.png') center center no-repeat
+      background: asset-url("icons/date-24-hover.png") center center no-repeat
     &:active .img
-      background: url('/images/icons/date-24.png') center center no-repeat
+      background: asset-url("icons/date-24.png") center center no-repeat
 
   #postSpinner
     +right
     margin: 0 -95px
     width: 32px
     height: 55px
-    background: url('/images/icons/spinner-grey-32.gif') center center no-repeat
+    background: asset-url("icons/spinner-grey-32.gif") center center no-repeat
 
   #entry_submit
     +bold
@@ -456,7 +456,7 @@ hr
           height: 36px
           +round(7)
           &.qq-upload-drop-area-active
-            background: url('/images/icons/dropbox-26.png') 380px center no-repeat rgba(0,0,0,0.4)
+            background: asset-url("icons/dropbox-26.png") 380px center no-repeat rgba(0,0,0,0.4)
 
     #currentImages
       margin: 12px 0 0 12px
@@ -673,7 +673,7 @@ hr
         +close-24
         +right
         margin: 5px 4px 0 0
-       
+
   // NEW ENTRY EMOTIONS
   .entryEmotions
 
@@ -702,7 +702,7 @@ hr
             +outline
 
         .one.selected, .two.selected, .three.selected, .four.selected
-          background-image: url(/images/icons/radioWrap-31.png)
+          background-image: asset-url("icons/radioWrap-31.png")
           background-repeat: no-repeat
           background-position: center
 
@@ -754,36 +754,36 @@ hr
 
     .attach.images
       .img
-        background: url(/images/icons/images-16.png) no-repeat left center transparent
+        background: asset-url("icons/images-16.png") no-repeat left center transparent
       &:hover .img
-        background: url(/images/icons/images-16-hover.png) no-repeat left center transparent
+        background: asset-url("icons/images-16-hover.png") no-repeat left center transparent
       &:active .img
-        background: url(/images/icons/images-16-active.png) no-repeat left center transparent
+        background: asset-url("icons/images-16-active.png") no-repeat left center transparent
 
     .attach.tag
       .img
-        background: url(/images/icons/tag-16.png) no-repeat center transparent
+        background: asset-url("icons/tag-16.png") no-repeat center transparent
       &:hover .img
-        background: url(/images/icons/tag-16-hover.png) no-repeat center transparent
+        background: asset-url("icons/tag-16-hover.png") no-repeat center transparent
       &:active .img
-        background: url(/images/icons/tag-16-active.png) no-repeat center transparent
+        background: asset-url("icons/tag-16-active.png") no-repeat center transparent
 
     .attach.links
       .img
-        background: url(/images/icons/link-16.png) no-repeat left center transparent
+        background: asset-url("icons/link-16.png") no-repeat left center transparent
       &:hover .img
-        background: url(/images/icons/link-16-hover.png) no-repeat left center transparent
+        background: asset-url("icons/link-16-hover.png") no-repeat left center transparent
       &:active .img
-        background: url(/images/icons/link-16-active.png) no-repeat left center transparent
+        background: asset-url("icons/link-16-active.png") no-repeat left center transparent
 
     .attach.emotions
       .img
         width: 19px
-        background: url(/images/icons/emotions-16.png) no-repeat left center transparent
+        background: asset-url("icons/emotions-16.png") no-repeat left center transparent
       &:hover .img
-        background: url(/images/icons/emotions-16-hover.png) no-repeat left center transparent
+        background: asset-url("icons/emotions-16-hover.png") no-repeat left center transparent
       &:active .img
-        background: url(/images/icons/emotions-16-active.png) no-repeat left center transparent
+        background: asset-url("icons/emotions-16-active.png") no-repeat left center transparent
 
 
 
@@ -861,7 +861,7 @@ hr
   .entryImages
 
     .entryImageContainer
-      background: url(/images/icons/spinner-light-32.gif) no-repeat center center white
+      background: asset-url("icons/spinner-light-32.gif") no-repeat center center white
 
     #addFromImageBank
       +bevel-light
@@ -874,16 +874,16 @@ hr
   // NEW ENTRY TAG
   .entryTags
     .tagInputWrap
-      background: url(/images/slices/inputLeftLight-40.png) no-repeat left
+      background: asset-url("slices/inputLeftLight-40.png") no-repeat left
       .tagInput
-        background: url(/images/slices/inputContentLight-40.png) repeat-x
+        background: asset-url("slices/inputContentLight-40.png") repeat-x
         input
           color: #333
         .tagAdd
           +button-light
           +shine-light-alpha(13)
       .tagInputRight
-        background: url(/images/slices/inputRightLight-40.png) no-repeat right
+        background: asset-url("slices/inputRightLight-40.png") no-repeat right
 
 
 
@@ -1098,7 +1098,7 @@ hr
   .entryImages
 
     .entryImageContainer
-      background: url(/images/icons/spinner-dark-32.gif) no-repeat center center black
+      background: asset-url("icons/spinner-dark-32.gif") no-repeat center center black
 
     #addFromImageBank
       +bevel-dark
@@ -1111,16 +1111,16 @@ hr
   .entryTags
 
     .tagInputWrap
-      background: url(/images/slices/inputLeft-Dark-40.png) no-repeat left
+      background: asset-url("slices/inputLeft-Dark-40.png") no-repeat left
       .tagInput
-        background: url(/images/slices/inputContent-Dark-40.png) repeat-x
+        background: asset-url("slices/inputContent-Dark-40.png") repeat-x
         input
           color: #ddd
         .tagAdd
           +button-dark
           +shine-dark-alpha(13)
       .tagInputRight
-        background: url(/images/slices/inputRight-Dark-40.png) no-repeat right
+        background: asset-url("slices/inputRight-Dark-40.png") no-repeat right
 
   // NEW ENTRY LINK
   .entryLinks

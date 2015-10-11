@@ -1,7 +1,7 @@
 <!-- imageBackground  was created to contain the image loading background color. The color was originally applied to entryImageContainer, but since this div shares the image, it was creating a rounded corner border glitch. imageBackground has rounded corners 1px greater to account for this-->
 <li class="imageBackground">
 
-  <div class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: url(/images/uploads/<%= this.id %>-thumb.<%= this.format %>) no-repeat center center transparent'>
+  <div class="entryImageContainer" data-id="<%= this.id %>" data-image='<%= JSON.stringify(this).replace("'","`") %>' style='background: asset-url("uploads/<%= this.id %>-thumb.<%= this.format %>") no-repeat center center transparent'>
 
     <div class="message">
       <span>confirm delete</span>
