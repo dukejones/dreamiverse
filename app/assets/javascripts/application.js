@@ -11,6 +11,8 @@
 // about supported directives.
 //
 
+//= require jquery.min
+
 // Old Production Assets:
 //  shared:
 //= require prod/jquery.hoverIntent.minified.js
@@ -18,9 +20,8 @@
 //= require prod/rails.js
 //= require prod/jquery.cookie.js
 //= require prod/jquery.placeholder.js
-//= require prod/compiled/modal.js
-//= require prod/compiled/dreamplugs.js
-//= require prod/compiled/application.js
+//= require prod/compiled/dreamplugs
+//= require prod/compiled/application
 //  entries:
 //= require prod/geo.js
 //= require prod/dreams.js
@@ -33,7 +34,6 @@
 
 
 
-//x= require jquery.min
 //x= require fancyBox/jquery.fancybox
 //x= require jquery.placeholder
 //x= require rails
