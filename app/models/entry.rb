@@ -269,6 +269,17 @@ class Entry < ActiveRecord::Base
     self.title = self.body.split(' ')[0..7].join(' ') if self.title.blank?
   end
 
+  def as_export_json
+    self.as_json({include: {
+        # user: {only: [:id, :name, :username]},
+        tags: {only: [:intensity, :kind, :noun_type], include: [:noun]},
+        images: { only: [:id, :image_path] },
+        main_image: {only: [:id, :image_path]}
+      },
+      only: [ :id, :title, :body, :updated_at, :sharing_level, :type ]}
+    )
+  end
+
 protected
 
   def set_main_image

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   # Universal Routes
   get 'today' => 'home#index', :as => :today
+  get 'farewell' => 'home#farewell', :as => :farewell
   get 'thank_you' => 'home#thank_you', :as => :thank_you
   get  'feedback' => 'home#feedback', :as => :feedback
   post 'feedback' => 'home#submit_feedback'

@@ -5,13 +5,13 @@ class User < ActiveRecord::Base
     moderator: 2,
     designer:  3,
     developer: 4,
-    admin:     5 
+    admin:     5
   }
-  
+
   include Starlit
 
   serialize :stream_filter
-  
+
   has_many :authentications
   has_many :entries, :dependent => :destroy
   has_many :hits
@@ -36,10 +36,10 @@ class User < ActiveRecord::Base
   before_create :set_defaults
   before_validation(:on => :create) do
     username.strip!
-    username.downcase! 
+    username.downcase!
     email.strip!
     email.downcase!
-  end  
+  end
   after_validation :encrypt_password
 
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
@@ -47,16 +47,16 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   # (db constraint) validates_uniqueness_of :username
   validates_length_of :username, maximum: 26, minimum: 3
-  validates_format_of :username, :without => /[^a-zA-Z\d*_\-]/, 
+  validates_format_of :username, :without => /[^a-zA-Z\d*_\-]/,
     :message => "contains invalid characters (only letters, numbers, underscores, dashes and asterix's allowed in usernames)"
   validates_presence_of :encrypted_password, unless: -> { password && password_confirmation }
   validates_presence_of :email
   validates_uniqueness_of :email
-  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create  
+  validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   validates_inclusion_of :default_entry_type, :in => %w( dream vision experience article journal )
   validates_inclusion_of :default_landing_page, :in => %w( stream home today )
-  
+
   def self.dreamstars
     order("starlight DESC").where("starlight > 50")
   end
@@ -84,11 +84,11 @@ class User < ActiveRecord::Base
     u = find_by_id(user_id)
     u && password_hash == u.encrypted_password ? u : nil
   end
-  
+
   def remember_me_cookie_value
     [self.id, self.encrypted_password].join('::')
   end
-  
+
   def apply_omniauth(omniauth)
     self.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
     self
@@ -97,14 +97,14 @@ class User < ActiveRecord::Base
   def apply_omniauth!(omniauth)
     self.apply_omniauth(omniauth).save!
   end
-  
+
   def friends
     following & followers
   end
   def following_only  # following but not friends
     following - followers
   end
-  
+
   def following?(user)
     self.following.exists?(user.id)
   end
@@ -129,7 +129,7 @@ class User < ActiveRecord::Base
       :none
     end
   end
-  
+
   def can_access?(entry)
     (entry.user == self) ||
     (entry.sharing_level == Entry::Sharing[:everyone]) ||
@@ -146,12 +146,12 @@ class User < ActiveRecord::Base
   def confirmation_code
     sha1("#{self.id}-#{self.username}-#{self.created_at.to_s}")
   end
-  
+
   # This depends on the current password, so if they change their password, the code will no longer be valid.
   def password_reset_code
     sha1("#{self.id}-#{self.username}-#{self.encrypted_password}")
   end
-  
+
   def update_stream_filter(filters)
     if filters.kind_of?(Hash)
       # only the keys which we are storing as defaults
@@ -164,7 +164,19 @@ class User < ActiveRecord::Base
     end
     filters || {}
   end
-  
+
+  def as_export_json
+    friend_attributes = [:id, :name, :username, :image_id]
+
+    self.as_json({include: {
+        following: {only: friend_attributes},
+        followers: {only: friend_attributes},
+      },
+      only: [ :id, :username, :name, :email, :image_id, :created_at, :seed_code, :phone, :skype,
+        :default_sharing_level, :auth_level, :starlight, :cumulative_starlight, :default_entry_type ]}
+    )
+  end
+
   protected
 
   def encrypt_password
@@ -172,7 +184,7 @@ class User < ActiveRecord::Base
       self[:encrypted_password] = sha1(password)
     end
   end
-  
+
   def password_confirmation_matches
     if old_password && (sha1(old_password) != encrypted_password)
       errors.add :old_password, "does not match your current password"
@@ -181,13 +193,13 @@ class User < ActiveRecord::Base
       errors.add :password, "should match password confirmation"
     end
   end
-  
+
   # def has_at_least_one_authentication
   #   if (self.authentications.count == 0) && email.nil?
   #     errors.add :email, " must be present, or have at least one authentication."
   #   end
   # end
-  
+
   def set_defaults
     self.auth_level ||= AuthLevel[:basic]
     # TODO: Make this default to :followers
@@ -196,5 +208,5 @@ class User < ActiveRecord::Base
     self.default_entry_type ||= 'dream'
     self.stream_filter ||= {}
   end
-  
+
 end

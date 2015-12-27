@@ -8,8 +8,8 @@ tmp/**/*
 .idea
 public/imagebank
 public/imagebank-cache/*
-public/dreamcatcher/production.js
-public/dreamcatcher/dreamcatcher.js
-public/compiled
+#public/dreamcatcher/production.js
+#public/dreamcatcher/dreamcatcher.js
+#public/compiled
 config/initializers/dump.rdb
 config/database.yml

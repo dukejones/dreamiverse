@@ -36,6 +36,7 @@ gem 'mini_magick'
 gem 'prawn'
 gem 'wicked_pdf'
 gem 'pdfkit'
+gem 'rubyzip', require: 'zip'
 
 gem 'recaptcha', :require => 'recaptcha/rails'
 # gem 'resque-scheduler'
@@ -100,4 +101,3 @@ end
 #   gem "treetop"
 #   gem "launchy"
 # end
-
