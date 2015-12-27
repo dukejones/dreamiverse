@@ -7,25 +7,9 @@ class HomeController < ApplicationController
   end
 
   def farewell
-    user_json = current_user.as_export_json
-
-    user_json["entries"] = []
-    entries = current_user.entries
-    entries.each do |entry|
-      user_json["entries"] << entry.as_export_json
-    end
-
-    zipfile_name = Rails.root.join('tmp', current_user.username + '.zip')
-
-    FileUtils.rm zipfile_name if File.exists? zipfile_name
-    Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
-      zipfile.get_output_stream('user_and_dreams.json') { |f| f.write JSON.pretty_generate(user_json) }
-      images = entries.map(&:images).flatten
-      images.each do |image|
-        zipfile.add image.image_path, image.file_path
-      end
-    end
-
+    # user = User.offset(rand(User.count)).first
+    user = current_user
+    zipfile_name = UserExporter.new(user).generate_zip_file
     send_file zipfile_name, type: Mime::ZIP
   end
 
