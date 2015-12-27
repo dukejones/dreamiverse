@@ -29,9 +29,12 @@
 //= require original/dreamfield
 //= require prod/tag_stream.js
 
+//= require fancyBox/jquery.fancybox
 
 
-//x= require fancyBox/jquery.fancybox
+// This is new:
+//= require basic_shit
+
 //x= require jquery.placeholder
 //x= require rails
 //x= require swfobject
@@ -65,9 +68,9 @@
 //x= require original/stream_context_panel
 //x= require original/showentry
 
-// previously disabled
+// previously already disabled
 
-//x= require jquery-lightbox-0.5
+//x= require prod/jquery.lightbox-0.5.min
 //x= require original/browserdetect
 //x= require original/sharing
 //x= require original/fit_to_content
