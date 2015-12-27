@@ -20,17 +20,14 @@
 //= require prod/rails.js
 //= require prod/jquery.cookie.js
 //= require prod/jquery.placeholder.js
-//= require prod/compiled/dreamplugs
-//= require prod/compiled/application
+//= require original/dreamplugs
+//= require original/application
 //  entries:
 //= require prod/geo.js
 //= require prod/dreams.js
-//= require prod/compiled/follow_hover.js
-//= require prod/compiled/dreamfield.js
+//= require original/follow_hover
+//= require original/dreamfield
 //= require prod/tag_stream.js
-
-
-
 
 
 
