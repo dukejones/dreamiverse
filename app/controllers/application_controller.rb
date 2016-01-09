@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # after_filter :set_message
 
   def set_message
-    flash.notice ||= "Dear dreamer, <br>Dreamcatcher is going through some transitions right now and there will be some bumps along the way. Please bear with us."
+    # flash.notice ||= "Dear dreamer, <br>Dreamcatcher is going through some transitions right now and there will be some bumps along the way. Please bear with us."
   end
 
   def current_user
