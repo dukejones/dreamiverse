@@ -9,8 +9,8 @@ class HomeController < ApplicationController
   def farewell
     # user = User.offset(rand(User.count)).first
     user = current_user
-    zipfile_name = UserExporter.new(user).generate_zip_file
-    send_file zipfile_name, type: Mime::ZIP
+    # zipfile_name = UserExporter.new(user).generate_zip_file
+    # send_file zipfile_name, type: Mime::ZIP
   end
 
   def landing_page
