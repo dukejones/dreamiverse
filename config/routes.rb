@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     }
   end
 
+
   # Authorization Routes
   namespace "user" do
     resource :session
@@ -25,9 +26,14 @@ Rails.application.routes.draw do
   get   'auth/failure', :to => 'user/authentications#failure'
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
 
+  get 'farewell', to: 'home#farewell', :as => :farewell
+  get 'thank_you', to: 'home#download_all', as: :download_all
+  post 'collect_email', to: 'home#collect_email', as: :collect_email
+  root to: 'home#farewell'
+  get '*all', to: redirect('/farewell')
+
   # Universal Routes
   get 'today' => 'home#index', :as => :today
-  get 'farewell' => 'home#farewell', :as => :farewell
   get 'thank_you' => 'home#thank_you', :as => :thank_you
   get  'feedback' => 'home#feedback', :as => :feedback
   post 'feedback' => 'home#submit_feedback'
@@ -157,6 +163,6 @@ Rails.application.routes.draw do
 
 
   #default landing page
-  root :to => 'home#landing_page'
+  # root :to => 'home#landing_page'
 
 end

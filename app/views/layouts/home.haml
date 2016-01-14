@@ -13,10 +13,6 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
 
-    :coffee
-      $(document).ready ->
-        $('input[placeholder], textarea[placeholder]').placeholder()
-
     -#= include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared, :home
     = yield :head
 
@@ -35,7 +31,7 @@
 
     - unless current_user.blank?
       / META MENU - USER
-      = render :partial => "common/meta_menu/meta_menu"
+      -# = render :partial => "common/meta_menu/meta_menu"
 
     - if Rails.env.production?
       -#= javascript_include_tag 'google_analytics'

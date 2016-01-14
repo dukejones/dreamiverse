@@ -1,3 +1,4 @@
+
 %a.dcLogo
 
 #leftColumn
@@ -12,12 +13,59 @@
       %p.four Farewell, we wish you well.  Sweet dreams.
       %br
 
-      = link_to thank_you_path, remote: true, class: 'thankyou' do
+      = link_to thank_you_path, class: 'thankyou' do
         .img
-        %span download
+        %span download all your dreams
 
   #publicStreamGlow
     #publicStream
       .today We love you
       .matrix
         = image_tag "art/dream-eyes-banner.jpg"
+#rightColumn
+
+  / JOIN PANEL
+  .joinPanel{style: 'margin-top: 181px'}
+    = form_for(User.new, url: user_registration_path) do |f|
+      .intro
+        %h1 Keep in touch
+        <p>This dream may be fading into memory, but there are more journeys to come.</p>
+        <p>Keep in touch regarding:<br />
+        = check_box_tag 'us'
+        %label{for: 'us'} Possible Open Source Version<br />
+        = check_box_tag 'them'
+        %label{for: 'them'} Possible Commercial Version<br />
+        = check_box_tag 'evolution'
+        %label{for: 'evolution'} Next-level evolutionary self-actualization portals for the benefit of humanity!<br />
+
+
+        -# = f.label 'emailAddress'
+        -# = f.text_field 'emailAddress'
+
+        <p>Either way we love you forever xoxo</p>
+
+      / JOIN TOGGLE - BUTTON
+      .joinWrap
+        %a.join{href: join_path} Keep in touch &rsaquo;
+
+  -# .topPadding
+
+
+
+  / DREAMSTARS MINI
+  .dreamstarsMiniWrap
+    %a{href: dreamstars_path}
+      %img.logo{src: '/assets/logos/dreamstars-182.png', width: '182', height: '50'}
+      %span view all &rsaquo;
+    .dreamstarsMini
+
+      -# [current_user, current_user, current_user, current_user, current_user].each_with_index do |user, index|
+      - ([current_user] + User.dreamstars.limit(5)).each_with_index do |user, index|
+        - rank = index + 1
+        %a{class: "dreamstar-#{rank}", href: user_entries_path(user.username)}
+          .badge
+          .rank= rank
+          .name= user.username
+        .clear
+
+  -# .like

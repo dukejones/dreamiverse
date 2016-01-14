@@ -3,9 +3,8 @@ in this age of corporations and profits.  The requirement to leverage the innerm
 thoughts and dreams of users towards company profit was too much cognitive
 dissonance for the developers.
 
-We hope that it can be a good example for those programming sites to connect and
-share, and also that it perhaps can gain some new life in its open source incarnation.
-
+We hope that it can be a good example for those who program web apps for people to connect and
+share with each other, and also that it perhaps can gain some new life in its open source incarnation.
 
 
 © 2011 Duke Jones, Geoff Jensen, and Ephraim Peniston
