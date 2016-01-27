@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201182318) do
+ActiveRecord::Schema.define(version: 20160114082937) do
 
   create_table "authentications", force: :cascade do |t|
     t.string   "provider",        limit: 255
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(version: 20141201182318) do
     t.integer  "image_id",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contacts", force: :cascade do |t|
+    t.string   "email_address", limit: 255
+    t.integer  "user_id",       limit: 4
+    t.boolean  "open_source",   limit: 1
+    t.boolean  "corporate",     limit: 1
+    t.boolean  "evolutionary",  limit: 1
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "countries", force: :cascade do |t|

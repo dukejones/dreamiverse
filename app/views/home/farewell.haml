@@ -1,16 +1,22 @@
 
 %a.dcLogo
 
+
 #leftColumn
+  = image_tag "art/dream-eyes-banner.jpg"
+  %br
+  %br
+  %br
+
   .welcomeWrap
-    .dreamstar
     %h1 Farewell
     .welcome
       %p All things upon this earth pass, and from every dream we must one day wake.
-      %p.one Dreamcatcher was truly a beautiful vision.  At its height, we were convinced we would change the world, alter the pitch of society to begin to value the inner worlds, and to begin to connect seemingly disparate individuals through mutual appreciation of the richness of the inner landscape.
+      %p.one Dreamcatcher was truly a beautiful vision.  At its height, we were convinced we would change the world, alter the pitch of society to begin to value the inner worlds, and be the medium of connection through mutual appreciation of the richness of the inner landscape.
       %p.two In this, we did have some success, as we hope your own experience can attest.  However,  a venue for sharing one's innermost experiences does not harmonize with a for-profit corporate structure, the usual "internet startup" structure imposed.
       %p.three The native grandmother laughed and said, "You know, we use the Dreamcatcher to catch the <i>bad</i> dreams..."
-      %p.four Farewell, we wish you well.  Sweet dreams.
+      -# %p.four Farewell, we wish you well.  Sweet dreams.
+      %p “Nothing lasts but nothing is lost.” – Terence McKenna
       %br
 
       = link_to thank_you_path, class: 'thankyou' do
@@ -21,28 +27,35 @@
     #publicStream
       .today We love you
       .matrix
-        = image_tag "art/dream-eyes-banner.jpg"
+        -# = image_tag "art/dream-eyes-banner.jpg"
+
+
+
+
+
 #rightColumn
 
   / JOIN PANEL
   .joinPanel{style: 'margin-top: 181px'}
-    = form_for(User.new, url: user_registration_path) do |f|
+    = form_for(Contact.new(email_address: current_user.email), url: collect_email_path) do |f|
       .intro
         %h1 Keep in touch
-        <p>This dream may be fading into memory, but there are more journeys to come.</p>
-        <p>Keep in touch regarding:<br />
-        = check_box_tag 'us'
-        %label{for: 'us'} Possible Open Source Version<br />
-        = check_box_tag 'them'
-        %label{for: 'them'} Possible Commercial Version<br />
-        = check_box_tag 'evolution'
-        %label{for: 'evolution'} Next-level evolutionary self-actualization portals for the benefit of humanity!<br />
+        <p>This dream may be fading into memory, but as sure as the tide, there are many more adventures ahead.</p>
+        <p><i>Would you like to keep in touch regarding:</i><br />
+        = f.check_box :open_source
+        = f.label :open_source, "An open-source dream sharing social network"
+        %br
+        = f.check_box :corporate
+        = f.label :corporate, "A new commercial version of dreamcatcher.net from Dreamcatcher Industries, LLC"
+        %br
+        = f.check_box :evolutionary
+        = f.label :evolutionary, "Other next-level projects from the original dreamcatcher dev team"
+        %br
+        <p>Either way we love you forever</p>
+        %p
+          = f.label :email_address
+          = f.text_field :email_address, style: 'width: 97%; display: block; text-align: center'
 
-
-        -# = f.label 'emailAddress'
-        -# = f.text_field 'emailAddress'
-
-        <p>Either way we love you forever xoxo</p>
 
       / JOIN TOGGLE - BUTTON
       .joinWrap

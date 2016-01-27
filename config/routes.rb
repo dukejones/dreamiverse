@@ -29,8 +29,11 @@ Rails.application.routes.draw do
   get 'farewell', to: 'home#farewell', :as => :farewell
   get 'thank_you', to: 'home#download_all', as: :download_all
   post 'collect_email', to: 'home#collect_email', as: :collect_email
-  root to: 'home#farewell'
-  get '*all', to: redirect('/farewell')
+
+  # THESE TWO LINES WILL SHUT DOWN DREAMCATCHER
+  # root to: 'home#farewell'
+  # get '*all', to: redirect('/farewell')
+  root :to => 'home#landing_page'
 
   # Universal Routes
   get 'today' => 'home#index', :as => :today
@@ -162,7 +165,5 @@ Rails.application.routes.draw do
   end
 
 
-  #default landing page
-  # root :to => 'home#landing_page'
 
 end

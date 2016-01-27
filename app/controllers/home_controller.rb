@@ -19,7 +19,7 @@ class HomeController < ApplicationController
   end
 
   def collect_email
-    
+    # binding.pry
   end
 
   def landing_page
