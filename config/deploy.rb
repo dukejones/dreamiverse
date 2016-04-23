@@ -4,7 +4,9 @@ lock '3.4.0'
 set :application, "dreamcatcher"
 
 # set :scm, :git
-set :repo_url,  "git@dukedorje.com:dreamcatcher.git"
+# set :repo_url,  "git@107.170.229.217:dreamcatcher.git"
+set :repo_url, "git@github.com:dukejones/dreamcatcher.git"
+
 # set :deploy_via, :remote_cache
 set :branch, "master"
 set :scm_verbose, true
