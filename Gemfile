@@ -65,18 +65,12 @@ group :development do
   gem 'capistrano3-puma', require: false
   gem 'better_errors'
   gem 'quiet_assets'
-  # gem 'active_reload'
-  # gem 'wirble'
+  # gem 'letter_opener'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
-  # gem 'webrat'
-  # gem 'machinist'
-  # gem 'faker'
-  # gem 'mocha'
-  # gem 'infinity_test', :git => "git://github.com/tomas-stefano/infinity_test.git"
 end
 
 group :development, :test do
