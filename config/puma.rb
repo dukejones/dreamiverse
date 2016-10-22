@@ -1,4 +1,6 @@
 threads 5,18
+environment 'production'
+bind "unix://tmp/sockets/puma.sock"
 # workers 3
 # preload_app!
 
