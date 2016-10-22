@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
 
   get 'farewell', to: 'home#farewell', :as => :farewell
-  get 'thank_you', to: 'home#download_all', as: :download_all
+  get 'download_all', to: 'home#download_all', as: :download_all
   post 'collect_email', to: 'home#collect_email', as: :collect_email
 
   # THESE TWO LINES WILL SHUT DOWN DREAMCATCHER
