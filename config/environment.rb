@@ -1,4 +1,4 @@
-VERSION = "theta b2.5"
+APP_VERSION = "theta b3.0"
 
 FB_PERMS = "publish_stream, publish_checkins, user_photos" # user_location, user_checkins, email
 
@@ -9,7 +9,7 @@ ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcfLMISAAAAANIq7MjfmzqNWZH_KS52xFfoXgui'
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
-Dreamcatcher::Application.initialize!
+Rails.application.initialize!
 
 ActiveRecord::Base.include_root_in_json = false
 

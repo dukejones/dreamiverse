@@ -1,0 +1,50 @@
+
+// META MENU PUBLIC
+#metaMenu.public
+  +absolute
+  top: 0
+  width: 100%
+
+
+  .loginPanelWrap
+    +absolute
+    right: 35px
+
+    .loginPanel
+      color: #333
+
+
+  .joinWrap
+    right: 275px
+    top: 8px
+    +relative
+    +right
+    height: 30px
+
+    a
+      +round(11)
+      color: #fff
+      height: 30px
+      line-height: 30px
+      padding: 0 8px
+
+
+
+  .randomDream
+    +absolute
+    right: 380px
+    padding: 0 8px 0 42px
+    height: 33px
+    line-height: 33px
+    background-position: 10px 4px !important
+    background-repeat: no-repeat !important
+    background-image: asset-url("icons/shuffle-24.png") !important
+
+    &:hover
+      background-position: 10px 4px !important
+      background-repeat: no-repeat !important
+      background-image: asset-url("icons/shuffle-24-hover.png") !important
+    &:active
+      background-position: 10px 4px !important
+      background-repeat: no-repeat
+      background-image: asset-url("icons/shuffle-24-active.png") !important

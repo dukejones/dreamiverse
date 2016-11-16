@@ -1,0 +1,697 @@
+
+// CONTEXT PANEL
+// STRUCTURE
+
+#contextPanel
+  +round(16)
+  +absolute
+  +cursor
+  top: 83px
+  left: 13px
+  width: 200px
+  padding: 4px 4px 0
+
+
+
+
+
+  #avatarDrop
+    +absolute
+    +round(12)
+    width: 200px
+    height: 266px
+    z-index: 1200
+
+    #avatarDropContainer
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      color: #fff
+      z-index: 1200
+
+
+      &.qq-upload-drop-area-active
+        background: asset-url("icons/dropbox-26.png") center center no-repeat rgba(0,0,0,0.6)
+
+      .text
+        +font(18)
+        +center
+        padding-top: 20px
+        z-index: 1200
+
+      .browse
+        +font(14)
+        +center
+        +relative
+        top: 184px
+        left: 0
+        z-index: 1200
+
+        .cancel, .dropboxBrowse
+          +absolute
+          +round(4)
+          +button-dark
+          +bevel-dark
+          padding: 4px 8px
+          z-index: 1200
+        .cancel
+          top: 0px
+          left: 8px
+          +cancel(12)
+        .dropboxBrowse
+          top: 0px
+          right: 8px
+          width: 90px
+          position: absolute !important
+          +confirm(12)
+          +pointer
+
+
+  .avatar
+    +round(12)
+    +block
+    +relative
+    width: 198px
+    height: 264px
+    background-clip: border-box !important
+    &:hover .uploadAvatarWrap
+      +block
+    .uploadAvatarWrap
+      +hidden
+      +absolute
+      bottom: 0
+      width: 100%
+      padding: 20px 0 8px
+      .uploadAvatar
+        +block
+        +round(8)
+        +center
+        +pointer
+        +transparent-dark(50)
+        +glow-light(20)
+        +font(12)
+        color: #ccc
+        padding: 2px 6px
+        width: 120px
+        margin: 0 auto
+        border: 1px solid #ccc
+        span
+          +bold
+          color: #68b800
+      .uploadAvatar:hover
+        +inner-glow(20)
+        border: 1px solid #fff
+        color: #fff
+
+    .uploader
+      +round(12)
+      +transparent-dark(80)
+      width: 200px
+      height: 266px
+      .text, .browse
+        +center
+        +absolute
+        width: 100%
+        color: #fff
+      .text
+        +font(21)
+        top: 20px
+      .browse
+        +alpha(80)
+        +overflow
+        bottom: 20px
+        input
+          +right
+          +outline
+        &:hover
+          +alpha(100)
+        .cancel
+          cursor: pointer
+      .dropboxBrowse
+        color: #fff
+
+
+
+  // USERNAME and CONTEXT
+
+  .context
+    +round(12)
+    +flat-bottom
+    +overflow
+    +relative
+    +center
+    +bold
+    +block
+    +font(21)
+    margin: 4px 0 2px
+    padding: 4px 8px
+    .icon
+      +absolute
+      right: 20px
+      top: 18px
+
+
+  .relation, .changeRelation, .context
+    +user-select
+    .icon
+      +right
+      +relative
+      margin: -16px
+
+
+  .label, .image, .detail
+    +left
+
+  .divider
+    height: 2px
+
+
+
+
+
+
+  // PROFILE
+  .profile
+    margin-bottom: 4px
+
+    // VIEW PROFILE
+    .view
+      +relative
+      +center
+      +round(8)
+      padding: 4px 0
+
+    // PROFILE UPDATE ALERT
+    .alert
+      +absolute
+      +round(4)
+      +pointer
+      +center
+      left: 4px
+      bottom: 4px
+      width: 192px
+      height: 24px
+      line-height: 24px
+      border-spacing: 0
+      border-collapse: separate
+
+      span.message
+        +font(14)
+        +bold
+
+      .check, .close
+        +right
+        margin: 5px 4px 0 -4px
+      .check
+        +check-16
+      .close
+        +close-16
+        +alpha(100)
+
+
+    .name
+      +font(21)
+      +pointer
+
+    .location
+      +font(12)
+      +center
+      +user-select
+      +pointer
+
+    .details
+      +overflow
+      margin: 0 4px
+
+    .website, .email, .phone, .skype
+      +block
+      +font(14)
+
+    .website:hover
+      text-decoration: underline
+
+    .email, .phone, .skype
+      +cursor
+
+    .skype
+      background: asset-url("icons/skype-16.png") no-repeat 0 2px transparent
+      padding: 0 0 2px 20px
+      display: inline-block
+
+    .facebook, .twitter
+      +round(4)
+      +center
+      +font(11)
+      padding: 0 12px
+      margin: 8px 2px 0
+    .facebook
+      +left
+    .twitter
+      +right
+
+
+    .change
+      +user-select
+      +clear
+      +center
+      +round(4)
+      height: 22px
+      line-height: 22px
+      margin-top: 6px
+
+
+
+    // EDIT PROFILE
+    .edit
+      +round(8)
+      padding: 4px
+
+      span
+        +font(11)
+        margin-left: 4px
+
+      #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+        +round(8)
+        +font(12)
+        width: 180px
+        height: 24px
+        margin-bottom: -4px
+        padding: 0 0 0 8px
+      .skypeWrap
+        +relative
+        width: 180px
+        margin: 0 0 4px
+        img
+          +absolute
+          left: 8px
+          top: 5px
+        #user_skype
+          width: 160px
+          padding-left: 28px
+          margin: 0
+
+      .cancel, .save
+        +round(4)
+        +user-select
+        +center
+        width: auto
+        margin: 4px 0 0
+      .cancel
+        +left
+        +delete(14)
+        width: 75px
+        height: 26px
+        line-height: 26px
+      .save
+        +bold
+        +right
+        +save(14)
+        +font(14)
+        height: 28px
+        width: 110px
+
+
+
+
+
+  // GENERAL ITEM
+
+  .item
+    +clear
+    +user-select
+    margin-bottom: 4px
+
+    .relation
+      +round(12)
+      +flat-top
+
+    .label
+      +round(12)
+      +flat-right
+      +font(14)
+      +relative
+      text-align: right
+      width: 80px
+      height: 24px
+      line-height: 24px
+      padding: 6px 0
+      img.arrow
+        +left
+        margin: 4px 4px 0 6px
+      .value
+        +absolute
+        right: 4px
+
+    .image
+      +center
+      width: 38px
+      height: 38px
+      padding: 0
+      margin: 0
+      .dream, .follow
+        margin: 6px 0
+      .starlight
+        margin: -11px -16px
+        z-index: 1004
+
+
+    .detail
+      +inner-shadow(10)
+      +round(12)
+      +flat-left
+      +bold
+      +center
+      +overflow
+      width: 80px
+      height: 26px
+      padding: 6px 0
+      line-height: 26px
+      border: 0
+
+
+
+
+  .filterList
+    +font(14)
+    +center
+    width: 80px !important
+
+
+
+  // FRIEND AND FOLLOWING
+  .relationship
+    .relation, .changeRelation
+      +bold
+      +center
+      padding: 6px
+      height: 16px
+      margin: 0
+      .icon
+        right: 22px
+        top: -23px
+
+
+    .changeRelation.follow.hidden, .changeRelation.unfollow.hidden, .changeRelation.unfriend.hidden, .changeRelation.befriend.hidden
+      +hidden
+
+    .changeRelation.follow, .changeRelation.unfollow, .changeRelation.befriend, .changeRelation.unfriend
+      +block
+      +round(12)
+      +flat-top
+      color: #fff
+
+    .changeRelation.follow, .changeRelation.befriend
+      +bg-shine(16)
+      +gradient(#70d03b, #235b1b)
+      +pointer
+      color: #fff
+      border: 1px solid #54943d
+      &:active
+        +gradient(#235b1b, #70d03b)
+    .changeRelation.unfollow, .changeRelation.unfriend
+      +unfollow(16)
+
+    &.relationship
+      margin-bottom: 2px
+
+
+
+
+
+
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +round(12)
+    height: 28px
+    padding: 4px
+    margin: 4px 0
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +relative
+      +round(12)
+      +left
+      height: 26px
+      width: 62px
+
+      .favorites, .rePost, .tag
+        +absolute
+        height: 26px
+        width: 62px
+
+    .favoritesWrap
+      +flat-right
+      .favorites
+        background: asset-url("icons/love-16.png") no-repeat center
+        &:hover
+          background: asset-url("icons/love-16-hover.png") no-repeat center
+      .favorites.selected
+        background: asset-url("icons/love-16-hover.png") no-repeat center
+
+    .rePostWrap
+      +flat-all
+      .rePost
+
+    .tagWrap
+      +flat-left
+      .tag
+        background: asset-url("icons/tag-16.png") no-repeat center
+        &:hover
+          background: asset-url("icons/tag-16-hover.png") no-repeat center
+      .tag.selected
+        background: asset-url("icons/tag-16-hover.png") no-repeat center
+
+
+
+
+
+
+
+
+
+
+
+
+
+// CONTEXT PANEL
+// COLORS
+.light
+  #contextPanel
+    +transparent-light(50)
+    +glow-light(40)
+
+    .avatar
+      border: 1px solid transparent
+      &:hover
+        border: 1px solid #000
+
+    .context, .label
+      border: 1px solid #8a8a8a
+    .context:hover, .entryFilter .label:hover
+      border: 1px solid #111
+      +pointer
+    .context
+      +shine-light-alpha(16)
+    .label
+      +shine-light-alpha(16)
+      &.selected
+        +shine-dark-alpha(16)
+        color: #fff !important
+
+
+
+    .relation
+      +button-light
+
+
+
+
+    // PROFILE
+    .profile
+
+
+      // VIEW PROFILE
+      .view, .edit
+        +transparent-light(40)
+
+        .alert
+          +flat-dark
+          .message
+            color: #ddd
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-light
+          .change
+            +bevel-light
+            +button-light
+            +confirm(11)
+
+
+        #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+          +input-light(small)
+        .cancel, .save
+          +bevel-light
+          +button-light
+        .cancel
+          +cancel(14)
+        .save
+          +save(14)
+          color: #333
+
+    .item
+      .relation
+        +transparent-light(50)
+        .label
+          border: 1px solid #848484
+      .detail
+        background: rgba(255,255,255,0.8)
+
+
+
+
+
+
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    background: #fff
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#9a9a9a))
+    background: -moz-linear-gradient(top, #fff, #9a9a9a) // CUSTOM LIGHT BEVEL
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-light
+      +shine-light(13)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #bbb
+      .rePost
+
+    .tagWrap
+      .tag
+
+.dark
+  #contextPanel
+    +transparent-dark(50)
+    +glow-dark(40)
+
+    .avatar
+      border: 1px solid transparent
+      &:hover
+        border: 1px solid #fff
+
+    .context, .label
+      +shine-dark-alpha(16)
+    .label
+      border: 1px solid #090909
+    .label.selected
+      +shine-light-alpha(16)
+      color: #000 !important
+    .context, .entryFilter .label
+      border: 1px solid #333
+      &:hover
+        +button-dark
+
+
+    .relation
+      +button-dark
+      border: 1px solid #333 !important
+
+    // PROFILE
+    .profile
+
+      // VIEW PROFILE
+      .view, .edit
+        +transparent-dark(40)
+        border: 1px solid #222
+
+        .alert
+          +flat-light
+          .message
+            color: #333
+
+        .details
+          .website, .email, .phone, .skype
+
+          .facebook, .twitter
+            +flat-light
+            +button-dark
+            color: #333
+          .change
+            +bevel-dark
+            +button-dark
+            +confirm(11)
+
+        #user_name, #user_email, #user_link_attributes_title, #user_link_attributes_url, #user_phone, #user_skype
+          +input-dark(small)
+        .cancel, .save
+          +bevel-dark
+          +button-dark
+        .cancel
+          +cancel(14)
+        .save
+          +save(14)
+          color: #ddd
+
+    .item
+      .relation
+        +transparent-dark(50)
+        .label
+          border: 1px solid #555
+      .detail
+        background: rgba(50,50,50,0.9)
+
+  // VIEW FILTERS - FAVORITES, REPOST, TAG
+  .viewFilters
+    +bevel-dark
+
+    .favoritesWrap, .rePostWrap, .tagWrap
+      +button-dark
+      +shine-dark(17)
+
+      .favorites, .rePost, .tag
+
+    .favoritesWrap
+      .favorites
+
+    .rePostWrap
+      &:hover
+        +cursor
+        border: 1px solid #444
+      .rePost
+
+    .tagWrap
+      .tag
+
+
+// ENSURES BOTTOM PADDING CLEARANCE
+
+.pagePadding
+  +absolute
+  top: 684px
+  height: 1px
+  width: 1px
+
+
+
+
+
+
+
+
+@import stream_context_panel
+
+
+
+
+

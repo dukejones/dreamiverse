@@ -11,21 +11,18 @@
     / ENABLE CHROME FRAME FOR IE
     %meta{:'http-equiv' => "X-UA-Compatible", content: "chrome=1"}
 
-    %meta{property: "og:image", content: "http://dreamcatcher.net/images/logos/dreamcatcher-fb.jpg"}
-
-    = include_stylesheets :common, :media => 'all'
-
+    = stylesheet_link_tag :application, :media => 'all' # :common
 
     = yield :headBefore
 
-    = include_javascripts :vendor, :jmvc_framework, :jmvc_resources, :jmvc_application, :shared
+    = javascript_include_tag :application # :vendor, :shared #, :jmvc_framework, :jmvc_resources, :jmvc_application
 
     = yield :head
 
 
 
   %body{id: 'body', class: appearance_classes, style: bedsheet_style}
-    
+
     #backgroundReplace
     #bodyClick
 
@@ -41,8 +38,8 @@
     = render :partial => "layouts/chrome_frame"
 
     - if Rails.env.production?
-      = javascript_include_tag 'google_analytics'
-      = render :partial => "layouts/piwik"
+      =# javascript_include_tag 'google_analytics'
+      =# render :partial => "layouts/piwik"
 
     = yield :foot
     / = render 'common/facebook_sdk'

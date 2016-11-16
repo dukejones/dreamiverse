@@ -1,9 +1,9 @@
 - content_for :head do
-  /= include_javascripts 'show_entry'
-  
+  -#= include_javascripts 'show_entry'
+
   - if !@entry.body.blank?
     %meta{property: "description", content: "#{simple_format(@entry.body).gsub(%r{</?[^>]+?>}, '')}"}
-    
+
   %meta{property: "og:title", content: "Dreamcatcher: #{@entry.title.blank? ? @entry.body[0..100] : @entry.title}"}
   %meta{property: "og:type", content: "article"}
   %meta{property: "og:url", content: request.url}
@@ -19,5 +19,5 @@
   #showEntry
     = render :partial => 'entries/show'
   #newEditEntry{style: 'display:none'}
-    
+
 

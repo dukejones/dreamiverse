@@ -215,10 +215,14 @@ class ImagesController < ApplicationController
   end
 
   # This method is called when a url for a size image that has not yet been generated is requested.
-  # It responds with a redirect.
   def resize
-    image = Image.find params[:id]
-    render(nothing: true, status: 404) and return unless image && File.exists?(image.path)
+    # image = Image.find params[:id]
+    image = Image.where(image_path: "#{params[:year]}/#{params[:month]}/#{params[:filename]}.#{params[:format]}").last
+
+    unless image && File.exists?(image.file_path)
+      Rails.logger.warn("cannot find image!")
+      render(nothing: true, status: 404) and return 
+    end
 
     format = params[:format] || image.format
     mime_type = Mime::Type.lookup_by_extension(format)
@@ -229,7 +233,7 @@ class ImagesController < ApplicationController
     options = { :size => params[:size], :format => format }
     image.generate(params[:descriptor], options)
 
-    send_file image.path(params[:descriptor], options), {type: mime_type, disposition: 'inline'}
+    send_file image.file_path(params[:descriptor], options), {type: mime_type, disposition: 'inline'}
 
     # redirect_to image.url(params[:descriptor], options)
     # For future Rails Release (3.1?): Streaming / Chunked response.

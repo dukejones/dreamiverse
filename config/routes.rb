@@ -1,10 +1,11 @@
 
-Dreamcatcher::Application.routes.draw do
+Rails.application.routes.draw do
   constraints(:host => /^www\./) do
-    match "(*x)" => redirect { |params, request|
+    get "(*x)" => redirect { |params, request|
       URI.parse(request.url).tap {|url| url.host.sub!('www.', '') }.to_s
     }
   end
+
 
   # Authorization Routes
   namespace "user" do
@@ -12,46 +13,52 @@ Dreamcatcher::Application.routes.draw do
     resource :registration
   end
 
-  match '/doktorj' => redirect("/jeremiah")
-  match '/doktorj/:dream' => redirect("/jeremiah/%{dream}")
-  
   # Authorization and Registration Routes
-  post  'login'  => 'user/sessions#create', :as => :login
+  post  'login'  => 'user/sessions#create', :as => :login_post
   get   'login'  => 'user/sessions#new', :as => :login
-  match 'logout' => 'user/sessions#destroy', :as => :logout
-  match 'join'   => 'user/registrations#new', :as => :join
+  get   'logout' => 'user/sessions#destroy', :as => :logout
+  get   'join'   => 'user/registrations#new', :as => :join
   get   'forgot' => 'user/registrations#forgot_password', :as => :forgot_password
   post  'forgot' => 'user/registrations#send_password_reset'
   get   'reset-password/:username/:reset_code', :to => 'user/registrations#reset_password', :as => :reset_password
   post  'reset-password', :to => 'user/registrations#do_password_reset', :as => :do_password_reset
-  match 'auth/:provider/callback', :to => 'user/authentications#create'
-  match 'auth/failure', :to => 'user/authentications#failure'
+  get   'auth/:provider/callback', :to => 'user/authentications#create'
+  get   'auth/failure', :to => 'user/authentications#failure'
   delete 'auth/:id', :to => 'user/authentications#destroy', constraints: {id: /\d+/}
-  
+
+  get 'farewell', to: 'home#farewell', :as => :farewell
+  get 'download_all', to: 'home#download_all', as: :download_all
+  post 'collect_email', to: 'home#collect_email', as: :collect_email
+
+  # THESE TWO LINES WILL SHUT DOWN DREAMCATCHER
+  # root to: 'home#farewell'
+  # get '*all', to: redirect('/farewell')
+  root :to => 'home#landing_page'
+
   # Universal Routes
   get 'today' => 'home#index', :as => :today
-  match 'thank_you' => 'home#thank_you', :as => :thank_you
+  get 'thank_you' => 'home#thank_you', :as => :thank_you
   get  'feedback' => 'home#feedback', :as => :feedback
   post 'feedback' => 'home#submit_feedback'
-  match 'terms' => 'home#terms', :as => :terms
-  match 'error' => 'home#error'
+  get  'terms' => 'home#terms', :as => :terms
+  get  'error' => 'home#error'
 
-  match '/dreamstars' => 'users#index', :as => :dreamstars
+  get '/dreamstars' => 'users#index', :as => :dreamstars
 
-  match '/admin' => 'admin#admin', :as => :admin
-  get '/admin/users' => 'admin#user_list', :as => :admin
-  get '/admin/line_chart' => 'admin#load_line_chart', :as => :admin
-  get '/admin/pie_chart' => 'admin#load_pie_chart', :as => :admin
-  get '/admin/bedsheets' => 'admin#load_bedsheets', :as => :admin
-   
-  match '/stream' => 'entries#stream', :as => :stream
-  match '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
-  match '/random' => 'entries#random', :as => :random
+  get '/admin' => 'admin#admin'
+  get '/admin/users' => 'admin#user_list'
+  get '/admin/line_chart' => 'admin#load_line_chart'
+  get '/admin/pie_chart' => 'admin#load_pie_chart'
+  get '/admin/bedsheets' => 'admin#load_bedsheets'
+
+  get '/stream' => 'entries#stream', :as => :stream
+  get '/dreamfield' => 'entries#dreamfield', :as => :dreamfield
+  get '/random' => 'entries#random', :as => :random
 
   # Mounts
   mount Resque::Server, :at => '/resque'
-  
-  match "/facebook_channel", :to => proc {|env| [200, {}, ['<script src="//connect.facebook.net/en_US/all.js"></script>']] }, :as => :facebook_channel
+
+  get "/facebook_channel", :to => proc {|env| [200, {}, ['<script src="//connect.facebook.net/en_US/all.js"></script>']] }, :as => :facebook_channel
 
   # Resources
 
@@ -62,18 +69,22 @@ Dreamcatcher::Application.routes.draw do
     post 'set_view_preferences'
     post 'avatar'
     post 'location', :to => 'users#create_location'
-    match 'search', :as => :search
+    get  'search', :as => :search
     get  'confirm/:id/:confirmation', as: 'confirm', to: 'users#confirm', constraints: {id: /\d+/}
     get  'not-my-email/:id/:confirmation', as: 'wrong', to: 'users#wrong_email', constraints: {id: /\d+/}
   end
 
   # Random path from dreams.js
-  match 'parse/title', to: 'home#parse_url_title'
+  get 'parse/title', to: 'home#parse_url_title'
 
 
   # Images
-  match 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize', 
-    constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+  # get 'images/uploads/:id-:descriptor(-:size).:format', to: 'images#resize',
+  #   constraints: {id: /\d+/, descriptor: /[^-]*/, size: /\d+/, format: /\w{2,4}/ }
+
+  get "#{Image::CACHE_DIR}/:year/:month/:filename-:descriptor(-:size).:format", to: 'images#resize',
+    constraints: {year: /\d{4}/, month: /\d{1,2}/, descriptor: /[^\d]+/, size: /\d+/, format: /\w{2,4}/ }
+
   resources :images do
     collection do
       get 'manager'
@@ -86,14 +97,14 @@ Dreamcatcher::Application.routes.draw do
       post 'disable'
     end
   end
-  match 'artists', to: 'images#artists'
-  match 'albums', to: 'images#albums'
+  get 'artists', to: 'images#artists'
+  get 'albums', to: 'images#albums'
 
   # Dream Dictionaries
   resources :dictionaries do
     resources :words
   end
-  
+
 
   # Tagging
   resources :tags do
@@ -103,7 +114,7 @@ Dreamcatcher::Application.routes.draw do
       delete '/(:noun_type)', :to => 'tags#destroy', :constraints => {noun_type: /who|what|where/}
     end
   end
-  
+
   resources :entries do
     collection do
       get 'random'
@@ -117,41 +128,42 @@ Dreamcatcher::Application.routes.draw do
     end
     resources :comments
   end
-  
+
   resources :books
 
   # Username-Specific Routes
   # username_constraint = UsernameConstraint.new
   scope ':username' do
-       
+
     # Entries
-    match "/:entry_type", :to => 'entries#index', 
+    get "/:entry_type", :to => 'entries#index',
       :constraints => {entry_type: /dreams|visions|experiences|articles|journals/}, :as => 'user_entries_filter'
-    
+
     get '/' => 'entries#index', :as => 'user_entries'
     post '/' => 'entries#create'
     get "/new", :to => 'entries#new', :as => 'new_user_entry'
     get "/:id/edit", :to => 'entries#edit', :constraints => {id: /\d+/}, :as => 'edit_user_entry'
     get "/:id", :to => 'entries#show', :constraints => {id: /\d+/}, :as => 'user_entry'
+    get "/:id/pdf", to: 'entries#pdf_view', :constraints => {id: /\d+/}, :as => 'user_entry_pdf'
     put "/:id", :to => 'entries#update', :constraints => {id: /\d+/}
     delete "/:id", :to => 'entries#delete', :constraints => {id: /\d+/}
-    
+
+    get 'all', to: 'entries#all', as: 'all_entries'
+
     # Friends & Following
-    match 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
-    match 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
+    get 'follow', to: 'users#follow', verb: 'follow', as: 'follow'
+    get 'unfollow', to: 'users#follow', verb: 'unfollow', as: 'unfollow'
 
     ['friends', 'following', 'followers'].each do |mode|
-      match mode => 'users#friends', :mode => mode, :as => mode
+      get mode => 'users#friends', :mode => mode, :as => mode
     end
-    
-    # route alpha legacy view urls to /username 
-    match '/view/:id' => redirect("/%{username}")
-    match '/profile' => redirect("/%{username}")
-    
+
+    # route alpha legacy view urls to /username
+    get '/view/:id' => redirect("/%{username}")
+    get '/profile' => redirect("/%{username}")
+
   end
 
 
-  #default landing page
-  root :to => 'home#landing_page'
 
 end

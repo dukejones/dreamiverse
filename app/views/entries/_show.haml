@@ -21,7 +21,7 @@
     %a.history.stream{href: stream_path} stream
   - else
     %a.history.entries{href: user_entries_path(@user.username)} entries
-    
+
 
   %a.history.prev{href: previous_entry_path(@entry)}
     %span &lsaquo;
@@ -30,7 +30,7 @@
     %a.history.editEntry{href: edit_entry_path(@entry)} edit
     /%a.history.deleteEntry delete
     /todo: bring back
-    = link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
+    -#= link_to 'delete', entry_path, :confirm => "Confirm you want to delete this entry:", :method => 'DELETE', :class => "deleteEntry"
 
 
   .wrapper
@@ -69,7 +69,8 @@
 
 
     /EMOTIONS DETAILS & THUMBS
-    - if @entry.tags.emotion.first._?.intensity.to_i > 0
+    / XXX: DISABLED
+    - if false && @entry.tags.emotion.first._?.intensity.to_i > 0
       .emotionsWrap.wrapper
 
         / EMOTIONS DETAILS
@@ -157,7 +158,7 @@
 
           - @entry.what_tags.custom.whats.each do |what|
             = render partial: 'tag', locals: {what: what, close_button: (@entry.user == current_user), kind: 'custom'}
-            
+
         / ANALYSIS TAGS
         .tag-list.ui-sortable.target
           - @entry.what_tags.auto.whats.each do |what|
@@ -170,12 +171,12 @@
         - if @entry.user == current_user && current_user._?.auth_level == 5
           %a.downloadEntry{href: download_entry_path(@entry.id)} download entry
           .clear
-        
 
 
-  / HIDDEN FIELD FOR SHOW ENTRY MODE 
+
+  / HIDDEN FIELD FOR SHOW ENTRY MODE
   .commentsTarget
-  = form_tag do 
-    = hidden_field_tag(:show_entry_mode, 1) 
+  = form_tag do
+    = hidden_field_tag(:show_entry_mode, 1)
 
 

@@ -1,0 +1,213 @@
+.emotionsWrap
+  +right
+  +relative
+  +transparent
+  overflow: visible
+  margin: 12px 4px 6px 20px
+  width: 70px
+  height: 70px
+  z-index: 200
+
+  &:hover .emotions-details
+    display: block !important
+
+  // EMOTIONS DETAILS & THUMBS
+  .emotions-details, .emotions-thumb
+    +absolute
+    +round(12)
+    +user-select
+    z-index: 200
+
+    .arrow
+      +absolute
+      width: 16px
+      height: 16px
+      top: 20px
+      right: -12px
+
+    table.container
+      +clear
+      border-collapse: separate
+      // width: 60px
+      // height: 60px
+      border: 0
+
+      tr
+        height: auto
+
+        td
+          padding: 0
+
+        td.name
+          +bold
+          text-align: right
+          padding: 0 12px 0 0
+
+        td.value
+          +round(16)
+          padding: 1px
+          height: auto
+          border: none
+
+          .amount
+            +round(15)
+            height: 100%
+
+      tr.love
+        .amount
+          +gradient(#cbfe72, #97e414)
+      tr.joy
+        .amount
+          +gradient(#faf55d, #e3db0e)
+      tr.surprise
+        .amount
+          +gradient(#f3e85c, #e2ad0e)
+      tr.anger
+        .amount
+          +gradient(#eebb6d, #e24a0e)
+      tr.mystical
+        .amount
+          +gradient(#a16be6, #6421bb)
+      tr.wonder
+        .amount
+          +gradient(#62bceb, #0e99e2)
+      tr.sadness
+        .amount
+          +gradient(#8fbfc3, #53979d)
+      tr.stress
+        .amount
+          +gradient(#c86855, #9d5e52)
+      tr.confusion
+        .amount
+          +gradient(#c7c792, #8b8b65)
+      tr.fear
+        .amount
+          +gradient(#ababab, #787878)
+
+  // EMOTIONS DETAILS ONLY
+  .emotions-details
+    display: none
+    padding: 8px
+    top: 4px
+    right: 82px
+
+    .emotionsHeader
+      +user-select
+      +round(20)
+      +center
+      +left
+      +cursor
+      +bold
+      margin: 0 0 4px
+      padding: 0 12px 0 4px
+      height: 34px
+      line-height: 34px
+      .img
+        +left
+        width: 34px
+        height: 34px
+        background: asset-url("icons/emotions-16.png") no-repeat center
+
+    table.container
+      border-collapse: separate
+      border-spacing: 4px
+      height: auto
+      width: 262px
+
+      tr
+        height: 24px
+
+        td.value
+          width: 178px
+          padding: 2px
+
+
+  // EMOTIONS THUMB ONLY
+  .emotions-thumb
+    +pointer
+    +round(4)
+    padding: 1px
+
+    .arrow
+      +hidden
+
+    table.container
+      +flat-all
+      height: 60px
+      width: 60px
+      td.name
+        +hidden
+      td.value
+        +flat-all
+        +transparent
+        width: 100%
+        padding: 0
+
+        table.amount
+          +flat-all
+
+
+
+// EMOTIONS - 1D THUMBS ONLY
+.thumb-1d, .thumb-1d.noImage
+
+  .emotionsWrap
+    +absolute
+    top: -8px
+    right: -8px
+
+
+// EMOTIONS COLOR
+.light
+  .emotions-details, .emotions-thumb
+
+    .arrow
+      background: asset-url("icons/arrow-right-16-dark.png") no-repeat center
+
+  // DETAILS ONLY
+  .emotions-details
+    +bevel-light
+    box-shadow:         4px 4px 10px rgba(0,0,0,0.8)
+    -moz-box-shadow:    4px 4px 10px rgba(0,0,0,0.8)
+    -webkit-box-shadow: 4px 4px 10px rgba(0,0,0,0.8)
+
+    .emotionsHeader
+      +indent-light
+      border: 1px solid #e6e6e6
+
+    .container
+      .value
+        +indent-light
+
+  // THUMBS ONLY
+  .emotions-thumb
+    +flat-light
+    box-shadow:         0px 0px 10px rgba(0,0,0,0.8)
+    -moz-box-shadow:    0px 0px 10px rgba(0,0,0,0.8)
+    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.8)
+
+
+.dark
+  .emotions-details, .emotions-thumb
+    .arrow
+      background: asset-url("icons/arrow-right-16-light.png") no-repeat center
+
+  // DETAILS ONLY
+  .emotions-details
+    +bevel-dark
+    +glow-dark(10)
+
+    .emotionsHeader
+      +indent-dark
+      border: 1px solid #090909
+
+    .container
+      .value
+        +indent-dark
+
+  // THUMBS ONLY
+  .emotions-thumb
+    +flat-dark
+    box-shadow:         0px 0px 10px rgba(250,250,250,0.8)
+    -moz-box-shadow:    0px 0px 10px rgba(250,250,250,0.8)
+    -webkit-box-shadow: 0px 0px 10px rgba(250,250,250,0.8)

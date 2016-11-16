@@ -1,0 +1,305 @@
+// COLORS
+.light .commentsPanel
+  +panel-light
+  +shine-light-alpha(28)
+
+  .spinner
+    +spinner-light-grey
+
+  .showAll
+    +indent-light
+    +button-light
+    border: 1px solid #8C8C8C
+    &:hover
+      border: 1px solid #333
+    &:active
+      border: 1px solid black
+
+  .newCommentWrap
+    .newComment
+      .save
+        +button-light
+        +save(14)
+        &.disabled:hover
+          +shine-grey(14)
+      textarea
+        color: #333
+        +input-light(large)
+
+  .prevCommentWrap
+    .avatar:hover
+      border: 1px solid #fff
+    .prevComment
+      +input-light(small)
+      border: 1px solid #fff
+      .user
+        color: #777
+        +button-light
+        +bevel-light
+      ul
+        li
+          +button-light
+      .rePost
+        +bevel-light
+        +button-light
+
+
+
+
+
+.dark .commentsPanel
+  +panel-dark
+  +shine-dark-alpha(28)
+
+  .showAll
+    +indent-dark
+    +button-dark
+    border: 1px solid #444
+    &:active
+      border: 1px solid black
+
+  .newCommentWrap
+    .newComment
+      .save
+        +button-dark
+        +save(14)
+        &.disabled:hover
+          +shine-grey(14)
+      textarea
+        color: #ddd
+        +input-dark(large)
+
+  .prevCommentWrap
+    .avatar:hover
+      border: 1px solid #aaa
+    .prevComment
+      +input-dark(small)
+      border: 1px solid #222
+      .user
+        color: #999
+        +button-dark
+        +bevel-dark
+      ul
+        li
+          +button-dark
+      .rePost
+        +bevel-dark
+        +button-dark
+
+
+
+
+
+// STRUCTURE
+.commentsPanel
+  +round(12)
+  +relative
+  padding: 8px
+  margin-bottom: 0
+
+  .commentsHeader
+    +bold
+    +user-select
+
+
+    .count
+      +left
+      +round(12)
+      +center
+      +font(14)
+      margin: 5px 10px 5px 2px
+      height: 24px
+      line-height: 17px
+      padding: 0 12px 0 6px
+      background-color: #414141
+
+      .img
+        +left
+        width: 16px
+        height: 24px
+
+      span
+        color: #fff
+        +left
+        line-height: 24px
+        margin-left: 8px
+
+  .spinner
+    height: 80px
+
+  .showAll
+    +round(16)
+    +center
+    +pointer
+    +user-select
+    +hidden
+    height: 24px
+    line-height: 24px
+    width: 562px
+    margin-left: 80px
+
+  .comments
+    margin-top: 8px
+
+  .newCommentWrap
+    margin-top: 16px
+
+  .newCommentWrap, .prevCommentWrap
+    .avatar
+      +round(12)
+      +left
+      +overflow
+      border: 1px solid transparent
+      height: 62px
+      width: 62px
+      margin: 0 6px
+      background: asset-url("avatars/default-avatar-tiny.jpg") center center transparent
+
+  .prevCommentWrap
+    .prevComment
+      +round(6)
+      +right
+      width: 560px
+      margin-right: 2px
+
+      &:hover .delete
+        +block
+
+      .delete
+        +hidden
+        +alpha(40)
+        +pointer
+        +absolute
+        background: asset-url("icons/close-24.png") no-repeat center center transparent
+        width: 24px
+        height: 24px
+        right: 16px
+        margin-top: 6px
+        &:hover
+          background: asset-url("icons/close-24-hover.png") no-repeat center center transparent
+          +alpha(100)
+        &:active
+          background: asset-url("icons/close-24-active.png") no-repeat center center transparent
+          +alpha(100)
+
+
+      .user, .commentTime
+        +left
+        +center
+        height: 22px
+        line-height: 21px
+      .user
+        +round(5)
+        margin: 2px 0 0 2px
+        padding: 0 15px
+      .commentTime
+        +alpha(40)
+        +cursor
+        margin-top: 3px
+        +font(14)
+        padding: 0 6px
+
+
+      .body
+        +clear
+        padding: 15px 18px 0 18px
+        +wrap
+        p
+          margin-bottom: 16px
+
+
+      ul
+        +right
+        max-width: 270px
+        margin: 0 0 0 8px
+        padding: 0
+        list-style: none
+        li
+          +round(8)
+          +right
+          +overflow
+          margin: 0 2px 2px 0
+          height: 62px
+          width: 62px
+          background: #ababab
+
+      .rePost
+        +round(16)
+        +left
+        +center
+        height: 32px
+        line-height: 32px
+        padding: 0 12px
+        margin: 12px 0 0
+
+
+  .newCommentWrap
+    .newComment
+      +relative
+      +right
+
+      textarea
+        +round(6)
+        +font(16)
+        +outline
+        +relative
+        +overflow
+        top: 0
+        right: 2px
+        font-family: Calibri, Arial, Helvetica, sans-serif
+        height: 24px
+        width: 524px
+        min-width: 524px
+        max-width: 524px
+        border: none
+        cursor: text
+        padding: 20px 18px 22px
+        resize: none
+
+      .images, .links, .save
+        +right
+        +center
+        height: 32px
+      .images, .links
+        line-height: 32px
+        padding: 0 16px
+        img
+          +left
+          margin: 11px 8px 0 0
+      .links
+        img
+          margin-top: 9px
+      .save
+        +shine-grey(14)
+        color: #fff
+        +absolute
+        +round(6)
+        +bold
+        +font(13)
+        right: 7px
+        bottom: 5px
+        height: 30px
+        padding: 0 20px 3px
+        &.disabled
+          +alpha(40)
+          +cursor
+          border: 1px solid transparent !important
+
+
+
+
+
+.matrix.stream .commentsPanel
+  border: 0px solid transparent
+  +round(0)
+
+  .commentsHeader
+    display: none
+
+
+
+
+
+
+
+

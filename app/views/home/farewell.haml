@@ -1,0 +1,84 @@
+
+%a.dcLogo
+
+
+#leftColumn
+  = image_tag "art/dream-eyes-banner.jpg"
+  %br
+  %br
+  %br
+
+  .welcomeWrap
+    %h1 Farewell
+    .welcome
+      %p All things upon this earth pass, and from every dream we must one day wake.
+      %p.one Dreamcatcher was truly a beautiful vision.  At its height, we were convinced we would change the world, alter the pitch of society to begin to value the inner worlds, and be the medium of connection through mutual appreciation of the richness of the inner landscape.
+      %p.two In this, we did have some success, as we hope your own experience can attest.  However,  a venue for sharing one's innermost experiences does not harmonize with a for-profit corporate structure, the usual "internet startup" structure imposed.
+      %p.three The native grandmother laughed and said, "You know, we use the Dreamcatcher to catch the <i>bad</i> dreams..."
+      -# %p.four Farewell, we wish you well.  Sweet dreams.
+      %p “Nothing lasts but nothing is lost.” – Terence McKenna
+      %br
+
+      = link_to thank_you_path, class: 'thankyou' do
+        .img
+        %span download all your dreams
+
+  #publicStreamGlow
+    #publicStream
+      .today We love you
+      .matrix
+        -# = image_tag "art/dream-eyes-banner.jpg"
+
+
+
+
+
+#rightColumn
+
+  / JOIN PANEL
+  .joinPanel{style: 'margin-top: 181px'}
+    = form_for(Contact.new(email_address: current_user.email), url: collect_email_path) do |f|
+      .intro
+        %h1 Keep in touch
+        <p>This dream may be fading into memory, but as sure as the tide, there are many more adventures ahead.</p>
+        <p><i>Would you like to keep in touch regarding:</i><br />
+        = f.check_box :open_source
+        = f.label :open_source, "An open-source dream sharing social network"
+        %br
+        = f.check_box :corporate
+        = f.label :corporate, "A new commercial version of dreamcatcher.net from Dreamcatcher Industries, LLC"
+        %br
+        = f.check_box :evolutionary
+        = f.label :evolutionary, "Other next-level projects from the original dreamcatcher dev team"
+        %br
+        <p>Either way we love you forever</p>
+        %p
+          = f.label :email_address
+          = f.text_field :email_address, style: 'width: 97%; display: block; text-align: center'
+
+
+      / JOIN TOGGLE - BUTTON
+      .joinWrap
+        %a.join{href: join_path} Keep in touch &rsaquo;
+
+  -# .topPadding
+
+
+
+  / DREAMSTARS MINI
+  .dreamstarsMiniWrap
+    %a{href: dreamstars_path}
+      %img.logo{src: '/assets/logos/dreamstars-182.png', width: '182', height: '50'}
+      %span view all &rsaquo;
+    .dreamstarsMini
+
+      -# [current_user, current_user, current_user, current_user, current_user].each_with_index do |user, index|
+      - ([current_user] + User.dreamstars.limit(5)).each_with_index do |user, index|
+        - rank = index + 1
+        %a{class: "dreamstar-#{rank}", href: user_entries_path(user.username)}
+          .badge
+          .rank= rank
+          .name= user.username
+        .clear
+
+  -# .like

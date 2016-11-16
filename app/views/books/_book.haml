@@ -16,20 +16,20 @@
 
     %a.history.mask{href: (defined? context_panel) ? user_entries_path(book.user.username) : (book.new_record? ? '' : book_path(book))}
 
-    .entries{style: 'background-image: url(/images/icons/entries-16.png)'}
+    .entries{style: 'background-image: asset-url("icons/entries-16.png")'}
       82
     - if editable
       %a.history.edit{href: book.new_record? ? new_book_path : edit_book_path(book)} edit
-    
-    .title 
+
+    .title
       = book.title
       / %input.title-edit{type: 'text', value: 'Title of the Book Goes Here'}
       / .editTitle
 
-    .comments{style: 'background-image: url(/images/icons/comment-16.png)'}
+    .comments{style: 'background-image: asset-url("icons/comment-16.png")'}
       4
 
-    .sharing{style: 'background-image: url(/images/icons/friend-16.png)'}
+    .sharing{style: 'background-image: asset-url("icons/friend-16.png")'}
       friends
 
 
@@ -80,7 +80,7 @@
           /             delete book
           /           .label
           /             this book and its entries will be deleted
-          
+
           .arrow
             .up
 

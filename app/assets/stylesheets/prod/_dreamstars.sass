@@ -1,0 +1,259 @@
+
+#dreamstars
+  +absolute
+  top: 90px
+  left: 32px
+
+  // HEADER
+  .header
+    img, .date
+      +left
+      +user-select
+      +cursor
+    .date
+      +transparent-dark(50)
+      +round(16)
+      +right
+      +center
+      margin: 60px 0 0
+      padding: 0 12px
+      height: 40px
+      line-height: 40px
+      span
+        +bold
+        +font(19)
+
+  // COLUMNS PANEL
+  .columnsPanel
+    +shine-dark(24)
+    +round(16)
+    +relative
+    +user-select
+    width: 640px
+    padding: 8px
+    height: 40px
+    margin: 10px 0 20px 80px
+
+
+    .rankColumn, .nameColumn, .starlightColumn
+      +indent-dark
+      +round(8)
+      +absolute
+      +center
+      +font(17)
+      +cursor
+      color: #999
+      width: 80px
+      height: 36px
+      line-height: 36px
+      border: 1px solid #222
+    .rankColumn
+      left: 10px
+    .nameColumn
+      left: 98px
+      width: 458px
+    .starlightColumn
+      left: 564px
+
+  // TOP 6 DREAMSTARS
+  a
+    +transparent-dark(50)
+    +round(32)
+    +block
+    +relative
+    +pointer
+    color: #fff
+    margin: 0 0 8px 88px
+    height: 50px
+    line-height: 50px
+    .badge, .rank, .name, .starlight
+      +absolute
+    .badge
+      +user-select
+      top: -40px
+      left: -48px
+      img
+        margin: 0
+    .rank, .name, .starlight
+      height: 50px
+      line-height: 50px
+    .rank
+      left: 60px
+      +bold
+      +font(19)
+    .name
+      +center
+      +bold
+      +font(28)
+      left: 70px
+      width: 500px
+    .starlight
+      +absolute
+      +center
+      left: 550px
+      +bold
+      +font(16)
+      width: 86px
+
+    // STATUS HOVER - TOP 6 DREAMSTARS
+    .status
+      +hidden
+
+    &:hover .status
+      +round(8)
+      +absolute
+      +block
+      +pointer
+      +font(14)
+      +bold
+      top: 7px
+      right: 80px
+      height: 34px
+      line-height: 34px
+      padding: 0 4px 0 8px
+      color: #ccc
+      border: 1px solid transparent
+      &:hover
+        +transparent
+        border: 1px solid rgba(250,250,250,0.5)
+
+      .img
+        +right
+        width: 24px
+        height: 34px
+        margin: 0 0 0 4px
+        &.none
+          background: asset-url("icons/friend-24-unfriend.png") no-repeat center
+        &.following
+          background: asset-url("icons/friend-24-follow.png") no-repeat center
+        &.followed_by
+          background: asset-url("icons/friend-24-follower.png") no-repeat center
+        &.friends
+          background: asset-url("icons/friend-24.png") no-repeat center
+
+  .dreamstar-1, .dreamstar-2, .dreamstar-3, .dreamstar-4, .dreamstar-5, .dreamstar-6
+    +pointer
+    &:hover
+      border: 4px solid #fff
+  .dreamstar-1
+    border: 4px solid #FF40D9
+    &:hover
+      box-shadow: 0 0 60px #FF40D9
+      -moz-box-shadow: 0 0 60px #FF40D9
+      -webkit-box-shadow: 0 0 60px #FF40D9
+    .rank
+      color: #e7d44d
+  .dreamstar-2
+    border: 4px solid #7140FF
+    &:hover
+      box-shadow: 0 0 60px #7140FF
+      -moz-box-shadow: 0 0 60px #7140FF
+      -webkit-box-shadow: 0 0 60px #7140FF
+    .rank
+      color: #448e09
+  .dreamstar-3
+    border: 4px solid #4049FF
+    &:hover
+      box-shadow: 0 0 60px #4049FF
+      -moz-box-shadow: 0 0 60px #4049FF
+      -webkit-box-shadow: 0 0 60px #4049FF
+    .rank
+      color: #419b69
+  .dreamstar-4
+    border: 4px solid #407AFF
+    &:hover
+      box-shadow: 0 0 60px #407AFF
+      -moz-box-shadow: 0 0 60px #407AFF
+      -webkit-box-shadow: 0 0 60px #407AFF
+    .rank
+      color: #338c9b
+  .dreamstar-5
+    border: 4px solid #409AFF
+    &:hover
+      box-shadow: 0 0 60px #409AFF
+      -moz-box-shadow: 0 0 60px #409AFF
+      -webkit-box-shadow: 0 0 60px #409AFF
+    .rank
+      color: #3375a5
+  .dreamstar-6
+    border: 4px solid #40BFFF
+    &:hover
+      box-shadow: 0 0 60px #40BFFF
+      -moz-box-shadow: 0 0 60px #40BFFF
+      -webkit-box-shadow: 0 0 60px #40BFFF
+    .rank
+      color: #365ba6
+
+  // ALL DREAMSTARS
+  .dreamstarsAll
+    +transparent-dark(30)
+    +round(32)
+    padding: 16px 16px 8px
+    margin: 20px 0 260px 88px
+    border: 4px solid rgba(250,250,250,0.5)
+    a.dreamstar
+      +transparent-dark(20)
+      +round(16)
+      +relative
+      color: #ccc
+      height: 32px
+      margin: 0 0 8px
+      border: 1px solid rgba(0,0,0,0.2)
+      &:hover
+        border: 1px solid #ddd
+      .rank, .name, .starlight
+        +absolute
+        font-weight: normal
+        +font(16)
+        height: 32px
+        line-height: 32px
+      .rank
+        +bold
+        left: 20px
+      .name
+        +bold
+        +center
+        left: 60px
+        width: 490px
+      .starlight
+        left: 505px
+        text-align: right
+
+      // STATUS HOVER - ALL DREAMSTARS
+      .status
+        +hidden
+
+      &:hover .status
+        +round(4)
+        +absolute
+        +block
+        +pointer
+        +font(12)
+        +bold
+        top: 5px
+        right: 48px
+        height: 20px
+        line-height: 20px
+        padding: 0 4px
+        border: 1px solid transparent
+        &:hover
+          +bevel-dark
+          border: 1px solid rgba(250,250,250,0.7)
+
+        .img
+          +right
+          width: 16px
+          height: 16px
+          margin: 2px 0 0 4px
+          background: asset-url("icons/friend-stream-sprite.png") no-repeat
+          &.none
+            background-position: 0% 0%
+          &.following
+            background-position: 0% 33%
+          &.followed_by
+            background-position: 0% 66%
+          &.friends
+            background-position: 0% 100%
+
+
+

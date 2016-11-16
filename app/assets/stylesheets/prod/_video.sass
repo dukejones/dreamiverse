@@ -1,0 +1,59 @@
+
+
+
+.video
+  +round(12)
+  margin: 12px
+  padding: 12px
+  // width: 640px
+  z-index: 1400
+
+  .player
+    // width: 612px
+    height: 390px
+    background: #444 // TEMP
+
+  .info
+    +round(12)
+    +overflow
+    margin: 12px 0 0
+    padding: 8px
+    height: 30px
+    line-height: 30px
+
+    .logo
+      +left
+      width: 24px
+      height: 30px
+      margin: 0 8px 0 0
+
+    span.videoTitle
+      +font(16)
+      +bold
+
+// THUMB 1D VIDEO - SEE thumb_1d.sass
+.thumb-1d .video
+
+
+
+
+
+// VIDEO PANEL COLORS
+.light .video
+  +bevel-light
+
+  .info
+    color: #777
+    +indent-light
+    +border-light
+
+.dark .video
+  +gradient(#000, #0f0f0f)
+
+  .info
+    color: #ddd
+    +indent-dark
+    +border-dark
+
+
+

@@ -3,13 +3,13 @@
     .img
     date &amp; time
 
-  - datetime = @entry.dreamed_at
+  - datetime = @entry.dreamed_at || Time.now
   .date
     = select_month(datetime, {:prefix => :dreamed_at}, :class => 'month')
     = select_day(datetime, {:prefix => :dreamed_at},   :class => 'day')
     = select_year(datetime, {:prefix => :dreamed_at, :start_year => Time.now.year, :end_year => 1960},  :class => 'year')
-  
+
   .time
     = dc_select_hour(datetime, {:prefix => :dreamed_at}, :class => 'hour')
-    = dc_select_ampm(datetime, {:prefix => :dreamed_at}, :class => 'amPm')  
+    = dc_select_ampm(datetime, {:prefix => :dreamed_at}, :class => 'amPm')
   .clear

@@ -10,16 +10,16 @@ puts 'Seeding BlacklistWords...'
 require "#{Rails.root}/lib/init_nephele_blacklist_words"
 InitNepheleBlacklistWords.init_first_words 
 
+AVATAR_FILENAME = "avatar_lg.jpg"
 if Image.where(:title => "Default Avatar").count == 0
   puts "Seeding Default Avatar..."
-  avatar_filename = "avatar_lg.jpg"
   default_avatar_image = Image.create({
     :section => "Avatar",
     :title => "Default Avatar",
     :artist => "Andrew Jones",
-    :incoming_filename => avatar_filename
+    :incoming_filename => AVATAR_FILENAME
   })
-  default_avatar_image.import_from_file "#{Rails.root}/db/#{avatar_filename}"
+  default_avatar_image.intake_file "#{Rails.root}/db/#{AVATAR_FILENAME}"
 end
 
 puts "Seeding Emotions..."

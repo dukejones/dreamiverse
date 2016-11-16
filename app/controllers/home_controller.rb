@@ -2,15 +2,32 @@ class HomeController < ApplicationController
   layout 'home'
 
   def index
-    @entries = Entry.everyone.where(:created_at >= 3.days.ago).order("starlight DESC").limit(8)
+    # @entries = Entry.everyone.where(["created_at >= ?", 3.days.ago]).order("starlight DESC").limit(8)
+    @entries = Entry.everyone.order("created_at DESC").limit(8)
   end
-  
+
+  def farewell
+    redirect_to login_path and return unless current_user
+
+  end
+
+  def download_all
+    redirect_to login_path and return unless current_user
+
+    zipfile_name = UserExporter.new(current_user).generate_zip_file
+    send_file zipfile_name, type: Mime::ZIP
+  end
+
+  def collect_email
+    # binding.pry
+  end
+
   def landing_page
     unless current_user
       index
       render :index and return
     end
-    
+
     case current_user.default_landing_page
     when 'stream' then redirect_to stream_path
     when 'home'   then redirect_to entries_path
@@ -32,20 +49,20 @@ class HomeController < ApplicationController
 
     redirect_to entries_path, notice: "Your feedback has been submitted to the Dreamcatcher team.  Thank you."
   end
-  
+
   def terms
   end
 
   def thank_you
     session[:thank_you] = true
-    
+
     if request.xhr?
       render :json => {type: 'ok'}
     else
       redirect_to root_path
     end
   end
-  
+
   def error
     raise "This is a test! This is only a test!"
   end

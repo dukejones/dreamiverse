@@ -2,41 +2,41 @@ class EntriesController < ApplicationController
   before_filter :require_user, :only => [:new, :edit, :stream]
   before_filter :query_username, :except => [:stream, :random]
   before_filter :set_entry_mode
-  
+
   def entry_list(entries_context=nil, filters=nil)
     entries_context ||= session[:entries_context]
     session[:entries_context] = entries_context
-    
+
     filters ||= session[:filters] || {}
     session[:filters] = filters
-    
+
     return case entries_context
     when :dreamstream
       current_user ? Entry.dreamstream(current_user, filters) : []
     when :dreamfield
       if @entry._?.book_id
-        Entry.where(book_id: @entry.book_id) 
+        Entry.where(book_id: @entry.book_id)
       else
         Entry.dreamfield(current_user, @user, filters)
       end
     end
   end
-  
+
   def index
     flash.keep and redirect_to(user_entries_path(@user.username)) and return unless params[:username]
 
     @filters = params[:filters] || {}
-    @filters[:type] = params[:entry_type].singularize if params[:entry_type]    
+    @filters[:type] = params[:entry_type].singularize if params[:entry_type]
     @filters[:page] ||= params[:page]
     @filters[:page_size] ||= 24
 
     # TODO: check viewing permissions depending on user
-    @books = Book.where({user_id: @user.id}).order(:created_at.desc) unless @filters[:type]
-    
+    @books = Book.where({user_id: @user.id}).order("created_at desc") unless @filters[:type]
+
     # TODO: Make this one query.
     @entries = entry_list(:dreamfield, @filters)
     @entry_count = entry_list(:dreamfield, {type: @filters[:type], show_all: "true"}).count
-    
+
     hit( @user )
 
     if request.xhr?
@@ -53,24 +53,40 @@ class EntriesController < ApplicationController
     @book = @entry.book
     @page_title = @entry.title
     @filters = {}
-    
+
     unless request.xhr? || params[:username]
-      flash.keep 
-      redirect_to(user_entry_path(@entry.user.username, @entry)) and return 
+      flash.keep
+      redirect_to(user_entry_path(@entry.user.username, @entry)) and return
     end
 
     deny and return unless user_can_access?
 
     @entry.update_attribute(:new_comment_count, 0) if @entry.user == current_user
-    
+
     hit( @entry )
-    
+
     if request.xhr?
       render(partial: "entries/show")
     end
-    # else default render
+
+    respond_to do |format|
+      format.html
+      format.pdf {
+        # binding.pry
+        file = PdfGenerator.new(url: request.url, cookies: request.cookies).save('1234')
+        send_file file
+      }
+    end
   end
-  
+
+  def pdf_view
+    render layout: 'pdf'
+  end
+
+  def all
+    @entries = current_user.entries
+  end
+
   def previous
     @entry = Entry.find params[:id]
     @entries = entry_list
@@ -78,14 +94,14 @@ class EntriesController < ApplicationController
     @previous = @entries[i-1] || @entry
     if request.xhr?
       render :json => {
-        :entry_id => @previous.id, :username => @previous.user.username, 
+        :entry_id => @previous.id, :username => @previous.user.username,
         :redirect_to => user_entry_path(@previous.user.username, @previous)
       }
     else
       redirect_to user_entry_path(@previous.user.username, @previous)
     end
   end
-  
+
   def next
     @entry = Entry.find params[:id]
     @entries = entry_list
@@ -93,27 +109,27 @@ class EntriesController < ApplicationController
     @next = @entries[i+1] || @entries[0] || @entry
     if request.xhr?
       render :json => {
-        :entry_id => @next.id, :username => @next.user.username, 
+        :entry_id => @next.id, :username => @next.user.username,
         :redirect_to => user_entry_path(@next.user.username, @next)
       }
     else
       redirect_to user_entry_path(@next.user.username, @next)
     end
   end
-  
+
   def new
     @entry = Entry.new
     @entry.type = current_user.default_entry_type || 'dream'
-    
+
     if request.xhr?
       render(partial:"entries/new")
     end
   end
-  
+
   def edit
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
+
     if request.xhr?
       render(partial:"entries/new")
     else
@@ -147,19 +163,19 @@ class EntriesController < ApplicationController
       render :new
     end
   end
-  
+
   def update
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
-    
+
+
     params[:entry][:dreamed_at] = parse_time(params[:dreamed_at]) if params[:dreamed_at]
-    
-    
+
+
     # unless params[:entry].has_key?(:image_ids)
-    #   params[:entry][:image_ids] = [] 
+    #   params[:entry][:image_ids] = []
     # end
-  
+
     @entry.set_whats(params[:what_tags])
     @entry.location = Where.for params[:entry].delete(:location_attributes)
     @entry.set_links(params[:links])
@@ -182,18 +198,18 @@ class EntriesController < ApplicationController
       end
     end
   end
-  
+
   def download
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
+
     entry_dir_name = @entry.title[0..35].parameterize
     root_dir = File.join(Rails.root, 'tmp', 'entries', current_user.id.to_s)
     entry_dir = File.join(root_dir, entry_dir_name)
     entry_zip_name = entry_dir_name + '.zip'
 
     FileUtils.mkdir_p(entry_dir)
-    File.open(File.join(entry_dir, "#{@entry.type}.txt"), 'w') do |f| 
+    File.open(File.join(entry_dir, "#{@entry.type}.txt"), 'w') do |f|
       f.write @entry.title + "\n"
       f.write @entry.created_at.to_s(:long) + "\n\n"
       f.write @entry.body + "\n\n"
@@ -214,11 +230,11 @@ class EntriesController < ApplicationController
     FileUtils.rm_rf(entry_dir)
     send_file File.join(root_dir, entry_zip_name)
   end
-  
+
   def destroy
     @entry = Entry.find params[:id]
     deny and return unless user_can_write?
-    
+
     @entry.destroy
     redirect_to user_entries_path(current_user.username)
   end
@@ -227,14 +243,14 @@ class EntriesController < ApplicationController
     @user = current_user
     @filters = session[:filters] = @user.update_stream_filter(params[:filters])
     @entries = entry_list(:dreamstream, @filters)
-    
+
     if request.xhr?
       thumbs_html = ""
       @entries.each { |entry| thumbs_html += render_to_string(:partial => 'thumb_1d', :locals => {:entry => entry}) }
       render :json => {type: 'ok', html: thumbs_html}
     end
   end
-  
+
   def bedsheet
     @entry = Entry.find(params[:id])
     @entry.view_preference.image = Image.find(params[:bedsheet_id])
@@ -259,7 +275,7 @@ class EntriesController < ApplicationController
     random_entry = Entry.random
     redirect_to user_entry_path(random_entry.user.username, random_entry.id)
   end
-  
+
 
   protected
 
@@ -267,7 +283,7 @@ class EntriesController < ApplicationController
     # {"month"=>"10", "day"=>"26", "year"=>"2010", "hour"=>"8", "ampm"=>"am"}
     Time.zone.parse("#{time[:year]}-#{time[:month]}-#{time[:day]} #{time[:hour]}#{time[:ampm]}")
   end
-  
+
   # sets @user to be either params[:username]'s user or current_user
   # Redirect to / if neither param nor current_user.
   def query_username
@@ -275,7 +291,7 @@ class EntriesController < ApplicationController
     @user ||= Entry.find(params[:id]).user if request.xhr? and params[:id]
     redirect_to root_path, :alert => "no user #{params[:username]}" and return unless @user
   end
-  
+
   # requires @entry be set
   def user_can_access?
     @entry.everyone? || (current_user && current_user.can_access?(@entry))
@@ -293,10 +309,10 @@ class EntriesController < ApplicationController
       redirect_to :root, :alert => "Access denied to this entry."
     end
   end
-  
+
   def set_entry_mode
     @entry_mode = 'new' if %w(new create).include? action_name
     @entry_mode = 'show' if %w(show update).include? action_name
   end
-      
+
 end

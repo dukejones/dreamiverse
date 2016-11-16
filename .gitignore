@@ -5,10 +5,11 @@ log/*.log*
 tmp/*
 tmp/**/*
 .DS_Store
-public/images/uploads/*
-public/dreamcatcher/production.js
-public/dreamcatcher/dreamcatcher.js
-public/assets
-public/compiled
+.idea
+public/imagebank
+public/imagebank-cache/*
+#public/dreamcatcher/production.js
+#public/dreamcatcher/dreamcatcher.js
+#public/compiled
 config/initializers/dump.rdb
-
+config/database.yml

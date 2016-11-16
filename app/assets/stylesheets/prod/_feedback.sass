@@ -1,0 +1,135 @@
+
+// FEEDBACK PAGE
+// STRUCTURE
+#feedbackPage
+  +relative
+  top: 100px
+  width: 680px
+  margin: auto
+
+  img.feedbackLogo
+
+  .wrapper
+    +clear
+    margin: 20px 0 0
+
+    #feedbackWrap
+      +round(16)
+      width: 664px
+      padding: 8px
+
+      .feedback
+        +round(16)
+        padding: 8px 8px 1px
+
+        select
+          +round(12)
+          +bold
+          +font(21)
+          +pointer
+          width: 100%
+          height: 44px
+          padding: 8px 8px 4px
+          margin: 0 0 8px
+
+          option
+            padding: 4px 8px
+
+        #detailsForm
+          +round(12)
+          +font(16)
+          margin: 0 0 8px
+          padding: 12px
+          +transparent
+          +overflow
+          border: none
+          height: 100px
+          width: 620px
+          min-width: 620px
+          max-width: 620px
+          font-family: Calibri, Arial, Helvetica, sans-serif
+
+      #submitButton
+        +round(16)
+        margin: 8px 0 0
+        padding: 8px
+
+        .sendWrap
+          +round(12)
+          padding: 4px
+
+          input
+            +round(8)
+            +center
+            +pointer
+            +outline
+            +bold
+            +font(18)
+            width: 100%
+            height: 44px
+
+
+// FEEDBACK PAGE
+// COLORS
+.light
+  #feedbackPage
+    .wrapper
+
+      #feedbackWrap
+        +transparent-light(50)
+        +glow-light(40)
+
+        .feedback
+          +shine-light(20)
+
+          select
+            +input-light(small)
+
+          #details textarea
+            +input-light(small)
+
+        #submitButton
+          +shine-light(20)
+
+          .sendWrap
+            +inner-shadow(10)
+            +flat-light-medium
+
+            input
+              +button-light
+              +save(20)
+              +shine-light(20)
+              color: #111
+
+
+.dark
+  #feedbackPage
+    .wrapper
+
+      #feedbackWrap
+        +transparent-dark(50)
+        +glow-dark(40)
+
+        .feedback
+          +shine-dark(20)
+
+          select
+            +input-dark(small)
+
+          #details textarea
+            +input-dark(small)
+            color: #ddd
+
+        #submitButton
+          +shine-dark(20)
+
+          .sendWrap
+            +inner-shadow(10)
+            +flat-dark-medium
+
+            input
+              +button-dark
+              +save(20)
+              +shine-dark(20)
+              color: #ddd
+
