@@ -1,11 +1,9 @@
-This was Dreamcatcher, a beautiful dream. It ended as so many idealist projects do
-in this age of corporations and profits.  
+This was Dreamcatcher, a beautiful dream.
 
-We hope that it can be a good example for those who program web apps to allow people to connect and
+I hope it can be an example for those who program social network apps, who work to help people connect and
 share with each other, and also that it perhaps can gain some new life in its open source incarnation.
 
-Do check out the image resizing system, I'd like to abstract that into a stand-alone gem when I have time.
-Hit me up about it and your enthusiasm may drive me to make it happen sooner!
+Do check out the image resizing system, it's the only real gem in this codebase beyond the styles.
 
 
 © 2011 Duke Jones, Geoff Jensen, and Ephraim Peniston

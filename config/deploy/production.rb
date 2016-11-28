@@ -2,7 +2,7 @@
 set :application, "dreamcatcher.net"
 
 set :rails_env, 'production'
-set :branch, 'rails-4'
+set :branch, 'master'
 
 set :deploy_to, "/srv/#{fetch(:application)}"
 
